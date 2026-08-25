@@ -112,23 +112,48 @@ jobs:
             -a product_version="$VERSION" \
             -a openshift_enterprise=true
 
-      # AsciiBinder plants self-referential symlinks (`modules/modules ->
-      # ../../../modules/`) so include:: resolves from any depth, plus per-
-      # directory `images` links. The conversion mirrors them, and both kinds
-      # are wrong here: includes are already realized into the markdown, and
-      # images were relocated to `_assets/images/`, so 335 of them dangle and
-      # 3 resolve OUTSIDE the content root — a symlink escaping the repo is
-      # not something to hand a cloner.
+      # AsciiBinder symlinks are LOAD-BEARING. Per-section directories link
+      # back to shared root-level `_attributes/`, `modules/` and `snippets/`
+      # so `{% include "./modules/x.md" %}` resolves identically from any
+      # depth, and the build-time Minja pass recreates them in its mirror for
+      # exactly that reason.
       #
-      # Measured before removing: every image reference in the converted
-      # markdown is content-rooted (`/_assets/images/...`) and ZERO files
-      # reference a relative `images/` path. Nothing depends on these.
-      - name: Strip mirrored symlinks
+      # An earlier version of this step deleted ALL of them. The site still
+      # built, still reported 1,797 pages, and 2,288 pages silently lost most
+      # of their body: 13,475 include directives stopped resolving, 10,710 of
+      # them `./modules/` splices. A failed include renders as nothing, so
+      # there was no error and no warning — only a page like
+      # /architecture/admission-plug-ins/ down to 405 characters.
+      #
+      # The check that let it through was too narrow: it verified no markdown
+      # used a relative `images/` path and concluded nothing depended on the
+      # links. Images were never the dependant; includes were.
+      #
+      # So remove ONLY links that resolve OUTSIDE the content root — the three
+      # self-referential ones (`modules/modules -> ../../../modules/` and
+      # friends), which escape the tree and which nothing includes through.
+      # Dangling links that stay inside the root are left alone: they are
+      # inert, and deleting things "because they look wrong" is what caused
+      # this.
+      - name: Remove symlinks that escape the content root
         run: |
           set -euo pipefail
-          n=$(find "$RUNNER_TEMP/out/content" -type l | wc -l)
-          find "$RUNNER_TEMP/out/content" -type l -delete
-          echo "removed $n symlink(s)"
+          root=$(cd "$RUNNER_TEMP/out/content" && pwd -P)
+          removed=0 kept=0
+          while IFS= read -r l; do
+            # -m, not -f: resolves lexically so a DANGLING link still yields a
+            # path to compare, instead of an empty string that looks external.
+            target=$(readlink -m "$l")
+            case "$target" in
+              "$root"/*|"$root") kept=$((kept+1)) ;;
+              *) rm -f "$l"; removed=$((removed+1)) ;;
+            esac
+          done < <(find "$root" -type l)
+          echo "symlinks: kept $kept, removed $removed (escaped the content root)"
+          if [ "$kept" -lt 500 ]; then
+            echo "::error::only $kept symlinks kept — includes resolve through these; refusing"
+            exit 1
+          fi
 
       - name: Refuse an implausibly small conversion
         id: count
