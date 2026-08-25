@@ -124,9 +124,52 @@ jobs:
       # written when the scaffold emitted Astro 6.
       #
       # dist/ is COMMITTED: it is what Pages will serve.
+      # WORKAROUND, remove once the CLI is republished.
+      #
+      # dogsbay@0.2.0-beta.93 pins @dogsbay/format-astro EXACTLY at
+      # 0.2.0-beta.93, whose scaffold still writes `overrides: { vite: "^7" }`
+      # — an Astro 6-era guard. `astro: ^7.0.4` resolves to astro 7.2.x, which
+      # pairs with vite 8, so forcing vite 7 breaks the build with:
+      #
+      #   rollupOptions.input should not be an html file when building for SSR
+      #
+      # format-astro@0.2.0-beta.100 already drops the override, but nothing
+      # installs it: the CLI's exact pin wins over format-astro's own `beta`
+      # tag. Publishing dogsbay >= beta.100 is the real fix.
+      #
+      # Conditional, so this step becomes a no-op the moment that happens
+      # rather than silently masking a future deliberate override.
+      - name: Drop the stale vite override
+        working-directory: site
+        run: |
+          set -euo pipefail
+          node -e '
+            const fs = require("fs");
+            const p = "package.json";
+            const j = JSON.parse(fs.readFileSync(p, "utf8"));
+            if (j.overrides && j.overrides.vite) {
+              const was = j.overrides.vite;
+              delete j.overrides.vite;
+              if (Object.keys(j.overrides).length === 0) delete j.overrides;
+              fs.writeFileSync(p, JSON.stringify(j, null, 2) + "\n");
+              console.log(`removed stale overrides.vite (${was})`);
+            } else {
+              console.log("no vite override — CLI is current, step is a no-op");
+            }
+          '
+
       - name: Install Astro project deps
         working-directory: site
         run: npm install --no-audit --no-fund --legacy-peer-deps
+
+      - name: Record the resolved Astro and Vite versions
+        working-directory: site
+        run: |
+          set -euo pipefail
+          for p in astro vite; do
+            v=$(node -p "require('./node_modules/$p/package.json').version" 2>/dev/null || echo "?")
+            echo "  $p $v"
+          done
 
       - name: Verify the site compiles (astro build)
         working-directory: site
