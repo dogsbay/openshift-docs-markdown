@@ -65,11 +65,26 @@ From a full local run before the workflow was written:
 
 | | |
 |---|---|
-| Markdown pages | 11,819 |
-| Fragments converted | 10,023 |
+| Markdown files | 11,819 (1,796 pages + 10,023 include fragments) |
+| Upstream `.adoc` | 20,797 files, 77.3 MB |
+| Converted `.md` | **40.7 MB** — about half the source |
+| Images (`_assets`) | 677 files, 62.6 MB |
 | Remote includes inlined | 33 fragments, 72 URLs |
-| Content size | 133 MB (68 MB markdown, 64 MB images) |
 | Largest file | 4.4 MB — well inside GitHub's limits |
+
+Sizes are real byte counts. `du` rounds every file up to a 4 KB block,
+which across 11,819 files reports the markdown as 68 MB — nearly
+double. Measure this corpus with `find -printf '%s'`, not `du`.
+
+Markdown coming out smaller than the AsciiDoc going in is expected:
+markdown is terser, and the distro filter drops the ~9,000 source files
+belonging to `osd` / `rosa` / `ms`. Nothing is duplicated — includes are
+preserved as references (13,475 of them), so each module's content is
+stored once and the assemblies point at it rather than inlining it.
+
+Images are 60% of the repo and are binary, so they do not diff. That is
+a one-time cost on a branch's first commit; unchanged images are the
+same blob on every later sync.
 
 ### Two things the workflow handles deliberately
 
