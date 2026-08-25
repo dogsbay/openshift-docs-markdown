@@ -1,0 +1,228 @@
+name: Sync upstream AsciiDoc → Dogsbay MD
+
+# Mirrors one OpenShift docs version, converted from AsciiDoc to Dogsbay MD.
+#
+# One UPSTREAM branch → one branch HERE with the same name. This branch
+# (`main`) holds the workflow and nothing else; content never lands on it.
+# That split is deliberate: a content branch that also carried the workflow
+# would re-trigger it, and `workflow_dispatch` reads the workflow from the
+# branch you select, so keeping it on `main` means one file to maintain
+# rather than one per version.
+#
+# History is PRESERVED on each content branch — every run is a commit, so
+# `git log content/` is a real changelog of what upstream changed and what
+# the converter did with it. That is the point of the repo, not a byproduct.
+
+on:
+  workflow_dispatch:
+    inputs:
+      upstream_ref:
+        description: "Upstream branch (e.g. enterprise-4.22)"
+        required: true
+        default: "enterprise-4.22"
+      distro:
+        description: "AsciiBinder distro filter"
+        required: true
+        default: "openshift-enterprise"
+  schedule:
+    - cron: "0 5 * * 1" # Mondays 05:00 UTC
+
+permissions:
+  contents: write
+
+# Serialise per target branch. Two runs writing the same branch would
+# race on the push; different versions are independent and may overlap.
+concurrency:
+  group: sync-${{ github.event.inputs.upstream_ref || 'enterprise-4.22' }}
+  cancel-in-progress: false
+
+env:
+  DOGSBAY_VERSION: beta
+  UPSTREAM_REPO: https://github.com/openshift/openshift-docs.git
+  UPSTREAM_REF: ${{ github.event.inputs.upstream_ref || 'enterprise-4.22' }}
+  DISTRO: ${{ github.event.inputs.distro || 'openshift-enterprise' }}
+  # Below this, assume the conversion broke rather than that upstream shrank.
+  # 4.22/openshift-enterprise is ~10k pages; a run yielding a few hundred is
+  # a failure that would otherwise be committed as a mass deletion.
+  MIN_PAGES: "2000"
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Checkout this repo (main — workflow only)
+        uses: actions/checkout@v4
+
+      - name: Derive product version from the upstream ref
+        id: ver
+        run: |
+          set -euo pipefail
+          case "$UPSTREAM_REF" in
+            enterprise-*)
+              echo "version=${UPSTREAM_REF#enterprise-}" >> "$GITHUB_OUTPUT" ;;
+            *)
+              echo "::error::Only enterprise-* refs are supported today; got '$UPSTREAM_REF'"
+              exit 1 ;;
+          esac
+
+      - name: Set up Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Dogsbay CLI
+        run: npm install -g "dogsbay@${DOGSBAY_VERSION}"
+
+      - name: Record the exact toolchain
+        id: tools
+        run: |
+          set -euo pipefail
+          echo "cli=$(dogsbay --version)" >> "$GITHUB_OUTPUT"
+
+      - name: Clone upstream (shallow, single branch)
+        run: |
+          set -euo pipefail
+          rm -rf "$RUNNER_TEMP/upstream"
+          git clone --depth 1 --branch "$UPSTREAM_REF" \
+            "$UPSTREAM_REPO" "$RUNNER_TEMP/upstream"
+
+      - name: Record the upstream commit being mirrored
+        id: upstream
+        working-directory: ${{ runner.temp }}/upstream
+        run: |
+          set -euo pipefail
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          echo "short=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+          echo "date=$(git log -1 --format=%cI)" >> "$GITHUB_OUTPUT"
+
+      # Output goes to RUNNER_TEMP, never inside the checkout — anything
+      # written into the working tree would be swept into the commit below.
+      - name: Convert AsciiDoc → Dogsbay MD
+        env:
+          VERSION: ${{ steps.ver.outputs.version }}
+        run: |
+          set -euo pipefail
+          dogsbay migrate-asciidoc "$RUNNER_TEMP/upstream" \
+            -o "$RUNNER_TEMP/out" --force --quiet \
+            --distro "$DISTRO" \
+            --site-name "OpenShift Container Platform" \
+            -a product_title="OpenShift Container Platform" \
+            -a product_version="$VERSION" \
+            -a openshift_enterprise=true
+
+      # AsciiBinder plants self-referential symlinks (`modules/modules ->
+      # ../../../modules/`) so include:: resolves from any depth, plus per-
+      # directory `images` links. The conversion mirrors them, and both kinds
+      # are wrong here: includes are already realized into the markdown, and
+      # images were relocated to `_assets/images/`, so 335 of them dangle and
+      # 3 resolve OUTSIDE the content root — a symlink escaping the repo is
+      # not something to hand a cloner.
+      #
+      # Measured before removing: every image reference in the converted
+      # markdown is content-rooted (`/_assets/images/...`) and ZERO files
+      # reference a relative `images/` path. Nothing depends on these.
+      - name: Strip mirrored symlinks
+        run: |
+          set -euo pipefail
+          n=$(find "$RUNNER_TEMP/out/content" -type l | wc -l)
+          find "$RUNNER_TEMP/out/content" -type l -delete
+          echo "removed $n symlink(s)"
+
+      - name: Refuse an implausibly small conversion
+        id: count
+        run: |
+          set -euo pipefail
+          n=$(find "$RUNNER_TEMP/out/content" -name '*.md' | wc -l)
+          echo "pages=$n" >> "$GITHUB_OUTPUT"
+          echo "converted $n markdown page(s)"
+          if [ "$n" -lt "$MIN_PAGES" ]; then
+            echo "::error::only $n pages (< $MIN_PAGES) — refusing to publish what looks like a broken run"
+            exit 1
+          fi
+
+      - name: Update the content branch
+        env:
+          BRANCH: ${{ env.UPSTREAM_REF }}
+          SHA: ${{ steps.upstream.outputs.sha }}
+          SHORT: ${{ steps.upstream.outputs.short }}
+          UPDATED: ${{ steps.upstream.outputs.date }}
+          PAGES: ${{ steps.count.outputs.pages }}
+          CLI: ${{ steps.tools.outputs.cli }}
+          VERSION: ${{ steps.ver.outputs.version }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Check out the content branch, keeping its history when it exists.
+          if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
+            git fetch --depth 1 origin "$BRANCH"
+            git checkout -B "$BRANCH" "origin/$BRANCH"
+          else
+            # First run for this version: an orphan branch, so the content
+            # history is not tangled with main's workflow history.
+            git checkout --orphan "$BRANCH"
+            git rm -rfq --cached . || true
+          fi
+
+          # Replace wholesale. `rm` first so upstream DELETIONS propagate —
+          # copying over the top would leave removed pages behind forever,
+          # and a mirror that only ever grows is not a mirror.
+          rm -rf content MIGRATION.md
+          cp -r "$RUNNER_TEMP/out/content" content
+          # `if`, not `[ … ] && …`: under `set -e` a bare test that fails is
+          # the last command of the list and kills the whole step.
+          if [ -f "$RUNNER_TEMP/out/MIGRATION.md" ]; then
+            cp "$RUNNER_TEMP/out/MIGRATION.md" MIGRATION.md
+          fi
+
+          cat > README.md <<EOF
+          # OpenShift docs — \`$BRANCH\` as Dogsbay MD
+
+          Generated. Do not edit by hand; the next sync overwrites everything.
+
+          | | |
+          |---|---|
+          | Upstream | [openshift/openshift-docs@\`$SHORT\`](https://github.com/openshift/openshift-docs/commit/$SHA) |
+          | Upstream branch | \`$BRANCH\` |
+          | Upstream commit date | $UPDATED |
+          | Distro filter | \`$DISTRO\` |
+          | Product version | $VERSION |
+          | Pages | $PAGES |
+          | Converted by | dogsbay $CLI |
+
+          \`MIGRATION.md\` reports what survived conversion and what did not.
+
+          Regenerate from the [\`main\`](../../tree/main) branch:
+          Actions → **Sync upstream AsciiDoc → Dogsbay MD** → Run workflow.
+          EOF
+
+          # Explicit paths, never `git add -A`: the runner temp is outside the
+          # tree, but an accidental stray file should not ride along silently.
+          git add content README.md
+          if [ -f MIGRATION.md ]; then git add MIGRATION.md; fi
+
+          if git diff --cached --quiet; then
+            echo "no change since the last sync — nothing to commit"
+            exit 0
+          fi
+
+          git commit -m "sync($BRANCH): openshift-docs@$SHORT — $PAGES pages" \
+                     -m "Upstream: $SHA ($UPDATED)" \
+                     -m "Distro: $DISTRO / version $VERSION / dogsbay $CLI"
+          git push origin "$BRANCH"
+
+      - name: Summary
+        if: always()
+        env:
+          PAGES: ${{ steps.count.outputs.pages }}
+          SHORT: ${{ steps.upstream.outputs.short }}
+        run: |
+          {
+            echo "### Sync \`$UPSTREAM_REF\`"
+            echo ""
+            echo "- upstream: \`${SHORT:-?}\`"
+            echo "- distro: \`$DISTRO\`"
+            echo "- pages: ${PAGES:-?}"
+          } >> "$GITHUB_STEP_SUMMARY"

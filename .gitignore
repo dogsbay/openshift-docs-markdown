@@ -1,0 +1,10 @@
+# Nothing generated is built here — conversion output goes to the runner's
+# temp dir and is committed to a version branch, never to main. These are
+# guards against a local experiment leaking into a commit.
+node_modules/
+out/
+site/
+astro/
+dist/
+.dogsbay/
+*.log
