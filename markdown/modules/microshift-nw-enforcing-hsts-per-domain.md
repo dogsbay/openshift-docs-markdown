@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enforcing HTTP Strict Transport Security per-domain {id="microshift-nw-enforcing-hsts-per-domain_{{ context }}"}
+# Enforce HTTP Strict Transport Security per-domain {id="microshift-nw-enforcing-hsts-per-domain_{{ context }}"}
 
 To enforce secure communication per-domain, configure routes with a compliant HSTS policy annotation. For upgraded nodes with non-compliant routes, ensure consistent enforcement by updating the source manifests to apply the new security policies. {._abstract}
 

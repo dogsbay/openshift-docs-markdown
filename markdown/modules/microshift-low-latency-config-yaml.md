@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring kubelet parameters and values in {{ microshift_short }} {id="microshift-low-latency-config-yaml_{{ context }}"}
+# Configure kubelet parameters and values in {{ microshift_short }} {id="microshift-low-latency-config-yaml_{{ context }}"}
 
 To enable low latency on a {{ microshift_short }} node, add the required settings to the {{ microshift_short }} `config.yaml` file. {._abstract}
 

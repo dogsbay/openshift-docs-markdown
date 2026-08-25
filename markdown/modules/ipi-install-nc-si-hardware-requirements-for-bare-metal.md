@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # NC-SI hardware requirements for bare metal {id="ncsi-hardware-requirements-for-bare-metal_{{ context }}"}
 
-To deploy {{ product_title }} 4.19 and later with a Network Controller Sideband Interface (NC-SI) on bare metal, you must use hardware with baseboard management controllers (BMCs) and network interface cards (NICs) that support NC-SI. NC-SI enables the BMC to share a system NIC with the host, requiring the `DisablePowerOff` feature to prevent loss of BMC connectivity during power-offs.
+To deploy {{ product_title }} 4.19 and later with a Network Controller Sideband Interface (NC-SI) on bare metal, you must use hardware with baseboard management controllers (BMCs) and network interface cards (NICs) that support NC-SI.  {._abstract}
+
+NC-SI enables the BMC to share a system NIC with the host, requiring the `DisablePowerOff` feature to prevent loss of BMC connectivity during power-offs.
 
 **Server compatibility for NC-SI**
 

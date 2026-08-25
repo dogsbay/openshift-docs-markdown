@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Verifying container signatures using sigstore {id="microshift-verify-container-signatures-sigstore_{{ context }}"}
+# Verify container signatures using sigstore {id="microshift-verify-container-signatures-sigstore_{{ context }}"}
 
 To secure your {{ microshift_short }} environment against unauthorized image deployments, you can configure the container runtime to verify container signatures. By using sigstore with Red&#160;Hat public keys, you ensure that only authentic, signed images from trusted registries are used. {._abstract}
 

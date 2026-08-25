@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the Generic Device Plugin {id="microshift-configuring-generic-device-plugin_{{ context }}"}
+# Configure the Generic Device Plugin {id="microshift-configuring-generic-device-plugin_{{ context }}"}
 
 The Generic Device Plugin (GDP) is disabled by default in {{ microshift_short }}. To expose host devices such as serial ports and cameras to pods in {{ product_title }}, you can enable the Generic Device Plugin and define devices in the `config.yaml` file or create a configuration snippet file such as `/etc/microshift/config.d/10-gdp.yaml`. {._abstract}
 

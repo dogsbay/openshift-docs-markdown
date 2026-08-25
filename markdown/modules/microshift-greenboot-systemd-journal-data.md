@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling systemd journal service data persistency {id="microshift-greenboot-systemd-journal-data_{{ context }}"}
+# Enable systemd journal service data persistency {id="microshift-greenboot-systemd-journal-data_{{ context }}"}
 
 The default configuration of the `systemd` journal service stores the data in the volatile `/run/log/journal` directory. To view system logs across system starts and restarts, you must enable log persistence and set limits on the maximal journal data size. {._abstract}
 

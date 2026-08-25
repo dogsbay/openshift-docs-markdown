@@ -1,16 +1,16 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Troubleshooting a failure to add the ingress certificate to kubeconfig {id="troubleshooting-failure-to-add-the-ingress-certificate-to-kubeconfig_{{ context }}"}
 
-The installation program adds the default ingress certificate to the list of trusted client certificate authorities in `${{ INSTALL_DIR }}/auth/kubeconfig`. If the installation program fails to add the ingress certificate to the `kubeconfig` file, you can retrieve the certificate from the cluster and add it.
+The installation program adds the default ingress certificate to the list of trusted client certificate authorities in `${{ INSTALL_DIR }}/auth/kubeconfig`. If the installation program fails to add the ingress certificate to the `kubeconfig` file, you can retrieve the certificate from the cluster and add it. {._abstract}
 
 **Procedure**
 
-1.  Retrieve the certificate from the cluster using the following command:
+1.  Retrieve the certificate from the cluster by running the following command:
     ```terminal
     $ oc --kubeconfig=${INSTALL_DIR}/auth/kubeconfig get configmaps default-ingress-cert \
          -n openshift-config-managed -o=jsonpath='{.data.ca-bundle\.crt}'
     ```
-    ```terminal
+    ```terminal title="Example output"
     -----BEGIN CERTIFICATE-----
     MIIC/TCCAeWgAwIBAgIBATANBgkqhkiG9w0BAQsFADAuMSwwKgYDVQQDDCNjbHVz
     dGVyLWluZ3Jlc3Mtb3BlcmF0b3JAMTU1MTMwNzU4OTAeFw0xOTAyMjcyMjQ2Mjha

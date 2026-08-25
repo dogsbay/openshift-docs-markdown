@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 
-# Understanding the SR-IOV Network Operator {id="microshift-understanding-sriov-con_{{ context }}"}
+# Understand the SR-IOV Network Operator {id="microshift-understanding-sriov-con_{{ context }}"}
 
 SR-IOV (Single Root I/O Virtualization) is a specification that allows a single physical Peripheral Component Interconnect Express (PCIe) device that supports SR-IOV, for example, a Physical Function (PF), to appear as multiple separate physical devices known as Virtual Functions (VFs). You can directly assign VFs to pods, which bypasses the host operating system network stack, improves throughput, and reduces latency for network intensive workloads. {._abstract}
 

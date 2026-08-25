@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling sigstore attachments for mirror registries {id="microshift-enable-sigstore-mirror-registries_{{ context }}"}
+# Enable sigstore attachments for mirror registries {id="microshift-enable-sigstore-mirror-registries_{{ context }}"}
 
 If you are using mirror registries, you must apply additional configuration to enable sigstore attachments and mirroring by digest. {._abstract}
 

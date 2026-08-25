@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring router ports {id="microshift-config-router-ports_{{ context }}"}
+# Configure router ports {id="microshift-config-router-ports_{{ context }}"}
 
 To bind the ingress router to specific HTTP and HTTPS port numbers in {{ microshift_short }}, you can edit the `ingress.ports.http` and `ingress.ports.https` settings in `config.yaml` file. {._abstract}
 

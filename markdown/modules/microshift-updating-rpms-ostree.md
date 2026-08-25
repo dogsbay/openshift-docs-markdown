@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Applying updates on an {{ op_system_ostree }} system {id="microshift-updates-rpms-ostree_{{ context }}"}
+# Apply updates on an {{ op_system_ostree }} system {id="microshift-updates-rpms-ostree_{{ context }}"}
 
 To update {{ microshift_short }} on {{ op_system_ostree_first }}, embed the new version of {{ microshift_short }} on a new operating system image. {._abstract}
 

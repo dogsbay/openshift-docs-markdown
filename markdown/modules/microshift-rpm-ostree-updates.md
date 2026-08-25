@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Updating {{ microshift_short }} on {{ op_system_ostree }} {id="microshift-rpm-ostree-updates_{{ context }}"}
+# Update {{ microshift_short }} on {{ op_system_ostree }} {id="microshift-rpm-ostree-updates_{{ context }}"}
 
 You can have automated backup and system rollback in case any part of the update fails by using the `rpm-ostree` update path for a new or existing {{ op_system_ostree }} deployment. {._abstract}
 

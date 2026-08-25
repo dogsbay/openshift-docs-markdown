@@ -7,7 +7,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a {{ name }} policy allowing traffic to an application from a namespace {id="nw-networkpolicy-allow-traffic-from-a-namespace_{{ context }}"}
+# Create a {{ name }} policy allowing traffic to an application from a namespace {id="nw-networkpolicy-allow-traffic-from-a-namespace_{{ context }}"}
 
 You can configure a policy that allows traffic to a pod with the label `app=web` from a particular namespace.  {._abstract}
 

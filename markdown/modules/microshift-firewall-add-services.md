@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding services to open ports {id="microshift-firewall-add-services_{{ context }}"}
+# Add services to open ports {id="microshift-firewall-add-services_{{ context }}"}
 
 To open default ports for predefined services through firewalld on your {{ microshift_short }} instance, you can use the `firewall-cmd` command. Add each service with the `--add-service` option. {._abstract}
 

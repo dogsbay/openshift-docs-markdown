@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Querying your AI model {id="microshift-rhoai-query-model_{{ context }}"}
+# Query your AI model {id="microshift-rhoai-query-model_{{ context }}"}
 
 You can make an inference request against the AI model server that is using the `ovms-resnet50` model. {._abstract}
 

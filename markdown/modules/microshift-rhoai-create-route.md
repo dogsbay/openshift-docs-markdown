@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a route to use for AI queries in {{ microshift_short }} {id="microshift-rhoai-create-route_{{ context }}"}
+# Create a route to use for AI queries in {{ microshift_short }} {id="microshift-rhoai-create-route_{{ context }}"}
 
 You can create a route so that your AI model can receive queries and give output by using the `oc expose svc` command or creating a definition in a YAML file and apply it. {._abstract}
 

@@ -7,6 +7,8 @@ title: Troubleshooting the installation
 {% include "./_attributes/common-attributes.md" %}
 {%- set context = "ipi-install-troubleshooting" %}
 
+Troubleshoot the {{ product_title }} installation process to identify and resolve deployment failures.
+
 {% leveloffset +1 %}{% include "./modules/ipi-install-troubleshooting-install-program-workflow.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/ipi-install-troubleshooting-install-config.md" %}{% endleveloffset %}
@@ -42,6 +44,16 @@ title: Troubleshooting the installation
 {% leveloffset +1 %}{% include "./modules/ipi-install-troubleshooting-registry-issues.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/ipi-install-troubleshooting-misc-issues.md" %}{% endleveloffset %}
+
+{% leveloffset +2 %}{% include "./modules/ipi-install-troubleshooting-runtime-network-not-ready.md" %}{% endleveloffset %}
+
+{% leveloffset +2 %}{% include "./modules/ipi-install-troubleshooting-no-matching-rootdevicehints.md" %}{% endleveloffset %}
+
+{% leveloffset +2 %}{% include "./modules/ipi-install-troubleshooting-incorrect-ipv6-dhcp.md" %}{% endleveloffset %}
+
+{% leveloffset +2 %}{% include "./modules/ipi-install-troubleshooting-incorrect-hostname-dhcp.md" %}{% endleveloffset %}
+
+{% leveloffset +2 %}{% include "./modules/ipi-install-troubleshooting-unreachable-routes.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/ipi-install-troubleshooting-failed-ignition-during-firstboot.md" %}{% endleveloffset %}
 

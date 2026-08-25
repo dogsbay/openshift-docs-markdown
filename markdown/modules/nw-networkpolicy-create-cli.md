@@ -7,7 +7,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a {{ name }} policy using the CLI {id="nw-networkpolicy-create-cli_{{ context }}"}
+# Create a {{ name }} policy using the CLI {id="nw-networkpolicy-create-cli_{{ context }}"}
 
 To define granular rules describing ingress or egress network traffic allowed for namespaces in your cluster, you can create a {{ name }} policy. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Troubleshooting custom certificates {id="microshift-custom-ca-troubleshootin_{{ context }}"}
+# Troubleshoot custom certificates {id="microshift-custom-ca-troubleshootin_{{ context }}"}
 
 To troubleshoot the implementation of custom certificates, you can take the following steps. {._abstract}
 

@@ -7,6 +7,8 @@ title: Prerequisites
 {% include "./_attributes/common-attributes.md" %}
 {%- set context = "ipi-install-prerequisites" %}
 
+You must meet several prerequisites before installing a cluster on bare metal by using installer-provisioned infrastructure.
+
 Installer-provisioned installation of {{ product_title }} requires:
 
 {% if openshift_origin %}
@@ -58,6 +60,8 @@ Before starting an installer-provisioned installation of {{ product_title }}, en
 *   [Using DNS forwarding](/networking/networking_operators/dns-operator#nw-dns-forward_dns-operator)
 
 {% leveloffset +1 %}{% include "./modules/ipi-install-configuring-nodes.md" %}{% endleveloffset %}
+
+{% leveloffset +2 %}{% include "./modules/ipi-install-configuring-nodes-secure-boot.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/ipi-install-out-of-band-management.md" %}{% endleveloffset %}
 

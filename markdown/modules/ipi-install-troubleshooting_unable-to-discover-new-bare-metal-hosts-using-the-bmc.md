@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Unable to discover new bare metal hosts using the BMC {id="unable-to-discover-new-bare-metal-hosts-using-the-bmc_{{ context }}"}
+# Unable to discover new bare-metal hosts using the BMC {id="unable-to-discover-new-bare-metal-hosts-using-the-bmc_{{ context }}"}
 
-In some cases, the installation program will not be able to discover the new bare metal hosts and issue an error, because it cannot mount the remote virtual media share.
+In some cases, the installation program is not be able to discover the new bare-metal hosts and issue an error, because it cannot mount the remote virtual media share. {._abstract}
 
 For example:
 ```terminal

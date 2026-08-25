@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a NetworkAttachmentDefinition for an additional network {id="microshift-cni-multus-nad-additional-network_{{ context }}"}
+# Create a NetworkAttachmentDefinition for an additional network {id="microshift-cni-multus-nad-additional-network_{{ context }}"}
 
 You can create a `NetworkAttachmentDefinition` configuration file for an additional network in order to use other CNI plugins. {._abstract}
 

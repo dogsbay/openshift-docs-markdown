@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Wiping local container storage clean {id="microshift-wiping-local-container-storage_{{ context }}"}
+# Wipe local container storage clean {id="microshift-wiping-local-container-storage_{{ context }}"}
 
 To ensure that container images with sigstore signatures are correctly downloaded and verified, you must clear existing local storage. Removing previous container data prevents configuration conflicts when you update security policies for {{ microshift_short }}. {._abstract}
 

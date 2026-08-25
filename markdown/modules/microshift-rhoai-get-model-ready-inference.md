@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Getting your AI model ready for inference {id="microshift-rhoai-get-model-ready-inference_{{ context }}"}
+# Get your AI model ready for inference {id="microshift-rhoai-get-model-ready-inference_{{ context }}"}
 
 Before querying your AI model through the API, you can get the model ready to provide answers based on the training data.  {._abstract}
 

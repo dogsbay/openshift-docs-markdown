@@ -7,7 +7,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing {{ name }} policies using the CLI {id="nw-networkpolicy-view-cli_{{ context }}"}
+# View {{ name }} policies using the CLI {id="nw-networkpolicy-view-cli_{{ context }}"}
 
 You can examine the {{ name }} policies in a namespace. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the {{ op_system_rt_kernel }} in a {{ op_system_ostree_first }} image {id="microshift-low-latency-install-kernelrt-rhel-edge_{{ context }}"}
+# Install the {{ op_system_rt_kernel }} in a {{ op_system_ostree_first }} image {id="microshift-low-latency-install-kernelrt-rhel-edge_{{ context }}"}
 
 To configure low latency for a {{ microshift_short }} node, you can include the real-time kernel in a {{ op_system_ostree }} image deployment using image builder. {._abstract}
 

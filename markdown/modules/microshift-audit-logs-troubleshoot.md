@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Troubleshooting audit log configuration {id="microshift-troubleshooting-audit-logs_{{ context }}"}
+# Troubleshoot audit log configuration {id="microshift-troubleshooting-audit-logs_{{ context }}"}
 
 You can use the following steps to troubleshoot {{ microshift_short }} custom audit log settings and file locations. {._abstract}
 

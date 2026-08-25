@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Required data for installation {id="required-data-for-installation_{{ context }}"}
 
-Prior to the installation of the {{ product_title }} cluster, gather the following information from all cluster nodes:
+Before you deploy {{ product_title }}, collect the essential information required for your environment.  {._abstract}
+
+Gather the following information from all cluster nodes:
 
 *   Out-of-band management IP
     *   Examples

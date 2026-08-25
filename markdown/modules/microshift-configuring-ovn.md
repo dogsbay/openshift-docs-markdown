@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating an OVN-Kubernetes configuration file {id="microshift-config-OVN-K_{{ context }}"}
+# Create an OVN-Kubernetes configuration file {id="microshift-config-OVN-K_{{ context }}"}
 
 {{ microshift_short }} uses built-in default OVN-Kubernetes values if an OVN-Kubernetes configuration file is not created. To apply custom OVN-Kubernetes values such as pod `mtu` instead of using built-in defaults, you can copy `ovn.yaml.default` to `/etc/microshift/ovn.yaml` and edit the file. {._abstract}
 

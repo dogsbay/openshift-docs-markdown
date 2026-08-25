@@ -2,15 +2,15 @@
 
 # Troubleshooting bootstrap VM issues {id="ipi-install-troubleshooting-bootstrap-vm_{{ context }}"}
 
-The {{ product_title }} installation program spawns a bootstrap node virtual machine, which handles provisioning the {{ product_title }} cluster nodes.
+The {{ product_title }} installation program spawns a bootstrap node virtual machine, which handles provisioning the {{ product_title }} cluster nodes. {._abstract}
 
 **Procedure**
 
-1.  About 10 to 15 minutes after triggering the installation program, check to ensure the bootstrap VM is operational using the `virsh` command:
+1.  About 10 to 15 minutes after triggering the installation program, ensure the bootstrap VM is operational by running the `virsh` command:
     ```terminal
     $ sudo virsh list
     ```
-    ```terminal
+    ```terminal title="Example output"
      Id    Name                           State
      --------------------------------------------
      12    openshift-xf6fq-bootstrap      running
@@ -22,11 +22,11 @@ The {{ product_title }} installation program spawns a bootstrap node virtual mac
     
     :::
 
-1.  If the bootstrap VM is not running after 10-15 minutes, verify `libvirtd` is running on the system by executing the following command:
+1.  If the bootstrap VM is not running after 10-15 minutes, verify `libvirtd` is running on the system by using the following command:
     ```terminal
     $ systemctl status libvirtd
     ```
-    ```terminal
+    ```terminal title="Example output"
     ● libvirtd.service - Virtualization daemon
        Loaded: loaded (/usr/lib/systemd/system/libvirtd.service; enabled; vendor preset: enabled)
        Active: active (running) since Tue 2020-03-03 21:21:07 UTC; 3 weeks 5 days ago
@@ -40,11 +40,11 @@ The {{ product_title }} installation program spawns a bootstrap node virtual mac
     ```
 
     If the bootstrap VM is operational, log in to it.
-1.  Use the `virsh console` command to find the IP address of the bootstrap VM:
+1.  Find the IP address of the bootstrap VM by running the following command:
     ```terminal
     $ sudo virsh console example.com
     ```
-    ```terminal
+    ```terminal title="Example output"
     Connected to domain example.com
     Escape character is ^]
     Red Hat Enterprise Linux CoreOS 43.81.202001142154.0 (Ootpa) 4.3
@@ -62,7 +62,7 @@ The {{ product_title }} installation program spawns a bootstrap node virtual mac
     
     :::
 
-1.  After you obtain the IP address, log in to the bootstrap VM using the `ssh` command:
+1.  After you obtain the IP address, log in to the bootstrap VM by running the `ssh` command:
 
     :::note
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Using cookies to keep route statefulness {id="nw-using-cookies-keep-route-statefulness_{{ context }}"}
+# Use cookies to keep route statefulness {id="nw-using-cookies-keep-route-statefulness_{{ context }}"}
 
 To maintain stateful application traffic during pod restarts or scaling events, configure sticky sessions by using cookies. By using this method, you ensure that all incoming traffic reaches the same endpoint, preventing state loss even if the specific endpoint pod changes. {._abstract}
 

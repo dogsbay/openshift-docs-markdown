@@ -139,7 +139,7 @@ Although the HyperShift Operator supports the hosted cluster versions in the fol
 | --- | --- |
 | Updating from 2.5 to 2.6 | {{ product_title }} 4.14, 4.16 |
 | Updating from 2.6 to 2.7 | {{ product_title }} 4.14, 4.16 |
-| Updating from 2.7 to 2.8 | {{ product_title }} 4.14, 4.16 |
+| Updating from 2.7 to 2.8 | {{ product_title }} 4.16 |
 | Updating from 2.8 to 2.9 | {{ product_title }} 4.16, 4.18 |
 | Updating from 2.9 to 2.10 | {{ product_title }} 4.18, 4.19 |
 | Updating from 2.10 to 2.11 | {{ product_title }} 4.19, 4.20 |

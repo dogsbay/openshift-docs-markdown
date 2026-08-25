@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Out-of-band management {id="out-of-band-management_{{ context }}"}
 
-Nodes typically have an additional NIC used by the baseboard management controllers (BMCs). These BMCs must be accessible from the provisioner node.
+Out-of-band management uses baseboard management controllers (BMCs) to provide the provisioner node with access to your cluster nodes.  {._abstract}
+
+Nodes typically have an additional NIC used by the BMCs. These BMCs must be accessible from the provisioner node.
 
 Each node must be accessible via out-of-band management. When using an out-of-band management network, the provisioner node requires access to the out-of-band management network for a successful {{ product_title }} installation.
 

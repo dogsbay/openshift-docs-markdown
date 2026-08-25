@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a ServingRuntime CR for use in {{ microshift_short }} {id="microshift-rhoai-servingruntimes-ex_{{ context }}"}
+# Create a ServingRuntime CR for use in {{ microshift_short }} {id="microshift-rhoai-servingruntimes-ex_{{ context }}"}
 
 You can create a `ServingRuntime` custom resource (CR) based on installed manifests and release information.  {._abstract}
 

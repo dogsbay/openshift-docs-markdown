@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Troubleshooting a failure to initialize the cluster {id="troubleshooting-failure-to-initialize-the-cluster_{{ context }}"}
 
-The installation program uses the Cluster Version Operator to create all the components of an {{ product_title }} cluster. When the installation program fails to initialize the cluster, you can retrieve the most important information from the `ClusterVersion` and `ClusterOperator` objects.
+The installation program uses the Cluster Version Operator to create all the components of an {{ product_title }} cluster. When the installation program fails to initialize the cluster, you can retrieve the most important information from the `ClusterVersion` and `ClusterOperator` objects. {._abstract}
 
 **Procedure**
 
@@ -131,7 +131,7 @@ The installation program uses the Cluster Version Operator to create all the com
       relatedObjects: null
       version: ""
     ```
-1.  To get the cluster Operator’s status condition, run the following command:
+1.  Get the cluster Operator’s status condition by running the following command:
     ```terminal
     $ oc --kubeconfig=${INSTALL_DIR}/auth/kubeconfig get clusteroperator <operator> \
          -o=jsonpath='{range .status.conditions[*]}{.type}{" "}{.status}{" "}{.message}{"\n"}{end}'
@@ -143,7 +143,7 @@ The installation program uses the Cluster Version Operator to create all the com
     Progressing False
     Failing False
     ```
-1.  To retrieve the list of objects owned by the cluster Operator, execute the following command:
+1.  Retrieve the list of objects owned by the cluster Operator by running the following command:
     ```terminal
     oc --kubeconfig=${INSTALL_DIR}/auth/kubeconfig get clusteroperator kube-apiserver \
        -o=jsonpath='{.status.relatedObjects}'

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring TLS for {{ microshift_short }} {id="microshift-tls-config-proc_{{ context }}"}
+# Configure TLS for {{ microshift_short }} {id="microshift-tls-config-proc_{{ context }}"}
 
 You can choose to use either the TLS 1.2 or TLS 1.3 security profiles with {{ microshift_short }} for system hardening. {._abstract}
 

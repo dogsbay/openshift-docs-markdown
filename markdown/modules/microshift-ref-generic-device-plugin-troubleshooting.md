@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Troubleshooting configuration issues {id="microshift-generic-device-plugin-troubleshooting_{{ context }}"}
+# Troubleshoot configuration issues {id="microshift-generic-device-plugin-troubleshooting_{{ context }}"}
 
 The following entries explain common Generic Device Plugin configuration issues and how to resolve them.  {._abstract}
 

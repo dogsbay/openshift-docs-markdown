@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Annotating a route with a cookie {id="nw-annotating-a-route-with-a-cookie-name_{{ context }}"}
+# Annotate a route with a cookie {id="nw-annotating-a-route-with-a-cookie-name_{{ context }}"}
 
 To enable applications to manage session persistence and load distribution, annotate the route with a custom cookie name. Overwriting the default cookie allows the backend application to identify and delete the specific cookie, forcing endpoint re-selection when necessary. {._abstract}
 

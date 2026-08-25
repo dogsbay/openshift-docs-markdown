@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understanding feature gates for {{ microshift_short }} {id="microshift-feature-gates-con_{{ context }}"}
+# Understand feature gates for {{ microshift_short }} {id="microshift-feature-gates-con_{{ context }}"}
 
 As an application developer for edge computing environments, you can now experiment with upcoming Kubernetes features to evaluate their potential benefits for specific use cases. {._abstract}
 

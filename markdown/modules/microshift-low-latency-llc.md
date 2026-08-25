@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling last-level cache locality in {{ microshift_short }} {id="microshift-low-latency-llc-enable_{{ context }}"}
+# Enable last-level cache locality in {{ microshift_short }} {id="microshift-low-latency-llc-enable_{{ context }}"}
 
 You can align workloads with CPU cores that share the same last-level cache (LLC) to improve performance for latency-sensitive applications. To apply this alignment, enable the Kubernetes CPU Manager option `prefer-align-cpus-by-uncorecache`. {._abstract}
 

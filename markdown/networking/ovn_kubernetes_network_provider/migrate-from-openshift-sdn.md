@@ -4,15 +4,15 @@
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
 {%- set context = "migrate-from-openshift-sdn" %}
 
-As a {{ product_title }} cluster administrator, you can initiate the migration from the OpenShift Software-Defined Networking (SDN) network plugin to the OVN-Kubernetes network plugin and verify the migration status by using the {{ rosa_cli_first }}. {._abstract}
+As a {{ product_title }} cluster administrator, you can start the migration from the OpenShift Software-Defined Networking (SDN) network plugin to the OVN-Kubernetes network plugin and verify the migration status by using the {{ rosa_cli_first }}. {._abstract}
 
-Some considerations before starting migration initiation are:
+Consider the following before starting migration:
 
 *   The cluster version must be 4.16.43 and above.
-*   The migration process cannot be interrupted.
+*   You cannot interrupt the migration process.
 *   Migrating back to the SDN network plugin is not possible.
-*   Cluster nodes will be rebooted during migration.
-*   There will be no impact to workloads that are resilient to node disruptions.
+*   The migration process reboots cluster nodes.
+*   Workloads that are resilient to node disruptions are not impacted.
 *   Migration time can vary between several minutes and hours, depending on the cluster size and workload configurations.
 
 {% leveloffset +1 %}{% include "./modules/migrate-sdn-ovn.md" %}{% endleveloffset %}

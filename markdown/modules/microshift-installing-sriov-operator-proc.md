@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the SR-IOV Network Operator {id="microshift-installing-sriov-proc_{{ context }}"}
+# Install the SR-IOV Network Operator {id="microshift-installing-sriov-proc_{{ context }}"}
 
 Install the necessary SR-IOV components to enable {{ microshift_short }} to discover SR-IOV devices and expose them as resources for scheduling. {._abstract}
 

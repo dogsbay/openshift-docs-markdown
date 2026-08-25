@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring an additional network {id="microshift-cni-multus-add-network-example-config_{{ context }}"}
+# Configure an additional network {id="microshift-cni-multus-add-network-example-config_{{ context }}"}
 
 After you have created the `NetworkAttachmentDefinition` object and applied it, you can configure an additional network. {._abstract}
 

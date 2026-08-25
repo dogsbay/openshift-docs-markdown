@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using feature gates for {{ microshift_short }} {id="microshift-feature-gates-using_{{ context }}"}
+# Use feature gates for {{ microshift_short }} {id="microshift-feature-gates-using_{{ context }}"}
 
 To use feature gates in your development environment, you must specify them in the `config.yaml` file or create a configuration snippet file. You must also configure the feature set you want to work with. {._abstract}
 

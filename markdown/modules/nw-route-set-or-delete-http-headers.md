@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting or deleting HTTP request and response headers in a route {id="nw-route-set-or-delete-http-headers_{{ context }}"}
+# Set or delete HTTP request and response headers in a route {id="nw-route-set-or-delete-http-headers_{{ context }}"}
 
 You can set or delete certain HTTP request and response headers for compliance purposes or other reasons. You can set or delete these headers either for all routes served by an Ingress Controller or for specific routes. {._abstract}
 

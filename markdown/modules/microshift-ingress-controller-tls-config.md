@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the TLS security profile for the ingress controller {id="microshift-ingress-controller-config_{{ context }}"}
+# Configure the TLS security profile for the ingress controller {id="microshift-ingress-controller-config_{{ context }}"}
 
 To configure the TLS security profile for the ingress controller in {{ microshift_short }}, you can add the `spec.tlsSecurityProfile` field to the configuration YAML and set a value for the appropriate profile. To apply the changes, restart the service. {._abstract}
 

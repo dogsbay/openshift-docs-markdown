@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling workload partitioning {id="microshift-enabling-workload-partitioning_{{ context }}"}
+# Enable workload partitioning {id="microshift-enabling-workload-partitioning_{{ context }}"}
 
 To enable workload partitioning on {{ microshift_short }}, make the following configuration changes:
 

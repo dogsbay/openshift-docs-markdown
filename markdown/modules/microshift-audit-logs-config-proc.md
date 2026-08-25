@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring audit log values {id="microshift-configuring-audit-log-values_{{ context }}"}
+# Configure audit log values {id="microshift-configuring-audit-log-values_{{ context }}"}
 
 To manage disk space, you can customize the audit log retention settings in the {{ microshift_short }} configuration file. Adjusting values such as file age and size ensures that the system retains critical event data without exhausting local storage. {._abstract}
 

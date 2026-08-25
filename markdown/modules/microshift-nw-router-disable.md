@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Disabling the router {id="microshift-disabling-the-router_{{ context }}"}
+# Disable the router {id="microshift-disabling-the-router_{{ context }}"}
 
 To disable the router in {{ microshift_short }} when inbound services are not required, including in industrial IoT environments where pods connect only to southbound operational systems and northbound cloud-data systems, set `ingress.status` to `Removed` in the `config.yaml` file and restart the service. {._abstract}
 

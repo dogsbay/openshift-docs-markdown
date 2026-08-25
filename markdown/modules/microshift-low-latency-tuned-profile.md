@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the {{ microshift_short }} TuneD profile {id="microshift-low-latency-tuned-profile_{{ context }}"}
+# Configure the {{ microshift_short }} TuneD profile {id="microshift-low-latency-tuned-profile_{{ context }}"}
 
 To use low latency with {{ microshift_short }} workloads, configure a TuneD profile for your host by using the `microshift-baseline-variables.conf` file provided in the `/etc/tuned/` directory. {._abstract}
 

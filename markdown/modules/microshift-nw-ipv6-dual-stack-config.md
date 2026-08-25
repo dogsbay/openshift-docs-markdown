@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring IPv6 dual-stack networking before {{ microshift_short }} starts {id="microshift-configuring-ipv6-dual-stack-config_{{ context }}"}
+# Configure IPv6 dual-stack networking before {{ microshift_short }} starts {id="microshift-configuring-ipv6-dual-stack-config_{{ context }}"}
 
 To run your {{ microshift_short }} node with IPv4 and IPv6 dual-stack networking, you can configure the network section in the configuration file before starting the service. {._abstract}
 

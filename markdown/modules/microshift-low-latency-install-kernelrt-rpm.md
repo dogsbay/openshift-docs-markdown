@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the {{ op_system_rt_kernel }} {id="microshift-low-latency-install-kernelrt_{{ context }}"}
+# Install the {{ op_system_rt_kernel }} {id="microshift-low-latency-install-kernelrt_{{ context }}"}
 
 Although the real-time kernel is not necessary for low latency workloads, using the {{ op_system_rtk }} can optimize low latency performance. You can install it on a host by using RPM packages, and include it in a {{ op_system_ostree_first }} image deployment. {._abstract}
 

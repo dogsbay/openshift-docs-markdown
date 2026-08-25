@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Disabling deployments that run CSI snapshot implementations {id="microshift-disabling-lvms-csi-snapshot_{{ context }}"}
+# Disable deployments that run CSI snapshot implementations {id="microshift-disabling-lvms-csi-snapshot_{{ context }}"}
 
 To prevent the installation of CSI implementation pods, disable the deployments that run CSI snapshot implementations. This configuration conserves system resources by ensuring that snapshot components are not deployed when they are not required. {._abstract}
 

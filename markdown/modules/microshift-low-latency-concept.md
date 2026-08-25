@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Lowering latency in {{ microshift_short }} applications {id="microshift-low-latency-concept_{{ context }}"}
+# Lower latency in {{ microshift_short }} applications {id="microshift-low-latency-concept_{{ context }}"}
 
 Latency is the time from an event to its response. You can optimize low latency performance on a {{ microshift_short }} node by combining configurations, operating system tuning, and workload partitioning to ensure edge devices respond quickly. {._abstract}
 

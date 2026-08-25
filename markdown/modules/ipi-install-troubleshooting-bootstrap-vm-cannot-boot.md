@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Bootstrap VM cannot boot up the cluster nodes {id="ipi-install-troubleshooting-bootstrap-vm-cannot-boot_{{ context }}"}
 
-During the deployment, it is possible for the bootstrap VM to fail to boot the cluster nodes, which prevents the VM from provisioning the nodes with the {{ op_system }} image. This scenario can arise due to:
+During the deployment, it is possible for the bootstrap VM to fail to boot the cluster nodes, which prevents the VM from provisioning the nodes with the {{ op_system }} image.  {._abstract}
+
+This scenario can arise due to:
 
 *   A problem with the `install-config.yaml` file.
 *   Issues with out-of-band network access when using the baremetal network.
@@ -13,11 +15,11 @@ To verify the issue, there are three containers related to `ironic`:
 
 **Procedure**
 
-1.  Log in to the bootstrap VM:
+1.  Log in to the bootstrap VM by running the following command:
     ```terminal
     $ ssh core@172.22.0.2
     ```
-1.  To check the container logs, execute the following:
+1.  Check the container logs by running the following command:
     ```terminal
     [core@localhost ~]$ sudo podman logs -f <container_name>
     ```
@@ -31,7 +33,7 @@ The cluster nodes might be in the `ON` state when deployment started.
 **Troubleshooting**
 
 Power off the {{ product_title }} cluster nodes before you begin the
-installation over IPMI:
+installation over IPMI by running the following command:
 ```terminal
 $ ipmitool -I lanplus -U root -P <password> -H <out_of_band_ip> power off
 ```

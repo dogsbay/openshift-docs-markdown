@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Troubleshooting a failure to fetch the console URL {id="troubleshooting-failure-to-fetch-the-console-url_{{ context }}"}
 
-The installation program retrieves the URL for the {{ product_title }} console by using `[route][route-object]` within the `openshift-console` namespace. If the installation program fails the retrieve the URL for the console, use the following procedure.
+The installation program retrieves the URL for the {{ product_title }} console by using `[route][route-object]` within the `openshift-console` namespace.  {._abstract}
+
+If the installation program fails the retrieve the URL for the console, use the following procedure.
 
 **Procedure**
 
@@ -9,7 +11,7 @@ The installation program retrieves the URL for the {{ product_title }} console b
     ```terminal
     $ oc --kubeconfig=${INSTALL_DIR}/auth/kubeconfig get clusteroperator console -oyaml
     ```
-    ```yaml
+    ```yaml title="Example output"
     apiVersion: config.openshift.io/v1
     kind: ClusterOperator
     metadata:
@@ -53,7 +55,7 @@ The installation program retrieves the URL for the {{ product_title }} console b
         resource: namespaces
       versions: null
     ```
-1.  Manually retrieve the console URL by executing the following command:
+1.  Manually retrieve the console URL by running the following command:
     ```terminal
     $ oc --kubeconfig=${INSTALL_DIR}/auth/kubeconfig get route console -n openshift-console \
          -o=jsonpath='{.spec.host}' console-openshift-console.apps.adahiya-1.devcluster.openshift.com

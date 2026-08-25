@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Node requirements {id="node-requirements_{{ context }}"}
 
-Installer-provisioned installation involves a number of hardware node requirements:
+Before starting an installer-provisioned installation of {{ product_title }}, ensure the hardware environment is set up correctly. {._abstract}
+
+Installer-provisioned installation involves several hardware node requirements:
 
 *   **CPU architecture:** All nodes must use `x86_64`
 {%- if not openshift_origin %}

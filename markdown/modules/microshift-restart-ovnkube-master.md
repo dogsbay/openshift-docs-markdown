@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Restarting the ovnkube-master pod {id="microshift-restart-ovnkube-master_{{ context }}"}
+# Restart the ovnkube-master pod {id="microshift-restart-ovnkube-master_{{ context }}"}
 
 To replace the `ovnkube-master` pod with a new instance on {{ microshift_short }}, you can delete the existing pod in the `openshift-ovn-kubernetes` namespace. Confirm that a new pod appears when you list pods in that namespace. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a route using the default certificate through an Ingress object {id="nw-ingress-edge-route-default-certificate_{{ context }}"}
+# Create a route using the default certificate through an Ingress object {id="nw-ingress-edge-route-default-certificate_{{ context }}"}
 
 To generate a secure, edge-terminated route that uses the default ingress certificate, specify an empty TLS configuration in the Ingress object. This configuration overrides the default behavior, preventing the creation of an insecure route. {._abstract}
 

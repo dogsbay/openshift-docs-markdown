@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Checking updates with a health check script {id="greenboot-check-updates_{{ context }}"}
+# Check updates with a health check script {id="greenboot-check-updates_{{ context }}"}
 
 To verify the success or failure of a recent system update, you can review the output of greenboot health check scripts in the system log after an update. {._abstract}
 

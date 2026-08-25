@@ -1,11 +1,10 @@
-{%- set _mod_docs_content_type = "PROCEDURE" -%}
-{% if openshift_dedicated %}
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+{%- if openshift_dedicated %}
 # Running the network verification manually {id="running-network-verification-manually-ocm_{{ context }}"}
 
 {% endif %}
 {% if openshift_rosa %}
-
-# Running the network verification manually using {{ cluster_manager }} {id="running-network-verification-manually-ocm_{{ context }}"}
+# Running the network verification manually using {{ cluster_manager }} {id="_running_the_network_verification_manually_using_cluster_manager"}
 
 {% endif %}
 

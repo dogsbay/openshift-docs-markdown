@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Troubleshooting Multus networking {id="microshift-cni-multus-troubleshoot_{{ context }}"}
+# Troubleshoot Multus networking {id="microshift-cni-multus-troubleshoot_{{ context }}"}
 
 If the settings for multiple networks are not configured properly, pods can fail to start. You can check pod network status and the configuration to help you solve a couple common scenarios. {._abstract}
 

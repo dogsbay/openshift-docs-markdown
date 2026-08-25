@@ -1,0 +1,6 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Monitor AI model performance on MicroShift {id="microshift-rhoai-monitor-model-performance-con_{{ context }}"}
+
+After your AI model is serving traffic, you can collect model-server metrics to identify bottlenecks and optimize resource allocation on your edge device. {._abstract}
+
+MicroShift supports two methods for accessing model-server metrics: querying the Prometheus-format `/metrics` endpoint directly, or exporting metrics through OpenTelemetry if the `microshift-observability` RPM is installed.

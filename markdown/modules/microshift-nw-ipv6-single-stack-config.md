@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring IPv6 single-stack networking {id="microshift-configuring-ipv6-single-stack-config_{{ context }}"}
+# Configure IPv6 single-stack networking {id="microshift-configuring-ipv6-single-stack-config_{{ context }}"}
 
 To run {{ microshift_short }} with IPv6-only networking, you can update the service configuration file and set the network section with your cluster and service CIDRs. You can verify the configuration by checking that pods and services use IPv6 addresses. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating an HTTP-based route {id="microshift-nw-creating-a-route_{{ context }}"}
+# Create an HTTP-based route {id="microshift-nw-creating-a-route_{{ context }}"}
 
 To host your application at a public URL by using the basic HTTP routing protocol, create an HTTP-based route. This configuration exposes a service on an unsecured application port, allowing external access without TLS encryption. {._abstract}
 

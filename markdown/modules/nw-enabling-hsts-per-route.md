@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling HTTP Strict Transport Security per-route {id="nw-enabling-hsts-per-route_{{ context }}"}
+# Enable HTTP Strict Transport Security per-route {id="nw-enabling-hsts-per-route_{{ context }}"}
 
 To enforce secure HTTPS connections for specific applications, enable HTTP Strict Transport Security (HSTS) on a per-route basis. Applying the `haproxy.router.openshift.io/hsts_header` annotation to edge and re-encrypt routes ensures that browsers reject unencrypted traffic. {._abstract}
 

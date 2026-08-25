@@ -2,11 +2,11 @@
 
 # Issues with creating the registry {id="ipi-install-troubleshooting-registry-issues_{{ context }}"}
 
-When creating a disconnected registry, you might encounter a "User Not Authorized" error when attempting to mirror the registry. This error might occur if you fail to append the new authentication to the existing `pull-secret.txt` file.
+When creating a disconnected registry, you might encounter a "User Not Authorized" error when attempting to mirror the registry. This error might occur if you fail to append the new authentication to the existing `pull-secret.txt` file. {._abstract}
 
 **Procedure**
 
-1.  Check to ensure authentication is successful:
+1.  Check to ensure authentication is successful by running the following command:
     ```terminal
     $ /usr/local/bin/oc adm release mirror \
       -a pull-secret-update.json
@@ -30,7 +30,7 @@ When creating a disconnected registry, you might encounter a "User Not Authorize
     :::
 
 1.  After mirroring the registry, confirm that you can access it in your
-disconnected environment:
+disconnected environment by running the following command:
     ```terminal
     $ curl -k -u <user>:<password> https://registry.example.com:<registry_port>/v2/_catalog
     {"repositories":["<Repo_Name>"]}

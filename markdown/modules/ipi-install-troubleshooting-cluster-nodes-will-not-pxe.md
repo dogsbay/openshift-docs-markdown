@@ -1,8 +1,10 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Cluster nodes will not PXE boot {id="ipi-install-troubleshooting-cluster-nodes-will-not-pxe_{{ context }}"}
+# Cluster nodes do not PXE boot {id="ipi-install-troubleshooting-cluster-nodes-will-not-pxe_{{ context }}"}
 
-When {{ product_title }} cluster nodes will not PXE boot, execute the following checks on the cluster nodes that will not PXE boot. This procedure does not apply when installing an {{ product_title }} cluster without the `provisioning` network.
+When {{ product_title }} cluster nodes do not PXE boot, run the troubleshooting checks on the cluster nodes that do not PXE boot.  {._abstract}
+
+This procedure does not apply when installing an {{ product_title }} cluster without the `provisioning` network.
 
 **Procedure**
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring ingress control in {{ microshift_short }} {id="microshift-ingress-control-config_{{ context }}"}
+# Configure ingress control in {{ microshift_short }} {id="microshift-ingress-control-config_{{ context }}"}
 
 To apply detailed ingress control such as timeouts, TLS, and logging in {{ microshift_short }}, you can update the `config.yaml` file or add a configuration snippet in the `/etc/microshift/config.d/` directory. Replace the default values in the ingress section and restart the service. {._abstract}
 

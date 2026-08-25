@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Installing creates no worker nodes {id="installing-creates-no-worker-nodes_{{ context }}"}
 
-The installation program does not provision worker nodes directly. Instead, the Machine API Operator scales nodes up and down on supported platforms. If worker nodes are not created after 15 to 20 minutes, depending on the speed of the cluster’s internet connection, investigate the Machine API Operator.
+The installation program does not provision worker nodes directly. Instead, the Machine API Operator scales nodes up and down on supported platforms.  {._abstract}
+
+If worker nodes are not created after 15 to 20 minutes, depending on the speed of the cluster’s internet connection, investigate the Machine API Operator.
 
 **Procedure**
 

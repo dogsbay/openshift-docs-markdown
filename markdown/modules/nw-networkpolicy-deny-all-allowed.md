@@ -7,7 +7,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a default deny all {{ name }} policy {id="nw-networkpolicy-deny-all-multi-network-policy_{{ context }}"}
+# Create a default deny all {{ name }} policy {id="nw-networkpolicy-deny-all-multi-network-policy_{{ context }}"}
 
 The default deny all {{ name }} policy blocks all cross-pod networking other than network traffic allowed by the configuration of other deployed network policies and traffic between host-networked pods.  {._abstract}
 

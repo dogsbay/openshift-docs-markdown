@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Getting the model-server metrics {id="microshift-rhoai-get-model-server-metrics_{{ context }}"}
+# Get the model-server metrics {id="microshift-rhoai-get-model-server-metrics_{{ context }}"}
 
 After making a query, you can get the model server’s metrics to identify bottlenecks, optimize resource allocation, and ensure efficient infrastructure utilization. {._abstract}
 

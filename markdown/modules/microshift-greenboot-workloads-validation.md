@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Checking the results of an update {id="microshift-greenboot-workloads-validation_{{ context }}"}
+# Check the results of an update {id="microshift-greenboot-workloads-validation_{{ context }}"}
 
 You can view the overall status of system health checks after an update in the system log. After a successful start, greenboot sets the variable `boot_success=` to `1` in GRUB. {._abstract}
 

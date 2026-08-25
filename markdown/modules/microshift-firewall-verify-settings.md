@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Verifying firewall settings {id="microshift-firewall-verifying-settings_{{ context }}"}
+# Verify firewall settings {id="microshift-firewall-verifying-settings_{{ context }}"}
 
 After you have restarted the firewall, you can verify your settings by listing them with the `firewall-cmd` command. {._abstract}
 

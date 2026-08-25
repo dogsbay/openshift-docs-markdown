@@ -7,7 +7,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a {{ name }} policy to allow traffic from external clients {id="nw-networkpolicy-allow-external-clients_{{ context }}"}
+# Create a {{ name }} policy to allow traffic from external clients {id="nw-networkpolicy-allow-external-clients_{{ context }}"}
 
 With the `deny-by-default` policy in place you can proceed to configure a policy that allows traffic from external clients to a pod with the label `app=web`. {._abstract}
 

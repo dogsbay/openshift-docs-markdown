@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a namespace for your AI model on {{ microshift_short }} {id="microshift-rhoai-create-namespace_{{ context }}"}
+# Create a namespace for your AI model on {{ microshift_short }} {id="microshift-rhoai-create-namespace_{{ context }}"}
 
 Create a namespace for your AI model and all other resources. Namespaces offer resource isolation, resource management, and access control. {._abstract}
 

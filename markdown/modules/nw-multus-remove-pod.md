@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Removing a pod from a secondary network {id="nw-multus-remove-pod_{{ context }}"}
+# Remove a pod from a secondary network {id="nw-multus-remove-pod_{{ context }}"}
 
 To disconnect a pod from specific network configurations in {{ product_title }}, you can remove the pod from a secondary network. Delete the pod using the `oc delete pod` command to remove its connection to the secondary network. {._abstract}
 

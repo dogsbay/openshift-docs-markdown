@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Verifying that your AI model is accessible {id="microshift-rhoai-verify-model-connected_{{ context }}"}
+# Verify that your AI model is accessible {id="microshift-rhoai-verify-model-connected_{{ context }}"}
 
 Before querying the model through the API, you can verify that the model is accessible and ready to provide answers based on the connected data.  {._abstract}
 

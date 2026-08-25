@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understanding how to use sigstore to verify container signatures {id="microshift-verify-container-signatures-sigstore-con_{{ context }}"}
+# Understand how to use sigstore to verify container signatures {id="microshift-verify-container-signatures-sigstore-con_{{ context }}"}
 
 To verify image integrity within your {{ microshift_short }} environment, you can configure the container runtime to use the sigstore signing methodology. This ensures a safer chain of custody by enabling the digital signing and verification of build artifacts. {._abstract}
 

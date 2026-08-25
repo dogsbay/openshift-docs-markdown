@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a route using the destination CA certificate in the Ingress annotation {id="nw-ingress-re-encrypt-route-custom-cert_{{ context }}"}
+# Create a route using the destination CA certificate in the Ingress annotation {id="nw-ingress-re-encrypt-route-custom-cert_{{ context }}"}
 
 To define a route with a custom destination CA certificate, apply the `route.openshift.io/destination-ca-certificate-secret` annotation to an Ingress object. This configuration ensures the Ingress Controller uses the specified secret to verify the identity of the destination service. {._abstract}
 

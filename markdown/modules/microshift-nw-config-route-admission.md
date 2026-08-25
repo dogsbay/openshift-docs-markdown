@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the route admission policy {id="microshift-configuring-route-admission_{{ context }}"}
+# Configure the route admission policy {id="microshift-configuring-route-admission_{{ context }}"}
 
 By default, {{ microshift_short }} allows routes in multiple namespaces to use the same hostname. To prevent routes from claiming the same hostname in different namespaces, you can configure the route admission policy. {._abstract}
 

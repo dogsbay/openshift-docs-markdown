@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the firewalld service {id="microshift-firewall-install_{{ context }}"}
+# Install the firewalld service {id="microshift-firewall-install_{{ context }}"}
 
 To install and enable firewalld on your {{ op_system_ostree }} host when the package is missing, you can use `dnf` to install the package and `systemctl` to enable and start the service. Optionally check for the package with `rpm -q firewalld` before you install. {._abstract}
 

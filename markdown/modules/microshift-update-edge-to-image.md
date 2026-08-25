@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Migrating {{ microshift_short }} to {{ op_system_image }} {id="microshift-update-options-edge-to-image-mode_{{ context }}"}
+# Migrate {{ microshift_short }} to {{ op_system_image }} {id="microshift-update-options-edge-to-image-mode_{{ context }}"}
 
 Migrating {{ microshift_short }} from a {{ op_system_ostree_first }} system to a {{ op_system_image }} system requires building a new {{ op_system_image }} image containing the required version of {{ microshift_short }} and any associated optional RPMs. {._abstract}
 

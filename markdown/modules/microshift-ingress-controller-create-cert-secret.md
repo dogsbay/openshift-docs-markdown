@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a secret for the ingress controller certificateSecret {id="microshift-ingress-controller-create-cert-secret_{{ context }}"}
+# Create a secret for the ingress controller certificateSecret {id="microshift-ingress-controller-create-cert-secret_{{ context }}"}
 
 To secure network traffic with your own certificate, you must create a TLS secret and update the configuration file. This process configures a custom default certificate for the {{ microshift_short }} ingress router. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Using TLS with {{ microshift_short }} {id="microshift-tls-config-con_{{ context }}"}
+# Use TLS with {{ microshift_short }} {id="microshift-tls-config-con_{{ context }}"}
 
 Transport layer security (TLS) profiles provide a way for servers to regulate which ciphers a client can use when connecting to the server. Using TLS helps to ensure that {{ microshift_short }} applications use cryptographic libraries that do not allow known insecure protocols, ciphers, or algorithms. You can use either the TLS 1.2 or TLS 1.3 security profiles with {{ microshift_short }}. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using the RPM-OStree HTTP or HTTPS proxy {id="microshift-rpm-ostree-https_{{ context }}"}
+# Use the RPM-OStree HTTP or HTTPS proxy {id="microshift-rpm-ostree-https_{{ context }}"}
 
 To use the HTTP or HTTPS proxy in RPM-OStree, add a `Service` section to the configuration file and set the `http_proxy environment` variable for the `rpm-ostreed` service. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Preparing a {{ microshift_short }} workload for low latency {id="microshift-low-latency-prepare-workload_{{ context }}"}
+# Prepare a {{ microshift_short }} workload for low latency {id="microshift-low-latency-prepare-workload_{{ context }}"}
 
 To use low latency, configure pod annotations to set the `microshift-low-latency` container runtime configuration for your workloads by using the `RuntimeClass` feature. {._abstract}
 

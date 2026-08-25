@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Overriding KServe configuration {id="microshift-rhoai-override-kserve-config_{{ context }}"}
+# Override KServe configuration {id="microshift-rhoai-override-kserve-config_{{ context }}"}
 
 You can override KServe settings to customize your model-serving environment.  {._abstract}
 

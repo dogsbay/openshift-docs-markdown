@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating an InferenceService custom resource {id="microshift-rhoai-inferenceservice-ex_{{ context }}"}
+# Create an InferenceService custom resource {id="microshift-rhoai-inferenceservice-ex_{{ context }}"}
 
 You can create an `InferenceService` custom resource (CR) that instructs KServe how to create a deployment for serving your AI model. KServe uses the `ServingRuntime` based on the `modelFormat` value specified in the `InferenceService` CR. {._abstract}
 

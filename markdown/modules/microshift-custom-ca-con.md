@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Using custom certificate authorities for the {{ microshift_short }} API server {id="microshift-custom-cas_{{ context }}"}
+# Use custom certificate authorities for the {{ microshift_short }} API server {id="microshift-custom-cas_{{ context }}"}
 
 To enable external clients to verify the {{ microshift_short }} API server and maintain encrypted connections, you can replace the default internal certificate with a custom server certificate issued by a trusted certificate authority (CA). {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Serving AI models on {{ microshift_short }} {id="microshift-rhoai-serving-ai-models-con_{{ context }}"}
+# Serve AI models on {{ microshift_short }} {id="microshift-rhoai-serving-ai-models-con_{{ context }}"}
 
 You can review the following information to learn how to serve models on the {{ rhoai }} single-model serving platform in {{ microshift_short }} by configuring a model-serving runtime using the `ServingRuntime` and `InferenceService` custom resource (CRs). {._abstract}
 

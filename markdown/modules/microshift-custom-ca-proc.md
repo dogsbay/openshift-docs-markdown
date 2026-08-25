@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring custom certificate authorities {id="microshift-custom-cas-configuring_{{ context }}"}
+# Configure custom certificate authorities {id="microshift-custom-cas-configuring_{{ context }}"}
 
 To configure externally generated certificates and domain names by using custom certificate authorities (CAs), add them to the {{ microshift_short }} `/etc/microshift/config.yaml` configuration file. You must also configure the host operating system trust root. {._abstract}
 

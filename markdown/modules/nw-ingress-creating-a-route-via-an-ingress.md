@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a route through an Ingress object {id="nw-ingress-creating-a-route-via-an-ingress_{{ context }}"}
+# Create a route through an Ingress object {id="nw-ingress-creating-a-route-via-an-ingress_{{ context }}"}
 
 To integrate ecosystem components that require Ingress resources, configure an Ingress object. {{ product_title }} automatically manages the lifecycle of the corresponding route objects, creating and deleting them to ensure seamless connectivity. {._abstract}
 

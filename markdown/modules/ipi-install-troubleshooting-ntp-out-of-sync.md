@@ -1,8 +1,8 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# NTP out of sync {id="ipi-install-troubleshooting-ntp-out-of-sync_{{ context }}"}
+# Addressing the NTP out of sync error {id="ipi-install-troubleshooting-ntp-out-of-sync_{{ context }}"}
 
-The deployment of {{ product_title }} clusters depends on NTP synchronized clocks among the cluster nodes. Without synchronized clocks, the deployment may fail due to clock drift if the time difference is greater than two seconds.
+The deployment of {{ product_title }} clusters depends on NTP synchronized clocks among the cluster nodes. Without synchronized clocks, the deployment may fail due to clock drift if the time difference is greater than two seconds. {._abstract}
 
 **Procedure**
 

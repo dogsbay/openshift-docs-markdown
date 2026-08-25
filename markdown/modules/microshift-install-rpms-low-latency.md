@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the {{ microshift_short }} low latency RPM package {id="microshift-installing-low-latency-rpm-package_{{ context }}"}
+# Install the {{ microshift_short }} low latency RPM package {id="microshift-installing-low-latency-rpm-package_{{ context }}"}
 
 When you install {{ microshift_short }}, the low latency RPM package is not installed by default. You can install the low latency RPM as an optional package. {._abstract}
 

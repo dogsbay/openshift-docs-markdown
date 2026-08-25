@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understanding the Generic Device Plugin {id="microshift-understanding-generic-device-plugin-con_{{ context }}"}
+# Understand the Generic Device Plugin {id="microshift-understanding-generic-device-plugin-con_{{ context }}"}
 
 The Generic Device Plugin in {{ product_title }} is a Kubernetes device plugin that enables pods to access host devices such as serial ports, cameras, and sound cards securely. You can use it for edge and IoT workloads that require direct hardware access without elevated container privileges. {._abstract}
 

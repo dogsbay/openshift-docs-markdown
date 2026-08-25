@@ -7,7 +7,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Editing a {{ name }} policy {id="nw-networkpolicy-edit_{{ context }}"}
+# Edit a {{ name }} policy {id="nw-networkpolicy-edit_{{ context }}"}
 
 To modify existing policy configurations, you can edit a {{ name }} policy in a namespace. Edit policies by modifying the policy file and applying it with `oc apply`, or by using the `oc edit` command directly. {._abstract}
 

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Investigating an unavailable Kubernetes API {id="investigating-an-unavailable-kubernetes-api_{{ context }}"}
 
-When the Kubernetes API is unavailable, check the control plane nodes to ensure that they are running the correct components. Also, check the hostname resolution.
+When the Kubernetes API is unavailable, check the control plane nodes to ensure that they are running the correct components. Also, check the hostname resolution. {._abstract}
 
 **Procedure**
 
@@ -20,15 +20,15 @@ When the Kubernetes API is unavailable, check the control plane nodes to ensure 
     $ hostname
     ```
 
-    If a hostname is not set, set the correct hostname. For example:
+    If a hostname is not set, set the correct hostname by running the following command:
     ```terminal
     $ sudo hostnamectl set-hostname <hostname>
     ```
-1.  Ensure that each node has the correct name resolution in the DNS server using the `dig` command:
+1.  Ensure that each node has the correct name resolution in the DNS server by running the `dig` command:
     ```terminal
     $ dig api.<cluster_name>.example.com
     ```
-    ```terminal
+    ```terminal title="Example output"
     ; <<>> DiG 9.11.4-P2-RedHat-9.11.4-26.P2.el8 <<>> api.<cluster_name>.example.com
     ;; global options: +cmd
     ;; Got answer:

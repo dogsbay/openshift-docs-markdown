@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Disabling deployments that run the CSI driver implementations {id="microshift-disabling-lvms-csi-driver_{{ context }}"}
+# Disable deployments that run the CSI driver implementations {id="microshift-disabling-lvms-csi-driver_{{ context }}"}
 
 You can disable installation of the CSI implementation pods. {{ microshift_short }} does not delete CSI driver implementation pods. You must configure {{ microshift_short }} to disable installation of the CSI driver implementation pods during the startup process. {._abstract}
 

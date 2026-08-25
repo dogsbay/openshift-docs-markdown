@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Deploying {{ microshift_short }} behind an HTTP or HTTPS proxy {id="microshift-http-proxy_{{ context }}"}
+# Deploy {{ microshift_short }} behind an HTTP or HTTPS proxy {id="microshift-http-proxy_{{ context }}"}
 
 To add basic anonymity and security measures to your pods, you can deploy {{ microshift_short }} behind an HTTP or HTTPS proxy. {._abstract}
 

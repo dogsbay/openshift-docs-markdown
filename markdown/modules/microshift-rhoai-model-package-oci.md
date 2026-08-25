@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Packaging your AI model into an OCI image {id="microshift-rhoai-model-package-oci_{{ context }}"}
+# Package your AI model into an OCI image {id="microshift-rhoai-model-package-oci_{{ context }}"}
 
 You can package your model into an OCI image and use the ModelCar approach to help you set up offline environments. With the ModelCar approach, your model can be embedded just like any other container image. {._abstract}
 

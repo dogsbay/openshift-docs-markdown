@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Using ingress control in {{ microshift_short }} {id="microshift-ingress-control-concept_{{ context }}"}
+# Use ingress control in {{ microshift_short }} {id="microshift-ingress-control-concept_{{ context }}"}
 
 When you create your {{ microshift_short }} node, each pod and service running on the node is allocated an IP address. These IP addresses are accessible to other pods and services running nearby by default, but are not accessible to external clients. {{ microshift_short }} uses a minimal implementation of the {{ OCP }} `IngressController` API to enable external access to node services. {._abstract}
 

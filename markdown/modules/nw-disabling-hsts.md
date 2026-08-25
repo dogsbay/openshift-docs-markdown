@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Disabling HTTP Strict Transport Security per-route {id="nw-disabling-hsts_{{ context }}"}
+# Disable HTTP Strict Transport Security per-route {id="nw-disabling-hsts_{{ context }}"}
 
 To allow unencrypted connections or troubleshoot access issues, disable HTTP Strict Transport Security (HSTS) for a specific route. Setting the `max-age` route annotation to `0` instructs browsers to stop enforcing HTTPS requirements on the route host. {._abstract}
 

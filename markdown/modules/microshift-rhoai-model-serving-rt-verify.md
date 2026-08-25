@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Verifying that the model-serving runtime is ready {id="microshift-rhoai-model-serving-rt-verify_{{ context }}"}
+# Verify that the model-serving runtime is ready {id="microshift-rhoai-model-serving-rt-verify_{{ context }}"}
 
 You can use the {{ oc_first }} to verify that your model-serving runtime is ready for use by checking that the downstream generation activities are complete. {._abstract}
 

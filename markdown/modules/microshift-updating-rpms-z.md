@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Applying patch updates using RPMs {id="microshift-applying-patch-updates-rpms_{{ context }}"}
+# Apply patch updates using RPMs {id="microshift-applying-patch-updates-rpms_{{ context }}"}
 
 Updating {{ microshift_short }} on non `rpm-ostree` systems such as {{ op_system_base_full }} requires downloading then updating the RPMs. For example, use the following procedure to upgrade from 4.22.0 to 4.22.1. {._abstract}
 

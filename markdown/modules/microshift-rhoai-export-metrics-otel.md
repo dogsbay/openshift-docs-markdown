@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Exporting model-server metrics by using Open Telemetry {id="microshift-rhoai-export-metrics-otel_{{ context }}"}
+# Export model-server metrics by using Open Telemetry {id="microshift-rhoai-export-metrics-otel_{{ context }}"}
 
 You can export model-server metrics by using Open Telemetry if you installed the `microshift-observability` RPM for {{ microshift_short }}. {._abstract}
 

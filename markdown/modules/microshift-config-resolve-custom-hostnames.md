@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring custom hostnames {id="microshift-resolve-custom-hostnames_{{ context }}"}
+# Configure custom hostnames {id="microshift-resolve-custom-hostnames_{{ context }}"}
 
 You can use the `hosts` file to resolve custom hostnames for pod workloads. This enables applications to resolve fixed hostnames, such as the local machine or external services, by applying `/etc/hosts` functionality to DNS queries within the node. The functionality is applied by adding specific configuration to the {{ microshift_short }} configuration YAML file, and completing a service restart. {._abstract}
 

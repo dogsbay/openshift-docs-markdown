@@ -7,7 +7,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deleting a {{ name }} policy using the CLI {id="nw-networkpolicy-delete-cli_{{ context }}"}
+# Delete a {{ name }} policy using the CLI {id="nw-networkpolicy-delete-cli_{{ context }}"}
 
 You can delete a {{ name }} policy in a namespace. {._abstract}
 

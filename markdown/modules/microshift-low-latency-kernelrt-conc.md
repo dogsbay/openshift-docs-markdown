@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Using Red Hat Enterprise Linux for Real Time {id="microshift-low-latency-kernelrt-conc_{{ context }}"}
+# Use Red Hat Enterprise Linux for Real Time {id="microshift-low-latency-kernelrt-conc_{{ context }}"}
 
 Use the {{ op_system_rt_kernel }} for workloads with stringent low-latency determinism requirements for core kernel features. The {{ op_system_rtk }} provides consistent, low-latency determinism and predictable response times. {._abstract}
 

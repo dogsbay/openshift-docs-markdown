@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Working around UID and GID drift when migrating to {{ op_system_image }} {id="microshift-updates-edge-to-image-uid-drift_{{ context }}"}
+# Work around UID and GID drift when migrating to {{ op_system_image }} {id="microshift-updates-edge-to-image-uid-drift_{{ context }}"}
 
 If you do not re-install operating systems that are running {{ microshift_short }}, you must use a workaround for a possible UID and GID drift during the migration process. One way to solve this problem is to add `systemd` units that apply the necessary fixes before the affected system services are started. {._abstract}
 

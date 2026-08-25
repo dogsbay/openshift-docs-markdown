@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Applying minor-version updates with RPMs {id="microshift-updating-rpms_{{ context }}"}
+# Apply minor-version updates with RPMs {id="microshift-updating-rpms_{{ context }}"}
 
 Updating a {{ microshift_short }} minor version on non `rpm-ostree` systems such as {{ op_system_base_full }} requires downloading then updating the RPMs. For example, use the following procedure to update from 4.18 to 4.20. {._abstract}
 

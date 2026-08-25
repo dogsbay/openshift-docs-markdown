@@ -2,7 +2,7 @@
 
 # Installation overview {id="installation-overview_{{ context }}"}
 
-The installation program supports interactive mode. However, you can prepare an `install-config.yaml` file containing the provisioning details for all of the bare-metal hosts, and the relevant cluster details, in advance.
+The installation program supports interactive mode. However, you can prepare an `install-config.yaml` file containing the provisioning details for all of the bare-metal hosts, and the relevant cluster details, in advance. {._abstract}
 
 The installation program loads the `install-config.yaml` file and the administrator generates the manifests and verifies all prerequisites.
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring router IP addresses {id="microshift-config-ip-addresses_{{ context }}"}
+# Configure router IP addresses {id="microshift-config-ip-addresses_{{ context }}"}
 
 To limit ingress to selected host IP addresses or network interfaces in {{ microshift_short }}, you can set the `ingress.listenAddress` list in your `config.yaml` file. {._abstract}
 

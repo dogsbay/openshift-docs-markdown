@@ -7,7 +7,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a {{ name }} policy allowing traffic to an application from all namespaces {id="nw-networkpolicy-allow-traffic-from-all-applications_{{ context }}"}
+# Create a {{ name }} policy allowing traffic to an application from all namespaces {id="nw-networkpolicy-allow-traffic-from-all-applications_{{ context }}"}
 
 You can configure a policy that allows traffic from all pods in all namespaces to a particular application. {._abstract}
 

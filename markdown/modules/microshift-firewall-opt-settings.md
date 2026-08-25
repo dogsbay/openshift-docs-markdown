@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using optional port settings {id="microshift-firewall-optional-settings_{{ context }}"}
+# Use optional port settings {id="microshift-firewall-optional-settings_{{ context }}"}
 
 To allow external access to services and APIs in {{ microshift_short }}, you can add custom ports to your firewall configuration. Use the listed ports and protocols as a guide for HTTP, HTTPS, NodePort, mDNS, and API access. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding a pod to an additional network {id="microshift-nw-multus-add-pod_{{ context }}"}
+# Add a pod to an additional network {id="microshift-nw-multus-add-pod_{{ context }}"}
 
 You can add a pod to an additional network. At the time a pod is created, additional networks are attached to it. The pod continues to send normal node-related network traffic over the default network. {._abstract}
 
