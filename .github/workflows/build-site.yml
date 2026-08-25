@@ -27,6 +27,8 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 # Shared with sync.yml, keyed on the same branch: both workflows push to it,
 # and two pushes racing would fail on a stale ref.
@@ -225,6 +227,15 @@ jobs:
                      -m "From markdown/ at $(git rev-parse --short HEAD), dogsbay $CLI"
           git push origin "HEAD:$BRANCH"
 
+      # Uploaded from the COMMITTED dist, so what Pages serves is exactly
+      # what is in the branch — no second build, no chance of the published
+      # site and the tracked bytes disagreeing.
+      - name: Upload Pages artefact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/dist
+          retention-days: 1
+
       - name: Summary
         if: always()
         env:
@@ -238,3 +249,39 @@ jobs:
             echo "- generated pages: ${PAGES:-?}"
             echo "- built HTML: ${HTML:-?} (${MB:-?} MB, committed to \`dist/\`)"
           } >> "$GITHUB_STEP_SUMMARY"
+
+  # Publishing is a SEPARATE job so it can be gated. The site is PUBLIC even
+  # though the repo is private: GitHub Pro does not support private Pages
+  # ("Current plan does not support private GitHub Pages", HTTP 422), so
+  # anything deployed here is on the open internet.
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+      actions: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      # The artefact is only needed between the two jobs. Left alone it
+      # accumulates against Actions storage — this repo's dist is ~200 MB a
+      # run, and openshift-docs-dogsbay became the account's top storage
+      # consumer exactly this way.
+      - name: Free the Pages artefact
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          gh api --paginate "repos/$REPO/actions/runs/$RUN_ID/artifacts" \
+            --jq '.artifacts[].id' | while read -r id; do
+            gh api -X DELETE "repos/$REPO/actions/artifacts/$id" || true
+          done

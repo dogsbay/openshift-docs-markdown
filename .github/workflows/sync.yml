@@ -203,7 +203,20 @@ jobs:
           # `excludeFromRoutes` entries are relative to the content root, so
           # the rename does not affect them.
           cp "$RUNNER_TEMP/out/dogsbay.config.yml" dogsbay.config.yml
-          yq -i '.content.sources[0].path = "./markdown" | .output = "./site"' dogsbay.config.yml
+          # site.url carries the PATH the site is served under, and Astro's
+          # `base` is driven from it — basePath stays "". Without this every
+          # link is root-absolute (`href="/welcome"`), which resolves to
+          # dogsbay.github.io/welcome on a project Pages site and 404s on
+          # every page and asset. Same wiring as openshift-docs-dogsbay.
+          OWNER="${GITHUB_REPOSITORY_OWNER}" \
+          REPO="${GITHUB_REPOSITORY#*/}" \
+          yq -i '
+            .content.sources[0].path = "./markdown"
+            | .output = "./site"
+            | .site.url = "https://" + strenv(OWNER) + ".github.io/" + strenv(REPO)
+            | .site.basePath = ""
+          ' dogsbay.config.yml
+          cat dogsbay.config.yml
 
           cat > .gitignore <<'GITIGNORE'
           # markdown/ and site/ are BOTH tracked, including site/dist — the
