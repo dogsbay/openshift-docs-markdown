@@ -67,25 +67,25 @@ You can start user impersonation from multiple locations in the OpenShift Contai
 
 **Procedure**
 
-1. From the ***Overview*** page in the OpenShift Container Platform console, click your user name and select ***Impersonate User***.
-2. In the ***Username*** field in the ***Impersonate*** dialog, enter the name of the user you want to impersonate.
-3. Optional: In the ***Groups*** field, choose one or more groups that are associated with the user.
+1. From the **Overview** page in the OpenShift Container Platform console, click your user name and select **Impersonate User**.
+2. In the **Username** field in the **Impersonate** dialog, enter the name of the user you want to impersonate.
+3. Optional: In the **Groups** field, choose one or more groups that are associated with the user.
 
    The dialog displays a warning message explaining that impersonation applies the effective permissions of the specified user and any selected groups.
-4. Click ***Impersonate*** to impersonate your selected user, groups, or both.
+4. Click **Impersonate** to impersonate your selected user, groups, or both.
 
 > [!NOTE]
 > Selecting one group uses the existing single-group impersonation behavior. Selecting no groups uses regular single-user impersonation.
 
 ## Starting impersonation from the Users or Groups pages {#starting-impersonation-users-groups-pages}
 
-You can start impersonation for users or groups from the ***Users*** or ***Groups*** pages in the OpenShift Container Platform Console.
+You can start impersonation for users or groups from the **Users** or **Groups** pages in the OpenShift Container Platform Console.
 
 **Procedure**
 
-1. From the ***Overview*** page in the OpenShift Container Platform console, click ***User Management*** → ***Users***.
-2. Open the menu for the user you want to impersonate and select ***Impersonate User***.
-3. Optional: To impersonate a group, click ***User Management*** → ***Groups***\*, click the menu for that group, and select **Impersonate Group**\*.
+1. From the **Overview** page in the OpenShift Container Platform console, click **User Management** → **Users**.
+2. Open the menu for the user you want to impersonate and select **Impersonate User**.
+3. Optional: To impersonate a group, click **User Management** → **Groups**, click the menu for that group, and select **Impersonate Group**.
 
 ## Stopping impersonation {#stopping-impersonation}
 
@@ -93,8 +93,8 @@ You can stop impersonating a user or group at any time from the OpenShift Contai
 
 **Procedure**
 
-1. On any page in the OpenShift Container Platform console, click ***Stop impersonating*** at the top of the page.
-2. Alternatively, click your user name and select ***Stop impersonating***.
+1. On any page in the OpenShift Container Platform console, click **Stop impersonating** at the top of the page.
+2. Alternatively, click your user name and select **Stop impersonating**.
 
 ## Adding unauthenticated groups to cluster roles {#unauthenticated-users-cluster-role-bindings_impersonating-system-admin}
 
@@ -141,6 +141,7 @@ You can add unauthenticated users to the following cluster roles:
    $ oc apply -f add-<cluster_role>.yaml
    ```
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [User impersonation (Kubernetes documentation)](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#user-impersonation)

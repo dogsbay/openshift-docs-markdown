@@ -152,6 +152,7 @@ Application failures can occur within running application pods. In these situati
       > [!NOTE]
       > Running a host’s diagnostic binaries within a container’s namespace is only possible if you are using a privileged container such as a debug node.
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Source-to-Image (S2I) build](/openshift-docs-markdown/cicd/builds/build-strategies#build-strategy-s2i_build-strategies)

@@ -17,15 +17,15 @@ To remove the Compliance Operator, you must first delete the objects in the name
 
 **Procedure**
 
-1. Go to the **Ecosystem** -> **Installed Operators** -> **Compliance Operator** page.
+1. Go to the **Ecosystem** → **Installed Operators** → **Compliance Operator** page.
 
    1. Click **All instances**.
-   2. In **All namespaces**, click the Options menu ![](kebab.png "Options menu") and delete all ScanSettingBinding, ComplainceSuite, ComplianceScan, and ProfileBundle objects.
-2. Switch to the **Administration** -> **Ecosystem** -> **Installed Operators** page.
-3. Click the Options menu ![](kebab.png "Options menu") on the **Compliance Operator** entry and select **Uninstall Operator**.
-4. Switch to the **Home** -> **Projects** page.
+   2. In **All namespaces**, click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") and delete all ScanSettingBinding, ComplainceSuite, ComplianceScan, and ProfileBundle objects.
+2. Switch to the **Administration** → **Ecosystem** → **Installed Operators** page.
+3. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") on the **Compliance Operator** entry and select **Uninstall Operator**.
+4. Switch to the **Home** → **Projects** page.
 5. Search for 'compliance'.
-6. Click the Options menu ![](kebab.png "Options menu") next to the **openshift-compliance** project, and select **Delete Project**.
+6. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the **openshift-compliance** project, and select **Delete Project**.
 
    1. Confirm the deletion by typing `openshift-compliance` in the dialog box, and click **Delete**.
 
@@ -99,7 +99,8 @@ To remove the Compliance Operator, you must first delete the objects in the name
    Error from server (NotFound): namespaces "openshift-compliance" not found
    ```
 
-## Additional resources {#additional-resources_compliance-operator-uninstallation}
+**Additional resources**
+{._additional-resources}
 
 - [Installing the Compliance Operator](/openshift-docs-markdown/security/compliance_operator/compliance-operator-installation#compliance-operator-installation)
 - [Managing the Compliance Operator](/openshift-docs-markdown/security/compliance_operator/compliance-operator-manage#compliance-operator-understanding)

@@ -1,8 +1,8 @@
 ---
-title: Load balancing on {{ rh_openstack }}
+title: Load balancing on RHOSP
 ---
 
-# Load balancing on {{ rh_openstack }} {#load-balancing-openstack}
+# Load balancing on RHOSP {#load-balancing-openstack}
 
 To distribute network traffic and communications activity evenly across your compute instances in RHOSP, configure load balancing services.
 
@@ -90,9 +90,7 @@ If you want to use multiple API load balancers, create an Octavia load balancer 
 
 ## Services for a user-managed load balancer {#nw-osp-services-external-load-balancer_load-balancing-openstack}
 
-You can configure an OpenShift Container Platform cluster on Red Hat OpenStack Platform (RHOSP)
-
-to use a user-managed load balancer in place of the default load balancer.
+You can configure an OpenShift Container Platform cluster on Red Hat OpenStack Platform (RHOSP) to use a user-managed load balancer in place of the default load balancer.
 
 > [!IMPORTANT]
 > Configuring a user-managed load balancer depends on your vendor’s load balancer.
@@ -138,9 +136,7 @@ Before you configure a user-managed load balancer for your OpenShift Container P
 
 ### Configuring a user-managed load balancer {#nw-osp-configuring-external-load-balancer_load-balancing-openstack}
 
-You can configure an OpenShift Container Platform cluster on Red Hat OpenStack Platform (RHOSP)
-
-to use a user-managed load balancer in place of the default load balancer.
+You can configure an OpenShift Container Platform cluster on Red Hat OpenStack Platform (RHOSP) to use a user-managed load balancer in place of the default load balancer.
 
 > [!IMPORTANT]
 > Before you configure a user-managed load balancer, ensure that you read the "Services for a user-managed load balancer" section.
@@ -401,22 +397,26 @@ Interval: 10
    ```yaml
    # ...
    platform:
+     openstack:
+       loadBalancer:
+         type: <loadBalancer_type>
+       apiVIPs:
+       - <api_ip>
+       ingressVIPs:
+       - <ingress_ip>
+   # ...
    ```
 
-{%- if bare_metal %} bare-metal: {% endif %} {% if openstack %} openstack: {% endif %} {% if nutanix %} nutanix: {% endif %} {% if vsphere %} vsphere: {%- endif %} loadBalancer: type: <loadBalancer_type> apiVIPs: - <api_ip> ingressVIPs: - <ingress_ip> # ... \`\`\`
+   where:
 
-```
-where:
+   `<loadBalancer_type>`
+   :   Specifies the load balancer type. Set to `UserManaged` to specify a user-managed load balancer for your cluster. The parameter defaults to `OpenShiftManagedDefault`, which denotes the default internal load balancer. For services defined in an `openshift-kni-infra` namespace, a user-managed load balancer can deploy the `coredns` service to pods in your cluster but ignores `keepalived` and `haproxy` services.
 
-`<loadBalancer_type>`
-:   Specifies the load balancer type. Set to `UserManaged` to specify a user-managed load balancer for your cluster. The parameter defaults to `OpenShiftManagedDefault`, which denotes the default internal load balancer. For services defined in an `openshift-kni-infra` namespace, a user-managed load balancer can deploy the `coredns` service to pods in your cluster but ignores `keepalived` and `haproxy` services.
+   `<api_ip>`
+   :   Specifies the user-managed load balancer’s public IP address for the Kubernetes API. Mandatory parameter.
 
-`<api_ip>`
-:   Specifies the user-managed load balancer’s public IP address for the Kubernetes API. Mandatory parameter.
-
-`<ingress_ip>`
-:   Specifies the user-managed load balancer’s public IP address for ingress traffic. Mandatory parameter.
-```
+   `<ingress_ip>`
+   :   Specifies the user-managed load balancer’s public IP address for ingress traffic. Mandatory parameter.
 
 **Verification**
 

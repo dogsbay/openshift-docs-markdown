@@ -20,7 +20,8 @@ const headings = [{"depth":1,"slug":"olmv1-about","text":"About Operator Lifecyc
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/operators/olm_v1";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -39,7 +40,7 @@ const pageCategory = ["operators"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About Operator Lifecycle Manager v1 {#olmv1-about}\n\nOperator Lifecycle Manager (OLM) was included with OpenShift Container Platform 4 from its initial release. OpenShift Container Platform 4.18 includes components for a next-generation iteration of OLM as a generally available feature, which is known during this phase as OLM v1.\n\nThis updated framework evolves many of the concepts that have been part of previous versions of OLM and adds new capabilities. Starting in OpenShift Container Platform 4.17, documentation for OLM v1 has been moved to the new guide, \"Extensions (OLM v1)\".\n\n**Additional resources**\n\n- [Extensions (OLM v1)](/openshift-docs-markdown/extensions/index#extensions-overview)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/operators/olm_v1.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About Operator Lifecycle Manager v1 {#olmv1-about}\n\nOperator Lifecycle Manager (OLM) was included with OpenShift Container Platform 4 from its initial release. OpenShift Container Platform 4.18 includes components for a next-generation iteration of OLM as a generally available feature, which is known during this phase as OLM v1.\n\nThis updated framework evolves many of the concepts that have been part of previous versions of OLM and adds new capabilities. Starting in OpenShift Container Platform 4.17, documentation for OLM v1 has been moved to the new guide, \"Extensions (OLM v1)\".\n\n**Additional resources**\n{._additional-resources}\n\n- [Extensions (OLM v1)](/openshift-docs-markdown/extensions/index#extensions-overview)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/operators/olm_v1.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,12 +79,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -91,10 +93,12 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="olmv1-about" class="group scroll-mt-20">About Operator Lifecycle Manager v1<a href="#olmv1-about" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Operator Lifecycle Manager (OLM) was included with OpenShift Container Platform 4 from its initial release. OpenShift Container Platform 4.18 includes components for a next-generation iteration of OLM as a generally available feature, which is known during this phase as OLM v1.</p>
+      <p class="_abstract">Operator Lifecycle Manager (OLM) was included with OpenShift Container Platform 4 from its initial release. OpenShift Container Platform 4.18 includes components for a next-generation iteration of OLM as a generally available feature, which is known during this phase as OLM v1.</p>
       <p>This updated framework evolves many of the concepts that have been part of previous versions of OLM and adds new capabilities. Starting in OpenShift Container Platform 4.17, documentation for OLM v1 has been moved to the new guide, "Extensions (OLM v1)".</p>
-      <p><strong>Additional resources</strong></p>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul><li><a href="/openshift-docs-markdown/extensions/index#extensions-overview">Extensions (OLM v1)</a></li></ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

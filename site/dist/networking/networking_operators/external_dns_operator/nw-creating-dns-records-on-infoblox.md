@@ -79,5 +79,5 @@ To create DNS records on Infoblox, use the External DNS Operator. The Operator m
    ```
 2. From the Infoblox UI, check the DNS records created for `console` routes:
 
-   1. Click **Data Management** -> **DNS** -> **Zones**.
+   1. Click **Data Management** → **DNS** → **Zones**.
    2. Select the zone name.

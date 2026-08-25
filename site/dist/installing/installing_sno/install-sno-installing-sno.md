@@ -17,6 +17,7 @@ To install OpenShift Container Platform on a single node, use the web-based Assi
 See "Installing OpenShift Container Platform with the Assisted Installer" for details and configuration options.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing OpenShift Container Platform with the Assisted Installer](https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2026/html/installing_openshift_container_platform_with_the_assisted_installer/index)
 
@@ -52,6 +53,7 @@ Installing OpenShift Container Platform on a single node requires a discovery IS
    > If you enable OpenShift Virtualization during this process, you must have a second local storage device of at least 50GiB for your virtual machines.
 
 **Additional resources**
+{._additional-resources}
 
 - [Persistent storage using logical volume manager storage](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#persistent-storage-using-lvms_logical-volume-manager-storage)
 - [What you can do with OpenShift Virtualization](/openshift-docs-markdown/virt/about_virt/about-virt#virt-what-you-can-do-with-virt_about-virt)
@@ -76,6 +78,7 @@ Use the Assisted Installer to install the single-node cluster.
    The server restarts several times automatically, deploying the control plane.
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating a bootable ISO image on a USB drive](/openshift-docs-markdown/installing/installing_sno/install-sno-installing-sno#installing-with-usb-media_install-sno-installing-sno-with-the-assisted-installer)
 - [Booting from an HTTP-hosted ISO image using the Redfish API](/openshift-docs-markdown/installing/installing_sno/install-sno-installing-sno#install-booting-from-an-iso-over-http-redfish_install-sno-installing-sno-with-the-assisted-installer)
@@ -86,6 +89,7 @@ Use the Assisted Installer to install the single-node cluster.
 To install OpenShift Container Platform on a single node, first generate the installation ISO, and then boot the server from the ISO. You can monitor the installation using the `openshift-install` installation program.
 
 **Additional resources**
+{._additional-resources}
 
 - [Networking requirements for user-provisioned infrastructure](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal-network-customizations#installation-network-user-infra_installing-bare-metal-network-customizations)
 - [User-provisioned DNS requirements](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal-network-customizations#installation-dns-user-infra_installing-bare-metal-network-customizations)
@@ -110,7 +114,7 @@ You can install OpenShift Container Platform on a single node by generating an i
    $ export OCP_VERSION=<ocp_version>
    ```
 
-   Replace `<ocp_version>` with the current version, for example, `latest-{{ product_version }}`
+   Replace `<ocp_version>` with the current version, for example, `latest-4.22`
 2. Set the target cluster architecture:
 
    ```terminal
@@ -249,6 +253,7 @@ You can install OpenShift Container Platform on a single node by generating an i
     > The SSL certificates for the RHCOS ISO installation image are only valid for 24 hours. If you use the ISO image to install a node more than 24 hours after creating the image, the installation can fail. To re-create the image after 24 hours, delete the `ocp` directory and re-create the OpenShift Container Platform assets.
 
 **Additional resources**
+{._additional-resources}
 
 - [Requirements for installing OpenShift on a single node](/openshift-docs-markdown/installing/installing_sno/install-sno-preparing-to-install-sno#preparing-to-install-sno)
 - [Cluster capabilities](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-capabilities)
@@ -295,6 +300,7 @@ Use the `openshift-install` binary to monitor the progress of the single-node cl
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating a bootable ISO image on a USB drive](/openshift-docs-markdown/installing/installing_sno/install-sno-installing-sno#installing-with-usb-media_install-sno-installing-sno-with-the-assisted-installer)
 - [Booting from an HTTP-hosted ISO image using the Redfish API](/openshift-docs-markdown/installing/installing_sno/install-sno-installing-sno#install-booting-from-an-iso-over-http-redfish_install-sno-installing-sno-with-the-assisted-installer)
@@ -307,6 +313,7 @@ You can use the Agent-based Installer to deploy single-node OpenShift on bare-me
 The following procedure describes how to create the required configuration files, generate the agent ISO image, and boot the target ARM server to install single-node OpenShift.
 
 **Additional resources**
+{._additional-resources}
 
 - [Preparing to install with the Agent-based Installer](/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#preparing-to-install-with-agent-based-installer)
 
@@ -363,7 +370,9 @@ You can use the Agent-based Installer to install single-node OpenShift on an `aa
    sshKey: '<ssh_pub_key>'
    ```
 
-   The following table describes the required parameters: **Required `install-config.yaml` parameters**
+   The following table describes the required parameters:
+
+   **Required `install-config.yaml` parameters**
 
    | Parameter | Description |
    | --- | --- |
@@ -453,6 +462,7 @@ The documentation for installer-provisioned installation on cloud providers is b
 - The `compute.replicas` setting in the `install-config.yaml` file should be set to `0`. This makes the control plane node schedulable.
 
 **Additional resources**
+{._additional-resources}
 
 - [Cluster capabilities](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-capabilities)
 
@@ -475,6 +485,7 @@ The following table contains a list of supported cloud providers and CPU archite
 Installing a single-node cluster on AWS requires installer-provisioned installation using the "Installing a cluster on AWS with customizations" procedure.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing a cluster on AWS with customizations](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations)
 
@@ -483,6 +494,7 @@ Installing a single-node cluster on AWS requires installer-provisioned installat
 Installing a single-node cluster on Azure requires installer-provisioned installation using the "Installing a cluster on Azure with customizations" procedure.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing a cluster on Azure with customizations](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-customizations)
 
@@ -491,6 +503,7 @@ Installing a single-node cluster on Azure requires installer-provisioned install
 Installing a single-node cluster on Google Cloud requires installer-provisioned installation using the "Installing a cluster on Google Cloud with customizations" procedure.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing a cluster on Google Cloud with customizations](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#installing-gcp-customizations)
 
@@ -587,7 +600,7 @@ You can create a live RHCOS ISO with SSHd enabled and with predefined credential
 
    ```yaml
    variant: openshift
-   version: {{ product_version }}.0
+   version: 4.22.0
    metadata:
      name: sshd
      labels:
@@ -605,10 +618,10 @@ You can create a live RHCOS ISO with SSHd enabled and with predefined credential
    ```terminal
    $ butane -pr embedded.yaml -o embedded.ign
    ```
-5. After the Ignition file is created, you can include the configuration in a new live RHCOS ISO, which is named `rhcos-sshd-{{ product_version }}.0-x86_64-live.x86_64.iso`, with the `coreos-installer` utility:
+5. After the Ignition file is created, you can include the configuration in a new live RHCOS ISO, which is named `rhcos-sshd-4.22.0-x86_64-live.x86_64.iso`, with the `coreos-installer` utility:
 
    ```terminal
-   $ coreos-installer iso ignition embed -i embedded.ign rhcos-{{ product_version }}.0-x86_64-live.x86_64.iso -o rhcos-sshd-{{ product_version }}.0-x86_64-live.x86_64.iso
+   $ coreos-installer iso ignition embed -i embedded.ign rhcos-4.22.0-x86_64-live.x86_64.iso -o rhcos-sshd-4.22.0-x86_64-live.x86_64.iso
    ```
 
 **Verification**
@@ -616,7 +629,7 @@ You can create a live RHCOS ISO with SSHd enabled and with predefined credential
 - Check that the custom live ISO can be used to boot the server by running the following command:
 
   ```terminal
-  # coreos-installer iso ignition show rhcos-sshd-{{ product_version }}.0-x86_64-live.x86_64.iso
+  # coreos-installer iso ignition show rhcos-sshd-4.22.0-x86_64-live.x86_64.iso
   ```
 
   ```json {title="Example output"}
@@ -659,6 +672,7 @@ You must meet the following hardware requirements when installing a single-node 
 > You can use dedicated or shared IFLs to assign sufficient compute resources. Resource sharing is one of the key strengths of IBM Z(R). However, you must adjust capacity correctly on each hypervisor layer and ensure sufficient resources for every OpenShift Container Platform cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing a cluster with z/VM on IBM Z(R) and IBM(R) LinuxONE](/openshift-docs-markdown/installing/installing_ibm_z/upi/installing-ibm-z#installing-ibm-z)
 - [Installing a cluster with RHEL KVM on IBM Z(R) and IBM(R) LinuxONE](/openshift-docs-markdown/installing/installing_ibm_z/upi/installing-ibm-z-kvm#installing-ibm-z-kvm)
@@ -680,7 +694,7 @@ You can install single-node OpenShift with z/VM on IBM Z and IBM LinuxONE.
    $ OCP_VERSION=<ocp_version>
    ```
 
-   Replace `<ocp_version>` with the current version. For example, `latest-{{ product_version }}`.
+   Replace `<ocp_version>` with the current version. For example, `latest-4.22`.
 2. Set the host architecture by running the following command:
 
    ```terminal
@@ -914,7 +928,7 @@ You can install single-node OpenShift with with RHEL KVM on IBM Z and IBM LinuxO
    $ OCP_VERSION=<ocp_version>
    ```
 
-   Replace `<ocp_version>` with the current version. For example, `latest-{{ product_version }}`.
+   Replace `<ocp_version>` with the current version. For example, `latest-4.22`.
 2. Set the host architecture by running the following command:
 
    ```terminal
@@ -1034,8 +1048,12 @@ You can install single-node OpenShift with with RHEL KVM on IBM Z and IBM LinuxO
    :   `rhcos-<version>-live-initramfs.<architecture>.img`
 
    `rootfs`
-   :   `rhcos-<version>-live-rootfs.<architecture>.img` 1.  Before you launch `virt-install`, move the following files and artifacts to an HTTP or HTTPS server: \*   Downloaded RHEL live `kernel`, `initramfs`, and `rootfs` artifacts \*   Ignition files
-8. Create the KVM guest nodes by using the following components:
+   :   `rhcos-<version>-live-rootfs.<architecture>.img`
+8. Before you launch `virt-install`, move the following files and artifacts to an HTTP or HTTPS server:
+
+   - Downloaded RHEL live `kernel`, `initramfs`, and `rootfs` artifacts
+   - Ignition files
+9. Create the KVM guest nodes by using the following components:
 
    - RHEL `kernel` and `initramfs` artifacts
    - Ignition files
@@ -1084,7 +1102,7 @@ You can install single-node OpenShift in an LPAR on IBM Z and IBM LinuxONE.
    $ OCP_VERSION=<ocp_version>
    ```
 
-   Replace `<ocp_version>` with the current version. For example, `latest-{{ product_version }}`.
+   Replace `<ocp_version>` with the current version. For example, `latest-4.22`.
 2. Set the host architecture by running the following command:
 
    ```terminal
@@ -1295,6 +1313,7 @@ You must meet the following hardware requirements when installing a single-node 
 > You can use dedicated or shared IFLs to assign sufficient compute resources. Resource sharing is one of the key strengths of IBM Power(R). However, you must adjust capacity correctly on each hypervisor layer and ensure sufficient resources for every OpenShift Container Platform cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing a cluster on IBM Power(R)](/openshift-docs-markdown/installing/installing_ibm_power/installing-ibm-power#installing-ibm-power)
 

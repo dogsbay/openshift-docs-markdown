@@ -50,11 +50,7 @@ The secret is then defined as follows. Note that the value of the secret is base
 
 #### Adding unauthenticated users to the system:webhook role binding {#unauthenticated-users-system-webhook_triggering-builds-build-hooks}
 
-As a cluster administrator, you can add unauthenticated users to the `system:webhook` role binding in OpenShift Container Platform for specific namespaces. The `system:webhook` role binding allows users to trigger builds from external systems that do not use an OpenShift Container Platform
-
-a OpenShift Container Platform
-
-authentication mechanism. Unauthenticated users do not have access to non-public role bindings by default. This is a change from OpenShift Container Platform versions before 4.16.
+As a cluster administrator, you can add unauthenticated users to the `system:webhook` role binding in OpenShift Container Platform for specific namespaces. The `system:webhook` role binding allows users to trigger builds from external systems that do not use an OpenShift Container Platform a OpenShift Container Platform authentication mechanism. Unauthenticated users do not have access to non-public role bindings by default. This is a change from OpenShift Container Platform versions before 4.16.
 
 Adding unauthenticated users to the `system:webhook` role binding is required to successfully trigger builds from GitHub, GitLab, and Bitbucket.
 
@@ -166,6 +162,7 @@ If a misconfigured admission webhook causes your cluster to fail, you must delet
    Where `kind` is the type of webhook configuration you are using. Valid values are `ValidatingWebhookConfiguration` or `MutatingWebhookConfiguration`.
 
 **Additional resources**
+{._additional-resources}
 
 - [Cluster role bindings for unauthenticated groups](/openshift-docs-markdown/authentication/using-rbac#unauthenticated-users-cluster-role-bindings-concept_using-rbac)
 - [Webhook admission plugins](/openshift-docs-markdown/architecture/admission-plug-ins#admission-webhooks-about_admission-plug-ins)
@@ -213,7 +210,7 @@ https://<openshift_api_host:port>/apis/build.openshift.io/v1/namespaces/<namespa
       https://api.starter-us-east-1.openshift.com:443/apis/build.openshift.io/v1/namespaces/<namespace>/buildconfigs/<name>/webhooks/<secret>/github
       ```
    2. Cut and paste this URL into GitHub, from the GitHub web console.
-   3. In your GitHub repository, select **Add Webhook** from **Settings -> Webhooks**.
+   3. In your GitHub repository, select **Add Webhook** from **Settings → Webhooks**.
    4. Paste the URL output into the **Payload URL** field.
    5. Change the **Content Type** from GitHub’s default `application/x-www-form-urlencoded` to `application/json`.
    6. Click **Add webhook**.
@@ -232,8 +229,11 @@ https://<openshift_api_host:port>/apis/build.openshift.io/v1/namespaces/<namespa
 
    The `-k` argument is only necessary if your API server does not have a properly signed certificate.
 
-> [!NOTE]
-> The build will only be triggered if the `ref` value from GitHub webhook event matches the `ref` value specified in the `source.git` field of the `BuildConfig` resource.
+   > [!NOTE]
+   > The build will only be triggered if the `ref` value from GitHub webhook event matches the `ref` value specified in the `source.git` field of the `BuildConfig` resource.
+
+**Additional resources**
+{._additional-resources}
 
 - [Gogs](https://gogs.io)
 
@@ -326,7 +326,7 @@ type: "Generic"
 generic:
   secretReference:
     name: "mysecret"
-  allowEnv: true # (1)
+  allowEnv: true (1)
 ```
 
 1. Set to `true` to allow a generic webhook to pass in environment variables.
@@ -376,8 +376,8 @@ generic:
 
    The arguments are the same as the previous example with the addition of a header and a payload. The `-H` argument sets the `Content-Type` header to `application/yaml` or `application/json` depending on your payload format. The `--data-binary` argument is used to send a binary payload with newlines intact with the `POST` request.
 
-> [!NOTE]
-> OpenShift Container Platform permits builds to be triggered by the generic webhook even if an invalid request payload is presented, for example, invalid content type, unparsable or invalid content, and so on. This behavior is maintained for backwards compatibility. If an invalid request payload is presented, OpenShift Container Platform returns a warning in JSON format as part of its `HTTP 200 OK` response.
+   > [!NOTE]
+   > OpenShift Container Platform permits builds to be triggered by the generic webhook even if an invalid request payload is presented, for example, invalid content type, unparsable or invalid content, and so on. This behavior is maintained for backwards compatibility. If an invalid request payload is presented, OpenShift Container Platform returns a warning in JSON format as part of its `HTTP 200 OK` response.
 
 #### Displaying webhook URLs {#builds-displaying-webhook-urls_triggering-builds-build-hooks}
 
@@ -469,6 +469,9 @@ In addition to setting the image field for all `Strategy` types, for custom buil
 
 If a build is triggered due to a webhook trigger or manual request, the build that is created uses the `<immutableid>` resolved from the `ImageStream` referenced by the `Strategy`. This ensures that builds are performed using consistent image tags for ease of reproduction.
 
+**Additional resources**
+{._additional-resources}
+
 - [v1 container registries](http://docs.docker.com/v1.7/reference/api/hub_registry_spec/#docker-registry-1-0)
 
 ### Identifying the image change trigger of a build {#builds-image-change-trigger-identification_triggering-builds-build-hooks}
@@ -556,6 +559,9 @@ The `ImageChangeTriggerStatus` that has the most recent `lastTriggerTime` trigge
 
 The `lastTriggerTime` with the most recent timestamp signifies the `ImageChangeTriggerStatus` of the last build. This `ImageChangeTriggerStatus` has the same `name` and `namespace` as the image change trigger in `buildConfig.spec.triggers` that triggered the build.
 
+**Additional resources**
+{._additional-resources}
+
 - [v1 container registries](http://docs.docker.com/v1.7/reference/api/hub_registry_spec/#docker-registry-1-0)
 
 ### Configuration change triggers {#builds-configuration-change-triggers_triggering-builds-build-hooks}
@@ -593,8 +599,8 @@ Triggers can be added to and removed from build configurations with `oc set trig
   $ oc set triggers bc <name> --from-bitbucket --remove
   ```
 
-> [!NOTE]
-> When a webhook trigger already exists, adding it again regenerates the webhook secret.
+  > [!NOTE]
+  > When a webhook trigger already exists, adding it again regenerates the webhook secret.
 
 For more information, consult the help documentation by entering the following command:
 
@@ -634,11 +640,11 @@ There are different ways to configure the post-build hook. All forms in the foll
 <tbody>
 <tr>
   <td>Shell script</td>
-  <td><pre>postCommit:&#10;  script: "bundle exec rake test --verbose"</pre><br><br>The <code>script</code> value is a shell script to be run with <code>/bin/sh -ic</code>. Use this option when a shell script is appropriate to execute the build hook. For example, for running unit tests as above. To control the image entry point or if the image does not have <code>/bin/sh</code>, use <code>command</code>, or <code>args</code>, or both.<br><br><dl><dt>Note</dt><dd>The additional <code>-i</code> flag was introduced to improve the experience working with CentOS and RHEL images, and may be removed in a future release.</dd></dl></td>
+  <td><pre>postCommit:&#10;  script: "bundle exec rake test --verbose"</pre><br><br>The <code>script</code> value is a shell script to be run with <code>/bin/sh -ic</code>. Use this option when a shell script is appropriate to execute the build hook. For example, for running unit tests as above. To control the image entry point or if the image does not have <code>/bin/sh</code>, use <code>command</code>, or <code>args</code>, or both.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>The additional <code>-i</code> flag was introduced to improve the experience working with CentOS and RHEL images, and may be removed in a future release.</dd></dl></td>
 </tr>
 <tr>
   <td>Command as the image entry point</td>
-  <td><pre>postCommit:&#10;  command: ["/bin/bash", "-c", "bundle exec rake test --verbose"]</pre><br><br>In this form, <code>command</code> is the command to run, which overrides the imageentry point in the exec form, as documented in the <a href="https://docs.docker.com/engine/reference/builder/#entrypoint">Dockerfile reference</a>. This is needed if the image does not have <code>/bin/sh</code>, or if you do not want to use a shell. In all other cases, using <code>script</code> might be more convenient.</td>
+  <td><pre>postCommit:&#10;  command: ["/bin/bash", "-c", "bundle exec rake test --verbose"]</pre><br><br>In this form, <code>command</code> is the command to run, which overrides the image entry point in the exec form, as documented in the <a href="https://docs.docker.com/engine/reference/builder/#entrypoint">Dockerfile reference</a>. This is needed if the image does not have <code>/bin/sh</code>, or if you do not want to use a shell. In all other cases, using <code>script</code> might be more convenient.</td>
 </tr>
 <tr>
   <td>Command with arguments</td>
@@ -647,8 +653,13 @@ There are different ways to configure the post-build hook. All forms in the foll
 </tbody>
 </table>
 
-> [!NOTE]
-> Providing both `script` and `command` simultaneously creates an invalid build hook.
+```
+:::note
+
+Providing both `script` and `command` simultaneously creates an invalid build hook.
+
+:::
+```
 
 ### Using the CLI to set post commit build hooks {#builds-using-cli-post-commit-build-hooks_triggering-builds-build-hooks}
 

@@ -19,11 +19,12 @@ import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"kms_v2_index","text":"Kubernetes Key Management Service (KMS) v2 on OpenShift Container Platform"},{"depth":2,"slug":"kms-about_kms-v2-index","text":"About Kubernetes KMS v2 encryption"},{"depth":3,"slug":"kms-encrypted-resources_kms-v2-index","text":"Encrypted resources"},{"depth":2,"slug":"kms-technology-preview-phases_kms-v2-index","text":"KMS Technology Preview limitations"},{"depth":3,"slug":"kms-current-limitations_kms-v2-index","text":"Current limitations"},{"depth":2,"slug":"additional-resources_kms-v2-index","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"kms_v2_index","text":"Kubernetes Key Management Service (KMS) v2 on OpenShift Container Platform"},{"depth":2,"slug":"kms-about_kms-v2-index","text":"About Kubernetes KMS v2 encryption"},{"depth":3,"slug":"kms-encrypted-resources_kms-v2-index","text":"Encrypted resources"},{"depth":2,"slug":"kms-technology-preview-phases_kms-v2-index","text":"KMS Technology Preview limitations"},{"depth":3,"slug":"kms-current-limitations_kms-v2-index","text":"Current limitations"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/etcd/KMS_v2";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -42,7 +43,7 @@ const pageCategory = ["etcd"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Kubernetes Key Management Service (KMS) v2 on OpenShift Container Platform {#kms_v2_index}\n\nYou can configure Kubernetes Key Management Service (KMS) v2 on OpenShift Container Platform to centralize encryption key management and meet regulatory compliance requirements.\n\n> [!IMPORTANT]\n> Kubernetes KMS v2 is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\n## About Kubernetes KMS v2 encryption {#kms-about_kms-v2-index}\n\nKubernetes KMS v2 uses external Key Management Services to encrypt etcd data and centralize key management.\n\nKubernetes KMS v2 provides:\n\n- Customer-managed encryption keys that never leave the external KMS\n- Centralized key management and auditing\n- Regulatory compliance support\n\n### Encrypted resources {#kms-encrypted-resources_kms-v2-index}\n\nWhen you enable KMS encryption, OpenShift Container Platform encrypts the following sensitive resources in etcd:\n\n- Secrets\n- ConfigMaps\n- Routes\n- OAuth access tokens\n- OAuth authorize tokens\n\n> [!NOTE]\n> Resource types, namespaces, and object names are not encrypted.\n\n- [Using a KMS provider for data encryption](https://kubernetes.io/docs/tasks/administer-cluster/kms-provider/)\n\n## KMS Technology Preview limitations {#kms-technology-preview-phases_kms-v2-index}\n\nReview the current limitations of Kubernetes KMS v2 to plan deployments and avoid unsupported configurations in OpenShift Container Platform 4.21 or later.\n\n### Current limitations {#kms-current-limitations_kms-v2-index}\n\n- Plugins require manual installation on each control plane node\n- Plugins must listen at `unix:///var/run/kmsplugin/kms.sock`\n- Only one KMS plugin can run at a time\n- KMS-to-KMS migration requires intermediate migration to `identity` or `aescbc`\n\n## Additional resources {#additional-resources_kms-v2-index}\n\n- [Enabling features using feature gates](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)\n- [Using a KMS provider for data encryption](https://kubernetes.io/docs/tasks/administer-cluster/kms-provider/)\n- [HashiCorp Vault Transit Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/transit)\n- [Use Vault as a Kubernetes KMS provider](https://developer.hashicorp.com/vault/docs/deploy/kubernetes/kms)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/etcd/KMS_v2.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Kubernetes Key Management Service (KMS) v2 on OpenShift Container Platform {#kms_v2_index}\n\nYou can configure Kubernetes Key Management Service (KMS) v2 on OpenShift Container Platform to centralize encryption key management and meet regulatory compliance requirements.\n\n> [!IMPORTANT]\n> Kubernetes KMS v2 is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\n## About Kubernetes KMS v2 encryption {#kms-about_kms-v2-index}\n\nKubernetes KMS v2 uses external Key Management Services to encrypt etcd data and centralize key management.\n\nKubernetes KMS v2 provides:\n\n- Customer-managed encryption keys that never leave the external KMS\n- Centralized key management and auditing\n- Regulatory compliance support\n\n### Encrypted resources {#kms-encrypted-resources_kms-v2-index}\n\nWhen you enable KMS encryption, OpenShift Container Platform encrypts the following sensitive resources in etcd:\n\n- Secrets\n- ConfigMaps\n- Routes\n- OAuth access tokens\n- OAuth authorize tokens\n\n> [!NOTE]\n> Resource types, namespaces, and object names are not encrypted.\n\n**Additional resources**\n{._additional-resources}\n\n- [Using a KMS provider for data encryption](https://kubernetes.io/docs/tasks/administer-cluster/kms-provider/)\n\n## KMS Technology Preview limitations {#kms-technology-preview-phases_kms-v2-index}\n\nReview the current limitations of Kubernetes KMS v2 to plan deployments and avoid unsupported configurations in OpenShift Container Platform 4.21 or later.\n\n### Current limitations {#kms-current-limitations_kms-v2-index}\n\n- Plugins require manual installation on each control plane node\n- Plugins must listen at `unix:///var/run/kmsplugin/kms.sock`\n- Only one KMS plugin can run at a time\n- KMS-to-KMS migration requires intermediate migration to `identity` or `aescbc`\n\n**Additional resources**\n{._additional-resources}\n\n- [Enabling features using feature gates](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)\n- [Using a KMS provider for data encryption](https://kubernetes.io/docs/tasks/administer-cluster/kms-provider/)\n- [HashiCorp Vault Transit Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/transit)\n- [Use Vault as a Kubernetes KMS provider](https://developer.hashicorp.com/vault/docs/deploy/kubernetes/kms)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/etcd/KMS_v2.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -81,12 +82,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -94,7 +96,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="kms_v2_index" class="group scroll-mt-20">Kubernetes Key Management Service (KMS) v2 on OpenShift Container Platform<a href="#kms_v2_index" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can configure Kubernetes Key Management Service (KMS) v2 on OpenShift Container Platform to centralize encryption key management and meet regulatory compliance requirements.</p>
+      <p class="_abstract">You can configure Kubernetes Key Management Service (KMS) v2 on OpenShift Container Platform to centralize encryption key management and meet regulatory compliance requirements.</p>
       <Alert variant="info" class="my-4">
         <AlertTitle>Important</AlertTitle>
         <AlertDescription>
@@ -138,13 +140,15 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>Only one KMS plugin can run at a time</li>
       <li>KMS-to-KMS migration requires intermediate migration to <code>identity</code> or <code>aescbc</code></li>
       </ul>
-      <h2 id="additional-resources_kms-v2-index" class="group scroll-mt-20">Additional resources<a href="#additional-resources_kms-v2-index" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul>
       <li><a href="/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features">Enabling features using feature gates</a></li>
       <li><a href="https://kubernetes.io/docs/tasks/administer-cluster/kms-provider/">Using a KMS provider for data encryption</a></li>
       <li><a href="https://developer.hashicorp.com/vault/docs/secrets/transit">HashiCorp Vault Transit Secrets Engine</a></li>
       <li><a href="https://developer.hashicorp.com/vault/docs/deploy/kubernetes/kms">Use Vault as a Kubernetes KMS provider</a></li>
       </ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -24,6 +24,7 @@ To create CSI-provisioned PVs that mount to OpenStack Cinder storage assets, Ope
 > OpenShift Container Platform defaults to using the CSI plugin to provision Cinder storage.
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage)
 - [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)

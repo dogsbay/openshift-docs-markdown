@@ -279,8 +279,8 @@ where:
     > [!NOTE]
     > To disable the rotation policy, set the value to `0`.
 
-`roles`
-:   Specifies the `node-role.kubernetes.io` label value to schedule the scan for `Node` type. This value must match the name of a `MachineConfigPool`.
+    `roles`
+    :   Specifies the `node-role.kubernetes.io` label value to schedule the scan for `Node` type. This value must match the name of a `MachineConfigPool`.
 
 ### ScanSettingBinding object {#scan-setting-binding-object_compliance-crd}
 

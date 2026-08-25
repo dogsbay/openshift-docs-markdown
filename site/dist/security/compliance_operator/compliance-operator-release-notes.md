@@ -304,10 +304,10 @@ This update addresses a CVE in an underlying dependency.
 
 - You can install and use the Compliance Operator in an OpenShift Container Platform cluster running in FIPS mode.
 
-> [!IMPORTANT]
-> To enable FIPS mode for your cluster, you must run the installation program from a Red Hat Enterprise Linux (RHEL) computer configured to operate in FIPS mode. For more information about configuring FIPS mode on RHEL, see [Switching RHEL to FIPS mode](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/security_hardening/switching-rhel-to-fips-mode_security-hardening).
->
-> When running Red Hat Enterprise Linux (RHEL) or Red Hat Enterprise Linux CoreOS (RHCOS) booted in FIPS mode, OpenShift Container Platform core components use the RHEL cryptographic libraries that have been submitted to NIST for FIPS 140-2/140-3 Validation on only the x86_64, ppc64le, and s390x architectures.
+  > [!IMPORTANT]
+  > To enable FIPS mode for your cluster, you must run the installation program from a Red Hat Enterprise Linux (RHEL) computer configured to operate in FIPS mode. For more information about configuring FIPS mode on RHEL, see [Switching RHEL to FIPS mode](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/security_hardening/switching-rhel-to-fips-mode_security-hardening).
+  >
+  > When running Red Hat Enterprise Linux (RHEL) or Red Hat Enterprise Linux CoreOS (RHCOS) booted in FIPS mode, OpenShift Container Platform core components use the RHEL cryptographic libraries that have been submitted to NIST for FIPS 140-2/140-3 Validation on only the x86_64, ppc64le, and s390x architectures.
 
 ### Known issue {#compliance-operator-1-3-1-known-issue_compliance-operator-release-notes-v0}
 
@@ -661,7 +661,8 @@ The following Red Hat Bug Fix Advisory (RHBA) is available for the OpenShift Com
 - Previously, the Compliance Operator was unable to parse Payment Card Industry Data Security Standard (PCI DSS) references. Now, the Operator can parse compliance content that is provided with PCI DSS profiles.
 - Previously, the Compliance Operator was unable to run rules for AU-5 control in the moderate profile. Now, permission is added to the Operator so that it can read **Prometheusrules.monitoring.coreos.com** objects and run the rules that cover AU-5 control in the moderate profile.
 
-## Additional resources {#compliance-operator-release-notes_additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Understanding the Compliance Operator](/openshift-docs-markdown/security/compliance_operator/co-concepts/compliance-operator-understanding#understanding-compliance-operator)
 - [Updating the Compliance Operator](/openshift-docs-markdown/security/compliance_operator/co-management/compliance-operator-updating#olm-preparing-upgrade_compliance-operator-updating)

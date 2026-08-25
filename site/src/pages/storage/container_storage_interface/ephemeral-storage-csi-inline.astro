@@ -26,11 +26,12 @@ import TableHead from "@ui/table/TableHead.astro";
 import TableHeader from "@ui/table/TableHeader.astro";
 import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"ephemeral-storage-csi-inline","text":"CSI inline ephemeral volumes"},{"depth":2,"slug":"ephemeral-storage-csi-inline-overview_ephemeral-storage-csi-inline","text":"Overview of CSI inline ephemeral volumes"},{"depth":3,"slug":"ephemeral-storage-csi-inline-overview-limits_ephemeral-storage-csi-inline","text":"Support limitations for CSI inline ephemeral volumes"},{"depth":2,"slug":"ephemeral-storage-csi-overview-admin-plugin_ephemeral-storage-csi-inline","text":"CSI Volume Admission plugin"},{"depth":3,"slug":"overview-admission-plugin_ephemeral-storage-csi-inline","text":"Overview of CSI Volume Admission plugin"},{"depth":3,"slug":"security-profile-enforcement_ephemeral-storage-csi-inline","text":"Pod security profile enforcement"},{"depth":3,"slug":"security-profile-warning_ephemeral-storage-csi-inline","text":"Pod security profile warning"},{"depth":3,"slug":"security-profile-audit_ephemeral-storage-csi-inline","text":"Pod security profile audit"},{"depth":3,"slug":"admission-plugin-default-behavior_ephemeral-storage-csi-inline","text":"Default behavior for the CSI Volume Admission plugin"},{"depth":2,"slug":"ephemeral-storage-csi-inline-pod_ephemeral-storage-csi-inline","text":"Embedding a CSI inline ephemeral volume in the pod specification"},{"depth":2,"slug":"additional-resources_ephemeral-storage-csi-inline","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"ephemeral-storage-csi-inline","text":"CSI inline ephemeral volumes"},{"depth":2,"slug":"ephemeral-storage-csi-inline-overview_ephemeral-storage-csi-inline","text":"Overview of CSI inline ephemeral volumes"},{"depth":3,"slug":"ephemeral-storage-csi-inline-overview-limits_ephemeral-storage-csi-inline","text":"Support limitations for CSI inline ephemeral volumes"},{"depth":2,"slug":"ephemeral-storage-csi-overview-admin-plugin_ephemeral-storage-csi-inline","text":"CSI Volume Admission plugin"},{"depth":3,"slug":"overview-admission-plugin_ephemeral-storage-csi-inline","text":"Overview of CSI Volume Admission plugin"},{"depth":3,"slug":"security-profile-enforcement_ephemeral-storage-csi-inline","text":"Pod security profile enforcement"},{"depth":3,"slug":"security-profile-warning_ephemeral-storage-csi-inline","text":"Pod security profile warning"},{"depth":3,"slug":"security-profile-audit_ephemeral-storage-csi-inline","text":"Pod security profile audit"},{"depth":3,"slug":"admission-plugin-default-behavior_ephemeral-storage-csi-inline","text":"Default behavior for the CSI Volume Admission plugin"},{"depth":2,"slug":"ephemeral-storage-csi-inline-pod_ephemeral-storage-csi-inline","text":"Embedding a CSI inline ephemeral volume in the pod specification"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/storage/container_storage_interface/ephemeral-storage-csi-inline";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -49,7 +50,7 @@ const pageCategory = ["storage","storage/container_storage_interface"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# CSI inline ephemeral volumes {#ephemeral-storage-csi-inline}\n\nYou can provision temporary, pod-specific storage by using Container Storage Interface (CSI) inline ephemeral volumes that are automatically created at pod deployment and removed at pod termination.\n\n## Overview of CSI inline ephemeral volumes {#ephemeral-storage-csi-inline-overview_ephemeral-storage-csi-inline}\n\nTraditionally, volumes that are backed by Container Storage Interface (CSI) drivers can only be used with a `PersistentVolume` and `PersistentVolumeClaim` object combination.\n\nCSI inline ephemeral volumes allow you to specify CSI volumes directly in the `Pod` specification, rather than in a `PersistentVolume` object. Inline volumes are ephemeral and do not persist across pod restarts.\n\nCSI inline ephemeral volumes are only available with the following supported CSI drivers:\n\n- Azure File CSI driver\n- Secrets Store CSI driver\n\n### Support limitations for CSI inline ephemeral volumes {#ephemeral-storage-csi-inline-overview-limits_ephemeral-storage-csi-inline}\n\n> [!IMPORTANT]\n> The Shared Resource CSI Driver feature is now generally available in Builds for Red Hat OpenShift 1.1. This feature is now removed in OpenShift Container Platform 4.18 and later. To use this feature, ensure that you are using Builds for Red Hat OpenShift 1.1 or later. For information about Builds for Red Hat OpenShift 1.1, see \"Builds for Red Hat OpenShift 1.1\".\n\nBy default, OpenShift Container Platform supports CSI inline ephemeral volumes with these limitations:\n\n- Support is only available for CSI drivers. In-tree and FlexVolumes are not supported.\n- Community or storage vendors provide other CSI drivers that support these volumes. Follow the installation instructions provided by the CSI driver provider.\n\nCSI drivers might not have implemented the inline volume functionality, including `Ephemeral` capacity. For details, see the CSI driver documentation. **Additional resources**\n\n- [Builds for Red Hat OpenShift 1.1](https://docs.redhat.com/en/documentation/builds_for_red_hat_openshift/1.1)\n\n## CSI Volume Admission plugin {#ephemeral-storage-csi-overview-admin-plugin_ephemeral-storage-csi-inline}\n\nTo restrict Container Storage Interface (CSI) ephemeral volume usage based on pod security standards, the CSI Volume Admission plugin enforces admission policies by inspecting security profile labels on CSI drivers.\n\n### Overview of CSI Volume Admission plugin {#overview-admission-plugin_ephemeral-storage-csi-inline}\n\nThe CSI Volume Admission plugin allows you to restrict the use of an individual CSI driver capable of provisioning CSI ephemeral volumes on pod admission. Administrators can add a `csi-ephemeral-volume-profile` label, and this label is then inspected by the Admission plugin and used in enforcement, warning, and audit decisions.\n\nTo use the CSI Volume Admission plugin, administrators add the `security.openshift.io/csi-ephemeral-volume-profile` label to a `CSIDriver` object, which declares the CSI driver’s effective pod security profile when it is used to provide CSI ephemeral volumes, as shown in the following example:\n\n```yaml {title=\"Example CSIDriver YAML file enabling using of the CSI Admission plugin\"}\nkind: CSIDriver\nmetadata:\n  name: csi.mydriver.company.org\n  labels:\n    security.openshift.io/csi-ephemeral-volume-profile: restricted\n```\n\nSetting `metadata.labels.security.openshift.io/csi-ephemeral-volume-profile` to `restricted` enables use of the CSI Admission plugin.\n\nThis “effective profile” communicates that a pod can use the CSI driver to mount CSI ephemeral volumes when the pod’s namespace is governed by a pod security standard.\n\nThe CSI Volume Admission plugin inspects pod volumes when pods are created; existing pods that use CSI volumes are not affected. If a pod uses a container storage interface (CSI) volume, the plugin looks up the `CSIDriver` object and inspects the `csi-ephemeral-volume-profile` label, and then use the label’s value in its enforcement, warning, and audit decisions.\n\n### Pod security profile enforcement {#security-profile-enforcement_ephemeral-storage-csi-inline}\n\nWhen a CSI driver has the `csi-ephemeral-volume-profile` label, pods using the CSI driver to mount CSI ephemeral volumes must run in a namespace that enforces a pod security standard of equal or greater permission. If the namespace enforces a more restrictive standard, the CSI Volume Admission plugin denies admission. The following table describes the enforcement behavior for different pod security profiles for given label values.\n\n**Pod security profile enforcement**\n\n| Pod security profile | Driver label: restricted | Driver label: baseline | Driver label: privileged | Restricted |\n| --- | --- | --- | --- | --- |\n| Allowed | Denied | Denied | Baseline | Allowed |\n| Allowed | Denied | Privileged | Allowed | Allowed |\n\n### Pod security profile warning {#security-profile-warning_ephemeral-storage-csi-inline}\n\nThe CSI Volume Admission plugin can warn you if the CSI driver’s effective profile is more permissive than the pod security warning profile for the pod namespace. The following table shows when a warning occurs for different pod security profiles for given label values.\n\n**Pod security profile warning**\n\n| Pod security profile | Driver label: restricted | Driver label: baseline | Driver label: privileged | Restricted |\n| --- | --- | --- | --- | --- |\n| No warning | Warning | Warning | Baseline | No warning |\n| No warning | Warning | Privileged | No warning | No warning |\n\n### Pod security profile audit {#security-profile-audit_ephemeral-storage-csi-inline}\n\nThe CSI Volume Admission plugin can apply audit annotations to the pod if the CSI driver’s effective profile is more permissive than the pod security audit profile for the pod namespace. The following table shows the audit annotation applied for different pod security profiles for given label values.\n\n**Pod security profile audit**\n\n| Pod security profile | Driver label: restricted | Driver label: baseline | Driver label: privileged | Restricted |\n| --- | --- | --- | --- | --- |\n| No audit | Audit | Audit | Baseline | No audit |\n| No audit | Audit | Privileged | No audit | No audit |\n\n### Default behavior for the CSI Volume Admission plugin {#admission-plugin-default-behavior_ephemeral-storage-csi-inline}\n\nIf the referenced CSI driver for a CSI ephemeral volume does not have the `csi-ephemeral-volume-profile` label, the CSI Volume Admission plugin considers the driver to have the privileged profile for enforcement, warning, and audit behaviors. Likewise, if the pod’s namespace does not have the pod security admission label set, the Admission plugin assumes the restricted profile is allowed for enforcement, warning, and audit decisions. Therefore, if no labels are set, CSI ephemeral volumes using that CSI driver are only usable in privileged namespaces by default.\n\nThe CSI drivers that ship with OpenShift Container Platform and support ephemeral volumes have a reasonable default set for the `csi-ephemeral-volume-profile` label:\n\n- Azure File CSI driver: privileged\n\nIf desired, an admin can change the default value of the label.\n\n## Embedding a CSI inline ephemeral volume in the pod specification {#ephemeral-storage-csi-inline-pod_ephemeral-storage-csi-inline}\n\nTo provision temporary storage that automatically follows your pod’s lifecycle, embed a Container Storage Interface (CSI) inline ephemeral volume in the pod specification so the CSI driver manages volume creation and cleanup as pods start/stop.\n\n**Procedure**\n\n1. Create the `Pod` object definition and save it to a file.\n2. Embed the CSI inline ephemeral volume in the file as in the following pod YAML file:\n\n   ```yaml {title=\"Example pod YAML file with embedded ephemeral volume\"}\n   kind: Pod\n   apiVersion: v1\n   metadata:\n     name: my-csi-app\n   spec:\n     containers:\n       - name: my-frontend\n         image: busybox\n         volumeMounts:\n         - mountPath: \"/data\"\n           name: my-csi-inline-vol\n         command: [ \"sleep\", \"1000000\" ]\n     volumes:\n       - name: my-csi-inline-vol\n         csi:\n           driver: inline.storage.kubernetes.io\n           volumeAttributes:\n             foo: bar\n   ```\n\n   Where `spec.volumes.name`is the name of the volume that is used by pods.\n3. Create the object definition file that you saved in the previous step by running the following command.\n\n   ```terminal\n   $ oc create -f my-csi-app.yaml\n   ```\n\n## Additional resources {#additional-resources_ephemeral-storage-csi-inline}\n\n- [Pod Security Standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/storage/container_storage_interface/ephemeral-storage-csi-inline.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# CSI inline ephemeral volumes {#ephemeral-storage-csi-inline}\n\nYou can provision temporary, pod-specific storage by using Container Storage Interface (CSI) inline ephemeral volumes that are automatically created at pod deployment and removed at pod termination.\n\n## Overview of CSI inline ephemeral volumes {#ephemeral-storage-csi-inline-overview_ephemeral-storage-csi-inline}\n\nTraditionally, volumes that are backed by Container Storage Interface (CSI) drivers can only be used with a `PersistentVolume` and `PersistentVolumeClaim` object combination.\n\nCSI inline ephemeral volumes allow you to specify CSI volumes directly in the `Pod` specification, rather than in a `PersistentVolume` object. Inline volumes are ephemeral and do not persist across pod restarts.\n\nCSI inline ephemeral volumes are only available with the following supported CSI drivers:\n\n- Azure File CSI driver\n- Secrets Store CSI driver\n\n### Support limitations for CSI inline ephemeral volumes {#ephemeral-storage-csi-inline-overview-limits_ephemeral-storage-csi-inline}\n\n> [!IMPORTANT]\n> The Shared Resource CSI Driver feature is now generally available in Builds for Red Hat OpenShift 1.1. This feature is now removed in OpenShift Container Platform 4.18 and later. To use this feature, ensure that you are using Builds for Red Hat OpenShift 1.1 or later. For information about Builds for Red Hat OpenShift 1.1, see \"Builds for Red Hat OpenShift 1.1\".\n\nBy default, OpenShift Container Platform supports CSI inline ephemeral volumes with these limitations:\n\n- Support is only available for CSI drivers. In-tree and FlexVolumes are not supported.\n- Community or storage vendors provide other CSI drivers that support these volumes. Follow the installation instructions provided by the CSI driver provider.\n\nCSI drivers might not have implemented the inline volume functionality, including `Ephemeral` capacity. For details, see the CSI driver documentation.\n\n**Additional resources**\n{._additional-resources}\n\n- [Builds for Red Hat OpenShift 1.1](https://docs.redhat.com/en/documentation/builds_for_red_hat_openshift/1.1)\n\n## CSI Volume Admission plugin {#ephemeral-storage-csi-overview-admin-plugin_ephemeral-storage-csi-inline}\n\nTo restrict Container Storage Interface (CSI) ephemeral volume usage based on pod security standards, the CSI Volume Admission plugin enforces admission policies by inspecting security profile labels on CSI drivers.\n\n### Overview of CSI Volume Admission plugin {#overview-admission-plugin_ephemeral-storage-csi-inline}\n\nThe CSI Volume Admission plugin allows you to restrict the use of an individual CSI driver capable of provisioning CSI ephemeral volumes on pod admission. Administrators can add a `csi-ephemeral-volume-profile` label, and this label is then inspected by the Admission plugin and used in enforcement, warning, and audit decisions.\n\nTo use the CSI Volume Admission plugin, administrators add the `security.openshift.io/csi-ephemeral-volume-profile` label to a `CSIDriver` object, which declares the CSI driver’s effective pod security profile when it is used to provide CSI ephemeral volumes, as shown in the following example:\n\n```yaml {title=\"Example CSIDriver YAML file enabling using of the CSI Admission plugin\"}\nkind: CSIDriver\nmetadata:\n  name: csi.mydriver.company.org\n  labels:\n    security.openshift.io/csi-ephemeral-volume-profile: restricted\n```\n\nSetting `metadata.labels.security.openshift.io/csi-ephemeral-volume-profile` to `restricted` enables use of the CSI Admission plugin.\n\nThis “effective profile” communicates that a pod can use the CSI driver to mount CSI ephemeral volumes when the pod’s namespace is governed by a pod security standard.\n\nThe CSI Volume Admission plugin inspects pod volumes when pods are created; existing pods that use CSI volumes are not affected. If a pod uses a container storage interface (CSI) volume, the plugin looks up the `CSIDriver` object and inspects the `csi-ephemeral-volume-profile` label, and then use the label’s value in its enforcement, warning, and audit decisions.\n\n### Pod security profile enforcement {#security-profile-enforcement_ephemeral-storage-csi-inline}\n\nWhen a CSI driver has the `csi-ephemeral-volume-profile` label, pods using the CSI driver to mount CSI ephemeral volumes must run in a namespace that enforces a pod security standard of equal or greater permission. If the namespace enforces a more restrictive standard, the CSI Volume Admission plugin denies admission. The following table describes the enforcement behavior for different pod security profiles for given label values.\n\n**Pod security profile enforcement**\n\n| Pod security profile | Driver label: restricted | Driver label: baseline | Driver label: privileged |\n| --- | :---: | :---: | :---: |\n| Restricted | Allowed | Denied | Denied |\n| Baseline | Allowed | Allowed | Denied |\n| Privileged | Allowed | Allowed | Allowed |\n\n### Pod security profile warning {#security-profile-warning_ephemeral-storage-csi-inline}\n\nThe CSI Volume Admission plugin can warn you if the CSI driver’s effective profile is more permissive than the pod security warning profile for the pod namespace. The following table shows when a warning occurs for different pod security profiles for given label values.\n\n**Pod security profile warning**\n\n| Pod security profile | Driver label: restricted | Driver label: baseline | Driver label: privileged |\n| --- | :---: | :---: | :---: |\n| Restricted | No warning | Warning | Warning |\n| Baseline | No warning | No warning | Warning |\n| Privileged | No warning | No warning | No warning |\n\n### Pod security profile audit {#security-profile-audit_ephemeral-storage-csi-inline}\n\nThe CSI Volume Admission plugin can apply audit annotations to the pod if the CSI driver’s effective profile is more permissive than the pod security audit profile for the pod namespace. The following table shows the audit annotation applied for different pod security profiles for given label values.\n\n**Pod security profile audit**\n\n| Pod security profile | Driver label: restricted | Driver label: baseline | Driver label: privileged |\n| --- | :---: | :---: | :---: |\n| Restricted | No audit | Audit | Audit |\n| Baseline | No audit | No audit | Audit |\n| Privileged | No audit | No audit | No audit |\n\n### Default behavior for the CSI Volume Admission plugin {#admission-plugin-default-behavior_ephemeral-storage-csi-inline}\n\nIf the referenced CSI driver for a CSI ephemeral volume does not have the `csi-ephemeral-volume-profile` label, the CSI Volume Admission plugin considers the driver to have the privileged profile for enforcement, warning, and audit behaviors. Likewise, if the pod’s namespace does not have the pod security admission label set, the Admission plugin assumes the restricted profile is allowed for enforcement, warning, and audit decisions. Therefore, if no labels are set, CSI ephemeral volumes using that CSI driver are only usable in privileged namespaces by default.\n\nThe CSI drivers that ship with OpenShift Container Platform and support ephemeral volumes have a reasonable default set for the `csi-ephemeral-volume-profile` label:\n\n- Azure File CSI driver: privileged\n\nIf desired, an admin can change the default value of the label.\n\n## Embedding a CSI inline ephemeral volume in the pod specification {#ephemeral-storage-csi-inline-pod_ephemeral-storage-csi-inline}\n\nTo provision temporary storage that automatically follows your pod’s lifecycle, embed a Container Storage Interface (CSI) inline ephemeral volume in the pod specification so the CSI driver manages volume creation and cleanup as pods start/stop.\n\n**Procedure**\n\n1. Create the `Pod` object definition and save it to a file.\n2. Embed the CSI inline ephemeral volume in the file as in the following pod YAML file:\n\n   ```yaml {title=\"Example pod YAML file with embedded ephemeral volume\"}\n   kind: Pod\n   apiVersion: v1\n   metadata:\n     name: my-csi-app\n   spec:\n     containers:\n       - name: my-frontend\n         image: busybox\n         volumeMounts:\n         - mountPath: \"/data\"\n           name: my-csi-inline-vol\n         command: [ \"sleep\", \"1000000\" ]\n     volumes:\n       - name: my-csi-inline-vol\n         csi:\n           driver: inline.storage.kubernetes.io\n           volumeAttributes:\n             foo: bar\n   ```\n\n   Where `spec.volumes.name`is the name of the volume that is used by pods.\n3. Create the object definition file that you saved in the previous step by running the following command.\n\n   ```terminal\n   $ oc create -f my-csi-app.yaml\n   ```\n\n**Additional resources**\n{._additional-resources}\n\n- [Pod Security Standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/storage/container_storage_interface/ephemeral-storage-csi-inline.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -88,12 +89,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -101,7 +103,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="ephemeral-storage-csi-inline" class="group scroll-mt-20">CSI inline ephemeral volumes<a href="#ephemeral-storage-csi-inline" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can provision temporary, pod-specific storage by using Container Storage Interface (CSI) inline ephemeral volumes that are automatically created at pod deployment and removed at pod termination.</p>
+      <p class="_abstract">You can provision temporary, pod-specific storage by using Container Storage Interface (CSI) inline ephemeral volumes that are automatically created at pod deployment and removed at pod termination.</p>
       <h2 id="ephemeral-storage-csi-inline-overview_ephemeral-storage-csi-inline" class="group scroll-mt-20">Overview of CSI inline ephemeral volumes<a href="#ephemeral-storage-csi-inline-overview_ephemeral-storage-csi-inline" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">Traditionally, volumes that are backed by Container Storage Interface (CSI) drivers can only be used with a <code>PersistentVolume</code> and <code>PersistentVolumeClaim</code> object combination.</p>
       <p>CSI inline ephemeral volumes allow you to specify CSI volumes directly in the <code>Pod</code> specification, rather than in a <code>PersistentVolume</code> object. Inline volumes are ephemeral and do not persist across pod restarts.</p>
@@ -122,8 +124,11 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>Support is only available for CSI drivers. In-tree and FlexVolumes are not supported.</li>
       <li>Community or storage vendors provide other CSI drivers that support these volumes. Follow the installation instructions provided by the CSI driver provider.</li>
       </ul>
-      <p>CSI drivers might not have implemented the inline volume functionality, including <code>Ephemeral</code> capacity. For details, see the CSI driver documentation. <strong>Additional resources</strong></p>
+      <p>CSI drivers might not have implemented the inline volume functionality, including <code>Ephemeral</code> capacity. For details, see the CSI driver documentation.</p>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul><li><a href="https://docs.redhat.com/en/documentation/builds_for_red_hat_openshift/1.1">Builds for Red Hat OpenShift 1.1</a></li></ul>
+      </section>
       <h2 id="ephemeral-storage-csi-overview-admin-plugin_ephemeral-storage-csi-inline" class="group scroll-mt-20">CSI Volume Admission plugin<a href="#ephemeral-storage-csi-overview-admin-plugin_ephemeral-storage-csi-inline" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">To restrict Container Storage Interface (CSI) ephemeral volume usage based on pod security standards, the CSI Volume Admission plugin enforces admission policies by inspecting security profile labels on CSI drivers.</p>
       <h3 id="overview-admission-plugin_ephemeral-storage-csi-inline" class="group scroll-mt-20">Overview of CSI Volume Admission plugin<a href="#overview-admission-plugin_ephemeral-storage-csi-inline" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
@@ -143,21 +148,24 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <TableHead>Driver label: restricted</TableHead>
       <TableHead>Driver label: baseline</TableHead>
       <TableHead>Driver label: privileged</TableHead>
-      <TableHead>Restricted</TableHead>
       </TableRow>
       </TableHeader>
       <TableBody>
       <TableRow>
+      <TableCell>Restricted</TableCell>
       <TableCell>Allowed</TableCell>
       <TableCell>Denied</TableCell>
       <TableCell>Denied</TableCell>
-      <TableCell>Baseline</TableCell>
-      <TableCell>Allowed</TableCell>
       </TableRow>
       <TableRow>
+      <TableCell>Baseline</TableCell>
+      <TableCell>Allowed</TableCell>
       <TableCell>Allowed</TableCell>
       <TableCell>Denied</TableCell>
+      </TableRow>
+      <TableRow>
       <TableCell>Privileged</TableCell>
+      <TableCell>Allowed</TableCell>
       <TableCell>Allowed</TableCell>
       <TableCell>Allowed</TableCell>
       </TableRow>
@@ -173,21 +181,24 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <TableHead>Driver label: restricted</TableHead>
       <TableHead>Driver label: baseline</TableHead>
       <TableHead>Driver label: privileged</TableHead>
-      <TableHead>Restricted</TableHead>
       </TableRow>
       </TableHeader>
       <TableBody>
       <TableRow>
+      <TableCell>Restricted</TableCell>
       <TableCell>No warning</TableCell>
       <TableCell>Warning</TableCell>
       <TableCell>Warning</TableCell>
-      <TableCell>Baseline</TableCell>
-      <TableCell>No warning</TableCell>
       </TableRow>
       <TableRow>
+      <TableCell>Baseline</TableCell>
+      <TableCell>No warning</TableCell>
       <TableCell>No warning</TableCell>
       <TableCell>Warning</TableCell>
+      </TableRow>
+      <TableRow>
       <TableCell>Privileged</TableCell>
+      <TableCell>No warning</TableCell>
       <TableCell>No warning</TableCell>
       <TableCell>No warning</TableCell>
       </TableRow>
@@ -203,21 +214,24 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <TableHead>Driver label: restricted</TableHead>
       <TableHead>Driver label: baseline</TableHead>
       <TableHead>Driver label: privileged</TableHead>
-      <TableHead>Restricted</TableHead>
       </TableRow>
       </TableHeader>
       <TableBody>
       <TableRow>
+      <TableCell>Restricted</TableCell>
       <TableCell>No audit</TableCell>
       <TableCell>Audit</TableCell>
       <TableCell>Audit</TableCell>
-      <TableCell>Baseline</TableCell>
-      <TableCell>No audit</TableCell>
       </TableRow>
       <TableRow>
+      <TableCell>Baseline</TableCell>
+      <TableCell>No audit</TableCell>
       <TableCell>No audit</TableCell>
       <TableCell>Audit</TableCell>
+      </TableRow>
+      <TableRow>
       <TableCell>Privileged</TableCell>
+      <TableCell>No audit</TableCell>
       <TableCell>No audit</TableCell>
       <TableCell>No audit</TableCell>
       </TableRow>
@@ -243,8 +257,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <CodeBlock code={"$ oc create -f my-csi-app.yaml"} lang="terminal" />
       </li>
       </ol>
-      <h2 id="additional-resources_ephemeral-storage-csi-inline" class="group scroll-mt-20">Additional resources<a href="#additional-resources_ephemeral-storage-csi-inline" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul><li><a href="https://kubernetes.io/docs/concepts/security/pod-security-standards/">Pod Security Standards</a></li></ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

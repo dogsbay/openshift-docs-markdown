@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"hcp-backup-restore-aws","text":"Backing up 
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp_high_availability/hcp-backup-restore-aws";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="hcp-backup-restore-aws" class="group scroll-mt-20">Backing up and restoring etcd on the management cluster<a href="#hcp-backup-restore-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can back up and restore etcd on the management cluster to fix failures.</p>
+      <p class="_abstract">You can back up and restore etcd on the management cluster to fix failures.</p>
       <h2 id="backup-etcd-hosted-cluster_hcp-backup-restore-aws" class="group scroll-mt-20">Taking a snapshot of etcd for a hosted cluster<a href="#backup-etcd-hosted-cluster_hcp-backup-restore-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">To back up etcd for a hosted cluster, you must take a snapshot of etcd. Later, you can restore etcd by using the snapshot.</p>
       <p><strong>Procedure</strong></p>

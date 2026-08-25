@@ -1,5 +1,5 @@
 ---
-title: Postinstallation configuration for a disconnected {{ ibm_cloud_title }} cluster
+title: Postinstallation configuration for a disconnected IBM Cloud cluster
 ---
 
 # Postinstallation configuration for a disconnected IBM Cloud cluster {#installing-ibm-cloud-restricted-postinstallation-configuration}
@@ -20,7 +20,7 @@ To use only trusted or locally available Operator catalogs, disable the default 
   ```
 
   > [!TIP]
-  > Or, you can use the web console to manage catalog sources. From the **Administration** -> **Cluster Settings** -> **Configuration** -> **OperatorHub** page, click the **Sources** tab, where you can create, update, delete, disable, and enable individual sources.
+  > Or, you can use the web console to manage catalog sources. From the **Administration** → **Cluster Settings** → **Configuration** → **OperatorHub** page, click the **Sources** tab, where you can create, update, delete, disable, and enable individual sources.
 
 ## Installing the policy resources into the cluster {#oc-mirror-updating-cluster-manifests_installing-ibm-cloud-restricted-postinstallation-configuration}
 
@@ -71,7 +71,8 @@ To provide metrics about cluster health and the success of updates, the Telemetr
 
 After you confirm that your [OpenShift Cluster Manager](https://console.redhat.com/openshift) inventory is correct, either maintained automatically by Telemetry or manually by using OpenShift Cluster Manager,use subscription watch to track your OpenShift Container Platform subscriptions at the account or multi-cluster level. For more information about subscription watch, see "Data Gathered and Used by Red Hat’s subscription services" in the *Additional resources* section.
 
-## Additional resources {#additional-resources_installing-ibm-cloud-restricted-postinstallation}
+**Additional resources**
+{._additional-resources}
 
 - [Customize your cluster](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations)
 - [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)

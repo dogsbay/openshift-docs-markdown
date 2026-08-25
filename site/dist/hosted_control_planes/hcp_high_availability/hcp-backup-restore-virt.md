@@ -1,5 +1,5 @@
 ---
-title: Backing up and restoring a hosted cluster on {{ VirtProductName }}
+title: Backing up and restoring a hosted cluster on OpenShift Virtualization
 ---
 
 # Backing up and restoring a hosted cluster on OpenShift Virtualization {#hcp-backup-restore-virt}

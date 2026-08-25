@@ -1,5 +1,5 @@
 ---
-title: EgressRouter []
+title: EgressRouter [network.operator.openshift.io/v1]
 ---
 
 # EgressRouter \[network.operator.openshift.io/v1\] {#egressrouter-network-operator-openshift-io-v1}
@@ -116,8 +116,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `master` | `string` | Name of the master interface. Need not be specified if it can be inferred from the IP address. |
-| `mode` | `string` | mode depicts the mode that is used for the macvlan interface; one of Bridge\\ |
-| Private\\ | VEPA\\ | Passthru. The default mode is "Bridge". |
+| `mode` | `string` | mode depicts the mode that is used for the macvlan interface; one of Bridge\|Private\|VEPA\|Passthru. The default mode is "Bridge". |
 
 ### .spec.redirect {#_specredirect}
 
@@ -212,7 +211,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `lastTransitionTime` | \`\` | lastTransitionTime is the time of the last update to the current status property. |
-| `message` | `string` | message provides additional information about the current condition. This is only to be consumed by humans.  It may contain Line Feed characters (U+000A), which should be rendered as new lines. |
+| `message` | `string` | message provides additional information about the current condition. This is only to be consumed by humans. It may contain Line Feed characters (U+000A), which should be rendered as new lines. |
 | `reason` | `string` | reason is the CamelCase reason for the condition’s current status. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type specifies the aspect reported by this condition; one of Available, Progressing, Degraded |
@@ -224,18 +223,18 @@ The following API endpoints are available:
 - `/apis/network.operator.openshift.io/v1/egressrouters`
 
   - `GET`: list objects of kind EgressRouter
-- `/apis/network.operator.openshift.io/v1/namespaces/{{ namespace }}/egressrouters`
+- `/apis/network.operator.openshift.io/v1/namespaces/{namespace}/egressrouters`
 
   - `DELETE`: delete collection of EgressRouter
   - `GET`: list objects of kind EgressRouter
   - `POST`: create an EgressRouter
-- `/apis/network.operator.openshift.io/v1/namespaces/{{ namespace }}/egressrouters/{{ name }}`
+- `/apis/network.operator.openshift.io/v1/namespaces/{namespace}/egressrouters/{name}`
 
   - `DELETE`: delete an EgressRouter
   - `GET`: read the specified EgressRouter
   - `PATCH`: partially update the specified EgressRouter
   - `PUT`: replace the specified EgressRouter
-- `/apis/network.operator.openshift.io/v1/namespaces/{{ namespace }}/egressrouters/{{ name }}/status`
+- `/apis/network.operator.openshift.io/v1/namespaces/{namespace}/egressrouters/{name}/status`
 
   - `GET`: read status of the specified EgressRouter
   - `PATCH`: partially update status of the specified EgressRouter
@@ -260,7 +259,7 @@ Description
 | 200 - OK | [`EgressRouterList`](/openshift-docs-markdown/rest_api/objects/index#io-openshift-operator-network-v1-EgressRouterList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/network.operator.openshift.io/v1/namespaces/{{ namespace }}/egressrouters {#_apisnetworkoperatoropenshiftiov1namespaces_namespace_egressrouters}
+### /apis/network.operator.openshift.io/v1/namespaces/{namespace}/egressrouters {#_apisnetworkoperatoropenshiftiov1namespaces_namespace_egressrouters}
 
 HTTP method
 :   ```
@@ -328,7 +327,7 @@ Description
 | 202 - Accepted | [`EgressRouter`](/openshift-docs-markdown/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/network.operator.openshift.io/v1/namespaces/{{ namespace }}/egressrouters/{{ name }} {#_apisnetworkoperatoropenshiftiov1namespaces_namespace_egressrouters_name}
+### /apis/network.operator.openshift.io/v1/namespaces/{namespace}/egressrouters/{name} {#_apisnetworkoperatoropenshiftiov1namespaces_namespace_egressrouters_name}
 
 **Global path parameters**
 
@@ -432,7 +431,7 @@ Description
 | 201 - Created | [`EgressRouter`](/openshift-docs-markdown/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/network.operator.openshift.io/v1/namespaces/{{ namespace }}/egressrouters/{{ name }}/status {#_apisnetworkoperatoropenshiftiov1namespaces_namespace_egressrouters_name_status}
+### /apis/network.operator.openshift.io/v1/namespaces/{namespace}/egressrouters/{name}/status {#_apisnetworkoperatoropenshiftiov1namespaces_namespace_egressrouters_name_status}
 
 **Global path parameters**
 

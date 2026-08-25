@@ -17,11 +17,12 @@ import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"uninstalling-sriov-operator","text":"Uninstalling the SR-IOV Network Operator"},{"depth":2,"slug":"nw-sriov-operator-uninstall_uninstalling-sr-iov-operator","text":"Uninstalling the SR-IOV Network Operator"},{"depth":2,"slug":"additional-resources_uninstalling-sr-iov-operator","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"uninstalling-sriov-operator","text":"Uninstalling the SR-IOV Network Operator"},{"depth":2,"slug":"nw-sriov-operator-uninstall_uninstalling-sr-iov-operator","text":"Uninstalling the SR-IOV Network Operator"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/uninstalling-sriov-operator";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -40,7 +41,7 @@ const pageCategory = ["networking","networking/networking_operators","networking
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Uninstalling the SR-IOV Network Operator {#uninstalling-sriov-operator}\n\nTo uninstall the SR-IOV Network Operator, you must delete any running SR-IOV workloads, uninstall the Operator, and delete the webhooks that the Operator used.\n\n## Uninstalling the SR-IOV Network Operator {#nw-sriov-operator-uninstall_uninstalling-sr-iov-operator}\n\nYou can remove the SR-IOV Network Operator from your cluster by uninstalling the Operator. This ensures that the Operator and its associated resources are deleted when you no longer need to manage SR-IOV network devices.\n\n**Prerequisites**\n\n- You have access to an OpenShift Container Platform cluster using an account with `cluster-admin` permissions.\n- You have the SR-IOV Network Operator installed.\n\n**Procedure**\n\n1. Delete all SR-IOV custom resources (CRs):\n\n   ```terminal\n   $ oc delete sriovnetwork -n openshift-sriov-network-operator --all\n   ```\n\n   ```terminal\n   $ oc delete sriovnetworknodepolicy -n openshift-sriov-network-operator --all\n   ```\n\n   ```terminal\n   $ oc delete sriovibnetwork -n openshift-sriov-network-operator --all\n   ```\n\n   ```terminal\n   $ oc delete sriovoperatorconfigs -n openshift-sriov-network-operator --all\n   ```\n2. Follow the instructions in the \"Deleting Operators from a cluster\" section to remove the SR-IOV Network Operator from your cluster.\n3. Delete the SR-IOV custom resource definitions that remain in the cluster after the SR-IOV Network Operator is uninstalled:\n\n   ```terminal\n   $ oc delete crd sriovibnetworks.sriovnetwork.openshift.io\n   ```\n\n   ```terminal\n   $ oc delete crd sriovnetworknodepolicies.sriovnetwork.openshift.io\n   ```\n\n   ```terminal\n   $ oc delete crd sriovnetworknodestates.sriovnetwork.openshift.io\n   ```\n\n   ```terminal\n   $ oc delete crd sriovnetworkpoolconfigs.sriovnetwork.openshift.io\n   ```\n\n   ```terminal\n   $ oc delete crd sriovnetworks.sriovnetwork.openshift.io\n   ```\n\n   ```terminal\n   $ oc delete crd sriovoperatorconfigs.sriovnetwork.openshift.io\n   ```\n4. Delete the SR-IOV Network Operator namespace:\n\n   ```terminal\n   $ oc delete namespace openshift-sriov-network-operator\n   ```\n\n## Additional resources {#additional-resources_uninstalling-sr-iov-operator}\n\n- [Deleting Operators from a cluster](/openshift-docs-markdown/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-a-cluster)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/uninstalling-sriov-operator.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Uninstalling the SR-IOV Network Operator {#uninstalling-sriov-operator}\n\nTo uninstall the SR-IOV Network Operator, you must delete any running SR-IOV workloads, uninstall the Operator, and delete the webhooks that the Operator used.\n\n## Uninstalling the SR-IOV Network Operator {#nw-sriov-operator-uninstall_uninstalling-sr-iov-operator}\n\nYou can remove the SR-IOV Network Operator from your cluster by uninstalling the Operator. This ensures that the Operator and its associated resources are deleted when you no longer need to manage SR-IOV network devices.\n\n**Prerequisites**\n\n- You have access to an OpenShift Container Platform cluster using an account with `cluster-admin` permissions.\n- You have the SR-IOV Network Operator installed.\n\n**Procedure**\n\n1. Delete all SR-IOV custom resources (CRs):\n\n   ```terminal\n   $ oc delete sriovnetwork -n openshift-sriov-network-operator --all\n   ```\n\n   ```terminal\n   $ oc delete sriovnetworknodepolicy -n openshift-sriov-network-operator --all\n   ```\n\n   ```terminal\n   $ oc delete sriovibnetwork -n openshift-sriov-network-operator --all\n   ```\n\n   ```terminal\n   $ oc delete sriovoperatorconfigs -n openshift-sriov-network-operator --all\n   ```\n2. Follow the instructions in the \"Deleting Operators from a cluster\" section to remove the SR-IOV Network Operator from your cluster.\n3. Delete the SR-IOV custom resource definitions that remain in the cluster after the SR-IOV Network Operator is uninstalled:\n\n   ```terminal\n   $ oc delete crd sriovibnetworks.sriovnetwork.openshift.io\n   ```\n\n   ```terminal\n   $ oc delete crd sriovnetworknodepolicies.sriovnetwork.openshift.io\n   ```\n\n   ```terminal\n   $ oc delete crd sriovnetworknodestates.sriovnetwork.openshift.io\n   ```\n\n   ```terminal\n   $ oc delete crd sriovnetworkpoolconfigs.sriovnetwork.openshift.io\n   ```\n\n   ```terminal\n   $ oc delete crd sriovnetworks.sriovnetwork.openshift.io\n   ```\n\n   ```terminal\n   $ oc delete crd sriovoperatorconfigs.sriovnetwork.openshift.io\n   ```\n4. Delete the SR-IOV Network Operator namespace:\n\n   ```terminal\n   $ oc delete namespace openshift-sriov-network-operator\n   ```\n\n**Additional resources**\n{._additional-resources}\n\n- [Deleting Operators from a cluster](/openshift-docs-markdown/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-a-cluster)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/uninstalling-sriov-operator.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="uninstalling-sriov-operator" class="group scroll-mt-20">Uninstalling the SR-IOV Network Operator<a href="#uninstalling-sriov-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>To uninstall the SR-IOV Network Operator, you must delete any running SR-IOV workloads, uninstall the Operator, and delete the webhooks that the Operator used.</p>
+      <p class="_abstract">To uninstall the SR-IOV Network Operator, you must delete any running SR-IOV workloads, uninstall the Operator, and delete the webhooks that the Operator used.</p>
       <h2 id="nw-sriov-operator-uninstall_uninstalling-sr-iov-operator" class="group scroll-mt-20">Uninstalling the SR-IOV Network Operator<a href="#nw-sriov-operator-uninstall_uninstalling-sr-iov-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">You can remove the SR-IOV Network Operator from your cluster by uninstalling the Operator. This ensures that the Operator and its associated resources are deleted when you no longer need to manage SR-IOV network devices.</p>
       <p><strong>Prerequisites</strong></p>
@@ -124,8 +126,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <CodeBlock code={"$ oc delete namespace openshift-sriov-network-operator"} lang="terminal" />
       </li>
       </ol>
-      <h2 id="additional-resources_uninstalling-sr-iov-operator" class="group scroll-mt-20">Additional resources<a href="#additional-resources_uninstalling-sr-iov-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul><li><a href="/openshift-docs-markdown/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-a-cluster">Deleting Operators from a cluster</a></li></ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

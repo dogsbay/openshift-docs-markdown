@@ -1,5 +1,5 @@
 ---
-title: Configuring the registry for {{ rh_openstack }}
+title: Configuring the registry for RHOSP
 ---
 
 # Configuring the registry for RHOSP {#configuring-registry-storage-openstack}

@@ -25,7 +25,7 @@ To expose downward metrics for a host virtual machine, you can enable the `downw
 1. Open the HyperConverged custom resource (CR) in your default editor by running the following command:
 
    ```terminal
-   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+   $ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv
    ```
 2. Choose to enable or disable the downwardMetrics feature gate as follows:
 
@@ -36,7 +36,7 @@ To expose downward metrics for a host virtual machine, you can enable the `downw
      kind: HyperConverged
      metadata:
        name: kubevirt-hyperconverged
-       namespace: {{ CNVNamespace }}
+       namespace: openshift-cnv
      spec:
          featureGates:
            downwardMetrics: true
@@ -49,7 +49,7 @@ To expose downward metrics for a host virtual machine, you can enable the `downw
      kind: HyperConverged
      metadata:
        name: kubevirt-hyperconverged
-       namespace: {{ CNVNamespace }}
+       namespace: openshift-cnv
      spec:
          featureGates:
            downwardMetrics: false
@@ -72,7 +72,7 @@ To expose downward metrics for a host virtual machine, you can enable the `downw
   - Enable the `downwardMetrics` feature gate by running the command shown in the following example:
 
     ```terminal
-    $ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} \
+    $ oc patch hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv \
       --type json -p '[{"op": "replace", "path": \
       "/spec/featureGates/downwardMetrics", \
       "value": true}]'
@@ -80,7 +80,7 @@ To expose downward metrics for a host virtual machine, you can enable the `downw
   - Disable the `downwardMetrics` feature gate by running the command shown in the following example:
 
     ```terminal
-    $ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} \
+    $ oc patch hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv \
       --type json -p '[{"op": "replace", "path": \
       "/spec/featureGates/downwardMetrics", \
       "value": false}]'
@@ -198,6 +198,7 @@ To view downward metrics, install the `vm-dump-metrics` tool and then use the to
    </metrics>
    ```
 
-## Additional resources {#additional-resources_virt-exposing-downward-metrics-for-vms}
+**Additional resources**
+{._additional-resources}
 
 - [Viewing downward metrics by using the command line](/openshift-docs-markdown/virt/monitoring/virt-exposing-downward-metrics#virt-viewing-downward-metrics-cli_virt-exposing-downward-metrics)

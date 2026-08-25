@@ -15,7 +15,7 @@ You can clone an existing VM by using the web console.
 
 **Procedure**
 
-1. Navigate to **Virtualization** -> **VirtualMachines** in the web console.
+1. Navigate to **Virtualization** → **VirtualMachines** in the web console.
 2. Select a VM to open the **VirtualMachine details** page.
 3. Click **Actions**.
 
@@ -35,10 +35,10 @@ You can create a new VM by copying an existing snapshot.
 
 **Procedure**
 
-1. Navigate to **Virtualization** -> **VirtualMachines** in the web console.
+1. Navigate to **Virtualization** → **VirtualMachines** in the web console.
 2. Select a VM to open the **VirtualMachine details** page.
 3. Click the **Snapshots** tab.
-4. Click the Options menu ![](kebab.png "Options menu") for the snapshot you want to copy.
+4. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") for the snapshot you want to copy.
 5. Select **Create VirtualMachine**.
 6. Enter the name of the VM.
 7. Optional: Select the **Start this VM after creation** checkbox to start the new VM.
@@ -48,6 +48,7 @@ You can create a new VM by copying an existing snapshot.
    - **Prefix target name** - The cloned PVC names use the target VM name as a prefix.
 9. Click **Create**.
 
-## Additional resources {#additional-resources_virt-cloning-vms}
+**Additional resources**
+{._additional-resources}
 
 - [Creating VMs by cloning PVCs](/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-by-cloning-pvcs#virt-creating-vms-by-cloning-pvcs)

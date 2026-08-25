@@ -1,5 +1,5 @@
 ---
-title: Managing {{ hcp }} on {{ VirtProductName }}
+title: Managing hosted control planes on OpenShift Virtualization
 ---
 
 # Managing hosted control planes on OpenShift Virtualization {#hcp-manage-virt}
@@ -135,7 +135,7 @@ If you do not provide any advanced storage configuration, the default storage cl
 
 The following table lists the capabilities that the infrastructure must provide to support persistent storage in a hosted cluster:
 
-***Persistent storage modes in a hosted cluster***
+**Persistent storage modes in a hosted cluster**
 
 <table>
 <thead>
@@ -149,7 +149,7 @@ The following table lists the capabilities that the infrastructure must provide 
 <tr>
   <td>Any RWX <code>Block</code> CSI provider</td>
   <td><code>kubevirt-csi</code></td>
-  <td>--<ul><li>Basic RWO <code>Block</code> and <code>File</code></li><li>Basic RWX <code>Block</code> and <code>Snapshot</code></li><li>CSI volume cloning</li></ul>--</td>
+  <td><ul><li>Basic RWO <code>Block</code> and <code>File</code></li><li>Basic RWX <code>Block</code> and <code>Snapshot</code></li><li>CSI volume cloning</li></ul></td>
 </tr>
 <tr>
   <td>Any RWX <code>Block</code> CSI provider</td>
@@ -326,6 +326,7 @@ Image caching reduces VM startup time by requiring only a single image import. I
   - `--root-volume-cache-strategy` specifies a strategy for image caching.
 
 **Additional resources**
+{._additional-resources}
 
 - [Cloning a data volume using smart-cloning](/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-by-cloning-pvcs#smart-cloning_virt-creating-vms-by-cloning-pvcs)
 
@@ -521,14 +522,14 @@ To achieve a synchronized restart, you can set the `evictionStrategy` parameter 
 2. Patch the `hyperconverged` resource by entering the following command:
 
    ```terminal
-   $ oc patch -n {{ CNVNamespace }} {{ HCOCliKind }} kubevirt-hyperconverged \
+   $ oc patch -n openshift-cnv hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged \
      --type=merge \
      -p '{"spec": {"evictionStrategy": "External"}}'
    ```
 3. Patch the workload update strategy and the workload update methods by entering the following command:
 
    ```terminal
-   $ oc patch -n {{ CNVNamespace }} {{ HCOCliKind }} kubevirt-hyperconverged \
+   $ oc patch -n openshift-cnv hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged \
      --type=merge \
      -p '{"spec": {"workloadUpdateStrategy": {"workloadUpdateMethods": ["LiveMigrate","Evict"]}}}'
    ```
@@ -540,7 +541,7 @@ To achieve a synchronized restart, you can set the `evictionStrategy` parameter 
 - Check whether the patch command was applied properly by entering the following command:
 
   ```terminal
-  $ oc get -n {{ CNVNamespace }} {{ HCOCliKind }} kubevirt-hyperconverged -ojsonpath='{.spec.evictionStrategy}'
+  $ oc get -n openshift-cnv hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -ojsonpath='{.spec.evictionStrategy}'
   ```
 
   ```terminal {title="Example output"}
@@ -595,5 +596,6 @@ By default, KubeVirt VMs created by a node pool are scheduled on any available n
   :   The `SoftTopologyAndDuplicates` profile evicts pods that follow the `whenUnsatisfiable: ScheduleAnyway` soft topology constraint. The `KubeVirtRelieveAndMigrate` profile balances resource usage between nodes and enables strategies, such as `RemovePodsHavingTooManyRestarts` and `LowNodeUtilization`.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing the descheduler](/openshift-docs-markdown/nodes/scheduling/descheduler/nodes-descheduler-configuring#nodes-descheduler-installing_virt-enabling-descheduler-evictions)

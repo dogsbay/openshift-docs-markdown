@@ -97,7 +97,7 @@ You can install the Vertical Pod Autoscaler Operator (VPA) by using the OpenShif
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, click **Ecosystem** -> **Software Catalog**.
+1. In the OpenShift Container Platform web console, click **Ecosystem** → **Software Catalog**.
 2. Choose  **VerticalPodAutoscaler** from the list of available Operators, and click **Install**.
 3. On the **Install Operator** page, ensure that the **Operator recommended namespace** option is selected. This installs the Operator in the mandatory `openshift-vertical-pod-autoscaler` namespace, which is automatically created if it does not exist.
 4. Click **Install**.
@@ -106,9 +106,9 @@ You can install the Vertical Pod Autoscaler Operator (VPA) by using the OpenShif
 
 1. Verify the installation by listing the VPA components:
 
-   1. Navigate to **Workloads** -> **Pods**.
+   1. Navigate to **Workloads** → **Pods**.
    2. Select the `openshift-vertical-pod-autoscaler` project from the drop-down menu and verify that there are four pods running.
-   3. Navigate to **Workloads** -> **Deployments** to verify that there are four deployments running.
+   3. Navigate to **Workloads** → **Deployments** to verify that there are four deployments running.
 2. Optional: Verify the installation in the OpenShift Container Platform CLI using the following command:
 
    ```terminal
@@ -678,12 +678,70 @@ For guidelines on the resources and rate limits that you could set for each VPA 
 
 **Requests by containers in the cluster**
 
-|  |  |  |  |  |  |  |  |  |  |  |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Component 2+ | 1-500 containers 2+ | 500-1,000 containers 2+ | 1,000-2,000 containers 2+ | 2,000-4,000 containers 2+ | 4,000+ containers |  | **CPU** | **Memory** | **CPU** | **Memory** |
-| **CPU** | **Memory** | **CPU** | **Memory** | **CPU** | **Memory** | Admission | 25m | 50Mi | 25m | 75Mi |
-| 40m | 150Mi | 75m | 260Mi | (0.03c)/2 + 10 [^1]^ | (0.1c)/2 + 50 [^2]^ | Recommender | 25m | 100Mi | 50m | 160Mi |
-| 75m | 275Mi | 120m | 420Mi | (0.05c)/2 + 50 [^3]^ | (0.15c)/2 + 120 [^4]^ | Updater | 25m | 100Mi | 50m | 220Mi |
+<table>
+<tbody>
+<tr>
+  <td>Component 2+</td>
+  <td>1-500 containers 2+</td>
+  <td>500-1,000 containers 2+</td>
+  <td>1,000-2,000 containers 2+</td>
+  <td>2,000-4,000 containers 2+</td>
+  <td>4,000+ containers</td>
+  <td></td>
+  <td><strong>CPU</strong></td>
+  <td><strong>Memory</strong></td>
+  <td><strong>CPU</strong></td>
+  <td><strong>Memory</strong></td>
+</tr>
+<tr>
+  <td><strong>CPU</strong></td>
+  <td><strong>Memory</strong></td>
+  <td><strong>CPU</strong></td>
+  <td><strong>Memory</strong></td>
+  <td><strong>CPU</strong></td>
+  <td><strong>Memory</strong></td>
+  <td><strong>Admission</strong></td>
+  <td>25m</td>
+  <td>50Mi</td>
+  <td>25m</td>
+  <td>75Mi</td>
+</tr>
+<tr>
+  <td>40m</td>
+  <td>150Mi</td>
+  <td>75m</td>
+  <td>260Mi</td>
+  <td>(0.03c)/2 + 10 <sup>[1]</sup></td>
+  <td>(0.1c)/2 + 50 <sup>[1]</sup></td>
+  <td><strong>Recommender</strong></td>
+  <td>25m</td>
+  <td>100Mi</td>
+  <td>50m</td>
+  <td>160Mi</td>
+</tr>
+<tr>
+  <td>75m</td>
+  <td>275Mi</td>
+  <td>120m</td>
+  <td>420Mi</td>
+  <td>(0.05c)/2 + 50 <sup>[1]</sup></td>
+  <td>(0.15c)/2 + 120 <sup>[1]</sup></td>
+  <td><strong>Updater</strong></td>
+  <td>25m</td>
+  <td>100Mi</td>
+  <td>50m</td>
+  <td>220Mi</td>
+</tr>
+<tr>
+  <td>80m</td>
+  <td>350Mi</td>
+  <td>150m</td>
+  <td>500Mi</td>
+  <td>(0.07c)/2 + 20 <sup>[1]</sup></td>
+  <td>(0.15c)/2 + 200 <sup>[1]</sup></td>
+</tr>
+</tbody>
+</table>
 
 1. `c` is the number of containers in the cluster.
 
@@ -692,11 +750,50 @@ For guidelines on the resources and rate limits that you could set for each VPA 
 
 **Rate limits by VPAs in the cluster**
 
-|  |  |  |  |  |  |  |  |  |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Component 2+ | 1-150 VPAs 2+ | 151-500 VPAs 2+ | 501-2,000 VPAs 2+ | 2,001-4,000 VPAs |  | **QPS Limit** [^5]^ | **Burst** [^6]^ | **QPS Limit** |
-| **Burst** | **QPS Limit** | **Burst** | **QPS Limit** | **Burst** | Recommender | 5 | 10 | 30 |
-| 60 | 60 | 120 | 120 | 240 | Updater | 5 | 10 | 30 |
+<table>
+<tbody>
+<tr>
+  <td>Component 2+</td>
+  <td>1-150 VPAs 2+</td>
+  <td>151-500 VPAs 2+</td>
+  <td>501-2,000 VPAs 2+</td>
+  <td>2,001-4,000 VPAs</td>
+  <td></td>
+  <td><strong>QPS Limit</strong> <sup>[1]</sup></td>
+  <td><strong>Burst</strong> <sup>[2]</sup></td>
+  <td><strong>QPS Limit</strong></td>
+</tr>
+<tr>
+  <td><strong>Burst</strong></td>
+  <td><strong>QPS Limit</strong></td>
+  <td><strong>Burst</strong></td>
+  <td><strong>QPS Limit</strong></td>
+  <td><strong>Burst</strong></td>
+  <td><strong>Recommender</strong></td>
+  <td>5</td>
+  <td>10</td>
+  <td>30</td>
+</tr>
+<tr>
+  <td>60</td>
+  <td>60</td>
+  <td>120</td>
+  <td>120</td>
+  <td>240</td>
+  <td><strong>Updater</strong></td>
+  <td>5</td>
+  <td>10</td>
+  <td>30</td>
+</tr>
+<tr>
+  <td>60</td>
+  <td>60</td>
+  <td>120</td>
+  <td>120</td>
+  <td>240</td>
+</tr>
+</tbody>
+</table>
 
 1. QPS specifies the queries per second (QPS) limit when making requests to Kubernetes API server. The default for the updater and recommender pods is `5.0`.
 2. Burst specifies the burst limit when making requests to Kubernetes API server. The default for the updater and recommender pods is `10.0`.
@@ -771,17 +868,17 @@ where:
     - `kube-api-qps`: Specifies the queries per second (QPS) limit when making requests to Kubernetes API server. The default is `5.0`.
     - `kube-api-burst`: Specifies the burst limit when making requests to Kubernetes API server. The default is `10.0`.
 
-`spec.deploymentOverrides.admission.container.resources.requests`
-:   Specifies the resource requests and limits for the VPA admission controller pod.
+    `spec.deploymentOverrides.admission.container.resources.requests`
+    :   Specifies the resource requests and limits for the VPA admission controller pod.
 
-`spec.deploymentOverrides.recommender`
-:   Specifies the tuning parameters for the VPA recommender.
+    `spec.deploymentOverrides.recommender`
+    :   Specifies the tuning parameters for the VPA recommender.
 
-`spec.deploymentOverrides.recommender.container.args.memory-saver`
-:   When `true`, specifies that the VPA Operator monitors only workloads with a VPA CR. The default is `false`.
+    `spec.deploymentOverrides.recommender.container.args.memory-saver`
+    :   When `true`, specifies that the VPA Operator monitors only workloads with a VPA CR. The default is `false`.
 
-`spec.deploymentOverrides.updater`
-:   Specifies the tuning parameters for the VPA updater.
+    `spec.deploymentOverrides.updater`
+    :   Specifies the tuning parameters for the VPA updater.
 
 You can verify that the settings were applied to each VPA component pod.
 
@@ -1113,78 +1210,78 @@ The following procedure creates a VPA CR for a specific workload object.
    - `Initial` to automatically apply the recommended resources to newly-created pods associated with the workload object. The VPA does not update the pods as it learns new resource recommendations.
    - `Off` to only generate resource recommendations for the pods associated with the workload object. The VPA does not update the pods as it learns new resource recommendations and does not apply the recommendations to new pods.
 
-`spec.resourcePolicy`
-:   Specifies the containers you want to opt-out and set the mode to `Off`. This parameter is optional.
+     `spec.resourcePolicy`
+     :   Specifies the containers you want to opt-out and set the mode to `Off`. This parameter is optional.
 
-`spec.recommenders`
-:   Specifies an alternative recommender. This parameter is optional.
+     `spec.recommenders`
+     :   Specifies an alternative recommender. This parameter is optional.
 
-    1. Create the VPA CR:
+   1. Create the VPA CR:
 
-       ```terminal
-       $ oc create -f <file-name>.yaml
-       ```
+      ```terminal
+      $ oc create -f <file-name>.yaml
+      ```
 
-       After a few moments, the VPA learns the resource usage of the containers in the pods associated with the workload object.
+      After a few moments, the VPA learns the resource usage of the containers in the pods associated with the workload object.
 
-       You can view the VPA recommendations by using the following command:
+      You can view the VPA recommendations by using the following command:
 
-       ```terminal
-       $ oc get vpa <vpa-name> --output yaml
-       ```
+      ```terminal
+      $ oc get vpa <vpa-name> --output yaml
+      ```
 
-       The output shows the recommendations for CPU and memory requests, similar to the following:
+      The output shows the recommendations for CPU and memory requests, similar to the following:
 
-       ```yaml {title="Example output"}
-       apiVersion: autoscaling.k8s.io/v1
-       kind: VerticalPodAutoscaler
-       metadata:
-         name: vpa-recommender
-       # ...
-       status:
-       # ...
-         recommendation:
-           containerRecommendations:
-           - containerName: frontend
-             lowerBound:
-               cpu: 25m
-               memory: 262144k
-             target:
-               cpu: 25m
-               memory: 262144k
-             uncappedTarget:
-               cpu: 25m
-               memory: 262144k
-             upperBound:
-               cpu: 262m
-               memory: "274357142"
-           - containerName: backend
-             lowerBound:
-               cpu: 12m
-               memory: 131072k
-             target:
-               cpu: 12m
-               memory: 131072k
-             uncappedTarget:
-               cpu: 12m
-               memory: 131072k
-             upperBound:
-               cpu: 476m
-               memory: "498558823"
+      ```yaml {title="Example output"}
+      apiVersion: autoscaling.k8s.io/v1
+      kind: VerticalPodAutoscaler
+      metadata:
+        name: vpa-recommender
+      # ...
+      status:
+      # ...
+        recommendation:
+          containerRecommendations:
+          - containerName: frontend
+            lowerBound:
+              cpu: 25m
+              memory: 262144k
+            target:
+              cpu: 25m
+              memory: 262144k
+            uncappedTarget:
+              cpu: 25m
+              memory: 262144k
+            upperBound:
+              cpu: 262m
+              memory: "274357142"
+          - containerName: backend
+            lowerBound:
+              cpu: 12m
+              memory: 131072k
+            target:
+              cpu: 12m
+              memory: 131072k
+            uncappedTarget:
+              cpu: 12m
+              memory: 131072k
+            upperBound:
+              cpu: 476m
+              memory: "498558823"
 
-       ...
-       ```
+      ...
+      ```
 
-       where:
+      where:
 
-       `status.recommendation.containerRecommendations`
-       :   Specifies the minimum and maximum recommended resource levels for the container:
+      `status.recommendation.containerRecommendations`
+      :   Specifies the minimum and maximum recommended resource levels for the container:
 
-    - `containerName` is the container for the recommended resource levels.
-    - `lowerBound` is the minimum recommended resource levels.
-    - `target` is the recommended resource levels.
-    - `upperBound` is the highest recommended resource levels.
-    - `uncappedTarget` is the most recent resource recommendations.
+   - `containerName` is the container for the recommended resource levels.
+   - `lowerBound` is the minimum recommended resource levels.
+   - `target` is the recommended resource levels.
+   - `upperBound` is the highest recommended resource levels.
+   - `uncappedTarget` is the most recent resource recommendations.
 
 ### Example custom resources for the Vertical Pod Autoscaler {#nodes-pods-vertical-autoscaler-custom-resource_nodes-pods-vertical-autoscaler}
 
@@ -1291,9 +1388,9 @@ After removing the VPA, it is recommended that you remove the other components a
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, click **Ecosystem** -> **Installed Operators**.
+1. In the OpenShift Container Platform web console, click **Ecosystem** → **Installed Operators**.
 2. Switch to the **openshift-vertical-pod-autoscaler** project.
-3. For the **VerticalPodAutoscaler**  Operator, click the Options menu ![](kebab.png "Options menu") and select **Uninstall Operator**.
+3. For the **VerticalPodAutoscaler**  Operator, click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") and select **Uninstall Operator**.
 4. Optional: To remove all operands associated with the Operator, in the dialog box, select **Delete all operand instances for this operator** checkbox.
 5. Click **Uninstall**.
 6. Optional: Use the OpenShift CLI to remove the VPA components:
@@ -1332,21 +1429,10 @@ After removing the VPA, it is recommended that you remove the other components a
       $ oc delete operator/vertical-pod-autoscaler.openshift-vertical-pod-autoscaler
       ```
 
-## Additional resources {#additional-resources_nodes-pods-vertical-autoscaler}
+**Additional resources**
+{._additional-resources}
 
 - [Example custom resources for the Vertical Pod Autoscaler](/openshift-docs-markdown/nodes/pods/nodes-pods-vertical-autoscaler#nodes-pods-vertical-autoscaler-custom-resource_nodes-pods-vertical-autoscaler)
 - [About using the Vertical Pod Autoscaler Operator](/openshift-docs-markdown/nodes/pods/nodes-pods-vertical-autoscaler#nodes-pods-vertical-autoscaler-using-about_nodes-pods-vertical-autoscaler)
 - [Adjust pod resource levels without pod disruption](/openshift-docs-markdown/nodes/pods/nodes-pods-adjust-resources-in-place#nodes-pods-adjust-resources-in-place)
 - [Understanding OOM kill policy](/openshift-docs-markdown/nodes/clusters/nodes-cluster-resource-configure#nodes-cluster-resource-configure-oom_nodes-cluster-resource-configure)
-
-[^1]: 1
-
-[^2]: 1
-
-[^3]: 1
-
-[^4]: 1
-
-[^5]: 1
-
-[^6]: 2

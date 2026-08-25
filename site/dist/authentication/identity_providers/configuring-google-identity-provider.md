@@ -90,6 +90,7 @@ where:
 :   Specifies a hosted domain used to restrict sign-in accounts. Optional if the `lookup` `mappingMethod` is used. If empty, any Google account is allowed to authenticate.
 
 **Additional resources**
+{._additional-resources}
 
 - [Identity provider parameters](/openshift-docs-markdown/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider)
 
@@ -117,7 +118,7 @@ Apply the identity provider custom resource (CR) to your cluster so users can au
 
    As long as the `kubeadmin` user has been removed, the `oc login` command provides instructions on how to access a web page where you can retrieve the token.
 
-   You can also access this page from the web console by navigating to **(?) Help** -> **Command Line Tools** -> **Copy Login Command**.
+   You can also access this page from the web console by navigating to **(?) Help** → **Command Line Tools** → **Copy Login Command**.
 3. Log in to the cluster, passing in the token to authenticate, by running the following command:
 
    ```terminal
@@ -132,6 +133,7 @@ Apply the identity provider custom resource (CR) to your cluster so users can au
    $ oc whoami
    ```
 
-## Additional resources {#additional-resources-google-identity-provider_configuring-google-identity-provider}
+**Additional resources**
+{._additional-resources}
 
 - [OpenID Connect (Google Identity documentation)](https://developers.google.com/identity/protocols/OpenIDConnect)

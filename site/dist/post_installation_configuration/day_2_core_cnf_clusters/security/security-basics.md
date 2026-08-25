@@ -42,6 +42,7 @@ For more information on RBAC, see "Using RBAC to define and apply permissions".
 To reduce operational overhead, manage access through groups rather than handling individual user IDs across multiple clusters. By managing groups at an organizational level, you can streamline access control and simplify administration across your organization.
 
 **Additional resources**
+{._additional-resources}
 
 - [Using RBAC to define and apply permissions](/openshift-docs-markdown/authentication/using-rbac#authorization-overview_using-rbac)
 
@@ -54,6 +55,7 @@ You can use service accounts to apply role-based access control (RBAC) to pods. 
 For more information about service accounts, see "Understanding and creating service accounts".
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding and creating service accounts](/openshift-docs-markdown/authentication/understanding-and-creating-service-accounts#understanding-and-creating-service-accounts)
 
@@ -75,6 +77,7 @@ You can use an identity provider to manage access levels for specific groups wit
 For information about configuring an identity provider, see "Understanding identity provider configuration".
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding identity provider configuration](/openshift-docs-markdown/authentication/understanding-identity-provider#understanding-identity-provider)
 
@@ -117,6 +120,7 @@ The `kubeadmin` user with the `cluster-admin` privileges is created on every clu
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring an htpasswd identity provider](/openshift-docs-markdown/authentication/identity_providers/configuring-htpasswd-identity-provider#identity-provider-htpasswd-about_configuring-htpasswd-identity-provider)
 
@@ -153,5 +157,6 @@ Upgrades are critical for security. When a vulnerability is discovered, it is pa
 For more information about lifecycle management and upgrades, see "Upgrading OpenShift Container Platform clusters".
 
 **Additional resources**
+{._additional-resources}
 
 - [Upgrading an OpenShift cluster](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-welcome#update-welcome)

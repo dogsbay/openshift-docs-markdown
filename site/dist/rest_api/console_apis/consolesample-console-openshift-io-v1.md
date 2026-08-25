@@ -1,5 +1,5 @@
 ---
-title: ConsoleSample []
+title: ConsoleSample [console.openshift.io/v1]
 ---
 
 # ConsoleSample \[console.openshift.io/v1\] {#consolesample-console-openshift-io-v1}
@@ -45,14 +45,14 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `abstract` | `string` | abstract is a short introduction to the sample. It is required and must be no more than 100 characters in length. The abstract is shown on the sample card tile below the title and provider and is limited to three lines of content. |
-| `description` | `string` | description is a long form explanation of the sample. It is required and can have a maximum length of ***4096*** characters. It is a README.md-like content for additional information, links, pre-conditions, and other instructions. It will be rendered as Markdown so that it can contain line breaks, links, and other simple formatting. |
-| `icon` | `string` | icon is an optional base64 encoded image and shown beside the sample title. The format must follow the data: URL format and can have a maximum size of ***10 KB***.   data:\[<mediatype>\]\[;base64\],<base64 encoded image> For example:   data:image;base64,             plus the base64 encoded image. Vector images can also be used. SVG icons must start with:   data:image/svg+xml;base64,     plus the base64 encoded SVG image. All sample catalog icons will be shown on a white background (also when the dark theme is used). The web console ensures that different aspect ratios work correctly. Currently, the surface of the icon is at most 40x100px. For more information on the data URL format, please visit https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URLs. |
-| `provider` | `string` | provider is an optional label to honor who provides the sample. It is optional and must be no more than 50 characters in length. A provider can be a company like "Red Hat" or an organization like "CNCF" or "Knative". Currently, the provider is only shown on the sample card tile below the title with the prefix "Provided by " |
+| `abstract` | `string` | abstract is a short introduction to the sample.<br>It is required and must be no more than 100 characters in length.<br>The abstract is shown on the sample card tile below the title and provider and is limited to three lines of content. |
+| `description` | `string` | description is a long form explanation of the sample.<br>It is required and can have a maximum length of **4096** characters.<br>It is a README.md-like content for additional information, links, pre-conditions, and other instructions. It will be rendered as Markdown so that it can contain line breaks, links, and other simple formatting. |
+| `icon` | `string` | icon is an optional base64 encoded image and shown beside the sample title.<br>The format must follow the data: URL format and can have a maximum size of **10 KB**.<br> data:\[<mediatype>\]\[;base64\],<base64 encoded image><br>For example:<br> data:image;base64, plus the base64 encoded image.<br>Vector images can also be used. SVG icons must start with:<br> data:image/svg+xml;base64, plus the base64 encoded SVG image.<br>All sample catalog icons will be shown on a white background (also when the dark theme is used). The web console ensures that different aspect ratios work correctly. Currently, the surface of the icon is at most 40x100px.<br>For more information on the data URL format, please visit https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URLs. |
+| `provider` | `string` | provider is an optional label to honor who provides the sample.<br>It is optional and must be no more than 50 characters in length.<br>A provider can be a company like "Red Hat" or an organization like "CNCF" or "Knative".<br>Currently, the provider is only shown on the sample card tile below the title with the prefix "Provided by " |
 | `source` | `object` | source defines where to deploy the sample service from. The sample may be sourced from an external git repository or container image. |
-| `tags` | `array (string)` | tags are optional string values that can be used to find samples in the samples catalog. Examples of common tags may be "Java", "Quarkus", etc. They will be displayed on the samples details page. |
-| `title` | `string` | title is the display name of the sample. It is required and must be no more than 50 characters in length. |
-| `type` | `string` | type is an optional label to group multiple samples. It is optional and must be no more than 20 characters in length. Recommendation is a singular term like "Builder Image", "Devfile" or "Serverless Function". Currently, the type is shown a badge on the sample card tile in the top right corner. |
+| `tags` | `array (string)` | tags are optional string values that can be used to find samples in the samples catalog.<br>Examples of common tags may be "Java", "Quarkus", etc.<br>They will be displayed on the samples details page. |
+| `title` | `string` | title is the display name of the sample.<br>It is required and must be no more than 50 characters in length. |
+| `type` | `string` | type is an optional label to group multiple samples.<br>It is optional and must be no more than 20 characters in length.<br>Recommendation is a singular term like "Builder Image", "Devfile" or "Serverless Function".<br>Currently, the type is shown a badge on the sample card tile in the top right corner. |
 
 ### .spec.source {#_specsource}
 
@@ -88,7 +88,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `image` | `string` | reference to a container image that provides a HTTP service. The service must be exposed on the default port (8080) unless otherwise configured with the port field. Supported formats:   - <repository-name>/<image-name>   - docker.io/<repository-name>/<image-name>   - quay.io/<repository-name>/<image-name>   - quay.io/<repository-name>/<image-name>@sha256:<image hash>   - quay.io/<repository-name>/<image-name>:<tag> |
+| `image` | `string` | reference to a container image that provides a HTTP service. The service must be exposed on the default port (8080) unless otherwise configured with the port field.<br>Supported formats: - <repository-name>/<image-name> - docker.io/<repository-name>/<image-name> - quay.io/<repository-name>/<image-name> - quay.io/<repository-name>/<image-name>@sha256:<image hash> - quay.io/<repository-name>/<image-name>:<tag> |
 | `service` | `object` | service contains configuration for the Service resource created for this sample. |
 
 ### .spec.source.containerImport.service {#_specsourcecontainerimportservice}
@@ -140,7 +140,7 @@ Required
 | --- | --- | --- |
 | `contextDir` | `string` | contextDir is used to specify a directory within the repository to build the component. Must start with `/` and have a maximum length of 256 characters. When omitted, the default value is to build from the root of the repository. |
 | `revision` | `string` | revision is the git revision at which to clone the git repository Can be used to clone a specific branch, tag or commit SHA. Must be at most 256 characters in length. When omitted the repository’s default branch is used. |
-| `url` | `string` | url of the Git repository that contains a HTTP service. The HTTP service must be exposed on the default port (8080) unless otherwise configured with the port field. Only public repositories on GitHub, GitLab and Bitbucket are currently supported:   - https://github.com/<org>/<repository>   - https://gitlab.com/<org>/<repository>   - https://bitbucket.org/<org>/<repository> The url must have a maximum length of 256 characters. |
+| `url` | `string` | url of the Git repository that contains a HTTP service. The HTTP service must be exposed on the default port (8080) unless otherwise configured with the port field.<br>Only public repositories on GitHub, GitLab and Bitbucket are currently supported:<br> - https://github.com/<org>/<repository> - https://gitlab.com/<org>/<repository> - https://bitbucket.org/<org>/<repository><br>The url must have a maximum length of 256 characters. |
 
 ### .spec.source.gitImport.service {#_specsourcegitimportservice}
 
@@ -165,7 +165,7 @@ The following API endpoints are available:
   - `DELETE`: delete collection of ConsoleSample
   - `GET`: list objects of kind ConsoleSample
   - `POST`: create a ConsoleSample
-- `/apis/console.openshift.io/v1/consolesamples/{{ name }}`
+- `/apis/console.openshift.io/v1/consolesamples/{name}`
 
   - `DELETE`: delete a ConsoleSample
   - `GET`: read the specified ConsoleSample
@@ -240,7 +240,7 @@ Description
 | 202 - Accepted | [`ConsoleSample`](/openshift-docs-markdown/rest_api/console_apis/consolesample-console-openshift-io-v1#consolesample-console-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/console.openshift.io/v1/consolesamples/{{ name }} {#_apisconsoleopenshiftiov1consolesamples_name}
+### /apis/console.openshift.io/v1/consolesamples/{name} {#_apisconsoleopenshiftiov1consolesamples_name}
 
 **Global path parameters**
 

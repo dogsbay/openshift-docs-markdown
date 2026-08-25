@@ -18,6 +18,7 @@ OpenShift Container Platform 4.19 and later releases can manage machines by usin
 You can use the Cluster API to perform compute node provisioning management actions after the cluster installation finishes. The Cluster API allows dynamic management of compute node machine sets and machines. However, there is no support for control plane machines.
 
 **Additional resources**
+{._additional-resources}
 
 - [About the Cluster API](/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster-api-about#luster-api-about)
 - [Getting started with the Cluster API](/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster-api-getting-started#cluster-api-getting-started)
@@ -26,9 +27,7 @@ You can use the Cluster API to perform compute node provisioning management acti
 
 You can configure NTP servers on control plane nodes and set compute nodes as NTP clients to ensure time synchronization in disconnected clusters that lack access to external NTP servers.
 
-OpenShift Container Platform installs the `chrony` Network Time Protocol (NTP) service on the cluster nodes.
-
-Use the following procedure to configure NTP servers on the control plane nodes and configure compute nodes as NTP clients of the control plane nodes after a successful deployment.
+OpenShift Container Platform installs the `chrony` Network Time Protocol (NTP) service on the cluster nodes. Use the following procedure to configure NTP servers on the control plane nodes and configure compute nodes as NTP clients of the control plane nodes after a successful deployment.
 
 **Figure 1. Configuring NTP for disconnected clusters**
 
@@ -50,7 +49,7 @@ OpenShift Container Platform nodes must agree on a date and time to run properly
 
    ```yaml
    variant: openshift
-   version: {{ product_version }}.0
+   version: 4.22.0
    metadata:
      name: 99-master-chrony-conf-override
      labels:
@@ -109,7 +108,7 @@ OpenShift Container Platform nodes must agree on a date and time to run properly
 
    ```yaml
    variant: openshift
-   version: {{ product_version }}.0
+   version: 4.22.0
    metadata:
      name: 99-worker-chrony-conf-override
      labels:
@@ -261,6 +260,7 @@ You can install a local or self-signed BMC CA certificate on a cluster which was
 4. For each bare metal host in your cluster that you want to secure BMC communications with, follow the procedure titled *Editing a BareMetalHost resource* and ensure that the `disableCertificateVerification` parameter is set to `false`.
 
 **Additional resources**
+{._additional-resources}
 
 - [Editing a `BareMetalHost` resource](/openshift-docs-markdown/installing/installing_bare_metal/bare-metal-postinstallation-configuration#bmo-editing-a-baremetalhost-resource_bare-metal-postinstallation-configuration)
 
@@ -474,6 +474,7 @@ Consider using the customized `br-ex` bridge configuration for any of the follow
 - Scaling compute nodes to apply the manifest object that includes a customized `br-ex` bridge to each compute node that exists in your cluster. For more information, see "Expanding the cluster" in the *Additional resources* section.
 
 **Additional resources**
+{._additional-resources}
 
 - [Converting to IPv4/IPv6 dual-stack networking](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/converting-to-dual-stack#nw-dual-stack-convert_converting-to-dual-stack)
 - [Expanding the cluster](/openshift-docs-markdown/installing/installing_bare_metal/bare-metal-expanding-the-cluster#bare-metal-expanding-the-cluster)
@@ -710,6 +711,7 @@ After you migrate your configured `br-ex` bridge to NMState, you cannot reverse 
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Installer-provisioned infrastructure: Creating a manifest object that includes a customized `br-ex` bridge](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#creating-manifest-file-customized-br-ex-bridge_ipi-install-installation-workflow)
 - [User-provisioned infrastructure: Creating a manifest object that includes a customized `br-ex` bridge](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#creating-manifest-file-customized-br-ex-bridge_installing-bare-metal)
@@ -731,15 +733,15 @@ Red Hat supports the following services for a user-managed load balancer:
 
 You can choose whether you want to configure one or all of these services for a user-managed load balancer. Configuring only the Ingress Controller service is a common configuration option. To better understand each service, view the following diagrams:
 
-**Figure 1. Example network workflow that shows an Ingress Controller operating in an OpenShift Container Platform environment**
+**Figure 2. Example network workflow that shows an Ingress Controller operating in an OpenShift Container Platform environment**
 
 ![An image that shows an example network workflow of an Ingress Controller operating in an OpenShift Container Platform environment.](/openshift-docs-markdown/_assets/images/external-load-balancer-default.png)
 
-**Figure 2. Example network workflow that shows an OpenShift API operating in an OpenShift Container Platform environment**
+**Figure 3. Example network workflow that shows an OpenShift API operating in an OpenShift Container Platform environment**
 
 ![An image that shows an example network workflow of an OpenShift API operating in an OpenShift Container Platform environment.](/openshift-docs-markdown/_assets/images/external-load-balancer-openshift-api.png)
 
-**Figure 3. Example network workflow that shows an OpenShift `MachineConfig` API operating in an OpenShift Container Platform environment**
+**Figure 4. Example network workflow that shows an OpenShift `MachineConfig` API operating in an OpenShift Container Platform environment**
 
 ![An image that shows an example network workflow of an OpenShift \`MachineConfig\` API operating in an OpenShift Container Platform environment.](/openshift-docs-markdown/_assets/images/external-load-balancer-machine-config-api.png)
 
@@ -1023,22 +1025,25 @@ Interval: 10
    ```yaml
    # ...
    platform:
+       loadBalancer:
+         type: <loadBalancer_type>
+       apiVIPs:
+       - <api_ip>
+       ingressVIPs:
+       - <ingress_ip>
+   # ...
    ```
 
-{%- if bare_metal %} bare-metal: {% endif %} {% if openstack %} openstack: {% endif %} {% if nutanix %} nutanix: {% endif %} {% if vsphere %} vsphere: {%- endif %} loadBalancer: type: <loadBalancer_type> apiVIPs: - <api_ip> ingressVIPs: - <ingress_ip> # ... \`\`\`
+   where:
 
-```
-where:
+   `<loadBalancer_type>`
+   :   Specifies the load balancer type. Set to `UserManaged` to specify a user-managed load balancer for your cluster. The parameter defaults to `OpenShiftManagedDefault`, which denotes the default internal load balancer. For services defined in an `openshift-kni-infra` namespace, a user-managed load balancer can deploy the `coredns` service to pods in your cluster but ignores `keepalived` and `haproxy` services.
 
-`<loadBalancer_type>`
-:   Specifies the load balancer type. Set to `UserManaged` to specify a user-managed load balancer for your cluster. The parameter defaults to `OpenShiftManagedDefault`, which denotes the default internal load balancer. For services defined in an `openshift-kni-infra` namespace, a user-managed load balancer can deploy the `coredns` service to pods in your cluster but ignores `keepalived` and `haproxy` services.
+   `<api_ip>`
+   :   Specifies the user-managed load balancer’s public IP address for the Kubernetes API. Mandatory parameter.
 
-`<api_ip>`
-:   Specifies the user-managed load balancer’s public IP address for the Kubernetes API. Mandatory parameter.
-
-`<ingress_ip>`
-:   Specifies the user-managed load balancer’s public IP address for ingress traffic. Mandatory parameter.
-```
+   `<ingress_ip>`
+   :   Specifies the user-managed load balancer’s public IP address for ingress traffic. Mandatory parameter.
 
 **Verification**
 
@@ -1132,7 +1137,7 @@ IPE is a tool that exposes the hardware sensor data of cluster nodes in the Prom
 > [!NOTE]
 > This method of collecting hardware metrics works only on Redfish-compatible BMCs.
 
-You can then view these hardware metrics alongside other metrics in the ***Observe*** tab of the web console.
+You can then view these hardware metrics alongside other metrics in the **Observe** tab of the web console.
 
 > [!IMPORTANT]
 > Monitoring bare metal hardware metrics is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
@@ -1185,7 +1190,7 @@ To access hardware metrics for your bare-metal nodes in the web console, enable 
 
 **Verification**
 
-1. From the web console, click **Observe** -> **Metrics** and enter "baremetal" into the ***Expression*** field. Several autocomplete suggestions should appear, such as the following examples:
+1. From the web console, click **Observe** → **Metrics** and enter "baremetal" into the **Expression** field. Several autocomplete suggestions should appear, such as the following examples:
 
    `baremetal_power_status`
 
@@ -1194,7 +1199,7 @@ To access hardware metrics for your bare-metal nodes in the web console, enable 
    `baremetal_drive_status`
 
    `baremetal_fan_status`
-2. Select one of the autocomplete suggestions and click ***Run Queries***.
+2. Select one of the autocomplete suggestions and click **Run Queries**.
 3. Verify that the queried hardware metrics appear in the UI.
 4. If you did not disable default alerting rules, view them by running the following command:
 
@@ -1203,6 +1208,7 @@ To access hardware metrics for your bare-metal nodes in the web console, enable 
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Enabling features using feature gates](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)
 
@@ -1277,6 +1283,9 @@ HostFirmwareComponents
 HostUpdatePolicy
 :   The `HostUpdatePolicy` resource can enable or disable live updates to the firmware settings, BMC settings, or BIOS settings of bare-metal hosts. By default, the `HostUpdatePolicy` resource for each bare-metal host restricts updates to hosts during provisioning. You must modify the `HostUpdatePolicy` resource for a host when you want to update the firmware settings, BMC settings, or BIOS settings after provisioning the host.
 
+**Additional resources**
+{._additional-resources}
+
 - [Metal^3^ API service for provisioning bare-metal hosts](https://metal3.io/)
 - [Ironic API service for managing bare-metal infrastructure](https://ironicbaremetal.org/)
 
@@ -1304,7 +1313,7 @@ where:
 
 The `spec` section of the `BareMetalHost` resource defines the desired state of the host.
 
-***BareMetalHost spec***
+**BareMetalHost spec**
 
 <table>
 <thead>
@@ -1364,7 +1373,7 @@ The `spec` section of the `BareMetalHost` resource defines the desired state of 
 </tr>
 <tr>
   <td><pre>raid:&#10;  hardwareRAIDVolumes:&#10;  softwareRAIDVolumes:</pre></td>
-  <td>(Optional) Contains the information about the RAID configuration for bare-metal hosts. If not specified, it retains the current configuration.<br><br><dl><dt>Note</dt><dd>OpenShift Container Platform 4.22 supports hardware RAID on the installation drive for BMCs, including:<br><br><ul><li>Fujitsu iRMC with support for RAID levels 0, 1, 5, 6, and 10</li><li>Dell iDRAC using the Redfish API with firmware version 6.10.30.20 or later and RAID levels 0, 1, and 5</li></ul>OpenShift Container Platform 4.22 does not support software RAID on the installation drive.</dd></dl><br><br>See the following configuration settings:<br><br><ul><li><code>hardwareRAIDVolumes</code>: Contains the list of logical drives for hardware RAID, and defines the desired volume configuration in the hardware RAID. If you do not specify <code>rootDeviceHints</code>, the first volume is the root volume. The sub-fields are:<ul><li><code>level</code>: The RAID level for the logical drive. The following levels are supported: <code>0</code>,<code>1</code>,<code>2</code>,<code>5</code>,<code>6</code>,<code>1+0</code>,<code>5+0</code>,<code>6+0</code>.</li><li><code>name</code>: The name of the volume as a string. It should be unique within the server. If not specified, the volume name will be autogenerated.</li><li><code>numberOfPhysicalDisks</code>: The number of physical drives as an integer to use for the logical drove. Defaults to the minimum number of disk drives required for the particular RAID level.</li><li><code>physicalDisks</code>: The list of names of physical disk drives as a string. This is an optional field. If specified, the controller field must be specified too.</li><li><code>controller</code>: (Optional) The name of the RAID controller as a string to use in the hardware RAID volume.</li><li><code>rotational</code>: If set to <code>true</code>, it will only select rotational disk drives. If set to <code>false</code>, it will only select solid-state and NVMe drives. If not set, it selects any drive types, which is the default behavior.</li><li><code>sizeGibibytes</code>: The size of the logical drive as an integer to create in GiB. If unspecified or set to <code>0</code>, it will use the maximum capacity of physical drive for the logical drive.</li></ul></li><li><code>softwareRAIDVolumes</code>: OpenShift Container Platform 4.22 does not support software RAID on the installation drive. This configuration contains the list of logical disks for software RAID. If you do not specify <code>rootDeviceHints</code>, the first volume is the root volume. If you set <code>HardwareRAIDVolumes</code>, this item will be invalid. Software RAIDs will always be deleted. The number of created software RAID devices must be <code>1</code> or <code>2</code>. If there is only one software RAID device, it must be <code>RAID-1</code>. If there are two RAID devices, the first device must be <code>RAID-1</code>, while the RAID level for the second device can be <code>0</code>, <code>1</code>, or <code>1+0</code>. The first RAID device will be the deployment device, which cannot be a software RAID volume. Enforcing <code>RAID-1</code> reduces the risk of a non-booting node in case of a device failure. The <code>softwareRAIDVolume</code> field defines the desired configuration of the volume in the software RAID. The sub-fields are:<ul><li><code>level</code>: The RAID level for the logical drive. The following levels are supported: <code>0</code>,<code>1</code>,<code>1+0</code>.</li><li><code>physicalDisks</code>: A list of device hints. The number of items should be greater than or equal to <code>2</code>.</li><li><code>sizeGibibytes</code>: The size of the logical disk drive as an integer to be created in GiB. If unspecified or set to <code>0</code>, it will use the maximum capacity of physical drive for logical drive.</li></ul></li></ul>You can set the <code>hardwareRAIDVolume</code> as an empty slice to clear the hardware RAID configuration. For example:<br><br><pre>spec:&#10;   raid:&#10;     hardwareRAIDVolume: []</pre><br><br>If you receive an error message indicating that the driver does not support RAID, set the <code>raid</code>, <code>hardwareRAIDVolumes</code> or <code>softwareRAIDVolumes</code> to nil. You might need to ensure the host has a RAID controller.</td>
+  <td>(Optional) Contains the information about the RAID configuration for bare-metal hosts. If not specified, it retains the current configuration.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>OpenShift Container Platform 4.22 supports hardware RAID on the installation drive for BMCs, including:<br><br><ul><li>Fujitsu iRMC with support for RAID levels 0, 1, 5, 6, and 10</li><li>Dell iDRAC using the Redfish API with firmware version 6.10.30.20 or later and RAID levels 0, 1, and 5</li></ul>OpenShift Container Platform 4.22 does not support software RAID on the installation drive.</dd></dl><br><br>See the following configuration settings:<br><br><ul><li><code>hardwareRAIDVolumes</code>: Contains the list of logical drives for hardware RAID, and defines the desired volume configuration in the hardware RAID. If you do not specify <code>rootDeviceHints</code>, the first volume is the root volume. The sub-fields are:<ul><li><code>level</code>: The RAID level for the logical drive. The following levels are supported: <code>0</code>,<code>1</code>,<code>2</code>,<code>5</code>,<code>6</code>,<code>1+0</code>,<code>5+0</code>,<code>6+0</code>.</li><li><code>name</code>: The name of the volume as a string. It should be unique within the server. If not specified, the volume name will be autogenerated.</li><li><code>numberOfPhysicalDisks</code>: The number of physical drives as an integer to use for the logical drove. Defaults to the minimum number of disk drives required for the particular RAID level.</li><li><code>physicalDisks</code>: The list of names of physical disk drives as a string. This is an optional field. If specified, the controller field must be specified too.</li><li><code>controller</code>: (Optional) The name of the RAID controller as a string to use in the hardware RAID volume.</li><li><code>rotational</code>: If set to <code>true</code>, it will only select rotational disk drives. If set to <code>false</code>, it will only select solid-state and NVMe drives. If not set, it selects any drive types, which is the default behavior.</li><li><code>sizeGibibytes</code>: The size of the logical drive as an integer to create in GiB. If unspecified or set to <code>0</code>, it will use the maximum capacity of physical drive for the logical drive.</li></ul></li><li><code>softwareRAIDVolumes</code>: OpenShift Container Platform 4.22 does not support software RAID on the installation drive. This configuration contains the list of logical disks for software RAID. If you do not specify <code>rootDeviceHints</code>, the first volume is the root volume. If you set <code>HardwareRAIDVolumes</code>, this item will be invalid. Software RAIDs will always be deleted. The number of created software RAID devices must be <code>1</code> or <code>2</code>. If there is only one software RAID device, it must be <code>RAID-1</code>. If there are two RAID devices, the first device must be <code>RAID-1</code>, while the RAID level for the second device can be <code>0</code>, <code>1</code>, or <code>1+0</code>. The first RAID device will be the deployment device, which cannot be a software RAID volume. Enforcing <code>RAID-1</code> reduces the risk of a non-booting node in case of a device failure. The <code>softwareRAIDVolume</code> field defines the desired configuration of the volume in the software RAID. The sub-fields are:<ul><li><code>level</code>: The RAID level for the logical drive. The following levels are supported: <code>0</code>,<code>1</code>,<code>1+0</code>.</li><li><code>physicalDisks</code>: A list of device hints. The number of items should be greater than or equal to <code>2</code>.</li><li><code>sizeGibibytes</code>: The size of the logical disk drive as an integer to be created in GiB. If unspecified or set to <code>0</code>, it will use the maximum capacity of physical drive for logical drive.</li></ul></li></ul>You can set the <code>hardwareRAIDVolume</code> as an empty slice to clear the hardware RAID configuration. For example:<br><br><pre>spec:&#10;   raid:&#10;     hardwareRAIDVolume: []</pre><br><br>If you receive an error message indicating that the driver does not support RAID, set the <code>raid</code>, <code>hardwareRAIDVolumes</code> or <code>softwareRAIDVolumes</code> to nil. You might need to ensure the host has a RAID controller.</td>
 </tr>
 <tr>
   <td><pre>rootDeviceHints:&#10;  deviceName:&#10;  hctl:&#10;  model:&#10;  vendor:&#10;  serialNumber:&#10;  minSizeGigabytes:&#10;  wwn:&#10;  wwnWithExtension:&#10;  wwnVendorExtension:&#10;  rotational:</pre></td>
@@ -1377,7 +1386,7 @@ The `spec` section of the `BareMetalHost` resource defines the desired state of 
 
 The `BareMetalHost` status represents the host’s current state, and includes tested credentials, current hardware details, and other information.
 
-***BareMetalHost status***
+**BareMetalHost status**
 
 <table>
 <thead>
@@ -1437,7 +1446,7 @@ The `BareMetalHost` status represents the host’s current state, and includes t
 </tr>
 <tr>
   <td><pre>provisioning:&#10;  state:&#10;  id:&#10;  image:&#10;  raid:&#10;  firmware:&#10;  rootDeviceHints:</pre></td>
-  <td>The <code>provisioning</code> field contains values related to deploying an image to the host. The sub-fields include:<br><br><ul><li><code>state</code>: The current state of any ongoing provisioning operation. The states include:<ul><li><code><empty string></code>: There is no provisioning happening at the moment.</li><li><code>unmanaged</code>: There is insufficient information available to register the host.</li><li><code>registering</code>: The agent is checking the host's BMC details.</li><li><code>match profile</code>: The agent is comparing the discovered hardware details on the host against known profiles.</li><li><code>available</code>: The host is available for provisioning. This state was previously known as <code>ready</code>.</li><li><code>preparing</code>: The existing configuration will be removed, and the new configuration will be set on the host.</li><li><code>provisioning</code>: The provisioner is writing an image to the host's storage.</li><li><code>provisioned</code>: The provisioner wrote an image to the host's storage.</li><li><code>externally provisioned</code>: Metal^3^ does not manage the image on the host.</li><li><code>deprovisioning</code>: The provisioner is wiping the image from the host's storage.</li><li><code>inspecting</code>: The agent is collecting hardware details for the host.</li><li><code>deleting</code>: The agent is deleting the from the cluster.</li></ul></li><li><code>id</code>: The unique identifier for the service in the underlying provisioning tool.</li><li><code>image</code>: The image most recently provisioned to the host.</li><li><code>raid</code>: The list of hardware or software RAID volumes recently set.</li><li><code>firmware</code>: The BIOS configuration for the bare-metal server.</li><li><code>rootDeviceHints</code>: The root device selection instructions used for the most recent provisioning operation.</li></ul></td>
+  <td>The <code>provisioning</code> field contains values related to deploying an image to the host. The sub-fields include:<br><br><ul><li><code>state</code>: The current state of any ongoing provisioning operation. The states include:<ul><li><code>&lt;empty string&gt;</code>: There is no provisioning happening at the moment.</li><li><code>unmanaged</code>: There is insufficient information available to register the host.</li><li><code>registering</code>: The agent is checking the host's BMC details.</li><li><code>match profile</code>: The agent is comparing the discovered hardware details on the host against known profiles.</li><li><code>available</code>: The host is available for provisioning. This state was previously known as <code>ready</code>.</li><li><code>preparing</code>: The existing configuration will be removed, and the new configuration will be set on the host.</li><li><code>provisioning</code>: The provisioner is writing an image to the host's storage.</li><li><code>provisioned</code>: The provisioner wrote an image to the host's storage.</li><li><code>externally provisioned</code>: Metal^3^ does not manage the image on the host.</li><li><code>deprovisioning</code>: The provisioner is wiping the image from the host's storage.</li><li><code>inspecting</code>: The agent is collecting hardware details for the host.</li><li><code>deleting</code>: The agent is deleting the from the cluster.</li></ul></li><li><code>id</code>: The unique identifier for the service in the underlying provisioning tool.</li><li><code>image</code>: The image most recently provisioned to the host.</li><li><code>raid</code>: The list of hardware or software RAID volumes recently set.</li><li><code>firmware</code>: The BIOS configuration for the bare-metal server.</li><li><code>rootDeviceHints</code>: The root device selection instructions used for the most recent provisioning operation.</li></ul></td>
 </tr>
 <tr>
   <td><code>triedCredentials</code></td>
@@ -1447,6 +1456,7 @@ The `BareMetalHost` status represents the host’s current state, and includes t
 </table>
 
 **Additional resources**
+{._additional-resources}
 
 - [NICs](/openshift-docs-markdown/rest_api/provisioning_apis/hardwaredata-metal3-io-v1alpha1#spec-hardware-nics-2)
 
@@ -1809,7 +1819,7 @@ where:
 
 The `status` represents the current state of the host’s BIOS.
 
-***HostFirmwareSettings***
+**HostFirmwareSettings**
 
 <table>
 <thead>
@@ -2033,7 +2043,7 @@ You can verify that changes to the `HostFirmwareSettings` resource are valid by 
 
 The `FirmwareSchema` resource contains valid types and limits for BIOS settings on each host model, enabling you to identify valid values when configuring the `HostFirmwareSettings` resource.
 
-***FirmwareSchema specification***
+**FirmwareSchema specification**
 
 <table>
 <thead>
@@ -2087,7 +2097,7 @@ The `HostFirmwareComponents` resource contains two sections:
 
 The `spec` section of the `HostFirmwareComponents` resource defines the desired state of the BIOS and BMC versions of the host, and the NIC firmware components of the host if the information is available by using Redfish.
 
-***HostFirmwareComponents spec***
+**HostFirmwareComponents spec**
 
 <table>
 <thead>
@@ -2099,7 +2109,7 @@ The `spec` section of the `HostFirmwareComponents` resource defines the desired 
 <tbody>
 <tr>
   <td><pre>updates:&#10;  component:&#10;  url:</pre></td>
-  <td>The <code>updates</code> configuration setting contains the components to update. The fields are:<br><br><ul><li><code>component</code>: The name of the component. The valid settings are <code>bios</code>, <code>bmc</code>, or <code>nic:<ID></code>.</li><li><code>url</code>: The URL to the component's firmware specification and version.</li></ul></td>
+  <td>The <code>updates</code> configuration setting contains the components to update. The fields are:<br><br><ul><li><code>component</code>: The name of the component. The valid settings are <code>bios</code>, <code>bmc</code>, or <code>nic:&lt;ID&gt;</code>.</li><li><code>url</code>: The URL to the component's firmware specification and version.</li></ul></td>
 </tr>
 </tbody>
 </table>
@@ -2108,7 +2118,7 @@ The `spec` section of the `HostFirmwareComponents` resource defines the desired 
 
 The `status` section of the `HostFirmwareComponents` resource returns the current status of the BIOS and BMC versions of the host, and the NIC firmware components of the host if the information is available by using Redfish.
 
-***HostFirmwareComponents status***
+**HostFirmwareComponents status**
 
 <table>
 <thead>
@@ -2120,7 +2130,7 @@ The `status` section of the `HostFirmwareComponents` resource returns the curren
 <tbody>
 <tr>
   <td><pre>components:&#10;  component:&#10;  initialVersion:&#10;  currentVersion:&#10;  lastVersionFlashed:&#10;  updatedAt:</pre></td>
-  <td>The <code>components</code> section contains the status of the components. The fields are:<br><br><ul><li><code>component</code>: The name of the firmware component. It returns <code>bios</code>, <code>bmc</code>, <code>nic:<ID1></code>, or <code>nic:<ID2></code>.</li><li><code>initialVersion</code>: The initial firmware version of the component. Ironic retrieves this information when creating the <code>BareMetalHost</code> resource. You cannot change it.</li><li><code>currentVersion</code>: The current firmware version of the component. Initially, the value matches the <code>initialVersion</code> value until Ironic updates the firmware on the bare-metal host.</li><li><code>lastVersionFlashed</code>: The last firmware version of the component flashed on the bare-metal host. This field returns <code>null</code> until Ironic updates the firmware.</li><li><code>updatedAt</code>: The timestamp when Ironic updated the bare-metal host's firmware.</li></ul></td>
+  <td>The <code>components</code> section contains the status of the components. The fields are:<br><br><ul><li><code>component</code>: The name of the firmware component. It returns <code>bios</code>, <code>bmc</code>, <code>nic:&lt;ID1&gt;</code>, or <code>nic:&lt;ID2&gt;</code>.</li><li><code>initialVersion</code>: The initial firmware version of the component. Ironic retrieves this information when creating the <code>BareMetalHost</code> resource. You cannot change it.</li><li><code>currentVersion</code>: The current firmware version of the component. Initially, the value matches the <code>initialVersion</code> value until Ironic updates the firmware on the bare-metal host.</li><li><code>lastVersionFlashed</code>: The last firmware version of the component flashed on the bare-metal host. This field returns <code>null</code> until Ironic updates the firmware.</li><li><code>updatedAt</code>: The timestamp when Ironic updated the bare-metal host's firmware.</li></ul></td>
 </tr>
 <tr>
   <td><pre>updates:&#10;  component:&#10;  url:</pre></td>

@@ -1,8 +1,8 @@
 ---
-title: Preparing to install a cluster on {{ ibm_z_title }} and {{ ibm_linuxone_title }} using user-provisioned infrastructure
+title: Preparing to install a cluster on IBM Z and IBM LinuxONE using user-provisioned infrastructure
 ---
 
-# Preparing to install a cluster on {{ ibm_z_title }} and {{ ibm_linuxone_title }} using user-provisioned infrastructure {#upi-ibm-z-preparing-to-install}
+# Preparing to install a cluster on IBM Z and IBM LinuxONE using user-provisioned infrastructure {#upi-ibm-z-preparing-to-install}
 
 Before installing OpenShift Container Platform on IBM Z(R) or IBM(R) LinuxONE with user-provisioned infrastructure, you must verify connectivity, download the installation program, and prepare your pull secret and SSH key.
 
@@ -20,9 +20,7 @@ Before installing OpenShift Container Platform on IBM Z(R) or IBM(R) LinuxONE wi
 
 ## Internet access for OpenShift Container Platform {#cluster-entitlements_upi-ibm-z-preparing-to-install}
 
-In OpenShift Container Platform 4.22, you require access to the internet to install
-
-your cluster.
+In OpenShift Container Platform 4.22, you require access to the internet to install your cluster.
 
 You must have internet access to perform the following actions:
 
@@ -63,14 +61,8 @@ your provisioning machine.
    ```
 6. Download your installation [pull secret from Red Hat OpenShift Cluster Manager](https://console.redhat.com/openshift/install/pull-secret). This pull secret allows you to authenticate with the services that are provided by the included authorities, including Quay.io, which serves the container images for OpenShift Container Platform components.
 
-   ```
-   :::tip
-
-   Alternatively, you can retrieve the installation program from the [Red&#160;Hat Customer Portal](https://access.redhat.com/downloads/content/290/), where you can specify a version of the installation program to download.
-   However, you must have an active subscription to access this page.
-
-   :::
-   ```
+   > [!TIP]
+   > Alternatively, you can retrieve the installation program from the [Red Hat Customer Portal](https://access.redhat.com/downloads/content/290/), where you can specify a version of the installation program to download. However, you must have an active subscription to access this page.
 
 ## Installing the OpenShift CLI on Linux {#cli-installing-cli-linux_upi-ibm-z-preparing-to-install}
 
@@ -342,7 +334,8 @@ To prevent network-related installation failures and ensure node connectivity in
       ```
    3. Use this method to perform reverse lookups against the IP addresses for the control plane and compute nodes. Check that the results correspond to the DNS record names of each node.
 
-## Additional resources {#additional-resources_upi-ibm-z-preparing-to-install}
+**Additional resources**
+{._additional-resources}
 
 - [Mirroring images for a disconnected installation](/openshift-docs-markdown/disconnected/installing-mirroring-installation-images#installing-mirroring-installation-images)
 - [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)

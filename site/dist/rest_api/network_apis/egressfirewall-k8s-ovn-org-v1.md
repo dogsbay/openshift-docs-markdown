@@ -1,5 +1,5 @@
 ---
-title: EgressFirewall []
+title: EgressFirewall [k8s.ovn.org/v1]
 ---
 
 # EgressFirewall \[k8s.ovn.org/v1\] {#egressfirewall-k8s-ovn-org-v1}
@@ -187,18 +187,18 @@ The following API endpoints are available:
 - `/apis/k8s.ovn.org/v1/egressfirewalls`
 
   - `GET`: list objects of kind EgressFirewall
-- `/apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/egressfirewalls`
+- `/apis/k8s.ovn.org/v1/namespaces/{namespace}/egressfirewalls`
 
   - `DELETE`: delete collection of EgressFirewall
   - `GET`: list objects of kind EgressFirewall
   - `POST`: create an EgressFirewall
-- `/apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/egressfirewalls/{{ name }}`
+- `/apis/k8s.ovn.org/v1/namespaces/{namespace}/egressfirewalls/{name}`
 
   - `DELETE`: delete an EgressFirewall
   - `GET`: read the specified EgressFirewall
   - `PATCH`: partially update the specified EgressFirewall
   - `PUT`: replace the specified EgressFirewall
-- `/apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/egressfirewalls/{{ name }}/status`
+- `/apis/k8s.ovn.org/v1/namespaces/{namespace}/egressfirewalls/{name}/status`
 
   - `GET`: read status of the specified EgressFirewall
   - `PATCH`: partially update status of the specified EgressFirewall
@@ -223,7 +223,7 @@ Description
 | 200 - OK | [`EgressFirewallList`](/openshift-docs-markdown/rest_api/objects/index#org-ovn-k8s-v1-EgressFirewallList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/egressfirewalls {#_apisk8sovnorgv1namespaces_namespace_egressfirewalls}
+### /apis/k8s.ovn.org/v1/namespaces/{namespace}/egressfirewalls {#_apisk8sovnorgv1namespaces_namespace_egressfirewalls}
 
 HTTP method
 :   ```
@@ -291,7 +291,7 @@ Description
 | 202 - Accepted | [`EgressFirewall`](/openshift-docs-markdown/rest_api/network_apis/egressfirewall-k8s-ovn-org-v1#egressfirewall-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/egressfirewalls/{{ name }} {#_apisk8sovnorgv1namespaces_namespace_egressfirewalls_name}
+### /apis/k8s.ovn.org/v1/namespaces/{namespace}/egressfirewalls/{name} {#_apisk8sovnorgv1namespaces_namespace_egressfirewalls_name}
 
 **Global path parameters**
 
@@ -395,7 +395,7 @@ Description
 | 201 - Created | [`EgressFirewall`](/openshift-docs-markdown/rest_api/network_apis/egressfirewall-k8s-ovn-org-v1#egressfirewall-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/egressfirewalls/{{ name }}/status {#_apisk8sovnorgv1namespaces_namespace_egressfirewalls_name_status}
+### /apis/k8s.ovn.org/v1/namespaces/{namespace}/egressfirewalls/{name}/status {#_apisk8sovnorgv1namespaces_namespace_egressfirewalls_name_status}
 
 **Global path parameters**
 

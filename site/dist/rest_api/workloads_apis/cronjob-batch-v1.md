@@ -38,13 +38,13 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `concurrencyPolicy` | `string` | Specifies how to treat concurrent executions of a Job. Valid values are: - "Allow" (default): allows CronJobs to run concurrently; - "Forbid": forbids concurrent runs, skipping next run if previous run hasn’t finished yet; - "Replace": cancels currently running job and replaces it with a new one Possible enum values:  - `"Allow"` allows CronJobs to run concurrently.  - `"Forbid"` forbids concurrent runs, skipping next run if previous hasn’t finished yet.  - `"Replace"` cancels currently running job and replaces it with a new one. |
+| `concurrencyPolicy` | `string` | Specifies how to treat concurrent executions of a Job. Valid values are:<br>- "Allow" (default): allows CronJobs to run concurrently; - "Forbid": forbids concurrent runs, skipping next run if previous run hasn’t finished yet; - "Replace": cancels currently running job and replaces it with a new one<br>Possible enum values: - `"Allow"` allows CronJobs to run concurrently. - `"Forbid"` forbids concurrent runs, skipping next run if previous hasn’t finished yet. - `"Replace"` cancels currently running job and replaces it with a new one. |
 | `failedJobsHistoryLimit` | `integer` | The number of failed finished jobs to retain. Value must be non-negative integer. Defaults to 1. |
 | `jobTemplate` | `object` | JobTemplateSpec describes the data a Job should have when created from a template |
 | `schedule` | `string` | The schedule in Cron format, see https://en.wikipedia.org/wiki/Cron. |
-| `startingDeadlineSeconds` | `integer` | Optional deadline in seconds for starting the job if it misses scheduled time for any reason.  Missed jobs executions will be counted as failed ones. |
+| `startingDeadlineSeconds` | `integer` | Optional deadline in seconds for starting the job if it misses scheduled time for any reason. Missed jobs executions will be counted as failed ones. |
 | `successfulJobsHistoryLimit` | `integer` | The number of successful finished jobs to retain. Value must be non-negative integer. Defaults to 3. |
-| `suspend` | `boolean` | This flag tells the controller to suspend subsequent executions, it does not apply to already started executions.  Defaults to false. |
+| `suspend` | `boolean` | This flag tells the controller to suspend subsequent executions, it does not apply to already started executions. Defaults to false. |
 | `timeZone` | `string` | The time zone name for the given schedule, see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones. If not specified, this will default to the time zone of the kube-controller-manager process. The set of valid time zone names and the time zone offset is loaded from the system-wide time zone database by the API server during CronJob validation and the controller manager during execution. If no system-wide time zone database can be found a bundled version of the database is used instead. If the time zone name becomes invalid during the lifetime of a CronJob or due to a change in host configuration, the controller will stop creating new new Jobs and will create a system event with the reason UnknownTimeZone. More information can be found in https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/#time-zones |
 
 ### .spec.jobTemplate {#_specjobtemplate}
@@ -80,14 +80,14 @@ Required
 | `activeDeadlineSeconds` | `integer` | Specifies the duration in seconds relative to the startTime that the job may be continuously active before the system tries to terminate it; value must be positive integer. If a Job is suspended (at creation or through an update), this timer will effectively be stopped and reset when the Job is resumed again. |
 | `backoffLimit` | `integer` | Specifies the number of retries before marking this job failed. Defaults to 6, unless backoffLimitPerIndex (only Indexed Job) is specified. When backoffLimitPerIndex is specified, backoffLimit defaults to 2147483647. |
 | `backoffLimitPerIndex` | `integer` | Specifies the limit for the number of retries within an index before marking this index as failed. When enabled the number of failures per index is kept in the pod’s batch.kubernetes.io/job-index-failure-count annotation. It can only be set when Job’s completionMode=Indexed, and the Pod’s restart policy is Never. The field is immutable. |
-| `completionMode` | `string` | completionMode specifies how Pod completions are tracked. It can be `NonIndexed` (default) or `Indexed`. `NonIndexed` means that the Job is considered complete when there have been .spec.completions successfully completed Pods. Each Pod completion is homologous to each other. `Indexed` means that the Pods of a Job get an associated completion index from 0 to (.spec.completions - 1), available in the annotation batch.kubernetes.io/job-completion-index. The Job is considered complete when there is one successfully completed Pod for each index. When value is `Indexed`, .spec.completions must be specified and `.spec.parallelism` must be less than or equal to 10^5. In addition, The Pod name takes the form `$(job-name)-$(index)-$(random-string)`, the Pod hostname takes the form `$(job-name)-$(index)`. More completion modes can be added in the future. If the Job controller observes a mode that it doesn’t recognize, which is possible during upgrades due to version skew, the controller skips updates for the Job. Possible enum values:  - `"Indexed"` is a Job completion mode. In this mode, the Pods of a Job get an associated completion index from 0 to (.spec.completions - 1). The Job is considered complete when a Pod completes for each completion index.  - `"NonIndexed"` is a Job completion mode. In this mode, the Job is considered complete when there have been .spec.completions successfully completed Pods. Pod completions are homologous to each other. |
-| `completions` | `integer` | Specifies the desired number of successfully finished pods the job should be run with.  Setting to null means that the success of any pod signals the success of all pods, and allows parallelism to have any positive value.  Setting to 1 means that parallelism is limited to 1 and the success of that pod signals the success of the job. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/ |
+| `completionMode` | `string` | completionMode specifies how Pod completions are tracked. It can be `NonIndexed` (default) or `Indexed`.<br>`NonIndexed` means that the Job is considered complete when there have been .spec.completions successfully completed Pods. Each Pod completion is homologous to each other.<br>`Indexed` means that the Pods of a Job get an associated completion index from 0 to (.spec.completions - 1), available in the annotation batch.kubernetes.io/job-completion-index. The Job is considered complete when there is one successfully completed Pod for each index. When value is `Indexed`, .spec.completions must be specified and `.spec.parallelism` must be less than or equal to 10^5. In addition, The Pod name takes the form `$(job-name)-$(index)-$(random-string)`, the Pod hostname takes the form `$(job-name)-$(index)`.<br>More completion modes can be added in the future. If the Job controller observes a mode that it doesn’t recognize, which is possible during upgrades due to version skew, the controller skips updates for the Job.<br>Possible enum values: - `"Indexed"` is a Job completion mode. In this mode, the Pods of a Job get an associated completion index from 0 to (.spec.completions - 1). The Job is considered complete when a Pod completes for each completion index. - `"NonIndexed"` is a Job completion mode. In this mode, the Job is considered complete when there have been .spec.completions successfully completed Pods. Pod completions are homologous to each other. |
+| `completions` | `integer` | Specifies the desired number of successfully finished pods the job should be run with. Setting to null means that the success of any pod signals the success of all pods, and allows parallelism to have any positive value. Setting to 1 means that parallelism is limited to 1 and the success of that pod signals the success of the job. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/ |
 | `managedBy` | `string` | ManagedBy field indicates the controller that manages a Job. The k8s Job controller reconciles jobs which don’t have this field at all or the field value is the reserved string `kubernetes.io/job-controller`, but skips reconciling Jobs with a custom value for this field. The value must be a valid domain-prefixed path (e.g. acme.io/foo) - all characters before the first "/" must be a valid subdomain as defined by RFC 1123. All characters trailing the first "/" must be valid HTTP Path characters as defined by RFC 3986. The value cannot exceed 63 characters. This field is immutable. |
-| `manualSelector` | `boolean` | manualSelector controls generation of pod labels and pod selectors. Leave `manualSelector` unset unless you are certain what you are doing. When false or unset, the system pick labels unique to this job and appends those labels to the pod template.  When true, the user is responsible for picking unique labels and specifying the selector.  Failure to pick a unique label may cause this and other jobs to not function correctly.  However, You may see `manualSelector=true` in jobs that were created with the old `extensions/v1beta1` API. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/#specifying-your-own-pod-selector |
+| `manualSelector` | `boolean` | manualSelector controls generation of pod labels and pod selectors. Leave `manualSelector` unset unless you are certain what you are doing. When false or unset, the system pick labels unique to this job and appends those labels to the pod template. When true, the user is responsible for picking unique labels and specifying the selector. Failure to pick a unique label may cause this and other jobs to not function correctly. However, You may see `manualSelector=true` in jobs that were created with the old `extensions/v1beta1` API. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/#specifying-your-own-pod-selector |
 | `maxFailedIndexes` | `integer` | Specifies the maximal number of failed indexes before marking the Job as failed, when backoffLimitPerIndex is set. Once the number of failed indexes exceeds this number the entire Job is marked as Failed and its execution is terminated. When left as null the job continues execution of all of its indexes and is marked with the `Complete` Job condition. It can only be specified when backoffLimitPerIndex is set. It can be null or up to completions. It is required and must be less than or equal to 10^4 when is completions greater than 10^5. |
 | `parallelism` | `integer` | Specifies the maximum desired number of pods the job should run at any given time. The actual number of pods running in steady state will be less than this number when ((.spec.completions - .status.successful) < .spec.parallelism), i.e. when the work left to do is less than max parallelism. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/ |
 | `podFailurePolicy` | `object` | PodFailurePolicy describes how failed pods influence the backoffLimit. |
-| `podReplacementPolicy` | `string` | podReplacementPolicy specifies when to create replacement Pods. Possible values are: - TerminatingOrFailed means that we recreate pods   when they are terminating (has a metadata.deletionTimestamp) or failed. - Failed means to wait until a previously created Pod is fully terminated (has phase   Failed or Succeeded) before creating a replacement Pod. When using podFailurePolicy, Failed is the the only allowed value. TerminatingOrFailed and Failed are allowed values when podFailurePolicy is not in use. Possible enum values:  - `"Failed"` means to wait until a previously created Pod is fully terminated (has phase Failed or Succeeded) before creating a replacement Pod.  - `"TerminatingOrFailed"` means that we recreate pods when they are terminating (has a metadata.deletionTimestamp) or failed. |
+| `podReplacementPolicy` | `string` | podReplacementPolicy specifies when to create replacement Pods. Possible values are: - TerminatingOrFailed means that we recreate pods when they are terminating (has a metadata.deletionTimestamp) or failed. - Failed means to wait until a previously created Pod is fully terminated (has phase Failed or Succeeded) before creating a replacement Pod.<br>When using podFailurePolicy, Failed is the the only allowed value. TerminatingOrFailed and Failed are allowed values when podFailurePolicy is not in use.<br>Possible enum values: - `"Failed"` means to wait until a previously created Pod is fully terminated (has phase Failed or Succeeded) before creating a replacement Pod. - `"TerminatingOrFailed"` means that we recreate pods when they are terminating (has a metadata.deletionTimestamp) or failed. |
 | `selector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | A label query over pods that should match the pod count. Normally, the system sets this field for you. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors |
 | `successPolicy` | `object` | SuccessPolicy describes when a Job can be declared as succeeded based on the success of some indexes. |
 | `suspend` | `boolean` | suspend specifies whether the Job controller should create Pods or not. If a Job is created with suspend set to true, no Pods are created by the Job controller. If a Job is suspended after creation (i.e. the flag goes from false to true), the Job controller will delete all active Pods associated with this Job. Users must design their workload to gracefully handle this. Suspending a Job will reset the StartTime field of the Job, effectively resetting the ActiveDeadlineSeconds timer too. Defaults to false. |
@@ -137,7 +137,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `action` | `string` | Specifies the action taken on a pod failure when the requirements are satisfied. Possible values are: - FailJob: indicates that the pod’s job is marked as Failed and all   running pods are terminated. - FailIndex: indicates that the pod’s index is marked as Failed and will   not be restarted. - Ignore: indicates that the counter towards the .backoffLimit is not   incremented and a replacement pod is created. - Count: indicates that the pod is handled in the default way - the   counter towards the .backoffLimit is incremented. Additional values are considered to be added in the future. Clients should react to an unknown action by skipping the rule. Possible enum values:  - `"Count"` This is an action which might be taken on a pod failure - the pod failure is handled in the default way - the counter towards .backoffLimit, represented by the job’s .status.failed field, is incremented.  - `"FailIndex"` This is an action which might be taken on a pod failure - mark the Job’s index as failed to avoid restarts within this index. This action can only be used when backoffLimitPerIndex is set.  - `"FailJob"` This is an action which might be taken on a pod failure - mark the pod’s job as Failed and terminate all running pods.  - `"Ignore"` This is an action which might be taken on a pod failure - the counter towards .backoffLimit, represented by the job’s .status.failed field, is not incremented and a replacement pod is created. |
+| `action` | `string` | Specifies the action taken on a pod failure when the requirements are satisfied. Possible values are:<br>- FailJob: indicates that the pod’s job is marked as Failed and all running pods are terminated. - FailIndex: indicates that the pod’s index is marked as Failed and will not be restarted. - Ignore: indicates that the counter towards the .backoffLimit is not incremented and a replacement pod is created. - Count: indicates that the pod is handled in the default way - the counter towards the .backoffLimit is incremented. Additional values are considered to be added in the future. Clients should react to an unknown action by skipping the rule.<br>Possible enum values: - `"Count"` This is an action which might be taken on a pod failure - the pod failure is handled in the default way - the counter towards .backoffLimit, represented by the job’s .status.failed field, is incremented. - `"FailIndex"` This is an action which might be taken on a pod failure - mark the Job’s index as failed to avoid restarts within this index. This action can only be used when backoffLimitPerIndex is set. - `"FailJob"` This is an action which might be taken on a pod failure - mark the pod’s job as Failed and terminate all running pods. - `"Ignore"` This is an action which might be taken on a pod failure - the counter towards .backoffLimit, represented by the job’s .status.failed field, is not incremented and a replacement pod is created. |
 | `onExitCodes` | `object` | PodFailurePolicyOnExitCodesRequirement describes the requirement for handling a failed pod based on its container exit codes. In particular, it lookups the .state.terminated.exitCode for each app container and init container status, represented by the .status.containerStatuses and .status.initContainerStatuses fields in the Pod status, respectively. Containers completed with success (exit code 0) are excluded from the requirement check. |
 | `onPodConditions` | `array` | Represents the requirement on the pod conditions. The requirement is represented as a list of pod condition patterns. The requirement is satisfied if at least one pattern matches an actual pod condition. At most 20 elements are allowed. |
 | `onPodConditions[]` | `object` | PodFailurePolicyOnPodConditionsPattern describes a pattern for matching an actual pod condition type. |
@@ -159,7 +159,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `containerName` | `string` | Restricts the check for exit codes to the container with the specified name. When null, the rule applies to all containers. When specified, it should match one the container or initContainer names in the pod template. |
-| `operator` | `string` | Represents the relationship between the container exit code(s) and the specified values. Containers completed with success (exit code 0) are excluded from the requirement check. Possible values are: - In: the requirement is satisfied if at least one container exit code   (might be multiple if there are multiple containers not restricted   by the 'containerName' field) is in the set of specified values. - NotIn: the requirement is satisfied if at least one container exit code   (might be multiple if there are multiple containers not restricted   by the 'containerName' field) is not in the set of specified values. Additional values are considered to be added in the future. Clients should react to an unknown operator by assuming the requirement is not satisfied. Possible enum values:  - `"In"`  - `"NotIn"` |
+| `operator` | `string` | Represents the relationship between the container exit code(s) and the specified values. Containers completed with success (exit code 0) are excluded from the requirement check. Possible values are:<br>- In: the requirement is satisfied if at least one container exit code (might be multiple if there are multiple containers not restricted by the 'containerName' field) is in the set of specified values. - NotIn: the requirement is satisfied if at least one container exit code (might be multiple if there are multiple containers not restricted by the 'containerName' field) is not in the set of specified values. Additional values are considered to be added in the future. Clients should react to an unknown operator by assuming the requirement is not satisfied.<br>Possible enum values: - `"In"` - `"NotIn"` |
 | `values` | `array (integer)` | Specifies the set of values. Each returned container exit code (might be multiple in case of multiple containers) is checked against this set of values with respect to the operator. The list of values must be ordered and must not contain duplicates. Value '0' cannot be used for the In operator. At least one element is required. At most 255 elements are allowed. |
 
 ### .spec.jobTemplate.spec.podFailurePolicy.rules\[\].onPodConditions {#_specjobtemplatespecpodfailurepolicyrulesonpodconditions}
@@ -259,24 +259,24 @@ The following API endpoints are available:
 - `/apis/batch/v1/watch/cronjobs`
 
   - `GET`: watch individual changes to a list of CronJob. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/batch/v1/namespaces/{{ namespace }}/cronjobs`
+- `/apis/batch/v1/namespaces/{namespace}/cronjobs`
 
   - `DELETE`: delete collection of CronJob
   - `GET`: list or watch objects of kind CronJob
   - `POST`: create a CronJob
-- `/apis/batch/v1/watch/namespaces/{{ namespace }}/cronjobs`
+- `/apis/batch/v1/watch/namespaces/{namespace}/cronjobs`
 
   - `GET`: watch individual changes to a list of CronJob. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/batch/v1/namespaces/{{ namespace }}/cronjobs/{{ name }}`
+- `/apis/batch/v1/namespaces/{namespace}/cronjobs/{name}`
 
   - `DELETE`: delete a CronJob
   - `GET`: read the specified CronJob
   - `PATCH`: partially update the specified CronJob
   - `PUT`: replace the specified CronJob
-- `/apis/batch/v1/watch/namespaces/{{ namespace }}/cronjobs/{{ name }}`
+- `/apis/batch/v1/watch/namespaces/{namespace}/cronjobs/{name}`
 
   - `GET`: watch changes to an object of kind CronJob. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
-- `/apis/batch/v1/namespaces/{{ namespace }}/cronjobs/{{ name }}/status`
+- `/apis/batch/v1/namespaces/{namespace}/cronjobs/{name}/status`
 
   - `GET`: read status of the specified CronJob
   - `PATCH`: partially update status of the specified CronJob
@@ -320,7 +320,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/batch/v1/namespaces/{{ namespace }}/cronjobs {#_apisbatchv1namespaces_namespace_cronjobs}
+### /apis/batch/v1/namespaces/{namespace}/cronjobs {#_apisbatchv1namespaces_namespace_cronjobs}
 
 HTTP method
 :   ```
@@ -394,7 +394,7 @@ Description
 | 202 - Accepted | [`CronJob`](/openshift-docs-markdown/rest_api/workloads_apis/cronjob-batch-v1#cronjob-batch-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/batch/v1/watch/namespaces/{{ namespace }}/cronjobs {#_apisbatchv1watchnamespaces_namespace_cronjobs}
+### /apis/batch/v1/watch/namespaces/{namespace}/cronjobs {#_apisbatchv1watchnamespaces_namespace_cronjobs}
 
 HTTP method
 :   ```
@@ -413,7 +413,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/batch/v1/namespaces/{{ namespace }}/cronjobs/{{ name }} {#_apisbatchv1namespaces_namespace_cronjobs_name}
+### /apis/batch/v1/namespaces/{namespace}/cronjobs/{name} {#_apisbatchv1namespaces_namespace_cronjobs_name}
 
 **Global path parameters**
 
@@ -518,7 +518,7 @@ Description
 | 201 - Created | [`CronJob`](/openshift-docs-markdown/rest_api/workloads_apis/cronjob-batch-v1#cronjob-batch-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/batch/v1/watch/namespaces/{{ namespace }}/cronjobs/{{ name }} {#_apisbatchv1watchnamespaces_namespace_cronjobs_name}
+### /apis/batch/v1/watch/namespaces/{namespace}/cronjobs/{name} {#_apisbatchv1watchnamespaces_namespace_cronjobs_name}
 
 **Global path parameters**
 
@@ -543,7 +543,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/batch/v1/namespaces/{{ namespace }}/cronjobs/{{ name }}/status {#_apisbatchv1namespaces_namespace_cronjobs_name_status}
+### /apis/batch/v1/namespaces/{namespace}/cronjobs/{name}/status {#_apisbatchv1namespaces_namespace_cronjobs_name_status}
 
 **Global path parameters**
 

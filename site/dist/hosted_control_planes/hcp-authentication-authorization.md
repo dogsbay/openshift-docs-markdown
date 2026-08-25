@@ -1,5 +1,5 @@
 ---
-title: Authentication and authorization for {{ hcp }}
+title: Authentication and authorization for hosted control planes
 ---
 
 # Authentication and authorization for hosted control planes {#hcp-authentication-authorization}
@@ -107,11 +107,11 @@ Adding any identity provider in the OAuth configuration removes the default `kub
 
 **Procedure**
 
-1. Go to **Home** -> **API Explorer**.
+1. Go to **Home** → **API Explorer**.
 2. Use the **Filter by kind** box to search for your `HostedCluster` resource.
 3. Click the `HostedCluster` resource that you want to edit.
 4. Click the **Instances** tab.
-5. Click the Options menu ![](kebab.png "Options menu") next to your hosted cluster name entry and click **Edit HostedCluster**.
+5. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to your hosted cluster name entry and click **Edit HostedCluster**.
 6. Add the OAuth configuration in the YAML file:
 
    ```yaml
@@ -457,7 +457,8 @@ You can verify that the Cloud Credential Operator (CCO) is running correctly in 
    https://aos-hypershift-ci-oidc-29999.s3.us-east-2.amazonaws.com/hypershift-ci-29999
    ```
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Issuer Identifier](https://openid.net/specs/openid-connect-core-1_0.html#IssuerIdentifier)
 - [Understanding identity provider configuration](/openshift-docs-markdown/authentication/understanding-identity-provider#understanding-identity-provider)

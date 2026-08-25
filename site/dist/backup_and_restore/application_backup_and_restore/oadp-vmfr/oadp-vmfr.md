@@ -1,5 +1,5 @@
 ---
-title: "{{ oadp_short }} virtual machine file restore"
+title: OADP virtual machine file restore
 ---
 
 # OADP virtual machine file restore {#oadp-vmfr}

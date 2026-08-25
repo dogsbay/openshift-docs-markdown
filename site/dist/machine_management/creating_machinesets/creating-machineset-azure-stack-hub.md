@@ -23,9 +23,7 @@ You can create a machine set on Microsoft Azure Stack Hub. By defining a YAML co
 
 The Microsoft Azure sample YAML defines a compute machine set that runs in the `1` Azure zone in a region and creates nodes that are labeled with `node-role.kubernetes.io/<role>: ""`.
 
-In the sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and `<role>`
-
-is the node label to add.
+In the sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and `<role>` is the node label to add.
 
 ```yaml
 apiVersion: machine.openshift.io/v1beta1
@@ -33,56 +31,29 @@ kind: MachineSet
 metadata:
   labels:
     machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not infra %}
     machine.openshift.io/cluster-api-machine-role: <role>
     machine.openshift.io/cluster-api-machine-type: <role>
   name: <infrastructure_id>-<role>-<region>
-{% endif %}
-{% if infra %}
-    machine.openshift.io/cluster-api-machine-role: <infra>
-    machine.openshift.io/cluster-api-machine-type: <infra>
-  name: <infrastructure_id>-infra-<region>
-{%- endif %}
   namespace: openshift-machine-api
 spec:
   replicas: 1
   selector:
     matchLabels:
       machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not infra %}
       machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<region>
-{% endif %}
-{% if infra %}
-      machine.openshift.io/cluster-api-machineset: <infrastructure_id>-infra-<region>
-{%- endif %}
   template:
     metadata:
       creationTimestamp: null
       labels:
         machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not infra %}
         machine.openshift.io/cluster-api-machine-role: <role>
         machine.openshift.io/cluster-api-machine-type: <role>
         machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<region>
-{% endif %}
-{% if infra %}
-        machine.openshift.io/cluster-api-machine-role: <infra>
-        machine.openshift.io/cluster-api-machine-type: <infra>
-        machine.openshift.io/cluster-api-machineset: <infrastructure_id>-infra-<region>
-{%- endif %}
     spec:
       metadata:
         creationTimestamp: null
         labels:
-{%- if not infra %}
           node-role.kubernetes.io/<role>: ""
-{% endif %}
-{% if infra %}
-          node-role.kubernetes.io/infra: ""
-      taints:
-      - key: node-role.kubernetes.io/infra
-        effect: NoSchedule
-{%- endif %}
       providerSpec:
         value:
           apiVersion: machine.openshift.io/v1beta1
@@ -98,12 +69,7 @@ spec:
             version: ""
           internalLoadBalancer: ""
           kind: AzureMachineProviderSpec
-{%- if not infra %}
           location: <region>
-{% endif %}
-{% if infra %}
-          location: <region>
-{%- endif %}
           managedIdentity: <infrastructure_id>-identity
           metadata:
             creationTimestamp: null
@@ -124,12 +90,7 @@ spec:
             name: worker-user-data
           vmSize: Standard_DS4_v2
           vnet: <infrastructure_id>-vnet
-{%- if not infra %}
           zone: "1"
-{% endif %}
-{% if infra %}
-          zone: "1"
-{%- endif %}
 ```
 
 where:
@@ -179,6 +140,7 @@ where:
 > Machine sets running on Azure Stack Hub do not support non-guaranteed Spot VMs.
 
 **Additional resources**
+{._additional-resources}
 
 - [Manually updating the boot image](/openshift-docs-markdown/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)
 
@@ -283,13 +245,17 @@ To dynamically manage machine compute resources, you can create your own compute
 
   ```terminal
 
+  NAME                                DESIRED   CURRENT   READY   AVAILABLE   AGE
+  agl030519-vplxk-infra-us-east-1a    1         1         1       1           11m
+  agl030519-vplxk-worker-us-east-1a   1         1         1       1           55m
+  agl030519-vplxk-worker-us-east-1b   1         1         1       1           55m
+  agl030519-vplxk-worker-us-east-1c   1         1         1       1           55m
+  agl030519-vplxk-worker-us-east-1d   0         0                             55m
+  agl030519-vplxk-worker-us-east-1e   0         0                             55m
+  agl030519-vplxk-worker-us-east-1f   0         0                             55m
   ```
 
-{%- if win or post_aws_zones %} NAME                                       DESIRED   CURRENT   READY   AVAILABLE   AGE {%- if win %} agl030519-vplxk-windows-worker-us-east-1a  1         1         1       1           11m {% endif %} {% if post_aws_zones %} agl030519-vplxk-edge-us-east-1-nyc-1a      1         1         1       1           11m {%- endif %} agl030519-vplxk-worker-us-east-1a          1         1         1       1           55m agl030519-vplxk-worker-us-east-1b          1         1         1       1           55m agl030519-vplxk-worker-us-east-1c          1         1         1       1           55m agl030519-vplxk-worker-us-east-1d          0         0                             55m agl030519-vplxk-worker-us-east-1e          0         0                             55m agl030519-vplxk-worker-us-east-1f          0         0                             55m {% endif %} {% if not (win or post_aws_zones) %} NAME                                DESIRED   CURRENT   READY   AVAILABLE   AGE agl030519-vplxk-infra-us-east-1a    1         1         1       1           11m agl030519-vplxk-worker-us-east-1a   1         1         1       1           55m agl030519-vplxk-worker-us-east-1b   1         1         1       1           55m agl030519-vplxk-worker-us-east-1c   1         1         1       1           55m agl030519-vplxk-worker-us-east-1d   0         0                             55m agl030519-vplxk-worker-us-east-1e   0         0                             55m agl030519-vplxk-worker-us-east-1f   0         0                             55m {%- endif %} \`\`\`
-
-```
-When the new compute machine set is available, the `DESIRED` and `CURRENT` values match. If the compute machine set is not available, wait a few minutes and run the command again.
-```
+  When the new compute machine set is available, the `DESIRED` and `CURRENT` values match. If the compute machine set is not available, wait a few minutes and run the command again.
 
 ## Labeling GPU machine sets for the cluster autoscaler {#machineset-label-gpu-autoscaler_creating-machineset-azure-stack-hub}
 
@@ -325,6 +291,7 @@ Label your machine sets to indicate which machines the cluster autoscaler can us
       > You must specify the value of this label for the `spec.resourceLimits.gpus.type` parameter in your `ClusterAutoscaler` CR. For more information, see "Cluster autoscaler resource definition".
 
 **Additional resources**
+{._additional-resources}
 
 - [Cluster autoscaler resource definition](/openshift-docs-markdown/machine_management/applying-autoscaling#cluster-autoscaler-cr_applying-autoscaling)
 
@@ -334,11 +301,7 @@ You can enable boot diagnostics on Microsoft Azure machines that your machine se
 
 **Prerequisites**
 
-- Have an existing Azure
-
-Stack Hub
-
-cluster.
+- Have an existing Azure Stack Hub cluster.
 
 **Procedure**
 
@@ -413,5 +376,8 @@ An Azure Key Vault, a disk encryption set, and an encryption key are required to
             id: /subscriptions/<subscription_id>/resourceGroups/<resource_group_name>/providers/Microsoft.Compute/diskEncryptionSets/<disk_encryption_set_name>
           storageAccountType: Premium_LRS
   ```
+
+**Additional resources**
+{._additional-resources}
 
 - [Customer-managed keys (Azure documentation)](https://docs.microsoft.com/en-us/azure/virtual-machines/disk-encryption#customer-managed-keys)

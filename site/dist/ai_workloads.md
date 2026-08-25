@@ -28,6 +28,7 @@ JobSet Operator
     For more information, see "JobSet Operator overview".
 
 **Additional resources**
+{._additional-resources}
 
 - [Introduction to Red Hat build of Kueue](/openshift-docs-markdown/ai_workloads/kueue/about-kueue#about-kueue)
 - [Leader Worker Set Operator overview](/openshift-docs-markdown/ai_workloads/leader_worker_set/index#lws-about)

@@ -148,7 +148,7 @@ You can work with pods more easily and efficiently with the help of various tool
 | Operation | User | More information |
 | --- | --- | --- |
 | Create and use a horizontal pod autoscaler. | Developer | You can use a horizontal pod autoscaler to specify the minimum and the maximum number of pods you want to run, as well as the CPU utilization or memory utilization your pods should target. Using a horizontal pod autoscaler, you can [automatically scale pods](/openshift-docs-markdown/nodes/pods/nodes-pods-autoscaling#nodes-pods-autoscaling). |
-| [Install and use a vertical pod autoscaler](/openshift-docs-markdown/nodes/pods/nodes-pods-vertical-autoscaler#nodes-pods-vpa). | Administrator and developer | As an administrator, use a vertical pod autoscaler to better use cluster resources by monitoring the resources and the resource requirements of workloads. As a developer, use a vertical pod autoscaler to ensure your pods stay up during periods of high demand by scheduling pods to nodes that have enough resources for each pod. |
+| [Install and use a vertical pod autoscaler](/openshift-docs-markdown/nodes/pods/nodes-pods-vertical-autoscaler#nodes-pods-vpa). | Administrator and developer | As an administrator, use a vertical pod autoscaler to better use cluster resources by monitoring the resources and the resource requirements of workloads.<br>As a developer, use a vertical pod autoscaler to ensure your pods stay up during periods of high demand by scheduling pods to nodes that have enough resources for each pod. |
 | Provide access to external resources using device plugins. | Administrator | A [device plugin](/openshift-docs-markdown/nodes/pods/nodes-pods-plugins#nodes-pods-device) is a gRPC service running on nodes (external to the kubelet), which manages specific hardware resources. You can [deploy a device plugin](/openshift-docs-markdown/nodes/pods/nodes-pods-plugins#methods-for-deploying-a-device-plugin_nodes-pods-device) to provide a consistent and portable solution to consume hardware devices across clusters. |
 | Provide sensitive data to pods [using the `Secret` object](/openshift-docs-markdown/nodes/pods/nodes-pods-secrets#nodes-pods-secrets). | Administrator | Some applications need sensitive information, such as passwords and usernames. You can use the `Secret` object to provide such information to an application pod. |
 
@@ -191,6 +191,7 @@ Vertical Pod Autoscaler
 :   The Vertical Pod Autoscaler (VPA) can automatically review the historic and current CPU and memory resources for containers in pods and can update the resource limits and requests based on the usage values it learns.
 
 **Additional resources**
+{._additional-resources}
 
 - [Automatically scaling pods with the horizontal pod autoscaler](/openshift-docs-markdown/nodes/pods/nodes-pods-autoscaling#nodes-pods-autoscaling)
 - [Custom Metrics Autoscaler Operator overview](/openshift-docs-markdown/nodes/cma/nodes-cma-autoscaling-custom#nodes-cma-autoscaling-custom)

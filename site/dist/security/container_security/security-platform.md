@@ -114,6 +114,7 @@ There are some primary components that generate this traffic:
 You can configure custom serving certificates for the public hostnames of the API server and web console during initial installation or when redeploying certificates. You can also use a custom CA.
 
 **Additional resources**
+{._additional-resources}
 
 - [Introduction to OpenShift Container Platform](/openshift-docs-markdown/architecture/architecture#architecture-platform-introduction_architecture)
 - [Using RBAC to define and apply permissions](/openshift-docs-markdown/authentication/using-rbac#using-rbac)

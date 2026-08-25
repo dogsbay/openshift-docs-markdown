@@ -46,8 +46,8 @@ You can get a list of events in a given project by using the CLI.
 - View events in your project from the OpenShift Container Platform console:
 
   1. Launch the OpenShift Container Platform console.
-  2. Click **Home** -> **Events** and select your project.
-  3. Move to resource that you want to see events. For example: **Home** -> **Projects** -> <project-name> -> <resource-name>.
+  2. Click **Home** → **Events** and select your project.
+  3. Move to resource that you want to see events. For example: **Home** → **Projects** → <project-name> → <resource-name>.
 
      Many objects, such as pods and deployments, also have an **Events** tab, which shows events related to that object.
 

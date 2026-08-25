@@ -33,6 +33,9 @@ AWS GovCloud (US) is an Amazon storage solution developed to meet the stringent 
 - In AWS GovCloud (US) regions, use the endpoints listed in the **AWS GovCloud (US-East)** and **AWS GovCloud (US-West)** rows of the "Amazon S3 endpoints" table. If you are processing export-controlled data, use one of the SSL/TLS endpoints. If you have FIPS requirements, use a FIPS 140-2 endpoint such as `https://s3-fips.us-gov-west-1.amazonaws.com` or `https://s3-fips.us-gov-east-1.amazonaws.com`.
 - To find other AWS-imposed restrictions, see the AWS documentation.
 
+**Additional resources**
+{._additional-resources}
+
 - [Amazon Simple Storage Service endpoints and quotas (AWS documentation)](https://docs.aws.amazon.com/general/latest/gr/s3.html)
 - [How Amazon Simple Storage Service Differs for AWS GovCloud (US) (AWS documentation)](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-s3.html#govcloud-S3-diffs)
 
@@ -205,7 +208,7 @@ If the backup and snapshot locations use different credentials, you create two s
 
 You create a default `Secret` if your backup and snapshot locations use the same credentials or if you do not require a snapshot location.
 
-The default name of the `Secret` is `{{ credentials }}`.
+The default name of the `Secret` is `cloud-credentials`.
 
 > [!NOTE]
 > The `DataProtectionApplication` custom resource (CR) requires a default `Secret`.  Otherwise, the installation will fail. If the name of the backup location `Secret` is not specified, the default name is used.
@@ -231,7 +234,7 @@ The default name of the `Secret` is `{{ credentials }}`.
 2. Create a `Secret` custom resource (CR) with the default name:
 
    ```terminal
-   $ oc create secret generic {{ credentials }} -n openshift-adp --from-file cloud=credentials-velero
+   $ oc create secret generic cloud-credentials -n openshift-adp --from-file cloud=credentials-velero
    ```
 
    The `Secret` is referenced in the `spec.backupLocations.credential` block of the `DataProtectionApplication` CR when you install the Data Protection Application.
@@ -258,7 +261,7 @@ Then, you create a `Secret` object and specify the profiles in the `DataProtecti
 2. Create a `Secret` object with the `credentials-velero` file:
 
    ```terminal
-   $ oc create secret generic {{ credentials }} -n openshift-adp --from-file cloud=credentials-velero (1)
+   $ oc create secret generic cloud-credentials -n openshift-adp --from-file cloud=credentials-velero (1)
    ```
 3. Add the profiles to the `DataProtectionApplication` CR, as in the following example:
 
@@ -273,7 +276,7 @@ Then, you create a `Secret` object and specify the profiles in the `DataProtecti
      backupLocations:
        - name: default
          velero:
-           provider: {{ provider }}
+           provider: aws
            default: true
            objectStorage:
              bucket: <bucket_name>
@@ -283,10 +286,10 @@ Then, you create a `Secret` object and specify the profiles in the `DataProtecti
              profile: "backupStorage"
            credential:
              key: cloud
-             name: {{ credentials }}
+             name: cloud-credentials
      snapshotLocations:
        - velero:
-           provider: {{ provider }}
+           provider: aws
            config:
              region: us-west-2
              profile: "volumeSnapshot"
@@ -316,9 +319,8 @@ You can store your own encryption keys by using server-side encryption with cust
 
     This is a workaround for a known issue: https://issues.redhat.com/browse/OADP-3971.
 
-> [!NOTE]
-> The following procedure contains an example of a `spec:backupLocations` block that does not specify credentials. This example would trigger an OADP secret mounting.
-
+    > [!NOTE]
+    > The following procedure contains an example of a `spec:backupLocations` block that does not specify credentials. This example would trigger an OADP secret mounting.
 - If you need the backup location to have credentials with a different name than `cloud-credentials`, you must add a snapshot location, such as the one in the following example, that does not contain a credential name. Because the following example does not contain a credential name, the snapshot location will use `cloud-credentials` as its secret for taking snapshots.
 
   ```yaml
@@ -447,15 +449,15 @@ You install the Data Protection Application (DPA) by creating an instance of the
 - You must install the OADP Operator.
 - You must configure object storage as a backup location.
 - If you use snapshots to back up PVs, your cloud provider must support either a native snapshot API or Container Storage Interface (CSI) snapshots.
-- If the backup and snapshot locations use the same credentials, you must create a `Secret` with the default name, `{{ credentials }}`.
-- If the backup and snapshot locations use different credentials, you must create a `Secret` with the default name, `{{ credentials }}`, which contains separate profiles for the backup and snapshot location credentials.
+- If the backup and snapshot locations use the same credentials, you must create a `Secret` with the default name, `cloud-credentials`.
+- If the backup and snapshot locations use different credentials, you must create a `Secret` with the default name, `cloud-credentials`, which contains separate profiles for the backup and snapshot location credentials.
 
   > [!NOTE]
   > If you do not want to specify backup or snapshot locations during the installation, you can create a default `Secret` with an empty `credentials-velero` file. If there is no default `Secret`, the installation will fail.
 
 **Procedure**
 
-1. Click **Ecosystem** -> **Installed Operators** and select the OADP Operator.
+1. Click **Ecosystem** → **Installed Operators** and select the OADP Operator.
 2. Under **Provided APIs**, click **Create instance** in the **DataProtectionApplication** box.
 3. Click **YAML View** and update the parameters of the `DataProtectionApplication` manifest:
 
@@ -480,7 +482,7 @@ You install the Data Protection Application (DPA) by creating an instance of the
      backupLocations:
        - name: default
          velero:
-           provider: {{ provider }}
+           provider: aws
            default: true
            objectStorage:
              bucket: <bucket_name>
@@ -492,17 +494,17 @@ You install the Data Protection Application (DPA) by creating an instance of the
              s3Url: <s3_url>
            credential:
              key: cloud
-             name: {{ credentials }}
+             name: cloud-credentials
      snapshotLocations:
        - name: default
          velero:
-           provider: {{ provider }}
+           provider: aws
            config:
              region: <region>
              profile: "default"
            credential:
              key: cloud
-             name: {{ credentials }}
+             name: cloud-credentials
    ```
 
    where:
@@ -541,7 +543,7 @@ You install the Data Protection Application (DPA) by creating an instance of the
    :   Specifies the URL of the object store that you are using to store backups. Not required for AWS S3. Required only for S3 compatible storage.
 
    `name`
-   :   Specifies the name of the `Secret` object that you created. If you do not specify this value, the default name, `{{ credentials }}`, is used. If you specify a custom name, the custom name is used for the backup location.
+   :   Specifies the name of the `Secret` object that you created. If you do not specify this value, the default name, `cloud-credentials`, is used. If you specify a custom name, the custom name is used for the backup location.
 
    `snapshotLocations`
    :   Specifies a snapshot location, unless you use CSI snapshots or a File System Backup (FSB) to back up PVs.
@@ -550,7 +552,7 @@ You install the Data Protection Application (DPA) by creating an instance of the
    :   Specifies that the snapshot location must be in the same region as the PVs.
 
    `name`
-   :   Specifies the name of the `Secret` object that you created. If you do not specify this value, the default name, `{{ credentials }}`, is used. If you specify a custom name, the custom name is used for the snapshot location. If your backup and snapshot locations use different credentials, create separate profiles in the `credentials-velero` file.
+   :   Specifies the name of the `Secret` object that you created. If you do not specify this value, the default name, `cloud-credentials`, is used. If you specify a custom name, the custom name is used for the snapshot location. If your backup and snapshot locations use different credentials, create separate profiles in the `credentials-velero` file.
 4. Click **Create**.
 
 **Verification**
@@ -1510,6 +1512,7 @@ If you are not using `Restic`, `Kopia`, or `DataMover` for your backups, you can
    :   Enables the node agent. You can set up a job to enable and disable the `nodeAgent` field in the `DataProtectionApplication` CR. For more information, see "Running tasks in pods using jobs".
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing the OADP Operator](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/oadp-installing-operator#oadp-installing-operator-doc)
 - [Velero 1.16](https://velero.io/docs/v1.16/)

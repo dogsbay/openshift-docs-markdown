@@ -1,5 +1,5 @@
 ---
-title: OAuthClient []
+title: OAuthClient [oauth.openshift.io/v1]
 ---
 
 # OAuthClient \[oauth.openshift.io/v1\] {#oauthclient-oauth-openshift-io-v1}
@@ -18,17 +18,17 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `accessTokenInactivityTimeoutSeconds` | `integer` | accessTokenInactivityTimeoutSeconds overrides the default token inactivity timeout for tokens granted to this client. The value represents the maximum amount of time that can occur between consecutive uses of the token. Tokens become invalid if they are not used within this temporal window. The user will need to acquire a new token to regain access once a token times out. This value needs to be set only if the default set in configuration is not appropriate for this client. Valid values are: - 0: Tokens for this client never time out - X: Tokens time out if there is no activity for X seconds The current minimum allowed value for X is 300 (5 minutes) WARNING: existing tokens' timeout will not be affected (lowered) by changing this value |
+| `accessTokenInactivityTimeoutSeconds` | `integer` | accessTokenInactivityTimeoutSeconds overrides the default token inactivity timeout for tokens granted to this client. The value represents the maximum amount of time that can occur between consecutive uses of the token. Tokens become invalid if they are not used within this temporal window. The user will need to acquire a new token to regain access once a token times out. This value needs to be set only if the default set in configuration is not appropriate for this client. Valid values are: - 0: Tokens for this client never time out - X: Tokens time out if there is no activity for X seconds The current minimum allowed value for X is 300 (5 minutes)<br>WARNING: existing tokens' timeout will not be affected (lowered) by changing this value |
 | `accessTokenMaxAgeSeconds` | `integer` | accessTokenMaxAgeSeconds overrides the default access token max age for tokens granted to this client. 0 means no expiration. |
-| `additionalSecrets` | `array (string)` | additionalSecrets holds other secrets that may be used to identify the client.  This is useful for rotation and for service account token validation |
+| `additionalSecrets` | `array (string)` | additionalSecrets holds other secrets that may be used to identify the client. This is useful for rotation and for service account token validation |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `grantMethod` | `string` | grantMethod is a required field which determines how to handle grants for this client. Valid grant handling methods are:  - auto:   always approves grant requests, useful for trusted clients  - prompt: prompts the end user for approval of grant requests, useful for third-party clients |
+| `grantMethod` | `string` | grantMethod is a required field which determines how to handle grants for this client. Valid grant handling methods are: - auto: always approves grant requests, useful for trusted clients - prompt: prompts the end user for approval of grant requests, useful for third-party clients |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `redirectURIs` | `array (string)` | redirectURIs is the valid redirection URIs associated with a client |
 | `respondWithChallenges` | `boolean` | respondWithChallenges indicates whether the client wants authentication needed responses made in the form of challenges instead of redirects |
-| `scopeRestrictions` | `array` | scopeRestrictions describes which scopes this client can request.  Each requested scope is checked against each restriction.  If any restriction matches, then the scope is allowed. If no restriction matches, then the scope is denied. |
-| `scopeRestrictions[]` | `object` | ScopeRestriction describe one restriction on scopes.  Exactly one option must be non-nil. |
+| `scopeRestrictions` | `array` | scopeRestrictions describes which scopes this client can request. Each requested scope is checked against each restriction. If any restriction matches, then the scope is allowed. If no restriction matches, then the scope is denied. |
+| `scopeRestrictions[]` | `object` | ScopeRestriction describe one restriction on scopes. Exactly one option must be non-nil. |
 | `secret` | `string` | secret is the unique secret associated with a client |
 
 ### .scopeRestrictions {#_scoperestrictions}
@@ -74,8 +74,8 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `allowEscalation` | `boolean` | allowEscalation indicates whether you can request roles and their escalating resources |
-| `namespaces` | `array (string)` | namespaces is the list of namespaces that can be referenced.  \* means any of them (including \*) |
-| `roleNames` | `array (string)` | roleNames is the list of cluster roles that can referenced.  \* means anything |
+| `namespaces` | `array (string)` | namespaces is the list of namespaces that can be referenced. \* means any of them (including \*) |
+| `roleNames` | `array (string)` | roleNames is the list of cluster roles that can referenced. \* means anything |
 
 ## API endpoints {#_api_endpoints}
 
@@ -89,13 +89,13 @@ The following API endpoints are available:
 - `/apis/oauth.openshift.io/v1/watch/oauthclients`
 
   - `GET`: watch individual changes to a list of OAuthClient. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/oauth.openshift.io/v1/oauthclients/{{ name }}`
+- `/apis/oauth.openshift.io/v1/oauthclients/{name}`
 
   - `DELETE`: delete an OAuthClient
   - `GET`: read the specified OAuthClient
   - `PATCH`: partially update the specified OAuthClient
   - `PUT`: replace the specified OAuthClient
-- `/apis/oauth.openshift.io/v1/watch/oauthclients/{{ name }}`
+- `/apis/oauth.openshift.io/v1/watch/oauthclients/{name}`
 
   - `GET`: watch changes to an object of kind OAuthClient. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
 
@@ -192,7 +192,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/oauth.openshift.io/v1/oauthclients/{{ name }} {#_apisoauthopenshiftiov1oauthclients_name}
+### /apis/oauth.openshift.io/v1/oauthclients/{name} {#_apisoauthopenshiftiov1oauthclients_name}
 
 **Global path parameters**
 
@@ -297,7 +297,7 @@ Description
 | 201 - Created | [`OAuthClient`](/openshift-docs-markdown/rest_api/oauth_apis/oauthclient-oauth-openshift-io-v1#oauthclient-oauth-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/oauth.openshift.io/v1/watch/oauthclients/{{ name }} {#_apisoauthopenshiftiov1watchoauthclients_name}
+### /apis/oauth.openshift.io/v1/watch/oauthclients/{name} {#_apisoauthopenshiftiov1watchoauthclients_name}
 
 **Global path parameters**
 

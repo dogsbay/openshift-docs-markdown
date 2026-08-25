@@ -22,18 +22,20 @@ When updating from one y-stream release to the next, you must ensure that the in
    ```
 
    > [!IMPORTANT]
-   > - ***Control plane only update***: Ensure you point to the interim <y+1> release path
-   > - ***Y-stream update*** - Ensure you use the correct <y.z> release that follows the Kubernetes [version skew policy](https://kubernetes.io/releases/version-skew-policy/).
-   > - ***Z-stream update*** - Verify that there are no problems moving to that specific release
+   > - **Control plane only update**: Ensure you point to the interim <y+1> release path
+   > - **Y-stream update** - Ensure you use the correct <y.z> release that follows the Kubernetes [version skew policy](https://kubernetes.io/releases/version-skew-policy/).
+   > - **Z-stream update** - Verify that there are no problems moving to that specific release
 
    ```terminal
    Requested update to <version>
    ```
 
+   -
 
-where: `<version>`:: Specifies the version number for your particular update, such as `4.15.33`.
+   where: `<version>`:: Specifies the version number for your particular update, such as `4.15.33`.
 
 **Additional resources**
+{._additional-resources}
 
 - [Selecting the target release](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-api#update-selecting-the-target-release_update-api)
 

@@ -247,7 +247,8 @@ If you are running boot image skew enforcement in the manual mode, you must manu
 
      If the `spec.bootImageSkewEnforcement.manual.mode` is `OCPVersion`, specify the OpenShift Container Platform version of the boot image with the `ocpVersion` parameter, as shown in the example.
 
-## Additional resources {#additional-resources_mco-update-boot-skew-mgmt}
+**Additional resources**
+{._additional-resources}
 
 - [Boot image management](/openshift-docs-markdown/machine_configuration/mco-update-boot-images#mco-update-boot-images)
 - [Manually updating the boot image](/openshift-docs-markdown/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)

@@ -272,7 +272,8 @@ where:
 `spec.lifecycleHooks.preDrain.owner`
 :   Specifies the hook-implementing controller that manages the `preDrain` lifecycle hook.
 
-## Additional resources {#additional-resources_unhealthy-etcd-member}
+**Additional resources**
+{._additional-resources}
 
 - [Machine phases and lifecycle](/openshift-docs-markdown/machine_management/machine-phases-lifecycle#machine-phases-lifecycle)
 - [Replacing an unhealthy etcd member](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/replacing-unhealthy-etcd-member#replacing-unhealthy-etcd-member)

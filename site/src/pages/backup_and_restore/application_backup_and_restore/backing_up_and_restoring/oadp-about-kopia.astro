@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"oadp-about-kopia","text":"About Kopia"},{"d
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-about-kopia";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="oadp-about-kopia" class="group scroll-mt-20">About Kopia<a href="#oadp-about-kopia" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Kopia is an open-source backup and restore tool, which creates encrypted snapshots of your data and saves them to remote or cloud storage.</p>
+      <p class="_abstract">Kopia is an open-source backup and restore tool, which creates encrypted snapshots of your data and saves them to remote or cloud storage.</p>
       <p>Kopia supports network and local storage locations, and many cloud or remote storage locations, including:</p>
       <ul>
       <li>Amazon S3 and any cloud storage that is compatible with S3</li>

@@ -31,7 +31,8 @@ S2I performs the following steps:
 
 Buildah then creates the container image.
 
-## Additional resources {#additional-resources_using-s21-images}
+**Additional resources**
+{._additional-resources}
 
 - [Red Hat Software Collections container images](https://access.redhat.com/documentation/en-us/red_hat_software_collections/3/html-single/using_red_hat_software_collections_container_images/index)
 - [Introduction to source-to-image for OpenShift with Red Hat build of OpenJDK](https://docs.redhat.com/en/documentation/red_hat_build_of_openjdk/11/html/using_source-to-image_for_openshift_with_red_hat_build_of_openjdk_11/openjdk-overview-s2i-openshift)

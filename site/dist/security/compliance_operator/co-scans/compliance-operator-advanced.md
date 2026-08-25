@@ -163,8 +163,8 @@ To perform a single scan, annotate the scan with the `compliance.openshift.io/re
    75-worker-scan-usbguard-allow-hid-and-hub
    ```
 
-> [!IMPORTANT]
-> When the scan setting `default-auto-apply` label is applied, remediations are applied automatically and outdated remediations automatically update. If there are remediations that were not applied due to dependencies, or remediations that had been outdated, rescanning applies the remediations and might trigger a reboot. Only remediations that use `MachineConfig` objects trigger reboots. If there are no updates or dependencies to be applied, no reboot occurs.
+   > [!IMPORTANT]
+   > When the scan setting `default-auto-apply` label is applied, remediations are applied automatically and outdated remediations automatically update. If there are remediations that were not applied due to dependencies, or remediations that had been outdated, rescanning applies the remediations and might trigger a reboot. Only remediations that use `MachineConfig` objects trigger reboots. If there are no updates or dependencies to be applied, no reboot occurs.
 
 ## Setting custom storage size for results {#compliance-custom-storage_compliance-advanced}
 
@@ -309,7 +309,8 @@ In some environments, you must create a custom Security Context Constraints (SCC
    restricted-adjusted-compliance   false   <no value>   MustRunAs   MustRunAsRange   MustRunAs   RunAsAny   30         false            ["configMap","downwardAPI","emptyDir","persistentVolumeClaim","projected","secret"]
    ```
 
-## Additional resources {#additional-resources_compliance-advanced}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring priority and preemption](/openshift-docs-markdown/nodes/pods/nodes-pods-priority#nodes-pods-priority-configuring_nodes-pods-priority)
 - [Managing security context constraints](/openshift-docs-markdown/authentication/managing-security-context-constraints#managing-pod-security-policies)

@@ -18,18 +18,20 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-post-install-storage-config","text":"Postinstallation storage configuration"},{"depth":2,"slug":"configuring-local-storage-hpp","text":"Configuring local storage by using the HPP"},{"depth":2,"slug":"additional-resources_{{ context }}","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"virt-post-install-storage-config","text":"Postinstallation storage configuration"},{"depth":2,"slug":"configuring-local-storage-hpp","text":"Configuring local storage by using the HPP"},{"depth":3,"slug":"virt-creating-storage-class-csi-driver_virt-post-install-storage-config","text":"Creating a storage class for the CSI driver with the storagePools stanza"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/post_installation_configuration/virt-post-install-storage-config";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
-const title = "Postinstallation storage configuration {id=\"virt-post-install-storage-config\"}{% if not (openshift_rosa or (openshift_dedicated or openshift_rosa_hcp)) %}";
-const description = "{%- if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %} After you install {{ VirtProductName }}, you must configure a default storage…" || undefined;
+const title = "Postinstallation storage configuration";
+const description = "After you install OpenShift Virtualization, you must configure a default storage class. Configuring a storage class allows your cluster to receive…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -42,7 +44,7 @@ const pageCategory = ["virt","virt/post_installation_configuration"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Postinstallation storage configuration {#virt-post-install-storage-config}\n\n{%- if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %} After you install {{ VirtProductName }}, you must configure a default storage class. Configuring a storage class allows your cluster to receive automated boot source updates. {%- endif %} If your storage provider is not recognized by the Containerized Data Importer (CDI), you must configure storage profiles after you install {{ VirtProductName }}. Storage profiles provide recommended storage settings based on the associated storage class.\n\nOptional: You can configure local storage by using the hostpath provisioner (HPP).\n\nSee the \"Storage configuration overview\" documentation for more options, including configuring the CDI, data volumes, and automatic boot source updates.\n\n## Configuring local storage by using the HPP {#configuring-local-storage-hpp}\n\nWhen you install the {{ VirtProductName }} Operator, the Hostpath Provisioner (HPP) Operator is automatically installed. The HPP Operator creates the HPP provisioner.\n\nThe HPP is a local storage provisioner designed for {{ VirtProductName }}. To use the HPP, you must create an HPP custom resource (CR).\n\n> [!IMPORTANT]\n> HPP storage pools must not be in the same partition as the operating system. Otherwise, the storage pools might fill the operating system partition. If the operating system partition is full, this might negatively impact performance, or the node can become unstable or unusable.\n\n{% leveloffset +2 %}{% include \"./modules/virt-creating-storage-class-csi-driver.md\" %}\n\n## Additional resources {#additional-resources_{{ context }}}\n\n- [Defining a storage class](/openshift-docs-markdown/storage/dynamic-provisioning#dynamic-provisioning-defining-storage-class_dynamic-provisioning)\n- [Configuring storage profiles](/openshift-docs-markdown/virt/storage/virt-configuring-storage-profile#virt-configuring-storage-profile)\n- [Storage configuration overview](/openshift-docs-markdown/virt/storage/virt-storage-config-overview#virt-storage-config-overview)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/post_installation_configuration/virt-post-install-storage-config.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Postinstallation storage configuration {#virt-post-install-storage-config}\n\nAfter you install OpenShift Virtualization, you must configure a default storage class. Configuring a storage class allows your cluster to receive automated boot source updates. If your storage provider is not recognized by the Containerized Data Importer (CDI), you must configure storage profiles after you install OpenShift Virtualization. Storage profiles provide recommended storage settings based on the associated storage class.\n\nOptional: You can configure local storage by using the hostpath provisioner (HPP).\n\nSee the \"Storage configuration overview\" documentation for more options, including configuring the CDI, data volumes, and automatic boot source updates.\n\n## Configuring local storage by using the HPP {#configuring-local-storage-hpp}\n\nWhen you install the OpenShift Virtualization Operator, the Hostpath Provisioner (HPP) Operator is automatically installed. The HPP Operator creates the HPP provisioner.\n\nThe HPP is a local storage provisioner designed for OpenShift Virtualization. To use the HPP, you must create an HPP custom resource (CR).\n\n> [!IMPORTANT]\n> HPP storage pools must not be in the same partition as the operating system. Otherwise, the storage pools might fill the operating system partition. If the operating system partition is full, this might negatively impact performance, or the node can become unstable or unusable.\n\n### Creating a storage class for the CSI driver with the storagePools stanza {#virt-creating-storage-class-csi-driver_virt-post-install-storage-config}\n\nTo use the hostpath provisioner (HPP) you must create an associated storage class for the Container Storage Interface (CSI) driver.\n\nWhen you create a storage class, you set parameters that affect the dynamic provisioning of persistent volumes (PVs) that belong to that storage class. You cannot update a `StorageClass` object’s parameters after you create it.\n\n**Procedure**\n\n1. Create a `storageclass_csi.yaml` file to define the storage class:\n\n   ```yaml\n   apiVersion: storage.k8s.io/v1\n   kind: StorageClass\n   metadata:\n     name: hostpath-csi\n   provisioner: kubevirt.io.hostpath-provisioner\n   reclaimPolicy: Delete\n   volumeBindingMode: WaitForFirstConsumer\n   parameters:\n     storagePool: my-storage-pool\n   ```\n\n   - `reclaimPolicy` defines whether the underlying storage is deleted or retained when a user deletes a PVC. The two possible `reclaimPolicy` values are `Delete` and `Retain`. If you do not specify a value, the default value is `Delete`.\n   - `volumeBindingMode` defines the timing of PV creation. In this example, the `WaitForFirstConsumer` configuration delays PV creation until the scheduler assigns a pod to a specific node.\n\n     > [!NOTE]\n     > Virtual machines use data volumes based on local PVs, which reside on specific nodes. When the system prepares a disk image for the virtual machine, the scheduler might not place the virtual machine on the node where it pinned the local storage PV. + To solve this problem, use the Kubernetes pod scheduler to bind the persistent volume claim (PVC) to a PV on the correct node. Setting the `volumeBindingMode` parameter of the `StorageClass` to `WaitForFirstConsumer` delays PV binding and provisioning until you create a pod that uses the PVC.\n   - `parameters.storagePool` defines the name of the storage pool defined in the HPP custom resource (CR).\n2. Save the file and exit.\n3. Create the `StorageClass` object by running the following command:\n\n   ```terminal\n   $ oc create -f storageclass_csi.yaml\n   ```\n\n**Additional resources**\n{._additional-resources}\n\n- [Defining a storage class](/openshift-docs-markdown/storage/dynamic-provisioning#dynamic-provisioning-defining-storage-class_dynamic-provisioning)\n- [Configuring storage profiles](/openshift-docs-markdown/virt/storage/virt-configuring-storage-profile#virt-configuring-storage-profile)\n- [Storage configuration overview](/openshift-docs-markdown/virt/storage/virt-storage-config-overview#virt-storage-config-overview)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/post_installation_configuration/virt-post-install-storage-config.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,44 +80,71 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="virt-post-install-storage-config" class="group scroll-mt-20">Postinstallation storage configuration<a href="#virt-post-install-storage-config" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p></p>
-      <p>{"{"}%- if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %{"}"} After you install {"{"}{"{"} VirtProductName {"}"}{"}"}, you must configure a default storage class. Configuring a storage class allows your cluster to receive automated boot source updates. {"{"}%- endif %{"}"} If your storage provider is not recognized by the Containerized Data Importer (CDI), you must configure storage profiles after you install {"{"}{"{"} VirtProductName {"}"}{"}"}. Storage profiles provide recommended storage settings based on the associated storage class.</p>
+      <p class="_abstract">After you install OpenShift Virtualization, you must configure a default storage class. Configuring a storage class allows your cluster to receive automated boot source updates. If your storage provider is not recognized by the Containerized Data Importer (CDI), you must configure storage profiles after you install OpenShift Virtualization. Storage profiles provide recommended storage settings based on the associated storage class.</p>
       <p>Optional: You can configure local storage by using the hostpath provisioner (HPP).</p>
       <p>See the "Storage configuration overview" documentation for more options, including configuring the CDI, data volumes, and automatic boot source updates.</p>
       <h2 id="configuring-local-storage-hpp" class="group scroll-mt-20">Configuring local storage by using the HPP<a href="#configuring-local-storage-hpp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
-      <p>When you install the {"{"}{"{"} VirtProductName {"}"}{"}"} Operator, the Hostpath Provisioner (HPP) Operator is automatically installed. The HPP Operator creates the HPP provisioner.</p>
-      <p>The HPP is a local storage provisioner designed for {"{"}{"{"} VirtProductName {"}"}{"}"}. To use the HPP, you must create an HPP custom resource (CR).</p>
+      <p>When you install the OpenShift Virtualization Operator, the Hostpath Provisioner (HPP) Operator is automatically installed. The HPP Operator creates the HPP provisioner.</p>
+      <p>The HPP is a local storage provisioner designed for OpenShift Virtualization. To use the HPP, you must create an HPP custom resource (CR).</p>
       <Alert variant="info" class="my-4">
         <AlertTitle>Important</AlertTitle>
         <AlertDescription>
           <p>HPP storage pools must not be in the same partition as the operating system. Otherwise, the storage pools might fill the operating system partition. If the operating system partition is full, this might negatively impact performance, or the node can become unstable or unusable.</p>
         </AlertDescription>
       </Alert>
-      <p>{"{"}% leveloffset +2 %{"}"}{"{"}% include "./modules/virt-creating-storage-class-csi-driver.md" %{"}"}</p>
-      <h2 id="additional-resources_{{ context }}" class="group scroll-mt-20">Additional resources<a href="#additional-resources_{{ context }}" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
-      <p></p>
+      <h3 id="virt-creating-storage-class-csi-driver_virt-post-install-storage-config" class="group scroll-mt-20">Creating a storage class for the CSI driver with the storagePools stanza<a href="#virt-creating-storage-class-csi-driver_virt-post-install-storage-config" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To use the hostpath provisioner (HPP) you must create an associated storage class for the Container Storage Interface (CSI) driver.</p>
+      <p>When you create a storage class, you set parameters that affect the dynamic provisioning of persistent volumes (PVs) that belong to that storage class. You cannot update a <code>StorageClass</code> object’s parameters after you create it.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a <code>storageclass_csi.yaml</code> file to define the storage class:
+      <CodeBlock code={"apiVersion: storage.k8s.io/v1\nkind: StorageClass\nmetadata:\n  name: hostpath-csi\nprovisioner: kubevirt.io.hostpath-provisioner\nreclaimPolicy: Delete\nvolumeBindingMode: WaitForFirstConsumer\nparameters:\n  storagePool: my-storage-pool"} lang="yaml" />
+      <ul>
+      <li><code>reclaimPolicy</code> defines whether the underlying storage is deleted or retained when a user deletes a PVC. The two possible <code>reclaimPolicy</code> values are <code>Delete</code> and <code>Retain</code>. If you do not specify a value, the default value is <code>Delete</code>.</li>
+      <li>
+      <code>volumeBindingMode</code> defines the timing of PV creation. In this example, the <code>WaitForFirstConsumer</code> configuration delays PV creation until the scheduler assigns a pod to a specific node.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Virtual machines use data volumes based on local PVs, which reside on specific nodes. When the system prepares a disk image for the virtual machine, the scheduler might not place the virtual machine on the node where it pinned the local storage PV. + To solve this problem, use the Kubernetes pod scheduler to bind the persistent volume claim (PVC) to a PV on the correct node. Setting the <code>volumeBindingMode</code> parameter of the <code>StorageClass</code> to <code>WaitForFirstConsumer</code> delays PV binding and provisioning until you create a pod that uses the PVC.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li><code>parameters.storagePool</code> defines the name of the storage pool defined in the HPP custom resource (CR).</li>
+      </ul>
+      </li>
+      <li>Save the file and exit.</li>
+      <li>
+      Create the <code>StorageClass</code> object by running the following command:
+      <CodeBlock code={"$ oc create -f storageclass_csi.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul>
       <li><a href="/openshift-docs-markdown/storage/dynamic-provisioning#dynamic-provisioning-defining-storage-class_dynamic-provisioning">Defining a storage class</a></li>
       <li><a href="/openshift-docs-markdown/virt/storage/virt-configuring-storage-profile#virt-configuring-storage-profile">Configuring storage profiles</a></li>
       <li><a href="/openshift-docs-markdown/virt/storage/virt-storage-config-overview#virt-storage-config-overview">Storage configuration overview</a></li>
       </ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

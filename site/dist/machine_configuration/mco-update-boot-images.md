@@ -20,6 +20,7 @@ For all other platforms, the MCO does not automatically update the boot image wi
 For clusters where automatic updates are disabled or not supported, you can manually update the boot image on your cluster. See "Manually updating the boot image" for information. The method to update or specify the image varies by platform.
 
 **Additional resources**
+{._additional-resources}
 
 - [Manually updating the boot image](/openshift-docs-markdown/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)
 
@@ -69,8 +70,8 @@ How the cluster behaves after disabling or re-enabling the feature, depends upon
   - The boot image version used by the machine sets is updated to the current OpenShift Container Platform version, if different.
   - When you scale up nodes, the new nodes use the current OpenShift Container Platform version in the cluster.
 
-> [!NOTE]
-> Because a boot image is used only when a node is scaled up, this feature has no effect on existing nodes.
+  > [!NOTE]
+  > Because a boot image is used only when a node is scaled up, this feature has no effect on existing nodes.
 
 To view the current Red Hat Enterprise Linux CoreOS (RHCOS) boot image version used in your cluster, you can view the `/sysroot/.coreos-aleph-version.json` file on that node.
 
@@ -95,6 +96,7 @@ where:
 > 3. Enable the boot image management feature. For information, see "Enabling boot image management".
 
 **Additional resources**
+{._additional-resources}
 
 - [Disabling boot image management](/openshift-docs-markdown/machine_configuration/mco-update-boot-images#mco-update-boot-images-disable_machine-configs-configure)
 - [Enabling boot image management](/openshift-docs-markdown/machine_configuration/mco-update-boot-images#mco-update-boot-images-configuring_machine-configs-configure)
@@ -289,6 +291,7 @@ When boot image management is enabled, the MCO automatically enables boot image 
       :   Specifies the boot image version.
 
 **Additional resources**
+{._additional-resources}
 
 - [Obtaining the installation program](/openshift-docs-markdown/installing/installing_aws/ipi/ipi-aws-preparing-to-install#installation-obtaining-installer_ipi-aws-preparing-to-install)
 

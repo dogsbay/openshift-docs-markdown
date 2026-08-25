@@ -517,7 +517,7 @@ If the installation program fails the retrieve the URL for the console, use the 
 
 ## Troubleshooting a failure to add the ingress certificate to kubeconfig {#troubleshooting-failure-to-add-the-ingress-certificate-to-kubeconfig_ipi-install-troubleshooting}
 
-The installation program adds the default ingress certificate to the list of trusted client certificate authorities in `${{ INSTALL_DIR }}/auth/kubeconfig`. If the installation program fails to add the ingress certificate to the `kubeconfig` file, you can retrieve the certificate from the cluster and add it.
+The installation program adds the default ingress certificate to the list of trusted client certificate authorities in `${INSTALL_DIR}/auth/kubeconfig`. If the installation program fails to add the ingress certificate to the `kubeconfig` file, you can retrieve the certificate from the cluster and add it.
 
 **Procedure**
 
@@ -549,7 +549,7 @@ The installation program adds the default ingress certificate to the list of tru
    AQ==
    -----END CERTIFICATE-----
    ```
-2. Add the certificate to the `client-certificate-authority-data` field in the `${{ INSTALL_DIR }}/auth/kubeconfig` file.
+2. Add the certificate to the `client-certificate-authority-data` field in the `${INSTALL_DIR}/auth/kubeconfig` file.
 
 ## Troubleshooting SSH access to cluster nodes {#troubleshooting-ssh-access-to-cluster-nodes_ipi-install-troubleshooting}
 
@@ -602,7 +602,7 @@ If worker nodes are not created after 15 to 20 minutes, depending on the speed o
       --namespace=openshift-machine-api get deployments
    ```
 
-   If `${{ INSTALL_DIR }}` is not set in your environment, replace the value with the name of the installation directory.
+   If `${INSTALL_DIR}` is not set in your environment, replace the value with the name of the installation directory.
 
    ```terminal {title="Example output"}
    NAME                          READY   UP-TO-DATE   AVAILABLE   AGE
@@ -776,7 +776,7 @@ When creating a disconnected registry, you might encounter a "User Not Authorize
    > LOCAL_REPO='ocp4/openshift4'
    > ```
    >
-   > The values of `RELEASE_IMAGE` and `VERSION` were set during the ***Retrieving OpenShift Installer*** step of the ***Setting up the environment for an OpenShift installation*** section.
+   > The values of `RELEASE_IMAGE` and `VERSION` were set during the **Retrieving OpenShift Installer** step of the **Setting up the environment for an OpenShift installation** section.
 2. After mirroring the registry, confirm that you can access it in your disconnected environment by running the following command:
 
    ```terminal
@@ -964,9 +964,9 @@ This error indicates that the cluster node likely booted without first receiving
    [core@master-X ~]$ sudo journalctl -fu kubelet.service
    ```
 
-   If the cluster node is not getting the correct hostname over DHCP after the cluster is up and running, such as during a reboot, the cluster will have a pending `csr`. ***Do not*** approve a `csr`, or other issues might arise.
+   If the cluster node is not getting the correct hostname over DHCP after the cluster is up and running, such as during a reboot, the cluster will have a pending `csr`. **Do not** approve a `csr`, or other issues might arise.
 
-   - ***Addressing a `csr`***
+   - **Addressing a `csr`**
 
      1. Get CSRs on the cluster by running the following command:
 
@@ -1105,10 +1105,10 @@ The deployment of OpenShift Container Platform clusters depends on NTP synchroni
              RTC in local TZ: no
    ```
 
-   Ensure that the `System clock synchronized` value is ***yes*** before proceeding with the installation.
+   Ensure that the `System clock synchronized` value is **yes** before proceeding with the installation.
 4. Resolve clock drift based on your deployment stage:
 
-   - ***Addressing clock synchronization for clock drift in an existing cluster:***
+   - **Addressing clock synchronization for clock drift in an existing cluster:**
 
      1. Create a Butane config file including the contents of the `chrony.conf` file to be delivered to the nodes. In the following example, create `99-master-chrony.bu` to add the file to the control plane nodes. You can modify the file for compute nodes or repeat this procedure for the compute role.
 
@@ -1117,7 +1117,7 @@ The deployment of OpenShift Container Platform clusters depends on NTP synchroni
 
         ```yaml
         variant: openshift
-        version: {{ product_version }}.0
+        version: 4.22.0
         metadata:
           name: 99-master-chrony
           labels:
@@ -1155,7 +1155,7 @@ The deployment of OpenShift Container Platform clusters depends on NTP synchroni
         ```terminal
         $ oc apply -f 99-master-chrony.yaml
         ```
-     4. Ensure the `System clock synchronized` value is ***yes*** by running the following command:
+     4. Ensure the `System clock synchronized` value is **yes** by running the following command:
 
         ```terminal
         $ sudo timedatectl
@@ -1170,7 +1170,7 @@ The deployment of OpenShift Container Platform clusters depends on NTP synchroni
                       NTP service: active
                   RTC in local TZ: no
         ```
-   - ***Addressing clock synchronization for clock drift before deployment:***
+   - **Addressing clock synchronization for clock drift before deployment:**
 
      1. Generate the manifest files and add this file to the `openshift` directory.
 

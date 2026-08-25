@@ -51,15 +51,15 @@ You can migrate individual Cluster API objects to equivalent Machine API objects
 1. Identify the Cluster API resource that you want to migrate to a Machine API resource by running the following command:
 
    ```terminal
-   $ oc get <resource_kind> -n {{ from_namespace }}
+   $ oc get <resource_kind> -n openshift-cluster-api
    ```
 
    where `<resource_kind>` is one of the following values:
 
-   `machine.{{ from_api_group }}`
+   `machine.cluster.x-k8s.io`
    :   The fully qualified name of the resource kind for a compute or control plane machine.
 
-   `machineset.{{ from_api_group }}`
+   `machineset.cluster.x-k8s.io`
    :   The fully qualified name of the resource kind for a compute machine set.
 2. Edit the resource specification by running the following command:
 
@@ -83,10 +83,10 @@ You can migrate individual Cluster API objects to equivalent Machine API objects
      name: <resource_name>
      [...]
    spec:
-     authoritativeAPI: {{ to_api_value }}
+     authoritativeAPI: MachineAPI
      [...]
    status:
-     authoritativeAPI: {{ from_api_value }}
+     authoritativeAPI: ClusterAPI
      [...]
    ```
 
@@ -99,7 +99,7 @@ You can migrate individual Cluster API objects to equivalent Machine API objects
    :   Specifies the name of the resource that you want to migrate.
 
    `spec.authoritativeAPI`
-   :   Specifies the authoritative API that you want this resource to use. For example, to start migrating a Cluster API resource to the Machine API, specify `{{ to_api_value }}`.
+   :   Specifies the authoritative API that you want this resource to use. For example, to start migrating a Cluster API resource to the Machine API, specify `MachineAPI`.
 
    `status.authoritativeAPI`
    :   Specifies the value for the current authoritative API. This value indicates which API currently manages this resource. Do not change the value in this part of the specification.
@@ -123,10 +123,7 @@ You can migrate individual Cluster API objects to equivalent Machine API objects
   :   Specifies a compute machine with `machine.machine.openshift.io` or compute machine set with `machineset.machine.openshift.io`.
 
   `<resource_name>`
-  :   Specifies the name of the Machine API resource that corresponds to the Cluster API resource that you want to migrate to the Machine API.
-
-  - While the conversion progresses, this command returns a value of `Migrating`. If this value persists for a long time, check the logs for the `cluster-capi-operator` deployment in the `openshift-cluster-api` namespace for more information and to identify potential issues.
-  - When the conversion is complete, this command returns a value of `{{ to_api_value }}`.
+  :   Specifies the name of the Machine API resource that corresponds to the Cluster API resource that you want to migrate to the Machine API. \*   While the conversion progresses, this command returns a value of `Migrating`. If this value persists for a long time, check the logs for the `cluster-capi-operator` deployment in the `openshift-cluster-api` namespace for more information and to identify potential issues. \*   When the conversion is complete, this command returns a value of `MachineAPI`.
 
   > [!IMPORTANT]
   > Do not delete any nonauthoritative resource that does not use the current authoritative API unless you want to delete the corresponding resource that does use the current authoritative API.
@@ -134,6 +131,7 @@ You can migrate individual Cluster API objects to equivalent Machine API objects
   > When you delete a nonauthoritative resource that does not use the current authoritative API, the synchronization controller deletes the corresponding resource that does use the current authoritative API. For more information, see "Unexpected resource deletion behavior" in the *Troubleshooting resource migration* content.
 
 **Additional resources**
+{._additional-resources}
 
 - [Unexpected behavior when changing resource configurations](/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster-api-troubleshooting#ts-capi-migrate-unexpected-behavior_cluster-api-troubleshooting)
 
@@ -153,6 +151,7 @@ The values of the `.spec.authoritativeAPI` and `.spec.template.spec.authoritativ
 > When the `.spec.authoritativeAPI` value is `ClusterAPI`, the Machine API machine set is not authoritative and the `.spec.template.spec.authoritativeAPI` value is not used. As a result, the only combination that creates a compute machine with the Machine API as authoritative is where the `.spec.authoritativeAPI` and `.spec.template.spec.authoritativeAPI` values are `MachineAPI`.
 
 **Additional resources**
+{._additional-resources}
 
 - [Troubleshooting resource migration](/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster-api-troubleshooting#ts-capi-resource-migration_cluster-api-troubleshooting)
 - [Machine API to Cluster API resource migration](/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster-api-getting-started#mapi-to-capi-migration-overview_cluster-api-getting-started)

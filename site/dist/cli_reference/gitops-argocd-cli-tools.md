@@ -1,5 +1,5 @@
 ---
-title: "{{ gitops_shortname }} CLI for use with {{ gitops_title }}"
+title: GitOps CLI for use with Red&#160;Hat OpenShift GitOps
 ---
 
 # GitOps CLI for use with Red Hat OpenShift GitOps {#gitops-argocd-cli-tools}
@@ -12,6 +12,7 @@ With the GitOps CLI, you can make GitOps computing tasks simple and concise. You
 
 See [Installing the GitOps CLI](https://docs.openshift.com/gitops/latest/installing_gitops/installing-argocd-gitops-cli.html).
 
-## Additional resources {#additional-resources_gitops-argocd-cli-tools}
+**Additional resources**
+{._additional-resources}
 
 - [What is GitOps?](https://docs.openshift.com/gitops/latest/understanding_openshift_gitops/what-is-gitops.html#what-is-gitops)

@@ -21,8 +21,8 @@ You can uninstall the External Secrets Operator for Red Hat OpenShift from your 
 1. Log in to the OpenShift Container Platform web console.
 2. Uninstall the External Secrets Operator for Red Hat OpenShift using the following steps:
 
-   1. Navigate to **Ecosystem** -> **Installed Operators**.
-   2. Click the Options menu ![](kebab.png "Options menu") next to the **External Secrets Operator for Red Hat OpenShift** entry and click **Uninstall Operator**.
+   1. Navigate to **Ecosystem** → **Installed Operators**.
+   2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the **External Secrets Operator for Red Hat OpenShift** entry and click **Uninstall Operator**.
    3. In the confirmation dialog, click **Uninstall**.
 
 ## Removing External Secrets Operator for Red Hat OpenShift resources by using the web console {#external-secrets-remove-resources_external-secrets-operator-uninstall}
@@ -40,15 +40,15 @@ After you have uninstalled the External Secrets Operator for Red Hat OpenShift, 
 2. Remove the deployments of the `external-secrets` application components in the `external-secrets` namespace:
 
    1. Click the **Project** drop-down menu to see a list of all available projects, and select the **external-secrets** project.
-   2. Navigate to **Workloads** -> **Deployments**.
+   2. Navigate to **Workloads** → **Deployments**.
    3. Select the deployment that you want to delete.
    4. Click the **Actions** drop-down menu, and select **Delete Deployment** to see a confirmation dialog box.
    5. Click **Delete** to delete the deployment.
 3. Remove the custom resource definitions (CRDs) that were installed by the External Secrets Operator using the following steps:
 
-   1. Navigate to **Administration** -> **CustomResourceDefinitions**.
+   1. Navigate to **Administration** → **CustomResourceDefinitions**.
    2. Choose `external-secrets.io/component: controller` from the suggestions in the **Label** field to filter the CRDs.
-   3. Click the Options menu ![](kebab.png "Options menu") next to each of the following CRDs, and select **Delete Custom Resource Definition**:
+   3. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to each of the following CRDs, and select **Delete Custom Resource Definition**:
 
       - ACRAccessToken
       - ClusterExternalSecret
@@ -73,8 +73,8 @@ After you have uninstalled the External Secrets Operator for Red Hat OpenShift, 
       - Webhook
 4. Remove the `external-secrets-operator` namespace using the following steps:
 
-   1. Navigate to **Administration** -> **Namespaces**.
-   2. Click the Options menu ![](kebab.png "Options menu") next to the **External Secrets Operator** and select **Delete Namespace**.
+   1. Navigate to **Administration** → **Namespaces**.
+   2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the **External Secrets Operator** and select **Delete Namespace**.
    3. In the confirmation dialog, enter `external-secrets-operator` in the field and click **Delete**.
 
 ## Removing External Secrets Operator for Red Hat OpenShift resources by using the CLI {#external-secrets-remove-resources-cli_external-secrets-operator-uninstall}

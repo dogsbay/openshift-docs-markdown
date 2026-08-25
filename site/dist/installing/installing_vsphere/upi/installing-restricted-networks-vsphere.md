@@ -47,11 +47,7 @@ Clusters in restricted networks have the following additional limitations and re
 
 ## Internet access for OpenShift Container Platform {#cluster-entitlements_installing-restricted-networks-vsphere}
 
-In OpenShift Container Platform 4.22, you require access to the internet to
-
-obtain the images that are necessary to install
-
-your cluster.
+In OpenShift Container Platform 4.22, you require access to the internet to obtain the images that are necessary to install your cluster.
 
 You must have internet access to perform the following actions:
 
@@ -97,28 +93,30 @@ The following table outlines an example of the relationship among regions, zones
 </thead>
 <tbody>
 <tr>
-  <td>.4+</td>
-  <td>us-east .2+</td>
-  <td>us-east-1</td>
-</tr>
-<tr>
+  <td rowspan="4">us-east</td>
+  <td rowspan="2">us-east-1</td>
   <td>us-east-1a</td>
-  <td>us-east-1b.2+</td>
-  <td>us-east-2</td>
 </tr>
 <tr>
+  <td>us-east-1b</td>
+</tr>
+<tr>
+  <td rowspan="2">us-east-2</td>
   <td>us-east-2a</td>
-  <td>us-east-2b<br><br>.4+</td>
-  <td>us-west</td>
 </tr>
 <tr>
-  <td>.2+</td>
-  <td>us-west-1</td>
+  <td>us-east-2b</td>
+</tr>
+<tr>
+  <td rowspan="4">us-west</td>
+  <td rowspan="2">us-west-1</td>
   <td>us-west-1a</td>
 </tr>
 <tr>
-  <td>us-west-1b .2+</td>
-  <td>us-west-2</td>
+  <td>us-west-1b</td>
+</tr>
+<tr>
+  <td rowspan="2">us-west-2</td>
   <td>us-west-2a</td>
 </tr>
 <tr>
@@ -128,6 +126,7 @@ The following table outlines an example of the relationship among regions, zones
 </table>
 
 **Additional resources**
+{._additional-resources}
 
 - [Additional VMware vSphere configuration parameters](/openshift-docs-markdown/installing/installing_vsphere/installation-config-parameters-vsphere#installation-configuration-parameters-additional-vsphere_installation-config-parameters-vsphere)
 - [Deprecated VMware vSphere configuration parameters](/openshift-docs-markdown/installing/installing_vsphere/installation-config-parameters-vsphere#deprecated-parameters-vsphere_installation-config-parameters-vsphere)
@@ -160,27 +159,16 @@ Installing the cluster requires that you manually create the installation config
    > You must create a directory. Some installation assets, such as bootstrap X.509 certificates have short expiration intervals, so you must not reuse an installation directory. If you want to reuse individual files from another cluster installation, you can copy them into your directory. However, the file names for the installation assets might change between releases. Use caution when copying installation files from an earlier OpenShift Container Platform version.
 2. Customize the provided sample `install-config.yaml` file template and save the file in the `<installation_directory>`.
 
-   ```
-   :::note
+   > [!NOTE]
+   > You must name this configuration file `install-config.yaml`.
 
-   You must name this configuration file `install-config.yaml`.
+   - Unless you use a registry that RHCOS trusts by default, such as `docker.io`, you must provide the contents of the certificate for your mirror repository in the `additionalTrustBundle` section. In most cases, you must provide the certificate for your mirror.
+   - You must include the `imageContentSources` section from the output of the command to mirror the repository.
 
-   :::
-
-   *   Unless you use a registry that RHCOS trusts by default, such as `docker.io`, you must provide the contents of the certificate for your mirror repository in the `additionalTrustBundle` section. In most cases, you must provide the certificate for your mirror.
-   *   You must include the `imageContentSources` section from the output of the command to
-   mirror the repository.
-
-       :::important
-
-       *   The `ImageContentSourcePolicy` file is generated as an output of `oc mirror` after the mirroring process is finished.
-       *   The `oc mirror` command generates an `ImageContentSourcePolicy` file which contains the YAML needed to define `ImageContentSourcePolicy`.
-       Copy the text from this file and paste it into your `install-config.yaml` file.
-       *   You must run the 'oc mirror' command twice. The first time you run the `oc mirror` command, you get a full `ImageContentSourcePolicy` file. The second time you run the `oc mirror` command, you only get the difference between the first and second run.
-       Because of this behavior, you must always keep a backup of these files in case you need to merge them into one complete `ImageContentSourcePolicy` file. Keeping a backup of these two output files ensures that you have a complete `ImageContentSourcePolicy` file.
-
-       :::
-   ```
+     > [!IMPORTANT]
+     > - The `ImageContentSourcePolicy` file is generated as an output of `oc mirror` after the mirroring process is finished.
+     > - The `oc mirror` command generates an `ImageContentSourcePolicy` file which contains the YAML needed to define `ImageContentSourcePolicy`. Copy the text from this file and paste it into your `install-config.yaml` file.
+     > - You must run the 'oc mirror' command twice. The first time you run the `oc mirror` command, you get a full `ImageContentSourcePolicy` file. The second time you run the `oc mirror` command, you only get the difference between the first and second run. Because of this behavior, you must always keep a backup of these files in case you need to merge them into one complete `ImageContentSourcePolicy` file. Keeping a backup of these two output files ensures that you have a complete `ImageContentSourcePolicy` file.
 3. If you are installing a three-node cluster or a cluster with user-provisioned infrastructure, set the `compute.replicas` parameter to `0`. In a three-node cluster, this ensures that the cluster’s control planes are schedulable. For more information, see "Installing a three-node cluster". In a cluster with user-provisioned infrastructure, you must manually deploy compute machines before you finish installing OpenShift Container Platform.
 4. Back up the `install-config.yaml` file so that you can use it to install many clusters.
 
@@ -188,6 +176,7 @@ Installing the cluster requires that you manually create the installation config
    > Back up the `install-config.yaml` file now, because the installation process consumes the file in the next step.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installation configuration parameters](/openshift-docs-markdown/installing/installing_vsphere/installation-config-parameters-vsphere#installation-config-parameters-vsphere)
 
@@ -207,12 +196,7 @@ sshKey: ssh-ed25519 AAAA...
 compute:
 - name:  <worker_name>
   platform: {}
-{%- if vsphere_upi %}
   replicas: 0
-{% endif %}
-{% if not vsphere_upi %}
-  replicas: 3
-{%- endif %}
 controlPlane:
   name: <control_plane_name>
   platform: {}
@@ -223,12 +207,6 @@ networking:
     hostPrefix: 23
 platform:
   vsphere:
-{%- if not vsphere_upi %}
-    apiVIPs:
-    - 10.0.0.1
-    ingressVIPs:
-    - 10.0.0.2
-      {%- endif %}
     failureDomains:
     - name: <failure_domain_name>
       region: <default_region_name>
@@ -285,48 +263,42 @@ Production environments can deny direct access to the internet and instead have 
    proxy:
      httpProxy: http://<username>:<pswd>@<ip>:<port>
      httpsProxy: https://<username>:<pswd>@<ip>:<port>
+     noProxy: example.com
+   additionalTrustBundle: |
+       -----BEGIN CERTIFICATE-----
+       <MY_TRUSTED_CA_CERT>
+       -----END CERTIFICATE-----
+   additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle>
+   # ...
    ```
 
-{%- if not aws %} noProxy: example.com {% endif %} {% if aws %} noProxy: ec2.<aws_region>.amazonaws.com,elasticloadbalancing.<aws_region>.amazonaws.com,s3.<aws_region>.amazonaws.com {%- endif %} additionalTrustBundle: | -----BEGIN CERTIFICATE----- <MY_TRUSTED_CA_CERT> -----END CERTIFICATE----- additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle> # ... \`\`\`
+   where:
 
-````
-where:
+   `proxy.httpProxy`
+   :   Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be `http`.
 
-`proxy.httpProxy`
-:   Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be `http`.
+   `proxy.httpsProxy`
+   :   Specifies a proxy URL to use for creating HTTPS connections outside the cluster.
 
-`proxy.httpsProxy`
-:   Specifies a proxy URL to use for creating HTTPS connections outside the cluster.
+   `proxy.noProxy`
+   :   Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with `.` to match subdomains only. For example, `.y.com` matches `x.y.com`, but not `y.com`. Use `*` to bypass the proxy for all destinations. You must include vCenter’s IP address and the IP range that you use for its machines.
 
-`proxy.noProxy`
-:   Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with `.` to match subdomains only. For example, `.y.com` matches `x.y.com`, but not `y.com`. Use `*` to bypass the proxy for all destinations.
+   `additionalTrustBundle`
+   :   If you specify this value, the installation program generates a config map named `user-ca-bundle` in the `openshift-config` namespace to hold the additional CA certificates. If you specify `additionalTrustBundle` and at least one proxy setting, the `Proxy` object references the `user-ca-bundle` config map in the `trustedCA` field. The Cluster Network Operator then creates a `trusted-ca-bundle` config map that merges the contents specified for the `trustedCA` parameter with the RHCOS trust bundle. You must set the `additionalTrustBundle` field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.
 
-    You must include vCenter’s IP address and the IP range that you use for its machines.
+   `additionalTrustBundlePolicy`
+   :   Specifies the policy that determines the configuration of the `Proxy` object to reference the `user-ca-bundle` config map in the `trustedCA` field. The allowed values are `Proxyonly` and `Always`. Use `Proxyonly` to reference the `user-ca-bundle` config map only when you configure an `http/https` proxy. Use `Always` to always reference the `user-ca-bundle` config map. The default value is `Proxyonly`. Optional parameter.
 
-`additionalTrustBundle`
-:   If you specify this value, the installation program generates a config map named `user-ca-bundle` in the `openshift-config` namespace to hold the additional CA certificates. If you specify `additionalTrustBundle` and at least one proxy setting, the `Proxy` object references the `user-ca-bundle` config map in the `trustedCA` field. The Cluster Network Operator then creates a `trusted-ca-bundle` config map that merges the contents specified for the `trustedCA` parameter with the RHCOS trust bundle. You must set the `additionalTrustBundle` field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.
+   > [!NOTE]
+   > The installation program does not support the proxy `readinessEndpoints` field.
 
-`additionalTrustBundlePolicy`
-:   Specifies the policy that determines the configuration of the `Proxy` object to reference the `user-ca-bundle` config map in the `trustedCA` field. The allowed values are `Proxyonly` and `Always`. Use `Proxyonly` to reference the `user-ca-bundle` config map only when you configure an `http/https` proxy. Use `Always` to always reference the `user-ca-bundle` config map. The default value is `Proxyonly`. Optional parameter.
-
-:::note
-
-The installation program does not support the proxy `readinessEndpoints` field.
-
-:::
-
-:::note
-
-If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
-
-```terminal
-$ ./openshift-install wait-for install-complete --log-level debug
-```
-
-:::
-````
-
-1. Save the file and reference it when installing OpenShift Container Platform.
+   > [!NOTE]
+   > If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
+   >
+   > ```terminal
+   > $ ./openshift-install wait-for install-complete --log-level debug
+   > ```
+2. Save the file and reference it when installing OpenShift Container Platform.
 
    The installation program creates a cluster-wide proxy named `cluster` that uses the proxy settings in the `install-config.yaml` file. If you do not give proxy settings, the installation program still creates a `cluster` `Proxy` object, but it has a nil `spec`.
 
@@ -386,56 +358,56 @@ The default `install-config.yaml` file configuration from the previous release o
    ```
 6. Change to the directory that contains the installation program and initialize the cluster deployment according to your chosen installation requirements.
 
-```yaml {title="Sample install-config.yaml file with multiple data centers defined in a vSphere center"}
-# ...
-compute:
----
-  vsphere:
-      zones:
-        - "<machine_pool_zone_1>"
-        - "<machine_pool_zone_2>"
-# ...
-controlPlane:
-# ...
-vsphere:
-      zones:
-        - "<machine_pool_zone_1>"
-        - "<machine_pool_zone_2>"
-# ...
-platform:
-  vsphere:
-    vcenters:
-# ...
-    datacenters:
-      - <data_center_1_name>
-      - <data_center_2_name>
-    failureDomains:
-    - name: <machine_pool_zone_1>
-      region: <region_tag_1>
-      zone: <zone_tag_1>
-      server: <fully_qualified_domain_name>
-      topology:
-        datacenter: <data_center_1>
-        computeCluster: "/<data_center_1>/host/<cluster1>"
-        networks:
-        - <VM_Network1_name>
-        datastore: "/<data_center_1>/datastore/<datastore1>"
-        resourcePool: "/<data_center_1>/host/<cluster1>/Resources/<resourcePool1>"
-        folder: "/<data_center_1>/vm/<folder1>"
-    - name: <machine_pool_zone_2>
-      region: <region_tag_2>
-      zone: <zone_tag_2>
-      server: <fully_qualified_domain_name>
-      topology:
-        datacenter: <data_center_2>
-        computeCluster: "/<data_center_2>/host/<cluster2>"
-        networks:
-        - <VM_Network2_name>
-        datastore: "/<data_center_2>/datastore/<datastore2>"
-        resourcePool: "/<data_center_2>/host/<cluster2>/Resources/<resourcePool2>"
-        folder: "/<data_center_2>/vm/<folder2>"
-# ...
-```
+   ```yaml {title="Sample install-config.yaml file with multiple data centers defined in a vSphere center"}
+   # ...
+   compute:
+   ---
+     vsphere:
+         zones:
+           - "<machine_pool_zone_1>"
+           - "<machine_pool_zone_2>"
+   # ...
+   controlPlane:
+   # ...
+   vsphere:
+         zones:
+           - "<machine_pool_zone_1>"
+           - "<machine_pool_zone_2>"
+   # ...
+   platform:
+     vsphere:
+       vcenters:
+   # ...
+       datacenters:
+         - <data_center_1_name>
+         - <data_center_2_name>
+       failureDomains:
+       - name: <machine_pool_zone_1>
+         region: <region_tag_1>
+         zone: <zone_tag_1>
+         server: <fully_qualified_domain_name>
+         topology:
+           datacenter: <data_center_1>
+           computeCluster: "/<data_center_1>/host/<cluster1>"
+           networks:
+           - <VM_Network1_name>
+           datastore: "/<data_center_1>/datastore/<datastore1>"
+           resourcePool: "/<data_center_1>/host/<cluster1>/Resources/<resourcePool1>"
+           folder: "/<data_center_1>/vm/<folder1>"
+       - name: <machine_pool_zone_2>
+         region: <region_tag_2>
+         zone: <zone_tag_2>
+         server: <fully_qualified_domain_name>
+         topology:
+           datacenter: <data_center_2>
+           computeCluster: "/<data_center_2>/host/<cluster2>"
+           networks:
+           - <VM_Network2_name>
+           datastore: "/<data_center_2>/datastore/<datastore2>"
+           resourcePool: "/<data_center_2>/host/<cluster2>/Resources/<resourcePool2>"
+           folder: "/<data_center_2>/vm/<folder2>"
+   # ...
+   ```
 
 ## Creating the Kubernetes manifest and Ignition config files {#installation-user-infra-generate-k8s-manifest-ignition_installing-restricted-networks-vsphere}
 
@@ -498,15 +470,9 @@ The installation program converts the installation configuration into Kubernetes
    └── worker.ign
    ```
 
-   :::
-
 ## Configuring chrony time service {#installation-special-config-chrony_installing-restricted-networks-vsphere}
 
-You
-
-must
-
-set the time server and related settings used by the chrony time service (`chronyd`) by modifying the contents of the `chrony.conf` file and passing those contents to your nodes as a machine config.
+You must set the time server and related settings used by the chrony time service (`chronyd`) by modifying the contents of the `chrony.conf` file and passing those contents to your nodes as a machine config.
 
 For more information on chrony best practices, see the following resources:
 
@@ -519,51 +485,42 @@ For more information on chrony best practices, see the following resources:
 1. Create a Butane config including the contents of the `chrony.conf` file. For example, to configure chrony on worker nodes, create a `99-worker-chrony.bu` file.
 
    > [!NOTE]
-   >
+   > The [Butane version](https://coreos.github.io/butane/specs/) you specify in the config file should match the OpenShift Container Platform version and always ends in `0`. For example, `4.22.0`. See "Creating machine configs with Butane" for information about Butane.
 
-The [Butane version](https://coreos.github.io/butane/specs/) you specify in the config file should match the OpenShift Container Platform version and always ends in `0`. For example, `{{ product_version }}.0`. See "Creating machine configs with Butane" for information about Butane.
+   ```yaml
+   variant: openshift
+   version: 4.22.0
+   metadata:
+     name: 99-worker-chrony
+     labels:
+       machineconfiguration.openshift.io/role: worker
+   storage:
+     files:
+     - path: /etc/chrony.conf
+       mode: 0644
+       overwrite: true
+       contents:
+         inline: |
+           pool 0.rhel.pool.ntp.org iburst
+           driftfile /var/lib/chrony/drift
+           makestep 1.0 3
+           rtcsync
+           logdir /var/log/chrony
+   ```
 
-````
-:::
+   - `name: 99-worker-chrony` - Specify a name for the machine config file. On control plane nodes, substitute `master` for `worker`.
+   - `machineconfiguration.openshift.io/role: worker` - On control plane nodes, substitute `master` for `worker`.
+   - `mode: 0644` - Specify an octal value mode for the `mode` field in the machine config file. After creating the file and applying the changes, the `mode` is converted to a decimal value. You can check the YAML file with the command `oc get mc <mc-name> -o yaml`.
+   - `pool 0.rhel.pool.ntp.org iburst` - Specify any valid, reachable time source, such as the one provided by your DHCP server.
 
-```yaml
-variant: openshift
-version: {{ product_version }}.0
-metadata:
-  name: 99-worker-chrony
-  labels:
-    machineconfiguration.openshift.io/role: worker
-storage:
-  files:
-  - path: /etc/chrony.conf
-    mode: 0644
-    overwrite: true
-    contents:
-      inline: |
-        pool 0.rhel.pool.ntp.org iburst
-        driftfile /var/lib/chrony/drift
-        makestep 1.0 3
-        rtcsync
-        logdir /var/log/chrony
-```
-*   `name: 99-worker-chrony` - Specify a name for the machine config file. On control plane nodes, substitute `master` for `worker`.
-*   `machineconfiguration.openshift.io/role: worker` - On control plane nodes, substitute `master` for `worker`.
-*   `mode: 0644` - Specify an octal value mode for the `mode` field in the machine config file. After creating the file and applying the changes, the `mode` is converted to a decimal value. You can check the YAML file with the command `oc get mc <mc-name> -o yaml`.
-*   `pool 0.rhel.pool.ntp.org iburst` - Specify any valid, reachable time source, such as the one provided by your DHCP server.
-
-:::note
-
-For all-machine to all-machine communication, the Network Time Protocol (NTP) on UDP is port `123`. If an external NTP time server is configured, you must open UDP port `123`.
-
-:::
-````
-
-1. Use Butane to generate a `MachineConfig` object file, `99-worker-chrony.yaml`, containing the configuration to be delivered to the nodes:
+   > [!NOTE]
+   > For all-machine to all-machine communication, the Network Time Protocol (NTP) on UDP is port `123`. If an external NTP time server is configured, you must open UDP port `123`.
+2. Use Butane to generate a `MachineConfig` object file, `99-worker-chrony.yaml`, containing the configuration to be delivered to the nodes:
 
    ```terminal
    $ butane 99-worker-chrony.bu -o 99-worker-chrony.yaml
    ```
-2. Apply the configurations in one of two ways:
+3. Apply the configurations in one of two ways:
 
    - If the cluster is not running yet, after you generate manifest files, add the `MachineConfig` object file to the `<installation_directory>/openshift` directory, and then continue to create the cluster.
    - If the cluster is already running, apply the file:
@@ -675,7 +632,7 @@ To install OpenShift Container Platform on user-provisioned infrastructure on VM
 
    1. Click the **VMs and Templates** view.
    2. Right-click the name of your data center.
-   3. Click **New Folder** -> **New VM and Template Folder**.
+   3. Click **New Folder** → **New VM and Template Folder**.
    4. In the window that is displayed, enter the folder name. If you did not specify an existing folder in the `install-config.yaml` file, then create a folder with the same name as the infrastructure ID. You use this folder name so vCenter dynamically provisions storage in the appropriate location for its Workspace configuration.
 7. In the vSphere Client, create a template for the OVA image and then clone the template as needed.
 
@@ -684,7 +641,7 @@ To install OpenShift Container Platform on user-provisioned infrastructure on VM
 
    1. From the **Hosts and Clusters** tab, right-click your cluster name and select **Deploy OVF Template**.
    2. On the **Select an OVF** tab, specify the name of the RHCOS OVA file that you downloaded.
-   3. On the **Select a name and folder** tab, set a **Virtual machine name** for your template, such as `Template-{{ op_system }}`. Click the name of your vSphere cluster and select the folder you created in the previous step.
+   3. On the **Select a name and folder** tab, set a **Virtual machine name** for your template, such as `Template-RHCOS`. Click the name of your vSphere cluster and select the folder you created in the previous step.
    4. On the **Select a compute resource** tab, click the name of your vSphere cluster.
    5. On the **Select storage** tab, configure the storage options for your VM.
 
@@ -702,7 +659,7 @@ To install OpenShift Container Platform on user-provisioned infrastructure on VM
    > It is recommended that you update the hardware version of the VM template to version 15 before creating VMs from it, if necessary. Using hardware version 13 for your cluster nodes running on vSphere is now deprecated. If your imported template defaults to hardware version 13, you must ensure that your ESXi host is on 6.7U3 or later before upgrading the VM template to hardware version 15. If your vSphere version is less than 6.7U3, you can skip this upgrade step; however, a future version of OpenShift Container Platform is scheduled to remove support for hardware version 13 and vSphere versions less than 6.7U3.
 9. After the template deploys, deploy a VM for a machine in the cluster.
 
-   1. Right-click the template name and click **Clone** -> **Clone to Virtual Machine**.
+   1. Right-click the template name and click **Clone** → **Clone to Virtual Machine**.
    2. On the **Select a name and folder** tab, specify a name for the VM. You might include the machine type in the name, such as `control-plane-0` or `compute-1`.
 
       > [!NOTE]
@@ -740,7 +697,7 @@ To install OpenShift Container Platform on user-provisioned infrastructure on VM
         - Create a child resource pool from the cluster’s root resource pool. Perform resource allocation in this child resource pool.
    7. In the **Virtual Hardware** panel of the **Customize hardware** tab, modify the specified values as required. Ensure that the amount of RAM, CPU, and disk storage meets the minimum requirements for the machine type.
    8. Complete the remaining configuration steps. On clicking the **Finish** button, you have completed the cloning operation.
-   9. From the **Virtual Machines** tab, right-click on your VM and then select **Power** -> **Power On**.
+   9. From the **Virtual Machines** tab, right-click on your VM and then select **Power** → **Power On**.
    10. Check the console output to verify that Ignition ran.
 
        ```terminal {title="Example command"}
@@ -766,7 +723,7 @@ To scale a user-provisioned OpenShift Container Platform cluster on VMware vSphe
 
 **Procedure**
 
-1. Right-click the template’s name and click **Clone** -> **Clone to Virtual Machine**.
+1. Right-click the template’s name and click **Clone** → **Clone to Virtual Machine**.
 2. On the **Select a name and folder** tab, specify a name for the VM. You might include the machine type in the name, such as `compute-1`.
 
    > [!NOTE]
@@ -784,7 +741,7 @@ To scale a user-provisioned OpenShift Container Platform cluster on VMware vSphe
      - `disk.EnableUUID`: Specify `TRUE`.
 8. In the **Virtual Hardware** panel of the **Customize hardware** tab, modify the specified values as required. Ensure that the amount of RAM, CPU, and disk storage meets the minimum requirements for the machine type. If many networks exist, select **Add New Device** > **Network Adapter**, and then enter your network information in the fields provided by the **New Network** menu item.
 9. Complete the remaining configuration steps. On clicking the **Finish** button, you have completed the cloning operation.
-10. From the **Virtual Machines** tab, right-click on your VM and then select **Power** -> **Power On**.
+10. From the **Virtual Machines** tab, right-click on your VM and then select **Power** → **Power On**.
 
 **Next steps**
 
@@ -845,7 +802,7 @@ Because `/var` must be in place before a fresh installation of Red Hat Enterpri
 
    ```yaml
    variant: openshift
-   version: {{ product_version }}.0
+   version: 4.22.0
    metadata:
      labels:
        machineconfiguration.openshift.io/role: worker
@@ -1034,7 +991,8 @@ To allow newly added machines to join your OpenShift Container Platform cluster,
      where:
 
      `<csr_name>`
-     :   Specifies the name of a CSR from the list of current CSRs. \*   To approve all pending CSRs, run the following command:
+     :   Specifies the name of a CSR from the list of current CSRs.
+   - To approve all pending CSRs, run the following command:
 
      ```terminal
      $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs --no-run-if-empty oc adm certificate approve
@@ -1065,7 +1023,8 @@ To allow newly added machines to join your OpenShift Container Platform cluster,
      where:
 
      `<csr_name>`
-     :   Specifies the name of a CSR from the list of current CSRs. \*   To approve all pending CSRs, run the following command:
+     :   Specifies the name of a CSR from the list of current CSRs.
+   - To approve all pending CSRs, run the following command:
 
      ```terminal
      $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs oc adm certificate approve
@@ -1106,37 +1065,37 @@ After the control plane initializes, you must immediately configure some Operato
 
    ```terminal {title="Example output"}
    NAME                                       VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE
-   authentication                             {{ product_version }}.0    True        False         False      19m
-   baremetal                                  {{ product_version }}.0    True        False         False      37m
-   cloud-credential                           {{ product_version }}.0    True        False         False      40m
-   cluster-autoscaler                         {{ product_version }}.0    True        False         False      37m
-   config-operator                            {{ product_version }}.0    True        False         False      38m
-   console                                    {{ product_version }}.0    True        False         False      26m
-   csi-snapshot-controller                    {{ product_version }}.0    True        False         False      37m
-   dns                                        {{ product_version }}.0    True        False         False      37m
-   etcd                                       {{ product_version }}.0    True        False         False      36m
-   image-registry                             {{ product_version }}.0    True        False         False      31m
-   ingress                                    {{ product_version }}.0    True        False         False      30m
-   insights                                   {{ product_version }}.0    True        False         False      31m
-   kube-apiserver                             {{ product_version }}.0    True        False         False      26m
-   kube-controller-manager                    {{ product_version }}.0    True        False         False      36m
-   kube-scheduler                             {{ product_version }}.0    True        False         False      36m
-   kube-storage-version-migrator              {{ product_version }}.0    True        False         False      37m
-   machine-api                                {{ product_version }}.0    True        False         False      29m
-   machine-approver                           {{ product_version }}.0    True        False         False      37m
-   machine-config                             {{ product_version }}.0    True        False         False      36m
-   marketplace                                {{ product_version }}.0    True        False         False      37m
-   monitoring                                 {{ product_version }}.0    True        False         False      29m
-   network                                    {{ product_version }}.0    True        False         False      38m
-   node-tuning                                {{ product_version }}.0    True        False         False      37m
-   openshift-apiserver                        {{ product_version }}.0    True        False         False      32m
-   openshift-controller-manager               {{ product_version }}.0    True        False         False      30m
-   openshift-samples                          {{ product_version }}.0    True        False         False      32m
-   operator-lifecycle-manager                 {{ product_version }}.0    True        False         False      37m
-   operator-lifecycle-manager-catalog         {{ product_version }}.0    True        False         False      37m
-   operator-lifecycle-manager-packageserver   {{ product_version }}.0    True        False         False      32m
-   service-ca                                 {{ product_version }}.0    True        False         False      38m
-   storage                                    {{ product_version }}.0    True        False         False      37m
+   authentication                             4.22.0    True        False         False      19m
+   baremetal                                  4.22.0    True        False         False      37m
+   cloud-credential                           4.22.0    True        False         False      40m
+   cluster-autoscaler                         4.22.0    True        False         False      37m
+   config-operator                            4.22.0    True        False         False      38m
+   console                                    4.22.0    True        False         False      26m
+   csi-snapshot-controller                    4.22.0    True        False         False      37m
+   dns                                        4.22.0    True        False         False      37m
+   etcd                                       4.22.0    True        False         False      36m
+   image-registry                             4.22.0    True        False         False      31m
+   ingress                                    4.22.0    True        False         False      30m
+   insights                                   4.22.0    True        False         False      31m
+   kube-apiserver                             4.22.0    True        False         False      26m
+   kube-controller-manager                    4.22.0    True        False         False      36m
+   kube-scheduler                             4.22.0    True        False         False      36m
+   kube-storage-version-migrator              4.22.0    True        False         False      37m
+   machine-api                                4.22.0    True        False         False      29m
+   machine-approver                           4.22.0    True        False         False      37m
+   machine-config                             4.22.0    True        False         False      36m
+   marketplace                                4.22.0    True        False         False      37m
+   monitoring                                 4.22.0    True        False         False      29m
+   network                                    4.22.0    True        False         False      38m
+   node-tuning                                4.22.0    True        False         False      37m
+   openshift-apiserver                        4.22.0    True        False         False      32m
+   openshift-controller-manager               4.22.0    True        False         False      30m
+   openshift-samples                          4.22.0    True        False         False      32m
+   operator-lifecycle-manager                 4.22.0    True        False         False      37m
+   operator-lifecycle-manager-catalog         4.22.0    True        False         False      37m
+   operator-lifecycle-manager-packageserver   4.22.0    True        False         False      32m
+   service-ca                                 4.22.0    True        False         False      38m
+   storage                                    4.22.0    True        False         False      37m
    ```
 2. Configure the Operators that are not available.
 
@@ -1154,7 +1113,7 @@ To use only trusted or locally available Operator catalogs, disable the default 
   ```
 
   > [!TIP]
-  > Or, you can use the web console to manage catalog sources. From the **Administration** -> **Cluster Settings** -> **Configuration** -> **OperatorHub** page, click the **Sources** tab, where you can create, update, delete, disable, and enable individual sources.
+  > Or, you can use the web console to manage catalog sources. From the **Administration** → **Cluster Settings** → **Configuration** → **OperatorHub** page, click the **Sources** tab, where you can create, update, delete, disable, and enable individual sources.
 
 ### Image registry storage configuration {#installation-registry-storage-config_installing-restricted-networks-vsphere}
 
@@ -1315,6 +1274,7 @@ To allow the image registry to use block storage types such as vSphere Virtual M
       By creating a custom PVC, you can leave the `claim` field blank for the default automatic creation of an `image-registry-storage` PVC.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring the registry for vSphere](/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-vsphere#registry-configuring-storage-vsphere_configuring-registry-storage-vsphere)
 
@@ -1337,37 +1297,37 @@ To finalize the installation on user-provisioned infrastructure, complete the cl
 
    ```terminal {title="Example output"}
    NAME                                       VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE
-   authentication                             {{ product_version }}.0    True        False         False      19m
-   baremetal                                  {{ product_version }}.0    True        False         False      37m
-   cloud-credential                           {{ product_version }}.0    True        False         False      40m
-   cluster-autoscaler                         {{ product_version }}.0    True        False         False      37m
-   config-operator                            {{ product_version }}.0    True        False         False      38m
-   console                                    {{ product_version }}.0    True        False         False      26m
-   csi-snapshot-controller                    {{ product_version }}.0    True        False         False      37m
-   dns                                        {{ product_version }}.0    True        False         False      37m
-   etcd                                       {{ product_version }}.0    True        False         False      36m
-   image-registry                             {{ product_version }}.0    True        False         False      31m
-   ingress                                    {{ product_version }}.0    True        False         False      30m
-   insights                                   {{ product_version }}.0    True        False         False      31m
-   kube-apiserver                             {{ product_version }}.0    True        False         False      26m
-   kube-controller-manager                    {{ product_version }}.0    True        False         False      36m
-   kube-scheduler                             {{ product_version }}.0    True        False         False      36m
-   kube-storage-version-migrator              {{ product_version }}.0    True        False         False      37m
-   machine-api                                {{ product_version }}.0    True        False         False      29m
-   machine-approver                           {{ product_version }}.0    True        False         False      37m
-   machine-config                             {{ product_version }}.0    True        False         False      36m
-   marketplace                                {{ product_version }}.0    True        False         False      37muser
-   monitoring                                 {{ product_version }}.0    True        False         False      29m
-   network                                    {{ product_version }}.0    True        False         False      38m
-   node-tuning                                {{ product_version }}.0    True        False         False      37m
-   openshift-apiserver                        {{ product_version }}.0    True        False         False      32muser
-   openshift-controller-manager               {{ product_version }}.0    True        False         False      30m
-   openshift-samples                          {{ product_version }}.0    True        False         False      32m
-   operator-lifecycle-manager                 {{ product_version }}.0    True        False         False      37m
-   operator-lifecycle-manager-catalog         {{ product_version }}.0    True        False         False      37m
-   operator-lifecycle-manager-packageserver   {{ product_version }}.0    True        False         False      32m
-   service-ca                                 {{ product_version }}.0    True        False         False      38m
-   storage                                    {{ product_version }}.0    True        False         False      37m
+   authentication                             4.22.0    True        False         False      19m
+   baremetal                                  4.22.0    True        False         False      37m
+   cloud-credential                           4.22.0    True        False         False      40m
+   cluster-autoscaler                         4.22.0    True        False         False      37m
+   config-operator                            4.22.0    True        False         False      38m
+   console                                    4.22.0    True        False         False      26m
+   csi-snapshot-controller                    4.22.0    True        False         False      37m
+   dns                                        4.22.0    True        False         False      37m
+   etcd                                       4.22.0    True        False         False      36m
+   image-registry                             4.22.0    True        False         False      31m
+   ingress                                    4.22.0    True        False         False      30m
+   insights                                   4.22.0    True        False         False      31m
+   kube-apiserver                             4.22.0    True        False         False      26m
+   kube-controller-manager                    4.22.0    True        False         False      36m
+   kube-scheduler                             4.22.0    True        False         False      36m
+   kube-storage-version-migrator              4.22.0    True        False         False      37m
+   machine-api                                4.22.0    True        False         False      29m
+   machine-approver                           4.22.0    True        False         False      37m
+   machine-config                             4.22.0    True        False         False      36m
+   marketplace                                4.22.0    True        False         False      37muser
+   monitoring                                 4.22.0    True        False         False      29m
+   network                                    4.22.0    True        False         False      38m
+   node-tuning                                4.22.0    True        False         False      37m
+   openshift-apiserver                        4.22.0    True        False         False      32muser
+   openshift-controller-manager               4.22.0    True        False         False      30m
+   openshift-samples                          4.22.0    True        False         False      32m
+   operator-lifecycle-manager                 4.22.0    True        False         False      37m
+   operator-lifecycle-manager-catalog         4.22.0    True        False         False      37m
+   operator-lifecycle-manager-packageserver   4.22.0    True        False         False      32m
+   service-ca                                 4.22.0    True        False         False      38m
+   storage                                    4.22.0    True        False         False      37m
    ```
 
    Alternatively, the following command notifies you when all of the clusters are available. The command also retrieves and displays credentials:
@@ -1422,6 +1382,7 @@ To finalize the installation on user-provisioned infrastructure, complete the cl
 4. Register your cluster on the [Cluster registration](https://console.redhat.com/openshift/register) page.
 
 **Additional resources**
+{._additional-resources}
 
 - [Adding compute machines to vSphere](/openshift-docs-markdown/machine_management/user_infra/adding-vsphere-compute-user-infra#adding-vsphere-compute-user-infra)
 
@@ -1478,6 +1439,7 @@ To provide metrics about cluster health and the success of updates, the Telemetr
 After you confirm that your [OpenShift Cluster Manager](https://console.redhat.com/openshift) inventory is correct, either maintained automatically by Telemetry or manually by using OpenShift Cluster Manager,use subscription watch to track your OpenShift Container Platform subscriptions at the account or multi-cluster level. For more information about subscription watch, see "Data Gathered and Used by Red Hat’s subscription services" in the *Additional resources* section.
 
 **Additional resources**
+{._additional-resources}
 
 - [Preparing to install a cluster using user-provisioned infrastructure](/openshift-docs-markdown/installing/installing_vsphere/upi/upi-vsphere-preparing-to-install#upi-vsphere-preparing-to-install)
 - [OpenShift Container Platform installation and update processes](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)

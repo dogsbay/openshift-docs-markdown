@@ -21,7 +21,7 @@ Cluster administrators can delete installed Operators from a selected namespace 
 
 **Procedure**
 
-1. Navigate to the **Ecosystem** -> **Installed Operators** page.
+1. Navigate to the **Ecosystem** → **Installed Operators** page.
 2. Scroll or enter a keyword into the **Filter by name** field to find the Operator that you want to remove. Then, click on it.
 3. On the right side of the **Operator Details** page, select **Uninstall Operator** from the **Actions** list.
 
@@ -153,5 +153,6 @@ You can refresh a failing subscription by deleting the subscription, cluster ser
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Reinstalling Operators after failed uninstallation](/openshift-docs-markdown/operators/admin/olm-troubleshooting-operator-issues#olm-reinstall_olm-troubleshooting-operator-issues)

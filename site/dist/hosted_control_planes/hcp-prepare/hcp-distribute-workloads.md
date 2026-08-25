@@ -25,6 +25,7 @@ Node labeling is also important for the following reasons:
 For more information about dedicating a node to a single hosted cluster, see "Labeling management cluster nodes".
 
 **Additional resources**
+{._additional-resources}
 
 - [Labeling management cluster nodes](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-labels-taints_hcp-distribute-workloads)
 - [Network isolation for hosted clusters](/openshift-docs-markdown/hosted_control_planes/hcp-networking#hcp-isolation-overview_hcp-networking)

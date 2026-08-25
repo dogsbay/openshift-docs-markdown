@@ -2,7 +2,7 @@
 title: Deploying Zero Trust Workload Identity Manager operands
 ---
 
-# Deploying Zero Trust Workload Identity Manager operands {#zero-trust-manager-configuration_{{ context }}}
+# Deploying Zero Trust Workload Identity Manager operands {#zero-trust-manager-configuration_{context}}
 
 Deploy the Zero Trust Workload Identity Manager operands by creating their custom resources in a specific order. Adhering to the sequence ensures the successful installation of components, such as the Security Production Identity Framework for Everyone (SPIRE) Server, SPIRE Agent, and Secure Production Identity Framework For Everyone (SPIFFE) CSI driver.
 
@@ -507,7 +507,7 @@ You can delete the `spire-spiffe-csi-driver` custom SCC when the SPIFFE CSI driv
 
 **Prerequisites**
 
-- You have upgraded Zero Trust Workload Identity Manager to 1.1.0 from the ***OperatorHub*** catalog.
+- You have upgraded Zero Trust Workload Identity Manager to 1.1.0 from the **OperatorHub** catalog.
 
 **Procedure**
 

@@ -1,5 +1,5 @@
 ---
-title: Managing {{ hcp }} on {{ aws_short }}
+title: Managing hosted control planes on AWS
 ---
 
 # Managing hosted control planes on AWS {#hcp-manage-aws}
@@ -63,8 +63,8 @@ When your infrastructure is prerequired and unmanaged in a hosted cluster Amazon
   - One Ingress service load balancer for public hosted clusters
   - One private link endpoint for private hosted clusters
 
-> [!NOTE]
-> For private link networking to work, the endpoint zone in the hosted cluster AWS account must match the zone of the instance that is resolved by the service endpoint in the management cluster AWS account. In AWS, the zone names are aliases, such as us-east-2b, which do not necessarily map to the same zone in different accounts. As a result, for private link to work, the management cluster must have subnets or workers in all zones of its region.
+  > [!NOTE]
+  > For private link networking to work, the endpoint zone in the hosted cluster AWS account must match the zone of the instance that is resolved by the service endpoint in the management cluster AWS account. In AWS, the zone names are aliases, such as us-east-2b, which do not necessarily map to the same zone in different accounts. As a result, for private link to work, the management cluster must have subnets or workers in all zones of its region.
 
 ### Infrastructure requirements for a management AWS account {#hcp-managed-aws-infra-mgmt_hcp-managing-aws}
 
@@ -1214,6 +1214,7 @@ For hosted control planes to be able to provide a graceful shut down, it needs t
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Getting started with Amazon SQS](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-getting-started.html)
 - [Getting started: Create an Amazon EventBridge event bus rule](https://docs.aws.amazon.com/eventbridge/latest/userguide/event-bus-rule-get-started.html)

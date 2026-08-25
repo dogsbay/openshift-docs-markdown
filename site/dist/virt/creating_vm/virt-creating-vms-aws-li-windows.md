@@ -16,7 +16,7 @@ Create license-compliant Windows virtual machines (VMs) by enabling the `dedicat
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, go to **Virtualization** -> **Catalog**. The **InstanceTypes** tab opens by default.
+1. In the OpenShift Container Platform web console, go to **Virtualization** → **Catalog**. The **InstanceTypes** tab opens by default.
 2. Click **Add volume** to create a Windows boot source. You can upload a new volume or use an existing persistent volume claim (PVC), a volume snapshot, or a `containerDisk` volume.
 3. In the **Volume metadata** section, select a preference with a name that begins with `windows` and is followed by the Windows version of your choice. For example, `windows.11.virtio`. Click **Save**.
 4. Select a bootable volume from the list. If the list is truncated, click **Show all** to display the entire list. The bootable volume table contains the previously uploaded boot source.

@@ -262,10 +262,10 @@ To add probes for a container:
    18. Specify the number of seconds to perform the probe. The default is `10`. This value must be greater than `timeoutSeconds`.
    19. Specify the number of seconds of inactivity after which the probe is assumed to have failed. The default is `1`. This value must be lower than `periodSeconds`.
 
-       > [!NOTE]
-       > If the `initialDelaySeconds` value is lower than the `periodSeconds` value, the first Readiness probe occurs at some point between the two periods due to an issue with timers.
-       >
-       > The `timeoutSeconds` value must be lower than the `periodSeconds` value.
+   > [!NOTE]
+   > If the `initialDelaySeconds` value is lower than the `periodSeconds` value, the first Readiness probe occurs at some point between the two periods due to an issue with timers.
+   >
+   > The `timeoutSeconds` value must be lower than the `periodSeconds` value.
 2. Create the `Pod` object:
 
    ```terminal
@@ -372,6 +372,7 @@ In case an application health check fails, you can use the **Topology** view to 
 3. Click the down arrow adjoining **Events (Warning)** to see the details of the health check failure.
 
 **Additional resources**
+{._additional-resources}
 
 - For details on switching to the **Developer** perspective in the web console, see [About the **Developer** perspective](/openshift-docs-markdown/web_console/web-console-overview#about-developer-perspective_web-console-overview).
 - For details on adding health checks while creating and deploying an application, see **Advanced Options** in the [Creating applications using the Developer perspective](/openshift-docs-markdown/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-creating-applications-using-developer-perspective) section.

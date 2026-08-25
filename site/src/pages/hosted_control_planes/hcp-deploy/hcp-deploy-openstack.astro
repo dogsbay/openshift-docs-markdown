@@ -24,12 +24,13 @@ const headings = [{"depth":1,"slug":"hcp-deploy-openstack","text":"Deploying hos
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-openstack";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
-const title = "Deploying {{ hcp }} on OpenStack";
+const title = "Deploying hosted control planes on OpenStack";
 const description = "You can deploy hosted control planes with hosted clusters that run on Red Hat OpenStack Platform (RHOSP) 17.1." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -102,7 +104,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           <p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
         </AlertDescription>
       </Alert>
-      <p>You can deploy hosted control planes with hosted clusters that run on Red Hat OpenStack Platform (RHOSP) 17.1.</p>
+      <p class="_abstract">You can deploy hosted control planes with hosted clusters that run on Red Hat OpenStack Platform (RHOSP) 17.1.</p>
       <p>A <em>hosted cluster</em> is an OpenShift Container Platform cluster with its API endpoint and control plane that are hosted on a management cluster. With hosted control planes, control planes exist as pods on a management cluster without the need for dedicated virtual or physical machines for each control plane.</p>
       <h2 id="hosted-clusters-openstack-prerequisites_hcp-deploy-openstack" class="group scroll-mt-20">Prerequisites for OpenStack<a href="#hosted-clusters-openstack-prerequisites_hcp-deploy-openstack" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">Before you create a hosted cluster on Red Hat OpenStack Platform (RHOSP), ensure that you meet the prerequisites.</p>

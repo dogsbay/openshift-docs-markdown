@@ -70,6 +70,7 @@ The issued serving certificates are valid for 10 years.
 You cannot customize the MCO certificates.
 
 **Additional resources**
+{._additional-resources}
 
 - [About the Machine Config Operator](/openshift-docs-markdown/machine_configuration/index#about-machine-config-operator_machine-config-overview)
 - [About the OVN-Kubernetes network plugin](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes)

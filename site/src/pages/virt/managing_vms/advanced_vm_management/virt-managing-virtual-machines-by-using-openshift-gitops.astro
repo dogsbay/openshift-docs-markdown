@@ -16,17 +16,18 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 
-const headings = [{"depth":1,"slug":"virt-managing-virtual-machines-by-using-openshift-gitops_{{ context }}","text":"Managing virtual machines by using OpenShift GitOps"}];
+const headings = [{"depth":1,"slug":"virt-managing-virtual-machines-by-using-openshift-gitops_{context}","text":"Managing virtual machines by using OpenShift GitOps"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-managing-virtual-machines-by-using-openshift-gitops";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Managing virtual machines by using OpenShift GitOps";
-const description = "To automate and optimize virtual machine (VM) management in {{ VirtProductName }}, you can use Red Hat OpenShift GitOps." || undefined;
+const description = "To automate and optimize virtual machine (VM) management in {VirtProductName}, you can use Red Hat OpenShift GitOps." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +40,7 @@ const pageCategory = ["virt","virt/managing_vms","virt/managing_vms/advanced_vm_
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing virtual machines by using OpenShift GitOps {#virt-managing-virtual-machines-by-using-openshift-gitops_{{ context }}}\n\nTo automate and optimize virtual machine (VM) management in {{ VirtProductName }}, you can use Red Hat OpenShift GitOps.\n\nWith GitOps, you can set up VM deployments based on configuration files stored in a Git repository. This also makes it easier to automate, update, or replicate these configurations, as well to use version control for tracking their changes.\n\n**Prerequisites**\n\n- You have a GitHub account. For instructions to set up an account, see [Creating an account on GitHub](https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github).\n- OpenShift Virtualuzation has been installed on your OpenShift cluster. For instructions, see [OpenShift Virtualization installation](/openshift-docs-markdown/virt/install/installing-virt#installing-virt).\n- The OpenShift GitOps operator has been installed on your OpenShift cluster. For instructions, see [Installing GitOps](https://docs.openshift.com/gitops/1.15/installing_gitops/preparing-gitops-install.html).\n\n**Procedure**\n\nFollow [the *Manage OpenShift virtual machines with GitOps* learning path](https://developers.redhat.com/learning/learn:manage-openshift-virtual-machines-gitops/resource/resources:connect-and-configure-external-repository-argo-cd-virtual-machines) in performing these steps:\n\n1. Connect an external Git repository to your Argo CD instance.\n2. Create the required VM configuration in the Git repository.\n3. Use the VM configuration to create VMs on your cluster.\n\n**Additional resources**\n\n- [OpenShift GitOps documentation](https://docs.openshift.com/gitops/)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-managing-virtual-machines-by-using-openshift-gitops.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing virtual machines by using OpenShift GitOps {#virt-managing-virtual-machines-by-using-openshift-gitops_{context}}\n\nTo automate and optimize virtual machine (VM) management in {VirtProductName}, you can use Red Hat OpenShift GitOps.\n\nWith GitOps, you can set up VM deployments based on configuration files stored in a Git repository. This also makes it easier to automate, update, or replicate these configurations, as well to use version control for tracking their changes.\n\n**Prerequisites**\n\n- You have a GitHub account. For instructions to set up an account, see [Creating an account on GitHub](https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github).\n- OpenShift Virtualuzation has been installed on your OpenShift cluster. For instructions, see [OpenShift Virtualization installation](/openshift-docs-markdown/virt/install/installing-virt#installing-virt).\n- The OpenShift GitOps operator has been installed on your OpenShift cluster. For instructions, see [Installing GitOps](https://docs.openshift.com/gitops/1.15/installing_gitops/preparing-gitops-install.html).\n\n**Procedure**\n\nFollow [the *Manage OpenShift virtual machines with GitOps* learning path](https://developers.redhat.com/learning/learn:manage-openshift-virtual-machines-gitops/resource/resources:connect-and-configure-external-repository-argo-cd-virtual-machines) in performing these steps:\n\n1. Connect an external Git repository to your Argo CD instance.\n2. Create the required VM configuration in the Git repository.\n3. Use the VM configuration to create VMs on your cluster.\n\n**Additional resources**\n{._additional-resources}\n\n- [OpenShift GitOps documentation](https://docs.openshift.com/gitops/)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-managing-virtual-machines-by-using-openshift-gitops.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,20 +79,21 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <h1 id="virt-managing-virtual-machines-by-using-openshift-gitops_{{ context }}" class="group scroll-mt-20">Managing virtual machines by using OpenShift GitOps<a href="#virt-managing-virtual-machines-by-using-openshift-gitops_{{ context }}" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>To automate and optimize virtual machine (VM) management in {"{"}{"{"} VirtProductName {"}"}{"}"}, you can use Red Hat OpenShift GitOps.</p>
+      <h1 id="virt-managing-virtual-machines-by-using-openshift-gitops_{context}" class="group scroll-mt-20">Managing virtual machines by using OpenShift GitOps<a href="#virt-managing-virtual-machines-by-using-openshift-gitops_{context}" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p class="_abstract">To automate and optimize virtual machine (VM) management in {"{"}VirtProductName{"}"}, you can use Red Hat OpenShift GitOps.</p>
       <p>With GitOps, you can set up VM deployments based on configuration files stored in a Git repository. This also makes it easier to automate, update, or replicate these configurations, as well to use version control for tracking their changes.</p>
       <p><strong>Prerequisites</strong></p>
       <ul>
@@ -106,8 +108,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>Create the required VM configuration in the Git repository.</li>
       <li>Use the VM configuration to create VMs on your cluster.</li>
       </ol>
-      <p><strong>Additional resources</strong></p>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul><li><a href="https://docs.openshift.com/gitops/">OpenShift GitOps documentation</a></li></ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

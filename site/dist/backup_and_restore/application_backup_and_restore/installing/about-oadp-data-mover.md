@@ -1,8 +1,8 @@
 ---
-title: About the {{ oadp_short }} Data Mover
+title: About the OADP Data Mover
 ---
 
-# About the {{ oadp_short }} Data Mover {#about-oadp-data-mover}
+# About the OADP Data Mover {#about-oadp-data-mover}
 
 Use the OpenShift API for Data Protection (OADP) built-in Data Mover to move Container Storage Interface (CSI) volume snapshots to remote object storage and restore stateful applications after cluster failures. This provides disaster recovery capabilities for both containerized and virtual machine workloads.
 
@@ -102,6 +102,7 @@ OADP supports incremental backups of `block` and `Filesystem` persistent volumes
 > [!NOTE]
 > The CSI Data Mover backups use Kopia regardless of `uploaderType`.
 
-## Additional resources {#additional-resources_about-oadp-data-mover}
+**Additional resources**
+{._additional-resources}
 
 - [About Kopia](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-about-kopia#oadp-about-kopia)

@@ -20,7 +20,8 @@ const headings = [{"depth":1,"slug":"telco-day-2-welcome","text":"Day 2 operatio
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/telco-day-2-welcome";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -78,12 +79,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -91,7 +93,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="telco-day-2-welcome" class="group scroll-mt-20">Day 2 operations for OpenShift Container Platform clusters<a href="#telco-day-2-welcome" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can use the following Day 2 operations to manage OpenShift Container Platform clusters.</p>
+      <p class="_abstract">You can use the following Day 2 operations to manage OpenShift Container Platform clusters.</p>
       <dl class="my-4 space-y-2">
       <dt class="font-semibold">Updating an OpenShift Container Platform cluster</dt>
       <dd class="ml-6 text-muted-foreground"><p>Updating your cluster is a critical task that ensures that bugs and potential security vulnerabilities are patched. For more information, see <a href="/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-welcome#update-welcome">Updating an OpenShift Container Platform cluster</a>.</p></dd>

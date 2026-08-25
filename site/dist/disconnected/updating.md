@@ -13,6 +13,7 @@ You can mirror OpenShift Container Platform images to a local container image re
 For more information about mirroring images onto a repository in your disconnected cluster, see the "Mirroring OpenShift Container Platform images" section.
 
 **Additional resources**
+{._additional-resources}
 
 - [Mirroring OpenShift Container Platform images](/openshift-docs-markdown/disconnected/updating/mirroring-image-repository#mirroring-ocp-image-repository)
 
@@ -25,6 +26,7 @@ For more information about performing a cluster update in a disconnected environ
 For more information about performing a cluster update in a disconnected environment without OSUS, see the "Updating a cluster in a disconnected environment without the OpenShift Update Service" section.
 
 **Additional resources**
+{._additional-resources}
 
 - [Updating a cluster in a disconnected environment using the OpenShift Update Service](/openshift-docs-markdown/disconnected/updating/disconnected-update-osus#updating-disconnected-cluster-osus)
 - [Updating a cluster in a disconnected environment without the OpenShift Update Service](/openshift-docs-markdown/disconnected/updating/disconnected-update#updating-disconnected-cluster)
@@ -36,5 +38,6 @@ You can uninstall a local copy of the OpenShift Update Service (OSUS) from your 
 For more information about uninstalling the OpenShift Update Service from a cluster, see the "Uninstalling the OpenShift Update Service from a cluster" section.
 
 **Additional resources**
+{._additional-resources}
 
 - [Uninstalling the OpenShift Update Service from a cluster](/openshift-docs-markdown/disconnected/updating/uninstalling-osus#uninstalling-osus)

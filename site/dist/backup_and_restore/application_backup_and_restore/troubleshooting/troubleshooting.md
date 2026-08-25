@@ -17,7 +17,8 @@ You can troubleshoot OADP issues by using the following methods:
 - Collect logs and CR information by using the `must-gather` tool.
 - Monitor and analyze the workload performance with the help of OADP monitoring.
 
-## Additional resources {#additional-resources_oadp-troubleshooting}
+**Additional resources**
+{._additional-resources}
 
 - [Debugging with the OpenShift CLI tool](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-cli-tool#oadp-debugging-oc-cli_oadp-cli-tool)
 - [Debugging backups and restores using the OADP CLI](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-cli-tool#migration-debugging-velero-resources_oadp-cli-tool)

@@ -597,7 +597,8 @@ Use installer-provisioned infrastructure to deploy a virtualized control plane c
   $ oc get nodes
   ```
 
-## Additional resources {#additional-resources_vcp-installing-cluster}
+**Additional resources**
+{._additional-resources}
 
 - [Preparing to install with the agent-based installer](/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#preparing-to-install-with-agent-based-installer)
 - [Installation configuration parameters for the agent-based installer](/openshift-docs-markdown/installing/installing_with_agent_based_installer/installation-config-parameters-agent#installation-config-parameters-agent)

@@ -10,6 +10,7 @@ When developing consumer applications that make use of Precision Time Protocol (
 > The following information provides general guidance for developing consumer applications that use PTP events. A complete events consumer application example is outside the scope of this information.
 
 **Additional resources**
+{._additional-resources}
 
 - [PTP events REST API v2 reference](/openshift-docs-markdown/networking/advanced_networking/ptp/ptp-events-rest-api-reference-v2#ptp-events-rest-api-reference-v2)
 
@@ -56,22 +57,21 @@ To start using PTP fast event notifications for a network interface in your clus
 
    1. Save the following YAML in the `ptp-operatorconfig.yaml` file:
 
-```yaml
-apiVersion: ptp.openshift.io/v1
-kind: PtpOperatorConfig
-metadata:
-  name: default
-  namespace: openshift-ptp
-spec:
-  daemonNodeSelector:
-    node-role.kubernetes.io/worker: ""
-  ptpEventConfig:
-    enableEventPublisher: true (1)
-```
+      ```yaml
+      apiVersion: ptp.openshift.io/v1
+      kind: PtpOperatorConfig
+      metadata:
+        name: default
+        namespace: openshift-ptp
+      spec:
+        daemonNodeSelector:
+          node-role.kubernetes.io/worker: ""
+        ptpEventConfig:
+          enableEventPublisher: true (1)
+      ```
 
-1. Enable PTP fast event notifications by setting `enableEventPublisher` to `true`.
-
-   1. Update the `PtpOperatorConfig` CR:
+      1. Enable PTP fast event notifications by setting `enableEventPublisher` to `true`.
+   2. Update the `PtpOperatorConfig` CR:
 
       ```terminal
       $ oc apply -f ptp-operatorconfig.yaml
@@ -98,6 +98,7 @@ spec:
    4. Optional. If the `ptpClockThreshold` stanza is not present, default values are used for the `ptpClockThreshold` fields. The stanza shows default `ptpClockThreshold` values. The `ptpClockThreshold` values configure how long after the PTP master clock is disconnected before PTP events are triggered. `holdOverTimeout` is the time value in seconds before the PTP clock event state changes to `FREERUN` when the PTP master clock is disconnected. The `maxOffsetThreshold` and `minOffsetThreshold` settings configure offset values in nanoseconds that compare against the values for `CLOCK_REALTIME` (`phc2sys`) or master offset (`ptp4l`). When the `ptp4l` or `phc2sys` offset value is outside this range, the PTP clock state is set to `FREERUN`. When the offset value is within this range, the PTP clock state is set to `LOCKED`.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring linuxptp services as ordinary clock](/openshift-docs-markdown/networking/advanced_networking/ptp/configuring-ptp#configuring-linuxptp-services-as-ordinary-clock_configuring-ptp)
 
@@ -151,7 +152,7 @@ func createSubscription(resourceAddress string) (sub pubsub.PubSub, err error) {
   var status int
   apiPath := "/api/ocloudNotifications/v2/"
   localAPIAddr := "consumer-events-subscription-service.cloud-events.svc.cluster.local:9043" // vDU service API address
-  apiAddr := "ptp-event-publisher-service-<node_name>.openshift-ptp.svc.cluster.local:9043" // (1)
+  apiAddr := "ptp-event-publisher-service-<node_name>.openshift-ptp.svc.cluster.local:9043" (1)
   apiVersion := "2.0"
 
   subURL := &types.URI{URL: url.URL{Scheme: "http",
@@ -185,7 +186,7 @@ func createSubscription(resourceAddress string) (sub pubsub.PubSub, err error) {
 func getCurrentState(resource string) {
   //Create publisher
   url := &types.URI{URL: url.URL{Scheme: "http",
-    Host: "ptp-event-publisher-service-<node_name>.openshift-ptp.svc.cluster.local:9043", // (1)
+    Host: "ptp-event-publisher-service-<node_name>.openshift-ptp.svc.cluster.local:9043", (1)
     Path: fmt.SPrintf("/api/ocloudNotifications/v2/%s/CurrentState",resource}}
   rc := restclient.New()
   status, event := rc.Get(url)
@@ -302,6 +303,7 @@ Subscribe consumer applications to PTP events by sending a `POST` request to `ht
 > `9043` is the default port for the `cloud-event-proxy` container deployed in the PTP event producer pod. You can configure a different port for your application as required.
 
 **Additional resources**
+{._additional-resources}
 
 - [api/ocloudNotifications/v2/subscriptions](/openshift-docs-markdown/networking/advanced_networking/ptp/ptp-events-rest-api-reference-v2#api-ocloud-notifications-v2-subscriptions_using-ptp-hardware-fast-events-framework-v2)
 
@@ -403,10 +405,11 @@ You can monitor PTP fast events metrics from cluster nodes where the `linuxptp-d
    $ oc logs -f linuxptp-daemon-cvgr6 -n openshift-ptp -c cloud-event-proxy
    ```
 4. To view the PTP event in the OpenShift Container Platform web console, copy the name of the PTP metric you want to query, for example, `openshift_ptp_offset_ns`.
-5. In the OpenShift Container Platform web console, click **Observe** -> **Metrics**.
+5. In the OpenShift Container Platform web console, click **Observe** → **Metrics**.
 6. Paste the PTP metric name into the **Expression** field, and click **Run queries**.
 
 **Additional resources**
+{._additional-resources}
 
 - [Accessing metrics as a developer](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/accessing_metrics/accessing-metrics-as-a-developer)
 
@@ -414,7 +417,7 @@ You can monitor PTP fast events metrics from cluster nodes where the `linuxptp-d
 
 The following table describes the PTP fast events metrics that are available from cluster nodes where the `linuxptp-daemon` service is running.
 
-***PTP fast event metrics***
+**PTP fast event metrics**
 
 <table>
 <thead>
@@ -443,7 +446,7 @@ The following table describes the PTP fast events metrics that are available fro
 <tr>
   <td><code>openshift_ptp_ha_profile_status</code></td>
   <td>Returns the current status of the highly available system clock when there are multiple time sources on different NICs. Possible values are 0 (<code>INACTIVE</code>) and 1 (<code>ACTIVE</code>).</td>
-  <td><code>{node="node1",process="phc2sys",profile="profile1"} 1</code></td>
+  <td><code>{node="node1",process="phc2sys",profile="profile1"} 1</code> <code>{node="node1",process="phc2sys",profile="profile2"} 0</code></td>
 </tr>
 <tr>
   <td><code>openshift_ptp_frequency_adjustment_ns</code></td>

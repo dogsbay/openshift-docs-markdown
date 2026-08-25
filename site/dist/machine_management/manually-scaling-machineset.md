@@ -114,7 +114,8 @@ Specific machines can also be prioritized for deletion by adding the annotation 
 > [!NOTE]
 > Custom compute machine sets can be used for use cases requiring that services run on specific nodes and that those services are ignored by the controller when the worker compute machine sets are scaling down. This prevents service disruption.
 
-## Additional resources {#additional-resources_manually-scaling-machineset}
+**Additional resources**
+{._additional-resources}
 
 - [Modifying a compute machine set](/openshift-docs-markdown/machine_management/modifying-machineset#modifying-machineset)
 - [Add the compute machines to the Proxy object’s `noProxy` field](/openshift-docs-markdown/networking/configuring_network_settings/enable-cluster-wide-proxy#nw-proxy-configure-object_config-cluster-wide-proxy)

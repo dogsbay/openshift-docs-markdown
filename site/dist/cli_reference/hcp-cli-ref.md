@@ -1,5 +1,5 @@
 ---
-title: Installing the {{ hcp }} command-line interface
+title: Installing the hosted control planes command-line interface
 ---
 
 # Installing the hosted control planes command-line interface {#hcp-cli-ref}
@@ -67,7 +67,7 @@ You can install the hosted control planes command-line interface (CLI), `hcp`, b
 
 **Procedure**
 
-1. From the OpenShift Container Platform web console, click the **Help icon** -> **Command Line Tools**.
+1. From the OpenShift Container Platform web console, click the **Help icon** → **Command Line Tools**.
 2. Click **Download hcp CLI** for your platform.
 3. Unpack the downloaded archive by running the following command:
 

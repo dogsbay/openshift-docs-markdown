@@ -1,8 +1,8 @@
 ---
-title: Pre-caching images for {{ sno }} deployments
+title: Pre-caching images for single-node OpenShift deployments
 ---
 
-# Pre-caching images for {{ sno }} deployments {#ztp-pre-staging-tool}
+# Pre-caching images for single-node OpenShift deployments {#ztp-pre-staging-tool}
 
 In environments with limited bandwidth where you use the GitOps Zero Touch Provisioning (ZTP) solution to deploy a large number of clusters, you want to avoid downloading all the images that are required for bootstrapping and installing OpenShift Container Platform. The limited bandwidth at remote single-node OpenShift sites can cause long deployment times. The factory-precaching-cli tool allows you to pre-stage servers before shipping them to the remote site for ZTP provisioning.
 
@@ -23,7 +23,7 @@ The factory-precaching-cli tool does the following:
 
 ## Getting the factory-precaching-cli tool {#ztp-getting-tool_pre-caching}
 
-The factory-precaching-cli tool Go binary is publicly available in [the {{ rds_first }} tools container image](https://quay.io/openshift-kni/telco-ran-tools:latest). The factory-precaching-cli tool Go binary in the container image is executed on the server running an RHCOS live image using `podman`. If you are working in a disconnected environment or have a private registry, you need to copy the image there so you can download the image to the server.
+The factory-precaching-cli tool Go binary is publicly available in [the {rds_first} tools container image](https://quay.io/openshift-kni/telco-ran-tools:latest). The factory-precaching-cli tool Go binary in the container image is executed on the server running an RHCOS live image using `podman`. If you are working in a disconnected environment or have a private registry, you need to copy the image there so you can download the image to the server.
 
 **Procedure**
 
@@ -93,6 +93,7 @@ The following example procedure uses the Redfish BMC API to mount the RHCOS live
 2. Reboot and ensure that the server is booting from virtual media.
 
 **Additional resources**
+{._additional-resources}
 
 - [About Butane](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-butane-about_installing-customizing)
 - [Creating a custom live RHCOS ISO for remote server access](/openshift-docs-markdown/installing/installing_sno/install-sno-installing-sno#create-custom-live-rhcos-iso_install-sno-installing-sno-with-the-assisted-installer)
@@ -148,21 +149,13 @@ A live ISO or RHCOS live ISO is required because the disk must not be in use whe
    > [!IMPORTANT]
    > The tool fails if the disk is not empty because it uses partition number 1 of the device for pre-caching the artifacts.
 
-<a name="ztp-create-partition_pre-caching"></a>
+   <a name="ztp-create-partition_pre-caching"></a>
 
-```
-Create a single partition and a GPT partition table.
-The partition is automatically labelled as `data` and created at the end of the device.
-Otherwise, the partition will be overridden by the `coreos-installer`.
+   Create a single partition and a GPT partition table. The partition is automatically labelled as `data` and created at the end of the device. Otherwise, the partition will be overridden by the `coreos-installer`.
 
-:::important
-
-The `coreos-installer` requires the partition to be created at the end of the device and to be labelled as `data`. Both requirements are necessary to save the partition when writing the RHCOS image to the disk.
-
-:::
-```
-
-1. Run the container as `privileged` and partition the disk. In the following example, the size of the partition is 250 GiB to allow pre-caching the DU profile for Day 2 Operators:
+   > [!IMPORTANT]
+   > The `coreos-installer` requires the partition to be created at the end of the device and to be labelled as `data`. Both requirements are necessary to save the partition when writing the RHCOS image to the disk.
+3. Run the container as `privileged` and partition the disk. In the following example, the size of the partition is 250 GiB to allow pre-caching the DU profile for Day 2 Operators:
 
    ```terminal
    # podman run -v /dev:/dev --privileged \
@@ -177,7 +170,7 @@ The `coreos-installer` requires the partition to be created at the end of the de
    - `factory-precaching-cli partition` specifies the partitioning function of the factory-precaching-cli tool.
    - `-d /dev/nvme0n1` defines the root directory on the disk.
    - `-s 250` defines the size of the disk in GB.
-2. Check the storage information:
+4. Check the storage information:
 
    ```terminal
    # lsblk
@@ -194,19 +187,13 @@ The `coreos-installer` requires the partition to be created at the end of the de
    └─nvme0n1p1 259:3    0   250G  0 part
    ```
 
-<a name="ztp-mount-partition_pre-caching"></a>
+   <a name="ztp-mount-partition_pre-caching"></a>
 
-```
-After verifying that the disk is partitioned correctly, mount the device into `/mnt`.
+   After verifying that the disk is partitioned correctly, mount the device into `/mnt`.
 
-:::important
-
-It is recommended to mount the device into `/mnt` because that mounting point is used during GitOps ZTP preparation.
-
-:::
-```
-
-1. Verify that the partition is formatted as `xfs`:
+   > [!IMPORTANT]
+   > It is recommended to mount the device into `/mnt` because that mounting point is used during GitOps ZTP preparation.
+5. Verify that the partition is formatted as `xfs`:
 
    ```terminal
    # lsblk -f /dev/nvme0n1
@@ -219,7 +206,7 @@ It is recommended to mount the device into `/mnt` because that mounting point is
    nvme0n1
    └─nvme0n1p1 xfs          1bee8ea4-d6cf-4339-b690-a76594794071
    ```
-2. Mount the partition:
+6. Mount the partition:
 
    ```terminal
    # mount /dev/nvme0n1p1 /mnt/
@@ -354,6 +341,7 @@ To download OpenShift Container Platform container images, you need to know the 
       > If you use a different registry to pull the required artifacts, you need to copy the proper pull secret. If the local registry uses TLS, you need to include the certificates from the registry as well.
 
 **Additional resources**
+{._additional-resources}
 
 - [OpenShift installation customization tools](https://console.redhat.com/openshift/downloads#tool-pull-secret)
 - [About cluster lifecycle with the multicluster engine operator](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.9/html/clusters/cluster_mce_overview#mce-intro)
@@ -369,7 +357,7 @@ The factory-precaching-cli tool allows you to pre-cache all the container images
   ```terminal
   # podman run -v /mnt:/mnt -v /root/.docker:/root/.docker --privileged --rm quay.io/openshift-kni/telco-ran-tools -- \
      factory-precaching-cli download \
-     -r {{ product_version }}.0 \
+     -r 4.22.0 \
      --acm-version 2.6.3 \
      --mce-version 2.1.4 \
      -f /mnt \
@@ -379,7 +367,7 @@ The factory-precaching-cli tool allows you to pre-cache all the container images
   Where:
 
   - `factory-precaching-cli download` specifies the downloading function of the factory-precaching-cli tool.
-  - `-r {{ product_version }}.0` specifies the OpenShift Container Platform release version.
+  - `-r 4.22.0` specifies the OpenShift Container Platform release version.
   - `--acm-version 2.6.3` specifies the RHACM version.
   - `--mce-version 2.1.4` specifies the multicluster engine version.
   - `-f /mnt` specifies the folder where you want to download the images on the disk.
@@ -402,7 +390,7 @@ The factory-precaching-cli tool allows you to pre-cache all the container images
     ...
     Summary:
 
-    Release:                            {{ product_version }}.0
+    Release:                            4.22.0
     Hub Version:                        2.6.3
     ACM Version:                        2.6.3
     MCE Version:                        2.1.4
@@ -453,7 +441,7 @@ You can also pre-cache Day-2 Operators used in the 5G Radio Access Network (RAN)
 
   ```terminal
   # podman run -v /mnt:/mnt -v /root/.docker:/root/.docker --privileged --rm quay.io/openshift-kni/telco-ran-tools:latest -- factory-precaching-cli download \
-     -r {{ product_version }}.0 \
+     -r 4.22.0 \
      --acm-version 2.6.3 \
      --mce-version 2.1.4 \
      -f /mnt \
@@ -464,7 +452,7 @@ You can also pre-cache Day-2 Operators used in the 5G Radio Access Network (RAN)
   Where:
 
   - `factory-precaching-cli download` specifies the downloading function of the factory-precaching-cli tool.
-  - `-r {{ product_version }}.0` specifies the OpenShift Container Platform release version.
+  - `-r 4.22.0` specifies the OpenShift Container Platform release version.
   - `--acm-version 2.6.3` specifies the RHACM version.
   - `--mce-version 2.1.4` specifies the multicluster engine version.
   - `-f /mnt` specifies the folder where you want to download the images on the disk.
@@ -485,7 +473,7 @@ You can also pre-cache Day-2 Operators used in the 5G Radio Access Network (RAN)
     ...
     Summary:
 
-    Release:                            {{ product_version }}.0
+    Release:                            4.22.0
     Hub Version:                        2.6.3
     ACM Version:                        2.6.3
     MCE Version:                        2.1.4
@@ -509,7 +497,7 @@ You can customize the `ImageSetConfiguration` CR in the following ways:
 
    ```terminal
    # podman run -v /mnt:/mnt -v /root/.docker:/root/.docker --privileged --rm quay.io/openshift-kni/telco-ran-tools:latest -- factory-precaching-cli download \
-      -r {{ product_version }}.0 \
+      -r 4.22.0 \
       --acm-version 2.6.3 \
       --mce-version 2.1.4 \
       -f /mnt \
@@ -521,7 +509,7 @@ You can customize the `ImageSetConfiguration` CR in the following ways:
    Where:
 
    - `factory-precaching-cli download` specifies the downloading function of the factory-precaching-cli tool.
-   - `-r {{ product_version }}.0` specifies the OpenShift Container Platform release version.
+   - `-r 4.22.0` specifies the OpenShift Container Platform release version.
    - `--acm-version 2.6.3` specifies the RHACM version.
    - `--mce-version 2.1.4` specifies the multicluster engine version.
    - `-f /mnt` specifies the folder where you want to download the images on the disk.
@@ -543,13 +531,13 @@ You can customize the `ImageSetConfiguration` CR in the following ways:
      mirror:
        platform:
          channels:
-         - name: stable-{{ product_version }}
-           minVersion: {{ product_version }}.0
-           maxVersion: {{ product_version }}.0
+         - name: stable-4.22
+           minVersion: 4.22.0
+           maxVersion: 4.22.0
        additionalImages:
          - name: quay.io/custom/repository
        operators:
-         - catalog: registry.redhat.io/redhat/redhat-operator-index:v{{ product_version }}
+         - catalog: registry.redhat.io/redhat/redhat-operator-index:v4.22
            packages:
              - name: advanced-cluster-management
                channels:
@@ -575,14 +563,14 @@ You can customize the `ImageSetConfiguration` CR in the following ways:
                  - name: 'stable'
              - name: lvms-operator
                channels:
-                 - name: 'stable-{{ product_version }}'
+                 - name: 'stable-4.22'
              - name: amq7-interconnect-operator
                channels:
                  - name: '1.10.x'
              - name: bare-metal-event-relay
                channels:
                  - name: 'stable'
-         - catalog: registry.redhat.io/redhat/certified-operator-index:v{{ product_version }}
+         - catalog: registry.redhat.io/redhat/certified-operator-index:v4.22
            packages:
              - name: sriov-fec
                channels:
@@ -602,7 +590,7 @@ You can customize the `ImageSetConfiguration` CR in the following ways:
      platform:
    [...]
      operators:
-       - catalog: eko4.cloud.lab.eng.bos.redhat.com:8443/redhat/certified-operator-index:v{{ product_version }}
+       - catalog: eko4.cloud.lab.eng.bos.redhat.com:8443/redhat/certified-operator-index:v4.22
          packages:
            - name: sriov-fec
              channels:
@@ -625,7 +613,7 @@ You can customize the `ImageSetConfiguration` CR in the following ways:
    ```terminal
    # podman run -v /mnt:/mnt -v /root/.docker:/root/.docker -v /etc/pki:/etc/pki --privileged --rm quay.io/openshift-kni/telco-ran-tools:latest -- \
    factory-precaching-cli download \
-      -r {{ product_version }}.0 \
+      -r 4.22.0 \
       --acm-version 2.6.3 \
       --mce-version 2.1.4 \
       -f /mnt \
@@ -637,7 +625,7 @@ You can customize the `ImageSetConfiguration` CR in the following ways:
    Where:
 
    - `factory-precaching-cli download` specifies the downloading function of the factory-precaching-cli tool.
-   - `-r {{ product_version }}.0` specifies the OpenShift Container Platform release version.
+   - `-r 4.22.0` specifies the OpenShift Container Platform release version.
    - `--acm-version 2.6.3` specifies the RHACM version.
    - `--mce-version 2.1.4` specifies the multicluster engine version.
    - `-f /mnt` specifies the folder where you want to download the images on the disk.
@@ -647,7 +635,7 @@ You can customize the `ImageSetConfiguration` CR in the following ways:
 6. Download the images without generating a new `imageSetConfiguration` CR:
 
    ```terminal
-   # podman run -v /mnt:/mnt -v /root/.docker:/root/.docker --privileged --rm quay.io/openshift-kni/telco-ran-tools:latest -- factory-precaching-cli download -r {{ product_version }}.0 \
+   # podman run -v /mnt:/mnt -v /root/.docker:/root/.docker --privileged --rm quay.io/openshift-kni/telco-ran-tools:latest -- factory-precaching-cli download -r 4.22.0 \
    --acm-version 2.6.3 --mce-version 2.1.4 -f /mnt \
    --img quay.io/custom/repository \
    --du-profile -s \
@@ -931,7 +919,7 @@ error: error rendering new refs: render reference "eko4.cloud.lab.eng.bos.redhat
 
    ```terminal
    # podman run -v /mnt:/mnt -v /root/.docker:/root/.docker -v /etc/pki:/etc/pki --privileged -it --rm quay.io/openshift-kni/telco-ran-tools:latest -- \
-   factory-precaching-cli download -r {{ product_version }}.0 --acm-version 2.5.4 \
+   factory-precaching-cli download -r 4.22.0 --acm-version 2.5.4 \
       --mce-version 2.0.4 -f /mnt \--img quay.io/custom/repository
       --du-profile -s --skip-imageset
    ```

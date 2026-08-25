@@ -1,8 +1,8 @@
 ---
-title: Monitoring the {{ external_secrets_console_plugin }}
+title: Monitoring the External Secrets Management Console Plug-in
 ---
 
-# Monitoring the {{ external_secrets_console_plugin }} {#external-secrets-console-plugin-monitor}
+# Monitoring the External Secrets Management Console Plug-in {#external-secrets-console-plugin-monitor}
 
 Monitor certificates, issuers, external secrets, and secret stores from installed secrets management Operators using the External Secrets Management Console Plug-in in the OpenShift Container Platform web console.
 
@@ -23,8 +23,8 @@ You can inspect custom resources for installed secrets management Operators in t
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console.
-2. Navigate to **Plugins** -> **Secrets Management**.
-3. Click ![](kebab.png "Options menu") for the custom resource that you want to monitor, and then click **Inspect**.
+2. Navigate to **Plugins** → **Secrets Management**.
+3. Click ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") for the custom resource that you want to monitor, and then click **Inspect**.
 
 **Verification**
 

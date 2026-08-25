@@ -21,7 +21,8 @@ const headings = [{"depth":1,"slug":"oadp-use-case-enable-ca-cert","text":"Inclu
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-use-cases/oadp-usecase-enable-ca-cert";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="oadp-use-case-enable-ca-cert" class="group scroll-mt-20">Including a self-signed CA certificate during backup<a href="#oadp-use-case-enable-ca-cert" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can include a self-signed Certificate Authority (CA) certificate in the Data Protection Application (DPA) and then back up an application. You store the backup in a NooBaa bucket provided by Red Hat OpenShift Data Foundation (ODF).</p>
+      <p class="_abstract">You can include a self-signed Certificate Authority (CA) certificate in the Data Protection Application (DPA) and then back up an application. You store the backup in a NooBaa bucket provided by Red Hat OpenShift Data Foundation (ODF).</p>
       <h2 id="oadp-usecase-include-ca-cert-backup_oadp-use-case-enable-ca-cert" class="group scroll-mt-20">Backing up an application and its self-signed CA certificate<a href="#oadp-usecase-include-ca-cert-backup_oadp-use-case-enable-ca-cert" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">The <code>s3.openshift-storage.svc</code> service, provided by ODF, uses a Transport Layer Security protocol (TLS) certificate that is signed with the self-signed service CA.</p>
       <p>To prevent a <code>certificate signed by unknown authority</code> error, you must include a self-signed CA certificate in the backup storage location (BSL) section of <code>DataProtectionApplication</code> custom resource (CR). For this situation, you must complete the following tasks:</p>

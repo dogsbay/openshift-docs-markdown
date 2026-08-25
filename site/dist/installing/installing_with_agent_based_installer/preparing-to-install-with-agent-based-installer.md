@@ -23,6 +23,7 @@ The configuration is in the same format as for the installer-provisioned infrast
 | `s390x` | ✓ | ✓ |
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding virtualized control planes](/openshift-docs-markdown/vcp/vcp-overview#vcp-overview)
 
@@ -67,10 +68,10 @@ Once the nodes are rebooted, the rendezvous host reboots and joins the cluster. 
 
 You can install a disconnected OpenShift Container Platform cluster through the `openshift-install agent create image` subcommand for the following topologies:
 
-- ***A single-node OpenShift Container Platform cluster***: A node that is both a control plane and compute.
-- ***A three-node OpenShift Container Platform cluster*** : A compact cluster that has three control plane nodes that are also compute nodes.
-- ***Highly available OpenShift Container Platform cluster (HA)***: Three control plane nodes with any number of compute nodes.
-- ***Two-node OpenShift Container Platform cluster with Arbiter***: Two control plane nodes with one local arbiter node. For more information, see "About a local arbiter node".
+- **A single-node OpenShift Container Platform cluster**: A node that is both a control plane and compute.
+- **A three-node OpenShift Container Platform cluster** : A compact cluster that has three control plane nodes that are also compute nodes.
+- **Highly available OpenShift Container Platform cluster (HA)**: Three control plane nodes with any number of compute nodes.
+- **Two-node OpenShift Container Platform cluster with Arbiter**: Two control plane nodes with one local arbiter node. For more information, see "About a local arbiter node".
 
 ### Recommended resources for topologies {#agent-based-installer-recommended-resources_preparing-to-install-with-agent-based-installer}
 
@@ -78,13 +79,67 @@ The following cluster resources are recommended for each topology:
 
 **Recommended cluster resources**
 
-| Topology | Number of control plane nodes | Number of compute nodes | vCPU | Memory | Storage |
-| --- | --- | --- | --- | --- | --- |
-| Single-node cluster | 1 | 0 | 8 vCPUs | 16 GB of RAM | 120 GB .2+ |
-| Two-node OpenShift cluster with Arbiter | 2 (control plane nodes) | 0 | 4 vCPUs | 16 GB of RAM | 120 GB |
-| 1 (arbiter node) | 0 | 2 vCPUs | 8 GB of RAM | 50 GB | Two-node OpenShift cluster with fencing (TNF) |
-| 2 | 0 | 4 vCPUs | 16 GB of RAM | 120 GB | Compact cluster |
-| 3 | 0 or 1 | 8 vCPUs | 16 GB of RAM | 120 GB | HA cluster |
+<table>
+<thead>
+<tr>
+  <th>Topology</th>
+  <th>Number of control plane nodes</th>
+  <th>Number of compute nodes</th>
+  <th>vCPU</th>
+  <th>Memory</th>
+  <th>Storage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Single-node cluster</td>
+  <td>1</td>
+  <td>0</td>
+  <td>8 vCPUs</td>
+  <td>16 GB of RAM</td>
+  <td>120 GB</td>
+</tr>
+<tr>
+  <td rowspan="2">Two-node OpenShift cluster with Arbiter</td>
+  <td>2 (control plane nodes)</td>
+  <td>0</td>
+  <td>4 vCPUs</td>
+  <td>16 GB of RAM</td>
+  <td>120 GB</td>
+</tr>
+<tr>
+  <td>1 (arbiter node)</td>
+  <td>0</td>
+  <td>2 vCPUs</td>
+  <td>8 GB of RAM</td>
+  <td>50 GB</td>
+</tr>
+<tr>
+  <td>Two-node OpenShift cluster with fencing (TNF)</td>
+  <td>2</td>
+  <td>0</td>
+  <td>4 vCPUs</td>
+  <td>16 GB of RAM</td>
+  <td>120 GB</td>
+</tr>
+<tr>
+  <td>Compact cluster</td>
+  <td>3</td>
+  <td>0 or 1</td>
+  <td>8 vCPUs</td>
+  <td>16 GB of RAM</td>
+  <td>120 GB</td>
+</tr>
+<tr>
+  <td>HA cluster</td>
+  <td>3 to 5</td>
+  <td>2 and above</td>
+  <td>8 vCPUs</td>
+  <td>16 GB of RAM</td>
+  <td>120 GB</td>
+</tr>
+</tbody>
+</table>
 
 > [!NOTE]
 > You can use as few as 4 vCPUs for an single-node OpenShift cluster.
@@ -113,16 +168,17 @@ For a two-node OpenShift Container Platform cluster with fencing (TNF), only the
 
   The `vsphere` and `nutanix` platforms are not supported for two-node clusters with fencing.
 
-> [!IMPORTANT]
-> For platform `none`:
->
-> - The `none` option requires the provision of DNS name resolution and load balancing infrastructure in your cluster. See *Requirements for a cluster using the platform "none" option* in the "Additional resources" section for more information.
-> - See "Deploying OpenShift 4.x on non-tested platforms using the bare metal install method" before you attempt to install an OpenShift Container Platform cluster in virtualized or cloud environments.
+  > [!IMPORTANT]
+  > For platform `none`:
+  >
+  > - The `none` option requires the provision of DNS name resolution and load balancing infrastructure in your cluster. See *Requirements for a cluster using the platform "none" option* in the "Additional resources" section for more information.
+  > - See "Deploying OpenShift 4.x on non-tested platforms using the bare metal install method" before you attempt to install an OpenShift Container Platform cluster in virtualized or cloud environments.
 
-> [!NOTE]
-> For installations on IBM Z(R) (`s390x`) architecture, the minimum memory requirement is 24 GB RAM per host instead of 16 GB.
+  > [!NOTE]
+  > For installations on IBM Z(R) (`s390x`) architecture, the minimum memory requirement is 24 GB RAM per host instead of 16 GB.
 
 **Additional resources**
+{._additional-resources}
 
 - [Cluster capabilities](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-capabilities)
 - [Deploying OpenShift 4.x on non-tested platforms using the bare metal install method (Red Hat Knowledgebase article)](https://access.redhat.com/articles/4207611)
@@ -177,6 +233,7 @@ metadata:
 ```
 
 **Additional resources**
+{._additional-resources}
 
 - [OpenShift Security Guide Book](https://access.redhat.com/articles/5059881)
 - [Support for FIPS cryptography](/openshift-docs-markdown/installing/overview/installing-fips#installing-fips)
@@ -246,7 +303,7 @@ The installation program examines the devices in the order it discovers them, an
 </tr>
 <tr>
   <td><code>deviceName</code></td>
-  <td>A string containing a Linux device name such as <code>/dev/vda</code> or <code>/dev/disk/by-path/</code>.</td>
+  <td>A string containing a Linux device name such as <code>/dev/vda</code> or <code>/dev/disk/by-path/</code>. [NOTE] ==== It is recommended to use the <code>/dev/disk/by-path/&lt;device_path&gt;</code> link to the storage location. ====<br><br>The hint must match the actual value exactly.</td>
 </tr>
 <tr>
   <td><code>hctl</code></td>
@@ -270,7 +327,7 @@ The installation program examines the devices in the order it discovers them, an
 </tr>
 <tr>
   <td><code>wwn</code></td>
-  <td>A string containing the unique storage identifier. The hint must match the actual value exactly.</td>
+  <td>A string containing the unique storage identifier. The hint must match the actual value exactly. If you use the <code>udevadm</code> command to retrieve the <code>wwn</code> value, and the command outputs a value for <code>ID_WWN_WITH_EXTENSION</code>, then you must use this value to specify the <code>wwn</code> subfield.</td>
 </tr>
 <tr>
   <td><code>rotational</code></td>
@@ -301,7 +358,7 @@ In addition to static IP addresses, you can apply any network configuration that
 
 During the discovery and bootstrap phases of an installation, all the hosts connect to the Assisted Service that runs on the rendezvous host. Configure your firewall to allow the following traffic from each host to the rendezvous host:
 
-***Ports required to reach the Assisted Service on the rendezvous host***
+**Ports required to reach the Assisted Service on the rendezvous host**
 
 <table>
 <thead>
@@ -484,7 +541,7 @@ DNS A/AAAA or CNAME records are used for name resolution and PTR records are use
 
 The following DNS records are required for an OpenShift Container Platform cluster using the platform `none` option and they must be in place before installation. In each record, `<cluster_name>` is the cluster name and `<base_domain>` is the base domain that you specify in the `install-config.yaml` file. A complete DNS record takes the form: `<component>.<cluster_name>.<base_domain>.`.
 
-***Required DNS records***
+**Required DNS records**
 
 <table>
 <thead>
@@ -496,29 +553,28 @@ The following DNS records are required for an OpenShift Container Platform clust
 </thead>
 <tbody>
 <tr>
-  <td>.2+a</td>
-  <td>Kubernetes API</td>
-  <td><code>api.<cluster_name>.<base_domain>.</code></td>
+  <td rowspan="2">Kubernetes API</td>
+  <td><code>api.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
+  <td>A DNS A/AAAA or CNAME record, and a DNS PTR record, to identify the API load balancer. These records must be resolvable by both clients external to the cluster and from all the nodes within the cluster.</td>
 </tr>
 <tr>
-  <td>A DNS A/AAAA or CNAME record, and a DNS PTR record, to identify the API load balancer. These records must be resolvable by both clients external to the cluster and from all the nodes within the cluster.</td>
-  <td><code>api-int.<cluster_name>.<base_domain>.</code></td>
-  <td>A DNS A/AAAA or CNAME record, and a DNS PTR record, to internally identify the API load balancer. These records must be resolvable from all the nodes within the cluster.<dl><dt>Important</dt><dd>The API server must be able to resolve the worker nodes by the hostnamesthat are recorded in Kubernetes. If the API server cannot resolve the nodenames, then proxied API calls can fail, and you cannot retrieve logs from pods.</dd></dl></td>
+  <td><code>api-int.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
+  <td>A DNS A/AAAA or CNAME record, and a DNS PTR record, to internally identify the API load balancer. These records must be resolvable from all the nodes within the cluster.<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>The API server must be able to resolve the worker nodes by the hostnames that are recorded in Kubernetes. If the API server cannot resolve the node names, then proxied API calls can fail, and you cannot retrieve logs from pods.</dd></dl></td>
 </tr>
 <tr>
   <td>Routes</td>
-  <td><code>*.apps.<cluster_name>.<base_domain>.</code></td>
-  <td>A wildcard DNS A/AAAA or CNAME record that refers to the application ingress load balancer. The application ingress load balancer targets the machines that run the Ingress Controller pods. The Ingress Controller pods run on the compute machines by default. These records must be resolvable by both clients external to the cluster and from all the nodes within the cluster.<br><br>For example, <code>console-openshift-console.apps.<cluster_name>.<base_domain></code> is used as a wildcard route to the OpenShift Container Platform console.</td>
+  <td><code>*.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
+  <td>A wildcard DNS A/AAAA or CNAME record that refers to the application ingress load balancer. The application ingress load balancer targets the machines that run the Ingress Controller pods. The Ingress Controller pods run on the compute machines by default. These records must be resolvable by both clients external to the cluster and from all the nodes within the cluster.<br><br>For example, <code>console-openshift-console.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;</code> is used as a wildcard route to the OpenShift Container Platform console.</td>
 </tr>
 <tr>
   <td>Control plane machines</td>
-  <td><code><master><n>.<cluster_name>.<base_domain>.</code></td>
-  <td>DNS A/AAAA or CNAME records and DNS PTR records to identify each machinefor the control plane nodes. These records must be resolvable by the nodes within the cluster.</td>
+  <td><code>&lt;master&gt;&lt;n&gt;.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
+  <td>DNS A/AAAA or CNAME records and DNS PTR records to identify each machine for the control plane nodes. These records must be resolvable by the nodes within the cluster.</td>
 </tr>
 <tr>
   <td>Compute machines</td>
-  <td><code><worker><n>.<cluster_name>.<base_domain>.</code></td>
-  <td>DNS A/AAAA or CNAME records and DNS PTR records to identify each machinefor the worker nodes. These records must be resolvable by the nodes within the cluster.</td>
+  <td><code>&lt;worker&gt;&lt;n&gt;.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
+  <td>DNS A/AAAA or CNAME records and DNS PTR records to identify each machine for the worker nodes. These records must be resolvable by the nodes within the cluster.</td>
 </tr>
 </tbody>
 </table>
@@ -652,10 +708,12 @@ The load balancing infrastructure must meet the following requirements:
    > [!IMPORTANT]
    > Do not configure session persistence for an API load balancer.
 
-   Configure the following ports on both the front and back of the load balancers: **API load balancer**
+   Configure the following ports on both the front and back of the load balancers:
+
+   **API load balancer**
 
    | Port | Back-end machines (pool members) | Internal | External | Description |
-   | --- | --- | --- | --- | --- |
+   | --- | --- | :---: | :---: | --- |
    | `6443` | Control plane. You must configure the `/readyz` endpoint for the API server health check probe. | X | X | Kubernetes API server |
    | `22623` | Control plane. | X |  | Machine config server |
 
@@ -674,10 +732,12 @@ The load balancing infrastructure must meet the following requirements:
    > [!TIP]
    > If the true IP address of the client can be seen by the application Ingress load balancer, enabling source IP-based session persistence can improve performance for applications that use end-to-end TLS encryption.
 
-   Configure the following ports on both the front and back of the load balancers: **Application Ingress load balancer**
+   Configure the following ports on both the front and back of the load balancers:
+
+   **Application Ingress load balancer**
 
    | Port | Back-end machines (pool members) | Internal | External | Description |
-   | --- | --- | --- | --- | --- |
+   | --- | --- | :---: | :---: | --- |
    | `443` | The machines that run the Ingress Controller pods, compute, or worker, by default. | X | X | HTTPS traffic |
    | `80` | The machines that run the Ingress Controller pods, compute, or worker, by default. | X | X | HTTP traffic |
 
@@ -748,10 +808,11 @@ listen ingress-router-80
   > [!NOTE]
   > If you are deploying a compact three-node cluster with zero compute nodes, the Ingress Controller pods run on the control plane nodes. In three-node cluster deployments, you must configure your application Ingress load balancer to route HTTP and HTTPS traffic to the control plane nodes.
 
-> [!TIP]
-> If you are using HAProxy as a load balancer, you can check that the `haproxy` process is listening on ports `6443`, `22623`, `443`, and `80` by running `netstat -nltupe` on the HAProxy node.
+  > [!TIP]
+  > If you are using HAProxy as a load balancer, you can check that the `haproxy` process is listening on ports `6443`, `22623`, `443`, and `80` by running `netstat -nltupe` on the HAProxy node.
 
 **Additional resources**
+{._additional-resources}
 
 - [Port requirements for the rendezvous host](/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#agent-install-networking-ports_preparing-to-install-with-agent-based-installer)
 - [Cluster capabilities](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-capabilities)
@@ -1075,6 +1136,7 @@ where:
 :   Specifies `bond0` as the gateway for the default route.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring network bonding](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/configuring_and_managing_networking/configuring-network-bonding_configuring-and-managing-networking)
 
@@ -1235,7 +1297,8 @@ The following validation checks are performed when using ZTP manifests:
 > [!IMPORTANT]
 > Zero Touch Provisioning (ZTP) is not supported for two-node clusters with fencing (TNF). Although you can use Red Hat Advanced Cluster Management (RHACM) for installations, the additional infrastructure components required for ZTP are not validated for this topology.
 
-## Additional resources {#additional-resources_preparing-to-install-with-agent-based-installer}
+**Additional resources**
+{._additional-resources}
 
 - [Installing a cluster](/openshift-docs-markdown/installing/installing_with_agent_based_installer/installing-with-agent-basic#installing-with-agent-basic)
 - [Installing a cluster with customizations](/openshift-docs-markdown/installing/installing_with_agent_based_installer/installing-with-agent-based-installer#installing-with-agent-based-installer)

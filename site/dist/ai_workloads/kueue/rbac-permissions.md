@@ -156,7 +156,8 @@ You can configure permissions for Red Hat build of Kueue users by binding the `
   ...
   ```
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Using RBAC to define and apply permissions](/openshift-docs-markdown/authentication/using-rbac#using-rbac)
 - [Glossary of common terms for OpenShift Container Platform authentication and authorization](/openshift-docs-markdown/authentication/index#openshift-auth-common-terms_overview-of-authentication-authorization)

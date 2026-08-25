@@ -21,7 +21,8 @@ const headings = [{"depth":1,"slug":"managing-cluster-resources","text":"Managin
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/support/managing-cluster-resources";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="managing-cluster-resources" class="group scroll-mt-20">Managing your cluster resources<a href="#managing-cluster-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>To keep consistent behavior across your OpenShift Container Platform cluster, set global configuration options that Operators apply to all nodes.</p>
+      <p class="_abstract">To keep consistent behavior across your OpenShift Container Platform cluster, set global configuration options that Operators apply to all nodes.</p>
       <h2 id="support-cluster-resources_managing-cluster-resources" class="group scroll-mt-20">Interacting with your cluster resources<a href="#support-cluster-resources_managing-cluster-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">To view and edit the global configuration of your OpenShift Container Platform cluster, use the OpenShift CLI (<code>oc</code>) to query and change cluster resources.</p>
       <p><strong>Prerequisites</strong></p>

@@ -155,8 +155,8 @@ Create a parallel Argo CD project and application to manage the new `ClusterInst
       1. The `project` field must match the name of the `AppProject` resource created in the previous step.
       2. The `path` field must match the root folder in your Git repository that will contain the `ClusterInstance` CRs and associated resources.
 
-         > [!NOTE]
-         > By default, `auto-sync` is enabled. However, synchronization only occurs when you push configuration data for the cluster to the new configuration folder, or in this example, the `site-configs-v2/` folder.
+      > [!NOTE]
+      > By default, `auto-sync` is enabled. However, synchronization only occurs when you push configuration data for the cluster to the new configuration folder, or in this example, the `site-configs-v2/` folder.
 2. Create and commit a root folder in your Git repository that will contain the `ClusterInstance` CRs and associated resources, for example:
 
    ```bash
@@ -356,7 +356,7 @@ Migrate a single-node OpenShift cluster from using a `SiteConfig` CR to a `Clust
    1. Pull the `ztp-site-generate` container image by running the following command:
 
       ```bash
-      podman pull registry.redhat.io/openshift4/ztp-site-generate-rhel8:{{ product_version }}
+      podman pull registry.redhat.io/openshift4/ztp-site-generate-rhel8:4.22
       ```
    2. Run the `siteconfig-converter` tool interactively through the container by running the following command:
 
@@ -471,6 +471,7 @@ Migrate a single-node OpenShift cluster from using a `SiteConfig` CR to a `Clust
    3. The tool generates a `kuztomization.yaml` file snippet to create the `ConfigMap` resources that specifies the extra manifests. You can merge the generated `kustomization` snippet with your original `kuztomization.yaml` file.
 
 **Additional resources**
+{._additional-resources}
 
 - [Enabling the SiteConfig operator](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.12/html/multicluster_engine_operator_with_red_hat_advanced_cluster_management/siteconfig-intro#enable)
 

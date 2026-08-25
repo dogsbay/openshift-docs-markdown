@@ -1,8 +1,8 @@
 ---
-title: Troubleshoot {{ sno }} network reconfiguration
+title: Troubleshoot single-node OpenShift network reconfiguration
 ---
 
-# Troubleshoot {{ sno }} network reconfiguration {#cnf-troubleshooting-sno-ip-configuration}
+# Troubleshoot single-node OpenShift network reconfiguration {#cnf-troubleshooting-sno-ip-configuration}
 
 Use the following information to diagnose and resolve network reconfiguration issues on single-node OpenShift clusters.
 
@@ -83,5 +83,6 @@ Use the following reference information to help diagnose and resolve network rec
 | Configuration stuck in disconnected environment | The Lifecycle Agent or recert container might be attempting to pull images not available in the disconnected registry. | Ensure all required images are mirrored to your disconnected registry before starting. Verify the `lca.openshift.io/recert-pull-secret` annotation references a valid pull secret. |
 
 **Additional resources**
+{._additional-resources}
 
 - [Gathering data about your cluster](/openshift-docs-markdown/support/gathering-cluster-data#gathering-cluster-data)

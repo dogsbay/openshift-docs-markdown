@@ -14,10 +14,10 @@ The following diagram illustrates phase 1 of deployment:
 
 For the installation, the key elements in the deployment phase one diagram are:
 
-- ***Provisioner***: A physical machine that runs the installation program and hosts the bootstrap VM that deploys the control plane of a new OpenShift Container Platform cluster.
-- ***Bootstrap VM***: A virtual machine used in the process of deploying an OpenShift Container Platform cluster.
-- ***Network bridges***: The bootstrap VM connects to the bare metal network and to the provisioning network, if present, via network bridges, `eno1` and `eno2`.
-- ***API VIP***: An API virtual IP address (VIP) is used to provide failover of the API server across the control plane nodes. The API VIP first resides on the bootstrap VM. A script generates the `keepalived.conf` configuration file before launching the service. The VIP moves to one of the control plane nodes after the bootstrap process has completed and the bootstrap VM stops.
+- **Provisioner**: A physical machine that runs the installation program and hosts the bootstrap VM that deploys the control plane of a new OpenShift Container Platform cluster.
+- **Bootstrap VM**: A virtual machine used in the process of deploying an OpenShift Container Platform cluster.
+- **Network bridges**: The bootstrap VM connects to the bare metal network and to the provisioning network, if present, via network bridges, `eno1` and `eno2`.
+- **API VIP**: An API virtual IP address (VIP) is used to provide failover of the API server across the control plane nodes. The API VIP first resides on the bootstrap VM. A script generates the `keepalived.conf` configuration file before launching the service. The VIP moves to one of the control plane nodes after the bootstrap process has completed and the bootstrap VM stops.
 
 > [!IMPORTANT]
 > The provisioning network is optional, but it is required for PXE booting. If you deploy without a provisioning network, you must use a virtual media baseboard management controller (BMC) addressing option such as `redfish-virtualmedia` or `idrac-virtualmedia`. Installing a cluster using a provisioning network has not been tested and validated with Dell iDRAC 10. If you are installing a cluster with installer-provisioned infrastructure on iDRAC 10, it is recommended to use virtual media, which has been validated with iDRAC 10.
@@ -40,5 +40,6 @@ After this point, the node used by the provisioner can be removed or repurposed.
 > For installer-provisioned infrastructure installations, CoreDNS exposes port 53 at the node level, making it accessible from other routable networks.
 
 **Additional resources**
+{._additional-resources}
 
 - [Using DNS forwarding](/openshift-docs-markdown/networking/networking_operators/dns-operator#nw-dns-forward_dns-operator)

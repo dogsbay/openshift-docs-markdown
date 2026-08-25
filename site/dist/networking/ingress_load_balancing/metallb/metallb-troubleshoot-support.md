@@ -115,7 +115,7 @@ To control the verbosity of network logs for troubleshooting or monitoring, refe
 
 The following values define the severity of recorded events, so that you can use them to filter output based on operational requirements:
 
-***Log levels***
+**Log levels**
 
 <table>
 <thead>
@@ -135,11 +135,11 @@ The following values define the severity of recorded events, so that you can use
 </tr>
 <tr>
   <td><code>info</code></td>
-  <td></td>
+  <td> Provides information that always should be logged but under normal circumstances does not require user intervention. This is the default logging level.</td>
 </tr>
 <tr>
   <td><code>warn</code></td>
-  <td></td>
+  <td> Anything that can potentially cause inconsistent <code>MetalLB</code> behaviour. Usually <code>MetalLB</code> automatically recovers from this type of error.</td>
 </tr>
 <tr>
   <td><code>error</code></td>
@@ -551,7 +551,8 @@ The command collects log and configuration files from the `frr` container that e
 
 No additional configuration is required when you run the command.
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Managing symmetric routing with MetalLB](/openshift-docs-markdown/networking/ingress_load_balancing/metallb/metallb-configure-return-traffic#metallb-configure-return-traffic)
 - [Querying metrics for all projects with the monitoring dashboard](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/4.21/html/accessing_metrics/accessing-metrics-as-an-administrator#querying-metrics-for-all-projects-with-mon-dashboard_accessing-metrics-as-an-administrator)

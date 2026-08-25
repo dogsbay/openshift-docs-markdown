@@ -121,6 +121,7 @@ where:
 :   Specifies a reference to an OpenShift Container Platform `Secret` object containing the key for the client certificate. Required if `tlsClientCert` is specified.
 
 **Additional resources**
+{._additional-resources}
 
 - [Identity provider parameters](/openshift-docs-markdown/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider)
 
@@ -155,6 +156,7 @@ Apply the identity provider custom resource (CR) to your cluster so users can au
    $ oc whoami
    ```
 
-## Additional resources {#additional-resources-keystone_configuring-keystone-identity-provider}
+**Additional resources**
+{._additional-resources}
 
 - [Keystone](http://docs.openstack.org/developer/keystone/)

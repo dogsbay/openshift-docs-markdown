@@ -18,7 +18,7 @@ You can change the instance type associated with a running virtual machine (VM) 
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, click **Virtualization** -> **VirtualMachines**.
+1. In the OpenShift Container Platform web console, click **Virtualization** → **VirtualMachines**.
 2. Select a VM to open the **VirtualMachine details** page.
 3. Click the **Configuration** tab.
 4. On the **Details** tab, click the instance type text to open the **Edit Instancetype** dialog. For example, click **1 CPU | 2 GiB Memory**.
@@ -40,7 +40,7 @@ You can add or remove the amount of memory allocated to a virtual machine (VM) w
 
 **Procedure**
 
-1. Navigate to **Virtualization** -> **VirtualMachines**.
+1. Navigate to **Virtualization** → **VirtualMachines**.
 2. Select the required VM to open the **VirtualMachine details** page.
 3. On the **Configuration** tab, click **Edit CPU|Memory**.
 4. Enter the required amount of memory and click **Save**.
@@ -66,7 +66,7 @@ You can increase or decrease the number of CPU sockets allocated to a virtual ma
 
 **Procedure**
 
-1. Navigate to **Virtualization** -> **VirtualMachines**.
+1. Navigate to **Virtualization** → **VirtualMachines**.
 2. Select the required VM to open the **VirtualMachine details** page.
 3. On the **Configuration** tab, click **Edit CPU|Memory**.
 4. Select the **vCPU** radio button.
@@ -115,7 +115,7 @@ You can add a virtual disk to a virtual machine (VM) by using the OpenShift Cont
 
 **Procedure**
 
-1. Navigate to **Virtualization** -> **VirtualMachines** in the web console.
+1. Navigate to **Virtualization** → **VirtualMachines** in the web console.
 2. Select a VM to open the **VirtualMachine details** page.
 3. On the **Disks** tab, click **Add disk**.
 4. Specify the **Source**, **Name**, **Size**, **Type**, **Interface**, and **Storage Class**.
@@ -200,31 +200,26 @@ If you do not specify these parameters, the system uses the default storage prof
 </thead>
 <tbody>
 <tr>
-  <td>.2+</td>
-  <td>Volume Mode</td>
+  <td rowspan="2">Volume Mode</td>
   <td>Filesystem</td>
-</tr>
-<tr>
   <td>Stores the virtual disk on a file system-based volume.</td>
-  <td>Block</td>
-  <td>Stores the virtual disk directly on the block volume. Only use <code>Block</code> if the underlying storage supports it.<br><br>.3+</td>
 </tr>
 <tr>
-  <td>Access Mode</td>
+  <td>Block</td>
+  <td>Stores the virtual disk directly on the block volume. Only use <code>Block</code> if the underlying storage supports it.</td>
+</tr>
+<tr>
+  <td rowspan="3">Access Mode</td>
   <td>ReadWriteOnce (RWO)</td>
   <td>Volume can be mounted as read/write by a single node.</td>
 </tr>
 <tr>
   <td>ReadWriteMany (RWX)</td>
-  <td>Volume can be mounted as read/write by many nodes at one time.<dl><dt>Note</dt><dd>This mode is required for live migration.</dd></dl></td>
+  <td>Volume can be mounted as read/write by many nodes at one time.<dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>This mode is required for live migration.</dd></dl></td>
+</tr>
+<tr>
   <td>ReadOnlyMany (ROX)</td>
-</tr>
-<tr>
-  <td>Volume can be mounted as read only by many nodes.<br><br><dl><dt>Note</dt><dd><code>ReadWriteMany</code> access mode is required for live migration.</dd></dl>.2+</td>
-
-</tr>
-<tr>
-
+  <td>Volume can be mounted as read only by many nodes.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd><code>ReadWriteMany</code> access mode is required for live migration.</dd></dl></td>
 </tr>
 </tbody>
 </table>
@@ -235,7 +230,7 @@ You can mount a Windows driver disk on a virtual machine (VM) by using the OpenS
 
 **Procedure**
 
-1. Navigate to **Virtualization** -> **VirtualMachines**.
+1. Navigate to **Virtualization** → **VirtualMachines**.
 2. Select the required VM to open the **VirtualMachine details** page.
 3. On the **Configuration** tab, click **Storage**.
 4. Select the **Mount Windows drivers disk** checkbox.
@@ -256,9 +251,9 @@ If the virtual machine is running, changes do not take effect until you restart 
 
 **Procedure**
 
-1. Click **Virtualization** -> **VirtualMachines** from the side menu.
+1. Click **Virtualization** → **VirtualMachines** from the side menu.
 2. Select a virtual machine to open the **VirtualMachine details** page.
-3. Click **Configuration** -> **Environment**.
+3. Click **Configuration** → **Environment**.
 4. Click **Add Config Map, Secret or Service Account**.
 5. Click **Select a resource** and select a resource from the list. A six character serial number is automatically generated for the selected resource.
 6. Optional: Click **Reload** to revert the environment to its last saved state.
@@ -266,8 +261,8 @@ If the virtual machine is running, changes do not take effect until you restart 
 
 **Verification**
 
-1. On the **VirtualMachine details** page, click **Configuration** -> **Disks** and verify that the resource is displayed in the list of disks.
-2. Restart the virtual machine by clicking **Actions** -> **Restart**.
+1. On the **VirtualMachine details** page, click **Configuration** → **Disks** and verify that the resource is displayed in the list of disks.
+2. Restart the virtual machine by clicking **Actions** → **Restart**.
 
 You can now mount the secret, config map, or service account as you would mount any other disk.
 
@@ -375,7 +370,7 @@ You can improve storage performance by configuring multiple I/O threads for a vi
 
 **Procedure**
 
-1. Click **Virtualization** -> **VirtualMachines** from the side menu.
+1. Click **Virtualization** → **VirtualMachines** from the side menu.
 2. Select a virtual machine to open the **VirtualMachine details** page.
 3. Click the **YAML** tab to open the VM manifest.
 4. In the YAML editor, locate the `spec.template.spec.domain` section and add or modify the following fields:
@@ -398,7 +393,8 @@ You can improve storage performance by configuring multiple I/O threads for a vi
    > [!IMPORTANT]
    > The `spec.template.spec.domain` setting cannot be changed while the VM is running. You must stop the VM before applying the changes, and then restart the VM for the new settings to take effect.
 
-## Additional resources {#additional-resources_virt-edit-vms}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring shared volumes for virtual machines](/openshift-docs-markdown/virt/managing_vms/virtual_disks/virt-configuring-shared-volumes-for-vms#virt-configuring-shared-volumes-for-vms)
 - [Understanding config maps](/openshift-docs-markdown/nodes/pods/nodes-pods-configmaps#nodes-pods-configmap-overview_builds-configmaps)

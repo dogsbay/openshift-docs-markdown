@@ -24,7 +24,7 @@ When you install the Service Mesh control plane, it automatically generates rout
 **Procedure from OpenShift console**
 
 1. Log in to the OpenShift Container Platform web console as a user with cluster-admin rights. If you use Red Hat OpenShift Dedicated, you must have an account with the `dedicated-admin` role.
-2. Navigate to **Networking** -> **Routes**.
+2. Navigate to **Networking** → **Routes**.
 3. On the **Routes** page, select the Service Mesh control plane project, for example `istio-system`, from the **Namespace** menu.
 
    The **Location** column displays the linked address for each route.
@@ -51,18 +51,17 @@ When you install the Service Mesh control plane, it automatically generates rout
 
    This command returns the URLs for the Kiali, Jaeger, Prometheus, and Grafana web consoles, and any other routes in your service mesh. You should see output similar to the following:
 
-```terminal
-NAME                    HOST/PORT                         SERVICES              PORT    TERMINATION
-bookinfo-gateway        bookinfo-gateway-yourcompany.com  istio-ingressgateway          http2
-grafana                 grafana-yourcompany.com           grafana               <all>   reencrypt/Redirect
-istio-ingressgateway    istio-ingress-yourcompany.com     istio-ingressgateway  8080
-jaeger                  jaeger-yourcompany.com            jaeger-query          <all>   reencrypt
-kiali                   kiali-yourcompany.com             kiali                 20001   reencrypt/Redirect
-prometheus              prometheus-yourcompany.com        prometheus            <all>   reencrypt/Redirect
-```
-
-1. Copy the URL for the console you want to access from the `HOST/PORT` column into a browser to open the console.
-2. Click **Log In With OpenShift**.
+   ```terminal
+   NAME                    HOST/PORT                         SERVICES              PORT    TERMINATION
+   bookinfo-gateway        bookinfo-gateway-yourcompany.com  istio-ingressgateway          http2
+   grafana                 grafana-yourcompany.com           grafana               <all>   reencrypt/Redirect
+   istio-ingressgateway    istio-ingress-yourcompany.com     istio-ingressgateway  8080
+   jaeger                  jaeger-yourcompany.com            jaeger-query          <all>   reencrypt
+   kiali                   kiali-yourcompany.com             kiali                 20001   reencrypt/Redirect
+   prometheus              prometheus-yourcompany.com        prometheus            <all>   reencrypt/Redirect
+   ```
+4. Copy the URL for the console you want to access from the `HOST/PORT` column into a browser to open the console.
+5. Click **Log In With OpenShift**.
 
 ## Accessing the Kiali console {#ossm-accessing-kiali-console_observability}
 
@@ -77,7 +76,7 @@ If you know the URL for the Kiali console, you can access it directly.  If you d
 **Procedure for administrators**
 
 1. Log in to the OpenShift Container Platform web console with an administrator role.
-2. Click **Home** -> **Projects**.
+2. Click **Home** → **Projects**.
 3. On the **Projects** page, if necessary, use the filter to find the name of your project.
 4. Click the name of your project, for example, `bookinfo`.
 5. On the **Project details** page, in the **Launcher** section, click the **Kiali** link.
@@ -233,7 +232,7 @@ You can create a Red Hat build of OpenTelemetry instance in a mesh namespace an
    kind: OpenTelemetryCollector
    metadata:
      name: otel
-     namespace: bookinfo  # (1)
+     namespace: bookinfo  (1)
    spec:
      mode: deployment
      config: |
@@ -244,7 +243,7 @@ You can create a Red Hat build of OpenTelemetry instance in a mesh namespace an
                endpoint: 0.0.0.0:4317
        exporters:
          otlp:
-           endpoint: "tempo-sample-distributor.tracing-system.svc.cluster.local:4317" # (2)
+           endpoint: "tempo-sample-distributor.tracing-system.svc.cluster.local:4317" (2)
            tls:
              insecure: true
        service:
@@ -258,9 +257,9 @@ You can create a Red Hat build of OpenTelemetry instance in a mesh namespace an
    1. Include the namespace in the `ServiceMeshMemberRoll` member list.
    2. In this example, a TempoStack instance is running in the `tracing-system` namespace. You do not have to include the TempoStack namespace, such as`tracing-system`, in the `ServiceMeshMemberRoll` member list.
 
-      > [!NOTE]
-      > - Create a single  instance of the OpenTelemetry Collector in one of the `ServiceMeshMemberRoll` member namespaces.
-      > - You can add an `otel-collector` as a part of the mesh by adding `sidecar.istio.io/inject: 'true'` to the `OpenTelemetryCollector` resource.
+   > [!NOTE]
+   > - Create a single  instance of the OpenTelemetry Collector in one of the `ServiceMeshMemberRoll` member namespaces.
+   > - You can add an `otel-collector` as a part of the mesh by adding `sidecar.istio.io/inject: 'true'` to the `OpenTelemetryCollector` resource.
 2. Check the `otel-collector` pod log and verify that the pod is running:
 
    ```terminal {title="Example otel-collector pod log check"}
@@ -327,18 +326,18 @@ You can create a Red Hat build of OpenTelemetry instance in a mesh namespace an
    spec:
      external_services:
        tracing:
-         query_timeout: 30 #<1>
+         query_timeout: 30 (1)
          enabled: true
          in_cluster_url: 'http://tempo-sample-query-frontend.tracing-system.svc.cluster.local:16685'
          url: '[Tempo query frontend Route url]'
-         use_grpc: true # (2)
+         use_grpc: true (2)
    ```
 
    1. The default `query_timeout` integer value is 30 seconds. If you set the value to greater than 30 seconds, you must update `.spec.server.write_timeout` in the Kiali CR and add the annotation `haproxy.router.openshift.io/timeout=50s` to the Kiali route. Both `.spec.server.write_timeout` and `haproxy.router.openshift.io/timeout=` must be greater than `query_timeout`.
    2. If you are not using the default HTTP or gRPC port, replace the `in_cluster_url:` port with your custom port.
 
-      > [!NOTE]
-      > Kiali 1.73 uses the Jaeger Query API, which causes a longer response time depending on Tempo resource limits. If you see a `Could not fetch spans` error message in the Kiali UI, then check your Tempo configuration or reduce the limit per query in Kiali.
+   > [!NOTE]
+   > Kiali 1.73 uses the Jaeger Query API, which causes a longer response time depending on Tempo resource limits. If you see a `Could not fetch spans` error message in the Kiali UI, then check your Tempo configuration or reduce the limit per query in Kiali.
 7. Send requests to your application.
 8. Verify the `istiod` pod logs and the `otel-collector` pod logs.
 
@@ -408,7 +407,7 @@ If you already have an existing Red Hat OpenShift Distributed Tracing Platform 
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, click **Ecosystem** -> **Installed Operators**.
+1. In the OpenShift Container Platform web console, click **Ecosystem** → **Installed Operators**.
 2. Click the **Project** menu and select the project where you installed the Service Mesh control plane, for example **istio-system**.
 3. Click the Red Hat OpenShift Service Mesh Operator. In the **Istio Service Mesh Control Plane** column, click the name of your `ServiceMeshControlPlane` resource, for example `basic`.
 4. Add the name of your Distributed Tracing Platform (Jaeger) instance to the `ServiceMeshControlPlane`.
@@ -445,7 +444,7 @@ In a basic installation, `spec.tracing.sampling` is set to `10000`, which sample
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, click **Ecosystem** -> **Installed Operators**.
+1. In the OpenShift Container Platform web console, click **Ecosystem** → **Installed Operators**.
 2. Click the **Project** menu and select the project where you installed the control plane, for example **istio-system**.
 3. Click the Red Hat OpenShift Service Mesh Operator. In the **Istio Service Mesh Control Plane** column, click the name of your `ServiceMeshControlPlane` resource, for example `basic`.
 4. To adjust the sampling rate, set a different value for `spec.tracing.sampling`.
@@ -475,7 +474,7 @@ If you know the URL for the Jaeger console, you can access it directly.  If you 
 **Procedure from OpenShift console**
 
 1. Log in to the OpenShift Container Platform web console as a user with cluster-admin rights. If you use Red Hat OpenShift Dedicated, you must have an account with the `dedicated-admin` role.
-2. Navigate to **Networking** -> **Routes**.
+2. Navigate to **Networking** → **Routes**.
 3. On the **Routes** page, select the Service Mesh control plane project, for example `istio-system`, from the **Namespace** menu.
 
    The **Location** column displays the linked address for each route.
@@ -501,7 +500,7 @@ If you know the URL for the Jaeger console, you can access it directly.  If you 
    $ oc get route -n istio-system jaeger -o jsonpath='{.spec.host}'
    ```
 3. Launch a browser and navigate to `https://<JAEGER_URL>`, where `<JAEGER_URL>` is the route that you discovered in the previous step.
-4. Log in using the same user name and password that you use to access the {{ Product_title }} console.
+4. Log in using the same user name and password that you use to access the {Product_title} console.
 5. If you have added services to the service mesh and have generated traces, you can use the filters and **Find Traces** button to search your trace data.
 
    If you are validating the console installation, there is no trace data to display.
@@ -619,9 +618,9 @@ The following steps show how to integrate Service Mesh with user-workload monito
    spec:
      addons:
        prometheus:
-         enabled: false # (1)
+         enabled: false (1)
        grafana:
-         enabled: false # (2)
+         enabled: false (2)
        kiali:
          name: kiali-user-workload-monitoring
      meshConfig:
@@ -639,7 +638,7 @@ The following steps show how to integrate Service Mesh with user-workload monito
    kind: NetworkPolicy
    metadata:
      name: user-workload-access
-     namespace: istio-system # (1)
+     namespace: istio-system (1)
    spec:
      ingress:
      - from:
@@ -659,9 +658,9 @@ The following steps show how to integrate Service Mesh with user-workload monito
    kind: Telemetry
    metadata:
      name: enable-prometheus-metrics
-     namespace: istio-system # (1)
+     namespace: istio-system (1)
    spec:
-     selector: # (2)
+     selector: (2)
        matchLabels:
          app: bookinfo
      metrics:
@@ -678,7 +677,7 @@ The following steps show how to integrate Service Mesh with user-workload monito
    kind: ServiceMonitor
    metadata:
      name: istiod-monitor
-     namespace: istio-system # (1)
+     namespace: istio-system (1)
    spec:
      targetLabels:
      - app
@@ -690,19 +689,19 @@ The following steps show how to integrate Service Mesh with user-workload monito
        interval: 30s
        relabelings:
        - action: replace
-         replacement: "basic-istio-system" # (2)
+         replacement: "basic-istio-system" (2)
          targetLabel: mesh_id
    ```
 
    1. Create  this `ServiceMonitor` object in the Istio control plane namespace because it monitors the Istiod service. In this example, the namespace is `istio-system`.
    2. The string `"basic-istio-system"` is a combination of the SMCP name and its namespace, but any label can be used as long as it is unique for every mesh using user workload monitoring in the cluster. The `spec.prometheus.query_scope` of the Kiali resource configured in Step 2 needs to match this value.
 
-      > [!NOTE]
-      > If there is only one mesh using user-workload monitoring, then both the `mesh_id` relabeling and the `spec.prometheus.query_scope` field in the Kiali resource are optional (but the `query_scope` field given here should be removed if the `mesh_id` label is removed).
-      >
-      > If multiple mesh instances on the cluster might use user-workload monitoring, then both the `mesh_id` relabelings and the `spec.prometheus.query_scope` field in the Kiali resource are required. This ensures that Kiali only sees metrics from its associated mesh.
-      >
-      > If you are not deploying Kiali, you can still apply `mesh_id` relabeling so that metrics from different meshes can be distinguished from one another.
+   > [!NOTE]
+   > If there is only one mesh using user-workload monitoring, then both the `mesh_id` relabeling and the `spec.prometheus.query_scope` field in the Kiali resource are optional (but the `query_scope` field given here should be removed if the `mesh_id` label is removed).
+   >
+   > If multiple mesh instances on the cluster might use user-workload monitoring, then both the `mesh_id` relabelings and the `spec.prometheus.query_scope` field in the Kiali resource are required. This ensures that Kiali only sees metrics from its associated mesh.
+   >
+   > If you are not deploying Kiali, you can still apply `mesh_id` relabeling so that metrics from different meshes can be distinguished from one another.
 7. Apply a `PodMonitor` object to collect metrics from Istio proxies:
 
    ```yaml
@@ -710,7 +709,7 @@ The following steps show how to integrate Service Mesh with user-workload monito
    kind: PodMonitor
    metadata:
      name: istio-proxies-monitor
-     namespace: istio-system # (1)
+     namespace: istio-system (1)
    spec:
      selector:
        matchExpressions:
@@ -746,22 +745,23 @@ The following steps show how to integrate Service Mesh with user-workload monito
          action: replace
          targetLabel: pod_name
        - action: replace
-         replacement: "basic-istio-system" # (2)
+         replacement: "basic-istio-system" (2)
          targetLabel: mesh_id
    ```
 
    1. Since OpenShift Container Platform monitoring ignores the `namespaceSelector` spec in `ServiceMonitor` and `PodMonitor` objects, you must apply the `PodMonitor` object in all mesh namespaces, including the control plane namespace.
    2. The string `"basic-istio-system"` is a combination of the SMCP name and its namespace, but any label can be used as long as it is unique for every mesh using user workload monitoring in the cluster. The `spec.prometheus.query_scope` of the Kiali resource configured in Step 2 needs to match this value.
 
-      > [!NOTE]
-      > If there is only one mesh using user-workload monitoring, then both the `mesh_id` relabeling and the `spec.prometheus.query_scope` field in the Kiali resource are optional (but the `query_scope` field given here should be removed if the `mesh_id` label is removed).
-      >
-      > If multiple mesh instances on the cluster might use user-workload monitoring, then both the `mesh_id` relabelings and the `spec.prometheus.query_scope` field in the Kiali resource are required. This ensures that Kiali only sees metrics from its associated mesh.
-      >
-      > If you are not deploying Kiali, you can still apply `mesh_id` relabeling so that metrics from different meshes can be distinguished from one another.
+   > [!NOTE]
+   > If there is only one mesh using user-workload monitoring, then both the `mesh_id` relabeling and the `spec.prometheus.query_scope` field in the Kiali resource are optional (but the `query_scope` field given here should be removed if the `mesh_id` label is removed).
+   >
+   > If multiple mesh instances on the cluster might use user-workload monitoring, then both the `mesh_id` relabelings and the `spec.prometheus.query_scope` field in the Kiali resource are required. This ensures that Kiali only sees metrics from its associated mesh.
+   >
+   > If you are not deploying Kiali, you can still apply `mesh_id` relabeling so that metrics from different meshes can be distinguished from one another.
 8. Open the OpenShift Container Platform web console, and check that metrics are visible.
 
-## Additional resources {#additional-resources_user-workload-monitoring}
+**Additional resources**
+{._additional-resources}
 
 - [Enabling monitoring for user-defined projects](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/preparing-to-configure-the-monitoring-stack-uwm#enabling-monitoring-for-user-defined-projects-uwm_preparing-to-configure-the-monitoring-stack-uwm)
 - [Installing the Distributed Tracing Platform](https://docs.redhat.com/en/documentation/red_hat_openshift_distributed_tracing_platform/latest/html/installing_the_distributed_tracing_platform/distr-tracing-tempo-installing)

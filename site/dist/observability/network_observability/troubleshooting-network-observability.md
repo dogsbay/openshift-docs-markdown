@@ -158,7 +158,7 @@ You can increase memory limits for the Network Observability Operator by editing
 
 **Procedure**
 
-1. In the web console, navigate to **Ecosystem** -> **Installed Operators**
+1. In the web console, navigate to **Ecosystem** → **Installed Operators**
 2. Click **Network Observability** and then select **Subscription**.
 3. From the **Actions** menu, click **Edit Subscription**.
 
@@ -221,6 +221,7 @@ There are two examples of ways to do this, which you can adapt according to your
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Resource considerations](/openshift-docs-markdown/observability/network_observability/configuring-operator#network-observability-resources-table_network_observability)
 
@@ -232,7 +233,7 @@ Loki may return a `ResourceExhausted` error when network flow data sent by netwo
 
 **Procedure**
 
-1. Navigate to **Ecosystem** -> **Installed Operators**, viewing **All projects** from the **Project** drop-down menu.
+1. Navigate to **Ecosystem** → **Installed Operators**, viewing **All projects** from the **Project** drop-down menu.
 2. In the **Provided APIs** list, select the Network Observability Operator.
 3. Click the **Flow Collector** then the **YAML view** tab.
 
@@ -265,7 +266,7 @@ You can update the LokiStack CRD with the `perStreamRateLimit` and `perStreamRat
 
 **Procedure**
 
-1. Navigate to **Ecosystem** -> **Installed Operators**, viewing **All projects** from the **Project** dropdown.
+1. Navigate to **Ecosystem** → **Installed Operators**, viewing **All projects** from the **Project** dropdown.
 2. Look for **Loki Operator**, and select the **LokiStack** tab.
 3. Create or edit an existing **LokiStack** instance using the **YAML view** to add the `perStreamRateLimit` and `perStreamRateLimitBurst` specifications:
 
@@ -316,6 +317,7 @@ Configure Loki to improve the query performance
     - Increase the [query timeout](https://loki-operator.dev/docs/api.md/#loki-grafana-com-v1-QueryLimitSpec). You must also increase the Network Observability read timeout to Loki in the `FlowCollector` `spec.loki.readTimeout`.
 
 **Additional resources**
+{._additional-resources}
 
 - [Network flows format reference](/openshift-docs-markdown/observability/network_observability/json-flows-format-reference#network-observability-flows-format_json_reference)
 - [FlowMetric API reference](/openshift-docs-markdown/observability/network_observability/flowmetric-api#flowmetric-flows-netobserv-io-v1alpha1)

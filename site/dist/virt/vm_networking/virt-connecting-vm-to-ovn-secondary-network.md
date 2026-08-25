@@ -75,7 +75,7 @@ You can create a network attachment definition (NAD) that describes how to attac
 
 **Procedure**
 
-1. Go to **Networking** -> **NetworkAttachmentDefinitions** in the web console.
+1. Go to **Networking** → **NetworkAttachmentDefinitions** in the web console.
 2. Click **Create Network Attachment Definition**. The network attachment definition must be in the same namespace as the pod or virtual machine using it.
 3. Enter a unique **Name** and optional **Description**.
 4. Select **OVN Kubernetes L2 overlay network** from the **Network Type** list.
@@ -131,7 +131,8 @@ You can connect a virtual machine (VM) to the OVN-Kubernetes secondary network b
    ```
 3. Optional: If you edited a running virtual machine, you must restart it for the changes to take effect.
 
-## Additional resources {#additional-resources_virt-connecting-vm-to-ovn-secondary-network}
+**Additional resources**
+{._additional-resources}
 
 - [Creating secondary networks on OVN-Kubernetes](/openshift-docs-markdown/networking/multiple_networks/secondary_networks/creating-secondary-nwt-ovnk#configuration-ovnk-additional-networks_configuring-additional-network-ovnk)
 - [About the Kubernetes NMState Operator](/openshift-docs-markdown/networking/networking_operators/k8s-nmstate-about-the-k8s-nmstate-operator#k8s-nmstate-about-the-k8s-nmstate-operator)

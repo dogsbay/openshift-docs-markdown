@@ -1,8 +1,8 @@
 ---
-title: Preinstalling {{ sno }} using an image-based installation
+title: Preinstalling single-node OpenShift using an image-based installation
 ---
 
-# Preinstalling {{ sno }} using an image-based installation {#ibi-factory-image-based-install}
+# Preinstalling single-node OpenShift using an image-based installation {#ibi-factory-image-based-install}
 
 Use the `openshift-install` program to create a live installation ISO for preinstalling single-node OpenShift on bare-metal hosts. For more information about downloading the installation program, see "Installation process" in the "Additional resources" section.
 
@@ -15,6 +15,7 @@ The following are the high-level steps to preinstall a single-node OpenShift clu
 - Boot the host using the live installation ISO to preinstall the host.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installation process](/openshift-docs-markdown/installing/overview/index#installation-process_ocp-installation-overview)
 
@@ -153,6 +154,7 @@ You can embed your single-node OpenShift seed image URL, and other installation 
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Reference specifications for the `image-based-installation-config.yaml` manifest](/openshift-docs-markdown/edge_computing/image_base_install/ibi_deploying_sno_clusters/ibi-edge-image-based-install-standalone#ibi-installer-configuration-config_ibi-edge-image-based-install)
 
@@ -316,12 +318,12 @@ The `openshift-install` program uses the `image-based-installation-config.yaml` 
 <tr>
   <td><code>installationDisk</code></td>
   <td><code>string</code></td>
-  <td>Specifies the disk that will be used for the installation process.</td>
+  <td>Specifies the disk that will be used for the installation process.<br><br>Because the disk discovery order is not guaranteed, the kernel name of the disk can change across booting options for machines with multiple disks. For example, <code>/dev/sda</code> becomes <code>/dev/sdb</code> and vice versa. To avoid this issue, you must use a persistent disk attribute, such as the disk World Wide Name (WWN), for example: <code>/dev/disk/by-id/wwn-&lt;disk-id&gt;</code>.</td>
 </tr>
 <tr>
   <td><code>pullSecret</code></td>
   <td><code>string</code></td>
-  <td>Specifies the pull secret to use during the precache process. The pull secret contains authentication credentials for pulling the release payload images from the container registry.</td>
+  <td>Specifies the pull secret to use during the precache process. The pull secret contains authentication credentials for pulling the release payload images from the container registry.<br><br>If the seed image requires a separate private registry authentication, add the authentication details to the pull secret.</td>
 </tr>
 </tbody>
 </table>
@@ -348,7 +350,7 @@ The `openshift-install` program uses the `image-based-installation-config.yaml` 
 <tr>
   <td><code>extraPartitionLabel</code></td>
   <td><code>string</code></td>
-  <td>The label of the extra partition you use for <code>/var/lib/containers</code>. The default partition label is <code>var-lib-containers</code>.</td>
+  <td>The label of the extra partition you use for <code>/var/lib/containers</code>. The default partition label is <code>var-lib-containers</code>.<br><br>[NOTE] ==== You must ensure that the partition label in the installation ISO matches the partition label set in the machine configuration for the seed image. If the partition labels are different, the partition mount fails during installation on the host. For more information, see "Configuring a shared container partition between ostree stateroots". ====</td>
 </tr>
 <tr>
   <td><code>extraPartitionNumber</code></td>
@@ -363,39 +365,35 @@ The `openshift-install` program uses the `image-based-installation-config.yaml` 
 <tr>
   <td><code>networkConfig</code></td>
   <td><code>string</code></td>
-  <td>Specifies networking configurations for the host, for example:</td>
+  <td>Specifies networking configurations for the host, for example: [source,yaml] ---- networkConfig: interfaces: - name: ens1f0 type: ethernet state: up ... ---- If you require static networking, you must install the <code>nmstatectl</code> library on the host that creates the live installation ISO. For further information about defining network configurations by using <code>nmstate</code>, see <a href="https://nmstate.io/">nmstate.io</a>. [IMPORTANT] ==== The name of the interface must match the actual NIC name as shown in the operating system. ====</td>
 </tr>
 <tr>
   <td><code>proxy</code></td>
   <td><code>string</code></td>
-  <td>Specifies proxy settings to use during the installation ISO generation, for example:</td>
+  <td>Specifies proxy settings to use during the installation ISO generation, for example: [source,yaml] ---- proxy: httpProxy: "http://proxy.example.com:8080" httpsProxy: "http://proxy.example.com:8080" noProxy: "no_proxy.example.com" ----</td>
 </tr>
 <tr>
   <td><code>imageDigestSources</code></td>
   <td><code>string</code></td>
-  <td>Specifies the sources or repositories for the release-image content, for example:</td>
+  <td>Specifies the sources or repositories for the release-image content, for example: [source,yaml] ---- imageDigestSources: - mirrors: - "registry.example.com:5000/ocp4/openshift4" source: "quay.io/openshift-release-dev/ocp-release" ----</td>
 </tr>
 <tr>
   <td><code>additionalTrustBundle</code></td>
   <td><code>string</code></td>
-  <td>Specifies the PEM-encoded X.509 certificate bundle. The installation program adds this to the <code>/etc/pki/ca-trust/source/anchors/</code> directory in the installation ISO.</td>
+  <td>Specifies the PEM-encoded X.509 certificate bundle. The installation program adds this to the <code>/etc/pki/ca-trust/source/anchors/</code> directory in the installation ISO. [source,yaml] ---- additionalTrustBundle:  -----BEGIN CERTIFICATE----- MTICLDCCAdKgAwfBAgIBAGAKBggqhkjOPQRDAjB9MQswCQYRVEQGE ... l2wOuDwKQa+upc4GftXE7C//4mKBNBC6Ty01gUaTIpo= -----END CERTIFICATE----- ----</td>
 </tr>
 <tr>
-  <td>additionalTrustBundle: \</td>
-  <td> -----BEGIN CERTIFICATE----- MTICLDCCAdKgAwfBAgIBAGAKBggqhkjOPQRDAjB9MQswCQYRVEQGE ... l2wOuDwKQa+upc4GftXE7C//4mKBNBC6Ty01gUaTIpo= -----END CERTIFICATE----- ----</td>
   <td><code>sshKey</code></td>
-</tr>
-<tr>
   <td><code>string</code></td>
   <td>Specifies the SSH key to authenticate access to the host.</td>
-  <td><code>ignitionConfigOverride</code></td>
 </tr>
 <tr>
+  <td><code>ignitionConfigOverride</code></td>
   <td><code>string</code></td>
   <td>Specifies a JSON string containing the user overrides for the Ignition config. The configuration merges with the Ignition config file generated by the installation program. This feature requires Ignition version is 3.2 or later.</td>
-  <td><code>coreosInstallerArgs</code></td>
 </tr>
 <tr>
+  <td><code>coreosInstallerArgs</code></td>
   <td><code>string</code></td>
   <td>Specifies custom arguments for the <code>coreos-install</code> command that you can use to configure kernel arguments and disk partitioning options.</td>
 </tr>
@@ -403,5 +401,6 @@ The `openshift-install` program uses the `image-based-installation-config.yaml` 
 </table>
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring a shared container partition between ostree stateroots](/openshift-docs-markdown/edge_computing/image_base_install/ibi-preparing-for-image-based-install#cnf-image-based-upgrade-shared-container-partition_ibi-preparing-image-based-install)

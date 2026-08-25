@@ -72,7 +72,7 @@ where:
 apiVersion: network.operator.openshift.io/v1
 kind: EgressRouter
 metadata:
-  name: {{ router_name }}
+  name: egress-router-redirect
 spec:
   networkInterface: {
     macvlan: {

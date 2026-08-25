@@ -19,16 +19,17 @@ import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"run-once-duration-override-about","text":"{{ run_once_operator }} overview"},{"depth":2,"slug":"rodoo-about_run-once-duration-override-about","text":"About the Run Once Duration Override Operator"}];
+const headings = [{"depth":1,"slug":"run-once-duration-override-about","text":"Run Once Duration Override Operator overview"},{"depth":2,"slug":"rodoo-about_run-once-duration-override-about","text":"About the Run Once Duration Override Operator"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/pods/run_once_duration_override";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
-const title = "{{ run_once_operator }} overview";
+const title = "Run Once Duration Override Operator overview";
 const description = "The Run Once Duration Override Operator enforces time limits on run-once pods to prevent tasks from running indefinitely and consuming cluster resources." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
@@ -42,7 +43,7 @@ const pageCategory = ["nodes","nodes/pods"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ run_once_operator }} overview {#run-once-duration-override-about}\n\nThe Run Once Duration Override Operator enforces time limits on run-once pods to prevent tasks from running indefinitely and consuming cluster resources.\n\n## About the Run Once Duration Override Operator {#rodoo-about_run-once-duration-override-about}\n\nThe Run Once Duration Override Operator enforces time limits on run-once pods to prevent tasks such as builds and deployments from running indefinitely.\n\nOpenShift Container Platform relies on run-once pods to perform tasks such as deploying a pod or performing a build. Run-once pods are pods that have a `RestartPolicy` of `Never` or `OnFailure`.\n\nCluster administrators can use the Run Once Duration Override Operator to force a limit on the time that those run-once pods can be active. After the time limit expires, the cluster tries to actively terminate those pods.\n\nTo apply the run-once duration override from the Run Once Duration Override Operator to run-once pods, you must enable it on each applicable namespace.\n\nIf both the run-once pod and the Run Once Duration Override Operator have their `activeDeadlineSeconds` value set, the lower of the two values is used.\n\n> [!NOTE]\n> You cannot install the Run Once Duration Override Operator on clusters managed by the HyperShift Operator.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/pods/run_once_duration_override.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Run Once Duration Override Operator overview {#run-once-duration-override-about}\n\nThe Run Once Duration Override Operator enforces time limits on run-once pods to prevent tasks from running indefinitely and consuming cluster resources.\n\n## About the Run Once Duration Override Operator {#rodoo-about_run-once-duration-override-about}\n\nThe Run Once Duration Override Operator enforces time limits on run-once pods to prevent tasks such as builds and deployments from running indefinitely.\n\nOpenShift Container Platform relies on run-once pods to perform tasks such as deploying a pod or performing a build. Run-once pods are pods that have a `RestartPolicy` of `Never` or `OnFailure`.\n\nCluster administrators can use the Run Once Duration Override Operator to force a limit on the time that those run-once pods can be active. After the time limit expires, the cluster tries to actively terminate those pods.\n\nTo apply the run-once duration override from the Run Once Duration Override Operator to run-once pods, you must enable it on each applicable namespace.\n\nIf both the run-once pod and the Run Once Duration Override Operator have their `activeDeadlineSeconds` value set, the lower of the two values is used.\n\n> [!NOTE]\n> You cannot install the Run Once Duration Override Operator on clusters managed by the HyperShift Operator.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/pods/run_once_duration_override.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -81,20 +82,21 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <h1 id="run-once-duration-override-about" class="group scroll-mt-20">{"{"}{"{"} run_once_operator {"}"}{"}"} overview<a href="#run-once-duration-override-about" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>The Run Once Duration Override Operator enforces time limits on run-once pods to prevent tasks from running indefinitely and consuming cluster resources.</p>
+      <h1 id="run-once-duration-override-about" class="group scroll-mt-20">Run Once Duration Override Operator overview<a href="#run-once-duration-override-about" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p class="_abstract">The Run Once Duration Override Operator enforces time limits on run-once pods to prevent tasks from running indefinitely and consuming cluster resources.</p>
       <h2 id="rodoo-about_run-once-duration-override-about" class="group scroll-mt-20">About the Run Once Duration Override Operator<a href="#rodoo-about_run-once-duration-override-about" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">The Run Once Duration Override Operator enforces time limits on run-once pods to prevent tasks such as builds and deployments from running indefinitely.</p>
       <p>OpenShift Container Platform relies on run-once pods to perform tasks such as deploying a pod or performing a build. Run-once pods are pods that have a <code>RestartPolicy</code> of <code>Never</code> or <code>OnFailure</code>.</p>

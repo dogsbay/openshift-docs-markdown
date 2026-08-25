@@ -33,7 +33,8 @@ Deploying an application
 
     You can also use Helm, a software package manager that simplifies deployment of applications and services to OpenShift Container Platform clusters.
 
-## Additional resources {#additional-resources_building-applications-overview}
+**Additional resources**
+{._additional-resources}
 
 - [Working with projects](/openshift-docs-markdown/applications/projects/working-with-projects#working-with-projects)
 - [Customizing the available cluster roles using the web console](/openshift-docs-markdown/applications/projects/working-with-projects#odc-customizing-available-cluster-roles-using-the-web-console_projects)

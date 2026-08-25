@@ -100,7 +100,8 @@ If the cluster does not recover after restart, follow the steps to restore to a 
    > [!IMPORTANT]
    > If you deployed your cluster on a cloud-provider platform, do not shut down, suspend, or delete the associated cloud resources. If you delete the cloud resources of a suspended virtual machine, OpenShift Container Platform might not restore successfully.
 
-## Additional resources {#additional-resources_restarting-restoring-cluster}
+**Additional resources**
+{._additional-resources}
 
 - [Backing up etcd](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd)
 - [Restoring to an earlier cluster state](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state#dr-restoring-cluster-state)

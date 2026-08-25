@@ -1,5 +1,5 @@
 ---
-title: "{{ VirtProductName }} cluster checkup framework"
+title: OpenShift Virtualization cluster checkup framework
 ---
 
 # OpenShift Virtualization cluster checkup framework {#virt-running-cluster-checkups}
@@ -21,6 +21,7 @@ Running a predefined checkup in an existing namespace involves setting up a serv
 > - Verify that the checkup image is from a trustworthy source before applying it.
 > - Review the checkup permissions before creating the `Role` and `RoleBinding` objects.
 
-## Additional resources {#additional-resources_running-cluster-checkups}
+**Additional resources**
+{._additional-resources}
 
 - [Connecting a virtual machine to a Linux bridge network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-connecting-vm-to-linux-bridge)

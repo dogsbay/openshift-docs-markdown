@@ -40,7 +40,7 @@ If your cluster requires different MTU values for different nodes, you must subt
 
 The following table summarizes the migration process by segmenting between the user-initiated steps in the process and the actions that the migration performs in response.
 
-***Live migration of the cluster MTU***
+**Live migration of the cluster MTU**
 
 <table>
 <thead>
@@ -174,70 +174,58 @@ To prepare your nodes for a hardware MTU change, you must create `MachineConfig`
    1. Create the following Butane config in the `control-plane-interface.bu` file:
 
       > [!NOTE]
-      >
+      > The [Butane version](https://coreos.github.io/butane/specs/) you specify in the config file should match the OpenShift Container Platform version and always ends in `0`. For example, `4.22.0`. See "Creating machine configs with Butane" for information about Butane.
 
-The [Butane version](https://coreos.github.io/butane/specs/) you specify in the config file should match the OpenShift Container Platform version and always ends in `0`. For example, `{{ product_version }}.0`. See "Creating machine configs with Butane" for information about Butane.
+      ```yaml
+      variant: openshift
+      version: 4.22.0
+      metadata:
+        name: 01-control-plane-interface
+        labels:
+          machineconfiguration.openshift.io/role: master
+      storage:
+        files:
+          - path: /etc/NetworkManager/conf.d/99-<interface>-mtu.conf
+            contents:
+              local: <interface>-mtu.conf
+            mode: 0600
+      ```
 
-````
-    :::
+      where:
 
-    ```yaml
-    variant: openshift
-    version: {{ product_version }}.0
-    metadata:
-      name: 01-control-plane-interface
-      labels:
-        machineconfiguration.openshift.io/role: master
-    storage:
-      files:
-        - path: /etc/NetworkManager/conf.d/99-<interface>-mtu.conf
-          contents:
-            local: <interface>-mtu.conf
-          mode: 0600
-    ```
+      `storage.files.path`
+      :   Specifies the `NetworkManager` connection name for the primary network interface.
 
-    where:
+      `storage.files.local`
+      :   Specifies the local filename for the updated `NetworkManager` configuration file from an earlier step.
+   2. Create the following Butane config in the `worker-interface.bu` file:
 
-    `storage.files.path`
-    :   Specifies the `NetworkManager` connection name for the primary network interface.
+      > [!NOTE]
+      > The [Butane version](https://coreos.github.io/butane/specs/) you specify in the config file should match the OpenShift Container Platform version and always ends in `0`. For example, `4.22.0`. See "Creating machine configs with Butane" for information about Butane.
 
-    `storage.files.local`
-    :   Specifies the local filename for the updated `NetworkManager` configuration file from an earlier step.
-1.  Create the following Butane config in the `worker-interface.bu` file:
+      ```yaml
+      variant: openshift
+      version: 4.22.0
+      metadata:
+        name: 01-worker-interface
+        labels:
+          machineconfiguration.openshift.io/role: worker
+      storage:
+        files:
+          - path: /etc/NetworkManager/conf.d/99-<interface>-mtu.conf
+            contents:
+              local: <interface>-mtu.conf
+            mode: 0600
+      ```
 
-    :::note
-````
+      where:
 
-The [Butane version](https://coreos.github.io/butane/specs/) you specify in the config file should match the OpenShift Container Platform version and always ends in `0`. For example, `{{ product_version }}.0`. See "Creating machine configs with Butane" for information about Butane.
+      `storage.files.path`
+      :   Specifies the `NetworkManager` connection name for the primary network interface.
 
-````
-    :::
-
-    ```yaml
-    variant: openshift
-    version: {{ product_version }}.0
-    metadata:
-      name: 01-worker-interface
-      labels:
-        machineconfiguration.openshift.io/role: worker
-    storage:
-      files:
-        - path: /etc/NetworkManager/conf.d/99-<interface>-mtu.conf
-          contents:
-            local: <interface>-mtu.conf
-          mode: 0600
-    ```
-
-    where:
-
-    `storage.files.path`
-    :   Specifies the `NetworkManager` connection name for the primary network interface.
-
-    `storage.files.local`
-    :   Specifies the local filename for the updated `NetworkManager` configuration file from an earlier step.
-````
-
-1. Create `MachineConfig` objects from the Butane configs by running the following command:
+      `storage.files.local`
+      :   Specifies the local filename for the updated `NetworkManager` configuration file from an earlier step.
+2. Create `MachineConfig` objects from the Butane configs by running the following command:
 
    ```terminal
    $ for manifest in control-plane-interface worker-interface; do
@@ -415,34 +403,38 @@ Finalize the MTU migration to apply the new maximum transmission unit (MTU) sett
 
 **Verification**
 
-````
-1.  To get the current MTU for the cluster network, enter the following command:
-    ```terminal
-    $ oc describe network.config cluster
-    ```
-1.  Get the current MTU for the primary network interface of a node:
-    1.  To list the nodes in your cluster, enter the following command:
-        ```terminal
-        $ oc get nodes
-        ```
-    1.  To obtain the current MTU setting for the primary network interface on a node, enter the following command:
-        ```terminal
-        $ oc adm node-logs <node> -u ovs-configuration | grep configure-ovs.sh | grep mtu | grep <interface> | head -1
-        ```
+1. To get the current MTU for the cluster network, enter the following command:
 
-        where:
+   ```terminal
+   $ oc describe network.config cluster
+   ```
+2. Get the current MTU for the primary network interface of a node:
 
-        `<node>`
-        :   Specifies a node from the output from the previous step.
+   1. To list the nodes in your cluster, enter the following command:
 
-        `<interface>`
-        :   Specifies the primary network interface name for the node.
-        ```text title="Example output"
-        ens3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 8051
-        ```
-````
+      ```terminal
+      $ oc get nodes
+      ```
+   2. To obtain the current MTU setting for the primary network interface on a node, enter the following command:
 
-## Additional resources {#additional-resources-mtu-cluster-network}
+      ```terminal
+      $ oc adm node-logs <node> -u ovs-configuration | grep configure-ovs.sh | grep mtu | grep <interface> | head -1
+      ```
+
+      where:
+
+      `<node>`
+      :   Specifies a node from the output from the previous step.
+
+      `<interface>`
+      :   Specifies the primary network interface name for the node.
+
+      ```text {title="Example output"}
+      ens3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 8051
+      ```
+
+**Additional resources**
+{._additional-resources}
 
 - [Using advanced networking options for PXE and ISO installations](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#installation-user-infra-machines-advanced_network_installing-bare-metal)
 - [Manually creating NetworkManager profiles in key file format](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/configuring_and_managing_networking/index#proc_manually-creating-a-networkmanager-profile-in-keyfile-format_assembly_networkmanager-connection-profiles-in-keyfile-format)

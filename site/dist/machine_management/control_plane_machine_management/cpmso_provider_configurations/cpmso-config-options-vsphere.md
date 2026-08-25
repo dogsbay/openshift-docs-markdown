@@ -84,13 +84,7 @@ where:
 :   Specifies the network on which to deploy the control plane.
 
     > [!NOTE]
-    >
-
-If the cluster uses a failure domain, configure this parameter in the failure domain. If you specify this value in the provider specification when using a failure domain, the Control Plane Machine Set Operator ignores it and uses the value in the failure domain.
-
-```
-:::
-```
+    > If the cluster uses a failure domain, configure this parameter in the failure domain. If you specify this value in the provider specification when using a failure domain, the Control Plane Machine Set Operator ignores it and uses the value in the failure domain.
 
 `spec.template.spec.providerSpec.value.numCPUs`
 :   Specifies the number of CPUs allocated for the control plane machines.
@@ -102,13 +96,7 @@ If the cluster uses a failure domain, configure this parameter in the failure do
 :   Specifies the vSphere VM template to use, such as `user-5ddjd-rhcos`.
 
     > [!NOTE]
-    >
-
-If the cluster uses a failure domain, configure this parameter in the failure domain. If you specify this value in the provider specification when using a failure domain, the Control Plane Machine Set Operator ignores it and uses the value in the failure domain.
-
-```
-:::
-```
+    > If the cluster uses a failure domain, configure this parameter in the failure domain. If you specify this value in the provider specification when using a failure domain, the Control Plane Machine Set Operator ignores it and uses the value in the failure domain.
 
 `spec.template.spec.providerSpec.value.userDataSecret`
 :   Specifies the control plane user data secret. Do not change this value.
@@ -117,15 +105,9 @@ If the cluster uses a failure domain, configure this parameter in the failure do
 :   Specifies the workspace details for the control plane.
 
     > [!NOTE]
-    >
+    > If the cluster uses a failure domain, configure this parameter in the failure domain. If you specify this value in the provider specification when using a failure domain, the Control Plane Machine Set Operator ignores it and uses the value in the failure domain.
 
-If the cluster uses a failure domain, configure this parameter in the failure domain. If you specify this value in the provider specification when using a failure domain, the Control Plane Machine Set Operator ignores it and uses the value in the failure domain.
-
-```
-:::
-
-The following keys in this stanza specify additional details:
-```
+    The following keys in this stanza specify additional details:
 
 `datacenter`
 :   Specifies the vCenter datacenter for the control plane.
@@ -160,16 +142,16 @@ metadata:
   name: cluster
   namespace: openshift-machine-api
 spec:
-## ...
+# ...
   template:
-## ...
+# ...
     machines_v1beta1_machine_openshift_io:
       failureDomains:
         vsphere:
         - name: <failure_domain_name_1>
         - name: <failure_domain_name_2>
         platform: VSphere
-## ...
+# ...
 ```
 
 where:
@@ -191,7 +173,8 @@ where:
 `spec.template.machines_v1beta1_machine_openshift_io.failureDomains.platform`
 :   Specifies the cloud provider platform name. Do not change this value.
 
-## Additional resources {#additional-resources_cpmso-config-options-vsphere}
+**Additional resources**
+{._additional-resources}
 
 - [Updating the control plane configuration](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-feat-config-update_cpmso-managing-machines)
 - [Configuring VMware vSphere features for control plane machines](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso_provider_configurations/cpmso-supported-features-vsphere#cpmso-supported-features-vsphere)

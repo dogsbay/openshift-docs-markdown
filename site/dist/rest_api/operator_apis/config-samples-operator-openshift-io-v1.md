@@ -1,5 +1,5 @@
 ---
-title: Config []
+title: Config [samples.operator.openshift.io/v1]
 ---
 
 # Config \[samples.operator.openshift.io/v1\] {#config-samples-operator-openshift-io-v1}
@@ -42,10 +42,10 @@ Type
 | --- | --- | --- |
 | `architectures` | `array (string)` | architectures determine which hardware architecture(s) to install, where x86_64, ppc64le, and s390x are the only supported choices currently. |
 | `managementState` | `string` | managementState is top level on/off type of switch for all operators. When "Managed", this operator processes config and manipulates the samples accordingly. When "Unmanaged", this operator ignores any updates to the resources it watches. When "Removed", it reacts that same wasy as it does if the Config object is deleted, meaning any ImageStreams or Templates it manages (i.e. it honors the skipped lists) and the registry secret are deleted, along with the ConfigMap in the operator’s namespace that represents the last config used to manipulate the samples, |
-| `samplesRegistry` | `string` | samplesRegistry allows for the specification of which registry is accessed by the ImageStreams for their image content.  Defaults on the content in https://github.com/openshift/library that are pulled into this github repository, but based on our pulling only ocp content it typically defaults to registry.redhat.io. |
+| `samplesRegistry` | `string` | samplesRegistry allows for the specification of which registry is accessed by the ImageStreams for their image content. Defaults on the content in https://github.com/openshift/library that are pulled into this github repository, but based on our pulling only ocp content it typically defaults to registry.redhat.io. |
 | `skippedHelmCharts` | `array (string)` | skippedHelmCharts specifies names of helm charts that should NOT be managed. Admins can use this to allow them to delete content they don’t want. They will still have to MANUALLY DELETE the content but the operator will not recreate(or update) anything listed here. Few examples of the name of helmcharts which can be skipped are 'redhat-redhat-perl-imagestreams','redhat-redhat-nodejs-imagestreams','redhat-nginx-imagestreams', 'redhat-redhat-ruby-imagestreams','redhat-redhat-python-imagestreams','redhat-redhat-php-imagestreams', 'redhat-httpd-imagestreams','redhat-redhat-dotnet-imagestreams'. Rest of the names can be obtained from openshift console --> helmcharts -->installed helmcharts. This will display the list of all the 12 helmcharts(of imagestreams)being installed by Samples Operator. The skippedHelmCharts must be a valid Kubernetes resource name. May contain only lowercase alphanumeric characters, hyphens and periods, and each period separated segment must begin and end with an alphanumeric character. It must be non-empty and at most 253 characters in length |
-| `skippedImagestreams` | `array (string)` | skippedImagestreams specifies names of image streams that should NOT be created/updated.  Admins can use this to allow them to delete content they don’t want.  They will still have to manually delete the content but the operator will not recreate(or update) anything listed here. |
-| `skippedTemplates` | `array (string)` | skippedTemplates specifies names of templates that should NOT be created/updated.  Admins can use this to allow them to delete content they don’t want.  They will still have to manually delete the content but the operator will not recreate(or update) anything listed here. |
+| `skippedImagestreams` | `array (string)` | skippedImagestreams specifies names of image streams that should NOT be created/updated. Admins can use this to allow them to delete content they don’t want. They will still have to manually delete the content but the operator will not recreate(or update) anything listed here. |
+| `skippedTemplates` | `array (string)` | skippedTemplates specifies names of templates that should NOT be created/updated. Admins can use this to allow them to delete content they don’t want. They will still have to manually delete the content but the operator will not recreate(or update) anything listed here. |
 
 ### .status {#_status}
 
@@ -62,10 +62,10 @@ Type
 | `architectures` | `array (string)` | architectures determine which hardware architecture(s) to install, where x86_64 and ppc64le are the supported choices. |
 | `conditions` | `array` | conditions represents the available maintenance status of the sample imagestreams and templates. |
 | `conditions[]` | `object` | ConfigCondition captures various conditions of the Config as entries are processed. |
-| `managementState` | `string` | managementState reflects the current operational status of the on/off switch for the operator.  This operator compares the ManagementState as part of determining that we are turning the operator back on (i.e. "Managed") when it was previously "Unmanaged". |
-| `samplesRegistry` | `string` | samplesRegistry allows for the specification of which registry is accessed by the ImageStreams for their image content.  Defaults on the content in https://github.com/openshift/library that are pulled into this github repository, but based on our pulling only ocp content it typically defaults to registry.redhat.io. |
-| `skippedImagestreams` | `array (string)` | skippedImagestreams specifies names of image streams that should NOT be created/updated.  Admins can use this to allow them to delete content they don’t want.  They will still have to manually delete the content but the operator will not recreate(or update) anything listed here. |
-| `skippedTemplates` | `array (string)` | skippedTemplates specifies names of templates that should NOT be created/updated.  Admins can use this to allow them to delete content they don’t want.  They will still have to manually delete the content but the operator will not recreate(or update) anything listed here. |
+| `managementState` | `string` | managementState reflects the current operational status of the on/off switch for the operator. This operator compares the ManagementState as part of determining that we are turning the operator back on (i.e. "Managed") when it was previously "Unmanaged". |
+| `samplesRegistry` | `string` | samplesRegistry allows for the specification of which registry is accessed by the ImageStreams for their image content. Defaults on the content in https://github.com/openshift/library that are pulled into this github repository, but based on our pulling only ocp content it typically defaults to registry.redhat.io. |
+| `skippedImagestreams` | `array (string)` | skippedImagestreams specifies names of image streams that should NOT be created/updated. Admins can use this to allow them to delete content they don’t want. They will still have to manually delete the content but the operator will not recreate(or update) anything listed here. |
+| `skippedTemplates` | `array (string)` | skippedTemplates specifies names of templates that should NOT be created/updated. Admins can use this to allow them to delete content they don’t want. They will still have to manually delete the content but the operator will not recreate(or update) anything listed here. |
 | `version` | `string` | version is the value of the operator’s payload based version indicator when it was last successfully processed |
 
 ### .status.conditions {#_statusconditions}
@@ -110,13 +110,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of Config
   - `GET`: list objects of kind Config
   - `POST`: create a Config
-- `/apis/samples.operator.openshift.io/v1/configs/{{ name }}`
+- `/apis/samples.operator.openshift.io/v1/configs/{name}`
 
   - `DELETE`: delete a Config
   - `GET`: read the specified Config
   - `PATCH`: partially update the specified Config
   - `PUT`: replace the specified Config
-- `/apis/samples.operator.openshift.io/v1/configs/{{ name }}/status`
+- `/apis/samples.operator.openshift.io/v1/configs/{name}/status`
 
   - `GET`: read status of the specified Config
   - `PATCH`: partially update status of the specified Config
@@ -190,7 +190,7 @@ Description
 | 202 - Accepted | [`Config`](/openshift-docs-markdown/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/samples.operator.openshift.io/v1/configs/{{ name }} {#_apissamplesoperatoropenshiftiov1configs_name}
+### /apis/samples.operator.openshift.io/v1/configs/{name} {#_apissamplesoperatoropenshiftiov1configs_name}
 
 **Global path parameters**
 
@@ -294,7 +294,7 @@ Description
 | 201 - Created | [`Config`](/openshift-docs-markdown/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/samples.operator.openshift.io/v1/configs/{{ name }}/status {#_apissamplesoperatoropenshiftiov1configs_name_status}
+### /apis/samples.operator.openshift.io/v1/configs/{name}/status {#_apissamplesoperatoropenshiftiov1configs_name_status}
 
 **Global path parameters**
 

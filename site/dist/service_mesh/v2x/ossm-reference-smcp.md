@@ -10,7 +10,7 @@ You can customize your Red Hat OpenShift Service Mesh by modifying the default 
 
 The following table lists the top-level parameters for the `ServiceMeshControlPlane` resource.
 
-`ServiceMeshControlPlane`** resource parameters**
+**`ServiceMeshControlPlane` resource parameters**
 
 | Name | Description | Type |
 | --- | --- | --- |
@@ -22,13 +22,13 @@ The following table lists the top-level parameters for the `ServiceMeshControlPl
 
 The following table lists the specifications for the `ServiceMeshControlPlane` resource. Changing these parameters configures Red Hat OpenShift Service Mesh components.
 
-`ServiceMeshControlPlane`** resource spec**
+**`ServiceMeshControlPlane` resource spec**
 
 | Name | Description | Configurable parameters |
 | --- | --- | --- |
 | `addons` | The `addons` parameter configures additional features beyond core Service Mesh control plane components, such as visualization, or metric storage. | `3scale`, `grafana`, `jaeger`, `kiali`, and `prometheus`. |
 | `cluster` | The `cluster` parameter sets the general configuration of the cluster (cluster name, network name, multi-cluster, mesh expansion, etc.) | `meshExpansion`, `multiCluster`, `name`, and `network` |
-| `gateways` | You use the `gateways` parameter to configure ingress and egress gateways for the mesh. | `enabled`, `additionalEgress`, `additionalIngress`, `egress`, `ingress`, and  `openshiftRoute` |
+| `gateways` | You use the `gateways` parameter to configure ingress and egress gateways for the mesh. | `enabled`, `additionalEgress`, `additionalIngress`, `egress`, `ingress`, and `openshiftRoute` |
 | `general` | The `general` parameter represents general Service Mesh control plane configuration that does not fit anywhere else. | `logging` and `validationMessages` |
 | `policy` | You use the `policy` parameter to configure policy checking for the Service Mesh control plane. Policy checking can be enabled by setting `spec.policy.enabled` to `true`. | `mixer` `remote`, or `type`. `type` can be set to `Istiod`, `Mixer` or `None`. |
 | `profiles` | You select the `ServiceMeshControlPlane` profile to use for default values using the `profiles` parameter. | `default` |
@@ -42,7 +42,7 @@ The following table lists the specifications for the `ServiceMeshControlPlane` r
 
 `ControlPlaneStatus` represents the current state of your service mesh.
 
-`ServiceMeshControlPlane`** resource `ControlPlaneStatus`**
+**`ServiceMeshControlPlane` resource `ControlPlaneStatus`**
 
 | Name | Description | Type |
 | --- | --- | --- |
@@ -64,7 +64,7 @@ kind: ServiceMeshControlPlane
 metadata:
   name: basic
 spec:
-  version: v{{ MaistraVersion }}
+  version: v2.6
   proxy:
     runtime:
       container:
@@ -289,7 +289,7 @@ kind: ServiceMeshControlPlane
 metadata:
   name: basic
 spec:
-  version: v{{ MaistraVersion }}
+  version: v2.6
   tracing:
     sampling: 100
     type: Jaeger
@@ -396,7 +396,8 @@ The `status` parameter describes the current state of your service mesh. This in
 | `chartVersion` | The version of the charts that were last processed for this resource. | string |
 | `appliedValues` | The resulting `values.yaml` file that was used to generate the charts. | `ControlPlaneSpec` |
 
-## Additional resources {#additional-resources_ossm-reference}
+**Additional resources**
+{._additional-resources}
 
 - For more information about how to configure the features in the `ServiceMeshControlPlane` resource, see the following links:
 

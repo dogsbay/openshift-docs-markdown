@@ -1,5 +1,5 @@
 ---
-title: ImagePruner []
+title: ImagePruner [imageregistry.operator.openshift.io/v1]
 ---
 
 # ImagePruner \[imageregistry.operator.openshift.io/v1\] {#imagepruner-imageregistry-operator-openshift-io-v1}
@@ -46,7 +46,7 @@ Type
 | `keepTagRevisions` | `integer` | keepTagRevisions specifies the number of image revisions for a tag in an image stream that will be preserved. Defaults to 3. |
 | `keepYoungerThan` | `integer` | keepYoungerThan specifies the minimum age in nanoseconds of an image and its referrers for it to be considered a candidate for pruning. DEPRECATED: This field is deprecated in favor of keepYoungerThanDuration. If both are set, this field is ignored and keepYoungerThanDuration takes precedence. |
 | `keepYoungerThanDuration` | `string` | keepYoungerThanDuration specifies the minimum age of an image and its referrers for it to be considered a candidate for pruning. Defaults to 60m (60 minutes). |
-| `logLevel` | `string` | logLevel sets the level of log output for the pruner job. Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
+| `logLevel` | `string` | logLevel sets the level of log output for the pruner job.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `nodeSelector` | `object (string)` | nodeSelector defines the node selection constraints for the image pruner pod. |
 | `resources` | `object` | resources defines the resource requests and limits for the image pruner pod. |
 | `schedule` | `string` | schedule specifies when to execute the job using standard cronjob syntax: https://wikipedia.org/wiki/Cron. Defaults to `0 0 * * *`. |
@@ -878,7 +878,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. |
+| `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.<br>This field depends on the DynamicResourceAllocation feature gate.<br>This field is immutable. It can only be set for containers. |
 | `claims[]` | `object` | ResourceClaim references one entry in PodSpec.ResourceClaims. |
 | `limits` | `integer-or-string` | Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
 | `requests` | `integer-or-string` | Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
@@ -986,7 +986,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` |  |
 | `reason` | `string` |  |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
@@ -1001,13 +1001,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of ImagePruner
   - `GET`: list objects of kind ImagePruner
   - `POST`: create an ImagePruner
-- `/apis/imageregistry.operator.openshift.io/v1/imagepruners/{{ name }}`
+- `/apis/imageregistry.operator.openshift.io/v1/imagepruners/{name}`
 
   - `DELETE`: delete an ImagePruner
   - `GET`: read the specified ImagePruner
   - `PATCH`: partially update the specified ImagePruner
   - `PUT`: replace the specified ImagePruner
-- `/apis/imageregistry.operator.openshift.io/v1/imagepruners/{{ name }}/status`
+- `/apis/imageregistry.operator.openshift.io/v1/imagepruners/{name}/status`
 
   - `GET`: read status of the specified ImagePruner
   - `PATCH`: partially update status of the specified ImagePruner
@@ -1081,7 +1081,7 @@ Description
 | 202 - Accepted | [`ImagePruner`](/openshift-docs-markdown/rest_api/operator_apis/imagepruner-imageregistry-operator-openshift-io-v1#imagepruner-imageregistry-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/imageregistry.operator.openshift.io/v1/imagepruners/{{ name }} {#_apisimageregistryoperatoropenshiftiov1imagepruners_name}
+### /apis/imageregistry.operator.openshift.io/v1/imagepruners/{name} {#_apisimageregistryoperatoropenshiftiov1imagepruners_name}
 
 **Global path parameters**
 
@@ -1185,7 +1185,7 @@ Description
 | 201 - Created | [`ImagePruner`](/openshift-docs-markdown/rest_api/operator_apis/imagepruner-imageregistry-operator-openshift-io-v1#imagepruner-imageregistry-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/imageregistry.operator.openshift.io/v1/imagepruners/{{ name }}/status {#_apisimageregistryoperatoropenshiftiov1imagepruners_name_status}
+### /apis/imageregistry.operator.openshift.io/v1/imagepruners/{name}/status {#_apisimageregistryoperatoropenshiftiov1imagepruners_name_status}
 
 **Global path parameters**
 

@@ -1,5 +1,5 @@
 ---
-title: ClusterRoleBinding []
+title: ClusterRoleBinding [rbac.authorization.k8s.io/v1]
 ---
 
 # ClusterRoleBinding \[rbac.authorization.k8s.io/v1\] {#clusterrolebinding-rbac-authorization-k8s-io-v1}
@@ -24,7 +24,7 @@ Required
 | `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. |
 | `roleRef` | `object` | RoleRef contains information that points to the role being used |
 | `subjects` | `array` | Subjects holds references to the objects the role applies to. |
-| `subjects[]` | `object` | Subject contains a reference to the object or user identities a role binding applies to.  This can either hold a direct API object reference, or a value for non-objects such as user and group names. |
+| `subjects[]` | `object` | Subject contains a reference to the object or user identities a role binding applies to. This can either hold a direct API object reference, or a value for non-objects such as user and group names. |
 
 ### .roleRef {#_roleref}
 
@@ -76,7 +76,7 @@ Required
 | `apiGroup` | `string` | APIGroup holds the API group of the referenced subject. Defaults to "" for ServiceAccount subjects. Defaults to "rbac.authorization.k8s.io" for User and Group subjects. |
 | `kind` | `string` | Kind of object being referenced. Values defined by this API group are "User", "Group", and "ServiceAccount". If the Authorizer does not recognized the kind value, the Authorizer should report an error. |
 | `name` | `string` | Name of the object being referenced. |
-| `namespace` | `string` | Namespace of the referenced object.  If the object kind is non-namespace, such as "User" or "Group", and this value is not empty the Authorizer should report an error. |
+| `namespace` | `string` | Namespace of the referenced object. If the object kind is non-namespace, such as "User" or "Group", and this value is not empty the Authorizer should report an error. |
 
 ## API endpoints {#_api_endpoints}
 
@@ -90,13 +90,13 @@ The following API endpoints are available:
 - `/apis/rbac.authorization.k8s.io/v1/watch/clusterrolebindings`
 
   - `GET`: watch individual changes to a list of ClusterRoleBinding. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/rbac.authorization.k8s.io/v1/clusterrolebindings/{{ name }}`
+- `/apis/rbac.authorization.k8s.io/v1/clusterrolebindings/{name}`
 
   - `DELETE`: delete a ClusterRoleBinding
   - `GET`: read the specified ClusterRoleBinding
   - `PATCH`: partially update the specified ClusterRoleBinding
   - `PUT`: replace the specified ClusterRoleBinding
-- `/apis/rbac.authorization.k8s.io/v1/watch/clusterrolebindings/{{ name }}`
+- `/apis/rbac.authorization.k8s.io/v1/watch/clusterrolebindings/{name}`
 
   - `GET`: watch changes to an object of kind ClusterRoleBinding. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
 
@@ -193,7 +193,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/{{ name }} {#_apisrbacauthorizationk8siov1clusterrolebindings_name}
+### /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/{name} {#_apisrbacauthorizationk8siov1clusterrolebindings_name}
 
 **Global path parameters**
 
@@ -298,7 +298,7 @@ Description
 | 201 - Created | [`ClusterRoleBinding`](/openshift-docs-markdown/rest_api/rbac_apis/clusterrolebinding-rbac-authorization-k8s-io-v1#clusterrolebinding-rbac-authorization-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/rbac.authorization.k8s.io/v1/watch/clusterrolebindings/{{ name }} {#_apisrbacauthorizationk8siov1watchclusterrolebindings_name}
+### /apis/rbac.authorization.k8s.io/v1/watch/clusterrolebindings/{name} {#_apisrbacauthorizationk8siov1watchclusterrolebindings_name}
 
 **Global path parameters**
 

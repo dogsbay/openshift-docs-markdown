@@ -17,11 +17,12 @@ import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-using-skip-node","text":"Preventing node reconciliation"},{"depth":2,"slug":"virt-using-skip-node_virt-preventing-node-reconciliation","text":"Using skip-node annotation"},{"depth":2,"slug":"additional-resources_virt-preventing-node-reconciliation","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"virt-using-skip-node","text":"Preventing node reconciliation"},{"depth":2,"slug":"virt-using-skip-node_virt-preventing-node-reconciliation","text":"Using skip-node annotation"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/nodes/virt-preventing-node-reconciliation";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -40,7 +41,7 @@ const pageCategory = ["virt","virt/nodes"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Preventing node reconciliation {#virt-using-skip-node}\n\nUse `skip-node` annotation to prevent the `node-labeller` from reconciling a node.\n\n## Using skip-node annotation {#virt-using-skip-node_virt-preventing-node-reconciliation}\n\nIf you want the `node-labeller` to skip a node, annotate that node by using the OpenShift CLI (`oc`).\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n- Annotate the node that you want to skip by running the following command:\n\n  ```terminal\n  $ oc annotate node <node_name> node-labeller.kubevirt.io/skip-node=true\n  ```\n\n  Replace `<node_name>` with the name of the relevant node to skip.\n\n  Reconciliation resumes on the next cycle after the node annotation is removed or set to false.\n\n## Additional resources {#additional-resources_virt-preventing-node-reconciliation}\n\n- [Managing node labeling for obsolete CPU models](/openshift-docs-markdown/virt/nodes/virt-managing-node-labeling-obsolete-cpu-models#virt-managing-node-labeling-obsolete-cpu-models)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/nodes/virt-preventing-node-reconciliation.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Preventing node reconciliation {#virt-using-skip-node}\n\nUse `skip-node` annotation to prevent the `node-labeller` from reconciling a node.\n\n## Using skip-node annotation {#virt-using-skip-node_virt-preventing-node-reconciliation}\n\nIf you want the `node-labeller` to skip a node, annotate that node by using the OpenShift CLI (`oc`).\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n- Annotate the node that you want to skip by running the following command:\n\n  ```terminal\n  $ oc annotate node <node_name> node-labeller.kubevirt.io/skip-node=true\n  ```\n\n  Replace `<node_name>` with the name of the relevant node to skip.\n\n  Reconciliation resumes on the next cycle after the node annotation is removed or set to false.\n\n**Additional resources**\n{._additional-resources}\n\n- [Managing node labeling for obsolete CPU models](/openshift-docs-markdown/virt/nodes/virt-managing-node-labeling-obsolete-cpu-models#virt-managing-node-labeling-obsolete-cpu-models)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/nodes/virt-preventing-node-reconciliation.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-using-skip-node" class="group scroll-mt-20">Preventing node reconciliation<a href="#virt-using-skip-node" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Use <code>skip-node</code> annotation to prevent the <code>node-labeller</code> from reconciling a node.</p>
+      <p class="_abstract">Use <code>skip-node</code> annotation to prevent the <code>node-labeller</code> from reconciling a node.</p>
       <h2 id="virt-using-skip-node_virt-preventing-node-reconciliation" class="group scroll-mt-20">Using skip-node annotation<a href="#virt-using-skip-node_virt-preventing-node-reconciliation" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">If you want the <code>node-labeller</code> to skip a node, annotate that node by using the OpenShift CLI (<code>oc</code>).</p>
       <p><strong>Prerequisites</strong></p>
@@ -106,8 +108,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p>Reconciliation resumes on the next cycle after the node annotation is removed or set to false.</p>
       </li>
       </ul>
-      <h2 id="additional-resources_virt-preventing-node-reconciliation" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-preventing-node-reconciliation" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul><li><a href="/openshift-docs-markdown/virt/nodes/virt-managing-node-labeling-obsolete-cpu-models#virt-managing-node-labeling-obsolete-cpu-models">Managing node labeling for obsolete CPU models</a></li></ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

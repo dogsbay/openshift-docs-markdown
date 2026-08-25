@@ -17,16 +17,17 @@ import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"creating-ibm-power-vs-workspace","text":"Creating an IBM Power Virtual Server workspace"},{"depth":2,"slug":"creating-ibm-power-vs-workspace-procedure_creating-ibm-power-vs-workspace","text":"Creating an IBM Power Virtual Server workspace"},{"depth":2,"slug":"additional-resources_creating-ibm-power-vs-workspace","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"creating-ibm-power-vs-workspace","text":"Creating an IBM Power Virtual Server workspace"},{"depth":2,"slug":"creating-ibm-power-vs-workspace-procedure_creating-ibm-power-vs-workspace","text":"Creating an IBM Power Virtual Server workspace"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/installing/installing_ibm_powervs/creating-ibm-power-vs-workspace";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
-const title = "Creating an {{ ibm_power_server_title }} workspace";
+const title = "Creating an IBM Power Virtual Server workspace";
 const description = "To host your OpenShift Container Platform cluster on IBM Power(R) Virtual Server, you can create a dedicated workspace and retrieve its identifier for use…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
@@ -40,7 +41,7 @@ const pageCategory = ["installing","installing/installing_ibm_powervs"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating an IBM Power Virtual Server workspace {#creating-ibm-power-vs-workspace}\n\nTo host your OpenShift Container Platform cluster on IBM Power(R) Virtual Server, you can create a dedicated workspace and retrieve its identifier for use during installation.\n\n## Creating an IBM Power Virtual Server workspace {#creating-ibm-power-vs-workspace-procedure_creating-ibm-power-vs-workspace}\n\nTo set up the infrastructure needed for your OpenShift Container Platform cluster, you can create an IBM Power(R) Virtual Server workspace and retrieve its GUID for use during installation.\n\n**Procedure**\n\n1. To create an IBM Power(R) Virtual Server workspace, complete step 1 to step 5 from the IBM Cloud(R) documentation for [Creating an IBM Power(R) Virtual Server](https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-creating-power-virtual-server).\n2. After it has finished provisioning, retrieve the 32-character alphanumeric Globally Unique Identifier (GUID) of your new workspace by entering the following command:\n\n   ```terminal\n   $ ibmcloud resource service-instance <workspace name>\n   ```\n\n## Additional resources {#additional-resources_creating-ibm-power-vs-workspace}\n\n- [Installing a cluster on IBM Power(R) Virtual Server with customizations](/openshift-docs-markdown/installing/installing_ibm_powervs/installing-ibm-power-vs-customizations#installing-ibm-power-vs-customizations)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_ibm_powervs/creating-ibm-power-vs-workspace.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating an IBM Power Virtual Server workspace {#creating-ibm-power-vs-workspace}\n\nTo host your OpenShift Container Platform cluster on IBM Power(R) Virtual Server, you can create a dedicated workspace and retrieve its identifier for use during installation.\n\n## Creating an IBM Power Virtual Server workspace {#creating-ibm-power-vs-workspace-procedure_creating-ibm-power-vs-workspace}\n\nTo set up the infrastructure needed for your OpenShift Container Platform cluster, you can create an IBM Power(R) Virtual Server workspace and retrieve its GUID for use during installation.\n\n**Procedure**\n\n1. To create an IBM Power(R) Virtual Server workspace, complete step 1 to step 5 from the IBM Cloud(R) documentation for [Creating an IBM Power(R) Virtual Server](https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-creating-power-virtual-server).\n2. After it has finished provisioning, retrieve the 32-character alphanumeric Globally Unique Identifier (GUID) of your new workspace by entering the following command:\n\n   ```terminal\n   $ ibmcloud resource service-instance <workspace name>\n   ```\n\n**Additional resources**\n{._additional-resources}\n\n- [Installing a cluster on IBM Power(R) Virtual Server with customizations](/openshift-docs-markdown/installing/installing_ibm_powervs/installing-ibm-power-vs-customizations#installing-ibm-power-vs-customizations)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_ibm_powervs/creating-ibm-power-vs-workspace.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="creating-ibm-power-vs-workspace" class="group scroll-mt-20">Creating an IBM Power Virtual Server workspace<a href="#creating-ibm-power-vs-workspace" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>To host your OpenShift Container Platform cluster on IBM Power(R) Virtual Server, you can create a dedicated workspace and retrieve its identifier for use during installation.</p>
+      <p class="_abstract">To host your OpenShift Container Platform cluster on IBM Power(R) Virtual Server, you can create a dedicated workspace and retrieve its identifier for use during installation.</p>
       <h2 id="creating-ibm-power-vs-workspace-procedure_creating-ibm-power-vs-workspace" class="group scroll-mt-20">Creating an IBM Power Virtual Server workspace<a href="#creating-ibm-power-vs-workspace-procedure_creating-ibm-power-vs-workspace" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">To set up the infrastructure needed for your OpenShift Container Platform cluster, you can create an IBM Power(R) Virtual Server workspace and retrieve its GUID for use during installation.</p>
       <p><strong>Procedure</strong></p>
@@ -103,8 +105,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <CodeBlock code={"$ ibmcloud resource service-instance <workspace name>"} lang="terminal" />
       </li>
       </ol>
-      <h2 id="additional-resources_creating-ibm-power-vs-workspace" class="group scroll-mt-20">Additional resources<a href="#additional-resources_creating-ibm-power-vs-workspace" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul><li><a href="/openshift-docs-markdown/installing/installing_ibm_powervs/installing-ibm-power-vs-customizations#installing-ibm-power-vs-customizations">Installing a cluster on IBM Power(R) Virtual Server with customizations</a></li></ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

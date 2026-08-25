@@ -292,7 +292,7 @@ The `interface` parameter
 
 The parameters for the `FRRConfiguration` custom resource are described in the following table:
 
-***MetalLB FRRConfiguration custom resource***
+**MetalLB FRRConfiguration custom resource**
 
 <table>
 <thead>
@@ -336,7 +336,7 @@ The parameters for the `FRRConfiguration` custom resource are described in the f
 <tr>
   <td><code>spec.bgp.routers.neighbors.dynamicASN</code></td>
   <td><code>string</code></td>
-  <td>Detects the ASN to use for the remote end of the session without explicitly setting it.Specify <code>internal</code> for a neighbor with the same ASN, or <code>external</code> for a neighbor with a different ASN. If you use this parameter, you cannot specify a value in the <code>spec.bgp.routers.neighbors.asn</code> parameter.</td>
+  <td>Detects the ASN to use for the remote end of the session without explicitly setting it. Specify <code>internal</code> for a neighbor with the same ASN, or <code>external</code> for a neighbor with a different ASN. If you use this parameter, you cannot specify a value in the <code>spec.bgp.routers.neighbors.asn</code> parameter.</td>
 </tr>
 <tr>
   <td><code>spec.bgp.routers.neighbors.address</code></td>
@@ -476,12 +476,12 @@ The parameters for the `FRRConfiguration` custom resource are described in the f
 <tr>
   <td><code>spec.bgp.bfdProfiles.receiveInterval</code></td>
   <td><code>integer</code></td>
-  <td>Specifies the minimum interval at which this system can receive control packets, in milliseconds.Defaults to <code>300ms</code>.</td>
+  <td>Specifies the minimum interval at which this system can receive control packets, in milliseconds. Defaults to <code>300ms</code>.</td>
 </tr>
 <tr>
   <td><code>spec.bgp.bfdProfiles.transmitInterval</code></td>
   <td><code>integer</code></td>
-  <td>Specifies the minimum transmission interval, excluding jitter, that this system wants to use to send BFD control packets, in milliseconds.Defaults to <code>300ms</code>.</td>
+  <td>Specifies the minimum transmission interval, excluding jitter, that this system wants to use to send BFD control packets, in milliseconds. Defaults to <code>300ms</code>.</td>
 </tr>
 <tr>
   <td><code>spec.bgp.bfdProfiles.detectMultiplier</code></td>
@@ -506,7 +506,7 @@ The parameters for the `FRRConfiguration` custom resource are described in the f
 <tr>
   <td><code>spec.bgp.bfdProfiles.MinimumTtl</code></td>
   <td><code>integer</code></td>
-  <td>For multihop sessions only.Configures the minimum expected TTL for an incoming BFD control packet.</td>
+  <td>For multihop sessions only. Configures the minimum expected TTL for an incoming BFD control packet.</td>
 </tr>
 <tr>
   <td><code>spec.nodeSelector</code></td>
@@ -549,7 +549,8 @@ Supported gateway modes
     > [!IMPORTANT]
     > Pods running on a CUDN configured with `NoOverlay` transport mode cannot establish TCP connections to `NodePort` services when `externalTrafficPolicy` is set to `Cluster` and the backend pod resides on a different node than the one targeted by the request. This issue occurs regardless of whether outbound SNAT is enabled or disabled.
 
-## Additional resources {#additional-resources_about-bgp-routing}
+**Additional resources**
+{._additional-resources}
 
 - [FRRouting User Guide: BGP](https://docs.frrouting.org/en/latest/bgp.html)
 - [Migrating FRR-K8s resources](/openshift-docs-markdown/networking/advanced_networking/bgp_routing/migrating-frr-k8s-resources#migrating-frr-k8s-resources)

@@ -1,8 +1,8 @@
 ---
-title: Perform health checks before a cluster update with {{ cgu_operator }}
+title: Perform health checks before a cluster update with TALM
 ---
 
-# Perform health checks before a cluster update with {{ cgu_operator }} {#core-cluster-upgrades-health-checks}
+# Perform health checks before a cluster update with TALM {#core-cluster-upgrades-health-checks}
 
 Running pre-update health checks reduces the risk of update failures and identifies problems early. If any checks fail, resolve the issues before proceeding with the cluster update.
 
@@ -225,7 +225,8 @@ Complete these health checks before starting any cluster update to minimize the 
 
   Common causes for `NotReady` nodes include disk pressure, memory pressure, and network connectivity issues.
 
-## Additional resources {#additional-resources_core-cluster-upgrades-health-checks}
+**Additional resources**
+{._additional-resources}
 
 - [Checking the cluster health](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-before-the-update#update-checking-cluster-health_update-before-the-update)
 - [Backing up etcd](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd)

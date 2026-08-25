@@ -1,5 +1,5 @@
 ---
-title: ConsolePlugin []
+title: ConsolePlugin [console.openshift.io/v1]
 ---
 
 # ConsolePlugin \[console.openshift.io/v1\] {#consoleplugin-console-openshift-io-v1}
@@ -44,7 +44,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `backend` | `object` | backend holds the configuration of backend which is serving console’s plugin . |
-| `contentSecurityPolicy` | `array` | contentSecurityPolicy is a list of Content-Security-Policy (CSP) directives for the plugin. Each directive specifies a list of values, appropriate for the given directive type, for example a list of remote endpoints for fetch directives such as ScriptSrc. Console web application uses CSP to detect and mitigate certain types of attacks, such as cross-site scripting (XSS) and data injection attacks. Dynamic plugins should specify this field if need to load assets from outside the cluster or if violation reports are observed. Dynamic plugins should always prefer loading their assets from within the cluster, either by vendoring them, or fetching from a cluster service. CSP violation reports can be viewed in the browser’s console logs during development and testing of the plugin in the OpenShift web console. Available directive types are DefaultSrc, ScriptSrc, StyleSrc, ImgSrc, FontSrc and ConnectSrc. Each of the available directives may be defined only once in the list. The value 'self' is automatically included in all fetch directives by the OpenShift web console’s backend. For more information about the CSP directives, see: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy The OpenShift web console server aggregates the CSP directives and values across its own default values and all enabled ConsolePlugin CRs, merging them into a single policy string that is sent to the browser via `Content-Security-Policy` HTTP response header. Example:   ConsolePlugin A directives:     script-src: https://script1.com/, https://script2.com/     font-src: https://font1.com/   ConsolePlugin B directives:     script-src: https://script2.com/, https://script3.com/     font-src: https://font2.com/     img-src: https://img1.com/   Unified set of CSP directives, passed to the OpenShift web console server:     script-src: https://script1.com/, https://script2.com/, https://script3.com/     font-src: https://font1.com/, https://font2.com/     img-src: https://img1.com/   OpenShift web console server CSP response header:     Content-Security-Policy: default-src 'self'; base-uri 'self'; script-src 'self' https://script1.com/ https://script2.com/ https://script3.com/; font-src 'self' https://font1.com/ https://font2.com/; img-src 'self' https://img1.com/; style-src 'self'; frame-src 'none'; object-src 'none' |
+| `contentSecurityPolicy` | `array` | contentSecurityPolicy is a list of Content-Security-Policy (CSP) directives for the plugin. Each directive specifies a list of values, appropriate for the given directive type, for example a list of remote endpoints for fetch directives such as ScriptSrc. Console web application uses CSP to detect and mitigate certain types of attacks, such as cross-site scripting (XSS) and data injection attacks. Dynamic plugins should specify this field if need to load assets from outside the cluster or if violation reports are observed. Dynamic plugins should always prefer loading their assets from within the cluster, either by vendoring them, or fetching from a cluster service. CSP violation reports can be viewed in the browser’s console logs during development and testing of the plugin in the OpenShift web console. Available directive types are DefaultSrc, ScriptSrc, StyleSrc, ImgSrc, FontSrc and ConnectSrc. Each of the available directives may be defined only once in the list. The value 'self' is automatically included in all fetch directives by the OpenShift web console’s backend. For more information about the CSP directives, see: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy<br>The OpenShift web console server aggregates the CSP directives and values across its own default values and all enabled ConsolePlugin CRs, merging them into a single policy string that is sent to the browser via `Content-Security-Policy` HTTP response header.<br>Example: ConsolePlugin A directives: script-src: https://script1.com/, https://script2.com/ font-src: https://font1.com/<br> ConsolePlugin B directives: script-src: https://script2.com/, https://script3.com/ font-src: https://font2.com/ img-src: https://img1.com/<br> Unified set of CSP directives, passed to the OpenShift web console server: script-src: https://script1.com/, https://script2.com/, https://script3.com/ font-src: https://font1.com/, https://font2.com/ img-src: https://img1.com/<br> OpenShift web console server CSP response header: Content-Security-Policy: default-src 'self'; base-uri 'self'; script-src 'self' https://script1.com/ https://script2.com/ https://script3.com/; font-src 'self' https://font1.com/ https://font2.com/; img-src 'self' https://img1.com/; style-src 'self'; frame-src 'none'; object-src 'none' |
 | `contentSecurityPolicy[]` | `object` | ConsolePluginCSP holds configuration for a specific CSP directive |
 | `displayName` | `string` | displayName is the display name of the plugin. The dispalyName should be between 1 and 128 characters. |
 | `i18n` | `object` | i18n is the configuration of plugin’s localization resources. |
@@ -182,7 +182,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `alias` | `string` | alias is a proxy name that identifies the plugin’s proxy. An alias name should be unique per plugin. The console backend exposes following proxy endpoint: /api/proxy/plugin/<plugin-name>/<proxy-alias>/<request-path>?<optional-query-parameters> Request example path: /api/proxy/plugin/acm/search/pods?namespace=openshift-apiserver |
+| `alias` | `string` | alias is a proxy name that identifies the plugin’s proxy. An alias name should be unique per plugin. The console backend exposes following proxy endpoint:<br>/api/proxy/plugin/<plugin-name>/<proxy-alias>/<request-path>?<optional-query-parameters><br>Request example path:<br>/api/proxy/plugin/acm/search/pods?namespace=openshift-apiserver |
 | `authorization` | `string` | authorization provides information about authorization type, which the proxied request should contain |
 | `caCertificate` | `string` | caCertificate provides the cert authority certificate contents, in case the proxied Service is using custom service CA. By default, the service CA bundle provided by the service-ca operator is used. |
 | `endpoint` | `object` | endpoint provides information about endpoint to which the request is proxied to. |
@@ -235,7 +235,7 @@ The following API endpoints are available:
   - `DELETE`: delete collection of ConsolePlugin
   - `GET`: list objects of kind ConsolePlugin
   - `POST`: create a ConsolePlugin
-- `/apis/console.openshift.io/v1/consoleplugins/{{ name }}`
+- `/apis/console.openshift.io/v1/consoleplugins/{name}`
 
   - `DELETE`: delete a ConsolePlugin
   - `GET`: read the specified ConsolePlugin
@@ -310,7 +310,7 @@ Description
 | 202 - Accepted | [`ConsolePlugin`](/openshift-docs-markdown/rest_api/console_apis/consoleplugin-console-openshift-io-v1#consoleplugin-console-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/console.openshift.io/v1/consoleplugins/{{ name }} {#_apisconsoleopenshiftiov1consoleplugins_name}
+### /apis/console.openshift.io/v1/consoleplugins/{name} {#_apisconsoleopenshiftiov1consoleplugins_name}
 
 **Global path parameters**
 

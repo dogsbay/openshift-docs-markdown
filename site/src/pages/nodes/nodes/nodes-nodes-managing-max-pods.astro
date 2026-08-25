@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"nodes-nodes-managing-max-pods","text":"Mana
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing-max-pods";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="nodes-nodes-managing-max-pods" class="group scroll-mt-20">Managing the maximum number of pods per node<a href="#nodes-nodes-managing-max-pods" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>In OpenShift Container Platform, you can configure the number of pods that can run on a node based on the number of processor cores on the node, a hard limit, or both. If you use both options, the lower of the two limits the number of pods on a node. Setting a maximum number of pods can prevent a node from running more pods than its underlying hardware can handle.</p>
+      <p class="_abstract">In OpenShift Container Platform, you can configure the number of pods that can run on a node based on the number of processor cores on the node, a hard limit, or both. If you use both options, the lower of the two limits the number of pods on a node. Setting a maximum number of pods can prevent a node from running more pods than its underlying hardware can handle.</p>
       <p>When both options are in use, the lower of the two values limits the number of pods on a node. Exceeding these values can result in the following conditions:</p>
       <ul>
       <li>Increased CPU utilization.</li>

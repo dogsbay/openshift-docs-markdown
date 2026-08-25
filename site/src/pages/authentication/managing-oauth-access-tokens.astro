@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"managing-oauth-access-tokens","text":"Manag
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/authentication/managing-oauth-access-tokens";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="managing-oauth-access-tokens" class="group scroll-mt-20">Managing user-owned OAuth access tokens<a href="#managing-oauth-access-tokens" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Review and manage your user-owned OAuth access tokens to monitor active sessions, verify token scopes, and revoke tokens that are no longer needed.</p>
+      <p class="_abstract">Review and manage your user-owned OAuth access tokens to monitor active sessions, verify token scopes, and revoke tokens that are no longer needed.</p>
       <h2 id="oauth-list-tokens_managing-oauth-access-tokens" class="group scroll-mt-20">Listing user-owned OAuth access tokens<a href="#oauth-list-tokens_managing-oauth-access-tokens" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">List your user-owned OAuth access tokens to review active sessions, check token expiration, and identify tokens associated with specific OAuth clients.</p>
       <p>Token names are not sensitive and cannot be used to log in.</p>

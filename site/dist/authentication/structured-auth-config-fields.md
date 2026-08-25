@@ -189,8 +189,8 @@ You can use Common Expression Language (CEL) expressions to construct usernames 
 
   The Operator should report `Available=True` and `Degraded=False`.
 
-> [!NOTE]
-> CEL expressions have access to standard CEL string functions (`lowerAscii()`, `upperAscii()`, `contains()`, `startsWith()`, `endsWith()`, `matches()`, `split()`), operators (`+`, `?`, `has()`, ternary `? :`), and the `orValue()` method for optional chaining. See the CEL specification link in Additional resources for the complete function reference.
+  > [!NOTE]
+  > CEL expressions have access to standard CEL string functions (`lowerAscii()`, `upperAscii()`, `contains()`, `startsWith()`, `endsWith()`, `matches()`, `split()`), operators (`+`, `?`, `has()`, ternary `? :`), and the `orValue()` method for optional chaining. See the CEL specification link in Additional resources for the complete function reference.
 
 You can use the following CEL expression patterns for claim mapping:
 
@@ -374,13 +374,16 @@ Combine conditions
         message: 'User must have admin or developer role'
     ```
 
-If authentication fails after the configuration is applied **Troubleshooting**
+If authentication fails after the configuration is applied
 
-:   Even if your claim validation rules pass the configuration validation gates, runtime authentication errors can occur. Check the kube-apiserver logs for detailed error messages explaining why authentication failed: `terminal     $ oc logs -n openshift-kube-apiserver -l app=openshift-kube-apiserver | grep -i auth     `
+**Troubleshooting**
+:   Even if your claim validation rules pass the configuration validation gates, runtime authentication errors can occur. Check the kube-apiserver logs for detailed error messages explaining why authentication failed:
 
-```
-These log messages will indicate which validation rule failed and include the custom `message` you specified in the CEL expression.
-```
+    ```terminal
+    $ oc logs -n openshift-kube-apiserver -l app=openshift-kube-apiserver | grep -i auth
+    ```
+
+    These log messages will indicate which validation rule failed and include the custom `message` you specified in the CEL expression.
 
 If you incorrectly configure validation rules and lock users out of the cluster
 :   1. Use your certificate-based kubeconfig to authenticate as `cluster-admin`.
@@ -543,7 +546,7 @@ If you incorrectly configure validation rules and lock users out of the cluster:
 
 The following table describes the advanced authentication configuration fields available as Technology Preview in OpenShift Container Platform.
 
-***Advanced `oidcProviders` configuration fields***
+**Advanced `oidcProviders` configuration fields**
 
 <table>
 <thead>
@@ -555,7 +558,7 @@ The following table describes the advanced authentication configuration fields a
 <tbody>
 <tr>
   <td><code>issuer.discoveryURL</code></td>
-  <td>Optional parameter. Custom OIDC discovery endpoint URL for retrieving identity provider metadata from a non-standard location.<br><br>Requirements:<br><br><ul><li>Must be a valid HTTPS URL</li><li>Must differ from <code>issuer.issuerURL</code></li></ul>When not specified, OpenShift Container Platform constructs the discovery URL by using the standard OIDC format: <code>{{ issuerURL }}/.well-known/openid-configuration</code>.<br><br><strong>Example:</strong><br><br><pre>issuer:&#10;  issuerURL: https://idp.example.com&#10;  discoveryURL: https://custom-discovery.example.com/.well-known/openid-configuration</pre></td>
+  <td>Optional parameter. Custom OIDC discovery endpoint URL for retrieving identity provider metadata from a non-standard location.<br><br>Requirements:<br><br><ul><li>Must be a valid HTTPS URL</li><li>Must differ from <code>issuer.issuerURL</code></li></ul>When not specified, OpenShift Container Platform constructs the discovery URL by using the standard OIDC format: <code>{issuerURL}/.well-known/openid-configuration</code>.<br><br><strong>Example:</strong><br><br><pre>issuer:&#10;  issuerURL: https://idp.example.com&#10;  discoveryURL: https://custom-discovery.example.com/.well-known/openid-configuration</pre></td>
 </tr>
 <tr>
   <td><code>claimValidationRules</code></td>
@@ -571,7 +574,7 @@ The following table describes the advanced authentication configuration fields a
 </tr>
 <tr>
   <td><code>claimValidationRules[].cel.expression</code></td>
-  <td>Required. CEL expression that validates token claims. Must evaluate to <code>true</code> for authentication to succeed.<br><br>Constraints: 1-1024 characters, must evaluate to boolean.<br><br>Access claims by using <code>claims</code> variable: <code>claims.sub</code>, <code>claims.foo.bar</code> (nested), <code>has(claims.email)</code> (existence check).<br><br><dl><dt>Note</dt><dd>When using the <code>email</code> claim in CEL expressions, you must also validate the <code>email_verified</code> claim to ensure the email address has been verified by the identity provider. For example: <code>claims.email_verified && claims.email.endsWith("@example.com")</code>.</dd></dl></td>
+  <td>Required. CEL expression that validates token claims. Must evaluate to <code>true</code> for authentication to succeed.<br><br>Constraints: 1-1024 characters, must evaluate to boolean.<br><br>Access claims by using <code>claims</code> variable: <code>claims.sub</code>, <code>claims.foo.bar</code> (nested), <code>has(claims.email)</code> (existence check).<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>When using the <code>email</code> claim in CEL expressions, you must also validate the <code>email_verified</code> claim to ensure the email address has been verified by the identity provider. For example: <code>claims.email_verified &amp;&amp; claims.email.endsWith("@example.com")</code>.</dd></dl></td>
 </tr>
 <tr>
   <td><code>claimValidationRules[].cel.message</code></td>
@@ -593,6 +596,7 @@ The following table describes the advanced authentication configuration fields a
 </table>
 
 **Additional resources**
+{._additional-resources}
 
 - [Enabling direct authentication with an external OIDC identity provider](/openshift-docs-markdown/authentication/external-auth#external-auth)
 - [Common Expression Language (CEL) specification](https://cel.dev/)

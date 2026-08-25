@@ -1,5 +1,5 @@
 ---
-title: IPAMClaim []
+title: IPAMClaim [k8s.cni.cncf.io/v1alpha1]
 ---
 
 # IPAMClaim \[k8s.cni.cncf.io/v1alpha1\] {#ipamclaim-k8s-cni-cncf-io-v1alpha1}
@@ -89,7 +89,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
 | `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
@@ -117,18 +117,18 @@ The following API endpoints are available:
 - `/apis/k8s.cni.cncf.io/v1alpha1/ipamclaims`
 
   - `GET`: list objects of kind IPAMClaim
-- `/apis/k8s.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/ipamclaims`
+- `/apis/k8s.cni.cncf.io/v1alpha1/namespaces/{namespace}/ipamclaims`
 
   - `DELETE`: delete collection of IPAMClaim
   - `GET`: list objects of kind IPAMClaim
   - `POST`: create an IPAMClaim
-- `/apis/k8s.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/ipamclaims/{{ name }}`
+- `/apis/k8s.cni.cncf.io/v1alpha1/namespaces/{namespace}/ipamclaims/{name}`
 
   - `DELETE`: delete an IPAMClaim
   - `GET`: read the specified IPAMClaim
   - `PATCH`: partially update the specified IPAMClaim
   - `PUT`: replace the specified IPAMClaim
-- `/apis/k8s.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/ipamclaims/{{ name }}/status`
+- `/apis/k8s.cni.cncf.io/v1alpha1/namespaces/{namespace}/ipamclaims/{name}/status`
 
   - `GET`: read status of the specified IPAMClaim
   - `PATCH`: partially update status of the specified IPAMClaim
@@ -153,7 +153,7 @@ Description
 | 200 - OK | [`IPAMClaimList`](/openshift-docs-markdown/rest_api/objects/index#io-cncf-cni-k8s-v1alpha1-IPAMClaimList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/ipamclaims {#_apisk8scnicncfiov1alpha1namespaces_namespace_ipamclaims}
+### /apis/k8s.cni.cncf.io/v1alpha1/namespaces/{namespace}/ipamclaims {#_apisk8scnicncfiov1alpha1namespaces_namespace_ipamclaims}
 
 HTTP method
 :   ```
@@ -221,7 +221,7 @@ Description
 | 202 - Accepted | [`IPAMClaim`](/openshift-docs-markdown/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/ipamclaims/{{ name }} {#_apisk8scnicncfiov1alpha1namespaces_namespace_ipamclaims_name}
+### /apis/k8s.cni.cncf.io/v1alpha1/namespaces/{namespace}/ipamclaims/{name} {#_apisk8scnicncfiov1alpha1namespaces_namespace_ipamclaims_name}
 
 **Global path parameters**
 
@@ -325,7 +325,7 @@ Description
 | 201 - Created | [`IPAMClaim`](/openshift-docs-markdown/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/ipamclaims/{{ name }}/status {#_apisk8scnicncfiov1alpha1namespaces_namespace_ipamclaims_name_status}
+### /apis/k8s.cni.cncf.io/v1alpha1/namespaces/{namespace}/ipamclaims/{name}/status {#_apisk8scnicncfiov1alpha1namespaces_namespace_ipamclaims_name_status}
 
 **Global path parameters**
 

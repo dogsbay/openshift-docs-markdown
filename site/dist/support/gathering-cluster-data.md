@@ -23,7 +23,7 @@ Alternatively, you can collect specific information by running the command with 
 
   ```terminal
   $ oc adm must-gather \
-    --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v{{ HCOVersion }}
+    --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v4.22.6
   ```
 - To collect the audit logs, use the `-- /usr/bin/gather_audit_logs` argument, as described in a following section.
 
@@ -55,7 +55,7 @@ For example:
 
 ```terminal
 $ oc adm must-gather --run-namespace <namespace> \
-  --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v{{ HCOVersion }}
+  --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v4.22.6
 ```
 
 ### Gathering data about your cluster for Red Hat Support {#support_gathering_data_gathering-cluster-data}
@@ -73,41 +73,39 @@ If you are gathering information to debug a self-managed hosted cluster, see "Ga
 
 1. Navigate to the directory where you want to store the `must-gather` data.
 
-> [!NOTE]
-> If your cluster is in a disconnected environment, you must take additional steps. If your mirror registry has a trusted CA, you must first add the trusted CA to the cluster. For all clusters in disconnected environments, you must import the default `must-gather` image as an image stream.
->
-> ```terminal
-> $ oc import-image is/must-gather -n openshift
-> ```
+   > [!NOTE]
+   > If your cluster is in a disconnected environment, you must take additional steps. If your mirror registry has a trusted CA, you must first add the trusted CA to the cluster. For all clusters in disconnected environments, you must import the default `must-gather` image as an image stream.
+   >
+   > ```terminal
+   > $ oc import-image is/must-gather -n openshift
+   > ```
+2. Run the `oc adm must-gather` command:
 
-1. Run the `oc adm must-gather` command:
+   ```terminal
+   $ oc adm must-gather
+   ```
 
-```terminal
-$ oc adm must-gather
-```
-
-> [!IMPORTANT]
-> If you are in a disconnected environment, use the `--image` flag as part of must-gather and point to the payload image.
-
-> [!NOTE]
-> Because this command picks a random control plane node by default, the pod might be scheduled to a control plane node that is in the `NotReady` and `SchedulingDisabled` state.
-
-1. If this command fails, for example, if you cannot schedule a pod on your cluster, then use the `oc adm inspect` command to gather information for particular resources.
+   > [!IMPORTANT]
+   > If you are in a disconnected environment, use the `--image` flag as part of must-gather and point to the payload image.
 
    > [!NOTE]
-   > Contact Red Hat Support for the recommended resources to gather.
+   > Because this command picks a random control plane node by default, the pod might be scheduled to a control plane node that is in the `NotReady` and `SchedulingDisabled` state.
 
-   1. Create a compressed file from the `must-gather` directory that was just created in your working directory. Make sure you provide the date and cluster ID for the unique must-gather data. For more information about how to find the cluster ID, see [How to find the cluster-id or name on OpenShift cluster](https://access.redhat.com/solutions/5280291). For example, on a computer that uses a Linux operating system, run the following command:
+   1. If this command fails, for example, if you cannot schedule a pod on your cluster, then use the `oc adm inspect` command to gather information for particular resources.
 
-      ```terminal
-      $ tar cvaf must-gather-`date +"%m-%d-%Y-%H-%M-%S"`-<cluster_id>.tar.gz <must_gather_local_dir>
-      ```
+      > [!NOTE]
+      > Contact Red Hat Support for the recommended resources to gather.
+3. Create a compressed file from the `must-gather` directory that was just created in your working directory. Make sure you provide the date and cluster ID for the unique must-gather data. For more information about how to find the cluster ID, see [How to find the cluster-id or name on OpenShift cluster](https://access.redhat.com/solutions/5280291). For example, on a computer that uses a Linux operating system, run the following command:
 
-      where:
+   ```terminal
+   $ tar cvaf must-gather-`date +"%m-%d-%Y-%H-%M-%S"`-<cluster_id>.tar.gz <must_gather_local_dir>
+   ```
 
-      `<must_gather_local_dir>`
-      :   Replace with the actual directory name.
-   2. Attach the compressed file to your support case on the [the **Customer Support** page](https://access.redhat.com/support/cases/#/case/list) of the Red Hat Customer Portal.
+   where:
+
+   `<must_gather_local_dir>`
+   :   Replace with the actual directory name.
+4. Attach the compressed file to your support case on the [the **Customer Support** page](https://access.redhat.com/support/cases/#/case/list) of the Red Hat Customer Portal.
 
 ## Reducing the size of must-gather output {#support-must-gather-targeted-collection_gathering-cluster-data}
 
@@ -134,7 +132,7 @@ The `must-gather` tool uses `oc adm inspect` internally. You can specify what to
   ```terminal
   $ oc adm must-gather --dest-dir=apiserver-must-gather -- oc adm inspect clusteroperator/openshift-apiserver
   ```
-- To exclude rotated logs, such as `**.gz` or `**.1` files, from data collection, set the `REDUCE_LOGS` environment variable by running the following command:
+- To exclude rotated logs, such as `*.gz` or `*.1` files, from data collection, set the `REDUCE_LOGS` environment variable by running the following command:
 
   ```terminal
   $ oc adm must-gather -- REDUCE_LOGS=skip_rotated_logs /usr/bin/gather
@@ -171,7 +169,7 @@ The flags listed in the following table are available to use with the `oc adm mu
 
 You can gather debugging information about specific features by using the `oc adm must-gather` CLI command with the `--image` or `--image-stream` argument. The `must-gather` tool supports multiple images, so you can gather data about more than one feature by running a single command.
 
-***Supported must-gather images***
+**Supported must-gather images**
 
 <table>
 <thead>
@@ -190,7 +188,7 @@ You can gather debugging information about specific features by using the `oc ad
   <td>Data collection for OpenShift Serverless.</td>
 </tr>
 <tr>
-  <td><code>registry.redhat.io/openshift-service-mesh/istio-must-gather-rhel8:<installed_version_service_mesh></code></td>
+  <td><code>registry.redhat.io/openshift-service-mesh/istio-must-gather-rhel8:&lt;installed_version_service_mesh&gt;</code></td>
   <td>Data collection for Red Hat OpenShift Service Mesh.</td>
 </tr>
 <tr>
@@ -198,11 +196,11 @@ You can gather debugging information about specific features by using the `oc ad
   <td>Data collection for hosted control planes.</td>
 </tr>
 <tr>
-  <td><code>registry.redhat.io/odf4/odf-must-gather-rhel9:v<installed_version_ODF></code></td>
+  <td><code>registry.redhat.io/odf4/odf-must-gather-rhel9:v&lt;installed_version_ODF&gt;</code></td>
   <td>Data collection for Red Hat OpenShift Data Foundation.</td>
 </tr>
 <tr>
-  <td><code>registry.redhat.io/openshift-logging/cluster-logging-rhel9-operator:v<installed_version_logging></code></td>
+  <td><code>registry.redhat.io/openshift-logging/cluster-logging-rhel9-operator:v&lt;installed_version_logging&gt;</code></td>
   <td>Data collection for logging.</td>
 </tr>
 <tr>
@@ -210,43 +208,43 @@ You can gather debugging information about specific features by using the `oc ad
   <td>Data collection for the Network Observability Operator.</td>
 </tr>
 <tr>
-  <td><code>registry.redhat.io/openshift4/ose-local-storage-mustgather-rhel9:v<installed_version_LSO></code></td>
+  <td><code>registry.redhat.io/openshift4/ose-local-storage-mustgather-rhel9:v&lt;installed_version_LSO&gt;</code></td>
   <td>Data collection for Local Storage Operator.</td>
 </tr>
 <tr>
-  <td><code>registry.redhat.io/openshift-sandboxed-containers/osc-must-gather-rhel8:v<installed_version_sandboxed_containers></code></td>
+  <td><code>registry.redhat.io/openshift-sandboxed-containers/osc-must-gather-rhel8:v&lt;installed_version_sandboxed_containers&gt;</code></td>
   <td>Data collection for OpenShift sandboxed containers.</td>
 </tr>
 <tr>
-  <td><code>registry.redhat.io/workload-availability/node-healthcheck-must-gather-rhel8:v<installed_version_NHC></code></td>
-  <td>Data collection for the Red&#160;Hat Workload Availability Operators, including the Self Node Remediation (SNR) Operator, the Fence Agents Remediation (FAR) Operator, the Machine Deletion Remediation (MDR) Operator, the Node Health Check (NHC) Operator, and the Node Maintenance Operator (NMO).</td>
+  <td><code>registry.redhat.io/workload-availability/node-healthcheck-must-gather-rhel8:v&lt;installed_version_NHC&gt;</code></td>
+  <td>Data collection for the Red&#160;Hat Workload Availability Operators, including the Self Node Remediation (SNR) Operator, the Fence Agents Remediation (FAR) Operator, the Machine Deletion Remediation (MDR) Operator, the Node Health Check (NHC) Operator, and the Node Maintenance Operator (NMO).<br><br>Use this image if your NHC Operator version is <strong>earlier than 0.9.0</strong>.<br><br>For more information, see the "Gathering data" section for the specific Operator in <a href="https://docs.redhat.com/en/documentation/workload_availability_for_red_hat_openshift/latest/html/remediation_fencing_and_maintenance/index">Remediation, fencing, and maintenance</a> (Workload Availability for Red Hat OpenShift documentation).</td>
 </tr>
 <tr>
-  <td><code>registry.redhat.io/workload-availability/node-healthcheck-must-gather-rhel9:v<installed_version_NHC></code></td>
-  <td>Data collection for the Red&#160;Hat Workload Availability Operators, including the Self Node Remediation (SNR) Operator, the Fence Agents Remediation (FAR) Operator, the Machine Deletion Remediation (MDR) Operator, the Node Health Check (NHC) Operator, and the Node Maintenance Operator (NMO).</td>
+  <td><code>registry.redhat.io/workload-availability/node-healthcheck-must-gather-rhel9:v&lt;installed_version_NHC&gt;</code></td>
+  <td>Data collection for the Red&#160;Hat Workload Availability Operators, including the Self Node Remediation (SNR) Operator, the Fence Agents Remediation (FAR) Operator, the Machine Deletion Remediation (MDR) Operator, the Node Health Check (NHC) Operator, and the Node Maintenance Operator (NMO).<br><br>Use this image if your NHC Operator version is <strong>0.9.0. or later</strong>.<br><br>For more information, see the "Gathering data" section for the specific Operator in <a href="https://docs.redhat.com/en/documentation/workload_availability_for_red_hat_openshift/latest/html/remediation_fencing_and_maintenance/index">Remediation, fencing, and maintenance</a> (Workload Availability for Red Hat OpenShift documentation).</td>
 </tr>
 <tr>
-  <td><code>registry.redhat.io/openshift4/numaresources-must-gather-rhel9:v<installed-version-nro></code></td>
+  <td><code>registry.redhat.io/openshift4/numaresources-must-gather-rhel9:v&lt;installed-version-nro&gt;</code></td>
   <td>Data collection for the NUMA Resources Operator (NRO).</td>
 </tr>
 <tr>
-  <td><code>registry.redhat.io/openshift4/ptp-must-gather-rhel8:v<installed-version-ptp></code></td>
+  <td><code>registry.redhat.io/openshift4/ptp-must-gather-rhel8:v&lt;installed-version-ptp&gt;</code></td>
   <td>Data collection for the PTP Operator.</td>
 </tr>
 <tr>
-  <td><code>registry.redhat.io/openshift-gitops-1/must-gather-rhel8:v<installed_version_GitOps></code></td>
+  <td><code>registry.redhat.io/openshift-gitops-1/must-gather-rhel8:v&lt;installed_version_GitOps&gt;</code></td>
   <td>Data collection for Red&#160;Hat OpenShift GitOps.</td>
 </tr>
 <tr>
-  <td><code>registry.redhat.io/openshift4/ose-secrets-store-csi-mustgather-rhel9:v<installed_version_secret_store></code></td>
+  <td><code>registry.redhat.io/openshift4/ose-secrets-store-csi-mustgather-rhel9:v&lt;installed_version_secret_store&gt;</code></td>
   <td>Data collection for the Secrets Store CSI Driver Operator.</td>
 </tr>
 <tr>
-  <td><code>registry.redhat.io/lvms4/lvms-must-gather-rhel9:v<installed_version_LVMS></code></td>
+  <td><code>registry.redhat.io/lvms4/lvms-must-gather-rhel9:v&lt;installed_version_LVMS&gt;</code></td>
   <td>Data collection for the LVM Operator.</td>
 </tr>
 <tr>
-  <td><code>registry.redhat.io/compliance/openshift-compliance-must-gather-rhel8:<digest-version></code></td>
+  <td><code>registry.redhat.io/compliance/openshift-compliance-must-gather-rhel8:&lt;digest-version&gt;</code></td>
   <td>Data collection for the Compliance Operator.</td>
 </tr>
 </tbody>
@@ -274,12 +272,10 @@ You can gather debugging information about specific features by using the `oc ad
    ```terminal
    $ oc adm must-gather \
      --image-stream=openshift/must-gather \
-     --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v{{ HCOVersion }}
+     --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v4.22.6
    ```
 
-   You can use the `must-gather` tool with additional arguments to gather data that is specifically related to OpenShift Logging and the Red Hat OpenShift
-
-   Logging Operator in your cluster. For OpenShift Logging, run the following command:
+   You can use the `must-gather` tool with additional arguments to gather data that is specifically related to OpenShift Logging and the Red Hat OpenShift Logging Operator in your cluster. For OpenShift Logging, run the following command:
 
    ```terminal
    $ oc adm must-gather --image=$(oc -n openshift-logging get deployment.apps/cluster-logging-operator \
@@ -297,18 +293,139 @@ You can gather debugging information about specific features by using the `oc ad
    │  │  └── logforwarding_cr
    │  ├── collector
    │  │  ├── fluentd-2tr64
+   │  ├── eo
+   │  │  ├── csv
+   │  │  ├── deployment
+   │  │  └── elasticsearch-operator-7dc7d97b9d-jb4r4
+   │  ├── es
+   │  │  ├── cluster-elasticsearch
+   │  │  │  ├── aliases
+   │  │  │  ├── health
+   │  │  │  ├── indices
+   │  │  │  ├── latest_documents.json
+   │  │  │  ├── nodes
+   │  │  │  ├── nodes_stats.json
+   │  │  │  └── thread_pool
+   │  │  ├── cr
+   │  │  ├── elasticsearch-cdm-lp8l38m0-1-794d6dd989-4jxms
+   │  │  └── logs
+   │  │     ├── elasticsearch-cdm-lp8l38m0-1-794d6dd989-4jxms
+   │  ├── install
+   │  │  ├── co_logs
+   │  │  ├── install_plan
+   │  │  ├── olmo_logs
+   │  │  └── subscription
+   │  └── kibana
+   │     ├── cr
+   │     ├── kibana-9d69668d4-2rkvz
+   ├── cluster-scoped-resources
+   │  └── core
+   │     ├── nodes
+   │     │  ├── ip-10-0-146-180.eu-west-1.compute.internal.yaml
+   │     └── persistentvolumes
+   │        ├── pvc-0a8d65d9-54aa-4c44-9ecc-33d9381e41c1.yaml
+   ├── event-filter.html
+   ├── gather-debug.log
+   └── namespaces
+      ├── openshift-logging
+      │  ├── apps
+      │  │  ├── daemonsets.yaml
+      │  │  ├── deployments.yaml
+      │  │  ├── replicasets.yaml
+      │  │  └── statefulsets.yaml
+      │  ├── batch
+      │  │  ├── cronjobs.yaml
+      │  │  └── jobs.yaml
+      │  ├── core
+      │  │  ├── configmaps.yaml
+      │  │  ├── endpoints.yaml
+      │  │  ├── events
+      │  │  │  ├── elasticsearch-im-app-1596020400-gm6nl.1626341a296c16a1.yaml
+      │  │  │  ├── elasticsearch-im-audit-1596020400-9l9n4.1626341a2af81bbd.yaml
+      │  │  │  ├── elasticsearch-im-infra-1596020400-v98tk.1626341a2d821069.yaml
+      │  │  │  ├── elasticsearch-im-app-1596020400-cc5vc.1626341a3019b238.yaml
+      │  │  │  ├── elasticsearch-im-audit-1596020400-s8d5s.1626341a31f7b315.yaml
+      │  │  │  ├── elasticsearch-im-infra-1596020400-7mgv8.1626341a35ea59ed.yaml
+      │  │  ├── events.yaml
+      │  │  ├── persistentvolumeclaims.yaml
+      │  │  ├── pods.yaml
+      │  │  ├── replicationcontrollers.yaml
+      │  │  ├── secrets.yaml
+      │  │  └── services.yaml
+      │  ├── openshift-logging.yaml
+      │  ├── pods
+      │  │  ├── cluster-logging-operator-74dd5994f-6ttgt
+      │  │  │  ├── cluster-logging-operator
+      │  │  │  │  └── cluster-logging-operator
+      │  │  │  │     └── logs
+      │  │  │  │        ├── current.log
+      │  │  │  │        ├── previous.insecure.log
+      │  │  │  │        └── previous.log
+      │  │  │  └── cluster-logging-operator-74dd5994f-6ttgt.yaml
+      │  │  ├── cluster-logging-operator-registry-6df49d7d4-mxxff
+      │  │  │  ├── cluster-logging-operator-registry
+      │  │  │  │  └── cluster-logging-operator-registry
+      │  │  │  │     └── logs
+      │  │  │  │        ├── current.log
+      │  │  │  │        ├── previous.insecure.log
+      │  │  │  │        └── previous.log
+      │  │  │  ├── cluster-logging-operator-registry-6df49d7d4-mxxff.yaml
+      │  │  │  └── mutate-csv-and-generate-sqlite-db
+      │  │  │     └── mutate-csv-and-generate-sqlite-db
+      │  │  │        └── logs
+      │  │  │           ├── current.log
+      │  │  │           ├── previous.insecure.log
+      │  │  │           └── previous.log
+      │  │  ├── elasticsearch-cdm-lp8l38m0-1-794d6dd989-4jxms
+      │  │  ├── elasticsearch-im-app-1596030300-bpgcx
+      │  │  │  ├── elasticsearch-im-app-1596030300-bpgcx.yaml
+      │  │  │  └── indexmanagement
+      │  │  │     └── indexmanagement
+      │  │  │        └── logs
+      │  │  │           ├── current.log
+      │  │  │           ├── previous.insecure.log
+      │  │  │           └── previous.log
+      │  │  ├── fluentd-2tr64
+      │  │  │  ├── fluentd
+      │  │  │  │  └── fluentd
+      │  │  │  │     └── logs
+      │  │  │  │        ├── current.log
+      │  │  │  │        ├── previous.insecure.log
+      │  │  │  │        └── previous.log
+      │  │  │  ├── fluentd-2tr64.yaml
+      │  │  │  └── fluentd-init
+      │  │  │     └── fluentd-init
+      │  │  │        └── logs
+      │  │  │           ├── current.log
+      │  │  │           ├── previous.insecure.log
+      │  │  │           └── previous.log
+      │  │  ├── kibana-9d69668d4-2rkvz
+      │  │  │  ├── kibana
+      │  │  │  │  └── kibana
+      │  │  │  │     └── logs
+      │  │  │  │        ├── current.log
+      │  │  │  │        ├── previous.insecure.log
+      │  │  │  │        └── previous.log
+      │  │  │  ├── kibana-9d69668d4-2rkvz.yaml
+      │  │  │  └── kibana-proxy
+      │  │  │     └── kibana-proxy
+      │  │  │        └── logs
+      │  │  │           ├── current.log
+      │  │  │           ├── previous.insecure.log
+      │  │  │           └── previous.log
+      │  └── route.openshift.io
+      │     └── routes.yaml
+      └── openshift-operators-redhat
+         ├── ...
    ```
-
-{%- if openshift_dedicated %} │  ├── curator │  │  └── curator-1596028500-zkz4s {%- endif %} │  ├── eo │  │  ├── csv │  │  ├── deployment │  │  └── elasticsearch-operator-7dc7d97b9d-jb4r4 │  ├── es │  │  ├── cluster-elasticsearch │  │  │  ├── aliases │  │  │  ├── health │  │  │  ├── indices │  │  │  ├── latest_documents.json │  │  │  ├── nodes │  │  │  ├── nodes_stats.json │  │  │  └── thread_pool │  │  ├── cr │  │  ├── elasticsearch-cdm-lp8l38m0-1-794d6dd989-4jxms │  │  └── logs │  │     ├── elasticsearch-cdm-lp8l38m0-1-794d6dd989-4jxms │  ├── install │  │  ├── co_logs │  │  ├── install_plan │  │  ├── olmo_logs │  │  └── subscription │  └── kibana │     ├── cr │     ├── kibana-9d69668d4-2rkvz ├── cluster-scoped-resources │  └── core │     ├── nodes │     │  ├── ip-10-0-146-180.eu-west-1.compute.internal.yaml │     └── persistentvolumes │        ├── pvc-0a8d65d9-54aa-4c44-9ecc-33d9381e41c1.yaml ├── event-filter.html ├── gather-debug.log └── namespaces ├── openshift-logging │  ├── apps │  │  ├── daemonsets.yaml │  │  ├── deployments.yaml │  │  ├── replicasets.yaml │  │  └── statefulsets.yaml │  ├── batch │  │  ├── cronjobs.yaml │  │  └── jobs.yaml │  ├── core │  │  ├── configmaps.yaml │  │  ├── endpoints.yaml │  │  ├── events {%- if not openshift_dedicated %} │  │  │  ├── elasticsearch-im-app-1596020400-gm6nl.1626341a296c16a1.yaml │  │  │  ├── elasticsearch-im-audit-1596020400-9l9n4.1626341a2af81bbd.yaml │  │  │  ├── elasticsearch-im-infra-1596020400-v98tk.1626341a2d821069.yaml │  │  │  ├── elasticsearch-im-app-1596020400-cc5vc.1626341a3019b238.yaml │  │  │  ├── elasticsearch-im-audit-1596020400-s8d5s.1626341a31f7b315.yaml │  │  │  ├── elasticsearch-im-infra-1596020400-7mgv8.1626341a35ea59ed.yaml {% endif %} {% if openshift_dedicated %} │  │  │  ├── curator-1596021300-wn2ks.162634ebf0055a94.yaml │  │  │  ├── curator.162638330681bee2.yaml │  │  │  ├── elasticsearch-delete-app-1596020400-gm6nl.1626341a296c16a1.yaml │  │  │  ├── elasticsearch-delete-audit-1596020400-9l9n4.1626341a2af81bbd.yaml │  │  │  ├── elasticsearch-delete-infra-1596020400-v98tk.1626341a2d821069.yaml │  │  │  ├── elasticsearch-rollover-app-1596020400-cc5vc.1626341a3019b238.yaml │  │  │  ├── elasticsearch-rollover-audit-1596020400-s8d5s.1626341a31f7b315.yaml │  │  │  ├── elasticsearch-rollover-infra-1596020400-7mgv8.1626341a35ea59ed.yaml {%- endif %} │  │  ├── events.yaml │  │  ├── persistentvolumeclaims.yaml │  │  ├── pods.yaml │  │  ├── replicationcontrollers.yaml │  │  ├── secrets.yaml │  │  └── services.yaml │  ├── openshift-logging.yaml │  ├── pods │  │  ├── cluster-logging-operator-74dd5994f-6ttgt │  │  │  ├── cluster-logging-operator │  │  │  │  └── cluster-logging-operator │  │  │  │     └── logs │  │  │  │        ├── current.log │  │  │  │        ├── previous.insecure.log │  │  │  │        └── previous.log │  │  │  └── cluster-logging-operator-74dd5994f-6ttgt.yaml │  │  ├── cluster-logging-operator-registry-6df49d7d4-mxxff │  │  │  ├── cluster-logging-operator-registry │  │  │  │  └── cluster-logging-operator-registry │  │  │  │     └── logs │  │  │  │        ├── current.log │  │  │  │        ├── previous.insecure.log │  │  │  │        └── previous.log │  │  │  ├── cluster-logging-operator-registry-6df49d7d4-mxxff.yaml │  │  │  └── mutate-csv-and-generate-sqlite-db │  │  │     └── mutate-csv-and-generate-sqlite-db │  │  │        └── logs │  │  │           ├── current.log │  │  │           ├── previous.insecure.log │  │  │           └── previous.log {%- if openshift_dedicated %} │  │  ├── curator-1596028500-zkz4s {%- endif %} │  │  ├── elasticsearch-cdm-lp8l38m0-1-794d6dd989-4jxms {%- if not openshift_dedicated %} │  │  ├── elasticsearch-im-app-1596030300-bpgcx │  │  │  ├── elasticsearch-im-app-1596030300-bpgcx.yaml {% endif %} {% if openshift_dedicated %} │  │  ├── elasticsearch-delete-app-1596030300-bpgcx │  │  │  ├── elasticsearch-delete-app-1596030300-bpgcx.yaml {%- endif %} │  │  │  └── indexmanagement │  │  │     └── indexmanagement │  │  │        └── logs │  │  │           ├── current.log │  │  │           ├── previous.insecure.log │  │  │           └── previous.log │  │  ├── fluentd-2tr64 │  │  │  ├── fluentd │  │  │  │  └── fluentd │  │  │  │     └── logs │  │  │  │        ├── current.log │  │  │  │        ├── previous.insecure.log │  │  │  │        └── previous.log │  │  │  ├── fluentd-2tr64.yaml │  │  │  └── fluentd-init │  │  │     └── fluentd-init │  │  │        └── logs │  │  │           ├── current.log │  │  │           ├── previous.insecure.log │  │  │           └── previous.log │  │  ├── kibana-9d69668d4-2rkvz │  │  │  ├── kibana │  │  │  │  └── kibana │  │  │  │     └── logs │  │  │  │        ├── current.log │  │  │  │        ├── previous.insecure.log │  │  │  │        └── previous.log │  │  │  ├── kibana-9d69668d4-2rkvz.yaml │  │  │  └── kibana-proxy │  │  │     └── kibana-proxy │  │  │        └── logs │  │  │           ├── current.log │  │  │           ├── previous.insecure.log │  │  │           └── previous.log │  └── route.openshift.io │     └── routes.yaml └── openshift-operators-redhat ├── ... \`\`\`
-
-1. Run the `oc adm must-gather` command with one or more `--image` or `--image-stream` arguments. For example, the following command gathers both the default cluster data and information specific to KubeVirt:
+3. Run the `oc adm must-gather` command with one or more `--image` or `--image-stream` arguments. For example, the following command gathers both the default cluster data and information specific to KubeVirt:
 
    ```terminal
    $ oc adm must-gather \
     --image-stream=openshift/must-gather \
     --image=quay.io/kubevirt/must-gather
    ```
-2. Create a compressed file from the `must-gather` directory that was just created in your working directory. Make sure you provide the date and cluster ID for the unique must-gather data. For more information about how to find the cluster ID, see [How to find the cluster-id or name on OpenShift cluster](https://access.redhat.com/solutions/5280291). For example, on a computer that uses a Linux operating system, run the following command:
+4. Create a compressed file from the `must-gather` directory that was just created in your working directory. Make sure you provide the date and cluster ID for the unique must-gather data. For more information about how to find the cluster ID, see [How to find the cluster-id or name on OpenShift cluster](https://access.redhat.com/solutions/5280291). For example, on a computer that uses a Linux operating system, run the following command:
 
    ```terminal
    $ tar cvaf must-gather-`date +"%m-%d-%Y-%H-%M-%S"`-<cluster_id>.tar.gz <must_gather_local_dir>
@@ -318,9 +435,10 @@ You can gather debugging information about specific features by using the `oc ad
 
    `<must_gather_local_dir>`
    :   Replace with the actual directory name.
-3. Attach the compressed file to your support case on the [the **Customer Support** page](https://access.redhat.com/support/cases/#/case/list) of the Red Hat Customer Portal.
+5. Attach the compressed file to your support case on the [the **Customer Support** page](https://access.redhat.com/support/cases/#/case/list) of the Red Hat Customer Portal.
 
 **Additional resources**
+{._additional-resources}
 
 - [Gathering debugging data for the Custom Metrics Autoscaler](/openshift-docs-markdown/nodes/cma/nodes-cma-autoscaling-custom#nodes-cma-autoscaling-custom-gather)
 - [Red Hat OpenShift Container Platform Life Cycle Policy](https://access.redhat.com/support/policy/updates/openshift)
@@ -380,7 +498,7 @@ You can use the self-service Technical Supportability Review (TSR) on the Red H
 
 The self-service TSR uses AI to evaluate your cluster’s `must-gather` data and provides a prioritized executive summary of recommendations. This serves as a starting point to help you identify and resolve potential issues before they impact your environment.
 
-The TSR performs hundreds of checks across the OpenShift Container Platform platform, including false. Coverage is continually expanding.
+The TSR performs hundreds of checks across the OpenShift Container Platform platform, including . Coverage is continually expanding.
 
 ### When to use the self-service TSR tool {#when-to-use-self-service-tsr_gathering-cluster-data}
 
@@ -401,6 +519,9 @@ To run a self-service review, upload your cluster’s `must-gather` data to the 
 
 The self-service TSR provides a solid baseline for cluster health. If you need additional guidance or a more comprehensive review, contact your Red Hat account team to arrange an assisted review through a Technical Account Manager (TAM) or Red Hat consultant. An assisted review includes human analysis, deeper coverage, and access to checks that are updated more frequently than the self-service version.
 
+**Additional resources**
+{._additional-resources}
+
 - [Technical Supportability Review with AI tool](https://access.redhat.com/support/cases/#/analyze)
 - [Red Hat Technical Supportability Review with AI: Proactive AI-Driven Cluster Assessments for OpenShift Container Platform](https://access.redhat.com/solutions/7141255)
 
@@ -415,9 +536,9 @@ Support Log Gather Operator builds on the functionality of the traditional `must
 
 The key features of Support Log Gather include the following:
 
-- ***No administrator privileges required***: Enables you to collect and upload logs without needing elevated permissions, making it easier for non-administrators to gather data securely.
-- ***Simplified log collection***: Collects debugging data from the cluster, such as resource definitions and service logs.
-- ***Configurable data upload***: Provides configuration options to either automatically upload the `.tar` file to a support case, or store it locally for manual upload.
+- **No administrator privileges required**: Enables you to collect and upload logs without needing elevated permissions, making it easier for non-administrators to gather data securely.
+- **Simplified log collection**: Collects debugging data from the cluster, such as resource definitions and service logs.
+- **Configurable data upload**: Provides configuration options to either automatically upload the `.tar` file to a support case, or store it locally for manual upload.
 
 ### Installing Support Log Gather by using the web console {#support-log-gather-install-console_gathering-cluster-data}
 
@@ -436,7 +557,7 @@ You can use the web console to install the Support Log Gather.
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console.
-2. Navigate to **Ecosystem** -> **Software Catalog**.
+2. Navigate to **Ecosystem** → **Software Catalog**.
 3. In the filter box, enter **Support Log Gather**.
 4. Select **Support Log Gather**.
 5. From **Version** list, select the Support Log Gather version, and click **Install**.
@@ -447,19 +568,19 @@ You can use the web console to install the Support Log Gather.
       The default Operator namespace is `must-gather-operator`. The `must-gather-operator` namespace is created automatically if it does not exist.
    2. Select an **Update approval** strategy:
 
-      - Select ***Automatic*** to have the Operator Lifecycle Manager (OLM) update the Operator automatically when a newer version is available.
-      - Select ***Manual*** if Operator updates must be approved by a user with appropriate credentials.
+      - Select **Automatic** to have the Operator Lifecycle Manager (OLM) update the Operator automatically when a newer version is available.
+      - Select **Manual** if Operator updates must be approved by a user with appropriate credentials.
    3. Click **Install**.
 
 **Verification**
 
 1. Verify that the Operator is installed successfully:
 
-   1. Navigate to **Ecosystem** -> **Software Catalog**.
+   1. Navigate to **Ecosystem** → **Software Catalog**.
    2. Verify that **Support Log Gather** is listed with a **Status** of **Succeeded** in the `must-gather-operator` namespace.
 2. Verify that Support Log Gather pods are running:
 
-   1. Navigate to **Workloads** -> **Pods**
+   1. Navigate to **Workloads** → **Pods**
    2. Verify that the status of the Support Log Gather pods is **Running**.
 
       You can use the Support Log Gather only after the pods are up and running.
@@ -665,7 +786,7 @@ Large `must-gather` logs can take a significant amount of time to upload to supp
 
 The following examples demonstrate different methods for reducing the must-gather log size:
 
-**Skipping rotated logs** You can exclude older, rotated log files, such as `**.gz` or `**.1` files, from the collection by setting the shell variable `REDUCE_LOGS=skip_rotated_logs` before running the `gather` script.
+**Skipping rotated logs** You can exclude older, rotated log files, such as `*.gz` or `*.1` files, from the collection by setting the shell variable `REDUCE_LOGS=skip_rotated_logs` before running the `gather` script.
 
 ```yaml {title="Example MustGather CR configured to skip rotated logs"}
 apiVersion: operator.openshift.io/v1alpha1
@@ -693,6 +814,7 @@ spec:
 :   Sets the `REDUCE_LOGS` shell variable and executes the `gather` script. As a result, the script excludes the collection of rotated log files.
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding and creating service accounts](/openshift-docs-markdown/authentication/understanding-and-creating-service-accounts#understanding-and-creating-service-accounts)
 
@@ -736,7 +858,7 @@ You can manage your `MustGather` custom resource (CR) by creating a YAML file th
 </tr>
 <tr>
   <td><code>spec.imageStreamRef</code></td>
-  <td>Optional: Overrides the default image by defining a specific custom image.<br><br><dl><dt>Note</dt><dd>Each <code>MustGather</code> CR supports only one custom image. To use multiple custom images, you must create a separate <code>MustGather</code> CR for each image.</dd></dl></td>
+  <td>Optional: Overrides the default image by defining a specific custom image.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>Each <code>MustGather</code> CR supports only one custom image. To use multiple custom images, you must create a separate <code>MustGather</code> CR for each image.</dd></dl></td>
   <td><code>object</code></td>
 </tr>
 <tr>
@@ -761,7 +883,7 @@ You can manage your `MustGather` custom resource (CR) by creating a YAML file th
 </tr>
 <tr>
   <td><code>spec.serviceAccountName</code></td>
-  <td>Optional: Specifies the name of the service account. The default value is <code>default</code>.<br><br><dl><dt>Note</dt><dd>Because the <code>default</code> service account has minimal permissions, you can specify the service account that you created.</dd></dl></td>
+  <td>Optional: Specifies the name of the service account. The default value is <code>default</code>.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>Because the <code>default</code> service account has minimal permissions, you can specify the service account that you created.</dd></dl></td>
   <td><code>string</code></td>
 </tr>
 <tr>
@@ -850,8 +972,8 @@ You can uninstall the Support Log Gather by using the web console.
 1. Log in to the OpenShift Container Platform web console.
 2. Uninstall the Support Log Gather Operator.
 
-   1. Navigate to **Ecosystem** -> **Installed Operators**.
-   2. Click the Options menu ![](kebab.png "Options menu") next to the **Support Log Gather** entry and click **Uninstall Operator**.
+   1. Navigate to **Ecosystem** → **Installed Operators**.
+   2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the **Support Log Gather** entry and click **Uninstall Operator**.
    3. In the confirmation dialog, click **Uninstall**.
 
 ### Removing Support Log Gather resources {#support-log-gather-remove-resources-console_gathering-cluster-data}
@@ -869,7 +991,7 @@ Once you have uninstalled the Support Log Gather, you can remove the associated 
 2. Delete the component deployments in the must-gather-operator namespace.:
 
    1. Click the **Project** drop-down menu to view the list of all available projects, and select the **must-gather-operator** project.
-   2. Navigate to **Workloads** -> **Deployments**.
+   2. Navigate to **Workloads** → **Deployments**.
    3. Select the deployment that you want to delete.
    4. Click the **Actions** drop-down menu, and select **Delete Deployment**.
    5. In the confirmation dialog box, click **Delete** to delete the deployment.
@@ -880,15 +1002,15 @@ Once you have uninstalled the Support Log Gather, you can remove the associated 
       ```
 3. Optional: Remove the custom resource definitions (CRDs) that were installed by the Support Log Gather:
 
-   1. Navigate to **Administration** -> **CustomResourceDefinitions**.
+   1. Navigate to **Administration** → **CustomResourceDefinitions**.
    2. Enter `MustGather` in the **Name** field to filter the CRDs.
-   3. Click the Options menu ![](kebab.png "Options menu") next to each of the following CRDs, and select **Delete Custom Resource Definition**:
+   3. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to each of the following CRDs, and select **Delete Custom Resource Definition**:
 
       - `MustGather`
 4. Optional: Remove the `must-gather-operator` namespace.
 
-   1. Navigate to **Administration** -> **Namespaces**.
-   2. Click the Options menu ![](kebab.png "Options menu") next to the **must-gather-operator** and select **Delete Namespace**.
+   1. Navigate to **Administration** → **Namespaces**.
+   2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the **must-gather-operator** and select **Delete Namespace**.
    3. In the confirmation dialog box, enter `must-gather-operator` and click **Delete**.
 
 ## Obtaining your cluster ID {#support-get-cluster-id_gathering-cluster-data}
@@ -908,7 +1030,7 @@ When providing information to Red Hat Support, it is helpful to provide the uniq
   2. Click **Open a support case** from the **Tell us about your experience** window.
 - To manually obtain your cluster ID using the web console:
 
-  1. Navigate to **Home** -> **Overview**.
+  1. Navigate to **Home** → **Overview**.
   2. The value is available in the **Cluster ID** field of the **Details** section.
 - To obtain your cluster ID using the OpenShift CLI (`oc`), run the following command:
 
@@ -976,7 +1098,7 @@ The recommended way to generate a `sosreport` for an OpenShift Container Platfor
    ```
 
    > [!NOTE]
-   > If an existing `toolbox` pod is already running, the `toolbox` command outputs ’toolbox-' already exists. Trying to start...`. Remove the running toolbox container with `podman rm toolbox-`and spawn a new toolbox container, to avoid issues with`sosreport\` plugins.
+   > If an existing `toolbox` pod is already running, the `toolbox` command outputs `'toolbox-' already exists. Trying to start...`. Remove the running toolbox container with `podman rm toolbox-` and spawn a new toolbox container, to avoid issues with `sosreport` plugins.
 5. Collect a `sosreport` archive.
 
    1. Run the `sos report` command to collect necessary troubleshooting data on `crio` and `podman`:
@@ -985,16 +1107,16 @@ The recommended way to generate a `sosreport` for an OpenShift Container Platfor
       # sos report -k crio.all=on -k crio.logs=on  -k podman.all=on -k podman.logs=on
       ```
 
-      where :   \*   `-k` enables you to define `sosreport` plugin parameters outside of the defaults.
-
-      1. Optional: To include information on OVN-Kubernetes networking configurations from a node in your report, run the following command:
+      where
+      :   - `-k` enables you to define `sosreport` plugin parameters outside of the defaults.
+   2. Optional: To include information on OVN-Kubernetes networking configurations from a node in your report, run the following command:
 
       ```terminal
       # sos report --all-logs
       ```
-   2. Press **Enter** when prompted, to continue.
-   3. Provide the Red Hat Support case ID. `sosreport` adds the ID to the archive’s file name.
-   4. The `sosreport` output provides the archive’s location and checksum. The following sample output references support case ID `01234567`:
+   3. Press **Enter** when prompted, to continue.
+   4. Provide the Red Hat Support case ID. `sosreport` adds the ID to the archive’s file name.
+   5. The `sosreport` output provides the archive’s location and checksum. The following sample output references support case ID `01234567`:
 
       ```terminal
       Your sosreport has been generated and saved in:
@@ -1003,7 +1125,8 @@ The recommended way to generate a `sosreport` for an OpenShift Container Platfor
       The checksum is: 382ffc167510fd71b4f12a4f40b97a4e
       ```
 
-      where :   \*   The `sosreport` archive’s file path is outside of the `chroot` environment because the toolbox container mounts the host’s root directory at `/host`.
+      where
+      :   - The `sosreport` archive’s file path is outside of the `chroot` environment because the toolbox container mounts the host’s root directory at `/host`.
 6. Provide the `sosreport` archive to Red Hat Support for analysis, using one of the following methods.
 
    - Upload the file to an existing Red Hat support case.
@@ -1014,7 +1137,8 @@ The recommended way to generate a `sosreport` for an OpenShift Container Platfor
         $ oc debug node/my-cluster-node -- bash -c 'cat /host/var/tmp/sosreport-my-cluster-node-01234567-2020-05-28-eyjknxt.tar.xz' > /tmp/sosreport-my-cluster-node-01234567-2020-05-28-eyjknxt.tar.xz
         ```
 
-        where :   \*   The debug container mounts the host’s root directory at `/host`. Reference the absolute path from the debug container’s root directory, including `/host`, when specifying target files for concatenation.
+        where
+        :   - The debug container mounts the host’s root directory at `/host`. Reference the absolute path from the debug container’s root directory, including `/host`, when specifying target files for concatenation.
 
      > [!NOTE]
      > OpenShift Container Platform 4.22 cluster nodes running Red Hat Enterprise Linux CoreOS (RHCOS) are immutable and rely on Operators to apply cluster changes. Transferring a `sosreport` archive from a cluster node by using `scp` is not recommended. However, if the OpenShift Container Platform API is not available, or the kubelet is not properly functioning on the target node, `oc` operations will be impacted. In such situations, it is possible to copy a `sosreport` archive from a node by running `scp core@<node>.<cluster_name>.<base_domain>:<file_path> <local_path>`.
@@ -1097,7 +1221,7 @@ Collecting network traces, in the form of packet capture records, can assist Red
 
 OpenShift Container Platform supports two ways of performing a network trace. Review the following table and choose the method that meets your needs.
 
-***Supported methods of collecting a network trace***
+**Supported methods of collecting a network trace**
 
 <table>
 <thead>
@@ -1109,11 +1233,11 @@ OpenShift Container Platform supports two ways of performing a network trace. Re
 <tbody>
 <tr>
   <td>Collecting a host network trace</td>
-  <td>You perform a packet capture for a duration that you specify on one or more nodes at the same time.The packet capture files are transferred from nodes to the client machine when the specified duration is met.<br><br>You can troubleshoot why a specific action triggers network communication issues. Run the packet capture, perform the action that triggers the issue, and use the logs to diagnose the issue.</td>
+  <td>You perform a packet capture for a duration that you specify on one or more nodes at the same time. The packet capture files are transferred from nodes to the client machine when the specified duration is met.<br><br>You can troubleshoot why a specific action triggers network communication issues. Run the packet capture, perform the action that triggers the issue, and use the logs to diagnose the issue.</td>
 </tr>
 <tr>
   <td>Collecting a network trace from an OpenShift Container Platform node or container</td>
-  <td>You perform a packet capture on one node or one container.You run the <code>tcpdump</code> command interactively, so you can control the duration of the packet capture.<br><br>You can start the packet capture manually, trigger the network communication issue, and then stop the packet capture manually.<br><br>This method uses the <code>cat</code> command and shell redirection to copy the packet capture data from the node or container to the client machine.</td>
+  <td>You perform a packet capture on one node or one container. You run the <code>tcpdump</code> command interactively, so you can control the duration of the packet capture.<br><br>You can start the packet capture manually, trigger the network communication issue, and then stop the packet capture manually.<br><br>This method uses the <code>cat</code> command and shell redirection to copy the packet capture data from the node or container to the client machine.</td>
 </tr>
 </tbody>
 </table>
@@ -1239,7 +1363,7 @@ When investigating potential network-related OpenShift Container Platform issues
    ```
 
    > [!NOTE]
-   > If an existing `toolbox` pod is already running, the `toolbox` command outputs ’toolbox-' already exists. Trying to start...`. To avoid `tcpdump`issues, remove the running toolbox container with`podman rm toolbox-\` and spawn a new toolbox container.
+   > If an existing `toolbox` pod is already running, the `toolbox` command outputs `'toolbox-' already exists. Trying to start...`. To avoid `tcpdump` issues, remove the running toolbox container with `podman rm toolbox-` and spawn a new toolbox container.
 6. Initiate a `tcpdump` session on the cluster node and redirect output to a capture file. This example uses `ens5` as the interface name:
 
    ```terminal
@@ -1402,4 +1526,4 @@ By default, running the `toolbox` command starts a container with the `registry.
    ```
 
    > [!NOTE]
-   > If an existing `toolbox` pod is already running, the `toolbox` command outputs ’toolbox-' already exists. Trying to start...`. To avoid issues with `sosreport`plugins, remove the running toolbox container with`podman rm toolbox-\` and then spawn a new toolbox container.
+   > If an existing `toolbox` pod is already running, the `toolbox` command outputs `'toolbox-' already exists. Trying to start...`. To avoid issues with `sosreport` plugins, remove the running toolbox container with `podman rm toolbox-` and then spawn a new toolbox container.

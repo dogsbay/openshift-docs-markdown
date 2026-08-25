@@ -35,39 +35,39 @@ You can configure the following types of identity providers:
 <tbody>
 <tr>
   <td><a href="/openshift-docs-markdown/authentication/identity_providers/configuring-htpasswd-identity-provider#configuring-htpasswd-identity-provider">htpasswd</a></td>
-  <td>Configure the <code>htpasswd</code> identity provider to validate user names and passwordsagainst a flat file generated using<a href="http://httpd.apache.org/docs/2.4/programs/htpasswd.html"><code>htpasswd</code></a>.</td>
+  <td>Configure the <code>htpasswd</code> identity provider to validate user names and passwords against a flat file generated using <a href="http://httpd.apache.org/docs/2.4/programs/htpasswd.html"><code>htpasswd</code></a>.</td>
 </tr>
 <tr>
   <td><a href="/openshift-docs-markdown/authentication/identity_providers/configuring-keystone-identity-provider#configuring-keystone-identity-provider">Keystone</a></td>
-  <td>Configure the <code>keystone</code> identity provider to integrateyour OpenShift Container Platform cluster with Keystone to enable shared authentication withan OpenStack Keystone v3 server configured to store users in an internaldatabase.</td>
+  <td>Configure the <code>keystone</code> identity provider to integrate your OpenShift Container Platform cluster with Keystone to enable shared authentication with an OpenStack Keystone v3 server configured to store users in an internal database.</td>
 </tr>
 <tr>
   <td><a href="/openshift-docs-markdown/authentication/identity_providers/configuring-ldap-identity-provider#configuring-ldap-identity-provider">LDAP</a></td>
-  <td>Configure the <code>ldap</code> identity provider to validate user names and passwordsagainst an LDAPv3 server, using simple bind authentication.</td>
+  <td>Configure the <code>ldap</code> identity provider to validate user names and passwords against an LDAPv3 server, using simple bind authentication.</td>
 </tr>
 <tr>
   <td><a href="/openshift-docs-markdown/authentication/identity_providers/configuring-basic-authentication-identity-provider#configuring-basic-authentication-identity-provider">Basic authentication</a></td>
-  <td>Configure a <code>basic-authentication</code> identity provider for users to log in toOpenShift Container Platform with credentials validated against a remote identity provider.Basic authentication is a generic backend integration mechanism.</td>
+  <td>Configure a <code>basic-authentication</code> identity provider for users to log in to OpenShift Container Platform with credentials validated against a remote identity provider. Basic authentication is a generic backend integration mechanism.</td>
 </tr>
 <tr>
   <td><a href="/openshift-docs-markdown/authentication/identity_providers/configuring-request-header-identity-provider#configuring-request-header-identity-provider">Request header</a></td>
-  <td>Configure a <code>request-header</code> identity provider to identify users from requestheader values, such as <code>X-Remote-User</code>. It is typically used in combination withan authenticating proxy, which sets the request header value.</td>
+  <td>Configure a <code>request-header</code> identity provider to identify users from request header values, such as <code>X-Remote-User</code>. It is typically used in combination with an authenticating proxy, which sets the request header value.</td>
 </tr>
 <tr>
   <td><a href="/openshift-docs-markdown/authentication/identity_providers/configuring-github-identity-provider#configuring-github-identity-provider">GitHub or GitHub Enterprise</a></td>
-  <td>Configure a <code>github</code> identity provider to validate user names and passwordsagainst GitHub or GitHub Enterprise's OAuth authentication server.</td>
+  <td>Configure a <code>github</code> identity provider to validate user names and passwords against GitHub or GitHub Enterprise's OAuth authentication server.</td>
 </tr>
 <tr>
   <td><a href="/openshift-docs-markdown/authentication/identity_providers/configuring-gitlab-identity-provider#configuring-gitlab-identity-provider">GitLab</a></td>
-  <td>Configure a <code>gitlab</code> identity provider to use<a href="https://gitlab.com/">GitLab.com</a> or any other GitLab instance as an identityprovider.</td>
+  <td>Configure a <code>gitlab</code> identity provider to use <a href="https://gitlab.com/">GitLab.com</a> or any other GitLab instance as an identity provider.</td>
 </tr>
 <tr>
   <td><a href="/openshift-docs-markdown/authentication/identity_providers/configuring-google-identity-provider#configuring-google-identity-provider">Google</a></td>
-  <td>Configure a <code>google</code> identity provider using<a href="https://developers.google.com/identity/protocols/OpenIDConnect">Google's OpenID Connect integration</a>.</td>
+  <td>Configure a <code>google</code> identity provider using <a href="https://developers.google.com/identity/protocols/OpenIDConnect">Google's OpenID Connect integration</a>.</td>
 </tr>
 <tr>
   <td><a href="/openshift-docs-markdown/authentication/identity_providers/configuring-oidc-identity-provider#configuring-oidc-identity-provider">OpenID Connect</a></td>
-  <td>Configure an <code>oidc</code> identity provider to integrate with an OpenID Connectidentity provider using an<a href="http://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth">Authorization Code Flow</a>.</td>
+  <td>Configure an <code>oidc</code> identity provider to integrate with an OpenID Connect identity provider using an <a href="http://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth">Authorization Code Flow</a>.</td>
 </tr>
 </tbody>
 </table>
@@ -92,7 +92,7 @@ The following parameters are common to all identity providers:
 </tr>
 <tr>
   <td><code>mappingMethod</code></td>
-  <td>Defines how new identities are mapped to users when they log in. Enter one of the following values:</td>
+  <td>Defines how new identities are mapped to users when they log in. Enter one of the following values:<br><br>claim:: The default value. Provisions a user with the identity's preferred user name. Fails if a user with that user name is already mapped to another identity. lookup:: Looks up an existing identity, user identity mapping, and user, but does not automatically provision users or identities. This allows cluster administrators to set up identities and users manually, or using an external process. Using this method requires you to manually provision users. add:: Provisions a user with the identity's preferred user name. If a user with that user name already exists, the identity is mapped to the existing user, adding to any existing identity mappings for the user. Required when multiple identity providers are configured that identify the same set of users and map to the same user names.</td>
 </tr>
 </tbody>
 </table>
@@ -230,9 +230,7 @@ OpenShift Container Platform evaluates authorization by using the following step
 
 Project administrators can use the CLI to
 
-view local roles and bindings,
-
-including a matrix of the verbs and resources each are associated with.
+view local roles and bindings, including a matrix of the verbs and resources each are associated with.
 
 > [!IMPORTANT]
 > The cluster role bound to the project administrator is limited in a project through a local binding. It is not bound cluster-wide like the cluster roles granted to the **cluster-admin** or **system:admin**.
@@ -244,6 +242,7 @@ including a matrix of the verbs and resources each are associated with.
 The default admin, edit, view, and cluster-reader cluster roles support cluster role aggregation, where the cluster rules for each role are dynamically updated as new rules are created. This feature is relevant only if you extend the Kubernetes API by creating custom resources.
 
 **Additional resources**
+{._additional-resources}
 
 - [RBAC rules allow execution privileges](https://access.redhat.com/solutions/6989997)
 - [Aggregated ClusterRoles (Kubernetes documentation)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#aggregated-clusterroles)
@@ -281,13 +280,12 @@ Each project scopes its own set of:
 
 Cluster administrators
 
-can create projects and delegate administrative rights for the project to any member of the user community. Cluster administrators
-
-can also allow developers to create their own projects.
+can create projects and delegate administrative rights for the project to any member of the user community. Cluster administrators can also allow developers to create their own projects.
 
 Developers and administrators can interact with projects by using the CLI or the web console.
 
 **Additional resources**
+{._additional-resources}
 
 - [Kubernetes documentation on namespaces](https://kubernetes.io/docs/tasks/administer-cluster/namespaces/)
 
@@ -303,6 +301,7 @@ OpenShift Container Platform includes several default projects, and projects sta
 > The following default projects are considered highly privileged: `default`, `kube-public`, `kube-system`, `openshift`, `openshift-infra`, `openshift-node`, and other system-created projects that have the `openshift.io/run-level` label set to `0` or `1`. Functionality that relies on admission plugins, such as pod security admission, security context constraints, cluster resource quotas, and image reference resolution, does not work in highly privileged projects.
 
 **Additional resources**
+{._additional-resources}
 
 - [Guaranteed Scheduling For Critical Add-On Pods (Kubernetes documentation)](https://kubernetes.io/docs/tasks/administer-cluster/guaranteed-scheduling-critical-addon-pods/#rescheduler-guaranteed-scheduling-of-critical-add-ons)
 
@@ -1007,11 +1006,12 @@ After you define an identity provider and create a new `cluster-admin` user, you
 
 If you mirrored Operator catalogs for use with disconnected clusters, you can populate the software catalog with the Operators from your mirrored catalogs. You can use the generated manifests from the mirroring process to create the required `ImageContentSourcePolicy` and `CatalogSource` objects.
 
-***Prerequisites***
+**Prerequisites**
 
 - You mirrored Operator catalogs for use with disconnected clusters.
 
 **Additional resources**
+{._additional-resources}
 
 - [Mirroring Operator catalogs for use with disconnected clusters](/openshift-docs-markdown/disconnected/installing-mirroring-installation-images#olm-mirror-catalog_installing-mirroring-installation-images)
 
@@ -1042,7 +1042,7 @@ Cluster administrators
 can create a `CatalogSource` object that references an index image. The software catalog uses catalog sources to populate the user interface.
 
 > [!TIP]
-> Alternatively, you can use the web console to manage catalog sources. From the **Administration** -> **Cluster Settings** -> **Configuration** -> **OperatorHub** page, click the **Sources** tab, where you can create, update, delete, disable, and enable individual sources.
+> Alternatively, you can use the web console to manage catalog sources. From the **Administration** → **Cluster Settings** → **Configuration** → **OperatorHub** page, click the **Sources** tab, where you can create, update, delete, disable, and enable individual sources.
 
 **Prerequisites**
 
@@ -1060,12 +1060,12 @@ can create a `CatalogSource` object that references an index image. The software
       kind: CatalogSource
       metadata:
         name: my-operator-catalog
-        namespace: {{ namespace }}
+        namespace: openshift-marketplace
       spec:
         sourceType: grpc
         grpcPodConfig:
           securityContextConfig: <security_mode>
-        image: <registry>/<namespace>/{{ index_image }}:{{ tag }}
+        image: <registry>/<namespace>/redhat-operator-index:v4.22
         displayName: My Operator Catalog
         publisher: <publisher_name>
         updateStrategy:
@@ -1079,7 +1079,7 @@ can create a `CatalogSource` object that references an index image. The software
       :   Specifies the value for the `metadata.name` parameter. If you mirrored content to local files before uploading to a registry, remove any backslash (`/`) characters from the `metadata.name` field to avoid an "invalid resource name" error when you create the object.
 
       `metadata.namespace`
-      :   Specifies the value for the `metadata.namespace` parameter. If you want the catalog source to be available globally to users in all namespaces, specify the `{{ namespace }}` namespace. Otherwise, you can specify a different namespace for the catalog to be scoped and available only for that namespace.
+      :   Specifies the value for the `metadata.namespace` parameter. If you want the catalog source to be available globally to users in all namespaces, specify the `openshift-marketplace` namespace. Otherwise, you can specify a different namespace for the catalog to be scoped and available only for that namespace.
 
       `spec.grpcPodConfig.securityContextConfig`
       :   Specifies the value of `legacy` or `restricted`. If the field is not set, the default value is `legacy`. In a future OpenShift Container Platform release, it is planned that the default value will be `restricted`.
@@ -1088,7 +1088,7 @@ can create a `CatalogSource` object that references an index image. The software
           > If your catalog cannot run with `restricted` permissions, it is recommended that you manually set this field to `legacy`.
 
       `spec.image`
-      :   Specifies your index image. If you specify a tag after the image name, for example `:{{ tag }}`, the catalog source pod uses an image pull policy of `Always`, meaning the pod always pulls the image before starting the container. If you specify a digest, for example `@sha256:<id>`, the image pull policy is `IfNotPresent`, meaning the pod pulls the image only if it does not already exist on the node.
+      :   Specifies your index image. If you specify a tag after the image name, for example `:v4.22`, the catalog source pod uses an image pull policy of `Always`, meaning the pod always pulls the image before starting the container. If you specify a digest, for example `@sha256:<id>`, the image pull policy is `IfNotPresent`, meaning the pod pulls the image only if it does not already exist on the node.
 
       `spec.publisher`
       :   Specifies your name or an organization name publishing the catalog.
@@ -1105,7 +1105,7 @@ can create a `CatalogSource` object that references an index image. The software
    1. Check the pods:
 
       ```terminal
-      $ oc get pods -n {{ namespace }}
+      $ oc get pods -n openshift-marketplace
       ```
 
       The following is example output:
@@ -1118,7 +1118,7 @@ can create a `CatalogSource` object that references an index image. The software
    2. Check the catalog source:
 
       ```terminal
-      $ oc get catalogsource -n {{ namespace }}
+      $ oc get catalogsource -n openshift-marketplace
       ```
 
       The following is example output:
@@ -1130,7 +1130,7 @@ can create a `CatalogSource` object that references an index image. The software
    3. Check the package manifest:
 
       ```terminal
-      $ oc get packagemanifest -n {{ namespace }}
+      $ oc get packagemanifest -n openshift-marketplace
       ```
 
       The following is example output:
@@ -1143,6 +1143,7 @@ can create a `CatalogSource` object that references an index image. The software
       You can now install the Operators from the **Software Catalog** page on your OpenShift Container Platform web console.
 
 **Additional resources**
+{._additional-resources}
 
 - [Accessing images for Operators from private registries](/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-accessing-images-private-registries_olm-managing-custom-catalogs)
 - [Image template for custom catalog sources](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-catalogsource-image-template_olm-understanding-olm)
@@ -1167,9 +1168,7 @@ Approval Strategy
 
     If you choose automatic updates for an installed Operator, when a new version of that Operator is available in the selected channel, Operator Lifecycle Manager (OLM) automatically upgrades the running instance of your Operator without human intervention.
 
-    If you select manual updates, when a newer version of an Operator is available, OLM creates an update request. As a cluster administrator,
-
-    you must then manually approve that update request to have the Operator updated to the new version.
+    If you select manual updates, when a newer version of an Operator is available, OLM creates an update request. As a cluster administrator, you must then manually approve that update request to have the Operator updated to the new version.
 
 ### Installing from the software catalog by using the web console {#olm-installing-from-software-catalog-using-web-console_post-install-preparing-for-users}
 
@@ -1181,8 +1180,8 @@ To install and subscribe to an Operator from the software catalog, you can use t
 
 **Procedure**
 
-1. Navigate in the web console to the **Ecosystem** -> **Software Catalog** page.
-2. Scroll or type a keyword into the **Filter by keyword** box to find the Operator you want. For example, type `{{ filter_type }}` to find the Jaeger Operator.
+1. Navigate in the web console to the **Ecosystem** → **Software Catalog** page.
+2. Scroll or type a keyword into the **Filter by keyword** box to find the Operator you want. For example, type `jaeger` to find the Jaeger Operator.
 
    You can also filter options by **Infrastructure Features**. For example, select **Disconnected** if you want to see Operators that work in disconnected environments, also known as restricted network environments.
 3. Select the Operator to display additional information.
@@ -1222,14 +1221,14 @@ To install and subscribe to an Operator from the software catalog, you can use t
 
 **Verification**
 
-- After the upgrade status of the subscription is **Up to date**, select **Ecosystem** -> **Installed Operators** to verify that the cluster service version (CSV) of the installed Operator eventually shows up. The **Status** should eventually resolve to **Succeeded** in the relevant namespace.
+- After the upgrade status of the subscription is **Up to date**, select **Ecosystem** → **Installed Operators** to verify that the cluster service version (CSV) of the installed Operator eventually shows up. The **Status** should eventually resolve to **Succeeded** in the relevant namespace.
 
   > [!NOTE]
   > For the **All namespaces...** installation mode, the status resolves to **Succeeded** in the `openshift-operators` namespace, but the status is **Copied** if you check in other namespaces.
 
   If it does not:
 
-  - Check the logs in any pods in the `openshift-operators` project (or other relevant namespace if **A specific namespace...** installation mode was selected) on the **Workloads** -> **Pods** page that are reporting issues to troubleshoot further.
+  - Check the logs in any pods in the `openshift-operators` project (or other relevant namespace if **A specific namespace...** installation mode was selected) on the **Workloads** → **Pods** page that are reporting issues to troubleshoot further.
 - When the Operator is installed, the metadata indicates which channel and version are installed.
 
   > [!NOTE]
@@ -1559,5 +1558,6 @@ At this point, OLM is now aware of the selected Operator. A cluster service vers
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [About OperatorGroups](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-operatorgroups#olm-operatorgroups-about_olm-understanding-operatorgroups)

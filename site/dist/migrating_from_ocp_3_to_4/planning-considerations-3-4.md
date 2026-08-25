@@ -56,6 +56,7 @@ For secure HTTPS access, perform the following additional step:
    The new certificate is valid for securing connections made using either DNS domain.
 
 **Additional resources**
+{._additional-resources}
 
 - See [Replacing the default ingress certificate](/openshift-docs-markdown/security/certificates/replacing-default-ingress-certificate#replacing-default-ingress) for more information.
 

@@ -16,6 +16,7 @@ After installation, you can add additional worker nodes to a cluster with two co
 > Do not add more than two worker nodes to the OpenShift Container Platform cluster. For a cluster with an arbiter, the same networking requirements as a regular cluster for connectivity between machines apply.
 
 **Additional resources**
+{._additional-resources}
 
 - [Network connectivity requirements](/openshift-docs-markdown/installing/installing_platform_agnostic/installing-platform-agnostic#installation-network-connectivity-user-infra_installing-platform-agnostic)
 - [Configuring a local arbiter node with installer-provisioned infrastructure](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#ipi-install-config-local-arbiter-node_ipi-install-installation-workflow)

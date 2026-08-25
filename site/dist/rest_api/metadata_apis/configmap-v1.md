@@ -33,21 +33,21 @@ The following API endpoints are available:
 - `/api/v1/watch/configmaps`
 
   - `GET`: watch individual changes to a list of ConfigMap. deprecated: use the 'watch' parameter with a list operation instead.
-- `/api/v1/namespaces/{{ namespace }}/configmaps`
+- `/api/v1/namespaces/{namespace}/configmaps`
 
   - `DELETE`: delete collection of ConfigMap
   - `GET`: list or watch objects of kind ConfigMap
   - `POST`: create a ConfigMap
-- `/api/v1/watch/namespaces/{{ namespace }}/configmaps`
+- `/api/v1/watch/namespaces/{namespace}/configmaps`
 
   - `GET`: watch individual changes to a list of ConfigMap. deprecated: use the 'watch' parameter with a list operation instead.
-- `/api/v1/namespaces/{{ namespace }}/configmaps/{{ name }}`
+- `/api/v1/namespaces/{namespace}/configmaps/{name}`
 
   - `DELETE`: delete a ConfigMap
   - `GET`: read the specified ConfigMap
   - `PATCH`: partially update the specified ConfigMap
   - `PUT`: replace the specified ConfigMap
-- `/api/v1/watch/namespaces/{{ namespace }}/configmaps/{{ name }}`
+- `/api/v1/watch/namespaces/{namespace}/configmaps/{name}`
 
   - `GET`: watch changes to an object of kind ConfigMap. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
 
@@ -89,7 +89,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{{ namespace }}/configmaps {#_apiv1namespaces_namespace_configmaps}
+### /api/v1/namespaces/{namespace}/configmaps {#_apiv1namespaces_namespace_configmaps}
 
 HTTP method
 :   ```
@@ -163,7 +163,7 @@ Description
 | 202 - Accepted | [`ConfigMap`](/openshift-docs-markdown/rest_api/metadata_apis/configmap-v1#configmap-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/namespaces/{{ namespace }}/configmaps {#_apiv1watchnamespaces_namespace_configmaps}
+### /api/v1/watch/namespaces/{namespace}/configmaps {#_apiv1watchnamespaces_namespace_configmaps}
 
 HTTP method
 :   ```
@@ -182,7 +182,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{{ namespace }}/configmaps/{{ name }} {#_apiv1namespaces_namespace_configmaps_name}
+### /api/v1/namespaces/{namespace}/configmaps/{name} {#_apiv1namespaces_namespace_configmaps_name}
 
 **Global path parameters**
 
@@ -287,7 +287,7 @@ Description
 | 201 - Created | [`ConfigMap`](/openshift-docs-markdown/rest_api/metadata_apis/configmap-v1#configmap-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/namespaces/{{ namespace }}/configmaps/{{ name }} {#_apiv1watchnamespaces_namespace_configmaps_name}
+### /api/v1/watch/namespaces/{namespace}/configmaps/{name} {#_apiv1watchnamespaces_namespace_configmaps_name}
 
 **Global path parameters**
 

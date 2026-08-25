@@ -7,7 +7,7 @@ title: Installing a cluster with the support for configuring multi-architecture 
 You can install an OpenShift Container Platform cluster on Amazon Web Services (AWS) with support for configuring multi-architecture compute machines.
 
 > [!NOTE]
-> When you have nodes with multiple architectures in your cluster, the architecture of your image must be consistent with the architecture of the node. You must ensure that the pod is assigned to the node with the appropriate architecture and that it matches the image architecture. For more information on assigning pods to nodes, [Scheduling workloads on clusters with multi-architecture compute machines](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/multi-architecture-compute-managing#scheduling-workloads-on-clusters-with-multi-architecture-compute-machines).
+> When you have nodes with multiple architectures in your cluster, the architecture of your image must be consistent with the architecture of the node. You must ensure that the pod is assigned to the node with the appropriate architecture and that it matches the image architecture. For more information on assigning pods to nodes, see "Scheduling workloads on clusters with multi-architecture compute machines".
 
 After installing the cluster, you can add multi-architecture compute machines to the cluster in the following ways:
 
@@ -72,6 +72,8 @@ You can install a cluster with multi-architecture support to use compute machine
    :   Specifies the control plane node architecture. You can set this field to either `arm64` or `amd64`.
 
 **Additional resources**
+{._additional-resources}
 
+- [Scheduling workloads on clusters with multi-architecture compute machines](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/multi-architecture-compute-managing#scheduling-workloads-on-clusters-with-multi-architecture-compute-machines)
 - [Deploying the cluster](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installation-launching-installer_installing-aws-customizations)
 - [Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multiarch-tuning-operator)

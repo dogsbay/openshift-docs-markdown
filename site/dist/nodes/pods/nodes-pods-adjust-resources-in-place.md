@@ -187,6 +187,7 @@ You cannot add or modify a resize policy in an existing pod, but you can add or 
   resize-pod                   1/1     Running   1 (5s ago)  5s
   ```
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Understanding resource requests and limits](/openshift-docs-markdown/nodes/pods/nodes-pods-using#nodes-pods-understanding-requests-limits_nodes-pods-using-ssy)

@@ -1,8 +1,8 @@
 ---
-title: Understand {{ sno }} network reconfiguration
+title: Understand single-node OpenShift network reconfiguration
 ---
 
-# Understand {{ sno }} network reconfiguration {#cnf-understanding-sno-ip-configuration}
+# Understand single-node OpenShift network reconfiguration {#cnf-understanding-sno-ip-configuration}
 
 Use the Lifecycle Agent to change the network configuration of a single-node OpenShift cluster without performing a full redeployment. This is critical for many edge computing use cases such as disaster recovery and network rehoming.
 
@@ -32,7 +32,7 @@ The Lifecycle Agent uses a stage-driven workflow controlled through the `spec.st
 
 **Figure 1. single-node OpenShift network reconfiguration stages**
 
-![single-node OpenShift network reconfiguration stages](/openshift-docs-markdown/_assets/images/../images/600_telco_network_sno_reconfig.png)
+![single-node OpenShift network reconfiguration stages](/openshift-docs-markdown/_assets/images/600_telco_network_sno_reconfig.png)
 
 Idle stage
 :   The initial and final stage. In this stage, the Lifecycle Agent runs health checks, performs cleanup operations, and prepares the cluster for configuration changes. Transitioning to Idle after a successful configuration is the finalization point that removes rollback capability.
@@ -80,5 +80,6 @@ Network reconfiguration by using the `IPConfig` CR has the following limitations
 - You cannot perform an image-based upgrade and a network reconfiguration at the same time.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing the Lifecycle Agent using the CLI](/openshift-docs-markdown/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-install-operators#cnf-image-based-upgrade-installing-lifecycle-agent-using-cli_install-operators)

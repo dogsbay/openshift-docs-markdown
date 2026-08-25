@@ -1,5 +1,5 @@
 ---
-title: VolumeSnapshot []
+title: VolumeSnapshot [snapshot.storage.k8s.io/v1]
 ---
 
 # VolumeSnapshot \[snapshot.storage.k8s.io/v1\] {#volumesnapshot-snapshot-storage-k8s-io-v1}
@@ -99,18 +99,18 @@ The following API endpoints are available:
 - `/apis/snapshot.storage.k8s.io/v1/volumesnapshots`
 
   - `GET`: list objects of kind VolumeSnapshot
-- `/apis/snapshot.storage.k8s.io/v1/namespaces/{{ namespace }}/volumesnapshots`
+- `/apis/snapshot.storage.k8s.io/v1/namespaces/{namespace}/volumesnapshots`
 
   - `DELETE`: delete collection of VolumeSnapshot
   - `GET`: list objects of kind VolumeSnapshot
   - `POST`: create a VolumeSnapshot
-- `/apis/snapshot.storage.k8s.io/v1/namespaces/{{ namespace }}/volumesnapshots/{{ name }}`
+- `/apis/snapshot.storage.k8s.io/v1/namespaces/{namespace}/volumesnapshots/{name}`
 
   - `DELETE`: delete a VolumeSnapshot
   - `GET`: read the specified VolumeSnapshot
   - `PATCH`: partially update the specified VolumeSnapshot
   - `PUT`: replace the specified VolumeSnapshot
-- `/apis/snapshot.storage.k8s.io/v1/namespaces/{{ namespace }}/volumesnapshots/{{ name }}/status`
+- `/apis/snapshot.storage.k8s.io/v1/namespaces/{namespace}/volumesnapshots/{name}/status`
 
   - `GET`: read status of the specified VolumeSnapshot
   - `PATCH`: partially update status of the specified VolumeSnapshot
@@ -135,7 +135,7 @@ Description
 | 200 - OK | [`VolumeSnapshotList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-storage-snapshot-v1-VolumeSnapshotList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/snapshot.storage.k8s.io/v1/namespaces/{{ namespace }}/volumesnapshots {#_apissnapshotstoragek8siov1namespaces_namespace_volumesnapshots}
+### /apis/snapshot.storage.k8s.io/v1/namespaces/{namespace}/volumesnapshots {#_apissnapshotstoragek8siov1namespaces_namespace_volumesnapshots}
 
 HTTP method
 :   ```
@@ -203,7 +203,7 @@ Description
 | 202 - Accepted | [`VolumeSnapshot`](/openshift-docs-markdown/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/snapshot.storage.k8s.io/v1/namespaces/{{ namespace }}/volumesnapshots/{{ name }} {#_apissnapshotstoragek8siov1namespaces_namespace_volumesnapshots_name}
+### /apis/snapshot.storage.k8s.io/v1/namespaces/{namespace}/volumesnapshots/{name} {#_apissnapshotstoragek8siov1namespaces_namespace_volumesnapshots_name}
 
 **Global path parameters**
 
@@ -307,7 +307,7 @@ Description
 | 201 - Created | [`VolumeSnapshot`](/openshift-docs-markdown/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/snapshot.storage.k8s.io/v1/namespaces/{{ namespace }}/volumesnapshots/{{ name }}/status {#_apissnapshotstoragek8siov1namespaces_namespace_volumesnapshots_name_status}
+### /apis/snapshot.storage.k8s.io/v1/namespaces/{namespace}/volumesnapshots/{name}/status {#_apissnapshotstoragek8siov1namespaces_namespace_volumesnapshots_name_status}
 
 **Global path parameters**
 

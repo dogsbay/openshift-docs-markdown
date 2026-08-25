@@ -21,7 +21,8 @@ const headings = [{"depth":1,"slug":"spo-troubleshooting","text":"Troubleshootin
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/security_profiles_operator/spo-troubleshooting";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="spo-troubleshooting" class="group scroll-mt-20">Troubleshooting the Security Profiles Operator<a href="#spo-troubleshooting" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Troubleshoot the Security Profiles Operator to diagnose a problem or provide information in a bug report.</p>
+      <p class="_abstract">Troubleshoot the Security Profiles Operator to diagnose a problem or provide information in a bug report.</p>
       <h2 id="spo-inspecting-seccomp-profiles_spo-troubleshooting" class="group scroll-mt-20">Inspecting seccomp profiles<a href="#spo-inspecting-seccomp-profiles_spo-troubleshooting" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">Corrupted <code>seccomp</code> profiles can disrupt your workloads. Ensure that the user cannot abuse the system by not allowing other workloads to map any part of the path <code>/var/lib/kubelet/seccomp/operator</code>.</p>
       <p><strong>Procedure</strong></p>

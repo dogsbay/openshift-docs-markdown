@@ -744,5 +744,6 @@ The following procedure adds a default project node selector.
         ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating a project with a node selector and toleration](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations-projects_nodes-scheduler-taints-tolerations)

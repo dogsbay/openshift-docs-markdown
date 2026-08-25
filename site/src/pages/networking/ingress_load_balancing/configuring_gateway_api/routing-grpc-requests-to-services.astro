@@ -21,7 +21,8 @@ const headings = [{"depth":1,"slug":"routing-grpc-requests-to-services","text":"
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/ingress_load_balancing/configuring_gateway_api/routing-grpc-requests-to-services";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="routing-grpc-requests-to-services" class="group scroll-mt-20">Route gRPC requests to services<a href="#routing-grpc-requests-to-services" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>When you expose your gRPC APIs through a gateway, you must configure a <code>GRPCRoute</code> resource to accurately direct incoming gRPC requests from a Gateway listener to an API object. A <code>GRPCRoute</code> specifies the exact routing behavior for these requests by evaluating a set of defined rules.</p>
+      <p class="_abstract">When you expose your gRPC APIs through a gateway, you must configure a <code>GRPCRoute</code> resource to accurately direct incoming gRPC requests from a Gateway listener to an API object. A <code>GRPCRoute</code> specifies the exact routing behavior for these requests by evaluating a set of defined rules.</p>
       <p>Within each <code>GRPCRoute</code> rule, you can establish the following routing behaviors:</p>
       <ul>
       <li><code>matches</code>: Define the conditions a gRPC request must meet based on specific gRPC methods and headers.</li>

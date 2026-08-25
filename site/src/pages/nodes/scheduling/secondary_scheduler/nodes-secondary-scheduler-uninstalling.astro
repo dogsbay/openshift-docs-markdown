@@ -16,16 +16,17 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 
-const headings = [{"depth":1,"slug":"secondary-scheduler-uninstalling","text":"Uninstalling the {{ secondary_scheduler_operator }}"},{"depth":2,"slug":"nodes-secondary-scheduler-uninstall-console_secondary-scheduler-uninstalling","text":"Uninstalling the Secondary Scheduler Operator"},{"depth":2,"slug":"nodes-secondary-scheduler-remove-resources-console_secondary-scheduler-uninstalling","text":"Removing Secondary Scheduler Operator resources"}];
+const headings = [{"depth":1,"slug":"secondary-scheduler-uninstalling","text":"Uninstalling the Secondary Scheduler Operator"},{"depth":2,"slug":"nodes-secondary-scheduler-uninstall-console_secondary-scheduler-uninstalling","text":"Uninstalling the Secondary Scheduler Operator"},{"depth":2,"slug":"nodes-secondary-scheduler-remove-resources-console_secondary-scheduler-uninstalling","text":"Removing Secondary Scheduler Operator resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/scheduling/secondary_scheduler/nodes-secondary-scheduler-uninstalling";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
-const title = "Uninstalling the {{ secondary_scheduler_operator }}";
+const title = "Uninstalling the Secondary Scheduler Operator";
 const description = "If you no longer need the Secondary Scheduler Operator for Red Hat OpenShift in your cluster, you can uninstall the Operator and remove its related…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
@@ -39,7 +40,7 @@ const pageCategory = ["nodes","nodes/scheduling","nodes/scheduling/secondary_sch
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Uninstalling the {{ secondary_scheduler_operator }} {#secondary-scheduler-uninstalling}\n\nIf you no longer need the Secondary Scheduler Operator for Red Hat OpenShift in your cluster, you can uninstall the Operator and remove its related resources.\n\n## Uninstalling the Secondary Scheduler Operator {#nodes-secondary-scheduler-uninstall-console_secondary-scheduler-uninstalling}\n\nYou can use the web console to uninstall the Secondary Scheduler Operator for Red Hat OpenShift if you no longer need the Operator in your cluster.\n\n**Prerequisites**\n\n- You are logged in to OpenShift Container Platform as a user with the `cluster-admin` role.\n- You have access to the OpenShift Container Platform web console.\n- The Secondary Scheduler Operator for Red Hat OpenShift is installed.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console.\n2. Uninstall the Secondary Scheduler Operator for Red Hat OpenShift Operator.\n\n   1. Navigate to **Ecosystem** -> **Installed Operators**.\n   2. Click the Options menu ![](kebab.png \"Options menu\") next to the **Secondary Scheduler Operator** entry and click **Uninstall Operator**.\n   3. In the confirmation dialog, click **Uninstall**.\n\n## Removing Secondary Scheduler Operator resources {#nodes-secondary-scheduler-remove-resources-console_secondary-scheduler-uninstalling}\n\nOptionally, remove the custom resource definition (CRD) and associated namespace after the Secondary Scheduler Operator for Red Hat OpenShift is uninstalled. This cleans up all remaining secondary scheduler artifacts.\n\n**Prerequisites**\n\n- You are logged in to OpenShift Container Platform as a user with the `cluster-admin` role.\n- You have access to the OpenShift Container Platform web console.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console.\n2. Remove the CRD that was installed by the Secondary Scheduler Operator:\n\n   1. Navigate to **Administration** -> **CustomResourceDefinitions**.\n   2. Enter `SecondaryScheduler` in the **Name** field to filter the CRDs.\n   3. Click the Options menu ![](kebab.png \"Options menu\") next to the **SecondaryScheduler** CRD and select **Delete Custom Resource Definition**:\n3. Remove the `openshift-secondary-scheduler-operator` namespace.\n\n   1. Navigate to **Administration** -> **Namespaces**.\n   2. Click the Options menu ![](kebab.png \"Options menu\") next to the **openshift-secondary-scheduler-operator** and select **Delete Namespace**.\n   3. In the confirmation dialog, enter `openshift-secondary-scheduler-operator` in the field and click **Delete**.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/scheduling/secondary_scheduler/nodes-secondary-scheduler-uninstalling.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Uninstalling the Secondary Scheduler Operator {#secondary-scheduler-uninstalling}\n\nIf you no longer need the Secondary Scheduler Operator for Red Hat OpenShift in your cluster, you can uninstall the Operator and remove its related resources.\n\n## Uninstalling the Secondary Scheduler Operator {#nodes-secondary-scheduler-uninstall-console_secondary-scheduler-uninstalling}\n\nYou can use the web console to uninstall the Secondary Scheduler Operator for Red Hat OpenShift if you no longer need the Operator in your cluster.\n\n**Prerequisites**\n\n- You are logged in to OpenShift Container Platform as a user with the `cluster-admin` role.\n- You have access to the OpenShift Container Platform web console.\n- The Secondary Scheduler Operator for Red Hat OpenShift is installed.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console.\n2. Uninstall the Secondary Scheduler Operator for Red Hat OpenShift Operator.\n\n   1. Navigate to **Ecosystem** → **Installed Operators**.\n   2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png \"Options menu\") next to the **Secondary Scheduler Operator** entry and click **Uninstall Operator**.\n   3. In the confirmation dialog, click **Uninstall**.\n\n## Removing Secondary Scheduler Operator resources {#nodes-secondary-scheduler-remove-resources-console_secondary-scheduler-uninstalling}\n\nOptionally, remove the custom resource definition (CRD) and associated namespace after the Secondary Scheduler Operator for Red Hat OpenShift is uninstalled. This cleans up all remaining secondary scheduler artifacts.\n\n**Prerequisites**\n\n- You are logged in to OpenShift Container Platform as a user with the `cluster-admin` role.\n- You have access to the OpenShift Container Platform web console.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console.\n2. Remove the CRD that was installed by the Secondary Scheduler Operator:\n\n   1. Navigate to **Administration** → **CustomResourceDefinitions**.\n   2. Enter `SecondaryScheduler` in the **Name** field to filter the CRDs.\n   3. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png \"Options menu\") next to the **SecondaryScheduler** CRD and select **Delete Custom Resource Definition**:\n3. Remove the `openshift-secondary-scheduler-operator` namespace.\n\n   1. Navigate to **Administration** → **Namespaces**.\n   2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png \"Options menu\") next to the **openshift-secondary-scheduler-operator** and select **Delete Namespace**.\n   3. In the confirmation dialog, enter `openshift-secondary-scheduler-operator` in the field and click **Delete**.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/scheduling/secondary_scheduler/nodes-secondary-scheduler-uninstalling.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,20 +79,21 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <h1 id="secondary-scheduler-uninstalling" class="group scroll-mt-20">Uninstalling the {"{"}{"{"} secondary_scheduler_operator {"}"}{"}"}<a href="#secondary-scheduler-uninstalling" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>If you no longer need the Secondary Scheduler Operator for Red Hat OpenShift in your cluster, you can uninstall the Operator and remove its related resources.</p>
+      <h1 id="secondary-scheduler-uninstalling" class="group scroll-mt-20">Uninstalling the Secondary Scheduler Operator<a href="#secondary-scheduler-uninstalling" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p class="_abstract">If you no longer need the Secondary Scheduler Operator for Red Hat OpenShift in your cluster, you can uninstall the Operator and remove its related resources.</p>
       <h2 id="nodes-secondary-scheduler-uninstall-console_secondary-scheduler-uninstalling" class="group scroll-mt-20">Uninstalling the Secondary Scheduler Operator<a href="#nodes-secondary-scheduler-uninstall-console_secondary-scheduler-uninstalling" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">You can use the web console to uninstall the Secondary Scheduler Operator for Red Hat OpenShift if you no longer need the Operator in your cluster.</p>
       <p><strong>Prerequisites</strong></p>
@@ -106,8 +108,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>
       Uninstall the Secondary Scheduler Operator for Red Hat OpenShift Operator.
       <ol>
-      <li>Navigate to <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong>.</li>
-      <li>Click the Options menu <img src="kebab.png" alt="" loading="lazy" /> next to the <strong>Secondary Scheduler Operator</strong> entry and click <strong>Uninstall Operator</strong>.</li>
+      <li>Navigate to <strong>Ecosystem</strong> → <strong>Installed Operators</strong>.</li>
+      <li>Click the Options menu <img src="/openshift-docs-markdown/_assets/images/kebab.png" alt="" loading="lazy" /> next to the <strong>Secondary Scheduler Operator</strong> entry and click <strong>Uninstall Operator</strong>.</li>
       <li>In the confirmation dialog, click <strong>Uninstall</strong>.</li>
       </ol>
       </li>
@@ -125,16 +127,16 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>
       Remove the CRD that was installed by the Secondary Scheduler Operator:
       <ol>
-      <li>Navigate to <strong>Administration</strong> -&gt; <strong>CustomResourceDefinitions</strong>.</li>
+      <li>Navigate to <strong>Administration</strong> → <strong>CustomResourceDefinitions</strong>.</li>
       <li>Enter <code>SecondaryScheduler</code> in the <strong>Name</strong> field to filter the CRDs.</li>
-      <li>Click the Options menu <img src="kebab.png" alt="" loading="lazy" /> next to the <strong>SecondaryScheduler</strong> CRD and select <strong>Delete Custom Resource Definition</strong>:</li>
+      <li>Click the Options menu <img src="/openshift-docs-markdown/_assets/images/kebab.png" alt="" loading="lazy" /> next to the <strong>SecondaryScheduler</strong> CRD and select <strong>Delete Custom Resource Definition</strong>:</li>
       </ol>
       </li>
       <li>
       Remove the <code>openshift-secondary-scheduler-operator</code> namespace.
       <ol>
-      <li>Navigate to <strong>Administration</strong> -&gt; <strong>Namespaces</strong>.</li>
-      <li>Click the Options menu <img src="kebab.png" alt="" loading="lazy" /> next to the <strong>openshift-secondary-scheduler-operator</strong> and select <strong>Delete Namespace</strong>.</li>
+      <li>Navigate to <strong>Administration</strong> → <strong>Namespaces</strong>.</li>
+      <li>Click the Options menu <img src="/openshift-docs-markdown/_assets/images/kebab.png" alt="" loading="lazy" /> next to the <strong>openshift-secondary-scheduler-operator</strong> and select <strong>Delete Namespace</strong>.</li>
       <li>In the confirmation dialog, enter <code>openshift-secondary-scheduler-operator</code> in the field and click <strong>Delete</strong>.</li>
       </ol>
       </li>

@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"nodes-scheduler-overcommit","text":"Placing
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-overcommit";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="nodes-scheduler-overcommit" class="group scroll-mt-20">Placing pods onto overcommited nodes<a href="#nodes-scheduler-overcommit" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>OpenShift Container Platform administrators can use container compute resource requests and limits to allow and manage the overcommitment of resources on a node, which enables pods to use additional resources when available, without guaranteeing those resources.</p>
+      <p class="_abstract">OpenShift Container Platform administrators can use container compute resource requests and limits to allow and manage the overcommitment of resources on a node, which enables pods to use additional resources when available, without guaranteeing those resources.</p>
       <p>In an <em>overcommited</em> state, the sum of the container compute resource requests and limits exceeds the resources available on the system. Overcommitment might be desirable in development environments where a trade-off of guaranteed performance for capacity is acceptable.</p>
       <p>Requests and limits enable administrators to allow and manage the overcommitment of resources on a node. The scheduler uses requests for scheduling your container and providing a minimum service guarantee. Limits constrain the amount of compute resource that may be consumed on your node.</p>
       <h2 id="nodes-cluster-overcommit-about_nodes-scheduler-overcommit" class="group scroll-mt-20">Understanding overcommitment<a href="#nodes-cluster-overcommit-about_nodes-scheduler-overcommit" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>

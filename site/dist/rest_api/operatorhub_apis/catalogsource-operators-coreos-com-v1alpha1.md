@@ -1,5 +1,5 @@
 ---
-title: CatalogSource []
+title: CatalogSource [operators.coreos.com/v1alpha1]
 ---
 
 # CatalogSource \[operators.coreos.com/v1alpha1\] {#catalogsource-operators-coreos-com-v1alpha1}
@@ -49,7 +49,7 @@ Required
 | `image` | `string` | Image is an operator-registry container image to instantiate a registry-server with. Only used when SourceType = SourceTypeGrpc. If present, the address field is ignored. |
 | `priority` | `integer` | Priority field assigns a weight to the catalog source to prioritize them so that it can be consumed by the dependency resolver. Usage: Higher weight indicates that this catalog source is preferred over lower weighted catalog sources during dependency resolution. The range of the priority value can go from positive to negative in the range of int32. The default value to a catalog source with unassigned priority would be 0. The catalog source with the same priority values will be ranked lexicographically based on its name. |
 | `publisher` | `string` |  |
-| `runAsRoot` | `boolean` | RunAsRoot allows admins to indicate that they wish to run the CatalogSource pod in a privileged pod as root.  This should only be enabled when running older catalog images which could not be run as non-root. |
+| `runAsRoot` | `boolean` | RunAsRoot allows admins to indicate that they wish to run the CatalogSource pod in a privileged pod as root. This should only be enabled when running older catalog images which could not be run as non-root. |
 | `secrets` | `array (string)` | Secrets represent set of secrets that can be used to access the contents of the catalog. It is best to keep this list small, since each will need to be tried for every catalog entry. |
 | `sourceType` | `string` | SourceType is the type of source |
 | `updateStrategy` | `object` | UpdateStrategy defines how updated catalog source images can be discovered Consists of an interval that defines polling duration and an embedded strategy type |
@@ -68,10 +68,10 @@ Type
 | --- | --- | --- |
 | `affinity` | `object` | Affinity is the catalog source’s pod’s affinity. |
 | `extractContent` | `object` | ExtractContent configures the gRPC catalog Pod to extract catalog metadata from the provided index image and use a well-known version of the `opm` server to expose it. The catalog index image that this CatalogSource is configured to use **must** be using the file-based catalogs in order to utilize this feature. |
-| `memoryTarget` | `integer-or-string` | MemoryTarget configures the $GOMEMLIMIT value for the gRPC catalog Pod. This is a soft memory limit for the server, which the runtime will attempt to meet but makes no guarantees that it will do so. If this value is set, the Pod will have the following modifications made to the container running the server: - the $GOMEMLIMIT environment variable will be set to this value in bytes - the memory request will be set to this value This field should be set if it’s desired to reduce the footprint of a catalog server as much as possible, or if a catalog being served is very large and needs more than the default allocation. If your index image has a file- system cache, determine a good approximation for this value by doubling the size of the package cache at /tmp/cache/cache/packages.json in the index image. This field is best-effort; if unset, no default will be used and no Pod memory limit or $GOMEMLIMIT value will be set. |
+| `memoryTarget` | `integer-or-string` | MemoryTarget configures the $GOMEMLIMIT value for the gRPC catalog Pod. This is a soft memory limit for the server, which the runtime will attempt to meet but makes no guarantees that it will do so. If this value is set, the Pod will have the following modifications made to the container running the server: - the $GOMEMLIMIT environment variable will be set to this value in bytes - the memory request will be set to this value<br>This field should be set if it’s desired to reduce the footprint of a catalog server as much as possible, or if a catalog being served is very large and needs more than the default allocation. If your index image has a file- system cache, determine a good approximation for this value by doubling the size of the package cache at /tmp/cache/cache/packages.json in the index image.<br>This field is best-effort; if unset, no default will be used and no Pod memory limit or $GOMEMLIMIT value will be set. |
 | `nodeSelector` | `object (string)` | NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node’s labels for the pod to be scheduled on that node. |
 | `priorityClassName` | `string` | If specified, indicates the pod’s priority. If not specified, the pod priority will be default or zero if there is no default. |
-| `securityContextConfig` | `string` | SecurityContextConfig can be one of `legacy` or `restricted`. The CatalogSource’s pod is either injected with the right pod.spec.securityContext and pod.spec.container\[\*\].securityContext values to allow the pod to run in Pod Security Admission (PSA) `restricted` mode, or doesn’t set these values at all, in which case the pod can only be run in PSA `baseline` or `privileged` namespaces. If the SecurityContextConfig is unspecified, the mode will be determined by the namespace’s PSA configuration. If the namespace is enforcing `restricted` mode, then the pod will be configured as if `restricted` was specified. Otherwise, it will be configured as if `legacy` was specified. Specifying a value other than `legacy` or `restricted` result in a validation error. When using older catalog images, which can not run in `restricted` mode, the SecurityContextConfig should be set to `legacy`. More information about PSA can be found here: https://kubernetes.io/docs/concepts/security/pod-security-admission/ |
+| `securityContextConfig` | `string` | SecurityContextConfig can be one of `legacy` or `restricted`. The CatalogSource’s pod is either injected with the right pod.spec.securityContext and pod.spec.container\[\*\].securityContext values to allow the pod to run in Pod Security Admission (PSA) `restricted` mode, or doesn’t set these values at all, in which case the pod can only be run in PSA `baseline` or `privileged` namespaces. If the SecurityContextConfig is unspecified, the mode will be determined by the namespace’s PSA configuration. If the namespace is enforcing `restricted` mode, then the pod will be configured as if `restricted` was specified. Otherwise, it will be configured as if `legacy` was specified. Specifying a value other than `legacy` or `restricted` result in a validation error. When using older catalog images, which can not run in `restricted` mode, the SecurityContextConfig should be set to `legacy`.<br>More information about PSA can be found here: https://kubernetes.io/docs/concepts/security/pod-security-admission/ |
 | `tolerations` | `array` | Tolerations are the catalog source’s pod’s tolerations. |
 | `tolerations[]` | `object` | The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>. |
 
@@ -1026,7 +1026,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
 | `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
@@ -1053,7 +1053,7 @@ Required
 | `name` | `string` |  |
 | `namespace` | `string` |  |
 | `resourceVersion` | `string` |  |
-| `uid` | `string` | UID is a type that holds unique ID values, including UUIDs.  Because we don’t ONLY use UUIDs, this is an alias to string.  Being a type captures intent and helps make sure that UIDs and names do not get conflated. |
+| `uid` | `string` | UID is a type that holds unique ID values, including UUIDs. Because we don’t ONLY use UUIDs, this is an alias to string. Being a type captures intent and helps make sure that UIDs and names do not get conflated. |
 
 ### .status.connectionState {#_statusconnectionstate}
 
@@ -1099,18 +1099,18 @@ The following API endpoints are available:
 - `/apis/operators.coreos.com/v1alpha1/catalogsources`
 
   - `GET`: list objects of kind CatalogSource
-- `/apis/operators.coreos.com/v1alpha1/namespaces/{{ namespace }}/catalogsources`
+- `/apis/operators.coreos.com/v1alpha1/namespaces/{namespace}/catalogsources`
 
   - `DELETE`: delete collection of CatalogSource
   - `GET`: list objects of kind CatalogSource
   - `POST`: create a CatalogSource
-- `/apis/operators.coreos.com/v1alpha1/namespaces/{{ namespace }}/catalogsources/{{ name }}`
+- `/apis/operators.coreos.com/v1alpha1/namespaces/{namespace}/catalogsources/{name}`
 
   - `DELETE`: delete a CatalogSource
   - `GET`: read the specified CatalogSource
   - `PATCH`: partially update the specified CatalogSource
   - `PUT`: replace the specified CatalogSource
-- `/apis/operators.coreos.com/v1alpha1/namespaces/{{ namespace }}/catalogsources/{{ name }}/status`
+- `/apis/operators.coreos.com/v1alpha1/namespaces/{namespace}/catalogsources/{name}/status`
 
   - `GET`: read status of the specified CatalogSource
   - `PATCH`: partially update status of the specified CatalogSource
@@ -1135,7 +1135,7 @@ Description
 | 200 - OK | [`CatalogSourceList`](/openshift-docs-markdown/rest_api/objects/index#com-coreos-operators-v1alpha1-CatalogSourceList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operators.coreos.com/v1alpha1/namespaces/{{ namespace }}/catalogsources {#_apisoperatorscoreoscomv1alpha1namespaces_namespace_catalogsources}
+### /apis/operators.coreos.com/v1alpha1/namespaces/{namespace}/catalogsources {#_apisoperatorscoreoscomv1alpha1namespaces_namespace_catalogsources}
 
 HTTP method
 :   ```
@@ -1203,7 +1203,7 @@ Description
 | 202 - Accepted | [`CatalogSource`](/openshift-docs-markdown/rest_api/operatorhub_apis/catalogsource-operators-coreos-com-v1alpha1#catalogsource-operators-coreos-com-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operators.coreos.com/v1alpha1/namespaces/{{ namespace }}/catalogsources/{{ name }} {#_apisoperatorscoreoscomv1alpha1namespaces_namespace_catalogsources_name}
+### /apis/operators.coreos.com/v1alpha1/namespaces/{namespace}/catalogsources/{name} {#_apisoperatorscoreoscomv1alpha1namespaces_namespace_catalogsources_name}
 
 **Global path parameters**
 
@@ -1307,7 +1307,7 @@ Description
 | 201 - Created | [`CatalogSource`](/openshift-docs-markdown/rest_api/operatorhub_apis/catalogsource-operators-coreos-com-v1alpha1#catalogsource-operators-coreos-com-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operators.coreos.com/v1alpha1/namespaces/{{ namespace }}/catalogsources/{{ name }}/status {#_apisoperatorscoreoscomv1alpha1namespaces_namespace_catalogsources_name_status}
+### /apis/operators.coreos.com/v1alpha1/namespaces/{namespace}/catalogsources/{name}/status {#_apisoperatorscoreoscomv1alpha1namespaces_namespace_catalogsources_name_status}
 
 **Global path parameters**
 

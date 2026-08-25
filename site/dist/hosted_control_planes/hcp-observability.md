@@ -1,5 +1,5 @@
 ---
-title: Observability for {{ hcp }}
+title: Observability for hosted control planes
 ---
 
 # Observability for hosted control planes {#hcp-observability}
@@ -186,6 +186,7 @@ When you enable monitoring dashboards, the `__CLUSTER_ID__` placeholder in the d
 If you delete and re-create a hosted cluster, a new random `clusterID` is assigned unless you specify one. To keep the same identifier in external monitoring systems, set `spec.clusterID` in the new `HostedCluster` CR to the UUID that you used before.
 
 **Additional resources**
+{._additional-resources}
 
 - [Dashboard customization](/openshift-docs-markdown/hosted_control_planes/hcp-observability#hcp-customize-dashboards_hcp-observability)
 - [Configuring metrics sets for hosted control planes](/openshift-docs-markdown/hosted_control_planes/hcp-observability#hosted-control-planes-metrics-sets_hcp-observability)
@@ -219,10 +220,11 @@ You can enable monitoring dashboards in a hosted cluster by creating a config ma
    ```
 
    When monitoring dashboards are enabled, for each hosted cluster that the HyperShift Operator manages, the Operator creates a config map named `hc-<hosted_cluster_namespace>-<hosted_cluster_name>` in the `openshift-config-managed` namespace, where `<hosted_cluster_namespace>` is the namespace of the hosted cluster and `<hosted_cluster_name>` is the name of the hosted cluster. As a result, a new dashboard is added in the administrative console of the management cluster.
-3. To view the dashboard, log in to the management cluster’s console and go to the dashboard for the hosted cluster by clicking **Observe -> Dashboards**.
+3. To view the dashboard, log in to the management cluster’s console and go to the dashboard for the hosted cluster by clicking **Observe → Dashboards**.
 4. Optional: To disable monitoring dashboards in a hosted cluster, remove the `--monitoring-dashboards --metrics-set=All` flag from the `hypershift-operator-install-flags` config map. When you delete a hosted cluster, its corresponding dashboard is also deleted.
 
 **Additional resources**
+{._additional-resources}
 
 - [Customized hosted cluster identifiers](/openshift-docs-markdown/hosted_control_planes/hcp-observability#hcp-cluster-ids_hcp-observability)
 
@@ -367,6 +369,7 @@ Use the same PromQL patterns as standalone OpenShift Container Platform clusters
    A nonzero result confirms that API server metrics are available in the guest cluster monitoring stack.
 
 **Additional resources**
+{._additional-resources}
 
 - [Exposed metrics](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-metrics#olm-metrics_olm-understanding-metrics)
 
@@ -385,7 +388,7 @@ Use the same PromQL patterns as standalone OpenShift Container Platform clusters
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console for the hosted cluster.
-2. Click **Observe** -> **Metrics**.
+2. Click **Observe** → **Metrics**.
 3. In the query field, enter a PromQL expression and run the query.
 
    Use the following examples:
@@ -427,6 +430,7 @@ Use the same PromQL patterns as standalone OpenShift Container Platform clusters
 - Example queries in the web console return time series for enabled components.
 
 **Additional resources**
+{._additional-resources}
 
 - [Exposed metrics](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-metrics#olm-metrics_olm-understanding-metrics)
 
@@ -464,7 +468,7 @@ You can import a sample Grafana dashboard that visualizes propagated control pla
      console.openshift.io/dashboard=true \
      -n openshift-config-managed
    ```
-4. Log in to the web console and click **Observe** -> **Dashboards**.
+4. Log in to the web console and click **Observe** → **Dashboards**.
 5. Select the **Hosted Cluster Control Plane** dashboard.
 6. Optional: If you use `METRICS_SET=SRE` on the HyperShift Operator, configure the Operator and create or update the `sre-metric-set` `ConfigMap` object in the hosted control plane namespace with relabel configurations that forward the dashboard metric names.
 
@@ -522,7 +526,7 @@ You can import a sample Grafana dashboard that visualizes propagated control pla
 
 **Verification**
 
-- The dashboard is displayed under **Observe** -> **Dashboards** in the web console.
+- The dashboard is displayed under **Observe** → **Dashboards** in the web console.
 - Panels display data when the configured metrics set includes the required metric names.
 - The etcd database size panels show current use relative to the 8 GB limit.
 
@@ -559,6 +563,7 @@ The following table details the status and reason values that can be displayed f
 For information about how to troubleshoot connectivity issues, see "Troubleshooting connectivity for hosted control planes".
 
 **Additional resources**
+{._additional-resources}
 
 - [Troubleshooting connectivity for hosted control planes](/openshift-docs-markdown/hosted_control_planes/hcp-troubleshooting#hcp-ts-connectivity_hcp-troubleshooting)
 

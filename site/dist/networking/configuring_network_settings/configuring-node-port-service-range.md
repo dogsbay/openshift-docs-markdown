@@ -84,7 +84,8 @@ To expand the node port range for your OpenShift Container Platform cluster afte
   "service-node-port-range":["30000-32900"]
   ```
 
-## Additional resources {#configuring-node-port-service-range-additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring ingress cluster traffic using a NodePort](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-nodeport#configuring-ingress-cluster-traffic-nodeport)
 - [Network: config.openshift.io v1](/openshift-docs-markdown/rest_api/config_apis/network-config-openshift-io-v1#network-config-openshift-io-v1)

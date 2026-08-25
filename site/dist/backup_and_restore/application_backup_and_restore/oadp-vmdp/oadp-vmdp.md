@@ -1,5 +1,5 @@
 ---
-title: "{{ oadp_short }} virtual machine data protection"
+title: OADP virtual machine data protection
 ---
 
 # OADP virtual machine data protection {#oadp-vmdp}

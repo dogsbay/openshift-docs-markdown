@@ -1,5 +1,5 @@
 ---
-title: Image []
+title: Image [config.openshift.io/v1]
 ---
 
 # Image \[config.openshift.io/v1\] {#image-config-openshift-io-v1}
@@ -44,7 +44,7 @@ Type
 | `allowedRegistriesForImport[]` | `object` | RegistryLocation contains a location of the registry specified by the registry domain name. The domain name might include wildcards, like '\*' or '??'. |
 | `externalRegistryHostnames` | `array (string)` | externalRegistryHostnames provides the hostnames for the default external image registry. The external hostname should be set only when the image registry is exposed externally. The first value is used in 'publicDockerImageRepository' field in ImageStreams. The value must be in "hostname\[:port\]" format. |
 | `imageStreamImportMode` | `string` | imageStreamImportMode controls the import mode behaviour of imagestreams. It can be set to `Legacy` or `PreserveOriginal` or the empty string. If this value is specified, this setting is applied to all newly created imagestreams which do not have the value set. `Legacy` indicates that the legacy behaviour should be used. For manifest lists, the legacy behaviour will discard the manifest list and import a single sub-manifest. In this case, the platform is chosen in the following order of priority: 1. tag annotations; 2. control plane arch/os; 3. linux/amd64; 4. the first manifest in the list. `PreserveOriginal` indicates that the original manifest will be preserved. For manifest lists, the manifest list and all its sub-manifests will be imported. When empty, the behaviour will be decided based on the payload type advertised by the ClusterVersion status, i.e single arch payload implies the import mode is Legacy and multi payload implies PreserveOriginal. |
-| `registrySources` | `object` | registrySources contains configuration that determines how the container runtime should treat individual registries when accessing images for builds+pods. (e.g. whether or not to allow insecure access).  It does not contain configuration for the internal cluster registry. |
+| `registrySources` | `object` | registrySources contains configuration that determines how the container runtime should treat individual registries when accessing images for builds+pods. (e.g. whether or not to allow insecure access). It does not contain configuration for the internal cluster registry. |
 
 ### .spec.additionalTrustedCA {#_specadditionaltrustedca}
 
@@ -100,8 +100,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `allowedRegistries` | `array (string)` | allowedRegistries are the only registries permitted for image pull and push actions. All other registries are denied. Only one of BlockedRegistries or AllowedRegistries may be set. |
-| `blockedRegistries` | `array (string)` | blockedRegistries cannot be used for image pull and push actions. All other registries are permitted. Only one of BlockedRegistries or AllowedRegistries may be set. |
+| `allowedRegistries` | `array (string)` | allowedRegistries are the only registries permitted for image pull and push actions. All other registries are denied.<br>Only one of BlockedRegistries or AllowedRegistries may be set. |
+| `blockedRegistries` | `array (string)` | blockedRegistries cannot be used for image pull and push actions. All other registries are permitted.<br>Only one of BlockedRegistries or AllowedRegistries may be set. |
 | `containerRuntimeSearchRegistries` | `array (string)` | containerRuntimeSearchRegistries are registries that will be searched when pulling images that do not have fully qualified domains in their pull specs. Registries will be searched in the order provided in the list. Note: this search list only works with the container runtime, i.e CRI-O. Will NOT work with builds or imagestream imports. |
 | `insecureRegistries` | `array (string)` | insecureRegistries are registries which do not have a valid TLS certificates or only support HTTP connections. |
 
@@ -130,13 +130,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of Image
   - `GET`: list objects of kind Image
   - `POST`: create an Image
-- `/apis/config.openshift.io/v1/images/{{ name }}`
+- `/apis/config.openshift.io/v1/images/{name}`
 
   - `DELETE`: delete an Image
   - `GET`: read the specified Image
   - `PATCH`: partially update the specified Image
   - `PUT`: replace the specified Image
-- `/apis/config.openshift.io/v1/images/{{ name }}/status`
+- `/apis/config.openshift.io/v1/images/{name}/status`
 
   - `GET`: read status of the specified Image
   - `PATCH`: partially update status of the specified Image
@@ -210,7 +210,7 @@ Description
 | 202 - Accepted | [`Image`](/openshift-docs-markdown/rest_api/config_apis/image-config-openshift-io-v1#image-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/images/{{ name }} {#_apisconfigopenshiftiov1images_name}
+### /apis/config.openshift.io/v1/images/{name} {#_apisconfigopenshiftiov1images_name}
 
 **Global path parameters**
 
@@ -314,7 +314,7 @@ Description
 | 201 - Created | [`Image`](/openshift-docs-markdown/rest_api/config_apis/image-config-openshift-io-v1#image-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/images/{{ name }}/status {#_apisconfigopenshiftiov1images_name_status}
+### /apis/config.openshift.io/v1/images/{name}/status {#_apisconfigopenshiftiov1images_name_status}
 
 **Global path parameters**
 

@@ -30,6 +30,7 @@ This procedure supports clusters installed using installer-provisioned infrastru
 > To use this feature, you must explicitly disable the native vSphere Container Storage Interface (CSI) driver for the entire cluster. This means existing vSphere virtual machines will lose the ability to provision or attach vSphere volumes. You must ensure that all workloads (virtual and physical) are migrated to an alternative storage solution before proceeding.
 
 **Additional resources**
+{._additional-resources}
 
 - [Disabling and enabling storage on vSphere](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-vsphere#persistent-storage-csi-vsphere-disable-storage-procedure_persistent-storage-csi-vsphere)
 
@@ -152,7 +153,8 @@ To allow newly added machines to join your OpenShift Container Platform cluster,
      where:
 
      `<csr_name>`
-     :   Specifies the name of a CSR from the list of current CSRs. \*   To approve all pending CSRs, run the following command:
+     :   Specifies the name of a CSR from the list of current CSRs.
+   - To approve all pending CSRs, run the following command:
 
      ```terminal
      $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs --no-run-if-empty oc adm certificate approve
@@ -183,7 +185,8 @@ To allow newly added machines to join your OpenShift Container Platform cluster,
      where:
 
      `<csr_name>`
-     :   Specifies the name of a CSR from the list of current CSRs. \*   To approve all pending CSRs, run the following command:
+     :   Specifies the name of a CSR from the list of current CSRs.
+   - To approve all pending CSRs, run the following command:
 
      ```terminal
      $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs oc adm certificate approve

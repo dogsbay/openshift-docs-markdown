@@ -2,7 +2,7 @@
 title: Migrating from Jenkins to OpenShift Pipelines or Tekton
 ---
 
-# Migrating from Jenkins to OpenShift Pipelines or Tekton {#migrating-from-jenkins-to-openshift-pipelines_{{ context }}}
+# Migrating from Jenkins to OpenShift Pipelines or Tekton {#migrating-from-jenkins-to-openshift-pipelines_{context}}
 
 You can migrate your CI/CD workflows from Jenkins to [Red Hat OpenShift Pipelines](https://docs.openshift.com/pipelines/latest/about/understanding-openshift-pipelines.html), a cloud-native CI/CD experience based on the Tekton project.
 
@@ -17,20 +17,20 @@ Jenkins offers declarative and scripted pipelines that are extensible using shar
 - **Pipeline**: Automates the entire process of building, testing, and deploying applications by using [Groovy](https://groovy-lang.org/) syntax.
 - **Node**: A machine capable of either orchestrating or executing a scripted pipeline.
 - **Stage**: A conceptually distinct subset of tasks performed in a pipeline. Plugins or user interfaces often use this block to display the status or progress of tasks.
-- ***Step***: A single task that specifies the exact action to be taken, either by using a command or a script.
+- **Step**: A single task that specifies the exact action to be taken, either by using a command or a script.
 
 ### OpenShift Pipelines terminology {#_pipelines_shortname_terminology}
 
 OpenShift Pipelines uses [YAML](https://yaml.org/) syntax for declarative pipelines and consists of tasks. Some basic terms in OpenShift Pipelines are as follows:
 
-- ***Pipeline***: A set of tasks in a series, in parallel, or both.
-- ***Task***: A sequence of steps as commands, binaries, or scripts.
-- ***PipelineRun***: Execution of a pipeline with one or more tasks.
-- ***TaskRun***: Execution of a task with one or more steps.
+- **Pipeline**: A set of tasks in a series, in parallel, or both.
+- **Task**: A sequence of steps as commands, binaries, or scripts.
+- **PipelineRun**: Execution of a pipeline with one or more tasks.
+- **TaskRun**: Execution of a task with one or more steps.
 
   > [!NOTE]
   > You can initiate a PipelineRun or a TaskRun with a set of inputs such as parameters and workspaces, and the execution results in a set of outputs and artifacts.
-- ***Workspace***: In OpenShift Pipelines, workspaces are conceptual blocks that serve the following purposes:
+- **Workspace**: In OpenShift Pipelines, workspaces are conceptual blocks that serve the following purposes:
 
   - Storage of inputs, outputs, and build artifacts.
   - Common space to share data among tasks.
@@ -387,7 +387,7 @@ spec:
             oc new-app jboss-eap70-deploy.json
 ```
 
-## Extending the core capabilities of Jenkins and OpenShift Pipelines by using plugins {#_extending_the_core_capabilities_of_jenkins_and_pipelines_shortname_by_using_plugins}
+### Extending the core capabilities of Jenkins and OpenShift Pipelines by using plugins {#_extending_the_core_capabilities_of_jenkins_and_pipelines_shortname_by_using_plugins}
 
 Jenkins has the advantage of a large ecosystem of numerous plugins developed over the years by its extensive user base. You can search and browse the plugins in the [Jenkins Plugin Index](https://plugins.jenkins.io/).
 
@@ -401,7 +401,8 @@ Jenkins [shared libraries](https://www.jenkins.io/doc/book/pipeline/shared-libra
 
 Although there is no direct equivalent of Jenkins shared libraries in OpenShift Pipelines, you can achieve similar workflows by using tasks from the [Tekton Hub](https://hub.tekton.dev/) in combination with custom tasks and scripts.
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Understanding OpenShift Pipelines](https://docs.openshift.com/pipelines/latest/about/understanding-openshift-pipelines.html)
 - [Role-based Access Control](/openshift-docs-markdown/authentication/using-rbac#using-rbac)

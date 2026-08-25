@@ -107,6 +107,7 @@ To add a virtual machine (VM) workload to a service mesh, enable automatic sidec
    `<service_name>`
    :   Specifies the name of the service YAML file.
 
-## Additional resources {#additional-resources_virt-connecting-vm-to-service-mesh}
+**Additional resources**
+{._additional-resources}
 
 - [Installing the Service Mesh Operator](https://docs.redhat.com/en/documentation/red_hat_openshift_service_mesh/3.0/html/installing/ossm-installing-service-mesh)

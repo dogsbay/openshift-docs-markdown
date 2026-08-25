@@ -1,5 +1,5 @@
 ---
-title: Uninstalling a cluster on {{ gcp_short }}
+title: Uninstalling a cluster on Google Cloud
 ---
 
 # Uninstalling a cluster on Google Cloud {#uninstalling-cluster-gcp}
@@ -74,32 +74,25 @@ After uninstalling an OpenShift Container Platform cluster that uses short-term 
    :   Specify the path to the directory where you want to store the `CredentialsRequest` objects. If the specified directory does not exist, this command creates it.
 3. Delete the Google Cloud resources that `ccoctl` created by running the following command:
 
-   ```terminal
-   $ ccoctl {{ cp_name }} delete \
-     --name=<name> \
-   ```
-
-{% if aws_sts %} --region=<{{ cp_name }}\_region> {% endif %} {% if gcp_workload_id %} --project=<{{ cp_name }}\_project_id>
---credentials-requests-dir=<path_to_credentials_requests_directory>
---force-delete-custom-roles {% endif %} {% if azure_workload_id %} --region=<{{ cp_name }}\_region>
---subscription-id=<{{ cp_name }}\_subscription_id>
---delete-oidc-resource-group {%- endif %} \`\`\`
-
+```terminal
+$ ccoctl gcp delete \
+  --name=<name> \
+  --project=<gcp_project_id> \
+  --credentials-requests-dir=<path_to_credentials_requests_directory> \
+  --force-delete-custom-roles
 ```
-    where:
 
-    `<name>`
-    :   Matches the name that was originally used to create and tag the cloud resources.
+where:
 
-    `<{{ cp_name }}_project_id>`
-    :   The Google Cloud project ID in which to delete cloud resources.
+`<name>`
+:   Matches the name that was originally used to create and tag the cloud resources.
 
-    `force-delete-custom-roles`
-    :   Optional: This parameter deletes the custom roles that the `ccoctl` utility creates during installation. Google Cloud does not permanently delete custom roles immediately. For more information, see Google Cloud documentation about [deleting a custom role](https://cloud.google.com/iam/docs/creating-custom-roles#deleting-custom-role).
-```
+`<gcp_project_id>`
+:   The Google Cloud project ID in which to delete cloud resources.
+
+`force-delete-custom-roles`
+:   Optional: This parameter deletes the custom roles that the `ccoctl` utility creates during installation. Google Cloud does not permanently delete custom roles immediately. For more information, see Google Cloud documentation about [deleting a custom role](https://cloud.google.com/iam/docs/creating-custom-roles#deleting-custom-role).
 
 **Verification**
 
-```
-*   To verify that the resources are deleted, query Google Cloud. For more information, refer to Google Cloud documentation.
-```
+- To verify that the resources are deleted, query Google Cloud. For more information, refer to Google Cloud documentation.

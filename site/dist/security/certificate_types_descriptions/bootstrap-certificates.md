@@ -30,6 +30,7 @@ The kubelet-managed certificate is valid for one year and rotates automatically 
 You cannot customize the bootstrap certificates.
 
 **Additional resources**
+{._additional-resources}
 
 - [Bootstrap initialization](https://kubernetes.io/docs/reference/access-authn-authz/kubelet-tls-bootstrapping/#bootstrap-initialization)
 - [Authorize kubelet to create a CSR](https://kubernetes.io/docs/reference/access-authn-authz/kubelet-tls-bootstrapping/#authorize-kubelet-to-create-csr)

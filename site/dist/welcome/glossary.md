@@ -2,7 +2,7 @@
 title: Glossary of common terms for OpenShift Container Platform
 ---
 
-# Glossary of common terms for OpenShift Container Platform {#getting-started-openshift-common-terms_{{ context }}}
+# Glossary of common terms for OpenShift Container Platform {#getting-started-openshift-common-terms_{context}}
 
 To better use OpenShift Container Platform, you should first understand common Kubernetes and OpenShift Container Platform terms.
 
@@ -64,10 +64,10 @@ Dockerfile
 hosted control planes
 :   A OpenShift Container Platform feature that enables hosting a control plane on the OpenShift Container Platform cluster from its data plane and workers. This model performs the following actions:
 
-- Optimize infrastructure costs required for the control planes.
-- Improve the cluster creation time.
-- Enable hosting the control plane using the Kubernetes native high level primitives. For example, deployments and stateful sets.
-- Allow a strong network segmentation between the control plane and workloads.
+    - Optimize infrastructure costs required for the control planes.
+    - Improve the cluster creation time.
+    - Enable hosting the control plane using the Kubernetes native high level primitives. For example, deployments and stateful sets.
+    - Allow a strong network segmentation between the control plane and workloads.
 
 hybrid cloud deployments
 :   Deployments that deliver a consistent platform across bare metal, virtual, private, and public cloud environments. This offers speed, agility, and portability.
@@ -130,11 +130,9 @@ OpenShift image registry
 :   A registry provided by OpenShift Container Platform to manage images.
 
 Operator
-:   The preferred method of packaging, deploying, and managing a Kubernetes application in
+:   The preferred method of packaging, deploying, and managing a Kubernetes application in an OpenShift Container Platform cluster. An Operator is a Kubernetes-native application designed to translate operational knowledge into a software that is packaged and shared with customers. Traditionally, tasks such as installation, configuration, scaling, updates, and failover were managed manually by administrators by using scripts or automation tools like Ansible. Operators bring these capabilities into Kubernetes, making them natively integrated and automated within the cluster.
 
-    an
-
-    OpenShift Container Platform cluster. An Operator is a Kubernetes-native application designed to translate operational knowledge into a software that is packaged and shared with customers. Traditionally, tasks such as installation, configuration, scaling, updates, and failover were managed manually by administrators by using scripts or automation tools like Ansible. Operators bring these capabilities into Kubernetes, making them natively integrated and automated within the cluster. Operators manage both Day 1 operations such as installation and configuration, and Day 2 operations such as scaling, updates, backups, failover and restores. By leveraging Kubernetes APIs and concepts, Operators provide an automated and consistent way to manage complex applications.
+    Operators manage both Day 1 operations such as installation and configuration, and Day 2 operations such as scaling, updates, backups, failover and restores. By leveraging Kubernetes APIs and concepts, Operators provide an automated and consistent way to manage complex applications.
 
 OperatorHub
 :   A platform that contains various OpenShift Container Platform Operators to install.
@@ -155,7 +153,9 @@ private registry
 :   OpenShift Container Platform can use any server implementing the container image registry API as a source of the image which helps the developers to push and pull their private container images.
 
 project
-:   OpenShift Container Platform uses projects to enable groups of users or developers to work together. A project defines the scope of resources, manages user access, and enforces resource quotas and limits. A project is a Kubernetes namespace with additional annotations that provide role-based access control (RBAC) and management capabilities. It serves as the central mechanism for organizing resources, ensuring isolation between different user groups.
+:   OpenShift Container Platform uses projects to enable groups of users or developers to work together. A project defines the scope of resources, manages user access, and enforces resource quotas and limits.
+
+    A project is a Kubernetes namespace with additional annotations that provide role-based access control (RBAC) and management capabilities. It serves as the central mechanism for organizing resources, ensuring isolation between different user groups.
 
 public registry
 :   OpenShift Container Platform can use any server implementing the container image registry API as a source of the image which allows the developers to push and pull their public container images.

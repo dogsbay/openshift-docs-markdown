@@ -27,6 +27,7 @@ The following prerequisites must be met:
 > If you run an Operator or you have configured any application with the pod disruption budget, you might experience an interruption during the update process. If `minAvailable` is set to 1 in `PodDisruptionBudget`, the nodes are drained to apply pending machine configs which might block the eviction process. If several nodes are rebooted, all the pods might run on only one node, and the `PodDisruptionBudget` field can prevent the node drain.
 
 **Additional resources**
+{._additional-resources}
 
 - [Mirroring OpenShift Container Platform images](/openshift-docs-markdown/disconnected/updating/mirroring-image-repository#mirroring-ocp-image-repository)
 - [Using RBAC to define and apply permissions](/openshift-docs-markdown/authentication/using-rbac#using-rbac)
@@ -105,9 +106,9 @@ In order to update a cluster in a disconnected environment using the `oc adm upg
    $ oc adm release info -o 'jsonpath={.digest}{"\n"}' quay.io/openshift-release-dev/ocp-release:${OCP_RELEASE_VERSION}-${ARCHITECTURE}
    ```
 
-   For `{{ OCP_RELEASE_VERSION }}`, specify the version of OpenShift Container Platform to which you want to update, such as `4.10.16`.
+   For `{OCP_RELEASE_VERSION}`, specify the version of OpenShift Container Platform to which you want to update, such as `4.10.16`.
 
-   For `{{ ARCHITECTURE }}`, specify the architecture of the cluster, such as `x86_64`, `aarch64`, `s390x`, or `ppc64le`.
+   For `{ARCHITECTURE}`, specify the architecture of the cluster, such as `x86_64`, `aarch64`, `s390x`, or `ppc64le`.
 
    ```terminal {title="Example output"}
    sha256:a8bfba3b6dddd1a2fbbead7dac65fe4fb8335089e4e7cae327f3bad334add31d
@@ -157,6 +158,7 @@ Update the disconnected cluster to the OpenShift Container Platform version that
   > - You can only configure global pull secrets for clusters that have an `ImageContentSourcePolicy`, `ImageDigestMirrorSet`, or `ImageTagMirrorSet` object. You cannot add a pull secret to a project.
 
 **Additional resources**
+{._additional-resources}
 
 - [Mirroring OpenShift Container Platform images](/openshift-docs-markdown/disconnected/updating/mirroring-image-repository#mirroring-ocp-image-repository)
 
@@ -208,19 +210,16 @@ Note the following actions and how they affect node drain behavior:
 - If you modify an ITMS, IDMS, or ICSP CR object, the MCO drains and reboots the node.
 
   > [!IMPORTANT]
+  > - When the MCO detects any of the following changes, it applies the update without draining or rebooting the node:
   >
-- When the MCO detects any of the following changes, it applies the update without draining or rebooting the node:
-
-  - Changes to the SSH key in the `spec.config.passwd.users.sshAuthorizedKeys` parameter of a machine config.
-  - Changes to the global pull secret or pull secret in the `openshift-config` namespace.
-  - Automatic rotation of the `/etc/kubernetes/kubelet-ca.crt` certificate authority (CA) by the Kubernetes API Server Operator.
-- When the MCO detects changes to the `/etc/containers/registries.conf` file, such as editing an `ImageDigestMirrorSet`, `ImageTagMirrorSet`, or `ImageContentSourcePolicy` object, it drains the corresponding nodes, applies the changes, and uncordons the nodes. The node drain does not happen for the following changes:
-
-  - The addition of a registry with the `pull-from-mirror = "digest-only"` parameter set for each mirror.
-  - The addition of a mirror with the `pull-from-mirror = "digest-only"` parameter set in a registry.
-  - The addition of items to the `unqualified-search-registries` list.
-
-  :::
+  >   - Changes to the SSH key in the `spec.config.passwd.users.sshAuthorizedKeys` parameter of a machine config.
+  >   - Changes to the global pull secret or pull secret in the `openshift-config` namespace.
+  >   - Automatic rotation of the `/etc/kubernetes/kubelet-ca.crt` certificate authority (CA) by the Kubernetes API Server Operator.
+  > - When the MCO detects changes to the `/etc/containers/registries.conf` file, such as editing an `ImageDigestMirrorSet`, `ImageTagMirrorSet`, or `ImageContentSourcePolicy` object, it drains the corresponding nodes, applies the changes, and uncordons the nodes. The node drain does not happen for the following changes:
+  >
+  >   - The addition of a registry with the `pull-from-mirror = "digest-only"` parameter set for each mirror.
+  >   - The addition of a mirror with the `pull-from-mirror = "digest-only"` parameter set in a registry.
+  >   - The addition of items to the `unqualified-search-registries` list.
 
 For new clusters, you can use IDMS, ITMS, and ICSP CRs objects as needed. However, using IDMS and ITMS is recommended.
 
@@ -545,7 +544,7 @@ To widen the scope of the mirror image catalog in the `ImageContentSourcePolicy`
    :   is the local registry you have configured for your disconnected cluster, for example, `local.registry:5000`.
 
    <pull_spec>
-   :   is the pull specification as configured in your disconnected registry, for example, `redhat/redhat-operator-index:v{{ product_version }}`
+   :   is the pull specification as configured in your disconnected registry, for example, `redhat/redhat-operator-index:v4.22`
 
    <pull_secret_file>
    :   is the `registry.redhat.io` pull secret in `.json` file format. You can download the [pull secret from Red Hat OpenShift Cluster Manager](https://console.redhat.com/openshift/install/pull-secret).
@@ -565,21 +564,22 @@ To widen the scope of the mirror image catalog in the `ImageContentSourcePolicy`
   $ oc get ImageContentSourcePolicy -o yaml
   ```
 
-```yaml {title="Example output"}
-apiVersion: v1
-items:
-- apiVersion: operator.openshift.io/v1alpha1
-  kind: ImageContentSourcePolicy
-  metadata:
-    annotations:
-      kubectl.kubernetes.io/last-applied-configuration: |
-        {"apiVersion":"operator.openshift.io/v1alpha1","kind":"ImageContentSourcePolicy","metadata":{"annotations":{},"name":"redhat-operator-index"},"spec":{"repositoryDigestMirrors":[{"mirrors":["local.registry:5000"],"source":"registry.redhat.io"}]}}
-...
-```
+  ```yaml {title="Example output"}
+  apiVersion: v1
+  items:
+  - apiVersion: operator.openshift.io/v1alpha1
+    kind: ImageContentSourcePolicy
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/last-applied-configuration: |
+          {"apiVersion":"operator.openshift.io/v1alpha1","kind":"ImageContentSourcePolicy","metadata":{"annotations":{},"name":"redhat-operator-index"},"spec":{"repositoryDigestMirrors":[{"mirrors":["local.registry:5000"],"source":"registry.redhat.io"}]}}
+  ...
+  ```
 
 After you update the `ImageContentSourcePolicy` resource, OpenShift Container Platform deploys the new settings to each node and the cluster starts using the mirrored repository for requests to the source repository.
 
-## Additional resources {#additional-resources_updating-disconnected-cluster}
+**Additional resources**
+{._additional-resources}
 
 - [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)
 - [Machine Config Overview](/openshift-docs-markdown/machine_configuration/index#machine-config-overview)

@@ -21,7 +21,8 @@ const headings = [{"depth":1,"slug":"metallb-configure-services","text":"Configu
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/ingress_load_balancing/metallb/metallb-configure-services";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="metallb-configure-services" class="group scroll-mt-20">Configuring services to use MetalLB<a href="#metallb-configure-services" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>To ensure predictable network endpoints, control how MetalLB assigns IP addresses to services of type <code>LoadBalancer</code>. Requesting specific addresses or pools ensures that your applications receive valid IP assignments that align with your specific network addressing plan.</p>
+      <p class="_abstract">To ensure predictable network endpoints, control how MetalLB assigns IP addresses to services of type <code>LoadBalancer</code>. Requesting specific addresses or pools ensures that your applications receive valid IP assignments that align with your specific network addressing plan.</p>
       <h2 id="request-specific-ip-address_configure-services-metallb" class="group scroll-mt-20">Request a specific IP address<a href="#request-specific-ip-address_configure-services-metallb" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">To assign a specific, static IP address to a service, configure the <code>spec.loadBalancerIP</code> parameter in the service specification. </p>
       <p>MetalLB attempts to assign the requested address from the configured address pools, ensuring that your service is reachable at a designated, static network endpoint. If the requested IP address is not within any range, MetalLB reports a warning.</p>

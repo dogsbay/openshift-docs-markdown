@@ -1,5 +1,5 @@
 ---
-title: ClusterImagePolicy []
+title: ClusterImagePolicy [config.openshift.io/v1]
 ---
 
 # ClusterImagePolicy \[config.openshift.io/v1\] {#clusterimagepolicy-config-openshift-io-v1}
@@ -44,7 +44,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `policy` | `object` | policy is a required field that contains configuration to allow scopes to be verified, and defines how images not matching the verification policy will be treated. |
-| `scopes` | `array (string)` | scopes is a required field that defines the list of image identities assigned to a policy. Each item refers to a scope in a registry implementing the "Docker Registry HTTP API V2". Scopes matching individual images are named Docker references in the fully expanded form, either using a tag or digest. For example, docker.io/library/busybox:latest (not busybox:latest). More general scopes are prefixes of individual-image scopes, and specify a repository (by omitting the tag or digest), a repository namespace, or a registry host (by only specifying the host name and possibly a port number) or a wildcard expression starting with `\*.`, for matching all subdomains (not including a port number). Wildcards are only supported for subdomain matching, and may not be used in the middle of the host, i.e.  \*.example.com is a valid case, but example\*.\*.com is not. This support no more than 256 scopes in one object. If multiple scopes match a given image, only the policy requirements for the most specific scope apply. The policy requirements for more general scopes are ignored. In addition to setting a policy appropriate for your own deployed applications, make sure that a policy on the OpenShift image repositories quay.io/openshift-release-dev/ocp-release, quay.io/openshift-release-dev/ocp-v4.0-art-dev (or on a more general scope) allows deployment of the OpenShift images required for cluster operation. If a scope is configured in both the ClusterImagePolicy and the ImagePolicy, or if the scope in ImagePolicy is nested under one of the scopes from the ClusterImagePolicy, only the policy from the ClusterImagePolicy will be applied. For additional details about the format, please refer to the document explaining the docker transport field, which can be found at: https://github.com/containers/image/blob/main/docs/containers-policy.json.5.md#docker |
+| `scopes` | `array (string)` | scopes is a required field that defines the list of image identities assigned to a policy. Each item refers to a scope in a registry implementing the "Docker Registry HTTP API V2". Scopes matching individual images are named Docker references in the fully expanded form, either using a tag or digest. For example, docker.io/library/busybox:latest (not busybox:latest). More general scopes are prefixes of individual-image scopes, and specify a repository (by omitting the tag or digest), a repository namespace, or a registry host (by only specifying the host name and possibly a port number) or a wildcard expression starting with `\*.`, for matching all subdomains (not including a port number). Wildcards are only supported for subdomain matching, and may not be used in the middle of the host, i.e. \*.example.com is a valid case, but example\*.\*.com is not. This support no more than 256 scopes in one object. If multiple scopes match a given image, only the policy requirements for the most specific scope apply. The policy requirements for more general scopes are ignored. In addition to setting a policy appropriate for your own deployed applications, make sure that a policy on the OpenShift image repositories quay.io/openshift-release-dev/ocp-release, quay.io/openshift-release-dev/ocp-v4.0-art-dev (or on a more general scope) allows deployment of the OpenShift images required for cluster operation. If a scope is configured in both the ClusterImagePolicy and the ImagePolicy, or if the scope in ImagePolicy is nested under one of the scopes from the ClusterImagePolicy, only the policy from the ClusterImagePolicy will be applied. For additional details about the format, please refer to the document explaining the docker transport field, which can be found at: https://github.com/containers/image/blob/main/docs/containers-policy.json.5.md#docker |
 
 ### .spec.policy {#_specpolicy}
 
@@ -276,7 +276,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
 | `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
@@ -292,13 +292,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of ClusterImagePolicy
   - `GET`: list objects of kind ClusterImagePolicy
   - `POST`: create a ClusterImagePolicy
-- `/apis/config.openshift.io/v1/clusterimagepolicies/{{ name }}`
+- `/apis/config.openshift.io/v1/clusterimagepolicies/{name}`
 
   - `DELETE`: delete a ClusterImagePolicy
   - `GET`: read the specified ClusterImagePolicy
   - `PATCH`: partially update the specified ClusterImagePolicy
   - `PUT`: replace the specified ClusterImagePolicy
-- `/apis/config.openshift.io/v1/clusterimagepolicies/{{ name }}/status`
+- `/apis/config.openshift.io/v1/clusterimagepolicies/{name}/status`
 
   - `GET`: read status of the specified ClusterImagePolicy
   - `PATCH`: partially update status of the specified ClusterImagePolicy
@@ -372,7 +372,7 @@ Description
 | 202 - Accepted | [`ClusterImagePolicy`](/openshift-docs-markdown/rest_api/config_apis/clusterimagepolicy-config-openshift-io-v1#clusterimagepolicy-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/clusterimagepolicies/{{ name }} {#_apisconfigopenshiftiov1clusterimagepolicies_name}
+### /apis/config.openshift.io/v1/clusterimagepolicies/{name} {#_apisconfigopenshiftiov1clusterimagepolicies_name}
 
 **Global path parameters**
 
@@ -476,7 +476,7 @@ Description
 | 201 - Created | [`ClusterImagePolicy`](/openshift-docs-markdown/rest_api/config_apis/clusterimagepolicy-config-openshift-io-v1#clusterimagepolicy-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/clusterimagepolicies/{{ name }}/status {#_apisconfigopenshiftiov1clusterimagepolicies_name_status}
+### /apis/config.openshift.io/v1/clusterimagepolicies/{name}/status {#_apisconfigopenshiftiov1clusterimagepolicies_name_status}
 
 **Global path parameters**
 

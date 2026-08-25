@@ -1,5 +1,5 @@
 ---
-title: AlertRelabelConfig []
+title: AlertRelabelConfig [monitoring.openshift.io/v1]
 ---
 
 # AlertRelabelConfig \[monitoring.openshift.io/v1\] {#alertrelabelconfig-monitoring-openshift-io-v1}
@@ -71,7 +71,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `action` | `string` | action to perform based on regex matching. Must be one of: 'Replace', 'Keep', 'Drop', 'HashMod', 'LabelMap', 'LabelDrop', or 'LabelKeep'. Default is: 'Replace' |
-| `modulus` | `integer` | modulus to take of the hash of the source label values.  This can be combined with the 'HashMod' action to set 'target_label' to the 'modulus' of a hash of the concatenated 'source_labels'. This is only valid if sourceLabels is not empty and action is not 'LabelKeep' or 'LabelDrop'. |
+| `modulus` | `integer` | modulus to take of the hash of the source label values. This can be combined with the 'HashMod' action to set 'target_label' to the 'modulus' of a hash of the concatenated 'source_labels'. This is only valid if sourceLabels is not empty and action is not 'LabelKeep' or 'LabelDrop'. |
 | `regex` | `string` | regex against which the extracted value is matched. Default is: '(.\*)' regex is required for all actions except 'HashMod' |
 | `replacement` | `string` | replacement value against which a regex replace is performed if the regular expression matches. This is required if the action is 'Replace' or 'LabelMap' and forbidden for actions 'LabelKeep' and 'LabelDrop'. Regex capture groups are available. Default is: '$1' |
 | `separator` | `string` | separator placed between concatenated source label values. When omitted, Prometheus will use its default value of ';'. |
@@ -122,7 +122,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
 | `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
@@ -136,18 +136,18 @@ The following API endpoints are available:
 - `/apis/monitoring.openshift.io/v1/alertrelabelconfigs`
 
   - `GET`: list objects of kind AlertRelabelConfig
-- `/apis/monitoring.openshift.io/v1/namespaces/{{ namespace }}/alertrelabelconfigs`
+- `/apis/monitoring.openshift.io/v1/namespaces/{namespace}/alertrelabelconfigs`
 
   - `DELETE`: delete collection of AlertRelabelConfig
   - `GET`: list objects of kind AlertRelabelConfig
   - `POST`: create an AlertRelabelConfig
-- `/apis/monitoring.openshift.io/v1/namespaces/{{ namespace }}/alertrelabelconfigs/{{ name }}`
+- `/apis/monitoring.openshift.io/v1/namespaces/{namespace}/alertrelabelconfigs/{name}`
 
   - `DELETE`: delete an AlertRelabelConfig
   - `GET`: read the specified AlertRelabelConfig
   - `PATCH`: partially update the specified AlertRelabelConfig
   - `PUT`: replace the specified AlertRelabelConfig
-- `/apis/monitoring.openshift.io/v1/namespaces/{{ namespace }}/alertrelabelconfigs/{{ name }}/status`
+- `/apis/monitoring.openshift.io/v1/namespaces/{namespace}/alertrelabelconfigs/{name}/status`
 
   - `GET`: read status of the specified AlertRelabelConfig
   - `PATCH`: partially update status of the specified AlertRelabelConfig
@@ -172,7 +172,7 @@ Description
 | 200 - OK | [`AlertRelabelConfigList`](/openshift-docs-markdown/rest_api/objects/index#io-openshift-monitoring-v1-AlertRelabelConfigList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/monitoring.openshift.io/v1/namespaces/{{ namespace }}/alertrelabelconfigs {#_apismonitoringopenshiftiov1namespaces_namespace_alertrelabelconfigs}
+### /apis/monitoring.openshift.io/v1/namespaces/{namespace}/alertrelabelconfigs {#_apismonitoringopenshiftiov1namespaces_namespace_alertrelabelconfigs}
 
 HTTP method
 :   ```
@@ -240,7 +240,7 @@ Description
 | 202 - Accepted | [`AlertRelabelConfig`](/openshift-docs-markdown/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/monitoring.openshift.io/v1/namespaces/{{ namespace }}/alertrelabelconfigs/{{ name }} {#_apismonitoringopenshiftiov1namespaces_namespace_alertrelabelconfigs_name}
+### /apis/monitoring.openshift.io/v1/namespaces/{namespace}/alertrelabelconfigs/{name} {#_apismonitoringopenshiftiov1namespaces_namespace_alertrelabelconfigs_name}
 
 **Global path parameters**
 
@@ -344,7 +344,7 @@ Description
 | 201 - Created | [`AlertRelabelConfig`](/openshift-docs-markdown/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/monitoring.openshift.io/v1/namespaces/{{ namespace }}/alertrelabelconfigs/{{ name }}/status {#_apismonitoringopenshiftiov1namespaces_namespace_alertrelabelconfigs_name_status}
+### /apis/monitoring.openshift.io/v1/namespaces/{namespace}/alertrelabelconfigs/{name}/status {#_apismonitoringopenshiftiov1namespaces_namespace_alertrelabelconfigs_name_status}
 
 **Global path parameters**
 

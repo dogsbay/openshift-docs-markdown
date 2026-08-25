@@ -20,7 +20,8 @@ const headings = [{"depth":1,"slug":"olm-common-terms","text":"Operator Framewor
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/operators/understanding/olm-common-terms";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -78,12 +79,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -91,7 +93,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="olm-common-terms" class="group scroll-mt-20">Operator Framework glossary of common terms<a href="#olm-common-terms" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can use this glossary to learn terminology used across the Operator Framework and Operator Lifecycle Manager (OLM) in OpenShift Container Platform. The terms help you understand concepts for packaging, installing, and managing Operators.</p>
+      <p class="_abstract">You can use this glossary to learn terminology used across the Operator Framework and Operator Lifecycle Manager (OLM) in OpenShift Container Platform. The terms help you understand concepts for packaging, installing, and managing Operators.</p>
       <h2 id="olm-common-terms-bundle_olm-common-terms" class="group scroll-mt-20">Bundle<a href="#olm-common-terms-bundle_olm-common-terms" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p>In the bundle format, a <em>bundle</em> is a collection of an Operator CSV, manifests, and metadata. Together, they form a unique version of an Operator that can be installed onto the cluster.</p>
       <h2 id="olm-common-terms-bundle-image_olm-common-terms" class="group scroll-mt-20">Bundle image<a href="#olm-common-terms-bundle-image_olm-common-terms" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>

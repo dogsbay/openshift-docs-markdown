@@ -1,5 +1,5 @@
 ---
-title: Deploying {{ hcp }} on {{ azure_short }}
+title: Deploying hosted control planes on Azure
 ---
 
 # Deploying hosted control planes on Azure {#hcp-deploy-azure}
@@ -51,12 +51,13 @@ Phase 2: Set up the management cluster
 Phase 3: Create hosted clusters
 :   In this phase, you create and configure hosted clusters. This phase involves the following steps:
 
-1. Setting up infrastructure
-2. Creating a hosted cluster
-3. Integrating workload identity
-4. Configuring private endpoint access (optional)
+    1. Setting up infrastructure
+    2. Creating a hosted cluster
+    3. Integrating workload identity
+    4. Configuring private endpoint access (optional)
 
 **Additional resources**
+{._additional-resources}
 
 - [Azure Workload Identity documentation](https://azure.github.io/azure-workload-identity/docs/)
 
@@ -187,6 +188,7 @@ To prepare to deploy hosted control planes on Azure, you need to set up an OIDC 
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [How to obtain the ccoctl tool for OpenShift 4 (Red Hat Knowledgebase article)](https://access.redhat.com/solutions/7001811)
 
@@ -370,6 +372,7 @@ Create an Azure infrastructure separately so that when you create a hosted clust
   - `--output-file` specifies the file where the details of the infrastructure are stored in YAML format.
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating Azure Workload Identities](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-workload-id_hcp-deploy-azure)
 
@@ -831,6 +834,7 @@ By manually creating the subnet, you have control over classless inter-domain ro
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring an Azure management cluster for hosted control planes](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-mgmt-cluster_hcp-deploy-azure)
 - [Setting up an OIDC issuer](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-oidc_hcp-deploy-azure)
@@ -898,6 +902,7 @@ To set up an environment that supports private clusters, you must install the Hy
    - `--external-dns-credentials` specifies the path to a file that contains DNS credentials. If preferred, you can use the `--external-dns-secret` flag instead to specify a Kubernetes secret that has DNS credentials.
 
 **Additional resources**
+{._additional-resources}
 
 - [Setting up an OIDC issuer](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-oidc_hcp-deploy-azure)
 
@@ -968,6 +973,7 @@ Create Workload Identities so that your private clusters can manage private endp
    The command creates 8 Workload Identities. For `Private` and `PublicAndPrivate` clusters, the Control Plane Operator identity is used to create and manage private endpoints, private DNS zones, Azure Virtual Network (VNet) links, and DNS A records. The Control Plane Identity is assigned the `Contributor` role by default. To use a more restrictive role, use the `--assign-custom-hcp-roles` flag.
 
 **Additional resources**
+{._additional-resources}
 
 - [Setting up an OIDC issuer](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-oidc_hcp-deploy-azure)
 - [Creating Azure Workload Identities](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-workload-id_hcp-deploy-azure)
@@ -1043,6 +1049,7 @@ Set up infrastructure so that you can create private hosted clusters.
       Note the resource IDs because you need them to create the private hosted cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Setting up an OIDC issuer](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-oidc_hcp-deploy-azure)
 
@@ -1087,7 +1094,7 @@ Create a private hosted cluster to ensure that the communication between compute
      --endpoint-access-private-nat-subnet-id "${NAT_SUBNET_ID}"
    ```
 
-   - When you choose a value for the `--external-dns-domain` flag, ensure that the value does not match `{{ cluster_name }}.{{ base_domain }}`. If you use `{{ cluster_name }}.{{ base_domain }}` for the value, the Control Plane Operator creates a private DNS zone that can shadow the `*.apps` domain, which causes the console and ingress to become unreachable.
+   - When you choose a value for the `--external-dns-domain` flag, ensure that the value does not match `{cluster_name}.{base_domain}`. If you use `{cluster_name}.{base_domain}` for the value, the Control Plane Operator creates a private DNS zone that can shadow the `*.apps` domain, which causes the console and ingress to become unreachable.
    - `--endpoint-access` accepts 3 values:
 
      - `Public`, which is the default value. When you specify `Public`, the API server is accessible through public endpoint only.
@@ -1132,6 +1139,7 @@ Create a private hosted cluster to ensure that the communication between compute
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Preparing a subnet for a private hosted cluster on Azure](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-private-subnet_hcp-deploy-azure)
 - [Installing the HyperShift Operator with private platform support](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-private-operator_hcp-deploy-azure)
@@ -1205,6 +1213,7 @@ After you create a private hosted cluster, you need to take additional steps to 
      ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating a private Azure hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-private-hosted_hcp-deploy-azure)
 
@@ -1221,7 +1230,9 @@ If your private hosted cluster gets stuck, check the `AzurePrivateLinkService` c
      -n clusters-${CLUSTER_NAME} \
      -o jsonpath='{.items[0].status.conditions}' | jq .
    ```
-2. Review the output and compare it to the following condition table: **Private cluster stuck conditions**
+2. Review the output and compare it to the following condition table:
+
+   **Private cluster stuck conditions**
 
    | Condition | Possible cause |
    | --- | --- |

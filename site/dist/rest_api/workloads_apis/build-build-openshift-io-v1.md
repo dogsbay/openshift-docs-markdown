@@ -1,5 +1,5 @@
 ---
-title: Build []
+title: Build [build.openshift.io/v1]
 ---
 
 # Build \[build.openshift.io/v1\] {#build-build-openshift-io-v1}
@@ -40,10 +40,10 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `completionDeadlineSeconds` | `integer` | completionDeadlineSeconds is an optional duration in seconds, counted from the time when a build pod gets scheduled in the system, that the build may be active on a node before the system actively tries to terminate the build; value must be positive integer |
-| `mountTrustedCA` | `boolean` | mountTrustedCA bind mounts the cluster’s trusted certificate authorities, as defined in the cluster’s proxy configuration, into the build. This lets processes within a build trust components signed by custom PKI certificate authorities, such as private artifact repositories and HTTPS proxies. When this field is set to true, the contents of `/etc/pki/ca-trust` within the build are managed by the build container, and any changes to this directory or its subdirectories (for example - within a Dockerfile `RUN` instruction) are not persisted in the build’s output image. |
+| `mountTrustedCA` | `boolean` | mountTrustedCA bind mounts the cluster’s trusted certificate authorities, as defined in the cluster’s proxy configuration, into the build. This lets processes within a build trust components signed by custom PKI certificate authorities, such as private artifact repositories and HTTPS proxies.<br>When this field is set to true, the contents of `/etc/pki/ca-trust` within the build are managed by the build container, and any changes to this directory or its subdirectories (for example - within a Dockerfile `RUN` instruction) are not persisted in the build’s output image. |
 | `nodeSelector` | `object (string)` | nodeSelector is a selector which must be true for the build pod to fit on a node If nil, it can be overridden by default build nodeselector values for the cluster. If set to an empty map or a map with any values, default build nodeselector values are ignored. |
 | `output` | `object` | BuildOutput is input to a build strategy and describes the container image that the strategy should produce. |
-| `postCommit` | `object` | A BuildPostCommitSpec holds a build post commit hook specification. The hook executes a command in a temporary container running the build output image, immediately after the last layer of the image is committed and before the image is pushed to a registry. The command is executed with the current working directory ($PWD) set to the image’s WORKDIR. The build will be marked as failed if the hook execution fails. It will fail if the script or command return a non-zero exit code, or if there is any other error related to starting the temporary container. There are five different ways to configure the hook. As an example, all forms below are equivalent and will execute `rake test --verbose`. 1. Shell script: 	   "postCommit": { 	     "script": "rake test --verbose", 	   } 	The above is a convenient form which is equivalent to: 	   "postCommit": { 	     "command": \["/bin/sh", "-ic"\], 	     "args":    \["rake test --verbose"\] 	   } 2. A command as the image entrypoint: 	   "postCommit": { 	     "commit": \["rake", "test", "--verbose"\] 	   } 	Command overrides the image entrypoint in the exec form, as documented in 	Docker: https://docs.docker.com/engine/reference/builder/#entrypoint. 3. Pass arguments to the default entrypoint: 	       "postCommit": { 			      "args": \["rake", "test", "--verbose"\] 		      } 	    This form is only useful if the image entrypoint can handle arguments. 4. Shell script with arguments: 	   "postCommit": { 	     "script": "rake test $1", 	     "args":   \["--verbose"\] 	   } 	This form is useful if you need to pass arguments that would otherwise be 	hard to quote properly in the shell script. In the script, $0 will be 	"/bin/sh" and $1, $2, etc, are the positional arguments from Args. 5. Command with arguments: 	   "postCommit": { 	     "command": \["rake", "test"\], 	     "args":    \["--verbose"\] 	   } 	This form is equivalent to appending the arguments to the Command slice. It is invalid to provide both Script and Command simultaneously. If none of the fields are specified, the hook is not executed. |
+| `postCommit` | `object` | A BuildPostCommitSpec holds a build post commit hook specification. The hook executes a command in a temporary container running the build output image, immediately after the last layer of the image is committed and before the image is pushed to a registry. The command is executed with the current working directory ($PWD) set to the image’s WORKDIR.<br>The build will be marked as failed if the hook execution fails. It will fail if the script or command return a non-zero exit code, or if there is any other error related to starting the temporary container.<br>There are five different ways to configure the hook. As an example, all forms below are equivalent and will execute `rake test --verbose`.<br>1. Shell script:<br> "postCommit": { "script": "rake test --verbose", }<br>	The above is a convenient form which is equivalent to:<br> "postCommit": { "command": \["/bin/sh", "-ic"\], "args": \["rake test --verbose"\] }<br>2. A command as the image entrypoint:<br> "postCommit": { "commit": \["rake", "test", "--verbose"\] }<br>	Command overrides the image entrypoint in the exec form, as documented in Docker: https://docs.docker.com/engine/reference/builder/#entrypoint.<br>3. Pass arguments to the default entrypoint:<br> "postCommit": { "args": \["rake", "test", "--verbose"\] }<br> This form is only useful if the image entrypoint can handle arguments.<br>4. Shell script with arguments:<br> "postCommit": { "script": "rake test $1", "args": \["--verbose"\] }<br>	This form is useful if you need to pass arguments that would otherwise be hard to quote properly in the shell script. In the script, $0 will be "/bin/sh" and $1, $2, etc, are the positional arguments from Args.<br>5. Command with arguments:<br> "postCommit": { "command": \["rake", "test"\], "args": \["--verbose"\] }<br>	This form is equivalent to appending the arguments to the Command slice.<br>It is invalid to provide both Script and Command simultaneously. If none of the fields are specified, the hook is not executed. |
 | `resources` | [`ResourceRequirements`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ResourceRequirements) | resources computes resource requirements to execute the build. |
 | `revision` | `object` | SourceRevision is the revision or commit information from the source for the build |
 | `serviceAccount` | `string` | serviceAccount is the name of the ServiceAccount to use to run the pod created by this build. The pod will be allowed to use secrets referenced by the ServiceAccount |
@@ -362,7 +362,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `destinationDir` | `string` | destinationDir is the relative directory within the build directory where files copied from the image are placed. |
-| `sourcePath` | `string` | sourcePath is the absolute path of the file or directory inside the image to copy to the build directory.  If the source path ends in /. then the content of the directory will be copied, but the directory itself will not be created at the destination. |
+| `sourcePath` | `string` | sourcePath is the absolute path of the file or directory inside the image to copy to the build directory. If the source path ends in /. then the content of the directory will be copied, but the directory itself will not be created at the destination. |
 
 ### .spec.source.secrets {#_specsourcesecrets}
 
@@ -475,7 +475,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `buildArgs` | [`array (EnvVar)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | buildArgs contains build arguments that will be resolved in the Dockerfile.  See https://docs.docker.com/engine/reference/builder/#/arg for more details. NOTE: Only the 'name' and 'value' fields are supported. Any settings on the 'valueFrom' field are ignored. |
+| `buildArgs` | [`array (EnvVar)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | buildArgs contains build arguments that will be resolved in the Dockerfile. See https://docs.docker.com/engine/reference/builder/#/arg for more details. NOTE: Only the 'name' and 'value' fields are supported. Any settings on the 'valueFrom' field are ignored. |
 | `dockerfilePath` | `string` | dockerfilePath is the path of the Dockerfile that will be used to build the container image, relative to the root of the context (contextDir). Defaults to `Dockerfile` if unset. |
 | `env` | [`array (EnvVar)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | env contains additional environment variables you want to pass into a builder container. |
 | `forcePull` | `boolean` | forcePull describes if the builder should pull the images from registry prior to building. |
@@ -1061,12 +1061,12 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `cancelled` | `boolean` | cancelled describes if a cancel event was triggered for the build. |
-| `completionTimestamp` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | completionTimestamp is a timestamp representing the server time when this Build was finished, whether that build failed or succeeded.  It reflects the time at which the Pod running the Build terminated. It is represented in RFC3339 form and is in UTC. |
+| `completionTimestamp` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | completionTimestamp is a timestamp representing the server time when this Build was finished, whether that build failed or succeeded. It reflects the time at which the Pod running the Build terminated. It is represented in RFC3339 form and is in UTC. |
 | `conditions` | `array` | conditions represents the latest available observations of a build’s current state. |
 | `conditions[]` | `object` | BuildCondition describes the state of a build at a certain point. |
 | `config` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | config is an ObjectReference to the BuildConfig this Build is based on. |
 | `duration` | `integer` | duration contains time.Duration object describing build time. |
-| `logSnippet` | `string` | logSnippet is the last few lines of the build log.  This value is only set for builds that failed. |
+| `logSnippet` | `string` | logSnippet is the last few lines of the build log. This value is only set for builds that failed. |
 | `message` | `string` | message is a human-readable message indicating details about why the build has this status. |
 | `output` | `object` | BuildStatusOutput contains the status of the built image. |
 | `outputDockerImageReference` | `string` | outputDockerImageReference contains a reference to the container image that will be built by this build. Its value is computed from Build.Spec.Output.To, and should include the registry address, so that it can be used to push and pull the image. |
@@ -1135,7 +1135,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `imageDigest` | `string` | imageDigest is the digest of the built container image. The digest uniquely identifies the image in the registry to which it was pushed. Please note that this field may not always be set even if the push completes successfully - e.g. when the registry returns no digest or returns it in a format that the builder doesn’t understand. |
+| `imageDigest` | `string` | imageDigest is the digest of the built container image. The digest uniquely identifies the image in the registry to which it was pushed.<br>Please note that this field may not always be set even if the push completes successfully - e.g. when the registry returns no digest or returns it in a format that the builder doesn’t understand. |
 
 ### .status.stages {#_statusstages}
 
@@ -1201,30 +1201,30 @@ The following API endpoints are available:
 - `/apis/build.openshift.io/v1/watch/builds`
 
   - `GET`: watch individual changes to a list of Build. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/build.openshift.io/v1/namespaces/{{ namespace }}/builds`
+- `/apis/build.openshift.io/v1/namespaces/{namespace}/builds`
 
   - `DELETE`: delete collection of Build
   - `GET`: list or watch objects of kind Build
   - `POST`: create a Build
-- `/apis/build.openshift.io/v1/watch/namespaces/{{ namespace }}/builds`
+- `/apis/build.openshift.io/v1/watch/namespaces/{namespace}/builds`
 
   - `GET`: watch individual changes to a list of Build. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/build.openshift.io/v1/namespaces/{{ namespace }}/builds/{{ name }}`
+- `/apis/build.openshift.io/v1/namespaces/{namespace}/builds/{name}`
 
   - `DELETE`: delete a Build
   - `GET`: read the specified Build
   - `PATCH`: partially update the specified Build
   - `PUT`: replace the specified Build
-- `/apis/build.openshift.io/v1/watch/namespaces/{{ namespace }}/builds/{{ name }}`
+- `/apis/build.openshift.io/v1/watch/namespaces/{namespace}/builds/{name}`
 
   - `GET`: watch changes to an object of kind Build. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
-- `/apis/build.openshift.io/v1/namespaces/{{ namespace }}/builds/{{ name }}/details`
+- `/apis/build.openshift.io/v1/namespaces/{namespace}/builds/{name}/details`
 
   - `PUT`: replace details of the specified Build
-- `/apis/build.openshift.io/v1/namespaces/{{ namespace }}/buildconfigs/{{ name }}/webhooks`
+- `/apis/build.openshift.io/v1/namespaces/{namespace}/buildconfigs/{name}/webhooks`
 
   - `POST`: connect POST requests to webhooks of BuildConfig
-- `/apis/build.openshift.io/v1/namespaces/{{ namespace }}/buildconfigs/{{ name }}/webhooks/{{ path }}`
+- `/apis/build.openshift.io/v1/namespaces/{namespace}/buildconfigs/{name}/webhooks/{path}`
 
   - `POST`: connect POST requests to webhooks of BuildConfig
 
@@ -1266,7 +1266,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/build.openshift.io/v1/namespaces/{{ namespace }}/builds {#_apisbuildopenshiftiov1namespaces_namespace_builds}
+### /apis/build.openshift.io/v1/namespaces/{namespace}/builds {#_apisbuildopenshiftiov1namespaces_namespace_builds}
 
 HTTP method
 :   ```
@@ -1340,7 +1340,7 @@ Description
 | 202 - Accepted | [`Build`](/openshift-docs-markdown/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/build.openshift.io/v1/watch/namespaces/{{ namespace }}/builds {#_apisbuildopenshiftiov1watchnamespaces_namespace_builds}
+### /apis/build.openshift.io/v1/watch/namespaces/{namespace}/builds {#_apisbuildopenshiftiov1watchnamespaces_namespace_builds}
 
 HTTP method
 :   ```
@@ -1359,7 +1359,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/build.openshift.io/v1/namespaces/{{ namespace }}/builds/{{ name }} {#_apisbuildopenshiftiov1namespaces_namespace_builds_name}
+### /apis/build.openshift.io/v1/namespaces/{namespace}/builds/{name} {#_apisbuildopenshiftiov1namespaces_namespace_builds_name}
 
 **Global path parameters**
 
@@ -1464,7 +1464,7 @@ Description
 | 201 - Created | [`Build`](/openshift-docs-markdown/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/build.openshift.io/v1/watch/namespaces/{{ namespace }}/builds/{{ name }} {#_apisbuildopenshiftiov1watchnamespaces_namespace_builds_name}
+### /apis/build.openshift.io/v1/watch/namespaces/{namespace}/builds/{name} {#_apisbuildopenshiftiov1watchnamespaces_namespace_builds_name}
 
 **Global path parameters**
 
@@ -1489,7 +1489,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/build.openshift.io/v1/namespaces/{{ namespace }}/builds/{{ name }}/details {#_apisbuildopenshiftiov1namespaces_namespace_builds_name_details}
+### /apis/build.openshift.io/v1/namespaces/{namespace}/builds/{name}/details {#_apisbuildopenshiftiov1namespaces_namespace_builds_name_details}
 
 **Global path parameters**
 
@@ -1528,7 +1528,7 @@ Description
 | 201 - Created | [`Build`](/openshift-docs-markdown/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/build.openshift.io/v1/namespaces/{{ namespace }}/buildconfigs/{{ name }}/webhooks {#_apisbuildopenshiftiov1namespaces_namespace_buildconfigs_name_webhooks}
+### /apis/build.openshift.io/v1/namespaces/{namespace}/buildconfigs/{name}/webhooks {#_apisbuildopenshiftiov1namespaces_namespace_buildconfigs_name_webhooks}
 
 **Global path parameters**
 
@@ -1553,7 +1553,7 @@ Description
 | 200 - OK | `string` |
 | 401 - Unauthorized | Empty |
 
-### /apis/build.openshift.io/v1/namespaces/{{ namespace }}/buildconfigs/{{ name }}/webhooks/{{ path }} {#_apisbuildopenshiftiov1namespaces_namespace_buildconfigs_name_webhooks_path}
+### /apis/build.openshift.io/v1/namespaces/{namespace}/buildconfigs/{name}/webhooks/{path} {#_apisbuildopenshiftiov1namespaces_namespace_buildconfigs_name_webhooks_path}
 
 **Global path parameters**
 

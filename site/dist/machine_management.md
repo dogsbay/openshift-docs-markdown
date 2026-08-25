@@ -59,6 +59,7 @@ Machine health check
 In OpenShift Container Platform version 3.11, you could not roll out a multi-zone architecture easily because the cluster did not manage machine provisioning. Beginning with OpenShift Container Platform version 4.1, this process is easier. Each compute machine set is scoped to a single zone, so the installation program sends out compute machine sets across availability zones on your behalf. And then because your compute is dynamic, and in the face of a zone failure, you always have a zone for when you must rebalance your machines. In global Azure regions that do not have multiple availability zones, you can use availability sets to ensure high availability. The autoscaler provides best-effort balancing over the life of a cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Machine phases and lifecycle](/openshift-docs-markdown/machine_management/machine-phases-lifecycle#machine-phases-lifecycle)
 
@@ -90,6 +91,7 @@ For example, you can perform the following actions:
 > When creating a new machine set, you should specify the latest image to use for the boot image. For more information about updating the boot image on your cluster, see "Manually updating the boot image" and "Boot image management". The method to update or specify the image varies by platform.
 
 **Additional resources**
+{._additional-resources}
 
 - [Manually updating the boot image](/openshift-docs-markdown/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)
 - [Boot image management](/openshift-docs-markdown/machine_configuration/mco-update-boot-images#mco-update-boot-images)
@@ -124,5 +126,6 @@ To [autoscale](/openshift-docs-markdown/machine_management/applying-autoscaling#
 User-provisioned infrastructure is an environment where you can deploy infrastructure such as compute, network, and storage resources that host the OpenShift Container Platform. You can add compute machines to a cluster on user-provisioned infrastructure during or after the installation process.
 
 **Additional resources**
+{._additional-resources}
 
 - [Adding compute machines to clusters with user-provisioned infrastructure manually](/openshift-docs-markdown/machine_management/user_infra/adding-compute-user-infra-general#adding-compute-user-infra-general)

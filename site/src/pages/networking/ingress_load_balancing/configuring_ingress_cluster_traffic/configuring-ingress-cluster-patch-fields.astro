@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"configuring-ingress-cluster-patch-fields","
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-patch-fields";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="configuring-ingress-cluster-patch-fields" class="group scroll-mt-20">Patching existing ingress objects<a href="#configuring-ingress-cluster-patch-fields" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can update or modify the following fields of existing <code>Ingress</code> objects without recreating the objects or disrupting services to these objects:</p>
+      <p class="_abstract">You can update or modify the following fields of existing <code>Ingress</code> objects without recreating the objects or disrupting services to these objects:</p>
       <ul>
       <li>Specifications</li>
       <li>Host</li>

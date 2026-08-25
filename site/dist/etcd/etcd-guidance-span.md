@@ -53,6 +53,7 @@ Using different infrastructure platform providers for control plane nodes is dis
 - For guidance on cluster deployments that span data centers using OpenShift Data Foundation as the storage provider, see "Configuring OpenShift Data Foundation Disaster Recovery for OpenShift Workloads".
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding and Validating MTU setting with OpenShift Container Platform 4.x (Red Hat Knowledgebase)](https://access.redhat.com/articles/7010220)
 - [Configuring OpenShift Data Foundation Disaster Recovery for OpenShift Workloads](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index)
@@ -94,6 +95,7 @@ An object storage solution should be used for the registry, and this storage sol
 Because disk I/O is a critical factor in the health of etcd database, it is required that they are deployed on a high speed, low latency media. See etcd guidance on "How etcd peer round trip time affects performance" and "Determining the size of the etcd database and understanding its effects" for more details on the exact requirements to meet.
 
 **Additional resources**
+{._additional-resources}
 
 - [Ensuring reliable etcd performance and scalability](/openshift-docs-markdown/etcd/etcd-performance#etcd-leader-election-log-replication_etcd-performance)
 - [Understanding and Validating MTU setting with OpenShift Container Platform 4.x (Red Hat Knowledgebase)](https://access.redhat.com/articles/7010220)
@@ -108,7 +110,8 @@ With multisite clusters, administrators and developers must take special conside
 
 Without this planning, OpenShift Container Platform might schedule workloads on hosts within the cluster so that a single point of failure (SPoF) exists for OpenShift Container Platform infrastructure services and other application services if a data center outage occurs.
 
-## Additional resources {#additional-resources-etcd-span_etcd-guidance-span}
+**Additional resources**
+{._additional-resources}
 
 - [Red Hat OpenShift Container Platform Lifecycle](https://access.redhat.com/support/policy/updates/openshift)
 - [Red Hat Production Support Scope of Coverage](https://access.redhat.com/support/offerings/production/soc)

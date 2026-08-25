@@ -6,7 +6,7 @@ title: Creating applications by using the Developer perspective
 
 The **Developer** perspective in the web console provides you the following options from the **+Add** view to create applications and associated services and deploy them on OpenShift Container Platform:
 
-- **Getting started resources**: Use these resources to help you get started with Developer Console. You can choose to hide the header using the Options menu ![](kebab.png "Options menu").
+- **Getting started resources**: Use these resources to help you get started with Developer Console. You can choose to hide the header using the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu").
 
   - **Creating applications using samples**: Use existing code samples to get started with creating applications on the OpenShift Container Platform.
   - **Build with guided documentation**: Follow the guided documentation to build applications and familiarize yourself with key concepts and terminologies.
@@ -81,7 +81,7 @@ The **Quick Starts** page shows you how to create, import, and run applications 
 
 **Procedure**
 
-1. In the **+Add** view, click the **Getting Started resources** -> **Build with guided documentation** -> **View all quick starts** link to view the **Quick Starts** page.
+1. In the **+Add** view, click the **Getting Started resources** → **Build with guided documentation** → **View all quick starts** link to view the **Quick Starts** page.
 2. In the **Quick Starts** page, click the tile for the quick start that you want to use.
 3. Click **Start** to begin the quick start.
 4. Perform the steps that are displayed.
@@ -113,7 +113,7 @@ The following procedure walks you through the **From Git** option in the **Devel
 
    1. Optional: Use the **Builder Image Version** drop-down to specify a version.
    2. Optional: Use the **Edit import strategy** to select a different strategy.
-   3. Optional: For the Node.js builder image, use the ***Run command*** field to override the command to run the application.
+   3. Optional: For the Node.js builder image, use the **Run command** field to override the command to run the application.
 6. In the **General** section:
 
    1. In the **Application** field, enter a unique name for the application grouping, for example, `myapp`. Ensure that the application name is unique in a namespace.
@@ -128,7 +128,7 @@ The following procedure walks you through the **From Git** option in the **Devel
    - **Serverless Deployment**, to create a Knative service.
 
      > [!NOTE]
-     > To set the default resource preference for importing an application, go to **User Preferences** -> **Applications** -> **Resource type** field. The **Serverless Deployment** option is displayed in the **Import from Git** form only if the OpenShift Serverless Operator is installed in your cluster. The **Resources** section is not available while creating a serverless function. For further details, refer to the OpenShift Serverless documentation.
+     > To set the default resource preference for importing an application, go to **User Preferences** → **Applications** → **Resource type** field. The **Serverless Deployment** option is displayed in the **Import from Git** form only if the OpenShift Serverless Operator is installed in your cluster. The **Resources** section is not available while creating a serverless function. For further details, refer to the OpenShift Serverless documentation.
 8. In the **Pipelines** section, select **Add Pipeline**, and then click **Show Pipeline Visualization** to see the pipeline for the application. A default pipeline is selected, but you can choose the pipeline you want from the list of available pipelines for the application.
 
    > [!NOTE]
@@ -139,7 +139,7 @@ The following procedure walks you through the **From Git** option in the **Devel
    > - `.tekton` directory is detected in the Git repository
 9. Add a webhook to your repository. If **Configure PAC** is checked and the GitHub App is set up, you can see the **Use GitHub App** and **Setup a webhook** options. If GitHub App is not set up, you can only see the **Setup a webhook** option:
 
-   1. Go to **Settings** -> **Webhooks** and click **Add webhook**.
+   1. Go to **Settings** → **Webhooks** and click **Add webhook**.
    2. Set the **Payload URL** to the Pipelines as Code controller public URL.
    3. Select the content type as **application/json**.
    4. Add a webhook secret and note it in an alternate location. With `openssl` installed on your local machine, generate a random secret.
@@ -150,24 +150,24 @@ The following procedure walks you through the **From Git** option in the **Devel
     If your application does not expose its data on the default public port, 80, clear the check box, and set the target port number you want to expose.
 11. Optional: You can use the following advanced options to further customize your application:
 
-Routing
-:   By clicking the **Routing** link, you can perform the following actions:
+    Routing
+    :   By clicking the **Routing** link, you can perform the following actions:
 
-    - Customize the hostname for the route.
-    - Specify the path the router watches.
-    - Select the target port for the traffic from the drop-down list.
-    - Secure your route by selecting the **Secure Route** check box. Select the required TLS termination type and set a policy for insecure traffic from the respective drop-down lists.
+        - Customize the hostname for the route.
+        - Specify the path the router watches.
+        - Select the target port for the traffic from the drop-down list.
+        - Secure your route by selecting the **Secure Route** check box. Select the required TLS termination type and set a policy for insecure traffic from the respective drop-down lists.
 
-    > [!NOTE]
-    > For serverless applications, the Knative service manages all the routing options above. However, you can customize the target port for traffic, if required. If the target port is not specified, the default port of `8080` is used.
+        > [!NOTE]
+        > For serverless applications, the Knative service manages all the routing options above. However, you can customize the target port for traffic, if required. If the target port is not specified, the default port of `8080` is used.
 
-Domain mapping
-:   If you are creating a **Serverless Deployment**, you can add a custom domain mapping to the Knative service during creation.
+    Domain mapping
+    :   If you are creating a **Serverless Deployment**, you can add a custom domain mapping to the Knative service during creation.
 
-    - In the **Advanced options** section, click **Show advanced Routing options**.
+        - In the **Advanced options** section, click **Show advanced Routing options**.
 
-      - If the domain mapping CR that you want to map to the service already exists, you can select it from the **Domain mapping** drop-down menu.
-      - If you want to create a new domain mapping CR, type the domain name into the box, and select the **Create** option. For example, if you type in `example.com`, the **Create** option is **Create "example.com"**.
+          - If the domain mapping CR that you want to map to the service already exists, you can select it from the **Domain mapping** drop-down menu.
+          - If you want to create a new domain mapping CR, type the domain name into the box, and select the **Create** option. For example, if you type in `example.com`, the **Create** option is **Create "example.com"**.
 
     Health Checks
     :   Click the **Health Checks** link to add Readiness, Liveness, and Startup probes to your application. All the probes have prepopulated default data; you can add the probes with the default data or customize it as required.
@@ -181,27 +181,28 @@ Domain mapping
         For each of the probes, you can specify the request type - **HTTP GET**, **Container Command**, or **TCP Socket**,  from the drop-down list. The form changes as per the selected request type. You can then modify the default values for the other parameters, such as the success and failure thresholds for the probe, number of seconds before performing the first probe after the container starts, frequency of the probe, and the timeout value.
 
     Build Configuration and Deployment
-    :   Click the **Build Configuration** and **Deployment** links to see the respective configuration options. Some options are selected by default; you can customize them further by adding the necessary triggers and environment variables. For serverless applications, the **Deployment** option is not displayed as the Knative configuration resource maintains the desired state for your deployment instead of a `DeploymentConfig` resource.
+    :   Click the **Build Configuration** and **Deployment** links to see the respective configuration options. Some options are selected by default; you can customize them further by adding the necessary triggers and environment variables.
 
-Scaling
-:   Click the **Scaling** link to define the number of pods or instances of the application you want to deploy initially.
+        For serverless applications, the **Deployment** option is not displayed as the Knative configuration resource maintains the desired state for your deployment instead of a `DeploymentConfig` resource.
 
-    If you are creating a serverless deployment, you can also configure the following settings:
+        Scaling
+        :   Click the **Scaling** link to define the number of pods or instances of the application you want to deploy initially.
 
-    - **Min Pods** determines the lower limit for the number of pods that must be running at any given time for a Knative service. This is also known as the `minScale` setting.
-    - **Max Pods** determines the upper limit for the number of pods that can be running at any given time for a Knative service. This is also known as the `maxScale` setting.
-    - **Concurrency target** determines the number of concurrent requests desired for each instance of the application at a given time.
-    - **Concurrency limit** determines the limit for the number of concurrent requests allowed for each instance of the application at a given time.
-    - **Concurrency utilization** determines the percentage of the concurrent requests limit that must be met before Knative scales up additional pods to handle additional traffic.
-    - **Autoscale window** defines the time window over which metrics are averaged to provide input for scaling decisions when the autoscaler is not in panic mode. A service is scaled-to-zero if no requests are received during this window. The default duration for the autoscale window is `60s`. This is also known as the stable window.
+            If you are creating a serverless deployment, you can also configure the following settings:
+
+            - **Min Pods** determines the lower limit for the number of pods that must be running at any given time for a Knative service. This is also known as the `minScale` setting.
+            - **Max Pods** determines the upper limit for the number of pods that can be running at any given time for a Knative service. This is also known as the `maxScale` setting.
+            - **Concurrency target** determines the number of concurrent requests desired for each instance of the application at a given time.
+            - **Concurrency limit** determines the limit for the number of concurrent requests allowed for each instance of the application at a given time.
+            - **Concurrency utilization** determines the percentage of the concurrent requests limit that must be met before Knative scales up additional pods to handle additional traffic.
+            - **Autoscale window** defines the time window over which metrics are averaged to provide input for scaling decisions when the autoscaler is not in panic mode. A service is scaled-to-zero if no requests are received during this window. The default duration for the autoscale window is `60s`. This is also known as the stable window.
 
     Resource Limit
     :   Click the **Resource Limit** link to set the amount of **CPU** and **Memory** resources a container is guaranteed or allowed to use when running.
 
     Labels
     :   Click the **Labels** link to add custom labels to your application.
-
-1. Click **Create** to create the application and a success notification is displayed. You can see the build status of the application in the **Topology** view.
+12. Click **Create** to create the application and a success notification is displayed. You can see the build status of the application in the **Topology** view.
 
 ## Creating applications by deploying container image {#odc-deploying-container-image_odc-creating-applications-using-developer-perspective}
 
@@ -265,7 +266,7 @@ You can use the devfiles in the **+Add** flow of the **Developer** perspective t
 
 **Procedure**
 
-1. Navigate to **Developer Perspective** -> **+Add** -> **Developer Catalog** -> **All Services**. A list of all the available services in the **Developer Catalog** is displayed.
+1. Navigate to **Developer Perspective** → **+Add** → **Developer Catalog** → **All Services**. A list of all the available services in the **Developer Catalog** is displayed.
 2. Under **Type**, click **Devfiles** to browse for devfiles that support a particular language or framework. Alternatively, you can use the keyword filter to search for a particular devfile using their name, tag, or description.
 3. Click the devfile you want to use to create an application. The devfile tile displays the details of the devfile, including the name, description, provider, and the documentation of the devfile.
 4. Click **Create** to create an application and view the application in the **Topology** view.
@@ -278,11 +279,14 @@ You use the Developer Catalog to deploy applications and services based on Opera
 
 1. In the **Developer** perspective, navigate to the **+Add** view and from the **Developer Catalog** tile, click **All Services** to view all the available services in the **Developer Catalog**.
 2. Under **All Services**, select the kind of service or the component you need to add to your project. For this example, select **Databases** to list all the database services and then click **MariaDB** to see the details for the service.
-3. Click **Instantiate Template** to see an automatically populated template with details for the **MariaDB** service, and then click **Create** to create and view the MariaDB service in the **Topology** view. **Figure 1. MariaDB in Topology**
+3. Click **Instantiate Template** to see an automatically populated template with details for the **MariaDB** service, and then click **Create** to create and view the MariaDB service in the **Topology** view.
+
+   **Figure 1. MariaDB in Topology**
 
    ![odc_devcatalog_toplogy](/openshift-docs-markdown/_assets/images/odc_devcatalog_toplogy.png)
 
-## Additional resources {#additional-resources_odc-creating-applications-using-developer-perspective}
+**Additional resources**
+{._additional-resources}
 
 - For more information about Knative routing settings for OpenShift Serverless, see [Routing](https://docs.openshift.com/serverless/1.28/knative-serving/external-ingress-routing/routing-overview.html#routing-overview).
 - For more information about domain mapping settings for OpenShift Serverless, see [Configuring a custom domain for a Knative service](https://docs.openshift.com/serverless/1.28/knative-serving/config-custom-domains/serverless-custom-domains.html#serverless-custom-domains).

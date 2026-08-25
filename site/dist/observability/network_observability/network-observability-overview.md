@@ -31,7 +31,8 @@ AMQ Streams Operator
     > [!NOTE]
     > If you choose to use Kafka, it is recommended to use Red Hat supported AMQ Streams Operator.
 
-<a name="additional-resources-operator_network-observability-overview"></a>**Additional resources**
+**Additional resources**
+{._additional-resources}
 
 - [Network observability without Loki](/openshift-docs-markdown/observability/network_observability/installing-operators#network-observability-without-loki_network_observability)
 - [Red Hat AMQ Streams](https://docs.redhat.com/en/documentation/red_hat_streams_for_apache_kafka/2.2)
@@ -40,12 +41,13 @@ AMQ Streams Operator
 
 The Network Observability Operator integrates with the OpenShift Container Platform console, providing an overview, topology view, and traffic flow tables.
 
-The Network observability metrics dashboards in **Observe** -> **Dashboards** are available only to users with administrator access.
+The Network observability metrics dashboards in **Observe** → **Dashboards** are available only to users with administrator access.
 
 > [!NOTE]
 > To enable multi-tenancy for developer access and for administrators with limited access to namespaces, you must specify permissions by defining roles. For more information, see "Enabling multi-tenancy in network observability".
 
-<a name="additional-resources-console_network-observability-overview"></a>**Additional resources**
+**Additional resources**
+{._additional-resources}
 
 - [Enabling multi-tenancy in network observability](/openshift-docs-markdown/observability/network_observability/installing-operators#network-observability-multi-tenancy_network_observability)
 
@@ -55,9 +57,10 @@ Review the network observability metrics dashboards in the OpenShift Container P
 
 In the OpenShift Container Platform console on the **Overview** tab, you can view the overall aggregated metrics of the network traffic flow on the cluster. You can choose to display the information by cluster, node, namespace, owner, pod, and service. Filters and display options can further refine the metrics. For more information, see "Observing the network traffic from the Overview view".
 
-In **Observe** -> **Dashboards**, the **Netobserv** dashboards provide a quick overview of the network flows in your OpenShift Container Platform cluster. The **Netobserv/Health** dashboard provides metrics about the health of the Operator. For more information, see "Network observability metrics" and "Viewing health information".
+In **Observe** → **Dashboards**, the **Netobserv** dashboards provide a quick overview of the network flows in your OpenShift Container Platform cluster. The **Netobserv/Health** dashboard provides metrics about the health of the Operator. For more information, see "Network observability metrics" and "Viewing health information".
 
-<a name="additional-resources-dashboards_network-observability-overview"></a>**Additional resources**
+**Additional resources**
+{._additional-resources}
 
 - [Observing the network traffic from the Overview view](/openshift-docs-markdown/observability/network_observability/observing-network-traffic#network-observability-network-traffic-overview-view_nw-observe-network-traffic)
 - [Network observability metrics](/openshift-docs-markdown/observability/network_observability/metrics-alerts-dashboards#network-observability-metrics_metrics-dashboards-alerts)

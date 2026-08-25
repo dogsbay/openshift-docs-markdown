@@ -1,5 +1,5 @@
 ---
-title: Configure and use {{ oadp_short }} VMFR
+title: Configure and use OADP VMFR
 ---
 
 # Configure and use OADP VMFR {#oadp-configuring-using-vmfr}
@@ -506,13 +506,19 @@ Access restored virtual machine (VM) files through a web browser by using the fi
    ```
 
    Replace `<vmfr_cr_name>` with the name of the VMFR CR and `<restore_namespace>` with the namespace from the `status.createdNamespace` field. Then navigate to `https://localhost:8443` in your web browser.
-3. Log in by using the credentials from the secret you created for file browser access. **Figure 1. OADP VM File Restore Browser login page**
+3. Log in by using the credentials from the secret you created for file browser access.
+
+   **Figure 1. OADP VM File Restore Browser login page**
 
    ![OADP VM File Restore Browser login page](/openshift-docs-markdown/_assets/images/oadp-vmfr-file-browser-login.png)
-4. Browse the files organized by date, backup name, and PVC name. **Figure 2. File browser listing showing backup contents**
+4. Browse the files organized by date, backup name, and PVC name.
+
+   **Figure 2. File browser listing showing backup contents**
 
    ![File browser listing showing backup contents](/openshift-docs-markdown/_assets/images/oadp-vmfr-file-browser-listing.png)
-5. View the file content by selecting the file. To download a file, select the file and click **Download**. To download a directory as an archive, select the directory and click **Download**. **Figure 3. File preview in the file browser**
+5. View the file content by selecting the file. To download a file, select the file and click **Download**. To download a directory as an archive, select the directory and click **Download**.
+
+   **Figure 3. File preview in the file browser**
 
    ![File preview in the file browser](/openshift-docs-markdown/_assets/images/oadp-vmfr-file-browser-preview.png)
 

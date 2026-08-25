@@ -17,19 +17,20 @@ Review failure domain support for your cloud provider to determine how to config
 **Failure domain support matrix**
 
 | Cloud provider | Support for failure domains | Provider nomenclature |
-| --- | --- | --- |
+| :--- | :---: | :---: |
 | Amazon Web Services (AWS) | X | [Availability Zone (AZ)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-availability-zones) |
 | Google Cloud | X | [zone](https://cloud.google.com/compute/docs/regions-zones) |
 | Microsoft Azure | X | [Azure availability zone](https://learn.microsoft.com/en-us/azure/azure-web-pubsub/concept-availability-zones) |
 | Nutanix | X | [failure domain](https://portal.nutanix.com/page/documents/solutions/details?targetId=RA-2147-Nutanix-for-Enterprise-Edge:failure-domain-considerations.html) |
 | Red Hat OpenStack Platform (RHOSP) | X | [OpenStack Nova availability zones](https://docs.openstack.org/nova/2023.2/admin/availability-zones.html) and [OpenStack Cinder availability zones](https://docs.openstack.org/cinder/2023.2/admin/availability-zone-type.html) |
-| VMware vSphere | X | failure domain mapped to a vSphere Zone [^1]^ |
+| VMware vSphere | X | failure domain mapped to a vSphere Zone <sup>\[1\]</sup> |
 
 1. For more information, see "Regions and zones for a VMware vCenter".
 
 The failure domain configuration in the control plane machine set custom resource (CR) is platform-specific. For more information about failure domain parameters in the CR, see the sample failure domain configuration for your provider.
 
 **Additional resources**
+{._additional-resources}
 
 - [Sample Amazon Web Services failure domain configuration](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso_provider_configurations/cpmso-config-options-aws#cpmso-yaml-failure-domain-aws_cpmso-config-options-aws)
 - [Sample Google Cloud failure domain configuration](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso_provider_configurations/cpmso-config-options-gcp#cpmso-yaml-failure-domain-gcp_cpmso-config-options-gcp)
@@ -63,6 +64,7 @@ For clusters that use control plane machine sets, you can configure a machine he
 > If the etcd cluster is degraded, manual intervention might be required. If a scaling operation is in progress, the machine health check should allow it to finish.
 
 **Additional resources**
+{._additional-resources}
 
 - [Deploying machine health checks](/openshift-docs-markdown/machine_management/deploying-machine-health-checks#deploying-machine-health-checks)
 
@@ -120,7 +122,6 @@ where:
 :   Specifies the hook-implementing controller that manages the `preDrain` lifecycle hook.
 
 **Additional resources**
+{._additional-resources}
 
 - [Lifecycle hooks for the machine deletion phase](/openshift-docs-markdown/machine_management/deleting-machine#machine-lifecycle-hook-deletion_deleting-machine)
-
-[^1]: 1

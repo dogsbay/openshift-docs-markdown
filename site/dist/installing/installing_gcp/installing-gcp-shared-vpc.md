@@ -1,5 +1,5 @@
 ---
-title: Installing a cluster on {{ gcp_short }} into a shared VPC
+title: Installing a cluster on Google Cloud into a shared VPC
 ---
 
 # Installing a cluster on Google Cloud into a shared VPC {#installing-gcp-shared-vpc}
@@ -21,9 +21,7 @@ The installation program provisions the rest of the required infrastructure, whi
 
 ## Internet access for OpenShift Container Platform {#cluster-entitlements_installing-gcp-shared-vpc}
 
-In OpenShift Container Platform 4.22, you require access to the internet to install
-
-your cluster.
+In OpenShift Container Platform 4.22, you require access to the internet to install your cluster.
 
 You must have internet access to perform the following actions:
 
@@ -134,14 +132,8 @@ the host you are using for installation.
    ```
 6. Download your installation [pull secret from Red Hat OpenShift Cluster Manager](https://console.redhat.com/openshift/install/pull-secret). This pull secret allows you to authenticate with the services that are provided by the included authorities, including Quay.io, which serves the container images for OpenShift Container Platform components.
 
-   ```
-   :::tip
-
-   Alternatively, you can retrieve the installation program from the [Red&#160;Hat Customer Portal](https://access.redhat.com/downloads/content/290/), where you can specify a version of the installation program to download.
-   However, you must have an active subscription to access this page.
-
-   :::
-   ```
+   > [!TIP]
+   > Alternatively, you can retrieve the installation program from the [Red Hat Customer Portal](https://access.redhat.com/downloads/content/290/), where you can specify a version of the installation program to download. However, you must have an active subscription to access this page.
 
 ## Creating the installation files for Google Cloud {#installation-user-infra-generate_installing-gcp-shared-vpc}
 
@@ -199,19 +191,15 @@ Installing the cluster requires that you manually create the installation config
       :   Specifies the name of the project where you want to install the cluster.
 3. Customize the provided sample `install-config.yaml` file template and save the file in the `<installation_directory>`.
 
-   ```
-   :::note
-
-   You must name this configuration file `install-config.yaml`.
-
-   :::
-   ```
+   > [!NOTE]
+   > You must name this configuration file `install-config.yaml`.
 4. Back up the `install-config.yaml` file so that you can use it to install many clusters.
 
    > [!IMPORTANT]
    > Back up the `install-config.yaml` file now, because the installation process consumes the file in the next step.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installation configuration parameters for Google Cloud](/openshift-docs-markdown/installing/installing_gcp/installation-config-parameters-gcp#installation-config-parameters-gcp)
 
@@ -298,6 +286,7 @@ You can use Confidential VMs when installing your cluster. Confidential VMs encr
      ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Additional Google Cloud configuration parameters](/openshift-docs-markdown/installing/installing_gcp/installation-config-parameters-gcp#installation-configuration-parameters-additional-gcp_installation-config-parameters-gcp)
 
@@ -333,6 +322,7 @@ If you enable user-managed DNS during installation, the installation program pro
 For information about provisioning your DNS records for the API server and the Ingress services, see "Provisioning your own DNS records".
 
 **Additional resources**
+{._additional-resources}
 
 - [Installation configuration parameters for Google Cloud](/openshift-docs-markdown/installing/installing_gcp/installation-config-parameters-gcp#installation-config-parameters-gcp)
 
@@ -386,6 +376,7 @@ where:
 :   Specifies parameters that apply to the infrastructure platform that hosts the cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installation configuration parameters for GCP](/openshift-docs-markdown/installing/installing_gcp/installation-config-parameters-gcp#installation-config-parameters-gcp)
 
@@ -413,46 +404,42 @@ Production environments can deny direct access to the internet and instead have 
    proxy:
      httpProxy: http://<username>:<pswd>@<ip>:<port>
      httpsProxy: https://<username>:<pswd>@<ip>:<port>
+     noProxy: example.com
+   additionalTrustBundle: |
+       -----BEGIN CERTIFICATE-----
+       <MY_TRUSTED_CA_CERT>
+       -----END CERTIFICATE-----
+   additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle>
+   # ...
    ```
 
-{%- if not aws %} noProxy: example.com {% endif %} {% if aws %} noProxy: ec2.<aws_region>.amazonaws.com,elasticloadbalancing.<aws_region>.amazonaws.com,s3.<aws_region>.amazonaws.com {%- endif %} additionalTrustBundle: | -----BEGIN CERTIFICATE----- <MY_TRUSTED_CA_CERT> -----END CERTIFICATE----- additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle> # ... \`\`\`
+   where:
 
-````
-where:
+   `proxy.httpProxy`
+   :   Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be `http`.
 
-`proxy.httpProxy`
-:   Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be `http`.
+   `proxy.httpsProxy`
+   :   Specifies a proxy URL to use for creating HTTPS connections outside the cluster.
 
-`proxy.httpsProxy`
-:   Specifies a proxy URL to use for creating HTTPS connections outside the cluster.
+   `proxy.noProxy`
+   :   Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with `.` to match subdomains only. For example, `.y.com` matches `x.y.com`, but not `y.com`. Use `*` to bypass the proxy for all destinations.
 
-`proxy.noProxy`
-:   Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with `.` to match subdomains only. For example, `.y.com` matches `x.y.com`, but not `y.com`. Use `*` to bypass the proxy for all destinations.
+   `additionalTrustBundle`
+   :   If you specify this value, the installation program generates a config map named `user-ca-bundle` in the `openshift-config` namespace to hold the additional CA certificates. If you specify `additionalTrustBundle` and at least one proxy setting, the `Proxy` object references the `user-ca-bundle` config map in the `trustedCA` field. The Cluster Network Operator then creates a `trusted-ca-bundle` config map that merges the contents specified for the `trustedCA` parameter with the RHCOS trust bundle. You must set the `additionalTrustBundle` field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.
 
-`additionalTrustBundle`
-:   If you specify this value, the installation program generates a config map named `user-ca-bundle` in the `openshift-config` namespace to hold the additional CA certificates. If you specify `additionalTrustBundle` and at least one proxy setting, the `Proxy` object references the `user-ca-bundle` config map in the `trustedCA` field. The Cluster Network Operator then creates a `trusted-ca-bundle` config map that merges the contents specified for the `trustedCA` parameter with the RHCOS trust bundle. You must set the `additionalTrustBundle` field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.
+   `additionalTrustBundlePolicy`
+   :   Specifies the policy that determines the configuration of the `Proxy` object to reference the `user-ca-bundle` config map in the `trustedCA` field. The allowed values are `Proxyonly` and `Always`. Use `Proxyonly` to reference the `user-ca-bundle` config map only when you configure an `http/https` proxy. Use `Always` to always reference the `user-ca-bundle` config map. The default value is `Proxyonly`. Optional parameter.
 
-`additionalTrustBundlePolicy`
-:   Specifies the policy that determines the configuration of the `Proxy` object to reference the `user-ca-bundle` config map in the `trustedCA` field. The allowed values are `Proxyonly` and `Always`. Use `Proxyonly` to reference the `user-ca-bundle` config map only when you configure an `http/https` proxy. Use `Always` to always reference the `user-ca-bundle` config map. The default value is `Proxyonly`. Optional parameter.
+   > [!NOTE]
+   > The installation program does not support the proxy `readinessEndpoints` field.
 
-:::note
-
-The installation program does not support the proxy `readinessEndpoints` field.
-
-:::
-
-:::note
-
-If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
-
-```terminal
-$ ./openshift-install wait-for install-complete --log-level debug
-```
-
-:::
-````
-
-1. Save the file and reference it when installing OpenShift Container Platform.
+   > [!NOTE]
+   > If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
+   >
+   > ```terminal
+   > $ ./openshift-install wait-for install-complete --log-level debug
+   > ```
+2. Save the file and reference it when installing OpenShift Container Platform.
 
    The installation program creates a cluster-wide proxy named `cluster` that uses the proxy settings in the `install-config.yaml` file. If you do not give proxy settings, the installation program still creates a `cluster` `Proxy` object, but it has a nil `spec`.
 
@@ -561,7 +548,7 @@ To manage your cluster and deploy applications from the command line on macOS, i
   $ oc <command>
   ```
 
-## Alternatives to storing administrator-level secrets in the kube-system project {#installing-gcp-manual-modes_installing-gcp-shared-vpc}
+## Alternatives to storing administrator-level secrets in the kube-system project {#installing-gcp-manual-modes_installing-gcp-shared-vpc ._additional-resources}
 
 By default, administrator secrets are stored in the `kube-system` project. If you configured the `credentialsMode` parameter in the `install-config.yaml` file to `Manual`, you must use one of the following alternatives:
 
@@ -641,11 +628,14 @@ The Cloud Credential Operator (CCO) can be put into manual mode prior to install
    spec:
      providerSpec:
        apiVersion: cloudcredential.openshift.io/v1
+       kind: GCPProviderSpec
+       predefinedRoles:
+       - roles/storage.admin
+       - roles/iam.serviceAccountUser
+       skipServiceCheck: true
+     ...
    ```
-
-{%- if aws %} kind: AWSProviderSpec statementEntries: - effect: Allow action: - iam:GetUser - iam:GetUserPolicy - iam:ListAccessKeys resource: "\*" {% endif %} {% if azure or ash %} kind: AzureProviderSpec roleBindings: - role: Contributor {% endif %} {% if google_cloud_platform %} kind: GCPProviderSpec predefinedRoles: - roles/storage.admin - roles/iam.serviceAccountUser skipServiceCheck: true {%- endif %} ... \`\`\`
-
-1. Create YAML files for secrets in the `openshift-install` manifests directory that you generated previously. The secrets must be stored using the namespace and secret name defined in the `spec.secretRef` for each `CredentialsRequest` object.
+6. Create YAML files for secrets in the `openshift-install` manifests directory that you generated previously. The secrets must be stored using the namespace and secret name defined in the `spec.secretRef` for each `CredentialsRequest` object.
 
    ```yaml {title="Sample CredentialsRequest object with secrets"}
    apiVersion: cloudcredential.openshift.io/v1
@@ -657,17 +647,25 @@ The Cloud Credential Operator (CCO) can be put into manual mode prior to install
    spec:
      providerSpec:
        apiVersion: cloudcredential.openshift.io/v1
+         ...
+     secretRef:
+       name: <component_secret>
+       namespace: <component_namespace>
+     ...
    ```
 
-{%- if aws %} kind: AWSProviderSpec statementEntries: - effect: Allow action: - s3:CreateBucket - s3:DeleteBucket resource: "\*" {% endif %} {% if ash or azure %} kind: AzureProviderSpec roleBindings: - role: Contributor {% endif %} {% if gcp %} kind: GCPProviderSpec predefinedRoles: - roles/iam.securityReviewer - roles/iam.roleViewer skipServiceCheck: true {%- endif %} ... secretRef: name: <component_secret> namespace: <component_namespace> ... `   `yaml title="Sample Secret object" apiVersion: v1 kind: Secret metadata: name: <component_secret> namespace: <component_namespace> {%- if aws %} data: aws_access_key_id: <base64_encoded_aws_access_key_id> aws_secret_access_key: <base64_encoded_aws_secret_access_key> {% endif %} {% if azure or ash %} data: azure_subscription_id: <base64_encoded_azure_subscription_id> azure_client_id: <base64_encoded_azure_client_id> azure_client_secret: <base64_encoded_azure_client_secret> azure_tenant_id: <base64_encoded_azure_tenant_id> azure_resource_prefix: <base64_encoded_azure_resource_prefix> azure_resourcegroup: <base64_encoded_azure_resourcegroup> azure_region: <base64_encoded_azure_region> {% endif %} {% if google_cloud_platform %} data: service_account.json: <base64_encoded_gcp_service_account_file> {%- endif %} \`\`\`
+   ```yaml {title="Sample Secret object"}
+   apiVersion: v1
+   kind: Secret
+   metadata:
+     name: <component_secret>
+     namespace: <component_namespace>
+   data:
+     service_account.json: <base64_encoded_gcp_service_account_file>
+   ```
 
-```
-:::important
-
-Before upgrading a cluster that uses manually maintained credentials, you must ensure that the CCO is in an upgradeable state.
-
-:::
-```
+   > [!IMPORTANT]
+   > Before upgrading a cluster that uses manually maintained credentials, you must ensure that the CCO is in an upgradeable state.
 
 ### Configuring a Google Cloud cluster to use short-term credentials {#installing-gcp-with-short-term-creds_installing-gcp-shared-vpc}
 
@@ -680,7 +678,7 @@ To install a cluster that is configured to use Google Cloud Workload Identity, y
 
 #### Configuring the Cloud Credential Operator utility {#cco-ccoctl-configuring_installing-gcp-shared-vpc}
 
-{.\_abstract} To create and manage cloud credentials from outside of the cluster when the Cloud Credential Operator (CCO) is operating in manual mode, extract and prepare the CCO utility (`ccoctl`) binary.
+To create and manage cloud credentials from outside of the cluster when the Cloud Credential Operator (CCO) is operating in manual mode, extract and prepare the CCO utility (`ccoctl`) binary.
 
 > [!NOTE]
 > The `ccoctl` utility is a Linux binary that must run in a Linux environment.
@@ -691,7 +689,7 @@ To install a cluster that is configured to use Google Cloud Workload Identity, y
 - You have installed the OpenShift CLI (`oc`).
 - You have added one of the following authentication options to the Google Cloud account that the `ccoctl` utility uses:
 
-  - The ***IAM Workload Identity Pool Admin*** role
+  - The **IAM Workload Identity Pool Admin** role
   - The following granular permissions:
 
     - `compute.projects.get`
@@ -844,7 +842,22 @@ You must have:
      --key-storage-method=<key_storage_method>
    ```
 
-   where: `<name>`:: Specifies the user-defined name for all created Google Cloud resources used for tracking. If you plan to install the Google Cloud Filestore Container Storage Interface (CSI) Driver Operator, retain this value. `<gcp_region>`:: Specifies the Google Cloud region in which cloud resources will be created. `<gcp_project_id>`:: Specifies the Google Cloud project ID in which cloud resources will be created. `<path_to_credentials_requests_directory>`:: Specifies the directory containing the files of `CredentialsRequest` manifests to create Google Cloud service accounts. `<key_storage_method>`:: Specifies the method for storing OIDC JWK files. Accepted values are `public-bucket` and `pool-jwk-file`. The default value `public-bucket` creates a public GCS bucket to host the OIDC configuration and JWK files. The `pool-jwk-file` value attaches the JWK directly to the workload identity pool provider without creating a public bucket. This parameter is optional.
+   where:
+
+   `<name>`
+   :   Specifies the user-defined name for all created Google Cloud resources used for tracking. If you plan to install the Google Cloud Filestore Container Storage Interface (CSI) Driver Operator, retain this value.
+
+   `<gcp_region>`
+   :   Specifies the Google Cloud region in which cloud resources will be created.
+
+   `<gcp_project_id>`
+   :   Specifies the Google Cloud project ID in which cloud resources will be created.
+
+   `<path_to_credentials_requests_directory>`
+   :   Specifies the directory containing the files of `CredentialsRequest` manifests to create Google Cloud service accounts.
+
+   `<key_storage_method>`
+   :   Specifies the method for storing OIDC JWK files. Accepted values are `public-bucket` and `pool-jwk-file`. The default value `public-bucket` creates a public GCS bucket to host the OIDC configuration and JWK files. The `pool-jwk-file` value attaches the JWK directly to the workload identity pool provider without creating a public bucket. This parameter is optional.
 
    > [!NOTE]
    > If your cluster uses Technology Preview features that are enabled by the `TechPreviewNoUpgrade` feature set, you must include the `--enable-tech-preview` parameter.
@@ -1092,22 +1105,17 @@ To deploy your OpenShift Container Platform cluster, you can initialize installa
    - The `gcloud cli` default credentials
 2. In the directory that contains the installation program, initialize the cluster deployment by running the following command:
 
-   ```terminal
-   $ ./openshift-install create cluster --dir <installation_directory> \
-       --log-level=info
-   ```
+```terminal
+$ ./openshift-install create cluster --dir <installation_directory> \
+    --log-level=info
+```
 
-   ```
-   *   For `<installation_directory>`, specify the
-   location of your customized `./install-config.yaml` file.
+- For `<installation_directory>`, specify the location of your customized `./install-config.yaml` file.
+- To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
 
-   *   To view different installation details, specify `warn`, `debug`, or
-   `error` instead of `info`.
-   ```
-3. Optional: You can reduce the number of permissions for the service account that you used to install the cluster.
-
-   - If you assigned the `Owner` role to your service account, you can remove that role and replace it with the `Viewer` role.
-   - If you included the `Service Account Key Admin` role, you can remove it.
+  1. Optional: You can reduce the number of permissions for the service account that you used to install the cluster.
+- If you assigned the `Owner` role to your service account, you can remove that role and replace it with the `Viewer` role.
+- If you included the `Service Account Key Admin` role, you can remove it.
 
 **Verification**
 
@@ -1215,6 +1223,7 @@ Use the IP address of the API server to provision your own DNS record with the `
 5. Use the IP address to provision your own DNS record with the `*.apps.<cluster_name>.<base_domain>.` hostname by using your cluster name and base cluster domain.
 
 **Additional resources**
+{._additional-resources}
 
 - [Additional Google Cloud configuration parameters](/openshift-docs-markdown/installing/installing_gcp/installation-config-parameters-gcp#installation-configuration-parameters-additional-gcp_installation-config-parameters-gcp)
 
@@ -1257,6 +1266,7 @@ The `kubeconfig` file is specific to a cluster and OpenShift Container Platform 
 - "Remote health reporting"
 
 **Additional resources**
+{._additional-resources}
 
 - See [Accessing the web console](/openshift-docs-markdown/web_console/web-console#web-console) for more details about accessing and understanding the OpenShift Container Platform web console.
 
@@ -1267,10 +1277,12 @@ To provide metrics about cluster health and the success of updates, the Telemetr
 After you confirm that your [OpenShift Cluster Manager](https://console.redhat.com/openshift) inventory is correct, either maintained automatically by Telemetry or manually by using OpenShift Cluster Manager,use subscription watch to track your OpenShift Container Platform subscriptions at the account or multi-cluster level. For more information about subscription watch, see "Data Gathered and Used by Red Hat’s subscription services" in the *Additional resources* section.
 
 **Additional resources**
+{._additional-resources}
 
 - See [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring) for more information about the Telemetry service
 
-## Next steps {#installation-gcp-shared-vpc-next-steps_installing-gcp-shared-vpc}
+**Next steps**
+{._additional-resources}
 
 - [Customize your cluster](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations).
 - If necessary, you can [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting).

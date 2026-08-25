@@ -23,9 +23,9 @@ If the VM is delete protected, the **Delete** action is disabled in the VM’s *
 
    - For a virtualization-focused view, select **Administrator** → **Virtualization** → **VirtualMachines**.
    - For a general view, navigate to **Virtualization** → **VirtualMachines**.
-2. Click the **Options** menu ![](kebab.png "Options menu") beside a VM and select **Delete**.
+2. Click the **Options** menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") beside a VM and select **Delete**.
 
-   Alternatively, click the VM’s name to open the **VirtualMachine details** page and click **Actions** -> **Delete**.
+   Alternatively, click the VM’s name to open the **VirtualMachine details** page and click **Actions** → **Delete**.
 
    You can also right-click the VM in the tree view and select **Delete** from the pop-up menu.
 3. Optional: Select **With grace period** or clear **Delete disks**.

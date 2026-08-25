@@ -344,6 +344,7 @@ tag:CAPI[]\[\]
   end:MAPI[]\[\]
 
 **Additional resources**
+{._additional-resources}
 
 - [Lifecycle hooks for the machine deletion phase](/openshift-docs-markdown/machine_management/deleting-machine#machine-lifecycle-hook-deletion_deleting-machine)
 - [Manually scaling a compute machine set](/openshift-docs-markdown/machine_management/manually-scaling-machineset#machineset-manually-scaling_manually-scaling-machineset)

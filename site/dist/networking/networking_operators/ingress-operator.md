@@ -52,15 +52,15 @@ The `IngressController` custom resource (CR) includes optional configuration par
 </tr>
 <tr>
   <td><code>endpointPublishingStrategy</code></td>
-  <td><code>endpointPublishingStrategy</code> is used to publish the Ingress Controller endpoints to other networks, enable load balancer integrations, and provide access to other systems.<br><br>For cloud environments, use the <code>loadBalancer</code> field to configure the endpoint publishing strategy for your Ingress Controller.<br><br>On Google Cloud, AWS, and Azure you can configure the following <code>endpointPublishingStrategy</code> fields:<br><br>You can configure the following <code>endpointPublishingStrategy</code> fields:<br><br><ul><li><code>loadBalancer.scope</code></li><li><code>loadBalancer.allowedSourceRanges</code></li></ul>If not set, the default value is based on <code>infrastructure.config.openshift.io/cluster</code> <code>.status.platform</code>:<br><br><ul><li>Amazon Web Services (AWS): <code>LoadBalancerService</code> (with External scope)</li><li>Google Cloud: <code>LoadBalancerService</code> (with External scope)</li><li>Azure: <code>LoadBalancerService</code> (with External scope)</li><li>Google Cloud: <code>LoadBalancerService</code> (with External scope)</li></ul>For most platforms, the <code>endpointPublishingStrategy</code> value can be updated. On Google Cloud, you can configure the following <code>endpointPublishingStrategy</code> fields:<br><br><ul><li><code>loadBalancer.scope</code></li><li><code>loadbalancer.providerParameters.gcp.clientAccess</code></li></ul>For non-cloud environments, such as a bare-metal platform, use the <code>NodePortService</code>, <code>HostNetwork</code>, or <code>Private</code> fields to configure the endpoint publishing strategy for your Ingress Controller.<br><br>If you do not set a value in one of these fields, the default value is based on binding ports specified in the <code>.status.platform</code> value in the <code>IngressController</code> CR.<br><br>If you need to update the <code>endpointPublishingStrategy</code> value after your cluster is deployed, you can configure the following <code>endpointPublishingStrategy</code> fields:<br><br><ul><li><code>hostNetwork.protocol</code></li><li><code>nodePort.protocol</code></li><li><code>private.protocol</code></li></ul></td>
+  <td><code>endpointPublishingStrategy</code> is used to publish the Ingress Controller endpoints to other networks, enable load balancer integrations, and provide access to other systems.<br><br>For cloud environments, use the <code>loadBalancer</code> field to configure the endpoint publishing strategy for your Ingress Controller.<br><br>  On Google Cloud, AWS, and Azure you can configure the following <code>endpointPublishingStrategy</code> fields:  <br><br>  <br><br><ul><li><code>loadBalancer.scope</code></li><li><code>loadBalancer.allowedSourceRanges</code></li></ul>If not set, the default value is based on <code>infrastructure.config.openshift.io/cluster</code> <code>.status.platform</code>:<br><br>    <ul><li>Azure: <code>LoadBalancerService</code> (with External scope)</li><li>Google Cloud: <code>LoadBalancerService</code> (with External scope)</li></ul>  <br><br>  For most platforms, the <code>endpointPublishingStrategy</code> value can be updated. On Google Cloud, you can configure the following <code>endpointPublishingStrategy</code> fields:<br><br><ul><li><code>loadBalancer.scope</code></li><li><code>loadbalancer.providerParameters.gcp.clientAccess</code></li></ul>  <br><br>  For non-cloud environments, such as a bare-metal platform, use the <code>NodePortService</code>, <code>HostNetwork</code>, or <code>Private</code> fields to configure the endpoint publishing strategy for your Ingress Controller.<br><br>If you do not set a value in one of these fields, the default value is based on binding ports specified in the <code>.status.platform</code> value in the <code>IngressController</code> CR.  <br><br>  If you need to update the <code>endpointPublishingStrategy</code> value after your cluster is deployed, you can configure the following <code>endpointPublishingStrategy</code> fields:<br><br><ul><li><code>hostNetwork.protocol</code></li><li><code>nodePort.protocol</code></li><li><code>private.protocol</code></li></ul> </td>
 </tr>
 <tr>
   <td><code>defaultCertificate</code></td>
-  <td>The <code>defaultCertificate</code> value is a reference to a secret that contains the default certificate that is served by the Ingress Controller. When Routes do not specify their own certificate, <code>defaultCertificate</code> is used.<br><br>The secret must contain the following keys and data:<ul><li><code>tls.crt</code>: certificate file contents</li><li><code>tls.key</code>: key file contents</li></ul>If not set, a wildcard certificate is automatically generated and used. The certificate is valid for the Ingress Controller <code>domain</code> and <code>subdomains</code>, andthe generated certificate's CA is automatically integrated with thecluster's trust store.<br><br>The in-use certificate, whether generated or user-specified, is automatically integrated with OpenShift Container Platform built-in OAuth server.</td>
+  <td>The <code>defaultCertificate</code> value is a reference to a secret that contains the default certificate that is served by the Ingress Controller. When Routes do not specify their own certificate, <code>defaultCertificate</code> is used.<br><br>The secret must contain the following keys and data:<ul><li><code>tls.crt</code>: certificate file contents</li><li><code>tls.key</code>: key file contents</li></ul>If not set, a wildcard certificate is automatically generated and used. The certificate is valid for the Ingress Controller <code>domain</code> and <code>subdomains</code>, and the generated certificate's CA is automatically integrated with the cluster's trust store.<br><br>The in-use certificate, whether generated or user-specified, is automatically integrated with OpenShift Container Platform built-in OAuth server.</td>
 </tr>
 <tr>
   <td><code>namespaceSelector</code></td>
-  <td><code>namespaceSelector</code> is used to filter the set of namespaces serviced by theIngress Controller. This is useful for implementing shards.</td>
+  <td><code>namespaceSelector</code> is used to filter the set of namespaces serviced by the Ingress Controller. This is useful for implementing shards.</td>
 </tr>
 <tr>
   <td><code>routeSelector</code></td>
@@ -68,11 +68,11 @@ The `IngressController` custom resource (CR) includes optional configuration par
 </tr>
 <tr>
   <td><code>nodePlacement</code></td>
-  <td><code>nodePlacement</code> enables explicit control over the scheduling of the Ingress Controller.<br><br>If not set, the defaults values are used.<br><br><dl><dt>Note</dt><dd>The <code>nodePlacement</code> parameter includes two parts, <code>nodeSelector</code> and <code>tolerations</code>. For example:<br><br><pre>nodePlacement:&#10; nodeSelector:&#10;   matchLabels:&#10;     kubernetes.io/os: linux&#10; tolerations:&#10; - effect: NoSchedule&#10;   operator: Exists</pre></dd></dl></td>
+  <td><code>nodePlacement</code> enables explicit control over the scheduling of the Ingress Controller.<br><br>If not set, the defaults values are used.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>The <code>nodePlacement</code> parameter includes two parts, <code>nodeSelector</code> and <code>tolerations</code>. For example:<br><br><pre>nodePlacement:&#10; nodeSelector:&#10;   matchLabels:&#10;     kubernetes.io/os: linux&#10; tolerations:&#10; - effect: NoSchedule&#10;   operator: Exists</pre></dd></dl></td>
 </tr>
 <tr>
   <td><code>tlsSecurityProfile</code></td>
-  <td><code>tlsSecurityProfile</code> specifies settings for TLS connections for Ingress Controllers.<br><br>If not set, the default value is based on the <code>apiservers.config.openshift.io/cluster</code> resource.<br><br>When using the <code>Old</code>, <code>Intermediate</code>, and <code>Modern</code> profile types, the effective profile configuration is subject to change between releases. For example, given a specification to use the <code>Intermediate</code> profile deployed on release <code>X.Y.Z</code>, an upgrade to release <code>X.Y.Z+1</code> may cause a new profile configuration to be applied to the Ingress Controller, resulting in a rollout.<br><br>The minimum TLS version for Ingress Controllers is <code>1.1</code>, and the maximum TLS version is <code>1.3</code>.<br><br><dl><dt>Note</dt><dd>Ciphers and the minimum TLS version of the configured security profile are reflected in the <code>TLSProfile</code> status.</dd></dl><br><br><dl><dt>Important</dt><dd>The Ingress Operator converts the TLS <code>1.0</code> of an <code>Old</code> or <code>Custom</code> profile to <code>1.1</code>.</dd></dl></td>
+  <td><code>tlsSecurityProfile</code> specifies settings for TLS connections for Ingress Controllers.<br><br>If not set, the default value is based on the <code>apiservers.config.openshift.io/cluster</code> resource.<br><br>When using the <code>Old</code>, <code>Intermediate</code>, and <code>Modern</code> profile types, the effective profile configuration is subject to change between releases. For example, given a specification to use the <code>Intermediate</code> profile deployed on release <code>X.Y.Z</code>, an upgrade to release <code>X.Y.Z+1</code> may cause a new profile configuration to be applied to the Ingress Controller, resulting in a rollout.<br><br>The minimum TLS version for Ingress Controllers is <code>1.1</code>, and the maximum TLS version is <code>1.3</code>.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>Ciphers and the minimum TLS version of the configured security profile are reflected in the <code>TLSProfile</code> status.</dd></dl><br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>The Ingress Operator converts the TLS <code>1.0</code> of an <code>Old</code> or <code>Custom</code> profile to <code>1.1</code>.</dd></dl></td>
 </tr>
 <tr>
   <td><code>clientTLS</code></td>
@@ -133,7 +133,7 @@ The OpenShift Container Platform TLS security profiles are based on [Mozilla rec
 
 You can specify one of the following TLS security profiles for each component:
 
-***TLS security profiles***
+**TLS security profiles**
 
 <table>
 <thead>
@@ -145,11 +145,11 @@ You can specify one of the following TLS security profiles for each component:
 <tbody>
 <tr>
   <td><code>Old</code></td>
-  <td>This profile is intended for use with legacy clients or libraries. The profile is based on the <a href="https://wiki.mozilla.org/Security/Server_Side_TLS#Old_backward_compatibility">Old backward compatibility</a> recommended configuration.<br><br>The <code>Old</code> profile requires a minimum TLS version of 1.0.<br><br><dl><dt>Note</dt><dd>For the Ingress Controller, the minimum TLS version is converted from 1.0 to 1.1.</dd></dl></td>
+  <td>This profile is intended for use with legacy clients or libraries. The profile is based on the <a href="https://wiki.mozilla.org/Security/Server_Side_TLS#Old_backward_compatibility">Old backward compatibility</a> recommended configuration.<br><br>The <code>Old</code> profile requires a minimum TLS version of 1.0.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>For the Ingress Controller, the minimum TLS version is converted from 1.0 to 1.1.</dd></dl></td>
 </tr>
 <tr>
   <td><code>Intermediate</code></td>
-  <td>This profile is the default TLS security profile for the Ingress Controller, kubelet, and control plane. The profile is based on the <a href="https://wiki.mozilla.org/Security/Server_Side_TLS#Intermediate_compatibility_.28recommended.29">Intermediate compatibility</a> recommended configuration.<br><br>The <code>Intermediate</code> profile requires a minimum TLS version of 1.2.<br><br><dl><dt>Note</dt><dd>This profile is the recommended configuration for the majority of clients.</dd></dl></td>
+  <td>This profile is the default TLS security profile for the Ingress Controller, kubelet, and control plane. The profile is based on the <a href="https://wiki.mozilla.org/Security/Server_Side_TLS#Intermediate_compatibility_.28recommended.29">Intermediate compatibility</a> recommended configuration.<br><br>The <code>Intermediate</code> profile requires a minimum TLS version of 1.2.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>This profile is the recommended configuration for the majority of clients.</dd></dl></td>
 </tr>
 <tr>
   <td><code>Modern</code></td>
@@ -157,7 +157,7 @@ You can specify one of the following TLS security profiles for each component:
 </tr>
 <tr>
   <td><code>Custom</code></td>
-  <td>This profile allows you to define the TLS version and ciphers to use.<br><br><dl><dt>Warning</dt><dd>Use caution when using a <code>Custom</code> profile, because invalid configurations can cause problems.</dd></dl></td>
+  <td>This profile allows you to define the TLS version and ciphers to use.<br><br><dl class="db-admonition db-admonition-warning"><dt>Warning</dt><dd>Use caution when using a <code>Custom</code> profile, because invalid configurations can cause problems.</dd></dl></td>
 </tr>
 </tbody>
 </table>
@@ -281,7 +281,7 @@ If the `clientCA` value specifies an X509v3 certificate revocation list (CRL) di
    ```terminal
    $ oc create configmap \
       router-ca-certs-default \
-      --from-file=ca-bundle.pem=client-ca.crt \// (1)
+      --from-file=ca-bundle.pem=client-ca.crt \ (1)
       -n openshift-config
    ```
 
@@ -421,8 +421,8 @@ As an administrator, you can configure an Ingress Controller to use a custom cer
   $ oc --namespace openshift-ingress-operator get ingresscontrollers
   ```
 
-> [!NOTE]
-> If you have intermediate certificates, they must be included in the `tls.crt` file of the secret containing a custom default certificate. Order matters when specifying a certificate; list your intermediate certificate(s) after any server certificate(s).
+  > [!NOTE]
+  > If you have intermediate certificates, they must be included in the `tls.crt` file of the secret containing a custom default certificate. Order matters when specifying a certificate; list your intermediate certificate(s) after any server certificate(s).
 
 **Procedure**
 
@@ -681,8 +681,8 @@ The following procedure provides an example for scaling up the default Ingress C
    4. The Ingress Operator namespace.
    5. This expression evaluates to however many worker nodes are present in the deployed cluster.
 
-      > [!IMPORTANT]
-      > If you are using cross-namespace queries, you must target port 9091 and not port 9092 in the `serverAddress` field. You also must have elevated privileges to read metrics from this port.
+   > [!IMPORTANT]
+   > If you are using cross-namespace queries, you must target port 9091 and not port 9092 in the `serverAddress` field. You also must have elevated privileges to read metrics from this port.
 7. Apply the custom resource definition by running the following command:
 
    ```terminal
@@ -712,6 +712,7 @@ The following procedure provides an example for scaling up the default Ingress C
     ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing the custom metrics autoscaler](/openshift-docs-markdown/nodes/cma/nodes-cma-autoscaling-custom-install#nodes-cma-autoscaling-custom-install_nodes-cma-autoscaling-custom-install)
 - [Enabling monitoring for user-defined projects](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/preparing-to-configure-the-monitoring-stack-uwm#enabling-monitoring-for-user-defined-projects-uwm_preparing-to-configure-the-monitoring-stack-uwm)
@@ -836,6 +837,7 @@ Syslog is needed for high-traffic clusters where access logs could exceed the Op
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Capturing Original Client IP from the X-Forwarded-For Header in Ingress and Application Logs](https://access.redhat.com/solutions/7096271)
 
@@ -1094,8 +1096,7 @@ Order of precedence
 :   When the same HTTP header is modified both in the Ingress Controller and in a route, HAProxy prioritizes the actions in certain ways depending on whether it is a request or response header.
 
     - For HTTP response headers, actions specified in the Ingress Controller are executed after the actions specified in a route. This means that the actions specified in the Ingress Controller take precedence.
-
-- For HTTP request headers, actions specified in a route are executed after the actions specified in the Ingress Controller. This means that the actions specified in the route take precedence.
+    - For HTTP request headers, actions specified in a route are executed after the actions specified in the Ingress Controller. This means that the actions specified in the route take precedence.
 
 For example, a cluster administrator sets the X-Frame-Options response header with the value `DENY` in the Ingress Controller using the following configuration:
 
@@ -1154,7 +1155,7 @@ Additionally, any actions defined in either the Ingress Controller or a route ov
 Special case headers
 :   The following headers are either prevented entirely from being set or deleted, or allowed under specific circumstances:
 
-***Special case header configuration options***
+**Special case header configuration options**
 
 <table>
 <thead>
@@ -1246,8 +1247,8 @@ The following procedure modifies the Ingress Controller to set the X-Forwarded-C
    4. The type of action being taken on the header. This field can have the value `Set` or `Delete`.
    5. When setting HTTP headers, you must provide a `value`. The value can be a string from a list of available directives for that header, for example `DENY`, or it can be a dynamic value that will be interpreted using HAProxy’s dynamic value syntax. In this case, a dynamic value is added.
 
-      > [!NOTE]
-      > For setting dynamic header values for HTTP responses, allowed sample fetchers are `res.hdr` and `ssl_c_der`. For setting dynamic header values for HTTP requests, allowed sample fetchers are `req.hdr` and `ssl_c_der`. Both request and response dynamic values can use the `lower` and `base64` converters.
+   > [!NOTE]
+   > For setting dynamic header values for HTTP responses, allowed sample fetchers are `res.hdr` and `ssl_c_der`. For setting dynamic header values for HTTP requests, allowed sample fetchers are `req.hdr` and `ssl_c_der`. Both request and response dynamic values can use the `lower` and `base64` converters.
 3. Save the file to apply the changes.
 
 ### Using X-Forwarded headers {#nw-using-ingress-forwarded_configuring-ingress}
@@ -1338,17 +1339,17 @@ You can enable HTTP/2 on a specific Ingress Controller, or you can enable HTTP/2
   $ oc annotate ingresses.config/cluster ingress.operator.openshift.io/default-enable-http2=true
   ```
 
-> [!TIP]
-> Alternatively, you can apply the following YAML code to enable HTTP/2:
->
-> ```yaml
-> apiVersion: config.openshift.io/v1
-> kind: Ingress
-> metadata:
->   name: cluster
->   annotations:
->     ingress.operator.openshift.io/default-enable-http2: "true"
-> ```
+  > [!TIP]
+  > Alternatively, you can apply the following YAML code to enable HTTP/2:
+  >
+  > ```yaml
+  > apiVersion: config.openshift.io/v1
+  > kind: Ingress
+  > metadata:
+  >   name: cluster
+  >   annotations:
+  >     ingress.operator.openshift.io/default-enable-http2: "true"
+  > ```
 
 #### Disabling HTTP/2 {#nw-disable-http2_configuring-ingress}
 
@@ -1369,17 +1370,17 @@ You can disable HTTP/2 on a specific Ingress Controller, or you can disable HTTP
   $ oc annotate ingresses.config/cluster ingress.operator.openshift.io/default-enable-http2=false
   ```
 
-> [!TIP]
-> Alternatively, you can apply the following YAML code to disable HTTP/2:
->
-> ```yaml
-> apiVersion: config.openshift.io/v1
-> kind: Ingress
-> metadata:
->   name: cluster
->   annotations:
->     ingress.operator.openshift.io/default-enable-http2: "false"
-> ```
+  > [!TIP]
+  > Alternatively, you can apply the following YAML code to disable HTTP/2:
+  >
+  > ```yaml
+  > apiVersion: config.openshift.io/v1
+  > kind: Ingress
+  > metadata:
+  >   name: cluster
+  >   annotations:
+  >     ingress.operator.openshift.io/default-enable-http2: "false"
+  > ```
 
 ### Configuring the PROXY protocol for an Ingress Controller {#nw-ingress-controller-configuration-proxy-protocol_configuring-ingress}
 
@@ -1455,6 +1456,7 @@ This feature is not supported in cloud deployments. This restriction is because 
      ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring Ingress access logging](/openshift-docs-markdown/networking/networking_operators/ingress-operator#nw-configure-ingress-access-logging_configuring-ingress)
 
@@ -1796,6 +1798,7 @@ A cluster administrator can set the maximum number of simultaneous connections f
   > [!WARNING]
   > If you set the `spec.tuningOptions.maxConnections` value greater than the current operating system limit, the HAProxy process will not start. See the table in the "Ingress Controller configuration parameters" section for more information about this parameter.
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring a custom PKI](/openshift-docs-markdown/networking/configuring_network_settings/configuring-a-custom-pki#configuring-a-custom-pki)

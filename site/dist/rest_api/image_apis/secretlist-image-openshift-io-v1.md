@@ -1,5 +1,5 @@
 ---
-title: SecretList []
+title: SecretList [image.openshift.io/v1]
 ---
 
 # SecretList \[image.openshift.io/v1\] {#secretlist-image-openshift-io-v1}
@@ -28,11 +28,11 @@ Required
 
 The following API endpoints are available:
 
-- `/apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreams/{{ name }}/secrets`
+- `/apis/image.openshift.io/v1/namespaces/{namespace}/imagestreams/{name}/secrets`
 
   - `GET`: read secrets of the specified ImageStream
 
-### /apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreams/{{ name }}/secrets {#_apisimageopenshiftiov1namespaces_namespace_imagestreams_name_secrets}
+### /apis/image.openshift.io/v1/namespaces/{namespace}/imagestreams/{name}/secrets {#_apisimageopenshiftiov1namespaces_namespace_imagestreams_name_secrets}
 
 **Global path parameters**
 

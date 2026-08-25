@@ -85,6 +85,7 @@ You can use the OpenShift CLI (`oc`) to migrate to a cluster with multi-architec
 The migrations must be complete and all the cluster operators must be stable before you can add compute machine sets with different architectures to your cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring multi-architecture compute machines on an OpenShift Container Platform cluster](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/multi-architecture-configuration#multi-architecture-configuration)
 - [Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multiarch-tuning-operator)
@@ -141,12 +142,11 @@ You can migrate the control plane in your cluster from `x86` to `arm64` architec
    If the cluster is not using the multi payload, migrate the cluster to a multi-architecture cluster. For more information, see "Migrating to a cluster with multi-architecture compute machines using the CLI".
 3. Update your image stream from single-architecture to multi-architecture by running the following command:
 
-```terminal
-$ oc import-image <multiarch_image_stream_tag>  --from=<registry>/<project_name>/<image_name> \
---import-mode='PreserveOriginal'
-```
-
-1. Get the `arm64` compatible Amazon Machine Image (AMI) for configuring the control plane machine set by running the following command:
+   ```terminal
+   $ oc import-image <multiarch_image_stream_tag>  --from=<registry>/<project_name>/<image_name> \
+   --import-mode='PreserveOriginal'
+   ```
+4. Get the `arm64` compatible Amazon Machine Image (AMI) for configuring the control plane machine set by running the following command:
 
    ```terminal
    $ oc get configmap/coreos-bootimages -n openshift-machine-config-operator -o jsonpath='{.data.stream}' | jq -r '.architectures.aarch64.images.aws.regions."<aws_region>".image'
@@ -161,7 +161,7 @@ $ oc import-image <multiarch_image_stream_tag>  --from=<registry>/<project_name>
    ```terminal {title="Example output"}
    ami-xxxxxxx
    ```
-2. Update the control plane machine set to support the `arm64` architecture by running the following command:
+5. Update the control plane machine set to support the `arm64` architecture by running the following command:
 
    ```terminal
    $ oc edit controlplanemachineset.machine.openshift.io cluster -n openshift-machine-api
@@ -190,6 +190,7 @@ $ oc import-image <multiarch_image_stream_tag>  --from=<registry>/<project_name>
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Control plane configuration options for Amazon Web Services](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso_provider_configurations/cpmso-config-options-aws#cpmso-config-options-aws)
 - [Tested instance types for AWS on 64-bit ARM infrastructures](/openshift-docs-markdown/installing/installing_aws/upi/upi-aws-installation-reqs#installation-aws-arm-tested-machine-types_upi-aws-installation-reqs)
@@ -237,14 +238,13 @@ You can migrate the control plane or infra machine sets in your Google Cloud clu
    If the cluster is not using the multi payload, migrate the cluster to a multi-architecture cluster. For more information, see "Migrating to a cluster with multi-architecture compute machines".
 3. If you use any custom image streams, update them from single-architecture to multi-architecture by running the following command for each image stream:
 
-```terminal
-$ oc import-image <multiarch_image_stream_tag>  --from=<registry>/<project_name>/<image_name> \
---import-mode='PreserveOriginal'
-```
-
-1. Select an instance type that matches the target architecture from [General-purpose machine family for Compute engine](https://cloud.google.com/compute/docs/general-purpose-machines) (Google documentation). Check the [Available regions and zones](https://cloud.google.com/compute/docs/regions-zones#available) table (Google documentation) to verify that the instance type is supported in your zone.
-2. Select a supported disk type for the instance type that you selected from the "Supported disk types" section of [General-purpose machine family for Compute engine](https://cloud.google.com/compute/docs/general-purpose-machines) (Google documentation).
-3. Determine the Google Cloud image that the machine set uses after migration by running the following command:
+   ```terminal
+   $ oc import-image <multiarch_image_stream_tag>  --from=<registry>/<project_name>/<image_name> \
+   --import-mode='PreserveOriginal'
+   ```
+4. Select an instance type that matches the target architecture from [General-purpose machine family for Compute engine](https://cloud.google.com/compute/docs/general-purpose-machines) (Google documentation). Check the [Available regions and zones](https://cloud.google.com/compute/docs/regions-zones#available) table (Google documentation) to verify that the instance type is supported in your zone.
+5. Select a supported disk type for the instance type that you selected from the "Supported disk types" section of [General-purpose machine family for Compute engine](https://cloud.google.com/compute/docs/general-purpose-machines) (Google documentation).
+6. Determine the Google Cloud image that the machine set uses after migration by running the following command:
 
    ```terminal
    $ oc get configmap/coreos-bootimages \
@@ -262,7 +262,7 @@ $ oc import-image <multiarch_image_stream_tag>  --from=<registry>/<project_name>
    ```
 
    Use the `project` and `name` parameters from the output to form the `image` parameter in the following format: `projects/<project>/global/images/<name>`.
-4. To migrate the control plane to another architecture, run the following command:
+7. To migrate the control plane to another architecture, run the following command:
 
    ```terminal
    $ oc edit controlplanemachineset.machine.openshift.io cluster -n openshift-machine-api
@@ -271,7 +271,7 @@ $ oc import-image <multiarch_image_stream_tag>  --from=<registry>/<project_name>
    1. Replace the `disks.type` parameter with the disk type that you selected.
    2. Replace the `disks.image` parameter with the `image` parameter that you formed previously.
    3. Replace the `machineType` parameter with the instance type that you selected.
-5. To migrate an infra machine set to another architecture, run the following command using the ID of an infra machine set:
+8. To migrate an infra machine set to another architecture, run the following command using the ID of an infra machine set:
 
    ```terminal
    $ oc edit machineset <infra-machine-set_id> -n openshift-machine-api
@@ -282,6 +282,7 @@ $ oc import-image <multiarch_image_stream_tag>  --from=<registry>/<project_name>
    3. Replace the `machineType` parameter with the instance type that you selected.
 
 **Additional resources**
+{._additional-resources}
 
 - [Tested instance types for Google Cloud on 64-bit ARM infrastructures](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#installation-gcp-tested-machine-types-arm_installing-gcp-customizations)
 - [Migrating to a cluster with multi-architecture compute machines using the CLI](/openshift-docs-markdown/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-arch-cli_updating-clusters-overview)

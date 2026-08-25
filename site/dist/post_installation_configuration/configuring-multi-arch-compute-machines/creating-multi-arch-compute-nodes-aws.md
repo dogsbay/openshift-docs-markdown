@@ -155,7 +155,8 @@ You can add multi-architecture compute machines to a multi-architecture cluster 
    $ oc get nodes
    ```
 
-## Additional resources {#additional-resources_creating-multi-arch-compute-nodes-aws}
+**Additional resources**
+{._additional-resources}
 
 - [Installing a cluster on AWS with customizations](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations)
 - [Migrating to a cluster with multi-architecture compute machines](/openshift-docs-markdown/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-payload)

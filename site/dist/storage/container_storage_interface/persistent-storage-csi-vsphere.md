@@ -26,6 +26,7 @@ vSphere CSI driver
 > CSI automatic migration should be seamless. Migration does not change how you use all existing API objects, such as persistent volumes, persistent volume claims, and storage classes.
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage)
 - [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
@@ -92,6 +93,7 @@ spec:
 Requesting a PVC of the RWX volume type should result in provisioning of persistent volumes (PVs) backed by the vSAN file service.
 
 **Additional resources**
+{._additional-resources}
 
 - [vSAN File Service](https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vsan.doc/GUID-82565B82-C911-42F7-85B1-E9EF973EE90C.html)
 
@@ -119,6 +121,7 @@ You can create a custom role for the Container Storage Interface (CSI) driver, t
 To remove a third-party CSI driver, see "Removing a third-party vSphere CSI Driver".
 
 **Additional resources**
+{._additional-resources}
 
 - [Removing a third-party vSphere CSI Driver Operator](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-vsphere#persistent-storage-csi-vsphere-install-issues_persistent-storage-csi-vsphere)
 
@@ -172,6 +175,7 @@ After encrypting VMs, you can configure a storage class that supports dynamic en
 - **Tag-based placement**: Encrypts the provisioned volumes and uses tag-based placement to target specific datastores.
 
 **Additional resources**
+{._additional-resources}
 
 - [Requirements for encrypting virtual machines](/openshift-docs-markdown/installing/installing_vsphere/upi/upi-vsphere-installation-reqs#installation-vsphere-encrypted-vms_upi-vsphere-installation-reqs)
 - [During installation: Step 7 of Installing RHCOS and starting the OpenShift Container Platform bootstrap process](/openshift-docs-markdown/installing/installing_vsphere/upi/installing-vsphere#installation-vsphere-machines_installing-vsphere)
@@ -255,7 +259,8 @@ To enable multi-vCenter support for high availability without shared storage, sp
 
 - Specify multiple vSphere clusters during installation. For information, see "Installation configuration parameters for vSphere".
 
-<a name="link_installation_config_parameters_vsphere"></a>**Additional resources**
+**Additional resources**
+{._additional-resources}
 
 - [Installation configuration parameters for vSphere](/openshift-docs-markdown/installing/installing_vsphere/installation-config-parameters-vsphere#installation-config-parameters-vsphere)
 
@@ -287,7 +292,8 @@ The following guidelines are recommended for vSphere CSI topology:
 - Volume provisioning requests in topology-aware environments attempt to create volumes in datastores accessible to all hosts under a given topology segment. This includes hosts that do not have Kubernetes node VMs running on them. For example, if the vSphere Container Storage Plug-in driver receives a request to provision a volume in `zone-a`, applied on the data center `dc-1`, all hosts under `dc-1` must have access to the datastore selected for volume provisioning. The hosts include those that are directly under `dc-1`, and those that are a part of clusters inside `dc-1`.
 - For additional recommendations, you should read the VMware "Guidelines and Best Practices for Deployment with Topology".
 
-<a name="link_installation_config_parameters_vsphere"></a>**Additional resources**
+**Additional resources**
+{._additional-resources}
 
 - [Guidelines and Best Practices for Deployment with Topology](https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/container-storage-plugin/3-0/getting-started-with-vmware-vsphere-container-storage-plug-in-3-0/vsphere-container-storage-plug-in-deployment/deploying-vsphere-container-storage-plug-in-with-topology.html#GUID-162E7582-723B-4A0F-A937-3ACE82EAFD31-en)
 
@@ -301,7 +307,8 @@ To enable automatic topology-aware storage provisioning across vSphere failure d
 
   No additional action is necessary and the default storage class that is created by OpenShift Container Platform is topology aware and should allow provisioning of volumes in different failure domains.
 
-<a name="link_installation_config_parameters_vsphere"></a>**Additional resources**
+**Additional resources**
+{._additional-resources}
 
 - [Configuring regions and zones for a VMware vCenter](/openshift-docs-markdown/installing/installing_vsphere/ipi/installing-vsphere-installer-provisioned-customizations#configuring-vsphere-regions-zones_installing-vsphere-installer-provisioned-customizations)
 
@@ -364,7 +371,8 @@ To enable topology-aware storage provisioning after cluster installation, config
         > [!NOTE]
         > You can also create the storage class by editing the preceding YAML file and running the command `oc create -f $FILE`.
 
-<a name="link_installation_config_parameters_vsphere"></a>**Additional resources**
+**Additional resources**
+{._additional-resources}
 
 - [Specifying multiple regions and zones for your cluster on vSphere](/openshift-docs-markdown/installing/installing_vsphere/post-install-vsphere-zones-regions-configuration#specifying-regions-zones-infrastructure-vsphere_post-install-vsphere-zones-regions-configuration)
 - [VMware vSphere tag documentation](https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-vcenter-esxi-management/GUID-16422FF7-235B-4A44-92E2-532F6AED0923.html?hWord=N4IghgNiBcIC5gOYgL5A)
@@ -498,7 +506,8 @@ To configure topology-aware storage provisioning without using the `infrastructu
         > [!NOTE]
         > You can also create the storage class by editing the preceding YAML file and running the command `oc create -f $FILE`.
 
-<a name="link_installation_config_parameters_vsphere"></a>**Additional resources**
+**Additional resources**
+{._additional-resources}
 
 - [VMware vSphere tag documentation](https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-vcenter-esxi-management/GUID-16422FF7-235B-4A44-92E2-532F6AED0923.html?hWord=N4IghgNiBcIC5gOYgL5A)
 
@@ -634,7 +643,8 @@ For more VMware snapshot performance recommendations, see "Best practices for us
 
   The parameter `global-max-snapshots-per-block-volume` is now set to 10.
 
-<a name="link_installation_config_parameters_vsphere"></a>**Additional resources**
+**Additional resources**
+{._additional-resources}
 
 - [Best practices for using VMware snapshots in the vSphere environment](https://kb.vmware.com/s/article/1025279)
 
@@ -657,7 +667,8 @@ If you are running out of space in your current datastore, or want to move to a 
 
 For additional limitations, see "For vSphere 8", "For VCF 9", "For vSphere v8.0, more general information", and "For VCF 9, more general information".
 
-<a name="link_installation_config_parameters_vsphere"></a>**Additional resources**
+**Additional resources**
+{._additional-resources}
 
 - [For vSphere 8](https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vsphere-storage-8-0/getting-started-with-cloud-native-storage-in-vsphere/cloud-native-storage-for-vsphere-administrators/migrating-container-volumes-in-vsphere.html)
 - [For VCF 9](https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/9-0/vsphere-storage/getting-started-with-cloud-native-storage-in-vsphere/cloud-native-storage-for-vsphere-administrators/migrating-container-volumes-in-vsphere.html#GUID-536DEB75-84F5-48DC-A425-3BF703B8F54E-en)
@@ -674,7 +685,7 @@ Before disabling or re-enabling vSphere storage, understand the impact on persis
 
 The consequences of disabling and enabling storage on vSphere are described in the following table.
 
-***Consequences of disabling/enabling storage on vSphere***
+**Consequences of disabling/enabling storage on vSphere**
 
 <table>
 <thead>
@@ -686,7 +697,7 @@ The consequences of disabling and enabling storage on vSphere are described in t
 <tbody>
 <tr>
   <td><ul><li>vSphere CSI Driver Operator un-installs the CSI driver.</li><li>Storage container orchestration (CO) should be healthy.</li><li>vSphere-problem-detector continues running, but does not emit alerts or events, and checks less frequently (once per 24 hours).</li><li>All existing persistent volumes (PVs), persistent volume claims (PVCs), and vSphere storage policies are unchanged:<ul><li>vSphere PVs cannot be used in new pods.</li><li>vSphere PVs stay mounted and attached forever to existing nodes for existing pods. These pods remain in terminating state indefinitely after deletion.</li></ul></li><li>Storage classes are removed</li></ul></td>
-  <td>* vSphere CSI Driver Operator re-installs the CSI driver.</td>
+  <td>* vSphere CSI Driver Operator re-installs the CSI driver.<br><br>* If necessary, the vSphere CSI Driver Operator creates the vSphere storage policy.</td>
 </tr>
 </tbody>
 </table>
@@ -731,7 +742,8 @@ For information about how to add bare-metal nodes, see "Adding bare-metal comput
 >
 > For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
 
-<a name="link_installation_config_parameters_vsphere"></a>**Additional resources**
+**Additional resources**
+{._additional-resources}
 
 - [Disabling and enabling storage on vSphere](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-vsphere#persistent-storage-csi-vsphere-disable-storage-overview_persistent-storage-csi-vsphere)
 - [Adding bare-metal compute machines to a vSphere cluster](/openshift-docs-markdown/machine_management/user_infra/adding-bare-metal-compute-vsphere-user-infra)
@@ -747,8 +759,7 @@ For vSphere version 8 or later, or VMware vSphere Foundation (VVF) 9, or VMware 
 
 Limitations
 :   - You must be running VMware vSphere version 8 or later, or VVF 9, or VCF 9.
-
-- You can potentially exceed the limit of 2048 virtual disks per host if you increase the maximum number of volumes per node on enough nodes. This can occur because there is no Distributed Resource scheduler (DRS) validation for vSphere to ensure you do not exceed this limit.
+    - You can potentially exceed the limit of 2048 virtual disks per host if you increase the maximum number of volumes per node on enough nodes. This can occur because there is no Distributed Resource scheduler (DRS) validation for vSphere to ensure you do not exceed this limit.
 
 > [!IMPORTANT]
 > Increasing volumes per node is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
@@ -793,7 +804,8 @@ To accommodate workloads requiring more than 59 persistent volumes per node, inc
    For `maxAllowedBlockVolumesPerNode`, enter the desired value here for the maximum number of volumes per node. The default is 59. The minimum value is 1 and the maximum value is 255.
 9. Click **Save**.
 
-## Additional resources {#additional-resources_persistent-storage-csi-vsphere}
+**Additional resources**
+{._additional-resources}
 
 - [Best practices for using VMware snapshots in the vSphere environment](https://kb.vmware.com/s/article/1025279)
 - [VMware vCenter documentation](https://techdocs.broadcom.com/us/en/vmware-cis/vsphere.html)

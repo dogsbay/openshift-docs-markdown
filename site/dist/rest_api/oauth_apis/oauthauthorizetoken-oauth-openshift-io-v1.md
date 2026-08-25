@@ -1,5 +1,5 @@
 ---
-title: OAuthAuthorizeToken []
+title: OAuthAuthorizeToken [oauth.openshift.io/v1]
 ---
 
 # OAuthAuthorizeToken \[oauth.openshift.io/v1\] {#oauthauthorizetoken-oauth-openshift-io-v1}
@@ -43,13 +43,13 @@ The following API endpoints are available:
 - `/apis/oauth.openshift.io/v1/watch/oauthauthorizetokens`
 
   - `GET`: watch individual changes to a list of OAuthAuthorizeToken. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/oauth.openshift.io/v1/oauthauthorizetokens/{{ name }}`
+- `/apis/oauth.openshift.io/v1/oauthauthorizetokens/{name}`
 
   - `DELETE`: delete an OAuthAuthorizeToken
   - `GET`: read the specified OAuthAuthorizeToken
   - `PATCH`: partially update the specified OAuthAuthorizeToken
   - `PUT`: replace the specified OAuthAuthorizeToken
-- `/apis/oauth.openshift.io/v1/watch/oauthauthorizetokens/{{ name }}`
+- `/apis/oauth.openshift.io/v1/watch/oauthauthorizetokens/{name}`
 
   - `GET`: watch changes to an object of kind OAuthAuthorizeToken. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
 
@@ -146,7 +146,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/oauth.openshift.io/v1/oauthauthorizetokens/{{ name }} {#_apisoauthopenshiftiov1oauthauthorizetokens_name}
+### /apis/oauth.openshift.io/v1/oauthauthorizetokens/{name} {#_apisoauthopenshiftiov1oauthauthorizetokens_name}
 
 **Global path parameters**
 
@@ -251,7 +251,7 @@ Description
 | 201 - Created | [`OAuthAuthorizeToken`](/openshift-docs-markdown/rest_api/oauth_apis/oauthauthorizetoken-oauth-openshift-io-v1#oauthauthorizetoken-oauth-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/oauth.openshift.io/v1/watch/oauthauthorizetokens/{{ name }} {#_apisoauthopenshiftiov1watchoauthauthorizetokens_name}
+### /apis/oauth.openshift.io/v1/watch/oauthauthorizetokens/{name} {#_apisoauthopenshiftiov1watchoauthauthorizetokens_name}
 
 **Global path parameters**
 

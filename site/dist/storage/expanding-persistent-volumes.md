@@ -183,6 +183,7 @@ The possible values for `pvc.Status.AllocatedResourceStatus` are:
 
 For a typical block volume, the field transitions between `ControllerResizeInProgress`, `NodeResizePending`, `NodeResizeInProgress`, and then nil/empty when the volume expansion finishes.
 
-## Additional resources {#additional-resources_expanding-persistent-volumes}
+**Additional resources**
+{._additional-resources}
 
 - [CSI drivers supported by OpenShift Container Platform](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/storage/using-container-storage-interface-csi#csi-drivers-supported_persistent-storage-csi)

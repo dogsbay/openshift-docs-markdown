@@ -63,10 +63,52 @@ To enable workload partitioning, apply a performance profile.
 An appropriately configured performance profile specifies the `isolated` and `reserved` CPUs. Create a performance profile by using the Performance Profile Creator (PPC) tool.
 
 ```yaml {title="Sample performance profile configuration"}
-{% include "./snippets/ztp_PerformanceProfile.yaml" %}
+apiVersion: performance.openshift.io/v2
+kind: PerformanceProfile
+metadata:
+  # if you change this name make sure the 'include' line in TunedPerformancePatch.yaml
+  # matches this name: include=openshift-node-performance-${PerformanceProfile.metadata.name}
+  # Also in file 'validatorCRs/informDuValidator.yaml':
+  # name: 50-performance-${PerformanceProfile.metadata.name}
+  name: openshift-node-performance-profile
+  annotations:
+    ran.openshift.io/reference-configuration: "ran-du.redhat.com"
+spec:
+  additionalKernelArgs:
+    - "rcupdate.rcu_normal_after_boot=0"
+    - "efi=runtime"
+    - "vfio_pci.enable_sriov=1"
+    - "vfio_pci.disable_idle_d3=1"
+    - "module_blacklist=irdma"
+  cpu:
+    isolated: $isolated
+    reserved: $reserved
+  hugepages:
+    defaultHugepagesSize: $defaultHugepagesSize
+    pages:
+      - size: $size
+        count: $count
+        node: $node
+  machineConfigPoolSelector:
+    pools.operator.machineconfiguration.openshift.io/$mcp: ""
+  nodeSelector:
+    node-role.kubernetes.io/$mcp: ''
+  numa:
+    topologyPolicy: "restricted"
+  # To use the standard (non-realtime) kernel, set enabled to false
+  realTimeKernel:
+    enabled: true
+  workloadHints:
+    # WorkloadHints defines the set of upper level flags for different type of workloads.
+    # See https://github.com/openshift/cluster-node-tuning-operator/blob/master/docs/performanceprofile/performance_profile.md#workloadhints
+    # for detailed descriptions of each item.
+    # The configuration below is set for a low latency, performance mode.
+    realTime: true
+    highPowerConsumption: false
+    perPodPowerManagement: false
 ```
 
-***PerformanceProfile CR options for single-node OpenShift clusters***
+**PerformanceProfile CR options for single-node OpenShift clusters**
 
 <table>
 <thead>
@@ -86,7 +128,7 @@ An appropriately configured performance profile specifies the `isolated` and `re
 </tr>
 <tr>
   <td><code>spec.cpu.isolated</code></td>
-  <td>Set the isolated CPUs. Ensure all of the Hyper-Threading pairs match.<br><br><dl><dt>Important</dt><dd>The reserved and isolated CPU pools must not overlap and together must span all available cores. CPU cores that are not accounted for cause an undefined behaviour in the system.</dd></dl></td>
+  <td>Set the isolated CPUs. Ensure all of the Hyper-Threading pairs match.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>The reserved and isolated CPU pools must not overlap and together must span all available cores. CPU cores that are not accounted for cause an undefined behaviour in the system.</dd></dl></td>
 </tr>
 <tr>
   <td><code>spec.cpu.reserved</code></td>
@@ -102,11 +144,12 @@ An appropriately configured performance profile specifies the `isolated` and `re
 </tr>
 <tr>
   <td><code>spec.workloadHints</code></td>
-  <td>Use <code>workloadHints</code> to define the set of top level flags for different type of workloads.</td>
+  <td>Use <code>workloadHints</code> to define the set of top level flags for different type of workloads. The example configuration configures the cluster for low latency and high performance.</td>
 </tr>
 </tbody>
 </table>
 
 **Additional resources**
+{._additional-resources}
 
 - [About the Performance Profile Creator](/openshift-docs-markdown/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#cnf-about-the-profile-creator-tool_cnf-tuning-low-latency-nodes-with-perf-profile)

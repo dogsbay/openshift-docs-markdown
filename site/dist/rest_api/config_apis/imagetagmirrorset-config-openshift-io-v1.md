@@ -1,5 +1,5 @@
 ---
-title: ImageTagMirrorSet []
+title: ImageTagMirrorSet [config.openshift.io/v1]
 ---
 
 # ImageTagMirrorSet \[config.openshift.io/v1\] {#imagetagmirrorset-config-openshift-io-v1}
@@ -39,7 +39,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `imageTagMirrors` | `array` | imageTagMirrors allows images referenced by image tags in pods to be pulled from alternative mirrored repository locations. The image pull specification provided to the pod will be compared to the source locations described in imageTagMirrors and the image may be pulled down from any of the mirrors in the list instead of the specified repository allowing administrators to choose a potentially faster mirror. To use mirrors to pull images using digest specification only, users should configure a list of mirrors using "ImageDigestMirrorSet" CRD. If the image pull specification matches the repository of "source" in multiple imagetagmirrorset objects, only the objects which define the most specific namespace match will be used. For example, if there are objects using quay.io/libpod and quay.io/libpod/busybox as the "source", only the objects using quay.io/libpod/busybox are going to apply for pull specification quay.io/libpod/busybox. Each “source” repository is treated independently; configurations for different “source” repositories don’t interact. If the "mirrors" is not specified, the image will continue to be pulled from the specified repository in the pull spec. When multiple policies are defined for the same “source” repository, the sets of defined mirrors will be merged together, preserving the relative order of the mirrors, if possible. For example, if policy A has mirrors `a, b, c` and policy B has mirrors `c, d, e`, the mirrors will be used in the order `a, b, c, d, e`.  If the orders of mirror entries conflict (e.g. `a, b` vs. `b, a`) the configuration is not rejected but the resulting order is unspecified. Users who want to use a deterministic order of mirrors, should configure them into one list of mirrors using the expected order. |
+| `imageTagMirrors` | `array` | imageTagMirrors allows images referenced by image tags in pods to be pulled from alternative mirrored repository locations. The image pull specification provided to the pod will be compared to the source locations described in imageTagMirrors and the image may be pulled down from any of the mirrors in the list instead of the specified repository allowing administrators to choose a potentially faster mirror. To use mirrors to pull images using digest specification only, users should configure a list of mirrors using "ImageDigestMirrorSet" CRD.<br>If the image pull specification matches the repository of "source" in multiple imagetagmirrorset objects, only the objects which define the most specific namespace match will be used. For example, if there are objects using quay.io/libpod and quay.io/libpod/busybox as the "source", only the objects using quay.io/libpod/busybox are going to apply for pull specification quay.io/libpod/busybox. Each “source” repository is treated independently; configurations for different “source” repositories don’t interact.<br>If the "mirrors" is not specified, the image will continue to be pulled from the specified repository in the pull spec.<br>When multiple policies are defined for the same “source” repository, the sets of defined mirrors will be merged together, preserving the relative order of the mirrors, if possible. For example, if policy A has mirrors `a, b, c` and policy B has mirrors `c, d, e`, the mirrors will be used in the order `a, b, c, d, e`. If the orders of mirror entries conflict (e.g. `a, b` vs. `b, a`) the configuration is not rejected but the resulting order is unspecified. Users who want to use a deterministic order of mirrors, should configure them into one list of mirrors using the expected order. |
 | `imageTagMirrors[]` | `object` | ImageTagMirrors holds cluster-wide information about how to handle mirrors in the registries config. |
 
 ### .spec.imageTagMirrors {#_specimagetagmirrors}
@@ -96,13 +96,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of ImageTagMirrorSet
   - `GET`: list objects of kind ImageTagMirrorSet
   - `POST`: create an ImageTagMirrorSet
-- `/apis/config.openshift.io/v1/imagetagmirrorsets/{{ name }}`
+- `/apis/config.openshift.io/v1/imagetagmirrorsets/{name}`
 
   - `DELETE`: delete an ImageTagMirrorSet
   - `GET`: read the specified ImageTagMirrorSet
   - `PATCH`: partially update the specified ImageTagMirrorSet
   - `PUT`: replace the specified ImageTagMirrorSet
-- `/apis/config.openshift.io/v1/imagetagmirrorsets/{{ name }}/status`
+- `/apis/config.openshift.io/v1/imagetagmirrorsets/{name}/status`
 
   - `GET`: read status of the specified ImageTagMirrorSet
   - `PATCH`: partially update status of the specified ImageTagMirrorSet
@@ -176,7 +176,7 @@ Description
 | 202 - Accepted | [`ImageTagMirrorSet`](/openshift-docs-markdown/rest_api/config_apis/imagetagmirrorset-config-openshift-io-v1#imagetagmirrorset-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/imagetagmirrorsets/{{ name }} {#_apisconfigopenshiftiov1imagetagmirrorsets_name}
+### /apis/config.openshift.io/v1/imagetagmirrorsets/{name} {#_apisconfigopenshiftiov1imagetagmirrorsets_name}
 
 **Global path parameters**
 
@@ -280,7 +280,7 @@ Description
 | 201 - Created | [`ImageTagMirrorSet`](/openshift-docs-markdown/rest_api/config_apis/imagetagmirrorset-config-openshift-io-v1#imagetagmirrorset-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/imagetagmirrorsets/{{ name }}/status {#_apisconfigopenshiftiov1imagetagmirrorsets_name_status}
+### /apis/config.openshift.io/v1/imagetagmirrorsets/{name}/status {#_apisconfigopenshiftiov1imagetagmirrorsets_name_status}
 
 **Global path parameters**
 

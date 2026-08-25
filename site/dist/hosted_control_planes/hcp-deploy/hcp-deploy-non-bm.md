@@ -1,5 +1,5 @@
 ---
-title: Deploying {{ hcp }} on non-bare-metal agent machines
+title: Deploying hosted control planes on non-bare-metal agent machines
 ---
 
 # Deploying hosted control planes on non-bare-metal agent machines {#hcp-deploy-non-bm}
@@ -25,6 +25,7 @@ A *hosted cluster* is an OpenShift Container Platform cluster with its API endpo
 The hosted cluster is automatically imported as a managed cluster. If you want to disable this automatic import feature, see "Disabling the automatic import of hosted clusters into multicluster engine Operator".
 
 **Additional resources**
+{._additional-resources}
 
 - [Disabling the automatic import of hosted clusters into multicluster engine Operator](/openshift-docs-markdown/hosted_control_planes/hcp-import#hcp-import-disable_hcp-import)
 
@@ -39,6 +40,7 @@ Before you deploy hosted control planes on non-bare-metal agent machines, ensure
 - When you configure storage for hosted control planes, consider the recommended etcd practices. To ensure that you meet the latency requirements, dedicate a fast storage device to all hosted control planes etcd instances that run on each control-plane node. You can use LVM storage to configure a local storage class for hosted etcd pods. For more information, see "Recommended etcd practices" and "Persistent storage using logical volume manager storage" in the OpenShift Container Platform documentation.
 
 **Additional resources**
+{._additional-resources}
 
 - [Enabling the central infrastructure management service (Red Hat Advanced Cluster Management documentation)](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.16/html/clusters/cluster_mce_overview#enable-cim)
 - [Recommended etcd practices](/openshift-docs-markdown/etcd/etcd-practices#recommended-etcd-practices)
@@ -60,6 +62,7 @@ Before you deploy hosted control planes on non-bare-metal agent machines, ensure
 - You are running the management cluster and workers on the same infrastructure.
 
 **Additional resources**
+{._additional-resources}
 
 - [Advanced configuration (Red Hat Advanced Cluster Management documentation)](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#advanced-config-engine)
 - [Enabling the central infrastructure management service (Red Hat Advanced Cluster Management documentation)](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#enable-cim)
@@ -107,6 +110,7 @@ The Agent platform does not create any infrastructure, but it has several requir
 - DNS: The API and ingress endpoints must be routable.
 
 **Additional resources**
+{._additional-resources}
 
 - [Recommended etcd practices](/openshift-docs-markdown/etcd/etcd-practices#recommended-etcd-practices)
 - [Persistent storage using logical volume manager storage](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#persistent-storage-using-lvms_logical-volume-manager-storage)
@@ -279,6 +283,7 @@ When you create a hosted cluster with the Agent platform, the HyperShift Operato
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Manually importing a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-import#hcp-import-manual_hcp-import)
 - [Configuring a custom API server certificate in a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-certificates#hcp-custom-cert_hcp-certificates)
@@ -296,12 +301,12 @@ You can create a hosted cluster on non-bare-metal agent machines by using the Op
 **Procedure**
 
 1. Open the OpenShift Container Platform web console and log in by entering your administrator credentials.
-2. In the console header, select ***All Clusters***.
-3. Click ***Infrastructure -> Clusters***.
-4. Click ***Create cluster  Host inventory -> Hosted control plane***.
+2. In the console header, select **All Clusters**.
+3. Click **Infrastructure → Clusters**.
+4. Click **Create cluster  Host inventory → Hosted control plane**.
 
-   The ***Create cluster*** page is displayed.
-5. On the ***Create cluster*** page, follow the prompts to enter details about the cluster, node pools, networking, and automation.
+   The **Create cluster** page is displayed.
+5. On the **Create cluster** page, follow the prompts to enter details about the cluster, node pools, networking, and automation.
 
    As you enter details about the cluster, you might find the following tips useful:
 
@@ -309,13 +314,14 @@ You can create a hosted cluster on non-bare-metal agent machines by using the Op
    - On the **Cluster details** page, the pull secret is your OpenShift Container Platform pull secret that you use to access OpenShift Container Platform resources. If you selected a host inventory credential, the pull secret is automatically populated.
    - On the **Node pools** page, the namespace contains the hosts for the node pool. If you created a host inventory by using the console, the console creates a dedicated namespace.
    - On the **Networking** page, you select an API server publishing strategy. The API server for the hosted cluster can be exposed either by using an existing load balancer or as a service of the `NodePort` type. A DNS entry must exist for the `api.<hosted_cluster_name>.<basedomain>` setting that points to the destination where the API server can be reached. This entry can be a record that points to one of the nodes in the management cluster or a record that points to a load balancer that redirects incoming traffic to the Ingress pods.
-6. Review your entries and click ***Create***.
+6. Review your entries and click **Create**.
 
-   The ***Hosted cluster*** view is displayed.
-7. Monitor the deployment of the hosted cluster in the ***Hosted cluster*** view. If you do not see information about the hosted cluster, ensure that ***All Clusters*** is selected, and click the cluster name. Wait until the control plane components are ready. This process can take a few minutes.
-8. To view the node pool status, scroll to the ***NodePool*** section. The process to install the nodes takes about 10 minutes. You can also click ***Nodes*** to confirm whether the nodes joined the hosted cluster.
+   The **Hosted cluster** view is displayed.
+7. Monitor the deployment of the hosted cluster in the **Hosted cluster** view. If you do not see information about the hosted cluster, ensure that **All Clusters** is selected, and click the cluster name. Wait until the control plane components are ready. This process can take a few minutes.
+8. To view the node pool status, scroll to the **NodePool** section. The process to install the nodes takes about 10 minutes. You can also click **Nodes** to confirm whether the nodes joined the hosted cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating a credential for an on-premises environment (Red Hat Advanced Cluster Management documentation)](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.15/html/clusters/cluster_mce_overview#creating-a-credential-for-an-on-premises-environment)
 - [Accessing the web console](/openshift-docs-markdown/web_console/web-console#web-console-overview)
@@ -367,6 +373,7 @@ You can use a mirror registry to create a hosted cluster on non-bare-metal agent
    - `--release-image` specifies the supported OpenShift Container Platform version that you want to use. If you are using a disconnected environment, replace the version with the digest image. To extract the OpenShift Container Platform release image digest, see "Extracting the release image digest".
 
 **Additional resources**
+{._additional-resources}
 
 - [Accessing the hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-manage/hcp-manage-bm#hcp-bm-access_hcp-manage-bm)
 - [Configuring a custom API server certificate in a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-certificates#hcp-custom-cert_hcp-certificates)

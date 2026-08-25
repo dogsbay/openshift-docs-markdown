@@ -51,7 +51,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{{ name }}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -71,7 +71,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{{ name }}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -118,21 +118,21 @@ The following API endpoints are available:
 - `/api/v1/watch/events`
 
   - `GET`: watch individual changes to a list of Event. deprecated: use the 'watch' parameter with a list operation instead.
-- `/api/v1/namespaces/{{ namespace }}/events`
+- `/api/v1/namespaces/{namespace}/events`
 
   - `DELETE`: delete collection of Event
   - `GET`: list or watch objects of kind Event
   - `POST`: create an Event
-- `/api/v1/watch/namespaces/{{ namespace }}/events`
+- `/api/v1/watch/namespaces/{namespace}/events`
 
   - `GET`: watch individual changes to a list of Event. deprecated: use the 'watch' parameter with a list operation instead.
-- `/api/v1/namespaces/{{ namespace }}/events/{{ name }}`
+- `/api/v1/namespaces/{namespace}/events/{name}`
 
   - `DELETE`: delete an Event
   - `GET`: read the specified Event
   - `PATCH`: partially update the specified Event
   - `PUT`: replace the specified Event
-- `/api/v1/watch/namespaces/{{ namespace }}/events/{{ name }}`
+- `/api/v1/watch/namespaces/{namespace}/events/{name}`
 
   - `GET`: watch changes to an object of kind Event. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
 
@@ -174,7 +174,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{{ namespace }}/events {#_apiv1namespaces_namespace_events}
+### /api/v1/namespaces/{namespace}/events {#_apiv1namespaces_namespace_events}
 
 HTTP method
 :   ```
@@ -248,7 +248,7 @@ Description
 | 202 - Accepted | [`Event`](/openshift-docs-markdown/rest_api/metadata_apis/event-v1#event-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/namespaces/{{ namespace }}/events {#_apiv1watchnamespaces_namespace_events}
+### /api/v1/watch/namespaces/{namespace}/events {#_apiv1watchnamespaces_namespace_events}
 
 HTTP method
 :   ```
@@ -267,7 +267,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{{ namespace }}/events/{{ name }} {#_apiv1namespaces_namespace_events_name}
+### /api/v1/namespaces/{namespace}/events/{name} {#_apiv1namespaces_namespace_events_name}
 
 **Global path parameters**
 
@@ -372,7 +372,7 @@ Description
 | 201 - Created | [`Event`](/openshift-docs-markdown/rest_api/metadata_apis/event-v1#event-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/namespaces/{{ namespace }}/events/{{ name }} {#_apiv1watchnamespaces_namespace_events_name}
+### /api/v1/watch/namespaces/{namespace}/events/{name} {#_apiv1watchnamespaces_namespace_events_name}
 
 **Global path parameters**
 

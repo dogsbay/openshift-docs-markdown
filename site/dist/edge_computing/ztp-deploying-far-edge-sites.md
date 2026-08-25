@@ -1,8 +1,8 @@
 ---
-title: Installing managed clusters with {{ rh_rhacm }} and ClusterInstance resources
+title: Installing managed clusters with RHACM and ClusterInstance resources
 ---
 
-# Installing managed clusters with {{ rh_rhacm }} and ClusterInstance resources {#ztp-deploying-far-edge-sites}
+# Installing managed clusters with RHACM and ClusterInstance resources {#ztp-deploying-far-edge-sites}
 
 You can provision OpenShift Container Platform clusters at scale with Red Hat Advanced Cluster Management (RHACM) using the assisted service and the GitOps plugin policy generator with core-reduction technology enabled. The GitOps Zero Touch Provisioning (ZTP) pipeline performs the cluster installations. GitOps ZTP can be used in a disconnected environment.
 
@@ -12,6 +12,7 @@ You can provision OpenShift Container Platform clusters at scale with Red Hat A
 > For more information about `PolicyGenerator` resources, see the RHACM [Integrating Policy Generator](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.17/html-single/governance/index#integrate-policy-generator) documentation.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring managed cluster policies by using PolicyGenerator resources](/openshift-docs-markdown/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-configuring-managed-clusters-policygenerator)
 - [Comparing RHACM PolicyGenerator and PolicyGenTemplate resource patching](/openshift-docs-markdown/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-comparing-pgt-and-rhacm-pg-patching-strategies_ztp-configuring-managed-clusters-policygenerator)
@@ -35,8 +36,8 @@ Automatic creation of ClusterGroupUpgrade CRs
 
     The automatic creation of an enabled `ClusterGroupUpgrade` ensures that initial zero-touch deployment of clusters proceeds without the need for user intervention. Additionally, the automatic creation of a `ClusterGroupUpgrade` CR for any `ManagedCluster` without the `ztp-done` label allows a failed GitOps ZTP installation to be restarted by simply deleting the `ClusterGroupUpgrade` CR for the cluster.
 
-    Waves
-    :   Each policy generated from a `PolicyGenerator` or `PolicyGentemplate` CR includes a `ztp-deploy-wave` annotation. This annotation is based on the same annotation from each CR which is included in that policy. The wave annotation is used to order the policies in the auto-generated `ClusterGroupUpgrade` CR. The wave annotation is not used other than for the auto-generated `ClusterGroupUpgrade` CR.
+Waves
+:   Each policy generated from a `PolicyGenerator` or `PolicyGentemplate` CR includes a `ztp-deploy-wave` annotation. This annotation is based on the same annotation from each CR which is included in that policy. The wave annotation is used to order the policies in the auto-generated `ClusterGroupUpgrade` CR. The wave annotation is not used other than for the auto-generated `ClusterGroupUpgrade` CR.
 
     > [!NOTE]
     > All CRs in the same policy must have the same setting for the `ztp-deploy-wave` annotation. The default value of this annotation for each CR can be overridden in the `PolicyGenerator` or `PolicyGentemplate`. The wave annotation in the source CR is used for determining and setting the policy wave annotation. This annotation is removed from each built CR which is included in the generated policy at runtime.
@@ -53,7 +54,11 @@ Automatic creation of ClusterGroupUpgrade CRs
     ```
 
 Phase labels
-:   The `ClusterGroupUpgrade` CR is automatically created and includes directives to annotate the `ManagedCluster` CR with labels at the start and end of the GitOps ZTP process. When GitOps ZTP configuration postinstallation commences, the `ManagedCluster` has the `ztp-running` label applied. When all policies are remediated to the cluster and are fully compliant, these directives cause the TALM to remove the `ztp-running` label and apply the `ztp-done` label. For deployments that make use of the `informDuValidator` policy, the `ztp-done` label is applied when the cluster is fully ready for deployment of applications. This includes all reconciliation and resulting effects of the GitOps ZTP applied configuration CRs. The `ztp-done` label affects automatic `ClusterGroupUpgrade` CR creation by TALM. Do not manipulate this label after the initial GitOps ZTP installation of the cluster.
+:   The `ClusterGroupUpgrade` CR is automatically created and includes directives to annotate the `ManagedCluster` CR with labels at the start and end of the GitOps ZTP process.
+
+    When GitOps ZTP configuration postinstallation commences, the `ManagedCluster` has the `ztp-running` label applied. When all policies are remediated to the cluster and are fully compliant, these directives cause the TALM to remove the `ztp-running` label and apply the `ztp-done` label.
+
+    For deployments that make use of the `informDuValidator` policy, the `ztp-done` label is applied when the cluster is fully ready for deployment of applications. This includes all reconciliation and resulting effects of the GitOps ZTP applied configuration CRs. The `ztp-done` label affects automatic `ClusterGroupUpgrade` CR creation by TALM. Do not manipulate this label after the initial GitOps ZTP installation of the cluster.
 
 Linked CRs
 :   The automatically created `ClusterGroupUpgrade` CR has the owner reference set as the `ManagedCluster` from which it was derived. This reference ensures that deleting the `ManagedCluster` CR causes the instance of the `ClusterGroupUpgrade` to be deleted along with any supporting resources.
@@ -74,6 +79,7 @@ The deployment of the clusters includes:
 > To deploy clusters with virtualized control planes running on OpenShift Virtualization VMs instead of physical servers, you can use KubeVirt Redfish to expose VMs as Redfish endpoints. For more information, see "Virtualized control planes".
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding virtualized control planes](/openshift-docs-markdown/vcp/vcp-overview#vcp-overview)
 
@@ -308,40 +314,176 @@ Baseboard Management Controller (BMC) details
    2. Change the cluster and host details in the example file to match the type of cluster you want. For example:
 
       ```yaml {title="Example single-node OpenShift ClusterInstance CR"}
-
+      # example-node1-bmh-secret & assisted-deployment-pull-secret need to be created under same namespace example-ai-sno
+      ---
+      apiVersion: siteconfig.open-cluster-management.io/v1alpha1
+      kind: ClusterInstance
+      metadata:
+        name: "example-ai-sno"
+        namespace: "example-ai-sno"
+      spec:
+        baseDomain: "example.com"
+        pullSecretRef:
+          name: "assisted-deployment-pull-secret"
+        clusterImageSetNameRef: "openshift-4.22"
+        sshPublicKey: "ssh-rsa AAAA..."
+        clusterName: "example-ai-sno"
+        networkType: "OVNKubernetes"
+        # installConfigOverrides is a generic way of passing install-config
+        # parameters through the siteConfig.  The 'capabilities' field configures
+        # the composable openshift feature.  In this 'capabilities' setting, we
+        # remove all the optional set of components.
+        # Notes:
+        # - OperatorLifecycleManager is needed for 4.15 and later
+        # - NodeTuning is needed for 4.13 and later, not for 4.12 and earlier
+        # - Ingress is needed for 4.16 and later
+        installConfigOverrides: |
+          {
+            "capabilities": {
+              "baselineCapabilitySet": "None",
+              "additionalEnabledCapabilities": [
+                "NodeTuning",
+                "OperatorLifecycleManager",
+                "Ingress"
+              ]
+            }
+          }
+        # Include references to extraManifest ConfigMaps.
+        extraManifestsRefs:
+          - name: sno-extra-manifest-configmap
+        extraLabels:
+          ManagedCluster:
+            # These example cluster labels correspond to the bindingRules in the PolicyGenTemplate examples
+            du-profile: "latest"
+            # These example cluster labels correspond to the bindingRules in the PolicyGenTemplate examples in ../policygentemplates:
+            # ../policygentemplates/common-ranGen.yaml will apply to all clusters with 'common: true'
+            common: "true"
+            # ../policygentemplates/group-du-sno-ranGen.yaml will apply to all clusters with 'group-du-sno: ""'
+            group-du-sno: ""
+            # ../policygentemplates/example-sno-site.yaml will apply to all clusters with 'sites: "example-sno"'
+            # Normally this should match or contain the cluster name so it only applies to a single cluster
+            sites : "example-sno"
+        clusterNetwork:
+          - cidr: 1001:1::/48
+            hostPrefix: 64
+        machineNetwork:
+          - cidr: 1111:2222:3333:4444::/64
+        serviceNetwork:
+          - cidr: 1001:2::/112
+        additionalNTPSources:
+          - 1111:2222:3333:4444::2
+        # Initiates the cluster for workload partitioning. Setting specific reserved/isolated CPUSets is done via PolicyTemplate
+        # please see Workload Partitioning Feature for a complete guide.
+        cpuPartitioningMode: AllNodes
+        templateRefs:
+          - name: ai-cluster-templates-v1
+            namespace: open-cluster-management
+        nodes:
+          - hostName: "example-node1.example.com"
+            role: "master"
+            bmcAddress: "idrac-virtualmedia+https://[1111:2222:3333:4444::bbbb:1]/redfish/v1/Systems/System.Embedded.1"
+            bmcCredentialsName:
+              name: "example-node1-bmh-secret"
+            bootMACAddress: "AA:BB:CC:DD:EE:11"
+            # Use UEFISecureBoot to enable secure boot, UEFI to disable.
+            bootMode: "UEFISecureBoot"
+            rootDeviceHints:
+              deviceName: "/dev/disk/by-path/pci-0000:01:00.0-scsi-0:2:0:0"
+            # disk partition at `/var/lib/containers` with ignitionConfigOverride. Some values must be updated. See DiskPartitionContainer.md in argocd folder for more details
+            ignitionConfigOverride: |
+              {
+                "ignition": {
+                  "version": "3.2.0"
+                },
+                "storage": {
+                  "disks": [
+                    {
+                      "device": "/dev/disk/by-path/pci-0000:01:00.0-scsi-0:2:0:0",
+                      "partitions": [
+                        {
+                          "label": "var-lib-containers",
+                          "sizeMiB": 0,
+                          "startMiB": 250000
+                        }
+                      ],
+                      "wipeTable": false
+                    }
+                  ],
+                  "filesystems": [
+                    {
+                      "device": "/dev/disk/by-partlabel/var-lib-containers",
+                      "format": "xfs",
+                      "mountOptions": [
+                        "defaults",
+                        "prjquota"
+                      ],
+                      "path": "/var/lib/containers",
+                      "wipeFilesystem": true
+                    }
+                  ]
+                },
+                "systemd": {
+                  "units": [
+                    {
+                      "contents": "# Generated by Butane\n[Unit]\nRequires=systemd-fsck@dev-disk-by\\x2dpartlabel-var\\x2dlib\\x2dcontainers.service\nAfter=systemd-fsck@dev-disk-by\\x2dpartlabel-var\\x2dlib\\x2dcontainers.service\n\n[Mount]\nWhere=/var/lib/containers\nWhat=/dev/disk/by-partlabel/var-lib-containers\nType=xfs\nOptions=defaults,prjquota\n\n[Install]\nRequiredBy=local-fs.target",
+                      "enabled": true,
+                      "name": "var-lib-containers.mount"
+                    }
+                  ]
+                }
+              }
+            nodeNetwork:
+              interfaces:
+                - name: eno1
+                  macAddress: "AA:BB:CC:DD:EE:11"
+              config:
+                interfaces:
+                  - name: eno1
+                    type: ethernet
+                    state: up
+                    ipv4:
+                      enabled: false
+                    ipv6:
+                      enabled: true
+                      address:
+                      # For SNO sites with static IP addresses, the node-specific,
+                      # API and Ingress IPs should all be the same and configured on
+                      # the interface
+                      - ip: 1111:2222:3333:4444::aaaa:1
+                        prefix-length: 64
+                dns-resolver:
+                  config:
+                    search:
+                    - example.com
+                    server:
+                    - 1111:2222:3333:4444::2
+                routes:
+                  config:
+                  - destination: ::/0
+                    next-hop-interface: eno1
+                    next-hop-address: 1111:2222:3333:4444::1
+                    table-id: 254
+            templateRefs:
+              - name: ai-node-templates-v1
+                namespace: open-cluster-management
       ```
 
-{% include "./snippets/ztp_example-sno.yaml" %} \`\`\`
+      > [!NOTE]
+      > For more information about BMC addressing, see the "Additional resources" section. The `installConfigOverrides` and  `ignitionConfigOverride` fields are expanded in the example for ease of readability.
 
-```
-    :::note
+      > [!NOTE]
+      > To override the default `BareMetalHost` CR for a node, create a custom node template in a `ConfigMap` and reference it in the node-level `spec.nodes.templateRefs` field in the `ClusterInstance` CR. Ensure that you set the `argocd.argoproj.io/sync-wave: "3"` annotation in your override `BareMetalHost` CR.
+   3. You can inspect the default set of extra-manifest `MachineConfig` CRs in `out/argocd/extra-manifest`. It is automatically applied to the cluster when it is installed.
+   4. Optional: To provision additional install-time manifests on the provisioned cluster, package your extra manifest CRs in a `ConfigMap` and reference it in the `extraManifestsRefs` field of the `ClusterInstance` CR. For more information, see "Customizing extra installation manifests in the GitOps ZTP pipeline".
 
-    For more information about BMC addressing, see the "Additional resources" section. The `installConfigOverrides` and  `ignitionConfigOverride` fields are expanded in the example for ease of readability.
-
-    :::
-
-    :::note
-
-    To override the default `BareMetalHost` CR for a node, create a custom node template in a `ConfigMap` and reference it in the node-level `spec.nodes.templateRefs` field in the `ClusterInstance` CR. Ensure that you set the `argocd.argoproj.io/sync-wave: "3"` annotation in your override `BareMetalHost` CR.
-
-    :::
-
-1.  You can inspect the default set of extra-manifest `MachineConfig` CRs in `out/argocd/extra-manifest`. It is automatically applied to the cluster when it is installed.
-1.  Optional: To provision additional install-time manifests on the provisioned cluster, package your extra manifest CRs in a `ConfigMap` and reference it in the `extraManifestsRefs` field of the `ClusterInstance` CR. For more information, see "Customizing extra installation manifests in the GitOps ZTP pipeline".
-
-    :::important
-
-    For optimal cluster performance, enable crun for master and worker nodes in single-node OpenShift, single-node OpenShift with additional worker nodes, three-node OpenShift, and standard clusters.
-
-    Enable crun in a `ContainerRuntimeConfig` CR as an additional Day 0 install-time manifest to avoid the cluster having to reboot.
-
-    The `enable-crun-master.yaml` and `enable-crun-worker.yaml` CR files are in the `out/source-crs/optional-extra-manifest/` folder that you can extract from the `ztp-site-generate` container.
-
-    :::
-```
-
-1. Add the `ClusterInstance` CR to the `kustomization.yaml` file in the `generators` section, similar to the example shown in `out/argocd/example/clusterinstance/kustomization.yaml`.
-2. Commit the `ClusterInstance` CR and associated `kustomization.yaml` changes in your Git repository and push the changes.
+      > [!IMPORTANT]
+      > For optimal cluster performance, enable crun for master and worker nodes in single-node OpenShift, single-node OpenShift with additional worker nodes, three-node OpenShift, and standard clusters.
+      >
+      > Enable crun in a `ContainerRuntimeConfig` CR as an additional Day 0 install-time manifest to avoid the cluster having to reboot.
+      >
+      > The `enable-crun-master.yaml` and `enable-crun-worker.yaml` CR files are in the `out/source-crs/optional-extra-manifest/` folder that you can extract from the `ztp-site-generate` container.
+4. Add the `ClusterInstance` CR to the `kustomization.yaml` file in the `generators` section, similar to the example shown in `out/argocd/example/clusterinstance/kustomization.yaml`.
+5. Commit the `ClusterInstance` CR and associated `kustomization.yaml` changes in your Git repository and push the changes.
 
    The ArgoCD pipeline detects the changes and begins the managed cluster deployment.
 
@@ -374,6 +516,7 @@ Baseboard Management Controller (BMC) details
   - `node-role.kubernetes.io/example-label=` shows the custom label applied to the node.
 
 **Additional resources**
+{._additional-resources}
 
 - [Single-node OpenShift ClusterInstance CR installation reference](/openshift-docs-markdown/edge_computing/ztp-deploying-far-edge-sites#ztp-clusterinstance-config-reference_ztp-deploying-far-edge-sites)
 
@@ -517,6 +660,7 @@ You can enable IPsec encryption in managed single-node OpenShift clusters that y
 For information about verifying the IPsec encryption, see "Verifying the IPsec encryption".
 
 **Additional resources**
+{._additional-resources}
 
 - [Verifying the IPsec encryption](/openshift-docs-markdown/edge_computing/ztp-deploying-far-edge-sites#ztp-verifying-ipsec_ztp-deploying-far-edge-sites)
 - [Configuring IPsec encryption](/openshift-docs-markdown/networking/network_security/configuring-ipsec-ovn#configuring-ipsec-ovn)
@@ -560,18 +704,46 @@ You can enable IPsec encryption in managed multi-node clusters that you install 
        compliant:
        noncompliant:
      object-templates-raw: |
+       {{- range (lookup "v1" "Node" "" "").items }}
+       - complianceType: musthave
+         objectDefinition:
+           kind: NodeNetworkConfigurationPolicy
+           apiVersion: nmstate.io/v1
+           metadata:
+             name: {{ .metadata.name }}-ipsec-policy
+           spec:
+             nodeSelector:
+               kubernetes.io/hostname: {{ .metadata.name }}
+             desiredState:
+               interfaces:
+               - name: hosta_conn
+                 type: ipsec
+                 libreswan:
+                   left: '%defaultroute'
+                   leftid: '%fromcert'
+                   leftmodecfgclient: false
+                   leftcert: left_server
+                   leftrsasigkey: '%cert'
+                   right: <external_host>
+                   rightid: '%fromcert'
+                   rightrsasigkey: '%cert'
+                   rightsubnet: <external_address>
+                   ikev2: insist
+                   type: tunnel
    ```
 
-{{- range (lookup "v1" "Node" "" "").items }} - complianceType: musthave objectDefinition: kind: NodeNetworkConfigurationPolicy apiVersion: nmstate.io/v1 metadata: name: {{ .metadata.name }}-ipsec-policy spec: nodeSelector: kubernetes.io/hostname: {{ .metadata.name }} desiredState: interfaces: - name: hosta_conn type: ipsec libreswan: left: '%defaultroute' leftid: '%fromcert' leftmodecfgclient: false leftcert: left_server leftrsasigkey: '%cert' right: <external_host> rightid: '%fromcert' rightrsasigkey: '%cert' rightsubnet: <external_address> ikev2: insist type: tunnel \`\`\` \*   `leftcert` must match the name of the certificate used on the remote system. \*   `right` is the external host IP address or DNS hostname. \*   `rightsubnet` is the IP subnet of the external host on the other side of the IPsec tunnel. \*   `ikev2: insist` uses the IKEv2 VPN encryption protocol only. Do not use IKEv1, which is deprecated.
-
-1. Add the following certificates to the `optional-extra-manifest/ipsec` folder:
+   - `leftcert` must match the name of the certificate used on the remote system.
+   - `right` is the external host IP address or DNS hostname.
+   - `rightsubnet` is the IP subnet of the external host on the other side of the IPsec tunnel.
+   - `ikev2: insist` uses the IKEv2 VPN encryption protocol only. Do not use IKEv1, which is deprecated.
+3. Add the following certificates to the `optional-extra-manifest/ipsec` folder:
 
    - `left_server.p12`: The certificate bundle for the IPsec endpoints
    - `ca.pem`: The certificate authority that you signed your certificates with
 
      The certificate files are required for the Network Security Services (NSS) database on each host. These files are imported as part of the Butane configuration in later steps.
-2. Open a shell prompt at the `optional-extra-manifest/ipsec` folder of the Git repository where you maintain your custom site configuration data.
-3. Run the `optional-extra-manifest/ipsec/import-certs.sh` script to generate the required Butane and `MachineConfig` CRs to import the external certs.
+4. Open a shell prompt at the `optional-extra-manifest/ipsec` folder of the Git repository where you maintain your custom site configuration data.
+5. Run the `optional-extra-manifest/ipsec/import-certs.sh` script to generate the required Butane and `MachineConfig` CRs to import the external certs.
 
    If the PKCS#12 certificate is protected with a password, set the `-W` argument.
 
@@ -597,7 +769,7 @@ You can enable IPsec encryption in managed multi-node clusters that you install 
 
    - The `ipsec/import-certs.sh` script generates the Butane and endpoint configuration CRs.
    - Add the `ca.pem` and `left_server.p12` certificate files that are relevant to your network.
-4. Create an `ipsec-manifests/` folder in the repository where you manage your custom site configuration data and add the `enable-ipsec.yaml` and `99-ipsec-*` YAML files to the directory.
+6. Create an `ipsec-manifests/` folder in the repository where you manage your custom site configuration data and add the `enable-ipsec.yaml` and `99-ipsec-*` YAML files to the directory.
 
    ```terminal {title="Example site configuration directory"}
    site-configs/
@@ -609,7 +781,7 @@ You can enable IPsec encryption in managed multi-node clusters that you install 
      │   └── 99-ipsec-worker-import-certs.yaml
      └── kustomization.yaml
    ```
-5. Create a `kustomization.yaml` file that uses `configMapGenerator` to package your IPsec manifests into a `ConfigMap`:
+7. Create a `kustomization.yaml` file that uses `configMapGenerator` to package your IPsec manifests into a `ConfigMap`:
 
    ```yaml
    apiVersion: kustomize.config.k8s.io/v1beta1
@@ -629,7 +801,7 @@ You can enable IPsec encryption in managed multi-node clusters that you install 
 
    - `namespace` must match the `ClusterInstance` namespace.
    - `disableNameSuffixHash: true` disables the hash suffix so the `ConfigMap` name is predictable.
-6. In your `ClusterInstance` CR, reference the `ConfigMap` in the `extraManifestsRefs` field:
+8. In your `ClusterInstance` CR, reference the `ConfigMap` in the `extraManifestsRefs` field:
 
    ```yaml
    apiVersion: siteconfig.open-cluster-management.io/v1alpha1
@@ -649,18 +821,19 @@ You can enable IPsec encryption in managed multi-node clusters that you install 
 
    > [!NOTE]
    > If you have other extra manifests, you can either include them in the same `ConfigMap` or create multiple `ConfigMap` resources and reference them all in `extraManifestsRefs`.
-7. Include the `ipsec-config-policy.yaml` config policy file in the `source-crs` directory in GitOps and reference the file in one of the `PolicyGenerator` CRs.
-8. Commit the `ClusterInstance` CR, IPsec manifest files, and `kustomization.yaml` changes in your Git repository and push the changes to provision the managed cluster and configure IPsec encryption.
+9. Include the `ipsec-config-policy.yaml` config policy file in the `source-crs` directory in GitOps and reference the file in one of the `PolicyGenerator` CRs.
+10. Commit the `ClusterInstance` CR, IPsec manifest files, and `kustomization.yaml` changes in your Git repository and push the changes to provision the managed cluster and configure IPsec encryption.
 
-   The Argo CD pipeline detects the changes and begins the managed cluster deployment.
+    The Argo CD pipeline detects the changes and begins the managed cluster deployment.
 
-   During cluster provisioning, the SiteConfig Operator applies the CRs contained in the referenced `ConfigMap` resources as extra manifests. The IPsec configuration policy is applied as a Day 2 operation after the cluster is provisioned.
+    During cluster provisioning, the SiteConfig Operator applies the CRs contained in the referenced `ConfigMap` resources as extra manifests. The IPsec configuration policy is applied as a Day 2 operation after the cluster is provisioned.
 
 **Verification**
 
 For information about verifying the IPsec encryption, see "Verifying the IPsec encryption".
 
 **Additional resources**
+{._additional-resources}
 
 - [Verifying the IPsec encryption](/openshift-docs-markdown/edge_computing/ztp-deploying-far-edge-sites#ztp-verifying-ipsec_ztp-deploying-far-edge-sites)
 - [Configuring IPsec encryption](/openshift-docs-markdown/networking/network_security/configuring-ipsec-ovn#configuring-ipsec-ovn)
@@ -753,6 +926,7 @@ You can verify that the IPsec encryption is successfully applied in a managed Op
 For a detailed API reference for the `ClusterInstance` custom resource, see [ClusterInstance API](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.17/html-single/apis/index#clusterinstance-api) in the Red Hat Advanced Cluster Management (RHACM) documentation.
 
 **Additional resources**
+{._additional-resources}
 
 - [Customizing extra installation manifests in the GitOps ZTP pipeline](/openshift-docs-markdown/edge_computing/ztp-advanced-install-ztp#ztp-customizing-the-install-extra-manifests_ztp-advanced-install-ztp)
 - [Preparing the GitOps ZTP site configuration repository](/openshift-docs-markdown/edge_computing/ztp-preparing-the-hub-cluster#ztp-preparing-the-ztp-git-repository_ztp-preparing-the-hub-cluster)
@@ -785,6 +959,7 @@ Manage firmware profiles in source control
 :   Manage host firmware profiles in Git repositories to track changes, ensure consistency, and facilitate collaboration with vendors.
 
 **Additional resources**
+{._additional-resources}
 
 - [Recommended firmware configuration for vDU cluster hosts](/openshift-docs-markdown/edge_computing/ztp-vdu-validating-cluster-tuning#ztp-du-firmware-config-reference_vdu-config-ref)
 
@@ -1157,6 +1332,7 @@ You can remove a managed site and the associated installation and configuration 
 4. Optional: If you want to remove a site temporarily, for example when redeploying a site, you can leave the `ClusterInstance` and site-specific `PolicyGenerator` or `PolicyGentemplate` CRs in the Git repository.
 
 **Additional resources**
+{._additional-resources}
 
 - [Removing a cluster from management](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.9/html/clusters/cluster_mce_overview#remove-managed-cluster)
 - [Deprovisioning clusters](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.15/html/multicluster_engine_operator_with_red_hat_advanced_cluster_management/ibio-intro#deprovision-clusters)

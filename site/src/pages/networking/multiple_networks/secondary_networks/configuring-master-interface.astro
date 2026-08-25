@@ -25,7 +25,8 @@ const headings = [{"depth":1,"slug":"configuring-master-interface-secondary-nwt"
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/multiple_networks/secondary_networks/configuring-master-interface";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -83,12 +84,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -96,7 +98,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="configuring-master-interface-secondary-nwt" class="group scroll-mt-20">Configuring the master interface in the container network namespace<a href="#configuring-master-interface-secondary-nwt" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can create and manage a MAC-VLAN, IP-VLAN, and VLAN subinterface based on a <code>master</code> interface.</p>
+      <p class="_abstract">You can create and manage a MAC-VLAN, IP-VLAN, and VLAN subinterface based on a <code>master</code> interface.</p>
       <h2 id="nw-about-configuring-master-interface-container_configuring-additional-network" class="group scroll-mt-20">About configuring the master interface in the container network namespace<a href="#nw-about-configuring-master-interface-container_configuring-additional-network" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">You can create a MAC-VLAN, an IP-VLAN, or a VLAN subinterface that is based on a <code>master</code> interface that exists in a container namespace. You can also create a <code>master</code> interface as part of the pod network configuration in a separate network attachment definition CRD.</p>
       <p>To use a container namespace <code>master</code> interface, you must specify <code>true</code> for the <code>linkInContainer</code> parameter that exists in the subinterface configuration of the <code>NetworkAttachmentDefinition</code> CRD.</p>

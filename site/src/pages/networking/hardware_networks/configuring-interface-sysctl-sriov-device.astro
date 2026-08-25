@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"configuring-interface-level-sysctl-settings
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/hardware_networks/configuring-interface-sysctl-sriov-device";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="configuring-interface-level-sysctl-settings-sriov-device" class="group scroll-mt-20">Configuring interface-level network sysctl settings and all-multicast mode for SR-IOV networks<a href="#configuring-interface-level-sysctl-settings-sriov-device" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>As a cluster administrator, you can change interface-level network sysctls and several interface attributes such as promiscuous mode, all-multicast mode, MTU, and MAC address by using the tuning Container Network Interface (CNI) meta plugin for a pod connected to a SR-IOV network device.</p>
+      <p class="_abstract">As a cluster administrator, you can change interface-level network sysctls and several interface attributes such as promiscuous mode, all-multicast mode, MTU, and MAC address by using the tuning Container Network Interface (CNI) meta plugin for a pod connected to a SR-IOV network device.</p>
       <p>Before you perform any tasks in the following documentation, ensure that you <a href="/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator">installed the SR-IOV Network Operator</a>.</p>
       <h2 id="nw-labeling-sriov-enabled-nodes_configuring-sysctl-interface-sriov-device" class="group scroll-mt-20">Labeling nodes with an SR-IOV enabled NIC<a href="#nw-labeling-sriov-enabled-nodes_configuring-sysctl-interface-sriov-device" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">If you want to enable SR-IOV on only SR-IOV capable nodes there are a couple of ways to do this.</p>

@@ -187,7 +187,8 @@ You can remove a secondary network interface from a running virtual machine (VM)
    <filename>
    :   Specifies the name of your `VirtualMachine` manifest YAML file.
 
-## Additional resources {#additional-resources_virt-hot-plugging-network-interfaces}
+**Additional resources**
+{._additional-resources}
 
 - [Installing virtctl](/openshift-docs-markdown/virt/getting_started/virt-using-the-cli-tools#virt-installing-virtctl-binary_virt-using-the-cli-tools)
 - [About live migration permissions](/openshift-docs-markdown/virt/live_migration/virt-about-live-migration#virt-about-live-migration-permissions_virt-about-live-migration)

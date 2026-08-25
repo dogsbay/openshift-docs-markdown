@@ -1,8 +1,8 @@
 ---
-title: Cluster API configuration options for {{ azure_full }}
+title: Cluster API configuration options for Microsoft Azure
 ---
 
-# Cluster API configuration options for {{ azure_full }} {#cluster-api-config-options-azure}
+# Cluster API configuration options for Microsoft Azure {#cluster-api-config-options-azure}
 
 You can change the configuration of your Microsoft Azure Cluster API machines by updating values in the Cluster API custom resource manifests.
 

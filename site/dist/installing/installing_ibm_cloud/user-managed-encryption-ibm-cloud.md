@@ -1,5 +1,5 @@
 ---
-title: User-managed encryption for {{ ibm_cloud_title }}
+title: User-managed encryption for IBM Cloud
 ---
 
 # User-managed encryption for IBM Cloud {#user-managed-encryption-ibm-cloud}
@@ -16,7 +16,8 @@ When you bring your own root key, you change the `install-config.yaml` file to s
 > [!NOTE]
 > Make sure you have integrated Key Protect with your IBM Cloud Block Storage service. For more information, see "Key Protect documentation".
 
-## Additional resources {#additional-resources_user-managed-encryption-ibm-cloud}
+**Additional resources**
+{._additional-resources}
 
 - [Key Protect documentation](https://cloud.ibm.com/docs/key-protect?topic=key-protect-integrate-services#grant-access)
 - [Additional IBM Cloud configuration parameters](/openshift-docs-markdown/installing/installing_ibm_cloud/installation-config-parameters-ibm-cloud-vpc#installation-configuration-parameters-additional-ibm-cloud_installation-config-parameters-ibm-cloud-vpc)

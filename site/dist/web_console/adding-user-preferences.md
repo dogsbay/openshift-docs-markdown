@@ -18,7 +18,7 @@ You can set the default user preferences for your cluster.
 2. Use the masthead to access the user preferences under the user profile.
 3. In the **General** section:
 
-   1. In the ***Theme*** field, you can set the theme that you want to work in. The console defaults to the selected theme each time you log in.
+   1. In the **Theme** field, you can set the theme that you want to work in. The console defaults to the selected theme each time you log in.
    2. In the **Project** field, select a project you want to work in. The console defaults to the project every time you log in.
    3. In the **Topology** field, you can set the topology view to default to the graph or list view. If not selected, the console defaults to the last view you used.
    4. In the **Create/Edit resource method** field, you can set a preference for creating or editing a resource. If both the form and YAML options are available, the console defaults to your selection.

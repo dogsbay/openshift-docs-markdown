@@ -195,6 +195,7 @@ The following example configures the egress traffic to have the same source IP a
 2. If you assigned the `LoadBalancer` service’s ingress IP address as the source IP address for egress traffic, verify this configuration by using tools such as `tcpdump` to analyze packets received at the external client.
 
 **Additional resources**
+{._additional-resources}
 
 - [Exposing a service through a network VRF](/openshift-docs-markdown/networking/ingress_load_balancing/metallb/metallb-configure-bgp-peers#nw-metallb-bgp-peer-vrf_configure-metallb-bgp-peers)
 - [Example: Network interface with a VRF instance node network configuration policy](/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#virt-example-host-vrf_k8s-nmstate-updating-node-network-config)

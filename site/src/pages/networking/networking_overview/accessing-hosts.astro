@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"accessing-hosts","text":"Accessing hosts"},
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/networking_overview/accessing-hosts";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="accessing-hosts" class="group scroll-mt-20">Accessing hosts<a href="#accessing-hosts" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>To establish secure administrative access to OpenShift Container Platform instances and control plane nodes, create a bastion host.</p>
+      <p class="_abstract">To establish secure administrative access to OpenShift Container Platform instances and control plane nodes, create a bastion host.</p>
       <p>Configuring a bastion host provides an entry point for Secure Shell (SSH) traffic, ensuring that your cluster remains protected while allowing for remote management.</p>
       <h2 id="accessing-hosts-on-aws_accessing-hosts" class="group scroll-mt-20">Accessing hosts on Amazon Web Services in an installer-provisioned infrastructure cluster<a href="#accessing-hosts-on-aws_accessing-hosts" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">The OpenShift Container Platform installer does not create any public IP addresses for any of the Amazon Elastic Compute Cloud (Amazon EC2) instances that it provisions for your OpenShift Container Platform cluster. After you provisioned your Amazon EC2 instance, you can use SSH to access your OpenShift Container Platform hosts.</p>

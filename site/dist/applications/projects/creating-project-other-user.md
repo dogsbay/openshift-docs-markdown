@@ -23,6 +23,7 @@ You can impersonate a different user when you create a project request. Because 
       --as-group=system:authenticated --as-group=system:authenticated:oauth
   ```
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [User impersonation (Kubernetes documentation)](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#user-impersonation)

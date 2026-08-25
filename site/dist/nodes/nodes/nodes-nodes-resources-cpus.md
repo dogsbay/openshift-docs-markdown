@@ -55,6 +55,7 @@ For more information on the `systemReserved` parameter, see "Allocating resource
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Setting up CPU Manager](/openshift-docs-markdown/scalability_and_performance/using-cpu-manager#setting_up_cpu_manager_using-cpu-manager-and-topology-manager)
 - [Allocating resources for nodes in an OpenShift Container Platform cluster](/openshift-docs-markdown/nodes/nodes/nodes-nodes-resources-configuring#nodes-nodes-resources-configuring-about_nodes-nodes-resources-configuring)

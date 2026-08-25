@@ -29,8 +29,8 @@ the host you are using for installation.
 
 - You have a machine that runs Linux, for example Red Hat Enterprise Linux 8, with 500 MB of local disk space.
 
-  > [!IMPORTANT]
-  > If you attempt to run the installation program on macOS, a known issue related to the `golang` compiler causes the installation of the OpenShift Container Platform cluster to fail. For more information about this issue, see the section named "Known Issues" in the *OpenShift Container Platform 4.22 release notes* document.
+> [!IMPORTANT]
+> If you attempt to run the installation program on macOS, a known issue related to the `golang` compiler causes the installation of the OpenShift Container Platform cluster to fail. For more information about this issue, see the section named "Known Issues" in the *OpenShift Container Platform 4.22 release notes* document.
 
 **Procedure**
 
@@ -52,14 +52,8 @@ the host you are using for installation.
    ```
 6. Download your installation [pull secret from Red Hat OpenShift Cluster Manager](https://console.redhat.com/openshift/install/pull-secret). This pull secret allows you to authenticate with the services that are provided by the included authorities, including Quay.io, which serves the container images for OpenShift Container Platform components.
 
-   ```
-   :::tip
-
-   Alternatively, you can retrieve the installation program from the [Red&#160;Hat Customer Portal](https://access.redhat.com/downloads/content/290/), where you can specify a version of the installation program to download.
-   However, you must have an active subscription to access this page.
-
-   :::
-   ```
+   > [!TIP]
+   > Alternatively, you can retrieve the installation program from the [Red Hat Customer Portal](https://access.redhat.com/downloads/content/290/), where you can specify a version of the installation program to download. However, you must have an active subscription to access this page.
 
 ## Installing the OpenShift CLI on Linux {#cli-installing-cli-linux_ipi-vsphere-preparing-to-install}
 
@@ -276,6 +270,7 @@ Because the installation program requires access to your vCenter’s API, you mu
    # update-ca-trust extract
    ```
 
-## Additional resources {#additional-resources_ipi-vsphere-preparing-to-install}
+**Additional resources**
+{._additional-resources}
 
 - [Mirroring images for a disconnected installation](/openshift-docs-markdown/disconnected/installing-mirroring-installation-images#installing-mirroring-installation-images)

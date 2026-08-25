@@ -257,7 +257,8 @@ Similarly, when you add a BGP peer custom resource, the `spec.routerID` field is
 
 The limitation to support a single ASN and single router ID is a difference with the community-supported implementation of MetalLB.
 
-## Additional resources {#additional-resources_about-metallb-and-metallb-operator}
+**Additional resources**
+{._additional-resources}
 
 - [Comparison: Fault tolerant access to external IP addresses](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/overview-traffic#overview-traffic-comparision_overview-traffic)
 - [Removing IP failover](/openshift-docs-markdown/networking/configuring_network_settings/configuring-ipfailover#nw-ipfailover-remove_configuring-ipfailover)

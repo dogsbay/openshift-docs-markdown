@@ -90,7 +90,8 @@ spec:
     app: egress-router-cni
 ```
 
-## Additional resources {#using-an-egress-router-ovn-additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Deploying an egress router in redirection mode](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/deploying-egress-router-ovn-redirection#deploying-egress-router-ovn-redirection)
 - [OpenShift on OpenStack: Egress router not working](https://access.redhat.com/solutions/2803331)

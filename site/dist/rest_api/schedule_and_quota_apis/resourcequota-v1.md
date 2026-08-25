@@ -79,8 +79,8 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `operator` | `string` | Represents a scope’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Possible enum values:  - `"DoesNotExist"`  - `"Exists"`  - `"In"`  - `"NotIn"` |
-| `scopeName` | `string` | The name of the scope that the selector applies to. Possible enum values:  - `"BestEffort"` Match all pod objects that have best effort quality of service  - `"CrossNamespacePodAffinity"` Match all pod objects that have cross-namespace pod (anti)affinity mentioned.  - `"NotBestEffort"` Match all pod objects that do not have best effort quality of service  - `"NotTerminating"` Match all pod objects where spec.activeDeadlineSeconds is nil  - `"PriorityClass"` Match all pod objects that have priority class mentioned  - `"Terminating"` Match all pod objects where spec.activeDeadlineSeconds >=0  - `"VolumeAttributesClass"` Match all pvc objects that have volume attributes class mentioned. |
+| `operator` | `string` | Represents a scope’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist.<br>Possible enum values: - `"DoesNotExist"` - `"Exists"` - `"In"` - `"NotIn"` |
+| `scopeName` | `string` | The name of the scope that the selector applies to.<br>Possible enum values: - `"BestEffort"` Match all pod objects that have best effort quality of service - `"CrossNamespacePodAffinity"` Match all pod objects that have cross-namespace pod (anti)affinity mentioned. - `"NotBestEffort"` Match all pod objects that do not have best effort quality of service - `"NotTerminating"` Match all pod objects where spec.activeDeadlineSeconds is nil - `"PriorityClass"` Match all pod objects that have priority class mentioned - `"Terminating"` Match all pod objects where spec.activeDeadlineSeconds >=0 - `"VolumeAttributesClass"` Match all pvc objects that have volume attributes class mentioned. |
 | `values` | `array (string)` | An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
 
 ### .status {#_status}
@@ -108,24 +108,24 @@ The following API endpoints are available:
 - `/api/v1/watch/resourcequotas`
 
   - `GET`: watch individual changes to a list of ResourceQuota. deprecated: use the 'watch' parameter with a list operation instead.
-- `/api/v1/namespaces/{{ namespace }}/resourcequotas`
+- `/api/v1/namespaces/{namespace}/resourcequotas`
 
   - `DELETE`: delete collection of ResourceQuota
   - `GET`: list or watch objects of kind ResourceQuota
   - `POST`: create a ResourceQuota
-- `/api/v1/watch/namespaces/{{ namespace }}/resourcequotas`
+- `/api/v1/watch/namespaces/{namespace}/resourcequotas`
 
   - `GET`: watch individual changes to a list of ResourceQuota. deprecated: use the 'watch' parameter with a list operation instead.
-- `/api/v1/namespaces/{{ namespace }}/resourcequotas/{{ name }}`
+- `/api/v1/namespaces/{namespace}/resourcequotas/{name}`
 
   - `DELETE`: delete a ResourceQuota
   - `GET`: read the specified ResourceQuota
   - `PATCH`: partially update the specified ResourceQuota
   - `PUT`: replace the specified ResourceQuota
-- `/api/v1/watch/namespaces/{{ namespace }}/resourcequotas/{{ name }}`
+- `/api/v1/watch/namespaces/{namespace}/resourcequotas/{name}`
 
   - `GET`: watch changes to an object of kind ResourceQuota. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
-- `/api/v1/namespaces/{{ namespace }}/resourcequotas/{{ name }}/status`
+- `/api/v1/namespaces/{namespace}/resourcequotas/{name}/status`
 
   - `GET`: read status of the specified ResourceQuota
   - `PATCH`: partially update status of the specified ResourceQuota
@@ -169,7 +169,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{{ namespace }}/resourcequotas {#_apiv1namespaces_namespace_resourcequotas}
+### /api/v1/namespaces/{namespace}/resourcequotas {#_apiv1namespaces_namespace_resourcequotas}
 
 HTTP method
 :   ```
@@ -243,7 +243,7 @@ Description
 | 202 - Accepted | [`ResourceQuota`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/namespaces/{{ namespace }}/resourcequotas {#_apiv1watchnamespaces_namespace_resourcequotas}
+### /api/v1/watch/namespaces/{namespace}/resourcequotas {#_apiv1watchnamespaces_namespace_resourcequotas}
 
 HTTP method
 :   ```
@@ -262,7 +262,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{{ namespace }}/resourcequotas/{{ name }} {#_apiv1namespaces_namespace_resourcequotas_name}
+### /api/v1/namespaces/{namespace}/resourcequotas/{name} {#_apiv1namespaces_namespace_resourcequotas_name}
 
 **Global path parameters**
 
@@ -367,7 +367,7 @@ Description
 | 201 - Created | [`ResourceQuota`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/namespaces/{{ namespace }}/resourcequotas/{{ name }} {#_apiv1watchnamespaces_namespace_resourcequotas_name}
+### /api/v1/watch/namespaces/{namespace}/resourcequotas/{name} {#_apiv1watchnamespaces_namespace_resourcequotas_name}
 
 **Global path parameters**
 
@@ -392,7 +392,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{{ namespace }}/resourcequotas/{{ name }}/status {#_apiv1namespaces_namespace_resourcequotas_name_status}
+### /api/v1/namespaces/{namespace}/resourcequotas/{name}/status {#_apiv1namespaces_namespace_resourcequotas_name_status}
 
 **Global path parameters**
 

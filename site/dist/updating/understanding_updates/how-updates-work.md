@@ -136,6 +136,7 @@ The CVO continuously evaluates its cluster characteristics against the condition
 The user interface, either the web console or the OpenShift CLI (`oc`), presents this information in sectioned headings to the administrator. Each known issue associated with the update path contains a link to further resources about the risk so that the administrator can make an informed decision about the update.
 
 **Additional resources**
+{._additional-resources}
 
 - [Update recommendation removals and Conditional Updates](/openshift-docs-markdown/updating/understanding_updates/understanding-update-channels-release#conditional-updates-overview_understanding-update-channels-releases)
 
@@ -247,6 +248,7 @@ Some actions can take significant time to finish. The CVO waits for the actions 
 In the previous example diagram, the CVO is waiting until all work is completed at Runlevel 20. The CVO has applied all manifests to the Operators in the Runlevel, but the `kube-apiserver-operator ClusterOperator` performs some actions after its new version was deployed. The `kube-apiserver-operator ClusterOperator` declares this progress through the `Progressing=True` condition and by not declaring the new version as reconciled in its `status.versions`. The CVO waits until the ClusterOperator reports an acceptable status, and then it will start reconciling manifests at Runlevel 25.
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding OpenShift Container Platform update duration](/openshift-docs-markdown/updating/understanding_updates/understanding-openshift-update-duration#understanding-openshift-update-duration)
 
@@ -297,5 +299,6 @@ worker       rendered-worker-1d871ac76e1951d32b2fe92369879826       False     Tr
 ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Machine Config Overview](/openshift-docs-markdown/machine_configuration/index#machine-config-overview)

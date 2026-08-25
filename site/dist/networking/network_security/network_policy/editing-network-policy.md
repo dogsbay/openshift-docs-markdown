@@ -20,7 +20,7 @@ To modify existing policy configurations, you can edit a network policy in a nam
 
 - Your cluster uses a network plugin that supports `NetworkPolicy` objects, such as the OVN-Kubernetes network plugin, with `mode: NetworkPolicy` set.
 - You installed the OpenShift CLI (`oc`).
-- You are logged in to the cluster with a user with `{{ role }}` privileges.
+- You are logged in to the cluster with a user with `admin` privileges.
 - You are working in the namespace where the network policy exists.
 
 **Procedure**
@@ -28,7 +28,7 @@ To modify existing policy configurations, you can edit a network policy in a nam
 1. Optional: To list the network policy objects in a namespace, enter the following command:
 
    ```terminal
-   $ oc get {{ name }} policy -n <namespace>
+   $ oc get network policy -n <namespace>
    ```
 
    where:
@@ -53,7 +53,7 @@ To modify existing policy configurations, you can edit a network policy in a nam
    2. If you need to update the network policy object directly, enter the following command:
 
       ```terminal
-      $ oc edit {{ name }} policy <policy_name> -n <namespace>
+      $ oc edit network policy <policy_name> -n <namespace>
       ```
 
       where:
@@ -66,7 +66,7 @@ To modify existing policy configurations, you can edit a network policy in a nam
 3. Confirm that the network policy object is updated.
 
    ```terminal
-   $ oc describe {{ name }}policy <policy_name> -n <namespace>
+   $ oc describe networkpolicy <policy_name> -n <namespace>
    ```
 
    where:
@@ -114,6 +114,7 @@ where:
 `ingress.ports`
 :   A list of one or more destination ports on which to accept traffic.
 
-## Additional resources {#editing-network-policy-additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Creating a network policy](/openshift-docs-markdown/networking/network_security/network_policy/creating-network-policy#creating-network-policy)

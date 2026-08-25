@@ -15,6 +15,7 @@ All supported options are defined in the `ExternalSecretsConfig` CR (for example
 For the complete list of fields and allowed values, see the `ExternalSecretsConfig` API reference in the External Secrets Operator for Red Hat OpenShift documentation.
 
 **Additional resources**
+{._additional-resources}
 
 - [External Secrets Operator for Red Hat OpenShift APIs](/openshift-docs-markdown/security/external_secrets_operator/external-secrets-operator-api#external-secrets-operator-api)
 
@@ -171,7 +172,8 @@ You can optionally configure cert-manager to manage certificates for the Externa
    $ oc delete secrets external-secrets-webhook -n external-secrets
    ```
 
-<a name="external-secrets-log-levels_additional-resources"></a>**Additional resources**
+**Additional resources**
+{._additional-resources}
 
 - [External Secrets Operator for Red Hat OpenShift APIs](/openshift-docs-markdown/security/external_secrets_operator/external-secrets-operator-api#external-secrets-operator-api)
 - [cert-manager Operator for Red Hat Openshift](/openshift-docs-markdown/security/cert_manager_operator/index#cert-manager-operator-about)
@@ -557,23 +559,22 @@ The External Secrets Operator for Red Hat OpenShift applies the following rules 
      -o jsonpath='{.spec.template.spec.volumes}' | jq '.[] | select(.name=="user-ca-bundle")'
    ```
 
-```json {title="Example output"}
-{
-  "configMap": {
-    "defaultMode": 420,
-    "items": [
-      {
-        "key": "ca-bundle.crt",
-        "path": "ca-bundle.crt"
-      }
-    ],
-    "name": "trusted-ca-bundle-for-es"
-  },
-  "name": "user-ca-bundle"
-}
-```
-
-1. Verify that the `SSL_CERT_DIR` is set on the core controller container by running the following command:
+   ```json {title="Example output"}
+   {
+     "configMap": {
+       "defaultMode": 420,
+       "items": [
+         {
+           "key": "ca-bundle.crt",
+           "path": "ca-bundle.crt"
+         }
+       ],
+       "name": "trusted-ca-bundle-for-es"
+     },
+     "name": "user-ca-bundle"
+   }
+   ```
+2. Verify that the `SSL_CERT_DIR` is set on the core controller container by running the following command:
 
    ```terminal
    $ oc set env deployment/external-secrets \
@@ -581,29 +582,28 @@ The External Secrets Operator for Red Hat OpenShift applies the following rules 
      --list | grep SSL_CERT_DIR
    ```
 
-```terminal {title="Example output"}
-SSL_CERT_DIR=/etc/pki/tls/user-certs:/etc/pki/tls/certs:/etc/ssl/certs
-```
-
-1. Verify that the `ExternalSecretsConfig` CR is not in a `Degraded` state by running the following command:
+   ```terminal {title="Example output"}
+   SSL_CERT_DIR=/etc/pki/tls/user-certs:/etc/pki/tls/certs:/etc/ssl/certs
+   ```
+3. Verify that the `ExternalSecretsConfig` CR is not in a `Degraded` state by running the following command:
 
    ```terminal
    $ oc get externalsecretsconfigs.operator.openshift.io cluster \
      -o jsonpath='{.status.conditions[?(@.type=="Degraded")]}' | jq .
    ```
 
-```json {title="Example output"}
-{
-  "lastTransitionTime": "2026-06-22T10:29:11Z",
-  "message": "",
-  "observedGeneration": 5,
-  "reason": "Ready",
-  "status": "False",
-  "type": "Degraded"
-}
-```
+   ```json {title="Example output"}
+   {
+     "lastTransitionTime": "2026-06-22T10:29:11Z",
+     "message": "",
+     "observedGeneration": 5,
+     "reason": "Ready",
+     "status": "False",
+     "type": "Degraded"
+   }
+   ```
 
-The `Degraded` condition should show `"status": "False"`. If the condition is `True,` review the message field for the specific validation error and correct the referenced `ConfigMap`.
+   The `Degraded` condition should show `"status": "False"`. If the condition is `True,` review the message field for the specific validation error and correct the referenced `ConfigMap`.
 
 ## Overriding operand container arguments for the External Secrets Operator for Red Hat OpenShift {#external-secrets-operator-overriding-operand-arguments_external-secrets-log-levels}
 

@@ -41,11 +41,7 @@ Clusters in restricted networks have the following additional limitations and re
 
 ## Internet access for OpenShift Container Platform {#cluster-entitlements_installing-restricted-networks-installer-provisioned-vsphere}
 
-In OpenShift Container Platform 4.22, you require access to the internet to
-
-obtain the images that are necessary to install
-
-your cluster.
+In OpenShift Container Platform 4.22, you require access to the internet to obtain the images that are necessary to install your cluster.
 
 You must have internet access to perform the following actions:
 
@@ -55,11 +51,7 @@ You must have internet access to perform the following actions:
 
 ## Creating the RHCOS image for restricted network installations {#installation-creating-image-restricted_installing-restricted-networks-installer-provisioned-vsphere}
 
-Download the Red Hat Enterprise Linux CoreOS (RHCOS) image to install OpenShift Container Platform on a restricted network
-
-VMware vSphere
-
-environment.
+Download the Red Hat Enterprise Linux CoreOS (RHCOS) image to install OpenShift Container Platform on a restricted network VMware vSphere environment.
 
 **Prerequisites**
 
@@ -113,28 +105,30 @@ The following table outlines an example of the relationship among regions, zones
 </thead>
 <tbody>
 <tr>
-  <td>.4+</td>
-  <td>us-east .2+</td>
-  <td>us-east-1</td>
-</tr>
-<tr>
+  <td rowspan="4">us-east</td>
+  <td rowspan="2">us-east-1</td>
   <td>us-east-1a</td>
-  <td>us-east-1b.2+</td>
-  <td>us-east-2</td>
 </tr>
 <tr>
+  <td>us-east-1b</td>
+</tr>
+<tr>
+  <td rowspan="2">us-east-2</td>
   <td>us-east-2a</td>
-  <td>us-east-2b<br><br>.4+</td>
-  <td>us-west</td>
 </tr>
 <tr>
-  <td>.2+</td>
-  <td>us-west-1</td>
+  <td>us-east-2b</td>
+</tr>
+<tr>
+  <td rowspan="4">us-west</td>
+  <td rowspan="2">us-west-1</td>
   <td>us-west-1a</td>
 </tr>
 <tr>
-  <td>us-west-1b .2+</td>
-  <td>us-west-2</td>
+  <td>us-west-1b</td>
+</tr>
+<tr>
+  <td rowspan="2">us-west-2</td>
   <td>us-west-2a</td>
 </tr>
 <tr>
@@ -164,6 +158,7 @@ Review the following key terms, which correspond to parameters in your `install-
 - Zone type: Specifies the `HostGroup` zone type to enable this feature.
 
 **Additional resources**
+{._additional-resources}
 
 - [Additional VMware vSphere configuration parameters](/openshift-docs-markdown/installing/installing_vsphere/installation-config-parameters-vsphere#installation-configuration-parameters-additional-vsphere_installation-config-parameters-vsphere)
 - [Deprecated VMware vSphere configuration parameters](/openshift-docs-markdown/installing/installing_vsphere/installation-config-parameters-vsphere#deprecated-parameters-vsphere_installation-config-parameters-vsphere)
@@ -172,9 +167,7 @@ Review the following key terms, which correspond to parameters in your `install-
 
 ## Creating the installation configuration file {#installation-initializing_installing-restricted-networks-installer-provisioned-vsphere}
 
-You can customize the OpenShift Container Platform cluster you install on
-
-VMware vSphere.
+You can customize the OpenShift Container Platform cluster you install on VMware vSphere.
 
 **Prerequisites**
 
@@ -241,7 +234,7 @@ VMware vSphere.
       1. Download the **Red Hat Enterprise Linux CoreOS (RHCOS) - vSphere** image in Open Virtual Appliance (OVA) format to your local system. For more information, see "Creating the RHCOS image for restricted network installations".
       2. From the **Hosts and Clusters** tab on the vSphere Client, right-click your cluster name and select **Deploy OVF Template**.
       3. On the **Select an OVF** tab, specify the name of the RHCOS OVA file that you downloaded.
-      4. On the **Select a name and folder** tab, set a **Virtual machine name** for your template, such as `Template-{{ op_system }}`.
+      4. On the **Select a name and folder** tab, set a **Virtual machine name** for your template, such as `Template-RHCOS`.
       5. Click the name of your vSphere cluster and select the folder you created in the previous step.
       6. On the **Select a compute resource** tab, click the name of your vSphere cluster.
       7. On the **Select storage** tab, configure the storage options for your VM.
@@ -288,6 +281,7 @@ VMware vSphere.
    > The `install-config.yaml` file is consumed during the installation process. If you want to reuse the file, you must back it up now.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installation configuration parameters](/openshift-docs-markdown/installing/installing_vsphere/installation-config-parameters-vsphere#installation-config-parameters-vsphere)
 
@@ -307,12 +301,7 @@ sshKey: ssh-ed25519 AAAA...
 compute:
 - name:  <worker_name>
   platform: {}
-{%- if vsphere_upi %}
-  replicas: 0
-{% endif %}
-{% if not vsphere_upi %}
   replicas: 3
-{%- endif %}
 controlPlane:
   name: <control_plane_name>
   platform: {}
@@ -323,12 +312,10 @@ networking:
     hostPrefix: 23
 platform:
   vsphere:
-{%- if not vsphere_upi %}
     apiVIPs:
     - 10.0.0.1
     ingressVIPs:
     - 10.0.0.2
-      {%- endif %}
     failureDomains:
     - name: <failure_domain_name>
       region: <default_region_name>
@@ -385,48 +372,42 @@ Production environments can deny direct access to the internet and instead have 
    proxy:
      httpProxy: http://<username>:<pswd>@<ip>:<port>
      httpsProxy: https://<username>:<pswd>@<ip>:<port>
+     noProxy: example.com
+   additionalTrustBundle: |
+       -----BEGIN CERTIFICATE-----
+       <MY_TRUSTED_CA_CERT>
+       -----END CERTIFICATE-----
+   additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle>
+   # ...
    ```
 
-{%- if not aws %} noProxy: example.com {% endif %} {% if aws %} noProxy: ec2.<aws_region>.amazonaws.com,elasticloadbalancing.<aws_region>.amazonaws.com,s3.<aws_region>.amazonaws.com {%- endif %} additionalTrustBundle: | -----BEGIN CERTIFICATE----- <MY_TRUSTED_CA_CERT> -----END CERTIFICATE----- additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle> # ... \`\`\`
+   where:
 
-````
-where:
+   `proxy.httpProxy`
+   :   Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be `http`.
 
-`proxy.httpProxy`
-:   Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be `http`.
+   `proxy.httpsProxy`
+   :   Specifies a proxy URL to use for creating HTTPS connections outside the cluster.
 
-`proxy.httpsProxy`
-:   Specifies a proxy URL to use for creating HTTPS connections outside the cluster.
+   `proxy.noProxy`
+   :   Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with `.` to match subdomains only. For example, `.y.com` matches `x.y.com`, but not `y.com`. Use `*` to bypass the proxy for all destinations. You must include vCenter’s IP address and the IP range that you use for its machines.
 
-`proxy.noProxy`
-:   Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with `.` to match subdomains only. For example, `.y.com` matches `x.y.com`, but not `y.com`. Use `*` to bypass the proxy for all destinations.
+   `additionalTrustBundle`
+   :   If you specify this value, the installation program generates a config map named `user-ca-bundle` in the `openshift-config` namespace to hold the additional CA certificates. If you specify `additionalTrustBundle` and at least one proxy setting, the `Proxy` object references the `user-ca-bundle` config map in the `trustedCA` field. The Cluster Network Operator then creates a `trusted-ca-bundle` config map that merges the contents specified for the `trustedCA` parameter with the RHCOS trust bundle. You must set the `additionalTrustBundle` field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.
 
-    You must include vCenter’s IP address and the IP range that you use for its machines.
+   `additionalTrustBundlePolicy`
+   :   Specifies the policy that determines the configuration of the `Proxy` object to reference the `user-ca-bundle` config map in the `trustedCA` field. The allowed values are `Proxyonly` and `Always`. Use `Proxyonly` to reference the `user-ca-bundle` config map only when you configure an `http/https` proxy. Use `Always` to always reference the `user-ca-bundle` config map. The default value is `Proxyonly`. Optional parameter.
 
-`additionalTrustBundle`
-:   If you specify this value, the installation program generates a config map named `user-ca-bundle` in the `openshift-config` namespace to hold the additional CA certificates. If you specify `additionalTrustBundle` and at least one proxy setting, the `Proxy` object references the `user-ca-bundle` config map in the `trustedCA` field. The Cluster Network Operator then creates a `trusted-ca-bundle` config map that merges the contents specified for the `trustedCA` parameter with the RHCOS trust bundle. You must set the `additionalTrustBundle` field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.
+   > [!NOTE]
+   > The installation program does not support the proxy `readinessEndpoints` field.
 
-`additionalTrustBundlePolicy`
-:   Specifies the policy that determines the configuration of the `Proxy` object to reference the `user-ca-bundle` config map in the `trustedCA` field. The allowed values are `Proxyonly` and `Always`. Use `Proxyonly` to reference the `user-ca-bundle` config map only when you configure an `http/https` proxy. Use `Always` to always reference the `user-ca-bundle` config map. The default value is `Proxyonly`. Optional parameter.
-
-:::note
-
-The installation program does not support the proxy `readinessEndpoints` field.
-
-:::
-
-:::note
-
-If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
-
-```terminal
-$ ./openshift-install wait-for install-complete --log-level debug
-```
-
-:::
-````
-
-1. Save the file and reference it when installing OpenShift Container Platform.
+   > [!NOTE]
+   > If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
+   >
+   > ```terminal
+   > $ ./openshift-install wait-for install-complete --log-level debug
+   > ```
+2. Save the file and reference it when installing OpenShift Container Platform.
 
    The installation program creates a cluster-wide proxy named `cluster` that uses the proxy settings in the `install-config.yaml` file. If you do not give proxy settings, the installation program still creates a `cluster` `Proxy` object, but it has a nil `spec`.
 
@@ -486,56 +467,56 @@ The default `install-config.yaml` file configuration from the previous release o
    ```
 6. Change to the directory that contains the installation program and initialize the cluster deployment according to your chosen installation requirements.
 
-```yaml {title="Sample install-config.yaml file with multiple data centers defined in a vSphere center"}
-# ...
-compute:
----
-  vsphere:
-      zones:
-        - "<machine_pool_zone_1>"
-        - "<machine_pool_zone_2>"
-# ...
-controlPlane:
-# ...
-vsphere:
-      zones:
-        - "<machine_pool_zone_1>"
-        - "<machine_pool_zone_2>"
-# ...
-platform:
-  vsphere:
-    vcenters:
-# ...
-    datacenters:
-      - <data_center_1_name>
-      - <data_center_2_name>
-    failureDomains:
-    - name: <machine_pool_zone_1>
-      region: <region_tag_1>
-      zone: <zone_tag_1>
-      server: <fully_qualified_domain_name>
-      topology:
-        datacenter: <data_center_1>
-        computeCluster: "/<data_center_1>/host/<cluster1>"
-        networks:
-        - <VM_Network1_name>
-        datastore: "/<data_center_1>/datastore/<datastore1>"
-        resourcePool: "/<data_center_1>/host/<cluster1>/Resources/<resourcePool1>"
-        folder: "/<data_center_1>/vm/<folder1>"
-    - name: <machine_pool_zone_2>
-      region: <region_tag_2>
-      zone: <zone_tag_2>
-      server: <fully_qualified_domain_name>
-      topology:
-        datacenter: <data_center_2>
-        computeCluster: "/<data_center_2>/host/<cluster2>"
-        networks:
-        - <VM_Network2_name>
-        datastore: "/<data_center_2>/datastore/<datastore2>"
-        resourcePool: "/<data_center_2>/host/<cluster2>/Resources/<resourcePool2>"
-        folder: "/<data_center_2>/vm/<folder2>"
-# ...
-```
+   ```yaml {title="Sample install-config.yaml file with multiple data centers defined in a vSphere center"}
+   # ...
+   compute:
+   ---
+     vsphere:
+         zones:
+           - "<machine_pool_zone_1>"
+           - "<machine_pool_zone_2>"
+   # ...
+   controlPlane:
+   # ...
+   vsphere:
+         zones:
+           - "<machine_pool_zone_1>"
+           - "<machine_pool_zone_2>"
+   # ...
+   platform:
+     vsphere:
+       vcenters:
+   # ...
+       datacenters:
+         - <data_center_1_name>
+         - <data_center_2_name>
+       failureDomains:
+       - name: <machine_pool_zone_1>
+         region: <region_tag_1>
+         zone: <zone_tag_1>
+         server: <fully_qualified_domain_name>
+         topology:
+           datacenter: <data_center_1>
+           computeCluster: "/<data_center_1>/host/<cluster1>"
+           networks:
+           - <VM_Network1_name>
+           datastore: "/<data_center_1>/datastore/<datastore1>"
+           resourcePool: "/<data_center_1>/host/<cluster1>/Resources/<resourcePool1>"
+           folder: "/<data_center_1>/vm/<folder1>"
+       - name: <machine_pool_zone_2>
+         region: <region_tag_2>
+         zone: <zone_tag_2>
+         server: <fully_qualified_domain_name>
+         topology:
+           datacenter: <data_center_2>
+           computeCluster: "/<data_center_2>/host/<cluster2>"
+           networks:
+           - <VM_Network2_name>
+           datastore: "/<data_center_2>/datastore/<datastore2>"
+           resourcePool: "/<data_center_2>/host/<cluster2>/Resources/<resourcePool2>"
+           folder: "/<data_center_2>/vm/<folder2>"
+   # ...
+   ```
 
 ### Configuring host groups for a VMware vCenter {#configuring-vsphere-host-groups_installing-restricted-networks-installer-provisioned-vsphere}
 
@@ -589,45 +570,45 @@ The default `install-config.yaml` file configuration from previous releases of O
    ```
 6. Change to the directory that contains the installation program and initialize the cluster deployment according to your chosen installation requirements.
 
-```yaml {title="Sample install-config.yaml file with multiple host groups"}
-platform:
-  vsphere:
-    vcenters:
-# ...
-    datacenters:
-      - <data_center_1_name>
-    failureDomains:
-    - name: <host_group_1>
-      region: <cluster_1_region_tag>
-      zone: <host_group_1_zone_tag>
-      regionType: "ComputeCluster"
-      zoneType: "HostGroup"
-      server: <fully_qualified_domain_name>
-      topology:
-        datacenter: <data_center_1>
-        computeCluster: "/<data_center_1>/host/<cluster_1>"
-        networks:
-        - <VM_Network1_name>
-        hostGroup: <host_group_1_name>
-        datastore: "/<data_center_1>/datastore/<datastore_1>"
-        resourcePool: "/<data_center_1>/host/<cluster_1>/Resources/<resourcePool_1>"
-        folder: "/<data_center_1>/vm/<folder_1>"
-    - name: <host_group_2>
-      region: <cluster_1_region_tag>
-      zone: <host_group_2_zone_tag>
-      regionType: "ComputeCluster"
-      zoneType: "HostGroup"
-      server: <fully_qualified_domain_name>
-      topology:
-        datacenter: <data_center_1>
-        computeCluster: "/<data_center_1>/host/<cluster_1>"
-        networks:
-        - <VM_Network1_name>
-        hostGroup: <host_group_2_name>
-        datastore: "/<data_center_1>/datastore/<datastore_1>"
-        resourcePool: "/<data_center_1>/host/<cluster_1>/Resources/<resourcePool_1>"
-        folder: "/<data_center_1>/vm/<folder_1>"
-```
+   ```yaml {title="Sample install-config.yaml file with multiple host groups"}
+   platform:
+     vsphere:
+       vcenters:
+   # ...
+       datacenters:
+         - <data_center_1_name>
+       failureDomains:
+       - name: <host_group_1>
+         region: <cluster_1_region_tag>
+         zone: <host_group_1_zone_tag>
+         regionType: "ComputeCluster"
+         zoneType: "HostGroup"
+         server: <fully_qualified_domain_name>
+         topology:
+           datacenter: <data_center_1>
+           computeCluster: "/<data_center_1>/host/<cluster_1>"
+           networks:
+           - <VM_Network1_name>
+           hostGroup: <host_group_1_name>
+           datastore: "/<data_center_1>/datastore/<datastore_1>"
+           resourcePool: "/<data_center_1>/host/<cluster_1>/Resources/<resourcePool_1>"
+           folder: "/<data_center_1>/vm/<folder_1>"
+       - name: <host_group_2>
+         region: <cluster_1_region_tag>
+         zone: <host_group_2_zone_tag>
+         regionType: "ComputeCluster"
+         zoneType: "HostGroup"
+         server: <fully_qualified_domain_name>
+         topology:
+           datacenter: <data_center_1>
+           computeCluster: "/<data_center_1>/host/<cluster_1>"
+           networks:
+           - <VM_Network1_name>
+           hostGroup: <host_group_2_name>
+           datastore: "/<data_center_1>/datastore/<datastore_1>"
+           resourcePool: "/<data_center_1>/host/<cluster_1>/Resources/<resourcePool_1>"
+           folder: "/<data_center_1>/vm/<folder_1>"
+   ```
 
 ## Services for a user-managed load balancer {#nw-osp-services-external-load-balancer_installing-restricted-networks-installer-provisioned-vsphere}
 
@@ -938,22 +919,26 @@ Interval: 10
    ```yaml
    # ...
    platform:
+     vsphere:
+       loadBalancer:
+         type: <loadBalancer_type>
+       apiVIPs:
+       - <api_ip>
+       ingressVIPs:
+       - <ingress_ip>
+   # ...
    ```
 
-{%- if bare_metal %} bare-metal: {% endif %} {% if openstack %} openstack: {% endif %} {% if nutanix %} nutanix: {% endif %} {% if vsphere %} vsphere: {%- endif %} loadBalancer: type: <loadBalancer_type> apiVIPs: - <api_ip> ingressVIPs: - <ingress_ip> # ... \`\`\`
+   where:
 
-```
-where:
+   `<loadBalancer_type>`
+   :   Specifies the load balancer type. Set to `UserManaged` to specify a user-managed load balancer for your cluster. The parameter defaults to `OpenShiftManagedDefault`, which denotes the default internal load balancer. For services defined in an `openshift-kni-infra` namespace, a user-managed load balancer can deploy the `coredns` service to pods in your cluster but ignores `keepalived` and `haproxy` services.
 
-`<loadBalancer_type>`
-:   Specifies the load balancer type. Set to `UserManaged` to specify a user-managed load balancer for your cluster. The parameter defaults to `OpenShiftManagedDefault`, which denotes the default internal load balancer. For services defined in an `openshift-kni-infra` namespace, a user-managed load balancer can deploy the `coredns` service to pods in your cluster but ignores `keepalived` and `haproxy` services.
+   `<api_ip>`
+   :   Specifies the user-managed load balancer’s public IP address for the Kubernetes API. Mandatory parameter.
 
-`<api_ip>`
-:   Specifies the user-managed load balancer’s public IP address for the Kubernetes API. Mandatory parameter.
-
-`<ingress_ip>`
-:   Specifies the user-managed load balancer’s public IP address for ingress traffic. Mandatory parameter.
-```
+   `<ingress_ip>`
+   :   Specifies the user-managed load balancer’s public IP address for ingress traffic. Mandatory parameter.
 
 **Verification**
 
@@ -1056,19 +1041,15 @@ To deploy your OpenShift Container Platform cluster, you can initialize installa
 
 **Procedure**
 
-````
-*   In the directory that contains the installation program, initialize the cluster deployment by running the following command:
+- In the directory that contains the installation program, initialize the cluster deployment by running the following command:
 
 ```terminal
 $ ./openshift-install create cluster --dir <installation_directory> \
     --log-level=info
 ```
-    *   For `<installation_directory>`, specify the
-    location of your customized `./install-config.yaml` file.
 
-    *   To view different installation details, specify `warn`, `debug`, or
-    `error` instead of `info`.
-````
+- For `<installation_directory>`, specify the location of your customized `./install-config.yaml` file.
+- To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
 
 **Verification**
 
@@ -1145,7 +1126,7 @@ To use only trusted or locally available Operator catalogs, disable the default 
   ```
 
   > [!TIP]
-  > Or, you can use the web console to manage catalog sources. From the **Administration** -> **Cluster Settings** -> **Configuration** -> **OperatorHub** page, click the **Sources** tab, where you can create, update, delete, disable, and enable individual sources.
+  > Or, you can use the web console to manage catalog sources. From the **Administration** → **Cluster Settings** → **Configuration** → **OperatorHub** page, click the **Sources** tab, where you can create, update, delete, disable, and enable individual sources.
 
 ## Image registry removed during installation {#registry-removed_installing-restricted-networks-installer-provisioned-vsphere}
 
@@ -1229,6 +1210,7 @@ To provide metrics about cluster health and the success of updates, the Telemetr
 After you confirm that your [OpenShift Cluster Manager](https://console.redhat.com/openshift) inventory is correct, either maintained automatically by Telemetry or manually by using OpenShift Cluster Manager,use subscription watch to track your OpenShift Container Platform subscriptions at the account or multi-cluster level. For more information about subscription watch, see "Data Gathered and Used by Red Hat’s subscription services" in the *Additional resources* section.
 
 **Additional resources**
+{._additional-resources}
 
 - [Preparing to install a cluster using installer-provisioned infrastructure](/openshift-docs-markdown/installing/installing_vsphere/ipi/ipi-vsphere-preparing-to-install#ipi-vsphere-preparing-to-install)
 - [OpenShift Container Platform installation and update processes](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)

@@ -49,13 +49,13 @@ You can perform a Control Plane Only update by using the web console.
 1. Using the web console, update any Operator Lifecycle Manager (OLM) Operators to the versions that are compatible with your intended updated version. For more information, see "Updating installed Operators".
 2. Verify that all machine config pools display a status of `Up to date` and that no machine config pool displays a status of `UPDATING`.
 
-   To view the status of all machine config pools, click **Compute** -> **MachineConfigPools** and review the contents of the **Update status** column.
+   To view the status of all machine config pools, click **Compute** → **MachineConfigPools** and review the contents of the **Update status** column.
 
    > [!NOTE]
    > If your machine config pools have an `Updating` status, wait for this status to change to `Up to date`. This process could take several minutes.
 3. Set your channel to `eus-<4.y+2>`.
 
-   To set your channel, click **Administration** -> **Cluster Settings** -> **Channel**. You can edit your channel by clicking on the current hyperlinked channel.
+   To set your channel, click **Administration** → **Cluster Settings** → **Channel**. You can edit your channel by clicking on the current hyperlinked channel.
 4. Pause all worker machine pools except for the master pool. You can perform this action on the **MachineConfigPools** tab under the **Compute** page. Select the vertical ellipses next to the machine config pool you’d like to pause and click **Pause updates**.
 5. Update to version <4.y+1> and complete up to the **Save** step. For more information, see "Updating a cluster by using the web console".
 6. Ensure that the <4.y+1> updates are complete by viewing the **Last completed version** of your cluster. You can find this information on the **Cluster Settings** page under the **Details** tab.
@@ -75,7 +75,8 @@ You can perform a Control Plane Only update by using the web console.
 
     You can verify that your cluster has completed the update by viewing the **Last completed version** of your cluster. You can find this information on the **Cluster Settings** page under the **Details** tab.
 
-<a name="additional-resources_updating-control-plane-only-update-console"></a>**Additional resources**
+**Additional resources**
+{._additional-resources}
 
 - [Updating installed Operators](/openshift-docs-markdown/operators/admin/olm-upgrading-operators#olm-upgrading-operators)
 - [Updating a cluster by using the web console](/openshift-docs-markdown/updating/updating_a_cluster/updating-cluster-web-console#update-upgrading-web_updating-cluster-web-console)
@@ -180,7 +181,8 @@ You can perform a Control Plane Only update by using the OpenShift CLI (`oc`).
     worker   rendered-worker-4756f60eccae96fb9dcb4c392c69d497    True 	 False
     ```
 
-<a name="additional-resources_updating-control-plane-only-update-cli"></a>**Additional resources**
+**Additional resources**
+{._additional-resources}
 
 - [Updating installed Operators](/openshift-docs-markdown/operators/admin/olm-upgrading-operators#olm-upgrading-operators)
 
@@ -207,7 +209,8 @@ For example, the following high level steps describe how to perform a Control Pl
 > [!NOTE]
 > The update to ODF <4.y+2> can happen before or after worker machine pools have been unpaused.
 
-<a name="additional-resources_updating-control-plane-only-layered-products"></a>**Additional resources**
+**Additional resources**
+{._additional-resources}
 
 - [Updating installed Operators](/openshift-docs-markdown/operators/admin/olm-upgrading-operators#olm-upgrading-operators)
 - [Performing a Control Plane Only update using the web console](/openshift-docs-markdown/updating/updating_a_cluster/control-plane-only-update#updating-control-plane-only-update-console_control-plane-only-update)

@@ -27,7 +27,8 @@ const headings = [{"depth":1,"slug":"oadp-data-protection-test","text":"OADP Dat
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-data-protection-test";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -85,12 +86,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -98,7 +100,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="oadp-data-protection-test" class="group scroll-mt-20">OADP Data protection test<a href="#oadp-data-protection-test" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Validate your OADP configuration by using the <code>DataProtectionTest</code> (DPT) custom resource (CR). This helps you ensure your data protection environment is properly configured and performing according to your requirements before performing backups.</p>
+      <p class="_abstract">Validate your OADP configuration by using the <code>DataProtectionTest</code> (DPT) custom resource (CR). This helps you ensure your data protection environment is properly configured and performing according to your requirements before performing backups.</p>
       <p>The DPT checks the upload performance of backups to object storage, CSI snapshot readiness for persistent volume claims, and storage bucket configuration such as encryption and versioning.</p>
       <h2 id="oadp-dpt-spec_oadp-data-protection-test" class="group scroll-mt-20">OADP DataProtectionTest CR specification fields<a href="#oadp-dpt-spec_oadp-data-protection-test" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">Review the specification fields available in the <code>DataProtectionTest</code> (DPT) custom resource (CR) to configure backup location, upload speed tests, CSI volume snapshot tests, and other options. This helps you customize the DPT CR to validate your specific OADP configuration requirements.</p>

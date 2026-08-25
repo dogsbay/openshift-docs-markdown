@@ -98,9 +98,7 @@ OpenShift Container Platform evaluates authorization by using the following step
 
 Project administrators can use the CLI to
 
-view local roles and bindings,
-
-including a matrix of the verbs and resources each are associated with.
+view local roles and bindings, including a matrix of the verbs and resources each are associated with.
 
 > [!IMPORTANT]
 > The cluster role bound to the project administrator is limited in a project through a local binding. It is not bound cluster-wide like the cluster roles granted to the **cluster-admin** or **system:admin**.
@@ -112,6 +110,7 @@ including a matrix of the verbs and resources each are associated with.
 The default admin, edit, view, and cluster-reader cluster roles support cluster role aggregation, where the cluster rules for each role are dynamically updated as new rules are created. This feature is relevant only if you extend the Kubernetes API by creating custom resources.
 
 **Additional resources**
+{._additional-resources}
 
 - [RBAC rules allow execution privileges](https://access.redhat.com/solutions/6989997)
 - [Aggregated ClusterRoles (Kubernetes documentation)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#aggregated-clusterroles)
@@ -149,13 +148,12 @@ Each project scopes its own set of:
 
 Cluster administrators
 
-can create projects and delegate administrative rights for the project to any member of the user community. Cluster administrators
-
-can also allow developers to create their own projects.
+can create projects and delegate administrative rights for the project to any member of the user community. Cluster administrators can also allow developers to create their own projects.
 
 Developers and administrators can interact with projects by using the CLI or the web console.
 
 **Additional resources**
+{._additional-resources}
 
 - [Kubernetes documentation on namespaces](https://kubernetes.io/docs/tasks/administer-cluster/namespaces/)
 
@@ -171,6 +169,7 @@ OpenShift Container Platform includes several default projects, and projects sta
 > The following default projects are considered highly privileged: `default`, `kube-public`, `kube-system`, `openshift`, `openshift-infra`, `openshift-node`, and other system-created projects that have the `openshift.io/run-level` label set to `0` or `1`. Functionality that relies on admission plugins, such as pod security admission, security context constraints, cluster resource quotas, and image reference resolution, does not work in highly privileged projects.
 
 **Additional resources**
+{._additional-resources}
 
 - [Guaranteed Scheduling For Critical Add-On Pods (Kubernetes documentation)](https://kubernetes.io/docs/tasks/administer-cluster/guaranteed-scheduling-critical-addon-pods/#rescheduler-guaranteed-scheduling-of-critical-add-ons)
 

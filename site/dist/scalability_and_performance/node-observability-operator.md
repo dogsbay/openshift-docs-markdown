@@ -126,7 +126,7 @@ You can install the Node Observability Operator from the OpenShift Container Pla
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console.
-2. In the Administrator’s navigation panel, select **Ecosystem** -> **Software Catalog**.
+2. In the Administrator’s navigation panel, select **Ecosystem** → **Software Catalog**.
 3. In the **All items** field, enter **Node Observability Operator** and select the **Node Observability Operator** tile.
 4. Click **Install**.
 5. On the **Install Operator** page, configure the following settings:
@@ -139,7 +139,7 @@ You can install the Node Observability Operator from the OpenShift Container Pla
 
 **Verification**
 
-1. In the Administrator’s navigation panel, expand **Ecosystem** -> **Installed Operators**.
+1. In the Administrator’s navigation panel, expand **Ecosystem** → **Installed Operators**.
 2. Verify that the Node Observability Operator is listed in the Operators list.
 
 ## Requesting CRI-O and Kubelet profiling data using the Node Observability Operator {#requesting-crio-kubelet-profiling-using-noo_node-observability-operator}
@@ -458,6 +458,7 @@ You can configure the Node Observability Operator to run pre-configured scripts 
    done
    ```
 
-## Additional resources {#additional-resources_node-observability-operator}
+**Additional resources**
+{._additional-resources}
 
 - [Collecting worker metrics using the Node Observability Operator](https://access.redhat.com/solutions/5343671)

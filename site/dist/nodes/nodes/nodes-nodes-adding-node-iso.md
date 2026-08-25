@@ -24,20 +24,21 @@ Supported platforms
 Supported architectures
 :   The following architecture combinations have been validated to work when adding worker nodes using this process:
 
-- `amd64` worker nodes on `amd64` or `arm64` clusters
-- `arm64` worker nodes on `amd64` or `arm64` clusters
-- `s390x` worker nodes on `s390x` clusters
-- `ppc64le` worker nodes on `ppc64le` clusters
+    - `amd64` worker nodes on `amd64` or `arm64` clusters
+    - `arm64` worker nodes on `amd64` or `arm64` clusters
+    - `s390x` worker nodes on `s390x` clusters
+    - `ppc64le` worker nodes on `ppc64le` clusters
 
 Adding nodes to your cluster
 :   You can add nodes with this method in the following two ways:
 
-- Adding one or more nodes using a configuration file.
+    - Adding one or more nodes using a configuration file.
 
-  You can specify configurations for one or more nodes in the `nodes-config.yaml` file before running the `oc adm node-image create` command. This is useful if you want to add more than one node at a time, or if you are specifying complex configurations.
-- Adding a single node using only command flags.
+    You can specify configurations for one or more nodes in the `nodes-config.yaml` file before running the `oc adm node-image create` command. This is useful if you want to add more than one node at a time, or if you are specifying complex configurations.
 
-  You can add a node by running the `oc adm node-image create` command with flags to specify your configurations. This is useful if you want to add only a single node at a time, and have only simple configurations to specify for that node.
+    - Adding a single node using only command flags.
+
+    You can add a node by running the `oc adm node-image create` command with flags to specify your configurations. This is useful if you want to add only a single node at a time, and have only simple configurations to specify for that node.
 
 ## Adding one or more nodes using a configuration file {#adding-node-iso-yaml_adding-node-iso}
 
@@ -182,18 +183,20 @@ You can add a single node to your cluster by using command flags to specify conf
 When creating the ISO image, configurations are retrieved from the target cluster and are applied to the new nodes. You can override these configurations by specifying new values in either the `nodes-config.yaml` file or any flags you add to the `oc adm node-image create` command before you create the ISO image.
 
 YAML file parameters
-:   Configuration parameters that can be specified in the `nodes-config.yaml` file are described in the following table: `nodes-config.yaml`** parameters**
+:   Configuration parameters that can be specified in the `nodes-config.yaml` file are described in the following table:
+
+    **`nodes-config.yaml` parameters**
 
     | Parameter | Description | Values |
     | --- | --- | --- |
     | hosts: | Host configuration. | An array of host configuration objects. |
-    | hosts:   hostname: | Hostname. Overrides the hostname obtained from either the Dynamic Host Configuration Protocol (DHCP) or a reverse DNS lookup. Each host must have a unique hostname supplied by one of these methods, although configuring a hostname through this parameter is optional. | String. |
-    | hosts:   interfaces: | Provides a table of the name and MAC address mappings for the interfaces on the host. If a `NetworkConfig` section is provided in the `nodes-config.yaml` file, this table must be included and the values must match the mappings provided in the `NetworkConfig` section. | An array of host configuration objects. |
-    | hosts:   interfaces:     name: | The name of an interface on the host. | String. |
-    | hosts:   interfaces:     macAddress: | The MAC address of an interface on the host. | A MAC address such as the following example: `00-B0-D0-63-C2-26`. |
-    | hosts:   rootDeviceHints: | Enables provisioning of the Red Hat Enterprise Linux CoreOS (RHCOS) image to a particular device. The node-adding tool examines the devices in the order it discovers them, and compares the discovered values with the hint values. It uses the first discovered device that matches the hint value. | A dictionary of key-value pairs. For more information, see "Root device hints" in the "Setting up the environment for an OpenShift installation" page. |
-    | hosts:   rootDeviceHints:     deviceName: | The name of the device the RHCOS image is provisioned to. | String. |
-    | hosts:   networkConfig: | The host network definition. The configuration must match the Host Network Management API defined in the [nmstate documentation](https://nmstate.io/). | A dictionary of host network configuration objects. |
+    | hosts: hostname: | Hostname. Overrides the hostname obtained from either the Dynamic Host Configuration Protocol (DHCP) or a reverse DNS lookup. Each host must have a unique hostname supplied by one of these methods, although configuring a hostname through this parameter is optional. | String. |
+    | hosts: interfaces: | Provides a table of the name and MAC address mappings for the interfaces on the host. If a `NetworkConfig` section is provided in the `nodes-config.yaml` file, this table must be included and the values must match the mappings provided in the `NetworkConfig` section. | An array of host configuration objects. |
+    | hosts: interfaces: name: | The name of an interface on the host. | String. |
+    | hosts: interfaces: macAddress: | The MAC address of an interface on the host. | A MAC address such as the following example: `00-B0-D0-63-C2-26`. |
+    | hosts: rootDeviceHints: | Enables provisioning of the Red Hat Enterprise Linux CoreOS (RHCOS) image to a particular device. The node-adding tool examines the devices in the order it discovers them, and compares the discovered values with the hint values. It uses the first discovered device that matches the hint value. | A dictionary of key-value pairs. For more information, see "Root device hints" in the "Setting up the environment for an OpenShift installation" page. |
+    | hosts: rootDeviceHints: deviceName: | The name of the device the RHCOS image is provisioned to. | String. |
+    | hosts: networkConfig: | The host network definition. The configuration must match the Host Network Management API defined in the [nmstate documentation](https://nmstate.io/). | A dictionary of host network configuration objects. |
     | cpuArchitecture: | Optional. Specifies the architecture of the nodes you are adding. This parameter allows you to override the default value from the cluster when required. | String. |
     | sshKey: | Optional. The file containing the SSH key to authenticate access to your cluster machines. | String. |
     | bootArtifactsBaseURL: | Optional. Specifies the URL of the server to upload Preboot Execution Environment (PXE) assets to when you are generating an iPXE script. You must also set the `--pxe` flag to generate PXE assets instead of an ISO image. | String. |
@@ -201,7 +204,9 @@ YAML file parameters
 Command flag options
 :   You can use command flags with the `oc adm node-image create` command to configure the nodes you are creating.
 
-    The following table describes command flags that are not limited to the single-node use case: **General command flags**
+    The following table describes command flags that are not limited to the single-node use case:
+
+    **General command flags**
 
     | Flag | Description | Values |
     | --- | --- | --- |
@@ -209,22 +214,25 @@ Command flag options
     | `--dir` | The path containing the configuration file, if provided. This path is also used to store the generated artifacts. | String |
     | `--insecure` | Allows push and pull operations to registries to be made over HTTP. | Boolean |
     | `-o`, `--output-name` | The name of the generated output image. | String |
-    | `p`, `--pxe` | Generates Preboot Execution Environment (PXE) assets instead of a bootable ISO file. When this flag is set, you can also use the `bootArtifactsBaseURL` parameter in the `nodes-config.yaml` file to specify URL of the server you will upload PXE assets to. | Boolean |
-    | `-a`, `--registry-config` | The path to your registry credentials. Alternatively, you can specify the `REGISTRY_AUTH_FILE` environment variable. The default paths are `${{ XDG_RUNTIME_DIR }}/containers/auth.json`, `/run/containers/${{ UID }}/auth.json`, `${{ XDG_CONFIG_HOME }}/containers/auth.json`, `${{ DOCKER_CONFIG }}`, `~/.docker/config.json`, `~/.dockercfg.` The order can be changed through the deprecated `REGISTRY_AUTH_PREFERENCE` environment variable to a "docker" value, in order to prioritize Docker credentials over Podman. | String |
+    | `p`, `--pxe` | Generates Preboot Execution Environment (PXE) assets instead of a bootable ISO file.<br>When this flag is set, you can also use the `bootArtifactsBaseURL` parameter in the `nodes-config.yaml` file to specify URL of the server you will upload PXE assets to. | Boolean |
+    | `-a`, `--registry-config` | The path to your registry credentials. Alternatively, you can specify the `REGISTRY_AUTH_FILE` environment variable. The default paths are `${XDG_RUNTIME_DIR}/containers/auth.json`, `/run/containers/${UID}/auth.json`, `${XDG_CONFIG_HOME}/containers/auth.json`, `${DOCKER_CONFIG}`, `~/.docker/config.json`, `~/.dockercfg.` The order can be changed through the deprecated `REGISTRY_AUTH_PREFERENCE` environment variable to a "docker" value, in order to prioritize Docker credentials over Podman. | String |
     | `-r`, `--report` | Generates a report of the node creation process regardless of whether the process is successful or not. If you do not specify this flag, reports are generated only in cases of failure. | Boolean |
     | `--skip-verification` | An option to skip verifying the integrity of the retrieved content. This is not recommended, but might be necessary when importing images from older image registries. Bypass verification only if the registry is known to be trustworthy. | Boolean |
 
-    The following table describes command flags that can be used only when creating a single node: **Single-node only command flags**
+The following table describes command flags that can be used only when creating a single node:
 
-    | Flag | Description | Values |
-    | --- | --- | --- |
-    | `-c`, `--cpu-architecture` | The CPU architecture to be used to install the node. This flag can be used to create only a single node, and the `--mac-address` flag must be defined. | String |
-    | `--hostname` | The hostname to be set for the node. This flag can be used to create only a single node, and the `--mac-address` flag must be defined. | String |
-    | `-m`, `--mac-address` | The MAC address used to identify the host to apply configurations to. This flag can be used to create only a single node, and the `--mac-address` flag must be defined. | String |
-    | `--network-config-path` | The path to a YAML file containing NMState configurations to be applied to the node. This flag can be used to create only a single node, and the `--mac-address` flag must be defined. | String |
-    | `--root-device-hint` | A hint for specifying the storage location for the image root filesystem. The accepted format is `<hint_name>:<value>`. This flag can be used to create only a single node, and the `--mac-address` flag must be defined. | String |
-    | `-k`, `--ssh-key-path` | The path to the SSH key used to access the node. This flag can be used to create only a single node, and the `--mac-address` flag must be defined. | String |
+.Single-node only command flags
 
-## Additional resources {#additional-resources_adding-node-iso}
+| Flag | Description | Values |
+| --- | --- | --- |
+| `-c`, `--cpu-architecture` | The CPU architecture to be used to install the node. This flag can be used to create only a single node, and the `--mac-address` flag must be defined. | String |
+| `--hostname` | The hostname to be set for the node. This flag can be used to create only a single node, and the `--mac-address` flag must be defined. | String |
+| `-m`, `--mac-address` | The MAC address used to identify the host to apply configurations to. This flag can be used to create only a single node, and the `--mac-address` flag must be defined. | String |
+| `--network-config-path` | The path to a YAML file containing NMState configurations to be applied to the node. This flag can be used to create only a single node, and the `--mac-address` flag must be defined. | String |
+| `--root-device-hint` | A hint for specifying the storage location for the image root filesystem. The accepted format is `<hint_name>:<value>`. This flag can be used to create only a single node, and the `--mac-address` flag must be defined. | String |
+| `-k`, `--ssh-key-path` | The path to the SSH key used to access the node. This flag can be used to create only a single node, and the `--mac-address` flag must be defined. | String |
+
+**Additional resources**
+{._additional-resources}
 
 - [Root device hints](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#root-device-hints_ipi-install-installation-workflow)

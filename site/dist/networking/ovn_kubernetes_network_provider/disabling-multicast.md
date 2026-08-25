@@ -20,8 +20,8 @@ To disable multicast between pods in a project, you can remove the `k8s.ovn.org/
 - Disable multicast by running the following command:
 
   ```terminal
-  $ oc annotate {{ namespace }} <namespace> \
-      {{ annotation }}
+  $ oc annotate namespace <namespace> \
+      k8s.ovn.org/multicast-enabled-
   ```
 
   For `<namespace>`, specify the namespace for the project you want to disable multicast for.

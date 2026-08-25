@@ -94,6 +94,7 @@ The `service-ca` controller automatically rotates the certificates that it issue
 
 The Ingress Operator does not rotate its own signing certificate or the default certificates that it generates. Operator-generated default certificates are intended as placeholders for custom default certificates that you configure.
 
-## Additional resources {#additional-resources_cert-types-ingress-certificates}
+**Additional resources**
+{._additional-resources}
 
 - [Replacing the default ingress certificate](/openshift-docs-markdown/security/certificates/replacing-default-ingress-certificate#replacing-default-ingress)

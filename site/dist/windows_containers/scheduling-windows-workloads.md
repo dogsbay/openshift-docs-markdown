@@ -71,10 +71,9 @@ Creating a runtime class is also necessary in clusters that support multiple ope
    `scheduling.nodeSelector`
    :   Specifies labels that must be present on nodes that support this runtime class. Pods using this runtime class can only be scheduled to a node matched by this selector. The node selector of the runtime class is merged with the existing node selector of the pod. Any conflicts prevent the pod from being scheduled to the node. \*   For Windows 2025, specify the `node.kubernetes.io/windows-build: '10.0.26100'` label. \*   For Windows 2022, specify the `node.kubernetes.io/windows-build: '10.0.20348'` label. \*   For Windows 2019, specify the `node.kubernetes.io/windows-build: '10.0.17763'` label.
 
-`scheduling.tolerations`
-:   Specifies tolerations to append to pods, excluding duplicates, running with this runtime class during admission. This combines the set of nodes tolerated by the pod and the runtime class.
-
-1. Create the `RuntimeClass` object:
+   `scheduling.tolerations`
+   :   Specifies tolerations to append to pods, excluding duplicates, running with this runtime class during admission. This combines the set of nodes tolerated by the pod and the runtime class.
+2. Create the `RuntimeClass` object:
 
    ```terminal
    $ oc create -f <file-name>.yaml
@@ -85,7 +84,7 @@ Creating a runtime class is also necessary in clusters that support multiple ope
    ```terminal
    $ oc create -f runtime-class.yaml
    ```
-2. Apply the `RuntimeClass` object to your pod to ensure it is scheduled to the appropriate operating system variant:
+3. Apply the `RuntimeClass` object to your pod to ensure it is scheduled to the appropriate operating system variant:
 
    ```yaml
    apiVersion: v1
@@ -260,7 +259,8 @@ This guidance is relevant to fully automated, installer-provisioned infrastructu
   $ oc get machines.machine.openshift.io
   ```
 
-## Additional resources {#additional-resources_scheduling-windows-workloads}
+**Additional resources**
+{._additional-resources}
 
 - [Host and container version compatibility (Microsoft Windows documentation)](https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/update-containers#host-and-container-version-compatibility)
 - [Pod OS (Kubernetes documentation)](https://kubernetes.io/docs/concepts/workloads/pods/#pod-os)

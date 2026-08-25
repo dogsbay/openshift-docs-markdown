@@ -1,8 +1,8 @@
 ---
-title: Installing {{ external_secrets_console_plugin }}
+title: Installing External Secrets Management Console Plug-in
 ---
 
-# Installing {{ external_secrets_console_plugin }} {#external-secrets-console-plugin-install}
+# Installing External Secrets Management Console Plug-in {#external-secrets-console-plugin-install}
 
 Install the External Secrets Management Console Plug-in from the OpenShift Container Platform web console **Software Catalog** to manage certificates and secrets across installed secrets management Operators.
 
@@ -23,7 +23,7 @@ You can use the web console to install the External Secrets Management Console P
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console.
-2. Navigate to **Ecosystem** -> **Software Catalog**.
+2. Navigate to **Ecosystem** → **Software Catalog**.
 3. Enter **External Secrets Management Console** into the filter box.
 4. Select **External Secrets Management Console**.
 5. Select the External Secrets Management Console Plug-in version from the **Version** drop-down list, and click **Install**.

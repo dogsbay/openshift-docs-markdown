@@ -53,7 +53,7 @@ To customize the SR-IOV Network Operator, configure the `sriovoperatorconfig` cu
 
 The following table describes the `sriovoperatorconfig` CR fields:
 
-***SR-IOV Network Operator config custom resource***
+**SR-IOV Network Operator config custom resource**
 
 <table>
 <thead>
@@ -113,107 +113,99 @@ The following table describes the `sriovoperatorconfig` CR fields:
   <td><code>spec.featureGates.mellanoxFirmwareReset</code></td>
   <td><code>boolean</code></td>
   <td>Specifies whether to reset the firmware on virtual function (VF) changes in the SR-IOV Network Operator. Some chipsets, such as the Intel C740 Series, do not completely power off the PCI-E devices, which is required to configure VFs on NVIDIA/Mellanox NICs. By default, this field is set to <code>false</code>.<br><br>
+<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>The <code>spec.featureGates.mellanoxFirmwareReset</code> parameter is a Technology Preview feature only. Technology Preview features are not supported with Red&#160;Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process. For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl></td>
+</tr>
+</tbody>
+</table>
 
-> [!IMPORTANT]
-> The `spec.featureGates.mellanoxFirmwareReset` parameter is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
->
-> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
->
-> :::</td>
->
-> </tr>
-> </tbody>
-> </table>
->
->
-> ## About the Network Resources Injector {#about-network-resource-injector_configuring-sriov-operator}
->
-> You can use the Network Resources Injector, a Kubernetes Dynamic Admission Controller application, to mutate resource requests and limits in a pod specification and mutate a pod specification with a Downward API volume.
->
-> The Network Resources Injector provides the following capabilities:
->
-> - Mutation of resource requests and limits in a pod specification to add an SR-IOV resource name according to an SR-IOV network attachment definition annotation.
-> - Mutation of a pod specification with a Downward API volume to expose pod annotations, labels, and huge pages requests and limits. Containers that run in the pod can access the exposed information as files under the `/etc/podnetinfo` path.
->
-> The SR-IOV Network Operator enables the Network Resources Injector when the `enableInjector` is set to `true` in the `SriovOperatorConfig` CR. The `network-resources-injector` pod runs as a daemon set on all control plane nodes. The following is an example of Network Resources Injector pods running in a cluster with three control plane nodes:
->
-> ```terminal
-> $ oc get pods -n openshift-sriov-network-operator
-> ```
->
-> ```terminal {title="Example output"}
-> NAME                                      READY   STATUS    RESTARTS   AGE
-> network-resources-injector-5cz5p          1/1     Running   0          10m
-> network-resources-injector-dwqpx          1/1     Running   0          10m
-> network-resources-injector-lktz5          1/1     Running   0          10m
-> ```
->
-> By default, the `failurePolicy` field in the Network Resources Injector webhook is set to `Ignore`. This default setting prevents pod creation from being blocked if the webhook is unavailable.
->
-> If you set the `failurePolicy` field to `Fail`, and the Network Resources Injector webhook is unavailable, the webhook attempts to mutate all pod creation and update requests. This behavior can block pod creation and disrupt normal cluster operations. To prevent such issues, you can enable the `featureGates.resourceInjectorMatchCondition` feature in the `SriovOperatorConfig` object to limit the scope of the Network Resources Injector webhook. If this feature is enabled, the webhook applies only to pods with the secondary network annotation `k8s.v1.cni.cncf.io/networks`.
->
-> If you set the `failurePolicy` field to `Fail` after enabling the `resourceInjectorMatchCondition` feature, the webhook applies only to pods with the secondary network annotation `k8s.v1.cni.cncf.io/networks`. If the webhook is unavailable, the cluster still deploys pods without this annotation; this prevents unnecessary disruptions to cluster operations.
->
-> The `featureGates.resourceInjectorMatchCondition` feature is disabled by default. To enable this feature, set the `featureGates.resourceInjectorMatchCondition` field to `true` in the `SriovOperatorConfig` object.
->
-> ```yaml {title="Example SriovOperatorConfig object configuration"}
-> apiVersion: sriovnetwork.openshift.io/v1
-> kind: SriovOperatorConfig
-> metadata:
->   name: default
->   namespace: sriov-network-operator
-> spec:
-> # ...
->   featureGates:
->     resourceInjectorMatchCondition: true
-> # ...
-> ```
->
-> ## Disabling or enabling the Network Resources Injector {#disable-enable-network-resource-injector_configuring-sriov-operator}
->
-> To control the automatic configuration of your cluster workloads, enable or disable the Network Resources Injector.
->
-> **Prerequisites**
->
-> - Install the OpenShift CLI (`oc`).
-> - Log in as a user with `cluster-admin` privileges.
-> - You must have installed the SR-IOV Network Operator.
->
-> **Procedure**
->
-> - Set the `enableInjector` field. Replace `<value>` with `false` to disable the feature or `true` to enable the feature.
->
->   ```terminal
->   $ oc patch sriovoperatorconfig default \
->     --type=merge -n openshift-sriov-network-operator \
->     --patch '{ "spec": { "enableInjector": <value> } }'
->   ```
->
->   > [!TIP]
->   > You can alternatively apply the following YAML to update the Operator:
->   >
->   > ```yaml
->   > apiVersion: sriovnetwork.openshift.io/v1
->   > kind: SriovOperatorConfig
->   > metadata:
->   >   name: default
->   >   namespace: openshift-sriov-network-operator
->   > spec:
->   >   enableInjector: <value>
->   > # ...
->   > ```
->
-> ## About the SR-IOV Network Operator admission controller webhook {#about-sr-iov-operator-admission-control-webhook_configuring-sriov-operator}
->
-> You can use the SR-IOV Network Operator Admission Controller webhook to mutate or validate the `SriovNetworkNodePolicy` CR.
->
-> - Validation of the `SriovNetworkNodePolicy` CR when it is created or updated.
-> - Mutation of the `SriovNetworkNodePolicy` CR by setting the default value for the `priority` and `deviceType` fields when the CR is created or updated.
->
-> The SR-IOV Network Operator Admission Controller webhook is enabled by the Operator when the `enableOperatorWebhook` is set to `true` in the `SriovOperatorConfig` CR. The `operator-webhook` pod runs as a daemon set on all control plane nodes.
->
-> > [!NOTE]
-> > Use caution when disabling the SR-IOV Network Operator Admission Controller webhook. You can disable the webhook under specific circumstances, such as troubleshooting, or if you want to use unsupported devices. For information about configuring unsupported devices, see "Configuring the SR-IOV Network Operator to use an unsupported NIC".
+## About the Network Resources Injector {#about-network-resource-injector_configuring-sriov-operator}
+
+You can use the Network Resources Injector, a Kubernetes Dynamic Admission Controller application, to mutate resource requests and limits in a pod specification and mutate a pod specification with a Downward API volume.
+
+The Network Resources Injector provides the following capabilities:
+
+- Mutation of resource requests and limits in a pod specification to add an SR-IOV resource name according to an SR-IOV network attachment definition annotation.
+- Mutation of a pod specification with a Downward API volume to expose pod annotations, labels, and huge pages requests and limits. Containers that run in the pod can access the exposed information as files under the `/etc/podnetinfo` path.
+
+The SR-IOV Network Operator enables the Network Resources Injector when the `enableInjector` is set to `true` in the `SriovOperatorConfig` CR. The `network-resources-injector` pod runs as a daemon set on all control plane nodes. The following is an example of Network Resources Injector pods running in a cluster with three control plane nodes:
+
+```terminal
+$ oc get pods -n openshift-sriov-network-operator
+```
+
+```terminal {title="Example output"}
+NAME                                      READY   STATUS    RESTARTS   AGE
+network-resources-injector-5cz5p          1/1     Running   0          10m
+network-resources-injector-dwqpx          1/1     Running   0          10m
+network-resources-injector-lktz5          1/1     Running   0          10m
+```
+
+By default, the `failurePolicy` field in the Network Resources Injector webhook is set to `Ignore`. This default setting prevents pod creation from being blocked if the webhook is unavailable.
+
+If you set the `failurePolicy` field to `Fail`, and the Network Resources Injector webhook is unavailable, the webhook attempts to mutate all pod creation and update requests. This behavior can block pod creation and disrupt normal cluster operations. To prevent such issues, you can enable the `featureGates.resourceInjectorMatchCondition` feature in the `SriovOperatorConfig` object to limit the scope of the Network Resources Injector webhook. If this feature is enabled, the webhook applies only to pods with the secondary network annotation `k8s.v1.cni.cncf.io/networks`.
+
+If you set the `failurePolicy` field to `Fail` after enabling the `resourceInjectorMatchCondition` feature, the webhook applies only to pods with the secondary network annotation `k8s.v1.cni.cncf.io/networks`. If the webhook is unavailable, the cluster still deploys pods without this annotation; this prevents unnecessary disruptions to cluster operations.
+
+The `featureGates.resourceInjectorMatchCondition` feature is disabled by default. To enable this feature, set the `featureGates.resourceInjectorMatchCondition` field to `true` in the `SriovOperatorConfig` object.
+
+```yaml {title="Example SriovOperatorConfig object configuration"}
+apiVersion: sriovnetwork.openshift.io/v1
+kind: SriovOperatorConfig
+metadata:
+  name: default
+  namespace: sriov-network-operator
+spec:
+# ...
+  featureGates:
+    resourceInjectorMatchCondition: true
+# ...
+```
+
+## Disabling or enabling the Network Resources Injector {#disable-enable-network-resource-injector_configuring-sriov-operator}
+
+To control the automatic configuration of your cluster workloads, enable or disable the Network Resources Injector.
+
+**Prerequisites**
+
+- Install the OpenShift CLI (`oc`).
+- Log in as a user with `cluster-admin` privileges.
+- You must have installed the SR-IOV Network Operator.
+
+**Procedure**
+
+- Set the `enableInjector` field. Replace `<value>` with `false` to disable the feature or `true` to enable the feature.
+
+  ```terminal
+  $ oc patch sriovoperatorconfig default \
+    --type=merge -n openshift-sriov-network-operator \
+    --patch '{ "spec": { "enableInjector": <value> } }'
+  ```
+
+  > [!TIP]
+  > You can alternatively apply the following YAML to update the Operator:
+  >
+  > ```yaml
+  > apiVersion: sriovnetwork.openshift.io/v1
+  > kind: SriovOperatorConfig
+  > metadata:
+  >   name: default
+  >   namespace: openshift-sriov-network-operator
+  > spec:
+  >   enableInjector: <value>
+  > # ...
+  > ```
+
+## About the SR-IOV Network Operator admission controller webhook {#about-sr-iov-operator-admission-control-webhook_configuring-sriov-operator}
+
+You can use the SR-IOV Network Operator Admission Controller webhook to mutate or validate the `SriovNetworkNodePolicy` CR.
+
+- Validation of the `SriovNetworkNodePolicy` CR when it is created or updated.
+- Mutation of the `SriovNetworkNodePolicy` CR by setting the default value for the `priority` and `deviceType` fields when the CR is created or updated.
+
+The SR-IOV Network Operator Admission Controller webhook is enabled by the Operator when the `enableOperatorWebhook` is set to `true` in the `SriovOperatorConfig` CR. The `operator-webhook` pod runs as a daemon set on all control plane nodes.
+
+> [!NOTE]
+> Use caution when disabling the SR-IOV Network Operator Admission Controller webhook. You can disable the webhook under specific circumstances, such as troubleshooting, or if you want to use unsupported devices. For information about configuring unsupported devices, see "Configuring the SR-IOV Network Operator to use an unsupported NIC".
 
 The following is an example of the Operator Admission Controller webhook pods running in a cluster with three control plane nodes:
 
@@ -229,6 +221,7 @@ operator-webhook-rpfrl                    1/1     Running   0          16m
 ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring the SR-IOV Network Operator to use an unsupported NIC](https://access.redhat.com/articles/7010183)
 
@@ -398,7 +391,7 @@ You must configure and deploy the hosted cluster on AWS.
 
    ```terminal {title="Example output"}
    NAME                                         DISPLAY                   VERSION               REPLACES                                     PHASE
-   sriov-network-operator.{{ product_version }}.0-202211021237   SR-IOV Network Operator   {{ product_version }}.0-202211021237   sriov-network-operator.{{ product_version }}.0-202210290517   Succeeded
+   sriov-network-operator.4.22.0-202211021237   SR-IOV Network Operator   4.22.0-202211021237   sriov-network-operator.4.22.0-202210290517   Succeeded
    ```
 2. To verify that the SR-IOV pods are deployed, run the following command:
 
@@ -483,6 +476,7 @@ To enable the SR-IOV network metrics exporter, set the `spec.featureGates.metric
 2. Optional: Examine the SR-IOV virtual function (VF) metrics by using the OpenShift Container Platform web console. For more information, see "Querying metrics".
 
 **Additional resources**
+{._additional-resources}
 
 - [Querying metrics for all projects with the monitoring dashboard](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/accessing_metrics/accessing-metrics-as-an-administrator#querying-metrics-for-all-projects-with-mon-dashboard_accessing-metrics-as-an-administrator)
 - [Querying metrics for user-defined projects as a developer](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/accessing_metrics/accessing-metrics-as-a-developer#querying-metrics-for-user-defined-projects-with-mon-dashboard_accessing-metrics-as-a-developer)

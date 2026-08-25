@@ -20,7 +20,8 @@ const headings = [{"depth":1,"slug":"cert-types-aggregated-api-client-certificat
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/certificate_types_descriptions/aggregated-api-client-certificates";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -78,12 +79,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -91,7 +93,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="cert-types-aggregated-api-client-certificates" class="group scroll-mt-20">Aggregated API client certificates<a href="#cert-types-aggregated-api-client-certificates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Review aggregated API client certificate validity and automatic rotation in OpenShift Container Platform to plan maintenance for extension API server authentication.</p>
+      <p class="_abstract">Review aggregated API client certificate validity and automatic rotation in OpenShift Container Platform to plan maintenance for extension API server authentication.</p>
       <h2 id="aggregated-api-client-certificates-purpose_cert-types-aggregated-api-client-certificates" class="group scroll-mt-20">Purpose<a href="#aggregated-api-client-certificates-purpose_cert-types-aggregated-api-client-certificates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p>Aggregated API client certificates are used to authenticate the <code>KubeAPIServer</code> when connecting to the aggregated API servers.</p>
       <h2 id="aggregated-api-client-certificates-management_cert-types-aggregated-api-client-certificates" class="group scroll-mt-20">Management<a href="#aggregated-api-client-certificates-management_cert-types-aggregated-api-client-certificates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>

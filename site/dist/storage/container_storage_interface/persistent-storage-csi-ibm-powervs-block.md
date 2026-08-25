@@ -1,8 +1,8 @@
 ---
-title: "{{ ibm_power_server_title }} Block CSI Driver Operator"
+title: IBM Power Virtual Server Block CSI Driver Operator
 ---
 
-# {{ ibm_power_server_title }} Block CSI Driver Operator {#persistent-storage-csi-ibm-powervs-block}
+# IBM Power Virtual Server Block CSI Driver Operator {#persistent-storage-csi-ibm-powervs-block}
 
 You can provision and manage IBM Power(R) Virtual Server Block storage in OpenShift Container Platform by using the Container Storage Interface (CSI) Driver Operator and driver, which provide dynamic volume provisioning.
 
@@ -21,7 +21,11 @@ Familiarity with persistent storage and configuring CSI volumes is helpful when 
 To create CSI-provisioned PVs that mount to IBM Power(R) Virtual Server Block storage assets, OpenShift Container Platform installs the IBM Power(R) Virtual Server Block CSI Driver Operator and the IBM Power(R) Virtual Server Block CSI driver by default in the `openshift-cluster-csi-drivers` namespace.
 
 - The *IBM Power(R) Virtual Server Block CSI Driver Operator* provides two storage classes named `ibm-powervs-tier1` (default), and `ibm-powervs-tier3` for different tiers that you can use to create persistent volume claims (PVCs). The IBM Power(R) Virtual Server Block CSI Driver Operator supports dynamic volume provisioning by allowing storage volumes to be created on-demand, eliminating the need for cluster administrators to pre-provision storage.
-- With the *IBM Power(R) Virtual Server Block CSI driver* you can create and mount IBM Power(R) Virtual Server Block PVs. <a name="persistent-storage-csi-ibm-powervs-block-overview_persistent-storage-csi-ibm-powervs-block"></a>**Additional resources**
+- With the *IBM Power(R) Virtual Server Block CSI driver* you can create and mount IBM Power(R) Virtual Server Block PVs.
+
+**Additional resources**
+{._additional-resources}
+
 - [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage)
 - [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
 

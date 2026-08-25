@@ -1,5 +1,5 @@
 ---
-title: Creating a cluster with multi-architecture compute machines on {{ ibm_z_title }} and {{ ibm_linuxone_title }} with z/VM
+title: Creating a cluster with multi-architecture compute machines on IBM Z and IBM LinuxONE with z/VM
 ---
 
 # Creating a cluster with multi-architecture compute machines on IBM Z and IBM LinuxONE with z/VM {#creating-multi-arch-compute-nodes-ibm-z}
@@ -15,7 +15,8 @@ To create an IBM Z(R) or IBM(R) LinuxONE (`s390x`) cluster with multi-architectu
 > [!NOTE]
 > Before adding a secondary architecture node to your cluster, installing the Multiarch Tuning Operator and deploying a `ClusterPodPlacementConfig` object are best practices. For more information, see "Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator".
 
-## Additional resources {#additional-resources_creating-multi-arch-compute-nodes-ibm-z}
+**Additional resources**
+{._additional-resources}
 
 - [Migrating to a cluster with multi-architecture compute machines](/openshift-docs-markdown/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-payload)
 - [Installing a cluster on IBM Z(R) and IBM(R) LinuxONE](/openshift-docs-markdown/installing/installing_ibm_z/preparing-to-install-on-ibm-z#preparing-to-install-on-ibm-z)
@@ -202,7 +203,8 @@ To allow newly added machines to join your OpenShift Container Platform cluster,
      where:
 
      `<csr_name>`
-     :   Specifies the name of a CSR from the list of current CSRs. \*   To approve all pending CSRs, run the following command:
+     :   Specifies the name of a CSR from the list of current CSRs.
+   - To approve all pending CSRs, run the following command:
 
      ```terminal
      $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs --no-run-if-empty oc adm certificate approve
@@ -233,7 +235,8 @@ To allow newly added machines to join your OpenShift Container Platform cluster,
      where:
 
      `<csr_name>`
-     :   Specifies the name of a CSR from the list of current CSRs. \*   To approve all pending CSRs, run the following command:
+     :   Specifies the name of a CSR from the list of current CSRs.
+   - To approve all pending CSRs, run the following command:
 
      ```terminal
      $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs oc adm certificate approve

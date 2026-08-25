@@ -171,7 +171,8 @@ The Windows containerd container service does not stream log data to stdout, but
   $ oc adm node-logs -l kubernetes.io/os=windows --path=containerd
   ```
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring hybrid networking](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/configuring-hybrid-networking#configuring-hybrid-ovnkubernetes)
 - [Containers on Windows troubleshooting](https://docs.microsoft.com/en-us/virtualization/windowscontainers/troubleshooting)

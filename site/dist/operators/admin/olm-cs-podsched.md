@@ -20,8 +20,9 @@ As an administrator, you can override these defaults by configuring fields in th
 > To apply persistent changes to `CatalogSource` object, you must first disable a default `CatalogSource` object.
 
 **Additional resources**
+{._additional-resources}
 
-- [OLM concepts and resources -> Catalog source](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-catalogsource_olm-understanding-olm)
+- [OLM concepts and resources → Catalog source](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-catalogsource_olm-understanding-olm)
 
 ## Disabling default CatalogSource objects at a local level {#disabling-catalogsource-objects_olm-cs-podsched}
 
@@ -43,6 +44,7 @@ To apply persistent changes to `CatalogSource` object, you must first disable a 
   > You can also configure the default `OperatorHub` CR to either disable all `CatalogSource` objects or disable a specific object.
 
 **Additional resources**
+{._additional-resources}
 
 - [OperatorHub custom resource](/openshift-docs-markdown/operators/understanding/olm-understanding-software-catalog#olm-software-catalog-arch-operatorhub-crd_olm-understanding-software-catalog)
 - [Disabling the default OperatorHub catalog sources](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks-operatorhub_olm-restricted-networks)
@@ -68,6 +70,7 @@ To control which nodes run catalog source pods, you can override the default nod
   where `<label>` is the label for the node selector that you want catalog source pods to use for scheduling.
 
 **Additional resources**
+{._additional-resources}
 
 - [Placing pods on specific nodes using node selectors](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-node-selectors#nodes-scheduler-node-selectors)
 
@@ -101,7 +104,7 @@ To control the scheduling priority of catalog source pods, you can override the 
   > kind: CatalogSource
   > metadata:
   >   name: example-catalog
-  >   namespace: {{ global_ns }}
+  >   namespace: openshift-marketplace
   >   annotations:
   >     operatorframework.io/priorityclass: system-cluster-critical
   > ```
@@ -109,6 +112,7 @@ To control the scheduling priority of catalog source pods, you can override the 
   > If a `CatalogSource` object defines both the annotation and `spec.grpcPodConfig.priorityClassName`, the annotation takes precedence over the configuration parameter.
 
 **Additional resources**
+{._additional-resources}
 
 - [Pod priority classes](/openshift-docs-markdown/nodes/pods/nodes-pods-priority#admin-guide-priority-preemption-priority-class_nodes-pods-priority)
 
@@ -134,5 +138,6 @@ To allow catalog source pods to schedule onto nodes with matching taints, you ca
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding taints and tolerations](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations-about_nodes-scheduler-taints-tolerations)

@@ -1,5 +1,5 @@
 ---
-title: OperatorCondition []
+title: OperatorCondition [operators.coreos.com/v2]
 ---
 
 # OperatorCondition \[operators.coreos.com/v2\] {#operatorcondition-operators-coreos-com-v2}
@@ -72,7 +72,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
 | `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
@@ -106,7 +106,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
 | `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
@@ -156,7 +156,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
 | `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
@@ -170,18 +170,18 @@ The following API endpoints are available:
 - `/apis/operators.coreos.com/v2/operatorconditions`
 
   - `GET`: list objects of kind OperatorCondition
-- `/apis/operators.coreos.com/v2/namespaces/{{ namespace }}/operatorconditions`
+- `/apis/operators.coreos.com/v2/namespaces/{namespace}/operatorconditions`
 
   - `DELETE`: delete collection of OperatorCondition
   - `GET`: list objects of kind OperatorCondition
   - `POST`: create an OperatorCondition
-- `/apis/operators.coreos.com/v2/namespaces/{{ namespace }}/operatorconditions/{{ name }}`
+- `/apis/operators.coreos.com/v2/namespaces/{namespace}/operatorconditions/{name}`
 
   - `DELETE`: delete an OperatorCondition
   - `GET`: read the specified OperatorCondition
   - `PATCH`: partially update the specified OperatorCondition
   - `PUT`: replace the specified OperatorCondition
-- `/apis/operators.coreos.com/v2/namespaces/{{ namespace }}/operatorconditions/{{ name }}/status`
+- `/apis/operators.coreos.com/v2/namespaces/{namespace}/operatorconditions/{name}/status`
 
   - `GET`: read status of the specified OperatorCondition
   - `PATCH`: partially update status of the specified OperatorCondition
@@ -206,7 +206,7 @@ Description
 | 200 - OK | [`OperatorConditionList`](/openshift-docs-markdown/rest_api/objects/index#com-coreos-operators-v2-OperatorConditionList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operators.coreos.com/v2/namespaces/{{ namespace }}/operatorconditions {#_apisoperatorscoreoscomv2namespaces_namespace_operatorconditions}
+### /apis/operators.coreos.com/v2/namespaces/{namespace}/operatorconditions {#_apisoperatorscoreoscomv2namespaces_namespace_operatorconditions}
 
 HTTP method
 :   ```
@@ -274,7 +274,7 @@ Description
 | 202 - Accepted | [`OperatorCondition`](/openshift-docs-markdown/rest_api/operatorhub_apis/operatorcondition-operators-coreos-com-v2#operatorcondition-operators-coreos-com-v2) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operators.coreos.com/v2/namespaces/{{ namespace }}/operatorconditions/{{ name }} {#_apisoperatorscoreoscomv2namespaces_namespace_operatorconditions_name}
+### /apis/operators.coreos.com/v2/namespaces/{namespace}/operatorconditions/{name} {#_apisoperatorscoreoscomv2namespaces_namespace_operatorconditions_name}
 
 **Global path parameters**
 
@@ -378,7 +378,7 @@ Description
 | 201 - Created | [`OperatorCondition`](/openshift-docs-markdown/rest_api/operatorhub_apis/operatorcondition-operators-coreos-com-v2#operatorcondition-operators-coreos-com-v2) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operators.coreos.com/v2/namespaces/{{ namespace }}/operatorconditions/{{ name }}/status {#_apisoperatorscoreoscomv2namespaces_namespace_operatorconditions_name_status}
+### /apis/operators.coreos.com/v2/namespaces/{namespace}/operatorconditions/{name}/status {#_apisoperatorscoreoscomv2namespaces_namespace_operatorconditions_name_status}
 
 **Global path parameters**
 

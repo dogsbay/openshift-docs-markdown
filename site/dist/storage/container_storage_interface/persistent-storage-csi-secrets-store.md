@@ -19,6 +19,7 @@ For more information about CSI inline volumes, see "CSI inline ephemeral volumes
 Familiarity with persistent storage and configuring CSI volumes is recommended when working with a CSI driver. For more information, see "Understanding persistent storage" and "Configuring CSI volumes".
 
 **Additional resources**
+{._additional-resources}
 
 - [CSI inline ephemeral volumes](/openshift-docs-markdown/storage/container_storage_interface/ephemeral-storage-csi-inline#ephemeral-storage-csi-inline)
 - [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage)
@@ -65,6 +66,7 @@ To enable communication between Secrets Store CSI driver and the secrets store p
 > For more information about disconnected environments, see "About disconnected environments".
 
 **Additional resources**
+{._additional-resources}
 
 - [About disconnected environments](/openshift-docs-markdown/disconnected/about#about)
 
@@ -93,7 +95,7 @@ To enable OpenShift Container Platform to mount secrets from external secret man
 1. Install the Secrets Store CSI Driver Operator:
 
    1. Log in to the web console.
-   2. Click **Ecosystem** -> **Software Catalog**.
+   2. Click **Ecosystem** → **Software Catalog**.
    3. Locate the Secrets Store CSI Driver Operator by typing "Secrets Store CSI" in the filter box.
    4. Click the **Secrets Store CSI Driver Operator** button.
    5. On the **Secrets Store CSI Driver Operator** page, click **Install**.
@@ -106,7 +108,7 @@ To enable OpenShift Container Platform to mount secrets from external secret man
       After the installation finishes, the Secrets Store CSI Driver Operator is listed in the **Installed Operators** section of the web console.
 2. Create the `ClusterCSIDriver` instance for the driver (`secrets-store.csi.k8s.io`):
 
-   1. Click **Administration** -> **CustomResourceDefinitions** -> **ClusterCSIDriver**.
+   1. Click **Administration** → **CustomResourceDefinitions** → **ClusterCSIDriver**.
    2. On the **Instances** tab, click **Create ClusterCSIDriver**.
 
       Use the following YAML file:
@@ -206,6 +208,7 @@ The Secrets Store CSI driver is typically installed in the namespace `openshift-
   ```
 
 **Next steps**
+{._additional-resources}
 
 - [Mounting secrets from an external secrets store to a CSI volume](/openshift-docs-markdown/nodes/pods/nodes-pods-secrets-store#mounting-secrets-external-secrets-store_nodes-pods-secrets-store)
 
@@ -233,13 +236,14 @@ To remove the Secrets Store CSI Driver Operator and free cluster resources, unin
    > [!NOTE]
    > Before you can uninstall the Operator, you must remove the CSI driver first.
 
-   1. Click **Ecosystem** -> **Installed Operators**.
+   1. Click **Ecosystem** → **Installed Operators**.
    2. On the **Installed Operators** page, scroll or type "Secrets Store CSI" into the **Search by name** box to find the Operator, and then click it.
    3. On the upper, right of the **Installed Operators** > **Operator details** page, click **Actions** → **Uninstall Operator**.
    4. When prompted on the **Uninstall Operator** window, click the **Uninstall** button to remove the Operator from the namespace. Any applications deployed by the Operator on the cluster need to be cleaned up manually.
 
       After uninstalling, the Secrets Store CSI Driver Operator is no longer listed in the **Installed Operators** section of the web console.
 
-## Additional resources {#additional-resources_persistent-storage-csi-secrets-store}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)

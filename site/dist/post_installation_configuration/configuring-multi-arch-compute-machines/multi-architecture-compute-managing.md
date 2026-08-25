@@ -4,9 +4,7 @@ title: Managing a cluster with multi-architecture compute machines
 
 # Managing a cluster with multi-architecture compute machines {#multi-architecture-compute-managing}
 
-Managing a cluster that has nodes with multiple architectures requires you to consider node architecture as you monitor the cluster and manage your workloads. This requires you to take additional considerations into account when you configure cluster resource requirements and behaviors, or
-
-schedule workloads in a multi-architecture cluster.
+Managing a cluster that has nodes with multiple architectures requires you to consider node architecture as you monitor the cluster and manage your workloads. This requires you to take additional considerations into account when you configure cluster resource requirements and behaviors, or schedule workloads in a multi-architecture cluster.
 
 ## Scheduled workloads on clusters with multi-architecture compute machines {#multi-architecture-scheduling_multi-architecture-compute-managing}
 
@@ -15,6 +13,7 @@ When you deploy workloads on a cluster with compute nodes that use different arc
 You can use the Multiarch Tuning Operator to enable architecture-aware scheduling of workloads on clusters with multi-architecture compute machines. The Multiarch Tuning Operator implements additional scheduler predicates in the pod specifications based on the architectures that the pods can support at creation time.
 
 **Additional resources**
+{._additional-resources}
 
 - [Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/postinstallation_configuration/configuring-multi-architecture-compute-machines-on-an-openshift-cluster#multiarch-tuning-operator)
 
@@ -135,6 +134,7 @@ Using node affinity with taints and tolerations
     ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multiarch-tuning-operator)
 - [Controlling pod placement using node taints](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations)

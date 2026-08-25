@@ -41,10 +41,10 @@ You can add one or more projects to the Service Mesh member roll from the web co
 1. Log in to the OpenShift Container Platform web console.
 2. If you do not already have services for your mesh, or you are starting from scratch, create a project for your applications. It must be different from the project where you installed the Service Mesh control plane.
 
-   1. Navigate to **Home** -> **Projects**.
+   1. Navigate to **Home** → **Projects**.
    2. Enter a name in the **Name** field.
    3. Click **Create**.
-3. Navigate to **Ecosystem** -> **Installed Operators**.
+3. Navigate to **Ecosystem** → **Installed Operators**.
 4. Click the **Project** menu and choose the project where your `ServiceMeshControlPlane` resource is deployed from the list, for example `istio-system`.
 5. Click the Red Hat OpenShift Service Mesh Operator.
 6. Click the **Istio Service Mesh Member Roll** tab.
@@ -132,7 +132,7 @@ The `ServiceMeshMemberRoll` resource is deleted when its corresponding `ServiceM
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console.
-2. Navigate to **Ecosystem** -> **Installed Operators**.
+2. Navigate to **Ecosystem** → **Installed Operators**.
 3. Click the **Project** menu and choose the project where your `ServiceMeshControlPlane` resource is deployed from the list. For example `istio-system`.
 4. Click the Red Hat OpenShift Service Mesh Operator.
 5. Click the **Istio Service Mesh Member Roll** tab.
@@ -215,7 +215,7 @@ You can add one or more projects to the mesh using the `ServiceMeshMember` resou
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console.
-2. Navigate to **Ecosystem** -> **Installed Operators**.
+2. Navigate to **Ecosystem** → **Installed Operators**.
 3. Click the **Project** menu and choose the project that you want to add to the mesh from the drop-down list. For example, `istio-system`.
 4. Click the Red Hat OpenShift Service Mesh Operator.
 5. Click the **Istio Service Mesh Member** tab.
@@ -326,7 +326,7 @@ You can use labels selectors to add a project to the Service Mesh with the OpenS
 
 **Procedure**
 
-1. Navigate to **Ecosystem** -> **Installed Operators**.
+1. Navigate to **Ecosystem** → **Installed Operators**.
 2. Click the **Project** menu, and from the drop-down list, select the project where your `ServiceMeshMemberRoll` resource is deployed. For example, **istio-system**.
 3. Click the Red Hat OpenShift Service Mesh Operator.
 4. Click the **Istio Service Mesh Member Roll** tab.
@@ -420,7 +420,7 @@ This tutorial walks you through how to create a sample application by creating a
 
 **Procedure**
 
-1. Click **Home** -> **Projects**.
+1. Click **Home** → **Projects**.
 2. Click **Create Project**.
 3. Enter `bookinfo` as the **Project Name**, enter a **Display Name**, and enter a **Description**, then click **Create**.
 
@@ -429,7 +429,7 @@ This tutorial walks you through how to create a sample application by creating a
      ```terminal
      $ oc new-project bookinfo
      ```
-4. Click **Ecosystem** -> **Installed Operators**.
+4. Click **Ecosystem** → **Installed Operators**.
 5. Click the **Project** menu and use the Service Mesh control plane namespace. In this example, use `istio-system`.
 6. Click the **Red Hat OpenShift Service Mesh** Operator.
 7. Click the **Istio Service Mesh Member Roll** tab.
@@ -467,10 +467,10 @@ This tutorial walks you through how to create a sample application by creating a
     NAME      READY   STATUS       AGE   MEMBERS
     default   1/1     Configured   70s   ["bookinfo"]
     ```
-11. From the CLI, deploy the Bookinfo application in the `bookinfo` project by applying the `bookinfo.yaml` file:
+11. From the CLI, deploy the Bookinfo application in the *`bookinfo`* project by applying the `bookinfo.yaml` file:
 
     ```bash
-    $ oc apply -n bookinfo -f https://raw.githubusercontent.com/Maistra/istio/maistra-{{ MaistraVersion }}/samples/bookinfo/platform/kube/bookinfo.yaml
+    $ oc apply -n bookinfo -f https://raw.githubusercontent.com/Maistra/istio/maistra-2.6/samples/bookinfo/platform/kube/bookinfo.yaml
     ```
 
     You should see output similar to the following:
@@ -494,7 +494,7 @@ This tutorial walks you through how to create a sample application by creating a
 12. Create the ingress gateway by applying the `bookinfo-gateway.yaml` file:
 
     ```bash
-    $ oc apply -n bookinfo -f https://raw.githubusercontent.com/Maistra/istio/maistra-{{ MaistraVersion }}/samples/bookinfo/networking/bookinfo-gateway.yaml
+    $ oc apply -n bookinfo -f https://raw.githubusercontent.com/Maistra/istio/maistra-2.6/samples/bookinfo/networking/bookinfo-gateway.yaml
     ```
 
     You should see output similar to the following:
@@ -519,24 +519,23 @@ Before you can use the Bookinfo application, you must first add default destinat
 
    - If you did not enable mutual TLS:
 
-```bash
-$ oc apply -n bookinfo -f https://raw.githubusercontent.com/Maistra/istio/maistra-{{ MaistraVersion }}/samples/bookinfo/networking/destination-rule-all.yaml
-```
+     ```bash
+     $ oc apply -n bookinfo -f https://raw.githubusercontent.com/Maistra/istio/maistra-2.6/samples/bookinfo/networking/destination-rule-all.yaml
+     ```
+   - If you enabled mutual TLS:
 
-- If you enabled mutual TLS:
+     ```bash
+     $ oc apply -n bookinfo -f https://raw.githubusercontent.com/Maistra/istio/maistra-2.6/samples/bookinfo/networking/destination-rule-all-mtls.yaml
+     ```
 
-```bash
-$ oc apply -n bookinfo -f https://raw.githubusercontent.com/Maistra/istio/maistra-{{ MaistraVersion }}/samples/bookinfo/networking/destination-rule-all-mtls.yaml
-```
+     You should see output similar to the following:
 
-You should see output similar to the following:
-
-```terminal
-destinationrule.networking.istio.io/productpage created
-destinationrule.networking.istio.io/reviews created
-destinationrule.networking.istio.io/ratings created
-destinationrule.networking.istio.io/details created
-```
+     ```terminal
+     destinationrule.networking.istio.io/productpage created
+     destinationrule.networking.istio.io/reviews created
+     destinationrule.networking.istio.io/ratings created
+     destinationrule.networking.istio.io/details created
+     ```
 
 ### Verifying the Bookinfo installation {#ossm-tutorial-bookinfo-verify-install_ossm-create-mesh}
 
@@ -579,7 +578,7 @@ To confirm that the sample Bookinfo application was successfully deployed, perfo
 1. Obtain the address for the Kiali web console.
 
    1. Log in to the OpenShift Container Platform web console.
-   2. Navigate to **Networking** -> **Routes**.
+   2. Navigate to **Networking** → **Routes**.
    3. On the **Routes** page, select the Service Mesh control plane project, for example `istio-system`, from the **Namespace** menu.
 
       The **Location** column displays the linked address for each route.
@@ -610,8 +609,8 @@ Follow these steps to remove the Bookinfo application.
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console.
-2. Click to **Home** -> **Projects**.
-3. Click the `bookinfo` menu ![](kebab.png "Options menu"), and then click **Delete Project**.
+2. Click to **Home** → **Projects**.
+3. Click the `bookinfo` menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu"), and then click **Delete Project**.
 4. Type `bookinfo` in the confirmation dialog box, and then click **Delete**.
 
    - Alternatively, you can run this command using the CLI to create the `bookinfo` project.
@@ -625,10 +624,10 @@ Follow these steps to remove the Bookinfo application.
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console.
-2. Click **Ecosystem** -> **Installed Operators**.
+2. Click **Ecosystem** → **Installed Operators**.
 3. Click the **Project** menu and choose `istio-system` from the list.
 4. Click the **Istio Service Mesh Member Roll** link under **Provided APIS** for the **Red Hat OpenShift Service Mesh** Operator.
-5. Click the `ServiceMeshMemberRoll` menu ![](kebab.png "Options menu") and select **Edit Service Mesh Member Roll**.
+5. Click the `ServiceMeshMemberRoll` menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") and select **Edit Service Mesh Member Roll**.
 6. Edit the default Service Mesh Member Roll YAML and remove `bookinfo` from the **members** list.
 
    - Alternatively, you can run this command using the CLI to remove the `bookinfo` project from the `ServiceMeshMemberRoll`. In this example, `istio-system` is the name of the Service Mesh control plane project.

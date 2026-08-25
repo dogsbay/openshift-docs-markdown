@@ -38,6 +38,7 @@ After enabling OLM in a disconnected environment, you can continue to use your u
 >     For more information, see "Red Hat Ecosystem Catalog".
 
 **Additional resources**
+{._additional-resources}
 
 - [Red Hat Ecosystem Catalog](https://catalog.redhat.com/software/search?p=1&deployed_as=Operator&type=Containerized%20application&badges_and_features=Disconnected)
 
@@ -52,9 +53,7 @@ The following prerequisites must be met:
 
 ## Disabling the default software catalog sources {#olm-restricted-networks-operatorhub_olm-restricted-networks}
 
-To use only trusted or locally available Operator catalogs, disable the default software catalog sources that OpenShift Container Platform configures during installation. In a restricted network environment, you must disable the default catalogs as a cluster administrator.
-
-You can then configure the OperatorHub custom resource definition (CRD) to use local catalog sources for the software catalog.
+To use only trusted or locally available Operator catalogs, disable the default software catalog sources that OpenShift Container Platform configures during installation. In a restricted network environment, you must disable the default catalogs as a cluster administrator. You can then configure the OperatorHub custom resource definition (CRD) to use local catalog sources for the software catalog.
 
 **Procedure**
 
@@ -66,7 +65,7 @@ You can then configure the OperatorHub custom resource definition (CRD) to use l
   ```
 
   > [!TIP]
-  > Or, you can use the web console to manage catalog sources. From the **Administration** -> **Cluster Settings** -> **Configuration** -> **OperatorHub** page, click the **Sources** tab, where you can create, update, delete, disable, and enable individual sources.
+  > Or, you can use the web console to manage catalog sources. From the **Administration** → **Cluster Settings** → **Configuration** → **OperatorHub** page, click the **Sources** tab, where you can create, update, delete, disable, and enable individual sources.
 
 ## Mirroring an Operator catalog {#olm-mirror-catalog_olm-restricted-networks}
 
@@ -80,6 +79,7 @@ For instructions about mirroring Operator catalogs for use with disconnected clu
 > Many of the `opm` subcommands and flags for working with the SQLite database format, such as `opm index prune`, do not work with the file-based catalog format. For more information about working with file-based catalogs, see "Operator Framework packaging format", "Managing custom catalogs", and "Mirroring images for a disconnected installation by using the oc-mirror plugin v2".
 
 **Additional resources**
+{._additional-resources}
 
 - [Mirroring Operator catalogs for use with disconnected clusters](/openshift-docs-markdown/disconnected/installing-mirroring-installation-images#olm-mirror-catalog_installing-mirroring-installation-images)
 - [Operator Framework packaging format](/openshift-docs-markdown/operators/understanding/olm-packaging-format#olm-file-based-catalogs_olm-packaging-format)
@@ -95,7 +95,7 @@ Cluster administrators
 can create a `CatalogSource` object that references an index image. The software catalog uses catalog sources to populate the user interface.
 
 > [!TIP]
-> Alternatively, you can use the web console to manage catalog sources. From the **Administration** -> **Cluster Settings** -> **Configuration** -> **OperatorHub** page, click the **Sources** tab, where you can create, update, delete, disable, and enable individual sources.
+> Alternatively, you can use the web console to manage catalog sources. From the **Administration** → **Cluster Settings** → **Configuration** → **OperatorHub** page, click the **Sources** tab, where you can create, update, delete, disable, and enable individual sources.
 
 **Prerequisites**
 
@@ -113,12 +113,12 @@ can create a `CatalogSource` object that references an index image. The software
       kind: CatalogSource
       metadata:
         name: my-operator-catalog
-        namespace: {{ namespace }}
+        namespace: openshift-marketplace
       spec:
         sourceType: grpc
         grpcPodConfig:
           securityContextConfig: <security_mode>
-        image: <registry>/<namespace>/{{ index_image }}:{{ tag }}
+        image: <registry>/<namespace>/redhat-operator-index:v4.22
         displayName: My Operator Catalog
         publisher: <publisher_name>
         updateStrategy:
@@ -132,7 +132,7 @@ can create a `CatalogSource` object that references an index image. The software
       :   Specifies the value for the `metadata.name` parameter. If you mirrored content to local files before uploading to a registry, remove any backslash (`/`) characters from the `metadata.name` field to avoid an "invalid resource name" error when you create the object.
 
       `metadata.namespace`
-      :   Specifies the value for the `metadata.namespace` parameter. If you want the catalog source to be available globally to users in all namespaces, specify the `{{ namespace }}` namespace. Otherwise, you can specify a different namespace for the catalog to be scoped and available only for that namespace.
+      :   Specifies the value for the `metadata.namespace` parameter. If you want the catalog source to be available globally to users in all namespaces, specify the `openshift-marketplace` namespace. Otherwise, you can specify a different namespace for the catalog to be scoped and available only for that namespace.
 
       `spec.grpcPodConfig.securityContextConfig`
       :   Specifies the value of `legacy` or `restricted`. If the field is not set, the default value is `legacy`. In a future OpenShift Container Platform release, it is planned that the default value will be `restricted`.
@@ -141,7 +141,7 @@ can create a `CatalogSource` object that references an index image. The software
           > If your catalog cannot run with `restricted` permissions, it is recommended that you manually set this field to `legacy`.
 
       `spec.image`
-      :   Specifies your index image. If you specify a tag after the image name, for example `:{{ tag }}`, the catalog source pod uses an image pull policy of `Always`, meaning the pod always pulls the image before starting the container. If you specify a digest, for example `@sha256:<id>`, the image pull policy is `IfNotPresent`, meaning the pod pulls the image only if it does not already exist on the node.
+      :   Specifies your index image. If you specify a tag after the image name, for example `:v4.22`, the catalog source pod uses an image pull policy of `Always`, meaning the pod always pulls the image before starting the container. If you specify a digest, for example `@sha256:<id>`, the image pull policy is `IfNotPresent`, meaning the pod pulls the image only if it does not already exist on the node.
 
       `spec.publisher`
       :   Specifies your name or an organization name publishing the catalog.
@@ -158,7 +158,7 @@ can create a `CatalogSource` object that references an index image. The software
    1. Check the pods:
 
       ```terminal
-      $ oc get pods -n {{ namespace }}
+      $ oc get pods -n openshift-marketplace
       ```
 
       The following is example output:
@@ -171,7 +171,7 @@ can create a `CatalogSource` object that references an index image. The software
    2. Check the catalog source:
 
       ```terminal
-      $ oc get catalogsource -n {{ namespace }}
+      $ oc get catalogsource -n openshift-marketplace
       ```
 
       The following is example output:
@@ -183,7 +183,7 @@ can create a `CatalogSource` object that references an index image. The software
    3. Check the package manifest:
 
       ```terminal
-      $ oc get packagemanifest -n {{ namespace }}
+      $ oc get packagemanifest -n openshift-marketplace
       ```
 
       The following is example output:
@@ -195,7 +195,8 @@ can create a `CatalogSource` object that references an index image. The software
 
       You can now install the Operators from the **Software Catalog** page on your OpenShift Container Platform web console.
 
-## Additional resources {#using-olm-additional-resources_olm-restricted-networks}
+**Additional resources**
+{._additional-resources}
 
 - [Red Hat-provided Operator catalogs](/openshift-docs-markdown/operators/understanding/olm-rh-catalogs#olm-rh-catalogs)
 - [Accessing images for Operators from private registries](/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-accessing-images-private-registries_olm-managing-custom-catalogs)

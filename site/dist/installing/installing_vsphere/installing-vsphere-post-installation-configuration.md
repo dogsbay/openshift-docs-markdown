@@ -30,7 +30,7 @@ Modify the following vSphere configuration settings as required:
 
 **Procedure**
 
-1. In the Administrator perspective, navigate to **Home -> Overview**.
+1. In the Administrator perspective, navigate to **Home → Overview**.
 2. Under **Status**, click **vSphere connection** to open the **vSphere connection configuration** wizard.
 3. In the **vCenter** field, enter the network address of the vSphere vCenter server. This can be either a domain name or an IP address. It appears in the vSphere web client URL; for example `https://[your_vCenter_address]/ui`.
 4. In the **vCenter cluster** field, enter the name of the vSphere vCenter cluster where OpenShift Container Platform is installed.
@@ -63,7 +63,7 @@ The connection configuration process updates operator statuses and control plane
 
 1. Check that the configuration process completed successfully:
 
-   1. In the OpenShift Container Platform Administrator perspective, navigate to **Home -> Overview**.
+   1. In the OpenShift Container Platform Administrator perspective, navigate to **Home → Overview**.
    2. Under **Status** click **Operators**. Wait for all operator statuses to change from  **Progressing** to **All succeeded**.  A **Failed** status indicates that the configuration failed.
    3. Under **Status**, click **Control Plane**. Wait for the response rate of all Control Pane components to return to 100%. A **Failed** control plane component indicates that the configuration failed.
 
@@ -106,8 +106,9 @@ The connection configuration process updates operator statuses and control plane
        volumeMode: Filesystem
       ```
 
-      If you are unable to create a `PersistentVolumeClaims` object, you can troubleshoot by navigating to **Storage** -> **PersistentVolumeClaims** in the **Administrator** perspective of the OpenShift Container Platform web console.
+      If you are unable to create a `PersistentVolumeClaims` object, you can troubleshoot by navigating to **Storage** → **PersistentVolumeClaims** in the **Administrator** perspective of the OpenShift Container Platform web console.
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Dynamic provisioning](/openshift-docs-markdown/storage/dynamic-provisioning#dynamic-provisioning)

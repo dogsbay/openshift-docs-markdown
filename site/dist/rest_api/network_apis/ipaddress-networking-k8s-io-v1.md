@@ -1,5 +1,5 @@
 ---
-title: IPAddress []
+title: IPAddress [networking.k8s.io/v1]
 ---
 
 # IPAddress \[networking.k8s.io/v1\] {#ipaddress-networking-k8s-io-v1}
@@ -71,13 +71,13 @@ The following API endpoints are available:
 - `/apis/networking.k8s.io/v1/watch/ipaddresses`
 
   - `GET`: watch individual changes to a list of IPAddress. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/networking.k8s.io/v1/ipaddresses/{{ name }}`
+- `/apis/networking.k8s.io/v1/ipaddresses/{name}`
 
   - `DELETE`: delete an IPAddress
   - `GET`: read the specified IPAddress
   - `PATCH`: partially update the specified IPAddress
   - `PUT`: replace the specified IPAddress
-- `/apis/networking.k8s.io/v1/watch/ipaddresses/{{ name }}`
+- `/apis/networking.k8s.io/v1/watch/ipaddresses/{name}`
 
   - `GET`: watch changes to an object of kind IPAddress. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
 
@@ -174,7 +174,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/networking.k8s.io/v1/ipaddresses/{{ name }} {#_apisnetworkingk8siov1ipaddresses_name}
+### /apis/networking.k8s.io/v1/ipaddresses/{name} {#_apisnetworkingk8siov1ipaddresses_name}
 
 **Global path parameters**
 
@@ -279,7 +279,7 @@ Description
 | 201 - Created | [`IPAddress`](/openshift-docs-markdown/rest_api/network_apis/ipaddress-networking-k8s-io-v1#ipaddress-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/networking.k8s.io/v1/watch/ipaddresses/{{ name }} {#_apisnetworkingk8siov1watchipaddresses_name}
+### /apis/networking.k8s.io/v1/watch/ipaddresses/{name} {#_apisnetworkingk8siov1watchipaddresses_name}
 
 **Global path parameters**
 

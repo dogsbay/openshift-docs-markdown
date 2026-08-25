@@ -167,7 +167,8 @@ The following Red Hat Bug Fix Advisory (RHBA) is available for the Security Prof
 
 - When uninstalling the Security Profiles Operator, the `MutatingWebhookConfiguration` object is not deleted and must be manually removed. As a workaround, delete the `MutatingWebhookConfiguration` object after uninstalling the Security Profiles Operator. For these steps, see [Uninstalling the Security Profiles Operator](/openshift-docs-markdown/security/security_profiles_operator/spo-uninstalling#spo-uninstalling). ([OCPBUGS-4687](http://issues.redhat.com/browse/OCPBUGS-4687))
 
-## Additional resources {#spo-release-notes_additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Security Profiles Operator Overview (Kubernetes documentation)](/openshift-docs-markdown/security/security_profiles_operator/spo-overview#spo-overview)
 - [Kubernetes seccomp tutorial](https://kubernetes.io/docs/tutorials/security/seccomp/)

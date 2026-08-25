@@ -23,6 +23,7 @@ Persistent volumes are not bound to a single project or namespace; they can be s
 > High availability of storage in the infrastructure is left to the underlying storage provider.
 
 **Additional resources**
+{._additional-resources}
 
 - [GCE Persistent Disk](https://cloud.google.com/compute/docs/disks/)
 - [CSI automatic migration](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-migration#persistent-storage-csi-migration)
@@ -41,7 +42,7 @@ You can create a persistent volume claim to dynamically provision and bind stora
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, click **Storage** -> **Persistent Volume Claims**.
+1. In the OpenShift Container Platform web console, click **Storage** → **Persistent Volume Claims**.
 2. In the persistent volume claims overview, click **Create Persistent Volume Claim**.
 3. Define the required options on the page that is displayed.
 

@@ -373,7 +373,8 @@ Use the following procedure to configure the image registry to use CephFS storag
    $ oc patch config.image/cluster -p '{"spec":{"managementState":"Managed","replicas":2,"storage":{"managementState":"Unmanaged","pvc":{"claim":"registry-storage-pvc"}}}}' --type=merge
    ```
 
-## Additional resources {#configuring-registry-storage-vsphere-addtl-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring the registry for vSphere](/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-vsphere#registry-configuring-storage-vsphere_configuring-registry-storage-vsphere)
 - [Recommended configurable storage technology](/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)

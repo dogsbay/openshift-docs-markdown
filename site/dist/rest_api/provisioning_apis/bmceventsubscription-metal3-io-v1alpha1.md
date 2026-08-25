@@ -1,5 +1,5 @@
 ---
-title: BMCEventSubscription []
+title: BMCEventSubscription [metal3.io/v1alpha1]
 ---
 
 # BMCEventSubscription \[metal3.io/v1alpha1\] {#bmceventsubscription-metal3-io-v1alpha1}
@@ -74,18 +74,18 @@ The following API endpoints are available:
 - `/apis/metal3.io/v1alpha1/bmceventsubscriptions`
 
   - `GET`: list objects of kind BMCEventSubscription
-- `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/bmceventsubscriptions`
+- `/apis/metal3.io/v1alpha1/namespaces/{namespace}/bmceventsubscriptions`
 
   - `DELETE`: delete collection of BMCEventSubscription
   - `GET`: list objects of kind BMCEventSubscription
   - `POST`: create a BMCEventSubscription
-- `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/bmceventsubscriptions/{{ name }}`
+- `/apis/metal3.io/v1alpha1/namespaces/{namespace}/bmceventsubscriptions/{name}`
 
   - `DELETE`: delete a BMCEventSubscription
   - `GET`: read the specified BMCEventSubscription
   - `PATCH`: partially update the specified BMCEventSubscription
   - `PUT`: replace the specified BMCEventSubscription
-- `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/bmceventsubscriptions/{{ name }}/status`
+- `/apis/metal3.io/v1alpha1/namespaces/{namespace}/bmceventsubscriptions/{name}/status`
 
   - `GET`: read status of the specified BMCEventSubscription
   - `PATCH`: partially update status of the specified BMCEventSubscription
@@ -110,7 +110,7 @@ Description
 | 200 - OK | [`BMCEventSubscriptionList`](/openshift-docs-markdown/rest_api/objects/index#io-metal3-v1alpha1-BMCEventSubscriptionList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/bmceventsubscriptions {#_apismetal3iov1alpha1namespaces_namespace_bmceventsubscriptions}
+### /apis/metal3.io/v1alpha1/namespaces/{namespace}/bmceventsubscriptions {#_apismetal3iov1alpha1namespaces_namespace_bmceventsubscriptions}
 
 HTTP method
 :   ```
@@ -178,7 +178,7 @@ Description
 | 202 - Accepted | [`BMCEventSubscription`](/openshift-docs-markdown/rest_api/provisioning_apis/bmceventsubscription-metal3-io-v1alpha1#bmceventsubscription-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/bmceventsubscriptions/{{ name }} {#_apismetal3iov1alpha1namespaces_namespace_bmceventsubscriptions_name}
+### /apis/metal3.io/v1alpha1/namespaces/{namespace}/bmceventsubscriptions/{name} {#_apismetal3iov1alpha1namespaces_namespace_bmceventsubscriptions_name}
 
 **Global path parameters**
 
@@ -282,7 +282,7 @@ Description
 | 201 - Created | [`BMCEventSubscription`](/openshift-docs-markdown/rest_api/provisioning_apis/bmceventsubscription-metal3-io-v1alpha1#bmceventsubscription-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/bmceventsubscriptions/{{ name }}/status {#_apismetal3iov1alpha1namespaces_namespace_bmceventsubscriptions_name_status}
+### /apis/metal3.io/v1alpha1/namespaces/{namespace}/bmceventsubscriptions/{name}/status {#_apismetal3iov1alpha1namespaces_namespace_bmceventsubscriptions_name_status}
 
 **Global path parameters**
 

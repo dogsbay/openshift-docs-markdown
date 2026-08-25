@@ -24,7 +24,7 @@ You can change your existing global cluster pull secret to enable remote health 
 **Procedure**
 
 1. Go to the [Downloads](https://console.redhat.com/openshift/downloads) page on the Red Hat Hybrid Cloud Console.
-2. From **Tokens** -> **Pull secret**, click the **Download** button.
+2. From **Tokens** → **Pull secret**, click the **Download** button.
 
    The `pull-secret` file contains your `cloud.openshift.com` access token in JSON format:
 
@@ -143,6 +143,7 @@ Register your disconnected OpenShift Container Platform cluster on the Red Hat 
 5. To register your disconnected cluster, select the **Register cluster** button.
 
 **Additional resources**
+{._additional-resources}
 
 - [How does the subscriptions service show my subscription data?(Getting Started with the Subscription Service)](https://access.redhat.com/documentation/en-us/subscription_central/2023/html/getting_started_with_the_subscriptions_service/con-how-does-subscriptionwatch-show-data_assembly-viewing-understanding-subscriptionwatch-data-ctxt)
 
@@ -234,5 +235,6 @@ Use this procedure when you need a separate registry to store images than the re
    This triggers the automatic cleanup process across your nodes.
 
 **Additional resources**
+{._additional-resources}
 
 - [Transferring cluster ownership](https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html-single/managing_clusters/index#transferring-cluster-ownership_downloading-and-updating-pull-secrets)

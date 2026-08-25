@@ -32,8 +32,8 @@ Register an OAuth application on GitHub or GitHub Enterprise to obtain the clien
 
 1. Start the registration process by navigating to the appropriate page in GitHub or GitHub Enterprise:
 
-   - For GitHub, click your profile picture in the upper right corner and select **Settings** -> **Developer settings** -> **OAuth Apps**.
-   - For GitHub Enterprise, go to your GitHub Enterprise home page and then select **Settings -> Developer settings -> Register a new application**.
+   - For GitHub, click your profile picture in the upper right corner and select **Settings** → **Developer settings** → **OAuth Apps**.
+   - For GitHub Enterprise, go to your GitHub Enterprise home page and then select **Settings → Developer settings → Register a new application**.
 2. Click **New OAuth app**.
 3. Enter an application name, for example `My OpenShift Install`.
 4. Enter a homepage URL, such as `https://oauth-openshift.apps.<cluster-name>.<cluster-domain>`.
@@ -168,6 +168,7 @@ where:
     > If `organizations` or `teams` is specified, only GitHub users that are members of at least one of the listed organizations are allowed to log in. If the GitHub OAuth application configured in `clientID` is not owned by the organization, an organization owner must grant third-party access to use this option. This can be done during the first GitHub login by the administrator of the organization, or from the GitHub organization settings.
 
 **Additional resources**
+{._additional-resources}
 
 - [Identity provider parameters](/openshift-docs-markdown/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider)
 
@@ -195,7 +196,7 @@ Apply the identity provider custom resource (CR) to your cluster so users can au
 
    As long as the `kubeadmin` user has been removed, the `oc login` command provides instructions on how to access a web page where you can retrieve the token.
 
-   You can also access this page from the web console by navigating to **(?) Help** -> **Command Line Tools** -> **Copy Login Command**.
+   You can also access this page from the web console by navigating to **(?) Help** → **Command Line Tools** → **Copy Login Command**.
 3. Log in to the cluster, passing in the token to authenticate, by running the following command:
 
    ```terminal
@@ -211,5 +212,6 @@ Apply the identity provider custom resource (CR) to your cluster so users can au
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [GitHub authentication (GitHub documentation)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/authorizing-oauth-apps)

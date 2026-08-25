@@ -1,5 +1,5 @@
 ---
-title: OAuthAccessToken []
+title: OAuthAccessToken [oauth.openshift.io/v1]
 ---
 
 # OAuthAccessToken \[oauth.openshift.io/v1\] {#oauthaccesstoken-oauth-openshift-io-v1}
@@ -45,13 +45,13 @@ The following API endpoints are available:
 - `/apis/oauth.openshift.io/v1/watch/oauthaccesstokens`
 
   - `GET`: watch individual changes to a list of OAuthAccessToken. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/oauth.openshift.io/v1/oauthaccesstokens/{{ name }}`
+- `/apis/oauth.openshift.io/v1/oauthaccesstokens/{name}`
 
   - `DELETE`: delete an OAuthAccessToken
   - `GET`: read the specified OAuthAccessToken
   - `PATCH`: partially update the specified OAuthAccessToken
   - `PUT`: replace the specified OAuthAccessToken
-- `/apis/oauth.openshift.io/v1/watch/oauthaccesstokens/{{ name }}`
+- `/apis/oauth.openshift.io/v1/watch/oauthaccesstokens/{name}`
 
   - `GET`: watch changes to an object of kind OAuthAccessToken. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
 
@@ -148,7 +148,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/oauth.openshift.io/v1/oauthaccesstokens/{{ name }} {#_apisoauthopenshiftiov1oauthaccesstokens_name}
+### /apis/oauth.openshift.io/v1/oauthaccesstokens/{name} {#_apisoauthopenshiftiov1oauthaccesstokens_name}
 
 **Global path parameters**
 
@@ -253,7 +253,7 @@ Description
 | 201 - Created | [`OAuthAccessToken`](/openshift-docs-markdown/rest_api/oauth_apis/oauthaccesstoken-oauth-openshift-io-v1#oauthaccesstoken-oauth-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/oauth.openshift.io/v1/watch/oauthaccesstokens/{{ name }} {#_apisoauthopenshiftiov1watchoauthaccesstokens_name}
+### /apis/oauth.openshift.io/v1/watch/oauthaccesstokens/{name} {#_apisoauthopenshiftiov1watchoauthaccesstokens_name}
 
 **Global path parameters**
 

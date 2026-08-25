@@ -167,9 +167,7 @@ Prism Central requires access to the Red Hat Enterprise Linux CoreOS (RHCOS) im
 
 ## Creating the installation configuration file {#installation-initializing_installing-restricted-networks-nutanix-installer-provisioned}
 
-You can customize the OpenShift Container Platform cluster you install on
-
-Nutanix.
+You can customize the OpenShift Container Platform cluster you install on Nutanix.
 
 **Prerequisites**
 
@@ -259,13 +257,14 @@ Nutanix.
    For more information about the parameters, see "Installation configuration parameters".
 
    > [!NOTE]
-   > If you are installing a three-node cluster, be sure to set the `compute.replicas` parameter to `0`. This ensures that cluster’s control planes are schedulable. For more information, see "Installing a three-node cluster on {{ platform }}".
+   > If you are installing a three-node cluster, be sure to set the `compute.replicas` parameter to `0`. This ensures that cluster’s control planes are schedulable. For more information, see "Installing a three-node cluster on {platform}".
 5. Back up the `install-config.yaml` file so that you can use it to install multiple clusters.
 
    > [!IMPORTANT]
    > The `install-config.yaml` file is consumed during the installation process. If you want to reuse the file, you must back it up now.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installation configuration parameters for Nutanix](/openshift-docs-markdown/installing/installing_nutanix/installation-config-parameters-nutanix#installation-config-parameters-nutanix)
 
@@ -348,9 +347,7 @@ platform:
 credentialsMode: Manual
 publish: External
 pullSecret: '{"auths":{"<local_registry>": {"auth": "<credentials>","email": "you@example.com"}}}'
-{%- if not openshift_origin %}
 fips: false
-{%- endif %}
 sshKey: ssh-ed25519 AAAA...
 additionalTrustBundle: |
   -----BEGIN CERTIFICATE-----
@@ -539,46 +536,42 @@ Production environments can deny direct access to the internet and instead have 
    proxy:
      httpProxy: http://<username>:<pswd>@<ip>:<port>
      httpsProxy: https://<username>:<pswd>@<ip>:<port>
+     noProxy: example.com
+   additionalTrustBundle: |
+       -----BEGIN CERTIFICATE-----
+       <MY_TRUSTED_CA_CERT>
+       -----END CERTIFICATE-----
+   additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle>
+   # ...
    ```
 
-{%- if not aws %} noProxy: example.com {% endif %} {% if aws %} noProxy: ec2.<aws_region>.amazonaws.com,elasticloadbalancing.<aws_region>.amazonaws.com,s3.<aws_region>.amazonaws.com {%- endif %} additionalTrustBundle: | -----BEGIN CERTIFICATE----- <MY_TRUSTED_CA_CERT> -----END CERTIFICATE----- additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle> # ... \`\`\`
+   where:
 
-````
-where:
+   `proxy.httpProxy`
+   :   Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be `http`.
 
-`proxy.httpProxy`
-:   Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be `http`.
+   `proxy.httpsProxy`
+   :   Specifies a proxy URL to use for creating HTTPS connections outside the cluster.
 
-`proxy.httpsProxy`
-:   Specifies a proxy URL to use for creating HTTPS connections outside the cluster.
+   `proxy.noProxy`
+   :   Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with `.` to match subdomains only. For example, `.y.com` matches `x.y.com`, but not `y.com`. Use `*` to bypass the proxy for all destinations.
 
-`proxy.noProxy`
-:   Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with `.` to match subdomains only. For example, `.y.com` matches `x.y.com`, but not `y.com`. Use `*` to bypass the proxy for all destinations.
+   `additionalTrustBundle`
+   :   If you specify this value, the installation program generates a config map named `user-ca-bundle` in the `openshift-config` namespace to hold the additional CA certificates. If you specify `additionalTrustBundle` and at least one proxy setting, the `Proxy` object references the `user-ca-bundle` config map in the `trustedCA` field. The Cluster Network Operator then creates a `trusted-ca-bundle` config map that merges the contents specified for the `trustedCA` parameter with the RHCOS trust bundle. You must set the `additionalTrustBundle` field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.
 
-`additionalTrustBundle`
-:   If you specify this value, the installation program generates a config map named `user-ca-bundle` in the `openshift-config` namespace to hold the additional CA certificates. If you specify `additionalTrustBundle` and at least one proxy setting, the `Proxy` object references the `user-ca-bundle` config map in the `trustedCA` field. The Cluster Network Operator then creates a `trusted-ca-bundle` config map that merges the contents specified for the `trustedCA` parameter with the RHCOS trust bundle. You must set the `additionalTrustBundle` field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.
+   `additionalTrustBundlePolicy`
+   :   Specifies the policy that determines the configuration of the `Proxy` object to reference the `user-ca-bundle` config map in the `trustedCA` field. The allowed values are `Proxyonly` and `Always`. Use `Proxyonly` to reference the `user-ca-bundle` config map only when you configure an `http/https` proxy. Use `Always` to always reference the `user-ca-bundle` config map. The default value is `Proxyonly`. Optional parameter.
 
-`additionalTrustBundlePolicy`
-:   Specifies the policy that determines the configuration of the `Proxy` object to reference the `user-ca-bundle` config map in the `trustedCA` field. The allowed values are `Proxyonly` and `Always`. Use `Proxyonly` to reference the `user-ca-bundle` config map only when you configure an `http/https` proxy. Use `Always` to always reference the `user-ca-bundle` config map. The default value is `Proxyonly`. Optional parameter.
+   > [!NOTE]
+   > The installation program does not support the proxy `readinessEndpoints` field.
 
-:::note
-
-The installation program does not support the proxy `readinessEndpoints` field.
-
-:::
-
-:::note
-
-If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
-
-```terminal
-$ ./openshift-install wait-for install-complete --log-level debug
-```
-
-:::
-````
-
-1. Save the file and reference it when installing OpenShift Container Platform.
+   > [!NOTE]
+   > If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
+   >
+   > ```terminal
+   > $ ./openshift-install wait-for install-complete --log-level debug
+   > ```
+2. Save the file and reference it when installing OpenShift Container Platform.
 
    The installation program creates a cluster-wide proxy named `cluster` that uses the proxy settings in the `install-config.yaml` file. If you do not give proxy settings, the installation program still creates a `cluster` `Proxy` object, but it has a nil `spec`.
 
@@ -850,19 +843,15 @@ To deploy your OpenShift Container Platform cluster, you can initialize installa
 
 **Procedure**
 
-````
-*   In the directory that contains the installation program, initialize the cluster deployment by running the following command:
+- In the directory that contains the installation program, initialize the cluster deployment by running the following command:
 
 ```terminal
 $ ./openshift-install create cluster --dir <installation_directory> \
     --log-level=info
 ```
-    *   For `<installation_directory>`, specify the
-    location of your customized `./install-config.yaml` file.
 
-    *   To view different installation details, specify `warn`, `debug`, or
-    `error` instead of `info`.
-````
+- For `<installation_directory>`, specify the location of your customized `./install-config.yaml` file.
+- To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
 
 **Verification**
 
@@ -901,7 +890,7 @@ To use only trusted or locally available Operator catalogs, disable the default 
   ```
 
   > [!TIP]
-  > Or, you can use the web console to manage catalog sources. From the **Administration** -> **Cluster Settings** -> **Configuration** -> **OperatorHub** page, click the **Sources** tab, where you can create, update, delete, disable, and enable individual sources.
+  > Or, you can use the web console to manage catalog sources. From the **Administration** → **Cluster Settings** → **Configuration** → **OperatorHub** page, click the **Sources** tab, where you can create, update, delete, disable, and enable individual sources.
 
 ## Installing the policy resources into the cluster {#oc-mirror-updating-cluster-manifests_installing-restricted-networks-nutanix-installer-provisioned}
 
@@ -947,12 +936,16 @@ After you install the cluster, you must install these resources into the cluster
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Adding a catalog to a cluster in Extensions](/openshift-docs-markdown/extensions/catalogs/managing-catalogs#olmv1-adding-a-catalog-to-a-cluster_managing-catalogs)
 
 ## Configuring the default storage container {#registry-configuring-storage-nutanix_installing-restricted-networks-nutanix-installer-provisioned}
 
 After you install the cluster, you must install the Nutanix CSI Operator and configure the default storage container for the cluster.
+
+**Additional resources**
+{._additional-resources}
 
 - [Installing the CSI Operator](https://opendocs.nutanix.com/openshift/operators/csi/)
 - [Configuring registry storage](https://opendocs.nutanix.com/openshift/post-install/)
@@ -963,7 +956,8 @@ To provide metrics about cluster health and the success of updates, the Telemetr
 
 After you confirm that your [OpenShift Cluster Manager](https://console.redhat.com/openshift) inventory is correct, either maintained automatically by Telemetry or manually by using OpenShift Cluster Manager,use subscription watch to track your OpenShift Container Platform subscriptions at the account or multi-cluster level. For more information about subscription watch, see "Data Gathered and Used by Red Hat’s subscription services" in the *Additional resources* section.
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [OpenShift Container Platform installation and update processes](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)
 - [Configuring your firewall to grant required access](/openshift-docs-markdown/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)

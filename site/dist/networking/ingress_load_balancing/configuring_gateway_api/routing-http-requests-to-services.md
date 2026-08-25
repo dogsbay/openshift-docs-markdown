@@ -78,7 +78,7 @@ To ensure traffic is routed to the correct application when multiple services sh
 
 **Procedure**
 
-1. Create or edit an `HTTPRoute` YAML file to include your desired match conditions under the `spec.rules.matches` field.  The following example demonstrates a complete `HTTPRoute` custom resource (CR) configured with path-based matching to route requests for `/<example_app>` to a backend service. For details on configuring other match types, see [#!supported-httproute-match-types_routing-http-requests-to-services](#supported-httproute-match-types_routing-http-requests-to-services).
+1. Create or edit an `HTTPRoute` YAML file to include your desired match conditions under the `spec.rules.matches` field.  The following example demonstrates a complete `HTTPRoute` custom resource (CR) configured with path-based matching to route requests for `/<example_app>` to a backend service. For details on configuring other match types, see [supported-httproute-match-types_routing-http-requests-to-services](#supported-httproute-match-types_routing-http-requests-to-services).
 
    ```yaml
    apiVersion: gateway.networking.k8s.io/v1
@@ -187,7 +187,7 @@ To modify how HTTP requests are processed before they reach your backend service
 
 **Procedure**
 
-1. Create or edit an `HTTPRoute` YAML file to include your desired processing directives under the `spec.rules.filters` field.  The following example demonstrates a complete `HTTPRoute` custom resource (CR) with a `requestRedirect` filter that issues a permanent redirect (301) from HTTP to HTTPS. For details on configuring other filter types, see [#!supported-httproute-filters_routing-http-requests-to-services](#supported-httproute-filters_routing-http-requests-to-services).
+1. Create or edit an `HTTPRoute` YAML file to include your desired processing directives under the `spec.rules.filters` field.  The following example demonstrates a complete `HTTPRoute` custom resource (CR) with a `requestRedirect` filter that issues a permanent redirect (301) from HTTP to HTTPS. For details on configuring other filter types, see [supported-httproute-filters_routing-http-requests-to-services](#supported-httproute-filters_routing-http-requests-to-services).
 
    ```yaml
    apiVersion: gateway.networking.k8s.io/v1
@@ -298,7 +298,7 @@ To route traffic to your backends, you must define service destinations and traf
 
 **Procedure**
 
-1. Create or edit an `HTTPRoute` YAML file to include your desired service destinations under the `spec.rules.backendRefs` field. The following example demonstrates a complete `HTTPRoute` custom resource (CR) with a single backend destination that routes traffic to a service named `<service_v1>`. For details on configuring weights and routing to multiple destinations, see [#!httproute-backendref-configuration_routing-http-requests-to-services](#httproute-backendref-configuration_routing-http-requests-to-services).
+1. Create or edit an `HTTPRoute` YAML file to include your desired service destinations under the `spec.rules.backendRefs` field. The following example demonstrates a complete `HTTPRoute` custom resource (CR) with a single backend destination that routes traffic to a service named `<service_v1>`. For details on configuring weights and routing to multiple destinations, see [httproute-backendref-configuration_routing-http-requests-to-services](#httproute-backendref-configuration_routing-http-requests-to-services).
 
    ```yaml
    apiVersion: gateway.networking.k8s.io/v1
@@ -376,7 +376,7 @@ To prevent hanging connections and ensure your application remains responsive, y
 
 **Procedure**
 
-1. Create or edit an `HTTPRoute` YAML file to include your desired timeout configurations under the `spec.rules.timeouts` field. The following example demonstrates a complete `HTTPRoute` custom resource (CR) where the entire request must complete within 30 seconds. For details on timeout formatting rules and backend request timeouts, see [#!httproute-timeout-configuration_routing-http-requests-to-services](#httproute-timeout-configuration_routing-http-requests-to-services).
+1. Create or edit an `HTTPRoute` YAML file to include your desired timeout configurations under the `spec.rules.timeouts` field. The following example demonstrates a complete `HTTPRoute` custom resource (CR) where the entire request must complete within 30 seconds. For details on timeout formatting rules and backend request timeouts, see [httproute-timeout-configuration_routing-http-requests-to-services](#httproute-timeout-configuration_routing-http-requests-to-services).
 
    ```yaml
    apiVersion: gateway.networking.k8s.io/v1

@@ -92,7 +92,8 @@ Replace a control plane machine to apply updated configurations or recover from 
    >
    > Both strategies maintain etcd health during control plane machine replacement.
 
-## Additional resources {#additional-resources_cpmso-managing-machines}
+**Additional resources**
+{._additional-resources}
 
 - [Control plane machine set configuration](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-configuration#cpmso-configuration)
 - [Provider-specific configuration options](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-configuration#cpmso-config-provider-specific_cpmso-configuration)

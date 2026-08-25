@@ -250,7 +250,7 @@ Install KubeVirt Redfish on your OpenShift Virtualization cluster by applying a 
             runAsNonRoot: true
           containers:
             - name: kubevirt-redfish
-              image: registry.redhat.io/container-native-virtualization/kubevirt-redfish-rhel9:v{{ product_version }}
+              image: registry.redhat.io/container-native-virtualization/kubevirt-redfish-rhel9:v4.22
               imagePullPolicy: Always
               ports:
                 - name: http
@@ -405,7 +405,7 @@ KubeVirt Redfish implements a subset of the Redfish standard for managing virtua
 Access these endpoints using the full URL format `https://<route_hostname>/<endpoint_path>`, where `<route_hostname>` is the KubeVirt Redfish Route hostname.
 
 > [!NOTE]
-> In endpoint paths, `{{ system_id }}` refers to the VM identifier. With the `enhanced` system ID convention, this is `<namespace>.<vm-name>`. With the `legacy` convention, this is `<vm-name>` only.
+> In endpoint paths, `{system_id}` refers to the VM identifier. With the `enhanced` system ID convention, this is `<namespace>.<vm-name>`. With the `legacy` convention, this is `<vm-name>` only.
 
 **Supported Redfish API endpoints**
 
@@ -413,14 +413,15 @@ Access these endpoints using the full URL format `https://<route_hostname>/<endp
 | --- | --- | --- |
 | GET | `/redfish/v1/` | Service root. Returns available resource collections. |
 | GET | `/redfish/v1/Systems` | List all VMs exposed as Redfish systems. |
-| GET | `/redfish/v1/Systems/{{ system_id }}` | Get details for a specific VM, including power state and boot settings. |
-| POST | `/redfish/v1/Systems/{{ system_id }}/Actions/ComputerSystem.Reset` | Power operations. Supported `ResetType` values: `On`, `ForceOff`, `GracefulShutdown`. |
-| GET | `/redfish/v1/Systems/{{ system_id }}/VirtualMedia/Cd` | Get VirtualMedia status for the VM’s virtual CD drive. |
-| POST | `/redfish/v1/Systems/{{ system_id }}/VirtualMedia/Cd/Actions/VirtualMedia.InsertMedia` | Attach an ISO image to the VM. Requires `Image` URL parameter. |
-| POST | `/redfish/v1/Systems/{{ system_id }}/VirtualMedia/Cd/Actions/VirtualMedia.EjectMedia` | Detach the ISO image from the VM. |
-| PATCH | `/redfish/v1/Systems/{{ system_id }}` | Modify boot settings. Set `Boot.BootSourceOverrideTarget` (`Cd`, `Hdd`, `Pxe`) and `Boot.BootSourceOverrideEnabled` (`Once`, `Continuous`, `Disabled`). |
+| GET | `/redfish/v1/Systems/{system_id}` | Get details for a specific VM, including power state and boot settings. |
+| POST | `/redfish/v1/Systems/{system_id}/Actions/ComputerSystem.Reset` | Power operations. Supported `ResetType` values: `On`, `ForceOff`, `GracefulShutdown`. |
+| GET | `/redfish/v1/Systems/{system_id}/VirtualMedia/Cd` | Get VirtualMedia status for the VM’s virtual CD drive. |
+| POST | `/redfish/v1/Systems/{system_id}/VirtualMedia/Cd/Actions/VirtualMedia.InsertMedia` | Attach an ISO image to the VM. Requires `Image` URL parameter. |
+| POST | `/redfish/v1/Systems/{system_id}/VirtualMedia/Cd/Actions/VirtualMedia.EjectMedia` | Detach the ISO image from the VM. |
+| PATCH | `/redfish/v1/Systems/{system_id}` | Modify boot settings. Set `Boot.BootSourceOverrideTarget` (`Cd`, `Hdd`, `Pxe`) and `Boot.BootSourceOverrideEnabled` (`Once`, `Continuous`, `Disabled`). |
 
-## Additional resources {#additional-resources_virt-kubevirt-redfish}
+**Additional resources**
+{._additional-resources}
 
 - [BMC addressing for installer-provisioned infrastructure](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#bmc-addressing_ipi-install-installation-workflow)
 - [Deploying far edge sites with ZTP](/openshift-docs-markdown/edge_computing/ztp-deploying-far-edge-sites#ztp-deploying-far-edge-sites)

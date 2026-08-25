@@ -43,8 +43,8 @@ The following maximums apply to objects defined in OpenShift Virtualization.
 | --- | --- | --- |
 | Number of attached PVs per node | N/A | CSI storage provider dependent |
 | Maximum PV size | N/A | CSI storage provider dependent |
-| Hosts | 500 hosts (100 or fewer recommended) [^1]^ | Same as OpenShift Container Platform |
-| Defined VMs | 10,000 VMs [^2]^ | Same as OpenShift Container Platform |
+| Hosts | 500 hosts (100 or fewer recommended) <sup>\[1\]</sup> | Same as OpenShift Container Platform |
+| Defined VMs | 10,000 VMs <sup>\[2\]</sup> | Same as OpenShift Container Platform |
 
 1. If you use more than 100 nodes, consider using Red Hat Advanced Cluster Management (RHACM) to manage multiple clusters instead of scaling out a single control plane. Larger clusters add complexity, require longer updates, and depending on node size and total object density, they can increase control plane stress.
 
@@ -54,14 +54,11 @@ The following maximums apply to objects defined in OpenShift Virtualization.
    - Settings that limit the number of pods that can be scheduled to a node. For example: `maxPods`.
    - The default number of KVM devices. For example: `devices.kubevirt.io/kvm: 1k`.
 
-## Additional resources {#additional-resources_virt-supported-limits}
+**Additional resources**
+{._additional-resources}
 
 - [OpenShift Virtualization - Tuning & Scaling Guide](https://access.redhat.com/articles/6994974)
 - [Virtualization limits for Red Hat Enterprise Linux with KVM](https://access.redhat.com/articles/rhel-kvm-limits)
 - [Planning your environment according to object maximums](/openshift-docs-markdown/scalability_and_performance/planning-your-environment-according-to-object-maximums#planning-your-environment-according-to-object-maximums)
 - [Managing the maximum number of pods per node](/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing-max-pods#nodes-nodes-managing-max-pods)
 - [Red Hat Advanced Cluster Management documentation](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes)
-
-[^1]: 1
-
-[^2]: 2

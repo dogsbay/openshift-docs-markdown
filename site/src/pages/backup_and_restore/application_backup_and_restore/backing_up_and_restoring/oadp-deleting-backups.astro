@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"oadp-deleting-backups","text":"Deleting bac
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-deleting-backups";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="oadp-deleting-backups" class="group scroll-mt-20">Deleting backups<a href="#oadp-deleting-backups" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Delete a backup by creating the <code>DeleteBackupRequest</code> custom resource (CR) or by running the <code>velero backup delete</code> command. This helps you to free up storage space and remove outdated backup artifacts.</p>
+      <p class="_abstract">Delete a backup by creating the <code>DeleteBackupRequest</code> custom resource (CR) or by running the <code>velero backup delete</code> command. This helps you to free up storage space and remove outdated backup artifacts.</p>
       <p>The volume backup artifacts are deleted at different times depending on the backup method:</p>
       <ul>
       <li>Restic: The artifacts are deleted in the next full maintenance cycle, after the backup is deleted.</li>

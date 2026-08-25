@@ -1111,22 +1111,19 @@ This procedure uses the default IBM Cloud Cloud Object Storage (COS) bucket in y
 
       `<machineset_name>`
       :   Specifies the name of the machine set to scale.
-
-      1. Optional: View the status of the machine set as it provisions by running the following command:
+   2. Optional: View the status of the machine set as it provisions by running the following command:
 
       ```terminal
       $ oc get machines.machine.openshift.io -n openshift-machine-api -w
       ```
 
       It can take several minutes for the machine set to achieve the `Running` state.
-
-      1. Verify that the new node has been created and is in the `Ready` state by running the following command.
+   3. Verify that the new node has been created and is in the `Ready` state by running the following command.
 
       ```terminal
       $ oc get nodes
       ```
-
-      1. Verify that the new node is using the new boot image by running the following command:
+   4. Verify that the new node is using the new boot image by running the following command:
 
       ```terminal
       $ oc debug node/<new_node> -- chroot /host cat /sysroot/.coreos-aleph-version.json
@@ -1144,8 +1141,8 @@ This procedure uses the default IBM Cloud Cloud Object Storage (COS) bucket in y
 
       where:
 
-   `<version>`
-   :   Specifies the boot image version.
+      `<version>`
+      :   Specifies the boot image version.
 
    After you migrate all machine sets to the new boot image, the old boot image is no longer needed. You can remove the old boot image from your COS bucket.
 
@@ -1665,7 +1662,7 @@ vSphere boot images use a template that you create by uploading a Red Hat Enter
    8. On the **Ready to complete** tab, verify your settings and click **Finish**.
 
       The vSphere Client uploads the boot image to create the OVF template. This can take a few minutes depending on network speeds. You can keep track of this process in the task tab under *Deploy OVF template*.
-   9. After the upload is complete, click the new virtual machine and click **Template** -> **Convert to template** -> **Yes**.
+   9. After the upload is complete, click the new virtual machine and click **Template** → **Convert to template** → **Yes**.
 
       You now have a VM template based on the new boot image, which you can use to update the machine set objects.
 3. Update each of your compute machine sets to include the new boot image:
@@ -1770,7 +1767,8 @@ External provider clusters
 
 If boot image skew enforcement in your cluster is set to the manual mode, after updating the boot image, update the version of the new boot image in the `MachineConfiguration` object as described in "Updating the boot image skew enforcement version".
 
-## Additional resources {#additional-resources_mco-update-boot-images-manual}
+**Additional resources**
+{._additional-resources}
 
 - [Boot image management](/openshift-docs-markdown/machine_configuration/mco-update-boot-images#mco-update-boot-images)
 - [Updating the boot image skew enforcement version](/openshift-docs-markdown/machine_configuration/mco-update-boot-skew-mgmt#mco-update-boot-skew-mgmt)

@@ -12,7 +12,7 @@ To monitor and troubleshoot virtual machine (VM), namespace, and resource issues
 
 **Procedure**
 
-- To view VM events, go to **VirtualMachine details** -> **Events** in the web console.
+- To view VM events, go to **VirtualMachine details** → **Events** in the web console.
 - To view namespace events, run the following command:
 
   ```terminal
@@ -41,7 +41,7 @@ To gather more detailed diagnostic information for troubleshooting, you can conf
 1. To set log verbosity for specific components, open the `HyperConverged` CR in your default text editor by running the following command:
 
    ```terminal
-   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+   $ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv
    ```
 2. Set the log level for one or more components by editing the `spec.logVerbosityConfig` stanza. For example:
 
@@ -69,7 +69,7 @@ To diagnose and troubleshoot virtual machine issues, you can view the `virt-laun
 
 **Procedure**
 
-1. Navigate to **Virtualization** -> **VirtualMachines**.
+1. Navigate to **Virtualization** → **VirtualMachines**.
 2. Select a virtual machine to open the **VirtualMachine details** page.
 3. On the **General** tile, click the pod name to open the **Pod details** page.
 4. Click the **Logs** tab to view the logs.
@@ -87,7 +87,7 @@ To diagnose issues and monitor OpenShift Virtualization pods, you can view logs 
 1. View a list of pods in the OpenShift Virtualization namespace by running the following command:
 
    ```terminal
-   $ oc get pods -n {{ CNVNamespace }}
+   $ oc get pods -n openshift-cnv
    ```
 
    Example output:
@@ -108,7 +108,7 @@ To diagnose issues and monitor OpenShift Virtualization pods, you can view logs 
 2. View the pod log by running the following command:
 
    ```terminal
-   $ oc logs -n {{ CNVNamespace }} <pod_name>
+   $ oc logs -n openshift-cnv <pod_name>
    ```
 
    > [!NOTE]
@@ -144,8 +144,8 @@ To troubleshoot issues more easily, you can enable default access to virtual mac
 
 **Procedure**
 
-1. From the side menu, click **Virtualization** -> **Settings**.
-2. Click **Cluster** -> **Guest management**.
+1. From the side menu, click **Virtualization** → **Settings**.
+2. Click **Cluster** → **Guest management**.
 3. Set **Enable guest system log access** to on.
 4. Optional: If you want to hide the VM user credentials that were set by using cloud-init, set **Hide guest credentials for non-privileged users** to on.
 
@@ -162,7 +162,7 @@ To troubleshoot issues more easily, you can enable default access to virtual mac
 1. Open the `HyperConverged` CR in your default editor by running the following command:
 
    ```terminal
-   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+   $ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv
    ```
 2. Update the `disableSerialConsoleLog` value. For example:
 
@@ -184,7 +184,7 @@ To troubleshoot a specific virtual machine (VM) without changing global settings
 
 **Procedure**
 
-1. Click **Virtualization** -> **VirtualMachines** from the side menu.
+1. Click **Virtualization** → **VirtualMachines** from the side menu.
 2. Select a virtual machine to open the **VirtualMachine details** page.
 3. Click the **Configuration** tab.
 4. Set **Guest system log access** to on or off.
@@ -244,7 +244,7 @@ Guest system logs capture serial console output from the VM’s boot process, ke
 
 **Procedure**
 
-1. Click **Virtualization** -> **VirtualMachines** from the side menu.
+1. Click **Virtualization** → **VirtualMachines** from the side menu.
 2. Select a virtual machine to open the **VirtualMachine details** page.
 3. Click the **Diagnostics** tab.
 4. Click **Guest system logs** to load the serial console.
@@ -282,14 +282,14 @@ You can use the Loki logging component to view aggregated logs for OpenShift Vir
 
 **Procedure**
 
-1. Navigate to **Observe** -> **Logs** in the web console.
+1. Navigate to **Observe** → **Logs** in the web console.
 2. Select **application**, for `virt-launcher` pod logs, or **infrastructure**, for OpenShift Virtualization control plane pods and containers, from the log type list.
 3. Click **Show Query** to display the query field.
 4. Enter the LogQL query in the query field and click **Run Query** to display the filtered logs.
 
 ### OpenShift Virtualization LogQL queries {#virt-loki-log-queries_virt-troubleshooting}
 
-To diagnose issues and monitor OpenShift Virtualization components, you can view and filter aggregated logs by running Loki Query Language (LogQL) queries on the **Observe** -> **Logs** page in the web console.
+To diagnose issues and monitor OpenShift Virtualization components, you can view and filter aggregated logs by running Loki Query Language (LogQL) queries on the **Observe** → **Logs** page in the web console.
 
 The default log type is *infrastructure*. The `virt-launcher` log type is *application*.
 
@@ -298,7 +298,7 @@ Optional: You can include or exclude strings or regular expressions by using lin
 > [!NOTE]
 > If the query matches a large number of logs, the query might time out.
 
-***OpenShift Virtualization LogQL example queries***
+**OpenShift Virtualization LogQL example queries**
 
 <table>
 <thead>
@@ -310,106 +310,42 @@ Optional: You can include or exclude strings or regular expressions by using lin
 <tbody>
 <tr>
   <td>All</td>
-  <td><pre>{log_type=~".+"}\</pre></td>
-</tr>
-<tr>
-  <td>json \</td>
-  <td>kubernetes_labels_app_kubernetes_io_part_of="hyperconverged-cluster"</td>
+  <td><pre>{log_type=~".+"}|json&#10;|kubernetes_labels_app_kubernetes_io_part_of="hyperconverged-cluster"</pre></td>
 </tr>
 <tr>
   <td><code>cdi-apiserver</code><br><br><code>cdi-deployment</code><br><br><code>cdi-operator</code></td>
-  <td><pre>{log_type=~".+"}\</pre></td>
-</tr>
-<tr>
-  <td>json \</td>
-  <td>kubernetes_labels_app_kubernetes_io_part_of="hyperconverged-cluster"</td>
-</tr>
-<tr>
-  <td>\</td>
-  <td>kubernetes_labels_app_kubernetes_io_component="storage"</td>
+  <td><pre>{log_type=~".+"}|json&#10;|kubernetes_labels_app_kubernetes_io_part_of="hyperconverged-cluster"&#10;|kubernetes_labels_app_kubernetes_io_component="storage"</pre></td>
 </tr>
 <tr>
   <td><code>hco-operator</code></td>
-  <td><pre>{log_type=~".+"}\</pre></td>
-</tr>
-<tr>
-  <td>json \</td>
-  <td>kubernetes_labels_app_kubernetes_io_part_of="hyperconverged-cluster"</td>
-</tr>
-<tr>
-  <td>\</td>
-  <td>kubernetes_labels_app_kubernetes_io_component="deployment"</td>
+  <td><pre>{log_type=~".+"}|json&#10;|kubernetes_labels_app_kubernetes_io_part_of="hyperconverged-cluster"&#10;|kubernetes_labels_app_kubernetes_io_component="deployment"</pre></td>
 </tr>
 <tr>
   <td><code>kubemacpool</code></td>
-  <td><pre>{log_type=~".+"}\</pre></td>
-</tr>
-<tr>
-  <td>json \</td>
-  <td>kubernetes_labels_app_kubernetes_io_part_of="hyperconverged-cluster"</td>
-</tr>
-<tr>
-  <td>\</td>
-  <td>kubernetes_labels_app_kubernetes_io_component="network"</td>
+  <td><pre>{log_type=~".+"}|json&#10;|kubernetes_labels_app_kubernetes_io_part_of="hyperconverged-cluster"&#10;|kubernetes_labels_app_kubernetes_io_component="network"</pre></td>
 </tr>
 <tr>
   <td><code>virt-api</code><br><br><code>virt-controller</code><br><br><code>virt-handler</code><br><br><code>virt-operator</code></td>
-  <td><pre>{log_type=~".+"}\</pre></td>
-</tr>
-<tr>
-  <td>json \</td>
-  <td>kubernetes_labels_app_kubernetes_io_part_of="hyperconverged-cluster"</td>
-</tr>
-<tr>
-  <td>\</td>
-  <td>kubernetes_labels_app_kubernetes_io_component="compute"</td>
+  <td><pre>{log_type=~".+"}|json&#10;|kubernetes_labels_app_kubernetes_io_part_of="hyperconverged-cluster"&#10;|kubernetes_labels_app_kubernetes_io_component="compute"</pre></td>
 </tr>
 <tr>
   <td><code>ssp-operator</code></td>
-  <td><pre>{log_type=~".+"}\</pre></td>
-</tr>
-<tr>
-  <td>json \</td>
-  <td>kubernetes_labels_app_kubernetes_io_part_of="hyperconverged-cluster"</td>
-</tr>
-<tr>
-  <td>\</td>
-  <td>kubernetes_labels_app_kubernetes_io_component="schedule"</td>
+  <td><pre>{log_type=~".+"}|json&#10;|kubernetes_labels_app_kubernetes_io_part_of="hyperconverged-cluster"&#10;|kubernetes_labels_app_kubernetes_io_component="schedule"</pre></td>
 </tr>
 <tr>
   <td>Container</td>
-  <td>[source,text]</td>
-</tr>
-<tr>
-  <td>{log_type=~".+",kubernetes_container_name=~"<container>\</td>
-  <td><container>"}</td>
-</tr>
-<tr>
-  <td>\</td>
-  <td>json\</td>
-</tr>
-<tr>
-  <td>kubernetes_labels_app_kubernetes_io_part_of="hyperconverged-cluster" ---- Specify one or more containers separated by a pipe (`\</td>
-  <td>`).</td>
+  <td>[source,text] ---- {log_type=~".+",kubernetes_container_name=~"<container><container>"} jsonkubernetes_labels_app_kubernetes_io_part_of="hyperconverged-cluster" ----<br><br>Specify one or more containers separated by a pipe (<code></code>).</td>
 </tr>
 <tr>
   <td><code>virt-launcher</code></td>
-  <td>You must select <strong>application</strong> from the log type list before running this query.<br><br><pre>{log_type=~".+", kubernetes_container_name="compute"}\</pre></td>
-</tr>
-<tr>
-  <td>json \</td>
-  <td>!= "custom-ga-command"</td>
-</tr>
-<tr>
-  <td>`\</td>
-  <td>!= "custom-ga-command"<code> excludes libvirt logs that contain the string </code>custom-ga-command`. (https://bugzilla.redhat.com/show_bug.cgi?id=2177684[<strong>BZ#2177684</strong>])</td>
+  <td>You must select <strong>application</strong> from the log type list before running this query.<br><br><pre>{log_type=~".+", kubernetes_container_name="compute"}|json&#10;|!= "custom-ga-command"</pre><br><br><code>|!= "custom-ga-command"</code> excludes libvirt logs that contain the string <code>custom-ga-command</code>. (<a href="https://bugzilla.redhat.com/show_bug.cgi?id=2177684"><strong>BZ#2177684</strong></a>)</td>
 </tr>
 </tbody>
 </table>
 
 You can filter log lines to include or exclude strings or regular expressions by using line filter expressions.
 
-***Line filter expressions***
+**Line filter expressions**
 
 <table>
 <thead>
@@ -420,23 +356,19 @@ You can filter log lines to include or exclude strings or regular expressions by
 </thead>
 <tbody>
 <tr>
-  <td>`\</td>
-  <td>= "<string>"`</td>
-</tr>
-<tr>
+  <td><code>|= "&lt;string&gt;"</code></td>
   <td>Log line contains string</td>
-  <td><code>!= "<string>"</code></td>
 </tr>
 <tr>
+  <td><code>!= "&lt;string&gt;"</code></td>
   <td>Log line does not contain string</td>
-  <td>`\</td>
 </tr>
 <tr>
-  <td>~ "<regex>"`</td>
+  <td><code>|~ "&lt;regex&gt;"</code></td>
   <td>Log line contains regular expression</td>
 </tr>
 <tr>
-  <td><code>!~ "<regex>"</code></td>
+  <td><code>!~ "&lt;regex&gt;"</code></td>
   <td>Log line does not contain regular expression</td>
 </tr>
 </tbody>
@@ -564,7 +496,8 @@ Examples of various combinations follow.
       Type:                  Ready
   ```
 
-## Additional resources {#additional-resources_virt-troubleshooting}
+**Additional resources**
+{._additional-resources}
 
 - [OpenShift Container Platform events](/openshift-docs-markdown/nodes/clusters/nodes-containers-events#nodes-containers-events)
 - [List of events](/openshift-docs-markdown/nodes/clusters/nodes-containers-events#nodes-containers-events-list_nodes-containers-events)

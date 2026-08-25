@@ -21,12 +21,13 @@ const headings = [{"depth":1,"slug":"js-install","text":"Installing the JobSet O
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/ai_workloads/jobset_operator/jobset-install";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
-const title = "Installing the {{ js_operator }}";
+const title = "Installing the JobSet Operator";
 const description = "Install the JobSet Operator on OpenShift Container Platform to enable management of large-scale, coordinated computing workloads, giving your applications…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
@@ -40,7 +41,7 @@ const pageCategory = ["ai_workloads","ai_workloads/jobset_operator"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing the JobSet Operator {#js-install}\n\nInstall the JobSet Operator on OpenShift Container Platform to enable management of large-scale, coordinated computing workloads, giving your applications a unified API and failure recovery.\n\n## Installing the JobSet Operator {#js-install_js-install}\n\nInstall the JobSet Operator on OpenShift Container Platform using the web console to begin managing large-scale, coordinated computing workloads.\n\n**Prerequisites**\n\n- You have access to the cluster with `cluster-admin` privileges.\n- You have access to the OpenShift Container Platform web console.\n- You have installed the cert-manager Operator for Red Hat OpenShift.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console.\n2. Verify that the cert-manager Operator for Red Hat OpenShift is installed.\n3. Install the JobSet Operator.\n\n   1. Navigate to **Ecosystem** -> **Software Catalog**.\n   2. Search for and select the `openshift-operators` project.\n   3. Enter **JobSet Operator** into the filter box.\n   4. Select the **JobSet Operator** and click **Install**.\n   5. On the **Install Operator** page:\n\n      1. The **Update channel** is set to **stable-v1.0**, which installs the latest stable release of JobSet Operator.\n      2. Under **Installation mode**, select **A specific namespace on the cluster**.\n      3. Under **Installed Namespace**, select **Operator recommended Namespace: openshift-jobset-operator**.\n      4. Under **Update approval**, select one of the following update strategies:\n\n         - The **Automatic** strategy allows Operator Lifecycle Manager (OLM) to automatically update the Operator when a new version is available.\n         - The **Manual** strategy requires a user with appropriate credentials to approve the Operator update.\n      5. Click **Install**.\n4. Create the custom resource (CR) for the JobSet Operator:\n\n   1. Navigate to **Installed Operators** -> **JobSet Operator**.\n   2. Under **Provided APIs**, click **Create instance** in the **JobSetOperator** pane.\n   3. Set the name to **cluster**.\n   4. Set the **managementState** to **Managed**.\n   5. Click **Create**.\n\n**Verification**\n\n- Check that the JobSet Operator and operand pods are running by entering the following command:\n\n  ```terminal\n  $ oc get pod -n openshift-jobset-operator\n  ```\n\n  ```terminal {title=\"Example output\"}\n  NAME                                        READY   STATUS    RESTARTS   AGE\n  jobset-controller-manager-5595547fb-b4g2x   1/1     Running   0          48s\n  jobset-operator-596cb848c6-q2dmp            1/1     Running   0          2m33s\n  ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/jobset_operator/jobset-install.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing the JobSet Operator {#js-install}\n\nInstall the JobSet Operator on OpenShift Container Platform to enable management of large-scale, coordinated computing workloads, giving your applications a unified API and failure recovery.\n\n## Installing the JobSet Operator {#js-install_js-install}\n\nInstall the JobSet Operator on OpenShift Container Platform using the web console to begin managing large-scale, coordinated computing workloads.\n\n**Prerequisites**\n\n- You have access to the cluster with `cluster-admin` privileges.\n- You have access to the OpenShift Container Platform web console.\n- You have installed the cert-manager Operator for Red Hat OpenShift.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console.\n2. Verify that the cert-manager Operator for Red Hat OpenShift is installed.\n3. Install the JobSet Operator.\n\n   1. Navigate to **Ecosystem** → **Software Catalog**.\n   2. Search for and select the **`openshift-operators`** project.\n   3. Enter **JobSet Operator** into the filter box.\n   4. Select the **JobSet Operator** and click **Install**.\n   5. On the **Install Operator** page:\n\n      1. The **Update channel** is set to **stable-v1.0**, which installs the latest stable release of JobSet Operator.\n      2. Under **Installation mode**, select **A specific namespace on the cluster**.\n      3. Under **Installed Namespace**, select **Operator recommended Namespace: openshift-jobset-operator**.\n      4. Under **Update approval**, select one of the following update strategies:\n\n         - The **Automatic** strategy allows Operator Lifecycle Manager (OLM) to automatically update the Operator when a new version is available.\n         - The **Manual** strategy requires a user with appropriate credentials to approve the Operator update.\n      5. Click **Install**.\n4. Create the custom resource (CR) for the JobSet Operator:\n\n   1. Navigate to **Installed Operators** → **JobSet Operator**.\n   2. Under **Provided APIs**, click **Create instance** in the **JobSetOperator** pane.\n   3. Set the name to **cluster**.\n   4. Set the **managementState** to **Managed**.\n   5. Click **Create**.\n\n**Verification**\n\n- Check that the JobSet Operator and operand pods are running by entering the following command:\n\n  ```terminal\n  $ oc get pod -n openshift-jobset-operator\n  ```\n\n  ```terminal {title=\"Example output\"}\n  NAME                                        READY   STATUS    RESTARTS   AGE\n  jobset-controller-manager-5595547fb-b4g2x   1/1     Running   0          48s\n  jobset-operator-596cb848c6-q2dmp            1/1     Running   0          2m33s\n  ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/jobset_operator/jobset-install.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="js-install" class="group scroll-mt-20">Installing the JobSet Operator<a href="#js-install" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Install the JobSet Operator on OpenShift Container Platform to enable management of large-scale, coordinated computing workloads, giving your applications a unified API and failure recovery.</p>
+      <p class="_abstract">Install the JobSet Operator on OpenShift Container Platform to enable management of large-scale, coordinated computing workloads, giving your applications a unified API and failure recovery.</p>
       <h2 id="js-install_js-install" class="group scroll-mt-20">Installing the JobSet Operator<a href="#js-install_js-install" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">Install the JobSet Operator on OpenShift Container Platform using the web console to begin managing large-scale, coordinated computing workloads.</p>
       <p><strong>Prerequisites</strong></p>
@@ -108,7 +110,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>
       Install the JobSet Operator.
       <ol>
-      <li>Navigate to <strong>Ecosystem</strong> -&gt; <strong>Software Catalog</strong>.</li>
+      <li>Navigate to <strong>Ecosystem</strong> → <strong>Software Catalog</strong>.</li>
       <li>Search for and select the <code>openshift-operators</code> project.</li>
       <li>Enter <strong>JobSet Operator</strong> into the filter box.</li>
       <li>Select the <strong>JobSet Operator</strong> and click <strong>Install</strong>.</li>
@@ -133,7 +135,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>
       Create the custom resource (CR) for the JobSet Operator:
       <ol>
-      <li>Navigate to <strong>Installed Operators</strong> -&gt; <strong>JobSet Operator</strong>.</li>
+      <li>Navigate to <strong>Installed Operators</strong> → <strong>JobSet Operator</strong>.</li>
       <li>Under <strong>Provided APIs</strong>, click <strong>Create instance</strong> in the <strong>JobSetOperator</strong> pane.</li>
       <li>Set the name to <strong>cluster</strong>.</li>
       <li>Set the <strong>managementState</strong> to <strong>Managed</strong>.</li>

@@ -106,7 +106,7 @@ The process for rotating cloud credentials depends on the mode that the CCO is c
 
 **Procedure**
 
-1. In the **Administrator** perspective of the web console, navigate to **Workloads** -> **Secrets**.
+1. In the **Administrator** perspective of the web console, navigate to **Workloads** → **Secrets**.
 2. In the table on the **Secrets** page, find the root secret for your cloud provider.
 
 <table>
@@ -122,25 +122,16 @@ The process for rotating cloud credentials depends on the mode that the CCO is c
   <td><code>aws-creds</code></td>
 </tr>
 <tr>
-
-</tr>
-<tr>
   <td>Google Cloud</td>
   <td><code>gcp-credentials</code></td>
 </tr>
-<tr>
-
-</tr>
-<tr>
-
-</tr>
 </tbody>
 </table>
-1.  Click the Options menu ![](kebab.png 'Options menu') in the same row as the secret and select **Edit Secret**.
-1.  Record the contents of the **Value** field or fields. You can use this information to verify that the value is different after updating the credentials.
-1.  Update the text in the **Value** field or fields with the new authentication information for your cloud provider, and then click **Save**.
 
-1. Delete each component secret that is referenced by the individual `CredentialsRequest` objects.
+1. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") in the same row as the secret and select **Edit Secret**.
+2. Record the contents of the **Value** field or fields. You can use this information to verify that the value is different after updating the credentials.
+3. Update the text in the **Value** field or fields with the new authentication information for your cloud provider, and then click **Save**.
+4. Delete each component secret that is referenced by the individual `CredentialsRequest` objects.
 
    1. Log in to the OpenShift Container Platform CLI as a user with the `cluster-admin` role.
    2. Get the names and namespaces of all referenced component secrets:
@@ -170,7 +161,7 @@ The process for rotating cloud credentials depends on the mode that the CCO is c
    3. Delete each of the referenced component secrets:
 
       ```terminal
-      $ oc delete secret <secret_name> \//<1>
+      $ oc delete secret <secret_name> \ (1)
         -n <secret_namespace> (2)
       ```
 
@@ -192,9 +183,10 @@ The process for rotating cloud credentials depends on the mode that the CCO is c
 
 **Verification**
 
-1. In the **Administrator** perspective of the web console, navigate to **Workloads** -> **Secrets**.
+1. In the **Administrator** perspective of the web console, navigate to **Workloads** → **Secrets**.
 2. Verify that the contents of the **Value** field or fields have changed.
 
-## Additional resources {#additional-resources_cco-mode-mint}
+**Additional resources**
+{._additional-resources}
 
 - [Removing cloud provider credentials](/openshift-docs-markdown/post_installation_configuration/changing-cloud-credentials-configuration#manually-removing-cloud-creds_changing-cloud-credentials-configuration)

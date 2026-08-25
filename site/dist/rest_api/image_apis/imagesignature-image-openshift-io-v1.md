@@ -1,5 +1,5 @@
 ---
-title: ImageSignature []
+title: ImageSignature [image.openshift.io/v1]
 ---
 
 # ImageSignature \[image.openshift.io/v1\] {#imagesignature-image-openshift-io-v1}
@@ -109,7 +109,7 @@ The following API endpoints are available:
 - `/apis/image.openshift.io/v1/imagesignatures`
 
   - `POST`: create an ImageSignature
-- `/apis/image.openshift.io/v1/imagesignatures/{{ name }}`
+- `/apis/image.openshift.io/v1/imagesignatures/{name}`
 
   - `DELETE`: delete an ImageSignature
 
@@ -147,7 +147,7 @@ Description
 | 202 - Accepted | [`ImageSignature`](/openshift-docs-markdown/rest_api/image_apis/imagesignature-image-openshift-io-v1#imagesignature-image-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/image.openshift.io/v1/imagesignatures/{{ name }} {#_apisimageopenshiftiov1imagesignatures_name}
+### /apis/image.openshift.io/v1/imagesignatures/{name} {#_apisimageopenshiftiov1imagesignatures_name}
 
 **Global path parameters**
 

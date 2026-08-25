@@ -38,6 +38,7 @@ CRI-O
 :   Serves as a lightweight container runtime that enforces security boundaries and manages container workloads.
 
 **Additional resources**
+{._additional-resources}
 
 - [About RHCOS](/openshift-docs-markdown/architecture/architecture-rhcos#rhcos-about_architecture-rhcos)
 - [Red Hat Enterprise Linux CoreOS (RHCOS)](/openshift-docs-markdown/architecture/architecture-rhcos)
@@ -94,6 +95,7 @@ Console Access
     > Follow the best practices of your organization for securing console access.
 
 **Additional resources**
+{._additional-resources}
 
 - [Using node disruption policies to minimize disruption from machine config changes](/openshift-docs-markdown/machine_configuration/machine-config-node-disruption#machine-configs-configure_machine-config-node-disruption)
 - [Starting debug pods with root access](/openshift-docs-markdown/support/troubleshooting/investigating-pod-issues#starting-debug-pods-with-root-access_investigating-pod-issues)

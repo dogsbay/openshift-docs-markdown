@@ -1,5 +1,5 @@
 ---
-title: Role []
+title: Role [authorization.openshift.io/v1]
 ---
 
 # Role \[authorization.openshift.io/v1\] {#role-authorization-openshift-io-v1}
@@ -53,12 +53,12 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `apiGroups` | `array (string)` | apiGroups is the name of the APIGroup that contains the resources.  If this field is empty, then both kubernetes and origin API groups are assumed. That means that if an action is requested against one of the enumerated resources in either the kubernetes or the origin API group, the request will be allowed |
+| `apiGroups` | `array (string)` | apiGroups is the name of the APIGroup that contains the resources. If this field is empty, then both kubernetes and origin API groups are assumed. That means that if an action is requested against one of the enumerated resources in either the kubernetes or the origin API group, the request will be allowed |
 | `attributeRestrictions` | [`RawExtension`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-runtime-RawExtension) | attributeRestrictions will vary depending on what the Authorizer/AuthorizationAttributeBuilder pair supports. If the Authorizer does not recognize how to handle the AttributeRestrictions, the Authorizer should report an error. |
-| `nonResourceURLs` | `array (string)` | NonResourceURLsSlice is a set of partial urls that a user should have access to.  \*s are allowed, but only as the full, final step in the path This name is intentionally different than the internal type so that the DefaultConvert works nicely and because the ordering may be different. |
-| `resourceNames` | `array (string)` | resourceNames is an optional white list of names that the rule applies to.  An empty set means that everything is allowed. |
-| `resources` | `array (string)` | resources is a list of resources this rule applies to.  ResourceAll represents all resources. |
-| `verbs` | `array (string)` | verbs is a list of Verbs that apply to ALL the ResourceKinds and AttributeRestrictions contained in this rule.  VerbAll represents all kinds. |
+| `nonResourceURLs` | `array (string)` | NonResourceURLsSlice is a set of partial urls that a user should have access to. \*s are allowed, but only as the full, final step in the path This name is intentionally different than the internal type so that the DefaultConvert works nicely and because the ordering may be different. |
+| `resourceNames` | `array (string)` | resourceNames is an optional white list of names that the rule applies to. An empty set means that everything is allowed. |
+| `resources` | `array (string)` | resources is a list of resources this rule applies to. ResourceAll represents all resources. |
+| `verbs` | `array (string)` | verbs is a list of Verbs that apply to ALL the ResourceKinds and AttributeRestrictions contained in this rule. VerbAll represents all kinds. |
 
 ## API endpoints {#_api_endpoints}
 
@@ -67,11 +67,11 @@ The following API endpoints are available:
 - `/apis/authorization.openshift.io/v1/roles`
 
   - `GET`: list objects of kind Role
-- `/apis/authorization.openshift.io/v1/namespaces/{{ namespace }}/roles`
+- `/apis/authorization.openshift.io/v1/namespaces/{namespace}/roles`
 
   - `GET`: list objects of kind Role
   - `POST`: create a Role
-- `/apis/authorization.openshift.io/v1/namespaces/{{ namespace }}/roles/{{ name }}`
+- `/apis/authorization.openshift.io/v1/namespaces/{namespace}/roles/{name}`
 
   - `DELETE`: delete a Role
   - `GET`: read the specified Role
@@ -97,7 +97,7 @@ Description
 | 200 - OK | [`RoleList`](/openshift-docs-markdown/rest_api/objects/index#com-github-openshift-api-authorization-v1-RoleList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/authorization.openshift.io/v1/namespaces/{{ namespace }}/roles {#_apisauthorizationopenshiftiov1namespaces_namespace_roles}
+### /apis/authorization.openshift.io/v1/namespaces/{namespace}/roles {#_apisauthorizationopenshiftiov1namespaces_namespace_roles}
 
 HTTP method
 :   ```
@@ -148,7 +148,7 @@ Description
 | 202 - Accepted | [`Role`](/openshift-docs-markdown/rest_api/role_apis/role-authorization-openshift-io-v1#role-authorization-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/authorization.openshift.io/v1/namespaces/{{ namespace }}/roles/{{ name }} {#_apisauthorizationopenshiftiov1namespaces_namespace_roles_name}
+### /apis/authorization.openshift.io/v1/namespaces/{namespace}/roles/{name} {#_apisauthorizationopenshiftiov1namespaces_namespace_roles_name}
 
 **Global path parameters**
 

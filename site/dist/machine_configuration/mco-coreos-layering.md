@@ -105,7 +105,7 @@ Image mode for OpenShift allows you to use the following types of images to crea
   ```
 
   ```yaml {title="Example out-of-cluster Containerfile to apply a third-party package from EPEL"}
-  # Get {{ op_system }} base image of target cluster `oc adm release info --image-for rhel-coreos`
+  # Get RHCOS base image of target cluster `oc adm release info --image-for rhel-coreos`
   FROM quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256...
 
   #Enable EPEL (more info at https://docs.fedoraproject.org/en-US/epel/ ) and install htop
@@ -128,10 +128,10 @@ Image mode for OpenShift allows you to use the following types of images to crea
   ```
 
   ```yaml {title="Example out-of-cluster Containerfile to apply a third-party package that has RHEL dependencies"}
-  # Get {{ op_system }} base image of target cluster `oc adm release info --image-for rhel-coreos`
+  # Get RHCOS base image of target cluster `oc adm release info --image-for rhel-coreos`
   FROM quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256...
 
-  # {{ op_system_base }} entitled host is needed here to access {{ op_system_base }} packages
+  # RHEL entitled host is needed here to access RHEL packages
   # Install fish as third party package from EPEL
   RUN dnf install -y https://dl.fedoraproject.org/pub/epel/9/Everything/x86_64/Packages/f/fish-3.3.1-3.el9.x86_64.rpm && \
       dnf clean all && \
@@ -417,43 +417,42 @@ You can create only one `MachineOSConfig` CR for each machine config pool.
    $ oc describe machineconfignode/<machine_config_node_name>
    ```
 
-```terminal {title="Example machine config node output"}
-Name:         ip-10-0-14-86.us-west-1.compute.internal
-API Version:  machineconfiguration.openshift.io/v1
-Kind:         MachineConfigNode
-# ...
-Spec:
-  Config Image:
-    Desired Image:  image-registry.openshift-image-registry.svc:5000/openshift-machine-config-operator/ocb-image@sha256:b485378fd8f7963ed74f14ce64f4f1e511e1601d49302b3046b1b78a83f539e3
-  Config Version:
-    Desired:  rendered-worker-d63c7736923b60b8b82492ae9a1eef40
-  Node:
-    Name:  ip-10-0-14-86.us-west-1.compute.internal
-  Pool:
-    Name:  worker
-# ...
-Status:
-  Conditions:
-# ...
-    Message:               Action during update to image-registry.openshift-image-registry.svc:5000/openshift-machine-config-operator/ocb-image@sha256:b485378fd8f7963ed74f14ce64f4f1e511e1601d49302b3046b1b78a83f539e3: Successfully pulled OS image image-registry.openshift-image-registry.svc:5000/openshift-machine-config-operator/ocb-image@sha256:b485378fd8f7963ed74f14ce64f4f1e511e1601d49302b3046b1b78a83f539e3 from registry
-    Reason:                ImagePulledFromRegistry
-    Status:                False
-    Type:                  ImagePulledFromRegistry
-# ...
-  Config Image:
-    Current Image:  image-registry.openshift-image-registry.svc:5000/openshift-machine-config-operator/ocb-image@sha256:b485378fd8f7963ed74f14ce64f4f1e511e1601d49302b3046b1b78a83f539e3
-    Desired Image:  image-registry.openshift-image-registry.svc:5000/openshift-machine-config-operator/ocb-image@sha256:b485378fd8f7963ed74f14ce64f4f1e511e1601d49302b3046b1b78a83f539e3
-# ...
-```
+   ```terminal {title="Example machine config node output"}
+   Name:         ip-10-0-14-86.us-west-1.compute.internal
+   API Version:  machineconfiguration.openshift.io/v1
+   Kind:         MachineConfigNode
+   # ...
+   Spec:
+     Config Image:
+       Desired Image:  image-registry.openshift-image-registry.svc:5000/openshift-machine-config-operator/ocb-image@sha256:b485378fd8f7963ed74f14ce64f4f1e511e1601d49302b3046b1b78a83f539e3
+     Config Version:
+       Desired:  rendered-worker-d63c7736923b60b8b82492ae9a1eef40
+     Node:
+       Name:  ip-10-0-14-86.us-west-1.compute.internal
+     Pool:
+       Name:  worker
+   # ...
+   Status:
+     Conditions:
+   # ...
+       Message:               Action during update to image-registry.openshift-image-registry.svc:5000/openshift-machine-config-operator/ocb-image@sha256:b485378fd8f7963ed74f14ce64f4f1e511e1601d49302b3046b1b78a83f539e3: Successfully pulled OS image image-registry.openshift-image-registry.svc:5000/openshift-machine-config-operator/ocb-image@sha256:b485378fd8f7963ed74f14ce64f4f1e511e1601d49302b3046b1b78a83f539e3 from registry
+       Reason:                ImagePulledFromRegistry
+       Status:                False
+       Type:                  ImagePulledFromRegistry
+   # ...
+     Config Image:
+       Current Image:  image-registry.openshift-image-registry.svc:5000/openshift-machine-config-operator/ocb-image@sha256:b485378fd8f7963ed74f14ce64f4f1e511e1601d49302b3046b1b78a83f539e3
+       Desired Image:  image-registry.openshift-image-registry.svc:5000/openshift-machine-config-operator/ocb-image@sha256:b485378fd8f7963ed74f14ce64f4f1e511e1601d49302b3046b1b78a83f539e3
+   # ...
+   ```
 
-The digested image pull spec for the new custom layered image is in the `Spec.Config Image.Desired Image` parameter.
+   The digested image pull spec for the new custom layered image is in the `Spec.Config Image.Desired Image` parameter.
 
-> [!IMPORTANT]
-> The `ImagePulledFromRegistry` condition is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
->
-> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
-
-1. Verify that the `MachineOSConfig` object contains a reference to the new custom layered image by running the following command:
+   > [!IMPORTANT]
+   > The `ImagePulledFromRegistry` condition is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
+   >
+   > For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
+5. Verify that the `MachineOSConfig` object contains a reference to the new custom layered image by running the following command:
 
    ```terminal
    $ oc describe machineosconfig <object_name>
@@ -477,7 +476,7 @@ The digested image pull spec for the new custom layered image is in the `Spec.Co
 
    `status.currentImagePullSpec`
    :   Specifies the digested image pull spec for the new custom layered image.
-2. Verify that the appropriate nodes are using the new custom layered image:
+6. Verify that the appropriate nodes are using the new custom layered image:
 
    1. Start a debug session as root for a control plane node by running the following command:
 
@@ -817,7 +816,7 @@ To apply a custom layered image to your cluster, you must have the custom layere
   For example, the following Containerfile creates a custom layered image from an OpenShift Container Platform 4.22 image and overrides the kernel package with one from CentOS 9 Stream:
 
   ```yaml {title="Example Containerfile for a custom layer image"}
-  # Using a {{ product_version }}.0 image
+  # Using a 4.22.0 image
   FROM quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256...
   #Install hotfix rpm
   RUN rpm-ostree override replace http://mirror.stream.centos.org/9-stream/BaseOS/x86_64/os/Packages/kernel-{,core-,modules-,modules-core-,modules-extra-}5.14.0-295.el9.x86_64.rpm && \
@@ -913,7 +912,7 @@ You can verify that the custom layered image is applied by performing any of the
       Namespace:
       Labels:       <none>
       Annotations:  machineconfiguration.openshift.io/generated-by-controller-version: 5bdb57489b720096ef912f738b46330a8f577803
-                    machineconfiguration.openshift.io/release-image-version: {{ product_version }}.0-ec.3
+                    machineconfiguration.openshift.io/release-image-version: 4.22.0-ec.3
       API Version:  machineconfiguration.openshift.io/v1
       Kind:         MachineConfig
       ...
@@ -1199,7 +1198,8 @@ To update a node that uses a custom layered image, follow these general steps:
 2. You could then create a new Containerfile that references the updated OpenShift Container Platform image and the RPM that you had previously applied.
 3. Create a new machine config that points to the updated custom layered image.
 
-## Additional resources {#additional-resources_mco-coreos-layering}
+**Additional resources**
+{._additional-resources}
 
 - [Using the on-cluster image mode to apply a custom layered image](/openshift-docs-markdown/machine_configuration/mco-coreos-layering#coreos-layering-configuring-on-proc_mco-coreos-layering)
 - [Removing an on-cluster custom layered image](/openshift-docs-markdown/machine_configuration/mco-coreos-layering#coreos-layering-configuring-on-remove_mco-coreos-layering)

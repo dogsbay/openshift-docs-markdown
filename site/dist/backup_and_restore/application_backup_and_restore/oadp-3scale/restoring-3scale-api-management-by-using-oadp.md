@@ -33,43 +33,41 @@ Restore the Red Hat 3scale API Management operator resources, including the `Se
    ```
 2. Create a YAML file with the following configuration to restore the 3scale operator:
 
-```yaml
-apiVersion: velero.io/v1
-kind: Restore
-metadata:
-  name: operator-installation-restore
-  namespace: openshift-adp
-spec:
-  backupName: operator-install-backup
-  excludedResources:
-  - nodes
-  - events
-  - events.events.k8s.io
-  - backups.velero.io
-  - restores.velero.io
-  - resticrepositories.velero.io
-  - csinodes.storage.k8s.io
-  - volumeattachments.storage.k8s.io
-  - backuprepositories.velero.io
-  itemOperationTimeout: 4h0m0s
-```
+   ```yaml
+   apiVersion: velero.io/v1
+   kind: Restore
+   metadata:
+     name: operator-installation-restore
+     namespace: openshift-adp
+   spec:
+     backupName: operator-install-backup
+     excludedResources:
+     - nodes
+     - events
+     - events.events.k8s.io
+     - backups.velero.io
+     - restores.velero.io
+     - resticrepositories.velero.io
+     - csinodes.storage.k8s.io
+     - volumeattachments.storage.k8s.io
+     - backuprepositories.velero.io
+     itemOperationTimeout: 4h0m0s
+   ```
 
-where:
+   where:
 
-`operator-install-backup`
-:   Specifies the name of the backup to restore the 3scale operator.
-
-1. Restore the 3scale operator by running the following command:
+   `operator-install-backup`
+   :   Specifies the name of the backup to restore the 3scale operator.
+3. Restore the 3scale operator by running the following command:
 
    ```terminal
    $ oc create -f restore.yaml
    ```
 
-```terminal
-restore.velerio.io/operator-installation-restore created
-```
-
-1. Manually create the `s3-credentials` `Secret` object by running the following command:
+   ```terminal
+   restore.velerio.io/operator-installation-restore created
+   ```
+4. Manually create the `s3-credentials` `Secret` object by running the following command:
 
    ```terminal
    $ oc apply -f - <<EOF
@@ -101,7 +99,7 @@ restore.velerio.io/operator-installation-restore created
 
    `<us-east-1>`
    :   Specifies the AWS region of your bucket.
-2. Scale down the 3scale operator by running the following command:
+5. Scale down the 3scale operator by running the following command:
 
    ```terminal
    $ oc scale deployment threescale-operator-controller-manager-v2 --replicas=0 -n threescale
@@ -110,7 +108,7 @@ restore.velerio.io/operator-installation-restore created
    ```terminal
    deployment.apps/threescale-operator-controller-manager-v2 scaled
    ```
-3. Create a YAML file with the following configuration to restore the `Secret`:
+6. Create a YAML file with the following configuration to restore the `Secret`:
 
    ```yaml
    apiVersion: velero.io/v1
@@ -137,7 +135,7 @@ restore.velerio.io/operator-installation-restore created
 
    `operator-resources-secrets`
    :   Specifies the name of the backup to restore the `Secret`.
-4. Restore the `Secret` by running the following command:
+7. Restore the `Secret` by running the following command:
 
    ```terminal
    $ oc create -f restore-secrets.yaml
@@ -146,7 +144,7 @@ restore.velerio.io/operator-installation-restore created
    ```terminal
    restore.velerio.io/operator-resources-secrets created
    ```
-5. Create a YAML file with the following configuration to restore APIManager:
+8. Create a YAML file with the following configuration to restore APIManager:
 
    ```yaml {title="Example restore-apimanager.yaml file"}
    apiVersion: velero.io/v1
@@ -176,7 +174,7 @@ restore.velerio.io/operator-installation-restore created
 
    `excludedResources`
    :   Specifies the resources that you do not want to restore.
-6. Restore the APIManager by running the following command:
+9. Restore the APIManager by running the following command:
 
    ```terminal
    $ oc create -f restore-apimanager.yaml
@@ -185,15 +183,15 @@ restore.velerio.io/operator-installation-restore created
    ```terminal
    restore.velerio.io/operator-resources-apim created
    ```
-7. Scale up the 3scale operator by running the following command:
+10. Scale up the 3scale operator by running the following command:
 
-   ```terminal
-   $ oc scale deployment threescale-operator-controller-manager-v2 --replicas=1 -n threescale
-   ```
+    ```terminal
+    $ oc scale deployment threescale-operator-controller-manager-v2 --replicas=1 -n threescale
+    ```
 
-   ```terminal
-   deployment.apps/threescale-operator-controller-manager-v2 scaled
-   ```
+    ```terminal
+    deployment.apps/threescale-operator-controller-manager-v2 scaled
+    ```
 
 ## Restoring a MySQL database {#restoring-the-mysql-database_restoring-3scale-api-management-by-using-oadp}
 

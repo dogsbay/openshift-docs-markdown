@@ -1,5 +1,5 @@
 ---
-title: ClusterResourceQuota []
+title: ClusterResourceQuota [quota.openshift.io/v1]
 ---
 
 # ClusterResourceQuota \[quota.openshift.io/v1\] {#clusterresourcequota-quota-openshift-io-v1}
@@ -45,7 +45,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `quota` | `object` | quota defines the desired quota |
-| `selector` | `object` | selector is the selector used to match projects. It should only select active projects on the scale of dozens (though it can select many more less active projects).  These projects will contend on object creation through this resource. |
+| `selector` | `object` | selector is the selector used to match projects. It should only select active projects on the scale of dozens (though it can select many more less active projects). These projects will contend on object creation through this resource. |
 
 ### .spec.quota {#_specquota}
 
@@ -138,7 +138,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `namespaces` | \`\` | namespaces slices the usage by project.  This division allows for quick resolution of deletion reconciliation inside of a single project without requiring a recalculation across all projects.  This can be used to pull the deltas for a given project. |
+| `namespaces` | \`\` | namespaces slices the usage by project. This division allows for quick resolution of deletion reconciliation inside of a single project without requiring a recalculation across all projects. This can be used to pull the deltas for a given project. |
 | `total` | `object` | total defines the actual enforced quota and its current usage across all projects |
 
 ### .status.total {#_statustotal}
@@ -168,16 +168,16 @@ The following API endpoints are available:
 - `/apis/quota.openshift.io/v1/watch/clusterresourcequotas`
 
   - `GET`: watch individual changes to a list of ClusterResourceQuota. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/quota.openshift.io/v1/clusterresourcequotas/{{ name }}`
+- `/apis/quota.openshift.io/v1/clusterresourcequotas/{name}`
 
   - `DELETE`: delete a ClusterResourceQuota
   - `GET`: read the specified ClusterResourceQuota
   - `PATCH`: partially update the specified ClusterResourceQuota
   - `PUT`: replace the specified ClusterResourceQuota
-- `/apis/quota.openshift.io/v1/watch/clusterresourcequotas/{{ name }}`
+- `/apis/quota.openshift.io/v1/watch/clusterresourcequotas/{name}`
 
   - `GET`: watch changes to an object of kind ClusterResourceQuota. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
-- `/apis/quota.openshift.io/v1/clusterresourcequotas/{{ name }}/status`
+- `/apis/quota.openshift.io/v1/clusterresourcequotas/{name}/status`
 
   - `GET`: read status of the specified ClusterResourceQuota
   - `PATCH`: partially update status of the specified ClusterResourceQuota
@@ -270,7 +270,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/quota.openshift.io/v1/clusterresourcequotas/{{ name }} {#_apisquotaopenshiftiov1clusterresourcequotas_name}
+### /apis/quota.openshift.io/v1/clusterresourcequotas/{name} {#_apisquotaopenshiftiov1clusterresourcequotas_name}
 
 **Global path parameters**
 
@@ -374,7 +374,7 @@ Description
 | 201 - Created | [`ClusterResourceQuota`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/clusterresourcequota-quota-openshift-io-v1#clusterresourcequota-quota-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/quota.openshift.io/v1/watch/clusterresourcequotas/{{ name }} {#_apisquotaopenshiftiov1watchclusterresourcequotas_name}
+### /apis/quota.openshift.io/v1/watch/clusterresourcequotas/{name} {#_apisquotaopenshiftiov1watchclusterresourcequotas_name}
 
 **Global path parameters**
 
@@ -399,7 +399,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/quota.openshift.io/v1/clusterresourcequotas/{{ name }}/status {#_apisquotaopenshiftiov1clusterresourcequotas_name_status}
+### /apis/quota.openshift.io/v1/clusterresourcequotas/{name}/status {#_apisquotaopenshiftiov1clusterresourcequotas_name_status}
 
 **Global path parameters**
 

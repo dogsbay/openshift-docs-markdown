@@ -29,7 +29,8 @@ const headings = [{"depth":1,"slug":"usage-oc-kubectl","text":"Usage of oc and k
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/cli_reference/openshift_cli/usage-oc-kubectl";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -48,7 +49,7 @@ const pageCategory = ["cli_reference","cli_reference/openshift_cli"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Usage of oc and kubectl commands {#usage-oc-kubectl}\n\nBecause OpenShift Container Platform is a certified Kubernetes distribution, you can use the Kubernetes CLI (`kubectl`) that ships with OpenShift Container Platform to interact with your cluster. You can also gain extended functionality specific to OpenShift Container Platform by using the OpenShift CLI (`oc`) binary.\n\n## The oc binary {#oc-usage-oc_usage-oc-kubectl}\n\nThe OpenShift CLI (`oc`) binary offers the same capabilities as the `kubectl` binary, but it extends to natively support additional OpenShift Container Platform features.\n\nFull support for OpenShift Container Platform resources\n:   Resources such as `DeploymentConfig`, `BuildConfig`, `Route`, `ImageStream`, and `ImageStreamTag` objects are specific to OpenShift Container Platform distributions, and build upon standard Kubernetes primitives.\n\nAuthentication\n:   The `oc` binary offers a built-in `login` command for authentication and lets you work with projects, which map Kubernetes namespaces to authenticated users. Read \"Understanding authentication\" for more information.\n\nAdditional commands\n:   The additional command `oc new-app`, for example, makes it easier to get new applications started using existing source code or pre-built images. Similarly, the additional command `oc new-project` makes it easier to start a project that you can switch to as your default.\n\n> [!IMPORTANT]\n> If you installed an earlier version of the `oc` binary, you cannot use it to complete all of the commands in OpenShift Container Platform 4.22\n>\n> . If you want the latest features, you must download and install the latest version of the `oc` binary corresponding to your OpenShift Container Platform server version.\n\nNon-security API changes will involve, at minimum, two minor releases (4.1 to 4.2 to 4.3, for example) to allow older `oc` binaries to update. Using new capabilities might require newer `oc` binaries. A 4.3 server might have additional capabilities that a 4.2 `oc` binary cannot use and a 4.3 `oc` binary might have additional capabilities that are unsupported by a 4.2 server.\n\n**Compatibility matrix**\n\n|  |  |  |\n| --- | --- | --- |\n|  | **X.Y** (`oc` Client) | **X.Y+N** footnote:versionpolicyn[Where N is a number greater than or equal to 1.] (`oc` Client) |\n| **X.Y** (Server) | ![Red circle 1](/openshift-docs-markdown/_assets/images/redcircle-1.png) | ![Red circle 3](/openshift-docs-markdown/_assets/images/redcircle-3.png) |\n| **X.Y+N** footnote:versionpolicyn[] (Server) | ![Red circle 2](/openshift-docs-markdown/_assets/images/redcircle-2.png) | ![Red circle 1](/openshift-docs-markdown/_assets/images/redcircle-1.png) |\n| ![Red circle 1](/openshift-docs-markdown/_assets/images/redcircle-1.png) Fully compatible. |  |  |\n\n![Red circle 2](/openshift-docs-markdown/_assets/images/redcircle-2.png) `oc` client might not be able to access server features.\n\n![Red circle 3](/openshift-docs-markdown/_assets/images/redcircle-3.png) `oc` client might provide options and features that might not be compatible with the accessed server.\n\n**Additional resources**\n\n- [Understanding authentication](/openshift-docs-markdown/authentication/understanding-authentication#understanding-authentication)\n\n## The kubectl binary {#oc-usage-kubectl_usage-oc-kubectl}\n\nThe Kubernetes CLI (`kubectl`) binary is provided as a means to support existing workflows and scripts for new OpenShift Container Platform users coming from a standard Kubernetes environment, or for those who prefer to use the `kubectl` CLI. Existing users of `kubectl` can continue to use the binary to interact with Kubernetes primitives, with no changes required to the OpenShift Container Platform cluster.\n\nYou can install the supported `kubectl` binary by following the steps to install the OpenShift CLI. The `kubectl` binary is included in the archive if you download the binary, or is installed when you install the CLI by using an RPM.\n\n**Additional resources**\n\n- [kubectl (Kubernetes documentation)](https://kubernetes.io/docs/reference/kubectl/overview/)\n- [Getting started with the OpenShift CLI](/openshift-docs-markdown/cli_reference/openshift_cli/getting-started-cli#cli-getting-started)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cli_reference/openshift_cli/usage-oc-kubectl.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Usage of oc and kubectl commands {#usage-oc-kubectl}\n\nBecause OpenShift Container Platform is a certified Kubernetes distribution, you can use the Kubernetes CLI (`kubectl`) that ships with OpenShift Container Platform to interact with your cluster. You can also gain extended functionality specific to OpenShift Container Platform by using the OpenShift CLI (`oc`) binary.\n\n## The oc binary {#oc-usage-oc_usage-oc-kubectl}\n\nThe OpenShift CLI (`oc`) binary offers the same capabilities as the `kubectl` binary, but it extends to natively support additional OpenShift Container Platform features.\n\nFull support for OpenShift Container Platform resources\n:   Resources such as `DeploymentConfig`, `BuildConfig`, `Route`, `ImageStream`, and `ImageStreamTag` objects are specific to OpenShift Container Platform distributions, and build upon standard Kubernetes primitives.\n\nAuthentication\n:   The `oc` binary offers a built-in `login` command for authentication and lets you work with projects, which map Kubernetes namespaces to authenticated users. Read \"Understanding authentication\" for more information.\n\nAdditional commands\n:   The additional command `oc new-app`, for example, makes it easier to get new applications started using existing source code or pre-built images. Similarly, the additional command `oc new-project` makes it easier to start a project that you can switch to as your default.\n\n> [!IMPORTANT]\n> If you installed an earlier version of the `oc` binary, you cannot use it to complete all of the commands in OpenShift Container Platform 4.22 . If you want the latest features, you must download and install the latest version of the `oc` binary corresponding to your OpenShift Container Platform server version.\n\nNon-security API changes will involve, at minimum, two minor releases (4.1 to 4.2 to 4.3, for example) to allow older `oc` binaries to update. Using new capabilities might require newer `oc` binaries. A 4.3 server might have additional capabilities that a 4.2 `oc` binary cannot use and a 4.3 `oc` binary might have additional capabilities that are unsupported by a 4.2 server.\n\n**Compatibility matrix**\n\n|  |  |  |\n| --- | --- | --- |\n|  | **X.Y** (`oc` Client) | **X.Y+N** [^versionpolicyn] (`oc` Client) |\n| **X.Y** (Server) | ![Red circle 1](/openshift-docs-markdown/_assets/images/redcircle-1.png) | ![Red circle 3](/openshift-docs-markdown/_assets/images/redcircle-3.png) |\n| **X.Y+N** [^versionpolicyn] (Server) | ![Red circle 2](/openshift-docs-markdown/_assets/images/redcircle-2.png) | ![Red circle 1](/openshift-docs-markdown/_assets/images/redcircle-1.png) |\n\n![Red circle 1](/openshift-docs-markdown/_assets/images/redcircle-1.png) Fully compatible.\n\n![Red circle 2](/openshift-docs-markdown/_assets/images/redcircle-2.png) `oc` client might not be able to access server features.\n\n![Red circle 3](/openshift-docs-markdown/_assets/images/redcircle-3.png) `oc` client might provide options and features that might not be compatible with the accessed server.\n\n**Additional resources**\n{._additional-resources}\n\n- [Understanding authentication](/openshift-docs-markdown/authentication/understanding-authentication#understanding-authentication)\n\n## The kubectl binary {#oc-usage-kubectl_usage-oc-kubectl}\n\nThe Kubernetes CLI (`kubectl`) binary is provided as a means to support existing workflows and scripts for new OpenShift Container Platform users coming from a standard Kubernetes environment, or for those who prefer to use the `kubectl` CLI. Existing users of `kubectl` can continue to use the binary to interact with Kubernetes primitives, with no changes required to the OpenShift Container Platform cluster.\n\nYou can install the supported `kubectl` binary by following the steps to install the OpenShift CLI. The `kubectl` binary is included in the archive if you download the binary, or is installed when you install the CLI by using an RPM.\n\n**Additional resources**\n{._additional-resources}\n\n- [kubectl (Kubernetes documentation)](https://kubernetes.io/docs/reference/kubectl/overview/)\n- [Getting started with the OpenShift CLI](/openshift-docs-markdown/cli_reference/openshift_cli/getting-started-cli#cli-getting-started)\n\n[^versionpolicyn]: Where **N** is a number greater than or equal to 1.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cli_reference/openshift_cli/usage-oc-kubectl.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -87,12 +88,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -100,7 +102,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="usage-oc-kubectl" class="group scroll-mt-20">Usage of oc and kubectl commands<a href="#usage-oc-kubectl" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Because OpenShift Container Platform is a certified Kubernetes distribution, you can use the Kubernetes CLI (<code>kubectl</code>) that ships with OpenShift Container Platform to interact with your cluster. You can also gain extended functionality specific to OpenShift Container Platform by using the OpenShift CLI (<code>oc</code>) binary.</p>
+      <p class="_abstract">Because OpenShift Container Platform is a certified Kubernetes distribution, you can use the Kubernetes CLI (<code>kubectl</code>) that ships with OpenShift Container Platform to interact with your cluster. You can also gain extended functionality specific to OpenShift Container Platform by using the OpenShift CLI (<code>oc</code>) binary.</p>
       <h2 id="oc-usage-oc_usage-oc-kubectl" class="group scroll-mt-20">The oc binary<a href="#oc-usage-oc_usage-oc-kubectl" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">The OpenShift CLI (<code>oc</code>) binary offers the same capabilities as the <code>kubectl</code> binary, but it extends to natively support additional OpenShift Container Platform features.</p>
       <dl class="my-4 space-y-2">
@@ -114,8 +116,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <Alert variant="info" class="my-4">
         <AlertTitle>Important</AlertTitle>
         <AlertDescription>
-          <p>If you installed an earlier version of the <code>oc</code> binary, you cannot use it to complete all of the commands in OpenShift Container Platform 4.22</p>
-          <p>. If you want the latest features, you must download and install the latest version of the <code>oc</code> binary corresponding to your OpenShift Container Platform server version.</p>
+          <p>If you installed an earlier version of the <code>oc</code> binary, you cannot use it to complete all of the commands in OpenShift Container Platform 4.22 . If you want the latest features, you must download and install the latest version of the <code>oc</code> binary corresponding to your OpenShift Container Platform server version.</p>
         </AlertDescription>
       </Alert>
       <p>Non-security API changes will involve, at minimum, two minor releases (4.1 to 4.2 to 4.3, for example) to allow older <code>oc</code> binaries to update. Using new capabilities might require newer <code>oc</code> binaries. A 4.3 server might have additional capabilities that a 4.2 <code>oc</code> binary cannot use and a 4.3 <code>oc</code> binary might have additional capabilities that are unsupported by a 4.2 server.</p>
@@ -132,7 +133,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <TableRow>
       <TableCell></TableCell>
       <TableCell><strong>X.Y</strong> (<code>oc</code> Client)</TableCell>
-      <TableCell><strong>X.Y+N</strong> footnote<Fragment set:html={":versionpolicyn[Where N is a number greater than or equal to 1.]"} /> (<code>oc</code> Client)</TableCell>
+      <TableCell><strong>X.Y+N</strong> <sup><a href="#fn-versionpolicyn" id="fnref-versionpolicyn" class="text-primary hover:underline">[versionpolicyn]</a></sup> (<code>oc</code> Client)</TableCell>
       </TableRow>
       <TableRow>
       <TableCell><strong>X.Y</strong> (Server)</TableCell>
@@ -140,29 +141,36 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <TableCell><img src="/openshift-docs-markdown/_assets/images/redcircle-3.png" alt="Red circle 3" loading="lazy" /></TableCell>
       </TableRow>
       <TableRow>
-      <TableCell><strong>X.Y+N</strong> footnote<Fragment set:html={":versionpolicyn[]"} /> (Server)</TableCell>
+      <TableCell><strong>X.Y+N</strong> <sup><a href="#fn-versionpolicyn" id="fnref-versionpolicyn" class="text-primary hover:underline">[versionpolicyn]</a></sup> (Server)</TableCell>
       <TableCell><img src="/openshift-docs-markdown/_assets/images/redcircle-2.png" alt="Red circle 2" loading="lazy" /></TableCell>
       <TableCell><img src="/openshift-docs-markdown/_assets/images/redcircle-1.png" alt="Red circle 1" loading="lazy" /></TableCell>
       </TableRow>
-      <TableRow>
-      <TableCell><img src="/openshift-docs-markdown/_assets/images/redcircle-1.png" alt="Red circle 1" loading="lazy" /> Fully compatible.</TableCell>
-      <TableCell></TableCell>
-      <TableCell></TableCell>
-      </TableRow>
       </TableBody>
       </Table>
+      <p><img src="/openshift-docs-markdown/_assets/images/redcircle-1.png" alt="Red circle 1" loading="lazy" /> Fully compatible.</p>
       <p><img src="/openshift-docs-markdown/_assets/images/redcircle-2.png" alt="Red circle 2" loading="lazy" /> <code>oc</code> client might not be able to access server features.</p>
       <p><img src="/openshift-docs-markdown/_assets/images/redcircle-3.png" alt="Red circle 3" loading="lazy" /> <code>oc</code> client might provide options and features that might not be compatible with the accessed server.</p>
-      <p><strong>Additional resources</strong></p>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul><li><a href="/openshift-docs-markdown/authentication/understanding-authentication#understanding-authentication">Understanding authentication</a></li></ul>
+      </section>
       <h2 id="oc-usage-kubectl_usage-oc-kubectl" class="group scroll-mt-20">The kubectl binary<a href="#oc-usage-kubectl_usage-oc-kubectl" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">The Kubernetes CLI (<code>kubectl</code>) binary is provided as a means to support existing workflows and scripts for new OpenShift Container Platform users coming from a standard Kubernetes environment, or for those who prefer to use the <code>kubectl</code> CLI. Existing users of <code>kubectl</code> can continue to use the binary to interact with Kubernetes primitives, with no changes required to the OpenShift Container Platform cluster.</p>
       <p>You can install the supported <code>kubectl</code> binary by following the steps to install the OpenShift CLI. The <code>kubectl</code> binary is included in the archive if you download the binary, or is installed when you install the CLI by using an RPM.</p>
-      <p><strong>Additional resources</strong></p>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul>
       <li><a href="https://kubernetes.io/docs/reference/kubectl/overview/">kubectl (Kubernetes documentation)</a></li>
       <li><a href="/openshift-docs-markdown/cli_reference/openshift_cli/getting-started-cli#cli-getting-started">Getting started with the OpenShift CLI</a></li>
       </ul>
+      </section>
+      <hr class="my-8 border-t border-border" data-footnotes-separator />
+      <section class="footnotes" data-footnotes aria-labelledby="footnote-label">
+        <h2 id="footnote-label" class="sr-only">Footnotes</h2>
+        <ol class="list-decimal pl-6 space-y-1 text-sm text-muted-foreground" data-footnote-list>
+      <li id="fn-versionpolicyn" class="text-sm text-muted-foreground">Where <strong>N</strong> is a number greater than or equal to 1. <a href="#fnref-versionpolicyn" class="text-primary hover:underline">↩</a></li>
+        </ol>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -1,5 +1,5 @@
 ---
-title: Setting up additional trusted certificate authorities for builds {id="setting-up-trusted-ca"}
+title: Setting up additional trusted certificate authorities for builds
 ---
 
 # Setting up additional trusted certificate authorities for builds {#setting-up-trusted-ca}
@@ -37,7 +37,8 @@ You can add certificate authorities (CA) to the cluster for use when pushing and
    $ oc patch image.config.openshift.io/cluster --patch '{"spec":{"additionalTrustedCA":{"name":"registry-cas"}}}' --type=merge
    ```
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Create a `ConfigMap`](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-a-configmap)
 - [Secrets and `ConfigMaps`](https://kubectl.docs.kubernetes.io/guides/config_management/secrets_configmaps/)

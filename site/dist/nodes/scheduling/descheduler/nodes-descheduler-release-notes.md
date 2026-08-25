@@ -1,8 +1,8 @@
 ---
-title: "{{ descheduler_operator }} release notes"
+title: Kube Descheduler Operator release notes
 ---
 
-# {{ descheduler_operator }} release notes {#nodes-descheduler-release-notes}
+# Kube Descheduler Operator release notes {#nodes-descheduler-release-notes}
 
 Review the Kube Descheduler Operator release notes to track its development and learn what is new and changed with each release.
 

@@ -28,10 +28,10 @@ You can live migrate a running virtual machine (VM) to a different node in the c
 
 **Procedure**
 
-1. Navigate to **Virtualization** -> **VirtualMachines** in the web console.
+1. Navigate to **Virtualization** → **VirtualMachines** in the web console.
 2. Take either of the following steps:
 
-   - Click the Options menu ![](kebab.png "Options menu") beside the VM you want to migrate, hover over the **Migrate** option, and select **Compute**.
+   - Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") beside the VM you want to migrate, hover over the **Migrate** option, and select **Compute**.
    - Open the **VM details** page of the VM you want to migrate, click the **Actions** menu, hover over the **Migrate** option, and select **Compute**.
 3. In the **Migrate Virtual Machine to a different Node** dialog box, select either **Automatically Selected Node** or **Specific Node**.
 
@@ -107,8 +107,8 @@ You can cancel the live migration of a virtual machine (VM) by using the OpenShi
 
 **Procedure**
 
-1. Navigate to **Virtualization** -> **VirtualMachines** in the web console.
-2. Select **Cancel Migration** on the Options menu ![](kebab.png "Options menu") beside a VM.
+1. Navigate to **Virtualization** → **VirtualMachines** in the web console.
+2. Select **Cancel Migration** on the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") beside a VM.
 
 ## Canceling live migration by using the CLI {#virt-canceling-vm-migration-cli_virt-initiating-live-migration}
 
@@ -127,7 +127,8 @@ Cancel the live migration of a virtual machine by deleting the `VirtualMachineIn
   $ oc delete vmim migration-job
   ```
 
-## Additional resources {#additional-resources_virt-initiating-live-migration}
+**Additional resources**
+{._additional-resources}
 
 - [About live migration permissions](/openshift-docs-markdown/virt/live_migration/virt-about-live-migration#virt-about-live-migration-permissions_virt-about-live-migration)
 - [Initiating live migration by using the web console](/openshift-docs-markdown/virt/live_migration/virt-initiating-live-migration#virt-initiating-vm-migration-web_virt-initiating-live-migration)

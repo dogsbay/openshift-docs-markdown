@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"machine-config-node-disruption_machine-conf
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/machine_configuration/machine-config-node-disruption";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="machine-config-node-disruption_machine-configs-configure" class="group scroll-mt-20">Using node disruption policies to minimize disruption from machine config changes<a href="#machine-config-node-disruption_machine-configs-configure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can create a <em>node disruption policy</em> to define the configuration changes that cause a disruption to your cluster, and which changes do not.</p>
+      <p class="_abstract">You can create a <em>node disruption policy</em> to define the configuration changes that cause a disruption to your cluster, and which changes do not.</p>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
         <AlertDescription>

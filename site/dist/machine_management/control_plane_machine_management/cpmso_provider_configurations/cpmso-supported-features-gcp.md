@@ -1,5 +1,5 @@
 ---
-title: Configuring {{ gcp_full }} features for control plane machines
+title: Configuring Google Cloud features for control plane machines
 ---
 
 # Configuring Google Cloud features for control plane machines {#cpmso-supported-features-gcp}
@@ -21,16 +21,22 @@ For more information about persistent disk types, compatibility, regional availa
 
    ```yaml
 
+   apiVersion: machine.openshift.io/v1
+   kind: ControlPlaneMachineSet
+   ...
+   spec:
+     template:
+       spec:
+         providerSpec:
+           value:
+             disks:
+               type: pd-ssd
    ```
 
-{%- if not cpmso %} apiVersion: machine.openshift.io/v1beta1 kind: MachineSet {% endif %} {% if cpmso %} apiVersion: machine.openshift.io/v1 kind: ControlPlaneMachineSet {%- endif %} ... spec: template: spec: providerSpec: value: disks: {%- if not cpmso %} type: <pd-disk-type> {% endif %} {% if cpmso %} type: pd-ssd {%- endif %} \`\`\`
+   where:
 
-```
-where:
-
-`spec.template.spec.providerSpec.value.disks.type`
-:   Uses the `pd-ssd` disk type for control plane nodes. Using the `pd-ssd` disk type is required for control plane nodes.
-```
+   `spec.template.spec.providerSpec.value.disks.type`
+   :   Uses the `pd-ssd` disk type for control plane nodes. Using the `pd-ssd` disk type is required for control plane nodes.
 
 **Verification**
 
@@ -52,13 +58,20 @@ For more information about Confidential VM features, functions, and compatibilit
 
    ```yaml
 
+   apiVersion: machine.openshift.io/v1
+   kind: ControlPlaneMachineSet
+   # ...
+       machines_v1beta1_machine_openshift_io:
+         spec:
+           providerSpec:
+             value:
+               confidentialCompute: Enabled
+               onHostMaintenance: Terminate
+               machineType: n2d-standard-8
+   # ...
    ```
 
-{%- if not cpmso %} apiVersion: machine.openshift.io/v1beta1 kind: MachineSet # ... spec: template: spec: providerSpec: value: confidentialCompute: Enabled onHostMaintenance: Terminate machineType: n2d-standard-8 {% endif %} {% if cpmso %} apiVersion: machine.openshift.io/v1 kind: ControlPlaneMachineSet # ... machines_v1beta1_machine_openshift_io: spec: providerSpec: value: confidentialCompute: Enabled onHostMaintenance: Terminate machineType: n2d-standard-8 {%- endif %} # ... \`\`\`
-
-```
-where:
-```
+   where:
 
 `spec.template.machines_v1beta1_machine_openshift_io.spec.providerSpec.value.confidentialCompute`
 :   Specifies whether Confidential VM is enabled. The following values are valid:
@@ -107,37 +120,40 @@ For more information about Shielded VM features and functionality, see the Googl
 
    ```yaml
 
+   apiVersion: machine.openshift.io/v1
+   kind: ControlPlaneMachineSet
+   # ...
+   spec:
+     template:
+       spec:
+         providerSpec:
+           value:
+             shieldedInstanceConfig:
+               integrityMonitoring: Enabled
+               secureBoot: Disabled
+               virtualizedTrustedPlatformModule: Enabled
+   # ...
    ```
 
-{%- if not cpmso %} apiVersion: machine.openshift.io/v1beta1 kind: MachineSet {% endif %} {% if cpmso %} apiVersion: machine.openshift.io/v1 kind: ControlPlaneMachineSet {%- endif %} # ... spec: template: spec: providerSpec: value: shieldedInstanceConfig: integrityMonitoring: Enabled secureBoot: Disabled virtualizedTrustedPlatformModule: Enabled # ... \`\`\`
+   where:
 
-```
-where:
+   `spec.template.spec.providerSpec.value.shieldedInstanceConfig`:: Specifies the Shielded VM configuration. `spec.template.spec.providerSpec.value.shieldedInstanceConfig.integrityMonitoring`:: Specifies whether integrity monitoring is enabled. Valid values are `Disabled` or `Enabled`. +
 
-`spec.template.spec.providerSpec.value.shieldedInstanceConfig`
-:   Specifies the Shielded VM configuration.
+   > [!NOTE]
+   > When integrity monitoring is enabled, you must not disable virtual trusted platform module (vTPM).
 
-`spec.template.spec.providerSpec.value.shieldedInstanceConfig.integrityMonitoring`
-:   Specifies whether integrity monitoring is enabled. Valid values are `Disabled` or `Enabled`.
+   `spec.template.spec.providerSpec.value.shieldedInstanceConfig.secureBoot`
+   :   Specifies whether UEFI Secure Boot is enabled. Valid values are `Disabled` or `Enabled`.
 
-    :::note
-
-    When integrity monitoring is enabled, you must not disable virtual trusted platform module (vTPM).
-
-    :::
-
-`spec.template.spec.providerSpec.value.shieldedInstanceConfig.secureBoot`
-:   Specifies whether UEFI Secure Boot is enabled. Valid values are `Disabled` or `Enabled`.
-
-`spec.template.spec.providerSpec.value.shieldedInstanceConfig.virtualizedTrustedPlatformModule`
-:   Specifies whether vTPM is enabled. Valid values are `Disabled` or `Enabled`.
-```
+   `spec.template.spec.providerSpec.value.shieldedInstanceConfig.virtualizedTrustedPlatformModule`
+   :   Specifies whether vTPM is enabled. Valid values are `Disabled` or `Enabled`.
 
 **Verification**
 
 - Using the Google Cloud console, review the details for a machine deployed by the machine set and verify that the Shielded VM options match the values that you configured.
 
 **Additional resources**
+{._additional-resources}
 
 - [What is Shielded VM? (Google Cloud documentation)](https://cloud.google.com/compute/shielded-vm/docs/shielded-vm)
 - [Secure Boot (Google Cloud documentation)](https://cloud.google.com/compute/shielded-vm/docs/shielded-vm#secure-boot)
@@ -168,32 +184,46 @@ You can enable encryption with a customer-managed key in clusters that use the M
 
    ```yaml
 
+   apiVersion: machine.openshift.io/v1
+   kind: ControlPlaneMachineSet
+   ...
+   spec:
+     template:
+       spec:
+         providerSpec:
+           value:
+             disks:
+             - type:
+               encryptionKey:
+                 kmsKey:
+                   name: machine-encryption-key
+                   keyRing: openshift-encryption-ring
+                   location: global
+                   projectID: openshift-gcp-project
+                 kmsKeyServiceAccount: openshift-service-account@openshift-gcp-project.iam.gserviceaccount.com
    ```
 
-{%- if not cpmso %} apiVersion: machine.openshift.io/v1beta1 kind: MachineSet {% endif %} {% if cpmso %} apiVersion: machine.openshift.io/v1 kind: ControlPlaneMachineSet {%- endif %} ... spec: template: spec: providerSpec: value: disks: - type: encryptionKey: kmsKey: name: machine-encryption-key keyRing: openshift-encryption-ring location: global projectID: openshift-gcp-project kmsKeyServiceAccount: openshift-service-account@openshift-gcp-project.iam.gserviceaccount.com \`\`\`
+   where:
 
-```
-where:
+   `spec.template.spec.providerSpec.value.disks.type.encryptionKey.kmsKey.name`
+   :   Specifies the name of the customer-managed encryption key that is used for the disk encryption.
 
-`spec.template.spec.providerSpec.value.disks.type.encryptionKey.kmsKey.name`
-:   Specifies the name of the customer-managed encryption key that is used for the disk encryption.
+   `spec.template.spec.providerSpec.value.disks.type.encryptionKey.kmsKey.keyRing`
+   :   Specifies the name of the KMS key ring that the KMS key belongs to.
 
-`spec.template.spec.providerSpec.value.disks.type.encryptionKey.kmsKey.keyRing`
-:   Specifies the name of the KMS key ring that the KMS key belongs to.
+   `spec.template.spec.providerSpec.value.disks.type.encryptionKey.kmsKey.location`
+   :   Specifies the Google Cloud location in which the KMS key ring exists.
 
-`spec.template.spec.providerSpec.value.disks.type.encryptionKey.kmsKey.location`
-:   Specifies the Google Cloud location in which the KMS key ring exists.
+   `spec.template.spec.providerSpec.value.disks.type.encryptionKey.kmsKey.projectID`
+   :   Optional: Specifies the ID of the project in which the KMS key ring exists. If a project ID is not set, the machine set `projectID` in which the machine set was created is used.
 
-`spec.template.spec.providerSpec.value.disks.type.encryptionKey.kmsKey.projectID`
-:   Optional: Specifies the ID of the project in which the KMS key ring exists. If a project ID is not set, the machine set `projectID` in which the machine set was created is used.
+   `spec.template.spec.providerSpec.value.disks.type.encryptionKey.kmsKeyServiceAccount`
+   :   Optional: Specifies the service account that is used for the encryption request for the given KMS key. If a service account is not set, the Compute Engine default service account is used.
 
-`spec.template.spec.providerSpec.value.disks.type.encryptionKey.kmsKeyServiceAccount`
-:   Optional: Specifies the service account that is used for the encryption request for the given KMS key. If a service account is not set, the Compute Engine default service account is used.
+       When a new machine is created by using the updated `providerSpec` object configuration, the disk encryption key is encrypted with the KMS key.
 
-    When a new machine is created by using the updated `providerSpec` object configuration, the disk encryption key is encrypted with the KMS key.
-```
-
-## Additional resources {#additional-resources_cpmso-supported-features-gcp}
+**Additional resources**
+{._additional-resources}
 
 - [Updating the control plane configuration](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-feat-config-update_cpmso-managing-machines)
 - [Control plane configuration options for Google Cloud](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso_provider_configurations/cpmso-config-options-gcp#cpmso-config-options-gcp)

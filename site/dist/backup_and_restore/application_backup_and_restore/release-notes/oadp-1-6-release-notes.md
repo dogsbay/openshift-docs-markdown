@@ -1,5 +1,5 @@
 ---
-title: "{{ oadp_short }} 1.6 release notes"
+title: OADP 1.6 release notes
 ---
 
 # OADP 1.6 release notes {#oadp-1-6-release-notes}
@@ -393,6 +393,7 @@ Changing PVC selected-node is removed
 
     [OADP-6729](https://redhat.atlassian.net/browse/OADP-6729)
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [OpenShift API for Data Protection (OADP) FAQ](https://access.redhat.com/articles/5456281)

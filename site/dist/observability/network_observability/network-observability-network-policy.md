@@ -21,7 +21,7 @@ If you have installed Loki, Kafka or any exporter in a different namespace that 
 
 **Procedure**
 
-1. In the web console, go to **Ecosystem** -> **Installed Operators** page.
+1. In the web console, go to **Ecosystem** → **Installed Operators** page.
 2. Under the **Provided APIs** heading for **Network Observability**, select **Flow Collector**.
 3. Select **cluster** then select the **YAML** tab.
 4. Configure the `FlowCollector` CR. A sample configuration is as follows: <a name="network-observability-flowcollector-configuring-network-policy_network_observability"></a>
@@ -48,5 +48,6 @@ If you have installed Loki, Kafka or any exporter in a different namespace that 
    :   Specifies the namespaces to include in the network policy. The default values are `["openshift-console", "openshift-monitoring"]`.
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating a network policy using the CLI](/openshift-docs-markdown/networking/network_security/network_policy/creating-network-policy#nw-networkpolicy-object_creating-network-policy)

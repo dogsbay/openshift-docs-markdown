@@ -28,6 +28,7 @@ One way to create this infrastructure is to use the `CloudFormation` templates. 
 - If the cloud identity and access management (IAM) APIs are not accessible in your environment, or if you do not want to store an administrator-level credential secret in the `kube-system` namespace, you can manually create and keep long-term credentials.
 
 **Additional resources**
+{._additional-resources}
 
 - [OpenShift Container Platform installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)
 - [Selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing)
@@ -76,32 +77,30 @@ Because `/var` must be in place before a fresh installation of Red Hat Enterpri
    $ openshift-install create manifests --dir $HOME/clusterconfig
    ```
 
-```terminal {title="Example output"}
-? SSH Public Key ...
-INFO Credentials loaded from the "myprofile" profile in file "/home/myuser/.aws/credentials"
-INFO Consuming Install Config from target directory
-INFO Manifests created in: $HOME/clusterconfig/manifests and $HOME/clusterconfig/openshift
-```
-
-1. Optional: Confirm that the installation program created manifests in the `clusterconfig/openshift` directory:
+   ```terminal {title="Example output"}
+   ? SSH Public Key ...
+   INFO Credentials loaded from the "myprofile" profile in file "/home/myuser/.aws/credentials"
+   INFO Consuming Install Config from target directory
+   INFO Manifests created in: $HOME/clusterconfig/manifests and $HOME/clusterconfig/openshift
+   ```
+3. Optional: Confirm that the installation program created manifests in the `clusterconfig/openshift` directory:
 
    ```terminal
    $ ls $HOME/clusterconfig/openshift/
    ```
 
-```terminal {title="Example output"}
-99_kubeadmin-password-secret.yaml
-99_openshift-cluster-api_master-machines-0.yaml
-99_openshift-cluster-api_master-machines-1.yaml
-99_openshift-cluster-api_master-machines-2.yaml
-...
-```
-
-1. Create a Butane config that configures the additional partition. For example, name the file `$HOME/clusterconfig/98-var-partition.bu`, change the disk device name to the name of the storage device on the `worker` systems, and set the storage size as appropriate. This example places the `/var` directory on a separate partition:
+   ```terminal {title="Example output"}
+   99_kubeadmin-password-secret.yaml
+   99_openshift-cluster-api_master-machines-0.yaml
+   99_openshift-cluster-api_master-machines-1.yaml
+   99_openshift-cluster-api_master-machines-2.yaml
+   ...
+   ```
+4. Create a Butane config that configures the additional partition. For example, name the file `$HOME/clusterconfig/98-var-partition.bu`, change the disk device name to the name of the storage device on the `worker` systems, and set the storage size as appropriate. This example places the `/var` directory on a separate partition:
 
    ```yaml
    variant: openshift
-   version: {{ product_version }}.0
+   version: 4.22.0
    metadata:
      labels:
        machineconfiguration.openshift.io/role: worker
@@ -138,12 +137,12 @@ INFO Manifests created in: $HOME/clusterconfig/manifests and $HOME/clusterconfig
 
    > [!NOTE]
    > When creating a separate `/var` partition, you cannot use different instance types for worker nodes, if the different instance types do not have the same device name.
-2. Create a manifest from the Butane config and save it to the `clusterconfig/openshift` directory. For example, run the following command:
+5. Create a manifest from the Butane config and save it to the `clusterconfig/openshift` directory. For example, run the following command:
 
    ```terminal
    $ butane $HOME/clusterconfig/98-var-partition.bu -o $HOME/clusterconfig/openshift/98-var-partition.yaml
    ```
-3. Run `openshift-install` again to create Ignition configs from a set of files in the `manifest` and `openshift` subdirectories:
+6. Run `openshift-install` again to create Ignition configs from a set of files in the `manifest` and `openshift` subdirectories:
 
    ```terminal
    $ openshift-install create ignition-configs --dir $HOME/clusterconfig
@@ -162,10 +161,7 @@ Generate and customize the installation configuration file that the installation
 
 **Prerequisites**
 
-- You obtained the OpenShift Container Platform installation program for user-provisioned infrastructure
-
-and the pull secret for your cluster.
-
+- You obtained the OpenShift Container Platform installation program for user-provisioned infrastructure and the pull secret for your cluster.
 - You checked that you are deploying your cluster to an Amazon Web Services (AWS) Region with an accompanying Red Hat Enterprise Linux CoreOS (RHCOS) AMI published by Red Hat. If you are deploying to an AWS Region that requires a custom AMI, such as an AWS GovCloud Region, you must create the `install-config.yaml` file manually.
 
 **Procedure**
@@ -204,6 +200,7 @@ and the pull secret for your cluster.
    > The `install-config.yaml` file is consumed during the installation process. If you want to reuse the file, you must back it up now.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuration and credential file settings (AWS documentation)](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)
 
@@ -231,47 +228,42 @@ Production environments can deny direct access to the internet and instead have 
    proxy:
      httpProxy: http://<username>:<pswd>@<ip>:<port>
      httpsProxy: https://<username>:<pswd>@<ip>:<port>
+     noProxy: ec2.<aws_region>.amazonaws.com,elasticloadbalancing.<aws_region>.amazonaws.com,s3.<aws_region>.amazonaws.com
+   additionalTrustBundle: |
+       -----BEGIN CERTIFICATE-----
+       <MY_TRUSTED_CA_CERT>
+       -----END CERTIFICATE-----
+   additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle>
+   # ...
    ```
 
-{%- if not aws %} noProxy: example.com {% endif %} {% if aws %} noProxy: ec2.<aws_region>.amazonaws.com,elasticloadbalancing.<aws_region>.amazonaws.com,s3.<aws_region>.amazonaws.com {%- endif %} additionalTrustBundle: | -----BEGIN CERTIFICATE----- <MY_TRUSTED_CA_CERT> -----END CERTIFICATE----- additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle> # ... \`\`\`
+   where:
 
-````
-where:
+   `proxy.httpProxy`
+   :   Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be `http`.
 
-`proxy.httpProxy`
-:   Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be `http`.
+   `proxy.httpsProxy`
+   :   Specifies a proxy URL to use for creating HTTPS connections outside the cluster.
 
-`proxy.httpsProxy`
-:   Specifies a proxy URL to use for creating HTTPS connections outside the cluster.
+   `proxy.noProxy`
+   :   Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with `.` to match subdomains only. For example, `.y.com` matches `x.y.com`, but not `y.com`. Use `*` to bypass the proxy for all destinations. If you have added the Amazon `EC2`, `Elastic Load Balancing`, and `S3` VPC endpoints to your VPC, you must add these endpoints to the `noProxy` field.
 
-`proxy.noProxy`
-:   Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with `.` to match subdomains only. For example, `.y.com` matches `x.y.com`, but not `y.com`. Use `*` to bypass the proxy for all destinations.
-    If you have added the Amazon `EC2`, `Elastic Load Balancing`, and `S3` VPC endpoints to your VPC, you must add these endpoints to the `noProxy` field.
+   `additionalTrustBundle`
+   :   If you specify this value, the installation program generates a config map named `user-ca-bundle` in the `openshift-config` namespace to hold the additional CA certificates. If you specify `additionalTrustBundle` and at least one proxy setting, the `Proxy` object references the `user-ca-bundle` config map in the `trustedCA` field. The Cluster Network Operator then creates a `trusted-ca-bundle` config map that merges the contents specified for the `trustedCA` parameter with the RHCOS trust bundle. You must set the `additionalTrustBundle` field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.
 
-`additionalTrustBundle`
-:   If you specify this value, the installation program generates a config map named `user-ca-bundle` in the `openshift-config` namespace to hold the additional CA certificates. If you specify `additionalTrustBundle` and at least one proxy setting, the `Proxy` object references the `user-ca-bundle` config map in the `trustedCA` field. The Cluster Network Operator then creates a `trusted-ca-bundle` config map that merges the contents specified for the `trustedCA` parameter with the RHCOS trust bundle. You must set the `additionalTrustBundle` field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.
+   `additionalTrustBundlePolicy`
+   :   Specifies the policy that determines the configuration of the `Proxy` object to reference the `user-ca-bundle` config map in the `trustedCA` field. The allowed values are `Proxyonly` and `Always`. Use `Proxyonly` to reference the `user-ca-bundle` config map only when you configure an `http/https` proxy. Use `Always` to always reference the `user-ca-bundle` config map. The default value is `Proxyonly`. Optional parameter.
 
-`additionalTrustBundlePolicy`
-:   Specifies the policy that determines the configuration of the `Proxy` object to reference the `user-ca-bundle` config map in the `trustedCA` field. The allowed values are `Proxyonly` and `Always`. Use `Proxyonly` to reference the `user-ca-bundle` config map only when you configure an `http/https` proxy. Use `Always` to always reference the `user-ca-bundle` config map. The default value is `Proxyonly`. Optional parameter.
+   > [!NOTE]
+   > The installation program does not support the proxy `readinessEndpoints` field.
 
-:::note
-
-The installation program does not support the proxy `readinessEndpoints` field.
-
-:::
-
-:::note
-
-If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
-
-```terminal
-$ ./openshift-install wait-for install-complete --log-level debug
-```
-
-:::
-````
-
-1. Save the file and reference it when installing OpenShift Container Platform.
+   > [!NOTE]
+   > If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
+   >
+   > ```terminal
+   > $ ./openshift-install wait-for install-complete --log-level debug
+   > ```
+2. Save the file and reference it when installing OpenShift Container Platform.
 
    The installation program creates a cluster-wide proxy named `cluster` that uses the proxy settings in the `install-config.yaml` file. If you do not give proxy settings, the installation program still creates a `cluster` `Proxy` object, but it has a nil `spec`.
 
@@ -350,17 +342,15 @@ The installation program converts the installation configuration into Kubernetes
      baseDomain: example.openshift.com
      privateZone:
        id: mycluster-100419-private-zone
+     publicZone:
+       id: example.openshift.com
+   status: {}
    ```
 
-{%- if not user_infra_vpc %} publicZone: id: example.openshift.com {%- endif %} status: {} \`\`\`
+   `spec.privateZone`: Remove this section completely.
 
-```
-`spec.privateZone`: Remove this section completely.
-
-If you do so, you must add ingress DNS records manually in a later step.
-```
-
-1. To create the Ignition configuration files, run the following command from the directory that contains the installation program:
+   If you do so, you must add ingress DNS records manually in a later step.
+7. To create the Ignition configuration files, run the following command from the directory that contains the installation program:
 
    ```terminal
    $ ./openshift-install create ignition-configs --dir <installation_directory>
@@ -381,8 +371,6 @@ If you do so, you must add ingress DNS records manually in a later step.
    ├── metadata.json
    └── worker.ign
    ```
-
-   :::
 
 ## Extracting the infrastructure name {#installation-extracting-infraid_installing-aws-user-infra}
 
@@ -471,9 +459,9 @@ You can use the provided CloudFormation template and a custom parameter file to 
    2. `<template>` is the relative path to and name of the CloudFormation template YAML file that you saved.
    3. `<parameters>` is the relative path to and name of the CloudFormation parameters JSON file.
 
-      ```terminal {title="Example output"}
-      arn:aws:cloudformation:us-east-1:269333783861:stack/cluster-vpc/dbedae40-2fd3-11eb-820e-12a48460849f
-      ```
+   ```terminal {title="Example output"}
+   arn:aws:cloudformation:us-east-1:269333783861:stack/cluster-vpc/dbedae40-2fd3-11eb-820e-12a48460849f
+   ```
 4. Confirm that the template components exist:
 
    ```terminal
@@ -495,8 +483,7 @@ You can use the provided CloudFormation template and a custom parameter file to 
 
 The VPC `CloudFormation` template creates the Amazon Web Services (AWS) networking infrastructure, including the public and private subnets, that your OpenShift Container Platform cluster requires.
 
-````yaml {title="CloudFormation template for the VPC"}
-```yaml
+```yaml {title="CloudFormation template for the VPC"}
 AWSTemplateFormatVersion: 2010-09-09
 Description: Template for Best Practice VPC with 1-3 AZs
 
@@ -808,178 +795,171 @@ Outputs:
           ]
         ]
       ]
-````
-
-````
+```
 
 **Additional resources**
+{._additional-resources}
 
-*   [AWS `CloudFormation` console](https://console.aws.amazon.com/cloudformation/)
+- [AWS `CloudFormation` console](https://console.aws.amazon.com/cloudformation/)
 
-## Creating networking and load balancing components in AWS {id="installation-creating-aws-dns_installing-aws-user-infra"}
+## Creating networking and load balancing components in AWS {#installation-creating-aws-dns_installing-aws-user-infra}
 
-To route traffic to your OpenShift Container Platform cluster, configure the networking and load balancing components in Amazon Web Services (AWS) by using the provided `CloudFormation` template. {._abstract}
+To route traffic to your OpenShift Container Platform cluster, configure the networking and load balancing components in Amazon Web Services (AWS) by using the provided `CloudFormation` template.
 
 You can use the provided `CloudFormation` template and a custom parameter file to create a stack of AWS resources. The stack represents the networking and load balancing components that your OpenShift Container Platform cluster requires. The template also creates a hosted zone and subnet tags.
 
 You can run the template many times within a single Virtual Private Cloud (VPC).
 
-:::note
-
-If you do not use the provided `CloudFormation` template to create your AWS infrastructure, you must review the provided information and manually create the infrastructure. If your cluster does not initialize correctly, you might have to contact Red Hat support with your installation logs.
-
-:::
+> [!NOTE]
+> If you do not use the provided `CloudFormation` template to create your AWS infrastructure, you must review the provided information and manually create the infrastructure. If your cluster does not initialize correctly, you might have to contact Red Hat support with your installation logs.
 
 **Prerequisites**
 
-*   You created and configured a VPC and associated subnets in AWS.
+- You created and configured a VPC and associated subnets in AWS.
 
 **Procedure**
 
-1.  Obtain the hosted zone ID for the Route 53 base domain that you specified in the `install-config.yaml` file for your cluster. You can obtain details about your hosted zone by running the following command:
-    ```terminal
-    $ aws route53 list-hosted-zones-by-name --dns-name <route53_domain>
-    ```
+1. Obtain the hosted zone ID for the Route 53 base domain that you specified in the `install-config.yaml` file for your cluster. You can obtain details about your hosted zone by running the following command:
 
-    where `<route53_domain>` is the Route 53 base domain that you used when you generated the `install-config.yaml` file for the cluster.
-    ```terminal title="Example output"
-    mycluster.example.com.	False	100
-    HOSTEDZONES	65F8F38E-2268-B835-E15C-AB55336FCBFA	/hostedzone/Z21IXYZABCZ2A4	mycluster.example.com.	10
-    ```
+   ```terminal
+   $ aws route53 list-hosted-zones-by-name --dns-name <route53_domain>
+   ```
 
-    In the example output, the hosted zone ID is `Z21IXYZABCZ2A4`.
-1.  Create a JSON file that has the parameter values that the template requires:
-    ```json
-    [
-      {
-        "ParameterKey": "ClusterName",
-        "ParameterValue": "mycluster"
-      },
-      {
-        "ParameterKey": "InfrastructureName",
-        "ParameterValue": "mycluster-<random_string>"
-      },
-      {
-        "ParameterKey": "HostedZoneId",
-        "ParameterValue": "<random_string>"
-      },
-      {
-        "ParameterKey": "HostedZoneName",
-        "ParameterValue": "example.com"
-      },
-      {
-        "ParameterKey": "PublicSubnets",
-        "ParameterValue": "subnet-<random_string>"
-      },
-      {
-        "ParameterKey": "PrivateSubnets",
-        "ParameterValue": "subnet-<random_string>"
-      },
-      {
-        "ParameterKey": "VpcId",
-        "ParameterValue": "vpc-<random_string>"
-      }
-    ]
-    ```
+   where `<route53_domain>` is the Route 53 base domain that you used when you generated the `install-config.yaml` file for the cluster.
 
-    where:
+   ```terminal {title="Example output"}
+   mycluster.example.com.	False	100
+   HOSTEDZONES	65F8F38E-2268-B835-E15C-AB55336FCBFA	/hostedzone/Z21IXYZABCZ2A4	mycluster.example.com.	10
+   ```
 
-    `ClusterName`
-    :   Specifies a short, representative cluster name to use for hostnames, and so on. Set the value to the cluster name that you used when you generated the `install-config.yaml` file for the cluster.
+   In the example output, the hosted zone ID is `Z21IXYZABCZ2A4`.
+2. Create a JSON file that has the parameter values that the template requires:
 
-    `InfrastructureName`
-    :   Specifies the name for your cluster infrastructure that your Ignition config files encode for the cluster. Set the value to the infrastructure name that you extracted from the Ignition config file metadata, which has the format `<cluster_name>-<random_string>`.
+   ```json
+   [
+     {
+       "ParameterKey": "ClusterName",
+       "ParameterValue": "mycluster"
+     },
+     {
+       "ParameterKey": "InfrastructureName",
+       "ParameterValue": "mycluster-<random_string>"
+     },
+     {
+       "ParameterKey": "HostedZoneId",
+       "ParameterValue": "<random_string>"
+     },
+     {
+       "ParameterKey": "HostedZoneName",
+       "ParameterValue": "example.com"
+     },
+     {
+       "ParameterKey": "PublicSubnets",
+       "ParameterValue": "subnet-<random_string>"
+     },
+     {
+       "ParameterKey": "PrivateSubnets",
+       "ParameterValue": "subnet-<random_string>"
+     },
+     {
+       "ParameterKey": "VpcId",
+       "ParameterValue": "vpc-<random_string>"
+     }
+   ]
+   ```
 
-    `HostedZoneId`
-    :   Specifies the Route 53 public zone ID to register the targets with. Set the value to the Route 53 public zone ID, which has a format similar to `Z21IXYZABCZ2A4`. You can obtain this value from the AWS console.
+   where:
 
-    `HostedZoneName`
-    :   Specifies the Route 53 zone to register the targets with. Set the value to the Route 53 base domain that you used when you generated the `install-config.yaml` file for the cluster. Do not include the trailing period (.) that is displayed in the AWS console.
+   `ClusterName`
+   :   Specifies a short, representative cluster name to use for hostnames, and so on. Set the value to the cluster name that you used when you generated the `install-config.yaml` file for the cluster.
 
-    `PublicSubnets`
-    :   Specifies the public subnets that you created for your VPC. Set the value to the `PublicSubnetIds` value from the output of the `CloudFormation` template for the VPC.
+   `InfrastructureName`
+   :   Specifies the name for your cluster infrastructure that your Ignition config files encode for the cluster. Set the value to the infrastructure name that you extracted from the Ignition config file metadata, which has the format `<cluster_name>-<random_string>`.
 
-    `PrivateSubnets`
-    :   Specifies the private subnets that you created for your VPC. Set the value to the `PrivateSubnetIds` value from the output of the `CloudFormation` template for the VPC.
+   `HostedZoneId`
+   :   Specifies the Route 53 public zone ID to register the targets with. Set the value to the Route 53 public zone ID, which has a format similar to `Z21IXYZABCZ2A4`. You can obtain this value from the AWS console.
 
-    `VpcId`
-    :   Specifies the VPC that you created for the cluster. Set the value to the `VpcId` value from the output of the `CloudFormation` template for the VPC.
-1.  Copy the template from the **`CloudFormation` template for the network and load balancers** section and save it as a YAML file on your computer. This template describes the networking and load balancing objects that your cluster requires.
+   `HostedZoneName`
+   :   Specifies the Route 53 zone to register the targets with. Set the value to the Route 53 base domain that you used when you generated the `install-config.yaml` file for the cluster. Do not include the trailing period (.) that is displayed in the AWS console.
 
-    :::important
+   `PublicSubnets`
+   :   Specifies the public subnets that you created for your VPC. Set the value to the `PublicSubnetIds` value from the output of the `CloudFormation` template for the VPC.
 
-    If you are deploying your cluster to an AWS government or secret region, you must update the `InternalApiServerRecord` in the `CloudFormation` template to use `CNAME` records. Records of type `ALIAS` are not supported for AWS government regions.
+   `PrivateSubnets`
+   :   Specifies the private subnets that you created for your VPC. Set the value to the `PrivateSubnetIds` value from the output of the `CloudFormation` template for the VPC.
 
-    :::
+   `VpcId`
+   :   Specifies the VPC that you created for the cluster. Set the value to the `VpcId` value from the output of the `CloudFormation` template for the VPC.
+3. Copy the template from the **`CloudFormation` template for the network and load balancers** section and save it as a YAML file on your computer. This template describes the networking and load balancing objects that your cluster requires.
 
-1.  Launch the `CloudFormation` template to create a stack of AWS resources for the networking and load balancing components:
+   > [!IMPORTANT]
+   > If you are deploying your cluster to an AWS government or secret region, you must update the `InternalApiServerRecord` in the `CloudFormation` template to use `CNAME` records. Records of type `ALIAS` are not supported for AWS government regions.
+4. Launch the `CloudFormation` template to create a stack of AWS resources for the networking and load balancing components:
 
-    :::important
+   > [!IMPORTANT]
+   > You must enter the command on a single line.
 
-    You must enter the command on a single line.
+   ```terminal
+   $ aws cloudformation create-stack --stack-name <name> \
+        --template-body file://<template>.yaml \
+        --parameters file://<parameters>.json \
+        --capabilities CAPABILITY_NAMED_IAM
+   ```
 
-    :::
+   where:
 
-    ```terminal
-    $ aws cloudformation create-stack --stack-name <name> \
-         --template-body file://<template>.yaml \
-         --parameters file://<parameters>.json \
-         --capabilities CAPABILITY_NAMED_IAM
-    ```
+   `<name>`
+   :   Specifies the name for the `CloudFormation` stack, such as `cluster-dns`. You need the name of this stack if you remove the cluster.
 
-    where:
+   `<template>`
+   :   Specifies the relative path to and name of the `CloudFormation` template YAML file that you saved.
 
-    `<name>`
-    :   Specifies the name for the `CloudFormation` stack, such as `cluster-dns`. You need the name of this stack if you remove the cluster.
+   `<parameters>`
+   :   Specifies the relative path to and name of the `CloudFormation` parameters JSON file.
 
-    `<template>`
-    :   Specifies the relative path to and name of the `CloudFormation` template YAML file that you saved.
+   `CAPABILITY_NAMED_IAM`
+   :   You must explicitly declare this capability because the provided template creates some `AWS::IAM::Role` resources.
 
-    `<parameters>`
-    :   Specifies the relative path to and name of the `CloudFormation` parameters JSON file.
+   ```terminal {title="Example output"}
+   arn:aws:cloudformation:us-east-1:269333783861:stack/cluster-dns/cd3e5de0-2fd4-11eb-5cf0-12be5c33a183
+   ```
+5. Confirm that the template components exist:
 
-    `CAPABILITY_NAMED_IAM`
-    :   You must explicitly declare this capability because the provided template creates some `AWS::IAM::Role` resources.
-    ```terminal title="Example output"
-    arn:aws:cloudformation:us-east-1:269333783861:stack/cluster-dns/cd3e5de0-2fd4-11eb-5cf0-12be5c33a183
-    ```
-1.  Confirm that the template components exist:
-    ```terminal
-    $ aws cloudformation describe-stacks --stack-name <name>
-    ```
+   ```terminal
+   $ aws cloudformation describe-stacks --stack-name <name>
+   ```
 
-    After the `StackStatus` displays `CREATE_COMPLETE`, the output displays values for the following parameters. You must give these parameter values to the other `CloudFormation` templates that you run to create your cluster:
+   After the `StackStatus` displays `CREATE_COMPLETE`, the output displays values for the following parameters. You must give these parameter values to the other `CloudFormation` templates that you run to create your cluster:
 
-    `PrivateHostedZoneId`
-    :   Hosted zone ID for the private DNS.
+   `PrivateHostedZoneId`
+   :   Hosted zone ID for the private DNS.
 
-    `ExternalApiLoadBalancerName`
-    :   Full name of the external API load balancer.
+   `ExternalApiLoadBalancerName`
+   :   Full name of the external API load balancer.
 
-    `InternalApiLoadBalancerName`
-    :   Full name of the internal API load balancer.
+   `InternalApiLoadBalancerName`
+   :   Full name of the internal API load balancer.
 
-    `ApiServerDnsName`
-    :   Full hostname of the API server.
+   `ApiServerDnsName`
+   :   Full hostname of the API server.
 
-    `RegisterNlbIpTargetsLambda`
-    :   Lambda ARN useful to help register and unregister IP targets for these load balancers.
+   `RegisterNlbIpTargetsLambda`
+   :   Lambda ARN useful to help register and unregister IP targets for these load balancers.
 
-    `ExternalApiTargetGroupArn`
-    :   ARN of external API target group.
+   `ExternalApiTargetGroupArn`
+   :   ARN of external API target group.
 
-    `InternalApiTargetGroupArn`
-    :   ARN of internal API target group.
+   `InternalApiTargetGroupArn`
+   :   ARN of internal API target group.
 
-    `InternalServiceTargetGroupArn`
-    :   ARN of internal service target group.
+   `InternalServiceTargetGroupArn`
+   :   ARN of internal service target group.
 
-### CloudFormation template for the network and load balancers {id="installation-cloudformation-dns_installing-aws-user-infra"}
+### CloudFormation template for the network and load balancers {#installation-cloudformation-dns_installing-aws-user-infra}
 
-The networking `CloudFormation` template creates the Route 53 DNS entries and load balancers on Amazon Web Services (AWS) that route traffic to your OpenShift Container Platform control plane and applications. {._abstract}
+The networking `CloudFormation` template creates the Route 53 DNS entries and load balancers on Amazon Web Services (AWS) that route traffic to your OpenShift Container Platform control plane and applications.
 
-```yaml title="CloudFormation template for the network and load balancers"
-```yaml
+```yaml {title="CloudFormation template for the network and load balancers"}
 AWSTemplateFormatVersion: 2010-09-09
 Description: Template for OpenShift Cluster Network Elements (Route53 & LBs)
 
@@ -1378,24 +1358,20 @@ Outputs:
   InternalServiceTargetGroupArn:
     Description: ARN of the internal service target group.
     Value: !Ref InternalServiceTargetGroup
-````
+```
 
-````
-
-:::important
-
-If you are deploying your cluster to an AWS government or secret region, you must update the `InternalApiServerRecord` to use `CNAME` records. Records of type `ALIAS` are not supported for AWS government regions. For example:
-
-```yaml
-Type: CNAME
-TTL: 10
-ResourceRecords:
-- !GetAtt IntApiElb.DNSName
-````
-
-:::
+> [!IMPORTANT]
+> If you are deploying your cluster to an AWS government or secret region, you must update the `InternalApiServerRecord` to use `CNAME` records. Records of type `ALIAS` are not supported for AWS government regions. For example:
+>
+> ```yaml
+> Type: CNAME
+> TTL: 10
+> ResourceRecords:
+> - !GetAtt IntApiElb.DNSName
+> ```
 
 **Additional resources**
+{._additional-resources}
 
 - [AWS `CloudFormation` console](https://console.aws.amazon.com/cloudformation/)
 - [AWS Route 53 console](https://console.aws.amazon.com/route53/)
@@ -1448,7 +1424,7 @@ You can use the provided `CloudFormation` template and a custom parameter file t
 
    `VpcId`
    :   Specifies the VPC that you created for the cluster. Set the value to the `VpcId` value from the output of the `CloudFormation` template for the VPC.
-2. Copy the template from the `CloudFormation`** template for security objects** section and save it as a YAML file on your computer. This template describes the security groups and roles that your cluster requires.
+2. Copy the template from the **`CloudFormation` template for security objects** section and save it as a YAML file on your computer. This template describes the security groups and roles that your cluster requires.
 3. Launch the `CloudFormation` template to create a stack of AWS resources that represent the security groups and roles:
 
    > [!IMPORTANT]
@@ -1502,8 +1478,7 @@ You can use the provided `CloudFormation` template and a custom parameter file t
 
 The security `CloudFormation` template creates the IAM roles and security groups on Amazon Web Services (AWS) that control access to your OpenShift Container Platform cluster resources.
 
-````yaml {title="CloudFormation template for security objects"}
-```yaml
+```yaml {title="CloudFormation template for security objects"}
 AWSTemplateFormatVersion: 2010-09-09
 Description: Template for OpenShift Cluster Security Elements (Security Groups & IAM)
 
@@ -2102,17 +2077,16 @@ Outputs:
   WorkerInstanceProfile:
     Description: Worker IAM Instance Profile
     Value: !Ref WorkerInstanceProfile
-````
-
-````
+```
 
 **Additional resources**
+{._additional-resources}
 
-*   [AWS `CloudFormation` console](https://console.aws.amazon.com/cloudformation/)
+- [AWS `CloudFormation` console](https://console.aws.amazon.com/cloudformation/)
 
-## Accessing RHCOS AMIs with stream metadata {id="installation-aws-ami-stream-metadata_installing-aws-user-infra"}
+## Accessing RHCOS AMIs with stream metadata {#installation-aws-ami-stream-metadata_installing-aws-user-infra}
 
-To find the correct RHCOS boot image for your cluster, you can use stream metadata, which provides standardized information about RHCOS in the JSON format. {._abstract}
+To find the correct RHCOS boot image for your cluster, you can use stream metadata, which provides standardized information about RHCOS in the JSON format.
 
 You can use the `coreos print-stream-json` subcommand of `openshift-install` to access information about the boot images in the stream metadata format. This command provides a method for printing stream metadata in a scriptable, machine-readable format.
 
@@ -2122,36 +2096,34 @@ To parse the stream metadata, use one of the following methods:
 
 **Procedure**
 
-*   From a Go program, use the official `stream-metadata-go` library at https://github.com/coreos/stream-metadata-go. You can also view example code in the library.
-*   From another programming language, such as Python or Ruby, use the JSON library of your preferred programming language.
-*   From a command-line utility that handles JSON data, such as `jq`, print the current `x86_64`
-    or `aarch64`
+- From a Go program, use the official `stream-metadata-go` library at https://github.com/coreos/stream-metadata-go. You can also view example code in the library.
+- From another programming language, such as Python or Ruby, use the JSON library of your preferred programming language.
+- From a command-line utility that handles JSON data, such as `jq`, print the current `x86_64` or `aarch64` AMI for an AWS region, such as `us-west-1`:
 
-    AMI for an AWS region, such as `us-west-1`:
-    ```terminal title="For x86_64"
-    $ openshift-install coreos print-stream-json | jq -r '.architectures.x86_64.images.aws.regions["us-west-1"].image'
-    ```
-    ```terminal title="Example output"
-    ami-0d3e625f84626bbda
-    ```
-    ```terminal title="For aarch64"
-    $ openshift-install coreos print-stream-json | jq -r '.architectures.aarch64.images.aws.regions["us-west-1"].image'
-    ```
-    ```terminal title="Example output"
-    ami-0af1d3b7fa5be2131
-    ```
+  ```terminal {title="For x86_64"}
+  $ openshift-install coreos print-stream-json | jq -r '.architectures.x86_64.images.aws.regions["us-west-1"].image'
+  ```
 
-    The output of this command is the AWS AMI ID for your designated architecture and the `us-west-1` region. The AMI must belong to the same region as the cluster.
+  ```terminal {title="Example output"}
+  ami-0d3e625f84626bbda
+  ```
 
-## RHCOS AMIs for the AWS infrastructure {id="installation-aws-user-infra-rhcos-ami_installing-aws-user-infra"}
+  ```terminal {title="For aarch64"}
+  $ openshift-install coreos print-stream-json | jq -r '.architectures.aarch64.images.aws.regions["us-west-1"].image'
+  ```
 
-To deploy OpenShift Container Platform nodes on Amazon Web Services (AWS), select from the valid Red&#160;Hat Enterprise Linux CoreOS (RHCOS) AMIs for your region and instance architecture. {._abstract}
+  ```terminal {title="Example output"}
+  ami-0af1d3b7fa5be2131
+  ```
 
-:::note
+  The output of this command is the AWS AMI ID for your designated architecture and the `us-west-1` region. The AMI must belong to the same region as the cluster.
 
-By importing your own AMI, you can also install to regions that do not have published RHCOS AMIs.
+## RHCOS AMIs for the AWS infrastructure {#installation-aws-user-infra-rhcos-ami_installing-aws-user-infra}
 
-:::
+To deploy OpenShift Container Platform nodes on Amazon Web Services (AWS), select from the valid Red Hat Enterprise Linux CoreOS (RHCOS) AMIs for your region and instance architecture.
+
+> [!NOTE]
+> By importing your own AMI, you can also install to regions that do not have published RHCOS AMIs.
 
 **x86_64 RHCOS AMIs**
 
@@ -2521,9 +2493,9 @@ By importing your own AMI, you can also install to regions that do not have publ
 </tbody>
 </table>
 
-### AWS regions without a published RHCOS AMI {id="installation-aws-regions-with-no-ami_installing-aws-user-infra"}
+### AWS regions without a published RHCOS AMI {#installation-aws-regions-with-no-ami_installing-aws-user-infra}
 
-You can deploy an OpenShift Container Platform cluster to Amazon Web Services (AWS) regions without native support for a Red&#160;Hat Enterprise Linux CoreOS (RHCOS) Amazon Machine Image (AMI) or the AWS software development kit (SDK). {._abstract}
+You can deploy an OpenShift Container Platform cluster to Amazon Web Services (AWS) regions without native support for a Red Hat Enterprise Linux CoreOS (RHCOS) Amazon Machine Image (AMI) or the AWS software development kit (SDK).
 
 If a published AMI is not available for an AWS region, you can upload a custom AMI before installing the cluster.
 
@@ -2531,331 +2503,323 @@ If you are deploying to a region not supported by the AWS SDK and you do not spe
 
 A region without native support for an RHCOS AMI is not available to select from the terminal during cluster creation because it is not published. However, you can install to this region by configuring the custom AMI in the `install-config.yaml` file.
 
-### Uploading a custom RHCOS AMI in Amazon Web Services (AWS) {id="installation-aws-upload-custom-rhcos-ami_installing-aws-user-infra"}
+### Uploading a custom RHCOS AMI in Amazon Web Services (AWS) {#installation-aws-upload-custom-rhcos-ami_installing-aws-user-infra}
 
-If you are deploying to a custom AWS region, you must
-upload a custom Red&#160;Hat Enterprise Linux CoreOS (RHCOS) Amazon Machine Image (AMI) that belongs to
-that region. {._abstract}
+If you are deploying to a custom AWS region, you must upload a custom Red Hat Enterprise Linux CoreOS (RHCOS) Amazon Machine Image (AMI) that belongs to that region.
 
 **Prerequisites**
 
-*   You configured an AWS account.
-*   You created an Amazon S3 bucket with the required IAM
-[service role](https://docs.aws.amazon.com/vm-import/latest/userguide/vmie_prereqs.html#vmimport-role).
-*   You uploaded your RHCOS VMDK file to Amazon S3.
-The RHCOS VMDK file must be the highest version that is less than or equal to the OpenShift Container Platform version you are installing.
-
-*   You downloaded the AWS CLI and installed it on your computer. See
-[Install the AWS CLI Using the Bundled Installer](https://docs.aws.amazon.com/cli/latest/userguide/install-bundle.html).
+- You configured an AWS account.
+- You created an Amazon S3 bucket with the required IAM [service role](https://docs.aws.amazon.com/vm-import/latest/userguide/vmie_prereqs.html#vmimport-role).
+- You uploaded your RHCOS VMDK file to Amazon S3. The RHCOS VMDK file must be the highest version that is less than or equal to the OpenShift Container Platform version you are installing.
+- You downloaded the AWS CLI and installed it on your computer. See [Install the AWS CLI Using the Bundled Installer](https://docs.aws.amazon.com/cli/latest/userguide/install-bundle.html).
 
 **Procedure**
 
-1.  Export your AWS profile as an environment variable by running the following command:
-    ```terminal
-    $ export AWS_PROFILE=<aws_profile>
-    ```
+1. Export your AWS profile as an environment variable by running the following command:
 
-    Replace `<aws_profile>` with the AWS profile name that holds your AWS credentials, such as `govcloud` or `beijingadmin`.
-1.  Export the region to associate with your custom AMI as an environment
-variable by running the following command:
-    ```terminal
-    $ export AWS_DEFAULT_REGION=<aws_region>
-    ```
+   ```terminal
+   $ export AWS_PROFILE=<aws_profile>
+   ```
 
-    Replace `<aws_region>` with the AWS region, such as `us-gov-east-1` or `cn-north-1`.
-1.  Export the version of RHCOS you uploaded to Amazon S3 as an environment variable by running the following command:
-    ```terminal
-    $ export RHCOS_VERSION=<version>
-    ```
+   Replace `<aws_profile>` with the AWS profile name that holds your AWS credentials, such as `govcloud` or `beijingadmin`.
+2. Export the region to associate with your custom AMI as an environment variable by running the following command:
 
-    Replace `<version>` with the RHCOS VMDK version, such as `{{ product_version }}.0`.
-1.  Export the Amazon S3 bucket name as an environment variable by running the following command:
-    ```terminal
-    $ export VMIMPORT_BUCKET_NAME=<s3_bucket_name>
-    ```
-1.  Create the `containers.json` file and define your RHCOS VMDK file by running the following command:
-    ```terminal
-    $ cat <<EOF > containers.json
-    {
-       "Description": "rhcos-${RHCOS_VERSION}-x86_64-aws.x86_64",
-       "Format": "vmdk",
-       "UserBucket": {
-          "S3Bucket": "${VMIMPORT_BUCKET_NAME}",
-          "S3Key": "rhcos-${RHCOS_VERSION}-x86_64-aws.x86_64.vmdk"
-       }
-    }
-    EOF
-    ```
-1.  Import the RHCOS disk as an Amazon EBS snapshot by running the following command:
-    ```terminal
-    $ aws ec2 import-snapshot --region ${AWS_DEFAULT_REGION} \
-         --description "<description>" \
-         --disk-container "file://<file_path>/containers.json"
-    ```
+   ```terminal
+   $ export AWS_DEFAULT_REGION=<aws_region>
+   ```
 
-    where:
+   Replace `<aws_region>` with the AWS region, such as `us-gov-east-1` or `cn-north-1`.
+3. Export the version of RHCOS you uploaded to Amazon S3 as an environment variable by running the following command:
 
-    `--description`
-    :   Specifies the description of your RHCOS disk being imported, like `rhcos-${{ RHCOS_VERSION }}-x86_64-aws.x86_64`.
+   ```terminal
+   $ export RHCOS_VERSION=<version>
+   ```
 
-    `--disk-container`
-    :   Specifies the file path to the JSON file describing your RHCOS disk. The JSON file should contain your Amazon S3 bucket name and key.
+   Replace `<version>` with the RHCOS VMDK version, such as `4.22.0`.
+4. Export the Amazon S3 bucket name as an environment variable by running the following command:
 
-1.  Check the status of the image import by running the following command::
-    ```terminal
-    $ watch -n 5 aws ec2 describe-import-snapshot-tasks --region ${AWS_DEFAULT_REGION}
-    ```
-    ```terminal title="Example output"
-    {
-        "ImportSnapshotTasks": [
-            {
-                "Description": "rhcos-4.7.0-x86_64-aws.x86_64",
-                "ImportTaskId": "import-snap-fh6i8uil",
-                "SnapshotTaskDetail": {
-                    "Description": "rhcos-4.7.0-x86_64-aws.x86_64",
-                    "DiskImageSize": 819056640.0,
-                    "Format": "VMDK",
-                    "SnapshotId": "snap-06331325870076318",
-                    "Status": "completed",
-                    "UserBucket": {
-                        "S3Bucket": "external-images",
-                        "S3Key": "rhcos-4.7.0-x86_64-aws.x86_64.vmdk"
-                    }
-                }
-            }
-        ]
-    }
-    ```
+   ```terminal
+   $ export VMIMPORT_BUCKET_NAME=<s3_bucket_name>
+   ```
+5. Create the `containers.json` file and define your RHCOS VMDK file by running the following command:
 
-    Copy the `SnapshotId` to register the image.
-1.  Create a custom RHCOS AMI from the RHCOS snapshot by running the following command:
-    ```terminal
-    $ aws ec2 register-image \
-       --region ${AWS_DEFAULT_REGION} \
-       --architecture x86_64 \
-       --description "rhcos-${RHCOS_VERSION}-x86_64-aws.x86_64" \
-       --ena-support \
-       --name "rhcos-${RHCOS_VERSION}-x86_64-aws.x86_64" \
-       --virtualization-type hvm \
-       --root-device-name '/dev/xvda' \
-       --block-device-mappings 'DeviceName=/dev/xvda,Ebs={DeleteOnTermination=true,SnapshotId=<snapshot_ID>}'
-    ```
-
-    where:
-
-    `--architecture`
-    :   Specifies the RHCOS VMDK architecture type, such as `x86_64`,
-        `aarch64`,
-
-        `s390x`, or `ppc64le`.
-
-    `--description`
-    :   Specifies the `Description` from the imported snapshot.
-
-    `--name`
-    :   Specifies the name of the RHCOS AMI.
-
-    `--block-device-mappings`
-    :   Specifies the `SnapshotID` from the imported snapshot.
-
-## Creating the bootstrap node in AWS {id="installation-creating-aws-bootstrap_installing-aws-user-infra"}
-
-To initialize the OpenShift Container Platform control plane, create the bootstrap node in Amazon Web Services (AWS) by uploading the Ignition config to an S3 bucket and launching the `CloudFormation` template. {._abstract}
-
-*   Providing a location to serve the `bootstrap.ign` Ignition config file to your cluster. This file is in your installation directory. The provided `CloudFormation` template assumes that you serve the Ignition config files for your cluster from an S3 bucket. If you choose to serve the files from another location, you must change the templates.
-*   Using the provided `CloudFormation` template and a custom parameter file to create a stack of AWS resources. The stack represents the bootstrap node that your OpenShift Container Platform installation requires.
-
-:::note
-
-If you do not use the provided `CloudFormation` template to create your bootstrap node, you must review the provided information and manually create the infrastructure. If your cluster does not initialize correctly, you might have to contact Red Hat support with your installation logs.
-
-:::
-
-**Prerequisites**
-
-*   You created and configured DNS, load balancers, and listeners in AWS.
-*   You created the security groups and roles required for your cluster in AWS.
-
-**Procedure**
-
-1.  Create the bucket by running the following command:
-    ```terminal
-    $ aws s3 mb s3://<cluster_name>-infra
-    ```
-
-    where `<cluster_name>-infra` is the bucket name. When creating the `install-config.yaml` file, replace `<cluster_name>` with the name specified for the cluster.
-    You must use a presigned URL for your S3 bucket, instead of the `s3://` schema, if you are:
-
-    *   Deploying to a region that has endpoints that differ from the AWS SDK.
-    *   Deploying a proxy.
-    *   Providing your own custom endpoints.
-1.  Upload the `bootstrap.ign` Ignition config file to the bucket by running the following command:
-    ```terminal
-    $ aws s3 cp <installation_directory>/bootstrap.ign s3://<cluster_name>-infra/bootstrap.ign
-    ```
-
-    where `<installation_directory>` is the path to the directory that you stored the installation files in.
-1.  Verify that the file uploaded by running the following command:
-    ```terminal
-    $ aws s3 ls s3://<cluster_name>-infra/
-    ```
-    ```terminal title="Example output"
-    2019-04-03 16:15:16     314878 bootstrap.ign
-    ```
-
-    :::note
-
-    The bootstrap Ignition config file does have secrets, such as X.509 keys. The following steps give basic security for the S3 bucket. To give additional security, you can enable an S3 bucket policy to allow only certain users, such as the OpenShift IAM user, to access objects that the bucket has. You can avoid S3 entirely and serve your bootstrap Ignition config file from any address that the bootstrap machine can reach.
-
-    :::
-
-1.  Create a JSON file that has the parameter values that the template requires:
-    ```json
-    [
-      {
-        "ParameterKey": "InfrastructureName",
-        "ParameterValue": "mycluster-<random_string>"
-      },
-      {
-        "ParameterKey": "RhcosAmi",
-        "ParameterValue": "ami-<random_string>"
-      },
-      {
-        "ParameterKey": "AllowedBootstrapSshCidr",
-        "ParameterValue": "0.0.0.0/0"
-      },
-      {
-        "ParameterKey": "PublicSubnet",
-        "ParameterValue": "subnet-<random_string>"
-      },
-      {
-        "ParameterKey": "MasterSecurityGroupId",
-        "ParameterValue": "sg-<random_string>"
-      },
-      {
-        "ParameterKey": "VpcId",
-        "ParameterValue": "vpc-<random_string>"
-      },
-      {
-        "ParameterKey": "BootstrapIgnitionLocation",
-        "ParameterValue": "s3://<bucket_name>/bootstrap.ign"
-      },
-      {
-        "ParameterKey": "AutoRegisterELB",
-        "ParameterValue": "yes"
-      },
-      {
-        "ParameterKey": "RegisterNlbIpTargetsLambdaArn",
-        "ParameterValue": "arn:aws:lambda:<aws_region>:<account_number>:function:<dns_stack_name>-RegisterNlbIpTargets-<random_string>"
-      },
-      {
-        "ParameterKey": "ExternalApiTargetGroupArn",
-        "ParameterValue": "arn:aws:elasticloadbalancing:<aws_region>:<account_number>:targetgroup/<dns_stack_name>-Exter-<random_string>"
-      },
-      {
-        "ParameterKey": "InternalApiTargetGroupArn",
-        "ParameterValue": "arn:aws:elasticloadbalancing:<aws_region>:<account_number>:targetgroup/<dns_stack_name>-Inter-<random_string>"
-      },
-      {
-        "ParameterKey": "InternalServiceTargetGroupArn",
-        "ParameterValue": "arn:aws:elasticloadbalancing:<aws_region>:<account_number>:targetgroup/<dns_stack_name>-Inter-<random_string>"
+   ```terminal
+   $ cat <<EOF > containers.json
+   {
+      "Description": "rhcos-${RHCOS_VERSION}-x86_64-aws.x86_64",
+      "Format": "vmdk",
+      "UserBucket": {
+         "S3Bucket": "${VMIMPORT_BUCKET_NAME}",
+         "S3Key": "rhcos-${RHCOS_VERSION}-x86_64-aws.x86_64.vmdk"
       }
-    ]
+   }
+   EOF
+   ```
+6. Import the RHCOS disk as an Amazon EBS snapshot by running the following command:
 
-    ```
+   ```terminal
+   $ aws ec2 import-snapshot --region ${AWS_DEFAULT_REGION} \
+        --description "<description>" \
+        --disk-container "file://<file_path>/containers.json"
+   ```
 
-    where:
+   where:
 
-    `InfrastructureName`
-    :   Specifies the name for your cluster infrastructure that your Ignition config files encode for the cluster. Specify the infrastructure name that you extracted from the Ignition config file metadata, which has the format `<cluster_name>-<random_string>`.
+   `--description`
+   :   Specifies the description of your RHCOS disk being imported, like `rhcos-${RHCOS_VERSION}-x86_64-aws.x86_64`.
 
-    `RhcosAmi`
-    :   Specifies the current Red&#160;Hat Enterprise Linux CoreOS (RHCOS) AMI to use for the bootstrap node based on your selected architecture. Specify a valid `AWS::EC2::Image::Id` value.
+   `--disk-container`
+   :   Specifies the file path to the JSON file describing your RHCOS disk. The JSON file should contain your Amazon S3 bucket name and key.
+7. Check the status of the image import by running the following command::
 
-    `AllowedBootstrapSshCidr`
-    :   Specifies the CIDR block to allow SSH access to the bootstrap node. Specify a CIDR block in the format `x.x.x.x/16-24`.
+   ```terminal
+   $ watch -n 5 aws ec2 describe-import-snapshot-tasks --region ${AWS_DEFAULT_REGION}
+   ```
 
-    `PublicSubnet`
-    :   Specifies the public subnet in your VPC to launch the bootstrap node into. Specify the `PublicSubnetIds` value from the output of the `CloudFormation` template for the VPC.
+   ```terminal {title="Example output"}
+   {
+       "ImportSnapshotTasks": [
+           {
+               "Description": "rhcos-4.7.0-x86_64-aws.x86_64",
+               "ImportTaskId": "import-snap-fh6i8uil",
+               "SnapshotTaskDetail": {
+                   "Description": "rhcos-4.7.0-x86_64-aws.x86_64",
+                   "DiskImageSize": 819056640.0,
+                   "Format": "VMDK",
+                   "SnapshotId": "snap-06331325870076318",
+                   "Status": "completed",
+                   "UserBucket": {
+                       "S3Bucket": "external-images",
+                       "S3Key": "rhcos-4.7.0-x86_64-aws.x86_64.vmdk"
+                   }
+               }
+           }
+       ]
+   }
+   ```
 
-    `MasterSecurityGroupId`
-    :   Specifies the control plane security group ID for registering temporary rules. Specify the `MasterSecurityGroupId` value from the output of the `CloudFormation` template for the security group and roles.
+   Copy the `SnapshotId` to register the image.
+8. Create a custom RHCOS AMI from the RHCOS snapshot by running the following command:
 
-    `VpcId`
-    :   Specifies the VPC that the created resources will belong to. Specify the `VpcId` value from the output of the `CloudFormation` template for the VPC.
+   ```terminal
+   $ aws ec2 register-image \
+      --region ${AWS_DEFAULT_REGION} \
+      --architecture x86_64 \
+      --description "rhcos-${RHCOS_VERSION}-x86_64-aws.x86_64" \
+      --ena-support \
+      --name "rhcos-${RHCOS_VERSION}-x86_64-aws.x86_64" \
+      --virtualization-type hvm \
+      --root-device-name '/dev/xvda' \
+      --block-device-mappings 'DeviceName=/dev/xvda,Ebs={DeleteOnTermination=true,SnapshotId=<snapshot_ID>}'
+   ```
 
-    `BootstrapIgnitionLocation`
-    :   Specifies the location to fetch the bootstrap Ignition config file from. Specify the S3 bucket and file name in the form `s3://<bucket_name>/bootstrap.ign`.
+   where:
 
-    `AutoRegisterELB`
-    :   Specifies whether to register a network load balancer (NLB). Specify `yes` or `no`. If you specify `yes`, you must give a Lambda Amazon Resource Name (ARN) value.
+   `--architecture`
+   :   Specifies the RHCOS VMDK architecture type, such as `x86_64`, `aarch64`, `s390x`, or `ppc64le`.
 
-    `RegisterNlbIpTargetsLambdaArn`
-    :   Specifies the ARN for NLB IP target registration lambda group. Specify the `RegisterNlbIpTargetsLambda` value from the output of the `CloudFormation` template for DNS and load balancing. Use `arn:aws-us-gov` if deploying the cluster to an AWS `GovCloud` region.
+   `--description`
+   :   Specifies the `Description` from the imported snapshot.
 
-    `ExternalApiTargetGroupArn`
-    :   Specifies the ARN for external API load balancer target group. Specify the `ExternalApiTargetGroupArn` value from the output of the `CloudFormation` template for DNS and load balancing. Use `arn:aws-us-gov` if deploying the cluster to an AWS `GovCloud` region.
+   `--name`
+   :   Specifies the name of the RHCOS AMI.
 
-    `InternalApiTargetGroupArn`
-    :   Specifies the ARN for internal API load balancer target group. Specify the `InternalApiTargetGroupArn` value from the output of the `CloudFormation` template for DNS and load balancing. Use `arn:aws-us-gov` if deploying the cluster to an AWS `GovCloud` region.
+   `--block-device-mappings`
+   :   Specifies the `SnapshotID` from the imported snapshot.
 
-    `InternalServiceTargetGroupArn`
-    :   Specifies the ARN for internal service load balancer target group. Specify the `InternalServiceTargetGroupArn` value from the output of the `CloudFormation` template for DNS and load balancing. Use `arn:aws-us-gov` if deploying the cluster to an AWS `GovCloud` region.
-1.  Copy the template from the **`CloudFormation` template for the bootstrap machine** section and save it as a YAML file on your computer. This template describes the bootstrap machine that your cluster requires.
-1.  Optional: If you are deploying the cluster with a proxy, you must update the ignition in the template to add the  `ignition.config.proxy` fields. Additionally, If you have added the Amazon EC2, Elastic Load Balancing, and S3 VPC endpoints to your VPC, you must add these endpoints to the `noProxy` field.
-1.  Launch the `CloudFormation` template to create a stack of AWS resources that represent the bootstrap node:
+## Creating the bootstrap node in AWS {#installation-creating-aws-bootstrap_installing-aws-user-infra}
 
-    :::important
+To initialize the OpenShift Container Platform control plane, create the bootstrap node in Amazon Web Services (AWS) by uploading the Ignition config to an S3 bucket and launching the `CloudFormation` template.
 
-    You must enter the command on a single line.
+- Providing a location to serve the `bootstrap.ign` Ignition config file to your cluster. This file is in your installation directory. The provided `CloudFormation` template assumes that you serve the Ignition config files for your cluster from an S3 bucket. If you choose to serve the files from another location, you must change the templates.
+- Using the provided `CloudFormation` template and a custom parameter file to create a stack of AWS resources. The stack represents the bootstrap node that your OpenShift Container Platform installation requires.
 
-    :::
+> [!NOTE]
+> If you do not use the provided `CloudFormation` template to create your bootstrap node, you must review the provided information and manually create the infrastructure. If your cluster does not initialize correctly, you might have to contact Red Hat support with your installation logs.
 
-    ```terminal
-    $ aws cloudformation create-stack --stack-name <name> \
-         --template-body file://<template>.yaml \
-         --parameters file://<parameters>.json \
-         --capabilities CAPABILITY_NAMED_IAM
-    ```
+**Prerequisites**
 
-    where:
+- You created and configured DNS, load balancers, and listeners in AWS.
+- You created the security groups and roles required for your cluster in AWS.
 
-    `<name>`
-    :   Specifies the name for the `CloudFormation` stack, such as `cluster-bootstrap`. You need the name of this stack if you remove the cluster.
+**Procedure**
 
-    `<template>`
-    :   Specifies the relative path to and name of the `CloudFormation` template YAML file that you saved.
+1. Create the bucket by running the following command:
 
-    `<parameters>`
-    :   Specifies the relative path to and name of the `CloudFormation` parameters JSON file.
+   ```terminal
+   $ aws s3 mb s3://<cluster_name>-infra
+   ```
 
-    `CAPABILITY_NAMED_IAM`
-    :   You must explicitly declare this capability because the provided template creates some `AWS::IAM::Role` and `AWS::IAM::InstanceProfile` resources.
-    ```terminal title="Example output"
-    arn:aws:cloudformation:us-east-1:269333783861:stack/cluster-bootstrap/12944486-2add-11eb-9dee-12dace8e3a83
-    ```
-1.  Confirm that the template components exist:
-    ```terminal
-    $ aws cloudformation describe-stacks --stack-name <name>
-    ```
+   where `<cluster_name>-infra` is the bucket name. When creating the `install-config.yaml` file, replace `<cluster_name>` with the name specified for the cluster. You must use a presigned URL for your S3 bucket, instead of the `s3://` schema, if you are:
 
-    After the `StackStatus` displays `CREATE_COMPLETE`, the output displays values for the following parameters. You must give these parameter values to the other `CloudFormation` templates that you run to create your cluster:
+   - Deploying to a region that has endpoints that differ from the AWS SDK.
+   - Deploying a proxy.
+   - Providing your own custom endpoints.
+2. Upload the `bootstrap.ign` Ignition config file to the bucket by running the following command:
 
-    `BootstrapInstanceId`
-    :   The bootstrap Instance ID.
+   ```terminal
+   $ aws s3 cp <installation_directory>/bootstrap.ign s3://<cluster_name>-infra/bootstrap.ign
+   ```
 
-    `BootstrapPublicIp`
-    :   The bootstrap node public IP address.
+   where `<installation_directory>` is the path to the directory that you stored the installation files in.
+3. Verify that the file uploaded by running the following command:
 
-    `BootstrapPrivateIp`
-    :   The bootstrap node private IP address.
+   ```terminal
+   $ aws s3 ls s3://<cluster_name>-infra/
+   ```
 
-### CloudFormation template for the bootstrap machine {id="installation-cloudformation-bootstrap_installing-aws-user-infra"}
+   ```terminal {title="Example output"}
+   2019-04-03 16:15:16     314878 bootstrap.ign
+   ```
 
-The bootstrap machine `CloudFormation` template creates the temporary Amazon Web Services (AWS) resources that the OpenShift Container Platform bootstrap process requires to initialize the control plane. {._abstract}
+   > [!NOTE]
+   > The bootstrap Ignition config file does have secrets, such as X.509 keys. The following steps give basic security for the S3 bucket. To give additional security, you can enable an S3 bucket policy to allow only certain users, such as the OpenShift IAM user, to access objects that the bucket has. You can avoid S3 entirely and serve your bootstrap Ignition config file from any address that the bootstrap machine can reach.
+4. Create a JSON file that has the parameter values that the template requires:
 
-```yaml title="CloudFormation template for the bootstrap machine"
-```yaml
+   ```json
+   [
+     {
+       "ParameterKey": "InfrastructureName",
+       "ParameterValue": "mycluster-<random_string>"
+     },
+     {
+       "ParameterKey": "RhcosAmi",
+       "ParameterValue": "ami-<random_string>"
+     },
+     {
+       "ParameterKey": "AllowedBootstrapSshCidr",
+       "ParameterValue": "0.0.0.0/0"
+     },
+     {
+       "ParameterKey": "PublicSubnet",
+       "ParameterValue": "subnet-<random_string>"
+     },
+     {
+       "ParameterKey": "MasterSecurityGroupId",
+       "ParameterValue": "sg-<random_string>"
+     },
+     {
+       "ParameterKey": "VpcId",
+       "ParameterValue": "vpc-<random_string>"
+     },
+     {
+       "ParameterKey": "BootstrapIgnitionLocation",
+       "ParameterValue": "s3://<bucket_name>/bootstrap.ign"
+     },
+     {
+       "ParameterKey": "AutoRegisterELB",
+       "ParameterValue": "yes"
+     },
+     {
+       "ParameterKey": "RegisterNlbIpTargetsLambdaArn",
+       "ParameterValue": "arn:aws:lambda:<aws_region>:<account_number>:function:<dns_stack_name>-RegisterNlbIpTargets-<random_string>"
+     },
+     {
+       "ParameterKey": "ExternalApiTargetGroupArn",
+       "ParameterValue": "arn:aws:elasticloadbalancing:<aws_region>:<account_number>:targetgroup/<dns_stack_name>-Exter-<random_string>"
+     },
+     {
+       "ParameterKey": "InternalApiTargetGroupArn",
+       "ParameterValue": "arn:aws:elasticloadbalancing:<aws_region>:<account_number>:targetgroup/<dns_stack_name>-Inter-<random_string>"
+     },
+     {
+       "ParameterKey": "InternalServiceTargetGroupArn",
+       "ParameterValue": "arn:aws:elasticloadbalancing:<aws_region>:<account_number>:targetgroup/<dns_stack_name>-Inter-<random_string>"
+     }
+   ]
+   ```
+
+   where:
+
+   `InfrastructureName`
+   :   Specifies the name for your cluster infrastructure that your Ignition config files encode for the cluster. Specify the infrastructure name that you extracted from the Ignition config file metadata, which has the format `<cluster_name>-<random_string>`.
+
+   `RhcosAmi`
+   :   Specifies the current Red Hat Enterprise Linux CoreOS (RHCOS) AMI to use for the bootstrap node based on your selected architecture. Specify a valid `AWS::EC2::Image::Id` value.
+
+   `AllowedBootstrapSshCidr`
+   :   Specifies the CIDR block to allow SSH access to the bootstrap node. Specify a CIDR block in the format `x.x.x.x/16-24`.
+
+   `PublicSubnet`
+   :   Specifies the public subnet in your VPC to launch the bootstrap node into. Specify the `PublicSubnetIds` value from the output of the `CloudFormation` template for the VPC.
+
+   `MasterSecurityGroupId`
+   :   Specifies the control plane security group ID for registering temporary rules. Specify the `MasterSecurityGroupId` value from the output of the `CloudFormation` template for the security group and roles.
+
+   `VpcId`
+   :   Specifies the VPC that the created resources will belong to. Specify the `VpcId` value from the output of the `CloudFormation` template for the VPC.
+
+   `BootstrapIgnitionLocation`
+   :   Specifies the location to fetch the bootstrap Ignition config file from. Specify the S3 bucket and file name in the form `s3://<bucket_name>/bootstrap.ign`.
+
+   `AutoRegisterELB`
+   :   Specifies whether to register a network load balancer (NLB). Specify `yes` or `no`. If you specify `yes`, you must give a Lambda Amazon Resource Name (ARN) value.
+
+   `RegisterNlbIpTargetsLambdaArn`
+   :   Specifies the ARN for NLB IP target registration lambda group. Specify the `RegisterNlbIpTargetsLambda` value from the output of the `CloudFormation` template for DNS and load balancing. Use `arn:aws-us-gov` if deploying the cluster to an AWS `GovCloud` region.
+
+   `ExternalApiTargetGroupArn`
+   :   Specifies the ARN for external API load balancer target group. Specify the `ExternalApiTargetGroupArn` value from the output of the `CloudFormation` template for DNS and load balancing. Use `arn:aws-us-gov` if deploying the cluster to an AWS `GovCloud` region.
+
+   `InternalApiTargetGroupArn`
+   :   Specifies the ARN for internal API load balancer target group. Specify the `InternalApiTargetGroupArn` value from the output of the `CloudFormation` template for DNS and load balancing. Use `arn:aws-us-gov` if deploying the cluster to an AWS `GovCloud` region.
+
+   `InternalServiceTargetGroupArn`
+   :   Specifies the ARN for internal service load balancer target group. Specify the `InternalServiceTargetGroupArn` value from the output of the `CloudFormation` template for DNS and load balancing. Use `arn:aws-us-gov` if deploying the cluster to an AWS `GovCloud` region.
+5. Copy the template from the **`CloudFormation` template for the bootstrap machine** section and save it as a YAML file on your computer. This template describes the bootstrap machine that your cluster requires.
+6. Optional: If you are deploying the cluster with a proxy, you must update the ignition in the template to add the  `ignition.config.proxy` fields. Additionally, If you have added the Amazon EC2, Elastic Load Balancing, and S3 VPC endpoints to your VPC, you must add these endpoints to the `noProxy` field.
+7. Launch the `CloudFormation` template to create a stack of AWS resources that represent the bootstrap node:
+
+   > [!IMPORTANT]
+   > You must enter the command on a single line.
+
+   ```terminal
+   $ aws cloudformation create-stack --stack-name <name> \
+        --template-body file://<template>.yaml \
+        --parameters file://<parameters>.json \
+        --capabilities CAPABILITY_NAMED_IAM
+   ```
+
+   where:
+
+   `<name>`
+   :   Specifies the name for the `CloudFormation` stack, such as `cluster-bootstrap`. You need the name of this stack if you remove the cluster.
+
+   `<template>`
+   :   Specifies the relative path to and name of the `CloudFormation` template YAML file that you saved.
+
+   `<parameters>`
+   :   Specifies the relative path to and name of the `CloudFormation` parameters JSON file.
+
+   `CAPABILITY_NAMED_IAM`
+   :   You must explicitly declare this capability because the provided template creates some `AWS::IAM::Role` and `AWS::IAM::InstanceProfile` resources.
+
+   ```terminal {title="Example output"}
+   arn:aws:cloudformation:us-east-1:269333783861:stack/cluster-bootstrap/12944486-2add-11eb-9dee-12dace8e3a83
+   ```
+8. Confirm that the template components exist:
+
+   ```terminal
+   $ aws cloudformation describe-stacks --stack-name <name>
+   ```
+
+   After the `StackStatus` displays `CREATE_COMPLETE`, the output displays values for the following parameters. You must give these parameter values to the other `CloudFormation` templates that you run to create your cluster:
+
+   `BootstrapInstanceId`
+   :   The bootstrap Instance ID.
+
+   `BootstrapPublicIp`
+   :   The bootstrap node public IP address.
+
+   `BootstrapPrivateIp`
+   :   The bootstrap node private IP address.
+
+### CloudFormation template for the bootstrap machine {#installation-cloudformation-bootstrap_installing-aws-user-infra}
+
+The bootstrap machine `CloudFormation` template creates the temporary Amazon Web Services (AWS) resources that the OpenShift Container Platform bootstrap process requires to initialize the control plane.
+
+```yaml {title="CloudFormation template for the bootstrap machine"}
 AWSTemplateFormatVersion: 2010-09-09
 Description: Template for OpenShift Cluster Bootstrap (EC2 Instance, Security Groups and IAM)
 
@@ -3071,212 +3035,199 @@ Outputs:
   BootstrapPrivateIp:
     Description: The bootstrap node private IP address.
     Value: !GetAtt BootstrapInstance.PrivateIp
-````
-
-````
+```
 
 **Additional resources**
+{._additional-resources}
 
-*   [AWS `CloudFormation` console](https://console.aws.amazon.com/cloudformation/)
-*   [RHCOS Amazon Machine Images (AMIs) for the AWS infrastructure](/installing/installing_aws/upi/installing-aws-user-infra#installation-aws-user-infra-rhcos-ami_installing-aws-user-infra)
+- [AWS `CloudFormation` console](https://console.aws.amazon.com/cloudformation/)
+- [RHCOS Amazon Machine Images (AMIs) for the AWS infrastructure](/openshift-docs-markdown/installing/installing_aws/upi/installing-aws-user-infra#installation-aws-user-infra-rhcos-ami_installing-aws-user-infra)
 
-## Creating the control plane machines in AWS {id="installation-creating-aws-control-plane_installing-aws-user-infra"}
+## Creating the control plane machines in AWS {#installation-creating-aws-control-plane_installing-aws-user-infra}
 
-To run the OpenShift Container Platform control plane, create the three control plane machines in Amazon Web Services (AWS) by using the provided `CloudFormation` template and a custom parameter file. {._abstract}
+To run the OpenShift Container Platform control plane, create the three control plane machines in Amazon Web Services (AWS) by using the provided `CloudFormation` template and a custom parameter file.
 
-:::important
+> [!IMPORTANT]
+> The `CloudFormation` template creates a stack that represents three control plane nodes.
 
-The `CloudFormation` template creates a stack that represents three control plane nodes.
-
-:::
-
-:::note
-
-If you do not use the provided `CloudFormation` template to create your control plane nodes, you must review the provided information and manually create the infrastructure. If your cluster does not initialize correctly, you might have to contact Red Hat support with your installation logs.
-
-:::
+> [!NOTE]
+> If you do not use the provided `CloudFormation` template to create your control plane nodes, you must review the provided information and manually create the infrastructure. If your cluster does not initialize correctly, you might have to contact Red Hat support with your installation logs.
 
 **Prerequisites**
 
-*   You created the bootstrap machine.
+- You created the bootstrap machine.
 
 **Procedure**
 
-1.  Create a JSON file that has the parameter values that the template requires:
-    ```json
-    [
-      {
-        "ParameterKey": "InfrastructureName",
-        "ParameterValue": "mycluster-<random_string>"
-      },
-      {
-        "ParameterKey": "RhcosAmi",
-        "ParameterValue": "ami-<random_string>"
-      },
-      {
-        "ParameterKey": "AutoRegisterDNS",
-        "ParameterValue": "yes"
-      },
-      {
-        "ParameterKey": "PrivateHostedZoneId",
-        "ParameterValue": "<random_string>"
-      },
-      {
-        "ParameterKey": "PrivateHostedZoneName",
-        "ParameterValue": "mycluster.example.com"
-      },
-      {
-        "ParameterKey": "Master0Subnet",
-        "ParameterValue": "subnet-<random_string>"
-      },
-      {
-        "ParameterKey": "Master1Subnet",
-        "ParameterValue": "subnet-<random_string>"
-      },
-      {
-        "ParameterKey": "Master2Subnet",
-        "ParameterValue": "subnet-<random_string>"
-      },
-      {
-        "ParameterKey": "MasterSecurityGroupId",
-        "ParameterValue": "sg-<random_string>"
-      },
-      {
-        "ParameterKey": "IgnitionLocation",
-        "ParameterValue": "https://api-int.<cluster_name>.<domain_name>:22623/config/master"
-      },
-      {
-        "ParameterKey": "CertificateAuthorities",
-        "ParameterValue": "data:text/plain;charset=utf-8;base64,ABC...xYz=="
-      },
-      {
-        "ParameterKey": "MasterInstanceProfileName",
-        "ParameterValue": "<roles_stack>-MasterInstanceProfile-<random_string>"
-      },
-      {
-        "ParameterKey": "MasterInstanceType",
-        "ParameterValue": ""
-      },
-      {
-        "ParameterKey": "AutoRegisterELB",
-        "ParameterValue": "yes"
-      },
-      {
-        "ParameterKey": "RegisterNlbIpTargetsLambdaArn",
-        "ParameterValue": "arn:aws:lambda:<aws_region>:<account_number>:function:<dns_stack_name>-RegisterNlbIpTargets-<random_string>"
-      },
-      {
-        "ParameterKey": "ExternalApiTargetGroupArn",
-        "ParameterValue": "arn:aws:elasticloadbalancing:<aws_region>:<account_number>:targetgroup/<dns_stack_name>-Exter-<random_string>"
-      },
-      {
-        "ParameterKey": "InternalApiTargetGroupArn",
-        "ParameterValue": "arn:aws:elasticloadbalancing:<aws_region>:<account_number>:targetgroup/<dns_stack_name>-Inter-<random_string>"
-      },
-      {
-        "ParameterKey": "InternalServiceTargetGroupArn",
-        "ParameterValue": "arn:aws:elasticloadbalancing:<aws_region>:<account_number>:targetgroup/<dns_stack_name>-Inter-<random_string>"
-      }
-    ]
-    ```
+1. Create a JSON file that has the parameter values that the template requires:
 
-    where:
+   ```json
+   [
+     {
+       "ParameterKey": "InfrastructureName",
+       "ParameterValue": "mycluster-<random_string>"
+     },
+     {
+       "ParameterKey": "RhcosAmi",
+       "ParameterValue": "ami-<random_string>"
+     },
+     {
+       "ParameterKey": "AutoRegisterDNS",
+       "ParameterValue": "yes"
+     },
+     {
+       "ParameterKey": "PrivateHostedZoneId",
+       "ParameterValue": "<random_string>"
+     },
+     {
+       "ParameterKey": "PrivateHostedZoneName",
+       "ParameterValue": "mycluster.example.com"
+     },
+     {
+       "ParameterKey": "Master0Subnet",
+       "ParameterValue": "subnet-<random_string>"
+     },
+     {
+       "ParameterKey": "Master1Subnet",
+       "ParameterValue": "subnet-<random_string>"
+     },
+     {
+       "ParameterKey": "Master2Subnet",
+       "ParameterValue": "subnet-<random_string>"
+     },
+     {
+       "ParameterKey": "MasterSecurityGroupId",
+       "ParameterValue": "sg-<random_string>"
+     },
+     {
+       "ParameterKey": "IgnitionLocation",
+       "ParameterValue": "https://api-int.<cluster_name>.<domain_name>:22623/config/master"
+     },
+     {
+       "ParameterKey": "CertificateAuthorities",
+       "ParameterValue": "data:text/plain;charset=utf-8;base64,ABC...xYz=="
+     },
+     {
+       "ParameterKey": "MasterInstanceProfileName",
+       "ParameterValue": "<roles_stack>-MasterInstanceProfile-<random_string>"
+     },
+     {
+       "ParameterKey": "MasterInstanceType",
+       "ParameterValue": ""
+     },
+     {
+       "ParameterKey": "AutoRegisterELB",
+       "ParameterValue": "yes"
+     },
+     {
+       "ParameterKey": "RegisterNlbIpTargetsLambdaArn",
+       "ParameterValue": "arn:aws:lambda:<aws_region>:<account_number>:function:<dns_stack_name>-RegisterNlbIpTargets-<random_string>"
+     },
+     {
+       "ParameterKey": "ExternalApiTargetGroupArn",
+       "ParameterValue": "arn:aws:elasticloadbalancing:<aws_region>:<account_number>:targetgroup/<dns_stack_name>-Exter-<random_string>"
+     },
+     {
+       "ParameterKey": "InternalApiTargetGroupArn",
+       "ParameterValue": "arn:aws:elasticloadbalancing:<aws_region>:<account_number>:targetgroup/<dns_stack_name>-Inter-<random_string>"
+     },
+     {
+       "ParameterKey": "InternalServiceTargetGroupArn",
+       "ParameterValue": "arn:aws:elasticloadbalancing:<aws_region>:<account_number>:targetgroup/<dns_stack_name>-Inter-<random_string>"
+     }
+   ]
+   ```
 
-    `InfrastructureName`
-    :   Specifies the name for your cluster infrastructure that your Ignition config files encode for the cluster. Specify the infrastructure name that you extracted from the Ignition config file metadata, which has the format `<cluster_name>-<random_string>`.
+   where:
 
-    `RhcosAmi`
-    :   Specifies the current Red&#160;Hat Enterprise Linux CoreOS (RHCOS) AMI to use for the control plane machines based on your selected architecture. Specify an `AWS::EC2::Image::Id` value.
+   `InfrastructureName`
+   :   Specifies the name for your cluster infrastructure that your Ignition config files encode for the cluster. Specify the infrastructure name that you extracted from the Ignition config file metadata, which has the format `<cluster_name>-<random_string>`.
 
-    `AutoRegisterDNS`
-    :   Specifies whether to perform DNS etcd registration. Specify `yes` or `no`. If you specify `yes`, you must give hosted zone information.
+   `RhcosAmi`
+   :   Specifies the current Red Hat Enterprise Linux CoreOS (RHCOS) AMI to use for the control plane machines based on your selected architecture. Specify an `AWS::EC2::Image::Id` value.
 
-    `PrivateHostedZoneId`
-    :   Specifies the Route 53 private zone ID to register the etcd targets with. Specify the `PrivateHostedZoneId` value from the output of the `CloudFormation` template for DNS and load balancing.
+   `AutoRegisterDNS`
+   :   Specifies whether to perform DNS etcd registration. Specify `yes` or `no`. If you specify `yes`, you must give hosted zone information.
 
-    `PrivateHostedZoneName`
-    :   Specifies the Route 53 zone to register the targets with. Specify `<cluster_name>.<domain_name>` where `<domain_name>` is the Route 53 base domain that you used when you generated the `install-config.yaml` file for the cluster. Do not include the trailing period (.) that is displayed in the AWS console.
+   `PrivateHostedZoneId`
+   :   Specifies the Route 53 private zone ID to register the etcd targets with. Specify the `PrivateHostedZoneId` value from the output of the `CloudFormation` template for DNS and load balancing.
 
-    `Master0Subnet`, `Master1Subnet`, `Master2Subnet`
-    :   Specifies a subnet, preferably private, to launch the control plane machines on. Specify a subnet from the `PrivateSubnets` value from the output of the `CloudFormation` template for DNS and load balancing.
+   `PrivateHostedZoneName`
+   :   Specifies the Route 53 zone to register the targets with. Specify `<cluster_name>.<domain_name>` where `<domain_name>` is the Route 53 base domain that you used when you generated the `install-config.yaml` file for the cluster. Do not include the trailing period (.) that is displayed in the AWS console.
 
-    `MasterSecurityGroupId`
-    :   Specifies the control plane security group ID to associate with control plane nodes. Specify the `MasterSecurityGroupId` value from the output of the `CloudFormation` template for the security group and roles.
+   `Master0Subnet`, `Master1Subnet`, `Master2Subnet`
+   :   Specifies a subnet, preferably private, to launch the control plane machines on. Specify a subnet from the `PrivateSubnets` value from the output of the `CloudFormation` template for DNS and load balancing.
 
-    `IgnitionLocation`
-    :   Specifies the location to fetch the control plane Ignition config file from. Specify the generated Ignition config file location, `https://api-int.<cluster_name>.<domain_name>:22623/config/master`.
+   `MasterSecurityGroupId`
+   :   Specifies the control plane security group ID to associate with control plane nodes. Specify the `MasterSecurityGroupId` value from the output of the `CloudFormation` template for the security group and roles.
 
-    `CertificateAuthorities`
-    :   Specifies the base64 encoded certificate authority string to use. Specify the value from the `master.ign` file that is in the installation directory. This value is the long string with the format `data:text/plain;charset=utf-8;base64,ABC...xYz==`.
+   `IgnitionLocation`
+   :   Specifies the location to fetch the control plane Ignition config file from. Specify the generated Ignition config file location, `https://api-int.<cluster_name>.<domain_name>:22623/config/master`.
 
-    `MasterInstanceProfileName`
-    :   Specifies the IAM profile to associate with control plane nodes. Specify the `MasterInstanceProfile` parameter value from the output of the `CloudFormation` template for the security group and roles.
+   `CertificateAuthorities`
+   :   Specifies the base64 encoded certificate authority string to use. Specify the value from the `master.ign` file that is in the installation directory. This value is the long string with the format `data:text/plain;charset=utf-8;base64,ABC...xYz==`.
 
-    `MasterInstanceType`
-    :   Specifies the type of AWS instance to use for the control plane machines based on your selected architecture. The instance type value corresponds to the minimum resource requirements for control plane machines. For example `m6i.xlarge` is a type for AMD64
-        and `m6g.xlarge` is a type for ARM64.
+   `MasterInstanceProfileName`
+   :   Specifies the IAM profile to associate with control plane nodes. Specify the `MasterInstanceProfile` parameter value from the output of the `CloudFormation` template for the security group and roles.
 
-    `AutoRegisterELB`
-    :   Specifies whether to register a network load balancer (NLB). Specify `yes` or `no`. If you specify `yes`, you must give a Lambda Amazon Resource Name (ARN) value.
+   `MasterInstanceType`
+   :   Specifies the type of AWS instance to use for the control plane machines based on your selected architecture. The instance type value corresponds to the minimum resource requirements for control plane machines. For example `m6i.xlarge` is a type for AMD64 and `m6g.xlarge` is a type for ARM64.
 
-    `RegisterNlbIpTargetsLambdaArn`
-    :   Specifies the ARN for NLB IP target registration lambda group. Specify the `RegisterNlbIpTargetsLambda` value from the output of the `CloudFormation` template for DNS and load balancing. Use `arn:aws-us-gov` if deploying the cluster to an AWS `GovCloud` region.
+   `AutoRegisterELB`
+   :   Specifies whether to register a network load balancer (NLB). Specify `yes` or `no`. If you specify `yes`, you must give a Lambda Amazon Resource Name (ARN) value.
 
-    `ExternalApiTargetGroupArn`
-    :   Specifies the ARN for external API load balancer target group. Specify the `ExternalApiTargetGroupArn` value from the output of the `CloudFormation` template for DNS and load balancing. Use `arn:aws-us-gov` if deploying the cluster to an AWS `GovCloud` region.
+   `RegisterNlbIpTargetsLambdaArn`
+   :   Specifies the ARN for NLB IP target registration lambda group. Specify the `RegisterNlbIpTargetsLambda` value from the output of the `CloudFormation` template for DNS and load balancing. Use `arn:aws-us-gov` if deploying the cluster to an AWS `GovCloud` region.
 
-    `InternalApiTargetGroupArn`
-    :   Specifies the ARN for internal API load balancer target group. Specify the `InternalApiTargetGroupArn` value from the output of the `CloudFormation` template for DNS and load balancing. Use `arn:aws-us-gov` if deploying the cluster to an AWS `GovCloud` region.
+   `ExternalApiTargetGroupArn`
+   :   Specifies the ARN for external API load balancer target group. Specify the `ExternalApiTargetGroupArn` value from the output of the `CloudFormation` template for DNS and load balancing. Use `arn:aws-us-gov` if deploying the cluster to an AWS `GovCloud` region.
 
-    `InternalServiceTargetGroupArn`
-    :   Specifies the ARN for internal service load balancer target group. Specify the `InternalServiceTargetGroupArn` value from the output of the `CloudFormation` template for DNS and load balancing. Use `arn:aws-us-gov` if deploying the cluster to an AWS `GovCloud` region.
-1.  Copy the template from the **`CloudFormation` template for control plane machines** section and save it as a YAML file on your computer. This template describes the control plane machines that your cluster requires.
-1.  If you specified an `m5` instance type as the value for `MasterInstanceType`, add that instance type to the `MasterInstanceType.AllowedValues` parameter in the `CloudFormation` template.
-1.  Launch the `CloudFormation` template to create a stack of AWS resources that represent the control plane nodes:
+   `InternalApiTargetGroupArn`
+   :   Specifies the ARN for internal API load balancer target group. Specify the `InternalApiTargetGroupArn` value from the output of the `CloudFormation` template for DNS and load balancing. Use `arn:aws-us-gov` if deploying the cluster to an AWS `GovCloud` region.
 
-    :::important
+   `InternalServiceTargetGroupArn`
+   :   Specifies the ARN for internal service load balancer target group. Specify the `InternalServiceTargetGroupArn` value from the output of the `CloudFormation` template for DNS and load balancing. Use `arn:aws-us-gov` if deploying the cluster to an AWS `GovCloud` region.
+2. Copy the template from the **`CloudFormation` template for control plane machines** section and save it as a YAML file on your computer. This template describes the control plane machines that your cluster requires.
+3. If you specified an `m5` instance type as the value for `MasterInstanceType`, add that instance type to the `MasterInstanceType.AllowedValues` parameter in the `CloudFormation` template.
+4. Launch the `CloudFormation` template to create a stack of AWS resources that represent the control plane nodes:
 
-    You must enter the command on a single line.
+   > [!IMPORTANT]
+   > You must enter the command on a single line.
 
-    :::
+   ```terminal
+   $ aws cloudformation create-stack --stack-name <name> \
+        --template-body file://<template>.yaml \
+        --parameters file://<parameters>.json
+   ```
 
-    ```terminal
-    $ aws cloudformation create-stack --stack-name <name> \
-         --template-body file://<template>.yaml \
-         --parameters file://<parameters>.json
-    ```
+   where:
 
-    where:
+   `<name>`
+   :   Specifies the name for the `CloudFormation` stack, such as `cluster-control-plane`. You need the name of this stack if you remove the cluster.
 
-    `<name>`
-    :   Specifies the name for the `CloudFormation` stack, such as `cluster-control-plane`. You need the name of this stack if you remove the cluster.
+   `<template>`
+   :   Specifies the relative path to and name of the `CloudFormation` template YAML file that you saved.
 
-    `<template>`
-    :   Specifies the relative path to and name of the `CloudFormation` template YAML file that you saved.
+   `<parameters>`
+   :   Specifies the relative path to and name of the `CloudFormation` parameters JSON file.
 
-    `<parameters>`
-    :   Specifies the relative path to and name of the `CloudFormation` parameters JSON file.
-    ```terminal title="Example output"
-    arn:aws:cloudformation:us-east-1:269333783861:stack/cluster-control-plane/21c7e2b0-2ee2-11eb-c6f6-0aa34627df4b
-    ```
+   ```terminal {title="Example output"}
+   arn:aws:cloudformation:us-east-1:269333783861:stack/cluster-control-plane/21c7e2b0-2ee2-11eb-c6f6-0aa34627df4b
+   ```
 
-    :::note
+   > [!NOTE]
+   > The `CloudFormation` template creates a stack that represents three control plane nodes.
+5. Confirm that the template components exist:
 
-    The `CloudFormation` template creates a stack that represents three control plane nodes.
+   ```terminal
+   $ aws cloudformation describe-stacks --stack-name <name>
+   ```
 
-    :::
+### CloudFormation template for control plane machines {#installation-cloudformation-control-plane_installing-aws-user-infra}
 
-1.  Confirm that the template components exist:
-    ```terminal
-    $ aws cloudformation describe-stacks --stack-name <name>
-    ```
+The control plane `CloudFormation` template creates the Amazon Web Services (AWS) resources for the three control plane machines that manage your OpenShift Container Platform cluster.
 
-### CloudFormation template for control plane machines {id="installation-cloudformation-control-plane_installing-aws-user-infra"}
-
-The control plane `CloudFormation` template creates the Amazon Web Services (AWS) resources for the three control plane machines that manage your OpenShift Container Platform cluster. {._abstract}
-
-```yaml title="CloudFormation template for control plane machines"
-```yaml
+```yaml {title="CloudFormation template for control plane machines"}
 AWSTemplateFormatVersion: 2010-09-09
 Description: Template for OpenShift Cluster Node Launch (EC2 master instances)
 
@@ -3576,166 +3527,128 @@ Outputs:
         ",",
         [!GetAtt Master0.PrivateIp, !GetAtt Master1.PrivateIp, !GetAtt Master2.PrivateIp]
       ]
-````
-
-````
+```
 
 **Additional resources**
+{._additional-resources}
 
-*   [AWS `CloudFormation` console](https://console.aws.amazon.com/cloudformation/)
+- [AWS `CloudFormation` console](https://console.aws.amazon.com/cloudformation/)
 
-## Creating the worker nodes in AWS {id="installation-creating-aws-worker_installing-aws-user-infra"}
+## Creating the worker nodes in AWS {#installation-creating-aws-worker_installing-aws-user-infra}
 
-Create worker nodes in Amazon Web Services (AWS) for your cluster by using the provided `CloudFormation` template and a custom parameter file. {._abstract}
+Create worker nodes in Amazon Web Services (AWS) for your cluster by using the provided `CloudFormation` template and a custom parameter file.
 
-:::note
-
-If you are installing a three-node cluster, skip this step. A three-node cluster consists of three control plane machines, which also act as compute machines.
-
-:::
+> [!NOTE]
+> If you are installing a three-node cluster, skip this step. A three-node cluster consists of three control plane machines, which also act as compute machines.
 
 You can use the provided CloudFormation template and a custom parameter file to create a stack of AWS resources that represent a worker node.
 
-:::important
+> [!IMPORTANT]
+> The CloudFormation template creates a stack that represents one worker node. You must create a stack for each worker node.
 
-The CloudFormation template creates a stack that represents one worker node.
-You must create a stack for each worker node.
-
-:::
-
-:::note
-
-If you do not use the provided CloudFormation template to create your worker
-nodes, you must review the provided information and manually create
-the infrastructure. If your cluster does not initialize correctly, you might
-have to contact Red Hat support with your installation logs.
-
-:::
+> [!NOTE]
+> If you do not use the provided CloudFormation template to create your worker nodes, you must review the provided information and manually create the infrastructure. If your cluster does not initialize correctly, you might have to contact Red Hat support with your installation logs.
 
 **Prerequisites**
 
-*   You created the control plane machines.
+- You created the control plane machines.
 
 **Procedure**
 
-1.  Create a JSON file that contains the parameter values that the CloudFormation
-template requires:
-    ```json
-    [
-      {
-        "ParameterKey": "InfrastructureName", (1)
-        "ParameterValue": "mycluster-<random_string>" (2)
-      },
-      {
-        "ParameterKey": "RhcosAmi", (3)
-        "ParameterValue": "ami-<random_string>" (4)
-      },
-      {
-        "ParameterKey": "Subnet", (5)
-        "ParameterValue": "subnet-<random_string>" (6)
-      },
-      {
-        "ParameterKey": "WorkerSecurityGroupId", (7)
-        "ParameterValue": "sg-<random_string>" (8)
-      },
-      {
-        "ParameterKey": "IgnitionLocation", (9)
-        "ParameterValue": "https://api-int.<cluster_name>.<domain_name>:22623/config/worker" (10)
-      },
-      {
-        "ParameterKey": "CertificateAuthorities", (11)
-        "ParameterValue": "data:text/plain;charset=utf-8;base64,ABC...xYz==" (12)
-      },
-      {
-        "ParameterKey": "WorkerInstanceProfileName", (13)
-        "ParameterValue": "<roles_stack>-WorkerInstanceProfile-<random_string>" (14)
-      },
-      {
-        "ParameterKey": "WorkerInstanceType", (15)
-        "ParameterValue": "" (16)
-      }
-    ]
-    ```
-    1.  The name for your cluster infrastructure that is encoded in your Ignition
-    config files for the cluster.
-    1.  Specify the infrastructure name that you extracted from the Ignition config
-    file metadata, which has the format `<cluster-name>-<random-string>`.
-    1.  Current Red&#160;Hat Enterprise Linux CoreOS (RHCOS) AMI to use for the worker nodes based on your selected architecture.
-    1.  Specify an `AWS::EC2::Image::Id` value.
-    1.  A subnet, preferably private, to start the worker nodes on.
-    1.  Specify a subnet from the `PrivateSubnets` value from the output of the
-    CloudFormation template for DNS and load balancing.
-    1.  The worker security group ID to associate with worker nodes.
-    1.  Specify the `WorkerSecurityGroupId` value from the output of the
-    CloudFormation template for the security group and roles.
-    1.  The location to fetch the bootstrap Ignition config file from.
-    1.  Specify the generated Ignition config location,
-    `https://api-int.<cluster_name>.<domain_name>:22623/config/worker`.
-    1.  Base64 encoded certificate authority string to use.
-    1.  Specify the value from the `worker.ign` file that is in the installation
-    directory. This value is the long string with the format
-    `data:text/plain;charset=utf-8;base64,ABC...xYz==`.
-    1.  The IAM profile to associate with worker nodes.
-    1.  Specify the `WorkerInstanceProfile` parameter value from the output of
-    the CloudFormation template for the security group and roles.
-    1.  The type of AWS instance to use for the compute machines based on your selected architecture.
-    1.  The instance type value corresponds to the minimum resource requirements
-    for compute machines. For example `m6i.large` is a type for AMD64
-     and `m6g.large` is a type for ARM64.
+1. Create a JSON file that contains the parameter values that the CloudFormation template requires:
 
-1.  Copy the template from the **CloudFormation template for worker machines**
-section of this topic and save it as a YAML file on your computer. This template
-describes the networking objects and load balancers that your cluster requires.
-1.  Optional: If you specified an `m5` instance type as the value for `WorkerInstanceType`, add that instance type to the `WorkerInstanceType.AllowedValues` parameter in the CloudFormation template.
-1.  Optional: If you are deploying with an AWS Marketplace image, update the `Worker0.type.properties.ImageID` parameter with the AMI ID that you obtained from your subscription.
-1.  Use the CloudFormation template to create a stack of AWS resources that represent a worker node:
+   ```json
+   [
+     {
+       "ParameterKey": "InfrastructureName", (1)
+       "ParameterValue": "mycluster-<random_string>" (2)
+     },
+     {
+       "ParameterKey": "RhcosAmi", (3)
+       "ParameterValue": "ami-<random_string>" (4)
+     },
+     {
+       "ParameterKey": "Subnet", (5)
+       "ParameterValue": "subnet-<random_string>" (6)
+     },
+     {
+       "ParameterKey": "WorkerSecurityGroupId", (7)
+       "ParameterValue": "sg-<random_string>" (8)
+     },
+     {
+       "ParameterKey": "IgnitionLocation", (9)
+       "ParameterValue": "https://api-int.<cluster_name>.<domain_name>:22623/config/worker" (10)
+     },
+     {
+       "ParameterKey": "CertificateAuthorities", (11)
+       "ParameterValue": "data:text/plain;charset=utf-8;base64,ABC...xYz==" (12)
+     },
+     {
+       "ParameterKey": "WorkerInstanceProfileName", (13)
+       "ParameterValue": "<roles_stack>-WorkerInstanceProfile-<random_string>" (14)
+     },
+     {
+       "ParameterKey": "WorkerInstanceType", (15)
+       "ParameterValue": "" (16)
+     }
+   ]
+   ```
 
-    :::important
+   1. The name for your cluster infrastructure that is encoded in your Ignition config files for the cluster.
+   2. Specify the infrastructure name that you extracted from the Ignition config file metadata, which has the format `<cluster-name>-<random-string>`.
+   3. Current Red Hat Enterprise Linux CoreOS (RHCOS) AMI to use for the worker nodes based on your selected architecture.
+   4. Specify an `AWS::EC2::Image::Id` value.
+   5. A subnet, preferably private, to start the worker nodes on.
+   6. Specify a subnet from the `PrivateSubnets` value from the output of the CloudFormation template for DNS and load balancing.
+   7. The worker security group ID to associate with worker nodes.
+   8. Specify the `WorkerSecurityGroupId` value from the output of the CloudFormation template for the security group and roles.
+   9. The location to fetch the bootstrap Ignition config file from.
+   10. Specify the generated Ignition config location, `https://api-int.<cluster_name>.<domain_name>:22623/config/worker`.
+   11. Base64 encoded certificate authority string to use.
+   12. Specify the value from the `worker.ign` file that is in the installation directory. This value is the long string with the format `data:text/plain;charset=utf-8;base64,ABC...xYz==`.
+   13. The IAM profile to associate with worker nodes.
+   14. Specify the `WorkerInstanceProfile` parameter value from the output of the CloudFormation template for the security group and roles.
+   15. The type of AWS instance to use for the compute machines based on your selected architecture.
+   16. The instance type value corresponds to the minimum resource requirements for compute machines. For example `m6i.large` is a type for AMD64 and `m6g.large` is a type for ARM64.
+2. Copy the template from the **CloudFormation template for worker machines** section of this topic and save it as a YAML file on your computer. This template describes the networking objects and load balancers that your cluster requires.
+3. Optional: If you specified an `m5` instance type as the value for `WorkerInstanceType`, add that instance type to the `WorkerInstanceType.AllowedValues` parameter in the CloudFormation template.
+4. Optional: If you are deploying with an AWS Marketplace image, update the `Worker0.type.properties.ImageID` parameter with the AMI ID that you obtained from your subscription.
+5. Use the CloudFormation template to create a stack of AWS resources that represent a worker node:
 
-    You must enter the command on a single line.
+   > [!IMPORTANT]
+   > You must enter the command on a single line.
 
-    :::
+   ```terminal
+   $ aws cloudformation create-stack --stack-name <name> (1)
+        --template-body file://<template>.yaml \ (2)
+        --parameters file://<parameters>.json (3)
+   ```
 
-    ```terminal
-    $ aws cloudformation create-stack --stack-name <name> (1)
-         --template-body file://<template>.yaml \ (2)
-         --parameters file://<parameters>.json (3)
-    ```
-    1.  `<name>` is the name for the CloudFormation stack, such as `cluster-worker-1`.
-    You need the name of this stack if you remove the cluster.
-    1.  `<template>` is the relative path to and name of the CloudFormation template
-    YAML file that you saved.
-    1.  `<parameters>` is the relative path to and name of the CloudFormation
-    parameters JSON file.
-        ```terminal title="Example output"
-        arn:aws:cloudformation:us-east-1:269333783861:stack/cluster-worker-1/729ee301-1c2a-11eb-348f-sd9888c65b59
-        ```
+   1. `<name>` is the name for the CloudFormation stack, such as `cluster-worker-1`. You need the name of this stack if you remove the cluster.
+   2. `<template>` is the relative path to and name of the CloudFormation template YAML file that you saved.
+   3. `<parameters>` is the relative path to and name of the CloudFormation parameters JSON file.
 
-        :::note
+   ```terminal {title="Example output"}
+   arn:aws:cloudformation:us-east-1:269333783861:stack/cluster-worker-1/729ee301-1c2a-11eb-348f-sd9888c65b59
+   ```
 
-        The CloudFormation template creates a stack that represents one worker node.
+   > [!NOTE]
+   > The CloudFormation template creates a stack that represents one worker node.
+6. Confirm that the template components exist:
 
-        :::
+   ```terminal
+   $ aws cloudformation describe-stacks --stack-name <name>
+   ```
+7. Continue to create worker stacks until you have created enough worker machines for your cluster. You can create additional worker stacks by referencing the same template and parameter files and specifying a different stack name.
 
-1.  Confirm that the template components exist:
-    ```terminal
-    $ aws cloudformation describe-stacks --stack-name <name>
-    ```
-1.  Continue to create worker stacks until you have created enough worker machines for your cluster. You can create additional worker stacks by referencing the same template and parameter files and specifying a different stack name.
+   > [!IMPORTANT]
+   > You must create at least two worker machines, so you must create at least two stacks that use this CloudFormation template.
 
-    :::important
+### CloudFormation template for compute machines {#installation-cloudformation-worker_installing-aws-user-infra}
 
-    You must create at least two worker machines, so you must create at least
-    two stacks that use this CloudFormation template.
+The compute machine `CloudFormation` template creates the Amazon Web Services (AWS) resources for the worker nodes that run your OpenShift Container Platform application workloads.
 
-    :::
-
-### CloudFormation template for compute machines {id="installation-cloudformation-worker_installing-aws-user-infra"}
-
-The compute machine `CloudFormation` template creates the Amazon Web Services (AWS) resources for the worker nodes that run your OpenShift Container Platform application workloads. {._abstract}
-
-```yaml title="CloudFormation template for compute machines"
-```yaml
+```yaml {title="CloudFormation template for compute machines"}
 AWSTemplateFormatVersion: 2010-09-09
 Description: Template for OpenShift Cluster Node Launch (EC2 worker instance)
 
@@ -3842,600 +3755,599 @@ Outputs:
   PrivateIP:
     Description: The compute node private IP address.
     Value: !GetAtt Worker0.PrivateIp
-````
-
-````
+```
 
 **Additional resources**
+{._additional-resources}
 
-*   [AWS `CloudFormation` console](https://console.aws.amazon.com/cloudformation/)
+- [AWS `CloudFormation` console](https://console.aws.amazon.com/cloudformation/)
 
-### Creating the `CloudFormation` stack for compute machines {id="installation-aws-creating-cloudformation-stack_installing-aws-user-infra"}
+### Creating the `CloudFormation` stack for compute machines {#installation-aws-creating-cloudformation-stack_installing-aws-user-infra}
 
-You can create a stack of Amazon Web Services (AWS) resources for the compute machines by using the provided `CloudFormation` template. {._abstract}
+You can create a stack of Amazon Web Services (AWS) resources for the compute machines by using the provided `CloudFormation` template.
 
-:::important
-
-When you use the `CloudFormation` template for the control plane machines, the template provisions all three control plane machines with a single stack; however, when you use the `CloudFormation` template to deploy the compute machines, you must create the number of stacks based on the number that you defined in the `install-config.yaml` file. You provision each stack once for each machine. To provision a new compute machine, you must change the stack name.
-
-:::
+> [!IMPORTANT]
+> When you use the `CloudFormation` template for the control plane machines, the template provisions all three control plane machines with a single stack; however, when you use the `CloudFormation` template to deploy the compute machines, you must create the number of stacks based on the number that you defined in the `install-config.yaml` file. You provision each stack once for each machine. To provision a new compute machine, you must change the stack name.
 
 **Procedure**
 
-*   To create the `CloudFormation` stack for compute machines, run the following command:
-    ```terminal
-    $ aws cloudformation create-stack --stack-name <name> \
-         --template-body file://<template>.yaml \
-         --parameters file://<parameters>.json
-    ```
+- To create the `CloudFormation` stack for compute machines, run the following command:
 
-    where:
+  ```terminal
+  $ aws cloudformation create-stack --stack-name <name> \
+       --template-body file://<template>.yaml \
+       --parameters file://<parameters>.json
+  ```
 
-    `<name>`
-    :   Specifies the `<name>` with the name for the `CloudFormation` stack, such as `cluster-worker-1`. You need the name of this stack if you remove the cluster.
+  where:
 
-    `<template>`
-    :   Specifies the relative path and the name of the `CloudFormation` template YAML file that you saved.
+  `<name>`
+  :   Specifies the `<name>` with the name for the `CloudFormation` stack, such as `cluster-worker-1`. You need the name of this stack if you remove the cluster.
 
-    `<parameters>`
-    :   Specifies the relative path and the name of the JSON file for the `CloudFormation` parameters.
-    ```terminal title="Example output"
-    arn:aws:cloudformation:us-east-1:269333783861:stack/cluster-worker-1/729ee301-1c2a-11eb-348f-sd9888c65b59
-    ```
+  `<template>`
+  :   Specifies the relative path and the name of the `CloudFormation` template YAML file that you saved.
 
-## Initializing the bootstrap sequence on Amazon Web Services (AWS) with user-provisioned infrastructure {id="installation-aws-user-infra-bootstrap_installing-aws-user-infra"}
+  `<parameters>`
+  :   Specifies the relative path and the name of the JSON file for the `CloudFormation` parameters.
 
-After creating all required infrastructure in AWS, you can start the bootstrap sequence that initializes the OpenShift Container Platform control plane. Run the installation program to monitor the bootstrap process until the control plane is ready. {._abstract}
+  ```terminal {title="Example output"}
+  arn:aws:cloudformation:us-east-1:269333783861:stack/cluster-worker-1/729ee301-1c2a-11eb-348f-sd9888c65b59
+  ```
+
+## Initializing the bootstrap sequence on Amazon Web Services (AWS) with user-provisioned infrastructure {#installation-aws-user-infra-bootstrap_installing-aws-user-infra}
+
+After creating all required infrastructure in AWS, you can start the bootstrap sequence that initializes the OpenShift Container Platform control plane. Run the installation program to monitor the bootstrap process until the control plane is ready.
 
 **Prerequisites**
 
-*   You created the worker nodes.
+- You created the worker nodes.
 
 **Procedure**
 
-1.  Change to the directory that has the installation program and start the bootstrap process that initializes the OpenShift Container Platform control plane:
-    ```terminal
-    $ ./openshift-install wait-for bootstrap-complete --dir <installation_directory>
-        --log-level=info
-    ```
-    *   For `<installation_directory>`, specify the path to the directory that you stored the installation files in.
-    *   To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
-        ```terminal title="Example output"
-        INFO Waiting up to 20m0s for the Kubernetes API at https://api.mycluster.example.com:6443...
-        INFO API v1.35.4 up
-        INFO Waiting up to 45m0s for bootstrapping to complete...
-        INFO It is now safe to remove the bootstrap resources
-        INFO Time elapsed: 1s
-        ```
+1. Change to the directory that has the installation program and start the bootstrap process that initializes the OpenShift Container Platform control plane:
 
-        If the command exits without a `FATAL` warning, your OpenShift Container Platform control plane has initialized.
+   ```terminal
+   $ ./openshift-install wait-for bootstrap-complete --dir <installation_directory>
+       --log-level=info
+   ```
 
-        :::note
+   - For `<installation_directory>`, specify the path to the directory that you stored the installation files in.
+   - To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
 
-        After the control plane initializes, it sets up the compute nodes and installs additional services in the form of Operators.
+     ```terminal {title="Example output"}
+     INFO Waiting up to 20m0s for the Kubernetes API at https://api.mycluster.example.com:6443...
+     INFO API v1.35.4 up
+     INFO Waiting up to 45m0s for bootstrapping to complete...
+     INFO It is now safe to remove the bootstrap resources
+     INFO Time elapsed: 1s
+     ```
 
-        :::
+     If the command exits without a `FATAL` warning, your OpenShift Container Platform control plane has initialized.
+
+     > [!NOTE]
+     > After the control plane initializes, it sets up the compute nodes and installs additional services in the form of Operators.
 
 **Additional resources**
+{._additional-resources}
 
-*   [Monitoring installation progress](/support/troubleshooting/troubleshooting-installations#monitoring-installation-progress_troubleshooting-installations)
-*   [Gathering bootstrap node diagnostic data](/support/troubleshooting/troubleshooting-installations#gathering-bootstrap-diagnostic-data_troubleshooting-installations)
-*   [AWS EC2 console](https://console.aws.amazon.com/ec2)
+- [Monitoring installation progress](/openshift-docs-markdown/support/troubleshooting/troubleshooting-installations#monitoring-installation-progress_troubleshooting-installations)
+- [Gathering bootstrap node diagnostic data](/openshift-docs-markdown/support/troubleshooting/troubleshooting-installations#gathering-bootstrap-diagnostic-data_troubleshooting-installations)
+- [AWS EC2 console](https://console.aws.amazon.com/ec2)
 
-## Logging in to the cluster by using the CLI {id="cli-logging-in-kubeadmin_installing-aws-user-infra"}
+## Logging in to the cluster by using the CLI {#cli-logging-in-kubeadmin_installing-aws-user-infra}
 
-To log in to your cluster as the default system user, export the `kubeconfig` file. This configuration enables the CLI to authenticate and connect to the specific API server created during OpenShift Container Platform installation. {._abstract}
+To log in to your cluster as the default system user, export the `kubeconfig` file. This configuration enables the CLI to authenticate and connect to the specific API server created during OpenShift Container Platform installation.
 
 The `kubeconfig` file is specific to a cluster and OpenShift Container Platform generates it during installation.
 
 **Prerequisites**
-*   You deployed an OpenShift Container Platform cluster.
 
-*   You installed the OpenShift CLI (`oc`).
+- You deployed an OpenShift Container Platform cluster.
+- You installed the OpenShift CLI (`oc`).
 
 **Procedure**
 
-1.  Export the `kubeadmin` credentials by running the following command:
-    ```terminal
-    $ export KUBECONFIG=<installation_directory>/auth/kubeconfig
-    ```
+1. Export the `kubeadmin` credentials by running the following command:
 
-    where:
+   ```terminal
+   $ export KUBECONFIG=<installation_directory>/auth/kubeconfig
+   ```
 
-    `<installation_directory>`
-    :   Specifies the path to the directory that stores the installation files.
+   where:
 
-1.  Verify you can run `oc` commands successfully using the exported configuration by running the following command:
-    ```terminal
-    $ oc whoami
-    ```
-    ```terminal title="Example output"
-    system:admin
-    ```
+   `<installation_directory>`
+   :   Specifies the path to the directory that stores the installation files.
+2. Verify you can run `oc` commands successfully using the exported configuration by running the following command:
+
+   ```terminal
+   $ oc whoami
+   ```
+
+   ```terminal {title="Example output"}
+   system:admin
+   ```
 
 **Next steps**
 
-*   "Customize your cluster"
-*   "Remote health reporting"
+- "Customize your cluster"
+- "Remote health reporting"
 
-## Approving the certificate signing requests for your machines {id="installation-approve-csrs_installing-aws-user-infra"}
+## Approving the certificate signing requests for your machines {#installation-approve-csrs_installing-aws-user-infra}
 
-To allow newly added machines to join your OpenShift Container Platform cluster, confirm that the cluster approves pending certificate signing requests (CSRs), or approve them yourself. Approve client requests first, then server requests. {._abstract}
-
-**Prerequisites**
-
-*   You added machines to your cluster.
-
-**Procedure**
-
-1.  Confirm that the cluster recognizes the machines:
-    ```terminal
-    $ oc get nodes
-    ```
-    ```terminal title="Example output"
-    NAME      STATUS    ROLES   AGE  VERSION
-    master-0  Ready     master  63m  v1.35.4
-    master-1  Ready     master  63m  v1.35.4
-    master-2  Ready     master  64m  v1.35.4
-    ```
-
-    The output lists all of the machines that you created.
-
-    :::note
-
-    The preceding output might not include the compute nodes until you approve some CSRs.
-
-    :::
-
-1.  Review the pending CSRs and ensure that you see the client requests with the `Pending` or `Approved` status for each machine that you added to the cluster:
-    ```terminal
-    $ oc get csr
-    ```
-    ```terminal title="Example output"
-    NAME        AGE     REQUESTOR                                                                   CONDITION
-    csr-8b2br   15m     system:serviceaccount:openshift-machine-config-operator:node-bootstrapper   Pending
-    csr-8vnps   15m     system:serviceaccount:openshift-machine-config-operator:node-bootstrapper   Pending
-    ...
-    ```
-
-    In this example, two machines are joining the cluster. You might see more approved CSRs in the list.
-
-1.  If the CSRs were not approved, after all of the pending CSRs for the machines you added are in `Pending` status, approve the CSRs for your cluster machines:
-
-    :::note
-
-    You must approve your CSRs within an hour of adding the machines to the cluster. If you do not approve them within an hour, the certificates rotate, and more than two certificates are present for each node. You must approve all of these certificates. After you approve the client CSR, the kubelet creates a secondary CSR for the serving certificate, which requires manual approval. The `machine-approver` then automatically approves later serving certificate renewal requests if the kubelet requests a new certificate with the same parameters.
-
-    :::
-
-    :::note
-
-    For clusters running on platforms that are not machine API enabled, such as bare metal and other user-provisioned infrastructure, you must implement a method of automatically approving the kubelet serving certificate requests (CSRs). If you do not approve a request, the `oc exec`, `oc rsh`, and `oc logs` commands cannot succeed, because the API server requires a serving certificate when it connects to the kubelet. Any operation that contacts the kubelet endpoint requires this certificate approval to be in place. The method must watch for new CSRs, confirm that the `node-bootstrapper` service account in the `system:node` or `system:admin` groups submitted the CSR, and confirm the identity of the node.
-
-    :::
-
-    *   To approve them individually, run the following command for each valid CSR:
-        ```terminal
-        $ oc adm certificate approve <csr_name>
-        ```
-
-        where:
-
-        `<csr_name>`
-        :   Specifies the name of a CSR from the list of current CSRs.
-        *   To approve all pending CSRs, run the following command:
-        ```terminal
-        $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs --no-run-if-empty oc adm certificate approve
-        ```
-
-        :::note
-
-        Some Operators might not become available until you approve some CSRs. Each node submits two CSRs, so you might need to run the command to approve CSRs many times.
-
-        :::
-
-1.  After you approve your client requests, review the server requests for each machine that you added to the cluster:
-    ```terminal
-    $ oc get csr
-    ```
-    ```terminal title="Example output"
-    NAME        AGE     REQUESTOR                                                                   CONDITION
-    csr-bfd72   5m26s   system:node:ip-10-0-50-126.us-east-2.compute.internal                       Pending
-    csr-c57lv   5m26s   system:node:ip-10-0-95-157.us-east-2.compute.internal                       Pending
-    ...
-    ```
-1.  If the remaining CSRs are not approved, and are in the `Pending` status, approve the CSRs for your cluster machines:
-    *   To approve them individually, run the following command for each valid CSR:
-        ```terminal
-        $ oc adm certificate approve <csr_name>
-        ```
-
-        where:
-
-        `<csr_name>`
-        :   Specifies the name of a CSR from the list of current CSRs.
-        *   To approve all pending CSRs, run the following command:
-        ```terminal
-        $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs oc adm certificate approve
-        ```
-1.  After you approve all client and server CSRs, the machines have the `Ready` status. Verify this by running the following command:
-    ```terminal
-    $ oc get nodes
-    ```
-
-    ```terminal title="Example output"
-    NAME      STATUS    ROLES   AGE  VERSION
-    master-0  Ready     master  73m  v1.35.4
-    master-1  Ready     master  73m  v1.35.4
-    master-2  Ready     master  74m  v1.35.4
-    worker-0  Ready     worker  11m  v1.35.4
-    worker-1  Ready     worker  11m  v1.35.4
-    ```
-
-    :::note
-
-    You might need to wait a few minutes after approval of the server CSRs for the machines to change to the `Ready` status.
-
-    :::
-
-## Initial Operator configuration {id="installation-operators-config_installing-aws-user-infra"}
-
-After the control plane initializes, you must immediately configure some Operators so that they all become available. {._abstract}
+To allow newly added machines to join your OpenShift Container Platform cluster, confirm that the cluster approves pending certificate signing requests (CSRs), or approve them yourself. Approve client requests first, then server requests.
 
 **Prerequisites**
 
-*   Your control plane has initialized.
+- You added machines to your cluster.
 
 **Procedure**
 
-1.  Watch the cluster components come online:
-    ```terminal
-    $ watch -n5 oc get clusteroperators
-    ```
-    ```terminal title="Example output"
-    NAME                                       VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE
-    authentication                             {{ product_version }}.0    True        False         False      19m
-    baremetal                                  {{ product_version }}.0    True        False         False      37m
-    cloud-credential                           {{ product_version }}.0    True        False         False      40m
-    cluster-autoscaler                         {{ product_version }}.0    True        False         False      37m
-    config-operator                            {{ product_version }}.0    True        False         False      38m
-    console                                    {{ product_version }}.0    True        False         False      26m
-    csi-snapshot-controller                    {{ product_version }}.0    True        False         False      37m
-    dns                                        {{ product_version }}.0    True        False         False      37m
-    etcd                                       {{ product_version }}.0    True        False         False      36m
-    image-registry                             {{ product_version }}.0    True        False         False      31m
-    ingress                                    {{ product_version }}.0    True        False         False      30m
-    insights                                   {{ product_version }}.0    True        False         False      31m
-    kube-apiserver                             {{ product_version }}.0    True        False         False      26m
-    kube-controller-manager                    {{ product_version }}.0    True        False         False      36m
-    kube-scheduler                             {{ product_version }}.0    True        False         False      36m
-    kube-storage-version-migrator              {{ product_version }}.0    True        False         False      37m
-    machine-api                                {{ product_version }}.0    True        False         False      29m
-    machine-approver                           {{ product_version }}.0    True        False         False      37m
-    machine-config                             {{ product_version }}.0    True        False         False      36m
-    marketplace                                {{ product_version }}.0    True        False         False      37m
-    monitoring                                 {{ product_version }}.0    True        False         False      29m
-    network                                    {{ product_version }}.0    True        False         False      38m
-    node-tuning                                {{ product_version }}.0    True        False         False      37m
-    openshift-apiserver                        {{ product_version }}.0    True        False         False      32m
-    openshift-controller-manager               {{ product_version }}.0    True        False         False      30m
-    openshift-samples                          {{ product_version }}.0    True        False         False      32m
-    operator-lifecycle-manager                 {{ product_version }}.0    True        False         False      37m
-    operator-lifecycle-manager-catalog         {{ product_version }}.0    True        False         False      37m
-    operator-lifecycle-manager-packageserver   {{ product_version }}.0    True        False         False      32m
-    service-ca                                 {{ product_version }}.0    True        False         False      38m
-    storage                                    {{ product_version }}.0    True        False         False      37m
-    ```
-1.  Configure the Operators that are not available.
+1. Confirm that the cluster recognizes the machines:
 
-### Image registry storage configuration {id="installation-registry-storage-config_installing-aws-user-infra"}
+   ```terminal
+   $ oc get nodes
+   ```
+
+   ```terminal {title="Example output"}
+   NAME      STATUS    ROLES   AGE  VERSION
+   master-0  Ready     master  63m  v1.35.4
+   master-1  Ready     master  63m  v1.35.4
+   master-2  Ready     master  64m  v1.35.4
+   ```
+
+   The output lists all of the machines that you created.
+
+   > [!NOTE]
+   > The preceding output might not include the compute nodes until you approve some CSRs.
+2. Review the pending CSRs and ensure that you see the client requests with the `Pending` or `Approved` status for each machine that you added to the cluster:
+
+   ```terminal
+   $ oc get csr
+   ```
+
+   ```terminal {title="Example output"}
+   NAME        AGE     REQUESTOR                                                                   CONDITION
+   csr-8b2br   15m     system:serviceaccount:openshift-machine-config-operator:node-bootstrapper   Pending
+   csr-8vnps   15m     system:serviceaccount:openshift-machine-config-operator:node-bootstrapper   Pending
+   ...
+   ```
+
+   In this example, two machines are joining the cluster. You might see more approved CSRs in the list.
+3. If the CSRs were not approved, after all of the pending CSRs for the machines you added are in `Pending` status, approve the CSRs for your cluster machines:
+
+   > [!NOTE]
+   > You must approve your CSRs within an hour of adding the machines to the cluster. If you do not approve them within an hour, the certificates rotate, and more than two certificates are present for each node. You must approve all of these certificates. After you approve the client CSR, the kubelet creates a secondary CSR for the serving certificate, which requires manual approval. The `machine-approver` then automatically approves later serving certificate renewal requests if the kubelet requests a new certificate with the same parameters.
+
+   > [!NOTE]
+   > For clusters running on platforms that are not machine API enabled, such as bare metal and other user-provisioned infrastructure, you must implement a method of automatically approving the kubelet serving certificate requests (CSRs). If you do not approve a request, the `oc exec`, `oc rsh`, and `oc logs` commands cannot succeed, because the API server requires a serving certificate when it connects to the kubelet. Any operation that contacts the kubelet endpoint requires this certificate approval to be in place. The method must watch for new CSRs, confirm that the `node-bootstrapper` service account in the `system:node` or `system:admin` groups submitted the CSR, and confirm the identity of the node.
+
+   - To approve them individually, run the following command for each valid CSR:
+
+     ```terminal
+     $ oc adm certificate approve <csr_name>
+     ```
+
+     where:
+
+     `<csr_name>`
+     :   Specifies the name of a CSR from the list of current CSRs.
+   - To approve all pending CSRs, run the following command:
+
+     ```terminal
+     $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs --no-run-if-empty oc adm certificate approve
+     ```
+
+     > [!NOTE]
+     > Some Operators might not become available until you approve some CSRs. Each node submits two CSRs, so you might need to run the command to approve CSRs many times.
+4. After you approve your client requests, review the server requests for each machine that you added to the cluster:
+
+   ```terminal
+   $ oc get csr
+   ```
+
+   ```terminal {title="Example output"}
+   NAME        AGE     REQUESTOR                                                                   CONDITION
+   csr-bfd72   5m26s   system:node:ip-10-0-50-126.us-east-2.compute.internal                       Pending
+   csr-c57lv   5m26s   system:node:ip-10-0-95-157.us-east-2.compute.internal                       Pending
+   ...
+   ```
+5. If the remaining CSRs are not approved, and are in the `Pending` status, approve the CSRs for your cluster machines:
+
+   - To approve them individually, run the following command for each valid CSR:
+
+     ```terminal
+     $ oc adm certificate approve <csr_name>
+     ```
+
+     where:
+
+     `<csr_name>`
+     :   Specifies the name of a CSR from the list of current CSRs.
+   - To approve all pending CSRs, run the following command:
+
+     ```terminal
+     $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs oc adm certificate approve
+     ```
+6. After you approve all client and server CSRs, the machines have the `Ready` status. Verify this by running the following command:
+
+   ```terminal
+   $ oc get nodes
+   ```
+
+   ```terminal {title="Example output"}
+   NAME      STATUS    ROLES   AGE  VERSION
+   master-0  Ready     master  73m  v1.35.4
+   master-1  Ready     master  73m  v1.35.4
+   master-2  Ready     master  74m  v1.35.4
+   worker-0  Ready     worker  11m  v1.35.4
+   worker-1  Ready     worker  11m  v1.35.4
+   ```
+
+   > [!NOTE]
+   > You might need to wait a few minutes after approval of the server CSRs for the machines to change to the `Ready` status.
+
+## Initial Operator configuration {#installation-operators-config_installing-aws-user-infra}
+
+After the control plane initializes, you must immediately configure some Operators so that they all become available.
+
+**Prerequisites**
+
+- Your control plane has initialized.
+
+**Procedure**
+
+1. Watch the cluster components come online:
+
+   ```terminal
+   $ watch -n5 oc get clusteroperators
+   ```
+
+   ```terminal {title="Example output"}
+   NAME                                       VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE
+   authentication                             4.22.0    True        False         False      19m
+   baremetal                                  4.22.0    True        False         False      37m
+   cloud-credential                           4.22.0    True        False         False      40m
+   cluster-autoscaler                         4.22.0    True        False         False      37m
+   config-operator                            4.22.0    True        False         False      38m
+   console                                    4.22.0    True        False         False      26m
+   csi-snapshot-controller                    4.22.0    True        False         False      37m
+   dns                                        4.22.0    True        False         False      37m
+   etcd                                       4.22.0    True        False         False      36m
+   image-registry                             4.22.0    True        False         False      31m
+   ingress                                    4.22.0    True        False         False      30m
+   insights                                   4.22.0    True        False         False      31m
+   kube-apiserver                             4.22.0    True        False         False      26m
+   kube-controller-manager                    4.22.0    True        False         False      36m
+   kube-scheduler                             4.22.0    True        False         False      36m
+   kube-storage-version-migrator              4.22.0    True        False         False      37m
+   machine-api                                4.22.0    True        False         False      29m
+   machine-approver                           4.22.0    True        False         False      37m
+   machine-config                             4.22.0    True        False         False      36m
+   marketplace                                4.22.0    True        False         False      37m
+   monitoring                                 4.22.0    True        False         False      29m
+   network                                    4.22.0    True        False         False      38m
+   node-tuning                                4.22.0    True        False         False      37m
+   openshift-apiserver                        4.22.0    True        False         False      32m
+   openshift-controller-manager               4.22.0    True        False         False      30m
+   openshift-samples                          4.22.0    True        False         False      32m
+   operator-lifecycle-manager                 4.22.0    True        False         False      37m
+   operator-lifecycle-manager-catalog         4.22.0    True        False         False      37m
+   operator-lifecycle-manager-packageserver   4.22.0    True        False         False      32m
+   service-ca                                 4.22.0    True        False         False      38m
+   storage                                    4.22.0    True        False         False      37m
+   ```
+2. Configure the Operators that are not available.
+
+### Image registry storage configuration {#installation-registry-storage-config_installing-aws-user-infra}
 
 Amazon Web Services provides default storage, which means the Image Registry Operator is available after installation. However, if the Registry Operator cannot create an S3 bucket and automatically configure storage, you must manually configure registry storage.
-
- {._abstract}
 
 Configure a persistent volume, which is required for production clusters. Where applicable, you can configure an empty directory as the storage location for non-production clusters.
 
 You can also allow the image registry to use block storage types by using the `Recreate` rollout strategy during upgrades.
 
-#### Configuring registry storage for AWS with user-provisioned infrastructure {id="registry-configuring-storage-aws-user-infra_installing-aws-user-infra"}
+#### Configuring registry storage for AWS with user-provisioned infrastructure {#registry-configuring-storage-aws-user-infra_installing-aws-user-infra}
 
-If the Registry Operator cannot automatically create and configure an Amazon S3 bucket during installation, you must manually configure registry storage for your cluster. {._abstract}
+If the Registry Operator cannot automatically create and configure an Amazon S3 bucket during installation, you must manually configure registry storage for your cluster.
 
-:::warning
-
-To secure your registry images in Amazon Web Services (AWS), [block public access](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-publicaccessblockconfiguration.html) to the S3 bucket.
-
-:::
+> [!WARNING]
+> To secure your registry images in Amazon Web Services (AWS), [block public access](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-publicaccessblockconfiguration.html) to the S3 bucket.
 
 **Prerequisites**
 
-*   You have a cluster on AWS with user-provisioned infrastructure.
-*   For Amazon S3 storage, the secret must contain two keys:
-    *   `REGISTRY_STORAGE_S3_ACCESSKEY`
-    *   `REGISTRY_STORAGE_S3_SECRETKEY`
+- You have a cluster on AWS with user-provisioned infrastructure.
+- For Amazon S3 storage, the secret must contain two keys:
+
+  - `REGISTRY_STORAGE_S3_ACCESSKEY`
+  - `REGISTRY_STORAGE_S3_SECRETKEY`
 
 **Procedure**
 
-1.  Set up a [Bucket Lifecycle Policy](https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html#mpu-abort-incomplete-mpu-lifecycle-config) to cancel incomplete multipart uploads that are one day old.
-1.  Enter the storage configuration in `configs.imageregistry.operator.openshift.io/cluster`:
-    ```terminal
-    $ oc edit configs.imageregistry.operator.openshift.io/cluster
-    ```
-    ```yaml title="Example configuration"
-    apiVersion: imageregistry.operator.openshift.io/v1
-    kind: Config
-    metadata:
-      name: cluster
-    spec:
-      storage:
-        s3:
-          bucket: <bucket_name>
-          region: <region_name>
-    ```
+1. Set up a [Bucket Lifecycle Policy](https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html#mpu-abort-incomplete-mpu-lifecycle-config) to cancel incomplete multipart uploads that are one day old.
+2. Enter the storage configuration in `configs.imageregistry.operator.openshift.io/cluster`:
+
+   ```terminal
+   $ oc edit configs.imageregistry.operator.openshift.io/cluster
+   ```
+
+   ```yaml {title="Example configuration"}
+   apiVersion: imageregistry.operator.openshift.io/v1
+   kind: Config
+   metadata:
+     name: cluster
+   spec:
+     storage:
+       s3:
+         bucket: <bucket_name>
+         region: <region_name>
+   ```
 
 **Additional resources**
+{._additional-resources}
 
-*   [Configuring the registry for AWS user-provisioned infrastructure](/registry/configuring_registry_storage/configuring-registry-storage-aws-user-infrastructure#configuring-registry-storage-aws-user-infrastructure)
+- [Configuring the registry for AWS user-provisioned infrastructure](/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-aws-user-infrastructure#configuring-registry-storage-aws-user-infrastructure)
 
-#### Configuring storage for the image registry in non-production clusters {id="installation-registry-storage-non-production_installing-aws-user-infra"}
+#### Configuring storage for the image registry in non-production clusters {#installation-registry-storage-non-production_installing-aws-user-infra}
 
-You must configure storage for the Image Registry Operator. For non-production clusters, you can set the image registry to an empty directory, but you lose all images if you restart the registry. {._abstract}
+You must configure storage for the Image Registry Operator. For non-production clusters, you can set the image registry to an empty directory, but you lose all images if you restart the registry.
 
 **Procedure**
 
-*   To set the image registry storage to an empty directory:
-    ```terminal
-    $ oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{"spec":{"storage":{"emptyDir":{}}}}'
-    ```
+- To set the image registry storage to an empty directory:
 
-    :::warning
+  ```terminal
+  $ oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{"spec":{"storage":{"emptyDir":{}}}}'
+  ```
 
-    Configure this option only for non-production clusters.
+  > [!WARNING]
+  > Configure this option only for non-production clusters.
 
-    :::
+  If you run this command before the Image Registry Operator initializes its components, the `oc patch` command fails with the following error:
 
-    If you run this command before the Image Registry Operator initializes its components, the `oc patch` command fails with the following error:
-    ```terminal title="Example output"
-    Error from server (NotFound): configs.imageregistry.operator.openshift.io "cluster" not found
-    ```
+  ```terminal {title="Example output"}
+  Error from server (NotFound): configs.imageregistry.operator.openshift.io "cluster" not found
+  ```
 
-    Wait a few minutes and run the command again.
+  Wait a few minutes and run the command again.
 
-## Deleting the bootstrap resources {id="installation-aws-user-infra-delete-bootstrap_installing-aws-user-infra"}
+## Deleting the bootstrap resources {#installation-aws-user-infra-delete-bootstrap_installing-aws-user-infra}
 
-After completing the initial Operator configuration for your OpenShift Container Platform cluster, you can delete the bootstrap resources from AWS to free up capacity and reduce costs. {._abstract}
+After completing the initial Operator configuration for your OpenShift Container Platform cluster, you can delete the bootstrap resources from AWS to free up capacity and reduce costs.
 
 **Prerequisites**
 
-*   You completed the initial Operator configuration for your cluster.
+- You completed the initial Operator configuration for your cluster.
 
 **Procedure**
 
-1.  Delete the bootstrap resources. If you used the `CloudFormation` template,
-[delete its stack](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-console-delete-stack.html):
-    *   Delete the stack by using the AWS CLI:
-        ```terminal
-        $ aws cloudformation delete-stack --stack-name <name>
-        ```
+1. Delete the bootstrap resources. If you used the `CloudFormation` template, [delete its stack](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-console-delete-stack.html):
 
-        `<name>` is the name of your bootstrap stack.
-    *   Delete the stack by using the [AWS CloudFormation console](https://console.aws.amazon.com/cloudformation/).
+   - Delete the stack by using the AWS CLI:
 
-## Creating the Ingress DNS records {id="installation-create-ingress-dns-records_installing-aws-user-infra"}
+     ```terminal
+     $ aws cloudformation delete-stack --stack-name <name>
+     ```
 
-If you removed the DNS zone configuration during installation, you must manually create DNS records that point to the Ingress load balancer so that your OpenShift Container Platform cluster routes are reachable. {._abstract}
+     `<name>` is the name of your bootstrap stack.
+   - Delete the stack by using the [AWS CloudFormation console](https://console.aws.amazon.com/cloudformation/).
+
+## Creating the Ingress DNS records {#installation-create-ingress-dns-records_installing-aws-user-infra}
+
+If you removed the DNS zone configuration during installation, you must manually create DNS records that point to the Ingress load balancer so that your OpenShift Container Platform cluster routes are reachable.
 
 You can create either a wildcard record or specific records. While the following procedure uses A records, you can use other record types that you require, such as CNAME or alias.
 
 **Prerequisites**
 
-*   You deployed an OpenShift Container Platform cluster on Amazon Web Services (AWS) that uses infrastructure that you provisioned.
-*   You installed the OpenShift CLI (`oc`).
-*   You installed the `jq` package.
-*   You downloaded the AWS CLI and installed it on your computer. See
-[Install the AWS CLI Using the Bundled Installer (Linux, macOS, or Unix)](https://docs.aws.amazon.com/cli/latest/userguide/install-bundle.html).
+- You deployed an OpenShift Container Platform cluster on Amazon Web Services (AWS) that uses infrastructure that you provisioned.
+- You installed the OpenShift CLI (`oc`).
+- You installed the `jq` package.
+- You downloaded the AWS CLI and installed it on your computer. See [Install the AWS CLI Using the Bundled Installer (Linux, macOS, or Unix)](https://docs.aws.amazon.com/cli/latest/userguide/install-bundle.html).
 
 **Procedure**
 
-1.  Find the routes to create.
-    *   To create a wildcard record, use `*.apps.<cluster_name>.<domain_name>`, where `<cluster_name>` is your cluster name, and `<domain_name>` is the Route 53 base domain for your OpenShift Container Platform cluster.
-    *   To create specific records, you must create a record for each route that your cluster uses, as shown in the output of the following command:
-        ```terminal
-        $ oc get --all-namespaces -o jsonpath='{range .items[*]}{range .status.ingress[*]}{.host}{"\n"}{end}{end}' routes
-        ```
-        ```terminal title="Example output"
-        oauth-openshift.apps.<cluster_name>.<domain_name>
-        console-openshift-console.apps.<cluster_name>.<domain_name>
-        downloads-openshift-console.apps.<cluster_name>.<domain_name>
-        alertmanager-main-openshift-monitoring.apps.<cluster_name>.<domain_name>
-        prometheus-k8s-openshift-monitoring.apps.<cluster_name>.<domain_name>
-        ```
-1.  Retrieve the Ingress Operator load balancer status and note the value of the external IP address that it uses, which the `EXTERNAL-IP` column displays:
-    ```terminal
-    $ oc -n openshift-ingress get service router-default
-    ```
-    ```terminal title="Example output"
-    NAME             TYPE           CLUSTER-IP      EXTERNAL-IP                            PORT(S)                      AGE
-    router-default   LoadBalancer   172.30.62.215   ab3...28.us-east-2.elb.amazonaws.com   80:31499/TCP,443:30693/TCP   5m
-    ```
-1.  Locate the hosted zone ID for the load balancer:
-    ```terminal
-    $ aws elb describe-load-balancers | jq -r '.LoadBalancerDescriptions[] | select(.DNSName == "<external_ip>").CanonicalHostedZoneNameID'
-    ```
+1. Find the routes to create.
 
-    For `<external_ip>`, specify the value of the external IP address of the Ingress Operator load balancer that you obtained.
-    ```terminal title="Example output"
-    Z3AADJGX6KTTL2
-    ```
+   - To create a wildcard record, use `*.apps.<cluster_name>.<domain_name>`, where `<cluster_name>` is your cluster name, and `<domain_name>` is the Route 53 base domain for your OpenShift Container Platform cluster.
+   - To create specific records, you must create a record for each route that your cluster uses, as shown in the output of the following command:
 
-    The output of this command is the load balancer hosted zone ID.
-1.  Obtain the public hosted zone ID for your cluster’s domain:
-    ```terminal
-    $ aws route53 list-hosted-zones-by-name \
-                --dns-name "<domain_name>" \
-                --query 'HostedZones[? Config.PrivateZone != `true` && Name == `<domain_name>.`].Id'
-                --output text
-    ```
+     ```terminal
+     $ oc get --all-namespaces -o jsonpath='{range .items[*]}{range .status.ingress[*]}{.host}{"\n"}{end}{end}' routes
+     ```
 
-    For `<domain_name>`, specify the Route 53 base domain for your OpenShift Container Platform cluster.
-    ```terminal title="Example output"
-    /hostedzone/Z3URY6TWQ91KVV
-    ```
+     ```terminal {title="Example output"}
+     oauth-openshift.apps.<cluster_name>.<domain_name>
+     console-openshift-console.apps.<cluster_name>.<domain_name>
+     downloads-openshift-console.apps.<cluster_name>.<domain_name>
+     alertmanager-main-openshift-monitoring.apps.<cluster_name>.<domain_name>
+     prometheus-k8s-openshift-monitoring.apps.<cluster_name>.<domain_name>
+     ```
+2. Retrieve the Ingress Operator load balancer status and note the value of the external IP address that it uses, which the `EXTERNAL-IP` column displays:
 
-    The command output displays the public hosted zone ID for your domain. In this example, it is `Z3URY6TWQ91KVV`.
-1.  Add the alias records to your private zone:
-    ```terminal
-    $ aws route53 change-resource-record-sets --hosted-zone-id "<private_hosted_zone_id>" --change-batch '{
-    >   "Changes": [
-    >     {
-    >       "Action": "CREATE",
-    >       "ResourceRecordSet": {
-    >         "Name": "\\052.apps.<cluster_domain>",
-    >         "Type": "A",
-    >         "AliasTarget":{
-    >           "HostedZoneId": "<hosted_zone_id>",
-    >           "DNSName": "<external_ip>.",
-    >           "EvaluateTargetHealth": false
-    >         }
-    >       }
-    >     }
-    >   ]
-    > }'
-    ```
+   ```terminal
+   $ oc -n openshift-ingress get service router-default
+   ```
 
-    where:
+   ```terminal {title="Example output"}
+   NAME             TYPE           CLUSTER-IP      EXTERNAL-IP                            PORT(S)                      AGE
+   router-default   LoadBalancer   172.30.62.215   ab3...28.us-east-2.elb.amazonaws.com   80:31499/TCP,443:30693/TCP   5m
+   ```
+3. Locate the hosted zone ID for the load balancer:
 
-    `<private_hosted_zone_id>`
-    :   Specifies the value from the output of the CloudFormation template for DNS and load balancing.
+   ```terminal
+   $ aws elb describe-load-balancers | jq -r '.LoadBalancerDescriptions[] | select(.DNSName == "<external_ip>").CanonicalHostedZoneNameID'
+   ```
 
-    `<cluster_domain>`
-    :   Specifies the domain or subdomain that you use with your OpenShift Container Platform cluster.
+   For `<external_ip>`, specify the value of the external IP address of the Ingress Operator load balancer that you obtained.
 
-    `<hosted_zone_id>`
-    :   Specifies the public hosted zone ID for the load balancer that you obtained.
+   ```terminal {title="Example output"}
+   Z3AADJGX6KTTL2
+   ```
 
-    `<external_ip>`
-    :   Specifies the value of the external IP address of the Ingress Operator load balancer. Ensure that you include the trailing period (`.`) in this parameter value.
+   The output of this command is the load balancer hosted zone ID.
+4. Obtain the public hosted zone ID for your cluster’s domain:
 
-1.  Add the records to your public zone:
-    ```terminal
-    $ aws route53 change-resource-record-sets --hosted-zone-id "<public_hosted_zone_id>"" --change-batch '{
-    >   "Changes": [
-    >     {
-    >       "Action": "CREATE",
-    >       "ResourceRecordSet": {
-    >         "Name": "\\052.apps.<cluster_domain>",
-    >         "Type": "A",
-    >         "AliasTarget":{
-    >           "HostedZoneId": "<hosted_zone_id>",
-    >           "DNSName": "<external_ip>.",
-    >           "EvaluateTargetHealth": false
-    >         }
-    >       }
-    >     }
-    >   ]
-    > }'
-    ```
+   ```terminal
+   $ aws route53 list-hosted-zones-by-name \
+               --dns-name "<domain_name>" \
+               --query 'HostedZones[? Config.PrivateZone != `true` && Name == `<domain_name>.`].Id'
+               --output text
+   ```
 
-    where:
+   For `<domain_name>`, specify the Route 53 base domain for your OpenShift Container Platform cluster.
 
-    `<public_hosted_zone_id>`
-    :   Specifies the public hosted zone for your domain.
+   ```terminal {title="Example output"}
+   /hostedzone/Z3URY6TWQ91KVV
+   ```
 
-    `<cluster_domain>`
-    :   Specifies the domain or subdomain that you use with your OpenShift Container Platform cluster.
+   The command output displays the public hosted zone ID for your domain. In this example, it is `Z3URY6TWQ91KVV`.
+5. Add the alias records to your private zone:
 
-    `<hosted_zone_id>`
-    :   Specifies the public hosted zone ID for the load balancer that you obtained.
+   ```terminal
+   $ aws route53 change-resource-record-sets --hosted-zone-id "<private_hosted_zone_id>" --change-batch '{
+   >   "Changes": [
+   >     {
+   >       "Action": "CREATE",
+   >       "ResourceRecordSet": {
+   >         "Name": "\\052.apps.<cluster_domain>",
+   >         "Type": "A",
+   >         "AliasTarget":{
+   >           "HostedZoneId": "<hosted_zone_id>",
+   >           "DNSName": "<external_ip>.",
+   >           "EvaluateTargetHealth": false
+   >         }
+   >       }
+   >     }
+   >   ]
+   > }'
+   ```
 
-    `<external_ip>`
-    :   Specifies the value of the external IP address of the Ingress Operator load balancer. Ensure that you include the trailing period (`.`) in this parameter value.
+   where:
 
-## Completing an Amazon Web Services (AWS) installation on user-provisioned infrastructure {id="installation-aws-user-infra-installation_installing-aws-user-infra"}
+   `<private_hosted_zone_id>`
+   :   Specifies the value from the output of the CloudFormation template for DNS and load balancing.
 
-To finish installing OpenShift Container Platform on user-provisioned AWS infrastructure, monitor the deployment until it completes successfully. {._abstract}
+   `<cluster_domain>`
+   :   Specifies the domain or subdomain that you use with your OpenShift Container Platform cluster.
+
+   `<hosted_zone_id>`
+   :   Specifies the public hosted zone ID for the load balancer that you obtained.
+
+   `<external_ip>`
+   :   Specifies the value of the external IP address of the Ingress Operator load balancer. Ensure that you include the trailing period (`.`) in this parameter value.
+6. Add the records to your public zone:
+
+   ```terminal
+   $ aws route53 change-resource-record-sets --hosted-zone-id "<public_hosted_zone_id>"" --change-batch '{
+   >   "Changes": [
+   >     {
+   >       "Action": "CREATE",
+   >       "ResourceRecordSet": {
+   >         "Name": "\\052.apps.<cluster_domain>",
+   >         "Type": "A",
+   >         "AliasTarget":{
+   >           "HostedZoneId": "<hosted_zone_id>",
+   >           "DNSName": "<external_ip>.",
+   >           "EvaluateTargetHealth": false
+   >         }
+   >       }
+   >     }
+   >   ]
+   > }'
+   ```
+
+   where:
+
+   `<public_hosted_zone_id>`
+   :   Specifies the public hosted zone for your domain.
+
+   `<cluster_domain>`
+   :   Specifies the domain or subdomain that you use with your OpenShift Container Platform cluster.
+
+   `<hosted_zone_id>`
+   :   Specifies the public hosted zone ID for the load balancer that you obtained.
+
+   `<external_ip>`
+   :   Specifies the value of the external IP address of the Ingress Operator load balancer. Ensure that you include the trailing period (`.`) in this parameter value.
+
+## Completing an Amazon Web Services (AWS) installation on user-provisioned infrastructure {#installation-aws-user-infra-installation_installing-aws-user-infra}
+
+To finish installing OpenShift Container Platform on user-provisioned AWS infrastructure, monitor the deployment until it completes successfully.
 
 **Prerequisites**
 
-*   You removed the bootstrap node for an OpenShift Container Platform cluster on user-provisioned AWS infrastructure.
-*   You installed the `oc` CLI.
+- You removed the bootstrap node for an OpenShift Container Platform cluster on user-provisioned AWS infrastructure.
+- You installed the `oc` CLI.
 
 **Procedure**
 
+- From the directory that has the installation program, complete the cluster installation:
 
-    *   From the directory that has the installation program, complete
+```terminal
+$ ./openshift-install --dir <installation_directory> wait-for install-complete
+```
 
-    the cluster installation:
-        ```terminal
-        $ ./openshift-install --dir <installation_directory> wait-for install-complete
-        ```
+For `<installation_directory>`, specify the path to the directory that you stored the installation files in.
 
-        For `<installation_directory>`, specify the path to the directory that you stored the installation files in.
-        ```terminal title="Example output"
-        INFO Waiting up to 40m0s for the cluster at https://api.mycluster.example.com:6443 to initialize...
-        INFO Waiting up to 10m0s for the openshift-console route to be created...
-        INFO Install complete!
-        INFO To access the cluster as the system:admin user when using 'oc', run 'export KUBECONFIG=/home/myuser/install_dir/auth/kubeconfig'
-        INFO Access the OpenShift web-console here: https://console-openshift-console.apps.mycluster.example.com
-        INFO Login to the console with user: "kubeadmin", and password: "password"
-        INFO Time elapsed: 1s
-        ```
+.Example output
 
-        :::important
+```terminal
+INFO Waiting up to 40m0s for the cluster at https://api.mycluster.example.com:6443 to initialize...
+INFO Waiting up to 10m0s for the openshift-console route to be created...
+INFO Install complete!
+INFO To access the cluster as the system:admin user when using 'oc', run 'export KUBECONFIG=/home/myuser/install_dir/auth/kubeconfig'
+INFO Access the OpenShift web-console here: https://console-openshift-console.apps.mycluster.example.com
+INFO Login to the console with user: "kubeadmin", and password: "password"
+INFO Time elapsed: 1s
+```
 
-        *   The Ignition config files that the installation program generates contain certificates that expire after 24 hours, which are then renewed at that time. If you shut down the cluster before renewing the certificates and later restart it after the 24 hours have elapsed, the cluster automatically recovers the expired certificates. The exception is that you must manually approve the pending `node-bootstrapper` certificate signing requests (CSRs) to recover kubelet certificates. See the documentation for _Recovering from expired control plane certificates_ for more information.
-        *   Use Ignition config files within 12 hours after the installation program generates them because the 24-hour certificate rotates from 16 to 22 hours after you install the cluster. By using the Ignition config files within 12 hours, you can avoid installation failure if the certificate update runs during installation.
+> [!IMPORTANT]
+> - The Ignition config files that the installation program generates contain certificates that expire after 24 hours, which are then renewed at that time. If you shut down the cluster before renewing the certificates and later restart it after the 24 hours have elapsed, the cluster automatically recovers the expired certificates. The exception is that you must manually approve the pending `node-bootstrapper` certificate signing requests (CSRs) to recover kubelet certificates. See the documentation for *Recovering from expired control plane certificates* for more information.
+> - Use Ignition config files within 12 hours after the installation program generates them because the 24-hour certificate rotates from 16 to 22 hours after you install the cluster. By using the Ignition config files within 12 hours, you can avoid installation failure if the certificate update runs during installation.
 
-        :::
+## Logging in to the cluster by using the web console {#logging-in-by-using-the-web-console_installing-aws-user-infra}
 
-## Logging in to the cluster by using the web console {id="logging-in-by-using-the-web-console_installing-aws-user-infra"}
-
-To verify that your cluster deployed successfully and access its features, log in to the OpenShift Container Platform web console as the `kubeadmin` user. {._abstract}
+To verify that your cluster deployed successfully and access its features, log in to the OpenShift Container Platform web console as the `kubeadmin` user.
 
 **Prerequisites**
 
-*   You have access to the installation host.
-*   You completed a cluster installation and all cluster Operators are available.
+- You have access to the installation host.
+- You completed a cluster installation and all cluster Operators are available.
 
 **Procedure**
 
-1.  Obtain the password for the `kubeadmin` user from the `kubeadmin-password` file on the installation host:
-    ```terminal
-    $ cat <installation_directory>/auth/kubeadmin-password
-    ```
+1. Obtain the password for the `kubeadmin` user from the `kubeadmin-password` file on the installation host:
 
-    :::note
+   ```terminal
+   $ cat <installation_directory>/auth/kubeadmin-password
+   ```
 
-    Or, you can obtain the `kubeadmin` password from the `<installation_directory>/.openshift_install.log` log file on the installation host.
+   > [!NOTE]
+   > Or, you can obtain the `kubeadmin` password from the `<installation_directory>/.openshift_install.log` log file on the installation host.
+2. List the OpenShift Container Platform web console route:
 
-    :::
+   ```terminal
+   $ oc get routes -n openshift-console | grep 'console-openshift'
+   ```
 
-1.  List the OpenShift Container Platform web console route:
-    ```terminal
-    $ oc get routes -n openshift-console | grep 'console-openshift'
-    ```
+   > [!NOTE]
+   > Or, you can obtain the OpenShift Container Platform route from the `<installation_directory>/.openshift_install.log` log file on the installation host.
 
-    :::note
-
-    Or, you can obtain the OpenShift Container Platform route from the `<installation_directory>/.openshift_install.log` log file on the installation host.
-
-    :::
-
-    ```terminal title="Example output"
-    console     console-openshift-console.apps.<cluster_name>.<base_domain>            console     https   reencrypt/Redirect   None
-    ```
-1.  Navigate to the route detailed in the output of the preceding command in a web browser and log in as the `kubeadmin` user.
+   ```terminal {title="Example output"}
+   console     console-openshift-console.apps.<cluster_name>.<base_domain>            console     https   reencrypt/Redirect   None
+   ```
+3. Navigate to the route detailed in the output of the preceding command in a web browser and log in as the `kubeadmin` user.
 
 **Additional resources**
+{._additional-resources}
 
-*   [Accessing the web console](/web_console/web-console#web-console)
+- [Accessing the web console](/openshift-docs-markdown/web_console/web-console#web-console)
 
-## Additional resources {id="installing-aws-user-infra-additional-resources"}
+**Additional resources**
+{._additional-resources}
 
-*   [Working with stacks (AWS documentation)](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
-*   [Validating an installation](/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation)
-*   [Customizing your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations)
-*   [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
-*   [Removing cloud provider credentials](/post_installation_configuration/changing-cloud-credentials-configuration#manually-removing-cloud-creds_changing-cloud-credentials-configuration)
-````
+- [Working with stacks (AWS documentation)](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
+- [Validating an installation](/openshift-docs-markdown/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation)
+- [Customizing your cluster](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations)
+- [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
+- [Removing cloud provider credentials](/openshift-docs-markdown/post_installation_configuration/changing-cloud-credentials-configuration#manually-removing-cloud-creds_changing-cloud-credentials-configuration)

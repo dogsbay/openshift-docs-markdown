@@ -7,9 +7,7 @@ title: Working with projects
 A *project* allows a community of users to organize and manage their content in isolation from other communities.
 
 > [!NOTE]
-> Projects starting with `openshift-` and `kube-` are default projects. For more information, see "Default projects".
->
-> These projects host cluster components that run as pods and other infrastructure components. As such, OpenShift Container Platform does not allow you to create projects starting with `openshift-` or `kube-` using the `oc new-project` command. Cluster administrators can create these projects using the `oc adm new-project` command.
+> Projects starting with `openshift-` and `kube-` are default projects. For more information, see "Default projects". These projects host cluster components that run as pods and other infrastructure components. As such, OpenShift Container Platform does not allow you to create projects starting with `openshift-` or `kube-` using the `oc new-project` command. Cluster administrators can create these projects using the `oc adm new-project` command.
 
 > [!IMPORTANT]
 > Do not run workloads in or share access to default projects. Default projects are reserved for running core cluster components.
@@ -41,7 +39,7 @@ You can use the OpenShift Container Platform web console to create a project in 
 
 - If you are using the **Administrator** perspective:
 
-  1. Navigate to **Home** -> **Projects**.
+  1. Navigate to **Home** → **Projects**.
   2. Click **Create Project**:
 
      1. In the **Create Project** dialog box, enter a unique name, such as `myproject`, in the **Name** field.
@@ -53,7 +51,9 @@ You can use the OpenShift Container Platform web console to create a project in 
   4. Optional: If you have adequate permissions for a project, you can use the **Project Access** tab to provide or revoke `admin`, `edit`, and `view` privileges for the project.
 - If you are using the **Developer** perspective:
 
-  1. Click the **Project** menu and select **Create Project**: **Figure 1. Create project**
+  1. Click the **Project** menu and select **Create Project**:
+
+     **Figure 1. Create project**
 
      ![Web console image showing the Create project option](/openshift-docs-markdown/_assets/images/odc_create_project.png)
 
@@ -93,9 +93,7 @@ If your cluster administrator has provided you with the required permissions, yo
   ```
 
   > [!NOTE]
-  > The number of projects that you can create might be limited by the system administrator.
-  >
-  > After your limit is reached, you might have to delete an existing project to create a new one.
+  > The number of projects that you can create might be limited by the system administrator. After your limit is reached, you might have to delete an existing project to create a new one.
 
 ## Viewing a project by using the web console {#viewing-a-project-using-the-web-console_projects}
 
@@ -112,7 +110,7 @@ You can view the projects that you have access to by using the OpenShift Contain
 
 - If you are logged in as an administrator, complete the following steps:
 
-  1. Navigate to **Home** -> **Projects** in the navigation menu.
+  1. Navigate to **Home** → **Projects** in the navigation menu.
   2. Select a project to view. The **Overview** tab includes a dashboard for your project.
   3. Select the **Details** tab to view the project details.
   4. Select the **YAML** tab to view and update the YAML configuration for the project resource.
@@ -156,7 +154,9 @@ You can use the **Project** view in the **Developer** perspective to grant or re
 1. In the **Developer** perspective, navigate to the **Project** page.
 2. Select your project from the **Project** menu.
 3. Select the **Project Access** tab.
-4. Click **Add access** to add a new row of permissions to the default ones. **Figure 1. Project permissions**
+4. Click **Add access** to add a new row of permissions to the default ones.
+
+   **Figure 2. Project permissions**
 
    ![odc_project_permissions](/openshift-docs-markdown/_assets/images/odc_project_permissions.png)
 5. Enter the user name, click the **Select a role** drop-down list, and select an appropriate role.
@@ -171,7 +171,7 @@ You can use the **Project** view in the **Developer** perspective to grant or re
 
 ## Customizing the available cluster roles using the web console {#odc-customizing-available-cluster-roles-using-the-web-console_projects}
 
-In the **Developer** perspective of the web console, the **Project** -> **Project access** page enables a project administrator to grant roles to users in a project. By default, the available cluster roles that can be granted to users in a project are `admin`, `edit`, and `view`.
+In the **Developer** perspective of the web console, the **Project** → **Project access** page enables a project administrator to grant roles to users in a project. By default, the available cluster roles that can be granted to users in a project are `admin`, `edit`, and `view`.
 
 As a cluster administrator, you can define which cluster roles are available in the **Project access** page for all projects cluster-wide. You can specify the available roles by customizing the `spec.customization.projectAccess.availableClusterRoles` object in the `Console` configuration resource.
 
@@ -181,7 +181,7 @@ As a cluster administrator, you can define which cluster roles are available in 
 
 **Procedure**
 
-1. In the **Administrator** perspective, navigate to **Administration** -> **Cluster settings**.
+1. In the **Administrator** perspective, navigate to **Administration** → **Cluster settings**.
 2. Click the **Configuration** tab.
 3. From the **Configuration resource** list, select **Console `operator.openshift.io`**.
 4. Navigate to the **YAML** tab to view and edit the YAML code.
@@ -237,7 +237,7 @@ You can review the status of your project by using the web console.
 
 **Procedure**
 
-1. Navigate to **Home** -> **Projects**.
+1. Navigate to **Home** → **Projects**.
 2. Select a project from the list.
 3. Review the project status in the **Overview** page.
 
@@ -278,7 +278,7 @@ You can delete a project by using the web console.
 
 - If you are using the **Administrator** perspective, complete the following steps:
 
-  1. Navigate to **Home** -> **Projects**.
+  1. Navigate to **Home** → **Projects**.
   2. Select a project from the list.
   3. Click the **Actions** drop-down menu for the project and select **Delete Project**.
 
@@ -317,6 +317,7 @@ You can delete a project by using the OpenShift CLI (`oc`).
 
   - Replace `<project_name>` with the name of the project that you want to delete.
 
-## Additional resources {#additional-resources_projects}
+**Additional resources**
+{._additional-resources}
 
 - [Default projects](/openshift-docs-markdown/authentication/using-rbac#rbac-default-projects_using-rbac)

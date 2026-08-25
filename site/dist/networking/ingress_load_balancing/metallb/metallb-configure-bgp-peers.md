@@ -420,7 +420,8 @@ The following high-level steps demonstrate how to expose a service through a net
    $ oc exec -n openshift-frr-k8s <frr_k8s_pod> -c frr -- vtysh -c "show bgp vrf <vrf_name> ipv4"
    ```
 
-## Additional resources {#additional-resources_configure-metallb-bgp-peers}
+**Additional resources**
+{._additional-resources}
 
 - [About virtual routing and forwarding](/openshift-docs-markdown/networking/multiple_networks/about-virtual-routing-and-forwarding#cnf-about-virtual-routing-and-forwarding_about-virtual-routing-and-forwarding)
 - [Example: Network interface with a VRF instance node network configuration policy](/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#virt-example-host-vrf_k8s-nmstate-updating-node-network-config)
@@ -520,6 +521,7 @@ spec:
 >
 > If you use this parameter, you cannot specify a value in the `spec.bgp.routers.neighbors.address` parameter.
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring services to use MetalLB](/openshift-docs-markdown/networking/ingress_load_balancing/metallb/metallb-configure-services#metallb-configure-services)

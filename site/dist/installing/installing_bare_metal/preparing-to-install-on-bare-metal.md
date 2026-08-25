@@ -30,20 +30,20 @@ The clusters have the following characteristics:
 
 You can install a cluster on bare-metal infrastructure that is provisioned by the OpenShift Container Platform installation program, by using the following method:
 
-***Installing an installer-provisioned cluster on bare metal***
+**Installing an installer-provisioned cluster on bare metal**
 :   You can install OpenShift Container Platform on bare metal by using installer provisioning.
 
 ## Installing a cluster on user-provisioned infrastructure {#choosing-a-method-to-install-ocp-on-bare-metal-user-provisioned}
 
 You can install a cluster on bare-metal infrastructure that you provision, by using one of the following methods:
 
-***Installing a user-provisioned cluster on bare metal***
+**Installing a user-provisioned cluster on bare metal**
 :   You can install OpenShift Container Platform on bare-metal infrastructure that you provision. For a cluster that contains user-provisioned infrastructure, you must deploy all of the required machines.
 
-***Installing a user-provisioned bare-metal cluster with network customizations***
+**Installing a user-provisioned bare-metal cluster with network customizations**
 :   You can install a bare-metal cluster on user-provisioned infrastructure with network-customizations. By customizing your network configuration, your cluster can coexist with existing IP address allocations in your environment and integrate with existing MTU and VXLAN configurations. Most of the network customizations must be applied at the installation stage.
 
-***Installing a user-provisioned bare-metal cluster on a restricted network***
+**Installing a user-provisioned bare-metal cluster on a restricted network**
 :   You can install a user-provisioned bare-metal cluster on a restricted or disconnected network by using a mirror registry. You can also use this installation method to ensure that your clusters only use container images that satisfy your organizational controls on external content.
 
 ## Bare-metal cluster installation requirements for OpenShift Virtualization {#virt-planning-bare-metal-cluster-for-ocp-virt_preparing-to-install-on-bare-metal}
@@ -92,7 +92,8 @@ An OpenShift Container Platform cluster can be deployed on a bond interface with
 - Installer-provisioned infrastructure installation
 - User-provisioned infrastructure installation
 
-## Additional resources {#additional-resources_preparing-to-install-on-bare-metal}
+**Additional resources**
+{._additional-resources}
 
 - [OpenShift Container Platform installation and update processes](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)
 - [Selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing)

@@ -116,7 +116,7 @@ When configuring the proxy in the `install-config.yaml` file, add these endpoint
 
 You must provide a suitable VPC and subnets that allow communication to your machines.
 
-***Required VPC components***
+**Required VPC components**
 
 <table>
 <thead>
@@ -129,45 +129,52 @@ You must provide a suitable VPC and subnets that allow communication to your mac
 <tbody>
 <tr>
   <td>VPC</td>
-  <td><ul><li><code>AWS::EC2::VPC</code></li><li><code>AWS::EC2::VPCEndpoint</code></li></ul>2+</td>
-  <td>You must provide a public VPC for the cluster to use. The VPC uses an endpoint that references the route tables for each subnet to improve communication with the registry that is hosted in S3.</td>
+  <td><ul><li><code>AWS::EC2::VPC</code></li><li><code>AWS::EC2::VPCEndpoint</code></li></ul></td>
+  <td colspan="2">You must provide a public VPC for the cluster to use. The VPC uses an endpoint that references the route tables for each subnet to improve communication with the registry that is hosted in S3.</td>
+</tr>
+<tr>
   <td>Public subnets</td>
+  <td><ul><li><code>AWS::EC2::Subnet</code></li><li><code>AWS::EC2::SubnetNetworkAclAssociation</code></li></ul></td>
+  <td colspan="2">Your VPC must have public subnets for between 1 and 3 availability zones and associate them with appropriate Ingress rules.</td>
 </tr>
 <tr>
-  <td><ul><li><code>AWS::EC2::Subnet</code></li><li><code>AWS::EC2::SubnetNetworkAclAssociation</code></li></ul>2+</td>
-  <td>Your VPC must have public subnets for between 1 and 3 availability zones and associate them with appropriate Ingress rules.</td>
   <td>Internet gateway</td>
-  <td><ul><li><code>AWS::EC2::InternetGateway</code></li><li><code>AWS::EC2::VPCGatewayAttachment</code></li><li><code>AWS::EC2::RouteTable</code></li><li><code>AWS::EC2::Route</code></li><li><code>AWS::EC2::SubnetRouteTableAssociation</code></li><li><code>AWS::EC2::NatGateway</code></li><li><code>AWS::EC2::EIP</code></li></ul>2+</td>
+  <td><ul><li><code>AWS::EC2::InternetGateway</code></li><li><code>AWS::EC2::VPCGatewayAttachment</code></li><li><code>AWS::EC2::RouteTable</code></li><li><code>AWS::EC2::Route</code></li><li><code>AWS::EC2::SubnetRouteTableAssociation</code></li><li><code>AWS::EC2::NatGateway</code></li><li><code>AWS::EC2::EIP</code></li></ul></td>
+  <td colspan="2">You must have a public internet gateway, with public routes, attached to the VPC. In the provided templates, each public subnet has a NAT gateway with an EIP address. These NAT gateways allow cluster resources, like private subnet instances, to reach the internet and are not required for some restricted network or proxy scenarios.</td>
 </tr>
 <tr>
-  <td>You must have a public internet gateway, with public routes, attached to the VPC. In the provided templates, each public subnet has a NAT gateway with an EIP address. These NAT gateways allow cluster resources, like private subnet instances, to reach the internet and are not required for some restricted network or proxy scenarios. .7+</td>
-  <td>Network access control .7+</td>
-  <td>* <code>AWS::EC2::NetworkAcl</code> * <code>AWS::EC2::NetworkAclEntry</code></td>
+  <td rowspan="7">Network access control</td>
+  <td rowspan="7"><ul><li><code>AWS::EC2::NetworkAcl</code></li><li><code>AWS::EC2::NetworkAclEntry</code></li></ul></td>
   <td colspan="2">You must allow the VPC to access the following ports:</td>
 </tr>
 <tr>
-  <td>h</td>
-  <td>Port h</td>
-  <td>Reason</td>
-  <td><code>80</code></td>
+  <th>Port</th>
+  <th>Reason</th>
 </tr>
 <tr>
+  <td><code>80</code></td>
   <td>Inbound HTTP traffic</td>
+</tr>
+<tr>
   <td><code>443</code></td>
   <td>Inbound HTTPS traffic</td>
-  <td><code>22</code></td>
 </tr>
 <tr>
+  <td><code>22</code></td>
   <td>Inbound SSH traffic</td>
+</tr>
+<tr>
   <td><code>1024</code> - <code>65535</code></td>
   <td>Inbound ephemeral traffic</td>
-  <td><code>0</code> - <code>65535</code></td>
 </tr>
 <tr>
+  <td><code>0</code> - <code>65535</code></td>
   <td>Outbound ephemeral traffic</td>
+</tr>
+<tr>
   <td>Private subnets</td>
-  <td><ul><li><code>AWS::EC2::Subnet</code></li><li><code>AWS::EC2::RouteTable</code></li><li><code>AWS::EC2::SubnetRouteTableAssociation</code></li></ul>2+</td>
-  <td>Your VPC can have private subnets. The provided CloudFormation templates</td>
+  <td><ul><li><code>AWS::EC2::Subnet</code></li><li><code>AWS::EC2::RouteTable</code></li><li><code>AWS::EC2::SubnetRouteTableAssociation</code></li></ul></td>
+  <td colspan="2">Your VPC can have private subnets. The provided CloudFormation templates can create private subnets for between 1 and 3 availability zones.  If you use private subnets, you must provide appropriate routes and tables for them.</td>
 </tr>
 </tbody>
 </table>
@@ -199,6 +206,9 @@ If you deploy OpenShift Container Platform to an existing network, the isolation
 - TCP 22 ingress (SSH) is allowed to the entire network.
 - Control plane TCP 6443 ingress (Kubernetes API) is allowed to the entire network.
 - Control plane TCP 22623 ingress (MCS) is allowed to the entire network.
+
+**Additional resources**
+{._additional-resources}
 
 - [Create a VPC (Amazon Web Services documentation)](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html)
 - [VPC networking components (Amazon Web Services documentation)](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Networking.html)
@@ -301,6 +311,7 @@ You can customize the OpenShift Container Platform cluster you install on Amazon
    > The `install-config.yaml` file is consumed during the installation process. If you want to reuse the file, you must back it up now.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installation configuration parameters for AWS](/openshift-docs-markdown/installing/installing_aws/installation-config-parameters-aws#installation-config-parameters-aws)
 
@@ -308,7 +319,7 @@ You can customize the OpenShift Container Platform cluster you install on Amazon
 
 To ensure that your OpenShift Container Platform cluster runs as expected, each cluster machine must meet minimum CPU, memory, and storage requirements.
 
-***Minimum resource requirements***
+**Minimum resource requirements**
 
 <table>
 <thead>
@@ -317,45 +328,34 @@ To ensure that your OpenShift Container Platform cluster runs as expected, each 
   <th>Operating system</th>
   <th>vCPU</th>
   <th>Virtual RAM</th>
-
   <th>Storage</th>
+  <th>Input/Output Per Second (IOPS)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td>Input/Output Per Second (IOPS)</td>
   <td>Bootstrap</td>
   <td>RHCOS</td>
-
   <td>4</td>
   <td>16 GB</td>
   <td>100 GB</td>
   <td>300</td>
 </tr>
 <tr>
-
   <td>Control plane</td>
   <td>RHCOS</td>
-
   <td>4</td>
   <td>16 GB</td>
   <td>100 GB</td>
+  <td>300</td>
 </tr>
 <tr>
-  <td>300</td>
-
   <td>Compute</td>
-
   <td>RHCOS</td>
-
   <td>2</td>
   <td>8 GB</td>
   <td>100 GB</td>
   <td>300</td>
-
-</tr>
-<tr>
-
 </tr>
 </tbody>
 </table>
@@ -377,6 +377,7 @@ To ensure that your OpenShift Container Platform cluster runs as expected, each 
 If an instance type for your platform meets the minimum requirements for cluster machines, it is supported to use in OpenShift Container Platform.
 
 **Additional resources**
+{._additional-resources}
 
 - [Optimizing storage](/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 
@@ -461,6 +462,7 @@ platform:
 - The `platform` stanza applies to the infrastructure platform that hosts the cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installation configuration parameters for AWS](/openshift-docs-markdown/installing/installing_aws/installation-config-parameters-aws#installation-config-parameters-aws)
 
@@ -488,47 +490,42 @@ Production environments can deny direct access to the internet and instead have 
    proxy:
      httpProxy: http://<username>:<pswd>@<ip>:<port>
      httpsProxy: https://<username>:<pswd>@<ip>:<port>
+     noProxy: ec2.<aws_region>.amazonaws.com,elasticloadbalancing.<aws_region>.amazonaws.com,s3.<aws_region>.amazonaws.com
+   additionalTrustBundle: |
+       -----BEGIN CERTIFICATE-----
+       <MY_TRUSTED_CA_CERT>
+       -----END CERTIFICATE-----
+   additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle>
+   # ...
    ```
 
-{%- if not aws %} noProxy: example.com {% endif %} {% if aws %} noProxy: ec2.<aws_region>.amazonaws.com,elasticloadbalancing.<aws_region>.amazonaws.com,s3.<aws_region>.amazonaws.com {%- endif %} additionalTrustBundle: | -----BEGIN CERTIFICATE----- <MY_TRUSTED_CA_CERT> -----END CERTIFICATE----- additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle> # ... \`\`\`
+   where:
 
-````
-where:
+   `proxy.httpProxy`
+   :   Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be `http`.
 
-`proxy.httpProxy`
-:   Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be `http`.
+   `proxy.httpsProxy`
+   :   Specifies a proxy URL to use for creating HTTPS connections outside the cluster.
 
-`proxy.httpsProxy`
-:   Specifies a proxy URL to use for creating HTTPS connections outside the cluster.
+   `proxy.noProxy`
+   :   Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with `.` to match subdomains only. For example, `.y.com` matches `x.y.com`, but not `y.com`. Use `*` to bypass the proxy for all destinations. If you have added the Amazon `EC2`, `Elastic Load Balancing`, and `S3` VPC endpoints to your VPC, you must add these endpoints to the `noProxy` field.
 
-`proxy.noProxy`
-:   Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with `.` to match subdomains only. For example, `.y.com` matches `x.y.com`, but not `y.com`. Use `*` to bypass the proxy for all destinations.
-    If you have added the Amazon `EC2`, `Elastic Load Balancing`, and `S3` VPC endpoints to your VPC, you must add these endpoints to the `noProxy` field.
+   `additionalTrustBundle`
+   :   If you specify this value, the installation program generates a config map named `user-ca-bundle` in the `openshift-config` namespace to hold the additional CA certificates. If you specify `additionalTrustBundle` and at least one proxy setting, the `Proxy` object references the `user-ca-bundle` config map in the `trustedCA` field. The Cluster Network Operator then creates a `trusted-ca-bundle` config map that merges the contents specified for the `trustedCA` parameter with the RHCOS trust bundle. You must set the `additionalTrustBundle` field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.
 
-`additionalTrustBundle`
-:   If you specify this value, the installation program generates a config map named `user-ca-bundle` in the `openshift-config` namespace to hold the additional CA certificates. If you specify `additionalTrustBundle` and at least one proxy setting, the `Proxy` object references the `user-ca-bundle` config map in the `trustedCA` field. The Cluster Network Operator then creates a `trusted-ca-bundle` config map that merges the contents specified for the `trustedCA` parameter with the RHCOS trust bundle. You must set the `additionalTrustBundle` field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.
+   `additionalTrustBundlePolicy`
+   :   Specifies the policy that determines the configuration of the `Proxy` object to reference the `user-ca-bundle` config map in the `trustedCA` field. The allowed values are `Proxyonly` and `Always`. Use `Proxyonly` to reference the `user-ca-bundle` config map only when you configure an `http/https` proxy. Use `Always` to always reference the `user-ca-bundle` config map. The default value is `Proxyonly`. Optional parameter.
 
-`additionalTrustBundlePolicy`
-:   Specifies the policy that determines the configuration of the `Proxy` object to reference the `user-ca-bundle` config map in the `trustedCA` field. The allowed values are `Proxyonly` and `Always`. Use `Proxyonly` to reference the `user-ca-bundle` config map only when you configure an `http/https` proxy. Use `Always` to always reference the `user-ca-bundle` config map. The default value is `Proxyonly`. Optional parameter.
+   > [!NOTE]
+   > The installation program does not support the proxy `readinessEndpoints` field.
 
-:::note
-
-The installation program does not support the proxy `readinessEndpoints` field.
-
-:::
-
-:::note
-
-If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
-
-```terminal
-$ ./openshift-install wait-for install-complete --log-level debug
-```
-
-:::
-````
-
-1. Save the file and reference it when installing OpenShift Container Platform.
+   > [!NOTE]
+   > If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
+   >
+   > ```terminal
+   > $ ./openshift-install wait-for install-complete --log-level debug
+   > ```
+2. Save the file and reference it when installing OpenShift Container Platform.
 
    The installation program creates a cluster-wide proxy named `cluster` that uses the proxy settings in the `install-config.yaml` file. If you do not give proxy settings, the installation program still creates a `cluster` `Proxy` object, but it has a nil `spec`.
 
@@ -602,11 +599,17 @@ The Cloud Credential Operator (CCO) can be put into manual mode prior to install
    spec:
      providerSpec:
        apiVersion: cloudcredential.openshift.io/v1
+       kind: AWSProviderSpec
+       statementEntries:
+       - effect: Allow
+         action:
+         - iam:GetUser
+         - iam:GetUserPolicy
+         - iam:ListAccessKeys
+         resource: "*"
+     ...
    ```
-
-{%- if aws %} kind: AWSProviderSpec statementEntries: - effect: Allow action: - iam:GetUser - iam:GetUserPolicy - iam:ListAccessKeys resource: "\*" {% endif %} {% if azure or ash %} kind: AzureProviderSpec roleBindings: - role: Contributor {% endif %} {% if google_cloud_platform %} kind: GCPProviderSpec predefinedRoles: - roles/storage.admin - roles/iam.serviceAccountUser skipServiceCheck: true {%- endif %} ... \`\`\`
-
-1. Create YAML files for secrets in the `openshift-install` manifests directory that you generated previously. The secrets must be stored using the namespace and secret name defined in the `spec.secretRef` for each `CredentialsRequest` object.
+5. Create YAML files for secrets in the `openshift-install` manifests directory that you generated previously. The secrets must be stored using the namespace and secret name defined in the `spec.secretRef` for each `CredentialsRequest` object.
 
    ```yaml {title="Sample CredentialsRequest object with secrets"}
    apiVersion: cloudcredential.openshift.io/v1
@@ -618,17 +621,33 @@ The Cloud Credential Operator (CCO) can be put into manual mode prior to install
    spec:
      providerSpec:
        apiVersion: cloudcredential.openshift.io/v1
+       kind: AWSProviderSpec
+       statementEntries:
+       - effect: Allow
+         action:
+         - s3:CreateBucket
+         - s3:DeleteBucket
+         resource: "*"
+         ...
+     secretRef:
+       name: <component_secret>
+       namespace: <component_namespace>
+     ...
    ```
 
-{%- if aws %} kind: AWSProviderSpec statementEntries: - effect: Allow action: - s3:CreateBucket - s3:DeleteBucket resource: "\*" {% endif %} {% if ash or azure %} kind: AzureProviderSpec roleBindings: - role: Contributor {% endif %} {% if gcp %} kind: GCPProviderSpec predefinedRoles: - roles/iam.securityReviewer - roles/iam.roleViewer skipServiceCheck: true {%- endif %} ... secretRef: name: <component_secret> namespace: <component_namespace> ... `   `yaml title="Sample Secret object" apiVersion: v1 kind: Secret metadata: name: <component_secret> namespace: <component_namespace> {%- if aws %} data: aws_access_key_id: <base64_encoded_aws_access_key_id> aws_secret_access_key: <base64_encoded_aws_secret_access_key> {% endif %} {% if azure or ash %} data: azure_subscription_id: <base64_encoded_azure_subscription_id> azure_client_id: <base64_encoded_azure_client_id> azure_client_secret: <base64_encoded_azure_client_secret> azure_tenant_id: <base64_encoded_azure_tenant_id> azure_resource_prefix: <base64_encoded_azure_resource_prefix> azure_resourcegroup: <base64_encoded_azure_resourcegroup> azure_region: <base64_encoded_azure_region> {% endif %} {% if google_cloud_platform %} data: service_account.json: <base64_encoded_gcp_service_account_file> {%- endif %} \`\`\`
+   ```yaml {title="Sample Secret object"}
+   apiVersion: v1
+   kind: Secret
+   metadata:
+     name: <component_secret>
+     namespace: <component_namespace>
+   data:
+     aws_access_key_id: <base64_encoded_aws_access_key_id>
+     aws_secret_access_key: <base64_encoded_aws_secret_access_key>
+   ```
 
-```
-:::important
-
-Before upgrading a cluster that uses manually maintained credentials, you must ensure that the CCO is in an upgradeable state.
-
-:::
-```
+   > [!IMPORTANT]
+   > Before upgrading a cluster that uses manually maintained credentials, you must ensure that the CCO is in an upgradeable state.
 
 ### Configuring an AWS cluster to use short-term credentials {#installing-aws-with-short-term-creds_installing-restricted-networks-aws-installer-provisioned}
 
@@ -636,7 +655,7 @@ To install a cluster that is configured to use the AWS Security Token Service (S
 
 #### Configuring the Cloud Credential Operator utility {#cco-ccoctl-configuring_installing-restricted-networks-aws-installer-provisioned}
 
-{.\_abstract} To create and manage cloud credentials from outside of the cluster when the Cloud Credential Operator (CCO) is operating in manual mode, extract and prepare the CCO utility (`ccoctl`) binary.
+To create and manage cloud credentials from outside of the cluster when the Cloud Credential Operator (CCO) is operating in manual mode, extract and prepare the CCO utility (`ccoctl`) binary.
 
 > [!NOTE]
 > The `ccoctl` utility is a Linux binary that must run in a Linux environment.
@@ -645,7 +664,7 @@ To install a cluster that is configured to use the AWS Security Token Service (S
 
 - You have access to an OpenShift Container Platform account with cluster administrator access.
 - You have installed the OpenShift CLI (`oc`).
-- You have created an AWS account for the `ccoctl` utility to use with the following permissions: ***Required `iam` permissions***
+- You have created an AWS account for the `ccoctl` utility to use with the following permissions: **Required `iam` permissions**
 
   - `iam:CreateOpenIDConnectProvider`
   - `iam:CreateRole`
@@ -662,7 +681,7 @@ To install a cluster that is configured to use the AWS Security Token Service (S
   - `iam:TagOpenIDConnectProvider`
   - `iam:TagRole`
 
-  ***Required `s3` permissions***
+  **Required `s3` permissions**
 
   - `s3:CreateBucket`
   - `s3:DeleteBucket`
@@ -681,7 +700,7 @@ To install a cluster that is configured to use the AWS Security Token Service (S
   - `s3:PutObjectAcl`
   - `s3:PutObjectTagging`
 
-  ***Required `cloudfront` permissions***
+  **Required `cloudfront` permissions**
 
   - `cloudfront:ListCloudFrontOriginAccessIdentities`
   - `cloudfront:ListDistributions`
@@ -1054,22 +1073,18 @@ To deploy your OpenShift Container Platform cluster, you can initialize installa
 
 1. In the directory that contains the installation program, initialize the cluster deployment by running the following command:
 
-   ```terminal
-   $ ./openshift-install create cluster --dir <installation_directory> \
-       --log-level=info
-   ```
+```terminal
+$ ./openshift-install create cluster --dir <installation_directory> \
+    --log-level=info
+```
 
-   ```
-   *   For `<installation_directory>`, specify the
-   location of your customized `./install-config.yaml` file.
+- For `<installation_directory>`, specify the location of your customized `./install-config.yaml` file.
+- To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
 
-   *   To view different installation details, specify `warn`, `debug`, or
-   `error` instead of `info`.
-   ```
-2. Optional: Remove or disable the `AdministratorAccess` policy from the IAM account that you used to install the cluster.
+  1. Optional: Remove or disable the `AdministratorAccess` policy from the IAM account that you used to install the cluster.
 
-   > [!NOTE]
-   > The elevated permissions provided by the `AdministratorAccess` policy are required only during installation.
+     > [!NOTE]
+     > The elevated permissions provided by the `AdministratorAccess` policy are required only during installation.
 
 **Verification**
 
@@ -1191,9 +1206,10 @@ To use only trusted or locally available Operator catalogs, disable the default 
   ```
 
   > [!TIP]
-  > Or, you can use the web console to manage catalog sources. From the **Administration** -> **Cluster Settings** -> **Configuration** -> **OperatorHub** page, click the **Sources** tab, where you can create, update, delete, disable, and enable individual sources.
+  > Or, you can use the web console to manage catalog sources. From the **Administration** → **Cluster Settings** → **Configuration** → **OperatorHub** page, click the **Sources** tab, where you can create, update, delete, disable, and enable individual sources.
 
-## Additional resources {#additional-resources_installing-restricted-networks-aws-installer-provisioned}
+**Additional resources**
+{._additional-resources}
 
 - [Validating an installation](/openshift-docs-markdown/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation)
 - [Customize your cluster](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations)

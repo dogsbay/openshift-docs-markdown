@@ -18,7 +18,7 @@ Running a self validation checkup streamlines the process of running functional 
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, go to **Virtualization** -> **Checkups**.
+1. In the OpenShift Container Platform web console, go to **Virtualization** → **Checkups**.
 2. Go to the **Self validation** tab.
 3. Click **Run checkup**.
 4. Configure settings for the test that you want to run.

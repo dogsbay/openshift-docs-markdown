@@ -1,5 +1,5 @@
 ---
-title: StorageClass []
+title: StorageClass [storage.k8s.io/v1]
 ---
 
 # StorageClass \[storage.k8s.io/v1\] {#storageclass-storage-k8s-io-v1}
@@ -29,8 +29,8 @@ Required
 | `mountOptions` | `array (string)` | mountOptions controls the mountOptions for dynamically provisioned PersistentVolumes of this storage class. e.g. \["ro", "soft"\]. Not validated - mount of the PVs will simply fail if one is invalid. |
 | `parameters` | `object (string)` | parameters holds the parameters for the provisioner that should create volumes of this storage class. |
 | `provisioner` | `string` | provisioner indicates the type of the provisioner. |
-| `reclaimPolicy` | `string` | reclaimPolicy controls the reclaimPolicy for dynamically provisioned PersistentVolumes of this storage class. Defaults to Delete. Possible enum values:  - `"Delete"` means the volume will be deleted from Kubernetes on release from its claim. The volume plugin must support Deletion.  - `"Recycle"` means the volume will be recycled back into the pool of unbound persistent volumes on release from its claim. The volume plugin must support Recycling.  - `"Retain"` means the volume will be left in its current phase (Released) for manual reclamation by the administrator. The default policy is Retain. |
-| `volumeBindingMode` | `string` | volumeBindingMode indicates how PersistentVolumeClaims should be provisioned and bound.  When unset, VolumeBindingImmediate is used. This field is only honored by servers that enable the VolumeScheduling feature. Possible enum values:  - `"Immediate"` indicates that PersistentVolumeClaims should be immediately provisioned and bound. This is the default mode.  - `"WaitForFirstConsumer"` indicates that PersistentVolumeClaims should not be provisioned and bound until the first Pod is created that references the PeristentVolumeClaim. The volume provisioning and binding will occur during Pod scheduing. |
+| `reclaimPolicy` | `string` | reclaimPolicy controls the reclaimPolicy for dynamically provisioned PersistentVolumes of this storage class. Defaults to Delete.<br>Possible enum values: - `"Delete"` means the volume will be deleted from Kubernetes on release from its claim. The volume plugin must support Deletion. - `"Recycle"` means the volume will be recycled back into the pool of unbound persistent volumes on release from its claim. The volume plugin must support Recycling. - `"Retain"` means the volume will be left in its current phase (Released) for manual reclamation by the administrator. The default policy is Retain. |
+| `volumeBindingMode` | `string` | volumeBindingMode indicates how PersistentVolumeClaims should be provisioned and bound. When unset, VolumeBindingImmediate is used. This field is only honored by servers that enable the VolumeScheduling feature.<br>Possible enum values: - `"Immediate"` indicates that PersistentVolumeClaims should be immediately provisioned and bound. This is the default mode. - `"WaitForFirstConsumer"` indicates that PersistentVolumeClaims should not be provisioned and bound until the first Pod is created that references the PeristentVolumeClaim. The volume provisioning and binding will occur during Pod scheduing. |
 
 ## API endpoints {#_api_endpoints}
 
@@ -44,13 +44,13 @@ The following API endpoints are available:
 - `/apis/storage.k8s.io/v1/watch/storageclasses`
 
   - `GET`: watch individual changes to a list of StorageClass. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/storage.k8s.io/v1/storageclasses/{{ name }}`
+- `/apis/storage.k8s.io/v1/storageclasses/{name}`
 
   - `DELETE`: delete a StorageClass
   - `GET`: read the specified StorageClass
   - `PATCH`: partially update the specified StorageClass
   - `PUT`: replace the specified StorageClass
-- `/apis/storage.k8s.io/v1/watch/storageclasses/{{ name }}`
+- `/apis/storage.k8s.io/v1/watch/storageclasses/{name}`
 
   - `GET`: watch changes to an object of kind StorageClass. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
 
@@ -147,7 +147,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/storage.k8s.io/v1/storageclasses/{{ name }} {#_apisstoragek8siov1storageclasses_name}
+### /apis/storage.k8s.io/v1/storageclasses/{name} {#_apisstoragek8siov1storageclasses_name}
 
 **Global path parameters**
 
@@ -252,7 +252,7 @@ Description
 | 201 - Created | [`StorageClass`](/openshift-docs-markdown/rest_api/storage_apis/storageclass-storage-k8s-io-v1#storageclass-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/storage.k8s.io/v1/watch/storageclasses/{{ name }} {#_apisstoragek8siov1watchstorageclasses_name}
+### /apis/storage.k8s.io/v1/watch/storageclasses/{name} {#_apisstoragek8siov1watchstorageclasses_name}
 
 **Global path parameters**
 

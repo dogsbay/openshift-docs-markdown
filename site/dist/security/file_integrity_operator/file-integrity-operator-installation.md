@@ -19,7 +19,7 @@ Install the File Integrity Operator from the OpenShift Container Platform web co
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, navigate to **Ecosystem** -> **Software Catalog**.
+1. In the OpenShift Container Platform web console, navigate to **Ecosystem** → **Software Catalog**.
 2. Search for the File Integrity Operator, then click **Install**.
 3. Keep the default selection of **Installation mode** and **namespace** to ensure that the Operator will be installed to the `openshift-file-integrity` namespace.
 4. Click **Install**.
@@ -28,13 +28,13 @@ Install the File Integrity Operator from the OpenShift Container Platform web co
 
 To confirm that the installation is successful:
 
-1. Navigate to the **Ecosystem** -> **Installed Operators** page.
+1. Navigate to the **Ecosystem** → **Installed Operators** page.
 2. Check that the Operator is installed in the `openshift-file-integrity` namespace and its status is `Succeeded`.
 
 If the Operator is not installed successfully:
 
-1. Navigate to the **Ecosystem** -> **Installed Operators** page and inspect the `Status` column for any errors or failures.
-2. Navigate to the **Workloads** -> **Pods** page and check the logs in any pods in the `openshift-file-integrity` project that are reporting issues.
+1. Navigate to the **Ecosystem** → **Installed Operators** page and inspect the `Status` column for any errors or failures.
+2. Navigate to the **Workloads** → **Pods** page and check the logs in any pods in the `openshift-file-integrity` project that are reporting issues.
 
 ## Installing the File Integrity Operator using the CLI {#installing-file-integrity-operator-using-cli_file-integrity-operator-installation}
 
@@ -113,6 +113,7 @@ Install the File Integrity Operator from the OpenShift CLI (`oc`) by creating `N
    $ oc get deploy -n openshift-file-integrity
    ```
 
-## Additional resources {#additional-resources-installing-the-file-integrity-operator}
+**Additional resources**
+{._additional-resources}
 
 - [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)

@@ -19,7 +19,7 @@ You can use the `highBurst` profile to create and maintain a large number of vir
 - Apply the following patch to enable the `highBurst` tuning policy profile:
 
   ```terminal
-  $ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} \
+  $ oc patch hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv \
     --type=json -p='[{"op": "add", "path": "/spec/tuningPolicy", \
     "value": "highBurst"}]'
   ```
@@ -30,9 +30,8 @@ You can use the `highBurst` profile to create and maintain a large number of vir
 
   ```terminal
   $ oc get kubevirt.kubevirt.io/kubevirt-kubevirt-hyperconverged \
-    -n {{ CNVNamespace }} -o go-template --template='{{range $config, \
+    -n {CNVNamespace} -o go-template --template='{{range $config, \
     $value := .spec.configuration}} {{if eq $config "apiConfiguration" \
     "webhookConfiguration" "controllerConfiguration" "handlerConfiguration"}} \
+    {{"\n"}} {{$config}} = {{$value}} {{end}} {{end}} {{"\n"}}
   ```
-
-{{"\n"}} {{$config}} = {{$value}} {{end}} {{end}} {{"\n"}} \`\`\`

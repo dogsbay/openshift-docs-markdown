@@ -87,16 +87,17 @@ Whether or not you have to take action to upgrade your Operators depends on the 
 <table>
 <tbody>
 <tr>
+  <td></td>
   <td>Versioned channel</td>
   <td>"Stable" or "Preview" Channel</td>
-  <td><strong>Automatic</strong></td>
 </tr>
 <tr>
+  <td><strong>Automatic</strong></td>
   <td>Automatically updates the Operator for minor and patch releases for that version only. Will not automatically update to the next major version (that is, from version 2.0 to 3.0). Manual change to Operator subscription required to update to the next major version.</td>
   <td>Automatically updates Operator for all major, minor, and patch releases.</td>
-  <td><strong>Manual</strong></td>
 </tr>
 <tr>
+  <td><strong>Manual</strong></td>
   <td>Manual updates required for minor and patch releases for the specified version. Manual change to Operator subscription required to update to the next major version.</td>
   <td>Manual updates required for all major, minor, and patch releases.</td>
 </tr>
@@ -215,7 +216,7 @@ spec:
     type: Istiod
   telemetry:
     type: Istiod
-  version: v{{ MaistraVersion }}
+  version: v2.6
 ```
 
 <a name="ossm-upgrading-differences-behavior_ossm-upgrade"></a>**Behavioral changes**
@@ -267,12 +268,12 @@ To upgrade Red Hat OpenShift Service Mesh, you must update the version field of
    metadata:
      name: basic
    spec:
-     version: v{{ MaistraVersion }}
+     version: v2.6
    ```
 
    Alternatively, instead of using the command line, you can use the web console to edit the Service Mesh control plane. In the OpenShift Container Platform web console, click **Project** and select the project name you just entered.
 
-   1. Click **Ecosystem** -> **Installed Operators**.
+   1. Click **Ecosystem** → **Installed Operators**.
    2. Find your `ServiceMeshControlPlane` instance.
    3. Select **YAML view** and update text of the YAML file, as shown in the previous example.
    4. Click **Save**.
@@ -351,7 +352,7 @@ To upgrade Red Hat OpenShift Service Mesh, you must create an instance of Red 
 
    Alternatively, you can use the console to create the Service Mesh control plane. In the OpenShift Container Platform web console, click **Project**. Then, select the project name you just entered.
 
-   1. Click **Ecosystem** -> **Installed Operators**.
+   1. Click **Ecosystem** → **Installed Operators**.
    2. Click **Create ServiceMeshControlPlane**.
    3. Select **YAML view** and paste text of the YAML file you retrieved into the field. Check that the `apiVersion` field is set to `maistra.io/v2` and modify the `metadata.namespace` field to use the new namespace, for example `istio-system-upgrade`.
    4. Click **Create**.

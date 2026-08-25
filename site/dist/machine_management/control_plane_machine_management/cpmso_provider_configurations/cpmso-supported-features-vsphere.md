@@ -1,5 +1,5 @@
 ---
-title: Configuring {{ vmw_first }} features for control plane machines
+title: Configuring VMware vSphere features for control plane machines
 ---
 
 # Configuring VMware vSphere features for control plane machines {#cpmso-supported-features-vsphere}
@@ -168,7 +168,8 @@ By configuring data disks, you can attach disks to VMs and use them to store dat
    `spec.template.machines_v1beta1_machine_openshift_io.spec.providerSpec.value.dataDisks.sizeGiB`
    :   Specifies the size of the data disk in GiB. The maximum size is 16,384 GiB. end:controlplane[]\[\]
 
-## Additional resources {#additional-resources_cpmso-supported-features-vsphere}
+**Additional resources**
+{._additional-resources}
 
 - [Updating the control plane configuration](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-feat-config-update_cpmso-managing-machines)
 - [Control plane configuration options for VMware vSphere](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso_provider_configurations/cpmso-config-options-vsphere#cpmso-config-options-vsphere)

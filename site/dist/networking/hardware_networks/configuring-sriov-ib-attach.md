@@ -50,7 +50,7 @@ where:
 :   Optional parameter. The link state of virtual function (VF). Allowed values are `enable`, `disable` and `auto`.
 
 `capabilities`
-:   Optional parameter. The capabilities to configure for this network. You can specify ’{ "ips": true }'` to enable IP address support or ’{ "infinibandGUID": true }'` to enable IB Global Unique Identifier (GUID) support.
+:   Optional parameter. The capabilities to configure for this network. You can specify `'{ "ips": true }'` to enable IP address support or `'{ "infinibandGUID": true }'` to enable IB Global Unique Identifier (GUID) support.
 
 ### Creating a configuration for assignment of dual-stack IP addresses dynamically {#nw-multus-configure-dualstack-ip-address_configuring-sriov-ib-attach}
 
@@ -132,7 +132,7 @@ Ensure the periodic renewal of a DHCP lease throughout the lifetime of a contain
 
 The following table describes the configuration for static IP address assignment:
 
-`ipam`** static configuration object**
+**`ipam` static configuration object**
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -143,21 +143,21 @@ The following table describes the configuration for static IP address assignment
 
 The `addresses` array requires objects with the following fields:
 
-`ipam.addresses[]`** array**
+**`ipam.addresses[]` array**
 
 | Field | Type | Description |
 | --- | --- | --- |
 | `address` | `string` | An IP address and network prefix that you specify. For example, if you specify `10.10.21.10/24`, the secondary network gets assigned an IP address of `10.10.21.10` and the subnet mask of `255.255.255.0`. |
 | `gateway` | `string` | The default gateway to route egress network traffic to. |
 
-`ipam.routes[]`** array**
+**`ipam.routes[]` array**
 
 | Field | Type | Description |
 | --- | --- | --- |
 | `dst` | `string` | The IP address range in CIDR format, such as `192.168.17.0/24` or `0.0.0.0/0` for the default route. |
 | `gw` | `string` | The gateway that routes network traffic. |
 
-`ipam.dns`** object**
+**`ipam.dns` object**
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -224,7 +224,7 @@ The Whereabouts CNI plugin also supports overlapping IP address ranges and confi
 
 The following table describes the configuration objects for dynamic IP address assignment with Whereabouts:
 
-`ipam`** whereabouts configuration parameters**
+**`ipam` whereabouts configuration parameters**
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -286,10 +286,10 @@ where:
 
 ## Configuring SR-IOV additional network {#nw-sriov-network-attachment_configuring-sriov-ib-attach}
 
-You can configure an additional network that uses SR-IOV hardware by creating an `{{ rs }}` object. When you create an `{{ rs }}` object, the SR-IOV Network Operator automatically creates a `NetworkAttachmentDefinition` object.
+You can configure an additional network that uses SR-IOV hardware by creating an `SriovIBNetwork` object. When you create an `SriovIBNetwork` object, the SR-IOV Network Operator automatically creates a `NetworkAttachmentDefinition` object.
 
 > [!NOTE]
-> Do not modify or delete an `{{ rs }}` object if it is attached to any pods in a `running` state.
+> Do not modify or delete an `SriovIBNetwork` object if it is attached to any pods in a `running` state.
 
 **Prerequisites**
 
@@ -298,11 +298,11 @@ You can configure an additional network that uses SR-IOV hardware by creating an
 
 **Procedure**
 
-1. Create a `{{ rs }}` object, and then save the YAML in the `<name>.yaml` file, where `<name>` is a name for this additional network. The object specification might resemble the following example:
+1. Create a `SriovIBNetwork` object, and then save the YAML in the `<name>.yaml` file, where `<name>` is a name for this additional network. The object specification might resemble the following example:
 
    ```yaml
    apiVersion: sriovnetwork.openshift.io/v1
-   kind: {{ rs }}
+   kind: SriovIBNetwork
    metadata:
      name: attach1
      namespace: openshift-sriov-network-operator
@@ -328,7 +328,7 @@ You can configure an additional network that uses SR-IOV hardware by creating an
 
    `<name>`
    :   Specifies the name of the additional network.
-3. Optional: To confirm that the `NetworkAttachmentDefinition` object that is associated with the `{{ rs }}` object that you created in the previous step exists, enter the following command. Replace `<namespace>` with the `networkNamespace` value you specified in the `{{ rs }}` object.
+3. Optional: To confirm that the `NetworkAttachmentDefinition` object that is associated with the `SriovIBNetwork` object that you created in the previous step exists, enter the following command. Replace `<namespace>` with the `networkNamespace` value you specified in the `SriovIBNetwork` object.
 
    ```terminal
    $ oc get net-attach-def -n <namespace>
@@ -555,7 +555,8 @@ After adding a pod to an additional network, you can check that the MTU is avail
        }]"
    ```
 
-## Additional resources {#configuring-sriov-ib-attach-additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring an SR-IOV network device](/openshift-docs-markdown/networking/hardware_networks/configuring-sriov-device#configuring-sriov-device)
 - [Using CPU Manager](/openshift-docs-markdown/scalability_and_performance/using-cpu-manager#using-cpu-manager)

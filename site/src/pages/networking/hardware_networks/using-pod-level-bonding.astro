@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"using-pod-level-bonding","text":"Using pod-
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/hardware_networks/using-pod-level-bonding";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="using-pod-level-bonding" class="group scroll-mt-20">Using pod-level bonding<a href="#using-pod-level-bonding" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Bonding at the pod level is vital to enable workloads inside pods that require high availability and more throughput. With pod-level bonding, you can create a bond interface from multiple single root I/O virtualization (SR-IOV) virtual function interfaces in a kernel mode interface. The SR-IOV virtual functions are passed into the pod and attached to a kernel driver.</p>
+      <p class="_abstract">Bonding at the pod level is vital to enable workloads inside pods that require high availability and more throughput. With pod-level bonding, you can create a bond interface from multiple single root I/O virtualization (SR-IOV) virtual function interfaces in a kernel mode interface. The SR-IOV virtual functions are passed into the pod and attached to a kernel driver.</p>
       <p>One scenario where pod level bonding is required is creating a bond interface from multiple SR-IOV virtual functions on different physical functions. Creating a bond interface from two different physical functions on the host can be used to achieve high availability and throughput at pod level.</p>
       <p>Before you perform any tasks in the following documentation, ensure that you <a href="/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator">installed the SR-IOV Network Operator</a>.</p>
       <p>For guidance on tasks such as creating a SR-IOV network, network policies, network attachment definitions and pods, see  <a href="/openshift-docs-markdown/networking/hardware_networks/configuring-sriov-device#configuring-sriov-device">Configuring an SR-IOV network device</a>.</p>

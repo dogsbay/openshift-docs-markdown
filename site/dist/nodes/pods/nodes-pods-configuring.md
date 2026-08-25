@@ -92,13 +92,13 @@ A `PodDisruptionBudget` object’s configuration consists of the following key p
   - `minAvailable` is the number of pods must always be available, even during a disruption.
   - `maxUnavailable` is the number of pods can be unavailable during a disruption.
 
-> [!NOTE]
-> `Available` refers to the number of pods that has condition `Ready=True`. `Ready=True` refers to the pod that is able to serve requests and should be added to the load balancing pools of all matching services.
->
-> A `maxUnavailable` of `0%` or `0` or a `minAvailable` of `100%` or equal to the number of replicas is permitted but can block nodes from being drained.
+  > [!NOTE]
+  > `Available` refers to the number of pods that has condition `Ready=True`. `Ready=True` refers to the pod that is able to serve requests and should be added to the load balancing pools of all matching services.
+  >
+  > A `maxUnavailable` of `0%` or `0` or a `minAvailable` of `100%` or equal to the number of replicas is permitted but can block nodes from being drained.
 
-> [!WARNING]
-> The default setting for `maxUnavailable` is `1` for all the machine config pools in OpenShift Container Platform. It is recommended to not change this value and update one control plane node at a time. Do not change this value to `3` for the control plane pool.
+  > [!WARNING]
+  > The default setting for `maxUnavailable` is `1` for all the machine config pools in OpenShift Container Platform. It is recommended to not change this value and update one control plane node at a time. Do not change this value to `3` for the control plane pool.
 
 You can check for pod disruption budgets across all projects with the following:
 
@@ -234,6 +234,7 @@ AlwaysAllow
    With a PDB that has the `AlwaysAllow` unhealthy pod eviction policy set, you can now drain nodes and evict the pods for a malfunctioning application guarded by this PDB.
 
 **Additional resources**
+{._additional-resources}
 
 - [Enabling features using feature gates](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)
 - [Unhealthy Pod Eviction Policy (Kubernetes documentation)](https://kubernetes.io/docs/tasks/run-application/configure-pdb/#unhealthy-pod-eviction-policy)
@@ -289,7 +290,8 @@ You can reduce this delay by applying one of the following workarounds:
 
 For information, see [When using Persistent Volumes with high file counts in OpenShift, why do pods fail to start or take an excessive amount of time to achieve "Ready" state?](https://access.redhat.com/solutions/6221251).
 
-## Additional resources {#additional-resources_nodes-pods-configuring}
+**Additional resources**
+{._additional-resources}
 
 - [Enabling features using feature gates](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)
 - [Unhealthy Pod Eviction Policy (Kubernetes documentation)](https://kubernetes.io/docs/tasks/run-application/configure-pdb/#unhealthy-pod-eviction-policy)

@@ -45,7 +45,7 @@ Provisioner plugins automatically create storage resources on-demand by connecti
 <tr>
   <td>Amazon Elastic Block Store (Amazon EBS)</td>
   <td><code>ebs.csi.aws.com</code></td>
-  <td>For dynamic provisioning when using multiple clusters in different zones, tag each node with <code>Key=kubernetes.io/cluster/<cluster_name>,Value=<cluster_id></code> where <code><cluster_name></code> and <code><cluster_id></code> are unique per cluster.</td>
+  <td>For dynamic provisioning when using multiple clusters in different zones, tag each node with <code>Key=kubernetes.io/cluster/&lt;cluster_name&gt;,Value=&lt;cluster_id&gt;</code> where <code>&lt;cluster_name&gt;</code> and <code>&lt;cluster_id&gt;</code> are unique per cluster.</td>
 </tr>
 <tr>
   <td>Azure Disk</td>
@@ -55,7 +55,7 @@ Provisioner plugins automatically create storage resources on-demand by connecti
 <tr>
   <td>Azure File</td>
   <td><code>kubernetes.io/azure-file</code></td>
-  <td>The <code>persistent-volume-binder</code> service account requires permissions to create</td>
+  <td>The <code>persistent-volume-binder</code> service account requires permissions to create and get secrets to store the Azure storage account and keys.</td>
 </tr>
 <tr>
   <td>GCE Persistent Disk (gcePD)</td>
@@ -166,6 +166,7 @@ parameters:
 - Optional: `parameters.fsType`. File system that is created on dynamically provisioned volumes. This value is copied to the `fsType` field of dynamically provisioned persistent volumes, and the file system is created when the volume is mounted for the first time. The default value is `ext4`.
 
 **Additional resources**
+{._additional-resources}
 
 - [AWS documentation](http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 

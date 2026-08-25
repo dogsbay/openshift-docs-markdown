@@ -1,8 +1,8 @@
 ---
-title: "{{ secondary_scheduler_operator_full }} release notes"
+title: Secondary Scheduler Operator for Red Hat OpenShift release notes
 ---
 
-# {{ secondary_scheduler_operator_full }} release notes {#nodes-secondary-scheduler-release-notes}
+# Secondary Scheduler Operator for Red Hat OpenShift release notes {#nodes-secondary-scheduler-release-notes}
 
 Review the Secondary Scheduler Operator for Red Hat OpenShift release notes to track its development and learn what is new and changed with each release.
 

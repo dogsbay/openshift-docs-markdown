@@ -20,7 +20,8 @@ const headings = [{"depth":1,"slug":"olmv1-supported-extensions","text":"Support
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/extensions/ce/olmv1-supported-extensions";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -39,7 +40,7 @@ const pageCategory = ["extensions","extensions/ce"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Supported extensions {#olmv1-supported-extensions}\n\nTo install an Operator as a cluster extension, it must meet bundle format, install mode, and dependency requirements. Operator Lifecycle Manager (OLM) v1 supports extensions that use webhooks for validation, mutation, or conversion.\n\nOperator Lifecycle Manager (OLM) v1 supports extensions that use the `AllNamespaces` install mode. With this mode, the Operator watches and manages resources across all namespaces in the cluster.\n\nAs a Technology Preview feature, you can configure an extension to watch a specific namespace. This limits watching to one namespace instead of the entire cluster.\n\n## Supported bundle formats and dependencies {#olmv1-about-supported-bundle-formats_olmv1-supported-extensions}\n\nTo install an Operator as a cluster extension, the Operator must be packaged using the `registry+v1` bundle format. OLM v1 does not support Operators that declare dependencies by using file-based catalog properties.\n\nTo install an Operator as a cluster extension, it must meet the following criteria:\n\n- The Operator is packaged using the `registry+v1` bundle format.\n- The Operator does not declare dependencies by using the following file-based catalog properties:\n\n  - `olm.gvk.required`\n  - `olm.package.required`\n  - `olm.constraint`\n\nOLM v1 verifies that an Operator meets these requirements during installation. If an Operator does not meet these criteria, OLM v1 reports the issue in the cluster extension status conditions.\n\nOperator Lifecycle Manager (OLM) v1 does not support the `OperatorConditions` API introduced in OLM (Classic).\n\nIf an extension relies on only the `OperatorConditions` API to manage updates, the extension might not install correctly. Most extensions that rely on this API fail at start time, but some might fail during reconciliation.\n\nAs a workaround, you can pin your extension to a specific version. When you want to update your extension, consult the extension’s documentation to find out when it is safe to pin the extension to a new version.\n\n**Additional resources**\n\n- [Bundle format](/openshift-docs-markdown/operators/understanding/olm-packaging-format#olm-bundle-format_olm-packaging-format)\n- [Operator conditions](/openshift-docs-markdown/operators/understanding/olm/olm-operatorconditions#olm-operatorconditions)\n\n## Webhook support {#olmv1-webhook-support_olmv1-supported-extensions}\n\nOperator Lifecycle Manager (OLM) v1 supports Operators that use webhooks for validation, mutation, or conversion. Operators use webhooks to enforce security policies or inject configurations into resources.\n\nThe OpenShift Service CA Operator automatically manages webhook certificates. When you install an Operator that includes webhooks, the OpenShift Service CA Operator completes the following actions:\n\n- Applies Service CA annotations to webhook configurations and services.\n- Generates TLS certificates in the namespace where you install the cluster extension.\n- Mounts certificate secrets to the Operator deployment.\n- Configures webhook services with proper TLS settings.\n\n**Additional resources**\n\n- [Types of webhook admission plugins](/openshift-docs-markdown/architecture/admission-plug-ins#admission-webhook-types_admission-plug-ins)\n- [Service CA certificates](/openshift-docs-markdown/security/certificate_types_descriptions/service-ca-certificates#add-service-certificate_service-ca-certificates)\n- [OpenShift Service CA Operator](/openshift-docs-markdown/operators/operator-reference#openshift-service-ca-operator_operator-reference)\n- [Validating admission webhooks (Kubernetes documentation)](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#validatingadmissionwebhook)\n- [Mutating admission webhooks (Kubernetes documentation)](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#mutatingadmissionwebhook)\n- [Conversion webhooks (Kubernetes documentation)](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definition-versioning/#webhook-conversion)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/extensions/ce/olmv1-supported-extensions.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Supported extensions {#olmv1-supported-extensions}\n\nTo install an Operator as a cluster extension, it must meet bundle format, install mode, and dependency requirements. Operator Lifecycle Manager (OLM) v1 supports extensions that use webhooks for validation, mutation, or conversion.\n\nOperator Lifecycle Manager (OLM) v1 supports extensions that use the `AllNamespaces` install mode. With this mode, the Operator watches and manages resources across all namespaces in the cluster.\n\nAs a Technology Preview feature, you can configure an extension to watch a specific namespace. This limits watching to one namespace instead of the entire cluster.\n\n## Supported bundle formats and dependencies {#olmv1-about-supported-bundle-formats_olmv1-supported-extensions}\n\nTo install an Operator as a cluster extension, the Operator must be packaged using the `registry+v1` bundle format. OLM v1 does not support Operators that declare dependencies by using file-based catalog properties.\n\nTo install an Operator as a cluster extension, it must meet the following criteria:\n\n- The Operator is packaged using the `registry+v1` bundle format.\n- The Operator does not declare dependencies by using the following file-based catalog properties:\n\n  - `olm.gvk.required`\n  - `olm.package.required`\n  - `olm.constraint`\n\nOLM v1 verifies that an Operator meets these requirements during installation. If an Operator does not meet these criteria, OLM v1 reports the issue in the cluster extension status conditions.\n\nOperator Lifecycle Manager (OLM) v1 does not support the `OperatorConditions` API introduced in OLM (Classic).\n\nIf an extension relies on only the `OperatorConditions` API to manage updates, the extension might not install correctly. Most extensions that rely on this API fail at start time, but some might fail during reconciliation.\n\nAs a workaround, you can pin your extension to a specific version. When you want to update your extension, consult the extension’s documentation to find out when it is safe to pin the extension to a new version.\n\n**Additional resources**\n{._additional-resources}\n\n- [Bundle format](/openshift-docs-markdown/operators/understanding/olm-packaging-format#olm-bundle-format_olm-packaging-format)\n- [Operator conditions](/openshift-docs-markdown/operators/understanding/olm/olm-operatorconditions#olm-operatorconditions)\n\n## Webhook support {#olmv1-webhook-support_olmv1-supported-extensions}\n\nOperator Lifecycle Manager (OLM) v1 supports Operators that use webhooks for validation, mutation, or conversion. Operators use webhooks to enforce security policies or inject configurations into resources.\n\nThe OpenShift Service CA Operator automatically manages webhook certificates. When you install an Operator that includes webhooks, the OpenShift Service CA Operator completes the following actions:\n\n- Applies Service CA annotations to webhook configurations and services.\n- Generates TLS certificates in the namespace where you install the cluster extension.\n- Mounts certificate secrets to the Operator deployment.\n- Configures webhook services with proper TLS settings.\n\n**Additional resources**\n{._additional-resources}\n\n- [Types of webhook admission plugins](/openshift-docs-markdown/architecture/admission-plug-ins#admission-webhook-types_admission-plug-ins)\n- [Service CA certificates](/openshift-docs-markdown/security/certificate_types_descriptions/service-ca-certificates#add-service-certificate_service-ca-certificates)\n- [OpenShift Service CA Operator](/openshift-docs-markdown/operators/operator-reference#openshift-service-ca-operator_operator-reference)\n- [Validating admission webhooks (Kubernetes documentation)](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#validatingadmissionwebhook)\n- [Mutating admission webhooks (Kubernetes documentation)](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#mutatingadmissionwebhook)\n- [Conversion webhooks (Kubernetes documentation)](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definition-versioning/#webhook-conversion)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/extensions/ce/olmv1-supported-extensions.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,12 +79,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -91,7 +93,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="olmv1-supported-extensions" class="group scroll-mt-20">Supported extensions<a href="#olmv1-supported-extensions" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>To install an Operator as a cluster extension, it must meet bundle format, install mode, and dependency requirements. Operator Lifecycle Manager (OLM) v1 supports extensions that use webhooks for validation, mutation, or conversion.</p>
+      <p class="_abstract">To install an Operator as a cluster extension, it must meet bundle format, install mode, and dependency requirements. Operator Lifecycle Manager (OLM) v1 supports extensions that use webhooks for validation, mutation, or conversion.</p>
       <p>Operator Lifecycle Manager (OLM) v1 supports extensions that use the <code>AllNamespaces</code> install mode. With this mode, the Operator watches and manages resources across all namespaces in the cluster.</p>
       <p>As a Technology Preview feature, you can configure an extension to watch a specific namespace. This limits watching to one namespace instead of the entire cluster.</p>
       <h2 id="olmv1-about-supported-bundle-formats_olmv1-supported-extensions" class="group scroll-mt-20">Supported bundle formats and dependencies<a href="#olmv1-about-supported-bundle-formats_olmv1-supported-extensions" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
@@ -112,11 +114,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p>Operator Lifecycle Manager (OLM) v1 does not support the <code>OperatorConditions</code> API introduced in OLM (Classic).</p>
       <p>If an extension relies on only the <code>OperatorConditions</code> API to manage updates, the extension might not install correctly. Most extensions that rely on this API fail at start time, but some might fail during reconciliation.</p>
       <p>As a workaround, you can pin your extension to a specific version. When you want to update your extension, consult the extension’s documentation to find out when it is safe to pin the extension to a new version.</p>
-      <p><strong>Additional resources</strong></p>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul>
       <li><a href="/openshift-docs-markdown/operators/understanding/olm-packaging-format#olm-bundle-format_olm-packaging-format">Bundle format</a></li>
       <li><a href="/openshift-docs-markdown/operators/understanding/olm/olm-operatorconditions#olm-operatorconditions">Operator conditions</a></li>
       </ul>
+      </section>
       <h2 id="olmv1-webhook-support_olmv1-supported-extensions" class="group scroll-mt-20">Webhook support<a href="#olmv1-webhook-support_olmv1-supported-extensions" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">Operator Lifecycle Manager (OLM) v1 supports Operators that use webhooks for validation, mutation, or conversion. Operators use webhooks to enforce security policies or inject configurations into resources.</p>
       <p>The OpenShift Service CA Operator automatically manages webhook certificates. When you install an Operator that includes webhooks, the OpenShift Service CA Operator completes the following actions:</p>
@@ -126,7 +130,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>Mounts certificate secrets to the Operator deployment.</li>
       <li>Configures webhook services with proper TLS settings.</li>
       </ul>
-      <p><strong>Additional resources</strong></p>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul>
       <li><a href="/openshift-docs-markdown/architecture/admission-plug-ins#admission-webhook-types_admission-plug-ins">Types of webhook admission plugins</a></li>
       <li><a href="/openshift-docs-markdown/security/certificate_types_descriptions/service-ca-certificates#add-service-certificate_service-ca-certificates">Service CA certificates</a></li>
@@ -135,6 +140,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li><a href="https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#mutatingadmissionwebhook">Mutating admission webhooks (Kubernetes documentation)</a></li>
       <li><a href="https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definition-versioning/#webhook-conversion">Conversion webhooks (Kubernetes documentation)</a></li>
       </ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

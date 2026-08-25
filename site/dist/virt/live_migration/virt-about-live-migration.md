@@ -11,26 +11,19 @@ Live migration moves a running virtual machine to another node without interrupt
 Live migration requires shared storage, sufficient resources, and compatible CPUs across nodes.
 
 Live migration requirements
+:   - Shared storage with `ReadWriteMany` (RWX) access mode.
+    - Sufficient RAM and network bandwidth.
 
-````
-*   Shared storage with `ReadWriteMany` (RWX) access mode.
+    > [!NOTE]
+    > You must ensure that there is enough memory request capacity in the cluster to support node drains that result in live migrations. You can determine the approximate required spare memory by using the following calculation:
+    >
+    > ```
+    > Product of (Maximum number of nodes that can drain in parallel) and (Highest total VM memory request allocations across nodes)
+    > ```
+    >
+    > The default number of migrations that can run in parallel in the cluster is 5. For more information, see "Configuring live migration" in the Additional resources section.
 
-*   Sufficient RAM and network bandwidth.
-
-:::note
-
-You must ensure that there is enough memory request capacity in the cluster to support node drains that result in live migrations. You can determine the approximate required spare memory by using the following calculation:
-
-```
-Product of (Maximum number of nodes that can drain in parallel) and (Highest total VM memory request allocations across nodes)
-```
-
-The default number of migrations that can run in parallel in the cluster is 5. For more information, see "Configuring live migration" in the Additional resources section.
-
-:::
-````
-
-- If the virtual machine uses a host model CPU, the nodes must support the virtual machine’s host model CPU.
+    - If the virtual machine uses a host model CPU, the nodes must support the virtual machine’s host model CPU.
 
 > [!NOTE]
 > A dedicated Multus network for live migration is highly recommended. For more information, see "Using a dedicated network for live migration" in the Additional resources section. A dedicated network minimizes the effects of network saturation on tenant workloads during migration.
@@ -173,7 +166,8 @@ When performing live migration on a cluster using RHCOS 10.x, the migration does
 
 Live migration is supported across both RHCOS 9.x and 10.x worker nodes when both versions are present in a cluster. Any VM live migration from RHCOS 10.x to RHCOS 9.x and from RHCOS 9.x to RHCOS 10.x worker nodes, is a Technology Preview feature in OpenShift Container Platform 4.22.
 
-## Additional resources {#additional-resources_virt-about-live-migration}
+**Additional resources**
+{._additional-resources}
 
 - [Default cluster roles for OpenShift Virtualization](/openshift-docs-markdown/virt/about_virt/virt-security-policies#default-cluster-roles-for-virt_virt-security-policies)
 - [Prometheus queries for live migration](/openshift-docs-markdown/virt/monitoring/virt-prometheus-queries#virt-live-migration-metrics_virt-prometheus-queries)

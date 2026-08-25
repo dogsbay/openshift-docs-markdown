@@ -1,5 +1,5 @@
 ---
-title: Console []
+title: Console [config.openshift.io/v1]
 ---
 
 # Console \[config.openshift.io/v1\] {#console-config-openshift-io-v1}
@@ -78,13 +78,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of Console
   - `GET`: list objects of kind Console
   - `POST`: create a Console
-- `/apis/config.openshift.io/v1/consoles/{{ name }}`
+- `/apis/config.openshift.io/v1/consoles/{name}`
 
   - `DELETE`: delete a Console
   - `GET`: read the specified Console
   - `PATCH`: partially update the specified Console
   - `PUT`: replace the specified Console
-- `/apis/config.openshift.io/v1/consoles/{{ name }}/status`
+- `/apis/config.openshift.io/v1/consoles/{name}/status`
 
   - `GET`: read status of the specified Console
   - `PATCH`: partially update status of the specified Console
@@ -158,7 +158,7 @@ Description
 | 202 - Accepted | [`Console`](/openshift-docs-markdown/rest_api/config_apis/console-config-openshift-io-v1#console-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/consoles/{{ name }} {#_apisconfigopenshiftiov1consoles_name}
+### /apis/config.openshift.io/v1/consoles/{name} {#_apisconfigopenshiftiov1consoles_name}
 
 **Global path parameters**
 
@@ -262,7 +262,7 @@ Description
 | 201 - Created | [`Console`](/openshift-docs-markdown/rest_api/config_apis/console-config-openshift-io-v1#console-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/consoles/{{ name }}/status {#_apisconfigopenshiftiov1consoles_name_status}
+### /apis/config.openshift.io/v1/consoles/{name}/status {#_apisconfigopenshiftiov1consoles_name_status}
 
 **Global path parameters**
 

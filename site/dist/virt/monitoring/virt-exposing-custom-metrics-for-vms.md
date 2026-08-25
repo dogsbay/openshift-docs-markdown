@@ -305,7 +305,8 @@ You can access the node-exporter service outside the cluster and view the expose
    go_gc_duration_seconds{quantile="1"} 0.000189423
    ```
 
-## Additional resources {#additional-resources_virt-exposing-custom-metrics-for-vms}
+**Additional resources**
+{._additional-resources}
 
 - [Core platform monitoring first steps](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/getting_started/core-platform-monitoring-first-steps)
 - [Enabling monitoring for user-defined projects](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/preparing-to-configure-the-monitoring-stack-uwm#enabling-monitoring-for-user-defined-projects-uwm_preparing-to-configure-the-monitoring-stack-uwm)

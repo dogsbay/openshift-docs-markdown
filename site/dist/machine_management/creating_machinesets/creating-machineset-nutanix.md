@@ -23,15 +23,9 @@ You can use a YAML file to automate node provisioning and ensure workloads are s
 
 The sample YAML shows how to define a Nutanix compute MachineSet for your cluster. It explains how to configure roles, labels, sizing, networking, and boot settings so new nodes are created consistently.
 
-The sample YAML defines a Nutanix compute machine set that creates nodes that are labeled with
+The sample YAML defines a Nutanix compute machine set that creates nodes that are labeled with `node-role.kubernetes.io/<role>: ""`.
 
-`node-role.kubernetes.io/<role>: ""`.
-
-In the sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and
-
-`<role>`
-
-is the node label to add.
+In the sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and `<role>` is the node label to add.
 
 ### Values obtained by using the OpenShift CLI {#machineset-yaml-nutanix-oc_creating-machineset-nutanix}
 
@@ -50,13 +44,61 @@ Infrastructure ID
     metadata:
       labels:
         machine.openshift.io/cluster-api-cluster: <infrastructure_id>
+        machine.openshift.io/cluster-api-machine-role: <role>
+        machine.openshift.io/cluster-api-machine-type: <role>
+      name: <infrastructure_id>-<role>-<zone>
+      namespace: openshift-machine-api
+      annotations:
+        machine.openshift.io/memoryMb: "16384"
+        machine.openshift.io/vCPU: "4"
+    spec:
+      replicas: 3
+      selector:
+        matchLabels:
+          machine.openshift.io/cluster-api-cluster: <infrastructure_id>
+          machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<zone>
+      template:
+        metadata:
+          labels:
+            machine.openshift.io/cluster-api-cluster: <infrastructure_id>
+            machine.openshift.io/cluster-api-machine-role: <role>
+            machine.openshift.io/cluster-api-machine-type: <role>
+            machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<zone>
+        spec:
+          metadata:
+            labels:
+              node-role.kubernetes.io/<role>: ""
+          providerSpec:
+            value:
+              apiVersion: machine.openshift.io/v1
+              bootType: ""
+              categories:
+              - key: <category_name>
+                value: <category_value>
+              cluster:
+                type: uuid
+                uuid: <cluster_uuid>
+              credentialsSecret:
+                name: nutanix-credentials
+              image:
+                name: <infrastructure_id>-rhcos
+                type: name
+              kind: NutanixMachineProviderConfig
+              memorySize: 16Gi
+              project:
+                type: name
+                name: <project_name>
+              subnets:
+              - type: uuid
+                uuid: <subnet_uuid>
+              systemDiskSize: 120Gi
+              userDataSecret:
+                name: <user_data_secret>
+              vcpuSockets: 4
+              vcpusPerSocket: 1
     ```
 
-{%- if not infra %} machine.openshift.io/cluster-api-machine-role: <role> machine.openshift.io/cluster-api-machine-type: <role> name: <infrastructure_id>-<role>-<zone> {% endif %} {% if infra %} machine.openshift.io/cluster-api-machine-role: <infra> machine.openshift.io/cluster-api-machine-type: <infra> name: <infrastructure_id>-<infra>-<zone> {%- endif %} namespace: openshift-machine-api annotations: machine.openshift.io/memoryMb: "16384" machine.openshift.io/vCPU: "4" spec: replicas: 3 selector: matchLabels: machine.openshift.io/cluster-api-cluster: <infrastructure_id> {%- if not infra %} machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<zone> {% endif %} {% if infra %} machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<infra>-<zone> {%- endif %} template: metadata: labels: machine.openshift.io/cluster-api-cluster: <infrastructure_id> {%- if not infra %} machine.openshift.io/cluster-api-machine-role: <role> machine.openshift.io/cluster-api-machine-type: <role> machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<zone> {% endif %} {% if infra %} machine.openshift.io/cluster-api-machine-role: <infra> machine.openshift.io/cluster-api-machine-type: <infra> machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<infra>-<zone> {%- endif %} spec: metadata: labels: {%- if not infra %} node-role.kubernetes.io/<role>: "" {% endif %} {% if infra %} node-role.kubernetes.io/infra: "" {%- endif %} providerSpec: value: apiVersion: machine.openshift.io/v1 bootType: "" categories: - key: <category_name> value: <category_value> cluster: type: uuid uuid: <cluster_uuid> credentialsSecret: name: nutanix-credentials image: name: <infrastructure_id>-rhcos type: name kind: NutanixMachineProviderConfig memorySize: 16Gi project: type: name name: <project_name> subnets: - type: uuid uuid: <subnet_uuid> systemDiskSize: 120Gi userDataSecret: name: <user_data_secret> vcpuSockets: 4 vcpusPerSocket: 1 {%- if infra %} taints: - key: node-role.kubernetes.io/infra effect: NoSchedule {%- endif %} \`\`\`
-
-```
-where:
-```
+    where:
 
 `<infrastructure_id>`
 :   Specifies the infrastructure ID that is based on the cluster ID that you set when you provisioned the cluster.
@@ -107,6 +149,7 @@ where:
 :   Specifies the number of vCPUs per socket.
 
 **Additional resources**
+{._additional-resources}
 
 - [Manually updating the boot image](/openshift-docs-markdown/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)
 
@@ -210,13 +253,17 @@ To dynamically manage machine compute resources, you can create your own compute
 
   ```terminal
 
+  NAME                                DESIRED   CURRENT   READY   AVAILABLE   AGE
+  agl030519-vplxk-infra-us-east-1a    1         1         1       1           11m
+  agl030519-vplxk-worker-us-east-1a   1         1         1       1           55m
+  agl030519-vplxk-worker-us-east-1b   1         1         1       1           55m
+  agl030519-vplxk-worker-us-east-1c   1         1         1       1           55m
+  agl030519-vplxk-worker-us-east-1d   0         0                             55m
+  agl030519-vplxk-worker-us-east-1e   0         0                             55m
+  agl030519-vplxk-worker-us-east-1f   0         0                             55m
   ```
 
-{%- if win or post_aws_zones %} NAME                                       DESIRED   CURRENT   READY   AVAILABLE   AGE {%- if win %} agl030519-vplxk-windows-worker-us-east-1a  1         1         1       1           11m {% endif %} {% if post_aws_zones %} agl030519-vplxk-edge-us-east-1-nyc-1a      1         1         1       1           11m {%- endif %} agl030519-vplxk-worker-us-east-1a          1         1         1       1           55m agl030519-vplxk-worker-us-east-1b          1         1         1       1           55m agl030519-vplxk-worker-us-east-1c          1         1         1       1           55m agl030519-vplxk-worker-us-east-1d          0         0                             55m agl030519-vplxk-worker-us-east-1e          0         0                             55m agl030519-vplxk-worker-us-east-1f          0         0                             55m {% endif %} {% if not (win or post_aws_zones) %} NAME                                DESIRED   CURRENT   READY   AVAILABLE   AGE agl030519-vplxk-infra-us-east-1a    1         1         1       1           11m agl030519-vplxk-worker-us-east-1a   1         1         1       1           55m agl030519-vplxk-worker-us-east-1b   1         1         1       1           55m agl030519-vplxk-worker-us-east-1c   1         1         1       1           55m agl030519-vplxk-worker-us-east-1d   0         0                             55m agl030519-vplxk-worker-us-east-1e   0         0                             55m agl030519-vplxk-worker-us-east-1f   0         0                             55m {%- endif %} \`\`\`
-
-```
-When the new compute machine set is available, the `DESIRED` and `CURRENT` values match. If the compute machine set is not available, wait a few minutes and run the command again.
-```
+  When the new compute machine set is available, the `DESIRED` and `CURRENT` values match. If the compute machine set is not available, wait a few minutes and run the command again.
 
 ## Labeling GPU machine sets for the cluster autoscaler {#machineset-label-gpu-autoscaler_creating-machineset-nutanix}
 
@@ -285,6 +332,7 @@ The following networking configuration and management practices can help your mu
 - Use automation tools, such as Terraform or Ansible, to isolate the infrastructure for each OpenShift Container Platform cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Cluster autoscaler resource definition](/openshift-docs-markdown/machine_management/applying-autoscaling#cluster-autoscaler-cr_applying-autoscaling)
 - [Adding failure domains to an existing Nutanix cluster](/openshift-docs-markdown/installing/installing_nutanix/nutanix-failure-domains#nutanix-failure-domains-adding-to-existing-cluster_nutanix-failure-domains)

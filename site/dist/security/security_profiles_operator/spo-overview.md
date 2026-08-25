@@ -8,7 +8,8 @@ With the OpenShift Container Platform Security Profiles Operator (SPO), you can 
 
 The SPO distributes seccomp and SELinux profile custom resources to each node and keeps them up to date when profiles change. You can also bind policies to pods and record workloads. See Additional resources for advanced tasks such as enabling the log enricher, configuring webhooks and metrics, or restricting profiles to a single namespace, and for advanced audit logging that correlates cluster users with actions during `oc exec`, `oc rsh`, and `oc debug` sessions.
 
-## Additional resources {#spo-overview_additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Security Profiles Operator release notes](/openshift-docs-markdown/security/security_profiles_operator/spo-release-notes#spo-release-notes)
 - [Security Profiles Operator support](/openshift-docs-markdown/security/security_profiles_operator/spo-support#spo-support)

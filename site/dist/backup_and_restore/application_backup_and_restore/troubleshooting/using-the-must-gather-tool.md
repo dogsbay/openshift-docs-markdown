@@ -26,7 +26,7 @@ The `must-gather` tool generates a Markdown output file with the collected infor
 For more information about the supported flags, use the help flag with the `must-gather` tool as shown in the following example:
 
 ```terminal
-$ oc adm must-gather --image={{ must_gather_v1_5 }} -- /usr/bin/gather -h
+$ oc adm must-gather --image=registry.redhat.io/oadp/oadp-mustgather-rhel9:v1.5 -- /usr/bin/gather -h
 ```
 
 **Prerequisites**
@@ -42,24 +42,24 @@ $ oc adm must-gather --image={{ must_gather_v1_5 }} -- /usr/bin/gather -h
    - To use the default configuration of the `must-gather` tool, run the following command:
 
      ```terminal
-     $ oc adm must-gather --image={{ must_gather_v1_5 }}
+     $ oc adm must-gather --image=registry.redhat.io/oadp/oadp-mustgather-rhel9:v1.5
      ```
    - To use the timeout flag with the `must-gather` tool, run the following command:
 
      ```terminal
-     $ oc adm must-gather --image={{ must_gather_v1_5 }} -- /usr/bin/gather --request-timeout 1m
+     $ oc adm must-gather --image=registry.redhat.io/oadp/oadp-mustgather-rhel9:v1.5 -- /usr/bin/gather --request-timeout 1m
      ```
 
      In this example, the timeout is 1 minute.
    - To use the insecure TLS connection flag with the `must-gather` tool, run the following command:
 
      ```terminal
-     $ oc adm must-gather --image={{ must_gather_v1_5 }} -- /usr/bin/gather --skip-tls
+     $ oc adm must-gather --image=registry.redhat.io/oadp/oadp-mustgather-rhel9:v1.5 -- /usr/bin/gather --skip-tls
      ```
    - To use a combination of the insecure TLS connection and the timeout flags with the `must-gather` tool, run the following command:
 
      ```terminal
-     $ oc adm must-gather --image={{ must_gather_v1_5 }} -- /usr/bin/gather --request-timeout 15s --skip-tls
+     $ oc adm must-gather --image=registry.redhat.io/oadp/oadp-mustgather-rhel9:v1.5 -- /usr/bin/gather --request-timeout 15s --skip-tls
      ```
 
      In this example, the timeout is 15 seconds. By default, the `--skip-tls` flag value is `false`. Set the value to `true` to allow insecure TLS connections.
@@ -67,10 +67,13 @@ $ oc adm must-gather --image={{ must_gather_v1_5 }} -- /usr/bin/gather -h
 **Verification**
 
 1. Verify that the Markdown output file is generated at the following location: `must-gather.local.89...054550/registry.redhat.io/oadp/oadp-mustgather-rhel9:v1.5-sha256-0...84/clusters/a4...86/oadp-must-gather-summary.md`
-2. Review the `must-gather` data in the Markdown file by opening the file in a Markdown previewer. For an example output, refer to the following image. You can upload this output file to a support case on the [Red Hat Customer Portal](https://access.redhat.com/). **Figure 1. Example markdown output of must-gather tool**
+2. Review the `must-gather` data in the Markdown file by opening the file in a Markdown previewer. For an example output, refer to the following image. You can upload this output file to a support case on the [Red Hat Customer Portal](https://access.redhat.com/).
+
+   **Figure 1. Example markdown output of must-gather tool**
 
    ![must-gather markdown output](/openshift-docs-markdown/_assets/images/oadp-must-gather-markdown-output.png)
 
 **Additional resources**
+{._additional-resources}
 
 - [Gathering cluster data](/openshift-docs-markdown/support/gathering-cluster-data#gathering-cluster-data)

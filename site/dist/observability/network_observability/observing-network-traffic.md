@@ -100,7 +100,7 @@ Packet loss occurs when one or more packets of network flow data fail to reach t
 
 **Procedure**
 
-1. In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1. In the web console, navigate to **Ecosystem** → **Installed Operators**.
 2. Under the **Provided APIs** heading for the **NetObserv Operator**, select **Flow Collector**.
 3. Select **cluster**, and then select the **YAML** tab.
 4. Configure the `FlowCollector` custom resource for packet drops, for example: <a name="network-observability-flowcollector-configuring-pkt-drop_nw-observe-network-traffic"></a>
@@ -139,6 +139,7 @@ Packet loss occurs when one or more packets of network flow data fail to reach t
   3. In the **Topology** view, red lines are displayed where drops are present.
 
 **Additional resources**
+{._additional-resources}
 
 - [Network Observability metrics](/openshift-docs-markdown/observability/network_observability/metrics-alerts-dashboards#network-observability-metrics_metrics-dashboards-alerts)
 
@@ -179,7 +180,7 @@ You can track DNS by editing the `FlowCollector` to the specifications in the fo
 
 **Procedure**
 
-1. In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1. In the web console, navigate to **Ecosystem** → **Installed Operators**.
 2. Under the **Provided APIs** heading for **Network Observability**, select **Flow Collector**.
 3. Select **cluster** then select the **YAML** tab.
 4. Configure the `FlowCollector` custom resource. A sample configuration is as follows: <a name="network-observability-flowcollector-configuring-dns_nw-observe-network-traffic"></a>
@@ -211,6 +212,7 @@ You can track DNS by editing the `FlowCollector` to the specifications in the fo
       > TCP handshake packets do not have DNS headers. TCP protocol flows without DNS headers are shown in the traffic flow data with **DNS Latency**, **ID**, and **Response code** values of "n/a". You can filter out flow data to view only flows that have DNS headers using the **Common** filter "DNSError" equal to "0".
 
 **Additional resources**
+{._additional-resources}
 
 - [Network Observability metrics](/openshift-docs-markdown/observability/network_observability/metrics-alerts-dashboards#network-observability-metrics_metrics-dashboards-alerts)
 
@@ -244,7 +246,7 @@ You can track RTT by editing the `FlowCollector` to the specifications in the fo
 
 **Procedure**
 
-1. In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1. In the web console, navigate to **Ecosystem** → **Installed Operators**.
 2. In the **Provided APIs** heading for the **NetObserv Operator**, select **Flow Collector**.
 3. Select **cluster**, and then select the **YAML** tab.
 4. Configure the `FlowCollector` custom resource for RTT tracing, for example: <a name="network-observability-flowcollector-configuring-RTT_nw-observe-network-traffic"></a>
@@ -298,13 +300,13 @@ After matching either the source IP or the destination IP CIDR, you can pinpoint
 
 #### Dashboard and metrics integrations {#dashboard-and-metrics-integrations_nw-observe-network-traffic}
 
-When this option is enabled, the **Netobserv/Health** dashboard for **eBPF agent statistics** now has the **Filtered flows rate** view. Additionally, in **Observe** -> **Metrics** you can query `netobserv_agent_filtered_flows_total` to observe metrics with the reason in **FlowFilterAcceptCounter**, **FlowFilterNoMatchCounter** or **FlowFilterRecjectCounter**.
+When this option is enabled, the **Netobserv/Health** dashboard for **eBPF agent statistics** now has the **Filtered flows rate** view. Additionally, in **Observe** → **Metrics** you can query `netobserv_agent_filtered_flows_total` to observe metrics with the reason in **FlowFilterAcceptCounter**, **FlowFilterNoMatchCounter** or **FlowFilterRecjectCounter**.
 
 #### Flow filter configuration parameters {#network-observability-flowcollector-flowfilter-parameters_nw-observe-network-traffic}
 
 Reference the required and optional parameters for configuring flow filter rules in the `FlowCollector` resource, including CIDR ranges, filter actions, protocols, and specific port configurations.
 
-***Required configuration parameters***
+**Required configuration parameters**
 
 <table>
 <thead>
@@ -329,7 +331,7 @@ Reference the required and optional parameters for configuring flow filter rules
 </tbody>
 </table>
 
-***Optional configuration parameters***
+**Optional configuration parameters**
 
 <table>
 <thead>
@@ -388,7 +390,7 @@ Configure multiple filtering rules in the `FlowCollector` custom resource to ref
 
 **Procedure**
 
-1. In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1. In the web console, navigate to **Ecosystem** → **Installed Operators**.
 2. Under the **Provided APIs** heading for **Network Observability**, select **Flow Collector**.
 3. Select **cluster**, then select the **YAML** tab.
 4. Configure the `FlowCollector` custom resource.
@@ -488,6 +490,7 @@ where:
 :   Specifies whether to filter for flows that contain packet drops.
 
 **Additional resources**
+{._additional-resources}
 
 - [Network Observability metrics](/openshift-docs-markdown/observability/network_observability/metrics-alerts-dashboards#network-observability-metrics_metrics-dashboards-alerts)
 - [Health dashboards](/openshift-docs-markdown/observability/network_observability/network-observability-operator-monitoring#network-observability-health-dashboard-overview_network_observability)
@@ -551,6 +554,7 @@ You can enable user-defined networks (UDN) in network observability resources. T
   - In the **Topology** view, you can set **Network** as **Scope** or **Group**.
 
 **Additional resources**
+{._additional-resources}
 
 - [About user-defined networks](/openshift-docs-markdown/networking/multiple_networks/primary_networks/about-user-defined-networks#about-user-defined-networks)
 - [Creating a UserDefinedNetwork by using the CLI](/openshift-docs-markdown/networking/multiple_networks/primary_networks/about-user-defined-networks#nw-udn-cr_about-user-defined-networks)
@@ -597,7 +601,7 @@ You can edit the `FlowCollector` to view information about network traffic event
 
 **Procedure**
 
-1. In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1. In the web console, navigate to **Ecosystem** → **Installed Operators**.
 2. In the **Provided APIs** heading for the **NetObserv Operator**, select **Flow Collector**.
 3. Select **cluster**, and then select the **YAML** tab.
 4. Configure the `FlowCollector` CR to enable viewing `NetworkEvents`, for example: <a name="network-observability-flowcollector-configuring-networkevents_nw-observe-network-traffic"></a>
@@ -637,6 +641,7 @@ You can edit the `FlowCollector` to view information about network traffic event
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Enabling feature sets using the CLI](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features-cli_nodes-cluster-enabling-features)
 - [Checking OVN-Kubernetes network traffic with OVS sampling using the CLI](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/ovn-kubernetes-troubleshooting-sources#nw-ovn-kubernetes-observability_ovn-kubernetes-sources-of-troubleshooting-information)
@@ -669,7 +674,7 @@ As an administrator, you can navigate to **Traffic flows** table to see network 
 
 ### Traffic flow display settings {#network-observability-configuring-options-trafficflow_nw-observe-network-traffic}
 
-The ***Traffic flows*** view contains settings to customize the display density, data columns, and data export options.
+The **Traffic flows** view contains settings to customize the display density, data columns, and data export options.
 
 #### Display options {#display-options_nw-observe-network-traffic}
 
@@ -706,7 +711,7 @@ In OpenShift Container Platform, IPsec is disabled by default. You can enable IP
 
 **Procedure**
 
-1. In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1. In the web console, navigate to **Ecosystem** → **Installed Operators**.
 2. Under the **Provided APIs** heading for the **NetObserv Operator**, select **Flow Collector**.
 3. Select **cluster** then select the **YAML** tab.
 4. Configure the `FlowCollector` custom resource for IPsec:
@@ -733,6 +738,7 @@ When IPsec is enabled:
 - A new dashboard showing the percent of encrypted traffic is generated.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring IPsec encryption](/openshift-docs-markdown/networking/network_security/configuring-ipsec-ovn#configuring-ipsec-ovn)
 
@@ -749,7 +755,7 @@ As an administrator, you can group network flows that are part of the same conve
 
 **Procedure**
 
-1. In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1. In the web console, navigate to **Ecosystem** → **Installed Operators**.
 2. Under the **Provided APIs** heading for the **NetObserv Operator**, select **Flow Collector**.
 3. Select **cluster** then select the **YAML** tab.
 4. Configure the `FlowCollector` custom resource so that `spec.processor.logTypes`, `conversationEndTimeout`, and `conversationHeartbeatInterval` parameters are set according to your observation needs. A sample configuration is as follows:
@@ -797,9 +803,9 @@ The eBPF Manager Operator reduces the attack surface and ensures compliance, sec
 
 **Procedure**
 
-1. In the web console, navigate to **Ecosystem** -> **Operator Hub**.
+1. In the web console, navigate to **Ecosystem** → **Operator Hub**.
 2. Install **eBPF Manager**.
-3. Check **Workloads** -> **Pods** in the `bpfman` namespace to make sure they are all up and running.
+3. Check **Workloads** → **Pods** in the `bpfman` namespace to make sure they are all up and running.
 4. Configure the `FlowCollector` custom resource to use the eBPF Manager Operator:
 
    ```yaml {title="Example FlowCollector configuration"}
@@ -816,12 +822,13 @@ The eBPF Manager Operator reduces the attack surface and ensures compliance, sec
 
 **Verification**
 
-1. In the web console, navigate to **Ecosystem** -> **Installed Operators**.
-2. Click **eBPF Manager Operator** -> **All instances** tab.
+1. In the web console, navigate to **Ecosystem** → **Installed Operators**.
+2. Click **eBPF Manager Operator** → **All instances** tab.
 
    For each node, verify that a `BpfApplication` named `netobserv` and a pair of `BpfProgram` objects, one for Traffic Control (TCx) ingress and another for TCx egress, exist. If you enable other eBPF Agent features, you might have more objects.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing the eBPF Manager Operator](/openshift-docs-markdown/networking/networking_operators/ebpf_manager/ebpf-manager-operator-install)
 
@@ -839,7 +846,7 @@ You can configure the `FlowCollector` to collect information about the cluster a
 
 **Procedure**
 
-1. In the web console, go to **Ecosystem** -> **Installed Operators**.
+1. In the web console, go to **Ecosystem** → **Installed Operators**.
 2. Under the **Provided APIs** heading for the **NetObserv Operator**, select **Flow Collector**.
 3. Select **cluster** then select the **YAML** tab.
 4. Configure the `FlowCollector` custom resource so that the `spec.processor.addZone` parameter is set to `true`. A sample configuration is as follows:
@@ -861,10 +868,11 @@ You can configure the `FlowCollector` to collect information about the cluster a
 When you refresh the **Network Traffic** page, the **Overview**, **Traffic Flow**, and **Topology** views display new information about availability zones:
 
 1. In the **Overview** tab, you can see **Zones** as an available **Scope**.
-2. In **Network Traffic** -> **Traffic flows**, **Zones** are viewable under the SrcK8S_Zone and DstK8S_Zone fields.
+2. In **Network Traffic** → **Traffic flows**, **Zones** are viewable under the SrcK8S_Zone and DstK8S_Zone fields.
 3. In the **Topology** view, you can set **Zones** as **Scope** or **Group**.
 
 **Additional resources**
+{._additional-resources}
 
 - [Conntrack Zone ID](https://lwn.net/Articles/370152/#:~:text=A%20zone%20is%20simply%20a,to%20seperate%20conntrack%20defragmentation%20queues.)
 
@@ -895,7 +903,7 @@ You can use network observability and eBPF to enrich network flows from a Kubern
 
 **Procedure**
 
-1. In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1. In the web console, navigate to **Ecosystem** → **Installed Operators**.
 2. In the **Provided APIs** heading for the **NetObserv Operator**, select **Flow Collector**.
 3. Select **cluster**, and then select the **YAML** tab.
 4. Configure the `FlowCollector` custom resource for `PacketTranslation`, for example: <a name="network-observability-flowcollector-configuring-packet-translation_nw-observe-network-traffic"></a>
@@ -1009,6 +1017,7 @@ You can click **Reset defaults** to remove the existing filters, and apply the f
 > To understand the rules of specifying the text value, click **Learn More**.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring Quick Filters](/openshift-docs-markdown/observability/network_observability/configuring-operator#network-observability-config-quick-filters_network_observability)
 - [Flow Collector sample resource](/openshift-docs-markdown/observability/network_observability/configuring-operator#network-observability-flowcollector-view_network_observability)

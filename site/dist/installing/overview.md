@@ -25,6 +25,7 @@ Each method deploys a cluster with the following characteristics:
 - Administrators can control what updates are applied and when.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing a cluster without an external registry](/openshift-docs-markdown/installing/installing_with_agent_based_installer/installing-ove#installing-ove)
 
@@ -140,6 +141,7 @@ The installation process with user-provisioned infrastructure
     If your cluster uses user-provisioned infrastructure, you have the option of adding RHEL compute machines to your cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Recommended etcd practices](/openshift-docs-markdown/etcd/etcd-practices#recommended-etcd-practices)
 - [Control plane node sizing](/openshift-docs-markdown/scalability_and_performance/recommended-performance-scale-practices/recommended-control-plane-practices#master-node-sizing_recommended-control-plane-practices)
@@ -197,6 +199,7 @@ After your installation completes, you can continue to monitor the condition of 
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Getting the BareMetalHost resource](/openshift-docs-markdown/installing/installing_bare_metal/bare-metal-postinstallation-configuration#bmo-getting-the-baremetalhost-resource_bare-metal-postinstallation-configuration)
 - [Following the progress of the installation](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installing-a-cluster#ipi-install-following-the-progress-of-the-installation_ipi-install-installing-a-cluster)
@@ -208,6 +211,9 @@ After your installation completes, you can continue to monitor the condition of 
 
 The scope of the OpenShift Container Platform installation program is intentionally narrow. It is designed for simplicity and ensured success. You can complete many more configuration tasks after installation completes.
 
+**Additional resources**
+{._additional-resources}
+
 - [Available cluster customizations](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations)
 
 ### OpenShift Local overview {#installation-openshift-local_ocp-installation-overview}
@@ -218,6 +224,9 @@ Regardless of the programming language you use, OpenShift Local hosts your appli
 
 On a hosted environment, OpenShift Local can create microservices, convert them into images, and run them in Kubernetes-hosted containers directly on your laptop or desktop running Linux, macOS, or Windows 10 or later.
 
+**Additional resources**
+{._additional-resources}
+
 - [Red Hat OpenShift Local Overview](https://developers.redhat.com/products/openshift-local/overview)
 
 ## Supported platforms for OpenShift Container Platform clusters {#supported-platforms-for-openshift-clusters_ocp-installation-overview}
@@ -226,20 +235,23 @@ Review the platform support matrix to choose the installation method that meets 
 
 **Supported platforms**
 
-| Platform | Installer-provisioned infrastructure [^1]^ | User-provisioned infrastructure [^2]^ | Agent-based Installer | Assisted Installer | Amazon Web Services (AWS) |
-| --- | --- | --- | --- | --- | --- |
-| X | X |  |  | Bare metal | X |
-| X | X | X | External |  |  |
-| X | X | Google Cloud | X | X |  |
-|  | IBM Cloud(R) Classic | X |  |  |  |
-| IBM Cloud(R) Virtual Private Cloud (VPC) | X |  |  |  | IBM Power(R) |
-|  | X | X | X | IBM Z(R) or IBM(R) LinuxONE |  |
-| X | X | X | Microsoft Azure | X | X |
-|  |  | Microsoft Azure Stack Hub | X | X |  |
-|  | None |  |  | X | X |
-| Nutanix | X |  |  | X | Oracle Cloud Infrastructure (OCI) |
-|  |  | X | X | Red Hat OpenStack Platform (RHOSP) [^3]^ | X |
-| X |  |  | VMware vSphere | X | X |
+| Platform | Installer-provisioned infrastructure <sup>\[1\]</sup> | User-provisioned infrastructure <sup>\[2\]</sup> | Agent-based Installer | Assisted Installer |
+| --- | --- | --- | --- | --- |
+| Amazon Web Services (AWS) | X | X |  |  |
+| Bare metal | X | X | X | X |
+| External |  |  | X | X |
+| Google Cloud | X | X |  |  |
+| IBM Cloud(R) Classic | X |  |  |  |
+| IBM Cloud(R) Virtual Private Cloud (VPC) | X |  |  |  |
+| IBM Power(R) |  | X | X | X |
+| IBM Z(R) or IBM(R) LinuxONE |  | X | X | X |
+| Microsoft Azure | X | X |  |  |
+| Microsoft Azure Stack Hub | X | X |  |  |
+| None |  |  | X | X |
+| Nutanix | X |  |  | X |
+| Oracle Cloud Infrastructure (OCI) |  |  | X | X |
+| Red Hat OpenStack Platform (RHOSP) <sup>\[3\]</sup> | X | X |  |  |
+| VMware vSphere | X | X | X | X |
 
 The following list describes three different deployment pathways and their prerequisites:
 
@@ -256,13 +268,8 @@ The following list describes three different deployment pathways and their prere
 - For Red Hat OpenStack Platform (RHOSP): The latest OpenShift Container Platform release supports both the latest RHOSP long-life release and intermediate release. For complete RHOSP release compatibility, see "OpenShift Container Platform on RHOSP support matrix". See "OpenShift Container Platform 4.x Tested Integrations" for details about integration testing for different platforms.
 
 **Additional resources**
+{._additional-resources}
 
 - [Supported installation methods for different platforms](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing-supported-installation-methods-reference_installing-preparing)
 - [Selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing)
 - [Red Hat OpenShift Network Calculator](https://access.redhat.com/labs/ocpnc/)
-
-[^1]: 1
-
-[^2]: 2
-
-[^3]: 3

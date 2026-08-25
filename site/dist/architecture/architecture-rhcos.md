@@ -1,8 +1,8 @@
 ---
-title: "{{ op_system_first }}"
+title: Red&#160;Hat Enterprise Linux CoreOS (RHCOS)
 ---
 
-# {{ op_system_first }} {#architecture-rhcos}
+# Red Hat Enterprise Linux CoreOS (RHCOS) {#architecture-rhcos}
 
 Red Hat Enterprise Linux CoreOS (RHCOS) represents the next generation of single-purpose container operating system technology by providing the quality standards of Red Hat Enterprise Linux (RHEL) with automated, remote upgrade features.
 
@@ -17,17 +17,17 @@ Before you use Red Hat Enterprise Linux CoreOS (RHCOS), understand key features
 
 The following list describes key features of the RHCOS operating system:
 
-- ***Based on RHEL***: The underlying operating system consists primarily of RHEL components. The same quality, security, and control measures that support RHEL also support RHCOS. For example, RHCOS software is in RPM packages, and each RHCOS system starts up with a RHEL kernel and a set of services that are managed by the systemd init system.
-- ***Controlled immutability***: Although it contains RHEL components, RHCOS is designed to be managed more tightly than a default RHEL installation. Management is performed remotely from the OpenShift Container Platform cluster. When you set up your RHCOS machines, you can modify only a few system settings. This controlled immutability allows OpenShift Container Platform to store the latest state of RHCOS systems in the cluster so it is always able to create additional machines and perform updates based on the latest RHCOS configurations.
-- ***CRI-O container runtime***: Although RHCOS contains features for running the OCI- and libcontainer-formatted containers that Docker requires, it incorporates the CRI-O container engine instead of the Docker container engine. By focusing on features needed by Kubernetes platforms, such as OpenShift Container Platform, CRI-O can offer specific compatibility with different Kubernetes versions. CRI-O also offers a smaller footprint and reduced attack surface than is possible with container engines that offer a larger feature set. Currently, CRI-O is the only engine available within OpenShift Container Platform clusters.
+- **Based on RHEL**: The underlying operating system consists primarily of RHEL components. The same quality, security, and control measures that support RHEL also support RHCOS. For example, RHCOS software is in RPM packages, and each RHCOS system starts up with a RHEL kernel and a set of services that are managed by the systemd init system.
+- **Controlled immutability**: Although it contains RHEL components, RHCOS is designed to be managed more tightly than a default RHEL installation. Management is performed remotely from the OpenShift Container Platform cluster. When you set up your RHCOS machines, you can modify only a few system settings. This controlled immutability allows OpenShift Container Platform to store the latest state of RHCOS systems in the cluster so it is always able to create additional machines and perform updates based on the latest RHCOS configurations.
+- **CRI-O container runtime**: Although RHCOS contains features for running the OCI- and libcontainer-formatted containers that Docker requires, it incorporates the CRI-O container engine instead of the Docker container engine. By focusing on features needed by Kubernetes platforms, such as OpenShift Container Platform, CRI-O can offer specific compatibility with different Kubernetes versions. CRI-O also offers a smaller footprint and reduced attack surface than is possible with container engines that offer a larger feature set. Currently, CRI-O is the only engine available within OpenShift Container Platform clusters.
 
   CRI-O can use either the `crun` or `runC` container runtime to start and manage containers. `crun` is the default. For information about how to enable `runC`, see the documentation for creating a `ContainerRuntimeConfig` CR.
-- ***Set of container tools***: For tasks such as building, copying, and otherwise managing containers, RHCOS replaces the Docker CLI tool with a compatible set of container tools. The podman CLI tool supports many container runtime features, such as running, starting, stopping, listing, and removing containers and container images. The `skopeo` CLI tool can copy, authenticate, and sign images. You can use the `crictl` CLI tool to work with containers and pods from the CRI-O container engine. While direct use of these tools in RHCOS is discouraged, you can use them for debugging purposes.
-- ***rpm-ostree upgrades***: RHCOS features transactional upgrades using the `rpm-ostree` system. Updates are delivered by means of container images and are part of the OpenShift Container Platform update process. When deployed, the container image is pulled, extracted, and written to disk, then the boot loader is modified to boot into the new version. The machine reboots into the update in a rolling manner to ensure cluster capacity is minimally impacted.
-- ***bootupd firmware and boot loader updater***: Package managers and hybrid systems such as `rpm-ostree` do not update the firmware or the boot loader. With `bootupd`, RHCOS users have access to a cross-distribution, system-agnostic update tool that manages firmware and boot updates in UEFI and legacy BIOS boot modes that run on modern architectures, such as x86_64, ppc64le, and aarch64.
+- **Set of container tools**: For tasks such as building, copying, and otherwise managing containers, RHCOS replaces the Docker CLI tool with a compatible set of container tools. The podman CLI tool supports many container runtime features, such as running, starting, stopping, listing, and removing containers and container images. The `skopeo` CLI tool can copy, authenticate, and sign images. You can use the `crictl` CLI tool to work with containers and pods from the CRI-O container engine. While direct use of these tools in RHCOS is discouraged, you can use them for debugging purposes.
+- **rpm-ostree upgrades**: RHCOS features transactional upgrades using the `rpm-ostree` system. Updates are delivered by means of container images and are part of the OpenShift Container Platform update process. When deployed, the container image is pulled, extracted, and written to disk, then the boot loader is modified to boot into the new version. The machine reboots into the update in a rolling manner to ensure cluster capacity is minimally impacted.
+- **bootupd firmware and boot loader updater**: Package managers and hybrid systems such as `rpm-ostree` do not update the firmware or the boot loader. With `bootupd`, RHCOS users have access to a cross-distribution, system-agnostic update tool that manages firmware and boot updates in UEFI and legacy BIOS boot modes that run on modern architectures, such as x86_64, ppc64le, and aarch64.
 
   For information about how to install `bootupd`, see the documentation for *Updating the bootloader using bootupd*.
-- ***Updated through the Machine Config Operator***: In OpenShift Container Platform, the Machine Config Operator handles operating system upgrades. Instead of upgrading individual packages, as is done with `yum` upgrades, `rpm-ostree` delivers upgrades of the OS as an atomic unit. The new OS deployment is staged during upgrades and goes into effect on the next reboot. If something goes wrong with the upgrade, a single rollback and reboot returns the system to the previous state. RHCOS upgrades in OpenShift Container Platform are performed during cluster updates.
+- **Updated through the Machine Config Operator**: In OpenShift Container Platform, the Machine Config Operator handles operating system upgrades. Instead of upgrading individual packages, as is done with `yum` upgrades, `rpm-ostree` delivers upgrades of the OS as an atomic unit. The new OS deployment is staged during upgrades and goes into effect on the next reboot. If something goes wrong with the upgrade, a single rollback and reboot returns the system to the previous state. RHCOS upgrades in OpenShift Container Platform are performed during cluster updates.
 
 For RHCOS systems, the layout of the `rpm-ostree` file system has the following characteristics:
 
@@ -46,16 +46,16 @@ The basic RHCOS configuration consists of the following components:
 
 Limited direct access to RHCOS machines cluster is available for debugging purposes. However, do not directly configure RHCOS systems. Instead, if you need to add or change features on your OpenShift Container Platform nodes, consider making changes in the following ways:
 
-- ***Kubernetes workload objects, such as DaemonSet and Deployment***: If you need to add services or other user-level features to your cluster, consider adding them as Kubernetes workload objects. Keep features outside node configurations. This approach reduces the risk of breaking the cluster during upgrades.
-- ***Day-2 customizations***: If possible, open a cluster without making any customizations to cluster nodes and make necessary node changes after the cluster is up. Those changes are easier to track later and less likely to break updates. Creating machine configs or modifying Operator custom resources are ways of making these customizations.
-- ***Day-1 customizations***: Some customizations must be implemented when the cluster first boots. Ways exist for modifying your cluster so changes are implemented on first boot. Implement day-1 customizations through Ignition configs during `openshift-install`. Alternatively, add boot options during user-provisioned ISO installs.
+- **Kubernetes workload objects, such as DaemonSet and Deployment**: If you need to add services or other user-level features to your cluster, consider adding them as Kubernetes workload objects. Keep features outside node configurations. This approach reduces the risk of breaking the cluster during upgrades.
+- **Day-2 customizations**: If possible, open a cluster without making any customizations to cluster nodes and make necessary node changes after the cluster is up. Those changes are easier to track later and less likely to break updates. Creating machine configs or modifying Operator custom resources are ways of making these customizations.
+- **Day-1 customizations**: Some customizations must be implemented when the cluster first boots. Ways exist for modifying your cluster so changes are implemented on first boot. Implement day-1 customizations through Ignition configs during `openshift-install`. Alternatively, add boot options during user-provisioned ISO installs.
 
 Here are examples of customizations you could do on day 1:
 
-- ***Kernel arguments***: If particular kernel features or tuning is needed on nodes when the cluster first boots.
-- ***Disk encryption***: If your security needs require that the root file system on the nodes is encrypted, such as with FIPS support.
-- ***Kernel modules***: If a particular hardware device, such as a network card or video card, does not have a usable module available by default in the Linux kernel.
-- ***Chronyd***: If you want to provide specific clock settings to your nodes, such as the location of time servers.
+- **Kernel arguments**: If particular kernel features or tuning is needed on nodes when the cluster first boots.
+- **Disk encryption**: If your security needs require that the root file system on the nodes is encrypted, such as with FIPS support.
+- **Kernel modules**: If a particular hardware device, such as a network card or video card, does not have a usable module available by default in the Linux kernel.
+- **Chronyd**: If you want to provide specific clock settings to your nodes, such as the location of time servers.
 
 To accomplish these tasks, you can augment the `openshift-install` process to include additional objects such as `MachineConfig` objects. Those procedures that result in creating machine configs can be passed to the Machine Config Operator after the cluster is up.
 
@@ -70,8 +70,8 @@ Differences between RHCOS installations for OpenShift Container Platform are bas
 
 The following list describes the differences between these infrastructure types:
 
-- ***Installer-provisioned infrastructure***: Some cloud environments offer preconfigured infrastructures so that you can start an OpenShift Container Platform cluster with minimal configuration. For these types of installations, you can supply Ignition configs that place content on each node so it is there when the cluster first boots.
-- ***User-provisioned infrastructure***: If you are provisioning your own infrastructure, you have more flexibility in how you add content to a RHCOS node. For example, you could add kernel arguments when you boot the RHCOS ISO installer to install each system. However, in most cases where configuration is required on the operating system itself, it is best to provide that configuration through an Ignition config.
+- **Installer-provisioned infrastructure**: Some cloud environments offer preconfigured infrastructures so that you can start an OpenShift Container Platform cluster with minimal configuration. For these types of installations, you can supply Ignition configs that place content on each node so it is there when the cluster first boots.
+- **User-provisioned infrastructure**: If you are provisioning your own infrastructure, you have more flexibility in how you add content to a RHCOS node. For example, you could add kernel arguments when you boot the RHCOS ISO installer to install each system. However, in most cases where configuration is required on the operating system itself, it is best to provide that configuration through an Ignition config.
 
 The Ignition facility runs only when the RHCOS system is first set up. After that, Ignition configs can be supplied later using the machine config.
 
@@ -110,6 +110,7 @@ The Ignition process for an RHCOS machine in an OpenShift Container Platform clu
 At the end of this process, the machine is ready to join the cluster and does not require a reboot.
 
 **Additional resources**
+{._additional-resources}
 
 - [cloud-init documentation](https://cloud-init.io/)
 - [Kickstart installations](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/installation_guide/index#chap-kickstart-installations)

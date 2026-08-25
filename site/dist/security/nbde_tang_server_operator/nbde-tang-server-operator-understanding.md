@@ -14,7 +14,8 @@ The NBDE Tang Server Operator simplifies the installation process and uses nativ
 
 The NBDE Tang Server Operator is implemented using the Operator SDK and allows the deployment of one or more Tang servers in OpenShift through custom resource definitions (CRDs).
 
-## Additional resources {#understanding-nbde-tang-server-operator_additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Tang-Operator: Providing NBDE in OpenShift](https://cloud.redhat.com/blog/tang-operator-providing-nbde-in-openshift)
 - [Tang Server Operator](https://github.com/openshift/nbde-tang-server)

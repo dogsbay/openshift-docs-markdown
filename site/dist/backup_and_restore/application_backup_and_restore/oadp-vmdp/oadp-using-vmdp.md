@@ -1,5 +1,5 @@
 ---
-title: Using {{ oadp_short }} virtual machine data protection
+title: Using OADP virtual machine data protection
 ---
 
 # Using OADP virtual machine data protection {#oadp-using-vmdp}

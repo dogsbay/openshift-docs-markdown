@@ -20,9 +20,9 @@ This early access program exists so that customers can provide feedback on the u
 
 Red Hat OpenShift Pipelines is a cloud-native, continuous integration and continuous delivery (CI/CD) solution based on Kubernetes resources. Install the Red Hat OpenShift Pipelines Operator by using the software catalog in the OpenShift Container Platform web console. Once the Operator is installed, you can create and modify pipeline objects on **Pipelines** page.
 
-## Red Hat {{ serverlessproductname }} in the web console {#using-serverless-with-openshift_capabilities-web-console}
+## Red Hat {serverlessproductname} in the web console {#using-serverless-with-openshift_capabilities-web-console}
 
-Red Hat {{ serverlessproductname }} enables developers to create and deploy serverless, event-driven applications on OpenShift Container Platform. You can use the OpenShift Container Platform web console software catalog to install the {{ serverlessproductname }} Operator.
+Red Hat {serverlessproductname} enables developers to create and deploy serverless, event-driven applications on OpenShift Container Platform. You can use the OpenShift Container Platform web console software catalog to install the {serverlessproductname} Operator.
 
 ## Red Hat Developer Hub in the OpenShift Container Platform web console {#rhdh-web-console_capabilities-web-console}
 
@@ -47,6 +47,7 @@ The web console provides a quick start with instructions on how to install the R
 2. Verify your Janus IDP instance can be opened.
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding the software catalog](/openshift-docs-markdown/operators/understanding/olm-understanding-software-catalog#olm-understanding-software-catalog)
 - [Installing the web terminal](/openshift-docs-markdown/web_console/web_terminal/installing-web-terminal#installing-web-terminal)

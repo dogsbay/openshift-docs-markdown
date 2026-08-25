@@ -98,14 +98,14 @@ To manage eBPF programs across your cluster nodes, you can install the eBPF Mana
 
 1. Install the eBPF Manager Operator:
 
-   1. In the OpenShift Container Platform web console, click **Ecosystem** -> **Software Catalog**.
+   1. In the OpenShift Container Platform web console, click **Ecosystem** → **Software Catalog**.
    2. Select **eBPF Manager Operator** from the list of available Operators, and if prompted to **Show community Operator**, click **Continue**.
    3. Click **Install**.
    4. On the **Install Operator** page, under **Installed Namespace**, select **Operator recommended Namespace**.
    5. Click **Install**.
 2. Verify that the eBPF Manager Operator is installed successfully:
 
-   1. Navigate to the **Ecosystem** -> **Installed Operators** page.
+   1. Navigate to the **Ecosystem** → **Installed Operators** page.
    2. Ensure that **eBPF Manager Operator** is listed in the **openshift-ingress-node-firewall** project with a **Status** of **InstallSucceeded**.
 
       > [!NOTE]
@@ -114,9 +114,10 @@ To manage eBPF programs across your cluster nodes, you can install the eBPF Mana
       If the Operator does not have a **Status** of **InstallSucceeded**, troubleshoot using the following steps:
 
       - Inspect the **Operator Subscriptions** and **Install Plans** tabs for any failures or errors under **Status**.
-      - Navigate to the **Workloads** -> **Pods** page and check the logs for pods in the `bpfman` project.
+      - Navigate to the **Workloads** → **Pods** page and check the logs for pods in the `bpfman` project.
 
 **Additional resources**
+{._additional-resources}
 
 - [Deploying a containerized eBPF program](/openshift-docs-markdown/networking/networking_operators/ebpf_manager/ebpf-manager-operator-deploy#bpfman-operator-deploy)
 - [Configuring Ingress Node Firewall Operator to use the eBPF Manager Operator](/openshift-docs-markdown/networking/networking_operators/ingress-node-firewall-operator#bpfman-infw-configure_ingress-node-firewall-operator)

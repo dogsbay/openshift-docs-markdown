@@ -16,16 +16,17 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 
-const headings = [{"depth":1,"slug":"mce-overview-ocp","text":"About the {{ mce }}"},{"depth":2,"slug":"additional-resources_mce-overview-ocp","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"mce-overview-ocp","text":"About the multicluster engine for Kubernetes Operator"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/architecture/mce-overview-ocp";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
-const title = "About the {{ mce }}";
+const title = "About the multicluster engine for Kubernetes Operator";
 const description = "Manage the lifecycle of a growing Kubernetes fleet with the multicluster engine Operator. Scale operations efficiently with full lifecycle capabilities…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
@@ -39,7 +40,7 @@ const pageCategory = ["architecture"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About the {{ mce }} {#mce-overview-ocp}\n\nManage the lifecycle of a growing Kubernetes fleet with the multicluster engine Operator. Scale operations efficiently with full lifecycle capabilities for managed OpenShift Container Platform clusters and support for other Kubernetes distributions.\n\nYou can access the Operator in the following ways:\n\n- As a standalone Operator that you install as part of your OpenShift Container Platform or OpenShift Kubernetes Engine subscription.\n- As part of Red Hat Advanced Cluster Management for Kubernetes.\n\nWhen you enable multicluster engine on OpenShift Container Platform to manage your cluster, you gain the following capabilities:\n\n- Hosted control planes, which is a feature that is based on the HyperShift project. With a centralized hosted control plane, you can operate OpenShift Container Platform clusters in a hyperscale manner.\n- Hive, which provisions self-managed OpenShift Container Platform clusters to the hub and completes the initial configurations for those clusters.\n- klusterlet agent, which registers managed clusters to the hub.\n- Infrastructure Operator, which manages the deployment of the Assisted Service to orchestrate on-premises bare metal and vSphere installations of OpenShift Container Platform, such as single-node OpenShift on bare metal. The Infrastructure Operator includes GitOps Zero Touch Provisioning (ZTP), which fully automates cluster creation on bare metal and vSphere provisioning with GitOps workflows to manage deployments and configuration changes.\n- Open cluster management, which provides resources to manage Kubernetes clusters.\n\nThe multicluster engine is included with your OpenShift Container Platform support subscription and is delivered separately from the core payload. To start to use multicluster engine, you deploy the OpenShift Container Platform cluster and then install the Operator. For more information, see \"Installing and upgrading multicluster engine Operator\".\n\nIf you need cluster management capabilities beyond what OpenShift Container Platform with multicluster engine can provide, consider Red Hat Advanced Cluster Management. The multicluster engine is an integral part of Red Hat Advanced Cluster Management and is enabled by default.\n\nFor the complete documentation for multicluster engine, see \"Cluster lifecycle with multicluster engine Operator\", which is part of the product documentation for Red Hat Advanced Cluster Management.\n\n## Additional resources {#additional-resources_mce-overview-ocp}\n\n- [Red Hat Advanced Cluster Management for Kubernetes](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes)\n- [Hosted control planes overview](/openshift-docs-markdown/hosted_control_planes/index#hcp-overview)\n- [Using GitOps Zero Touch Provisioning (ZTP) to provision clusters at the network far edge](/openshift-docs-markdown/edge_computing/ztp-deploying-far-edge-clusters-at-scale#ztp-challenges-of-far-edge-deployments_ztp-deploying-far-edge-clusters-at-scale)\n- [Installing and upgrading multicluster engine Operator](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.16/html/clusters/cluster_mce_overview#mce-install-intro)\n- [Cluster lifecycle with multicluster engine Operator](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.16/html/clusters/cluster_mce_overview)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/architecture/mce-overview-ocp.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About the multicluster engine for Kubernetes Operator {#mce-overview-ocp}\n\nManage the lifecycle of a growing Kubernetes fleet with the multicluster engine Operator. Scale operations efficiently with full lifecycle capabilities for managed OpenShift Container Platform clusters and support for other Kubernetes distributions.\n\nYou can access the Operator in the following ways:\n\n- As a standalone Operator that you install as part of your OpenShift Container Platform or OpenShift Kubernetes Engine subscription.\n- As part of Red Hat Advanced Cluster Management for Kubernetes.\n\nWhen you enable multicluster engine on OpenShift Container Platform to manage your cluster, you gain the following capabilities:\n\n- Hosted control planes, which is a feature that is based on the HyperShift project. With a centralized hosted control plane, you can operate OpenShift Container Platform clusters in a hyperscale manner.\n- Hive, which provisions self-managed OpenShift Container Platform clusters to the hub and completes the initial configurations for those clusters.\n- klusterlet agent, which registers managed clusters to the hub.\n- Infrastructure Operator, which manages the deployment of the Assisted Service to orchestrate on-premises bare metal and vSphere installations of OpenShift Container Platform, such as single-node OpenShift on bare metal. The Infrastructure Operator includes GitOps Zero Touch Provisioning (ZTP), which fully automates cluster creation on bare metal and vSphere provisioning with GitOps workflows to manage deployments and configuration changes.\n- Open cluster management, which provides resources to manage Kubernetes clusters.\n\nThe multicluster engine is included with your OpenShift Container Platform support subscription and is delivered separately from the core payload. To start to use multicluster engine, you deploy the OpenShift Container Platform cluster and then install the Operator. For more information, see \"Installing and upgrading multicluster engine Operator\".\n\nIf you need cluster management capabilities beyond what OpenShift Container Platform with multicluster engine can provide, consider Red Hat Advanced Cluster Management. The multicluster engine is an integral part of Red Hat Advanced Cluster Management and is enabled by default.\n\nFor the complete documentation for multicluster engine, see \"Cluster lifecycle with multicluster engine Operator\", which is part of the product documentation for Red Hat Advanced Cluster Management.\n\n**Additional resources**\n{._additional-resources}\n\n- [Red Hat Advanced Cluster Management for Kubernetes](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes)\n- [Hosted control planes overview](/openshift-docs-markdown/hosted_control_planes/index#hcp-overview)\n- [Using GitOps Zero Touch Provisioning (ZTP) to provision clusters at the network far edge](/openshift-docs-markdown/edge_computing/ztp-deploying-far-edge-clusters-at-scale#ztp-challenges-of-far-edge-deployments_ztp-deploying-far-edge-clusters-at-scale)\n- [Installing and upgrading multicluster engine Operator](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.16/html/clusters/cluster_mce_overview#mce-install-intro)\n- [Cluster lifecycle with multicluster engine Operator](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.16/html/clusters/cluster_mce_overview)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/architecture/mce-overview-ocp.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,20 +79,21 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <h1 id="mce-overview-ocp" class="group scroll-mt-20">About the {"{"}{"{"} mce {"}"}{"}"}<a href="#mce-overview-ocp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Manage the lifecycle of a growing Kubernetes fleet with the multicluster engine Operator. Scale operations efficiently with full lifecycle capabilities for managed OpenShift Container Platform clusters and support for other Kubernetes distributions.</p>
+      <h1 id="mce-overview-ocp" class="group scroll-mt-20">About the multicluster engine for Kubernetes Operator<a href="#mce-overview-ocp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p class="_abstract">Manage the lifecycle of a growing Kubernetes fleet with the multicluster engine Operator. Scale operations efficiently with full lifecycle capabilities for managed OpenShift Container Platform clusters and support for other Kubernetes distributions.</p>
       <p>You can access the Operator in the following ways:</p>
       <ul>
       <li>As a standalone Operator that you install as part of your OpenShift Container Platform or OpenShift Kubernetes Engine subscription.</li>
@@ -108,7 +110,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p>The multicluster engine is included with your OpenShift Container Platform support subscription and is delivered separately from the core payload. To start to use multicluster engine, you deploy the OpenShift Container Platform cluster and then install the Operator. For more information, see "Installing and upgrading multicluster engine Operator".</p>
       <p>If you need cluster management capabilities beyond what OpenShift Container Platform with multicluster engine can provide, consider Red Hat Advanced Cluster Management. The multicluster engine is an integral part of Red Hat Advanced Cluster Management and is enabled by default.</p>
       <p>For the complete documentation for multicluster engine, see "Cluster lifecycle with multicluster engine Operator", which is part of the product documentation for Red Hat Advanced Cluster Management.</p>
-      <h2 id="additional-resources_mce-overview-ocp" class="group scroll-mt-20">Additional resources<a href="#additional-resources_mce-overview-ocp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul>
       <li><a href="https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes">Red Hat Advanced Cluster Management for Kubernetes</a></li>
       <li><a href="/openshift-docs-markdown/hosted_control_planes/index#hcp-overview">Hosted control planes overview</a></li>
@@ -116,6 +119,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li><a href="https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.16/html/clusters/cluster_mce_overview#mce-install-intro">Installing and upgrading multicluster engine Operator</a></li>
       <li><a href="https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.16/html/clusters/cluster_mce_overview">Cluster lifecycle with multicluster engine Operator</a></li>
       </ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

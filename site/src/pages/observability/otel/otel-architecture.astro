@@ -20,12 +20,13 @@ const headings = [{"depth":1,"slug":"otel-architecture","text":"About Red Hat b
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/observability/otel/otel-architecture";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
-const title = "About {{ OTELName }}";
+const title = "About Red&#160;Hat build of OpenTelemetry";
 const description = "The standalone Red Hat build of OpenTelemetry documentation is available at https://docs.redhat.com/en/documentation/red_hat_build_of_opentelemetry/latest." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
@@ -78,12 +79,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >

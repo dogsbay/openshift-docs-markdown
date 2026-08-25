@@ -1,5 +1,5 @@
 ---
-title: TemplateInstance []
+title: TemplateInstance [template.openshift.io/v1]
 ---
 
 # TemplateInstance \[template.openshift.io/v1\] {#templateinstance-template-openshift-io-v1}
@@ -44,7 +44,7 @@ Required
 | --- | --- | --- |
 | `requester` | `object` | TemplateInstanceRequester holds the identity of an agent requesting a template instantiation. |
 | `secret` | `LocalObjectReference` | secret is a reference to a Secret object containing the necessary template parameters. |
-| `template` | `object` | Template contains the inputs needed to produce a Config. Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
+| `template` | `object` | Template contains the inputs needed to produce a Config.<br>Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
 
 ### .spec.requester {#_specrequester}
 
@@ -96,7 +96,7 @@ Required
 | `labels` | `object (string)` | labels is a optional set of labels that are applied to every object during the Template to Config transformation. |
 | `message` | `string` | message is an optional instructional message that will be displayed when this template is instantiated. This field should inform the user how to utilize the newly created resources. Parameter substitution will be performed on the message before being displayed so that generated credentials and other parameters can be included in the output. |
 | `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
-| `objects` | [`array (RawExtension)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-runtime-RawExtension) | objects is an array of resources to include in this template. If a namespace value is hardcoded in the object, it will be removed during template instantiation, however if the namespace value is, or contains, a ${{ PARAMETER_REFERENCE }}, the resolved value after parameter substitution will be respected and the object will be created in that namespace. |
+| `objects` | [`array (RawExtension)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-runtime-RawExtension) | objects is an array of resources to include in this template. If a namespace value is hardcoded in the object, it will be removed during template instantiation, however if the namespace value is, or contains, a ${PARAMETER_REFERENCE}, the resolved value after parameter substitution will be respected and the object will be created in that namespace. |
 | `parameters` | `array` | parameters is an optional array of Parameters used during the Template to Config transformation. |
 | `parameters[]` | `object` | Parameter defines a name/value variable that is to be processed during the Template to Config transformation. |
 
@@ -128,11 +128,10 @@ Required
 | `description` | `string` | description of a parameter. Optional. |
 | `displayName` | `string` | Optional: The name that will show in UI instead of parameter 'Name' |
 | `from` | `string` | from is an input value for the generator. Optional. |
-| `generate` | `string` | generate specifies the generator to be used to generate random string from an input value specified by From field. The result string is stored into Value field. If empty, no generator is being used, leaving the result Value untouched. Optional. The only supported generator is "expression", which accepts a "from" value in the form of a simple regular expression containing the range expression "\[a-zA-Z0-9\]", and the length expression "a{{ length }}". Examples: from             \\ |
-| value ----------------------------- "test\[0-9\]{{ 1 }}x"  \\ | "test7x" "\[0-1\]{{ 8 }}"       \\ | "01001100" "0x\[A-F0-9\]{{ 4 }}"  \\ |
-| "0xB3AF" "\[a-zA-Z0-9\]{{ 8 }}" \\ | "hW4yQU5i" | `name` |
-| `string` | name must be set and it can be referenced in Template Items using ${{ PARAMETER_NAME }}. Required. | `required` |
-| `boolean` | Optional: Indicates the parameter must have a value.  Defaults to false. | `value` |
+| `generate` | `string` | generate specifies the generator to be used to generate random string from an input value specified by From field. The result string is stored into Value field. If empty, no generator is being used, leaving the result Value untouched. Optional.<br>The only supported generator is "expression", which accepts a "from" value in the form of a simple regular expression containing the range expression "\[a-zA-Z0-9\]", and the length expression "a{length}".<br>Examples:<br>from \| value ----------------------------- "test\[0-9\]{1}x" \| "test7x" "\[0-1\]{8}" \| "01001100" "0x\[A-F0-9\]{4}" \| "0xB3AF" "\[a-zA-Z0-9\]{8}" \| "hW4yQU5i" |
+| `name` | `string` | name must be set and it can be referenced in Template Items using ${PARAMETER_NAME}. Required. |
+| `required` | `boolean` | Optional: Indicates the parameter must have a value. Defaults to false. |
+| `value` | `string` | value holds the Parameter data. If specified, the generator will be ignored. The value replaces all occurrences of the Parameter ${Name} expression during the Template to Config transformation. Optional. |
 
 ### .status {#_status}
 
@@ -208,7 +207,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `ref` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | ref is a reference to the created object.  When used under .spec, only name and namespace are used; these can contain references to parameters which will be substituted following the usual rules. |
+| `ref` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | ref is a reference to the created object. When used under .spec, only name and namespace are used; these can contain references to parameters which will be substituted following the usual rules. |
 
 ## API endpoints {#_api_endpoints}
 
@@ -220,24 +219,24 @@ The following API endpoints are available:
 - `/apis/template.openshift.io/v1/watch/templateinstances`
 
   - `GET`: watch individual changes to a list of TemplateInstance. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/template.openshift.io/v1/namespaces/{{ namespace }}/templateinstances`
+- `/apis/template.openshift.io/v1/namespaces/{namespace}/templateinstances`
 
   - `DELETE`: delete collection of TemplateInstance
   - `GET`: list or watch objects of kind TemplateInstance
   - `POST`: create a TemplateInstance
-- `/apis/template.openshift.io/v1/watch/namespaces/{{ namespace }}/templateinstances`
+- `/apis/template.openshift.io/v1/watch/namespaces/{namespace}/templateinstances`
 
   - `GET`: watch individual changes to a list of TemplateInstance. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/template.openshift.io/v1/namespaces/{{ namespace }}/templateinstances/{{ name }}`
+- `/apis/template.openshift.io/v1/namespaces/{namespace}/templateinstances/{name}`
 
   - `DELETE`: delete a TemplateInstance
   - `GET`: read the specified TemplateInstance
   - `PATCH`: partially update the specified TemplateInstance
   - `PUT`: replace the specified TemplateInstance
-- `/apis/template.openshift.io/v1/watch/namespaces/{{ namespace }}/templateinstances/{{ name }}`
+- `/apis/template.openshift.io/v1/watch/namespaces/{namespace}/templateinstances/{name}`
 
   - `GET`: watch changes to an object of kind TemplateInstance. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
-- `/apis/template.openshift.io/v1/namespaces/{{ namespace }}/templateinstances/{{ name }}/status`
+- `/apis/template.openshift.io/v1/namespaces/{namespace}/templateinstances/{name}/status`
 
   - `GET`: read status of the specified TemplateInstance
   - `PATCH`: partially update status of the specified TemplateInstance
@@ -281,7 +280,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/template.openshift.io/v1/namespaces/{{ namespace }}/templateinstances {#_apistemplateopenshiftiov1namespaces_namespace_templateinstances}
+### /apis/template.openshift.io/v1/namespaces/{namespace}/templateinstances {#_apistemplateopenshiftiov1namespaces_namespace_templateinstances}
 
 HTTP method
 :   ```
@@ -355,7 +354,7 @@ Description
 | 202 - Accepted | [`TemplateInstance`](/openshift-docs-markdown/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/template.openshift.io/v1/watch/namespaces/{{ namespace }}/templateinstances {#_apistemplateopenshiftiov1watchnamespaces_namespace_templateinstances}
+### /apis/template.openshift.io/v1/watch/namespaces/{namespace}/templateinstances {#_apistemplateopenshiftiov1watchnamespaces_namespace_templateinstances}
 
 HTTP method
 :   ```
@@ -374,7 +373,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/template.openshift.io/v1/namespaces/{{ namespace }}/templateinstances/{{ name }} {#_apistemplateopenshiftiov1namespaces_namespace_templateinstances_name}
+### /apis/template.openshift.io/v1/namespaces/{namespace}/templateinstances/{name} {#_apistemplateopenshiftiov1namespaces_namespace_templateinstances_name}
 
 **Global path parameters**
 
@@ -479,7 +478,7 @@ Description
 | 201 - Created | [`TemplateInstance`](/openshift-docs-markdown/rest_api/template_apis/templateinstance-template-openshift-io-v1#templateinstance-template-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/template.openshift.io/v1/watch/namespaces/{{ namespace }}/templateinstances/{{ name }} {#_apistemplateopenshiftiov1watchnamespaces_namespace_templateinstances_name}
+### /apis/template.openshift.io/v1/watch/namespaces/{namespace}/templateinstances/{name} {#_apistemplateopenshiftiov1watchnamespaces_namespace_templateinstances_name}
 
 **Global path parameters**
 
@@ -504,7 +503,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/template.openshift.io/v1/namespaces/{{ namespace }}/templateinstances/{{ name }}/status {#_apistemplateopenshiftiov1namespaces_namespace_templateinstances_name_status}
+### /apis/template.openshift.io/v1/namespaces/{namespace}/templateinstances/{name}/status {#_apistemplateopenshiftiov1namespaces_namespace_templateinstances_name_status}
 
 **Global path parameters**
 

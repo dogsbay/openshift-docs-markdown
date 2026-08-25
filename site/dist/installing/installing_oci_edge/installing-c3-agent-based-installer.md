@@ -1,5 +1,5 @@
 ---
-title: Installing a cluster on {{ oci_edge_no_rt }} by using the Agent-based Installer
+title: Installing a cluster on Oracle Edge Cloud by using the Agent-based Installer
 ---
 
 # Installing a cluster on Oracle Edge Cloud by using the Agent-based Installer {#installing-c3-agent-based-installer}
@@ -65,6 +65,7 @@ Having prior knowledge of Oracle Cloud Infrastructure (OCI) components can help 
   For more information, see "Terraform Script Execution" in [OpenShift Cluster Setup with Agent Based Installer on Compute Cloud@Customer](https://www.oracle.com/a/otn/docs/compute_cloud_at_customer_agent_based_installation.pdf?source=:em:nl:mt::::PCATP) (Oracle documentation).
 
 **Additional resources**
+{._additional-resources}
 
 - [Learn About Oracle Cloud Basics (Oracle documentation)](https://docs.oracle.com/en-us/iaas/Content/GSG/Concepts/concepts.htm)
 
@@ -225,6 +226,7 @@ Both of these components are required to perform the cluster installation, but t
       > Consider that the full ISO image, which is in excess of `1` GB, includes the rootfs image. The image is larger than the minimal ISO Image, which is typically less than `150` MB.
 
 **Additional resources**
+{._additional-resources}
 
 - [About OpenShift Container Platform installation](/openshift-docs-markdown/architecture/architecture-installation#installation-overview_architecture-installation)
 - [Selecting a cluster installation type](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing-selecting-cluster-type_installing-preparing)
@@ -313,10 +315,10 @@ There are no special configuration considerations for services running on only c
   <td>Alibaba</td>
   <td><code>*.aliyuncs.com</code></td>
   <td>443</td>
-  <td>Required to access Alibaba Cloud services and resources. Review the <a href="https://github.com/aliyun/alibaba-cloud-sdk-go/blob/master/sdk/endpoints/endpoints_config.go?spm=a2c4g.11186623.0.0.47875873ciGnC8&file=endpoints_config.go">Alibaba endpoints_config.go file</a> to find the exact endpoints to allow for the regions that you use.<br><br>.17+</td>
+  <td>Required to access Alibaba Cloud services and resources. Review the <a href="https://github.com/aliyun/alibaba-cloud-sdk-go/blob/master/sdk/endpoints/endpoints_config.go?spm=a2c4g.11186623.0.0.47875873ciGnC8&file=endpoints_config.go">Alibaba endpoints_config.go file</a> to find the exact endpoints to allow for the regions that you use.</td>
 </tr>
 <tr>
-  <td>AWS</td>
+  <td rowspan="17">AWS</td>
   <td><code>aws.amazon.com</code></td>
   <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
@@ -325,16 +327,18 @@ There are no special configuration considerations for services running on only c
   <td><code>*.amazonaws.com</code><br><br>Alternatively, if you choose to not use a wildcard for AWS APIs, you must include the following URLs in your allowlist:</td>
   <td>443</td>
   <td>Required to access AWS services and resources. Review the <a href="https://docs.aws.amazon.com/general/latest/gr/rande.html">AWS Service Endpoints</a> in the AWS documentation to find the exact endpoints to allow for the regions that you use.</td>
-  <td><code>ec2.amazonaws.com</code></td>
 </tr>
 <tr>
+  <td><code>ec2.amazonaws.com</code></td>
   <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
+</tr>
+<tr>
   <td><code>events.amazonaws.com</code></td>
   <td>443</td>
+  <td>Used to install and manage clusters in an AWS environment.</td>
 </tr>
 <tr>
-  <td>Used to install and manage clusters in an AWS environment.</td>
   <td><code>iam.amazonaws.com</code></td>
   <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
@@ -343,17 +347,19 @@ There are no special configuration considerations for services running on only c
   <td><code>route53.amazonaws.com</code></td>
   <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
+</tr>
+<tr>
   <td><code>*.s3.amazonaws.com</code></td>
-</tr>
-<tr>
   <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
-  <td><code>*.s3.<aws_region>.amazonaws.com</code></td>
-  <td>443</td>
 </tr>
 <tr>
+  <td><code>*.s3.&lt;aws_region&gt;.amazonaws.com</code></td>
+  <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
-  <td><code>*.s3.dualstack.<aws_region>.amazonaws.com</code></td>
+</tr>
+<tr>
+  <td><code>*.s3.dualstack.&lt;aws_region&gt;.amazonaws.com</code></td>
   <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
 </tr>
@@ -361,40 +367,44 @@ There are no special configuration considerations for services running on only c
   <td><code>sts.amazonaws.com</code></td>
   <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
-  <td><code>sts.<aws_region>.amazonaws.com</code></td>
 </tr>
 <tr>
+  <td><code>sts.&lt;aws_region&gt;.amazonaws.com</code></td>
   <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
+</tr>
+<tr>
   <td><code>tagging.us-east-1.amazonaws.com</code></td>
   <td>443</td>
-</tr>
-<tr>
   <td>Used to install and manage clusters in an AWS environment. This endpoint is always <code>us-east-1</code>, regardless of the region the cluster is deployed in.</td>
-  <td><code>ec2.<aws_region>.amazonaws.com</code></td>
+</tr>
+<tr>
+  <td><code>ec2.&lt;aws_region&gt;.amazonaws.com</code></td>
   <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
 </tr>
 <tr>
-  <td><code>elasticloadbalancing.<aws_region>.amazonaws.com</code></td>
+  <td><code>elasticloadbalancing.&lt;aws_region&gt;.amazonaws.com</code></td>
   <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
-  <td><code>servicequotas.<aws_region>.amazonaws.com</code></td>
 </tr>
 <tr>
+  <td><code>servicequotas.&lt;aws_region&gt;.amazonaws.com</code></td>
   <td>443</td>
   <td>Required. Used to confirm quotas for deploying the service.</td>
-  <td><code>tagging.<aws_region>.amazonaws.com</code></td>
-  <td>443</td>
 </tr>
 <tr>
+  <td><code>tagging.&lt;aws_region&gt;.amazonaws.com</code></td>
+  <td>443</td>
   <td>Allows the assignment of metadata about AWS resources in the form of tags.</td>
+</tr>
+<tr>
   <td><code>*.cloudfront.net</code></td>
   <td>443</td>
-  <td>Used to provide access to CloudFront. If you use the AWS Security Token Service (STS) and the private S3 bucket, you must provide access to CloudFront.<br><br>.2+</td>
+  <td>Used to provide access to CloudFront. If you use the AWS Security Token Service (STS) and the private S3 bucket, you must provide access to CloudFront.</td>
 </tr>
 <tr>
-  <td>GCP</td>
+  <td rowspan="2">GCP</td>
   <td><code>*.googleapis.com</code></td>
   <td>443</td>
   <td>Required to access Google Cloud services and resources. Review <a href="https://cloud.google.com/endpoints/">Cloud Endpoints</a> in the Google Cloud documentation to find the endpoints to allow for your APIs.</td>
@@ -402,44 +412,42 @@ There are no special configuration considerations for services running on only c
 <tr>
   <td><code>accounts.google.com</code></td>
   <td>443</td>
-  <td>Required to access your Google Cloud account.<br><br>.3+</td>
-  <td>Microsoft Azure</td>
+  <td>Required to access your Google Cloud account.</td>
 </tr>
 <tr>
+  <td rowspan="3">Microsoft Azure</td>
   <td><code>management.azure.com</code></td>
   <td>443</td>
   <td>Required to access Microsoft Azure services and resources. Review the <a href="https://docs.microsoft.com/en-us/rest/api/azure/">Microsoft Azure REST API reference</a> in the Microsoft Azure documentation to find the endpoints to allow for your APIs.</td>
-  <td><code>*.blob.core.windows.net</code></td>
 </tr>
 <tr>
+  <td><code>*.blob.core.windows.net</code></td>
   <td>443</td>
   <td>Required to download Ignition files.</td>
-  <td><code>login.microsoftonline.com</code></td>
-  <td>443</td>
 </tr>
 <tr>
+  <td><code>login.microsoftonline.com</code></td>
+  <td>443</td>
   <td>Required to access Microsoft Azure services and resources. Review the <a href="https://docs.microsoft.com/en-us/rest/api/azure/">Azure REST API reference</a> in the Microsoft Azure documentation to find the endpoints to allow for your APIs.</td>
 </tr>
 </tbody>
 </table>
-1.  Allowlist the following URL for optional third-party content:
-    | URL | Port | Function |
-    | --- | --- | --- |
-    | `registry.connect.redhat.com` | 443 | Required for all third-party images and certified operators. |
-1.  If you use a default Red Hat Network Time Protocol (NTP) server, allow the following URLs. NTP operates on User Datagram Protocol (UDP) port 123, so this port must be opened on the firewall.
-    | URL | Port | Function |
-    | --- | --- | --- |
-    | `1.rhel.pool.ntp.org` | 123 | Provides NTP services for time synchronization. |
-    | `2.rhel.pool.ntp.org` | 123 | Provides NTP services for time synchronization. |
-    | `3.rhel.pool.ntp.org` | 123 | Provides NTP services for time synchronization. |
 
-```
-:::note
+1. Allowlist the following URL for optional third-party content:
 
-If you do not use a default Red Hat NTP server, verify the NTP server for your platform and allow it in your firewall.
+   | URL | Port | Function |
+   | --- | --- | --- |
+   | `registry.connect.redhat.com` | 443 | Required for all third-party images and certified operators. |
+2. If you use a default Red Hat Network Time Protocol (NTP) server, allow the following URLs. NTP operates on User Datagram Protocol (UDP) port 123, so this port must be opened on the firewall.
 
-:::
-```
+   | URL | Port | Function |
+   | --- | --- | --- |
+   | `1.rhel.pool.ntp.org` | 123 | Provides NTP services for time synchronization. |
+   | `2.rhel.pool.ntp.org` | 123 | Provides NTP services for time synchronization. |
+   | `3.rhel.pool.ntp.org` | 123 | Provides NTP services for time synchronization. |
+
+   > [!NOTE]
+   > If you do not use a default Red Hat NTP server, verify the NTP server for your platform and allow it in your firewall.
 
 ## Running a cluster on Oracle Edge Cloud {#running-cluster-oci-c3-agent-based_installing-c3-agent-based-installer}
 
@@ -519,7 +527,8 @@ Verify that your cluster was installed and is running effectively on Oracle Edge
         …
     ```
 
-## Additional resources {#additional-resources_installing-c3-agent-based-installer}
+**Additional resources**
+{._additional-resources}
 
 - [Gathering log data from a failed Agent-based installation](/openshift-docs-markdown/installing/installing_with_agent_based_installer/installing-with-agent-based-installer#installing-ocp-agent-gather-log_installing-with-agent-based-installer)
 - [Adding worker nodes to an on-premise cluster](/openshift-docs-markdown/nodes/nodes/nodes-nodes-adding-node-iso#adding-node-iso)

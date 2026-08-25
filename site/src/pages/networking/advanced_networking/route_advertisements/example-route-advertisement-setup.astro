@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"example-route-advertisements-setup","text":
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/advanced_networking/route_advertisements/example-route-advertisement-setup";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="example-route-advertisements-setup" class="group scroll-mt-20">Example route advertisements setup<a href="#example-route-advertisements-setup" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>To learn how to implement a route reflection setup on bare-metal infrastructure, you can follow this sample configuration. This example demonstrates how to enable the necessary feature gates and configure objects to advertise pod and egress IP routes.</p>
+      <p class="_abstract">To learn how to implement a route reflection setup on bare-metal infrastructure, you can follow this sample configuration. This example demonstrates how to enable the necessary feature gates and configure objects to advertise pod and egress IP routes.</p>
       <p>As a cluster administrator, you can configure the following example route advertisements setup for your cluster. This configuration is intended as a sample that demonstrates how to configure route advertisements.</p>
       <h2 id="nw-route-advertisements-setup_example-route-advertisements-setup" class="group scroll-mt-20">Sample route advertisements setup<a href="#nw-route-advertisements-setup_example-route-advertisements-setup" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">You can implement Border Gateway Protocol (BGP) routing by using a sample configuration to set up route advertisements for your cluster. This configuration demonstrates how to configure route reflection on bare-metal infrastructure to share pod and egress IP routes.</p>

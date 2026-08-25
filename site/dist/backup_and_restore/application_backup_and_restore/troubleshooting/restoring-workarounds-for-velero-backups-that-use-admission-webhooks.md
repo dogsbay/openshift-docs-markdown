@@ -87,9 +87,13 @@ The `openshift-adp-controller-manager` pod fails with a crash loop segmentation 
 
 See *OADP-1054* for more information.
 
+**Additional resources**
+{._additional-resources}
+
 - [OADP-1054](https://issues.redhat.com/browse/OADP-1054)
 
 **Additional resources**
+{._additional-resources}
 
 - [Admission plugins](/openshift-docs-markdown/architecture/admission-plug-ins#admission-plug-ins)
 - [Webhook admission plugins](/openshift-docs-markdown/architecture/admission-plug-ins#admission-webhooks-about_admission-plug-ins)

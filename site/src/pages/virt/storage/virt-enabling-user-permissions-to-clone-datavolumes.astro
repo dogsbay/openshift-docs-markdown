@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"virt-enabling-user-permissions-to-clone-dat
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/storage/virt-enabling-user-permissions-to-clone-datavolumes";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-enabling-user-permissions-to-clone-datavolumes" class="group scroll-mt-20">Enabling user permissions to clone data volumes across namespaces<a href="#virt-enabling-user-permissions-to-clone-datavolumes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>By default, users cannot clone resources between namespaces. To enable cloning, a user with the <code>cluster-admin</code> role must create and bind a cluster role that grants the required permissions.</p>
+      <p class="_abstract">By default, users cannot clone resources between namespaces. To enable cloning, a user with the <code>cluster-admin</code> role must create and bind a cluster role that grants the required permissions.</p>
       <p>To enable a user to clone a virtual machine to another namespace, a user with the <code>cluster-admin</code> role must create a new cluster role. Bind this cluster role to a user to enable them to clone virtual machines to the destination namespace.</p>
       <h2 id="virt-creating-rbac-cloning-dvs_virt-enabling-user-permissions-to-clone-datavolumes" class="group scroll-mt-20">Creating RBAC resources for cloning data volumes<a href="#virt-creating-rbac-cloning-dvs_virt-enabling-user-permissions-to-clone-datavolumes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">You can create a new cluster role that enables permissions for all actions for the <code>datavolumes</code> resource.</p>

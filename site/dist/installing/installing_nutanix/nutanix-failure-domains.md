@@ -91,18 +91,13 @@ You add failure domains to an existing Nutanix cluster by modifying its Infrastr
    `<network_uuid>`
    :   Specifies one or more UUID for the Prism Element subnet object. The CIDR IP address prefix for one of the specified subnets must contain the virtual IP addresses that the OpenShift Container Platform cluster uses.
 
-> [!IMPORTANT]
-> Configuring multiple subnets is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
->
-> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
+   > [!IMPORTANT]
+   > Configuring multiple subnets is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
+   >
+   > For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
 
-```
-To configure multiple subnets in the Infrastructure CR, you must enable the `NutanixMultiSubnets` feature gate.
-A maximum of 32 subnets for each failure domain (Prism Element) in an OpenShift Container Platform cluster is supported.
-All subnet UUID values must be unique.
-```
-
-1. Save the CR to apply the changes.
+   To configure multiple subnets in the Infrastructure CR, you must enable the `NutanixMultiSubnets` feature gate. A maximum of 32 subnets for each failure domain (Prism Element) in an OpenShift Container Platform cluster is supported. All subnet UUID values must be unique.
+3. Save the CR to apply the changes.
 
 ### Distributing control planes across failure domains {#post-installation-adding-nutanix-failure-domains-control-planes_nutanix-failure-domains}
 
@@ -153,6 +148,7 @@ For more information on checking the control plane machine set custom resource s
 By default, the control plane machine set propagates changes to your control plane configuration automatically. If the cluster is configured to use the `OnDelete` update strategy, you must replace your control planes manually.
 
 **Additional resources**
+{._additional-resources}
 
 - [Checking the control plane machine set custom resource state](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-checking-status_cpmso-getting-started)
 - [Replacing a control plane machine](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-feat-replace_cpmso-managing-machines)
@@ -165,6 +161,7 @@ You can distribute compute machines across Nutanix failure domains by editing or
 - Replacing existing compute machine sets ensures that the specification is immutable and all your machines are the same.
 
 **Additional resources**
+{._additional-resources}
 
 - [Editing existing compute machine sets to implement failure domains](/openshift-docs-markdown/installing/installing_nutanix/nutanix-failure-domains#post-installation-adding-nutanix-failure-domains-compute-machines-edit_nutanix-failure-domains)
 - [Replacing existing compute machine sets to implement failure domains](/openshift-docs-markdown/installing/installing_nutanix/nutanix-failure-domains#post-installation-adding-nutanix-failure-domains-compute-machines-replace_nutanix-failure-domains)
@@ -283,6 +280,7 @@ To distribute compute machines across Nutanix failure domains by using an existi
 13. As required, continue to modify machine sets to reference the additional failure domains that are available to the deployment.
 
 **Additional resources**
+{._additional-resources}
 
 - [Modifying a compute machine set](/openshift-docs-markdown/machine_management/modifying-machineset#modifying-machineset)
 
@@ -472,6 +470,7 @@ To distribute compute machines across Nutanix failure domains by replacing a com
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating a compute machine set on Nutanix](/openshift-docs-markdown/machine_management/creating_machinesets/creating-machineset-nutanix#creating-machineset-nutanix)
 
@@ -496,7 +495,8 @@ The following networking configuration and management practices can help your mu
   To avoid this issue, regularly remove stale DHCP leases.
 - Use automation tools, such as Terraform or Ansible, to isolate the infrastructure for each OpenShift Container Platform cluster.
 
-## Additional resources {#additional-resources_nutanix-failure-domains}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring failure domains](/openshift-docs-markdown/installing/installing_nutanix/installing-nutanix-installer-provisioned#installation-configuring-nutanix-failure-domains_installing-nutanix-installer-provisioned)
 - [Adding failure domains to an existing Nutanix cluster](/openshift-docs-markdown/installing/installing_nutanix/nutanix-failure-domains#nutanix-failure-domains-adding-to-existing-cluster_nutanix-failure-domains)

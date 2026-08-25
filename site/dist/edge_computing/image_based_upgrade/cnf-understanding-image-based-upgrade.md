@@ -1,5 +1,5 @@
 ---
-title: Understanding the image-based upgrade for {{ sno }} clusters
+title: Understanding the image-based upgrade for single-node OpenShift clusters
 ---
 
 # Understanding the image-based upgrade for single-node OpenShift clusters {#cnf-understanding-image-based-upgrade}
@@ -162,6 +162,7 @@ The Lifecycle Agent initiates an automatic rollback if the upgrade does not comp
 ![Transition from Rollback stage](/openshift-docs-markdown/_assets/images/696_OpenShift_Lifecycle_Agent_0624_4.png)
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring the automatic image cleanup of the container storage disk](/openshift-docs-markdown/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-auto-image-cleanup#cnf-image-based-upgrade-configure-auto-image-cleanup)
 - [Performing an image-based upgrade for single-node OpenShift clusters with Lifecycle Agent](/openshift-docs-markdown/edge_computing/image_based_upgrade/cnf-image-based-upgrade-base#cnf-image-based-upgrade)
@@ -184,6 +185,7 @@ Non-GitOps
 You can perform an image-based upgrade in disconnected environments. For more information about how to mirror images for a disconnected environment, see "Mirroring images for a disconnected installation".
 
 **Additional resources**
+{._additional-resources}
 
 - [Mirroring images for a disconnected installation](/openshift-docs-markdown/disconnected/installing-mirroring-installation-images#installing-mirroring-installation-images)
 
@@ -205,8 +207,8 @@ Depending on your deployment method, the image-based upgrade requires the follow
 | GitOps ZTP plugin | 4.16 | Only for GitOps ZTP deployment method |
 | Red Hat OpenShift GitOps | 1.12 | Only for GitOps ZTP deployment method |
 | Topology Aware Lifecycle Manager (TALM) | 4.16 | Only for GitOps ZTP deployment method |
-| Local Storage Operator [^1]^ | 4.14 | Yes |
-| Logical Volume Manager (LVM) Storage [^2]^ | 4.14.2 | Yes |
+| Local Storage Operator <sup>\[1\]</sup> | 4.14 | Yes |
+| Logical Volume Manager (LVM) Storage <sup>\[1\]</sup> | 4.14.2 | Yes |
 
 1. The persistent storage must be provided by either the LVM Storage or the Local Storage Operator, not both.
 
@@ -243,6 +245,7 @@ The following configurations only have to partially match on the participating c
 For more information about what to include in the seed image, see "Seed image configuration" and "Seed image configuration using the RAN DU profile".
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring a shared container partition between ostree stateroots](/openshift-docs-markdown/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-shared-container-partition#cnf-image-based-upgrade-shared-container-partition_shared-container-partition)
 - [Configuring a shared container partition between ostree stateroots when using GitOps ZTP](/openshift-docs-markdown/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-shared-container-partition#ztp-image-based-upgrade-shared-container-partition_shared-container-partition)
@@ -346,13 +349,10 @@ If the target cluster uses custom catalog sources, you must include them as extr
 > - OLM Operator subscriptions
 
 **Additional resources**
+{._additional-resources}
 
 - [Performing an image-based upgrade for single-node OpenShift clusters with Lifecycle Agent](/openshift-docs-markdown/edge_computing/image_based_upgrade/cnf-image-based-upgrade-base#cnf-image-based-upgrade)
 - [Preparing the hub cluster for ZTP](/openshift-docs-markdown/edge_computing/ztp-preparing-the-hub-cluster#ztp-preparing-the-hub-cluster)
 - [Creating ConfigMap objects for the image-based upgrade with Lifecycle Agent](/openshift-docs-markdown/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-prep-resources#cnf-image-based-upgrade-prep-oadp_cnf-non-gitops)
 - [Creating ConfigMap objects for the image-based upgrade with GitOps ZTP](/openshift-docs-markdown/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/ztp-image-based-upgrade-prep-resources#ztp-image-based-upgrade-prep-resources)
 - [About installing OADP](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp#about-installing-oadp)
-
-[^1]: 1
-
-[^2]: 1

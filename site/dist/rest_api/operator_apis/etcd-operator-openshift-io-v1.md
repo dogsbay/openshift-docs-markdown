@@ -1,5 +1,5 @@
 ---
-title: Etcd []
+title: Etcd [operator.openshift.io/v1]
 ---
 
 # Etcd \[operator.openshift.io/v1\] {#etcd-operator-openshift-io-v1}
@@ -38,13 +38,13 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `controlPlaneHardwareSpeed` | `string` | HardwareSpeed allows user to change the etcd tuning profile which configures the latency parameters for heartbeat interval and leader election timeouts allowing the cluster to tolerate longer round-trip-times between etcd members. Valid values are "", "Standard" and "Slower". 	"" means no opinion and the platform is left to choose a reasonable default 	which is subject to change without notice. |
+| `controlPlaneHardwareSpeed` | `string` | HardwareSpeed allows user to change the etcd tuning profile which configures the latency parameters for heartbeat interval and leader election timeouts allowing the cluster to tolerate longer round-trip-times between etcd members. Valid values are "", "Standard" and "Slower". "" means no opinion and the platform is left to choose a reasonable default which is subject to change without notice. |
 | `failedRevisionLimit` | `integer` | failedRevisionLimit is the number of failed static pod installer revisions to keep on disk and in the api -1 = unlimited, 0 or unset = 5 (default) |
 | `forceRedeploymentReason` | `string` | forceRedeploymentReason can be used to force the redeployment of the operand by providing a unique string. This provides a mechanism to kick a previously failed deployment and provide a reason why you think it will work this time instead of failing again on the same config. |
-| `logLevel` | `string` | logLevel is an intent based logging for an overall component.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands. Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
+| `logLevel` | `string` | logLevel is an intent based logging for an overall component. It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `managementState` | `string` | managementState indicates whether and how the operator should manage the component |
-| `observedConfig` | \`\` | observedConfig holds a sparse config that controller has observed from the cluster state.  It exists in spec because it is an input to the level for the operator |
-| `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves. Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
+| `observedConfig` | \`\` | observedConfig holds a sparse config that controller has observed from the cluster state. It exists in spec because it is an input to the level for the operator |
+| `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself. It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `succeededRevisionLimit` | `integer` | succeededRevisionLimit is the number of successful static pod installer revisions to keep on disk and in the api -1 = unlimited, 0 or unset = 5 (default) |
 | `unsupportedConfigOverrides` | \`\` | unsupportedConfigOverrides overrides the final configuration that was computed by the operator. Red Hat does not support the use of this field. Misuse of this field could lead to unexpected behavior or conflict with other configuration options. Seek guidance from the Red Hat support before using this field. Use of this property blocks cluster upgrades, it must be removed before upgrading your cluster. |
 
@@ -99,7 +99,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` |  |
 | `reason` | `string` |  |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
@@ -184,13 +184,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of Etcd
   - `GET`: list objects of kind Etcd
   - `POST`: create an Etcd
-- `/apis/operator.openshift.io/v1/etcds/{{ name }}`
+- `/apis/operator.openshift.io/v1/etcds/{name}`
 
   - `DELETE`: delete an Etcd
   - `GET`: read the specified Etcd
   - `PATCH`: partially update the specified Etcd
   - `PUT`: replace the specified Etcd
-- `/apis/operator.openshift.io/v1/etcds/{{ name }}/status`
+- `/apis/operator.openshift.io/v1/etcds/{name}/status`
 
   - `GET`: read status of the specified Etcd
   - `PATCH`: partially update status of the specified Etcd
@@ -264,7 +264,7 @@ Description
 | 202 - Accepted | [`Etcd`](/openshift-docs-markdown/rest_api/operator_apis/etcd-operator-openshift-io-v1#etcd-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operator.openshift.io/v1/etcds/{{ name }} {#_apisoperatoropenshiftiov1etcds_name}
+### /apis/operator.openshift.io/v1/etcds/{name} {#_apisoperatoropenshiftiov1etcds_name}
 
 **Global path parameters**
 
@@ -368,7 +368,7 @@ Description
 | 201 - Created | [`Etcd`](/openshift-docs-markdown/rest_api/operator_apis/etcd-operator-openshift-io-v1#etcd-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operator.openshift.io/v1/etcds/{{ name }}/status {#_apisoperatoropenshiftiov1etcds_name_status}
+### /apis/operator.openshift.io/v1/etcds/{name}/status {#_apisoperatoropenshiftiov1etcds_name_status}
 
 **Global path parameters**
 

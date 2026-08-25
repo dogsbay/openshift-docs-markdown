@@ -283,7 +283,8 @@ The following list details these ExternalIP settings:
    $ oc get networks.config cluster -o go-template='{{.spec.externalIP}}{{"\n"}}'
    ```
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring IP failover](/openshift-docs-markdown/networking/configuring_network_settings/configuring-ipfailover#configuring-ipfailover)
 - [About MetalLB and the MetalLB Operator](/openshift-docs-markdown/networking/networking_operators/metallb-operator/about-metallb#about-metallb)

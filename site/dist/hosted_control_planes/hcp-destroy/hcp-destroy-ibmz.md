@@ -1,5 +1,5 @@
 ---
-title: Destroying a hosted cluster on {{ ibm_z_title }}
+title: Destroying a hosted cluster on IBM Z
 ---
 
 # Destroying a hosted cluster on IBM Z {#hcp-destroy-ibmz}

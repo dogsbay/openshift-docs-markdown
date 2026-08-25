@@ -26,6 +26,7 @@ The monitoring stack uses the following components:
 > For single-node OpenShift clusters, disable Alertmanager and Thanos because the clusters sends all metrics to the hub cluster for analysis and retention.
 
 **Additional resources**
+{._additional-resources}
 
 - [About OpenShift Container Platform monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/about_monitoring/about-ocp-monitoring)
 - [Core platform monitoring first steps](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/getting_started/core-platform-monitoring-first-steps)
@@ -76,18 +77,15 @@ Using the OpenShift Container Platform console, you can explore the following qu
 
 | Metric | Query |
 | --- | --- |
-| `GET` | \`histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver=~"kube-apiserver\\ |
-| openshift-apiserver", verb="GET"}\[60m\])))\` | `PATCH` |
-| \`histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver="kube-apiserver\\ | openshift-apiserver", verb="PATCH"}\[60m\])))\` |
-| `POST` | \`histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver="kube-apiserver\\ |
-| openshift-apiserver", verb="POST"}\[60m\])))\` | `LIST` |
-| \`histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver="kube-apiserver\\ | openshift-apiserver", verb="LIST"}\[60m\])))\` |
-| `PUT` | \`histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver="kube-apiserver\\ |
-| openshift-apiserver", verb="PUT"}\[60m\])))\` | `DELETE` |
-| \`histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver="kube-apiserver\\ | openshift-apiserver", verb="DELETE"}\[60m\])))\` |
-| Combined | \`histogram_quantile(0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver=~"(openshift-apiserver\\ |
+| `GET` | `histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver=~"kube-apiserver\|openshift-apiserver", verb="GET"}[60m])))` |
+| `PATCH` | `histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver="kube-apiserver\|openshift-apiserver", verb="PATCH"}[60m])))` |
+| `POST` | `histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver="kube-apiserver\|openshift-apiserver", verb="POST"}[60m])))` |
+| `LIST` | `histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver="kube-apiserver\|openshift-apiserver", verb="LIST"}[60m])))` |
+| `PUT` | `histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver="kube-apiserver\|openshift-apiserver", verb="PUT"}[60m])))` |
+| `DELETE` | `histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver="kube-apiserver\|openshift-apiserver", verb="DELETE"}[60m])))` |
+| Combined | `histogram_quantile(0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver=~"(openshift-apiserver\|kube-apiserver)", verb!="WATCH"}[60m])))` |
 
-`etcd`
+**`etcd`**
 
 | Metric | Query |
 | --- | --- |
@@ -112,6 +110,7 @@ For smaller clusters, you can use the Local Storage Operator for persistent stor
 To keep system resource requirements low on a single-node OpenShift cluster, do not provision back-end storage for the monitoring stack. Such clusters forward all metrics to the hub cluster where you can provision a third party monitoring platform.
 
 **Additional resources**
+{._additional-resources}
 
 - [Accessing metrics as an administrator](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/accessing_metrics/accessing-metrics-as-an-administrator)
 - [Persistent storage using local volumes](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-local#local-storage-install_persistent-storage-local)
@@ -343,6 +342,7 @@ Slack
 :   Sends a notification to either a Slack channel or an individual user.
 
 **Additional resources**
+{._additional-resources}
 
 - [Managing alerts](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/managing_alerts/index)
 
@@ -429,6 +429,7 @@ By default, OpenShift Container Platform does not collect metrics for applicatio
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - \[ServiceMonitor[monitoring.coreos.com/v1](/openshift-docs-markdown/rest_api/monitoring_apis/servicemonitor-monitoring-coreos-com-v1#servicemonitor-monitoring-coreos-com-v1)\]
 - [Enabling monitoring for user-defined projects](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/preparing-to-configure-the-monitoring-stack-uwm#enabling-monitoring-for-user-defined-projects-uwm_preparing-to-configure-the-monitoring-stack-uwm)

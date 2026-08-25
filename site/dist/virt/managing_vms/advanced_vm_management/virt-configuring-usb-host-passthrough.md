@@ -60,7 +60,7 @@ To do this, specify a resource name and USB device name for each device you want
 2. Open the `HyperConverged` CR in your default editor by running the following command:
 
    ```terminal
-   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+   $ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv
    ```
 3. Add the required USB device to the `permittedHostDevices` stanza of the `HyperConvered` CR. The following example adds a device with vendor ID `045e` and product ID `07a5`:
 
@@ -69,7 +69,7 @@ To do this, specify a resource name and USB device name for each device you want
    kind: HyperConverged
    metadata:
      name: kubevirt-hyperconverged
-     namespace: {{ CNVNamespace }}
+     namespace: openshift-cnv
    spec:
      permittedHostDevices:
        usbHostDevices:
@@ -101,7 +101,7 @@ You can configure virtual machine (VM) access to a USB device. This configuratio
 1. In the `HyperConverged` custom resource (CR), find the assigned resource name of the USB device:
 
    ```terminal
-   $ oc get {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+   $ oc get hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv
    ```
 
    Example output:

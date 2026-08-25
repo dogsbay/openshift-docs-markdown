@@ -26,21 +26,21 @@ User-defined networks offer the following benefits:
 
 1. Enhanced network isolation for security
 
-   - ***Tenant isolation***: Namespaces can have their own isolated primary network, similar to how tenants are isolated in Red Hat OpenStack Platform (RHOSP). This improves security by reducing the risk of cross-tenant traffic.
+   - **Tenant isolation**: Namespaces can have their own isolated primary network, similar to how tenants are isolated in Red Hat OpenStack Platform (RHOSP). This improves security by reducing the risk of cross-tenant traffic.
 2. Network flexibility
 
-   - ***Layer 2 and layer 3 support***: Cluster administrators can configure primary networks as layer 2 or layer 3 network types.
+   - **Layer 2 and layer 3 support**: Cluster administrators can configure primary networks as layer 2 or layer 3 network types.
 3. Simplified network management
 
-   - ***Reduced network configuration complexity***: With user-defined networks, the need for complex network policies are eliminated because isolation can be achieved by grouping workloads in different networks.
+   - **Reduced network configuration complexity**: With user-defined networks, the need for complex network policies are eliminated because isolation can be achieved by grouping workloads in different networks.
 4. Advanced capabilities
 
-   - ***Consistent and selectable IP addressing***: Users can specify and reuse IP subnets across different namespaces and clusters, providing a consistent networking environment.
-   - ***Support for multiple networks***: The user-defined networking feature allows administrators to connect multiple namespaces to a single network, or to create distinct networks for different sets of namespaces.
-   - ***Virtual machine reachability over CUDN***: When you attach virtual machines (VM)s to a layer 2 `ClusterUserDefinedNetwork` with BGP route advertisements enabled, you can publish VM routes to the provider network and import routes back, avoiding per‑node static routes while improving VM ingress and egress reachability.
+   - **Consistent and selectable IP addressing**: Users can specify and reuse IP subnets across different namespaces and clusters, providing a consistent networking environment.
+   - **Support for multiple networks**: The user-defined networking feature allows administrators to connect multiple namespaces to a single network, or to create distinct networks for different sets of namespaces.
+   - **Virtual machine reachability over CUDN**: When you attach virtual machines (VM)s to a layer 2 `ClusterUserDefinedNetwork` with BGP route advertisements enabled, you can publish VM routes to the provider network and import routes back, avoiding per‑node static routes while improving VM ingress and egress reachability.
 5. Simplification of application migration from Red Hat OpenStack Platform (RHOSP)
 
-   - ***Network parity***: With user-defined networking, the migration of applications from OpenStack to OpenShift Container Platform is simplified by providing similar network isolation and configuration options.
+   - **Network parity**: With user-defined networking, the migration of applications from OpenStack to OpenShift Container Platform is simplified by providing similar network isolation and configuration options.
 
 Developers and administrators can create a user-defined network that is namespace scoped using the custom resource. An overview of the process is as follows:
 
@@ -102,7 +102,7 @@ The `ClusterUserDefinedNetwork` (CUDN) custom resource (CR) provides cluster-sco
 
 The following diagram demonstrates how a cluster administrator can use the CUDN CR to create network isolation between tenants. This network configuration allows a network to span across many namespaces. In the diagram, network isolation is achieved through the creation of two user-defined networks, `udn-1` and `udn-2`. These networks are not connected and the `spec.namespaceSelector.matchLabels` field is used to select different namespaces. For example, `udn-1` configures and isolates communication for `namespace-1` and `namespace-2`, while `udn-2` configures and isolates communication for `namespace-3` and `namespace-4`. Isolated tenants (Tenants 1 and Tenants 2) are created by separating namespaces while also allowing pods in the same namespace to communicate.
 
-**Figure 1. Tenant isolation using a ClusterUserDefinedNetwork CR**
+**Figure 3. Tenant isolation using a ClusterUserDefinedNetwork CR**
 
 ![The tenant isolation concept in a user-defined network (UDN)](/openshift-docs-markdown/_assets/images/528-OpenShift-multitenant-0225.png)
 
@@ -117,6 +117,7 @@ You can use route advertisements and the `RouteAdvertisements` CR so that routes
 Additionally, you can set `spec.network.transport` to `NoOverlay` to route layer 3 pod traffic on the underlay with BGP instead of Geneve encapsulation, or to `EVPN` to attach a primary CUDN to an external BGP EVPN fabric instead of using only the default overlay behavior. Configuring either transport requires additional objects and node networking beyond the CUDN CR. For more information, see "Improve east-west performance by routing pods on the underlay with BGP" and "About BGP EVPN for primary cluster user-defined networks".
 
 **Additional resources**
+{._additional-resources}
 
 - [About route advertisements](/openshift-docs-markdown/networking/advanced_networking/route_advertisements/about-route-advertisements#about-route-advertisements)
 - [About BGP EVPN for primary cluster user-defined networks](/openshift-docs-markdown/networking/advanced_networking/bgp_evpn_udn/about-bgp-evpn-user-defined-networks#about-bgp-evpn-user-defined-networks)
@@ -228,73 +229,72 @@ Based upon your use case, create your request by using either the `cluster-layer
    - The subnets field accepts one or two items. For two items, they must be of a different family. For example, subnets values of `10.100.0.0/16` and `2001:db8::/64`.
    - `Layer2` subnets can be omitted. If omitted, users must configure static IP addresses for the pods. As a consequence, port security only prevents MAC spoofing. For more information, see "Configuring pods with a static IP address".
 
-`spec.network.transport`
-:   Specifies how pod traffic is carried on the cluster infrastructure for the `ClusterUserDefinedNetwork` CR. Accepted value is `EVPN`. Additional configuration is required when setting the `spec.network.transport` field. This field is optional. For more information, see "About BGP EVPN for primary cluster user-defined networks".
+     `spec.network.transport`
+     :   Specifies how pod traffic is carried on the cluster infrastructure for the `ClusterUserDefinedNetwork` CR. Accepted value is `EVPN`. Additional configuration is required when setting the `spec.network.transport` field. This field is optional. For more information, see "About BGP EVPN for primary cluster user-defined networks".
 
-    1. Create a YAML file, such as `cluster-layer-three-udn.yaml`, to define your request for a `Layer3` topology as in the following example:
+   1. Create a YAML file, such as `cluster-layer-three-udn.yaml`, to define your request for a `Layer3` topology as in the following example:
 
-       ```yaml
-       apiVersion: k8s.ovn.org/v1
-       kind: ClusterUserDefinedNetwork
-       metadata:
-         name: <cudn_name>
-       spec:
-         namespaceSelector:
-           matchExpressions:
-           - key: kubernetes.io/metadata.name
-             operator: In
-             values: ["<example_namespace_one>", "<example_namespace_two>"]
-         network:
-           topology: Layer3
-           layer3:
-             role: Primary
-             subnets:
-               - cidr: 10.100.0.0/16
-                 hostSubnet: 24
-           transport: <transport_protocol>
-       ```
+      ```yaml
+      apiVersion: k8s.ovn.org/v1
+      kind: ClusterUserDefinedNetwork
+      metadata:
+        name: <cudn_name>
+      spec:
+        namespaceSelector:
+          matchExpressions:
+          - key: kubernetes.io/metadata.name
+            operator: In
+            values: ["<example_namespace_one>", "<example_namespace_two>"]
+        network:
+          topology: Layer3
+          layer3:
+            role: Primary
+            subnets:
+              - cidr: 10.100.0.0/16
+                hostSubnet: 24
+          transport: <transport_protocol>
+      ```
 
-       where:
+      where:
 
-       `Name`
-       :   Specifies the name of your `ClusterUserDefinedNetwork` CR.
+      `Name`
+      :   Specifies the name of your `ClusterUserDefinedNetwork` CR.
 
-       `namespaceSelector`
-       :   Specifies a label query over the set of namespaces that the CUDN CR applies to. Uses the standard Kubernetes `MatchLabel` selector. Must not point to `default` or `openshift-*` namespaces. Uses the `matchExpressions` selector type, where terms are evaluated with an `OR` relationship.
+      `namespaceSelector`
+      :   Specifies a label query over the set of namespaces that the CUDN CR applies to. Uses the standard Kubernetes `MatchLabel` selector. Must not point to `default` or `openshift-*` namespaces. Uses the `matchExpressions` selector type, where terms are evaluated with an `OR` relationship.
 
-       `Key`
-       :   Specifies the label key to match. Takes an operator value; valid values include: `In`, `NotIn`, `Exists`, and `DoesNotExist`. Because the `matchExpressions` type is used, provisions namespaces matching either `<example_namespace_one>` or `<example_namespace_two>`.
+      `Key`
+      :   Specifies the label key to match. Takes an operator value; valid values include: `In`, `NotIn`, `Exists`, and `DoesNotExist`. Because the `matchExpressions` type is used, provisions namespaces matching either `<example_namespace_one>` or `<example_namespace_two>`.
 
-       `network`
-       :   Describes the network configuration.
+      `network`
+      :   Describes the network configuration.
 
-       `topology`
-       :   The `topology` field describes the network configuration; accepted values are `Layer2` and `Layer3`. Specifying a `Layer3` topology type creates a layer 2 segment per node, each with a different subnet. Layer 3 routing is used to interconnect node subnets.
+      `topology`
+      :   The `topology` field describes the network configuration; accepted values are `Layer2` and `Layer3`. Specifying a `Layer3` topology type creates a layer 2 segment per node, each with a different subnet. Layer 3 routing is used to interconnect node subnets.
 
-       `role`
-       :   Specifies `Primary` or `Secondary`. `Primary` is the only `role` specification supported in 4.22.
+      `role`
+      :   Specifies `Primary` or `Secondary`. `Primary` is the only `role` specification supported in 4.22.
 
-       `subnets`
-       :   For `Layer3` topology types the following specifies config details for the `subnet` field:
+      `subnets`
+      :   For `Layer3` topology types the following specifies config details for the `subnet` field:
 
-    - The `subnets` field is mandatory.
-    - The type for the `subnets` field is `cidr` and `hostSubnet`:
+   - The `subnets` field is mandatory.
+   - The type for the `subnets` field is `cidr` and `hostSubnet`:
 
-      - `cidr` is the cluster subnet and accepts a string value.
-      - `hostSubnet` specifies the nodes subnet prefix that the cluster subnet is split to.
-      - For IPv6, only a `/64` length is supported for `hostSubnet`.
+     - `cidr` is the cluster subnet and accepts a string value.
+     - `hostSubnet` specifies the nodes subnet prefix that the cluster subnet is split to.
+     - For IPv6, only a `/64` length is supported for `hostSubnet`.
 
-    `spec.network.transport`
-    :   Specifies how pod traffic is carried on the cluster infrastructure for the `ClusterUserDefinedNetwork` CR. Accepted value is `EVPN`. Additional configuration is required when setting the `spec.network.transport` field. This field is optional. For more information, see "About BGP EVPN for primary cluster user-defined networks".
-
-1. Apply your request by running the following command:
+     `spec.network.transport`
+     :   Specifies how pod traffic is carried on the cluster infrastructure for the `ClusterUserDefinedNetwork` CR. Accepted value is `EVPN`. Additional configuration is required when setting the `spec.network.transport` field. This field is optional. For more information, see "About BGP EVPN for primary cluster user-defined networks".
+3. Apply your request by running the following command:
 
    ```terminal
    $ oc create --validate=true -f <example_cluster_udn>.yaml
    ```
 
    Where `<example_cluster_udn>.yaml` is the name of your `Layer2` or `Layer3` configuration file.
-2. Verify that your request is successful by running the following command:
+4. Verify that your request is successful by running the following command:
 
    ```terminal
    $ oc get clusteruserdefinednetwork <cudn_name> -o yaml
@@ -420,9 +420,7 @@ You deploy a `Localnet` topology to connect the secondary network to the physica
    `<cudn_name>`
    :   Is the name you created of your cluster-wide user-defined network.
 
-<details>
-<summary>Example output</summary>
-
+:::details{title="Example output"}
 ```yaml
 apiVersion: k8s.ovn.org/v1
 kind: ClusterUserDefinedNetwork
@@ -458,10 +456,10 @@ status:
     status: "True"
     type: NetworkCreated
 ```
-
-</details>
+:::
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuration for a localnet switched topology](/openshift-docs-markdown/networking/multiple_networks/secondary_networks/creating-secondary-nwt-ovnk#configuration-localnet-switched-topology_configuring-additional-network-ovnk)
 
@@ -479,7 +477,7 @@ To implement isolated network segments with layer 2 connectivity in OpenShift Co
 
 **Procedure**
 
-1. From the **Administrator** perspective, click **Networking** -> **UserDefinedNetworks**.
+1. From the **Administrator** perspective, click **Networking** → **UserDefinedNetworks**.
 2. Click **ClusterUserDefinedNetwork**.
 3. In the **Name** field, specify a name for the cluster-scoped UDN.
 4. Specify a value in the **Subnet** field.
@@ -487,6 +485,7 @@ To implement isolated network segments with layer 2 connectivity in OpenShift Co
 6. Click **Create**. The cluster-scoped UDN serves as the default primary network for pods located in namespaces that contain the labels that you specified in step 5.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring pods with a static IP address](/openshift-docs-markdown/networking/multiple_networks/secondary_networks/creating-secondary-nwt-ovnk#configuring-pods-static-ip_configuring-additional-network-ovnk)
 
@@ -496,7 +495,7 @@ To create advanced network segmentation and isolation, users and administrators 
 
 The following diagram shows four cluster namespaces, where each namespace has a single assigned user-defined network (UDN), and each UDN has an assigned custom subnet for its pod IP allocations. The OVN-Kubernetes handles any overlapping UDN subnets. Without using the Kubernetes network policy, a pod attached to a UDN can communicate with other pods in that UDN. By default, these pods are isolated from communicating with pods that exist in other UDNs. For microsegmentation, you can apply network policy within a UDN. You can assign one or more UDNs to a namespace, with a limitation of only one primary UDN to a namespace, and one or more namespaces to a UDN.
 
-**Figure 1. Namespace isolation using a UserDefinedNetwork CR**
+**Figure 4. Namespace isolation using a UserDefinedNetwork CR**
 
 ![The namespace isolation concept in a user-defined network (UDN)](/openshift-docs-markdown/_assets/images/527-OpenShift-UDN-isolation-012025.png)
 
@@ -592,43 +591,46 @@ The following procedure creates a `UserDefinedNetwork` CR that is namespace scop
    - `Layer2` subnets can be omitted. If omitted, users must configure IP addresses for the pods. As a consequence, port security only prevents MAC spoofing.
    - The `Layer2` `subnets` field is mandatory when the `ipamLifecycle` field is specified.
 
-     1. Create a YAML file, such as `my-layer-three-udn.yaml`, to define your request for a `Layer3` topology as in the following example:
+   1. Create a YAML file, such as `my-layer-three-udn.yaml`, to define your request for a `Layer3` topology as in the following example:
 
-     ```yaml
-     apiVersion: k8s.ovn.org/v1
-     kind: UserDefinedNetwork
-     metadata:
-       name: udn-2-primary
-       namespace: <some_custom_namespace>
-     spec:
-       topology: Layer3
-       layer3:
-         role: Primary
-         subnets:
-           - cidr: 10.150.0.0/16
-             hostSubnet: 24
-           - cidr: 2001:db8::/60
-             hostSubnet: 64
-     # ...
-     ```
+      ```yaml
+      apiVersion: k8s.ovn.org/v1
+      kind: UserDefinedNetwork
+      metadata:
+        name: udn-2-primary
+        namespace: <some_custom_namespace>
+      spec:
+        topology: Layer3
+        layer3:
+          role: Primary
+          subnets:
+            - cidr: 10.150.0.0/16
+              hostSubnet: 24
+            - cidr: 2001:db8::/60
+              hostSubnet: 64
+      # ...
+      ```
 
-     where:
+      where:
 
-   `name`
-   :   Name of your `UserDefinedNetwork` resource. This should not be `default` or duplicate any global namespaces created by the Cluster Network Operator (CNO).
+      `name`
+      :   Name of your `UserDefinedNetwork` resource. This should not be `default` or duplicate any global namespaces created by the Cluster Network Operator (CNO).
 
-   `topology`
-   :   Specifies the network configuration; accepted values are `Layer2` and `Layer3`. Specifying a `Layer2` topology type creates one logical switch that is shared by all nodes.
+      `topology`
+      :   Specifies the network configuration; accepted values are `Layer2` and `Layer3`. Specifying a `Layer2` topology type creates one logical switch that is shared by all nodes.
 
-   `role`
-   :   Specifies a `Primary` or `Secondary` role.
+      `role`
+      :   Specifies a `Primary` or `Secondary` role.
 
-   `subnets`
-   :   For `Layer3` topology types the following specifies config details for the `subnet` field: \*   The `subnets` field is mandatory. \*   The type for the `subnets` field is `cidr` and `hostSubnet`:
+      `subnets`
+      :   For `Layer3` topology types the following specifies config details for the `subnet` field:
 
-       - `cidr` is equivalent to the `clusterNetwork` configuration settings of a cluster. The IP addresses in the CIDR are distributed to pods in the user defined network. This parameter accepts a string value.
-       - `hostSubnet` defines the per-node subnet prefix.
-       - For IPv6, only a `/64` length is supported for `hostSubnet`.
+   - The `subnets` field is mandatory.
+   - The type for the `subnets` field is `cidr` and `hostSubnet`:
+
+     - `cidr` is equivalent to the `clusterNetwork` configuration settings of a cluster. The IP addresses in the CIDR are distributed to pods in the user defined network. This parameter accepts a string value.
+     - `hostSubnet` defines the per-node subnet prefix.
+     - For IPv6, only a `/64` length is supported for `hostSubnet`.
 
    1. Apply your request by running the following command:
 
@@ -674,6 +676,7 @@ The following procedure creates a `UserDefinedNetwork` CR that is namespace scop
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Default cluster roles](/openshift-docs-markdown/authentication/using-rbac#authorization-overview_using-rbac)
 
@@ -693,7 +696,7 @@ To implement isolated network segments with layer 2 connectivity in OpenShift Co
 
 **Procedure**
 
-1. From the **Administrator** perspective, click **Networking** -> **UserDefinedNetworks**.
+1. From the **Administrator** perspective, click **Networking** → **UserDefinedNetworks**.
 2. Click **Create UserDefinedNetwork**.
 3. From the **Project name** list, select the namespace that you previously created.
 4. Specify a value in the **Subnet** field.
@@ -705,7 +708,7 @@ Configure optional advanced settings for `ClusterUserDefinedNetwork` and `UserDe
 
 It is not recommended to set these fields without explicit need and understanding of OVN-Kubernetes network topology.
 
-***Optional configurations for user-defined networks***
+**Optional configurations for user-defined networks**
 
 <table>
 <thead>
@@ -718,18 +721,18 @@ It is not recommended to set these fields without explicit need and understandin
 <tbody>
 <tr>
   <td><strong>Description</strong></td>
-  <td><code>spec.network.<topology>.joinSubnets</code></td>
-  <td><code>spec.<topology>.joinSubnets</code></td>
+  <td><code>spec.network.&lt;topology&gt;.joinSubnets</code></td>
+  <td><code>spec.&lt;topology&gt;.joinSubnets</code></td>
 </tr>
 <tr>
   <td>object</td>
   <td>When omitted, the platform sets default values for the <code>joinSubnets</code> field of <code>100.65.0.0/16</code> for IPv4 and  <code>fd99::/64</code> for IPv6. If the default address values are used anywhere in the cluster's network you must override it by setting the <code>joinSubnets</code> field. If you choose to set this field, ensure it does not conflict with other subnets in the cluster such as the cluster subnet, the <code>default</code> network cluster subnet, and the masquerade subnet. The <code>joinSubnets</code> field configures the routing between different segments within a user-defined network. Dual-stack clusters can set 2 subnets, one for each IP family; otherwise, only 1 subnet is allowed. This field is only allowed for the <code>Primary</code> network.</td>
-  <td><code>spec.network.<topology>.excludeSubnets</code></td>
+  <td><code>spec.network.&lt;topology&gt;.excludeSubnets</code></td>
 </tr>
 <tr>
-  <td><code>spec.<topology>.excludeSubnets</code></td>
+  <td><code>spec.&lt;topology&gt;.excludeSubnets</code></td>
   <td>string</td>
-  <td>Specifies a list of CIDRs to be removed from the CIDRs specified in the <code>subnets</code> field. The CIDRs in this list must be in range of at least one subnet specified in the <code>subnets</code> field. When omitted, OVN-Kubernetes assigns all IP addresses specified in the <code>subnets</code> field. You must use standard CIDR notation. For example, <code>10.128.0.0/16</code>. You must omit this field if the <code>subnets</code> field is not set or if the <code>ipam.mode</code> field is set to <code>Disabled</code>. You can only set 25 values for the <code>excludeSubnets</code> field.</td>
+  <td>Specifies a list of CIDRs to be removed from the CIDRs specified in the <code>subnets</code> field. The CIDRs in this list must be in range of at least one subnet specified in the <code>subnets</code> field. When omitted, OVN-Kubernetes assigns all IP addresses specified in the <code>subnets</code> field. You must use standard CIDR notation. For example, <code>10.128.0.0/16</code>. You must omit this field if the <code>subnets</code> field is not set or if the <code>ipam.mode</code> field is set to <code>Disabled</code>. You can only set 25 values for the <code>excludeSubnets</code> field.<br><br>When deploying a secondary network with <code>Localnet</code> topology, the IP ranges used in your physical network must be explicitly listed in the <code>excludeSubnets</code> field to prevent IP duplication in your subnet.</td>
 </tr>
 <tr>
   <td><code>spec.network.layer2.reservedSubnets</code></td>
@@ -752,22 +755,22 @@ It is not recommended to set these fields without explicit need and understandin
   <td>This field is optional and specifies an IP address that overrides the addresses assigned by default for the gateway. Acceptable values are both IPv4 and IPv6 addresses for dual stack clusters. Specifies the default gateway IP address used in the internal OVN-Kubernetes topology. Dual-stack clusters can set two IP addresses (one for each IP family), otherwise only one IP address can be used. This field is only allowed when the <code>role</code> field is set to <code>Primary</code>. It is not recommended to set this field without explicit need and understanding of the OVN-Kubernetes network topology. When omitted, OVN-Kubernetes assigns the first IP address from the network's <code>subnet</code> field.</td>
 </tr>
 <tr>
-  <td><code>spec.network.<topology>.ipam.lifecycle</code></td>
+  <td><code>spec.network.&lt;topology&gt;.ipam.lifecycle</code></td>
   <td><code>spec.layer2.ipam.lifecycle</code></td>
   <td>object</td>
 </tr>
 <tr>
   <td>The <code>spec.ipam.lifecycle</code> field configures the IP address management system (IPAM). You might use this field for virtual workloads to ensure persistent IP addresses. The only allowed value is <code>Persistent</code>, which ensures that your virtual workloads have persistent IP addresses across reboots and migration. These are assigned by the container network interface (CNI) and used by OVN-Kubernetes to program pod IP addresses. You must not change this for pod annotations. Setting a value of Persistent is only supported when <code>ipam.mode</code> parameter is set to <code>Enabled</code>.</td>
-  <td><code>spec.network.<topology>.ipam.mode</code></td>
-  <td><code>spec.<topology></code>ipam.mode`</td>
+  <td><code>spec.network.&lt;topology&gt;.ipam.mode</code></td>
+  <td><code>spec.&lt;topology&gt;</code>ipam.mode`</td>
 </tr>
 <tr>
   <td>object</td>
   <td>The <code>mode</code> parameter controls how much of the IP configuration is managed by OVN-Kubernetes. The following options are available:<ul><li><code>Enabled</code>: When enabled, OVN-Kubernetes applies the IP configuration to the SDN infrastructure and assigns IP addresses from the selected subnet to the individual pods. This is the default setting. When set to <code>Enabled</code>, the <code>subnets</code> field must be defined. <code>Enabled</code> is the default configuration.</li><li><code>Disabled</code>: When disabled, OVN-Kubernetes only assigns MAC addresses and provides layer 2 communication, which allows users to configure IP addresses. <code>Disabled</code> is only available for layer 2 (secondary) networks. By disabling IPAM, features that rely on selecting pods by IP, for example, network policy, services, and so on, no longer function. Additionally, IP port security is also disabled for interfaces attached to this network. The <code>subnets</code> field must be empty when <code>spec.ipam.mode</code> is set to <code>Disabled.</code></li></ul></td>
-  <td><code>spec.network.<topology>.mtu</code></td>
+  <td><code>spec.network.&lt;topology&gt;.mtu</code></td>
 </tr>
 <tr>
-  <td><code>spec.<topology>.mtu</code></td>
+  <td><code>spec.&lt;topology&gt;.mtu</code></td>
   <td>integer</td>
   <td>The maximum transmission units (MTU). The default value is <code>1400</code>. The boundary for IPv4 is <code>576</code>, and for IPv6 it is <code>1280</code>.</td>
 </tr>
@@ -811,7 +814,7 @@ where:
 
 To troubleshoot your network deployment in OpenShift Container Platform, evaluate the status condition types returned for `ClusterUserDefinedNetwork` and `UserDefinedNetwork` custom resources (CRs). Reviewing these conditions ensures that you can identify and resolve configuration errors.
 
-***NetworkCreated condition types (`ClusterDefinedNetwork` and `UserDefinedNetwork` CRs)***
+**NetworkCreated condition types (`ClusterDefinedNetwork` and `UserDefinedNetwork` CRs)**
 
 <table>
 <thead>
@@ -823,54 +826,59 @@ To troubleshoot your network deployment in OpenShift Container Platform, evaluat
 </thead>
 <tbody>
 <tr>
-  <td>.3+</td>
-  <td><code>NetworkCreated</code> .3+</td>
-  <td><code>True</code></td>
+  <td rowspan="3"><code>NetworkCreated</code></td>
+  <td rowspan="3"><code>True</code></td>
   <td colspan="2">When <code>True</code>, the following reason and message is returned:</td>
 </tr>
 <tr>
-  <td>h</td>
-  <td>Reason h</td>
-  <td>Message</td>
-  <td><code>NetworkAttachmentDefinitionCreated</code></td>
+  <th>Reason</th>
+  <th>Message</th>
 </tr>
 <tr>
-  <td>'NetworkAttachmentDefinition has been created in following namespaces: [example-namespace-1, example-namespace-2, example-namespace-3]'`<br><br>.9+</td>
-  <td><code>NetworkCreated</code> .9+</td>
-  <td><code>False</code></td>
+  <td><code>NetworkAttachmentDefinitionCreated</code></td>
+  <td>'NetworkAttachmentDefinition has been created in following namespaces: [example-namespace-1, example-namespace-2, example-namespace-3]'`</td>
+</tr>
+<tr>
+  <td rowspan="9"><code>NetworkCreated</code></td>
+  <td rowspan="9"><code>False</code></td>
   <td colspan="2">When <code>False</code>, one of the following messages is returned:</td>
 </tr>
 <tr>
-  <td>h</td>
-  <td>Reason h</td>
-  <td>Message</td>
-  <td><code>SyncError</code></td>
+  <th>Reason</th>
+  <th>Message</th>
 </tr>
 <tr>
+  <td><code>SyncError</code></td>
   <td><code>failed to generate NetworkAttachmentDefinition</code></td>
+</tr>
+<tr>
   <td><code>SyncError</code></td>
   <td><code>failed to update NetworkAttachmentDefinition</code></td>
-  <td><code>SyncError</code></td>
 </tr>
 <tr>
-  <td><code>primary network already exist in namespace "<namespace_name>": "<primary_network_name>"</code></td>
+  <td><code>SyncError</code></td>
+  <td><code>primary network already exist in namespace "&lt;namespace_name&gt;": "&lt;primary_network_name&gt;"</code></td>
+</tr>
+<tr>
   <td><code>SyncError</code></td>
   <td><code>failed to create NetworkAttachmentDefinition: create NAD error</code></td>
-  <td><code>SyncError</code></td>
 </tr>
 <tr>
+  <td><code>SyncError</code></td>
   <td><code>foreign NetworkAttachmentDefinition with the desired name already exist</code></td>
+</tr>
+<tr>
   <td><code>SyncError</code></td>
   <td><code>failed to add finalizer to UserDefinedNetwork</code></td>
-  <td><code>NetworkAttachmentDefinitionDeleted</code></td>
 </tr>
 <tr>
-  <td><code>NetworkAttachmentDefinition is being deleted: [<namespace>/<nad_name>]</code></td>
+  <td><code>NetworkAttachmentDefinitionDeleted</code></td>
+  <td><code>NetworkAttachmentDefinition is being deleted: [&lt;namespace&gt;/&lt;nad_name&gt;]</code></td>
 </tr>
 </tbody>
 </table>
 
-***NetworkAllocationSucceeded condition types (`UserDefinedNetwork` CRs)***
+**NetworkAllocationSucceeded condition types (`UserDefinedNetwork` CRs)**
 
 <table>
 <thead>
@@ -882,36 +890,35 @@ To troubleshoot your network deployment in OpenShift Container Platform, evaluat
 </thead>
 <tbody>
 <tr>
-  <td>.3+</td>
-  <td><code>NetworkAllocationSucceeded</code> .3+</td>
-  <td><code>True</code></td>
+  <td rowspan="3"><code>NetworkAllocationSucceeded</code></td>
+  <td rowspan="3"><code>True</code></td>
   <td colspan="2">When <code>True</code>, the following reason and message is returned:</td>
 </tr>
 <tr>
-  <td>h</td>
-  <td>Reason h</td>
-  <td>Message</td>
-  <td><code>NetworkAllocationSucceeded</code></td>
+  <th>Reason</th>
+  <th>Message</th>
 </tr>
 <tr>
-  <td><code>Network allocation succeeded for all synced nodes.</code><br><br>.3+</td>
-  <td><code>NetworkAllocationSucceeded</code> .3+</td>
-  <td><code>False</code></td>
+  <td><code>NetworkAllocationSucceeded</code></td>
+  <td><code>Network allocation succeeded for all synced nodes.</code></td>
+</tr>
+<tr>
+  <td rowspan="3"><code>NetworkAllocationSucceeded</code></td>
+  <td rowspan="3"><code>False</code></td>
   <td colspan="2">When <code>False</code>, the following message is returned:</td>
 </tr>
 <tr>
-  <td>h</td>
-  <td>Reason h</td>
-  <td>Message</td>
-  <td><code>InternalError</code></td>
+  <th>Reason</th>
+  <th>Message</th>
 </tr>
 <tr>
-  <td><code>Network allocation failed for at least one node: [<node_name>], check UDN events for more info.</code></td>
+  <td><code>InternalError</code></td>
+  <td><code>Network allocation failed for at least one node: [&lt;node_name&gt;], check UDN events for more info.</code></td>
 </tr>
 </tbody>
 </table>
 
-***Invalid `mtu` scenarios types for the `ClusterUserDefinedNetwork` CR***
+**Invalid `mtu` scenarios types for the `ClusterUserDefinedNetwork` CR**
 
 <table>
 <thead>
@@ -922,35 +929,33 @@ To troubleshoot your network deployment in OpenShift Container Platform, evaluat
 </thead>
 <tbody>
 <tr>
-  <td>.6+</td>
-  <td><code>invalid mtu</code></td>
+  <td rowspan="6"><code>invalid mtu</code></td>
   <td colspan="3">One of the following messages is returned when the <code>mtu</code> is set incorrect:</td>
 </tr>
 <tr>
-  <td>h</td>
-  <td>Reason h</td>
-  <td>Message h</td>
-  <td>Resolution</td>
+  <th>Reason</th>
+  <th>Message</th>
+  <th>Resolution</th>
 </tr>
 <tr>
   <td>The <code>mtu</code> field is set higher than <code>65536</code>.</td>
   <td><code>spec.network.localnet.mtu</code> in body should be less than <code>65536</code>.</td>
   <td>You must set the <code>mtu</code> field lower than <code>65536</code>.</td>
-  <td>The <code>mtu</code> field  is set lower than <code>576</code>.</td>
 </tr>
 <tr>
+  <td>The <code>mtu</code> field  is set lower than <code>576</code>.</td>
   <td><code>spec.network.localnet.mtu</code> in body should be greater than or equal to <code>576</code>.</td>
   <td>You must set the <code>mtu</code> field greater than or equal to <code>576</code>.</td>
-  <td>The <code>mtu</code> field must be at least <code>1280</code> when using the IPv6 subnet.</td>
-  <td><code>MTU should be greater than or equal to 1280 when an IPv6 subnet is used</code></td>
 </tr>
 <tr>
+  <td>The <code>mtu</code> field must be at least <code>1280</code> when using the IPv6 subnet.</td>
+  <td><code>MTU should be greater than or equal to 1280 when an IPv6 subnet is used</code></td>
   <td>You must set the <code>mtu</code> field higher than or equal to <code>1280</code> when you have an IPv6 subnet defined on your user-defined network configuration.</td>
 </tr>
 </tbody>
 </table>
 
-***Invalid `PhysicalNetworkName` scenarios types for the `ClusterUserDefinedNetwork` CR***
+**Invalid `PhysicalNetworkName` scenarios types for the `ClusterUserDefinedNetwork` CR**
 
 <table>
 <thead>
@@ -961,30 +966,30 @@ To troubleshoot your network deployment in OpenShift Container Platform, evaluat
 </thead>
 <tbody>
 <tr>
-  <td>.6+</td>
-  <td><code>invalid PhysicalNetworkName</code></td>
+  <td rowspan="6"><code>invalid PhysicalNetworkName</code></td>
   <td colspan="3">One of the following messages is returned when the <code>PhysicalNetworkName</code> is set incorrect:</td>
 </tr>
 <tr>
-  <td>h</td>
-  <td>Reason h</td>
-  <td>Message h</td>
-  <td>Resolution</td>
+  <th>Reason</th>
+  <th>Message</th>
+  <th>Resolution</th>
 </tr>
 <tr>
   <td>The name of the physical network is not set.</td>
   <td><code>spec.network.localnet.physicalNetworkName: Required value</code></td>
   <td>You must set the <code>physicalNetworkName</code> field.</td>
-  <td>The name of the physical network does not meet minimum length requirements.</td>
 </tr>
 <tr>
+  <td>The name of the physical network does not meet minimum length requirements.</td>
   <td><code>spec.network.localnet.physicalNetworkName in body should be at least 1 chars long</code></td>
   <td>You must set physical network name to be at least one character in length.</td>
-  <td>The name of the physical network exceeds the maximum character limit of 253.</td>
-  <td><code>spec.network.localnet.physicalNetworkName: Too long: may not be more than 253 bytes</code></td>
 </tr>
 <tr>
+  <td>The name of the physical network exceeds the maximum character limit of 253.</td>
+  <td><code>spec.network.localnet.physicalNetworkName: Too long: may not be more than 253 bytes</code></td>
   <td>You must set physical network name to not exceed the 253 character in length.</td>
+</tr>
+<tr>
   <td>The name of the physical network must not contain <code>,</code> or <code>:</code>.</td>
   <td><code>physicalNetworkName cannot contain "," or ":" characters</code>.</td>
   <td>You must remove the <code>,</code> or <code>:</code> from the physical network name.</td>
@@ -992,7 +997,7 @@ To troubleshoot your network deployment in OpenShift Container Platform, evaluat
 </tbody>
 </table>
 
-***Invalid `role` scenarios types for the `ClusterUserDefinedNetwork` CR***
+**Invalid `role` scenarios types for the `ClusterUserDefinedNetwork` CR**
 
 <table>
 <thead>
@@ -1003,30 +1008,28 @@ To troubleshoot your network deployment in OpenShift Container Platform, evaluat
 </thead>
 <tbody>
 <tr>
-  <td>.6+</td>
-  <td><code>role unset</code> or <code>role is primary</code></td>
+  <td rowspan="6"><code>role unset</code> or <code>role is primary</code></td>
   <td colspan="3">One of the following messages is returned when the <code>spec.network.localnet.role</code> is set incorrect:</td>
 </tr>
 <tr>
-  <td>h</td>
-  <td>Reason h</td>
-  <td>Message h</td>
-  <td>Resolution</td>
+  <th>Reason</th>
+  <th>Message</th>
+  <th>Resolution</th>
 </tr>
 <tr>
   <td>The <code>role</code> field must be set for your localnet topology.</td>
   <td><code>spec.network.localnet.role: Required value</code></td>
   <td>You must set the <code>role</code> field.</td>
-  <td><code>Primary</code> is not a supported value for the Localnet topology.</td>
 </tr>
 <tr>
+  <td><code>Primary</code> is not a supported value for the Localnet topology.</td>
   <td><code>spec.network.localnet.role: Unsupported value: "Primary": supported values: "Secondary"</code></td>
   <td>You must set the <code>role</code> field for your Localnet topology to <code>Secondary</code>-the accepted value.</td>
 </tr>
 </tbody>
 </table>
 
-***Invalid `subnets` and `ipam` scenarios types for the `ClusterUserDefinedNetwork` CR***
+**Invalid `subnets` and `ipam` scenarios types for the `ClusterUserDefinedNetwork` CR**
 
 <table>
 <thead>
@@ -1037,30 +1040,30 @@ To troubleshoot your network deployment in OpenShift Container Platform, evaluat
 </thead>
 <tbody>
 <tr>
-  <td>.11+</td>
-  <td><code>LocalnetInvalidSubnets</code></td>
+  <td rowspan="11"><code>LocalnetInvalidSubnets</code></td>
   <td colspan="3">One of the following messages is returned when either the <code>spec.network.localnet.subnets</code> or <code>spec.network.localnet.ipam</code> is set incorrect:</td>
 </tr>
 <tr>
-  <td>h</td>
-  <td>Reason h</td>
-  <td>Message h</td>
-  <td>Resolution</td>
+  <th>Reason</th>
+  <th>Message</th>
+  <th>Resolution</th>
 </tr>
 <tr>
   <td>The optional fields, <code>subnets</code> and <code>ipam.mode</code>, have to be set together.</td>
   <td><code>Subnets is required with ipam.mode is Enabled or unset, and forbidden otherwise</code></td>
   <td>You must set the <code>subnets</code> field unless the <code>spec.network.localnet.ipam.mode</code> is explicitly disabled.</td>
-  <td>The <code>spec.network.localnet.subnets</code> must have an acceptable value when using this optional field.</td>
 </tr>
 <tr>
+  <td>The <code>spec.network.localnet.subnets</code> must have an acceptable value when using this optional field.</td>
   <td><code>The ClusterUserDefinedNetwork "localnet-empty-subnets-fail" is invalid: spec.network.localnet.subnets: Invalid value: 0: spec.network.localnet.subnets in body should have at least 1 items</code></td>
   <td>You must set an acceptable value for <code>spec.network.localnet.subnets</code>. Acceptable values are IPv4 and IPv6 Classless Inter-Domain Routing (CIDR) ranges that do not overlap with any CIDR ranges used by OpenShift Container Platform.</td>
-  <td>The <code>subnet</code> field must be set when using the optional <code>spec.network.localnet.excludeSubnets</code> field.</td>
-  <td><code>excludeSubnets must be unset when subnets is unset</code></td>
 </tr>
 <tr>
+  <td>The <code>subnet</code> field must be set when using the optional <code>spec.network.localnet.excludeSubnets</code> field.</td>
+  <td><code>excludeSubnets must be unset when subnets is unset</code></td>
   <td>You must set the <code>spec.network.localnet.subnets</code> field when using the <code>spec.network.localnet.excludeSubnet</code> field.</td>
+</tr>
+<tr>
   <td>The <code>excludeSubnets</code> must be a value within the <code>subnets</code> field.</td>
   <td><code>excludeSubnets must be subnetworks of the networks specified in the subnets field</code></td>
   <td>You must set the value for the <code>excludeSubnets</code> field to be within the <code>subnets</code> field. For example, a <code>subnets</code> value of <code>192.168.100.0/24</code> and an <code>excludeSubnets</code> value of <code>192.168.200.1/32</code> is invalid.</td>
@@ -1069,16 +1072,18 @@ To troubleshoot your network deployment in OpenShift Container Platform, evaluat
   <td>The CIDR range is invalid.</td>
   <td><code>The ClusterUserDefinedNetwork "localnet-subnets-invalid-ipv4-cidr-fail" is invalid: spec.network.localnet.subnets[0]: Invalid value: "string": CIDR is invalid</code></td>
   <td>You must set an acceptable CIDR range for <code>spec.network.localnet.subnets</code> field. Acceptable values are IPv4 and IPv6 CIDR ranges which are not in use or reserved by OpenShift Container Platform.</td>
-  <td>You must set the <code>subnets</code> field when the <code>ipam.mode</code> is <code>Enabled</code> or when the IPAM mode is unset because the default value is <code>Enabled</code>.</td>
 </tr>
 <tr>
+  <td>You must set the <code>subnets</code> field when the <code>ipam.mode</code> is <code>Enabled</code> or when the IPAM mode is unset because the default value is <code>Enabled</code>.</td>
   <td><code>Subnets is required with ipam.mode is Enabled or unset, and forbidden otherwise</code>.</td>
   <td>You must set the <code>spec.network.localnet.subnets</code> field unless the <code>spec.network.localnet.ipam.mode</code> is explicitly disabled.</td>
-  <td>Setting two CIDR ranges for <code>spec.network.localnet.subnets</code> field requires that one be IPv4 and the other be IPv6.</td>
-  <td><code>Invalid value...When 2 CIDRs are set, they must be from different IP families</code>.</td>
 </tr>
 <tr>
+  <td>Setting two CIDR ranges for <code>spec.network.localnet.subnets</code> field requires that one be IPv4 and the other be IPv6.</td>
+  <td><code>Invalid value...When 2 CIDRs are set, they must be from different IP families</code>.</td>
   <td>You must change one of your CIDR ranges to a different IP family.</td>
+</tr>
+<tr>
   <td>The <code>spec.network.localnet.ipam.mode</code> is <code>Disabled</code> but the <code>spec.network.localnet.lifecycle</code> has a value of <code>Persistent</code>.</td>
   <td><code>lifecycle Persistent is only supported when ipam.mode is Enabled</code></td>
   <td>You must set the <code>ipam.mode</code> to <code>Enabled</code> when the optional field <code>lifecycle</code> has a value of <code>Persistent</code>.</td>
@@ -1086,7 +1091,7 @@ To troubleshoot your network deployment in OpenShift Container Platform, evaluat
 </tbody>
 </table>
 
-***Invalid `vlan` scenarios types for the `ClusterUserDefinedNetwork` CR***
+**Invalid `vlan` scenarios types for the `ClusterUserDefinedNetwork` CR**
 
 <table>
 <thead>
@@ -1097,30 +1102,30 @@ To troubleshoot your network deployment in OpenShift Container Platform, evaluat
 </thead>
 <tbody>
 <tr>
-  <td>.8+</td>
-  <td><code>invalid vlan</code> or <code>invalid mode</code></td>
+  <td rowspan="8"><code>invalid vlan</code> or <code>invalid mode</code></td>
   <td colspan="3">One of the following messages is returned when the <code>spec.network.localnet.vlan</code> is set incorrect:</td>
 </tr>
 <tr>
-  <td>h</td>
-  <td>Reason h</td>
-  <td>Message h</td>
-  <td>Resolution</td>
+  <th>Reason</th>
+  <th>Message</th>
+  <th>Resolution</th>
 </tr>
 <tr>
   <td>The <code>spec.network.localnet.vlan.mode</code> field must be set.</td>
   <td><code>spec.network.localnet.vlan.mode: Unsupported value: "Disabled": supported values: "Access</code></td>
   <td>You must set the <code>spec.network.localnet.vlan.mode</code> field to <code>Access</code> mode.</td>
-  <td>The <code>spec.network.localnet.vlan</code> field must be set when <code>spec.network.localnet.vlan.mode</code> is set to <code>Access</code> mode.</td>
 </tr>
 <tr>
+  <td>The <code>spec.network.localnet.vlan</code> field must be set when <code>spec.network.localnet.vlan.mode</code> is set to <code>Access</code> mode.</td>
   <td><code>vlan access config is required when vlan mode is 'Access', and forbidden otherwise</code>.</td>
   <td>You must set <code>spec.network.localnet.vlan.mode.access</code> field when using <code>Access</code> mode.</td>
-  <td>The <code>spec.network.localnet.vlan.access.id</code> value must be set when using <code>Access</code> mode.</td>
-  <td><code>spec.network.localnet.vlan.access.id: Required value</code></td>
 </tr>
 <tr>
+  <td>The <code>spec.network.localnet.vlan.access.id</code> value must be set when using <code>Access</code> mode.</td>
+  <td><code>spec.network.localnet.vlan.access.id: Required value</code></td>
   <td>You must set a value for <code>spec.network.localnet.mode.access.id</code>.</td>
+</tr>
+<tr>
   <td>Acceptable values for <code>access.id</code> are greater than or equal to 1.</td>
   <td><code>spec.network.localnet.vlan.access.id in body should be greater than or equal to 1</code></td>
   <td>You must set a value of 1 or greater for <code>access.id</code> field.</td>
@@ -1157,7 +1162,8 @@ metadata:
 > [!NOTE]
 > Open ports are accessible on the pod’s default network IP, not its UDN network IP.
 
-## Additional resources {#user-defined-networks-additional-resources_user-defined-networks}
+**Additional resources**
+{._additional-resources}
 
 - [About BGP EVPN for primary cluster user-defined networks](/openshift-docs-markdown/networking/advanced_networking/bgp_evpn_udn/about-bgp-evpn-user-defined-networks#about-bgp-evpn-user-defined-networks)
 - [Improve east-west performance by routing pods on the underlay with BGP](/openshift-docs-markdown/networking/advanced_networking/bgp_routing/no-overlay-mode-bgp-routing#no-overlay-mode-bgp-routing)

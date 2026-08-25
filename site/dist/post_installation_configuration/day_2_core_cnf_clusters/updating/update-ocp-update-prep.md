@@ -11,6 +11,7 @@ On bare-metal hardware, you often must update the firmware to take on important 
 To update clusters in disconnected environments, you must update your offline image repository.
 
 **Additional resources**
+{._additional-resources}
 
 - [API compatibility guidelines](/openshift-docs-markdown/rest_api/overview/understanding-compatibility-guidelines#api-compatibility-guidelines_compatibility-guidelines)
 - [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)
@@ -55,6 +56,7 @@ Verify that all layered products run on the version of OpenShift Container Platf
    - See "Updating all the OLM Operators" for information about updating an Operator after performing the first y-stream control plane update.
 
 **Additional resources**
+{._additional-resources}
 
 - [Updating the worker nodes](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-completing-the-control-plane-only-update#update-updating-the-worker-nodes_completing-the-update)
 - [Updating all the OLM Operators](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-completing-the-control-plane-only-update#update-updating-all-the-olm-operators_completing-the-update)
@@ -86,19 +88,20 @@ Example cluster with 15 worker nodes
 
     Split the control plane and data plane worker node roles into at least 2 MCP groups each. Having 2 MCP groups per role means that you can have one set of nodes that are not affected by the update.
 
-    Example cluster with 6 worker nodes
-    :   Consider a cluster with 6 worker nodes:
+Example cluster with 6 worker nodes
+:   Consider a cluster with 6 worker nodes:
 
-- Split the worker nodes into 3 MCP groups of 2 nodes each.
+    - Split the worker nodes into 3 MCP groups of 2 nodes each.
 
-  Upgrade one of the MCP groups. Allow the updated nodes to sit through a day to allow for verification of application compatibility before completing the update on the other 4 nodes.
+    Upgrade one of the MCP groups. Allow the updated nodes to sit through a day to allow for verification of application compatibility before completing the update on the other 4 nodes.
 
-> [!IMPORTANT]
-> The process and pace at which you unpause the MCP groups is determined by your applications and configuration.
->
-> If your pod can handle being scheduled across nodes in a cluster, you can unpause several MCP groups at a time and set the `MaxUnavailable` field in the MCP custom resource (CR) to as high as 50%. This allows up to half of the nodes in an MCP group to restart and get updated.
+    > [!IMPORTANT]
+    > The process and pace at which you unpause the MCP groups is determined by your applications and configuration.
+    >
+    > If your pod can handle being scheduled across nodes in a cluster, you can unpause several MCP groups at a time and set the `MaxUnavailable` field in the MCP custom resource (CR) to as high as 50%. This allows up to half of the nodes in an MCP group to restart and get updated.
 
 **Additional resources**
+{._additional-resources}
 
 - [Node configuration management with machine config pools](/openshift-docs-markdown/machine_configuration/index#architecture-machine-config-pools_machine-config-overview)
 
@@ -246,6 +249,7 @@ Monitor the `MachineConfigPool` resources as they are applied in the cluster. Af
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Performing a Control Plane Only update](/openshift-docs-markdown/updating/updating_a_cluster/control-plane-only-update#control-plane-only-update)
 - [Factors affecting update duration](/openshift-docs-markdown/updating/understanding_updates/understanding-openshift-update-duration#factors-affecting-update-duration_openshift-update-duration)
@@ -317,5 +321,6 @@ Before you update the cluster, perform basic checks and verifications to ensure 
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Investigating pod issues](/openshift-docs-markdown/support/troubleshooting/investigating-pod-issues#investigating-pod-issues)

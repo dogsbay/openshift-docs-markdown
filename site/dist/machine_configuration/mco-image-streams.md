@@ -1,5 +1,5 @@
 ---
-title: Setting the {{ op_system }} version in a cluster
+title: Setting the RHCOS version in a cluster
 ---
 
 # Setting the RHCOS version in a cluster {#mco-image-streams}
@@ -139,7 +139,8 @@ Use the following procedure for an OpenShift Container Platform 4.22.x cluster. 
       Red Hat Enterprise Linux release 10.2 (Coughlan)
       ```
 
-## Additional resources {#additional-resources_mco-image-streams}
+**Additional resources**
+{._additional-resources}
 
 - [Enabling features using feature gates](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)
 - [Manually updating the boot image](/openshift-docs-markdown/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)

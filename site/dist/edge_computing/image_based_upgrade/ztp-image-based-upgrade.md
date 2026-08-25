@@ -1,14 +1,15 @@
 ---
-title: Performing an image-based upgrade for {{ sno }} clusters using {{ ztp }}
+title: Performing an image-based upgrade for single-node OpenShift clusters using GitOps ZTP
 ---
 
-# Performing an image-based upgrade for {{ sno }} clusters using {{ ztp }} {#ztp-image-based-upgrade}
+# Performing an image-based upgrade for single-node OpenShift clusters using GitOps ZTP {#ztp-image-based-upgrade}
 
 You can use a single resource on the hub cluster, the `ImageBasedGroupUpgrade` custom resource (CR), to manage an imaged-based upgrade on a selected group of managed clusters through all stages. Topology Aware Lifecycle Manager (TALM) reconciles the `ImageBasedGroupUpgrade` CR and creates the underlying resources to complete the defined stage transitions, either in a manually controlled or a fully automated upgrade flow.
 
 For more information about the image-based upgrade, see "Understanding the image-based upgrade for single-node OpenShift clusters".
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding the image-based upgrade for single-node OpenShift clusters](/openshift-docs-markdown/edge_computing/image_based_upgrade/cnf-understanding-image-based-upgrade#cnf-understanding-image-based-upgrade)
 
@@ -77,7 +78,7 @@ You can combine these actions differently in your upgrade plan and you can add t
 
 The following table shows example plans for different levels of control over the rollout strategy:
 
-***Example upgrade plans***
+**Example upgrade plans**
 
 <table>
 <thead>
@@ -231,7 +232,7 @@ For use cases when you need better control of when the upgrade interrupts your s
    - `seedImageRef`: Target platform version, the seed image, and the secret required to access the image.
 
    > [!NOTE]
-   > If you add the seed image pull secret in the hub cluster, in the same namespace as the `ImageBasedGroupUpgrade` resource, the {{ lco }} adds the secret to the manifest list for the `Prep` stage. The {{ lco }} recreates the secret in each spoke cluster in the `openshift-lifecycle-agent` namespace.
+   > If you add the seed image pull secret in the hub cluster, in the same namespace as the `ImageBasedGroupUpgrade` resource, the {lco} adds the secret to the manifest list for the `Prep` stage. The {lco} recreates the secret in each spoke cluster in the `openshift-lifecycle-agent` namespace.
 
    - `extraManifests`: Optional: Applies additional manifests, which are not in the seed image, to the target cluster. Also applies `ConfigMap` objects for custom catalog sources.
    - `oadpContent`: List of `ConfigMap` resources that contain the OADP `Backup` and `Restore` CRs.
@@ -335,6 +336,7 @@ For use cases when you need better control of when the upgrade interrupts your s
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring a shared container partition between ostree stateroots when using GitOps ZTP](/openshift-docs-markdown/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-shared-container-partition#ztp-image-based-upgrade-shared-container-partition_shared-container-partition)
 - [Creating ConfigMap objects for the image-based upgrade with Lifecycle Agent using GitOps ZTP](/openshift-docs-markdown/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/ztp-image-based-upgrade-prep-resources#ztp-image-based-upgrade-prep-resources)
@@ -357,55 +359,54 @@ For use cases when service interruption is not a concern, you can upgrade a set 
 
 1. Create a YAML file on the hub cluster that has the `ImageBasedGroupUpgrade` CR:
 
-```yaml
-apiVersion: lcm.openshift.io/v1alpha1
-kind: ImageBasedGroupUpgrade
-metadata:
-  name: <filename>
-  namespace: default
-spec:
-  clusterLabelSelectors:
-    - matchExpressions:
-      - key: name
-        operator: In
-        values:
-        - spoke1
-        - spoke4
-        - spoke6
-  ibuSpec:
-    seedImageRef:
-      image: quay.io/seed/image:4.22.0
-      version: 4.22.0
-      pullSecretRef:
-        name: "<seed_pull_secret>"
-    extraManifests:
-      - name: example-extra-manifests
-        namespace: openshift-lifecycle-agent
-    oadpContent:
-      - name: oadp-cm
-        namespace: openshift-adp
-  plan:
-    - actions: ["Prep", "Upgrade", "FinalizeUpgrade"]
-      rolloutStrategy:
-        maxConcurrency: 200
-        timeout: 2400
-```
+   ```yaml
+   apiVersion: lcm.openshift.io/v1alpha1
+   kind: ImageBasedGroupUpgrade
+   metadata:
+     name: <filename>
+     namespace: default
+   spec:
+     clusterLabelSelectors:
+       - matchExpressions:
+         - key: name
+           operator: In
+           values:
+           - spoke1
+           - spoke4
+           - spoke6
+     ibuSpec:
+       seedImageRef:
+         image: quay.io/seed/image:4.22.0
+         version: 4.22.0
+         pullSecretRef:
+           name: "<seed_pull_secret>"
+       extraManifests:
+         - name: example-extra-manifests
+           namespace: openshift-lifecycle-agent
+       oadpContent:
+         - name: oadp-cm
+           namespace: openshift-adp
+     plan:
+       - actions: ["Prep", "Upgrade", "FinalizeUpgrade"]
+         rolloutStrategy:
+           maxConcurrency: 200
+           timeout: 2400
+   ```
 
-Where:
+   Where:
 
-- `clusterLabelSelectors`: Clusters to upgrade.
-- `seedImageRef`: Target platform version, the seed image, and the secret required to access the image.
+   - `clusterLabelSelectors`: Clusters to upgrade.
+   - `seedImageRef`: Target platform version, the seed image, and the secret required to access the image.
 
-> [!NOTE]
-> If you add the seed image pull secret in the hub cluster, in the same namespace as the `ImageBasedGroupUpgrade` resource, the secret is added to the manifest list for the `Prep` stage. The secret is recreated in each spoke cluster in the `openshift-lifecycle-agent` namespace.
+   > [!NOTE]
+   > If you add the seed image pull secret in the hub cluster, in the same namespace as the `ImageBasedGroupUpgrade` resource, the secret is added to the manifest list for the `Prep` stage. The secret is recreated in each spoke cluster in the `openshift-lifecycle-agent` namespace.
 
-- `extraManifests`: Optional: Applies additional manifests, which are not in the seed image, to the target cluster. Also applies `ConfigMap` objects for custom catalog sources.
-- `oadpContent`: `ConfigMap` resources that contain the OADP `Backup` and `Restore` CRs.
-- `plan`: Upgrade plan details.
-- `maxConcurrency`: Number of clusters to update in a batch.
-- `timeout`: Timeout limit to complete the action in minutes.
-
-1. Apply the created file by running the following command on the hub cluster:
+   - `extraManifests`: Optional: Applies additional manifests, which are not in the seed image, to the target cluster. Also applies `ConfigMap` objects for custom catalog sources.
+   - `oadpContent`: `ConfigMap` resources that contain the OADP `Backup` and `Restore` CRs.
+   - `plan`: Upgrade plan details.
+   - `maxConcurrency`: Number of clusters to update in a batch.
+   - `timeout`: Timeout limit to complete the action in minutes.
+2. Apply the created file by running the following command on the hub cluster:
 
    ```terminal
    $ oc apply -f <filename>.yaml
@@ -514,6 +515,7 @@ You can cancel the upgrade on a set of managed clusters that completed the `Prep
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Supported action combinations](/openshift-docs-markdown/edge_computing/image_based_upgrade/ztp-image-based-upgrade#ztp-image-based-upgrade-supported-combinations_ztp-gitops)
 
@@ -591,6 +593,7 @@ Roll back the changes on a set of managed clusters if you find unresolvable issu
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Supported action combinations](/openshift-docs-markdown/edge_computing/image_based_upgrade/ztp-image-based-upgrade#ztp-image-based-upgrade-supported-combinations_ztp-gitops)
 - [Recovering from expired control plane certificates](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-3-expired-certs#dr-scenario-3-recovering-expired-certs_dr-recovering-expired-certs)

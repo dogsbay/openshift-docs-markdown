@@ -24,9 +24,7 @@ application pods and ingress router pods run on the same node. If you configure 
 > Egress IP addresses must not be configured in any Linux network configuration files, such as `ifcfg-eth0`.
 
 > [!IMPORTANT]
-> The assignment of egress IP addresses to control plane nodes with the EgressIP feature is
->
-> not supported on a cluster provisioned on Amazon Web Services (AWS). For more information, see "BZ#2039656".
+> The assignment of egress IP addresses to control plane nodes with the EgressIP feature is not supported on a cluster provisioned on Amazon Web Services (AWS). For more information, see "BZ#2039656".
 
 The following examples illustrate the annotation from nodes on several public cloud providers. The annotations are indented for readability.
 
@@ -43,7 +41,6 @@ cloud.network.openshift.io/egress-ipconfig: [
 The following sections describe the IP address capacity for supported public cloud environments for use in your capacity calculation.
 
 Amazon Web Services (AWS) IP address capacity limits
-
 :   On AWS, constraints on IP address assignments depend on the instance type configured. For more information, see "IP addresses per network interface per instance type".
 
 Google Cloud IP address capacity limits
@@ -65,6 +62,7 @@ Microsoft Azure IP address capacity limits
 For more information, see "Networking limits".
 
 **Additional resources**
+{._additional-resources}
 
 - [BZ#2039656 (Red Hat Bugzilla)](https://bugzilla.redhat.com/show_bug.cgi?id=2039656)
 - [Per instance (Google Cloud documentation)](https://cloud.google.com/vpc/docs/quota#per_instance)
@@ -181,6 +179,7 @@ As an administrator who wants an egress IP address and traffic to route over a p
   > Red Hat does not support EgressIP multi-NIC configurations when the target network interface is bound to a VRF instance.
 
 **Additional resources**
+{._additional-resources}
 
 - [Longest prefix match routing (NetworkLessons documentation)](https://networklessons.com/cisco/ccna-200-301/longest-prefix-match-routing)
 
@@ -639,7 +638,8 @@ For a cluster configured for dual-stack networking, you can apply dual-stack net
    `<ipv_address>`
    :   Depending on the `EgressIP` object, enter an IPv4 or IPv6 address.
 
-## Additional resources {#configuring-egress-ips-additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [LabelSelector meta/v1](/openshift-docs-markdown/rest_api/objects/index#labelselector-meta-v1)
 - [LabelSelectorRequirement meta/v1](/openshift-docs-markdown/rest_api/objects/index#labelselectorrequirement-meta-v1)

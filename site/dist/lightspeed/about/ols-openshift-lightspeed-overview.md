@@ -1,5 +1,5 @@
 ---
-title: "{{ ols }} overview"
+title: OpenShift Lightspeed overview
 ---
 
 # OpenShift Lightspeed overview {#ols-openshift-lightspeed-overview}

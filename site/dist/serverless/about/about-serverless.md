@@ -1,5 +1,5 @@
 ---
-title: "{{ ServerlessProductName }} overview"
+title: OpenShift Serverless overview
 ---
 
 # OpenShift Serverless overview {#about-serverless}

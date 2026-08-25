@@ -23,12 +23,13 @@ const headings = [{"depth":1,"slug":"about-power-monitoring","text":"About power
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/observability/power_monitoring/about-power-monitoring";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
-const title = "About {{ PM_title }}";
+const title = "About power monitoring for Red Hat OpenShift";
 const description = "With Power monitoring for Red Hat OpenShift, you can track energy consumption across your cluster infrastructure. It provides granular power metrics for…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
@@ -81,12 +82,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -94,7 +96,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="about-power-monitoring" class="group scroll-mt-20">About power monitoring for Red Hat OpenShift<a href="#about-power-monitoring" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>With Power monitoring for Red Hat OpenShift, you can track energy consumption across your cluster infrastructure. It provides granular power metrics for pods and namespaces to help you identify and optimize workload energy usage.</p>
+      <p class="_abstract">With Power monitoring for Red Hat OpenShift, you can track energy consumption across your cluster infrastructure. It provides granular power metrics for pods and namespaces to help you identify and optimize workload energy usage.</p>
       <Alert variant="info" class="my-4">
         <AlertTitle>Important</AlertTitle>
         <AlertDescription>

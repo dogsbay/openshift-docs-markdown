@@ -1,8 +1,8 @@
 ---
-title: About image-based deployments for managed {{ sno }}
+title: About image-based deployments for managed single-node OpenShift
 ---
 
-# About image-based deployments for managed {{ sno }} {#ibi-edge-image-based-install}
+# About image-based deployments for managed single-node OpenShift {#ibi-edge-image-based-install}
 
 When a host preinstalled with single-node OpenShift using an image-based installation arrives at a remote site, a technician can easily reconfigure and deploy the host in a matter of minutes.
 
@@ -24,6 +24,7 @@ See the following high-level steps to deploy a preinstalled host in a cluster wi
 > Alternatively, you can manually deploy a preinstalled host for a cluster without using a hub cluster. You must define an `ImageBasedConfig` resource and an installation manifest, and provide these as inputs to the `openshift-install` installation program. For more information, see "Deploying a single-node OpenShift cluster using the `openshift-install` program".
 
 **Additional resources**
+{._additional-resources}
 
 - [Deploying a single-node OpenShift cluster using the `openshift-install` program](/openshift-docs-markdown/edge_computing/image_base_install/ibi_deploying_sno_clusters/ibi-edge-image-based-install-standalone#create-standalone-config-iso_ibi-edge-image-based-install)
 
@@ -445,6 +446,7 @@ When you create these configuration resources in the hub cluster, the Image Base
    :   Specifies the directory in which to create the file.
 
 **Additional resources**
+{._additional-resources}
 
 - [Using image pull secrets](/openshift-docs-markdown/openshift_images/managing_images/using-image-pull-secrets)
 - [Cluster configuration resources for deploying a preinstalled host](/openshift-docs-markdown/edge_computing/image_base_install/ibi_deploying_sno_clusters/ibi-edge-image-based-install#ibi-managed-cluster-config-resources_ibi-edge-image-based-install)
@@ -521,7 +523,7 @@ The following content describes the API specifications for the `ImageClusterInst
 <tr>
   <td><code>imageDigestSources</code></td>
   <td><code>string</code></td>
-  <td>Specifies the sources or repositories for the release-image content, for example:</td>
+  <td>Specifies the sources or repositories for the release-image content, for example: [source,yaml] ---- imageDigestSources: - mirrors: - "registry.example.com:5000/ocp4/openshift4" source: "quay.io/openshift-release-dev/ocp-release" ----</td>
 </tr>
 <tr>
   <td><code>extraManifestsRefs</code></td>
@@ -541,7 +543,7 @@ The following content describes the API specifications for the `ImageClusterInst
 <tr>
   <td><code>proxy</code></td>
   <td><code>string</code></td>
-  <td>Specifies proxy settings for the cluster, for example:</td>
+  <td>Specifies proxy settings for the cluster, for example: [source,yaml]<br><br>---- proxy: httpProxy: "http://proxy.example.com:8080" httpsProxy: "http://proxy.example.com:8080" noProxy: "no_proxy.example.com" ----</td>
 </tr>
 <tr>
   <td><code>caBundleRef</code></td>
@@ -691,6 +693,7 @@ To create the CA bundle `ConfigMap` resource, complete the following steps:
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [About the BareMetalHost resource](/openshift-docs-markdown/installing/installing_bare_metal/bare-metal-postinstallation-configuration#bmo-about-the-baremetalhost-resource_bare-metal-postinstallation-configuration)
 - [Using image pull secrets](/openshift-docs-markdown/openshift_images/managing_images/using-image-pull-secrets)

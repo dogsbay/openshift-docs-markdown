@@ -1,5 +1,5 @@
 ---
-title: Installing a cluster quickly on {{ gcp_short }}
+title: Installing a cluster quickly on Google Cloud
 ---
 
 # Installing a cluster quickly on Google Cloud {#installing-gcp-default}
@@ -16,9 +16,7 @@ In OpenShift Container Platform version 4.22, you can install a cluster on Googl
 
 ## Internet access for OpenShift Container Platform {#cluster-entitlements_installing-gcp-default}
 
-In OpenShift Container Platform 4.22, you require access to the internet to install
-
-your cluster.
+In OpenShift Container Platform 4.22, you require access to the internet to install your cluster.
 
 You must have internet access to perform the following actions:
 
@@ -129,14 +127,8 @@ the host you are using for installation.
    ```
 6. Download your installation [pull secret from Red Hat OpenShift Cluster Manager](https://console.redhat.com/openshift/install/pull-secret). This pull secret allows you to authenticate with the services that are provided by the included authorities, including Quay.io, which serves the container images for OpenShift Container Platform components.
 
-   ```
-   :::tip
-
-   Alternatively, you can retrieve the installation program from the [Red&#160;Hat Customer Portal](https://access.redhat.com/downloads/content/290/), where you can specify a version of the installation program to download.
-   However, you must have an active subscription to access this page.
-
-   :::
-   ```
+   > [!TIP]
+   > Alternatively, you can retrieve the installation program from the [Red Hat Customer Portal](https://access.redhat.com/downloads/content/290/), where you can specify a version of the installation program to download. However, you must have an active subscription to access this page.
 
 ## Deploying the cluster {#installation-launching-installer_installing-gcp-default}
 
@@ -160,42 +152,38 @@ To deploy your OpenShift Container Platform cluster, you can initialize installa
    - The `gcloud cli` default credentials
 2. In the directory that contains the installation program, initialize the cluster deployment by running the following command:
 
-   ```terminal
-   $ ./openshift-install create cluster --dir <installation_directory> \
-       --log-level=info
-   ```
+```terminal
+$ ./openshift-install create cluster --dir <installation_directory> \
+    --log-level=info
+```
 
-   ```
-   *   For `<installation_directory>`, specify the
+- For `<installation_directory>`, specify the directory name to store the files that the installation program creates.
+- To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
 
-   directory name to store the files that the installation program creates.
+  When specifying the directory:
 
-   *   To view different installation details, specify `warn`, `debug`, or
-   `error` instead of `info`.
+  - Verify that the directory has the `execute` permission. This permission is required to run Terraform binaries under the installation directory.
+  - Use an empty directory. Some installation assets, such as bootstrap X.509 certificates, have short expiration intervals, therefore you must not reuse an installation directory. If you want to reuse individual files from another cluster installation, you can copy them into your directory. However, the file names for the installation assets might change between releases. Use caution when copying installation files from an earlier OpenShift Container Platform version.
 
-   When specifying the directory:
-   *   Verify that the directory has the `execute` permission. This permission is required to run Terraform binaries under the installation directory.
-   *   Use an empty directory. Some installation assets, such as bootstrap X.509 certificates, have short expiration intervals, therefore you must not reuse an installation directory. If you want to reuse individual files from another cluster installation, you can copy them into your directory. However, the file names for the installation assets might change between releases. Use caution when copying installation files from an earlier OpenShift Container Platform version.
-   ```
-3. Provide values at the prompts:
+    1. Provide values at the prompts:
 
-   1. Optional: Select an SSH key to use to access your cluster machines.
+       1. Optional: Select an SSH key to use to access your cluster machines.
 
-      > [!NOTE]
-      > For production OpenShift Container Platform clusters on which you want to perform installation debugging or disaster recovery, specify an SSH key that your `ssh-agent` process uses.
-   2. Select **gcp** as the platform to target.
-   3. If you have not configured the service account key for your Google Cloud account on your host, you must obtain it from Google Cloud and paste the contents of the file or enter the absolute path to the file.
-   4. Select the project ID to provision the cluster in. The default value is specified by the service account that you configured.
-   5. Select the region to deploy the cluster to.
-   6. Select the base domain to deploy the cluster to. The base domain corresponds to the public DNS zone that you created for your cluster.
-   7. Enter a descriptive name for your cluster.
+          > [!NOTE]
+          > For production OpenShift Container Platform clusters on which you want to perform installation debugging or disaster recovery, specify an SSH key that your `ssh-agent` process uses.
+       2. Select **gcp** as the platform to target.
+       3. If you have not configured the service account key for your Google Cloud account on your host, you must obtain it from Google Cloud and paste the contents of the file or enter the absolute path to the file.
+       4. Select the project ID to provision the cluster in. The default value is specified by the service account that you configured.
+       5. Select the region to deploy the cluster to.
+       6. Select the base domain to deploy the cluster to. The base domain corresponds to the public DNS zone that you created for your cluster.
+       7. Enter a descriptive name for your cluster.
 
-      If you provide a name that is longer than 6 characters, only the first 6 characters will be used in the infrastructure ID that is generated from the cluster name.
-   8. Paste the [pull secret from Red Hat OpenShift Cluster Manager](https://console.redhat.com/openshift/install/pull-secret).
-4. Optional: You can reduce the number of permissions for the service account that you used to install the cluster.
+          If you provide a name that is longer than 6 characters, only the first 6 characters will be used in the infrastructure ID that is generated from the cluster name.
+       8. Paste the [pull secret from Red Hat OpenShift Cluster Manager](https://console.redhat.com/openshift/install/pull-secret).
 
-   - If you assigned the `Owner` role to your service account, you can remove that role and replace it with the `Viewer` role.
-   - If you included the `Service Account Key Admin` role, you can remove it.
+  1. Optional: You can reduce the number of permissions for the service account that you used to install the cluster.
+- If you assigned the `Owner` role to your service account, you can remove that role and replace it with the `Viewer` role.
+- If you included the `Service Account Key Admin` role, you can remove it.
 
 **Verification**
 
@@ -361,6 +349,7 @@ The `kubeconfig` file is specific to a cluster and OpenShift Container Platform 
 - "Remote health reporting"
 
 **Additional resources**
+{._additional-resources}
 
 - See [Accessing the web console](/openshift-docs-markdown/web_console/web-console#web-console) for more details about accessing and understanding the OpenShift Container Platform web console.
 
@@ -371,10 +360,12 @@ To provide metrics about cluster health and the success of updates, the Telemetr
 After you confirm that your [OpenShift Cluster Manager](https://console.redhat.com/openshift) inventory is correct, either maintained automatically by Telemetry or manually by using OpenShift Cluster Manager,use subscription watch to track your OpenShift Container Platform subscriptions at the account or multi-cluster level. For more information about subscription watch, see "Data Gathered and Used by Red Hat’s subscription services" in the *Additional resources* section.
 
 **Additional resources**
+{._additional-resources}
 
 - See [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring) for more information about the Telemetry service
 
-## Next steps {#_next_steps}
+**Next steps**
+{._additional-resources}
 
 - [Customize your cluster](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations).
 - If necessary, you can [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting).

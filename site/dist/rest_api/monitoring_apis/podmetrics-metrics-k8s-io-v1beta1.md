@@ -1,5 +1,5 @@
 ---
-title: PodMetrics []
+title: PodMetrics [metrics.k8s.io/v1beta1]
 ---
 
 # PodMetrics \[metrics.k8s.io/v1beta1\] {#podmetrics-metrics-k8s-io-v1beta1}
@@ -65,10 +65,10 @@ The following API endpoints are available:
 - `/apis/metrics.k8s.io/v1beta1/pods`
 
   - `GET`: list objects of kind PodMetrics
-- `/apis/metrics.k8s.io/v1beta1/namespaces/{{ namespace }}/pods`
+- `/apis/metrics.k8s.io/v1beta1/namespaces/{namespace}/pods`
 
   - `GET`: list objects of kind PodMetrics
-- `/apis/metrics.k8s.io/v1beta1/namespaces/{{ namespace }}/pods/{{ name }}`
+- `/apis/metrics.k8s.io/v1beta1/namespaces/{namespace}/pods/{name}`
 
   - `GET`: read the specified PodMetrics
 
@@ -90,7 +90,7 @@ Description
 | --- | --- |
 | 200 - OK | [`PodMetricsList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-metrics-pkg-apis-metrics-v1beta1-PodMetricsList) schema |
 
-### /apis/metrics.k8s.io/v1beta1/namespaces/{{ namespace }}/pods {#_apismetricsk8siov1beta1namespaces_namespace_pods}
+### /apis/metrics.k8s.io/v1beta1/namespaces/{namespace}/pods {#_apismetricsk8siov1beta1namespaces_namespace_pods}
 
 HTTP method
 :   ```
@@ -108,7 +108,7 @@ Description
 | --- | --- |
 | 200 - OK | [`PodMetricsList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-metrics-pkg-apis-metrics-v1beta1-PodMetricsList) schema |
 
-### /apis/metrics.k8s.io/v1beta1/namespaces/{{ namespace }}/pods/{{ name }} {#_apismetricsk8siov1beta1namespaces_namespace_pods_name}
+### /apis/metrics.k8s.io/v1beta1/namespaces/{namespace}/pods/{name} {#_apismetricsk8siov1beta1namespaces_namespace_pods_name}
 
 **Global path parameters**
 

@@ -267,6 +267,7 @@ You cannot create a `Kueue` custom resource by using the OpenShift Container Pla
 
     ([OCPBUGS-58118](https://issues.redhat.com/browse/OCPBUGS-58118))
 
-## Additional resources {#additional-resources_release-notes}
+**Additional resources**
+{._additional-resources}
 
 - [Kueue (upstream documentation)](https://kueue.sigs.k8s.io/docs/overview/)

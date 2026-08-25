@@ -1,5 +1,5 @@
 ---
-title: Preparing an Agent-based installed cluster for the {{ mce }}
+title: Preparing an Agent-based installed cluster for the multicluster engine for Kubernetes Operator
 ---
 
 # Preparing an Agent-based installed cluster for the multicluster engine for Kubernetes Operator {#preparing-an-agent-based-installed-cluster-for-mce}
@@ -26,6 +26,7 @@ The following prerequisites must be completed:
 - If you are installing in a disconnected environment, you must have a configured local mirror registry for disconnected installation mirroring.
 
 **Additional resources**
+{._additional-resources}
 
 - [Cluster lifecycle with multicluster engine operator overview](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.9/html/clusters/cluster_mce_overview)
 - [Persistent storage using local volumes](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-local#persistent-storage-using-local-volume)
@@ -45,96 +46,92 @@ You can mirror the required OpenShift Container Platform container images, the m
 1. Create an `<assets_directory>` folder to contain valid `install-config.yaml` and `agent-config.yaml` files. This directory is used to store all the assets.
 2. To mirror an OpenShift Container Platform image repository, the multicluster engine, and the LSO, create a `ImageSetConfiguration.yaml` file with the following settings:
 
-```yaml {title="Example ImageSetConfiguration.yaml"}
-  kind: ImageSetConfiguration
-  apiVersion: mirror.openshift.io/v1alpha2
-  archiveSize: 4
-  storageConfig:
-    imageURL: <your-local-registry-dns-name>:<your-local-registry-port>/mirror/oc-mirror-metadata
-    skipTLS: true
-  mirror:
-    platform:
-      architectures:
-        - "amd64"
-      channels:
-        - name: stable-{{ product_version }}
-          type: ocp
-    additionalImages:
-      - name: registry.redhat.io/ubi9/ubi:latest
-    operators:
-      - catalog: registry.redhat.io/redhat/redhat-operator-index:v{{ product_version }}
-        packages:
-          - name: multicluster-engine
-          - name: local-storage-operator
-```
+   ```yaml {title="Example ImageSetConfiguration.yaml"}
+     kind: ImageSetConfiguration
+     apiVersion: mirror.openshift.io/v1alpha2
+     archiveSize: 4
+     storageConfig:
+       imageURL: <your-local-registry-dns-name>:<your-local-registry-port>/mirror/oc-mirror-metadata
+       skipTLS: true
+     mirror:
+       platform:
+         architectures:
+           - "amd64"
+         channels:
+           - name: stable-4.22
+             type: ocp
+       additionalImages:
+         - name: registry.redhat.io/ubi9/ubi:latest
+       operators:
+         - catalog: registry.redhat.io/redhat/redhat-operator-index:v4.22
+           packages:
+             - name: multicluster-engine
+             - name: local-storage-operator
+   ```
 
-where:
+   where:
 
-`archiveSize`
-:   Specifies the maximum size, in GiB, of each file within the image set.
+   `archiveSize`
+   :   Specifies the maximum size, in GiB, of each file within the image set.
 
-`storageConfig`
-:   Specifies the back-end location to receive the image set metadata. This location can be a registry or local directory. It is required to specify `storageConfig` values.
+   `storageConfig`
+   :   Specifies the back-end location to receive the image set metadata. This location can be a registry or local directory. It is required to specify `storageConfig` values.
 
-`storageConfig.imageURL`
-:   Specifies the registry URL for the storage backend.
+   `storageConfig.imageURL`
+   :   Specifies the registry URL for the storage backend.
 
-`channels.name`
-:   Specifies the channel that contains the OpenShift Container Platform images for the version you are installing.
+   `channels.name`
+   :   Specifies the channel that contains the OpenShift Container Platform images for the version you are installing.
 
-`operators.catalog`
-:   Specifies the Operator catalog that contains the OpenShift Container Platform images that you are installing.
+   `operators.catalog`
+   :   Specifies the Operator catalog that contains the OpenShift Container Platform images that you are installing.
 
-`packages`
-:   Specifies only certain Operator packages and channels to include in the image set. Remove this field to retrieve all packages in the catalog. In this example, a `package.name` value of `multicluster-engine` includes the multicluster engine packages and channels, and `local-storage-operator` includes the LSO packages and channels.
+   `packages`
+   :   Specifies only certain Operator packages and channels to include in the image set. Remove this field to retrieve all packages in the catalog. In this example, a `package.name` value of `multicluster-engine` includes the multicluster engine packages and channels, and `local-storage-operator` includes the LSO packages and channels.
 
-    > [!NOTE]
-    > This file is required by the `oc mirror` command when mirroring content.
-
-1. To mirror a specific OpenShift Container Platform image repository, the multicluster engine, and the LSO, run the following command:
+   > [!NOTE]
+   > This file is required by the `oc mirror` command when mirroring content.
+3. To mirror a specific OpenShift Container Platform image repository, the multicluster engine, and the LSO, run the following command:
 
    ```terminal
    $ oc mirror --dest-skip-tls --config ocp-mce-imageset.yaml docker://<your-local-registry-dns-name>:<your-local-registry-port>
    ```
-2. Update the registry and certificate in the `install-config.yaml` file:
+4. Update the registry and certificate in the `install-config.yaml` file:
 
-```yaml {title="Example imageContentSources.yaml"}
-  imageContentSources:
-    - source: "quay.io/openshift-release-dev/ocp-release"
-      mirrors:
-        - "<your-local-registry-dns-name>:<your-local-registry-port>/openshift/release-images"
-    - source: "quay.io/openshift-release-dev/ocp-v4.0-art-dev"
-      mirrors:
-        - "<your-local-registry-dns-name>:<your-local-registry-port>/openshift/release"
-    - source: "registry.redhat.io/ubi9"
-      mirrors:
-        - "<your-local-registry-dns-name>:<your-local-registry-port>/ubi9"
-    - source: "registry.redhat.io/multicluster-engine"
-      mirrors:
-        - "<your-local-registry-dns-name>:<your-local-registry-port>/multicluster-engine"
-    - source: "registry.redhat.io/rhel8"
-      mirrors:
-        - "<your-local-registry-dns-name>:<your-local-registry-port>/rhel8"
-    - source: "registry.redhat.io/redhat"
-      mirrors:
-        - "<your-local-registry-dns-name>:<your-local-registry-port>/redhat"
-```
+   ```yaml {title="Example imageContentSources.yaml"}
+     imageContentSources:
+       - source: "quay.io/openshift-release-dev/ocp-release"
+         mirrors:
+           - "<your-local-registry-dns-name>:<your-local-registry-port>/openshift/release-images"
+       - source: "quay.io/openshift-release-dev/ocp-v4.0-art-dev"
+         mirrors:
+           - "<your-local-registry-dns-name>:<your-local-registry-port>/openshift/release"
+       - source: "registry.redhat.io/ubi9"
+         mirrors:
+           - "<your-local-registry-dns-name>:<your-local-registry-port>/ubi9"
+       - source: "registry.redhat.io/multicluster-engine"
+         mirrors:
+           - "<your-local-registry-dns-name>:<your-local-registry-port>/multicluster-engine"
+       - source: "registry.redhat.io/rhel8"
+         mirrors:
+           - "<your-local-registry-dns-name>:<your-local-registry-port>/rhel8"
+       - source: "registry.redhat.io/redhat"
+         mirrors:
+           - "<your-local-registry-dns-name>:<your-local-registry-port>/redhat"
+   ```
 
-Additionally, ensure your certificate is present in the `additionalTrustBundle` field of the `install-config.yaml`.
+   Additionally, ensure your certificate is present in the `additionalTrustBundle` field of the `install-config.yaml`.
 
-.Example `install-config.yaml`
+   ```yaml {title="Example install-config.yaml"}
+   additionalTrustBundle: |
+     -----BEGIN CERTIFICATE-----
+     zzzzzzzzzzz
+     -----END CERTIFICATE-------
+   ```
 
-```yaml
-additionalTrustBundle: |
-  -----BEGIN CERTIFICATE-----
-  zzzzzzzzzzz
-  -----END CERTIFICATE-------
-```
-
-> [!IMPORTANT]
-> The `oc mirror` command  creates a folder called `oc-mirror-workspace` with several outputs. This includes the `imageContentSourcePolicy.yaml` file that identifies all the mirrors you need for OpenShift Container Platform and your selected Operators.
-
-1. Generate the cluster manifests by running the following command:
+   > [!IMPORTANT]
+   > The `oc mirror` command  creates a folder called `oc-mirror-workspace` with several outputs. This includes the `imageContentSourcePolicy.yaml` file that identifies all the mirrors you need for OpenShift Container Platform and your selected Operators.
+5. Generate the cluster manifests by running the following command:
 
    ```terminal
    $ openshift-install agent create cluster-manifests
@@ -320,9 +317,9 @@ Create the required manifests for the multicluster engine Operator, the Local St
       apiVersion: hive.openshift.io/v1
       kind: ClusterImageSet
       metadata:
-        name: "{{ product_version }}"
+        name: "4.22"
       spec:
-        releaseImage: quay.io/openshift-release-dev/ocp-release:{{ product_version }}.0-x86_64
+        releaseImage: quay.io/openshift-release-dev/ocp-release:4.22.0-x86_64
     ```
 12. Create a manifest to import the agent installed cluster (that hosts the multicluster engine and the Assisted Service) as the hub cluster.
 
@@ -355,5 +352,6 @@ Create the required manifests for the multicluster engine Operator, the Local St
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [The Local Storage Operator](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-local#persistent-storage-using-local-volume)

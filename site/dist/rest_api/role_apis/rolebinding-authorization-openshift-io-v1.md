@@ -1,5 +1,5 @@
 ---
-title: RoleBinding []
+title: RoleBinding [authorization.openshift.io/v1]
 ---
 
 # RoleBinding \[authorization.openshift.io/v1\] {#rolebinding-authorization-openshift-io-v1}
@@ -37,11 +37,11 @@ The following API endpoints are available:
 - `/apis/authorization.openshift.io/v1/rolebindings`
 
   - `GET`: list objects of kind RoleBinding
-- `/apis/authorization.openshift.io/v1/namespaces/{{ namespace }}/rolebindings`
+- `/apis/authorization.openshift.io/v1/namespaces/{namespace}/rolebindings`
 
   - `GET`: list objects of kind RoleBinding
   - `POST`: create a RoleBinding
-- `/apis/authorization.openshift.io/v1/namespaces/{{ namespace }}/rolebindings/{{ name }}`
+- `/apis/authorization.openshift.io/v1/namespaces/{namespace}/rolebindings/{name}`
 
   - `DELETE`: delete a RoleBinding
   - `GET`: read the specified RoleBinding
@@ -67,7 +67,7 @@ Description
 | 200 - OK | [`RoleBindingList`](/openshift-docs-markdown/rest_api/objects/index#com-github-openshift-api-authorization-v1-RoleBindingList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/authorization.openshift.io/v1/namespaces/{{ namespace }}/rolebindings {#_apisauthorizationopenshiftiov1namespaces_namespace_rolebindings}
+### /apis/authorization.openshift.io/v1/namespaces/{namespace}/rolebindings {#_apisauthorizationopenshiftiov1namespaces_namespace_rolebindings}
 
 HTTP method
 :   ```
@@ -118,7 +118,7 @@ Description
 | 202 - Accepted | [`RoleBinding`](/openshift-docs-markdown/rest_api/role_apis/rolebinding-authorization-openshift-io-v1#rolebinding-authorization-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/authorization.openshift.io/v1/namespaces/{{ namespace }}/rolebindings/{{ name }} {#_apisauthorizationopenshiftiov1namespaces_namespace_rolebindings_name}
+### /apis/authorization.openshift.io/v1/namespaces/{namespace}/rolebindings/{name} {#_apisauthorizationopenshiftiov1namespaces_namespace_rolebindings_name}
 
 **Global path parameters**
 

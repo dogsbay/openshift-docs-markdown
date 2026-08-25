@@ -85,10 +85,10 @@ There are no special configuration considerations for services running on only c
   <td>Alibaba</td>
   <td><code>*.aliyuncs.com</code></td>
   <td>443</td>
-  <td>Required to access Alibaba Cloud services and resources. Review the <a href="https://github.com/aliyun/alibaba-cloud-sdk-go/blob/master/sdk/endpoints/endpoints_config.go?spm=a2c4g.11186623.0.0.47875873ciGnC8&file=endpoints_config.go">Alibaba endpoints_config.go file</a> to find the exact endpoints to allow for the regions that you use.<br><br>.17+</td>
+  <td>Required to access Alibaba Cloud services and resources. Review the <a href="https://github.com/aliyun/alibaba-cloud-sdk-go/blob/master/sdk/endpoints/endpoints_config.go?spm=a2c4g.11186623.0.0.47875873ciGnC8&file=endpoints_config.go">Alibaba endpoints_config.go file</a> to find the exact endpoints to allow for the regions that you use.</td>
 </tr>
 <tr>
-  <td>AWS</td>
+  <td rowspan="17">AWS</td>
   <td><code>aws.amazon.com</code></td>
   <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
@@ -97,16 +97,18 @@ There are no special configuration considerations for services running on only c
   <td><code>*.amazonaws.com</code><br><br>Alternatively, if you choose to not use a wildcard for AWS APIs, you must include the following URLs in your allowlist:</td>
   <td>443</td>
   <td>Required to access AWS services and resources. Review the <a href="https://docs.aws.amazon.com/general/latest/gr/rande.html">AWS Service Endpoints</a> in the AWS documentation to find the exact endpoints to allow for the regions that you use.</td>
-  <td><code>ec2.amazonaws.com</code></td>
 </tr>
 <tr>
+  <td><code>ec2.amazonaws.com</code></td>
   <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
+</tr>
+<tr>
   <td><code>events.amazonaws.com</code></td>
   <td>443</td>
+  <td>Used to install and manage clusters in an AWS environment.</td>
 </tr>
 <tr>
-  <td>Used to install and manage clusters in an AWS environment.</td>
   <td><code>iam.amazonaws.com</code></td>
   <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
@@ -115,17 +117,19 @@ There are no special configuration considerations for services running on only c
   <td><code>route53.amazonaws.com</code></td>
   <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
+</tr>
+<tr>
   <td><code>*.s3.amazonaws.com</code></td>
-</tr>
-<tr>
   <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
-  <td><code>*.s3.<aws_region>.amazonaws.com</code></td>
-  <td>443</td>
 </tr>
 <tr>
+  <td><code>*.s3.&lt;aws_region&gt;.amazonaws.com</code></td>
+  <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
-  <td><code>*.s3.dualstack.<aws_region>.amazonaws.com</code></td>
+</tr>
+<tr>
+  <td><code>*.s3.dualstack.&lt;aws_region&gt;.amazonaws.com</code></td>
   <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
 </tr>
@@ -133,40 +137,44 @@ There are no special configuration considerations for services running on only c
   <td><code>sts.amazonaws.com</code></td>
   <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
-  <td><code>sts.<aws_region>.amazonaws.com</code></td>
 </tr>
 <tr>
+  <td><code>sts.&lt;aws_region&gt;.amazonaws.com</code></td>
   <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
+</tr>
+<tr>
   <td><code>tagging.us-east-1.amazonaws.com</code></td>
   <td>443</td>
-</tr>
-<tr>
   <td>Used to install and manage clusters in an AWS environment. This endpoint is always <code>us-east-1</code>, regardless of the region the cluster is deployed in.</td>
-  <td><code>ec2.<aws_region>.amazonaws.com</code></td>
+</tr>
+<tr>
+  <td><code>ec2.&lt;aws_region&gt;.amazonaws.com</code></td>
   <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
 </tr>
 <tr>
-  <td><code>elasticloadbalancing.<aws_region>.amazonaws.com</code></td>
+  <td><code>elasticloadbalancing.&lt;aws_region&gt;.amazonaws.com</code></td>
   <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
-  <td><code>servicequotas.<aws_region>.amazonaws.com</code></td>
 </tr>
 <tr>
+  <td><code>servicequotas.&lt;aws_region&gt;.amazonaws.com</code></td>
   <td>443</td>
   <td>Required. Used to confirm quotas for deploying the service.</td>
-  <td><code>tagging.<aws_region>.amazonaws.com</code></td>
-  <td>443</td>
 </tr>
 <tr>
+  <td><code>tagging.&lt;aws_region&gt;.amazonaws.com</code></td>
+  <td>443</td>
   <td>Allows the assignment of metadata about AWS resources in the form of tags.</td>
+</tr>
+<tr>
   <td><code>*.cloudfront.net</code></td>
   <td>443</td>
-  <td>Used to provide access to CloudFront. If you use the AWS Security Token Service (STS) and the private S3 bucket, you must provide access to CloudFront.<br><br>.2+</td>
+  <td>Used to provide access to CloudFront. If you use the AWS Security Token Service (STS) and the private S3 bucket, you must provide access to CloudFront.</td>
 </tr>
 <tr>
-  <td>GCP</td>
+  <td rowspan="2">GCP</td>
   <td><code>*.googleapis.com</code></td>
   <td>443</td>
   <td>Required to access Google Cloud services and resources. Review <a href="https://cloud.google.com/endpoints/">Cloud Endpoints</a> in the Google Cloud documentation to find the endpoints to allow for your APIs.</td>
@@ -174,46 +182,45 @@ There are no special configuration considerations for services running on only c
 <tr>
   <td><code>accounts.google.com</code></td>
   <td>443</td>
-  <td>Required to access your Google Cloud account.<br><br>.3+</td>
-  <td>Microsoft Azure</td>
+  <td>Required to access your Google Cloud account.</td>
 </tr>
 <tr>
+  <td rowspan="3">Microsoft Azure</td>
   <td><code>management.azure.com</code></td>
   <td>443</td>
   <td>Required to access Microsoft Azure services and resources. Review the <a href="https://docs.microsoft.com/en-us/rest/api/azure/">Microsoft Azure REST API reference</a> in the Microsoft Azure documentation to find the endpoints to allow for your APIs.</td>
-  <td><code>*.blob.core.windows.net</code></td>
 </tr>
 <tr>
+  <td><code>*.blob.core.windows.net</code></td>
   <td>443</td>
   <td>Required to download Ignition files.</td>
-  <td><code>login.microsoftonline.com</code></td>
-  <td>443</td>
 </tr>
 <tr>
+  <td><code>login.microsoftonline.com</code></td>
+  <td>443</td>
   <td>Required to access Microsoft Azure services and resources. Review the <a href="https://docs.microsoft.com/en-us/rest/api/azure/">Azure REST API reference</a> in the Microsoft Azure documentation to find the endpoints to allow for your APIs.</td>
 </tr>
 </tbody>
 </table>
-1.  Allowlist the following URL for optional third-party content:
-    | URL | Port | Function |
-    | --- | --- | --- |
-    | `registry.connect.redhat.com` | 443 | Required for all third-party images and certified operators. |
-1.  If you use a default Red Hat Network Time Protocol (NTP) server, allow the following URLs. NTP operates on User Datagram Protocol (UDP) port 123, so this port must be opened on the firewall.
-    | URL | Port | Function |
-    | --- | --- | --- |
-    | `1.rhel.pool.ntp.org` | 123 | Provides NTP services for time synchronization. |
-    | `2.rhel.pool.ntp.org` | 123 | Provides NTP services for time synchronization. |
-    | `3.rhel.pool.ntp.org` | 123 | Provides NTP services for time synchronization. |
 
-```
-:::note
+1. Allowlist the following URL for optional third-party content:
 
-If you do not use a default Red Hat NTP server, verify the NTP server for your platform and allow it in your firewall.
+   | URL | Port | Function |
+   | --- | --- | --- |
+   | `registry.connect.redhat.com` | 443 | Required for all third-party images and certified operators. |
+2. If you use a default Red Hat Network Time Protocol (NTP) server, allow the following URLs. NTP operates on User Datagram Protocol (UDP) port 123, so this port must be opened on the firewall.
 
-:::
-```
+   | URL | Port | Function |
+   | --- | --- | --- |
+   | `1.rhel.pool.ntp.org` | 123 | Provides NTP services for time synchronization. |
+   | `2.rhel.pool.ntp.org` | 123 | Provides NTP services for time synchronization. |
+   | `3.rhel.pool.ntp.org` | 123 | Provides NTP services for time synchronization. |
+
+   > [!NOTE]
+   > If you do not use a default Red Hat NTP server, verify the NTP server for your platform and allow it in your firewall.
 
 **Additional resources**
+{._additional-resources}
 
 - [OpenID Connect requirements for AWS STS](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds-auth-flow-aws-oidc_cco-short-term-creds)
 
@@ -255,57 +262,55 @@ The following matrixes describe the base ingress flows to OpenShift Container Pl
 
 **Control plane node base flows**
 
-```
-Direction,Protocol,Port,Namespace,Service,Pod,Container,Node Role,Optional
-Ingress,TCP,22,Host system service,sshd,,,master,TRUE
-Ingress,TCP,111,Host system service,rpcbind,,,master,TRUE
-Ingress,TCP,2379,openshift-etcd,etcd,etcd,etcdctl,master,FALSE
-Ingress,TCP,2380,openshift-etcd,healthz,etcd,etcd,master,FALSE
-Ingress,TCP,6080,openshift-kube-apiserver,,kube-apiserver,kube-apiserver-insecure-readyz,master,FALSE
-Ingress,TCP,6443,openshift-kube-apiserver,apiserver,kube-apiserver,kube-apiserver,master,FALSE
-Ingress,TCP,8798,openshift-machine-config-operator,machine-config-daemon,machine-config-daemon,machine-config-daemon,master,FALSE
-Ingress,TCP,9001,openshift-machine-config-operator,machine-config-daemon,machine-config-daemon,kube-rbac-proxy,master,FALSE
-Ingress,TCP,9099,openshift-cluster-version,cluster-version-operator,cluster-version-operator,cluster-version-operator,master,FALSE
-Ingress,TCP,9100,openshift-monitoring,node-exporter,node-exporter,kube-rbac-proxy,master,FALSE
-Ingress,TCP,9103,openshift-ovn-kubernetes,ovn-kubernetes-node,ovnkube-node,kube-rbac-proxy-node,master,FALSE
-Ingress,TCP,9104,openshift-network-operator,metrics,network-operator,network-operator,master,FALSE
-Ingress,TCP,9105,openshift-ovn-kubernetes,ovn-kubernetes-node,ovnkube-node,kube-rbac-proxy-ovn-metrics,master,FALSE
-Ingress,TCP,9107,openshift-ovn-kubernetes,egressip-node-healthcheck,ovnkube-node,ovnkube-controller,master,FALSE
-Ingress,TCP,9108,openshift-ovn-kubernetes,ovn-kubernetes-control-plane,ovnkube-control-plane,kube-rbac-proxy,master,FALSE
-Ingress,TCP,9192,openshift-cluster-machine-approver,machine-approver,machine-approver,kube-rbac-proxy,master,FALSE
-Ingress,TCP,9258,openshift-cloud-controller-manager-operator,machine-approver,cluster-cloud-controller-manager,cluster-cloud-controller-manager,master,FALSE
-Ingress,TCP,9443,openshift-cloud-controller-manager-operator,cloud-controller-manager-operator,cluster-cloud-controller-manager-operator,cluster-cloud-controller-manager,master,FALSE
-Ingress,TCP,9637,openshift-machine-config-operator,kube-rbac-proxy-crio,kube-rbac-proxy-crio,kube-rbac-proxy-crio,master,FALSE
-Ingress,TCP,9978,openshift-etcd,etcd,etcd,etcd-metrics,master,FALSE
-Ingress,TCP,9979,openshift-etcd,etcd,etcd,etcd-metrics,master,FALSE
-Ingress,TCP,9980,openshift-etcd,etcd,etcd,etcd,master,FALSE
-Ingress,TCP,10250,Host system service,kubelet,,,master,FALSE
-Ingress,TCP,10256,openshift-ovn-kubernetes,ovnkube,ovnkube,ovnkube-controller,master,FALSE
-Ingress,TCP,10257,openshift-kube-controller-manager,kube-controller-manager,kube-controller-manager,kube-controller-manager,master,FALSE
-Ingress,TCP,10259,openshift-kube-scheduler,scheduler,openshift-kube-scheduler,kube-scheduler,master,FALSE
-Ingress,TCP,17697,openshift-kube-apiserver,openshift-kube-apiserver-healthz,kube-apiserver,kube-apiserver-check-endpoints,master,FALSE
-Ingress,TCP,22623,openshift-machine-config-operator,machine-config-server,machine-config-server,machine-config-server,master,FALSE
-Ingress,TCP,22624,openshift-machine-config-operator,machine-config-server,machine-config-server,machine-config-server,master,FALSE
-Ingress,UDP,111,Host system service,rpcbind,,,master,TRUE
-```
+| Direction | Protocol | Port | Namespace | Service | Pod | Container | Node Role | Optional |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Ingress | TCP | 22 | Host system service | sshd |  |  | master | TRUE |
+| Ingress | TCP | 111 | Host system service | rpcbind |  |  | master | TRUE |
+| Ingress | TCP | 2379 | openshift-etcd | etcd | etcd | etcdctl | master | FALSE |
+| Ingress | TCP | 2380 | openshift-etcd | healthz | etcd | etcd | master | FALSE |
+| Ingress | TCP | 6080 | openshift-kube-apiserver |  | kube-apiserver | kube-apiserver-insecure-readyz | master | FALSE |
+| Ingress | TCP | 6443 | openshift-kube-apiserver | apiserver | kube-apiserver | kube-apiserver | master | FALSE |
+| Ingress | TCP | 8798 | openshift-machine-config-operator | machine-config-daemon | machine-config-daemon | machine-config-daemon | master | FALSE |
+| Ingress | TCP | 9001 | openshift-machine-config-operator | machine-config-daemon | machine-config-daemon | kube-rbac-proxy | master | FALSE |
+| Ingress | TCP | 9099 | openshift-cluster-version | cluster-version-operator | cluster-version-operator | cluster-version-operator | master | FALSE |
+| Ingress | TCP | 9100 | openshift-monitoring | node-exporter | node-exporter | kube-rbac-proxy | master | FALSE |
+| Ingress | TCP | 9103 | openshift-ovn-kubernetes | ovn-kubernetes-node | ovnkube-node | kube-rbac-proxy-node | master | FALSE |
+| Ingress | TCP | 9104 | openshift-network-operator | metrics | network-operator | network-operator | master | FALSE |
+| Ingress | TCP | 9105 | openshift-ovn-kubernetes | ovn-kubernetes-node | ovnkube-node | kube-rbac-proxy-ovn-metrics | master | FALSE |
+| Ingress | TCP | 9107 | openshift-ovn-kubernetes | egressip-node-healthcheck | ovnkube-node | ovnkube-controller | master | FALSE |
+| Ingress | TCP | 9108 | openshift-ovn-kubernetes | ovn-kubernetes-control-plane | ovnkube-control-plane | kube-rbac-proxy | master | FALSE |
+| Ingress | TCP | 9192 | openshift-cluster-machine-approver | machine-approver | machine-approver | kube-rbac-proxy | master | FALSE |
+| Ingress | TCP | 9258 | openshift-cloud-controller-manager-operator | machine-approver | cluster-cloud-controller-manager | cluster-cloud-controller-manager | master | FALSE |
+| Ingress | TCP | 9443 | openshift-cloud-controller-manager-operator | cloud-controller-manager-operator | cluster-cloud-controller-manager-operator | cluster-cloud-controller-manager | master | FALSE |
+| Ingress | TCP | 9637 | openshift-machine-config-operator | kube-rbac-proxy-crio | kube-rbac-proxy-crio | kube-rbac-proxy-crio | master | FALSE |
+| Ingress | TCP | 9978 | openshift-etcd | etcd | etcd | etcd-metrics | master | FALSE |
+| Ingress | TCP | 9979 | openshift-etcd | etcd | etcd | etcd-metrics | master | FALSE |
+| Ingress | TCP | 9980 | openshift-etcd | etcd | etcd | etcd | master | FALSE |
+| Ingress | TCP | 10250 | Host system service | kubelet |  |  | master | FALSE |
+| Ingress | TCP | 10256 | openshift-ovn-kubernetes | ovnkube | ovnkube | ovnkube-controller | master | FALSE |
+| Ingress | TCP | 10257 | openshift-kube-controller-manager | kube-controller-manager | kube-controller-manager | kube-controller-manager | master | FALSE |
+| Ingress | TCP | 10259 | openshift-kube-scheduler | scheduler | openshift-kube-scheduler | kube-scheduler | master | FALSE |
+| Ingress | TCP | 17697 | openshift-kube-apiserver | openshift-kube-apiserver-healthz | kube-apiserver | kube-apiserver-check-endpoints | master | FALSE |
+| Ingress | TCP | 22623 | openshift-machine-config-operator | machine-config-server | machine-config-server | machine-config-server | master | FALSE |
+| Ingress | TCP | 22624 | openshift-machine-config-operator | machine-config-server | machine-config-server | machine-config-server | master | FALSE |
+| Ingress | UDP | 111 | Host system service | rpcbind |  |  | master | TRUE |
 
 **Worker node base flows**
 
-```
-Direction,Protocol,Port,Namespace,Service,Pod,Container,Node Role,Optional
-Ingress,TCP,22,Host system service,sshd,,,worker,TRUE
-Ingress,TCP,111,Host system service,rpcbind,,,worker,TRUE
-Ingress,TCP,8798,openshift-machine-config-operator,machine-config-daemon,machine-config-daemon,machine-config-daemon,worker,FALSE
-Ingress,TCP,9001,openshift-machine-config-operator,machine-config-daemon,machine-config-daemon,kube-rbac-proxy,worker,FALSE
-Ingress,TCP,9100,openshift-monitoring,node-exporter,node-exporter,kube-rbac-proxy,worker,FALSE
-Ingress,TCP,9103,openshift-ovn-kubernetes,ovn-kubernetes-node,ovnkube-node,kube-rbac-proxy-node,worker,FALSE
-Ingress,TCP,9105,openshift-ovn-kubernetes,ovn-kubernetes-node,ovnkube-node,kube-rbac-proxy-ovn-metrics,worker,FALSE
-Ingress,TCP,9107,openshift-ovn-kubernetes,egressip-node-healthcheck,ovnkube-node,ovnkube-controller,worker,FALSE
-Ingress,TCP,9637,openshift-machine-config-operator,kube-rbac-proxy-crio,kube-rbac-proxy-crio,kube-rbac-proxy-crio,worker,FALSE
-Ingress,TCP,10250,Host system service,kubelet,,,worker,FALSE
-Ingress,TCP,10256,openshift-ovn-kubernetes,ovnkube,ovnkube,ovnkube-controller,worker,FALSE
-Ingress,UDP,111,Host system service,rpcbind,,,worker,TRUE
-```
+| Direction | Protocol | Port | Namespace | Service | Pod | Container | Node Role | Optional |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Ingress | TCP | 22 | Host system service | sshd |  |  | worker | TRUE |
+| Ingress | TCP | 111 | Host system service | rpcbind |  |  | worker | TRUE |
+| Ingress | TCP | 8798 | openshift-machine-config-operator | machine-config-daemon | machine-config-daemon | machine-config-daemon | worker | FALSE |
+| Ingress | TCP | 9001 | openshift-machine-config-operator | machine-config-daemon | machine-config-daemon | kube-rbac-proxy | worker | FALSE |
+| Ingress | TCP | 9100 | openshift-monitoring | node-exporter | node-exporter | kube-rbac-proxy | worker | FALSE |
+| Ingress | TCP | 9103 | openshift-ovn-kubernetes | ovn-kubernetes-node | ovnkube-node | kube-rbac-proxy-node | worker | FALSE |
+| Ingress | TCP | 9105 | openshift-ovn-kubernetes | ovn-kubernetes-node | ovnkube-node | kube-rbac-proxy-ovn-metrics | worker | FALSE |
+| Ingress | TCP | 9107 | openshift-ovn-kubernetes | egressip-node-healthcheck | ovnkube-node | ovnkube-controller | worker | FALSE |
+| Ingress | TCP | 9637 | openshift-machine-config-operator | kube-rbac-proxy-crio | kube-rbac-proxy-crio | kube-rbac-proxy-crio | worker | FALSE |
+| Ingress | TCP | 10250 | Host system service | kubelet |  |  | worker | FALSE |
+| Ingress | TCP | 10256 | openshift-ovn-kubernetes | ovnkube | ovnkube | ovnkube-controller | worker | FALSE |
+| Ingress | UDP | 111 | Host system service | rpcbind |  |  | worker | TRUE |
 
 ### Additional network flows for OpenShift Container Platform on bare metal {#network-flow-matrix-bm_configuring-firewall}
 
@@ -313,27 +318,26 @@ In addition to the base network flows, the following matrix describes the ingres
 
 **OpenShift Container Platform on bare metal**
 
-```
-Direction,Protocol,Port,Namespace,Service,Pod,Container,Node Role,Optional
-Ingress,TCP,53,openshift-dns,dns-default,dns-default,dns,master,FALSE
-Ingress,TCP,6180,openshift-machine-api,metal3-state,metal3,metal3-httpd,master,FALSE
-Ingress,TCP,6183,openshift-machine-api,metal3-state,metal3,metal3-httpd,master,FALSE
-Ingress,TCP,6385,openshift-machine-api,metal3-state,metal3,metal3-httpd,master,FALSE
-Ingress,TCP,6388,openshift-machine-api,metal3-state,metal3,metal3-httpd,master,FALSE
-Ingress,TCP,9444,openshift-kni-infra,,haproxy,haproxy,master,FALSE
-Ingress,TCP,9445,openshift-kni-infra,,haproxy,haproxy,master,FALSE
-Ingress,TCP,9454,openshift-kni-infra,,haproxy,haproxy,master,FALSE
-Ingress,TCP,18080,openshift-kni-infra,,coredns,coredns,master,FALSE
-Ingress,UDP,53,openshift-dns,dns-default,dns-default,dns,master,FALSE
-Ingress,UDP,6081,openshift-ovn-kubernetes,ovn-kubernetes geneve,,,master,FALSE
-Ingress,TCP,53,openshift-dns,dns-default,dns-default,dns,worker,FALSE
-Ingress,TCP,80,openshift-ingress,router-internal-default,router-default,router,worker,FALSE
-Ingress,TCP,443,openshift-ingress,router-internal-default,router-default,router,worker,FALSE
-Ingress,TCP,1936,openshift-ingress,router-internal-default,router-default,router,worker,FALSE
-Ingress,TCP,18080,openshift-kni-infra,,coredns,coredns,worker,FALSE
-Ingress,UDP,53,openshift-dns,dns-default,dns-default,dns,worker,FALSE
-Ingress,UDP,6081,openshift-ovn-kubernetes,ovn-kubernetes geneve,,,worker,FALSE
-```
+| Direction | Protocol | Port | Namespace | Service | Pod | Container | Node Role | Optional |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Ingress | TCP | 53 | openshift-dns | dns-default | dns-default | dns | master | FALSE |
+| Ingress | TCP | 6180 | openshift-machine-api | metal3-state | metal3 | metal3-httpd | master | FALSE |
+| Ingress | TCP | 6183 | openshift-machine-api | metal3-state | metal3 | metal3-httpd | master | FALSE |
+| Ingress | TCP | 6385 | openshift-machine-api | metal3-state | metal3 | metal3-httpd | master | FALSE |
+| Ingress | TCP | 6388 | openshift-machine-api | metal3-state | metal3 | metal3-httpd | master | FALSE |
+| Ingress | TCP | 9444 | openshift-kni-infra |  | haproxy | haproxy | master | FALSE |
+| Ingress | TCP | 9445 | openshift-kni-infra |  | haproxy | haproxy | master | FALSE |
+| Ingress | TCP | 9454 | openshift-kni-infra |  | haproxy | haproxy | master | FALSE |
+| Ingress | TCP | 18080 | openshift-kni-infra |  | coredns | coredns | master | FALSE |
+| Ingress | UDP | 53 | openshift-dns | dns-default | dns-default | dns | master | FALSE |
+| Ingress | UDP | 6081 | openshift-ovn-kubernetes | ovn-kubernetes geneve |  |  | master | FALSE |
+| Ingress | TCP | 53 | openshift-dns | dns-default | dns-default | dns | worker | FALSE |
+| Ingress | TCP | 80 | openshift-ingress | router-internal-default | router-default | router | worker | FALSE |
+| Ingress | TCP | 443 | openshift-ingress | router-internal-default | router-default | router | worker | FALSE |
+| Ingress | TCP | 1936 | openshift-ingress | router-internal-default | router-default | router | worker | FALSE |
+| Ingress | TCP | 18080 | openshift-kni-infra |  | coredns | coredns | worker | FALSE |
+| Ingress | UDP | 53 | openshift-dns | dns-default | dns-default | dns | worker | FALSE |
+| Ingress | UDP | 6081 | openshift-ovn-kubernetes | ovn-kubernetes geneve |  |  | worker | FALSE |
 
 ### Additional network flows for single-node OpenShift with other platforms {#network-flow-matrix-sno_configuring-firewall}
 
@@ -341,12 +345,11 @@ In addition to the base network flows, the following matrix describes the ingres
 
 **Single-node OpenShift with other platforms**
 
-```
-Direction,Protocol,Port,Namespace,Service,Pod,Container,Node Role,Optional
-Ingress,TCP,80,openshift-ingress,router-internal-default,router-default,router,master,FALSE
-Ingress,TCP,443,openshift-ingress,router-internal-default,router-default,router,master,FALSE
-Ingress,TCP,1936,openshift-ingress,router-internal-default,router-default,router,master,FALSE
-```
+| Direction | Protocol | Port | Namespace | Service | Pod | Container | Node Role | Optional |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Ingress | TCP | 80 | openshift-ingress | router-internal-default | router-default | router | master | FALSE |
+| Ingress | TCP | 443 | openshift-ingress | router-internal-default | router-default | router | master | FALSE |
+| Ingress | TCP | 1936 | openshift-ingress | router-internal-default | router-default | router | master | FALSE |
 
 ### Additional network flows for OpenShift Container Platform on AWS {#network-flow-matrix-aws_configuring-firewall}
 
@@ -354,13 +357,12 @@ In addition to the base network flows, the following matrix describes the ingres
 
 **OpenShift Container Platform on AWS**
 
-```
-Direction,Protocol,Port,Namespace,Service,Pod,Container,Node Role,Optional
-Ingress,TCP,10258,openshift-cloud-controller-manager-operator,cloud-controller,cloud-controller-manager,cloud-controller-manager,master,FALSE
-Ingress,TCP,80,openshift-ingress,router-default,router-default,router,worker,FALSE
-Ingress,TCP,443,openshift-ingress,router-default,router-default,router,worker,FALSE
-Ingress,UDP,6081,openshift-ovn-kubernetes,ovn-kubernetes geneve,,,worker,FALSE
-```
+| Direction | Protocol | Port | Namespace | Service | Pod | Container | Node Role | Optional |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Ingress | TCP | 10258 | openshift-cloud-controller-manager-operator | cloud-controller | cloud-controller-manager | cloud-controller-manager | master | FALSE |
+| Ingress | TCP | 80 | openshift-ingress | router-default | router-default | router | worker | FALSE |
+| Ingress | TCP | 443 | openshift-ingress | router-default | router-default | router | worker | FALSE |
+| Ingress | UDP | 6081 | openshift-ovn-kubernetes | ovn-kubernetes geneve |  |  | worker | FALSE |
 
 ### Additional network flows for single-node OpenShift on AWS {#network-flow-matrix-aws-sno_configuring-firewall}
 
@@ -368,12 +370,11 @@ In addition to the base network flows, the following matrix describes the ingres
 
 **Single-node OpenShift on AWS**
 
-```
-Direction,Protocol,Port,Namespace,Service,Pod,Container,Node Role,Optional
-Ingress,TCP,80,openshift-ingress,router-default,router-default,router,master,FALSE
-Ingress,TCP,443,openshift-ingress,router-default,router-default,router,master,FALSE
-Ingress,TCP,10258,openshift-cloud-controller-manager-operator,cloud-controller,cloud-controller-manager,cloud-controller-manager,master,FALSE
-```
+| Direction | Protocol | Port | Namespace | Service | Pod | Container | Node Role | Optional |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Ingress | TCP | 80 | openshift-ingress | router-default | router-default | router | master | FALSE |
+| Ingress | TCP | 443 | openshift-ingress | router-default | router-default | router | master | FALSE |
+| Ingress | TCP | 10258 | openshift-cloud-controller-manager-operator | cloud-controller | cloud-controller-manager | cloud-controller-manager | master | FALSE |
 
 ## Ingress network flow management with the commatrix plugin {#network-commatrix-plugin-intro_configuring-firewall}
 
@@ -450,6 +451,7 @@ You can install the `commatrix` plugin from the Red Hat Ecosystem Catalog.
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [CLI Manager Operator overview](/openshift-docs-markdown/cli_reference/cli_manager/index#cli-manager-overview)
 
@@ -514,6 +516,7 @@ When you generate firewall rules with the `commatrix` plugin in Butane format, t
 > - Services might fail to function correctly if required ports remain blocked by outdated firewall rules.
 
 **Additional resources**
+{._additional-resources}
 
 - [Minimizing node disruption with MachineConfig changes](/openshift-docs-markdown/machine_configuration/machine-config-node-disruption#machine-config-node-disruption)
 
@@ -697,6 +700,7 @@ You can generate `nftables` firewall rules in Butane format by using the `commat
    Denied packets are logged, but log entries are rate-limited to one per minute with an initial burst of five entries.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing Butane](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-butane-install_installing-customizing)
 

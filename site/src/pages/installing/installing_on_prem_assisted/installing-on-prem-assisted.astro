@@ -20,12 +20,13 @@ const headings = [{"depth":1,"slug":"installing-on-prem-assisted","text":"Instal
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/installing/installing_on_prem_assisted/installing-on-prem-assisted";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
-const title = "Installing an on-premise cluster using the {{ ai_full }}";
+const title = "Installing an on-premise cluster using the Assisted Installer";
 const description = "You can install OpenShift Container Platform on on-premise hardware or on-premise VMs by using the Assisted Installer for OpenShift Container Platform." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
@@ -78,12 +79,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -91,7 +93,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="installing-on-prem-assisted" class="group scroll-mt-20">Installing an on-premise cluster using the Assisted Installer<a href="#installing-on-prem-assisted" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can install OpenShift Container Platform on on-premise hardware or on-premise VMs by using the Assisted Installer for OpenShift Container Platform.</p>
+      <p class="_abstract">You can install OpenShift Container Platform on on-premise hardware or on-premise VMs by using the Assisted Installer for OpenShift Container Platform.</p>
       <p>The Assisted Installer is a user-friendly installation solution offered on the Hybrid Cloud Console. The Assisted Installer reduces installation complexity, enabling users to deploy and configure OpenShift Container Platform clusters with minimal manual intervention.</p>
       <p>For access to the Assisted Installer user interface and documentation, see <em>Additional resources</em>.</p>
       <p><strong>Additional resources</strong></p>

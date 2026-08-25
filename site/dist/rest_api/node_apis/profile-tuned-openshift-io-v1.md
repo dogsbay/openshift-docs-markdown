@@ -1,5 +1,5 @@
 ---
-title: Profile []
+title: Profile [tuned.openshift.io/v1]
 ---
 
 # Profile \[tuned.openshift.io/v1\] {#profile-tuned-openshift-io-v1}
@@ -163,18 +163,18 @@ The following API endpoints are available:
 - `/apis/tuned.openshift.io/v1/profiles`
 
   - `GET`: list objects of kind Profile
-- `/apis/tuned.openshift.io/v1/namespaces/{{ namespace }}/profiles`
+- `/apis/tuned.openshift.io/v1/namespaces/{namespace}/profiles`
 
   - `DELETE`: delete collection of Profile
   - `GET`: list objects of kind Profile
   - `POST`: create a Profile
-- `/apis/tuned.openshift.io/v1/namespaces/{{ namespace }}/profiles/{{ name }}`
+- `/apis/tuned.openshift.io/v1/namespaces/{namespace}/profiles/{name}`
 
   - `DELETE`: delete a Profile
   - `GET`: read the specified Profile
   - `PATCH`: partially update the specified Profile
   - `PUT`: replace the specified Profile
-- `/apis/tuned.openshift.io/v1/namespaces/{{ namespace }}/profiles/{{ name }}/status`
+- `/apis/tuned.openshift.io/v1/namespaces/{namespace}/profiles/{name}/status`
 
   - `GET`: read status of the specified Profile
   - `PATCH`: partially update status of the specified Profile
@@ -199,7 +199,7 @@ Description
 | 200 - OK | [`ProfileList`](/openshift-docs-markdown/rest_api/objects/index#io-openshift-tuned-v1-ProfileList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/tuned.openshift.io/v1/namespaces/{{ namespace }}/profiles {#_apistunedopenshiftiov1namespaces_namespace_profiles}
+### /apis/tuned.openshift.io/v1/namespaces/{namespace}/profiles {#_apistunedopenshiftiov1namespaces_namespace_profiles}
 
 HTTP method
 :   ```
@@ -267,7 +267,7 @@ Description
 | 202 - Accepted | [`Profile`](/openshift-docs-markdown/rest_api/node_apis/profile-tuned-openshift-io-v1#profile-tuned-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/tuned.openshift.io/v1/namespaces/{{ namespace }}/profiles/{{ name }} {#_apistunedopenshiftiov1namespaces_namespace_profiles_name}
+### /apis/tuned.openshift.io/v1/namespaces/{namespace}/profiles/{name} {#_apistunedopenshiftiov1namespaces_namespace_profiles_name}
 
 **Global path parameters**
 
@@ -371,7 +371,7 @@ Description
 | 201 - Created | [`Profile`](/openshift-docs-markdown/rest_api/node_apis/profile-tuned-openshift-io-v1#profile-tuned-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/tuned.openshift.io/v1/namespaces/{{ namespace }}/profiles/{{ name }}/status {#_apistunedopenshiftiov1namespaces_namespace_profiles_name_status}
+### /apis/tuned.openshift.io/v1/namespaces/{namespace}/profiles/{name}/status {#_apistunedopenshiftiov1namespaces_namespace_profiles_name_status}
 
 **Global path parameters**
 

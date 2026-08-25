@@ -108,6 +108,7 @@ _Meta: {
 > All `olm.*` schemas are reserved for OLM-defined schemas. Custom schemas must use a unique prefix, such as a domain that you own.
 
 **Additional resources**
+{._additional-resources}
 
 - [CUE language specification](https://cuelang.org/docs/references/spec/)
 
@@ -115,9 +116,7 @@ _Meta: {
 
 The `olm.package` schema specifies package-level metadata for Operators in file-based catalogs, including name, default channel, and icon. Use this schema reference when you build or validate Operator package definitions for Operator Lifecycle Manager (OLM).
 
-<details>
-<summary>`olm.package` schema</summary>
-
+:::details{title="`olm.package` schema"}
 ```go
 #Package: {
   schema: "olm.package"
@@ -138,8 +137,7 @@ The `olm.package` schema specifies package-level metadata for Operators in file-
   }
 }
 ```
-
-</details>
+:::
 
 ### olm.channel schema {#olm-channel-schema_fbc}
 
@@ -149,9 +147,7 @@ If a bundle entry represents an edge in multiple `olm.channel` blobs, it can onl
 
 It is valid for an entry’s `replaces` value to reference another bundle name that cannot be found in this catalog or another catalog. However, all other channel invariants must hold true, such as a channel not having multiple heads.
 
-<details>
-<summary>`olm.channel` schema</summary>
-
+:::details{title="`olm.channel` schema"}
 ```go
 #Channel: {
   schema: "olm.channel"
@@ -179,8 +175,7 @@ It is valid for an entry’s `replaces` value to reference another bundle name t
   skipRange?: string & !=""
 }
 ```
-
-</details>
+:::
 
 > [!WARNING]
 > When using the `skipRange` field, the skipped Operator versions are pruned from the update graph and are longer installable by users with the `spec.startingCSV` property of `Subscription` objects.
@@ -191,9 +186,7 @@ It is valid for an entry’s `replaces` value to reference another bundle name t
 
 The `olm.bundle` schema defines the structure of bundle entries stored in an Operator catalog index. It specifies required fields such as package name, bundle name, image reference, and optional properties and related images.
 
-<details>
-<summary>`olm.bundle` schema</summary>
-
+:::details{title="`olm.bundle` schema"}
 ```go
 #Bundle: {
   schema: "olm.bundle"
@@ -221,8 +214,7 @@ The `olm.bundle` schema defines the structure of bundle entries stored in an Ope
   name?: string & !=""
 }
 ```
-
-</details>
+:::
 
 ### olm.deprecations schema {#olm-deprecations-schema_fbc}
 
@@ -282,6 +274,7 @@ my-catalog
 ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Updating or filtering a file-based catalog image](/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-filtering-fbc_olm-managing-custom-catalogs)
 
@@ -420,6 +413,7 @@ For instructions about creating file-based catalogs by using the `opm` CLI, see 
 For reference documentation about the `opm` CLI commands related to managing file-based catalogs, see "opm CLI reference".
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating a file-based catalog image](/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-creating-fb-catalog-image_olm-managing-custom-catalogs)
 - [opm CLI reference](/openshift-docs-markdown/cli_reference/opm/cli-opm-ref#cli-opm-ref)

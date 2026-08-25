@@ -23,7 +23,7 @@ As a developer, you can export your application in the ZIP file format. Based on
 2. Click **OK** in the **Export Application** dialog box. A notification opens to confirm that the export of resources from your project has started.
 3. Optional steps that you might need to perform in the following scenarios:
 
-   - If you have started exporting an incorrect application, click  **Export application** -> **Cancel Export**.
-   - If your export is already in progress and you want to start a fresh export, click  **Export application** -> **Restart Export**.
+   - If you have started exporting an incorrect application, click  **Export application** → **Cancel Export**.
+   - If your export is already in progress and you want to start a fresh export, click  **Export application** → **Restart Export**.
    - If you want to view logs associated with exporting an application, click  **Export application** and the **View Logs** link. ![export-application-dialog-box](/openshift-docs-markdown/_assets/images/export-application-dialog-box.png)
 4. After a successful export, click **Download** in the dialog box to download application resources in ZIP format onto your machine.

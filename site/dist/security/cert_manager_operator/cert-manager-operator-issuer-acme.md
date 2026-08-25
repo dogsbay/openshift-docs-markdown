@@ -763,7 +763,8 @@ You can use cert-manager Operator for Red Hat OpenShift to set up an ACME issuer
       $ oc create -f issuer.yaml
       ```
 
-## Additional resources {#additional-resources_cert-manager-operator-issuer-acme}
+**Additional resources**
+{._additional-resources}
 
 - [Azure DNS](https://cert-manager.io/docs/configuration/acme/dns01/azuredns/)
 - [Google Cloud DNS](https://cert-manager.io/docs/configuration/acme/dns01/google/)

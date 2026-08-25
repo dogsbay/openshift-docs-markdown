@@ -51,26 +51,24 @@ For more information about setting up the monitoring stack, see [Configuring use
    $ oc get pods -n openshift-user-workload-monitoring
    ```
 
-```terminal
-NAME                                   READY   STATUS    RESTARTS   AGE
-prometheus-operator-6844b4b99c-b57j9   2/2     Running   0          43s
-prometheus-user-workload-0             5/5     Running   0          32s
-prometheus-user-workload-1             5/5     Running   0          32s
-thanos-ruler-user-workload-0           3/3     Running   0          32s
-thanos-ruler-user-workload-1           3/3     Running   0          32s
-```
-
-1. Verify the existence of the `user-workload-monitoring-config` ConfigMap in the `openshift-user-workload-monitoring`. If it exists, skip the remaining steps in this procedure.
+   ```terminal
+   NAME                                   READY   STATUS    RESTARTS   AGE
+   prometheus-operator-6844b4b99c-b57j9   2/2     Running   0          43s
+   prometheus-user-workload-0             5/5     Running   0          32s
+   prometheus-user-workload-1             5/5     Running   0          32s
+   thanos-ruler-user-workload-0           3/3     Running   0          32s
+   thanos-ruler-user-workload-1           3/3     Running   0          32s
+   ```
+4. Verify the existence of the `user-workload-monitoring-config` ConfigMap in the `openshift-user-workload-monitoring`. If it exists, skip the remaining steps in this procedure.
 
    ```terminal
    $ oc get configmap user-workload-monitoring-config -n openshift-user-workload-monitoring
    ```
 
-```terminal
-Error from server (NotFound): configmaps "user-workload-monitoring-config" not found
-```
-
-1. Create a `user-workload-monitoring-config` `ConfigMap` object for the User Workload Monitoring, and save it under the `2_configure_user_workload_monitoring.yaml` file name:
+   ```terminal
+   Error from server (NotFound): configmaps "user-workload-monitoring-config" not found
+   ```
+5. Create a `user-workload-monitoring-config` `ConfigMap` object for the User Workload Monitoring, and save it under the `2_configure_user_workload_monitoring.yaml` file name:
 
    ```yaml
    apiVersion: v1
@@ -81,7 +79,7 @@ Error from server (NotFound): configmaps "user-workload-monitoring-config" not f
    data:
      config.yaml: |
    ```
-2. Apply the `2_configure_user_workload_monitoring.yaml` file by using the following command:
+6. Apply the `2_configure_user_workload_monitoring.yaml` file by using the following command:
 
    ```terminal
    $ oc apply -f 2_configure_user_workload_monitoring.yaml
@@ -140,7 +138,7 @@ OADP provides an `openshift-adp-velero-metrics-svc` service. The user workload m
 
 - Confirm that the new service monitor is in an **Up** state by using the **Administrator** perspective of the OpenShift Container Platform web console. Wait a few minutes for the service monitor to reach the **Up** state.
 
-  1. Navigate to the **Observe** -> **Targets** page.
+  1. Navigate to the **Observe** → **Targets** page.
   2. Ensure the **Filter** is unselected or that the **User** source is selected and type `openshift-adp` in the `Text` search field.
   3. Verify that the status for the **Status** for the service monitor is **Up**.
 
@@ -198,9 +196,9 @@ The OpenShift Container Platform monitoring stack receives alerts configured by 
 - After the Alert is triggered, you can view it in the following ways:
 
   - In the **Developer** perspective, select the **Observe** menu.
-  - In the **Administrator** perspective under the **Observe** -> **Alerting** menu, select **User** in the **Filter** box. Otherwise, by default only the **Platform** Alerts are displayed.
+  - In the **Administrator** perspective under the **Observe** → **Alerting** menu, select **User** in the **Filter** box. Otherwise, by default only the **Platform** Alerts are displayed.
 
-    **Figure 1. OADP backup failing alert**
+    **Figure 2. OADP backup failing alert**
 
 ![OADP backup failing alert](/openshift-docs-markdown/_assets/images/oadp-backup-failing-alert.png)
 
@@ -250,17 +248,20 @@ Review metrics in the OpenShift Container Platform web console from the **Admini
 
 **Procedure**
 
-- Navigate to the **Observe** -> **Metrics** page:
+- Navigate to the **Observe** → **Metrics** page:
 
   - If you are using the **Developer** perspective, follow these steps:
 
     1. Select **Custom query**, or click the **Show PromQL** link.
     2. Type the query and click **Enter**.
-  - If you are using the **Administrator** perspective, type the expression in the text field and select **Run Queries**. **Figure 1. OADP metrics query**
+  - If you are using the **Administrator** perspective, type the expression in the text field and select **Run Queries**.
+
+    **Figure 3. OADP metrics query**
 
     ![OADP metrics query](/openshift-docs-markdown/_assets/images/oadp-metrics-query.png)
 
 **Additional resources**
+{._additional-resources}
 
 - [About OpenShift Container Platform monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/about_monitoring/about-ocp-monitoring)
 - [Managing alerts as an Administrator](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/managing_alerts/managing-alerts-as-an-administrator)

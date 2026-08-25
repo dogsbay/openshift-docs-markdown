@@ -29,7 +29,8 @@ const headings = [{"depth":1,"slug":"recommended-control-plane-practices","text"
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/scalability_and_performance/recommended-performance-scale-practices/recommended-control-plane-practices";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -87,12 +88,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -100,7 +102,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="recommended-control-plane-practices" class="group scroll-mt-20">Recommended control plane practices<a href="#recommended-control-plane-practices" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Review the recommended performance and scalability practices for control planes in OpenShift Container Platform. By doing this task, you can better scale the number of compute machines and set the control plane node sizing for your cluster.</p>
+      <p class="_abstract">Review the recommended performance and scalability practices for control planes in OpenShift Container Platform. By doing this task, you can better scale the number of compute machines and set the control plane node sizing for your cluster.</p>
       <h2 id="recommended-scale-practices_recommended-control-plane-practices" class="group scroll-mt-20">Recommended practices for scaling the cluster<a href="#recommended-scale-practices_recommended-control-plane-practices" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">For a cluster installation on a cloud provider, review the recommended practices for scaling the cluster.</p>
       <p>Apply the following best practices to scale the number of compute machines in your OpenShift Container Platform cluster. You scale the worker machines by increasing or decreasing the number of replicas that are defined in the compute machine set.</p>

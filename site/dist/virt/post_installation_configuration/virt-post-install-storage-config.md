@@ -1,10 +1,10 @@
 ---
-title: Postinstallation storage configuration {id="virt-post-install-storage-config"}{% if not (openshift_rosa or (openshift_dedicated or openshift_rosa_hcp)) %}
+title: Postinstallation storage configuration
 ---
 
 # Postinstallation storage configuration {#virt-post-install-storage-config}
 
-{%- if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %} After you install {{ VirtProductName }}, you must configure a default storage class. Configuring a storage class allows your cluster to receive automated boot source updates. {%- endif %} If your storage provider is not recognized by the Containerized Data Importer (CDI), you must configure storage profiles after you install {{ VirtProductName }}. Storage profiles provide recommended storage settings based on the associated storage class.
+After you install OpenShift Virtualization, you must configure a default storage class. Configuring a storage class allows your cluster to receive automated boot source updates. If your storage provider is not recognized by the Containerized Data Importer (CDI), you must configure storage profiles after you install OpenShift Virtualization. Storage profiles provide recommended storage settings based on the associated storage class.
 
 Optional: You can configure local storage by using the hostpath provisioner (HPP).
 
@@ -12,16 +12,50 @@ See the "Storage configuration overview" documentation for more options, includi
 
 ## Configuring local storage by using the HPP {#configuring-local-storage-hpp}
 
-When you install the {{ VirtProductName }} Operator, the Hostpath Provisioner (HPP) Operator is automatically installed. The HPP Operator creates the HPP provisioner.
+When you install the OpenShift Virtualization Operator, the Hostpath Provisioner (HPP) Operator is automatically installed. The HPP Operator creates the HPP provisioner.
 
-The HPP is a local storage provisioner designed for {{ VirtProductName }}. To use the HPP, you must create an HPP custom resource (CR).
+The HPP is a local storage provisioner designed for OpenShift Virtualization. To use the HPP, you must create an HPP custom resource (CR).
 
 > [!IMPORTANT]
 > HPP storage pools must not be in the same partition as the operating system. Otherwise, the storage pools might fill the operating system partition. If the operating system partition is full, this might negatively impact performance, or the node can become unstable or unusable.
 
-{% leveloffset +2 %}{% include "./modules/virt-creating-storage-class-csi-driver.md" %}
+### Creating a storage class for the CSI driver with the storagePools stanza {#virt-creating-storage-class-csi-driver_virt-post-install-storage-config}
 
-## Additional resources {#additional-resources_{{ context }}}
+To use the hostpath provisioner (HPP) you must create an associated storage class for the Container Storage Interface (CSI) driver.
+
+When you create a storage class, you set parameters that affect the dynamic provisioning of persistent volumes (PVs) that belong to that storage class. You cannot update a `StorageClass` object’s parameters after you create it.
+
+**Procedure**
+
+1. Create a `storageclass_csi.yaml` file to define the storage class:
+
+   ```yaml
+   apiVersion: storage.k8s.io/v1
+   kind: StorageClass
+   metadata:
+     name: hostpath-csi
+   provisioner: kubevirt.io.hostpath-provisioner
+   reclaimPolicy: Delete
+   volumeBindingMode: WaitForFirstConsumer
+   parameters:
+     storagePool: my-storage-pool
+   ```
+
+   - `reclaimPolicy` defines whether the underlying storage is deleted or retained when a user deletes a PVC. The two possible `reclaimPolicy` values are `Delete` and `Retain`. If you do not specify a value, the default value is `Delete`.
+   - `volumeBindingMode` defines the timing of PV creation. In this example, the `WaitForFirstConsumer` configuration delays PV creation until the scheduler assigns a pod to a specific node.
+
+     > [!NOTE]
+     > Virtual machines use data volumes based on local PVs, which reside on specific nodes. When the system prepares a disk image for the virtual machine, the scheduler might not place the virtual machine on the node where it pinned the local storage PV. + To solve this problem, use the Kubernetes pod scheduler to bind the persistent volume claim (PVC) to a PV on the correct node. Setting the `volumeBindingMode` parameter of the `StorageClass` to `WaitForFirstConsumer` delays PV binding and provisioning until you create a pod that uses the PVC.
+   - `parameters.storagePool` defines the name of the storage pool defined in the HPP custom resource (CR).
+2. Save the file and exit.
+3. Create the `StorageClass` object by running the following command:
+
+   ```terminal
+   $ oc create -f storageclass_csi.yaml
+   ```
+
+**Additional resources**
+{._additional-resources}
 
 - [Defining a storage class](/openshift-docs-markdown/storage/dynamic-provisioning#dynamic-provisioning-defining-storage-class_dynamic-provisioning)
 - [Configuring storage profiles](/openshift-docs-markdown/virt/storage/virt-configuring-storage-profile#virt-configuring-storage-profile)

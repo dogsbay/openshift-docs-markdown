@@ -1,5 +1,5 @@
 ---
-title: Console []
+title: Console [operator.openshift.io/v1]
 ---
 
 # Console \[operator.openshift.io/v1\] {#console-operator-openshift-io-v1}
@@ -41,10 +41,10 @@ Type
 | --- | --- | --- |
 | `customization` | `object` | customization is used to optionally provide a small set of customization options to the web console. |
 | `ingress` | `object` | ingress allows to configure the alternative ingress for the console. This field is intended for clusters without ingress capability, where access to routes is not possible. |
-| `logLevel` | `string` | logLevel is an intent based logging for an overall component.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands. Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
+| `logLevel` | `string` | logLevel is an intent based logging for an overall component. It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `managementState` | `string` | managementState indicates whether and how the operator should manage the component |
-| `observedConfig` | \`\` | observedConfig holds a sparse config that controller has observed from the cluster state.  It exists in spec because it is an input to the level for the operator |
-| `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves. Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
+| `observedConfig` | \`\` | observedConfig holds a sparse config that controller has observed from the cluster state. It exists in spec because it is an input to the level for the operator |
+| `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself. It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `plugins` | `array (string)` | plugins defines a list of enabled console plugin names. |
 | `providers` | `object` | providers contains configuration for using specific service providers. |
 | `route` | `object` | route contains hostname and secret reference that contains the serving certificate. If a custom route is specified, a new route will be created with the provided hostname, under which console will be available. In case of custom hostname uses the default routing suffix of the cluster, the Secret specification for a serving certificate will not be needed. In case of custom hostname points to an arbitrary domain, manual DNS configurations steps are necessary. The default console route will be maintained to reserve the default hostname for console if the custom route is removed. If not specified, default route will be used. DEPRECATED |
@@ -63,13 +63,13 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `addPage` | `object` | addPage allows customizing actions on the Add page in developer perspective. |
-| `brand` | `string` | brand is the default branding of the web console which can be overridden by providing the brand field.  There is a limited set of specific brand options. This field controls elements of the console such as the logo. Invalid value will prevent a console rollout. |
+| `brand` | `string` | brand is the default branding of the web console which can be overridden by providing the brand field. There is a limited set of specific brand options. This field controls elements of the console such as the logo. Invalid value will prevent a console rollout. |
 | `capabilities` | `array` | capabilities defines an array of capabilities that can be interacted with in the console UI. Each capability defines a visual state that can be interacted with the console to render in the UI. Available capabilities are LightspeedButton, GettingStartedBanner, and GuidedTour. Each of the available capabilities may appear only once in the list. |
 | `capabilities[]` | `object` | Capabilities contains set of UI capabilities and their state in the console UI. |
 | `customLogoFile` | `object` | customLogoFile replaces the default OpenShift logo in the masthead and about dialog. It is a reference to a Only one of customLogoFile or logos can be set at a time. ConfigMap in the openshift-config namespace. This can be created with a command like 'oc create configmap custom-logo --from-file=/path/to/file -n openshift-config'. Image size must be less than 1 MB due to constraints on the ConfigMap size. The ConfigMap key should include a file extension so that the console serves the file with the correct MIME type. The recommended file format for the logo is SVG, but other file formats are allowed if supported by the browser. Deprecated: Use logos instead. |
 | `customProductName` | `string` | customProductName is the name that will be displayed in page titles, logo alt text, and the about dialog instead of the normal OpenShift product name. |
 | `developerCatalog` | `object` | developerCatalog allows to configure the shown developer catalog categories (filters) and types (sub-catalogs). |
-| `documentationBaseURL` | `string` | documentationBaseURL links to external documentation are shown in various sections of the web console.  Providing documentationBaseURL will override the default documentation URL. Invalid value will prevent a console rollout. |
+| `documentationBaseURL` | `string` | documentationBaseURL links to external documentation are shown in various sections of the web console. Providing documentationBaseURL will override the default documentation URL. Invalid value will prevent a console rollout. |
 | `logos` | `array` | logos is used to replace the OpenShift Masthead and Favicon logos in the console UI with custom logos. logos is an optional field that allows a list of logos. Only one of logos or customLogoFile can be set at a time. If logos is set, customLogoFile must be unset. When specified, there must be at least one entry and no more than 2 entries. Each type must appear only once in the list. |
 | `logos[]` | `object` | Logo defines a configuration based on theme modes for the console UI logo. |
 | `perspectives` | `array` | perspectives allows enabling/disabling of perspective(s) that user can see in the Perspective switcher dropdown. |
@@ -149,7 +149,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | key allows pointing to a specific key/value inside of the configmap.  This is useful for logical file references. |
+| `key` | `string` | key allows pointing to a specific key/value inside of the configmap. This is useful for logical file references. |
 | `name` | `string` |  |
 
 ### .spec.customization.developerCatalog {#_speccustomizationdevelopercatalog}
@@ -466,15 +466,15 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `fieldSelector` | `object` | fieldSelector describes the limitation on access based on field.  It can only limit access, not broaden it. |
-| `group` | `string` | Group is the API Group of the Resource.  "\*" means all. |
-| `labelSelector` | `object` | labelSelector describes the limitation on access based on labels.  It can only limit access, not broaden it. |
+| `fieldSelector` | `object` | fieldSelector describes the limitation on access based on field. It can only limit access, not broaden it. |
+| `group` | `string` | Group is the API Group of the Resource. "\*" means all. |
+| `labelSelector` | `object` | labelSelector describes the limitation on access based on labels. It can only limit access, not broaden it. |
 | `name` | `string` | Name is the name of the resource being requested for a "get" or deleted for a "delete". "" (empty) means all. |
-| `namespace` | `string` | Namespace is the namespace of the action being requested.  Currently, there is no distinction between no namespace and all namespaces "" (empty) is defaulted for LocalSubjectAccessReviews "" (empty) is empty for cluster-scoped resources "" (empty) means "all" for namespace scoped resources from a SubjectAccessReview or SelfSubjectAccessReview |
-| `resource` | `string` | Resource is one of the existing resource types.  "\*" means all. |
-| `subresource` | `string` | Subresource is one of the existing resource types.  "" means none. |
-| `verb` | `string` | Verb is a kubernetes resource API verb, like: get, list, watch, create, update, delete, proxy.  "\*" means all. |
-| `version` | `string` | Version is the API Version of the Resource.  "\*" means all. |
+| `namespace` | `string` | Namespace is the namespace of the action being requested. Currently, there is no distinction between no namespace and all namespaces "" (empty) is defaulted for LocalSubjectAccessReviews "" (empty) is empty for cluster-scoped resources "" (empty) means "all" for namespace scoped resources from a SubjectAccessReview or SelfSubjectAccessReview |
+| `resource` | `string` | Resource is one of the existing resource types. "\*" means all. |
+| `subresource` | `string` | Subresource is one of the existing resource types. "" means none. |
+| `verb` | `string` | Verb is a kubernetes resource API verb, like: get, list, watch, create, update, delete, proxy. "\*" means all. |
+| `version` | `string` | Version is the API Version of the Resource. "\*" means all. |
 
 ### .spec.customization.perspectives\[\].visibility.accessReview.missing\[\].fieldSelector {#_speccustomizationperspectivesvisibilityaccessreviewmissingfieldselector}
 
@@ -590,15 +590,15 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `fieldSelector` | `object` | fieldSelector describes the limitation on access based on field.  It can only limit access, not broaden it. |
-| `group` | `string` | Group is the API Group of the Resource.  "\*" means all. |
-| `labelSelector` | `object` | labelSelector describes the limitation on access based on labels.  It can only limit access, not broaden it. |
+| `fieldSelector` | `object` | fieldSelector describes the limitation on access based on field. It can only limit access, not broaden it. |
+| `group` | `string` | Group is the API Group of the Resource. "\*" means all. |
+| `labelSelector` | `object` | labelSelector describes the limitation on access based on labels. It can only limit access, not broaden it. |
 | `name` | `string` | Name is the name of the resource being requested for a "get" or deleted for a "delete". "" (empty) means all. |
-| `namespace` | `string` | Namespace is the namespace of the action being requested.  Currently, there is no distinction between no namespace and all namespaces "" (empty) is defaulted for LocalSubjectAccessReviews "" (empty) is empty for cluster-scoped resources "" (empty) means "all" for namespace scoped resources from a SubjectAccessReview or SelfSubjectAccessReview |
-| `resource` | `string` | Resource is one of the existing resource types.  "\*" means all. |
-| `subresource` | `string` | Subresource is one of the existing resource types.  "" means none. |
-| `verb` | `string` | Verb is a kubernetes resource API verb, like: get, list, watch, create, update, delete, proxy.  "\*" means all. |
-| `version` | `string` | Version is the API Version of the Resource.  "\*" means all. |
+| `namespace` | `string` | Namespace is the namespace of the action being requested. Currently, there is no distinction between no namespace and all namespaces "" (empty) is defaulted for LocalSubjectAccessReviews "" (empty) is empty for cluster-scoped resources "" (empty) means "all" for namespace scoped resources from a SubjectAccessReview or SelfSubjectAccessReview |
+| `resource` | `string` | Resource is one of the existing resource types. "\*" means all. |
+| `subresource` | `string` | Subresource is one of the existing resource types. "" means none. |
+| `verb` | `string` | Verb is a kubernetes resource API verb, like: get, list, watch, create, update, delete, proxy. "\*" means all. |
+| `version` | `string` | Version is the API Version of the Resource. "\*" means all. |
 
 ### .spec.customization.perspectives\[\].visibility.accessReview.required\[\].fieldSelector {#_speccustomizationperspectivesvisibilityaccessreviewrequiredfieldselector}
 
@@ -846,7 +846,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` |  |
 | `reason` | `string` |  |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
@@ -896,13 +896,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of Console
   - `GET`: list objects of kind Console
   - `POST`: create a Console
-- `/apis/operator.openshift.io/v1/consoles/{{ name }}`
+- `/apis/operator.openshift.io/v1/consoles/{name}`
 
   - `DELETE`: delete a Console
   - `GET`: read the specified Console
   - `PATCH`: partially update the specified Console
   - `PUT`: replace the specified Console
-- `/apis/operator.openshift.io/v1/consoles/{{ name }}/status`
+- `/apis/operator.openshift.io/v1/consoles/{name}/status`
 
   - `GET`: read status of the specified Console
   - `PATCH`: partially update status of the specified Console
@@ -976,7 +976,7 @@ Description
 | 202 - Accepted | [`Console`](/openshift-docs-markdown/rest_api/operator_apis/console-operator-openshift-io-v1#console-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operator.openshift.io/v1/consoles/{{ name }} {#_apisoperatoropenshiftiov1consoles_name}
+### /apis/operator.openshift.io/v1/consoles/{name} {#_apisoperatoropenshiftiov1consoles_name}
 
 **Global path parameters**
 
@@ -1080,7 +1080,7 @@ Description
 | 201 - Created | [`Console`](/openshift-docs-markdown/rest_api/operator_apis/console-operator-openshift-io-v1#console-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operator.openshift.io/v1/consoles/{{ name }}/status {#_apisoperatoropenshiftiov1consoles_name_status}
+### /apis/operator.openshift.io/v1/consoles/{name}/status {#_apisoperatoropenshiftiov1consoles_name_status}
 
 **Global path parameters**
 

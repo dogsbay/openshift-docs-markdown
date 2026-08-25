@@ -279,6 +279,7 @@ The following example demonstrates how to deploy a pod that uses the OpenShift C
    `spec.containers.env`
    :   Specifies the webhook-injected environment variables for token-based authentication.
 
-## Additional resources {#additional-resources_nodes-pods-short-term-auth}
+**Additional resources**
+{._additional-resources}
 
 - [Short-term credentials for components](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds)

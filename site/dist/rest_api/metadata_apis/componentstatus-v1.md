@@ -60,7 +60,7 @@ The following API endpoints are available:
 - `/api/v1/componentstatuses`
 
   - `GET`: list objects of kind ComponentStatus
-- `/api/v1/componentstatuses/{{ name }}`
+- `/api/v1/componentstatuses/{name}`
 
   - `GET`: read the specified ComponentStatus
 
@@ -83,7 +83,7 @@ Description
 | 200 - OK | [`ComponentStatusList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ComponentStatusList) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/componentstatuses/{{ name }} {#_apiv1componentstatuses_name}
+### /api/v1/componentstatuses/{name} {#_apiv1componentstatuses_name}
 
 **Global path parameters**
 

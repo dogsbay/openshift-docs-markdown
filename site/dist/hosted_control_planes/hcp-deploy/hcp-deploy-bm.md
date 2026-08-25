@@ -1,5 +1,5 @@
 ---
-title: Deploying {{ hcp }} on bare metal with the Agent platform
+title: Deploying hosted control planes on bare metal with the Agent platform
 ---
 
 # Deploying hosted control planes on bare metal with the Agent platform {#hcp-deploy-bm}
@@ -21,6 +21,7 @@ A *hosted cluster* is an OpenShift Container Platform cluster with its API endpo
 The hosted cluster is automatically imported as a managed cluster. If you want to disable this automatic import feature, see "Disabling the automatic import of hosted clusters into multicluster engine Operator".
 
 **Additional resources**
+{._additional-resources}
 
 - [Disabling the automatic import of hosted clusters into multicluster engine Operator](/openshift-docs-markdown/hosted_control_planes/hcp-import#hcp-import-disable_hcp-import)
 
@@ -33,6 +34,7 @@ Before you deploy hosted control planes on bare metal, ensure that you understan
 - When you configure storage for hosted control planes, consider the recommended etcd practices. To ensure that you meet the latency requirements, dedicate a fast storage device to all hosted control plane etcd instances that run on each control-plane node. You can use LVM storage to configure a local storage class for hosted etcd pods. For more information, see "Recommended etcd practices" and "Persistent storage using logical volume manager storage".
 
 **Additional resources**
+{._additional-resources}
 
 - [Recommended etcd practices](/openshift-docs-markdown/etcd/etcd-practices#recommended-etcd-practices)
 - [Persistent storage using LVM Storage](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#persistent-storage-using-lvms_persistent-storage-using-lvms)
@@ -75,6 +77,7 @@ You do not need the following services on bare metal:
 - `OIDC`
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring the cluster-wide proxy](/openshift-docs-markdown/networking/configuring_network_settings/enable-cluster-wide-proxy#enable-cluster-wide-proxy)
 
@@ -106,6 +109,7 @@ Before you create a hosted cluster on bare metal with the Agent platform, you ne
 4. Install the hosted control plane command-line interface. For more information, see "Installing the hosted control planes command-line interface".
 
 **Additional resources**
+{._additional-resources}
 
 - [Advanced configuration](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#advanced-config-engine)
 - [Enabling the central infrastructure management service](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#enable-cim)
@@ -508,11 +512,12 @@ If you prefer to use the OpenShift Container Platform web console, you can use i
 **Procedure**
 
 1. Open the OpenShift Container Platform web console and log in by entering your administrator credentials. For instructions to open the console, see "Accessing the web console".
-2. In the console header, ensure that ***All Clusters*** is selected.
-3. Click ***Infrastructure -> Host inventory -> Create infrastructure environment***.
-4. After you create the `InfraEnv` resource, add bare-metal hosts from within the ***InfraEnv*** view by clicking ***Add hosts*** and selecting from the available options.
+2. In the console header, ensure that **All Clusters** is selected.
+3. Click **Infrastructure → Host inventory → Create infrastructure environment**.
+4. After you create the `InfraEnv` resource, add bare-metal hosts from within the **InfraEnv** view by clicking **Add hosts** and selecting from the available options.
 
 **Additional resources**
+{._additional-resources}
 
 - [Accessing the web console](/openshift-docs-markdown/web_console/web-console#web-console-overview)
 
@@ -846,6 +851,7 @@ After you enable the Assisted Installer as an add-on to multicluster engine Oper
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Manually importing a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-import#hcp-import)
 - [Extracting the release image digest](/openshift-docs-markdown/hosted_control_planes/hcp-disconnected/hcp-deploy-dc-bm#hcp-dc-extract_hcp-deploy-dc-bm)
@@ -858,12 +864,12 @@ Instead of using the command-line interface to create a hosted cluster on bare m
 **Procedure**
 
 1. Open the OpenShift Container Platform web console and log in by entering your administrator credentials. For instructions to open the console, see "Accessing the web console".
-2. In the console header, ensure that ***All Clusters*** is selected.
-3. Click ***Infrastructure -> Clusters***.
-4. Click ***Create cluster -> Host inventory -> Hosted control plane***.
+2. In the console header, ensure that **All Clusters** is selected.
+3. Click **Infrastructure → Clusters**.
+4. Click **Create cluster → Host inventory → Hosted control plane**.
 
-   The ***Create cluster*** page is displayed.
-5. On the ***Create cluster*** page, follow the prompts to enter details about the cluster, node pools, networking, and automation.
+   The **Create cluster** page is displayed.
+5. On the **Create cluster** page, follow the prompts to enter details about the cluster, node pools, networking, and automation.
 
    > [!NOTE]
    > As you enter details about the cluster, you might find the following tips useful:
@@ -872,15 +878,16 @@ Instead of using the command-line interface to create a hosted cluster on bare m
    > - On the **Cluster details** page, the pull secret is your OpenShift Container Platform pull secret that you use to access OpenShift Container Platform resources. If you selected a host inventory credential, the pull secret is automatically populated.
    > - On the **Node pools** page, the namespace contains the hosts for the node pool. If you created a host inventory by using the console, the console creates a dedicated namespace.
    > - On the **Networking** page, you select an API server publishing strategy. The API server for the hosted cluster can be exposed either by using an existing load balancer or as a service of the `NodePort` type. A DNS entry must exist for the `api.<hosted_cluster_name>.<base_domain>` setting that points to the destination where the API server can be reached. This entry can be a record that points to one of the nodes in the management cluster or a record that points to a load balancer that redirects incoming traffic to the Ingress pods.
-6. Review your entries and click ***Create***.
+6. Review your entries and click **Create**.
 
-   The ***Hosted cluster*** view is displayed.
-7. Monitor the deployment of the hosted cluster in the ***Hosted cluster*** view.
-8. If you do not see information about the hosted cluster, ensure that ***All Clusters*** is selected, then click the cluster name.
+   The **Hosted cluster** view is displayed.
+7. Monitor the deployment of the hosted cluster in the **Hosted cluster** view.
+8. If you do not see information about the hosted cluster, ensure that **All Clusters** is selected, then click the cluster name.
 9. Wait until the control plane components are ready. This process can take a few minutes.
-10. To view the node pool status, scroll to the ***NodePool*** section. The process to install the nodes takes about 10 minutes. You can also click ***Nodes*** to confirm whether the nodes joined the hosted cluster.
+10. To view the node pool status, scroll to the **NodePool** section. The process to install the nodes takes about 10 minutes. You can also click **Nodes** to confirm whether the nodes joined the hosted cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating a credential for an on-premises environment](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.15/html/clusters/cluster_mce_overview#creating-a-credential-for-an-on-premises-environment)
 - [Accessing the web console](/openshift-docs-markdown/web_console/web-console#web-console-overview)
@@ -951,6 +958,7 @@ You can use a mirror registry to create a hosted cluster on bare metal by specif
    :   Specifies the supported OpenShift Container Platform version that you want to use, for example, `4.22.0-multi`. If you are using a disconnected environment, replace `<ocp_release_image>` with the digest image. To extract the OpenShift Container Platform release image digest, see "Extracting the release image digest".
 
 **Additional resources**
+{._additional-resources}
 
 - [Extracting the release image digest](/openshift-docs-markdown/hosted_control_planes/hcp-disconnected/hcp-deploy-dc-bm#hcp-dc-extract_hcp-deploy-dc-bm)
 - [Accessing the hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-manage/hcp-manage-bm#hcp-bm-access_hcp-manage-bm)

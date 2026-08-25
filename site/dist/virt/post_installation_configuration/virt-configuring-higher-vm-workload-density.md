@@ -130,7 +130,7 @@ The `wasp-agent` component is deployed automatically if `memoryOvercommitPercent
 
         - Web console
 
-          1. In the OpenShift Container Platform web console, go to **Virtualization** -> **Settings**.
+          1. In the OpenShift Container Platform web console, go to **Virtualization** → **Settings**.
           2. Click **Cluster**.
           3. Expand **Memory Density**.
           4. Set **Configure memory density** to on.
@@ -144,7 +144,7 @@ The `wasp-agent` component is deployed automatically if `memoryOvercommitPercent
           - Configure your OpenShift Virtualization to enable higher memory density and set the overcommit rate:
 
             ```terminal
-            $ oc patch -n {{ CNVNamespace }} {{ HCOCliKind }} kubevirt-hyperconverged --type='json' -p='[ \
+            $ oc patch -n openshift-cnv hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged --type='json' -p='[ \
               { \
               "op": "replace", \
               "path": "/spec/higherWorkloadDensity/memoryOvercommitPercentage", \
@@ -164,7 +164,7 @@ The `wasp-agent` component is deployed automatically if `memoryOvercommitPercent
 1. To verify the deployment of `wasp-agent`, run the following command:
 
    ```terminal
-   $ oc rollout status ds wasp-agent -n {{ CNVNamespace }}
+   $ oc rollout status ds wasp-agent -n openshift-cnv
    ```
 
    If the deployment is successful, the following message is displayed:
@@ -189,7 +189,9 @@ The `wasp-agent` component is deployed automatically if `memoryOvercommitPercent
 
       Replace `<selected_node>` with the node name.
 
-      If swap is provisioned, an amount greater than zero is displayed in the `Swap:` row. **Example output**
+      If swap is provisioned, an amount greater than zero is displayed in the `Swap:` row.
+
+      **Example output**
 
       |  |  |  |  |  |  |  |
       | --- | --- | --- | --- | --- | --- | --- |
@@ -199,7 +201,7 @@ The `wasp-agent` component is deployed automatically if `memoryOvercommitPercent
 3. Verify the OpenShift Virtualization memory overcommitment configuration by running the following command:
 
    ```terminal
-   $ oc get -n {{ CNVNamespace }} {{ HCOCliKind }} kubevirt-hyperconverged -o jsonpath='{.spec.higherWorkloadDensity}{"\n"}'
+   $ oc get -n openshift-cnv hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -o jsonpath='{.spec.higherWorkloadDensity}{"\n"}'
    ```
 
    Example output:
@@ -224,7 +226,7 @@ If you no longer need memory overcommitment, you can remove the `wasp-agent` com
 1. Revert the memory overcommitment configuration by running the following command:
 
    ```terminal
-   $ oc patch -n {{ CNVNamespace }} {{ HCOCliKind }} kubevirt-hyperconverged \
+   $ oc patch -n openshift-cnv hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged \
      --type='json' \
      -p='[{"op": "remove", "path": "/spec/higherWorkloadDensity"}]'
    ```

@@ -32,7 +32,7 @@ You can connect to the VNC console of a virtual machine (VM) by using the OpenSh
 
 **Procedure**
 
-1. On the **Virtualization** -> **VirtualMachines** page, click a VM to open the **VirtualMachine details** page.
+1. On the **Virtualization** → **VirtualMachines** page, click a VM to open the **VirtualMachine details** page.
 2. In the navigation panel, right-click the virtual machine and select **Open Console**.
 3. Click the **Console** tab. The VNC console session starts automatically.
 
@@ -117,7 +117,7 @@ To access the VNC of a virtual machine (VM), generate a temporary authentication
 1. Set the `deployVmConsoleProxy` field value in the `HyperConverged` (`HCO`) custom resource (CR) to `true`:
 
    ```terminal
-   $ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} --type json -p '[{"op": "replace", "path": "/spec/deployVmConsoleProxy", "value": true}]'
+   $ oc patch hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv --type json -p '[{"op": "replace", "path": "/spec/deployVmConsoleProxy", "value": true}]'
    ```
 2. Generate a token by entering the following command:
 
@@ -154,14 +154,14 @@ To access the VNC of a virtual machine (VM), generate a temporary authentication
    $ virtctl vnc <vm_name> -n <namespace>
    ```
 
-> [!WARNING]
-> You cannot currently revoke a specific token.
->
-> To revoke a token, you must delete the service account that you used to create it. However, this also revokes all other tokens that you created by using the service account. Use the following command with caution:
->
-> ```terminal
-> $ virtctl delete serviceaccount --namespace "<namespace>" "<vm_name>-vnc-access"
-> ```
+   > [!WARNING]
+   > You cannot currently revoke a specific token.
+   >
+   > To revoke a token, you must delete the service account that you used to create it. However, this also revokes all other tokens that you created by using the service account. Use the following command with caution:
+   >
+   > ```terminal
+   > $ virtctl delete serviceaccount --namespace "<namespace>" "<vm_name>-vnc-access"
+   > ```
 
 ## Considerations for accessing the serial console {#virt-serial-console-considerations_virt-accessing-vm-consoles}
 
@@ -184,7 +184,7 @@ You can connect to the serial console of a virtual machine (VM) by using the Ope
 
 **Procedure**
 
-1. On the **Virtualization** -> **VirtualMachines** page, click a VM to open the **VirtualMachine details** page.
+1. On the **Virtualization** → **VirtualMachines** page, click a VM to open the **VirtualMachine details** page.
 2. In the navigation panel, right-click the virtual machine and select **Open Console**.
 3. Click the **Console** tab. The VNC console session starts automatically.
 
@@ -228,7 +228,7 @@ You can connect to the desktop viewer of a Windows virtual machine (VM) by using
 
 **Procedure**
 
-1. On the **Virtualization** -> **VirtualMachines** page, click a VM to open the **VirtualMachine details** page.
+1. On the **Virtualization** → **VirtualMachines** page, click a VM to open the **VirtualMachine details** page.
 2. In the navigation panel, right-click the virtual machine and select **Open Console**.
 3. Click the **Console** tab. The VNC console session starts automatically.
 

@@ -104,10 +104,14 @@ For example, if you run a `curl` command 10 times, the sticky session timer star
 
 As a result, if the client is continuously contacting the service, then the session never times out. The timeout starts when the service has not received a packet for the amount of time set by the `timeoutSeconds` parameter. For more information about `timeoutSeconds`, see "Session stickiness timeout in Kubernetes".
 
+**Additional resources**
+{._additional-resources}
+
 - [Session affinity in Kubernetes](https://kubernetes.io/docs/reference/networking/virtual-ips/#session-affinity)
 - [Session stickiness timeout in Kubernetes](https://kubernetes.io/docs/reference/networking/virtual-ips/#session-stickiness-timeout)
 
 **Additional resources**
+{._additional-resources}
 
 - [Open Virtual Network website](https://www.ovn.org/en/)
 - [Configuring an egress firewall for a project](/openshift-docs-markdown/networking/network_security/egress_firewall/configuring-egress-firewall-ovn#configuring-egress-firewall-ovn)

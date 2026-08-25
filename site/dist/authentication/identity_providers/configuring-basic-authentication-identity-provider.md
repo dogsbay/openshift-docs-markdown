@@ -164,6 +164,7 @@ where:
 :   Specifies a reference to an OpenShift Container Platform `Secret` object containing the key for the client certificate. Required if `tlsClientCert` is specified.
 
 **Additional resources**
+{._additional-resources}
 
 - [Identity provider parameters](/openshift-docs-markdown/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider)
 

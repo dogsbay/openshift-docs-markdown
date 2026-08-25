@@ -1,12 +1,13 @@
 ---
-title: Validating {{ sno }} cluster tuning for vDU application workloads
+title: Validating single-node OpenShift cluster tuning for vDU application workloads
 ---
 
-# Validating {{ sno }} cluster tuning for vDU application workloads {#ztp-vdu-configuration-reference}
+# Validating single-node OpenShift cluster tuning for vDU application workloads {#ztp-vdu-configuration-reference}
 
 Before you can deploy virtual distributed unit (vDU) applications, you need to tune and configure the cluster host firmware and various other cluster configuration settings. Use the following information to validate the cluster configuration to support vDU workloads.
 
 **Additional resources**
+{._additional-resources}
 
 - [Workload partitioning in single-node OpenShift with GitOps ZTP](/openshift-docs-markdown/edge_computing/ztp-reference-cluster-configuration-for-vdu#ztp-workload-partitioning-sno_sno-configure-for-vdu)
 - [Reference configuration for deploying vDUs on single-node OpenShift](/openshift-docs-markdown/edge_computing/ztp-reference-cluster-configuration-for-vdu#sno-configure-for-vdu)
@@ -28,8 +29,8 @@ Use the following table as the basis to configure the cluster host firmware for 
 | Uncore Frequency Scaling | Disabled | Disable Uncore Frequency Scaling to prevent the voltage and frequency of non-core parts of the CPU from being set independently. |
 | Uncore Frequency | Maximum | Sets the non-core parts of the CPU such as cache and memory controller to their maximum possible frequency of operation. |
 | Performance P-limit | Disabled | Disable Performance P-limit to prevent the Uncore frequency coordination of processors. |
-| Enhanced Intel(R) SpeedStep Tech | Enabled | Enable Enhanced Intel SpeedStep to allow the system to dynamically adjust processor voltage and core frequency that decreases power consumption and heat production in the host. |
-| Intel(R) Turbo Boost Technology | Enabled | Enable Turbo Boost Technology for Intel-based CPUs to automatically allow processor cores to run faster than the rated operating frequency if they are operating below power, current, and temperature specification limits. |
+| Enhanced Intel® SpeedStep Tech | Enabled | Enable Enhanced Intel SpeedStep to allow the system to dynamically adjust processor voltage and core frequency that decreases power consumption and heat production in the host. |
+| Intel® Turbo Boost Technology | Enabled | Enable Turbo Boost Technology for Intel-based CPUs to automatically allow processor cores to run faster than the rated operating frequency if they are operating below power, current, and temperature specification limits. |
 | Intel Configurable TDP | Enabled | Enables Thermal Design Power (TDP) for the CPU. |
 | Configurable TDP Level | Level 2 | TDP level sets the CPU power consumption required for a particular performance rating. TDP level 2 sets the CPU to the most stable performance level at the cost of power consumption. |
 | Energy Efficient Turbo | Disabled | Disable Energy Efficient Turbo to prevent the processor from using an energy-efficiency based policy. |
@@ -55,7 +56,7 @@ Check that the `MachineConfig` custom resources (CRs) that you extract from the 
 
 The following `MachineConfig` CRs from the `ztp-site-generate` container configure the cluster host:
 
-***Recommended GitOps ZTP MachineConfig CRs***
+**Recommended GitOps ZTP MachineConfig CRs**
 
 <table>
 <thead>
@@ -108,6 +109,7 @@ The following `MachineConfig` CRs from the `ztp-site-generate` container configu
 > In OpenShift Container Platform 4.14 and later, you configure workload partitioning with the `cpuPartitioningMode` field in the `ClusterInstance` CR.
 
 **Additional resources**
+{._additional-resources}
 
 - [Workload partitioning in single-node OpenShift with GitOps ZTP](/openshift-docs-markdown/edge_computing/ztp-reference-cluster-configuration-for-vdu#ztp-workload-partitioning-sno_sno-configure-for-vdu)
 - [Extracting source CRs from the ztp-site-generate container](/openshift-docs-markdown/edge_computing/ztp-preparing-the-hub-cluster#ztp-preparing-the-ztp-git-repository_ztp-preparing-the-hub-cluster)

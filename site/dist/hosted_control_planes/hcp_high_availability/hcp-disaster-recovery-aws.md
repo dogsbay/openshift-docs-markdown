@@ -328,7 +328,7 @@ Gather all of the objects that you backed up and restore them in your destinatio
 - You backed up the data from your source management cluster.
 
 > [!TIP]
-> Ensure that the `kubeconfig` file of the destination management cluster is placed as it is set in the `KUBECONFIG` variable or, if you use the script, in the `MGMT2_KUBECONFIG` variable. Use `export KUBECONFIG=<Kubeconfig FilePath>` or, if you use the script, use `export KUBECONFIG=${{ MGMT2_KUBECONFIG }}`.
+> Ensure that the `kubeconfig` file of the destination management cluster is placed as it is set in the `KUBECONFIG` variable or, if you use the script, in the `MGMT2_KUBECONFIG` variable. Use `export KUBECONFIG=<Kubeconfig FilePath>` or, if you use the script, use `export KUBECONFIG=${MGMT2_KUBECONFIG}`.
 
 **Procedure**
 
@@ -485,7 +485,7 @@ After you back up your hosted cluster and restore it to your destination managem
 - You backed up your data and restored it to your source management cluster.
 
 > [!TIP]
-> Ensure that the `kubeconfig` file of the destination management cluster is placed as it is set in the `KUBECONFIG` variable or, if you use the script, in the `MGMT_KUBECONFIG` variable. Use `export KUBECONFIG=<Kubeconfig FilePath>` or, if you use the script, use `export KUBECONFIG=${{ MGMT_KUBECONFIG }}`.
+> Ensure that the `kubeconfig` file of the destination management cluster is placed as it is set in the `KUBECONFIG` variable or, if you use the script, in the `MGMT_KUBECONFIG` variable. Use `export KUBECONFIG=<Kubeconfig FilePath>` or, if you use the script, use `export KUBECONFIG=${MGMT_KUBECONFIG}`.
 
 **Procedure**
 

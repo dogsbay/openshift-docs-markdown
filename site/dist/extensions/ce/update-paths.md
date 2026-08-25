@@ -30,6 +30,7 @@ OLM v1 differs from the original OLM (Classic) implementation in the following w
   - OLM v1 will detect the update path because OLM v1 does not have a concept of a `replaces` chain. OLM v1 finds all entries that have a `replace`, `skip`, or `skipRange` value that covers the currently installed version.
 
 **Additional resources**
+{._additional-resources}
 
 - [OLM (Classic) upgrade semantics](/openshift-docs-markdown/operators/understanding/olm/olm-workflow#olm-upgrades_olm-workflow)
 
@@ -255,6 +256,7 @@ OLM v1 does not support automatic updates to the next major version or rollbacks
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Support for version ranges](/openshift-docs-markdown/extensions/ce/update-paths#olmv1-version-range-support_update-paths)
 
@@ -276,16 +278,17 @@ metadata:
     "olm.properties": '[{"type": "olm.maxOpenShiftVersion", "value": "<cluster_version>"}]'
 ```
 
-Replace `<cluster_version>` with the latest minor version of OpenShift Container Platform (4.y) that an Operator is compatible with. For example, setting `value` to `{{ product_version }}` prevents cluster updates to minor versions later than 4.22 when this bundle is installed on a cluster.
+Replace `<cluster_version>` with the latest minor version of OpenShift Container Platform (4.y) that an Operator is compatible with. For example, setting `value` to `4.22` prevents cluster updates to minor versions later than 4.22 when this bundle is installed on a cluster.
 
 If the `olm.maxOpenShiftVersion` field is omitted, cluster updates are not blocked by this Operator.
 
 > [!NOTE]
 > When determining a cluster’s next minor version (4.y+1), OLM v1 only considers major and minor versions (x and y) for comparisons. It ignores any *z-stream* versions (4.y.z), also known as patch releases, or pre-release versions.
 >
-> For example, if the cluster’s current version is `{{ product_version }}.0`, the next minor version is `{{ ocp_nplus1 }}`. If the current version is `{{ product_version }}.0-rc1`, the next minor version is still `{{ ocp_nplus1 }}`.
+> For example, if the cluster’s current version is `4.22.0`, the next minor version is `4.23`. If the current version is `4.22.0-rc1`, the next minor version is still `4.23`.
 
 **Additional resources**
+{._additional-resources}
 
 - [Deprecated API Migration Guide (Kubernetes documentation)](https://kubernetes.io/docs/reference/using-api/deprecation-guide/)
 
@@ -296,8 +299,9 @@ If an installed Operator’s `olm.maxOpenShiftVersion` field is set and a cluste
 To resolve the issue, the cluster administrator must either update the installed Operator to a version with a valid update path, if one is available, or they must uninstall the Operator. Then, they can attempt the cluster update again.
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding cluster Operator condition types](/openshift-docs-markdown/updating/understanding_updates/intro-to-updates#understanding_clusteroperator_conditiontypes_understanding-openshift-updates)
 - [Upgrading installed Operators](/openshift-docs-markdown/operators/admin/olm-upgrading-operators#olm-upgrading-operators)
 - [Deleting Operators from a cluster](/openshift-docs-markdown/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-a-cluster)
-- [Cluster Operators reference -> Operator Lifecycle Manager (OLM) v1 Operator](/openshift-docs-markdown/operators/operator-reference#cluster-operators-ref-olmv1_operator-reference)
+- [Cluster Operators reference → Operator Lifecycle Manager (OLM) v1 Operator](/openshift-docs-markdown/operators/operator-reference#cluster-operators-ref-olmv1_operator-reference)

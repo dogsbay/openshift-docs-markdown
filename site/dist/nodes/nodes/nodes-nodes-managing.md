@@ -198,8 +198,8 @@ You should add kernel arguments with caution and a clear understanding of the im
 
 Examples of kernel arguments you could set include:
 
-- ***nosmt***: Disables symmetric multithreading (SMT) in the kernel. Multithreading allows multiple logical threads for each CPU. You could consider `nosmt` in multi-tenant environments to reduce risks from potential cross-thread attacks. By disabling SMT, you essentially choose security over performance.
-- ***enforcing=0***: Configures Security Enhanced Linux (SELinux) to run in permissive mode. In permissive mode, the system acts as if SELinux is enforcing the loaded security policy, including labeling objects and emitting access denial entries in the logs, but it does not actually deny any operations. While not supported for production systems, permissive mode can be helpful for debugging.
+- **nosmt**: Disables symmetric multithreading (SMT) in the kernel. Multithreading allows multiple logical threads for each CPU. You could consider `nosmt` in multi-tenant environments to reduce risks from potential cross-thread attacks. By disabling SMT, you essentially choose security over performance.
+- **enforcing=0**: Configures Security Enhanced Linux (SELinux) to run in permissive mode. In permissive mode, the system acts as if SELinux is enforcing the loaded security policy, including labeling objects and emitting access denial entries in the logs, but it does not actually deny any operations. While not supported for production systems, permissive mode can be helpful for debugging.
 
   > [!WARNING]
   > Disabling SELinux on RHCOS in production is not supported. After SELinux has been disabled on a node, it must be re-provisioned before re-inclusion in a production cluster.
@@ -625,7 +625,8 @@ You can enable Linux Pressure Stall Information (PSI) monitoring by using a `Mac
 
      For more information on using PSI metrics, see "PSI - Pressure Stall Information" in the Linux Kernel documentation.
 
-## Additional resources {#additional-resources_nodes-nodes-managing}
+**Additional resources**
+{._additional-resources}
 
 - [Managing control plane machines with control plane machine sets](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-managing-machines)
 - [PSI - Pressure Stall Information (Linux Kernel documentation)](https://docs.kernel.org/accounting/psi.html)

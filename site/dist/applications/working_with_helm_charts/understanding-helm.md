@@ -25,7 +25,8 @@ Helm provides the ability to:
 
 You can choose to verify and certify your Helm charts by Red Hat for all the components you will be deploying on the Red Hat OpenShift Container Platform. Charts go through an automated Red Hat OpenShift certification workflow that guarantees security compliance as well as best integration and experience with the platform. Certification assures the integrity of the chart and ensures that the Helm chart works seamlessly on Red Hat OpenShift clusters.
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - For more information on how to certify your Helm charts as a Red Hat partner, see [Red Hat Certification of Helm charts for OpenShift](https://redhat-connect.gitbook.io/partner-guide-for-red-hat-openshift-and-container/helm-chart-certification/overview).
 - For more information on OpenShift and Container certification guides for Red Hat partners, see [Partner Guide for OpenShift and Container Certification](https://access.redhat.com/documentation/en-us/red_hat_software_certification/8.51/html-single/red_hat_software_certification_workflow_guide/index#con_container-certification_openshift-sw-cert-workflow-introduction-to-redhat-openshift-operator-certification).

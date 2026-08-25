@@ -61,7 +61,7 @@ A config map is similar to a secret, but designed to more conveniently support w
 
 Controllers can be written to tolerate missing configuration data. Consult individual components configured by using config maps on a case-by-case basis.
 
-`ConfigMap`** objects reside in a project.**
+**`ConfigMap` objects reside in a project.**
 
 They can only be referenced by pods in the same project.
 
@@ -77,7 +77,7 @@ To provide configuration data to your pods, you can create a config map by using
 
 - To create a config map as a cluster administrator:
 
-  1. In the Administrator perspective, select `Workloads` -> `Config Maps`.
+  1. In the Administrator perspective, select `Workloads` → `Config Maps`.
   2. At the top right side of the page, select **Create Config Map**.
   3. Enter the contents of your config map.
   4. Select **Create**.

@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"catalog-content-resolution","text":"Catalog
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/extensions/catalogs/catalog-content-resolution";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="catalog-content-resolution" class="group scroll-mt-20">Catalog content resolution<a href="#catalog-content-resolution" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>When you specify the cluster extension you want to install in a custom resource (CR), Operator Lifecycle Manager (OLM) v1 uses catalog selection to resolve what content is installed.</p>
+      <p class="_abstract">When you specify the cluster extension you want to install in a custom resource (CR), Operator Lifecycle Manager (OLM) v1 uses catalog selection to resolve what content is installed.</p>
       <p>You can perform the following actions to control the selection of catalog content:</p>
       <ul>
       <li>Specify labels to select the catalog.</li>

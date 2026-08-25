@@ -8,6 +8,7 @@ You can install OpenShift Container Platform on on-premise hardware or on-premis
 
 The Assisted Installer is a user-friendly installation solution offered on the Red Hat Hybrid Cloud Console.
 
-## Additional resources {#additional-resources_installing-vsphere-assisted-installer}
+**Additional resources**
+{._additional-resources}
 
 - [Installing OpenShift Container Platform with the Assisted Installer](https://access.redhat.com/documentation/en-us/assisted_installer_for_openshift_container_platform/2024/html/installing_openshift_container_platform_with_the_assisted_installer/index)

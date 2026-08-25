@@ -21,7 +21,8 @@ const headings = [{"depth":1,"slug":"admission-fair-sharing","text":"Admission f
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/ai_workloads/kueue/admission-fair-sharing";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="admission-fair-sharing" class="group scroll-mt-20">Admission fair sharing<a href="#admission-fair-sharing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Use admission fair sharing to fairly distribute workloads across local Queues that share a single <code>ClusterQueue</code>.</p>
+      <p class="_abstract">Use admission fair sharing to fairly distribute workloads across local Queues that share a single <code>ClusterQueue</code>. </p>
       <p>You can balance workload admission by prioritizing workloads from local Queues that have used fewer resources historically. With admission fair sharing, you can track usage over time with a configurable decay function and apply admission penalties when workloads are admitted.</p>
       <p>When multiple tenants share a single <code>ClusterQueue</code>, some tenants risk resource starvation. Admission fair sharing adresses this issue by meeting the following requirements:</p>
       <dl class="my-4 space-y-2">

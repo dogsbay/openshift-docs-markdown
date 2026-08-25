@@ -18,7 +18,10 @@ Manila CSI Driver Operator
 :   The Manila CSI Driver Operator creates the required storage class that is needed to create persistent volumes claims (PVCs) for all available Manila share types. The Operator is installed in the `openshift-cluster-csi-drivers` namespace.
 
 Manila CSI driver
-:   The Manila CSI driver enables you to create and mount Manila PVs. The driver is installed in the `openshift-manila-csi-driver` namespace. **Additional resources**
+:   The Manila CSI driver enables you to create and mount Manila PVs. The driver is installed in the `openshift-manila-csi-driver` namespace.
+
+**Additional resources**
+{._additional-resources}
 
 - [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage)
 - [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
@@ -48,6 +51,7 @@ FSGroups are not supported
 > In Red Hat OpenStack Platform 16.x and 17.x, the Shared File Systems service (Manila) with CephFS through NFS fully supports serving shares to OpenShift Container Platform through the Manila CSI. However, this solution is not intended for massive scale. Be sure to review important recommendations in "CephFS NFS Manila-CSI Workload Recommendations for Red Hat OpenStack Platform".
 
 **Additional resources**
+{._additional-resources}
 
 - [CephFS NFS Manila-CSI Workload Recommendations for Red Hat OpenStack Platform](https://access.redhat.com/articles/6667651)
 

@@ -54,7 +54,8 @@ Before using the Control Plane Machine Set Operator, review platform support, cl
   > Attempting to deploy control plane machines as AWS Spot Instances, Google Cloud preemptible VMs, or Azure Spot VMs might cause the cluster to lose etcd quorum. A cluster that loses all control plane machines simultaneously is unrecoverable.
 - Making changes to the control plane machine set during or before installation is not supported. You must make any changes to the control plane machine set only after installation.
 
-## Additional resources {#additional-resources_cpmso-about}
+**Additional resources**
+{._additional-resources}
 
 - [Control Plane Machine Set Operator reference](/openshift-docs-markdown/operators/operator-reference#control-plane-machine-set-operator_operator-reference)
 - [`ControlPlaneMachineSet` custom resource](/openshift-docs-markdown/rest_api/machine_apis/controlplanemachineset-machine-openshift-io-v1#controlplanemachineset-machine-openshift-io-v1)

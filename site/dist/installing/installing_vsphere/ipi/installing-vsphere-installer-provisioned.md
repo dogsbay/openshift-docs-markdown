@@ -22,9 +22,7 @@ In OpenShift Container Platform version 4.22, you can install a cluster on your 
 
 ## Internet access for OpenShift Container Platform {#cluster-entitlements_installing-vsphere-installer-provisioned}
 
-In OpenShift Container Platform 4.22, you require access to the internet to install
-
-your cluster.
+In OpenShift Container Platform 4.22, you require access to the internet to install your cluster.
 
 You must have internet access to perform the following actions:
 
@@ -55,54 +53,50 @@ To deploy your OpenShift Container Platform cluster, you can initialize installa
 
 1. In the directory that contains the installation program, initialize the cluster deployment by running the following command:
 
-   ```terminal
-   $ ./openshift-install create cluster --dir <installation_directory> \
-       --log-level=info
-   ```
+```terminal
+$ ./openshift-install create cluster --dir <installation_directory> \
+    --log-level=info
+```
 
-   ```
-   *   For `<installation_directory>`, specify the
+- For `<installation_directory>`, specify the directory name to store the files that the installation program creates.
+- To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
 
-   directory name to store the files that the installation program creates.
+  When specifying the directory:
 
-   *   To view different installation details, specify `warn`, `debug`, or
-   `error` instead of `info`.
+  - Verify that the directory has the `execute` permission. This permission is required to run Terraform binaries under the installation directory.
+  - Use an empty directory. Some installation assets, such as bootstrap X.509 certificates, have short expiration intervals, therefore you must not reuse an installation directory. If you want to reuse individual files from another cluster installation, you can copy them into your directory. However, the file names for the installation assets might change between releases. Use caution when copying installation files from an earlier OpenShift Container Platform version.
 
-   When specifying the directory:
-   *   Verify that the directory has the `execute` permission. This permission is required to run Terraform binaries under the installation directory.
-   *   Use an empty directory. Some installation assets, such as bootstrap X.509 certificates, have short expiration intervals, therefore you must not reuse an installation directory. If you want to reuse individual files from another cluster installation, you can copy them into your directory. However, the file names for the installation assets might change between releases. Use caution when copying installation files from an earlier OpenShift Container Platform version.
-   ```
-2. Provide values at the prompts:
+    1. Provide values at the prompts:
 
-   1. Optional: Select an SSH key to use to access your cluster machines.
+       1. Optional: Select an SSH key to use to access your cluster machines.
 
-      > [!NOTE]
-      > For production OpenShift Container Platform clusters on which you want to perform installation debugging or disaster recovery, specify an SSH key that your `ssh-agent` process uses.
-   2. Select **vsphere** as the platform to target.
-   3. Specify the name of your vCenter instance.
-   4. Specify the user name and password for the vCenter account that has the required permissions to create the cluster.
+          > [!NOTE]
+          > For production OpenShift Container Platform clusters on which you want to perform installation debugging or disaster recovery, specify an SSH key that your `ssh-agent` process uses.
+       2. Select **vsphere** as the platform to target.
+       3. Specify the name of your vCenter instance.
+       4. Specify the user name and password for the vCenter account that has the required permissions to create the cluster.
 
-      The installation program connects to your vCenter instance.
+          The installation program connects to your vCenter instance.
 
-      > [!IMPORTANT]
-      > Some VMware vCenter Single Sign-On (SSO) environments with Active Directory (AD) integration might primarily require you to use the traditional login method, which requires the `<domain>\` construct.
-      >
-      > To ensure that vCenter account permission checks complete properly, consider using the User Principal Name (UPN) login method, such as `<username>@<fully_qualified_domainname>`.
-   5. Select the data center in your vCenter instance to connect to.
-   6. Select the default vCenter datastore to use.
+          > [!IMPORTANT]
+          > Some VMware vCenter Single Sign-On (SSO) environments with Active Directory (AD) integration might primarily require you to use the traditional login method, which requires the `<domain>\` construct.
+          >
+          > To ensure that vCenter account permission checks complete properly, consider using the User Principal Name (UPN) login method, such as `<username>@<fully_qualified_domainname>`.
+       5. Select the data center in your vCenter instance to connect to.
+       6. Select the default vCenter datastore to use.
 
-      > [!NOTE]
-      > Datastore and cluster names cannot exceed 60 characters; therefore, ensure the combined string length does not exceed the 60 character limit.
-   7. Select the vCenter cluster to install the OpenShift Container Platform cluster in. The installation program uses the root resource pool of the vSphere cluster as the default resource pool.
-   8. Select the network in the vCenter instance that contains the virtual IP addresses and DNS records that you configured.
-   9. Enter the virtual IP address that you configured for control plane API access.
-   10. Enter the virtual IP address that you configured for cluster ingress.
-   11. Enter the base domain. This base domain must be the same one that you used in the DNS records that you configured.
-   12. Enter a descriptive name for your cluster. The cluster name must be the same one that you used in the DNS records that you configured.
+          > [!NOTE]
+          > Datastore and cluster names cannot exceed 60 characters; therefore, ensure the combined string length does not exceed the 60 character limit.
+       7. Select the vCenter cluster to install the OpenShift Container Platform cluster in. The installation program uses the root resource pool of the vSphere cluster as the default resource pool.
+       8. Select the network in the vCenter instance that contains the virtual IP addresses and DNS records that you configured.
+       9. Enter the virtual IP address that you configured for control plane API access.
+       10. Enter the virtual IP address that you configured for cluster ingress.
+       11. Enter the base domain. This base domain must be the same one that you used in the DNS records that you configured.
+       12. Enter a descriptive name for your cluster. The cluster name must be the same one that you used in the DNS records that you configured.
 
-       > [!NOTE]
-       > Datastore and cluster names cannot exceed 60 characters; therefore, ensure the combined string length does not exceed the 60 character limit.
-   13. Paste the [pull secret from Red Hat OpenShift Cluster Manager](https://console.redhat.com/openshift/install/pull-secret).
+           > [!NOTE]
+           > Datastore and cluster names cannot exceed 60 characters; therefore, ensure the combined string length does not exceed the 60 character limit.
+       13. Paste the [pull secret from Red Hat OpenShift Cluster Manager](https://console.redhat.com/openshift/install/pull-secret).
 
 **Verification**
 
@@ -307,6 +301,7 @@ To allow the image registry to use block storage types such as vSphere Virtual M
       By creating a custom PVC, you can leave the `claim` field blank for the default automatic creation of an `image-registry-storage` PVC.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring the registry for vSphere](/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-vsphere#registry-configuring-storage-vsphere_configuring-registry-storage-vsphere)
 
@@ -317,6 +312,7 @@ To provide metrics about cluster health and the success of updates, the Telemetr
 After you confirm that your [OpenShift Cluster Manager](https://console.redhat.com/openshift) inventory is correct, either maintained automatically by Telemetry or manually by using OpenShift Cluster Manager,use subscription watch to track your OpenShift Container Platform subscriptions at the account or multi-cluster level. For more information about subscription watch, see "Data Gathered and Used by Red Hat’s subscription services" in the *Additional resources* section.
 
 **Additional resources**
+{._additional-resources}
 
 - [Preparing to install a cluster using installer-provisioned infrastructure](/openshift-docs-markdown/installing/installing_vsphere/ipi/ipi-vsphere-preparing-to-install#ipi-vsphere-preparing-to-install)
 - [OpenShift Container Platform installation and update processes](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)

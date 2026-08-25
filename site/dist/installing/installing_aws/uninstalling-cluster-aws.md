@@ -1,5 +1,5 @@
 ---
-title: Uninstalling a cluster on {{ aws_short }}
+title: Uninstalling a cluster on AWS
 ---
 
 # Uninstalling a cluster on AWS {#uninstalling-cluster-aws}
@@ -50,30 +50,23 @@ After uninstalling an OpenShift Container Platform cluster that uses short-term 
 
 **Procedure**
 
-````
-*   Delete the AWS resources that `ccoctl` created by running the following command:
+- Delete the AWS resources that `ccoctl` created by running the following command:
 
 ```terminal
-$ ccoctl {{ cp_name }} delete \
+$ ccoctl aws delete \
   --name=<name> \
-````
+  --region=<aws_region>
+```
 
-{% if aws_sts %} --region=<{{ cp_name }}\_region> {% endif %} {% if gcp_workload_id %} --project=<{{ cp_name }}\_project_id>
---credentials-requests-dir=<path_to_credentials_requests_directory>
---force-delete-custom-roles {% endif %} {% if azure_workload_id %} --region=<{{ cp_name }}\_region>
---subscription-id=<{{ cp_name }}\_subscription_id>
---delete-oidc-resource-group {%- endif %} \`\`\`
+where:
 
-````
-    where:
+`<name>`
+:   Matches the name that was originally used to create and tag the cloud resources.
 
-    `<name>`
-    :   Matches the name that was originally used to create and tag the cloud resources.
+`<aws_region>`
+:   is the AWS region in which to delete cloud resources.
 
-    `<{{ cp_name }}_region>`
-    :   is the AWS region in which to delete cloud resources.
-
-    ```text title="Example output"
+    ```text {title="Example output"}
     2021/04/08 17:50:41 Identity Provider object .well-known/openid-configuration deleted from the bucket <name>-oidc
     2021/04/08 17:50:42 Identity Provider object keys.json deleted from the bucket <name>-oidc
     2021/04/08 17:50:43 Identity Provider bucket <name>-oidc deleted
@@ -89,13 +82,10 @@ $ ccoctl {{ cp_name }} delete \
     2021/04/08 17:51:11 IAM Role <name>-openshift-machine-api-aws-cloud-credentials deleted
     2021/04/08 17:51:39 Identity Provider with ARN arn:aws:iam::<aws_account_id>:oidc-provider/<name>-oidc.s3.<aws_region>.amazonaws.com deleted
     ```
-````
 
 **Verification**
 
-```
-*   To verify that the resources are deleted, query AWS. For more information, refer to AWS documentation.
-```
+- To verify that the resources are deleted, query AWS. For more information, refer to AWS documentation.
 
 ## Deleting a cluster with a configured AWS Local Zone infrastructure {#installation-aws-delete-cluster}
 
@@ -148,7 +138,8 @@ The example in the procedure assumes that you created a VPC and its subnets by u
   $ aws cloudformation describe-stacks --stack-name <vpc_stack_name>
   ```
 
-## Additional resources {#installing-localzone-additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Working with stacks (AWS documentation)](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
 - [Opt in to AWS Local Zones (AWS documentation)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#opt-in-local-zone)

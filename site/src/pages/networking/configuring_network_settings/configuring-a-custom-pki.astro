@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"configuring-a-custom-pki","text":"Configuri
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/configuring_network_settings/configuring-a-custom-pki";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="configuring-a-custom-pki" class="group scroll-mt-20">Configuring a custom PKI<a href="#configuring-a-custom-pki" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>To ensure secure communication between internal components in your OpenShift Container Platform cluster, you can add your organization’s custom Certificate Authority (CA) certificates to the cluster-wide truststore.</p>
+      <p class="_abstract">To ensure secure communication between internal components in your OpenShift Container Platform cluster, you can add your organization’s custom Certificate Authority (CA) certificates to the cluster-wide truststore.</p>
       <p>You can add your custom CA certificates to the cluster-wide truststore in one of two ways:</p>
       <ul>
       <li>During cluster installation, by adding your CA certificate to the <code>install-config.yaml</code> file.</li>

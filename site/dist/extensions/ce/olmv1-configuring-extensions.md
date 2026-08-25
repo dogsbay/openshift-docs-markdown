@@ -56,6 +56,7 @@ where:
 :   Specifies the namespace where the extension watches for custom resources. The watch namespace can match or differ from the installation namespace, depending on the install modes supported by the bundle.
 
 **Additional resources**
+{._additional-resources}
 
 - [Operator groups](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-operatorgroups#olm-understanding-operatorgroups)
 
@@ -1039,13 +1040,13 @@ $ oc get deployment -n <namespace> -l olm.operatorframework.io/owner-name=<exten
 
 Configuration locations in the deployment specification:
 
-- ***Environment variables***: `spec.template.spec.containers[].env` and `spec.template.spec.containers[].envFrom`
-- ***Resources***: `spec.template.spec.containers[].resources`
-- ***Node selector***: `spec.template.spec.nodeSelector`
-- ***Tolerations***: `spec.template.spec.tolerations`
-- ***Affinity***: `spec.template.spec.affinity`
-- ***Volumes***: `spec.template.spec.volumes` and `spec.template.spec.containers[].volumeMounts`
-- ***Annotations***: `metadata.annotations` and `spec.template.metadata.annotations`
+- **Environment variables**: `spec.template.spec.containers[].env` and `spec.template.spec.containers[].envFrom`
+- **Resources**: `spec.template.spec.containers[].resources`
+- **Node selector**: `spec.template.spec.nodeSelector`
+- **Tolerations**: `spec.template.spec.tolerations`
+- **Affinity**: `spec.template.spec.affinity`
+- **Volumes**: `spec.template.spec.volumes` and `spec.template.spec.containers[].volumeMounts`
+- **Annotations**: `metadata.annotations` and `spec.template.metadata.annotations`
 
 ### Annotation conflicts {#olmv1-deployment-config-troubleshooting-conflicts_olmv1-configuring-extensions}
 
@@ -1063,7 +1064,8 @@ $ oc get deployment -n <namespace> -l olm.operatorframework.io/owner-name=<exten
 
 To override a bundle annotation, modify the bundle or accept the bundle value.
 
-## Additional resources {#olmv1-configuring-extensions_additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Installing a cluster extension in all namespaces](/openshift-docs-markdown/extensions/ce/managing-ce#olmv1-installing-an-operator_managing-ce)
 - [Assigning Pods to Nodes (Kubernetes)](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)

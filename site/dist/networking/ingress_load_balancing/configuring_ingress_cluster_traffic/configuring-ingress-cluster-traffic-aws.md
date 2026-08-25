@@ -634,7 +634,8 @@ You can specify static IPs, otherwise known as elastic IPs, for your network loa
    $ oc get ingresscontroller -n openshift-ingress-operator <name> -o jsonpath="{.status.conditions}" | yq -PC
    ```
 
-## Additional resources {#additional-resources_configuring-ingress-cluster-traffic-aws}
+**Additional resources**
+{._additional-resources}
 
 - [Converting to a dual-stack cluster network](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/converting-to-dual-stack#nw-dual-stack-convert_converting-to-dual-stack)
 - [Enabling features using feature gates](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)

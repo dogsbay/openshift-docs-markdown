@@ -20,10 +20,10 @@ If you only want to export flows to a Kafka consumer or IPFIX collector, or you 
 | --- | --- | --- |
 | **Exporters** | X | X |
 | **Multi-tenancy** | X | X |
-| **Complete filtering and aggregations capabilities** [^1]^ | X |  |
-| **Partial filtering and aggregations capabilities** [^2]^ | X | X |
+| **Complete filtering and aggregations capabilities** <sup>\[1\]</sup> | X |  |
+| **Partial filtering and aggregations capabilities** <sup>\[2\]</sup> | X | X |
 | **Flow-based metrics and dashboards** | X | X |
-| **Traffic flows view overview** [^3]^ | X | X |
+| **Traffic flows view overview** <sup>\[3\]</sup> | X | X |
 | **Traffic flows view table** | X |  |
 | **Topology view** | X | X |
 | **OpenShift Container Platform console Network Traffic tab integration** | X | X |
@@ -33,6 +33,7 @@ If you only want to export flows to a Kafka consumer or IPFIX collector, or you 
 3. Statistics on packet drops are only available with Loki.
 
 **Additional resources**
+{._additional-resources}
 
 - [Export enriched network flow data](/openshift-docs-markdown/observability/network_observability/configuring-operator#network-observability-enriched-flows_network_observability)
 
@@ -50,13 +51,13 @@ The [Loki Operator versions 6.0+](https://catalog.redhat.com/software/containers
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, click **Ecosystem** -> **Software Catalog**.
+1. In the OpenShift Container Platform web console, click **Ecosystem** → **Software Catalog**.
 2. Choose  **Loki Operator** from the list of available Operators, and click **Install**.
 3. Under **Installation Mode**, select **All namespaces on the cluster**.
 
 **Verification**
 
-1. Verify that you installed the Loki Operator. Visit the **Ecosystem** -> **Installed Operators** page and look for **Loki Operator**.
+1. Verify that you installed the Loki Operator. Visit the **Ecosystem** → **Installed Operators** page and look for **Loki Operator**.
 2. Verify that **Loki Operator** is listed with **Status** as **Succeeded** in all the projects.
 
 > [!IMPORTANT]
@@ -70,7 +71,7 @@ The Loki Operator supports a few log storage options, such as AWS S3, Google Clo
 
 **Procedure**
 
-1. Using the web console, navigate to the **Project** -> **All Projects** dropdown and select **Create Project**.
+1. Using the web console, navigate to the **Project** → **All Projects** dropdown and select **Create Project**.
 2. Name the project `netobserv-loki` and click **Create**.
 3. Navigate to the Import icon, **+**, in the top right corner. Paste your YAML file into the editor.
 
@@ -112,7 +113,7 @@ The Loki Operator supports a few log storage options, such as AWS S3, Google Clo
 
 **Verification**
 
-- After you create the secret, you view the secret listed under **Workloads** -> **Secrets** in the web console.
+- After you create the secret, you view the secret listed under **Workloads** → **Secrets** in the web console.
 
 ### Creating a LokiStack custom resource {#network-observability-lokistack-create_network_observability}
 
@@ -122,7 +123,7 @@ You can deploy a `LokiStack` custom resource (CR) to create a namespace or new p
 
 **Procedure**
 
-1. Navigate to **Ecosystem** -> **Installed Operators**, viewing **All projects** from the **Project** dropdown.
+1. Navigate to **Ecosystem** → **Installed Operators**, viewing **All projects** from the **Project** dropdown.
 2. Look for **Loki Operator**. In the details, under **Provided APIs**, select **LokiStack**.
 3. Click **Create LokiStack**.
 4. Ensure the following fields are specified in either **Form View** or **YAML view**:
@@ -203,6 +204,7 @@ where:
 :   Specifies the list of groups whose members have cluster-wide log access. Defaults to `system:cluster-admins`, `cluster-admin`, and `dedicated-admin`. Set to `[]` to disable.
 
 **Additional resources**
+{._additional-resources}
 
 - [Fine grained access for Loki logs](https://docs.redhat.com/en/documentation/red_hat_openshift_logging/6.5/html/configuring_logging/configuring-lokistack-storage#logging-loki-log-access_configuring-the-log-store)
 
@@ -232,6 +234,7 @@ spec:
 For more information about these settings, see "LokiStack API reference".
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating a LokiStack custom resource](/openshift-docs-markdown/observability/network_observability/installing-operators#network-observability-lokistack-create_network_observability)
 - [Loki object storage](https://docs.redhat.com/en/documentation/red_hat_openshift_logging/latest/html/configuring_logging/configuring-lokistack-storage#logging-loki-storage_configuring-the-log-store)
@@ -262,10 +265,10 @@ You can set specifications in the web console when you create the `FlowCollector
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, click **Ecosystem** -> **Software Catalog**.
+1. In the OpenShift Container Platform web console, click **Ecosystem** → **Software Catalog**.
 2. Choose  **Network Observability Operator** from the list of available Operators in the software catalog, and click **Install**.
 3. Select the checkbox `Enable Operator recommended cluster monitoring on this Namespace`.
-4. Navigate to **Operators** -> **Installed Operators**. Under Provided APIs for Network Observability, select the **Flow Collector** link.
+4. Navigate to **Operators** → **Installed Operators**. Under Provided APIs for Network Observability, select the **Flow Collector** link.
 5. Follow the **Network Observability FlowCollector setup** wizard.
 6. Click **Create**.
 
@@ -284,6 +287,7 @@ Once you create the `FlowCollector` instance, you can reconfigure it, but the po
 Therefore, you can consider configuring the following options when creating the `FlowCollector` for the first time.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring the Flow Collector resource with Kafka](/openshift-docs-markdown/observability/network_observability/configuring-operator#network-observability-flowcollector-kafka-config_network_observability)
 - [Export enriched network flow data to Kafka or IPFIX](/openshift-docs-markdown/observability/network_observability/configuring-operator#network-observability-enriched-flows_network_observability)
@@ -403,36 +407,31 @@ For Developers, multi-tenancy is available for both Loki and Prometheus but requ
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Kubernetes Storage Version Migrator Operator](/openshift-docs-markdown/operators/operator-reference#cluster-kube-storage-version-migrator-operator_operator-reference)
 
 ## Uninstalling the Network Observability Operator {#network-observability-operator-uninstall_network_observability}
 
-Uninstall the Network Observability Operator using the OpenShift Container Platform web console Operator Hub, working in the **Ecosystem** -> **Installed Operators** area.
+Uninstall the Network Observability Operator using the OpenShift Container Platform web console Operator Hub, working in the **Ecosystem** → **Installed Operators** area.
 
 **Procedure**
 
 1. Remove the `FlowCollector` custom resource.
 
    1. Click **Flow Collector**, which is next to the **Network Observability Operator** in the **Provided APIs** column.
-   2. Click the Options menu ![](kebab.png "Options menu") for the **cluster** and select **Delete FlowCollector**.
+   2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") for the **cluster** and select **Delete FlowCollector**.
 2. Uninstall the Network Observability Operator.
 
-   1. Navigate back to the **Ecosystem** -> **Installed Operators** area.
-   2. Click the Options menu ![](kebab.png "Options menu") next to the  **Network Observability Operator** and select **Uninstall Operator**.
-   3. **Home** -> **Projects** and select `openshift-netobserv-operator`
+   1. Navigate back to the **Ecosystem** → **Installed Operators** area.
+   2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the  **Network Observability Operator** and select **Uninstall Operator**.
+   3. **Home** → **Projects** and select `openshift-netobserv-operator`
    4. Navigate to **Actions** and select **Delete Project**
 3. Remove the `FlowCollector` custom resource definition (CRD).
 
-   1. Navigate to **Administration** -> **CustomResourceDefinitions**.
-   2. Look for **FlowCollector** and click the Options menu ![](kebab.png "Options menu").
+   1. Navigate to **Administration** → **CustomResourceDefinitions**.
+   2. Look for **FlowCollector** and click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu").
    3. Select **Delete CustomResourceDefinition**.
 
       > [!IMPORTANT]
       > The Loki Operator and Kafka remain if they were installed and must be removed separately. Additionally, you might have remaining data stored in an object store, and a persistent volume that must be removed.
-
-[^1]: 1
-
-[^2]: 2
-
-[^3]: 3

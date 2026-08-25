@@ -1,5 +1,5 @@
 ---
-title: Configuring {{ KMS }}
+title: Configuring Kubernetes KMS v2
 ---
 
 # Configuring Kubernetes KMS v2 {#kms-configuring}
@@ -256,6 +256,9 @@ Replace `kms-key` with your Vault Transit key name if using a different name.
       $ oc delete secret test-secret -n default
       ```
 
+**Additional resources**
+{._additional-resources}
+
 - [Vault Transit Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/transit)
 - [Vault API: Create Key](https://developer.hashicorp.com/vault/api-docs/secret/transit#create-key)
 - [Vault Policies](https://developer.hashicorp.com/vault/docs/concepts/policies)
@@ -300,6 +303,9 @@ All secrets should be readable without errors.
 
 > [!NOTE]
 > Existing encrypted secrets do not need re-encryption. Vault maintains all key versions and automatically uses the appropriate version for decryption.
+
+**Additional resources**
+{._additional-resources}
 
 - [Vault Transit: Rotate Key](https://developer.hashicorp.com/vault/api-docs/secret/transit#rotate-key)
 - [Vault Transit: Rewrap Data](https://developer.hashicorp.com/vault/api-docs/secret/transit#rewrap-data)
@@ -383,6 +389,9 @@ You can monitor KMS encryption status by using Operator and API server logs to v
    ```terminal
    $ oc get apiserver cluster -o jsonpath='{.spec.encryption}' | jq
    ```
+
+**Additional resources**
+{._additional-resources}
 
 - [Kubernetes KMS provider documentation](https://kubernetes.io/docs/tasks/administer-cluster/kms-provider/)
 
@@ -533,7 +542,8 @@ Collect KMS provider information:
 > [!NOTE]
 > Redact credentials, tokens, and sensitive data before sharing logs.
 
-## Additional resources {#additional-resources_kms-configuring}
+**Additional resources**
+{._additional-resources}
 
 - [Using a KMS provider for data encryption](https://kubernetes.io/docs/tasks/administer-cluster/kms-provider/)
 - [HashiCorp Vault Transit Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/transit)

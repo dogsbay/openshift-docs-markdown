@@ -14,6 +14,7 @@ To use the Insights Operator in a restricted network, you must complete the foll
 Additionally, you can select to obfuscate the Insights Operator data before data upload.
 
 **Additional resources**
+{._additional-resources}
 
 - [Red Hat Hybrid Cloud Console](https://console.redhat.com)
 - [Enabling Insights Operator data obfuscation](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting-from-restricted-network#insights-operator-enable-obfuscation_remote-health-reporting-from-restricted-network)
@@ -34,76 +35,7 @@ You must run a gather operation to create an Insights Operator archive.
 
    ```
 
-```yaml
-apiVersion: batch/v1
-kind: Job
-metadata:
-  name: insights-operator-job
-  annotations:
-    config.openshift.io/inject-proxy: insights-operator
-spec:
-  backoffLimit: 6
-  ttlSecondsAfterFinished: 600
-  template:
-    spec:
-      restartPolicy: OnFailure
-      serviceAccountName: operator
-      nodeSelector:
-        beta.kubernetes.io/os: linux
-        node-role.kubernetes.io/master: ""
-      tolerations:
-      - effect: NoSchedule
-        key: node-role.kubernetes.io/master
-        operator: Exists
-      - effect: NoExecute
-        key: node.kubernetes.io/unreachable
-        operator: Exists
-        tolerationSeconds: 900
-      - effect: NoExecute
-        key: node.kubernetes.io/not-ready
-        operator: Exists
-        tolerationSeconds: 900
-      volumes:
-      - name: snapshots
-        emptyDir: {}
-      - name: service-ca-bundle
-        configMap:
-          name: service-ca-bundle
-          optional: true
-      initContainers:
-      - name: insights-operator
-        image: quay.io/openshift/origin-insights-operator:latest
-        terminationMessagePolicy: FallbackToLogsOnError
-        volumeMounts:
-        - name: snapshots
-          mountPath: /var/lib/insights-operator
-        - name: service-ca-bundle
-          mountPath: /var/run/configmaps/service-ca-bundle
-          readOnly: true
-        ports:
-        - containerPort: 8443
-          name: https
-        resources:
-          requests:
-            cpu: 10m
-            memory: 70Mi
-        args:
-        - gather
-        - -v=4
-        - --config=/etc/insights-operator/server.yaml
-      containers:
-        - name: sleepy
-          image: quay.io/openshift/origin-base:latest
-          args:
-            - /bin/sh
-            - -c
-            - sleep 10m
-          volumeMounts: [{name: snapshots, mountPath: /var/lib/insights-operator}]
-```
-
-````
-```
-````
+apiVersion: batch/v1 kind: Job metadata: name: insights-operator-job annotations: config.openshift.io/inject-proxy: insights-operator spec: backoffLimit: 6 ttlSecondsAfterFinished: 600 template: spec: restartPolicy: OnFailure serviceAccountName: operator nodeSelector: beta.kubernetes.io/os: linux node-role.kubernetes.io/master: "" tolerations: - effect: NoSchedule key: node-role.kubernetes.io/master operator: Exists - effect: NoExecute key: node.kubernetes.io/unreachable operator: Exists tolerationSeconds: 900 - effect: NoExecute key: node.kubernetes.io/not-ready operator: Exists tolerationSeconds: 900 volumes: - name: snapshots emptyDir: {} - name: service-ca-bundle configMap: name: service-ca-bundle optional: true initContainers: - name: insights-operator image: quay.io/openshift/origin-insights-operator:latest terminationMessagePolicy: FallbackToLogsOnError volumeMounts: - name: snapshots mountPath: /var/lib/insights-operator - name: service-ca-bundle mountPath: /var/run/configmaps/service-ca-bundle readOnly: true ports: - containerPort: 8443 name: https resources: requests: cpu: 10m memory: 70Mi args: - gather - -v=4 - --config=/etc/insights-operator/server.yaml containers: - name: sleepy image: quay.io/openshift/origin-base:latest args: - /bin/sh - -c - sleep 10m volumeMounts: \[{name: snapshots, mountPath: /var/lib/insights-operator}\] \`\`\`
 
 1. Copy your `insights-operator` image version:
 
@@ -273,20 +205,20 @@ The following procedure enables obfuscation using the `support` secret in the `o
 
 **Procedure**
 
-1. Navigate to **Workloads** -> **Secrets**.
+1. Navigate to **Workloads** → **Secrets**.
 2. Select the **openshift-config** project.
-3. Search for the **support** secret using the **Search by name** field. If it does not exist, click **Create** -> **Key/value secret** to create it.
-4. Click the Options menu ![](kebab.png "Options menu"), and then click **Edit Secret**.
+3. Search for the **support** secret using the **Search by name** field. If it does not exist, click **Create** → **Key/value secret** to create it.
+4. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu"), and then click **Edit Secret**.
 5. Click **Add Key/Value**.
 6. Create a key named `enableGlobalObfuscation` with a value of `true`, and click **Save**.
-7. Navigate to **Workloads** -> **Pods**
+7. Navigate to **Workloads** → **Pods**
 8. Select the `openshift-insights` project.
 9. Find the `insights-operator` pod.
-10. To restart the `insights-operator` pod, click the Options menu ![](kebab.png "Options menu"), and then click **Delete Pod**.
+10. To restart the `insights-operator` pod, click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu"), and then click **Delete Pod**.
 
 **Verification**
 
-1. Navigate to **Workloads** -> **Secrets**.
+1. Navigate to **Workloads** → **Secrets**.
 2. Select the **openshift-insights** project.
 3. Search for the **obfuscation-translation-table** secret using the **Search by name** field.
 
@@ -295,5 +227,6 @@ The following procedure enables obfuscation using the `support` secret in the `o
    Alternatively, you can inspect `/insights-operator/gathers.json` in your Insights Operator archive for the value `"is_global_obfuscation_enabled": true`.
 
 **Additional resources**
+{._additional-resources}
 
 - [Showing data collected by the Insights Operator](/openshift-docs-markdown/support/remote_health_monitoring/showing-data-collected-by-remote-health-monitoring#insights-operator-showing-data-collected-from-the-cluster_showing-data-collected-by-remote-health-monitoring)

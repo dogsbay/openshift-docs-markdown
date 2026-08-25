@@ -1,5 +1,5 @@
 ---
-title: Configuring an {{ azure_short }} account
+title: Configuring an Azure account
 ---
 
 # Configuring an Azure account {#installing-azure-account}
@@ -31,81 +31,68 @@ The following table summarizes the Azure components whose limits can impact your
   <th>Description</th>
 </tr>
 </thead>
+<tbody>
+<tr>
+  <td>vCPU</td>
+  <td>44</td>
+  <td>20 per region</td>
+  <td>A default cluster requires 44 vCPUs, so you must increase the account limit.<br><br>By default, each cluster creates the following instances:<br><br><ul><li>One bootstrap machine, which is removed after installation</li><li>Three control plane machines</li><li>Three compute machines</li></ul>  Because the bootstrap and control plane machines use <code>Standard_D8s_v3</code> virtual machines, which use 8 vCPUs, and the compute machines use <code>Standard_D4s_v3</code> virtual machines, which use 4 vCPUs, a default cluster requires 44 vCPUs. The bootstrap node VM, which uses 8 vCPUs, is used only during installation.   <br><br>To deploy more worker nodes, enable autoscaling, deploy large workloads, or use a different instance type, you must further increase the vCPU limit for your account to ensure that your cluster can deploy the machines that you require.</td>
+</tr>
+<tr>
+  <td>OS Disk</td>
+  <td>7</td>
+  <td></td>
+  <td>Each cluster machine must have a minimum of 100 GB of storage and 300 IOPS.<dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>Faster storage is recommended for production clusters and clusters with intensive workloads. For more information about optimizing storage for performance, see the page titled "Optimizing storage" in the "Scalability and performance" section.</dd></dl></td>
+</tr>
+<tr>
+  <td>VNet</td>
+  <td>1</td>
+  <td>1000 per region</td>
+  <td>Each default cluster requires one Virtual Network (VNet), which contains two subnets.</td>
+</tr>
+<tr>
+  <td>Network interfaces</td>
+  <td>7</td>
+  <td>65,536 per region</td>
+  <td>Each default cluster requires seven network interfaces. If you create more machines or your deployed workloads create load balancers, your cluster uses more network interfaces.</td>
+</tr>
+<tr>
+  <td>Network security groups</td>
+  <td>2</td>
+  <td>5000</td>
+  <td>Each cluster creates network security groups for each subnet in the VNet. The default cluster creates network security groups for the control plane and for the compute node subnets:<br><br><dl><dt><code>controlplane</code></dt><dd>Allows the control plane machines to be reached on port 6443 from anywhere</dd><dt><code>node</code></dt><dd>Allows worker nodes to be reached from the internet on ports 80 and 443</dd></dl></td>
+</tr>
+<tr>
+  <td>Network load balancers</td>
+  <td>3</td>
+  <td>1000 per region</td>
+  <td>Each cluster creates the following <a href="https://docs.microsoft.com/en-us/azure/load-balancer/load-balancer-overview">load balancers</a>:<br><br><dl><dt><code>default</code></dt><dd>Public IP address that load balances requests to ports 80 and 443 across worker machines</dd><dt><code>internal</code></dt><dd>Private IP address that load balances requests to ports 6443 and 22623 across control plane machines</dd><dt><code>external</code></dt><dd>Public IP address that load balances requests to port 6443 across control plane machines</dd></dl>If your applications create more Kubernetes <code>LoadBalancer</code> service objects, your cluster uses more load balancers.</td>
+</tr>
+<tr>
+  <td>Public IP addresses</td>
+  <td>3</td>
+  <td></td>
+  <td>Each of the two public load balancers uses a public IP address. The bootstrap machine also uses a public IP address so that you can SSH into the machine to troubleshoot issues during installation. The IP address for the bootstrap node is used only during installation.</td>
+</tr>
+<tr>
+  <td>Private IP addresses</td>
+  <td>7</td>
+  <td></td>
+  <td>The internal load balancer, each of the three control plane machines, and each of the three worker machines each use a private IP address.</td>
+</tr>
+<tr>
+  <td>Spot VM vCPUs (optional)</td>
+  <td>0<br><br>If you configure spot VMs, your cluster must have two spot VM vCPUs for every compute node.</td>
+  <td>20 per region</td>
+  <td>This is an optional component. To use spot VMs, you must increase the Azure default limit to at least twice the number of compute nodes in your cluster.<dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>Using spot VMs for control plane nodes is not recommended.</dd></dl></td>
+</tr>
+</tbody>
 </table>
 
-|Component |Number of components required by default |Description
-
-|vCPU
-
-|44
-
-|20 per region |A default cluster requires 44 vCPUs, so you must increase the account limit.
-
-By default, each cluster creates the following instances:
-
-- One bootstrap machine, which is removed after installation
-- Three control plane machines
-- Three compute machines
-
-Because the bootstrap and control plane machines use `Standard_D8s_v3` virtual machines, which use 8 vCPUs, and the compute machines use `Standard_D4s_v3` virtual machines, which use 4 vCPUs, a default cluster requires 44 vCPUs. The bootstrap node VM, which uses 8 vCPUs, is used only during installation.
-
-To deploy more worker nodes, enable autoscaling, deploy large workloads, or use a different instance type, you must further increase the vCPU limit for your account to ensure that your cluster can deploy the machines that you require.
-
-|OS Disk |7 | |Each cluster machine must have a minimum of 100 GB of storage and 300 IOPS.
-
-> [!NOTE]
-> Faster storage is recommended for production clusters and clusters with intensive workloads. For more information about optimizing storage for performance, see the page titled "Optimizing storage" in the "Scalability and performance" section.
-
-|VNet | 1 | 1000 per region
-
-| Each default cluster requires one Virtual Network (VNet), which contains two subnets.
-
-|Network interfaces |7 |65,536 per region
-
-|Each default cluster requires seven network interfaces. If you create more machines or your deployed workloads create load balancers, your cluster uses more network interfaces.
-
-|Network security groups |2 |5000
-
-| Each cluster creates network security groups for each subnet in the VNet. The default cluster creates network security groups for the control plane and for the compute node subnets:
-
-`controlplane`
-:   Allows the control plane machines to be reached on port 6443 from anywhere
-
-`node`
-:   Allows worker nodes to be reached from the internet on ports 80 and 443
-
-|Network load balancers | 3 | 1000 per region
-
-|Each cluster creates the following [load balancers](https://docs.microsoft.com/en-us/azure/load-balancer/load-balancer-overview):
-
-`default`
-:   Public IP address that load balances requests to ports 80 and 443 across worker machines
-
-`internal`
-:   Private IP address that load balances requests to ports 6443 and 22623 across control plane machines
-
-`external`
-:   Public IP address that load balances requests to port 6443 across control plane machines
-
-If your applications create more Kubernetes `LoadBalancer` service objects, your cluster uses more load balancers.
-
-|Public IP addresses |3 | |Each of the two public load balancers uses a public IP address. The bootstrap machine also uses a public IP address so that you can SSH into the machine to troubleshoot issues during installation. The IP address for the bootstrap node is used only during installation.
-
-|Private IP addresses |7 |
-
-|The internal load balancer, each of the three control plane machines, and each of the three worker machines each use a private IP address.
-
-|Spot VM vCPUs (optional) |0
-
-If you configure spot VMs, your cluster must have two spot VM vCPUs for every compute node. |20 per region |This is an optional component. To use spot VMs, you must increase the Azure default limit to at least twice the number of compute nodes in your cluster.
-
-> [!NOTE]
-> Using spot VMs for control plane nodes is not recommended.
-
-<table>
-</table>
+To increase an account limit, file a support request on the Azure portal. For more information, see [Request a quota limit increase for Azure Deployment Environments resources](https://learn.microsoft.com/en-us/azure/deployment-environments/how-to-request-quota-increase).
 
 **Additional resources**
+{._additional-resources}
 
 - [Optimizing storage](/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 - [Azure subscription and service limits, quotas, and constraints (Azure documentation)](https://docs.microsoft.com/en-us/azure/azure-subscription-service-limits)
@@ -236,6 +223,7 @@ An OpenShift Container Platform cluster requires an Azure identity to create and
 For more information on Azure identities, see "Managed identity types".
 
 **Additional resources**
+{._additional-resources}
 
 - [Managed identity types (Azure documentation)](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview#managed-identity-types)
 
@@ -252,6 +240,7 @@ The following requirements must be met:
 - If you are going to use a service principal to complete the installation, verify that the Azure account that you use to create the identity is assigned the `microsoft.directory/servicePrincipals/createAsOwner` permission in Microsoft Entra ID.
 
 **Additional resources**
+{._additional-resources}
 
 - [Assign Azure roles using the Azure portal (Azure documentation)](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal)
 
@@ -516,6 +505,7 @@ Required permissions for deleting storage resources
 > You can scope all the permissions to your subscription when deleting an OpenShift Container Platform cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Managing access to Azure resources using the Azure portal (Azure documentation)](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal)
 - [Custom roles (Azure documentation)](https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles)
@@ -536,6 +526,7 @@ If you are unable to use a managed identity, you can use a service principal.
 3. Verify that the required permissions are assigned to the managed identity.
 
 **Additional resources**
+{._additional-resources}
 
 - [List user-assigned managed identities (Azure documentation)](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp#list-user-assigned-managed-identities)
 
@@ -604,6 +595,7 @@ Record the values of the `appId` and `password` parameters from the output. You 
    :   Specifies the subscription ID.
 
 **Additional resources**
+{._additional-resources}
 
 - [About the Cloud Credential Operator](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator-modes)
 
@@ -679,7 +671,8 @@ Support for the following Microsoft Azure Government (MAG) regions was added in 
 
 You can reference all available MAG regions in the [Azure documentation](https://azure.microsoft.com/en-us/global-infrastructure/geographies/#geographies). Other provided MAG regions are expected to work with OpenShift Container Platform, but have not been tested.
 
-## Additional resources {#additional-resources_installing-azure-account}
+**Additional resources**
+{._additional-resources}
 
 - [Resolve errors for reserved resource names (Azure documentation)](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-reserved-resource-name)
 - [Install a customized cluster on Azure](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-customizations)

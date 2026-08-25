@@ -145,7 +145,7 @@ You can create a custom metrics autoscaler for a workload that is created by a `
        - Enter `currentReplicasIfLower` to maintain the current number of replicas, if that number is lower than the `fallback.replicas` parameter. If the current number of replicas is higher than the `fallback.replicas` parameter, use the `fallback.replicas` value.
    13. Optional: Specifies the interval in seconds to check each trigger on. The default is `30`.
    14. Optional: Specifies whether to scale back the target resource to the original replica count after the scaled object is deleted. The default is `false`, which keeps the replica count as it is when the scaled object is deleted.
-   15. Optional: Specifies a name for the horizontal pod autoscaler. The default is `keda-hpa-{{ scaled_object_name }}`.
+   15. Optional: Specifies a name for the horizontal pod autoscaler. The default is `keda-hpa-{scaled_object_name}`.
    16. Optional: Specifies a scaling policy to use to control the rate to scale pods up or down, as described in the "Scaling policies" section.
    17. Specifies the trigger to use as the basis for scaling, as described in the "Understanding the custom metrics autoscaler triggers" section. This example uses OpenShift Container Platform monitoring.
    18. Optional: Specifies a trigger authentication or a cluster trigger authentication. For more information, see "Understanding the custom metrics autoscaler trigger authentication".
@@ -312,7 +312,8 @@ You can create a custom metrics autoscaler for any `Job` object.
     - If `True`, scaling is taking place.
     - If `False`, scaling is not taking place because there are no metrics or there is a problem in one or more of the objects you created.
 
-## Additional resources {#nodes-cma-autoscaling-custom-adding-additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Understanding custom metrics autoscaler triggers](/openshift-docs-markdown/nodes/cma/nodes-cma-autoscaling-custom-trigger#nodes-cma-autoscaling-custom-overview-trigger)
 - [Understanding custom metrics autoscaler trigger authentications](/openshift-docs-markdown/nodes/cma/nodes-cma-autoscaling-custom-trigger-auth#nodes-cma-autoscaling-custom-trigger-auth)

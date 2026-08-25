@@ -18,8 +18,8 @@ For more information about installer-provisioned and user-provisioned installati
 Installing a cluster on installer-provisioned infrastructure
 :   You can install a cluster on Red Hat OpenStack Platform (RHOSP) infrastructure that is provisioned by the OpenShift Container Platform installation program, by using one of the following methods:
 
-- Installing a cluster on Red Hat OpenStack Platform (RHOSP) with customizations: You can install a customized cluster on RHOSP. The installation program allows for some customization to be applied at the installation stage. For other customization options, see "Postinstallation cluster tasks".
-- Installing a cluster on Red Hat OpenStack Platform (RHOSP) in a restricted network: You can install OpenShift Container Platform on RHOSP in a restricted or disconnected network by creating an internal mirror of the installation release content. You can use this method to install a cluster that does not require an active internet connection to obtain the software components. You can also use this installation method to ensure that your clusters only use container images that satisfy your organizational controls on external content.
+    - Installing a cluster on Red Hat OpenStack Platform (RHOSP) with customizations: You can install a customized cluster on RHOSP. The installation program allows for some customization to be applied at the installation stage. For other customization options, see "Postinstallation cluster tasks".
+    - Installing a cluster on Red Hat OpenStack Platform (RHOSP) in a restricted network: You can install OpenShift Container Platform on RHOSP in a restricted or disconnected network by creating an internal mirror of the installation release content. You can use this method to install a cluster that does not require an active internet connection to obtain the software components. You can also use this installation method to ensure that your clusters only use container images that satisfy your organizational controls on external content.
 
 Installing a cluster on user-provisioned infrastructure
 :   You can install a cluster on RHOSP infrastructure that you provision. By using this installation method, you can integrate your cluster with existing infrastructure and modifications. For installations on user-provisioned infrastructure, you must create all RHOSP resources, like Nova servers, Neutron ports, and security groups. You can use the provided Ansible playbooks to assist with the deployment process.
@@ -183,7 +183,8 @@ These steps scan each HTTPS endpoint in a Red Hat OpenStack Platform (RHOSP) ca
       > x509: certificate relies on legacy Common Name field, use SANs instead
       > ```
 
-## Additional resources {#additional-resources_preparing-to-install-on-openstack}
+**Additional resources**
+{._additional-resources}
 
 - [OpenShift Container Platform installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)
 - [selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing)

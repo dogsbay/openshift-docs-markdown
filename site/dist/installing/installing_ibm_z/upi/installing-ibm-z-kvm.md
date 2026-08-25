@@ -1,5 +1,5 @@
 ---
-title: Installing a cluster with {{ op_system_base }} KVM on {{ ibm_z_title }} and {{ ibm_linuxone_title }}
+title: Installing a cluster with RHEL KVM on IBM Z and IBM LinuxONE
 ---
 
 # Installing a cluster with RHEL KVM on IBM Z and IBM LinuxONE {#installing-ibm-z-kvm}
@@ -25,6 +25,7 @@ Before you install OpenShift Container Platform on IBM Z(R) with RHEL KVM by usi
 - You provisioned a RHEL Kernel Virtual Machine (KVM) system that is hosted on the logical partition (LPAR) and based on RHEL 8.6 or later. See [Red Hat Enterprise Linux 8 and 9 Life Cycle](https://access.redhat.com/support/policy/updates/errata#RHEL8_and_9_Life_Cycle).
 
 **Additional resources**
+{._additional-resources}
 
 - [Preparing to install a cluster on IBM Z using user-provisioned infrastructure](/openshift-docs-markdown/installing/installing_ibm_z/upi/upi-ibm-z-preparing-to-install#upi-ibm-z-preparing-to-install)
 - [OpenShift Container Platform installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)
@@ -192,19 +193,15 @@ Installing the cluster requires that you manually create the installation config
    > You must create a directory. Some installation assets, such as bootstrap X.509 certificates have short expiration intervals, so you must not reuse an installation directory. If you want to reuse individual files from another cluster installation, you can copy them into your directory. However, the file names for the installation assets might change between releases. Use caution when copying installation files from an earlier OpenShift Container Platform version.
 2. Customize the provided sample `install-config.yaml` file template and save the file in the `<installation_directory>`.
 
-   ```
-   :::note
-
-   You must name this configuration file `install-config.yaml`.
-
-   :::
-   ```
+   > [!NOTE]
+   > You must name this configuration file `install-config.yaml`.
 3. Back up the `install-config.yaml` file so that you can use it to install many clusters.
 
    > [!IMPORTANT]
    > Back up the `install-config.yaml` file now, because the installation process consumes the file in the next step.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installation configuration parameters for IBM Z(R)](/openshift-docs-markdown/installing/installing_ibm_z/installation-config-parameters-ibm-z#installation-config-parameters-ibm-z)
 
@@ -219,22 +216,12 @@ compute:
 - hyperthreading: Enabled
   name: worker
   replicas: 0
-{%- if ibm_z or ibm_z_kvm %}
   architecture: s390x
-{% endif %}
-{% if ibm_power %}
-  architecture: ppc64le
-{%- endif %}
 controlPlane:
   hyperthreading: Enabled
   name: master
   replicas: 3
-{%- if ibm_z or ibm_z_kvm %}
   architecture: s390x
-{% endif %}
-{% if ibm_power %}
-  architecture: ppc64le
-{%- endif %}
 metadata:
   name: test
 networking:
@@ -248,83 +235,12 @@ networking:
   - 172.30.0.0/16
 platform:
   none: {}
-{%- if not openshift_origin %}
 fips: false
-{% endif %}
-{% if not restricted %}
-{% if not openshift_origin %}
+
 pullSecret: '{"auths": ...}'
-{% endif %}
-{% if openshift_origin %}
-pullSecret: '{"auths": ...}'
-{% endif %}
-{% if not openshift_origin %}
+
 sshKey: 'ssh-ed25519 AAAA...'
-{% endif %}
-{% if openshift_origin %}
-sshKey: 'ssh-ed25519 AAAA...'
-{% endif %}
-{% endif %}
-{% if restricted %}
-{% if not openshift_origin %}
-pullSecret: '{"auths":{"<local_registry>": {"auth": "<credentials>","email": "you@example.com"}}}'
-{% endif %}
-{% if openshift_origin %}
-pullSecret: '{"auths":{"<local_registry>": {"auth": "<credentials>","email": "you@example.com"}}}'
-{% endif %}
-{% if not openshift_origin %}
-sshKey: 'ssh-ed25519 AAAA...'
-{% endif %}
-{% if openshift_origin %}
-sshKey: 'ssh-ed25519 AAAA...'
-{% endif %}
-{% endif %}
-{% if restricted %}
-{% if not openshift_origin %}
-additionalTrustBundle: |
-  -----BEGIN CERTIFICATE-----
-  ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
-  -----END CERTIFICATE-----
-imageContentSources:
-- mirrors:
-  {%- if ibm_z or ibm_z_kvm %}
-  - <local_repository>/ocp4/openshift4
-  source: quay.io/openshift-release-dev/ocp-release
-- mirrors:
-  - <local_repository>/ocp4/openshift4
-  source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
-{% endif %}
-{% if not (ibm_z or ibm_z_kvm) %}
-  - <local_registry>/<local_repository_name>/release
-  source: quay.io/openshift-release-dev/ocp-release
-- mirrors:
-  - <local_registry>/<local_repository_name>/release
-  source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
-{% endif %}
-{% endif %}
-{% if openshift_origin %}
-additionalTrustBundle: |
-  -----BEGIN CERTIFICATE-----
-  ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
-  -----END CERTIFICATE-----
-imageContentSources:
-- mirrors:
-  {%- if ibm_z or ibm_z_kvm %}
-  - <local_repository>/ocp4/openshift4
-  source: quay.io/openshift-release-dev/ocp-release
-- mirrors:
-  - <local_repository>/ocp4/openshift4
-  source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
-{% endif %}
-{% if not (ibm_z or ibm_z_kvm) %}
-  - <local_registry>/<local_repository_name>/release
-  source: quay.io/openshift-release-dev/ocp-release
-- mirrors:
-  - <local_registry>/<local_repository_name>/release
-  source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
-{% endif %}
-{% endif %}
-{%- endif %}
+
 ```
 
 where:
@@ -375,9 +291,7 @@ where:
 :   Specifies the IP address pool to use for service IP addresses. You can enter only one IP address pool. This block must not overlap with existing physical networks. If you need to access the services from an external network, configure load balancers and routers to manage the traffic.
 
 `platform`
-:   Specifies the platform. You must set the platform to `none`. You cannot provide additional platform configuration variables for
-
-    IBM Z(R) infrastructure.
+:   Specifies the platform. You must set the platform to `none`. You cannot provide additional platform configuration variables for IBM Z(R) infrastructure.
 
 > [!IMPORTANT]
 > Clusters that are installed with the platform type `none` are unable to use some features, such as managing compute machines with the Machine API. This limitation applies even if the compute machines that are attached to the cluster are installed on a platform that would normally support the feature. This parameter cannot be changed after installation.
@@ -393,8 +307,7 @@ where:
 `pullSecret`
 :   Specifies the [pull secret from Red Hat OpenShift Cluster Manager](https://console.redhat.com/openshift/install/pull-secret). This pull secret allows you to authenticate with the services that are provided by the included authorities, including Quay.io, which serves the container images for OpenShift Container Platform components.
 
-`sshKey`
-:   Specifies the SSH public key for the `core` user in Red Hat Enterprise Linux CoreOS (RHCOS).
+`sshKey`:: Specifies the SSH public key for the `core` user in Red Hat Enterprise Linux CoreOS (RHCOS).
 
 > [!NOTE]
 > For production OpenShift Container Platform clusters on which you want to perform installation debugging or disaster recovery, specify an SSH key that your `ssh-agent` process uses.
@@ -423,46 +336,42 @@ Production environments can deny direct access to the internet and instead have 
    proxy:
      httpProxy: http://<username>:<pswd>@<ip>:<port>
      httpsProxy: https://<username>:<pswd>@<ip>:<port>
+     noProxy: example.com
+   additionalTrustBundle: |
+       -----BEGIN CERTIFICATE-----
+       <MY_TRUSTED_CA_CERT>
+       -----END CERTIFICATE-----
+   additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle>
+   # ...
    ```
 
-{%- if not aws %} noProxy: example.com {% endif %} {% if aws %} noProxy: ec2.<aws_region>.amazonaws.com,elasticloadbalancing.<aws_region>.amazonaws.com,s3.<aws_region>.amazonaws.com {%- endif %} additionalTrustBundle: | -----BEGIN CERTIFICATE----- <MY_TRUSTED_CA_CERT> -----END CERTIFICATE----- additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle> # ... \`\`\`
+   where:
 
-````
-where:
+   `proxy.httpProxy`
+   :   Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be `http`.
 
-`proxy.httpProxy`
-:   Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be `http`.
+   `proxy.httpsProxy`
+   :   Specifies a proxy URL to use for creating HTTPS connections outside the cluster.
 
-`proxy.httpsProxy`
-:   Specifies a proxy URL to use for creating HTTPS connections outside the cluster.
+   `proxy.noProxy`
+   :   Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with `.` to match subdomains only. For example, `.y.com` matches `x.y.com`, but not `y.com`. Use `*` to bypass the proxy for all destinations.
 
-`proxy.noProxy`
-:   Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with `.` to match subdomains only. For example, `.y.com` matches `x.y.com`, but not `y.com`. Use `*` to bypass the proxy for all destinations.
+   `additionalTrustBundle`
+   :   If you specify this value, the installation program generates a config map named `user-ca-bundle` in the `openshift-config` namespace to hold the additional CA certificates. If you specify `additionalTrustBundle` and at least one proxy setting, the `Proxy` object references the `user-ca-bundle` config map in the `trustedCA` field. The Cluster Network Operator then creates a `trusted-ca-bundle` config map that merges the contents specified for the `trustedCA` parameter with the RHCOS trust bundle. You must set the `additionalTrustBundle` field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.
 
-`additionalTrustBundle`
-:   If you specify this value, the installation program generates a config map named `user-ca-bundle` in the `openshift-config` namespace to hold the additional CA certificates. If you specify `additionalTrustBundle` and at least one proxy setting, the `Proxy` object references the `user-ca-bundle` config map in the `trustedCA` field. The Cluster Network Operator then creates a `trusted-ca-bundle` config map that merges the contents specified for the `trustedCA` parameter with the RHCOS trust bundle. You must set the `additionalTrustBundle` field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.
+   `additionalTrustBundlePolicy`
+   :   Specifies the policy that determines the configuration of the `Proxy` object to reference the `user-ca-bundle` config map in the `trustedCA` field. The allowed values are `Proxyonly` and `Always`. Use `Proxyonly` to reference the `user-ca-bundle` config map only when you configure an `http/https` proxy. Use `Always` to always reference the `user-ca-bundle` config map. The default value is `Proxyonly`. Optional parameter.
 
-`additionalTrustBundlePolicy`
-:   Specifies the policy that determines the configuration of the `Proxy` object to reference the `user-ca-bundle` config map in the `trustedCA` field. The allowed values are `Proxyonly` and `Always`. Use `Proxyonly` to reference the `user-ca-bundle` config map only when you configure an `http/https` proxy. Use `Always` to always reference the `user-ca-bundle` config map. The default value is `Proxyonly`. Optional parameter.
+   > [!NOTE]
+   > The installation program does not support the proxy `readinessEndpoints` field.
 
-:::note
-
-The installation program does not support the proxy `readinessEndpoints` field.
-
-:::
-
-:::note
-
-If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
-
-```terminal
-$ ./openshift-install wait-for install-complete --log-level debug
-```
-
-:::
-````
-
-1. Save the file and reference it when installing OpenShift Container Platform.
+   > [!NOTE]
+   > If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
+   >
+   > ```terminal
+   > $ ./openshift-install wait-for install-complete --log-level debug
+   > ```
+2. Save the file and reference it when installing OpenShift Container Platform.
 
    The installation program creates a cluster-wide proxy named `cluster` that uses the proxy settings in the `install-config.yaml` file. If you do not give proxy settings, the installation program still creates a `cluster` `Proxy` object, but it has a nil `spec`.
 
@@ -526,7 +435,7 @@ You can specify the cluster network plugin configuration for your cluster by set
 
 The fields for the Cluster Network Operator (CNO) are described in the following table:
 
-***Cluster Network Operator configuration object***
+**Cluster Network Operator configuration object**
 
 <table>
 <thead>
@@ -550,7 +459,7 @@ The fields for the Cluster Network Operator (CNO) are described in the following
 <tr>
   <td><code>spec.serviceNetwork</code></td>
   <td><code>array</code></td>
-  <td>A block of IP addresses for services. If you use dual-stack networking, specify IPv4 and IPv6 address families. For example:<br><br><pre>spec:&#10;  serviceNetwork:&#10;  - 172.30.0.0/14&#10;  - fd02::/112</pre><br><br>If you install a cluster on AWS with dual-stack networking, the order of addresses must match the dual-stack configuration you selected. For example, if you specified the <code>DualStackIPv4Primary</code>, list the IPv4 address first.<br><br>This value is ready-only and inherited from the <code>Network.config.openshift.io</code> object named <code>cluster</code> during cluster installation.You can customize this field only in the <code>install-config.yaml</code> file before you create the manifests. The value is read-only in the manifest file.</td>
+  <td>A block of IP addresses for services. If you use dual-stack networking, specify IPv4 and IPv6 address families. For example:<br><br><pre>spec:&#10;  serviceNetwork:&#10;  - 172.30.0.0/14&#10;  - fd02::/112</pre><br><br>If you install a cluster on AWS with dual-stack networking, the order of addresses must match the dual-stack configuration you selected. For example, if you specified the <code>DualStackIPv4Primary</code>, list the IPv4 address first.<br><br>   You can customize this field only in the <code>install-config.yaml</code> file before you create the manifests. The value is read-only in the manifest file. </td>
 </tr>
 <tr>
   <td><code>spec.defaultNetwork</code></td>
@@ -560,7 +469,7 @@ The fields for the Cluster Network Operator (CNO) are described in the following
 <tr>
   <td><code>spec.additionalRoutingCapabilities.providers</code></td>
   <td><code>array</code></td>
-  <td>This setting enables a dynamic routing provider. The FRR routing capability provider is required for the route advertisement feature. The only supported value is <code>FRR</code>.<br><br>--<ul><li><code>FRR</code>: The FRR routing provider</li></ul>--<br><br><pre>spec:&#10;  additionalRoutingCapabilities:&#10;    providers:&#10;    - FRR</pre></td>
+  <td>This setting enables a dynamic routing provider. The FRR routing capability provider is required for the route advertisement feature. The only supported value is <code>FRR</code>.<br><br><ul><li><code>FRR</code>: The FRR routing provider</li></ul><br><br><pre>spec:&#10;  additionalRoutingCapabilities:&#10;    providers:&#10;    - FRR</pre></td>
 </tr>
 </tbody>
 </table>
@@ -572,7 +481,7 @@ The fields for the Cluster Network Operator (CNO) are described in the following
 
 The values for the `defaultNetwork` object are defined in the following table:
 
-*`defaultNetwork`** object***
+**`defaultNetwork` object**
 
 <table>
 <thead>
@@ -586,7 +495,7 @@ The values for the `defaultNetwork` object are defined in the following table:
 <tr>
   <td><code>type</code></td>
   <td><code>string</code></td>
-  <td><code>OVNKubernetes</code>. The Red Hat OpenShift Networking network plugin is selected during installation. This value cannot be changed after cluster installation.<dl><dt>Note</dt><dd>OpenShift Container Platform uses the OVN-Kubernetes network plugin by default.</dd></dl></td>
+  <td><code>OVNKubernetes</code>. The Red Hat OpenShift Networking network plugin is selected during installation. This value cannot be changed after cluster installation.<dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>OpenShift Container Platform uses the OVN-Kubernetes network plugin by default.</dd></dl></td>
 </tr>
 <tr>
   <td><code>ovnKubernetesConfig</code></td>
@@ -600,7 +509,7 @@ The values for the `defaultNetwork` object are defined in the following table:
 
 The following table describes the configuration fields for the OVN-Kubernetes network plugin:
 
-*`ovnKubernetesConfig`** object***
+**`ovnKubernetesConfig` object**
 
 <table>
 <thead>
@@ -614,17 +523,17 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>mtu</code></td>
   <td><code>integer</code></td>
-  <td>The maximum transmission unit (MTU) for the Geneve (Generic Network Virtualization Encapsulation) overlay network. This is detected automatically based on the MTU of the primary network interface. You do not normally need to override the detected MTU.<br><br>If the auto-detected value is not what you expect it to be, confirm that the MTU on the primary network interface on your nodes is correct. You cannot use this option to change the MTU value of the primary network interface on the nodes.<br><br>If your cluster requires different MTU values for different nodes, you must set this value to <code>100</code> less than the lowest MTU value in your cluster. For example, if some nodes in your cluster have an MTU of <code>9001</code>, and some have an MTU of <code>1500</code>, you must set this value to <code>1400</code>.The maximum transmission unit (MTU) for the Geneve (Generic Network Virtualization Encapsulation) overlay network. This value is normally configured automatically.</td>
+  <td> The maximum transmission unit (MTU) for the Geneve (Generic Network Virtualization Encapsulation) overlay network. This is detected automatically based on the MTU of the primary network interface. You do not normally need to override the detected MTU.<br><br>If the auto-detected value is not what you expect it to be, confirm that the MTU on the primary network interface on your nodes is correct. You cannot use this option to change the MTU value of the primary network interface on the nodes.<br><br>If your cluster requires different MTU values for different nodes, you must set this value to <code>100</code> less than the lowest MTU value in your cluster. For example, if some nodes in your cluster have an MTU of <code>9001</code>, and some have an MTU of <code>1500</code>, you must set this value to <code>1400</code>.  </td>
 </tr>
 <tr>
   <td><code>genevePort</code></td>
   <td><code>integer</code></td>
-  <td>The port to use for all Geneve packets. The default value is <code>6081</code>. This value cannot be changed after cluster installation.The UDP port for the Geneve overlay network.</td>
+  <td> The port to use for all Geneve packets. The default value is <code>6081</code>. This value cannot be changed after cluster installation.  </td>
 </tr>
 <tr>
   <td><code>ipsecConfig</code></td>
   <td><code>object</code></td>
-  <td>Specify a configuration object for customizing the IPsec configuration.An object describing the IPsec mode for the cluster.</td>
+  <td> Specify a configuration object for customizing the IPsec configuration.  </td>
 </tr>
 <tr>
   <td><code>ipv4</code></td>
@@ -644,17 +553,17 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>routeAdvertisements</code></td>
   <td><code>string</code></td>
-  <td>Specifies whether to advertise cluster network routes. The default value is <code>Disabled</code>.--<ul><li><code>Enabled</code>: Import routes to the cluster network and advertise cluster network routes as configured in <code>RouteAdvertisements</code> objects.</li><li><code>Disabled</code>: Do not import routes to the cluster network or advertise cluster network routes.</li></ul>--</td>
+  <td>Specifies whether to advertise cluster network routes. The default value is <code>Disabled</code>.<ul><li><code>Enabled</code>: Import routes to the cluster network and advertise cluster network routes as configured in <code>RouteAdvertisements</code> objects.</li><li><code>Disabled</code>: Do not import routes to the cluster network or advertise cluster network routes.</li></ul></td>
 </tr>
 <tr>
   <td><code>gatewayConfig</code></td>
   <td><code>object</code></td>
-  <td>Optional: Specify a configuration object for customizing how egress traffic is sent to the node gateway. Valid values are <code>Shared</code> and <code>Local</code>. The default value is <code>Shared</code>. In the default setting, the Open vSwitch (OVS) outputs traffic directly to the node IP interface. If you are using hardware offloading, Red Hat recommends to use the default <code>Shared</code> gateway mode to bypass the host routing plane. In the <code>Local</code> setting, it traverses the host network; consequently, it gets applied to the routing table of the host.<br><br><dl><dt>Note</dt><dd>While migrating egress traffic, you can expect some disruption to workloads and service traffic until the Cluster Network Operator (CNO) successfully rolls out the changes.</dd></dl></td>
+  <td>Optional: Specify a configuration object for customizing how egress traffic is sent to the node gateway. Valid values are <code>Shared</code> and <code>Local</code>. The default value is <code>Shared</code>. In the default setting, the Open vSwitch (OVS) outputs traffic directly to the node IP interface. If you are using hardware offloading, Red Hat recommends to use the default <code>Shared</code> gateway mode to bypass the host routing plane. In the <code>Local</code> setting, it traverses the host network; consequently, it gets applied to the routing table of the host.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>While migrating egress traffic, you can expect some disruption to workloads and service traffic until the Cluster Network Operator (CNO) successfully rolls out the changes.</dd></dl></td>
 </tr>
 </tbody>
 </table>
 
-*`ovnKubernetesConfig.ipv4`** object***
+**`ovnKubernetesConfig.ipv4` object**
 
 <table>
 <thead>
@@ -678,7 +587,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 </tbody>
 </table>
 
-*`ovnKubernetesConfig.ipv6`** object***
+**`ovnKubernetesConfig.ipv6` object**
 
 <table>
 <thead>
@@ -702,7 +611,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 </tbody>
 </table>
 
-*`policyAuditConfig`** object***
+**`policyAuditConfig` object**
 
 <table>
 <thead>
@@ -731,7 +640,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>destination</code></td>
   <td>string</td>
-  <td>One of the following additional audit log targets:<br><br><code>libc</code>:: The libc <code>syslog()</code> function of the journald process on the host.<code>udp:<host>:<port></code>:: A syslog server. Replace <code><host>:<port></code> with the host and port of the syslog server.<code>unix:<file></code>:: A Unix Domain Socket file specified by <code><file></code>.<code>null</code>:: Do not send the audit logs to any additional target.</td>
+  <td>One of the following additional audit log targets:<br><br><dl><dt><code>libc</code></dt><dd>The libc <code>syslog()</code> function of the journald process on the host.</dd><dt><code>udp:&lt;host&gt;:&lt;port&gt;</code></dt><dd>A syslog server. Replace <code>&lt;host&gt;:&lt;port&gt;</code> with the host and port of the syslog server.</dd><dt><code>unix:&lt;file&gt;</code></dt><dd>A Unix Domain Socket file specified by <code>&lt;file&gt;</code>.</dd><dt><code>null</code></dt><dd>Do not send the audit logs to any additional target.</dd></dl></td>
 </tr>
 <tr>
   <td><code>syslogFacility</code></td>
@@ -743,7 +652,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 
 <a name="gatewayConfig-object_installing-ibm-z-kvm"></a>
 
-*`gatewayConfig`** object***
+**`gatewayConfig` object**
 
 <table>
 <thead>
@@ -757,12 +666,12 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>routingViaHost</code></td>
   <td><code>boolean</code></td>
-  <td>Set this field to <code>true</code> to send egress traffic from pods to the host networking stack.For highly-specialized installations and applications that rely on manually configured routes in the kernel routing table, you might want to route egress traffic to the host networking stack.By default, egress traffic is processed in OVN to exit the cluster and is not affected by specialized routes in the kernel routing table.The default value is <code>false</code>.<br><br>This field has an interaction with the Open vSwitch hardware offloading feature.If you set this field to <code>true</code>, you do not receive the performance benefits of the offloading because egress traffic is processed by the host networking stack.</td>
+  <td>Set this field to <code>true</code> to send egress traffic from pods to the host networking stack. For highly-specialized installations and applications that rely on manually configured routes in the kernel routing table, you might want to route egress traffic to the host networking stack. By default, egress traffic is processed in OVN to exit the cluster and is not affected by specialized routes in the kernel routing table. The default value is <code>false</code>.<br><br>This field has an interaction with the Open vSwitch hardware offloading feature. If you set this field to <code>true</code>, you do not receive the performance benefits of the offloading because egress traffic is processed by the host networking stack.</td>
 </tr>
 <tr>
   <td><code>ipForwarding</code></td>
   <td><code>object</code></td>
-  <td>You can control IP forwarding for all traffic on OVN-Kubernetes managed interfaces by using the <code>ipForwarding</code> specification in the <code>Network</code> resource. Specify <code>Restricted</code> to only allow IP forwarding for Kubernetes related traffic. Specify <code>Global</code> to allow forwarding of all IP traffic. For new installations, the default is <code>Restricted</code>. For updates to OpenShift Container Platform 4.14 or later, the default is <code>Global</code>.<dl><dt>Note</dt><dd>The default value of <code>Restricted</code> sets the IP forwarding to drop.</dd></dl></td>
+  <td>You can control IP forwarding for all traffic on OVN-Kubernetes managed interfaces by using the <code>ipForwarding</code> specification in the <code>Network</code> resource. Specify <code>Restricted</code> to only allow IP forwarding for Kubernetes related traffic. Specify <code>Global</code> to allow forwarding of all IP traffic. For new installations, the default is <code>Restricted</code>. For updates to OpenShift Container Platform 4.14 or later, the default is <code>Global</code>.<dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>The default value of <code>Restricted</code> sets the IP forwarding to drop.</dd></dl></td>
 </tr>
 <tr>
   <td><code>ipv4</code></td>
@@ -779,7 +688,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 
 <a name="gatewayconfig-ipv4-object_installing-ibm-z-kvm"></a>
 
-*`gatewayConfig.ipv4`** object***
+**`gatewayConfig.ipv4` object**
 
 <table>
 <thead>
@@ -793,14 +702,14 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>internalMasqueradeSubnet</code></td>
   <td><code>string</code></td>
-  <td>The masquerade IPv4 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses as well as the shared gateway bridge interface. The default value is <code>169.254.169.0/29</code>.<dl><dt>Important</dt><dd>For OpenShift Container Platform 4.17 and later versions, clusters use <code>169.254.0.0/17</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</dd></dl></td>
+  <td>The masquerade IPv4 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses as well as the shared gateway bridge interface. The default value is <code>169.254.169.0/29</code>.<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>For OpenShift Container Platform 4.17 and later versions, clusters use <code>169.254.0.0/17</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</dd></dl></td>
 </tr>
 </tbody>
 </table>
 
 <a name="gatewayconfig-ipv6-object_installing-ibm-z-kvm"></a>
 
-*`gatewayConfig.ipv6`** object***
+**`gatewayConfig.ipv6` object**
 
 <table>
 <thead>
@@ -814,14 +723,14 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>internalMasqueradeSubnet</code></td>
   <td><code>string</code></td>
-  <td>The masquerade IPv6 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses as well as the shared gateway bridge interface. The default value is <code>fd69::/125</code>.<dl><dt>Important</dt><dd>For OpenShift Container Platform 4.17 and later versions, clusters use <code>fd69::/112</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</dd></dl></td>
+  <td>The masquerade IPv6 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses as well as the shared gateway bridge interface. The default value is <code>fd69::/125</code>.<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>For OpenShift Container Platform 4.17 and later versions, clusters use <code>fd69::/112</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</dd></dl></td>
 </tr>
 </tbody>
 </table>
 
 <a name="nw-operator-cr-ipsec_installing-ibm-z-kvm"></a>
 
-*`ipsecConfig`** object***
+**`ipsecConfig` object**
 
 <table>
 <thead>
@@ -835,7 +744,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>mode</code></td>
   <td><code>string</code></td>
-  <td>Specifies the behavior of the IPsec implementation. Must be one of the following values:<br><br>--<ul><li><code>Disabled</code>: IPsec is not enabled on cluster nodes.</li><li><code>External</code>: IPsec is enabled for network traffic with external hosts.</li><li><code>Full</code>: IPsec is enabled for pod traffic and network traffic with external hosts.</li></ul>--</td>
+  <td>Specifies the behavior of the IPsec implementation. Must be one of the following values:<br><br><ul><li><code>Disabled</code>: IPsec is not enabled on cluster nodes.</li><li><code>External</code>: IPsec is enabled for network traffic with external hosts.</li><li><code>Full</code>: IPsec is enabled for pod traffic and network traffic with external hosts.</li></ul></td>
 </tr>
 </tbody>
 </table>
@@ -913,8 +822,6 @@ The installation program converts the installation configuration into Kubernetes
    └── worker.ign
    ```
 
-   :::
-
 ## Installing RHCOS and starting the OpenShift Container Platform bootstrap process {#installation-ibm-z-kvm-user-infra-installing-rhcos_installing-ibm-z-kvm}
 
 To install OpenShift Container Platform on IBM Z(R) infrastructure that you provision, you install Red Hat Enterprise Linux CoreOS (RHCOS) as Red Hat Enterprise Linux (RHEL) guest virtual machines by using either a prepackaged QCOW2 image or a full installation on a new disk image.
@@ -982,7 +889,7 @@ You can install RHCOS using IBM(R) Secure Execution to run nodes as protected gu
 
    For example:
 
-   ```terminal
+   ````terminal
    {
      "ignition": { "version": "3.0.0" },
      "storage": {
@@ -1005,44 +912,39 @@ You can install RHCOS using IBM(R) Secure Execution to run nodes as protected gu
      }
    }
    ```
-
-   ```
+   ````
 
    Replace `<base64_data_uri>` with an Ignition data URI containing the Base64 encoded host key document.
 
-   :::note
-
-   You can add as many host keys as needed if you want your node to be able to run on multiple {{ ibm_z_name }} machines.
-
-   :::
-   ```
+   > [!NOTE]
+   > You can add as many host keys as needed if you want your node to be able to run on multiple IBM Z(R) machines.
 3. To generate the Base64 encoded string, run the following command:
 
    ```terminal
    base64 <your-hostkey>.crt
    ```
 
-   Compared to guests not running {{ ibm_name }} Secure Execution, the first boot of the machine is longer because the entire image is encrypted with a randomly generated LUKS passphrase before the Ignition phase.
+   Compared to guests not running IBM(R) Secure Execution, the first boot of the machine is longer because the entire image is encrypted with a randomly generated LUKS passphrase before the Ignition phase.
 4. Add Ignition protection
 
    To protect the secrets that are stored in the Ignition config file from being read or even modified, you must encrypt the Ignition config file.
 
    > [!NOTE]
-   > To achieve the desired security, Ignition logging and local login are disabled by default when running {{ ibm_name }} Secure Execution.
+   > To achieve the desired security, Ignition logging and local login are disabled by default when running IBM(R) Secure Execution.
 
    1. Fetch the public GPG key for the `secex-qemu.qcow2` image and encrypt the Ignition config with the key by running the following command:
 
       ```terminal
       gpg --recipient-file /path/to/ignition.gpg.pub --yes --output /path/to/config.ign.gpg --verbose --armor --encrypt /path/to/config.ign
       ```
-5. Follow the fast-track installation of {{ op_system }} to install nodes by using the {{ ibm_name }} Secure Execution QCOW image.
+5. Follow the fast-track installation of RHCOS to install nodes by using the IBM(R) Secure Execution QCOW image.
 
    > [!NOTE]
    > Before you start the VM, replace `serial=ignition` with `serial=ignition_crypted`, and add the `launchSecurity` parameter.
 
 **Verification**
 
-When you have completed the fast-track installation of {{ op_system }} and Ignition runs at the first boot, verify if decryption is successful.
+When you have completed the fast-track installation of RHCOS and Ignition runs at the first boot, verify if decryption is successful.
 
 - If the decryption is successful, you can expect an output similar to the following example:
 
@@ -1064,6 +966,7 @@ When you have completed the fast-track installation of {{ op_system }} and Ignit
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Introducing IBM(R) Secure Execution for Linux](https://www.ibm.com/docs/en/linux-on-systems?topic=virtualization-secure-execution)
 - [Linux as an IBM(R) Secure Execution host or guest](https://www.ibm.com/docs/en/linux-on-systems?topic=ibm-z-secure-execution)
@@ -1086,7 +989,7 @@ Enabling hardware-based Linux Unified Key Setup (LUKS) encryption via IBM(R) Cry
 
      ```yaml
      variant: openshift
-     version: {{ product_version }}.0
+     version: 4.22.0
      metadata:
        name: main-storage
        labels:
@@ -1113,27 +1016,27 @@ Enabling hardware-based Linux Unified Key Setup (LUKS) encryption via IBM(R) Cry
 
    **Example kernel parameter file for the control plane machine**
 
-```terminal
-cio_ignore=all,!condev rd.neednet=1 \
-console=ttysclp0 \
-ignition.firstboot ignition.platform.id=metal \
-coreos.inst.ignition_url=http://<http_server>/master.ign \
-coreos.live.rootfs_url=http://<http_server>/rhcos-<version>-live-rootfs.<architecture>.img \
-ip=<ip_address>::<gateway>:<netmask>:<hostname>::none nameserver=<dns> \
-rd.znet=qeth,0.0.bdd0,0.0.bdd1,0.0.bdd2,layer2=1 \
-rd.zfcp=0.0.5677,0x600606680g7f0056,0x034F000000000000
-```
+   ```terminal
+   cio_ignore=all,!condev rd.neednet=1 \
+   console=ttysclp0 \
+   ignition.firstboot ignition.platform.id=metal \
+   coreos.inst.ignition_url=http://<http_server>/master.ign \
+   coreos.live.rootfs_url=http://<http_server>/rhcos-<version>-live-rootfs.<architecture>.img \
+   ip=<ip_address>::<gateway>:<netmask>:<hostname>::none nameserver=<dns> \
+   rd.znet=qeth,0.0.bdd0,0.0.bdd1,0.0.bdd2,layer2=1 \
+   rd.zfcp=0.0.5677,0x600606680g7f0056,0x034F000000000000
+   ```
 
-where:
+   where:
 
-`coreos.inst.ignition_url`
-:   Specifies the location of the Ignition configuration file. Use `master.ign` or `worker.ign`. You can only use the HTTP and HTTPS protocols.
+   `coreos.inst.ignition_url`
+   :   Specifies the location of the Ignition configuration file. Use `master.ign` or `worker.ign`. You can only use the HTTP and HTTPS protocols.
 
-`coreos.live.rootfs_url`
-:   Specifies the location of the `rootfs` artifact for the `kernel` and `initramfs` that you want to boot. You can only use the HTTP and HTTPS protocols.
+   `coreos.live.rootfs_url`
+   :   Specifies the location of the `rootfs` artifact for the `kernel` and `initramfs` that you want to boot. You can only use the HTTP and HTTPS protocols.
 
-    > [!NOTE]
-    > Write all options in the parameter file as a single line and make sure you have no newline characters.
+   > [!NOTE]
+   > Write all options in the parameter file as a single line and make sure you have no newline characters.
 
 #### Configuring NBDE with static IP in an IBM Z or IBM LinuxONE environment {#configuring-nbde-static-ip-ibm-z-linuxone-environment_installing-ibm-z-kvm}
 
@@ -1153,7 +1056,7 @@ Enabling NBDE disk encryption in an IBM Z(R) or IBM(R) LinuxONE environment requ
 
    ```yaml
    variant: openshift
-   version: {{ product_version }}.0
+   version: 4.22.0
    metadata:
      name: master-storage
      labels:
@@ -1213,16 +1116,17 @@ Enabling NBDE disk encryption in an IBM Z(R) or IBM(R) LinuxONE environment requ
 
    where:
 
-`coreos.inst.ignition_url`
-:   Specifies the location of the Ignition config file. Use `master.ign` or `worker.ign`. Only HTTP and HTTPS protocols are supported.
+   `coreos.inst.ignition_url`
+   :   Specifies the location of the Ignition config file. Use `master.ign` or `worker.ign`. Only HTTP and HTTPS protocols are supported.
 
-`coreos.live.rootfs_url`
-:   Specifies the location of the `rootfs` artifact for the `kernel` and `initramfs` you are booting. Only HTTP and HTTPS protocols are supported.
+   `coreos.live.rootfs_url`
+   :   Specifies the location of the `rootfs` artifact for the `kernel` and `initramfs` you are booting. Only HTTP and HTTPS protocols are supported.
 
-> [!NOTE]
-> Write all options in the parameter file as a single line and make sure you have no newline characters.
+   > [!NOTE]
+   > Write all options in the parameter file as a single line and make sure you have no newline characters.
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating machine configs with Butane](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-butane_installing-customizing)
 
@@ -1347,6 +1251,7 @@ The following information provides examples for configuring networking on your R
 The networking options are passed to the `dracut` tool during system boot. For more information about the networking options supported by `dracut`, see the `dracut.cmdline` manual page.
 
 **Additional resources**
+{._additional-resources}
 
 - [`dracut.cmdline` manual page](https://www.man7.org/linux/man-pages/man7/dracut.cmdline.7.html)
 
@@ -1628,7 +1533,8 @@ To allow newly added machines to join your OpenShift Container Platform cluster,
      where:
 
      `<csr_name>`
-     :   Specifies the name of a CSR from the list of current CSRs. \*   To approve all pending CSRs, run the following command:
+     :   Specifies the name of a CSR from the list of current CSRs.
+   - To approve all pending CSRs, run the following command:
 
      ```terminal
      $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs --no-run-if-empty oc adm certificate approve
@@ -1659,7 +1565,8 @@ To allow newly added machines to join your OpenShift Container Platform cluster,
      where:
 
      `<csr_name>`
-     :   Specifies the name of a CSR from the list of current CSRs. \*   To approve all pending CSRs, run the following command:
+     :   Specifies the name of a CSR from the list of current CSRs.
+   - To approve all pending CSRs, run the following command:
 
      ```terminal
      $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs oc adm certificate approve
@@ -1700,37 +1607,37 @@ After the control plane initializes, you must immediately configure some Operato
 
    ```terminal {title="Example output"}
    NAME                                       VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE
-   authentication                             {{ product_version }}.0    True        False         False      19m
-   baremetal                                  {{ product_version }}.0    True        False         False      37m
-   cloud-credential                           {{ product_version }}.0    True        False         False      40m
-   cluster-autoscaler                         {{ product_version }}.0    True        False         False      37m
-   config-operator                            {{ product_version }}.0    True        False         False      38m
-   console                                    {{ product_version }}.0    True        False         False      26m
-   csi-snapshot-controller                    {{ product_version }}.0    True        False         False      37m
-   dns                                        {{ product_version }}.0    True        False         False      37m
-   etcd                                       {{ product_version }}.0    True        False         False      36m
-   image-registry                             {{ product_version }}.0    True        False         False      31m
-   ingress                                    {{ product_version }}.0    True        False         False      30m
-   insights                                   {{ product_version }}.0    True        False         False      31m
-   kube-apiserver                             {{ product_version }}.0    True        False         False      26m
-   kube-controller-manager                    {{ product_version }}.0    True        False         False      36m
-   kube-scheduler                             {{ product_version }}.0    True        False         False      36m
-   kube-storage-version-migrator              {{ product_version }}.0    True        False         False      37m
-   machine-api                                {{ product_version }}.0    True        False         False      29m
-   machine-approver                           {{ product_version }}.0    True        False         False      37m
-   machine-config                             {{ product_version }}.0    True        False         False      36m
-   marketplace                                {{ product_version }}.0    True        False         False      37m
-   monitoring                                 {{ product_version }}.0    True        False         False      29m
-   network                                    {{ product_version }}.0    True        False         False      38m
-   node-tuning                                {{ product_version }}.0    True        False         False      37m
-   openshift-apiserver                        {{ product_version }}.0    True        False         False      32m
-   openshift-controller-manager               {{ product_version }}.0    True        False         False      30m
-   openshift-samples                          {{ product_version }}.0    True        False         False      32m
-   operator-lifecycle-manager                 {{ product_version }}.0    True        False         False      37m
-   operator-lifecycle-manager-catalog         {{ product_version }}.0    True        False         False      37m
-   operator-lifecycle-manager-packageserver   {{ product_version }}.0    True        False         False      32m
-   service-ca                                 {{ product_version }}.0    True        False         False      38m
-   storage                                    {{ product_version }}.0    True        False         False      37m
+   authentication                             4.22.0    True        False         False      19m
+   baremetal                                  4.22.0    True        False         False      37m
+   cloud-credential                           4.22.0    True        False         False      40m
+   cluster-autoscaler                         4.22.0    True        False         False      37m
+   config-operator                            4.22.0    True        False         False      38m
+   console                                    4.22.0    True        False         False      26m
+   csi-snapshot-controller                    4.22.0    True        False         False      37m
+   dns                                        4.22.0    True        False         False      37m
+   etcd                                       4.22.0    True        False         False      36m
+   image-registry                             4.22.0    True        False         False      31m
+   ingress                                    4.22.0    True        False         False      30m
+   insights                                   4.22.0    True        False         False      31m
+   kube-apiserver                             4.22.0    True        False         False      26m
+   kube-controller-manager                    4.22.0    True        False         False      36m
+   kube-scheduler                             4.22.0    True        False         False      36m
+   kube-storage-version-migrator              4.22.0    True        False         False      37m
+   machine-api                                4.22.0    True        False         False      29m
+   machine-approver                           4.22.0    True        False         False      37m
+   machine-config                             4.22.0    True        False         False      36m
+   marketplace                                4.22.0    True        False         False      37m
+   monitoring                                 4.22.0    True        False         False      29m
+   network                                    4.22.0    True        False         False      38m
+   node-tuning                                4.22.0    True        False         False      37m
+   openshift-apiserver                        4.22.0    True        False         False      32m
+   openshift-controller-manager               4.22.0    True        False         False      30m
+   openshift-samples                          4.22.0    True        False         False      32m
+   operator-lifecycle-manager                 4.22.0    True        False         False      37m
+   operator-lifecycle-manager-catalog         4.22.0    True        False         False      37m
+   operator-lifecycle-manager-packageserver   4.22.0    True        False         False      32m
+   service-ca                                 4.22.0    True        False         False      38m
+   storage                                    4.22.0    True        False         False      37m
    ```
 2. Configure the Operators that are not available.
 
@@ -1749,10 +1656,7 @@ As a cluster administrator, following installation you must configure your regis
 **Prerequisites**
 
 - You have access to the cluster as a user with the `cluster-admin` role.
-- You have a cluster
-
-on IBM Z(R).
-
+- You have a cluster on IBM Z(R).
 - You have provisioned persistent storage for your cluster, such as Red Hat OpenShift Data Foundation.
 
   > [!IMPORTANT]
@@ -1798,7 +1702,7 @@ on IBM Z(R).
 
    ```terminal {title="Example output"}
    NAME             VERSION              AVAILABLE   PROGRESSING   DEGRADED   SINCE   MESSAGE
-   image-registry   {{ product_version }}                 True        False         False      6h50m
+   image-registry   4.22                 True        False         False      6h50m
    ```
 5. Ensure that your registry is set to managed to enable building and pushing of images.
 
@@ -1862,37 +1766,37 @@ To finalize the installation on user-provisioned infrastructure, complete the cl
 
    ```terminal {title="Example output"}
    NAME                                       VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE
-   authentication                             {{ product_version }}.0    True        False         False      19m
-   baremetal                                  {{ product_version }}.0    True        False         False      37m
-   cloud-credential                           {{ product_version }}.0    True        False         False      40m
-   cluster-autoscaler                         {{ product_version }}.0    True        False         False      37m
-   config-operator                            {{ product_version }}.0    True        False         False      38m
-   console                                    {{ product_version }}.0    True        False         False      26m
-   csi-snapshot-controller                    {{ product_version }}.0    True        False         False      37m
-   dns                                        {{ product_version }}.0    True        False         False      37m
-   etcd                                       {{ product_version }}.0    True        False         False      36m
-   image-registry                             {{ product_version }}.0    True        False         False      31m
-   ingress                                    {{ product_version }}.0    True        False         False      30m
-   insights                                   {{ product_version }}.0    True        False         False      31m
-   kube-apiserver                             {{ product_version }}.0    True        False         False      26m
-   kube-controller-manager                    {{ product_version }}.0    True        False         False      36m
-   kube-scheduler                             {{ product_version }}.0    True        False         False      36m
-   kube-storage-version-migrator              {{ product_version }}.0    True        False         False      37m
-   machine-api                                {{ product_version }}.0    True        False         False      29m
-   machine-approver                           {{ product_version }}.0    True        False         False      37m
-   machine-config                             {{ product_version }}.0    True        False         False      36m
-   marketplace                                {{ product_version }}.0    True        False         False      37muser
-   monitoring                                 {{ product_version }}.0    True        False         False      29m
-   network                                    {{ product_version }}.0    True        False         False      38m
-   node-tuning                                {{ product_version }}.0    True        False         False      37m
-   openshift-apiserver                        {{ product_version }}.0    True        False         False      32muser
-   openshift-controller-manager               {{ product_version }}.0    True        False         False      30m
-   openshift-samples                          {{ product_version }}.0    True        False         False      32m
-   operator-lifecycle-manager                 {{ product_version }}.0    True        False         False      37m
-   operator-lifecycle-manager-catalog         {{ product_version }}.0    True        False         False      37m
-   operator-lifecycle-manager-packageserver   {{ product_version }}.0    True        False         False      32m
-   service-ca                                 {{ product_version }}.0    True        False         False      38m
-   storage                                    {{ product_version }}.0    True        False         False      37m
+   authentication                             4.22.0    True        False         False      19m
+   baremetal                                  4.22.0    True        False         False      37m
+   cloud-credential                           4.22.0    True        False         False      40m
+   cluster-autoscaler                         4.22.0    True        False         False      37m
+   config-operator                            4.22.0    True        False         False      38m
+   console                                    4.22.0    True        False         False      26m
+   csi-snapshot-controller                    4.22.0    True        False         False      37m
+   dns                                        4.22.0    True        False         False      37m
+   etcd                                       4.22.0    True        False         False      36m
+   image-registry                             4.22.0    True        False         False      31m
+   ingress                                    4.22.0    True        False         False      30m
+   insights                                   4.22.0    True        False         False      31m
+   kube-apiserver                             4.22.0    True        False         False      26m
+   kube-controller-manager                    4.22.0    True        False         False      36m
+   kube-scheduler                             4.22.0    True        False         False      36m
+   kube-storage-version-migrator              4.22.0    True        False         False      37m
+   machine-api                                4.22.0    True        False         False      29m
+   machine-approver                           4.22.0    True        False         False      37m
+   machine-config                             4.22.0    True        False         False      36m
+   marketplace                                4.22.0    True        False         False      37muser
+   monitoring                                 4.22.0    True        False         False      29m
+   network                                    4.22.0    True        False         False      38m
+   node-tuning                                4.22.0    True        False         False      37m
+   openshift-apiserver                        4.22.0    True        False         False      32muser
+   openshift-controller-manager               4.22.0    True        False         False      30m
+   openshift-samples                          4.22.0    True        False         False      32m
+   operator-lifecycle-manager                 4.22.0    True        False         False      37m
+   operator-lifecycle-manager-catalog         4.22.0    True        False         False      37m
+   operator-lifecycle-manager-packageserver   4.22.0    True        False         False      32m
+   service-ca                                 4.22.0    True        False         False      38m
+   storage                                    4.22.0    True        False         False      37m
    ```
 
    Alternatively, the following command notifies you when all of the clusters are available. The command also retrieves and displays credentials:
@@ -1951,7 +1855,8 @@ To provide metrics about cluster health and the success of updates, the Telemetr
 
 After you confirm that your [OpenShift Cluster Manager](https://console.redhat.com/openshift) inventory is correct, either maintained automatically by Telemetry or manually by using OpenShift Cluster Manager,use subscription watch to track your OpenShift Container Platform subscriptions at the account or multi-cluster level. For more information about subscription watch, see "Data Gathered and Used by Red Hat’s subscription services" in the *Additional resources* section.
 
-## Additional resources {#additional-resources_installing-ibm-z-kvm}
+**Additional resources**
+{._additional-resources}
 
 - [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
 - [How to generate SOSREPORT within OpenShift Container Platform version 4 nodes without SSH](https://access.redhat.com/solutions/4387261)

@@ -36,14 +36,34 @@ $ oc adm prune groups \
     --sync-config=path/to/sync/config [<options>]
 ```
 
-`oc adm prune groups`** flags**
+**`oc adm prune groups` flags**
 
-| Options | Description |
-| --- | --- |
-| `--confirm` | Indicate that pruning should occur, instead of performing a dry-run. |
-| `--blacklist` | Path to the group blacklist file. |
-| `--whitelist` | Path to the group whitelist file. |
-| `--sync-config` | Path to the synchronization configuration file. |
+<table>
+<thead>
+<tr>
+  <th>Options</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>--confirm</code></td>
+  <td>Indicate that pruning should occur, instead of performing a dry-run.</td>
+</tr>
+<tr>
+  <td><code>--blacklist</code></td>
+  <td>Path to the group blacklist file.</td>
+</tr>
+<tr>
+  <td><code>--whitelist</code></td>
+  <td>Path to the group whitelist file.</td>
+</tr>
+<tr>
+  <td><code>--sync-config</code></td>
+  <td>Path to the synchronization configuration file.</td>
+</tr>
+</tbody>
+</table>
 
 **Procedure**
 
@@ -73,7 +93,7 @@ $ oc adm prune deployments [<options>]
 > [!NOTE]
 > To also prune replica sets associated with `Deployment` objects, use the `--replica-sets` flag. This flag is currently a Technology Preview feature.
 
-*`oc adm prune deployments`** flags***
+**`oc adm prune deployments` flags**
 
 <table>
 <thead>
@@ -84,32 +104,28 @@ $ oc adm prune deployments [<options>]
 </thead>
 <tbody>
 <tr>
-  <td>.^</td>
   <td><code>--confirm</code></td>
+  <td>Indicate that pruning should occur, instead of performing a dry-run.</td>
 </tr>
 <tr>
-  <td>Indicate that pruning should occur, instead of performing a dry-run. .^</td>
-  <td><code>--keep-complete=<N></code></td>
+  <td><code>--keep-complete=&lt;N&gt;</code></td>
+  <td>Per the <code>DeploymentConfig</code> object, keep the last <code>N</code> replication controllers that have a status of <code>Complete</code> and replica count of zero. The default is <code>5</code>.</td>
 </tr>
 <tr>
-  <td>Per the <code>DeploymentConfig</code> object, keep the last <code>N</code> replication controllers that have a status of <code>Complete</code> and replica count of zero. The default is <code>5</code>. .^</td>
-  <td><code>--keep-failed=<N></code></td>
+  <td><code>--keep-failed=&lt;N&gt;</code></td>
+  <td>Per the <code>DeploymentConfig</code> object, keep the last <code>N</code> replication controllers that have a status of <code>Failed</code> and replica count of zero. The default is <code>1</code>.</td>
 </tr>
 <tr>
-  <td>Per the <code>DeploymentConfig</code> object, keep the last <code>N</code> replication controllers that have a status of <code>Failed</code> and replica count of zero. The default is <code>1</code>. .^</td>
-  <td><code>--keep-younger-than=<duration></code></td>
+  <td><code>--keep-younger-than=&lt;duration&gt;</code></td>
+  <td>Do not prune any replication controller that is younger than <code>&lt;duration&gt;</code> relative to the current time. Valid units of measurement include nanoseconds (<code>ns</code>), microseconds (<code>us</code>), milliseconds (<code>ms</code>), seconds (<code>s</code>), minutes (<code>m</code>), and hours (<code>h</code>). The default is <code>60m</code>.</td>
 </tr>
 <tr>
-  <td>Do not prune any replication controller that is younger than <code><duration></code> relative to the current time. Valid units of measurement include nanoseconds (<code>ns</code>), microseconds (<code>us</code>), milliseconds (<code>ms</code>), seconds (<code>s</code>), minutes (<code>m</code>), and hours (<code>h</code>). The default is <code>60m</code>. .^</td>
   <td><code>--orphans</code></td>
+  <td>Prune all replication controllers that no longer have a <code>DeploymentConfig</code> object, has status of <code>Complete</code> or <code>Failed</code>, and has a replica count of zero.</td>
 </tr>
 <tr>
-  <td>Prune all replication controllers that no longer have a <code>DeploymentConfig</code> object, has status of <code>Complete</code> or <code>Failed</code>, and has a replica count of zero. .^</td>
-  <td>`--replica-sets=true\</td>
-</tr>
-<tr>
-  <td>false`</td>
-  <td>If <code>true</code>, replica sets are included in the pruning process. The default is <code>false</code>.<br><br><dl><dt>Important</dt><dd>This flag is a Technology Preview feature.</dd></dl></td>
+  <td><code>--replica-sets=true|false</code></td>
+  <td>If <code>true</code>, replica sets are included in the pruning process. The default is <code>false</code>.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>This flag is a Technology Preview feature.</dd></dl></td>
 </tr>
 </tbody>
 </table>
@@ -139,15 +155,38 @@ To prune builds that are no longer required by the system due to age and status,
 $ oc adm prune builds [<options>]
 ```
 
-`oc adm prune builds`** flags**
+**`oc adm prune builds` flags**
 
-| Option | Description |
-| --- | --- |
-| `--confirm` | Indicate that pruning should occur, instead of performing a dry-run. |
-| `--orphans` | Prune all builds whose build configuration no longer exists, status is complete, failed, error, or canceled. |
-| `--keep-complete=<N>` | Per build configuration, keep the last `N` builds whose status is complete. The default is `5`. |
-| `--keep-failed=<N>` | Per build configuration, keep the last `N` builds whose status is failed, error, or canceled. The default is `1`. |
-| `--keep-younger-than=<duration>` | Do not prune any object that is younger than `<duration>` relative to the current time. The default is `60m`. |
+<table>
+<thead>
+<tr>
+  <th>Option</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>--confirm</code></td>
+  <td>Indicate that pruning should occur, instead of performing a dry-run.</td>
+</tr>
+<tr>
+  <td><code>--orphans</code></td>
+  <td>Prune all builds whose build configuration no longer exists, status is complete, failed, error, or canceled.</td>
+</tr>
+<tr>
+  <td><code>--keep-complete=&lt;N&gt;</code></td>
+  <td>Per build configuration, keep the last <code>N</code> builds whose status is complete. The default is <code>5</code>.</td>
+</tr>
+<tr>
+  <td><code>--keep-failed=&lt;N&gt;</code></td>
+  <td>Per build configuration, keep the last <code>N</code> builds whose status is failed, error, or canceled. The default is <code>1</code>.</td>
+</tr>
+<tr>
+  <td><code>--keep-younger-than=&lt;duration&gt;</code></td>
+  <td>Do not prune any object that is younger than <code>&lt;duration&gt;</code> relative to the current time. The default is <code>60m</code>.</td>
+</tr>
+</tbody>
+</table>
 
 **Procedure**
 
@@ -168,8 +207,9 @@ $ oc adm prune builds [<options>]
    > Developers can enable automatic build pruning by modifying their build configuration.
 
 **Additional resources**
+{._additional-resources}
 
-- [Performing advanced builds -> Pruning builds](/openshift-docs-markdown/cicd/builds/advanced-build-operations#builds-build-pruning_advanced-build-operations)
+- [Performing advanced builds → Pruning builds](/openshift-docs-markdown/cicd/builds/advanced-build-operations#builds-build-pruning_advanced-build-operations)
 
 ## Automatically pruning images {#pruning-images_pruning-objects}
 
@@ -340,22 +380,15 @@ Image pruning by age and tag
      An image is only removed if it is old, not a recent tag revision, and is confirmed to have no active references by system components.
 
      Image pruning by size limit
+     :   Pruning an image by size limit uses the `--prune-over-size-limit` flag. This method is used to bring a project back under its defined image storage limit.
 
-:   Pruning an image by size limit uses the `--prune-over-size-limit` flag. This method is used to bring a project back under its defined image storage limit.
+     > [!NOTE]
+     > The `--prune-over-size-limit` flag cannot be combined with the `--keep-tag-revisions` flag nor the `--keep-younger-than` flags. Doing so returns information that this operation is not allowed.
 
-```
-    :::note
-
-    The `--prune-over-size-limit` flag cannot be combined with the `--keep-tag-revisions` flag nor the `--keep-younger-than` flags. Doing so returns information that this operation is not allowed.
-
-    :::
-
-    For an image to be pruned using this method, all of the following conditions must be true:
-```
-
-1. The image is part of a project that is currently exceeding its smallest defined size limit.
-2. The image is selected by the pruner as a candidate for deletion to reduce the total size.
-3. The image is not currently referenced by any of the following active API objects:
+     For an image to be pruned using this method, all of the following conditions must be true:
+4. The image is part of a project that is currently exceeding its smallest defined size limit.
+5. The image is selected by the pruner as a candidate for deletion to reduce the total size.
+6. The image is not currently referenced by any of the following active API objects:
 
    - Pods that are in a `running` or `pending` state.
    - Deployments, replication controllers, replica sets, or stateful sets.
@@ -414,17 +447,52 @@ The following table describes the options you can use with the `oc adm prune ima
 
 **Manual image pruning command options**
 
-| Option | Description |
-| --- | --- |
-| `--all` | Include images that were not pushed to the registry, but have been mirrored by pullthrough. This is on by default. To limit the pruning to images that were pushed to the integrated registry, pass `--all=false`. |
-| `--certificate-authority` | The path to a certificate authority file to use when communicating with the OpenShift Container Platform-managed registries. Defaults to the certificate authority data from the current user’s configuration file. If provided, a secure connection is initiated. |
-| `--confirm` | Indicate that pruning should occur, instead of performing a test-run. This requires a valid route to the integrated container image registry. If this command is run outside of the cluster network, the route must be provided using `--registry-url`. |
-| `--force-insecure` | Use caution with this option. Allow an insecure connection to the container registry that is hosted via HTTP or has an invalid HTTPS certificate. |
-| `--keep-tag-revisions=<N>` | For each imagestream, keep up to at most `N` image revisions per tag (default `3`). |
-| `--keep-younger-than=<duration>` | Do not prune any image that is younger than `<duration>` relative to the current time. Alternately, do not prune any image that is referenced by any other object that is younger than `<duration>` relative to the current time (default `60m`). |
-| `--prune-over-size-limit` | Prune each image that exceeds the smallest limit defined in the same project. This flag cannot be combined with `--keep-tag-revisions` nor `--keep-younger-than`. |
-| `--registry-url` | The address to use when contacting the registry. The command attempts to use a cluster-internal URL determined from managed images and image streams. In case it fails (the registry cannot be resolved or reached), an alternative route that works needs to be provided using this flag. The registry hostname can be prefixed by `https://` or `http://`, which enforces particular connection protocol. |
-| `--prune-registry` | In conjunction with the conditions stipulated by the other options, this option controls whether the data in the registry corresponding to the OpenShift Container Platform image API object is pruned. By default, image pruning processes both the image API objects and corresponding data in the registry. This option is useful when you are only concerned with removing etcd content, to reduce the number of image objects but are not concerned with cleaning up registry storage, or if you intend to do that separately by hard pruning the registry during an appropriate maintenance window for the registry. |
+<table>
+<thead>
+<tr>
+  <th>Option</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>--all</code></td>
+  <td>Include images that were not pushed to the registry, but have been mirrored by pullthrough. This is on by default. To limit the pruning to images that were pushed to the integrated registry, pass <code>--all=false</code>.</td>
+</tr>
+<tr>
+  <td><code>--certificate-authority</code></td>
+  <td>The path to a certificate authority file to use when communicating with the OpenShift Container Platform-managed registries. Defaults to the certificate authority data from the current user's configuration file. If provided, a secure connection is initiated.</td>
+</tr>
+<tr>
+  <td><code>--confirm</code></td>
+  <td>Indicate that pruning should occur, instead of performing a test-run. This requires a valid route to the integrated container image registry. If this command is run outside of the cluster network, the route must be provided using <code>--registry-url</code>.</td>
+</tr>
+<tr>
+  <td><code>--force-insecure</code></td>
+  <td>Use caution with this option. Allow an insecure connection to the container registry that is hosted via HTTP or has an invalid HTTPS certificate.</td>
+</tr>
+<tr>
+  <td><code>--keep-tag-revisions=&lt;N&gt;</code></td>
+  <td>For each imagestream, keep up to at most <code>N</code> image revisions per tag (default <code>3</code>).</td>
+</tr>
+<tr>
+  <td><code>--keep-younger-than=&lt;duration&gt;</code></td>
+  <td>Do not prune any image that is younger than <code>&lt;duration&gt;</code> relative to the current time. Alternately, do not prune any image that is referenced by any other object that is younger than <code>&lt;duration&gt;</code> relative to the current time (default <code>60m</code>).</td>
+</tr>
+<tr>
+  <td><code>--prune-over-size-limit</code></td>
+  <td>Prune each image that exceeds the smallest limit defined in the same project. This flag cannot be combined with <code>--keep-tag-revisions</code> nor <code>--keep-younger-than</code>.</td>
+</tr>
+<tr>
+  <td><code>--registry-url</code></td>
+  <td>The address to use when contacting the registry. The command attempts to use a cluster-internal URL determined from managed images and image streams. In case it fails (the registry cannot be resolved or reached), an alternative route that works needs to be provided using this flag. The registry hostname can be prefixed by <code>https://</code> or <code>http://</code>, which enforces particular connection protocol.</td>
+</tr>
+<tr>
+  <td><code>--prune-registry</code></td>
+  <td>In conjunction with the conditions stipulated by the other options, this option controls whether the data in the registry corresponding to the OpenShift Container Platform image API object is pruned. By default, image pruning processes both the image API objects and corresponding data in the registry.<br><br>This option is useful when you are only concerned with removing etcd content, to reduce the number of image objects but are not concerned with cleaning up registry storage, or if you intend to do that separately by hard pruning the registry during an appropriate maintenance window for the registry.</td>
+</tr>
+</tbody>
+</table>
 
 Additional information about the `--prune-registry` flag
 :   You can separate the removal of OpenShift Container Platform image API objects from the removal of image data in the registry by passing in the `--prune-registry=false` flag. For example, the following command prunes only the API objects, leaving the registry storage untouched:
@@ -467,16 +535,19 @@ Images not being pruned
     > [!WARNING]
     > This action removes all the tags from all the namespaces with underlying images, unless they are younger or they are referenced by objects younger than the specified threshold.
 
-- Delete all the `istags` where the position is below the revision threshold, which means `myapp:v2.1` and `myapp:v2.1-may-2016`.
-- Move the image further in the history, either by running new builds pushing to the same `istag`, or by tagging other image. This is not always desirable for old release tags.
+    - Delete all the `istags` where the position is below the revision threshold, which means `myapp:v2.1` and `myapp:v2.1-may-2016`.
+    - Move the image further in the history, either by running new builds pushing to the same `istag`, or by tagging other image. This is not always desirable for old release tags.
 
-  Tags having a date or time of a particular image’s build in their names should be avoided, unless the image must be preserved for an undefined amount of time. Such tags tend to have just one image in their history, which prevents them from ever being pruned.
+    Tags having a date or time of a particular image’s build in their names should be avoided, unless the image must be preserved for an undefined amount of time. Such tags tend to have just one image in their history, which prevents them from ever being pruned.
 
-  Secure connection to an insecure registry
+Secure connection to an insecure registry
+:   If you see a message similar to the following in the output of the `oc adm prune images` command, then your registry is not secured and the `oc adm prune images` client attempts to use a secure connection:
 
-:   If you see a message similar to the following in the output of the `oc adm prune images` command, then your registry is not secured and the `oc adm prune images` client attempts to use a secure connection: `terminal     error: error communicating with registry: Get https://172.30.30.30:5000/healthz: http: server gave HTTP response to HTTPS client     `
+    ```terminal
+    error: error communicating with registry: Get https://172.30.30.30:5000/healthz: http: server gave HTTP response to HTTPS client
+    ```
 
-- The recommended solution is to secure the registry. Otherwise, you can force the client to use an insecure connection by appending `--force-insecure`  to the command; however, this is not recommended.
+    - The recommended solution is to secure the registry. Otherwise, you can force the client to use an insecure connection by appending `--force-insecure`  to the command; however, this is not recommended.
 
 Insecure connection to a secured registry
 :   If you see one of the following errors in the output of the `oc adm prune images` command, it means that your registry is secured using a certificate signed by a certificate authority other than the one used by `oc adm prune images` client for connection verification:
@@ -486,7 +557,9 @@ Insecure connection to a secured registry
     error: error communicating with registry: [Get https://172.30.30.30:5000/healthz: x509: certificate signed by unknown authority, Get http://172.30.30.30:5000/healthz: malformed HTTP response "\x15\x03\x01\x00\x02\x02"]
     ```
 
-    By default, the certificate authority data stored in the user’s configuration files is used; the same is true for communication with the control plane API. Use the `--certificate-authority` option to provide the right certificate authority for the container image registry server.
+    By default, the certificate authority data stored in the user’s configuration files is used; the same is true for communication with the control plane API.
+
+    Use the `--certificate-authority` option to provide the right certificate authority for the container image registry server.
 
 Wrong certificate authority
 :   The following error means that the certificate authority used to sign the certificate of the secured container image registry is different from the authority used by the client:
@@ -495,9 +568,12 @@ Wrong certificate authority
     error: error communicating with registry: Get https://172.30.30.30:5000/: x509: certificate signed by unknown authority
     ```
 
-    Make sure to provide the right one with the flag `--certificate-authority`. As a workaround, the `--force-insecure` flag can be added instead. However, this is not recommended.
+    Make sure to provide the right one with the flag `--certificate-authority`.
+
+    As a workaround, the `--force-insecure` flag can be added instead. However, this is not recommended.
 
 **Additional resources**
+{._additional-resources}
 
 - [Accessing the registry](/openshift-docs-markdown/registry/accessing-the-registry#accessing-the-registry)
 - [Exposing the registry](/openshift-docs-markdown/registry/securing-exposing-registry#securing-exposing-registry)
@@ -616,6 +692,7 @@ Clean up completed and failed Kubernetes jobs manually to prevent resource exhau
 Cron jobs can perform pruning of successful jobs, but might not properly handle failed jobs. Therefore, the cluster administrator should perform regular cleanup of jobs manually. They should also restrict the access to cron jobs to a small group of trusted users and set appropriate quota to prevent the cron job from creating too many jobs and pods.
 
 **Additional resources**
+{._additional-resources}
 
 - [Running tasks in pods using jobs](/openshift-docs-markdown/nodes/jobs/nodes-nodes-jobs#nodes-nodes-jobs)
 - [Resource quotas across multiple projects](/openshift-docs-markdown/applications/quotas/quotas-setting-across-multiple-projects#setting-quotas-across-multiple-projects)

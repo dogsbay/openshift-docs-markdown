@@ -98,7 +98,8 @@ For more information, see the following:
 - Installer-provisioned infrastructure: [Installing a cluster on vSphere in a restricted network](/openshift-docs-markdown/installing/installing_vsphere/ipi/installing-restricted-networks-installer-provisioned-vsphere#installing-restricted-networks-installer-provisioned-vsphere)
 - User-provisioned infrastructure: [Installing a cluster on vSphere in a restricted network with user-provisioned infrastructure](/openshift-docs-markdown/installing/installing_vsphere/upi/installing-restricted-networks-vsphere#installing-restricted-networks-vsphere)
 
-## Additional resources {#additional-resources_installing-disconnected-environments}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring an AWS account](/openshift-docs-markdown/installing/installing_aws/installing-aws-account#installing-aws-account)
 - [Preparing to install a cluster on AWS](/openshift-docs-markdown/installing/installing_aws/ipi/ipi-aws-preparing-to-install#ipi-aws-preparing-to-install)

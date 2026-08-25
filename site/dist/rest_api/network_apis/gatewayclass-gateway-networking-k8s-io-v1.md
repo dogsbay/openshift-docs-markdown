@@ -1,5 +1,5 @@
 ---
-title: GatewayClass []
+title: GatewayClass [gateway.networking.k8s.io/v1]
 ---
 
 # GatewayClass \[gateway.networking.k8s.io/v1\] {#gatewayclass-gateway-networking-k8s-io-v1}
@@ -29,7 +29,7 @@ Required
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | Spec defines the desired state of GatewayClass. |
-| `status` | `object` | Status defines the current state of GatewayClass. Implementations MUST populate status on all GatewayClass resources which specify their controller name. |
+| `status` | `object` | Status defines the current state of GatewayClass.<br>Implementations MUST populate status on all GatewayClass resources which specify their controller name. |
 
 ### .spec {#_spec}
 
@@ -46,9 +46,9 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `controllerName` | `string` | ControllerName is the name of the controller that is managing Gateways of this class. The value of this field MUST be a domain prefixed path. Example: "example.net/gateway-controller". This field is not mutable and cannot be empty. Support: Core |
+| `controllerName` | `string` | ControllerName is the name of the controller that is managing Gateways of this class. The value of this field MUST be a domain prefixed path.<br>Example: "example.net/gateway-controller".<br>This field is not mutable and cannot be empty.<br>Support: Core |
 | `description` | `string` | Description helps describe a GatewayClass with more details. |
-| `parametersRef` | `object` | ParametersRef is a reference to a resource that contains the configuration parameters corresponding to the GatewayClass. This is optional if the controller does not require any additional configuration. ParametersRef can reference a standard Kubernetes resource, i.e. ConfigMap, or an implementation-specific custom resource. The resource can be cluster-scoped or namespace-scoped. If the referent cannot be found, refers to an unsupported kind, or when the data within that resource is malformed, the GatewayClass SHOULD be rejected with the "Accepted" status condition set to "False" and an "InvalidParameters" reason. A Gateway for this GatewayClass may provide its own `parametersRef`. When both are specified, the merging behavior is implementation specific. It is generally recommended that GatewayClass provides defaults that can be overridden by a Gateway. Support: Implementation-specific |
+| `parametersRef` | `object` | ParametersRef is a reference to a resource that contains the configuration parameters corresponding to the GatewayClass. This is optional if the controller does not require any additional configuration.<br>ParametersRef can reference a standard Kubernetes resource, i.e. ConfigMap, or an implementation-specific custom resource. The resource can be cluster-scoped or namespace-scoped.<br>If the referent cannot be found, refers to an unsupported kind, or when the data within that resource is malformed, the GatewayClass SHOULD be rejected with the "Accepted" status condition set to "False" and an "InvalidParameters" reason.<br>A Gateway for this GatewayClass may provide its own `parametersRef`. When both are specified, the merging behavior is implementation specific. It is generally recommended that GatewayClass provides defaults that can be overridden by a Gateway.<br>Support: Implementation-specific |
 
 ### .spec.parametersRef {#_specparametersref}
 
@@ -94,7 +94,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `conditions` | `array` | Conditions is the current status from the controller for this GatewayClass. Controllers should prefer to publish conditions using values of GatewayClassConditionType for the type of each Condition. |
+| `conditions` | `array` | Conditions is the current status from the controller for this GatewayClass.<br>Controllers should prefer to publish conditions using values of GatewayClassConditionType for the type of each Condition. |
 | `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. |
 | `supportedFeatures` | `array` | SupportedFeatures is the set of features the GatewayClass support. It MUST be sorted in ascending alphabetical order by the Name key. |
 | `supportedFeatures[]` | `object` |  |
@@ -130,7 +130,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
 | `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
@@ -172,13 +172,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of GatewayClass
   - `GET`: list objects of kind GatewayClass
   - `POST`: create a GatewayClass
-- `/apis/gateway.networking.k8s.io/v1/gatewayclasses/{{ name }}`
+- `/apis/gateway.networking.k8s.io/v1/gatewayclasses/{name}`
 
   - `DELETE`: delete a GatewayClass
   - `GET`: read the specified GatewayClass
   - `PATCH`: partially update the specified GatewayClass
   - `PUT`: replace the specified GatewayClass
-- `/apis/gateway.networking.k8s.io/v1/gatewayclasses/{{ name }}/status`
+- `/apis/gateway.networking.k8s.io/v1/gatewayclasses/{name}/status`
 
   - `GET`: read status of the specified GatewayClass
   - `PATCH`: partially update status of the specified GatewayClass
@@ -252,7 +252,7 @@ Description
 | 202 - Accepted | [`GatewayClass`](/openshift-docs-markdown/rest_api/network_apis/gatewayclass-gateway-networking-k8s-io-v1#gatewayclass-gateway-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/gateway.networking.k8s.io/v1/gatewayclasses/{{ name }} {#_apisgatewaynetworkingk8siov1gatewayclasses_name}
+### /apis/gateway.networking.k8s.io/v1/gatewayclasses/{name} {#_apisgatewaynetworkingk8siov1gatewayclasses_name}
 
 **Global path parameters**
 
@@ -356,7 +356,7 @@ Description
 | 201 - Created | [`GatewayClass`](/openshift-docs-markdown/rest_api/network_apis/gatewayclass-gateway-networking-k8s-io-v1#gatewayclass-gateway-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/gateway.networking.k8s.io/v1/gatewayclasses/{{ name }}/status {#_apisgatewaynetworkingk8siov1gatewayclasses_name_status}
+### /apis/gateway.networking.k8s.io/v1/gatewayclasses/{name}/status {#_apisgatewaynetworkingk8siov1gatewayclasses_name_status}
 
 **Global path parameters**
 

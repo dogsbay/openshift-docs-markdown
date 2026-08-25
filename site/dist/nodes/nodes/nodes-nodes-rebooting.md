@@ -29,7 +29,7 @@ You can use pod anti-affinity to spread the workloads on a node to other nodes b
 
 Pod anti-affinity is slightly different from node anti-affinity. Node anti-affinity can be violated if there are no other suitable locations to deploy a pod. Pod anti-affinity can be set to either required or preferred.
 
-With this in place, if only two infrastructure nodes are available and one is rebooted, the container image registry pod is prevented from running on the other node. `**oc get pods**` reports the pod as unready until a suitable node is available. Once a node is available and all pods are back in ready state, the next node can be restarted.
+With this in place, if only two infrastructure nodes are available and one is rebooted, the container image registry pod is prevented from running on the other node. `*oc get pods*` reports the pod as unready until a suitable node is available. Once a node is available and all pods are back in ready state, the next node can be restarted.
 
 The following procedure demonstrates how to reboot a node by using pod anti-affinity.
 
@@ -181,7 +181,8 @@ The following procedure demonstrates how to perform a graceful restart of a node
    <node1> Ready   worker   6d22h   v1.18.3+b0068a8
    ```
 
-## Additional resources {#additional-resources_nodes-nodes-rebooting}
+**Additional resources**
+{._additional-resources}
 
 - [Placing pods relative to other pods using affinity and anti-affinity rules](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-pod-affinity#nodes-scheduler-pod-affinity)
 - [Backing up etcd data](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd)

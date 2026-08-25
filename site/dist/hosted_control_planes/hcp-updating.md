@@ -1,5 +1,5 @@
 ---
-title: Updating {{ hcp }}
+title: Updating hosted control planes
 ---
 
 # Updating hosted control planes {#hcp-updating}
@@ -27,6 +27,7 @@ Consider the following requirements before you start updating hosted control pla
 > 3. Upgrade the hosted cluster and node pools from the previous OpenShift Container Platform version to the latest version. For more information, see "Updating a control plane in a hosted cluster" and "Updating node pools in a hosted cluster".
 
 **Additional resources**
+{._additional-resources}
 
 - [Updating a cluster using the web console](/openshift-docs-markdown/updating/updating_a_cluster/updating-cluster-web-console#updating-cluster-web-console)
 - [Updating a cluster using the CLI](/openshift-docs-markdown/updating/updating_a_cluster/updating-cluster-cli#updating-cluster-cli)
@@ -45,12 +46,12 @@ In hosted control planes, ensure that you use a node pool version that is suppor
 
   This includes patch versions within the same minor version. For example, a 4.20.3 node pool version is *not* supported on a 4.20.2 hosted cluster.
 
-**Example supported node pool versions for your hosted cluster**
+  **Example supported node pool versions for your hosted cluster**
 
-| Hosted cluster version | Supported node pool versions | Example unsupported node pool versions |
-| --- | --- | --- |
-| 4.21.0 | 4.21.0, 4.20.z, 4.19.z, 4.18.z | 4.21.1+, 4.17.z, 4.16.z |
-| 4.20.2 | 4.20.0, 4.20.1, 4.20.2, 4.19.z, 4.18.z, 4.17.z | 4.21.z, 4.20.3+, 4.16.z |
+  | Hosted cluster version | Supported node pool versions | Example unsupported node pool versions |
+  | --- | --- | --- |
+  | 4.21.0 | 4.21.0, 4.20.z, 4.19.z, 4.18.z | 4.21.1+, 4.17.z, 4.16.z |
+  | 4.20.2 | 4.20.0, 4.20.1, 4.20.2, 4.19.z, 4.18.z, 4.17.z | 4.21.z, 4.20.3+, 4.16.z |
 
 ### Version compatibility reporting {#hcp-np-version-skew-compatibility-reporting_hcp-updating}
 
@@ -256,6 +257,7 @@ Server Supports OCP Versions: 4.17, 4.16, 4.15, 4.14
 ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Hosted cluster and node pool version skew policy](/openshift-docs-markdown/hosted_control_planes/hcp-updating#hcp-np-version-skew_hcp-updating)
 - [multicluster engine Operator 2.17](https://access.redhat.com/articles/7142379)
@@ -279,9 +281,10 @@ The hosted control plane manages the rollout of the new version of the control p
 >
 > To pause the remediation, enter the array of strings, for example, `pause-test-cluster`, as a value of the `pauseRequests` field in the `NodeHealthCheck` resource. For more information, see "About the Node Health Check Operator".
 >
-> After the cluster update is complete, you can edit or delete the remediation. Go to the **Compute** -> **NodeHealthCheck** page, click your node health check, and then click **Actions**, which shows a drop-down list.
+> After the cluster update is complete, you can edit or delete the remediation. Go to the **Compute** → **NodeHealthCheck** page, click your node health check, and then click **Actions**, which shows a drop-down list.
 
 **Additional resources**
+{._additional-resources}
 
 - [About the Node Health Check Operator](https://docs.redhat.com/en/documentation/workload_availability_for_red_hat_openshift/24.4/html/remediation_fencing_and_maintenance/node-health-check-operator#about-node-health-check-operator_node-health-check-operator)
 
@@ -420,5 +423,5 @@ You can update your hosted cluster by using the multicluster engine Operator con
 **Procedure**
 
 1. Select **All clusters**.
-2. Navigate to **Infrastructure** -> **Clusters** to view managed hosted clusters.
+2. Navigate to **Infrastructure** → **Clusters** to view managed hosted clusters.
 3. Click the **Upgrade available** link to update the control plane and node pools.

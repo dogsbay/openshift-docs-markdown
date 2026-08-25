@@ -20,7 +20,8 @@ const headings = [{"depth":1,"slug":"run-once-duration-override-release-notes","
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/pods/run_once_duration_override/run-once-duration-override-release-notes";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -39,7 +40,7 @@ const pageCategory = ["nodes","nodes/pods","nodes/pods/run_once_duration_overrid
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Run Once Duration Override Operator release notes {#run-once-duration-override-release-notes}\n\nThe Run Once Duration Override Operator sets a maximum active deadline on run-once pods, terminating pods that exceed the configured duration.\n\nTo apply the run-once duration override from the Run Once Duration Override Operator to run-once pods, you must enable it on each applicable namespace.\n\nThese release notes track the development of the Run Once Duration Override Operator for OpenShift Container Platform.\n\n**Additional resources**\n\n- [About the Run Once Duration Override Operator](/openshift-docs-markdown/nodes/pods/run_once_duration_override/index#rodoo-about_run-once-duration-override-about)\n\n## Run Once Duration Override Operator 1.4.1 {#rodoo-rn-1-4-1_run-once-duration-override-release-notes}\n\nReview the features, enhancements, and advisory for the release of Run Once Duration Override Operator 1.4.1.\n\nIssued: 17 June 2026\n\nThe following advisory is available for the Run Once Duration Override Operator 1.4.1:\n\n- [RHBA-2026:26526](https://access.redhat.com/errata/RHBA-2026:26526)\n\n### New features and enhancements {#rodoo-1-4-1-new-features-and-enhancements_run-once-duration-override-release-notes}\n\n- This release of the Run Once Duration Override Operator updates the Kubernetes version to 1.35.\n\n### Bug fixes {#rodoo-rn-1-4-1-bug-fixes_run-once-duration-override-release-notes}\n\n- This release of the Run Once Duration Override Operator addresses several Common Vulnerabilities and Exposures (CVEs).\n\n## Run Once Duration Override Operator 1.4.0 {#rodoo-rn-1-4-0_run-once-duration-override-release-notes}\n\nReview the features, enhancements, and advisory for the release of Run Once Duration Override Operator 1.4.0.\n\nIssued: 12 February 2026\n\nThe following advisory is available for the Run Once Duration Override Operator 1.4.0:\n\n- [RHBA-2026:2649](https://access.redhat.com/errata/RHBA-2026:2649)\n\n### New features and enhancements {#rodoo-1-4-0-new-features-and-enhancements_run-once-duration-override-release-notes}\n\n- This release of the Run Once Duration Override Operator updates the Kubernetes version to 1.34.\n- Users should set `.spec.managementState: Managed` in Run Once Duration Override Operator 1.4.0 custom resources (CR). In a future release, the `spec.managementState` field in the Run Once Duration Override Operator CR will be required to be set to `Managed`.\n\n### Bug fixes {#rodoo-rn-1-4-0-bug-fixes_run-once-duration-override-release-notes}\n\n- This release of the Run Once Duration Override Operator addresses several Common Vulnerabilities and Exposures (CVEs).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/pods/run_once_duration_override/run-once-duration-override-release-notes.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Run Once Duration Override Operator release notes {#run-once-duration-override-release-notes}\n\nThe Run Once Duration Override Operator sets a maximum active deadline on run-once pods, terminating pods that exceed the configured duration.\n\nTo apply the run-once duration override from the Run Once Duration Override Operator to run-once pods, you must enable it on each applicable namespace.\n\nThese release notes track the development of the Run Once Duration Override Operator for OpenShift Container Platform.\n\n**Additional resources**\n{._additional-resources}\n\n- [About the Run Once Duration Override Operator](/openshift-docs-markdown/nodes/pods/run_once_duration_override/index#rodoo-about_run-once-duration-override-about)\n\n## Run Once Duration Override Operator 1.4.1 {#rodoo-rn-1-4-1_run-once-duration-override-release-notes}\n\nReview the features, enhancements, and advisory for the release of Run Once Duration Override Operator 1.4.1.\n\nIssued: 17 June 2026\n\nThe following advisory is available for the Run Once Duration Override Operator 1.4.1:\n\n- [RHBA-2026:26526](https://access.redhat.com/errata/RHBA-2026:26526)\n\n### New features and enhancements {#rodoo-1-4-1-new-features-and-enhancements_run-once-duration-override-release-notes}\n\n- This release of the Run Once Duration Override Operator updates the Kubernetes version to 1.35.\n\n### Bug fixes {#rodoo-rn-1-4-1-bug-fixes_run-once-duration-override-release-notes}\n\n- This release of the Run Once Duration Override Operator addresses several Common Vulnerabilities and Exposures (CVEs).\n\n## Run Once Duration Override Operator 1.4.0 {#rodoo-rn-1-4-0_run-once-duration-override-release-notes}\n\nReview the features, enhancements, and advisory for the release of Run Once Duration Override Operator 1.4.0.\n\nIssued: 12 February 2026\n\nThe following advisory is available for the Run Once Duration Override Operator 1.4.0:\n\n- [RHBA-2026:2649](https://access.redhat.com/errata/RHBA-2026:2649)\n\n### New features and enhancements {#rodoo-1-4-0-new-features-and-enhancements_run-once-duration-override-release-notes}\n\n- This release of the Run Once Duration Override Operator updates the Kubernetes version to 1.34.\n- Users should set `.spec.managementState: Managed` in Run Once Duration Override Operator 1.4.0 custom resources (CR). In a future release, the `spec.managementState` field in the Run Once Duration Override Operator CR will be required to be set to `Managed`.\n\n### Bug fixes {#rodoo-rn-1-4-0-bug-fixes_run-once-duration-override-release-notes}\n\n- This release of the Run Once Duration Override Operator addresses several Common Vulnerabilities and Exposures (CVEs).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/pods/run_once_duration_override/run-once-duration-override-release-notes.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,12 +79,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -91,11 +93,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="run-once-duration-override-release-notes" class="group scroll-mt-20">Run Once Duration Override Operator release notes<a href="#run-once-duration-override-release-notes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>The Run Once Duration Override Operator sets a maximum active deadline on run-once pods, terminating pods that exceed the configured duration.</p>
+      <p class="_abstract">The Run Once Duration Override Operator sets a maximum active deadline on run-once pods, terminating pods that exceed the configured duration.</p>
       <p>To apply the run-once duration override from the Run Once Duration Override Operator to run-once pods, you must enable it on each applicable namespace.</p>
       <p>These release notes track the development of the Run Once Duration Override Operator for OpenShift Container Platform.</p>
-      <p><strong>Additional resources</strong></p>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul><li><a href="/openshift-docs-markdown/nodes/pods/run_once_duration_override/index#rodoo-about_run-once-duration-override-about">About the Run Once Duration Override Operator</a></li></ul>
+      </section>
       <h2 id="rodoo-rn-1-4-1_run-once-duration-override-release-notes" class="group scroll-mt-20">Run Once Duration Override Operator 1.4.1<a href="#rodoo-rn-1-4-1_run-once-duration-override-release-notes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">Review the features, enhancements, and advisory for the release of Run Once Duration Override Operator 1.4.1.</p>
       <p>Issued: 17 June 2026</p>

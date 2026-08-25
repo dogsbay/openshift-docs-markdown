@@ -25,7 +25,6 @@ spec:
   networkNamespace: <target_namespace>
   vlan: <vlan>
   spoofChk: "<spoof_check>"
-{%- if ocp_sriov_net %}
   ipam: |-
     {}
   linkState: <link_state>
@@ -34,7 +33,6 @@ spec:
   vlanQoS: <vlan_qos>
   trust: "<trust_vf>"
   capabilities: <capabilities>
-{%- endif %}
 ```
 
 `metadata.name`
@@ -83,9 +81,10 @@ spec:
     > You must enclose the value that you specify in quotes, or the SR-IOV Network Operator rejects the object.
 
 `spec.capabilities`
-:   Optional: Specifies the capabilities to configure for this additional network. You can specify ’{ "ips": true }'` to enable IP address support or ’{ "mac": true }'` to enable MAC address support.
+:   Optional: Specifies the capabilities to configure for this additional network. You can specify `'{ "ips": true }'` to enable IP address support or `'{ "mac": true }'` to enable MAC address support.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing the SR-IOV Network Operator](/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator)
 - [Configuring namespaced SR-IOV resources](/openshift-docs-markdown/networking/hardware_networks/configuring-namespaced-sriov-resources#introduction-to-namespaced-sriovnetwork-resources_configuring-namespaced-sriov-resources)
@@ -170,7 +169,7 @@ Ensure the periodic renewal of a DHCP lease throughout the lifetime of a contain
 
 The following table describes the configuration for static IP address assignment:
 
-`ipam`** static configuration object**
+**`ipam` static configuration object**
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -181,21 +180,21 @@ The following table describes the configuration for static IP address assignment
 
 The `addresses` array requires objects with the following fields:
 
-`ipam.addresses[]`** array**
+**`ipam.addresses[]` array**
 
 | Field | Type | Description |
 | --- | --- | --- |
 | `address` | `string` | An IP address and network prefix that you specify. For example, if you specify `10.10.21.10/24`, the secondary network gets assigned an IP address of `10.10.21.10` and the subnet mask of `255.255.255.0`. |
 | `gateway` | `string` | The default gateway to route egress network traffic to. |
 
-`ipam.routes[]`** array**
+**`ipam.routes[]` array**
 
 | Field | Type | Description |
 | --- | --- | --- |
 | `dst` | `string` | The IP address range in CIDR format, such as `192.168.17.0/24` or `0.0.0.0/0` for the default route. |
 | `gw` | `string` | The gateway that routes network traffic. |
 
-`ipam.dns`** object**
+**`ipam.dns` object**
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -262,7 +261,7 @@ The Whereabouts CNI plugin also supports overlapping IP address ranges and confi
 
 The following table describes the configuration objects for dynamic IP address assignment with Whereabouts:
 
-`ipam`** whereabouts configuration parameters**
+**`ipam` whereabouts configuration parameters**
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -324,10 +323,10 @@ where:
 
 ## Configuring SR-IOV additional network {#nw-sriov-network-attachment_configuring-sriov-net-attach}
 
-You can configure an additional network that uses SR-IOV hardware by creating an `{{ rs }}` object. When you create an `{{ rs }}` object, the SR-IOV Network Operator automatically creates a `NetworkAttachmentDefinition` object.
+You can configure an additional network that uses SR-IOV hardware by creating an `SriovNetwork` object. When you create an `SriovNetwork` object, the SR-IOV Network Operator automatically creates a `NetworkAttachmentDefinition` object.
 
 > [!NOTE]
-> Do not modify or delete an `{{ rs }}` object if it is attached to any pods in a `running` state.
+> Do not modify or delete an `SriovNetwork` object if it is attached to any pods in a `running` state.
 
 **Prerequisites**
 
@@ -336,11 +335,11 @@ You can configure an additional network that uses SR-IOV hardware by creating an
 
 **Procedure**
 
-1. Create a `{{ rs }}` object, and then save the YAML in the `<name>.yaml` file, where `<name>` is a name for this additional network. The object specification might resemble the following example:
+1. Create a `SriovNetwork` object, and then save the YAML in the `<name>.yaml` file, where `<name>` is a name for this additional network. The object specification might resemble the following example:
 
    ```yaml
    apiVersion: sriovnetwork.openshift.io/v1
-   kind: {{ rs }}
+   kind: SriovNetwork
    metadata:
      name: attach1
      namespace: openshift-sriov-network-operator
@@ -366,7 +365,7 @@ You can configure an additional network that uses SR-IOV hardware by creating an
 
    `<name>`
    :   Specifies the name of the additional network.
-3. Optional: To confirm that the `NetworkAttachmentDefinition` object that is associated with the `{{ rs }}` object that you created in the previous step exists, enter the following command. Replace `<namespace>` with the `networkNamespace` value you specified in the `{{ rs }}` object.
+3. Optional: To confirm that the `NetworkAttachmentDefinition` object that is associated with the `SriovNetwork` object that you created in the previous step exists, enter the following command. Replace `<namespace>` with the `networkNamespace` value you specified in the `SriovNetwork` object.
 
    ```terminal
    $ oc get net-attach-def -n <namespace>
@@ -1224,7 +1223,8 @@ To exclude advertising the SR-IOV network resource’s Non-Uniform Memory Access
       > [!NOTE]
       > If you set the `excludeTopology` specification to `True`, the required resources might exist in the same NUMA node.
 
-## Additional resources {#configuring-sriov-net-attach-additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring an SR-IOV network device](/openshift-docs-markdown/networking/hardware_networks/configuring-sriov-device#configuring-sriov-device)
 - [Using CPU Manager](/openshift-docs-markdown/scalability_and_performance/using-cpu-manager#using-cpu-manager)

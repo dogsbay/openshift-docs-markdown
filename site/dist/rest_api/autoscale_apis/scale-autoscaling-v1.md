@@ -58,28 +58,28 @@ Required
 
 The following API endpoints are available:
 
-- `/apis/apps/v1/namespaces/{{ namespace }}/deployments/{{ name }}/scale`
+- `/apis/apps/v1/namespaces/{namespace}/deployments/{name}/scale`
 
   - `GET`: read scale of the specified Deployment
   - `PATCH`: partially update scale of the specified Deployment
   - `PUT`: replace scale of the specified Deployment
-- `/apis/apps/v1/namespaces/{{ namespace }}/replicasets/{{ name }}/scale`
+- `/apis/apps/v1/namespaces/{namespace}/replicasets/{name}/scale`
 
   - `GET`: read scale of the specified ReplicaSet
   - `PATCH`: partially update scale of the specified ReplicaSet
   - `PUT`: replace scale of the specified ReplicaSet
-- `/apis/apps/v1/namespaces/{{ namespace }}/statefulsets/{{ name }}/scale`
+- `/apis/apps/v1/namespaces/{namespace}/statefulsets/{name}/scale`
 
   - `GET`: read scale of the specified StatefulSet
   - `PATCH`: partially update scale of the specified StatefulSet
   - `PUT`: replace scale of the specified StatefulSet
-- `/api/v1/namespaces/{{ namespace }}/replicationcontrollers/{{ name }}/scale`
+- `/api/v1/namespaces/{namespace}/replicationcontrollers/{name}/scale`
 
   - `GET`: read scale of the specified ReplicationController
   - `PATCH`: partially update scale of the specified ReplicationController
   - `PUT`: replace scale of the specified ReplicationController
 
-### /apis/apps/v1/namespaces/{{ namespace }}/deployments/{{ name }}/scale {#_apisappsv1namespaces_namespace_deployments_name_scale}
+### /apis/apps/v1/namespaces/{namespace}/deployments/{name}/scale {#_apisappsv1namespaces_namespace_deployments_name_scale}
 
 **Global path parameters**
 
@@ -160,7 +160,7 @@ Description
 | 201 - Created | [`Scale`](/openshift-docs-markdown/rest_api/autoscale_apis/scale-autoscaling-v1#scale-autoscaling-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/namespaces/{{ namespace }}/replicasets/{{ name }}/scale {#_apisappsv1namespaces_namespace_replicasets_name_scale}
+### /apis/apps/v1/namespaces/{namespace}/replicasets/{name}/scale {#_apisappsv1namespaces_namespace_replicasets_name_scale}
 
 **Global path parameters**
 
@@ -241,7 +241,7 @@ Description
 | 201 - Created | [`Scale`](/openshift-docs-markdown/rest_api/autoscale_apis/scale-autoscaling-v1#scale-autoscaling-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/namespaces/{{ namespace }}/statefulsets/{{ name }}/scale {#_apisappsv1namespaces_namespace_statefulsets_name_scale}
+### /apis/apps/v1/namespaces/{namespace}/statefulsets/{name}/scale {#_apisappsv1namespaces_namespace_statefulsets_name_scale}
 
 **Global path parameters**
 
@@ -322,7 +322,7 @@ Description
 | 201 - Created | [`Scale`](/openshift-docs-markdown/rest_api/autoscale_apis/scale-autoscaling-v1#scale-autoscaling-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{{ namespace }}/replicationcontrollers/{{ name }}/scale {#_apiv1namespaces_namespace_replicationcontrollers_name_scale}
+### /api/v1/namespaces/{namespace}/replicationcontrollers/{name}/scale {#_apiv1namespaces_namespace_replicationcontrollers_name_scale}
 
 **Global path parameters**
 

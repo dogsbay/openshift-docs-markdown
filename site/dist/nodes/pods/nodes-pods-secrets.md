@@ -487,8 +487,8 @@ You can secure sensitive information, such as passwords or tokens, in a secret a
 
 **Procedure**
 
-1. Navigate to **Workloads** -> **Secrets**.
-2. Click **Create** -> **From YAML**.
+1. Navigate to **Workloads** → **Secrets**.
+2. Click **Create** → **From YAML**.
 
    1. Edit the YAML manually to your specifications, or drag and drop a file into the YAML editor. For example:
 
@@ -742,10 +742,11 @@ The service that generated the certificate no longer exists, or has a different 
    $ oc annotate service <service_name> service.beta.openshift.io/serving-cert-generation-error-num-
    ```
 
-> [!NOTE]
-> The command removing annotation has a `-` after the annotation name to be removed.
+   > [!NOTE]
+   > The command removing annotation has a `-` after the annotation name to be removed.
 
-## Additional resources {#additional-resources_nodes-pods-secrets}
+**Additional resources**
+{._additional-resources}
 
 - [Understanding how to create secrets](/openshift-docs-markdown/nodes/pods/nodes-pods-secrets#nodes-pods-secrets-creating_nodes-pods-secrets)
 - [Configuring bound service account tokens using volume projection](/openshift-docs-markdown/authentication/bound-service-account-tokens#bound-sa-tokens-configuring_bound-service-account-tokens)

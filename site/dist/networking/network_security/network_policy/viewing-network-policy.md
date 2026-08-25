@@ -56,7 +56,7 @@ You can examine the network policies in a namespace.
 **Prerequisites**
 
 - You installed the OpenShift CLI (`oc`).
-- You are logged in to the cluster with a user with `{{ role }}` privileges.
+- You are logged in to the cluster with a user with `admin` privileges.
 - You are working in the namespace where the network policy exists.
 
 **Procedure**
@@ -66,12 +66,12 @@ You can examine the network policies in a namespace.
    1. To view network policy objects defined in a namespace enter the following command:
 
       ```terminal
-      $ oc get {{ name }}policy
+      $ oc get networkpolicy
       ```
    2. Optional: To examine a specific network policy enter the following command:
 
       ```terminal
-      $ oc describe {{ name }}policy <policy_name> -n <namespace>
+      $ oc describe networkpolicy <policy_name> -n <namespace>
       ```
 
       where:

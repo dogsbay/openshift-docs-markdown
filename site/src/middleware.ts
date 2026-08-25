@@ -30,7 +30,7 @@ export const onRequest = defineMiddleware((context, next) => {
   if (context.isPrerendered) return next();
   const url = new URL(context.request.url);
   const accept = context.request.headers.get("accept");
-  const mdTarget = shouldRewriteToMarkdown(accept, url.pathname);
+  const mdTarget = shouldRewriteToMarkdown(accept, url.pathname, "/openshift-docs-markdown");
   if (mdTarget) return context.rewrite(mdTarget);
   return next();
 });

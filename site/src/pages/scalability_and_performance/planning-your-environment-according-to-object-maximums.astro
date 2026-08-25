@@ -30,7 +30,8 @@ const headings = [{"depth":1,"slug":"planning-your-environment-according-to-obje
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/scalability_and_performance/planning-your-environment-according-to-object-maximums";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -88,12 +89,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -101,7 +103,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="planning-your-environment-according-to-object-maximums" class="group scroll-mt-20">Planning your environment according to object maximums<a href="#planning-your-environment-according-to-object-maximums" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>To ensure your cluster meets performance and scalability requirements, plan your environment according to tested object maximums. By reviewing these limits, you can design a OpenShift Container Platform deployment that operates reliably within supported boundaries.</p>
+      <p class="_abstract">To ensure your cluster meets performance and scalability requirements, plan your environment according to tested object maximums. By reviewing these limits, you can design a OpenShift Container Platform deployment that operates reliably within supported boundaries.</p>
       <p>The example guidelines are based on the largest possible cluster. For smaller clusters, the maximums are lower. There are many factors that influence the stated thresholds, including the etcd version or storage data format. In most cases, exceeding these numbers results in lower overall performance but might not cause your cluster to fail.</p>
       <Alert variant="warning" class="my-4">
         <AlertTitle>Warning</AlertTitle>

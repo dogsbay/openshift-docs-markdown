@@ -46,6 +46,7 @@ Environment variables include `HTTP_PROXY`, `HTTPS_PROXY`, and `NO_PROXY`. These
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Certificate injection using Operators](/openshift-docs-markdown/networking/configuring_network_settings/configuring-a-custom-pki#certificate-injection-using-operators_configuring-a-custom-pki)
 

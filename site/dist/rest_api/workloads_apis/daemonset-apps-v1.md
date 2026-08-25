@@ -57,7 +57,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `rollingUpdate` | `object` | Spec to control the desired behavior of daemon set rolling update. |
-| `type` | `string` | Type of daemon set update. Can be "RollingUpdate" or "OnDelete". Default is RollingUpdate. Possible enum values:  - `"OnDelete"` Replace the old daemons only when it’s killed  - `"RollingUpdate"` Replace the old daemons by new ones using rolling update i.e replace them on each node one after the other. |
+| `type` | `string` | Type of daemon set update. Can be "RollingUpdate" or "OnDelete". Default is RollingUpdate.<br>Possible enum values: - `"OnDelete"` Replace the old daemons only when it’s killed - `"RollingUpdate"` Replace the old daemons by new ones using rolling update i.e replace them on each node one after the other. |
 
 ### .spec.updateStrategy.rollingUpdate {#_specupdatestrategyrollingupdate}
 
@@ -146,24 +146,24 @@ The following API endpoints are available:
 - `/apis/apps/v1/watch/daemonsets`
 
   - `GET`: watch individual changes to a list of DaemonSet. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/apps/v1/namespaces/{{ namespace }}/daemonsets`
+- `/apis/apps/v1/namespaces/{namespace}/daemonsets`
 
   - `DELETE`: delete collection of DaemonSet
   - `GET`: list or watch objects of kind DaemonSet
   - `POST`: create a DaemonSet
-- `/apis/apps/v1/watch/namespaces/{{ namespace }}/daemonsets`
+- `/apis/apps/v1/watch/namespaces/{namespace}/daemonsets`
 
   - `GET`: watch individual changes to a list of DaemonSet. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/apps/v1/namespaces/{{ namespace }}/daemonsets/{{ name }}`
+- `/apis/apps/v1/namespaces/{namespace}/daemonsets/{name}`
 
   - `DELETE`: delete a DaemonSet
   - `GET`: read the specified DaemonSet
   - `PATCH`: partially update the specified DaemonSet
   - `PUT`: replace the specified DaemonSet
-- `/apis/apps/v1/watch/namespaces/{{ namespace }}/daemonsets/{{ name }}`
+- `/apis/apps/v1/watch/namespaces/{namespace}/daemonsets/{name}`
 
   - `GET`: watch changes to an object of kind DaemonSet. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
-- `/apis/apps/v1/namespaces/{{ namespace }}/daemonsets/{{ name }}/status`
+- `/apis/apps/v1/namespaces/{namespace}/daemonsets/{name}/status`
 
   - `GET`: read status of the specified DaemonSet
   - `PATCH`: partially update status of the specified DaemonSet
@@ -207,7 +207,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/namespaces/{{ namespace }}/daemonsets {#_apisappsv1namespaces_namespace_daemonsets}
+### /apis/apps/v1/namespaces/{namespace}/daemonsets {#_apisappsv1namespaces_namespace_daemonsets}
 
 HTTP method
 :   ```
@@ -281,7 +281,7 @@ Description
 | 202 - Accepted | [`DaemonSet`](/openshift-docs-markdown/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/watch/namespaces/{{ namespace }}/daemonsets {#_apisappsv1watchnamespaces_namespace_daemonsets}
+### /apis/apps/v1/watch/namespaces/{namespace}/daemonsets {#_apisappsv1watchnamespaces_namespace_daemonsets}
 
 HTTP method
 :   ```
@@ -300,7 +300,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/namespaces/{{ namespace }}/daemonsets/{{ name }} {#_apisappsv1namespaces_namespace_daemonsets_name}
+### /apis/apps/v1/namespaces/{namespace}/daemonsets/{name} {#_apisappsv1namespaces_namespace_daemonsets_name}
 
 **Global path parameters**
 
@@ -405,7 +405,7 @@ Description
 | 201 - Created | [`DaemonSet`](/openshift-docs-markdown/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/watch/namespaces/{{ namespace }}/daemonsets/{{ name }} {#_apisappsv1watchnamespaces_namespace_daemonsets_name}
+### /apis/apps/v1/watch/namespaces/{namespace}/daemonsets/{name} {#_apisappsv1watchnamespaces_namespace_daemonsets_name}
 
 **Global path parameters**
 
@@ -430,7 +430,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/namespaces/{{ namespace }}/daemonsets/{{ name }}/status {#_apisappsv1namespaces_namespace_daemonsets_name_status}
+### /apis/apps/v1/namespaces/{namespace}/daemonsets/{name}/status {#_apisappsv1namespaces_namespace_daemonsets_name_status}
 
 **Global path parameters**
 

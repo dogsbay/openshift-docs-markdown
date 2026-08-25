@@ -1,5 +1,5 @@
 ---
-title: LocalResourceAccessReview []
+title: LocalResourceAccessReview [authorization.openshift.io/v1]
 ---
 
 # LocalResourceAccessReview \[authorization.openshift.io/v1\] {#localresourceaccessreview-authorization-openshift-io-v1}
@@ -33,7 +33,7 @@ Required
 | `isNonResourceURL` | `boolean` | isNonResourceURL is true if this is a request for a non-resource URL (outside of the resource hierarchy) |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
-| `namespace` | `string` | namespace is the namespace of the action being requested.  Currently, there is no distinction between no namespace and all namespaces |
+| `namespace` | `string` | namespace is the namespace of the action being requested. Currently, there is no distinction between no namespace and all namespaces |
 | `path` | `string` | path is the path of a non resource URL |
 | `resource` | `string` | resource is one of the existing resource types |
 | `resourceAPIGroup` | `string` | Group is the API group of the resource Serialized as resourceAPIGroup to avoid confusion with the 'groups' field when inlined |
@@ -45,11 +45,11 @@ Required
 
 The following API endpoints are available:
 
-- `/apis/authorization.openshift.io/v1/namespaces/{{ namespace }}/localresourceaccessreviews`
+- `/apis/authorization.openshift.io/v1/namespaces/{namespace}/localresourceaccessreviews`
 
   - `POST`: create a LocalResourceAccessReview
 
-### /apis/authorization.openshift.io/v1/namespaces/{{ namespace }}/localresourceaccessreviews {#_apisauthorizationopenshiftiov1namespaces_namespace_localresourceaccessreviews}
+### /apis/authorization.openshift.io/v1/namespaces/{namespace}/localresourceaccessreviews {#_apisauthorizationopenshiftiov1namespaces_namespace_localresourceaccessreviews}
 
 **Global query parameters**
 

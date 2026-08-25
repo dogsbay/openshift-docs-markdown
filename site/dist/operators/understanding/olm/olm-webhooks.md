@@ -6,7 +6,8 @@ title: Webhook management in Operator Lifecycle Manager
 
 Webhooks allow Operator authors to intercept, modify, and accept or reject resources before they are saved to the object store and handled by the Operator controller. Operator Lifecycle Manager (OLM) can manage the lifecycle of these webhooks when they are shipped alongside your Operator.
 
-## Additional resources {#olm-webhooks-additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Types of webhook admission plugins](/openshift-docs-markdown/architecture/admission-plug-ins#admission-webhook-types_admission-plug-ins)
 - [Validating admission webhooks (Kubernetes documentation)](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#validatingadmissionwebhook)

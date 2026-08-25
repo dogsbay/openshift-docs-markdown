@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"configuring-sriov-rdma-cni","text":"Configu
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/hardware_networks/configuring-sriov-rdma-cni";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="configuring-sriov-rdma-cni" class="group scroll-mt-20">Configuring an RDMA subsystem for SR-IOV<a href="#configuring-sriov-rdma-cni" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Remote Direct Memory Access (RDMA) allows direct memory access between two systems without involving the operating system of either system. You can configure an RDMA Container Network Interface (CNI) on Single Root I/O Virtualization (SR-IOV) to enable high-performance, low-latency communication between containers. When you combine RDMA with SR-IOV, you provide a mechanism to expose hardware counters of Mellanox Ethernet devices for use inside  Data Plane Development Kit (DPDK)    applications.</p>
+      <p class="_abstract">Remote Direct Memory Access (RDMA) allows direct memory access between two systems without involving the operating system of either system. You can configure an RDMA Container Network Interface (CNI) on Single Root I/O Virtualization (SR-IOV) to enable high-performance, low-latency communication between containers. When you combine RDMA with SR-IOV, you provide a mechanism to expose hardware counters of Mellanox Ethernet devices for use inside  Data Plane Development Kit (DPDK)    applications.</p>
       <h2 id="nw-sriov-configuring-sriov-rdma-cni_configuring-sriov-rdma-cni" class="group scroll-mt-20">Configuring SR-IOV RDMA CNI<a href="#nw-sriov-configuring-sriov-rdma-cni_configuring-sriov-rdma-cni" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">Configure an RDMA CNI on SR-IOV.</p>
       <Alert variant="note" class="my-4">

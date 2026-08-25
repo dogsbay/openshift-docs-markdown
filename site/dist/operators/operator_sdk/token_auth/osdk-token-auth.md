@@ -13,6 +13,7 @@ Previously, on clusters where the CCO is in *manual mode*, Operators managed by 
 Starting in OpenShift Container Platform 4.14, the CCO can detect when it is running on clusters enabled to use short-term credentials on certain cloud providers. It can then semi-automate provisioning certain credentials, provided that the Operator author has enabled their Operator to support the updated CCO.
 
 **Additional resources**
+{._additional-resources}
 
 - [About the Cloud Credential Operator](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator)
 - [CCO-based workflow for OLM-managed Operators with AWS STS](/openshift-docs-markdown/operators/operator_sdk/token_auth/osdk-cco-aws-sts#osdk-cco-aws-sts)

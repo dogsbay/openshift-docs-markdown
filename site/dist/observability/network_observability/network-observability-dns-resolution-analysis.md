@@ -2,7 +2,7 @@
 title: Network observability DNS resolution analysis
 ---
 
-# Network observability DNS resolution analysis {#network-observability-dns-resolution-analysis_{{ context }}}
+# Network observability DNS resolution analysis {#network-observability-dns-resolution-analysis_{context}}
 
 Learn how DNS resolution analysis uses eBPF-based decoding to identify service discovery issues and follow the steps to enable DNS tracking in the FlowCollector resource to enrich network flow records with domain names.
 
@@ -63,7 +63,7 @@ Enable DNS tracking in the Network Observability Operator to monitor DNS query n
 
 **Verification**
 
-1. In the OpenShift Container Platform web console, navigate to **Observe** -> **Network Traffic**.
+1. In the OpenShift Container Platform web console, navigate to **Observe** → **Network Traffic**.
 2. In the **Traffic Flows** view, click the **Manage columns** icon.
 3. Ensure that the **DNS Query Name**, **DNS Response Code**, and **DNS Latency** columns are selected.
 4. Filter the results by setting **Port** to `53`.
@@ -108,6 +108,7 @@ For example, instead of `https://my-svc.my-namespace.svc`, use `https://my-svc.m
 DNS tracking increases the number of labels and the amount of metadata per flow. Ensure that the Loki storage is sized to accommodate the increased log volume.
 
 **Additional resources**
+{._additional-resources}
 
 - [Network flows format reference](/openshift-docs-markdown/observability/network_observability/json-flows-format-reference#network-observability-flows-format_json_reference)
 - [Network Observability Operator runbooks](https://github.com/openshift/runbooks/tree/master/alerts/network-observability-operator)

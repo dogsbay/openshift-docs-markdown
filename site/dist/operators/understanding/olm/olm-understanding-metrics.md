@@ -10,7 +10,7 @@ Operator Lifecycle Manager (OLM) exposes OLM-specific metrics that the Prometheu
 
 Operator Lifecycle Manager (OLM) exposes certain OLM-specific resources for use by the Prometheus-based OpenShift Container Platform cluster monitoring stack.
 
-***Metrics exposed by OLM***
+**Metrics exposed by OLM**
 
 <table>
 <thead>

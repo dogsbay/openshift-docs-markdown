@@ -1,5 +1,5 @@
 ---
-title: ConsoleLink []
+title: ConsoleLink [console.openshift.io/v1]
 ---
 
 # ConsoleLink \[console.openshift.io/v1\] {#consolelink-console-openshift-io-v1}
@@ -137,13 +137,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of ConsoleLink
   - `GET`: list objects of kind ConsoleLink
   - `POST`: create a ConsoleLink
-- `/apis/console.openshift.io/v1/consolelinks/{{ name }}`
+- `/apis/console.openshift.io/v1/consolelinks/{name}`
 
   - `DELETE`: delete a ConsoleLink
   - `GET`: read the specified ConsoleLink
   - `PATCH`: partially update the specified ConsoleLink
   - `PUT`: replace the specified ConsoleLink
-- `/apis/console.openshift.io/v1/consolelinks/{{ name }}/status`
+- `/apis/console.openshift.io/v1/consolelinks/{name}/status`
 
   - `GET`: read status of the specified ConsoleLink
   - `PATCH`: partially update status of the specified ConsoleLink
@@ -217,7 +217,7 @@ Description
 | 202 - Accepted | [`ConsoleLink`](/openshift-docs-markdown/rest_api/console_apis/consolelink-console-openshift-io-v1#consolelink-console-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/console.openshift.io/v1/consolelinks/{{ name }} {#_apisconsoleopenshiftiov1consolelinks_name}
+### /apis/console.openshift.io/v1/consolelinks/{name} {#_apisconsoleopenshiftiov1consolelinks_name}
 
 **Global path parameters**
 
@@ -321,7 +321,7 @@ Description
 | 201 - Created | [`ConsoleLink`](/openshift-docs-markdown/rest_api/console_apis/consolelink-console-openshift-io-v1#consolelink-console-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/console.openshift.io/v1/consolelinks/{{ name }}/status {#_apisconsoleopenshiftiov1consolelinks_name_status}
+### /apis/console.openshift.io/v1/consolelinks/{name}/status {#_apisconsoleopenshiftiov1consolelinks_name_status}
 
 **Global path parameters**
 

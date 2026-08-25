@@ -33,13 +33,16 @@ The following are `DataProtectionApplicationSpec` OADP APIs:
 | --- | --- | --- |
 | `backupLocations` | \[\] [`BackupLocation`](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#BackupLocation) | Defines the list of configurations to use for `BackupStorageLocations`. |
 | `snapshotLocations` | \[\] [`SnapshotLocation`](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#SnapshotLocation) | Defines the list of configurations to use for `VolumeSnapshotLocations`. |
-| `unsupportedOverrides` | map \[ [UnsupportedImageKey](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#UnsupportedImageKey) \]  [string](https://pkg.go.dev/builtin#string) | Can be used to override the deployed dependent images for development. Options are `veleroImageFqin`, `awsPluginImageFqin`, `hypershiftPluginImageFqin`, `openshiftPluginImageFqin`, `azurePluginImageFqin`, `gcpPluginImageFqin`, `csiPluginImageFqin`, `dataMoverImageFqin`, `resticRestoreImageFqin`, `kubevirtPluginImageFqin`, and `operator-type`. |
+| `unsupportedOverrides` | map \[ [UnsupportedImageKey](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#UnsupportedImageKey) \] [string](https://pkg.go.dev/builtin#string) | Can be used to override the deployed dependent images for development. Options are `veleroImageFqin`, `awsPluginImageFqin`, `hypershiftPluginImageFqin`, `openshiftPluginImageFqin`, `azurePluginImageFqin`, `gcpPluginImageFqin`, `csiPluginImageFqin`, `dataMoverImageFqin`, `resticRestoreImageFqin`, `kubevirtPluginImageFqin`, and `operator-type`. |
 | `podAnnotations` | map \[ [string](https://pkg.go.dev/builtin#string) \] [string](https://pkg.go.dev/builtin#string) | Used to add annotations to pods deployed by Operators. |
 | `podDnsPolicy` | [`DNSPolicy`](https://pkg.go.dev/k8s.io/api/core/v1#DNSPolicy) | Defines the configuration of the DNS of a pod. |
 | `podDnsConfig` | [`PodDNSConfig`](https://pkg.go.dev/k8s.io/api/core/v1#PodDNSConfig) | Defines the DNS parameters of a pod in addition to those generated from `DNSPolicy`. |
 | `backupImages` | \*[bool](https://pkg.go.dev/builtin#bool) | Used to specify whether or not you want to deploy a registry for enabling backup and restore of images. |
 | `configuration` | \*[`ApplicationConfig`](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#ApplicationConfig) | Used to define the data protection application’s server configuration. |
 | `features` | \*[`Features`](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#Features) | Defines the configuration for the DPA to enable the Technology Preview features. |
+
+**Additional resources**
+{._additional-resources}
 
 - [Complete schema definitions for the OADP API](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#DataProtectionApplicationSpec)
 
@@ -59,6 +62,9 @@ The following are `BackupLocation` OADP APIs:
 >
 > For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
 
+**Additional resources**
+{._additional-resources}
+
 - [Complete schema definitions for the type `BackupLocation`](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#BackupLocation)
 
 ## SnapshotLocation type {#snapshotlocation-type_oadp-api}
@@ -70,6 +76,9 @@ The following are `SnapshotLocation` OADP APIs:
 | Property | Type | Description |
 | --- | --- | --- |
 | `velero` | \*[VolumeSnapshotLocationSpec](https://pkg.go.dev/github.com/vmware-tanzu/velero/pkg/apis/velero/v1#VolumeSnapshotLocationSpec) | Location to store volume snapshots, as described in [Volume Snapshot Location](https://pkg.go.dev/github.com/vmware-tanzu/velero/pkg/apis/velero/v1#VolumeSnapshotLocation). |
+
+**Additional resources**
+{._additional-resources}
 
 - [Complete schema definitions for the type `SnapshotLocation`](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#SnapshotLocation)
 
@@ -83,6 +92,9 @@ The following are `ApplicationConfig` OADP APIs:
 | --- | --- | --- |
 | `velero` | \*[VeleroConfig](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#VeleroConfig) | Defines the configuration for the Velero server. |
 | `restic` | \*[ResticConfig](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#ResticConfig) | Defines the configuration for the Restic server. |
+
+**Additional resources**
+{._additional-resources}
 
 - [Complete schema definitions for the type `ApplicationConfig`](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#ApplicationConfig)
 
@@ -102,6 +114,9 @@ The following are `VeleroConfig` OADP APIs:
 | `podConfig` | \*[`PodConfig`](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#PodConfig) | Defines the configuration of the `Velero` pod. |
 | `logLevel` | [string](https://pkg.go.dev/builtin#string) | Velero server’s log level (use `debug` for the most granular logging, leave unset for Velero default). Valid options are `trace`, `debug`, `info`, `warning`, `error`, `fatal`, and `panic`. |
 
+**Additional resources**
+{._additional-resources}
+
 - [Complete schema definitions for the type `VeleroConfig`](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#VeleroConfig)
 
 ## CustomPlugin type {#customplugin-type_oadp-api}
@@ -114,6 +129,9 @@ The following are `CustomPlugin` OADP APIs:
 | --- | --- | --- |
 | `name` | [string](https://pkg.go.dev/builtin#string) | Name of custom plugin. |
 | `image` | [string](https://pkg.go.dev/builtin#string) | Image of custom plugin. |
+
+**Additional resources**
+{._additional-resources}
 
 - [Complete schema definitions for the type `CustomPlugin`](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#CustomPlugin)
 
@@ -129,6 +147,9 @@ The following are `ResticConfig` OADP APIs:
 | `supplementalGroups` | \[\][int64](https://pkg.go.dev/builtin#int64) | Defines the Linux groups to be applied to the `Restic` pod. |
 | `timeout` | [string](https://pkg.go.dev/builtin#string) | A user-supplied duration string that defines the Restic timeout. Default value is `1hr` (1 hour). A duration string is a possibly signed sequence of decimal numbers, each with optional fraction and a unit suffix, such as `300ms`, `-1.5h`, or `2h45m`. Valid time units are `ns`, `us` (or `µs`), `ms`, `s`, `m`, and `h`. |
 | `podConfig` | \*[`PodConfig`](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#PodConfig) | Defines the configuration of the `Restic` pod. |
+
+**Additional resources**
+{._additional-resources}
 
 - [Complete schema definitions for the type `ResticConfig`](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#ResticConfig)
 
@@ -155,6 +176,9 @@ The following are `Features` OADP APIs:
 | --- | --- | --- |
 | `dataMover` | \*[`DataMover`](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#DataMover) | Defines the configuration of the Data Mover. |
 
+**Additional resources**
+{._additional-resources}
+
 - [Complete schema definitions for the type `Features`](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#Features)
 
 ## DataMover type {#datamover-type_oadp-api}
@@ -169,7 +193,8 @@ The following are `DataMover` OADP APIs:
 | `credentialName` | [string](https://pkg.go.dev/builtin#string) | User-supplied Restic `Secret` name for Data Mover. |
 | `timeout` | [string](https://pkg.go.dev/builtin#string) | A user-supplied duration string for `VolumeSnapshotBackup` and `VolumeSnapshotRestore` to complete. Default is `10m` (10 minutes). A duration string is a possibly signed sequence of decimal numbers, each with optional fraction and a unit suffix, such as `300ms`, `-1.5h`, or `2h45m`. Valid time units are `ns`, `us` (or `µs`), `ms`, `s`, `m`, and `h`. |
 
-## Additional resources {#additional-resources_oadp-api}
+**Additional resources**
+{._additional-resources}
 
 - [Velero API types](https://velero.io/docs/main/api-types/)
 - [OADP Operator (Go documentation)](https://pkg.go.dev/github.com/openshift/oadp-operator)

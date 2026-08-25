@@ -146,12 +146,12 @@ By default, the installation process creates a Cluster Resource Override Operato
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, navigate to **Home** -> **Projects**
+1. In the OpenShift Container Platform web console, navigate to **Home** → **Projects**
 
    1. Click **Create Project**.
    2. Specify `clusterresourceoverride-operator` as the name of the project.
    3. Click **Create**.
-2. Navigate to **Ecosystem** -> **Software Catalog**.
+2. Navigate to **Ecosystem** → **Software Catalog**.
 
    1. Choose  **ClusterResourceOverride Operator** from the list of available Operators and click **Install**.
    2. On the **Install Operator** page, make sure **A specific Namespace on the cluster** is selected for **Installation Mode**.
@@ -828,23 +828,22 @@ If overcommitment is enabled on a project, you can disable overcommitment for th
 1. Create or edit the namespace object file.
 2. Add the following annotation:
 
-   ````
-       ```yaml
-       apiVersion: v1
-       kind: Namespace
-       metadata:
-         annotations:
-           quota.openshift.io/cluster-resource-override-enabled: "false"
-       # ...
-       ```
+   ```yaml
+   apiVersion: v1
+   kind: Namespace
+   metadata:
+     annotations:
+       quota.openshift.io/cluster-resource-override-enabled: "false"
+   # ...
+   ```
 
-       where:
+   where:
 
-       `metadata.annotations.quota.openshift.io/cluster-resource-override-enabled.false`
-       :   Specifies that overcommit is disabled for this namespace.
-   ````
+   `metadata.annotations.quota.openshift.io/cluster-resource-override-enabled.false`
+   :   Specifies that overcommit is disabled for this namespace.
 
-## Additional resources {#nodes-cluster-overcommit-addtl-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Moving the Cluster Resource Override Operator pods](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#nodes-cluster-resource-override-move-infra_creating-infrastructure-machinesets)
 - [Creating infrastructure machine sets](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#creating-infrastructure-machinesets)

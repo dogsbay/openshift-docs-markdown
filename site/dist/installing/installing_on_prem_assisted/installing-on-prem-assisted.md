@@ -1,5 +1,5 @@
 ---
-title: Installing an on-premise cluster using the {{ ai_full }}
+title: Installing an on-premise cluster using the Assisted Installer
 ---
 
 # Installing an on-premise cluster using the Assisted Installer {#installing-on-prem-assisted}

@@ -66,6 +66,7 @@ You can remove the SR-IOV Network Operator from your cluster by uninstalling the
    $ oc delete namespace openshift-sriov-network-operator
    ```
 
-## Additional resources {#additional-resources_uninstalling-sr-iov-operator}
+**Additional resources**
+{._additional-resources}
 
 - [Deleting Operators from a cluster](/openshift-docs-markdown/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-a-cluster)

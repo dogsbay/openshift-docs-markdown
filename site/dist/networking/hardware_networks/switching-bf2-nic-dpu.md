@@ -92,5 +92,6 @@ Use the following procedure to switch Bluefield-2 from data processing units (DP
 5. Optional: You might need to restart the host hardware because most recent Bluefield-2 firmware releases require a hardware restart to switch into NIC mode.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing SR-IOV Network Operator](/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator)

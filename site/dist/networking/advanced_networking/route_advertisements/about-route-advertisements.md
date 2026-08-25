@@ -102,7 +102,7 @@ You can define a `RouteAdvertisements` object, which is cluster scoped, with the
 
 The fields for the `RouteAdvertisements` custom resource (CR) are described in the following table:
 
-`RouteAdvertisements`** object**
+**`RouteAdvertisements` object**
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -404,7 +404,8 @@ spec:
 
 In this scenario, any filtering or selection of routes to receive must be done in the `FRRConfiguration` CR that defines peering relationships.
 
-## Additional resources {#additional-resources_about-route-advertisements}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring the FRRConfiguration CRD](/openshift-docs-markdown/networking/ingress_load_balancing/metallb/metallb-frr-k8s#nw-metallb-frrconfiguration-crd_configure-metallb-frr-k8s)
 - [Starting a service within an isolated VRF network](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/html/configuring_and_managing_networking/assembly_starting-a-service-within-an-isolated-vrf-network_configuring-and-managing-networking)

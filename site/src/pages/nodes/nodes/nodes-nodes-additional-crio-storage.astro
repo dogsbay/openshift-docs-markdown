@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"nodes-nodes-additional-crio-storage","text"
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/nodes/nodes-nodes-additional-crio-storage";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="nodes-nodes-additional-crio-storage" class="group scroll-mt-20">Additional CRI-O storage locations for faster container startup<a href="#nodes-nodes-additional-crio-storage" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>To reduce application startup time, make your applications run more efficiently, and configure lazy pulling, you can configure additional storage locations for the CRI-O container engine.</p>
+      <p class="_abstract">To reduce application startup time, make your applications run more efficiently, and configure lazy pulling, you can configure additional storage locations for the CRI-O container engine. </p>
       <p>Fields in the <code>ContainerRuntimeConfig</code> custom resource (CR) let you specify where CRI-O stores and resolves container image layers, complete container images, and OCI artifacts.</p>
       <Alert variant="info" class="my-4">
         <AlertTitle>Important</AlertTitle>

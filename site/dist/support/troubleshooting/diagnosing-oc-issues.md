@@ -1,5 +1,5 @@
 ---
-title: Diagnosing OpenShift CLI () issues
+title: Diagnosing OpenShift CLI (oc) issues
 ---
 
 # Diagnosing OpenShift CLI (`oc`) issues {#diagnosing-oc-issues}

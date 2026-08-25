@@ -33,7 +33,7 @@ You can list all of the virtual machines (VMs) in your cluster by using the web 
 
 **Procedure**
 
-1. Click **Virtualization** -> **VirtualMachines** from the side menu to access the tree view of all projects and VMs in your cluster.
+1. Click **Virtualization** → **VirtualMachines** from the side menu to access the tree view of all projects and VMs in your cluster.
 2. Optional: Enable the **Show only projects with VirtualMachines** option above the tree view to limit the displayed projects.
 3. Click the **Virtual machines** tab.
 4. Optional: Click the **Search virtual machines** text box and begin to type the name of a virtual machine. A list of filtered virtual machine names will appear and change as you type.
@@ -111,17 +111,21 @@ You can list all of the virtual machines (VMs) in your cluster by using the web 
 </tr>
 </tbody>
 </table>
-    1.  Click **Search**.
-    1.  Optional: Click **Clear all** to clear all search criteria.
-1.  Optional: Click **Save search** to save the current for reuse later.
-1.  Optional: Select a saved search from the **Saved searches** list to reuse.
-1.  Optional: Filter the list of virtual machines by project using the **Project** list.
-1.  Optional: Filter the list of virtual machines by status using the **Status** list.
-1.  Optional: Filter the list of virtual machines by operating system using the **Operating system** list.
-1.  Optional: Filter the list of virtual machines by name using the **Search by name** field.
-1.  Optional: Use the **Selection** list to quickly select or deselect a group of virtual machines.
-1.  Optional: Use the **Actions** list to perform an action on all selected virtual machines.
-1.  Optional: Click the **More actions** icon beside an individual virtual machine listing to perform an action on that virtual machine.
+
+```
+1.  Click **Search**.
+1.  Optional: Click **Clear all** to clear all search criteria.
+```
+
+1. Optional: Click **Save search** to save the current for reuse later.
+2. Optional: Select a saved search from the **Saved searches** list to reuse.
+3. Optional: Filter the list of virtual machines by project using the **Project** list.
+4. Optional: Filter the list of virtual machines by status using the **Status** list.
+5. Optional: Filter the list of virtual machines by operating system using the **Operating system** list.
+6. Optional: Filter the list of virtual machines by name using the **Search by name** field.
+7. Optional: Use the **Selection** list to quickly select or deselect a group of virtual machines.
+8. Optional: Use the **Actions** list to perform an action on all selected virtual machines.
+9. Optional: Click the **More actions** icon beside an individual virtual machine listing to perform an action on that virtual machine.
 
 ## Organize virtual machines by using the web console {#virt-organize-vms-web_virt-list-vms}
 
@@ -133,11 +137,11 @@ In addition to creating virtual machines (VMs) in different projects, you can us
 > For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
 
 > [!NOTE]
-> OpenShift Virtualization does not enable folders in the virtual machine tree by default. To enable folders, go to **Virtualization** -> **Settings**. In the **Preview features** tab, select **Enable folders in Virtual Machines tree view**.
+> OpenShift Virtualization does not enable folders in the virtual machine tree by default. To enable folders, go to **Virtualization** → **Settings**. In the **Preview features** tab, select **Enable folders in Virtual Machines tree view**.
 
 **Procedure**
 
-1. Click **Virtualization** -> **VirtualMachines** from the side menu to access the tree view with all projects and VMs in your cluster.
+1. Click **Virtualization** → **VirtualMachines** from the side menu to access the tree view with all projects and VMs in your cluster.
 2. Perform one of the following actions depending on your use case:
 
    - To move the VM to a new folder in the same project:

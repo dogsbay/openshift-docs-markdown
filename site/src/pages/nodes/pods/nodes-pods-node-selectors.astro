@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"nodes-pods-node-selectors","text":"Placing 
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/pods/nodes-pods-node-selectors";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="nodes-pods-node-selectors" class="group scroll-mt-20">Placing pods on specific nodes using node selectors<a href="#nodes-pods-node-selectors" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>For a pod to be eligible to run on a specific node, you can include a <em>node selector</em> in the pod spec that has the indicated key-value pairs as the label on that node.</p>
+      <p class="_abstract">For a pod to be eligible to run on a specific node, you can include a <em>node selector</em> in the pod spec that has the indicated key-value pairs as the label on that node.</p>
       <p>A <em>node selector</em> specifies a map of key-value pairs. The rules are defined using custom labels on nodes and selectors specified in pods.</p>
       <p>If you are using node affinity and node selectors in the same pod configuration, see the important considerations below.</p>
       <h2 id="nodes-scheduler-node-selectors-pod_nodes-pods-node-selectors" class="group scroll-mt-20">Using node selectors to control pod placement<a href="#nodes-scheduler-node-selectors-pod_nodes-pods-node-selectors" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>

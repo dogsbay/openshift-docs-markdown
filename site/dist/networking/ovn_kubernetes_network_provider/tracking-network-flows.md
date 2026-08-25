@@ -33,7 +33,7 @@ Collecting the network flows data and sending the records to collectors affects 
 
 The fields for configuring network flows collectors in the Cluster Network Operator (CNO) are shown in the following table:
 
-***Network flows configuration***
+**Network flows configuration**
 
 <table>
 <thead>
@@ -186,6 +186,7 @@ As a cluster administrator, you can configure the Cluster Network Operator (CNO)
    network.operator.openshift.io/cluster patched
    ```
 
-## Additional resources {#additional-resources_tracking-network-flows}
+**Additional resources**
+{._additional-resources}
 
 - \[Network [operator.openshift.io/v1\]](/openshift-docs-markdown/rest_api/operator_apis/network-operator-openshift-io-v1#network-operator-openshift-io-v1)

@@ -1,8 +1,8 @@
 ---
-title: Preparing for image-based installation for {{ sno }} clusters
+title: Preparing for image-based installation for single-node OpenShift clusters
 ---
 
-# Preparing for image-based installation for {{ sno }} clusters {#ibi-preparing-for-image-based-install}
+# Preparing for image-based installation for single-node OpenShift clusters {#ibi-preparing-for-image-based-install}
 
 To prepare for an image-based installation for single-node OpenShift clusters, you must complete the following tasks:
 
@@ -10,10 +10,11 @@ To prepare for an image-based installation for single-node OpenShift clusters, y
 - Verify that all software components meet the required versions. For further information, see "Software prerequisites for an image-based installation and deployment".
 
 **Additional resources**
+{._additional-resources}
 
 - [Software prerequisites for an image-based installation and deployment](/openshift-docs-markdown/edge_computing/image_base_install/ibi-understanding-image-based-install#ztp-image-based-upgrade-prereqs_ibi-understanding-image-based-install)
 
-## Installing the Lifecycle Agent {#_installing_the_lcao}
+## Installing the Lifecycle Agent {#_installing_the_lcao ._additional-resources}
 
 Use the Lifecycle Agent to generate a seed image from a seed cluster. You can install the Lifecycle Agent using the OpenShift CLI (`oc`) or the web console.
 
@@ -95,7 +96,7 @@ You can use the OpenShift CLI (`oc`) to install the Lifecycle Agent.
 
    ```terminal
    NAME                              DISPLAY                     VERSION               REPLACES                           PHASE
-   lifecycle-agent.v{{ product_version }}.0           Openshift Lifecycle Agent   {{ product_version }}.0                Succeeded
+   lifecycle-agent.v4.22.0           Openshift Lifecycle Agent   4.22.0                Succeeded
    ```
 2. Verify that the Lifecycle Agent is up and running by running the following command:
 
@@ -120,7 +121,7 @@ You can use the OpenShift Container Platform web console to install the Lifecycl
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, navigate to **Ecosystem** -> **Software Catalog**.
+1. In the OpenShift Container Platform web console, navigate to **Ecosystem** → **Software Catalog**.
 2. Search for the **Lifecycle Agent** from the list of available Operators, and then click **Install**.
 3. On the **Install Operator** page, under **A specific namespace on the cluster** select **openshift-lifecycle-agent**.
 4. Click **Install**.
@@ -129,7 +130,7 @@ You can use the OpenShift Container Platform web console to install the Lifecycl
 
 1. To confirm that the installation is successful:
 
-   1. Click **Ecosystem** -> **Installed Operators**.
+   1. Click **Ecosystem** → **Installed Operators**.
    2. Ensure that the Lifecycle Agent is listed in the **openshift-lifecycle-agent** project with a **Status** of **InstallSucceeded**.
 
       > [!NOTE]
@@ -137,10 +138,10 @@ You can use the OpenShift Container Platform web console to install the Lifecycl
 
 If the Operator is not installed successfully:
 
-1. Click **Ecosystem** -> **Installed Operators**, and inspect the **Operator Subscriptions** and **Install Plans** tabs for any failure or errors under **Status**.
-2. Click **Workloads** -> **Pods**, and check the logs for pods in the **openshift-lifecycle-agent** project.
+1. Click **Ecosystem** → **Installed Operators**, and inspect the **Operator Subscriptions** and **Install Plans** tabs for any failure or errors under **Status**.
+2. Click **Workloads** → **Pods**, and check the logs for pods in the **openshift-lifecycle-agent** project.
 
-## Configuring a shared container partition between ostree stateroots {id="cnf-image-based-upgrade-shared-container-partition_ibi-preparing-image-based-install"} {#configuring-a-shared-container-partition-between-ostree-stateroots-idcnf-image-based-upgrade-shared-container-partition_ibi-preparing-image-based-install ._abstract}
+## Configuring a shared container partition between ostree stateroots {#cnf-image-based-upgrade-shared-container-partition_ibi-preparing-image-based-install}
 
 > [!IMPORTANT]
 > You must complete this procedure at installation time.
@@ -209,13 +210,13 @@ Apply a `MachineConfig` to the seed cluster to create a separate partition and s
   `<partition_size>`
   :   Specifies a minimum size for the partition of 500 GB (512000 MiB) to ensure adequate disk space for precached images. If the value is too small, the deployments after installation will fail.
 
-## Seed image configuration {id="cnf-image-based-upgrade-seed-image-config_ibi-preparing-image-based-install"} {#seed-image-configuration-idcnf-image-based-upgrade-seed-image-config_ibi-preparing-image-based-install ._abstract}
+## Seed image configuration {#cnf-image-based-upgrade-seed-image-config_ibi-preparing-image-based-install}
 
 You can create a seed image from a single-node OpenShift cluster with the same hardware as your bare-metal host, and with a similar target cluster configuration. However, the seed image generated from the seed cluster cannot contain any cluster-specific configuration.
 
 The following table lists the components, resources, and configurations that you must and must not include in your seed image:
 
-***Seed image configuration***
+**Seed image configuration**
 
 <table>
 <thead>
@@ -242,11 +243,11 @@ The following table lists the components, resources, and configurations that you
   <td>Yes</td>
 </tr>
 <tr>
-  <td>Disconnected registry configuration ^[2]^</td>
+  <td>Disconnected registry configuration <sup>[2]</sup></td>
   <td>Yes</td>
 </tr>
 <tr>
-  <td>Valid proxy configuration ^[3]^</td>
+  <td>Valid proxy configuration <sup>[3]</sup></td>
   <td>Yes</td>
 </tr>
 <tr>
@@ -260,9 +261,6 @@ The following table lists the components, resources, and configurations that you
 <tr>
   <td>Local volumes<br><br><ul><li><code>StorageClass</code> used in <code>LocalVolume</code> for LSO</li><li><code>LocalVolume</code> for LSO</li><li><code>LVMCluster</code> CR for LVMS</li></ul></td>
   <td>No</td>
-</tr>
-<tr>
-
 </tr>
 </tbody>
 </table>

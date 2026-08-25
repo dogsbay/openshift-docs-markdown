@@ -93,9 +93,7 @@ users
 
 ## About authentication in OpenShift Container Platform {#authentication-overview_overview-of-authentication-authorization}
 
-To control access to an OpenShift Container Platform cluster, a cluster administrator
-
-can configure [user authentication](/openshift-docs-markdown/authentication/understanding-authentication#understanding-authentication) and ensure only approved users access the cluster.
+To control access to an OpenShift Container Platform cluster, a cluster administrator can configure [user authentication](/openshift-docs-markdown/authentication/understanding-authentication#understanding-authentication) and ensure only approved users access the cluster.
 
 To interact with an OpenShift Container Platform cluster, users must first authenticate to the OpenShift Container Platform API in some way. You can authenticate by providing an [OAuth access token or an X.509 client certificate](/openshift-docs-markdown/authentication/understanding-authentication#rbac-api-authentication_understanding-authentication) in your requests to the OpenShift Container Platform API.
 

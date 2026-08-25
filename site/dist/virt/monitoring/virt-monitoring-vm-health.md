@@ -343,6 +343,7 @@ You can define a guest agent ping probe by setting the `spec.readinessProbe.gues
    $ oc create -f <file_name>.yaml
    ```
 
-## Additional resources {#additional-resources_monitoring-vm-health}
+**Additional resources**
+{._additional-resources}
 
 - [Monitoring application health by using health checks](/openshift-docs-markdown/applications/application-health#application-health)

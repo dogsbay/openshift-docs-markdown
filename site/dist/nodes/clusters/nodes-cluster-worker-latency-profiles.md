@@ -62,11 +62,37 @@ Default worker latency profile
 
     If a pod is on a node that has the `NoExecute` taint, the pod runs according to `tolerationSeconds`. If the node has no taint, it will be evicted in 300 seconds (`default-not-ready-toleration-seconds` and `default-unreachable-toleration-seconds` settings of the `Kube API Server`).
 
-    | Profile | Component | Parameter | Value .4+ |
-    | --- | --- | --- | --- |
-    | Default | kubelet | `node-status-update-frequency` | 10s |
-    | Kubelet Controller Manager | `node-monitor-grace-period` | 40s | Kubernetes API Server Operator |
-    | `default-not-ready-toleration-seconds` | 300s | Kubernetes API Server Operator | `default-unreachable-toleration-seconds` |
+<table>
+<tbody>
+<tr>
+  <td>Profile</td>
+  <td>Component</td>
+  <td>Parameter</td>
+  <td>Value</td>
+</tr>
+<tr>
+  <td rowspan="4">Default</td>
+  <td>kubelet</td>
+  <td><code>node-status-update-frequency</code></td>
+  <td>10s</td>
+</tr>
+<tr>
+  <td>Kubelet Controller Manager</td>
+  <td><code>node-monitor-grace-period</code></td>
+  <td>40s</td>
+</tr>
+<tr>
+  <td>Kubernetes API Server Operator</td>
+  <td><code>default-not-ready-toleration-seconds</code></td>
+  <td>300s</td>
+</tr>
+<tr>
+  <td>Kubernetes API Server Operator</td>
+  <td><code>default-unreachable-toleration-seconds</code></td>
+  <td>300s</td>
+</tr>
+</tbody>
+</table>
 
 Medium worker latency profile
 :   Use the `MediumUpdateAverageReaction` profile if the network latency is slightly higher than usual.
@@ -75,11 +101,37 @@ Medium worker latency profile
 
     The Kubernetes Controller Manager waits for 2 minutes to consider a node unhealthy. In another minute, the eviction process starts.
 
-    | Profile | Component | Parameter | Value .4+ |
-    | --- | --- | --- | --- |
-    | MediumUpdateAverageReaction | kubelet | `node-status-update-frequency` | 20s |
-    | Kubelet Controller Manager | `node-monitor-grace-period` | 2m | Kubernetes API Server Operator |
-    | `default-not-ready-toleration-seconds` | 60s | Kubernetes API Server Operator | `default-unreachable-toleration-seconds` |
+<table>
+<tbody>
+<tr>
+  <td>Profile</td>
+  <td>Component</td>
+  <td>Parameter</td>
+  <td>Value</td>
+</tr>
+<tr>
+  <td rowspan="4">MediumUpdateAverageReaction</td>
+  <td>kubelet</td>
+  <td><code>node-status-update-frequency</code></td>
+  <td>20s</td>
+</tr>
+<tr>
+  <td>Kubelet Controller Manager</td>
+  <td><code>node-monitor-grace-period</code></td>
+  <td>2m</td>
+</tr>
+<tr>
+  <td>Kubernetes API Server Operator</td>
+  <td><code>default-not-ready-toleration-seconds</code></td>
+  <td>60s</td>
+</tr>
+<tr>
+  <td>Kubernetes API Server Operator</td>
+  <td><code>default-unreachable-toleration-seconds</code></td>
+  <td>60s</td>
+</tr>
+</tbody>
+</table>
 
 Low worker latency profile
 :   Use the `LowUpdateSlowReaction` profile if the network latency is extremely high.
@@ -88,11 +140,37 @@ Low worker latency profile
 
     The Kubernetes Controller Manager waits for 5 minutes to consider a node unhealthy. In another minute, the eviction process starts.
 
-    | Profile | Component | Parameter | Value .4+ |
-    | --- | --- | --- | --- |
-    | LowUpdateSlowReaction | kubelet | `node-status-update-frequency` | 1m |
-    | Kubelet Controller Manager | `node-monitor-grace-period` | 5m | Kubernetes API Server Operator |
-    | `default-not-ready-toleration-seconds` | 60s | Kubernetes API Server Operator | `default-unreachable-toleration-seconds` |
+<table>
+<tbody>
+<tr>
+  <td>Profile</td>
+  <td>Component</td>
+  <td>Parameter</td>
+  <td>Value</td>
+</tr>
+<tr>
+  <td rowspan="4">LowUpdateSlowReaction</td>
+  <td>kubelet</td>
+  <td><code>node-status-update-frequency</code></td>
+  <td>1m</td>
+</tr>
+<tr>
+  <td>Kubelet Controller Manager</td>
+  <td><code>node-monitor-grace-period</code></td>
+  <td>5m</td>
+</tr>
+<tr>
+  <td>Kubernetes API Server Operator</td>
+  <td><code>default-not-ready-toleration-seconds</code></td>
+  <td>60s</td>
+</tr>
+<tr>
+  <td>Kubernetes API Server Operator</td>
+  <td><code>default-unreachable-toleration-seconds</code></td>
+  <td>60s</td>
+</tr>
+</tbody>
+</table>
 
 > [!NOTE]
 > The latency profiles do not support custom machine config pools, only the default worker machine config pools.

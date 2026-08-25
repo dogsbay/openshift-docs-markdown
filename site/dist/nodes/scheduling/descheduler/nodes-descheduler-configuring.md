@@ -25,11 +25,11 @@ By default, the descheduler runs in predictive mode, which means that it only si
 1. Log in to the OpenShift Container Platform web console.
 2. Create the required namespace for the Kube Descheduler Operator.
 
-   1. Navigate to **Administration** -> **Namespaces** and click **Create Namespace**.
+   1. Navigate to **Administration** → **Namespaces** and click **Create Namespace**.
    2. Enter `openshift-kube-descheduler-operator` in the **Name** field, enter `openshift.io/cluster-monitoring=true` in the **Labels** field to enable descheduler metrics, and click **Create**.
 3. Install the Kube Descheduler Operator.
 
-   1. Navigate to **Ecosystem** -> **Software Catalog**.
+   1. Navigate to **Ecosystem** → **Software Catalog**.
    2. Type **Kube Descheduler Operator** into the filter box.
    3. Select the **Kube Descheduler Operator** and click **Install**.
    4. On the **Install Operator** page, select **A specific namespace on the cluster**. Select **openshift-kube-descheduler-operator** from the drop-down menu.
@@ -37,7 +37,7 @@ By default, the descheduler runs in predictive mode, which means that it only si
    6. Click **Install**.
 4. Create a descheduler instance.
 
-   1. From the **Ecosystem** -> **Installed Operators** page, click the **Kube Descheduler Operator**.
+   1. From the **Ecosystem** → **Installed Operators** page, click the **Kube Descheduler Operator**.
    2. Select the **Kube Descheduler** tab and click **Create KubeDescheduler**.
    3. Edit the settings as necessary.
 

@@ -6,7 +6,7 @@
 - [API compatibility guidelines](https://dogsbay.github.io/openshift-docs-markdown/rest_api/overview/understanding-compatibility-guidelines.md): Red Hat recommends that application developers adopt the following principles in order to improve compatibility with OpenShift Container Platform:
 - [Editing kubelet log level verbosity and gathering logs](https://dogsbay.github.io/openshift-docs-markdown/rest_api/overview/editing-kubelet-log-level-verbosity.md): To troubleshoot some issues with nodes, establish the kubelet’s log level verbosity depending on the issue to be tracked.
 - [API list](https://dogsbay.github.io/openshift-docs-markdown/rest_api/overview.md)
-- [Index](https://dogsbay.github.io/openshift-docs-markdown/rest_api/objects.md): Description .spec
+- [Index](https://dogsbay.github.io/openshift-docs-markdown/rest_api/objects.md): Description
 - [About Authorization APIs](https://dogsbay.github.io/openshift-docs-markdown/rest_api/authorization_apis/authorization-apis-index.md)
 - [LocalResourceAccessReview [authorization.openshift.io/v1]](https://dogsbay.github.io/openshift-docs-markdown/rest_api/authorization_apis/localresourceaccessreview-authorization-openshift-io-v1.md): The following API endpoints are available:
 - [LocalSubjectAccessReview [authorization.openshift.io/v1]](https://dogsbay.github.io/openshift-docs-markdown/rest_api/authorization_apis/localsubjectaccessreview-authorization-openshift-io-v1.md): The following API endpoints are available:

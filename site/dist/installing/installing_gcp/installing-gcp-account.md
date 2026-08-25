@@ -1,5 +1,5 @@
 ---
-title: Configuring a {{ gcp_short }} project
+title: Configuring a Google Cloud project
 ---
 
 # Configuring a Google Cloud project {#installing-gcp-account}
@@ -29,7 +29,7 @@ Your Google Cloud project requires access to several API services to complete Op
 
 - Enable the following required API services in the project that hosts your cluster. You may also enable optional API services which are not required for installation. See [Enabling services](https://cloud.google.com/service-usage/docs/enable-disable#enabling) in the Google Cloud documentation.
 
-  ***Required API services***
+  **Required API services**
 
 <table>
 <thead>
@@ -67,7 +67,7 @@ Your Google Cloud project requires access to several API services to complete Op
 </table>
 
 ```
-***Optional API services***
+**Optional API services**
 ```
 
 <table>
@@ -78,9 +78,6 @@ Your Google Cloud project requires access to several API services to complete Op
 </tr>
 </thead>
 <tbody>
-<tr>
-
-</tr>
 <tr>
   <td>Google Cloud APIs</td>
   <td><code>cloudapis.googleapis.com</code></td>
@@ -102,9 +99,7 @@ Your Google Cloud project requires access to several API services to complete Op
 
 ## Configuring DNS for Google Cloud {#installation-gcp-dns_installing-gcp-account}
 
-To install OpenShift Container Platform, the Google Cloud account you use must have a dedicated public hosted zone in the same project that you host the OpenShift Container Platform cluster.
-
-This zone must be authoritative for the domain. The DNS service provides cluster DNS resolution and name lookup for external connections to the cluster.
+To install OpenShift Container Platform, the Google Cloud account you use must have a dedicated public hosted zone in the same project that you host the OpenShift Container Platform cluster. This zone must be authoritative for the domain. The DNS service provides cluster DNS resolution and name lookup for external connections to the cluster.
 
 **Procedure**
 
@@ -239,36 +234,6 @@ A default cluster, which contains three compute and three control plane machines
   <td>896</td>
   <td>128</td>
 </tr>
-<tr>
-
-</tr>
-<tr>
-
-</tr>
-<tr>
-
-</tr>
-<tr>
-
-</tr>
-<tr>
-
-</tr>
-<tr>
-
-</tr>
-<tr>
-
-</tr>
-<tr>
-
-</tr>
-<tr>
-
-</tr>
-<tr>
-
-</tr>
 </tbody>
 </table>
 
@@ -295,7 +260,7 @@ You can increase resource quotas from the [Google Cloud console](https://console
 
 ## Creating a service account in Google Cloud {#installation-gcp-service-account_installing-gcp-account}
 
-\[role="\_abstract"\] OpenShift Container Platform requires a Google Cloud service account that provides authentication and authorization to access data in the Google APIs. If you do not have an existing IAM service account that contains the required roles in your project, you must create one.
+OpenShift Container Platform requires a Google Cloud service account that provides authentication and authorization to access data in the Google APIs. If you do not have an existing IAM service account that contains the required roles in your project, you must create one.
 
 > [!NOTE]
 > To reduce the scope of permissions granted to the main service account in your Google Cloud project while still being able to use the Google Cloud Container Storage Interface (CSI) Driver Operator, you can transfer the control of permissions from the project-wide service account to the control plane and compute node service accounts instead, thus reducing the scope of the permission. For more information, see Section *Reducing permissions while using the Google Cloud CSI Driver Operator*.
@@ -317,6 +282,7 @@ You can increase resource quotas from the [Google Cloud console](https://console
    > If you use a virtual machine with an attached service account to create your cluster, you must set `credentialsMode: Manual` in the `install-config.yaml` file before installation.
 
 **Additional resources**
+{._additional-resources}
 
 - [Reducing permissions while using the Google Cloud CSI Driver Operator](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-gcp-pd#persistent-storage-csi-gcp-pd-reduce-permissions_persistent-storage-csi-gcp-pd)
 
@@ -345,7 +311,7 @@ When you attach the `Owner` role to the service account that you create, you gra
 
 The following roles are applied to the service accounts that the control plane and compute machines use:
 
-***Google Cloud service account roles***
+**Google Cloud service account roles**
 
 <table>
 <thead>
@@ -356,23 +322,26 @@ The following roles are applied to the service accounts that the control plane a
 </thead>
 <tbody>
 <tr>
-  <td>.5+</td>
-  <td>Control Plane</td>
+  <td rowspan="5">Control Plane</td>
+  <td><code>roles/compute.instanceAdmin</code></td>
 </tr>
 <tr>
-  <td><code>roles/compute.instanceAdmin</code></td>
   <td><code>roles/compute.networkAdmin</code></td>
 </tr>
 <tr>
   <td><code>roles/compute.securityAdmin</code></td>
+</tr>
+<tr>
   <td><code>roles/storage.admin</code></td>
 </tr>
 <tr>
-  <td><code>roles/iam.serviceAccountUser</code>.3+</td>
-  <td>Compute</td>
+  <td><code>roles/iam.serviceAccountUser</code></td>
 </tr>
 <tr>
+  <td rowspan="3">Compute</td>
   <td><code>roles/compute.viewer</code></td>
+</tr>
+<tr>
   <td><code>roles/storage.admin</code></td>
 </tr>
 <tr>
@@ -387,9 +356,7 @@ When you attach the `Owner` role to the service account that you create, you gra
 
 The following permissions are required for the installer-provisioned infrastructure for creating and deleting the OpenShift Container Platform cluster.
 
-<details>
-<summary>Required permissions for creating network resources</summary>
-
+:::details{title="Required permissions for creating network resources"}
 - `compute.addresses.create`
 - `compute.addresses.createInternal`
 - `compute.addresses.delete`
@@ -430,12 +397,9 @@ The following permissions are required for the installer-provisioned infrastruct
 - `compute.subnetworks.list`
 - `compute.subnetworks.use`
 - `compute.subnetworks.useExternalIp`
+:::
 
-</details>
-
-<details>
-<summary>Required permissions for creating load balancer resources</summary>
-
+:::details{title="Required permissions for creating load balancer resources"}
 - `compute.backendServices.create`
 - `compute.backendServices.get`
 - `compute.backendServices.list`
@@ -455,12 +419,9 @@ The following permissions are required for the installer-provisioned infrastruct
 - `compute.targetTcpProxies.create`
 - `compute.targetTcpProxies.get`
 - `compute.targetTcpProxies.use`
+:::
 
-</details>
-
-<details>
-<summary>Required permissions for creating DNS resources</summary>
-
+:::details{title="Required permissions for creating DNS resources"}
 - `dns.changes.create`
 - `dns.changes.get`
 - `dns.managedZones.create`
@@ -469,12 +430,9 @@ The following permissions are required for the installer-provisioned infrastruct
 - `dns.networks.bindPrivateDNSZone`
 - `dns.resourceRecordSets.create`
 - `dns.resourceRecordSets.list`
+:::
 
-</details>
-
-<details>
-<summary>Required permissions for creating Service Account resources</summary>
-
+:::details{title="Required permissions for creating Service Account resources"}
 - `iam.serviceAccountKeys.create`
 - `iam.serviceAccountKeys.delete`
 - `iam.serviceAccountKeys.get`
@@ -491,12 +449,9 @@ The following permissions are required for the installer-provisioned infrastruct
 - `resourcemanager.projects.setIamPolicy`
 
   - This permission is not required if you use `credentialsMode: Manual` and supply your own service accounts for compute and control plane nodes.
+:::
 
-</details>
-
-<details>
-<summary>Required permissions for creating compute resources</summary>
-
+:::details{title="Required permissions for creating compute resources"}
 - `compute.disks.create`
 - `compute.disks.get`
 - `compute.disks.list`
@@ -518,12 +473,9 @@ The following permissions are required for the installer-provisioned infrastruct
 - `compute.instances.use`
 - `compute.machineTypes.get`
 - `compute.machineTypes.list`
+:::
 
-</details>
-
-<details>
-<summary>Required for creating storage resources</summary>
-
+:::details{title="Required for creating storage resources"}
 - `storage.buckets.create`
 - `storage.buckets.delete`
 - `storage.buckets.get`
@@ -532,12 +484,9 @@ The following permissions are required for the installer-provisioned infrastruct
 - `storage.objects.delete`
 - `storage.objects.get`
 - `storage.objects.list`
+:::
 
-</details>
-
-<details>
-<summary>Required permissions for creating health check resources</summary>
-
+:::details{title="Required permissions for creating health check resources"}
 - `compute.healthChecks.create`
 - `compute.healthChecks.get`
 - `compute.healthChecks.list`
@@ -549,12 +498,9 @@ The following permissions are required for the installer-provisioned infrastruct
 - `compute.regionHealthChecks.create`
 - `compute.regionHealthChecks.get`
 - `compute.regionHealthChecks.useReadOnly`
+:::
 
-</details>
-
-<details>
-<summary>Required permissions to get {gcp-short} zone and region related information</summary>
-
+:::details{title="Required permissions to get Google Cloud zone and region related information"}
 - `compute.globalOperations.get`
 - `compute.regionOperations.get`
 - `compute.regions.get`
@@ -562,58 +508,37 @@ The following permissions are required for the installer-provisioned infrastruct
 - `compute.zoneOperations.get`
 - `compute.zones.get`
 - `compute.zones.list`
+:::
 
-</details>
-
-<details>
-<summary>Required permissions for checking services and quotas</summary>
-
+:::details{title="Required permissions for checking services and quotas"}
 - `monitoring.timeSeries.list`
 - `serviceusage.quotas.get`
 - `serviceusage.services.list`
+:::
 
-</details>
-
-<details>
-<summary>Required IAM permissions for installation</summary>
-
+:::details{title="Required IAM permissions for installation"}
 - `iam.roles.create`
 - `iam.roles.get`
 - `iam.roles.update`
+:::
 
-</details>
-
-<details>
-<summary>Required permissions when authenticating without a service account key</summary>
-
+:::details{title="Required permissions when authenticating without a service account key"}
 - `iam.serviceAccounts.signBlob`
+:::
 
-</details>
-
-<details>
-<summary>Required permissions when providing Key Management Service (KMS) key rings</summary>
-
+:::details{title="Required permissions when providing Key Management Service (KMS) key rings"}
 - `cloudkms.keyRings.list`
+:::
 
-</details>
-
-<details>
-<summary>Optional Images permissions for installation</summary>
-
+:::details{title="Optional Images permissions for installation"}
 - `compute.images.list`
+:::
 
-</details>
-
-<details>
-<summary>Optional permission for running gather bootstrap</summary>
-
+:::details{title="Optional permission for running gather bootstrap"}
 - `compute.instances.getSerialPortOutput`
+:::
 
-</details>
-
-<details>
-<summary>Required permissions for deleting network resources</summary>
-
+:::details{title="Required permissions for deleting network resources"}
 - `compute.addresses.delete`
 - `compute.addresses.deleteInternal`
 - `compute.addresses.list`
@@ -634,12 +559,9 @@ The following permissions are required for the installer-provisioned infrastruct
 - `compute.routes.list`
 - `compute.subnetworks.delete`
 - `compute.subnetworks.list`
+:::
 
-</details>
-
-<details>
-<summary>Required permissions for deleting load balancer resources</summary>
-
+:::details{title="Required permissions for deleting load balancer resources"}
 - `compute.backendServices.delete`
 - `compute.backendServices.list`
 - `compute.regionBackendServices.delete`
@@ -648,34 +570,25 @@ The following permissions are required for the installer-provisioned infrastruct
 - `compute.targetPools.list`
 - `compute.targetTcpProxies.delete`
 - `compute.targetTcpProxies.list`
+:::
 
-</details>
-
-<details>
-<summary>Required permissions for deleting DNS resources</summary>
-
+:::details{title="Required permissions for deleting DNS resources"}
 - `dns.changes.create`
 - `dns.managedZones.delete`
 - `dns.managedZones.get`
 - `dns.managedZones.list`
 - `dns.resourceRecordSets.delete`
 - `dns.resourceRecordSets.list`
+:::
 
-</details>
-
-<details>
-<summary>Required permissions for deleting Service Account resources</summary>
-
+:::details{title="Required permissions for deleting Service Account resources"}
 - `iam.serviceAccounts.delete`
 - `iam.serviceAccounts.get`
 - `iam.serviceAccounts.list`
 - `resourcemanager.projects.getIamPolicy`
+:::
 
-</details>
-
-<details>
-<summary>Required permissions for deleting compute resources</summary>
-
+:::details{title="Required permissions for deleting compute resources"}
 - `compute.disks.delete`
 - `compute.disks.list`
 - `compute.instanceGroups.delete`
@@ -684,38 +597,28 @@ The following permissions are required for the installer-provisioned infrastruct
 - `compute.instances.list`
 - `compute.instances.stop`
 - `compute.machineTypes.list`
+:::
 
-</details>
-
-<details>
-<summary>Required for deleting storage resources</summary>
-
+:::details{title="Required for deleting storage resources"}
 - `storage.buckets.delete`
 - `storage.buckets.getIamPolicy`
 - `storage.buckets.list`
 - `storage.objects.delete`
 - `storage.objects.list`
+:::
 
-</details>
-
-<details>
-<summary>Required permissions for deleting health check resources</summary>
-
+:::details{title="Required permissions for deleting health check resources"}
 - `compute.healthChecks.delete`
 - `compute.healthChecks.list`
 - `compute.httpHealthChecks.delete`
 - `compute.httpHealthChecks.list`
 - `compute.regionHealthChecks.delete`
 - `compute.regionHealthChecks.list`
+:::
 
-</details>
-
-<details>
-<summary>Required Images permissions for deletion</summary>
-
+:::details{title="Required Images permissions for deletion"}
 - `compute.images.list`
-
-</details>
+:::
 
 ### Required Google Cloud permissions for shared VPC installations {#minimum-required-permissions-ipi-gcp-xpn_installing-gcp-account}
 
@@ -778,24 +681,18 @@ When you are installing a cluster, the compute and control plane nodes require t
 > [!IMPORTANT]
 > The following roles are required for user-provided service accounts for control plane and compute nodes respectively.
 
-<details>
-<summary>Required roles	for control plane nodes</summary>
-
+:::details{title="Required roles for control plane nodes"}
 - `roles/compute.instanceAdmin`
 - `roles/compute.networkAdmin`
 - `roles/compute.securityAdmin`
 - `roles/storage.admin`
+:::
 
-</details>
-
-<details>
-<summary>Required roles for compute nodes</summary>
-
+:::details{title="Required roles for compute nodes"}
 - `roles/compute.viewer`
 - `roles/storage.admin`
 - `roles/artifactregistry.reader`
-
-</details>
+:::
 
 ## Managing your own firewall rules {#installation-gcp-user-managed-firewall-rules_installing-gcp-account}
 
@@ -818,7 +715,8 @@ If you want to manage your own firewall rules, you must create the following rul
 | ingress-k8s-fw | `tcp:80,443` | `<allowed_external_cidr>` | `<control_plane_node_tags>`, `<compute_node_tags>` |
 | ingress-k8s-http-hc | `tcp:30000-32767` | `35.191.0.0/16`, `130.211.0.0/22`, `209.85.152.0/22`, `209.85.204.0/22` | `<control_plane_node_tags>`, `<compute_node_tags>` |
 | `<sample_rule_name>` | `<service_port>` | `<allowed_external_cidr>` | `<compute_node_tags>` |
-| where: |  |  |  |
+
+where:
 
 `<allowed_external_cidr>`
 :   Specifies a network CIDR of the machines that you want to grant access to your cluster. For a public cluster, this would typically be `0.0.0.0/0`. For a private cluster, access might be restricted to the cluster machine network.
@@ -982,6 +880,7 @@ You can deploy an OpenShift Container Platform cluster to the following Google C
 > [!NOTE]
 > To determine which machine type instances are available by region and zone, see the Google [documentation](https://cloud.google.com/compute/docs/regions-zones#available).
 
-## Next steps {#_next_steps}
+**Next steps**
+{._additional-resources}
 
 - Install an OpenShift Container Platform cluster on Google Cloud. You can [install a customized cluster](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#installing-gcp-customizations) or [quickly install a cluster](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-default#installing-gcp-default) with default options.

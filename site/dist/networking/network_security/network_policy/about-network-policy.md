@@ -71,8 +71,8 @@ Traffic is controlled using targeted "allow" policies in the following namespace
   - Egress is limited to the API server, DNS ports, and route endpoints.
   - Ingress is restricted to HTTP/HTTPS traffic and metrics.
 
-> [!IMPORTANT]
-> Do not run unmanaged or custom pods in these namespaces. Because these namespaces operate on a deny-by-default model, network traffic for any unmanaged containers running in these namespaces will be blocked.
+  > [!IMPORTANT]
+  > Do not run unmanaged or custom pods in these namespaces. Because these namespaces operate on a deny-by-default model, network traffic for any unmanaged containers running in these namespaces will be blocked.
 
 ## Optimizations for network policy with OVN-Kubernetes network plugin {#nw-networkpolicy-optimize-ovn_about-network-policy}
 
@@ -211,7 +211,8 @@ where:
 
 For more details, see "About network policy".
 
-## Additional resources {#about-network-policy-additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Creating a network policy](/openshift-docs-markdown/networking/network_security/network_policy/creating-network-policy#creating-network-policy)
 - [Defining a default network policy for projects](/openshift-docs-markdown/networking/network_security/network_policy/default-network-policy#default-network-policy)

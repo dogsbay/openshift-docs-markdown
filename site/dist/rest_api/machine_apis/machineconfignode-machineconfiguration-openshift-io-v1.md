@@ -1,5 +1,5 @@
 ---
-title: MachineConfigNode []
+title: MachineConfigNode [machineconfiguration.openshift.io/v1]
 ---
 
 # MachineConfigNode \[machineconfiguration.openshift.io/v1\] {#machineconfignode-machineconfiguration-openshift-io-v1}
@@ -145,7 +145,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
 | `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
@@ -210,13 +210,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of MachineConfigNode
   - `GET`: list objects of kind MachineConfigNode
   - `POST`: create a MachineConfigNode
-- `/apis/machineconfiguration.openshift.io/v1/machineconfignodes/{{ name }}`
+- `/apis/machineconfiguration.openshift.io/v1/machineconfignodes/{name}`
 
   - `DELETE`: delete a MachineConfigNode
   - `GET`: read the specified MachineConfigNode
   - `PATCH`: partially update the specified MachineConfigNode
   - `PUT`: replace the specified MachineConfigNode
-- `/apis/machineconfiguration.openshift.io/v1/machineconfignodes/{{ name }}/status`
+- `/apis/machineconfiguration.openshift.io/v1/machineconfignodes/{name}/status`
 
   - `GET`: read status of the specified MachineConfigNode
   - `PATCH`: partially update status of the specified MachineConfigNode
@@ -290,7 +290,7 @@ Description
 | 202 - Accepted | [`MachineConfigNode`](/openshift-docs-markdown/rest_api/machine_apis/machineconfignode-machineconfiguration-openshift-io-v1#machineconfignode-machineconfiguration-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machineconfiguration.openshift.io/v1/machineconfignodes/{{ name }} {#_apismachineconfigurationopenshiftiov1machineconfignodes_name}
+### /apis/machineconfiguration.openshift.io/v1/machineconfignodes/{name} {#_apismachineconfigurationopenshiftiov1machineconfignodes_name}
 
 **Global path parameters**
 
@@ -394,7 +394,7 @@ Description
 | 201 - Created | [`MachineConfigNode`](/openshift-docs-markdown/rest_api/machine_apis/machineconfignode-machineconfiguration-openshift-io-v1#machineconfignode-machineconfiguration-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machineconfiguration.openshift.io/v1/machineconfignodes/{{ name }}/status {#_apismachineconfigurationopenshiftiov1machineconfignodes_name_status}
+### /apis/machineconfiguration.openshift.io/v1/machineconfignodes/{name}/status {#_apismachineconfigurationopenshiftiov1machineconfignodes_name_status}
 
 **Global path parameters**
 

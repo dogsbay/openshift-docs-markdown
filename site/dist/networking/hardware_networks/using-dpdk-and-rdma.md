@@ -623,6 +623,7 @@ In OpenShift Container Platform version 4.14 and later, you can use non-privileg
     ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating a performance profile](/openshift-docs-markdown/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#cnf-create-performance-profiles_cnf-tuning-low-latency-nodes-with-perf-profile)
 - [Configuring an SR-IOV network device](/openshift-docs-markdown/networking/hardware_networks/configuring-sriov-device#configuring-sriov-device)
@@ -642,13 +643,13 @@ The following diagram shows the components of a DPDK test environment:
 
 ![DPDK test environment](/openshift-docs-markdown/_assets/images/261_OpenShift_DPDK_0722.png)
 
-- ***Traffic generator***: An application that can generate high-volume packet traffic.
-- ***SR-IOV-supporting NIC***: A network interface controller (NIC) compatible with SR-IOV. The card runs several virtual functions on a physical interface.
-- ***Physical Function (PF)***: A PCI Express (PCIe) function of a network adapter that supports the SR-IOV interface.
-- ***Virtual Function (VF)***:  A lightweight PCIe function on a network adapter that supports SR-IOV. The VF is associated with the PCIe PF on the network adapter. The VF represents a virtualized instance of the network adapter.
-- ***Switch***: A network switch. Nodes can also be connected back-to-back.
-- *`testpmd`*: An example application included with DPDK. The `testpmd` application can be used to test the DPDK in a packet-forwarding mode. The `testpmd` application is also an example of how to build a fully-fledged application using the DPDK Software Development Kit (SDK).
-- ***worker 0*** and ***worker 1***: OpenShift Container Platform nodes.
+- **Traffic generator**: An application that can generate high-volume packet traffic.
+- **SR-IOV-supporting NIC**: A network interface controller (NIC) compatible with SR-IOV. The card runs several virtual functions on a physical interface.
+- **Physical Function (PF)**: A PCI Express (PCIe) function of a network adapter that supports the SR-IOV interface.
+- **Virtual Function (VF)**:  A lightweight PCIe function on a network adapter that supports SR-IOV. The VF is associated with the PCIe PF on the network adapter. The VF represents a virtualized instance of the network adapter.
+- **Switch**: A network switch. Nodes can also be connected back-to-back.
+- **`testpmd`**: An example application included with DPDK. The `testpmd` application can be used to test the DPDK in a packet-forwarding mode. The `testpmd` application is also an example of how to build a fully-fledged application using the DPDK Software Development Kit (SDK).
+- **worker 0** and **worker 1**: OpenShift Container Platform nodes.
 
 ## Using SR-IOV and the Node Tuning Operator to achieve a DPDK line rate {#nw-example-dpdk-line-rate_using-dpdk-and-rdma}
 
@@ -715,7 +716,9 @@ You can use the Node Tuning Operator to configure isolated CPUs, hugepages, and 
    :   Specifies the NUMA topology policy. Set to `single-numa-node` to ensure that all resources are allocated from the same NUMA node.
 
    `spec.nodeSelector`
-   :   Specifies the node selector label for nodes that this performance profile applies to. 1.  Save the `yaml` file as `mlx-dpdk-perfprofile-policy.yaml`. 1.  Apply the performance profile using the following command:
+   :   Specifies the node selector label for nodes that this performance profile applies to.
+2. Save the `yaml` file as `mlx-dpdk-perfprofile-policy.yaml`.
+3. Apply the performance profile using the following command:
 
    ```terminal
    $ oc create -f mlx-dpdk-perfprofile-policy.yaml
@@ -1166,7 +1169,8 @@ spec:
 - The name `dpdk1` in this example is a user-created `SriovNetworkNodePolicy` resource. You can substitute this name for that of a resource that you create.
 - If your performance profile is not named `cnf-performance profile`, replace that string with the correct performance profile name.
 
-## Additional resources {#additional-resources_using-dpdk-and-rdma}
+**Additional resources**
+{._additional-resources}
 
 - [Red Hat certified hardware (Red Hat Ecosystem Catalog)](https://catalog.redhat.com/en/hardware)
 - [Configuring a cluster for RDMA in Red Hat OpenShift AI](https://docs.redhat.com/en/documentation/red_hat_openshift_ai_self-managed/latest/html/managing_openshift_ai/managing-distributed-workloads_managing-rhoai#configuring-a-cluster-for-rdma_managing-rhoai)

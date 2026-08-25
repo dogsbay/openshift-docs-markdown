@@ -244,8 +244,8 @@ You can rekey all of the nodes on a remote cluster by using a `DaemonSet` object
 
    However, to run at scale, wrap the daemon set in an ACM policy. This ACM configuration must contain one policy to deploy the daemon set, a second policy to check that all the daemon set pods are READY, and a placement rule to apply it to the appropriate set of clusters.
 
-> [!NOTE]
-> After validating that the daemon set has successfully rekeyed all servers, delete the daemon set. If you do not delete the daemon set, it must be deleted before the next rekeying operation.
+   > [!NOTE]
+   > After validating that the daemon set has successfully rekeyed all servers, delete the daemon set. If you do not delete the daemon set, it must be deleted before the next rekeying operation.
 
 **Verification**
 

@@ -17,11 +17,12 @@ import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"compliance-operator-uninstallation","text":"Uninstalling the Compliance Operator"},{"depth":2,"slug":"compliance-operator-uninstall_compliance-operator-uninstallation","text":"Uninstalling the OpenShift Compliance Operator from OpenShift Container Platform using the web console"},{"depth":2,"slug":"compliance-operator-uninstall-cli_compliance-operator-uninstallation","text":"Uninstalling the OpenShift Compliance Operator from OpenShift Container Platform using the CLI"},{"depth":2,"slug":"additional-resources_compliance-operator-uninstallation","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"compliance-operator-uninstallation","text":"Uninstalling the Compliance Operator"},{"depth":2,"slug":"compliance-operator-uninstall_compliance-operator-uninstallation","text":"Uninstalling the OpenShift Compliance Operator from OpenShift Container Platform using the web console"},{"depth":2,"slug":"compliance-operator-uninstall-cli_compliance-operator-uninstallation","text":"Uninstalling the OpenShift Compliance Operator from OpenShift Container Platform using the CLI"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/compliance_operator/co-management/compliance-operator-uninstallation";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -40,7 +41,7 @@ const pageCategory = ["security","security/compliance_operator","security/compli
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Uninstalling the Compliance Operator {#compliance-operator-uninstallation}\n\nYou can remove the OpenShift Compliance Operator from your cluster by using the OpenShift Container Platform web console or the OpenShift CLI (`oc`).\n\n## Uninstalling the OpenShift Compliance Operator from OpenShift Container Platform using the web console {#compliance-operator-uninstall_compliance-operator-uninstallation}\n\nTo remove the Compliance Operator, you must first delete the objects in the namespace. After the objects are removed, you can remove the Operator and its namespace by deleting the **openshift-compliance** project.\n\n**Prerequisites**\n\n- Access to an OpenShift Container Platform cluster by using an account with `cluster-admin` permissions.\n- The OpenShift Compliance Operator is installed.\n\n**Procedure**\n\n1. Go to the **Ecosystem** -> **Installed Operators** -> **Compliance Operator** page.\n\n   1. Click **All instances**.\n   2. In **All namespaces**, click the Options menu ![](kebab.png \"Options menu\") and delete all ScanSettingBinding, ComplainceSuite, ComplianceScan, and ProfileBundle objects.\n2. Switch to the **Administration** -> **Ecosystem** -> **Installed Operators** page.\n3. Click the Options menu ![](kebab.png \"Options menu\") on the **Compliance Operator** entry and select **Uninstall Operator**.\n4. Switch to the **Home** -> **Projects** page.\n5. Search for 'compliance'.\n6. Click the Options menu ![](kebab.png \"Options menu\") next to the **openshift-compliance** project, and select **Delete Project**.\n\n   1. Confirm the deletion by typing `openshift-compliance` in the dialog box, and click **Delete**.\n\n## Uninstalling the OpenShift Compliance Operator from OpenShift Container Platform using the CLI {#compliance-operator-uninstall-cli_compliance-operator-uninstallation}\n\nTo remove the Compliance Operator, you must first delete the objects in the namespace. After the objects are removed, you can remove the Operator and its namespace by deleting the **openshift-compliance** project.\n\n**Prerequisites**\n\n- Access to an OpenShift Container Platform cluster by using an account with `cluster-admin` permissions.\n- The OpenShift Compliance Operator is installed.\n\n**Procedure**\n\n1. Delete all objects in the namespace.\n\n   1. Delete the `ScanSettingBinding` objects:\n\n      ```terminal\n      $ oc delete ssb --all -n openshift-compliance\n      ```\n   2. Delete the `ScanSetting` objects:\n\n      ```terminal\n      $ oc delete ss --all -n openshift-compliance\n      ```\n   3. Delete the `ComplianceSuite` objects:\n\n      ```terminal\n      $ oc delete suite --all -n openshift-compliance\n      ```\n   4. Delete the `ComplianceScan` objects:\n\n      ```terminal\n      $ oc delete scan --all -n openshift-compliance\n      ```\n   5. Delete the `ProfileBundle` objects:\n\n      ```terminal\n      $ oc delete profilebundle.compliance --all -n openshift-compliance\n      ```\n2. Delete the Subscription object:\n\n   ```terminal\n   $ oc delete sub --all -n openshift-compliance\n   ```\n3. Delete the CSV object:\n\n   ```terminal\n   $ oc delete csv --all -n openshift-compliance\n   ```\n4. Delete the project:\n\n   ```terminal\n   $ oc delete project openshift-compliance\n   ```\n\n   ```terminal {title=\"Example output\"}\n   project.project.openshift.io \"openshift-compliance\" deleted\n   ```\n\n**Verification**\n\n1. Confirm the namespace is deleted:\n\n   ```terminal\n   $ oc get project/openshift-compliance\n   ```\n\n   ```terminal {title=\"Example output\"}\n   Error from server (NotFound): namespaces \"openshift-compliance\" not found\n   ```\n\n## Additional resources {#additional-resources_compliance-operator-uninstallation}\n\n- [Installing the Compliance Operator](/openshift-docs-markdown/security/compliance_operator/compliance-operator-installation#compliance-operator-installation)\n- [Managing the Compliance Operator](/openshift-docs-markdown/security/compliance_operator/compliance-operator-manage#compliance-operator-understanding)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/compliance_operator/co-management/compliance-operator-uninstallation.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Uninstalling the Compliance Operator {#compliance-operator-uninstallation}\n\nYou can remove the OpenShift Compliance Operator from your cluster by using the OpenShift Container Platform web console or the OpenShift CLI (`oc`).\n\n## Uninstalling the OpenShift Compliance Operator from OpenShift Container Platform using the web console {#compliance-operator-uninstall_compliance-operator-uninstallation}\n\nTo remove the Compliance Operator, you must first delete the objects in the namespace. After the objects are removed, you can remove the Operator and its namespace by deleting the **openshift-compliance** project.\n\n**Prerequisites**\n\n- Access to an OpenShift Container Platform cluster by using an account with `cluster-admin` permissions.\n- The OpenShift Compliance Operator is installed.\n\n**Procedure**\n\n1. Go to the **Ecosystem** → **Installed Operators** → **Compliance Operator** page.\n\n   1. Click **All instances**.\n   2. In **All namespaces**, click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png \"Options menu\") and delete all ScanSettingBinding, ComplainceSuite, ComplianceScan, and ProfileBundle objects.\n2. Switch to the **Administration** → **Ecosystem** → **Installed Operators** page.\n3. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png \"Options menu\") on the **Compliance Operator** entry and select **Uninstall Operator**.\n4. Switch to the **Home** → **Projects** page.\n5. Search for 'compliance'.\n6. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png \"Options menu\") next to the **openshift-compliance** project, and select **Delete Project**.\n\n   1. Confirm the deletion by typing `openshift-compliance` in the dialog box, and click **Delete**.\n\n## Uninstalling the OpenShift Compliance Operator from OpenShift Container Platform using the CLI {#compliance-operator-uninstall-cli_compliance-operator-uninstallation}\n\nTo remove the Compliance Operator, you must first delete the objects in the namespace. After the objects are removed, you can remove the Operator and its namespace by deleting the **openshift-compliance** project.\n\n**Prerequisites**\n\n- Access to an OpenShift Container Platform cluster by using an account with `cluster-admin` permissions.\n- The OpenShift Compliance Operator is installed.\n\n**Procedure**\n\n1. Delete all objects in the namespace.\n\n   1. Delete the `ScanSettingBinding` objects:\n\n      ```terminal\n      $ oc delete ssb --all -n openshift-compliance\n      ```\n   2. Delete the `ScanSetting` objects:\n\n      ```terminal\n      $ oc delete ss --all -n openshift-compliance\n      ```\n   3. Delete the `ComplianceSuite` objects:\n\n      ```terminal\n      $ oc delete suite --all -n openshift-compliance\n      ```\n   4. Delete the `ComplianceScan` objects:\n\n      ```terminal\n      $ oc delete scan --all -n openshift-compliance\n      ```\n   5. Delete the `ProfileBundle` objects:\n\n      ```terminal\n      $ oc delete profilebundle.compliance --all -n openshift-compliance\n      ```\n2. Delete the Subscription object:\n\n   ```terminal\n   $ oc delete sub --all -n openshift-compliance\n   ```\n3. Delete the CSV object:\n\n   ```terminal\n   $ oc delete csv --all -n openshift-compliance\n   ```\n4. Delete the project:\n\n   ```terminal\n   $ oc delete project openshift-compliance\n   ```\n\n   ```terminal {title=\"Example output\"}\n   project.project.openshift.io \"openshift-compliance\" deleted\n   ```\n\n**Verification**\n\n1. Confirm the namespace is deleted:\n\n   ```terminal\n   $ oc get project/openshift-compliance\n   ```\n\n   ```terminal {title=\"Example output\"}\n   Error from server (NotFound): namespaces \"openshift-compliance\" not found\n   ```\n\n**Additional resources**\n{._additional-resources}\n\n- [Installing the Compliance Operator](/openshift-docs-markdown/security/compliance_operator/compliance-operator-installation#compliance-operator-installation)\n- [Managing the Compliance Operator](/openshift-docs-markdown/security/compliance_operator/compliance-operator-manage#compliance-operator-understanding)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/compliance_operator/co-management/compliance-operator-uninstallation.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="compliance-operator-uninstallation" class="group scroll-mt-20">Uninstalling the Compliance Operator<a href="#compliance-operator-uninstallation" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can remove the OpenShift Compliance Operator from your cluster by using the OpenShift Container Platform web console or the OpenShift CLI (<code>oc</code>).</p>
+      <p class="_abstract">You can remove the OpenShift Compliance Operator from your cluster by using the OpenShift Container Platform web console or the OpenShift CLI (<code>oc</code>).</p>
       <h2 id="compliance-operator-uninstall_compliance-operator-uninstallation" class="group scroll-mt-20">Uninstalling the OpenShift Compliance Operator from OpenShift Container Platform using the web console<a href="#compliance-operator-uninstall_compliance-operator-uninstallation" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">To remove the Compliance Operator, you must first delete the objects in the namespace. After the objects are removed, you can remove the Operator and its namespace by deleting the <strong>openshift-compliance</strong> project.</p>
       <p><strong>Prerequisites</strong></p>
@@ -103,18 +105,18 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p><strong>Procedure</strong></p>
       <ol>
       <li>
-      Go to the <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong> -&gt; <strong>Compliance Operator</strong> page.
+      Go to the <strong>Ecosystem</strong> → <strong>Installed Operators</strong> → <strong>Compliance Operator</strong> page.
       <ol>
       <li>Click <strong>All instances</strong>.</li>
-      <li>In <strong>All namespaces</strong>, click the Options menu <img src="kebab.png" alt="" loading="lazy" /> and delete all ScanSettingBinding, ComplainceSuite, ComplianceScan, and ProfileBundle objects.</li>
+      <li>In <strong>All namespaces</strong>, click the Options menu <img src="/openshift-docs-markdown/_assets/images/kebab.png" alt="" loading="lazy" /> and delete all ScanSettingBinding, ComplainceSuite, ComplianceScan, and ProfileBundle objects.</li>
       </ol>
       </li>
-      <li>Switch to the <strong>Administration</strong> -&gt; <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong> page.</li>
-      <li>Click the Options menu <img src="kebab.png" alt="" loading="lazy" /> on the <strong>Compliance Operator</strong> entry and select <strong>Uninstall Operator</strong>.</li>
-      <li>Switch to the <strong>Home</strong> -&gt; <strong>Projects</strong> page.</li>
+      <li>Switch to the <strong>Administration</strong> → <strong>Ecosystem</strong> → <strong>Installed Operators</strong> page.</li>
+      <li>Click the Options menu <img src="/openshift-docs-markdown/_assets/images/kebab.png" alt="" loading="lazy" /> on the <strong>Compliance Operator</strong> entry and select <strong>Uninstall Operator</strong>.</li>
+      <li>Switch to the <strong>Home</strong> → <strong>Projects</strong> page.</li>
       <li>Search for 'compliance'.</li>
       <li>
-      Click the Options menu <img src="kebab.png" alt="" loading="lazy" /> next to the <strong>openshift-compliance</strong> project, and select <strong>Delete Project</strong>.
+      Click the Options menu <img src="/openshift-docs-markdown/_assets/images/kebab.png" alt="" loading="lazy" /> next to the <strong>openshift-compliance</strong> project, and select <strong>Delete Project</strong>.
       <ol><li>Confirm the deletion by typing <code>openshift-compliance</code> in the dialog box, and click <strong>Delete</strong>.</li></ol>
       </li>
       </ol>
@@ -174,11 +176,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <CodeBlock code={"Error from server (NotFound): namespaces \"openshift-compliance\" not found"} lang="terminal" title="Example output" />
       </li>
       </ol>
-      <h2 id="additional-resources_compliance-operator-uninstallation" class="group scroll-mt-20">Additional resources<a href="#additional-resources_compliance-operator-uninstallation" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul>
       <li><a href="/openshift-docs-markdown/security/compliance_operator/compliance-operator-installation#compliance-operator-installation">Installing the Compliance Operator</a></li>
       <li><a href="/openshift-docs-markdown/security/compliance_operator/compliance-operator-manage#compliance-operator-understanding">Managing the Compliance Operator</a></li>
       </ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

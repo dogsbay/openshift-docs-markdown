@@ -107,6 +107,7 @@ Before you specify regions and zones for your cluster, you must ensure that all 
 2. Save the resource file to apply the changes.
 
 **Additional resources**
+{._additional-resources}
 
 - [Parameters for the cluster-wide infrastructure CRD](/openshift-docs-markdown/installing/installing_vsphere/post-install-vsphere-zones-regions-configuration#references-regions-zones-infrastructure-vsphere_post-install-vsphere-zones-regions-configuration)
 
@@ -130,6 +131,7 @@ You can configure your cluster to use a multiple layer 2 network configuration s
   - Configure your Ingress load balancer and network so that the load balancer can reach the Ingress pods on the compute or infrastructure nodes.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing a cluster on vSphere with network customizations](/openshift-docs-markdown/installing/installing_vsphere/upi/installing-vsphere-network-customizations#installing-vsphere-network-customizations)
 - [Creating a compute machine set](/openshift-docs-markdown/machine_management/creating_machinesets/creating-machineset-vsphere#machineset-creating_creating-machineset-vsphere)
@@ -158,6 +160,7 @@ The following table lists mandatory parameters for defining multiple regions and
 | `networks` | A list of port groups associated with the failure domain. Only one portgroup can be defined. |
 
 **Additional resources**
+{._additional-resources}
 
 - [Specifying multiple regions and zones for your cluster on vSphere](/openshift-docs-markdown/installing/installing_vsphere/post-install-vsphere-zones-regions-configuration#specifying-regions-zones-infrastructure-vsphere_post-install-vsphere-zones-regions-configuration)
 

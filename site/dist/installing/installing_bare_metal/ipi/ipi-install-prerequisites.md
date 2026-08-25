@@ -25,10 +25,7 @@ Before starting an installer-provisioned installation of OpenShift Container Pla
 
 Installer-provisioned installation involves several hardware node requirements:
 
-- **CPU architecture:** All nodes must use `x86_64` or `aarch64`
-
-CPU architecture.
-
+- **CPU architecture:** All nodes must use `x86_64` or `aarch64` CPU architecture.
 - **Similar nodes:** Red Hat recommends nodes have an identical configuration per role. That is, Red Hat recommends nodes be the same brand and model with the same CPU, memory, and storage configuration.
 - **Baseboard Management Controller:** The `provisioner` node must be able to access the baseboard management controller (BMC) of each OpenShift Container Platform cluster node. You may use IPMI, Redfish, or a proprietary protocol.
 - **Latest generation:** Nodes must be of the most recent generation. Installer-provisioned installation relies on BMC protocols, which must be compatible across nodes. Additionally, RHEL 9.x ships with the most recent drivers for RAID controllers. Ensure that the nodes are recent enough to support RHEL 9.x for the `provisioner` node and RHCOS 9.x for the control plane and worker nodes.
@@ -59,54 +56,43 @@ CPU architecture.
 
 To ensure that your OpenShift Container Platform cluster runs as expected, each cluster machine must meet minimum CPU, memory, and storage requirements.
 
-***Minimum resource requirements***
+**Minimum resource requirements**
 
 <table>
 <thead>
 <tr>
   <th>Machine</th>
   <th>Operating system</th>
-
   <th>CPU</th>
   <th>RAM</th>
   <th>Storage</th>
+  <th>Input/Output Per Second (IOPS)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td>Input/Output Per Second (IOPS)</td>
   <td>Bootstrap</td>
-
   <td>RHEL</td>
-
   <td>4</td>
   <td>16 GB</td>
   <td>100 GB</td>
   <td>300</td>
 </tr>
 <tr>
-
   <td>Control plane</td>
   <td>RHCOS</td>
-
   <td>4</td>
   <td>16 GB</td>
   <td>100 GB</td>
+  <td>300</td>
 </tr>
 <tr>
-  <td>300</td>
-
   <td>Compute</td>
   <td>RHCOS</td>
-
   <td>2</td>
   <td>8 GB</td>
   <td>100 GB</td>
   <td>300</td>
-
-</tr>
-<tr>
-
 </tr>
 </tbody>
 </table>
@@ -152,6 +138,7 @@ If you plan to use OpenShift Virtualization HA features, you must have three con
 If you plan to use Single Root I/O Virtualization (SR-IOV), ensure that your network interface controllers (NICs) are supported by OpenShift Container Platform.
 
 **Additional resources**
+{._additional-resources}
 
 - [Preparing your cluster for OpenShift Virtualization](/openshift-docs-markdown/virt/install/preparing-cluster-for-virt#preparing-cluster-for-virt)
 - [About Single Root I/O Virtualization (SR-IOV) hardware networks](/openshift-docs-markdown/networking/hardware_networks/about-sriov#about-sriov)
@@ -194,6 +181,7 @@ The following tables list the firmware versions tested and verified to work for 
 > Always confirm that your server supports Red Hat Enterprise Linux CoreOS (RHCOS) on UCS Hardware and Software Compatibility. For more information, see "UCSHCL".
 
 **Additional resources**
+{._additional-resources}
 
 - [Red Hat third-party support policy](https://access.redhat.com/third-party-software-support)
 - [UCSHCL](https://ucshcltool.cloudapps.cisco.com/public/)
@@ -232,6 +220,7 @@ NC-SI enables the BMC to share a system NIC with the host, requiring the `Disabl
 > Verify NC-SI support with vendor documentation, because compatibility depends on BMC, NIC, and firmware configurations. NC-SI NICs require a compatible BMC to enable shared NIC functionality.
 
 **Additional resources**
+{._additional-resources}
 
 - [Ironic NC-SI Specification](https://specs.openstack.org/openstack/ironic-specs/specs/approved/nc-si.html)
 - [DMTF: Network Controller Sideband Interface (NC-SI) Specification](https://www.dmtf.org/sites/default/files/standards/documents/DSP0222_1.1.1.pdf)
@@ -323,7 +312,7 @@ A/AAAA records are used for name resolution and PTR records are used for reverse
 
 Installer-provisioned installation includes functionality that uses cluster membership information to generate A/AAAA records. This resolves the node names to their IP addresses. In each record, `<cluster_name>` is the cluster name and `<base_domain>` is the base domain that you specify in the `install-config.yaml` file. A complete DNS record takes the form: `<component>.<cluster_name>.<base_domain>.`.
 
-***Required DNS records***
+**Required DNS records**
 
 <table>
 <thead>
@@ -336,13 +325,13 @@ Installer-provisioned installation includes functionality that uses cluster memb
 <tbody>
 <tr>
   <td>Kubernetes API</td>
-  <td><code>api.<cluster_name>.<base_domain>.</code></td>
+  <td><code>api.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
   <td>An A/AAAA record and a PTR record identify the API load balancer. These records must be resolvable by both clients external to the cluster and from all the nodes within the cluster.</td>
 </tr>
 <tr>
   <td>Routes</td>
-  <td><code>*.apps.<cluster_name>.<base_domain>.</code></td>
-  <td>The wildcard A/AAAA record refers to the application ingress load balancer. The application ingress load balancer targets the nodes that run the Ingress Controller pods. The Ingress Controller pods run on the worker nodes by default. These records must be resolvable by both clients external to the cluster and from all the nodes within the cluster.<br><br>For example, <code>console-openshift-console.apps.<cluster_name>.<base_domain></code> is used as a wildcard route to the OpenShift Container Platform console.</td>
+  <td><code>*.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
+  <td>The wildcard A/AAAA record refers to the application ingress load balancer. The application ingress load balancer targets the nodes that run the Ingress Controller pods. The Ingress Controller pods run on the worker nodes by default. These records must be resolvable by both clients external to the cluster and from all the nodes within the cluster.<br><br>For example, <code>console-openshift-console.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;</code> is used as a wildcard route to the OpenShift Container Platform console.</td>
 </tr>
 </tbody>
 </table>
@@ -418,6 +407,7 @@ You can reconfigure the control plane nodes to act as NTP servers on disconnecte
 The out-of-band management IP address is on a separate network from the node. To ensure that the out-of-band management can communicate with the provisioner node during installation, the out-of-band management IP address must be granted access to port `6180` on the provisioner node and on the OpenShift Container Platform control plane nodes. TLS port `6183` is required for virtual media installation, for example, by using Redfish.
 
 **Additional resources**
+{._additional-resources}
 
 - [Using DNS forwarding](/openshift-docs-markdown/networking/networking_operators/dns-operator#nw-dns-forward_dns-operator)
 

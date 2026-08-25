@@ -126,6 +126,7 @@ The Operator can automatically create and manage a `NetworkPolicy` such as `eso-
    $ oc set env deployment/external-secrets -n external-secrets --list | grep -i proxy
    ```
 
-## Additional resources {#external-resources-operator-proxy_additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring proxy support in Operator Lifecycle Manager](/openshift-docs-markdown/operators/admin/olm-configuring-proxy-support#olm-configuring-proxy-support)

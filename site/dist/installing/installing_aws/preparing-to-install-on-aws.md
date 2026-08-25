@@ -42,7 +42,8 @@ Installing OpenShift Container Platform on a single node alleviates some of the 
 
 After addressing the requirements for single node installation, use the installing a customized cluster on AWS procedure to install the cluster. The installing single-node OpenShift manually section contains an exemplary `install-config.yaml` file when installing an OpenShift Container Platform cluster on a single node.
 
-## Additional resources {#installing-methods-aws-ipi-additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Installing a cluster quickly on AWS](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-default#installing-aws-default)
 - [Installing a customized cluster on AWS](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations)

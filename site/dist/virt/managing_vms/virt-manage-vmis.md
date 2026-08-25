@@ -50,7 +50,7 @@ Using the web console, you can list and view standalone virtual machine instance
 
 **Procedure**
 
-- Click **Virtualization** -> **VirtualMachines** from the side menu.
+- Click **Virtualization** → **VirtualMachines** from the side menu.
 
   You can identify a standalone VMI by a dark colored badge next to its name.
 
@@ -67,8 +67,8 @@ You can search for virtual machine instances (VMIs) by using the search bar on t
    - Click a VM name to open its details page.
    - Click **All search results found for ...** to view results on a dedicated page.
    - Click a related suggestion to prefill search filters.
-4. Optional: To open advanced search options, click the sliders icon next to the search bar. Expand the ***Details*** section and specify one or more of the available filters: **Name**, **Project**, **Description**, **Labels**, **Date created**, **vCPU**, and **Memory**.
-5. Optional: Expand the ***Network*** section and enter an IP address to filter by.
+4. Optional: To open advanced search options, click the sliders icon next to the search bar. Expand the **Details** section and specify one or more of the available filters: **Name**, **Project**, **Description**, **Labels**, **Date created**, **vCPU**, and **Memory**.
+5. Optional: Expand the **Network** section and enter an IP address to filter by.
 6. Click **Search**.
 7. Optional: If Advanced Cluster Management (ACM) is installed, use the **Cluster** dropdown to search across multiple clusters.
 8. Optional: Click the **Save search** icon to store your search in the `kubevirt-user-settings` ConfigMap.
@@ -79,7 +79,7 @@ You can edit the annotations and labels of a standalone virtual machine instance
 
 **Procedure**
 
-1. In the OpenShift Container Platform console, click **Virtualization** -> **VirtualMachines** from the side menu.
+1. In the OpenShift Container Platform console, click **Virtualization** → **VirtualMachines** from the side menu.
 2. Select a standalone VMI to open the **VirtualMachineInstance details** page.
 3. On the **Details** tab, click the pencil icon beside **Annotations** or **Labels**.
 4. Make the relevant changes and click **Save**.
@@ -107,10 +107,11 @@ You can delete a standalone virtual machine instance (VMI) from the web console.
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, click **Virtualization** -> **VirtualMachines** from the side menu.
-2. Click **Actions** -> **Delete VirtualMachineInstance**.
+1. In the OpenShift Container Platform web console, click **Virtualization** → **VirtualMachines** from the side menu.
+2. Click **Actions** → **Delete VirtualMachineInstance**.
 3. In the confirmation pop-up window, click **Delete** to permanently delete the standalone VMI.
 
-## Additional resources {#additional-resources_virt-manage-vmis}
+**Additional resources**
+{._additional-resources}
 
 - [Using the CLI tools](/openshift-docs-markdown/virt/getting_started/virt-using-the-cli-tools#virt-using-the-cli-tools)

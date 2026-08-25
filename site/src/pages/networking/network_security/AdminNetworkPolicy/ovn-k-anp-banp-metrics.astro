@@ -20,7 +20,8 @@ const headings = [{"depth":1,"slug":"ovn-k-anp-banp-metrics","text":"Monitoring 
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/network_security/AdminNetworkPolicy/ovn-k-anp-banp-metrics";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -78,12 +79,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -91,7 +93,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="ovn-k-anp-banp-metrics" class="group scroll-mt-20">Monitoring ANP and BANP<a href="#ovn-k-anp-banp-metrics" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>To monitor and troubleshoot <code>AdminNetworkPolicy</code> and <code>BaselineAdminNetworkPolicy</code> resources in OpenShift Container Platform, you can use OVN-Kubernetes metrics that report resource counts, rules, and northbound database objects.</p>
+      <p class="_abstract">To monitor and troubleshoot <code>AdminNetworkPolicy</code> and <code>BaselineAdminNetworkPolicy</code> resources in OpenShift Container Platform, you can use OVN-Kubernetes metrics that report resource counts, rules, and northbound database objects.</p>
       <h2 id="anp-banp-metrics_ovn-k-anp-banp-metrics" class="group scroll-mt-20">Metrics for AdminNetworkPolicy<a href="#anp-banp-metrics_ovn-k-anp-banp-metrics" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">You can use OVN-Kubernetes metrics to monitor <code>AdminNetworkPolicy</code> and <code>BaselineAdminNetworkPolicy</code> resources. These metrics report policy and rule counts by direction and action, and northbound database objects that the policies create.</p>
       <Fragment set:html={"<table>\n<tbody>\n<tr>\n  <td>Name</td>\n  <td>Description</td>\n  <td>Explanation</td>\n</tr>\n<tr>\n  <td><code>ovnkube_controller_admin_network_policies</code></td>\n  <td>Not applicable</td>\n  <td>The total number of <code>AdminNetworkPolicy</code> resources in the cluster.</td>\n</tr>\n<tr>\n  <td><code>ovnkube_controller_baseline_admin_network_policies</code></td>\n  <td>Not applicable</td>\n  <td>The total number of <code>BaselineAdminNetworkPolicy</code> resources in the cluster. The value should be 0 or 1.</td>\n</tr>\n<tr>\n  <td><code>ovnkube_controller_admin_network_policies_rules</code></td>\n  <td><ul><li><code>direction</code>: specifies either <code>Ingress</code> or <code>Egress</code>.</li><li><code>action</code>: specifies either <code>Pass</code>, <code>Allow</code>, or <code>Deny</code>.</li></ul></td>\n  <td>The total number of rules across all ANP policies in the cluster grouped by <code>direction</code> and <code>action</code>.</td>\n</tr>\n<tr>\n  <td><code>ovnkube_controller_baseline_admin_network_policies_rules</code></td>\n  <td><ul><li><code>direction</code>: specifies either <code>Ingress</code> or <code>Egress</code>.</li><li><code>action</code>: specifies either <code>Allow</code> or <code>Deny</code>.</li></ul></td>\n  <td>The total number of rules across all BANP policies in the cluster grouped by <code>direction</code> and <code>action</code>.</td>\n</tr>\n<tr>\n  <td><code>ovnkube_controller_admin_network_policies_db_objects</code></td>\n  <td><code>table_name</code>: specifies either <code>ACL</code> or <code>Address_Set</code></td>\n  <td>The total number of OVN Northbound database (nbdb) objects that are created by all the ANP in the cluster grouped by the <code>table_name</code>.</td>\n</tr>\n<tr>\n  <td><code>ovnkube_controller_baseline_admin_network_policies_db_objects</code></td>\n  <td><code>table_name</code>: specifies either <code>ACL</code> or <code>Address_Set</code></td>\n  <td>The total number of OVN Northbound database (nbdb) objects that are created by all the BANP in the cluster grouped by the <code>table_name</code>.</td>\n</tr>\n</tbody>\n</table>"} />

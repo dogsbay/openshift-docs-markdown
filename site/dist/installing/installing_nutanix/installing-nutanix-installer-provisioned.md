@@ -6,19 +6,21 @@ title: Installing a cluster on Nutanix
 
 In OpenShift Container Platform version 4.22, you can choose one of the following options to install a cluster on your Nutanix instance:
 
-***Using installer-provisioned infrastructure***: Use the procedures in the following sections to use installer-provisioned infrastructure. Installer-provisioned infrastructure is ideal for installing in connected or disconnected network environments. The installer-provisioned infrastructure includes an installation program that provisions the underlying infrastructure for the cluster.
+**Using installer-provisioned infrastructure**: Use the procedures in the following sections to use installer-provisioned infrastructure. Installer-provisioned infrastructure is ideal for installing in connected or disconnected network environments. The installer-provisioned infrastructure includes an installation program that provisions the underlying infrastructure for the cluster.
 
-***Using the Assisted Installer***: The Assisted Installer is hosted at console.redhat.com. The Assisted Installer cannot be used in disconnected environments. The Assisted Installer does not provision the underlying infrastructure for the cluster, so you must provision the infrastructure before you run the Assisted Installer. Installing with the Assisted Installer also provides integration with Nutanix, enabling autoscaling.
+**Using the Assisted Installer**: The Assisted Installer is hosted at console.redhat.com. The Assisted Installer cannot be used in disconnected environments. The Assisted Installer does not provision the underlying infrastructure for the cluster, so you must provision the infrastructure before you run the Assisted Installer. Installing with the Assisted Installer also provides integration with Nutanix, enabling autoscaling.
 
-***Using user-provisioned infrastructure***: You provision the underlying infrastructure yourself and then complete the relevant installation steps.
+**Using user-provisioned infrastructure**: You provision the underlying infrastructure yourself and then complete the relevant installation steps.
 
 **Additional resources**
+{._additional-resources}
 
 - [Assisted Installer](https://access.redhat.com/documentation/en-us/assisted_installer_for_openshift_container_platform)
 - [Installing an on-premise cluster using the Assisted Installer](/openshift-docs-markdown/installing/installing_on_prem_assisted/installing-on-prem-assisted#installing-on-prem-assisted)
 - [Installing a cluster on any platform](/openshift-docs-markdown/installing/installing_platform_agnostic/installing-platform-agnostic#installing-platform-agnostic)
 
-## Prerequisites {#_prerequisites}
+**Prerequisites**
+{._additional-resources}
 
 - You have reviewed details about the OpenShift Container Platform installation and update processes.
 - The installation program requires access to port 9440 on Prism Central and Prism Element. You verified that port 9440 is accessible.
@@ -35,9 +37,7 @@ In OpenShift Container Platform version 4.22, you can choose one of the followin
 
 ## Internet access for OpenShift Container Platform {#cluster-entitlements_installing-nutanix-installer-provisioned}
 
-In OpenShift Container Platform 4.22, you require access to the internet to install
-
-your cluster.
+In OpenShift Container Platform 4.22, you require access to the internet to install your cluster.
 
 You must have internet access to perform the following actions:
 
@@ -152,14 +152,8 @@ the host you are using for installation.
    ```
 6. Download your installation [pull secret from Red Hat OpenShift Cluster Manager](https://console.redhat.com/openshift/install/pull-secret). This pull secret allows you to authenticate with the services that are provided by the included authorities, including Quay.io, which serves the container images for OpenShift Container Platform components.
 
-   ```
-   :::tip
-
-   Alternatively, you can retrieve the installation program from the [Red&#160;Hat Customer Portal](https://access.redhat.com/downloads/content/290/), where you can specify a version of the installation program to download.
-   However, you must have an active subscription to access this page.
-
-   :::
-   ```
+   > [!TIP]
+   > Alternatively, you can retrieve the installation program from the [Red Hat Customer Portal](https://access.redhat.com/downloads/content/290/), where you can specify a version of the installation program to download. However, you must have an active subscription to access this page.
 
 ## Adding Nutanix root CA certificates to your system trust {#installation-adding-nutanix-root-certificates_installing-nutanix-installer-provisioned}
 
@@ -182,9 +176,7 @@ Because the installation program requires access to the Prism Central API, you m
 
 ## Creating the installation configuration file {#installation-initializing_installing-nutanix-installer-provisioned}
 
-You can customize the OpenShift Container Platform cluster you install on
-
-Nutanix.
+You can customize the OpenShift Container Platform cluster you install on Nutanix.
 
 **Prerequisites**
 
@@ -238,6 +230,7 @@ Nutanix.
    > The `install-config.yaml` file is consumed during the installation process. If you want to reuse the file, you must back it up now.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installation configuration parameters for Nutanix](/openshift-docs-markdown/installing/installing_nutanix/installation-config-parameters-nutanix#installation-config-parameters-nutanix)
 
@@ -322,9 +315,7 @@ platform:
 credentialsMode: Manual
 publish: External
 pullSecret: '{"auths": ...}'
-{%- if not openshift_origin %}
 fips: false
-{%- endif %}
 sshKey: ssh-ed25519 AAAA...
 ```
 
@@ -490,46 +481,42 @@ Production environments can deny direct access to the internet and instead have 
    proxy:
      httpProxy: http://<username>:<pswd>@<ip>:<port>
      httpsProxy: https://<username>:<pswd>@<ip>:<port>
+     noProxy: example.com
+   additionalTrustBundle: |
+       -----BEGIN CERTIFICATE-----
+       <MY_TRUSTED_CA_CERT>
+       -----END CERTIFICATE-----
+   additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle>
+   # ...
    ```
 
-{%- if not aws %} noProxy: example.com {% endif %} {% if aws %} noProxy: ec2.<aws_region>.amazonaws.com,elasticloadbalancing.<aws_region>.amazonaws.com,s3.<aws_region>.amazonaws.com {%- endif %} additionalTrustBundle: | -----BEGIN CERTIFICATE----- <MY_TRUSTED_CA_CERT> -----END CERTIFICATE----- additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle> # ... \`\`\`
+   where:
 
-````
-where:
+   `proxy.httpProxy`
+   :   Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be `http`.
 
-`proxy.httpProxy`
-:   Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be `http`.
+   `proxy.httpsProxy`
+   :   Specifies a proxy URL to use for creating HTTPS connections outside the cluster.
 
-`proxy.httpsProxy`
-:   Specifies a proxy URL to use for creating HTTPS connections outside the cluster.
+   `proxy.noProxy`
+   :   Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with `.` to match subdomains only. For example, `.y.com` matches `x.y.com`, but not `y.com`. Use `*` to bypass the proxy for all destinations.
 
-`proxy.noProxy`
-:   Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with `.` to match subdomains only. For example, `.y.com` matches `x.y.com`, but not `y.com`. Use `*` to bypass the proxy for all destinations.
+   `additionalTrustBundle`
+   :   If you specify this value, the installation program generates a config map named `user-ca-bundle` in the `openshift-config` namespace to hold the additional CA certificates. If you specify `additionalTrustBundle` and at least one proxy setting, the `Proxy` object references the `user-ca-bundle` config map in the `trustedCA` field. The Cluster Network Operator then creates a `trusted-ca-bundle` config map that merges the contents specified for the `trustedCA` parameter with the RHCOS trust bundle. You must set the `additionalTrustBundle` field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.
 
-`additionalTrustBundle`
-:   If you specify this value, the installation program generates a config map named `user-ca-bundle` in the `openshift-config` namespace to hold the additional CA certificates. If you specify `additionalTrustBundle` and at least one proxy setting, the `Proxy` object references the `user-ca-bundle` config map in the `trustedCA` field. The Cluster Network Operator then creates a `trusted-ca-bundle` config map that merges the contents specified for the `trustedCA` parameter with the RHCOS trust bundle. You must set the `additionalTrustBundle` field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.
+   `additionalTrustBundlePolicy`
+   :   Specifies the policy that determines the configuration of the `Proxy` object to reference the `user-ca-bundle` config map in the `trustedCA` field. The allowed values are `Proxyonly` and `Always`. Use `Proxyonly` to reference the `user-ca-bundle` config map only when you configure an `http/https` proxy. Use `Always` to always reference the `user-ca-bundle` config map. The default value is `Proxyonly`. Optional parameter.
 
-`additionalTrustBundlePolicy`
-:   Specifies the policy that determines the configuration of the `Proxy` object to reference the `user-ca-bundle` config map in the `trustedCA` field. The allowed values are `Proxyonly` and `Always`. Use `Proxyonly` to reference the `user-ca-bundle` config map only when you configure an `http/https` proxy. Use `Always` to always reference the `user-ca-bundle` config map. The default value is `Proxyonly`. Optional parameter.
+   > [!NOTE]
+   > The installation program does not support the proxy `readinessEndpoints` field.
 
-:::note
-
-The installation program does not support the proxy `readinessEndpoints` field.
-
-:::
-
-:::note
-
-If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
-
-```terminal
-$ ./openshift-install wait-for install-complete --log-level debug
-```
-
-:::
-````
-
-1. Save the file and reference it when installing OpenShift Container Platform.
+   > [!NOTE]
+   > If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
+   >
+   > ```terminal
+   > $ ./openshift-install wait-for install-complete --log-level debug
+   > ```
+2. Save the file and reference it when installing OpenShift Container Platform.
 
    The installation program creates a cluster-wide proxy named `cluster` that uses the proxy settings in the `install-config.yaml` file. If you do not give proxy settings, the installation program still creates a `cluster` `Proxy` object, but it has a nil `spec`.
 
@@ -1148,22 +1135,26 @@ Interval: 10
    ```yaml
    # ...
    platform:
+     nutanix:
+       loadBalancer:
+         type: <loadBalancer_type>
+       apiVIPs:
+       - <api_ip>
+       ingressVIPs:
+       - <ingress_ip>
+   # ...
    ```
 
-{%- if bare_metal %} bare-metal: {% endif %} {% if openstack %} openstack: {% endif %} {% if nutanix %} nutanix: {% endif %} {% if vsphere %} vsphere: {%- endif %} loadBalancer: type: <loadBalancer_type> apiVIPs: - <api_ip> ingressVIPs: - <ingress_ip> # ... \`\`\`
+   where:
 
-```
-where:
+   `<loadBalancer_type>`
+   :   Specifies the load balancer type. Set to `UserManaged` to specify a user-managed load balancer for your cluster. The parameter defaults to `OpenShiftManagedDefault`, which denotes the default internal load balancer. For services defined in an `openshift-kni-infra` namespace, a user-managed load balancer can deploy the `coredns` service to pods in your cluster but ignores `keepalived` and `haproxy` services.
 
-`<loadBalancer_type>`
-:   Specifies the load balancer type. Set to `UserManaged` to specify a user-managed load balancer for your cluster. The parameter defaults to `OpenShiftManagedDefault`, which denotes the default internal load balancer. For services defined in an `openshift-kni-infra` namespace, a user-managed load balancer can deploy the `coredns` service to pods in your cluster but ignores `keepalived` and `haproxy` services.
+   `<api_ip>`
+   :   Specifies the user-managed load balancer’s public IP address for the Kubernetes API. Mandatory parameter.
 
-`<api_ip>`
-:   Specifies the user-managed load balancer’s public IP address for the Kubernetes API. Mandatory parameter.
-
-`<ingress_ip>`
-:   Specifies the user-managed load balancer’s public IP address for ingress traffic. Mandatory parameter.
-```
+   `<ingress_ip>`
+   :   Specifies the user-managed load balancer’s public IP address for ingress traffic. Mandatory parameter.
 
 **Verification**
 
@@ -1262,19 +1253,15 @@ To deploy your OpenShift Container Platform cluster, you can initialize installa
 
 **Procedure**
 
-````
-*   In the directory that contains the installation program, initialize the cluster deployment by running the following command:
+- In the directory that contains the installation program, initialize the cluster deployment by running the following command:
 
 ```terminal
 $ ./openshift-install create cluster --dir <installation_directory> \
     --log-level=info
 ```
-    *   For `<installation_directory>`, specify the
-    location of your customized `./install-config.yaml` file.
 
-    *   To view different installation details, specify `warn`, `debug`, or
-    `error` instead of `info`.
-````
+- For `<installation_directory>`, specify the location of your customized `./install-config.yaml` file.
+- To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
 
 **Verification**
 
@@ -1303,6 +1290,9 @@ When the cluster deployment completes successfully:
 
 After you install the cluster, you must install the Nutanix CSI Operator and configure the default storage container for the cluster.
 
+**Additional resources**
+{._additional-resources}
+
 - [Installing the CSI Operator](https://opendocs.nutanix.com/openshift/operators/csi/)
 - [Configuring registry storage](https://opendocs.nutanix.com/openshift/post-install/)
 
@@ -1312,7 +1302,8 @@ To provide metrics about cluster health and the success of updates, the Telemetr
 
 After you confirm that your [OpenShift Cluster Manager](https://console.redhat.com/openshift) inventory is correct, either maintained automatically by Telemetry or manually by using OpenShift Cluster Manager,use subscription watch to track your OpenShift Container Platform subscriptions at the account or multi-cluster level. For more information about subscription watch, see "Data Gathered and Used by Red Hat’s subscription services" in the *Additional resources* section.
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [OpenShift Container Platform installation and update processes](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)
 - [Configuring your firewall to grant required access](/openshift-docs-markdown/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)

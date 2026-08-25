@@ -56,9 +56,7 @@ You can specify the `--env` flag to set any desired environment variable for the
 
 ### Starting a build with source {#builds-basic-start-source_basic-build-operations}
 
-Rather than relying on a Git source pull or a Dockerfile
-
-for a build, you can also start a build by directly pushing your source, which could be the contents of a Git or SVN working directory, a set of pre-built binary artifacts you want to deploy, or a single file. This can be done by specifying one of the following options for the `start-build` command:
+Rather than relying on a Git source pull or a Dockerfile for a build, you can also start a build by directly pushing your source, which could be the contents of a Git or SVN working directory, a set of pre-built binary artifacts you want to deploy, or a single file. This can be done by specifying one of the following options for the `start-build` command:
 
 | Option | Description |
 | --- | --- |
@@ -140,7 +138,7 @@ You can switch between the **Form view** and **YAML view** without losing any da
 
 **Procedure**
 
-1. On the **Builds** page, click the Options menu ![](kebab.png "Options menu") to see the **Edit BuildConfig** option.
+1. On the **Builds** page, click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") to see the **Edit BuildConfig** option.
 2. Click **Edit BuildConfig** to see the **Form view** option.
 3. In the **Git** section, enter the Git repository URL for the codebase you want to use to create an application. The URL is then validated.
 
@@ -202,9 +200,7 @@ This displays information including:
 - Digest of the image in the destination registry.
 - How the build was created.
 
-If the build uses the `Docker` or
-
-`Source` strategy, the `oc describe` output also includes information about the source revision used for the build, including the commit ID, author, committer, and message.
+If the build uses the `Docker` or `Source` strategy, the `oc describe` output also includes information about the source revision used for the build, including the commit ID, author, committer, and message.
 
 **Procedure**
 
@@ -252,9 +248,7 @@ You can access logs for a given version build for a `BuildConfig` using the web 
 
 ### Enabling log verbosity {#builds-basic-access-build-verbosity_basic-build-operations}
 
-You can enable a more verbose output by passing the `BUILD_LOGLEVEL` environment variable as part of the `sourceStrategy` or `dockerStrategy`
-
-in a `BuildConfig`.
+You can enable a more verbose output by passing the `BUILD_LOGLEVEL` environment variable as part of the `sourceStrategy` or `dockerStrategy` in a `BuildConfig`.
 
 > [!NOTE]
 > An administrator can set the default build verbosity for the entire OpenShift Container Platform instance by configuring `env/BUILD_LOGLEVEL`. This default can be overridden by specifying `BUILD_LOGLEVEL` in a given `BuildConfig`. You can specify a higher priority override on the command line for non-binary builds by passing `--build-loglevel` to `oc start-build`.
@@ -281,9 +275,7 @@ Level 5
 
 **Procedure**
 
-- To enable more verbose output, pass the `BUILD_LOGLEVEL` environment variable as part of the `sourceStrategy` or `dockerStrategy`
-
-  in a `BuildConfig`:
+- To enable more verbose output, pass the `BUILD_LOGLEVEL` environment variable as part of the `sourceStrategy` or `dockerStrategy` in a `BuildConfig`:
 
   ```yaml
   sourceStrategy:

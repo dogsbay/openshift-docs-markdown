@@ -222,6 +222,7 @@ Validate cluster configurations by using `must-gather` data to troubleshoot conf
 > - Skipped results for differences patched using the user override mechanism.
 
 **Additional resources**
+{._additional-resources}
 
 - [Gathering data about your cluster](/openshift-docs-markdown/support/gathering-cluster-data#about-must-gather_gathering-cluster-data)
 
@@ -259,7 +260,7 @@ The following content describes the options for the `cluster-compare` plugin.
 </tr>
 <tr>
   <td><code>--show-template-functions</code></td>
-  <td>Displays the available template functions.<br><br><dl><dt>Note</dt><dd>You must use a file path for the target template that is relative to the <code>metadata.yaml</code> file. For example, if the file path for the <code>metadata.yaml</code> file is <code>./compare/metadata.yaml</code>, a relative file path for the template might be <code>optional/my-template.yaml</code>.</dd></dl></td>
+  <td>Displays the available template functions.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>You must use a file path for the target template that is relative to the <code>metadata.yaml</code> file. For example, if the file path for the <code>metadata.yaml</code> file is <code>./compare/metadata.yaml</code>, a relative file path for the template might be <code>optional/my-template.yaml</code>.</dd></dl></td>
 </tr>
 <tr>
   <td><code>-h</code>, <code>--help</code></td>
@@ -488,7 +489,8 @@ For further examples of using the `cluster-compare` plugin with the telco core a
 > - Failed results for differences found or missing required custom resources (CRs).
 > - Skipped results for differences patched using the user override mechanism.
 
-## Additional resources {#additional-resources_using-cluster-compare-plugin}
+**Additional resources**
+{._additional-resources}
 
 - [Comparing a cluster with the telco RAN DU reference configuration](/openshift-docs-markdown/scalability_and_performance/telco-ran-du-rds#using-cluster-compare-telco-ran_ran-ref-design-crs)
 - [Comparing a cluster with the telco core reference configuration](/openshift-docs-markdown/scalability_and_performance/telco-core-rds#using-cluster-compare-telco_core_telco-core)

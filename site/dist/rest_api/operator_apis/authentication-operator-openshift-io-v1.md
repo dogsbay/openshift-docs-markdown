@@ -1,5 +1,5 @@
 ---
-title: Authentication []
+title: Authentication [operator.openshift.io/v1]
 ---
 
 # Authentication \[operator.openshift.io/v1\] {#authentication-operator-openshift-io-v1}
@@ -38,10 +38,10 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `logLevel` | `string` | logLevel is an intent based logging for an overall component.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands. Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
+| `logLevel` | `string` | logLevel is an intent based logging for an overall component. It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `managementState` | `string` | managementState indicates whether and how the operator should manage the component |
-| `observedConfig` | \`\` | observedConfig holds a sparse config that controller has observed from the cluster state.  It exists in spec because it is an input to the level for the operator |
-| `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves. Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
+| `observedConfig` | \`\` | observedConfig holds a sparse config that controller has observed from the cluster state. It exists in spec because it is an input to the level for the operator |
+| `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself. It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `unsupportedConfigOverrides` | \`\` | unsupportedConfigOverrides overrides the final configuration that was computed by the operator. Red Hat does not support the use of this field. Misuse of this field could lead to unexpected behavior or conflict with other configuration options. Seek guidance from the Red Hat support before using this field. Use of this property blocks cluster upgrades, it must be removed before upgrading your cluster. |
 
 ### .status {#_status}
@@ -92,7 +92,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` |  |
 | `reason` | `string` |  |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
@@ -156,13 +156,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of Authentication
   - `GET`: list objects of kind Authentication
   - `POST`: create an Authentication
-- `/apis/operator.openshift.io/v1/authentications/{{ name }}`
+- `/apis/operator.openshift.io/v1/authentications/{name}`
 
   - `DELETE`: delete an Authentication
   - `GET`: read the specified Authentication
   - `PATCH`: partially update the specified Authentication
   - `PUT`: replace the specified Authentication
-- `/apis/operator.openshift.io/v1/authentications/{{ name }}/status`
+- `/apis/operator.openshift.io/v1/authentications/{name}/status`
 
   - `GET`: read status of the specified Authentication
   - `PATCH`: partially update status of the specified Authentication
@@ -236,7 +236,7 @@ Description
 | 202 - Accepted | [`Authentication`](/openshift-docs-markdown/rest_api/operator_apis/authentication-operator-openshift-io-v1#authentication-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operator.openshift.io/v1/authentications/{{ name }} {#_apisoperatoropenshiftiov1authentications_name}
+### /apis/operator.openshift.io/v1/authentications/{name} {#_apisoperatoropenshiftiov1authentications_name}
 
 **Global path parameters**
 
@@ -340,7 +340,7 @@ Description
 | 201 - Created | [`Authentication`](/openshift-docs-markdown/rest_api/operator_apis/authentication-operator-openshift-io-v1#authentication-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operator.openshift.io/v1/authentications/{{ name }}/status {#_apisoperatoropenshiftiov1authentications_name_status}
+### /apis/operator.openshift.io/v1/authentications/{name}/status {#_apisoperatoropenshiftiov1authentications_name_status}
 
 **Global path parameters**
 

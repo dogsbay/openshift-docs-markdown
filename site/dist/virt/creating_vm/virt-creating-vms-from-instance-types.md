@@ -103,62 +103,58 @@ OpenShift Virtualization includes a set of pre-defined instance types called `co
 
 These instance type resources are named according to their series, version, and size. The size value follows the `.` delimiter and ranges from `nano` to `8xlarge`.
 
-`common-instancetypes`** series comparison**
+**`common-instancetypes` series comparison**
 
 <table>
 <tbody>
 <tr>
-  <td>^.^</td>
   <td>Use case ^.^</td>
   <td>Series ^.^</td>
   <td>Characteristics ^.^</td>
   <td>vCPU to memory ratio ^.^</td>
+  <td>Example resource</td>
 </tr>
 <tr>
-  <td>Example resource ^.^</td>
-  <td>Network ^.^</td>
+  <td>Network</td>
   <td>N</td>
-  <td><ul><li>Hugepages</li><li>Dedicated CPU</li><li>Isolated emulator threads</li><li>Requires nodes capable of running DPDK workloads</li></ul>^.^</td>
+  <td><ul><li>Hugepages</li><li>Dedicated CPU</li><li>Isolated emulator threads</li><li>Requires nodes capable of running DPDK workloads</li></ul></td>
   <td>1:2</td>
+  <td><code>n1.medium</code>::<ul><li>4 vCPUs</li><li>4GiB Memory</li></ul></td>
 </tr>
 <tr>
-  <td>.^a</td>
-  <td><code>n1.medium</code>:: * 4 vCPUs * 4GiB Memory ^.^</td>
-  <td>Overcommitted ^.^</td>
+  <td>Overcommitted</td>
   <td>O</td>
-  <td><ul><li>Overcommitted memory</li><li>Burstable CPU performance</li></ul>^.^</td>
+  <td><ul><li>Overcommitted memory</li><li>Burstable CPU performance</li></ul></td>
+  <td>1:4</td>
+  <td><code>o1.small</code>::<ul><li>1 vCPU</li><li>2GiB Memory</li></ul></td>
 </tr>
 <tr>
-  <td>1:4 .^a</td>
-  <td><code>o1.small</code>:: * 1 vCPU * 2GiB Memory ^.^</td>
-  <td>Compute Exclusive ^.^</td>
+  <td>Compute Exclusive</td>
   <td>CX</td>
-  <td><ul><li>Hugepages</li><li>Dedicated CPU</li><li>Isolated emulator threads</li><li>vNUMA</li></ul>^.^</td>
+  <td><ul><li>Hugepages</li><li>Dedicated CPU</li><li>Isolated emulator threads</li><li>vNUMA</li></ul></td>
+  <td>1:2</td>
+  <td><code>cx1.2xlarge</code>::<ul><li>8 vCPUs</li><li>16GiB Memory</li></ul></td>
 </tr>
 <tr>
-  <td>1:2 .^a</td>
-  <td><code>cx1.2xlarge</code>:: * 8 vCPUs * 16GiB Memory ^.^</td>
-  <td>General Purpose ^.^</td>
+  <td>General Purpose</td>
   <td>U</td>
-  <td><ul><li>Burstable CPU performance</li></ul>^.^</td>
+  <td><ul><li>Burstable CPU performance</li></ul></td>
+  <td>1:4</td>
+  <td><code>u1.medium</code>::<ul><li>1 vCPU</li><li>4GiB Memory</li></ul></td>
 </tr>
 <tr>
-  <td>1:4 .^a</td>
-  <td><code>u1.medium</code>:: * 1 vCPU * 4GiB Memory ^.^</td>
-  <td>Memory Intensive ^.^</td>
+  <td>Memory Intensive</td>
   <td>M</td>
-  <td><ul><li>Hugepages</li><li>Burstable CPU performance</li></ul>^.^</td>
+  <td><ul><li>Hugepages</li><li>Burstable CPU performance</li></ul></td>
+  <td>1:8</td>
+  <td><code>m1.large</code>::<ul><li>2 vCPUs</li><li>16GiB Memory</li></ul></td>
 </tr>
 <tr>
-  <td>1:8 .^a</td>
-  <td><code>m1.large</code>:: * 2 vCPUs * 16GiB Memory ^.^</td>
-  <td>Dedicated ^.^</td>
+  <td>Dedicated</td>
   <td>D</td>
-  <td><ul><li>Dedicated CPU</li><li>Isolated emulator threads</li></ul>^.^</td>
-</tr>
-<tr>
-  <td>1:4 .^a</td>
-  <td><code>d1.medium</code>:: * 1 vCPUs * 4GiB Memory</td>
+  <td><ul><li>Dedicated CPU</li><li>Isolated emulator threads</li></ul></td>
+  <td>1:4</td>
+  <td><code>d1.medium</code>::<ul><li>1 vCPUs</li><li>4GiB Memory</li></ul></td>
 </tr>
 </tbody>
 </table>
@@ -247,7 +243,7 @@ You can create a VM from a list of available bootable volumes. You can add Linux
 
 **Procedure**
 
-1. In the web console, navigate to **Virtualization** -> **Catalog**.
+1. In the web console, navigate to **Virtualization** → **Catalog**.
 
    The **InstanceTypes** tab opens by default.
 
@@ -274,29 +270,30 @@ You can create a VM from a list of available bootable volumes. You can add Linux
 
    - For a Linux-based volume, follow these steps to configure SSH:
 
-     1. If you have not already added a public SSH key to your project, click the edit icon beside **Authorized SSH key** in the **VirtualMachine details** section.
-     2. Select one of the following options:
+   1. If you have not already added a public SSH key to your project, click the edit icon beside **Authorized SSH key** in the **VirtualMachine details** section.
+   2. Select one of the following options:
 
-        - **Use existing**: Select a secret from the secrets list.
-        - **Add new**: Follow these steps:
+      - **Use existing**: Select a secret from the secrets list.
+      - **Add new**: Follow these steps:
 
-          1. Browse to the public SSH key file or paste the file in the key field.
-          2. Enter the secret name.
-          3. Optional: Select **Automatically apply this key to any new VirtualMachine you create in this project**.
-     3. Click **Save**.
-   - For a Windows volume, follow either of these set of steps to configure sysprep options:
+        1. Browse to the public SSH key file or paste the file in the key field.
+        2. Enter the secret name.
+        3. Optional: Select **Automatically apply this key to any new VirtualMachine you create in this project**.
+   3. Click **Save**.
 
-     - If you have not already added sysprep options for the Windows volume, follow these steps:
+      - For a Windows volume, follow either of these set of steps to configure sysprep options:
 
-       1. Click the edit icon beside **Sysprep** in the **VirtualMachine details** section.
-       2. Add the **Autoattend.xml** answer file.
-       3. Add the **Unattend.xml** answer file.
-       4. Click **Save**.
-     - If you want to use existing sysprep options for the Windows volume, follow these steps:
+        - If you have not already added sysprep options for the Windows volume, follow these steps:
 
-       1. Click **Attach existing sysprep**.
-       2. Enter the name of the existing sysprep **Unattend.xml** answer file.
-       3. Click **Save**.
+          1. Click the edit icon beside **Sysprep** in the **VirtualMachine details** section.
+          2. Add the **Autoattend.xml** answer file.
+          3. Add the **Unattend.xml** answer file.
+          4. Click **Save**.
+        - If you want to use existing sysprep options for the Windows volume, follow these steps:
+
+          1. Click **Attach existing sysprep**.
+          2. Enter the name of the existing sysprep **Unattend.xml** answer file.
+          3. Click **Save**.
 6. Optional: If you are creating a Windows VM, you can mount a Windows driver disk:
 
    1. Click the **Customize VirtualMachine** button.
@@ -329,7 +326,7 @@ You can change the instance type associated with a running virtual machine (VM) 
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, click **Virtualization** -> **VirtualMachines**.
+1. In the OpenShift Container Platform web console, click **Virtualization** → **VirtualMachines**.
 2. Select a VM to open the **VirtualMachine details** page.
 3. Click the **Configuration** tab.
 4. On the **Details** tab, click the instance type text to open the **Edit Instancetype** dialog. For example, click **1 CPU | 2 GiB Memory**.
@@ -399,6 +396,7 @@ To change the instance type of a VM, change the `name` field in the VM spec. Thi
   }
   ```
 
-## Additional resources {#additional-resources_virt-creating-vms-from-instance-types}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring a downward metrics device](/openshift-docs-markdown/virt/monitoring/virt-exposing-downward-metrics#virt-configuring-downward-metrics_virt-exposing-downward-metrics)

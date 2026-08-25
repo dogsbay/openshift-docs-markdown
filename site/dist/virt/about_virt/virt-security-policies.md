@@ -29,10 +29,7 @@ TLS certificates are automatically deleted and replaced according to the followi
 
 - KubeVirt certificates are renewed daily.
 - Containerized Data Importer controller (CDI) certificates are renewed every 15 days.
-- MAC pool certificates are renewed every year.
-
-Automatic TLS certificate rotation does not disrupt any operations. For example, the following operations continue to function without any disruption:
-
+- MAC pool certificates are renewed every year. Automatic TLS certificate rotation does not disrupt any operations. For example, the following operations continue to function without any disruption:
 - Migrations
 - Image uploads
 - VNC and console connections
@@ -49,12 +46,37 @@ By using cluster role aggregation, OpenShift Virtualization extends the default 
 
 **OpenShift Virtualization cluster roles**
 
-| Default cluster role | OpenShift Virtualization cluster role | OpenShift Virtualization cluster role description |
-| --- | --- | --- |
-| `view` | `kubevirt.io:view` | A user that can view all OpenShift Virtualization resources in the cluster but cannot create, delete, modify, or access them. For example, the user can see that a virtual machine (VM) is running but cannot shut it down or gain access to its console. |
-| `edit` | `kubevirt.io:edit` | A user that can modify all OpenShift Virtualization resources in the cluster. For example, the user can create VMs, access VM consoles, and delete VMs. |
-| `admin` | `kubevirt.io:admin` | A user that has full permissions to all OpenShift Virtualization resources, including the ability to delete collections of resources. The user can also view and modify the OpenShift Virtualization runtime configuration, which is located in the `HyperConverged` custom resource in the `openshift-cnv` namespace. |
-| `N/A` | `kubevirt.io:migrate` | A user that can create, delete, and update VM live migration requests, which are represented by namespaced `VirtualMachineInstanceMigration` (VMIM) objects. This role is specific to OpenShift Virtualization. |
+<table>
+<thead>
+<tr>
+  <th>Default cluster role</th>
+  <th>OpenShift Virtualization cluster role</th>
+  <th>OpenShift Virtualization cluster role description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>view</code></td>
+  <td><code>kubevirt.io:view</code></td>
+  <td>A user that can view all OpenShift Virtualization resources in the cluster but cannot create, delete, modify, or access them. For example, the user can see that a virtual machine (VM) is running but cannot shut it down or gain access to its console.</td>
+</tr>
+<tr>
+  <td><code>edit</code></td>
+  <td><code>kubevirt.io:edit</code></td>
+  <td>A user that can modify all OpenShift Virtualization resources in the cluster. For example, the user can create VMs, access VM consoles, and delete VMs.</td>
+</tr>
+<tr>
+  <td><code>admin</code></td>
+  <td><code>kubevirt.io:admin</code></td>
+  <td>A user that has full permissions to all OpenShift Virtualization resources, including the ability to delete collections of resources. The user can also view and modify the OpenShift Virtualization runtime configuration, which is located in the <code>HyperConverged</code> custom resource in the <code>openshift-cnv</code> namespace.</td>
+</tr>
+<tr>
+  <td><code>N/A</code></td>
+  <td><code>kubevirt.io:migrate</code></td>
+  <td>A user that can create, delete, and update VM live migration requests, which are represented by namespaced <code>VirtualMachineInstanceMigration</code> (VMIM) objects. This role is specific to OpenShift Virtualization.</td>
+</tr>
+</tbody>
+</table>
 
 ### RBAC roles for storage features in OpenShift Virtualization {#virt-storage-rbac-roles_virt-security-policies}
 
@@ -64,75 +86,302 @@ Cluster-wide and namespaced RBAC roles enable the Containerized Data Importer (C
 
 **Aggregated cluster roles for the `cdi.kubevirt.io` API group**
 
-| CDI cluster role | Resources | Verbs .2+.^ |
-| --- | --- | --- |
-| `cdi.kubevirt.io:admin` | `datavolumes`, `uploadtokenrequests` | `*` (all) |
-| `datavolumes/source` | `create` .2+.^ | `cdi.kubevirt.io:edit` |
-| `datavolumes`, `uploadtokenrequests` | `*` | `datavolumes/source` |
-| `create` .2+.^ | `cdi.kubevirt.io:view` | `cdiconfigs`, `dataimportcrons`, `datasources`, `datavolumes`, `objecttransfers`, `storageprofiles`, `volumeimportsources`, `volumeuploadsources`, `volumeclonesources` |
-| `get`, `list`, `watch` | `datavolumes/source` | `create` |
-| `cdi.kubevirt.io:config-reader` | `cdiconfigs`, `storageprofiles` | `get`, `list`, `watch` |
+<table>
+<thead>
+<tr>
+  <th>CDI cluster role</th>
+  <th>Resources</th>
+  <th>Verbs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td rowspan="2"><code>cdi.kubevirt.io:admin</code></td>
+  <td><code>datavolumes</code>, <code>uploadtokenrequests</code></td>
+  <td><code>*</code> (all)</td>
+</tr>
+<tr>
+  <td><code>datavolumes/source</code></td>
+  <td><code>create</code></td>
+</tr>
+<tr>
+  <td rowspan="2"><code>cdi.kubevirt.io:edit</code></td>
+  <td><code>datavolumes</code>, <code>uploadtokenrequests</code></td>
+  <td><code>*</code></td>
+</tr>
+<tr>
+  <td><code>datavolumes/source</code></td>
+  <td><code>create</code></td>
+</tr>
+<tr>
+  <td rowspan="2"><code>cdi.kubevirt.io:view</code></td>
+  <td><code>cdiconfigs</code>, <code>dataimportcrons</code>, <code>datasources</code>, <code>datavolumes</code>, <code>objecttransfers</code>, <code>storageprofiles</code>, <code>volumeimportsources</code>, <code>volumeuploadsources</code>, <code>volumeclonesources</code></td>
+  <td><code>get</code>, <code>list</code>, <code>watch</code></td>
+</tr>
+<tr>
+  <td><code>datavolumes/source</code></td>
+  <td><code>create</code></td>
+</tr>
+<tr>
+  <td><code>cdi.kubevirt.io:config-reader</code></td>
+  <td><code>cdiconfigs</code>, <code>storageprofiles</code></td>
+  <td><code>get</code>, <code>list</code>, <code>watch</code></td>
+</tr>
+</tbody>
+</table>
 
 **Cluster-wide roles for the `cdi-operator` service account**
 
-| API group | Resources | Verbs |
-| --- | --- | --- |
-| `rbac.authorization.k8s.io` | `clusterrolebindings`, `clusterroles` | `get`, `list`, `watch`, `create`, `update`, `delete` |
-| `security.openshift.io` | `securitycontextconstraints` | `get`, `list`, `watch`, `update`, `create` |
-| `apiextensions.k8s.io` | `customresourcedefinitions`, `customresourcedefinitions/status` | `get`, `list`, `watch`, `create`, `update`, `delete` |
-| `cdi.kubevirt.io` | `**` | `**` |
-| `upload.cdi.kubevirt.io` | `**` | `**` |
-| `admissionregistration.k8s.io` | `validatingwebhookconfigurations`, `mutatingwebhookconfigurations` | `create`, `list`, `watch` |
-| `admissionregistration.k8s.io` | `validatingwebhookconfigurations` Allow list: `cdi-api-dataimportcron-validate, cdi-api-populator-validate, cdi-api-datavolume-validate, cdi-api-validate, objecttransfer-api-validate` | `get`, `update`, `delete` |
-| `admissionregistration.k8s.io` | `mutatingwebhookconfigurations` Allow list: `cdi-api-datavolume-mutate` | `get`, `update`, `delete` |
-| `apiregistration.k8s.io` | `apiservices` | `get`, `list`, `watch`, `create`, `update`, `delete` |
+<table>
+<thead>
+<tr>
+  <th>API group</th>
+  <th>Resources</th>
+  <th>Verbs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>rbac.authorization.k8s.io</code></td>
+  <td><code>clusterrolebindings</code>, <code>clusterroles</code></td>
+  <td><code>get</code>, <code>list</code>, <code>watch</code>, <code>create</code>, <code>update</code>, <code>delete</code></td>
+</tr>
+<tr>
+  <td><code>security.openshift.io</code></td>
+  <td><code>securitycontextconstraints</code></td>
+  <td><code>get</code>, <code>list</code>, <code>watch</code>, <code>update</code>, <code>create</code></td>
+</tr>
+<tr>
+  <td><code>apiextensions.k8s.io</code></td>
+  <td><code>customresourcedefinitions</code>, <code>customresourcedefinitions/status</code></td>
+  <td><code>get</code>, <code>list</code>, <code>watch</code>, <code>create</code>, <code>update</code>, <code>delete</code></td>
+</tr>
+<tr>
+  <td><code>cdi.kubevirt.io</code></td>
+  <td><code>*</code></td>
+  <td><code>*</code></td>
+</tr>
+<tr>
+  <td><code>upload.cdi.kubevirt.io</code></td>
+  <td><code>*</code></td>
+  <td><code>*</code></td>
+</tr>
+<tr>
+  <td><code>admissionregistration.k8s.io</code></td>
+  <td><code>validatingwebhookconfigurations</code>, <code>mutatingwebhookconfigurations</code></td>
+  <td><code>create</code>, <code>list</code>, <code>watch</code></td>
+</tr>
+<tr>
+  <td><code>admissionregistration.k8s.io</code></td>
+  <td><code>validatingwebhookconfigurations</code> Allow list: <code>cdi-api-dataimportcron-validate, cdi-api-populator-validate, cdi-api-datavolume-validate, cdi-api-validate, objecttransfer-api-validate</code></td>
+  <td><code>get</code>, <code>update</code>, <code>delete</code></td>
+</tr>
+<tr>
+  <td><code>admissionregistration.k8s.io</code></td>
+  <td><code>mutatingwebhookconfigurations</code> Allow list: <code>cdi-api-datavolume-mutate</code></td>
+  <td><code>get</code>, <code>update</code>, <code>delete</code></td>
+</tr>
+<tr>
+  <td><code>apiregistration.k8s.io</code></td>
+  <td><code>apiservices</code></td>
+  <td><code>get</code>, <code>list</code>, <code>watch</code>, <code>create</code>, <code>update</code>, <code>delete</code></td>
+</tr>
+</tbody>
+</table>
 
 **Cluster-wide roles for the `cdi-controller` service account**
 
-| API group | Resources | Verbs |
-| --- | --- | --- |
-| `""` (core) | `events` | `create`, `patch` |
-| `""` (core) | `persistentvolumeclaims` | `get`, `list`, `watch`, `create`, `update`, `delete`, `deletecollection`, `patch` |
-| `""` (core) | `persistentvolumes` | `get`, `list`, `watch`, `update` |
-| `""` (core) | `persistentvolumeclaims/finalizers`, `pods/finalizers` | `update` |
-| `""` (core) | `pods`, `services` | `get`, `list`, `watch`, `create`, `delete` |
-| `""` (core) | `configmaps` | `get`, `create` |
-| `storage.k8s.io` | `storageclasses`, `csidrivers` | `get`, `list`, `watch` |
-| `config.openshift.io` | `proxies` | `get`, `list`, `watch` |
-| `cdi.kubevirt.io` | `**` | `**` |
-| `snapshot.storage.k8s.io` | `volumesnapshots`, `volumesnapshotclasses`, `volumesnapshotcontents` | `get`, `list`, `watch`, `create`, `delete` |
-| `snapshot.storage.k8s.io` | `volumesnapshots` | `update`, `deletecollection` |
-| `apiextensions.k8s.io` | `customresourcedefinitions` | `get`, `list`, `watch` |
-| `scheduling.k8s.io` | `priorityclasses` | `get`, `list`, `watch` |
-| `image.openshift.io` | `imagestreams` | `get`, `list`, `watch` |
-| `""` (core) | `secrets` | `create` |
-| `kubevirt.io` | `virtualmachines/finalizers` | `update` |
+<table>
+<thead>
+<tr>
+  <th>API group</th>
+  <th>Resources</th>
+  <th>Verbs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>""</code> (core)</td>
+  <td><code>events</code></td>
+  <td><code>create</code>, <code>patch</code></td>
+</tr>
+<tr>
+  <td><code>""</code> (core)</td>
+  <td><code>persistentvolumeclaims</code></td>
+  <td><code>get</code>, <code>list</code>, <code>watch</code>, <code>create</code>, <code>update</code>, <code>delete</code>, <code>deletecollection</code>, <code>patch</code></td>
+</tr>
+<tr>
+  <td><code>""</code> (core)</td>
+  <td><code>persistentvolumes</code></td>
+  <td><code>get</code>, <code>list</code>, <code>watch</code>, <code>update</code></td>
+</tr>
+<tr>
+  <td><code>""</code> (core)</td>
+  <td><code>persistentvolumeclaims/finalizers</code>, <code>pods/finalizers</code></td>
+  <td><code>update</code></td>
+</tr>
+<tr>
+  <td><code>""</code> (core)</td>
+  <td><code>pods</code>, <code>services</code></td>
+  <td><code>get</code>, <code>list</code>, <code>watch</code>, <code>create</code>, <code>delete</code></td>
+</tr>
+<tr>
+  <td><code>""</code> (core)</td>
+  <td><code>configmaps</code></td>
+  <td><code>get</code>, <code>create</code></td>
+</tr>
+<tr>
+  <td><code>storage.k8s.io</code></td>
+  <td><code>storageclasses</code>, <code>csidrivers</code></td>
+  <td><code>get</code>, <code>list</code>, <code>watch</code></td>
+</tr>
+<tr>
+  <td><code>config.openshift.io</code></td>
+  <td><code>proxies</code></td>
+  <td><code>get</code>, <code>list</code>, <code>watch</code></td>
+</tr>
+<tr>
+  <td><code>cdi.kubevirt.io</code></td>
+  <td><code>*</code></td>
+  <td><code>*</code></td>
+</tr>
+<tr>
+  <td><code>snapshot.storage.k8s.io</code></td>
+  <td><code>volumesnapshots</code>, <code>volumesnapshotclasses</code>, <code>volumesnapshotcontents</code></td>
+  <td><code>get</code>, <code>list</code>, <code>watch</code>, <code>create</code>, <code>delete</code></td>
+</tr>
+<tr>
+  <td><code>snapshot.storage.k8s.io</code></td>
+  <td><code>volumesnapshots</code></td>
+  <td><code>update</code>, <code>deletecollection</code></td>
+</tr>
+<tr>
+  <td><code>apiextensions.k8s.io</code></td>
+  <td><code>customresourcedefinitions</code></td>
+  <td><code>get</code>, <code>list</code>, <code>watch</code></td>
+</tr>
+<tr>
+  <td><code>scheduling.k8s.io</code></td>
+  <td><code>priorityclasses</code></td>
+  <td><code>get</code>, <code>list</code>, <code>watch</code></td>
+</tr>
+<tr>
+  <td><code>image.openshift.io</code></td>
+  <td><code>imagestreams</code></td>
+  <td><code>get</code>, <code>list</code>, <code>watch</code></td>
+</tr>
+<tr>
+  <td><code>""</code> (core)</td>
+  <td><code>secrets</code></td>
+  <td><code>create</code></td>
+</tr>
+<tr>
+  <td><code>kubevirt.io</code></td>
+  <td><code>virtualmachines/finalizers</code></td>
+  <td><code>update</code></td>
+</tr>
+</tbody>
+</table>
 
 #### Namespaced RBAC roles {#namespaced-rbac-roles-cdi}
 
 **Namespaced roles for the `cdi-operator` service account**
 
-| API group | Resources | Verbs |
-| --- | --- | --- |
-| `rbac.authorization.k8s.io` | `rolebindings`, `roles` | `get`, `list`, `watch`, `create`, `update`, `delete` |
-| `""` (core) | `serviceaccounts`, `configmaps`, `events`, `secrets`, `services` | `get`, `list`, `watch`, `create`, `update`, `patch`, `delete` |
-| `apps` | `deployments`, `deployments/finalizers` | `get`, `list`, `watch`, `create`, `update`, `delete` |
-| `route.openshift.io` | `routes`, `routes/custom-host` | `get`, `list`, `watch`, `create`, `update` |
-| `config.openshift.io` | `proxies` | `get`, `list`, `watch` |
-| `monitoring.coreos.com` | `servicemonitors`, `prometheusrules` | `get`, `list`, `watch`, `create`, `delete`, `update`, `patch` |
-| `coordination.k8s.io` | `leases` | `get`, `create`, `update` |
+<table>
+<thead>
+<tr>
+  <th>API group</th>
+  <th>Resources</th>
+  <th>Verbs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>rbac.authorization.k8s.io</code></td>
+  <td><code>rolebindings</code>, <code>roles</code></td>
+  <td><code>get</code>, <code>list</code>, <code>watch</code>, <code>create</code>, <code>update</code>, <code>delete</code></td>
+</tr>
+<tr>
+  <td><code>""</code> (core)</td>
+  <td><code>serviceaccounts</code>, <code>configmaps</code>, <code>events</code>, <code>secrets</code>, <code>services</code></td>
+  <td><code>get</code>, <code>list</code>, <code>watch</code>, <code>create</code>, <code>update</code>, <code>patch</code>, <code>delete</code></td>
+</tr>
+<tr>
+  <td><code>apps</code></td>
+  <td><code>deployments</code>, <code>deployments/finalizers</code></td>
+  <td><code>get</code>, <code>list</code>, <code>watch</code>, <code>create</code>, <code>update</code>, <code>delete</code></td>
+</tr>
+<tr>
+  <td><code>route.openshift.io</code></td>
+  <td><code>routes</code>, <code>routes/custom-host</code></td>
+  <td><code>get</code>, <code>list</code>, <code>watch</code>, <code>create</code>, <code>update</code></td>
+</tr>
+<tr>
+  <td><code>config.openshift.io</code></td>
+  <td><code>proxies</code></td>
+  <td><code>get</code>, <code>list</code>, <code>watch</code></td>
+</tr>
+<tr>
+  <td><code>monitoring.coreos.com</code></td>
+  <td><code>servicemonitors</code>, <code>prometheusrules</code></td>
+  <td><code>get</code>, <code>list</code>, <code>watch</code>, <code>create</code>, <code>delete</code>, <code>update</code>, <code>patch</code></td>
+</tr>
+<tr>
+  <td><code>coordination.k8s.io</code></td>
+  <td><code>leases</code></td>
+  <td><code>get</code>, <code>create</code>, <code>update</code></td>
+</tr>
+</tbody>
+</table>
 
 **Namespaced roles for the `cdi-controller` service account**
 
-| API group | Resources | Verbs |
-| --- | --- | --- |
-| `""` (core) | `configmaps` | `get`, `list`, `watch`, `create`, `update`, `delete` |
-| `""` (core) | `secrets` | `get`, `list`, `watch` |
-| `batch` | `cronjobs` | `get`, `list`, `watch`, `create`, `update`, `delete` |
-| `batch` | `jobs` | `create`, `delete`, `list`, `watch` |
-| `coordination.k8s.io` | `leases` | `get`, `create`, `update` |
-| `networking.k8s.io` | `ingresses` | `get`, `list`, `watch` |
-| `route.openshift.io` | `routes` | `get`, `list`, `watch` |
+<table>
+<thead>
+<tr>
+  <th>API group</th>
+  <th>Resources</th>
+  <th>Verbs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>""</code> (core)</td>
+  <td><code>configmaps</code></td>
+  <td><code>get</code>, <code>list</code>, <code>watch</code>, <code>create</code>, <code>update</code>, <code>delete</code></td>
+</tr>
+<tr>
+  <td><code>""</code> (core)</td>
+  <td><code>secrets</code></td>
+  <td><code>get</code>, <code>list</code>, <code>watch</code></td>
+</tr>
+<tr>
+  <td><code>batch</code></td>
+  <td><code>cronjobs</code></td>
+  <td><code>get</code>, <code>list</code>, <code>watch</code>, <code>create</code>, <code>update</code>, <code>delete</code></td>
+</tr>
+<tr>
+  <td><code>batch</code></td>
+  <td><code>jobs</code></td>
+  <td><code>create</code>, <code>delete</code>, <code>list</code>, <code>watch</code></td>
+</tr>
+<tr>
+  <td><code>coordination.k8s.io</code></td>
+  <td><code>leases</code></td>
+  <td><code>get</code>, <code>create</code>, <code>update</code></td>
+</tr>
+<tr>
+  <td><code>networking.k8s.io</code></td>
+  <td><code>ingresses</code></td>
+  <td><code>get</code>, <code>list</code>, <code>watch</code></td>
+</tr>
+<tr>
+  <td><code>route.openshift.io</code></td>
+  <td><code>routes</code></td>
+  <td><code>get</code>, <code>list</code>, <code>watch</code></td>
+</tr>
+</tbody>
+</table>
 
 ### Additional SCCs and permissions for the kubevirt-controller service account {#virt-additional-scc-for-kubevirt-controller_virt-security-policies}
 
@@ -171,7 +420,8 @@ You can view the RBAC definition for the `kubevirt-controller` clusterrole by us
 $ oc get clusterrole kubevirt-controller -o yaml
 ```
 
-## Additional resources {#additional-resources_virt-security-policies}
+**Additional resources**
+{._additional-resources}
 
 - [Pod Security Standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/#restricted)
 - [About Security context constraints](/openshift-docs-markdown/authentication/managing-security-context-constraints#security-context-constraints-about_configuring-internal-oauth)

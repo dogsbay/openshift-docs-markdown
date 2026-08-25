@@ -81,7 +81,7 @@ After the vSphere Problem Detector Operator runs and performs the configuration 
   16m     Normal    Created             pod/vsphere-problem-detector-operator-xxxxx         Created container vsphere-problem-detector
   16m     Normal    LeaderElection      configmap/vsphere-problem-detector-lock    vsphere-problem-detector-operator-xxxxx became leader
   ```
-- To view the events by using the OpenShift Container Platform web console, navigate to **Home** -> **Events** and select `openshift-cluster-storage-operator` from the **Project** menu.
+- To view the events by using the OpenShift Container Platform web console, navigate to **Home** → **Events** and select `openshift-cluster-storage-operator` from the **Project** menu.
 
 ## Viewing the logs from the vSphere Problem Detector Operator {#vsphere-problem-detector-viewing-logs_vsphere-problem-detector}
 
@@ -112,7 +112,7 @@ The ideal output for a log line indicates `passed` or `0 problems`. If a log lin
   ```
 - To view the Operator logs with the OpenShift Container Platform web console, perform the following steps:
 
-  1. Navigate to **Workloads** -> **Pods**.
+  1. Navigate to **Workloads** → **Pods**.
   2. Select `openshift-cluster-storage-operator` from the **Projects** menu.
   3. Click the link for the `vsphere-problem-detector-operator` pod.
   4. Click the **Logs** tab on the **Pod details** page to view the logs.
@@ -121,7 +121,7 @@ The ideal output for a log line indicates `passed` or `0 problems`. If a log lin
 
 The following tables identify the configuration checks that the vSphere Problem Detector Operator runs. Some checks verify the configuration of the cluster. Other checks verify the configuration of each node in the cluster.
 
-***Cluster configuration checks***
+**Cluster configuration checks**
 
 <table>
 <thead>
@@ -154,7 +154,7 @@ The following tables identify the configuration checks that the vSphere Problem 
 </tbody>
 </table>
 
-***Node configuration checks***
+**Node configuration checks**
 
 <table>
 <thead>
@@ -202,7 +202,7 @@ The `systemd` process has a 255 character limit for the length of the fully qual
 
 The vSphere Problem Detector Operator exposes the following metrics for use by the OpenShift Container Platform monitoring stack.
 
-***Metrics exposed by the vSphere Problem Detector Operator***
+**Metrics exposed by the vSphere Problem Detector Operator**
 
 <table>
 <thead>
@@ -243,6 +243,7 @@ The vSphere Problem Detector Operator exposes the following metrics for use by t
 </tbody>
 </table>
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [About OpenShift Container Platform monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/about_monitoring/about-ocp-monitoring)

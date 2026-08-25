@@ -4,7 +4,7 @@ title: CSI automatic migration
 
 # CSI automatic migration {#persistent-storage-csi-migration}
 
-\[role="\_abstract"\] In-tree storage drivers that are traditionally shipped with OpenShift Container Platform are being deprecated and replaced by their equivalent Container Storage Interface (CSI) drivers. OpenShift Container Platform provides automatic migration for in-tree volume plugins to their equivalent CSI drivers.
+In-tree storage drivers that are traditionally shipped with OpenShift Container Platform are being deprecated and replaced by their equivalent Container Storage Interface (CSI) drivers. OpenShift Container Platform provides automatic migration for in-tree volume plugins to their equivalent CSI drivers.
 
 ## Overview {#persistent-storage-csi-migration-overview_persistent-storage-csi-migration}
 
@@ -36,5 +36,6 @@ For clusters upgraded from 4.12, and earlier, to 4.13, and later, the CSI storag
 For information about changing the default storage class, see *Changing the default storage class* under *Additional resources*.
 
 **Additional resources**
+{._additional-resources}
 
 - [Changing the default storage class](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-sc-manage#change-default-storage-class_persistent-storage-csi-sc-manage)

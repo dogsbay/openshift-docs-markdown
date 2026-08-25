@@ -45,7 +45,7 @@ To reduce the risk of downtime, it is recommended that control plane nodes be up
    ```terminal
    $ oc adm cordon <control_plane_node>
    ```
-3. Shut down the virtual machine (VM) associated with the control plane node. Do this in the vSphere client by right-clicking the VM and selecting **Power** -> **Shut Down Guest OS**. Do not shut down the VM using **Power Off** because it might not shut down safely.
+3. Shut down the virtual machine (VM) associated with the control plane node. Do this in the vSphere client by right-clicking the VM and selecting **Power** → **Shut Down Guest OS**. Do not shut down the VM using **Power Off** because it might not shut down safely.
 4. Update the VM in the vSphere client. Follow [Upgrade the Compatibility of a Virtual Machine Manually](https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-60768C2F-72E1-42E0-8A17-CA76849F2950.html) (VMware vSphere documentation).
 5. Power on the VM associated with the control plane node. Do this in the vSphere client by right-clicking the VM and selecting **Power On**.
 6. Run the following command and wait for the node to report as `Ready`:
@@ -102,7 +102,7 @@ To reduce the risk of downtime, it is recommended that compute nodes be updated 
    ```
 
    See "Evacuating pods on nodes" for other options to evacuate pods from a node.
-4. Shut down the virtual machine (VM) associated with the compute node. Do this in the vSphere client by right-clicking the VM and selecting **Power** -> **Shut Down Guest OS**. Do not shut down the VM using **Power Off** because it might not shut down safely.
+4. Shut down the virtual machine (VM) associated with the compute node. Do this in the vSphere client by right-clicking the VM and selecting **Power** → **Shut Down Guest OS**. Do not shut down the VM using **Power Off** because it might not shut down safely.
 5. Update the VM in the vSphere client. Follow [Upgrade the Compatibility of a Virtual Machine Manually](https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-60768C2F-72E1-42E0-8A17-CA76849F2950.html) (VMware vSphere documentation).
 6. Power on the VM associated with the compute node. Do this in the vSphere client by right-clicking the VM and selecting **Power On**.
 7. Run the following command and wait for the node to report as `Ready`:
@@ -118,6 +118,7 @@ To reduce the risk of downtime, it is recommended that compute nodes be updated 
 9. Repeat this procedure for each compute node in your cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Evacuating pods on nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working-evacuating_nodes-nodes-working)
 
@@ -140,7 +141,7 @@ You can update the virtual hardware for templates on vSphere.
 
    > [!IMPORTANT]
    > If you modified the VM settings, those changes might reset after moving to a newer virtual hardware. Please review that all your configured settings are still in place after your upgrade before proceeding to the next step.
-3. Convert the VM in the vSphere client to a template by right-clicking on the VM and then selecting ***Template -> Convert to Template***.
+3. Convert the VM in the vSphere client to a template by right-clicking on the VM and then selecting **Template → Convert to Template**.
 
    > [!IMPORTANT]
    > The steps for converting a VM to a template might change in future vSphere documentation versions.

@@ -146,52 +146,50 @@ Static pods
 Kubernetes zones
 :   [Kubernetes zones](https://kubernetes.io/docs/setup/best-practices/multiple-zones/) can slow down the rate or, in some cases, completely stop pod evictions.
 
-<a name="nodes-edge-remote-workers-strategies-zones_nodes-edge-remote-workers"></a>
+    <a name="nodes-edge-remote-workers-strategies-zones_nodes-edge-remote-workers"></a>
 
-````
-When the control plane cannot reach a node, the node controller, by default, applies `node.kubernetes.io/unreachable` taints and evicts pods at a rate of 0.1 nodes per second. However, in a cluster that uses Kubernetes zones, pod eviction behavior is altered.
+    When the control plane cannot reach a node, the node controller, by default, applies `node.kubernetes.io/unreachable` taints and evicts pods at a rate of 0.1 nodes per second. However, in a cluster that uses Kubernetes zones, pod eviction behavior is altered.
 
-If a zone is fully disrupted, where all nodes in the zone have a `False` or `Unknown` ready condition, the control plane does not apply the `node.kubernetes.io/unreachable` taint to the nodes in that zone.
+    If a zone is fully disrupted, where all nodes in the zone have a `False` or `Unknown` ready condition, the control plane does not apply the `node.kubernetes.io/unreachable` taint to the nodes in that zone.
 
-For partially disrupted zones, where more than 55% of the nodes have a `False` or `Unknown` condition, the pod eviction rate is reduced to 0.01 nodes per second. Nodes in smaller clusters, with fewer than 50 nodes, are not tainted. Your cluster must have more than three zones for these behavior to take effect.
+    For partially disrupted zones, where more than 55% of the nodes have a `False` or `Unknown` condition, the pod eviction rate is reduced to 0.01 nodes per second. Nodes in smaller clusters, with fewer than 50 nodes, are not tainted. Your cluster must have more than three zones for these behavior to take effect.
 
-You assign a node to a specific zone by applying the `topology.kubernetes.io/region` label in the node specification.
-```yaml title="Sample node labels for Kubernetes zones"
-kind: Node
-apiVersion: v1
-metadata:
-  labels:
-    topology.kubernetes.io/region=east
-```
-````
+    You assign a node to a specific zone by applying the `topology.kubernetes.io/region` label in the node specification.
+
+    ```yaml {title="Sample node labels for Kubernetes zones"}
+    kind: Node
+    apiVersion: v1
+    metadata:
+      labels:
+        topology.kubernetes.io/region=east
+    ```
 
 Kubelet config objects
 :   You can adjust the amount of time that the kubelet checks the state of each node.
 
-<a name="nodes-edge-remote-workers-strategies-kubeconfig_nodes-edge-remote-workers"></a>
+    <a name="nodes-edge-remote-workers-strategies-kubeconfig_nodes-edge-remote-workers"></a>
 
-````
-To set the interval that affects the timing of when the on-premise node controller marks nodes with the `Unhealthy` or `Unreachable` condition, create a `KubeletConfig` object that contains the `node-status-update-frequency` and `node-status-report-frequency` parameters.
+    To set the interval that affects the timing of when the on-premise node controller marks nodes with the `Unhealthy` or `Unreachable` condition, create a `KubeletConfig` object that contains the `node-status-update-frequency` and `node-status-report-frequency` parameters.
 
-The kubelet on each node determines the node status as defined by the `node-status-update-frequency` setting and reports that status to the cluster based on the `node-status-report-frequency` setting. By default, the kubelet determines the pod status every 10 seconds and reports the status every minute. However, if the node state changes, the kubelet reports the change to the cluster immediately. OpenShift Container Platform uses the `node-status-report-frequency` setting only when the Node Lease feature gate is enabled, which is the default state in OpenShift Container Platform clusters. If the Node Lease feature gate is disabled, the node reports its status based on the `node-status-update-frequency` setting.
-```yaml title="Example kubelet config"
-apiVersion: machineconfiguration.openshift.io/v1
-kind: KubeletConfig
-metadata:
-  name: disable-cpu-units
-spec:
-  machineConfigPoolSelector:
-    matchLabels:
-      machineconfiguration.openshift.io/role: worker
-  kubeletConfig:
-    node-status-update-frequency:
-      - "10s"
-    node-status-report-frequency:
-      - "1m"
-```
+    The kubelet on each node determines the node status as defined by the `node-status-update-frequency` setting and reports that status to the cluster based on the `node-status-report-frequency` setting. By default, the kubelet determines the pod status every 10 seconds and reports the status every minute. However, if the node state changes, the kubelet reports the change to the cluster immediately. OpenShift Container Platform uses the `node-status-report-frequency` setting only when the Node Lease feature gate is enabled, which is the default state in OpenShift Container Platform clusters. If the Node Lease feature gate is disabled, the node reports its status based on the `node-status-update-frequency` setting.
 
-where:
-````
+    ```yaml {title="Example kubelet config"}
+    apiVersion: machineconfiguration.openshift.io/v1
+    kind: KubeletConfig
+    metadata:
+      name: disable-cpu-units
+    spec:
+      machineConfigPoolSelector:
+        matchLabels:
+          machineconfiguration.openshift.io/role: worker
+      kubeletConfig:
+        node-status-update-frequency:
+          - "10s"
+        node-status-report-frequency:
+          - "1m"
+    ```
+
+    where:
 
 `spec.machineConfigPoolSelector.matchLabels.machineconfiguration.openshift.io/role`
 :   Specifies the type of node type to which this `KubeletConfig` object applies by using the label from the `MachineConfig` object.
@@ -212,36 +210,34 @@ where:
 Tolerations
 :   You can use pod tolerations to mitigate the effects if the on-premise node controller adds a `node.kubernetes.io/unreachable` taint with a `NoExecute` effect to a node it cannot reach.
 
-<a name="nodes-edge-remote-workers-strategies-tolerations_nodes-edge-remote-workers"></a>
+    <a name="nodes-edge-remote-workers-strategies-tolerations_nodes-edge-remote-workers"></a>
 
-````
-A taint with the `NoExecute` effect affects pods that are running on the node in the following ways:
-*   Pods that do not tolerate the taint are queued for eviction.
-*   Pods that tolerate the taint without specifying a `tolerationSeconds` value in their toleration specification remain bound forever.
-*   Pods that tolerate the taint with a specified `tolerationSeconds` value remain bound for the specified amount of time. After the time elapses, the pods are queued for eviction.
+    A taint with the `NoExecute` effect affects pods that are running on the node in the following ways:
 
-:::note
+    - Pods that do not tolerate the taint are queued for eviction.
+    - Pods that tolerate the taint without specifying a `tolerationSeconds` value in their toleration specification remain bound forever.
+    - Pods that tolerate the taint with a specified `tolerationSeconds` value remain bound for the specified amount of time. After the time elapses, the pods are queued for eviction.
 
-Unless tolerations are explicitly set, Kubernetes automatically adds a toleration for `node.kubernetes.io/not-ready` and `node.kubernetes.io/unreachable` with `tolerationSeconds=300`, meaning that pods remain bound for 5 minutes if either of these taints is detected.
+    > [!NOTE]
+    > Unless tolerations are explicitly set, Kubernetes automatically adds a toleration for `node.kubernetes.io/not-ready` and `node.kubernetes.io/unreachable` with `tolerationSeconds=300`, meaning that pods remain bound for 5 minutes if either of these taints is detected.
 
-:::
+    You can delay or avoid pod eviction by configuring pods tolerations with the `NoExecute` effect for the `node.kubernetes.io/unreachable` and `node.kubernetes.io/not-ready` taints.
 
-You can delay or avoid pod eviction by configuring pods tolerations with the `NoExecute` effect for the `node.kubernetes.io/unreachable` and `node.kubernetes.io/not-ready` taints.
-```yaml title="Example toleration in a pod spec"
-...
-tolerations:
-- key: "node.kubernetes.io/unreachable"
-  operator: "Exists"
-  effect: "NoExecute"
-- key: "node.kubernetes.io/not-ready"
-  operator: "Exists"
-  effect: "NoExecute"
-  tolerationSeconds: 600
-...
-```
-*   In the first example, the `NoExecute` effect without `tolerationSeconds` lets pods remain forever if the control plane cannot reach the node.
-*   In the second example, the `NoExecute` effect with `tolerationSeconds`: 600 lets pods remain for 10 minutes if the control plane marks the node as `Unhealthy`. You can specify your own `tolerationSeconds` value.
-````
+    ```yaml {title="Example toleration in a pod spec"}
+    ...
+    tolerations:
+    - key: "node.kubernetes.io/unreachable"
+      operator: "Exists"
+      effect: "NoExecute"
+    - key: "node.kubernetes.io/not-ready"
+      operator: "Exists"
+      effect: "NoExecute"
+      tolerationSeconds: 600
+    ...
+    ```
+
+    - In the first example, the `NoExecute` effect without `tolerationSeconds` lets pods remain forever if the control plane cannot reach the node.
+    - In the second example, the `NoExecute` effect with `tolerationSeconds`: 600 lets pods remain for 10 minutes if the control plane marks the node as `Unhealthy`. You can specify your own `tolerationSeconds` value.
 
 Other types of OpenShift Container Platform objects
 :   You can use replica sets, deployments, and replication controllers. The scheduler can reschedule these pods onto other nodes after the node is disconnected for five minutes. Rescheduling onto other nodes can be beneficial for some workloads, such as REST APIs, where an administrator can guarantee a specific number of pods are running and accessible.
@@ -249,15 +245,14 @@ Other types of OpenShift Container Platform objects
     > [!NOTE]
     > When working with remote worker nodes, rescheduling pods on different nodes might not be acceptable if remote worker nodes are intended to be reserved for specific functions.
 
-<a name="nodes-edge-remote-workers-strategies-statefulset_nodes-edge-remote-workers"></a>
+    <a name="nodes-edge-remote-workers-strategies-statefulset_nodes-edge-remote-workers"></a>
 
-```
-[stateful sets](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/) do not get restarted when there is an outage. The pods remain in the `terminating` state until the control plane can acknowledge that the pods are terminated.
+    [stateful sets](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/) do not get restarted when there is an outage. The pods remain in the `terminating` state until the control plane can acknowledge that the pods are terminated.
 
-To avoid scheduling a to a node that does not have access to the same type of persistent storage, OpenShift Container Platform cannot migrate pods that require persistent volumes to other zones in the case of network separation.
-```
+    To avoid scheduling a to a node that does not have access to the same type of persistent storage, OpenShift Container Platform cannot migrate pods that require persistent volumes to other zones in the case of network separation.
 
-## Additional resources {#additional-resources_nodes-edge-remote-workers}
+**Additional resources**
+{._additional-resources}
 
 - [Establishing communications between subnets](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#ipi-install-establishing-communication-between-subnets_ipi-install-installation-workflow)
 - [Configuring host network interfaces for subnets](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#ipi-install-configuring-host-network-interfaces-for-subnets_ipi-install-installation-workflow)

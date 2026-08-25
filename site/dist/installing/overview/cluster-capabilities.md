@@ -41,7 +41,7 @@ capabilities:
 
 The following table describes the `baselineCapabilitySet` values.
 
-***Cluster capabilities `baselineCapabilitySet` values description***
+**Cluster capabilities `baselineCapabilitySet` values description**
 
 <table>
 <thead>
@@ -95,6 +95,7 @@ The following table describes the `baselineCapabilitySet` values.
 </table>
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing a cluster on AWS with customizations](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations)
 - [Installing a cluster on Google Cloud with customizations](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#installing-gcp-customizations)
@@ -106,6 +107,7 @@ Currently, cluster Operators provide the features for these optional capabilitie
 The following sections summarize the features provided by each capability and what functionality you lose if you disable a functionality.
 
 **Additional resources**
+{._additional-resources}
 
 - [Cluster Operators reference](/openshift-docs-markdown/operators/operator-reference#cluster-operator-reference)
 
@@ -124,6 +126,7 @@ The bare-metal capability is required for deployments using installer-provisione
 > Red Hat recommends that cluster administrators only disable the bare-metal capability during installations with user-provisioned infrastructure that do not have any `BareMetalHost` resources in the cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Deploying installer-provisioned clusters on bare metal](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-overview#ipi-install-overview)
 - [Preparing for bare metal cluster installation](/openshift-docs-markdown/installing/installing_bare_metal/preparing-to-install-on-bare-metal#preparing-to-install-on-bare-metal)
@@ -173,6 +176,7 @@ The Cloud Controller Manager Operator includes the following components:
 By default, the Operator exposes Prometheus metrics through the `metrics` service.
 
 **Additional resources**
+{._additional-resources}
 
 - [Technology Preview](https://access.redhat.com/support/offerings/techpreview)
 - [`cluster-cloud-controller-manager-operator`](https://github.com/openshift/cluster-cloud-controller-manager-operator)
@@ -189,6 +193,7 @@ The Cloud Credential Operator (CCO) manages cloud provider credentials as Kubern
 By setting different values for the `credentialsMode` parameter in the `install-config.yaml` file, the CCO can be configured to operate in several different modes. If no mode is specified, or the `credentialsMode` parameter is set to an empty string (`""`), the CCO operates in its default mode.
 
 **Additional resources**
+{._additional-resources}
 
 - [About the Cloud Credential Operator](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator)
 - [`openshift-cloud-credential-operator`](https://github.com/openshift/cloud-credential-operator)
@@ -216,6 +221,7 @@ Project
 :   See "cluster-image-registry-operator".
 
 **Additional resources**
+{._additional-resources}
 
 - [Image Registry Operator in OpenShift Container Platform](/openshift-docs-markdown/registry/configuring-registry-operator#configuring-registry-operator)
 - [Automatically generated secrets](/openshift-docs-markdown/nodes/pods/nodes-pods-secrets#auto-generated-sa-token-secrets_nodes-pods-secrets)
@@ -234,6 +240,7 @@ Notes
 :   The storage class that the Operator creates can be made non-default by editing its annotation, but this storage class cannot be deleted as long as the Operator runs.
 
 **Additional resources**
+{._additional-resources}
 
 - [cluster-storage-operator](https://github.com/openshift/cluster-storage-operator)
 
@@ -244,6 +251,7 @@ The Console Operator provides the features for the `Console` capability.
 The Console Operator installs and maintains the OpenShift Container Platform web console on a cluster. The Console Operator is installed by default and automatically maintains a console.
 
 **Additional resources**
+{._additional-resources}
 
 - [Web console overview](/openshift-docs-markdown/web_console/web-console-overview#web-console-overview)
 - [console-operator](https://github.com/openshift/console-operator)
@@ -255,6 +263,7 @@ The Cluster CSI Snapshot Controller Operator provides the features for the `CSIS
 The Cluster CSI Snapshot Controller Operator installs and maintains the CSI Snapshot Controller. The CSI Snapshot Controller is responsible for watching the `VolumeSnapshot` CRD objects and manages the creation and deletion lifecycle of volume snapshots.
 
 **Additional resources**
+{._additional-resources}
 
 - [CSI volume snapshots](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-snapshots#persistent-storage-csi-snapshots)
 - [cluster-csi-snapshot-controller-operator](https://github.com/openshift/cluster-csi-snapshot-controller-operator)
@@ -273,9 +282,7 @@ The `DeploymentConfig` capability enables and manages the `DeploymentConfig` API
 
 ### Ingress Capability {#_ingress_capability}
 
-The Ingress Operator provides the features for the `Ingress` capability.
-
-The Ingress Operator configures and manages the OpenShift Container Platform router.
+The Ingress Operator provides the features for the `Ingress` capability. {.\_abstract} The Ingress Operator configures and manages the OpenShift Container Platform router.
 
 Project
 :   `openshift-ingress-operator`
@@ -287,9 +294,7 @@ CRDs
       - CR: `clusteringresses`
       - Validation: No
 
-    Configuration objects
-
-CRDs
+Configuration objects
 :   - Cluster config
 
       - Type Name: `clusteringresses.ingress.openshift.io`
@@ -300,24 +305,27 @@ CRDs
       $ oc get clusteringresses.ingress.openshift.io -n openshift-ingress-operator default -o yaml
       ```
 
-    Notes
-    :   The Ingress Operator sets up the router in the `openshift-ingress` project and creates the deployment for the router:
+Notes
+:   The Ingress Operator sets up the router in the `openshift-ingress` project and creates the deployment for the router:
 
-    ````
-      ```terminal
-      $ oc get deployment -n openshift-ingress
-      ```
-      The Ingress Operator uses the `clusterNetwork[].cidr` from the `network/cluster` status to determine what mode (IPv4, IPv6, or dual stack) the managed Ingress Controller (router) should operate in. For example, if `clusterNetwork` contains only a v6 `cidr`, then the Ingress Controller operates in IPv6-only mode.
-      In the following example, Ingress Controllers managed by the Ingress Operator will run in IPv4-only mode because only one cluster network exists and the network is an IPv4 `cidr`:
-      ```terminal
-      $ oc get network/cluster -o jsonpath='{.status.clusterNetwork[*]}'
-      ```
-      ```terminal title="Example output"
-      map[cidr:10.128.0.0/14 hostPrefix:23]
-      ```
-    ````
+    ```terminal
+    $ oc get deployment -n openshift-ingress
+    ```
+
+    The Ingress Operator uses the `clusterNetwork[].cidr` from the `network/cluster` status to determine what mode (IPv4, IPv6, or dual stack) the managed Ingress Controller (router) should operate in. For example, if `clusterNetwork` contains only a v6 `cidr`, then the Ingress Controller operates in IPv6-only mode.
+
+    In the following example, Ingress Controllers managed by the Ingress Operator will run in IPv4-only mode because only one cluster network exists and the network is an IPv4 `cidr`:
+
+    ```terminal
+    $ oc get network/cluster -o jsonpath='{.status.clusterNetwork[*]}'
+    ```
+
+    ```terminal {title="Example output"}
+    map[cidr:10.128.0.0/14 hostPrefix:23]
+    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [openshift-ingress-operator](https://github.com/openshift/cluster-ingress-operator)
 
@@ -331,6 +339,7 @@ Notes
 :   Insights Operator complements OpenShift Container Platform Telemetry.
 
 **Additional resources**
+{._additional-resources}
 
 - [Using Insights Operator](/openshift-docs-markdown/support/remote_health_monitoring/using-insights-operator#using-insights-operator)
 - [Red Hat Hybrid Cloud Console](https://console.redhat.com/)
@@ -343,6 +352,7 @@ The `machine-api-operator`, `cluster-autoscaler-operator`, and `cluster-control-
 The Machine API capability is responsible for all machine configuration and management in the cluster. If you disable the Machine API capability during installation, you need to manage all machine-related tasks manually.
 
 **Additional resources**
+{._additional-resources}
 
 - [Overview of machine management](/openshift-docs-markdown/machine_management/index#index)
 - [Machine API Operator](/openshift-docs-markdown/operators/operator-reference#machine-api-operator_operator-reference)
@@ -360,6 +370,7 @@ If you disable the `marketplace` capability, the Marketplace Operator does not c
 If you enable the `marketplace` capability, you can enable and disable individual catalogs by configuring the Marketplace Operator.
 
 **Additional resources**
+{._additional-resources}
 
 - [Red Hat-provided Operator catalogs](/openshift-docs-markdown/operators/understanding/olm-rh-catalogs#olm-rh-catalogs)
 - [operator-marketplace](https://github.com/operator-framework/operator-marketplace)
@@ -373,6 +384,7 @@ The Node Tuning Operator helps you manage node-level tuning by orchestrating the
 If you disable the NodeTuning capability, some default tuning settings will not be applied to the control-plane nodes. This might limit the scalability and performance of large clusters with over 900 nodes or 900 routes.
 
 **Additional resources**
+{._additional-resources}
 
 - [Using the Node Tuning Operator](/openshift-docs-markdown/scalability_and_performance/using-node-tuning-operator#using-node-tuning-operator)
 - [cluster-node-tuning-operator](https://github.com/openshift/cluster-node-tuning-operator)
@@ -390,6 +402,7 @@ The image streams are the Red Hat Enterprise Linux CoreOS (RHCOS)-based OpenShi
 If you disable the samples capability, users cannot access the image streams, samples, and templates it provides. Depending on your deployment, you might want to disable this component if you do not need it.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring the Cluster Samples Operator](/openshift-docs-markdown/openshift_images/configuring-samples-operator#configuring-samples-operator)
 - [cluster-samples-operator](https://github.com/openshift/cluster-samples-operator)
@@ -412,6 +425,7 @@ If an Operator requires any of the following APIs, then you must enable the `Ope
 > The `marketplace` capability depends on the `OperatorLifecycleManager` capability. You cannot disable the `OperatorLifecycleManager` capability and enable the `marketplace` capability.
 
 **Additional resources**
+{._additional-resources}
 
 - [Operator Lifecycle Manager concepts and resources](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-understanding-olm)
 - [Operator Framework](https://operatorframework.io/)
@@ -449,6 +463,7 @@ Operator Lifecycle Manager (OLM) v1 comprises the following component projects:
   - `operator-framework/catalogd`
 
 **Additional resources**
+{._additional-resources}
 
 - [Extensions overview](/openshift-docs-markdown/extensions/index#olmv1-about)
 - [operator-framework/operator-controller](https://github.com/operator-framework/operator-controller)
@@ -491,7 +506,7 @@ As a cluster administrator, you can enable cluster capabilities any time after a
   $ oc patch clusterversion version --type merge -p '{"spec":{"capabilities":{"baselineCapabilitySet":"vCurrent"}}}'
   ```
 
-  For `baselineCapabilitySet` you can specify `vCurrent`, `v{{ product_version }}`, or `None`.
+  For `baselineCapabilitySet` you can specify `vCurrent`, `v4.22`, or `None`.
 
 ## Enabling the cluster capabilities by setting additional enabled capabilities {#enabling-additional-enabled-capabilities_cluster-capabilities}
 

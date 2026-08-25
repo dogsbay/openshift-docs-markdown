@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"installing-alibaba-assisted-installer","tex
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/installing/installing_alibaba/installing-alibaba-assisted-installer";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="installing-alibaba-assisted-installer" class="group scroll-mt-20">Installing a cluster on Alibaba Cloud by using the Assisted Installer<a href="#installing-alibaba-assisted-installer" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can install an OpenShift Container Platform cluster on Alibaba Cloud using the Assisted Installer.</p>
+      <p class="_abstract">You can install an OpenShift Container Platform cluster on Alibaba Cloud using the Assisted Installer.</p>
       <p>Alibaba Cloud provides a broad range of cloud computing and data storage services to online businesses and global enterprises.</p>
       <Alert variant="info" class="my-4">
         <AlertTitle>Important</AlertTitle>

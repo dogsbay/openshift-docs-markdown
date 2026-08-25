@@ -21,7 +21,8 @@ const headings = [{"depth":1,"slug":"running-kueue-jobs","text":"Running jobs wi
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/ai_workloads/kueue/running-kueue-jobs";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="running-kueue-jobs" class="group scroll-mt-20">Running jobs with quota limits<a href="#running-kueue-jobs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can run Kubernetes jobs with Red Hat build of Kueue enabled to manage resource allocation within defined quota limits. Running jobs with quota limits provides predictable resource availability, cluster stability, and optimized performance.</p>
+      <p class="_abstract">You can run Kubernetes jobs with Red Hat build of Kueue enabled to manage resource allocation within defined quota limits. Running jobs with quota limits provides predictable resource availability, cluster stability, and optimized performance.</p>
       <h2 id="identifying-local-queues_running-kueue-jobs" class="group scroll-mt-20">Identifying available local queues<a href="#identifying-local-queues_running-kueue-jobs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">Before you can submit a job to a queue, you must find the name of the local queue.</p>
       <p><strong>Prerequisites</strong></p>

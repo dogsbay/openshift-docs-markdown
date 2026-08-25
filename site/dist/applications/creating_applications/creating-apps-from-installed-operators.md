@@ -7,6 +7,7 @@ title: Creating applications from installed Operators
 You can deploy applications on your OpenShift Container Platform cluster from Operators that a cluster administrator installed. Use the **Installed Operators** page in the web console to create an application from an Operator custom resource (CR) API.
 
 **Additional resources**
+{._additional-resources}
 
 - [What are Operators?](/openshift-docs-markdown/operators/understanding/olm-what-operators-are#olm-what-operators-are)
 
@@ -22,11 +23,9 @@ You can create an etcd cluster using the etcd Operator in the OpenShift Containe
 **Procedure**
 
 1. Create a new project in the OpenShift Container Platform web console for this procedure. This example uses a project called `my-etcd`.
-2. Navigate to the **Ecosystem** -> **Installed Operators** page.
+2. Navigate to the **Ecosystem** → **Installed Operators** page.
 
-   The Operators installed on the cluster by the cluster administrator
-
-   and available for use are shown here as a list of cluster service versions (CSVs). Each CSV launches and manages the software provided by the Operator.
+   The Operators installed on the cluster by the cluster administrator and available for use are shown here as a list of cluster service versions (CSVs). Each CSV launches and manages the software provided by the Operator.
 
    > [!TIP]
    > You can get this list from the CLI by running the following command:
@@ -59,6 +58,4 @@ You can create an etcd cluster using the etcd Operator in the OpenShift Containe
 
 **Results**
 
-You have an etcd cluster that reacts to failures and rebalances data as pods become unhealthy or migrate between nodes in the cluster. Cluster administrators
-
-or developers with proper access can use the database with their applications.
+You have an etcd cluster that reacts to failures and rebalances data as pods become unhealthy or migrate between nodes in the cluster. Cluster administrators or developers with proper access can use the database with their applications.

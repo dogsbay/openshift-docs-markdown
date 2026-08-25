@@ -1,5 +1,5 @@
 ---
-title: Integrating the {{ js_operator }}
+title: Integrating the JobSet Operator
 ---
 
 # Integrating the JobSet Operator {#integrating-jobset}
@@ -41,6 +41,7 @@ You can configure Red Hat build of Kueue to work with the JobSet Operator.
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [About the JobSet Operator](/openshift-docs-markdown/ai_workloads/jobset_operator/index#js-about_js-about)
 - [Run A JobSet (Kubernetes documentation)](https://kueue.sigs.k8s.io/docs/tasks/run/jobsets/)
@@ -129,6 +130,7 @@ You can add and run JobSet Operator to your existing frameworks.
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring a cluster queue](/openshift-docs-markdown/ai_workloads/kueue/configuring-quotas#configuring-clusterqueues_configuring-quotas)
 - [Configuring a resource flavor](/openshift-docs-markdown/ai_workloads/kueue/configuring-quotas#configuring-resourceflavors_configuring-quotas)

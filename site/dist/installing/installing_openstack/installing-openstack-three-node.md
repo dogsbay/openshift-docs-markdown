@@ -25,10 +25,11 @@ Setting the number of worker nodes to `0` ensures that the control plane machine
 
 **Procedure**
 
-````
-*   Set the number of compute replicas to `0` in your `install-config.yaml` file, as shown in the following `compute` stanza:
+- Set the number of compute replicas to `0` in your `install-config.yaml` file, as shown in the following `compute` stanza:
 
-```yaml title="Example install-config.yaml file for a three-node cluster"
+.Example `install-config.yaml` file for a three-node cluster
+
+```yaml
 apiVersion: v1
 baseDomain: example.com
 compute:
@@ -37,8 +38,8 @@ compute:
   replicas: 0
 # ...
 ```
-````
 
-## Additional resources {#additional-resources_installing-openstack-three-node}
+**Additional resources**
+{._additional-resources}
 
 - [Installing a cluster on RHOSP with customizations](/openshift-docs-markdown/installing/installing_openstack/installing-openstack-installer-custom#installing-openstack-installer-custom)

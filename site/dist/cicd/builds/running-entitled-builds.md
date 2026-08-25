@@ -85,11 +85,11 @@ Builds that use Red Hat subscriptions to install content must include the entitl
      name: etc-pki-entitlement
    type: Opaque
    data: {{ range \$key, \$value := .data }}
+     {{ \$key }}: {{ \$value }} {{ end }}
+   EOF
+   $ oc get secret etc-pki-entitlement -n openshift-config-managed -o=go-template-file --template=secret-template.txt | oc apply -f -
    ```
-
-{{ $key }}: {{ $value }} {{ end }} EOF $ oc get secret etc-pki-entitlement -n openshift-config-managed -o=go-template-file --template=secret-template.txt | oc apply -f - \`\`\`
-
-1. Add the etc-pki-entitlement secret as a build volume in the build configuration’s Docker strategy:
+2. Add the etc-pki-entitlement secret as a build volume in the build configuration’s Docker strategy:
 
    ```yaml
    strategy:
@@ -202,12 +202,12 @@ Docker strategy builds can use Red Hat Satellite repositories to install subscri
 
   ```docker
   FROM registry.redhat.io/ubi9/ubi:latest
-  RUN rm -rf /etc/rhsm-host # (1)
-  RUN yum --enablerepo=codeready-builder-for-rhel-9-x86_64-rpms install \ # (2)
+  RUN rm -rf /etc/rhsm-host (1)
+  RUN yum --enablerepo=codeready-builder-for-rhel-9-x86_64-rpms install \ (2)
       nss_wrapper \
       uid_wrapper -y && \
       yum clean all -y
-  RUN ln -s /run/secrets/rhsm /etc/rhsm-host # (3)
+  RUN ln -s /run/secrets/rhsm /etc/rhsm-host (3)
   ```
 
   1. You must include the command to remove the `/etc/rhsm-host` directory and all its contents in your Dockerfile before executing any `yum` or `dnf` commands.
@@ -215,6 +215,7 @@ Docker strategy builds can use Red Hat Satellite repositories to install subscri
   3. You must restore the `/etc/rhsm-host` symbolic link to keep your image compatible with other Red Hat container images.
 
 **Additional resources**
+{._additional-resources}
 
 - [How to use builds with Red Hat Satellite subscriptions and which certificate to use](https://access.redhat.com/solutions/5847331)
 
@@ -236,8 +237,8 @@ The `SharedSecret` object allows you to share and synchronize secrets across nam
   - Discover which `SharedSecret` CR instances are available by entering the `oc get sharedsecrets` command and getting a non-empty list back.
   - Determine if the `builder` service account available to you in your namespace is allowed to use the given `SharedSecret` CR instance. In other words, you can run `oc adm policy who-can use <identifier of specific SharedSecret>` to see if the `builder` service account in your namespace is listed.
 
-> [!NOTE]
-> If neither of the last two prerequisites in this list are met, establish, or ask someone to establish, the necessary role-based access control (RBAC) so that you can discover `SharedSecret` CR instances and enable service accounts to use `SharedSecret` CR instances.
+  > [!NOTE]
+  > If neither of the last two prerequisites in this list are met, establish, or ask someone to establish, the necessary role-based access control (RBAC) so that you can discover `SharedSecret` CR instances and enable service accounts to use `SharedSecret` CR instances.
 
 **Procedure**
 
@@ -329,7 +330,8 @@ The `SharedSecret` object allows you to share and synchronize secrets across nam
    $ oc start-build uid-wrapper-rhel9 -n build-namespace -F
    ```
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Importing simple content access certificates with Insights Operator](/openshift-docs-markdown/support/remote_health_monitoring/insights-operator-simple-access#insights-operator-simple-access)
 - [Enabling features using feature gates](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)

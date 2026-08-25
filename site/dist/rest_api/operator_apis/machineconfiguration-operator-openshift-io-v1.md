@@ -1,5 +1,5 @@
 ---
-title: MachineConfiguration []
+title: MachineConfiguration [operator.openshift.io/v1]
 ---
 
 # MachineConfiguration \[operator.openshift.io/v1\] {#machineconfiguration-operator-openshift-io-v1}
@@ -42,12 +42,12 @@ Type
 | `bootImageSkewEnforcement` | `object` | bootImageSkewEnforcement allows an admin to configure how boot image version skew is enforced on the cluster. When omitted, this will default to Automatic for clusters that support automatic boot image updates. For clusters that do not support automatic boot image updates, cluster upgrades will be disabled until a skew enforcement mode has been specified. When version skew is being enforced, cluster upgrades will be disabled until the version skew is deemed acceptable for the current release payload. |
 | `failedRevisionLimit` | `integer` | failedRevisionLimit is the number of failed static pod installer revisions to keep on disk and in the api -1 = unlimited, 0 or unset = 5 (default) |
 | `forceRedeploymentReason` | `string` | forceRedeploymentReason can be used to force the redeployment of the operand by providing a unique string. This provides a mechanism to kick a previously failed deployment and provide a reason why you think it will work this time instead of failing again on the same config. |
-| `logLevel` | `string` | logLevel is an intent based logging for an overall component.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands. Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
+| `logLevel` | `string` | logLevel is an intent based logging for an overall component. It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `managedBootImages` | `object` | managedBootImages allows configuration for the management of boot images for machine resources within the cluster. This configuration allows users to select resources that should be updated to the latest boot images during cluster upgrades, ensuring that new machines always boot with the current cluster version’s boot image. When omitted, this means no opinion and the platform is left to choose a reasonable default, which is subject to change over time. The default for each machine manager mode is All for GCP and AWS platforms, and None for all other platforms. |
 | `managementState` | `string` | managementState indicates whether and how the operator should manage the component |
 | `nodeDisruptionPolicy` | `object` | nodeDisruptionPolicy allows an admin to set granular node disruption actions for MachineConfig-based updates, such as drains, service reloads, etc. Specifying this will allow for less downtime when doing small configuration updates to the cluster. This configuration has no effect on cluster upgrades which will still incur node disruption where required. |
-| `observedConfig` | \`\` | observedConfig holds a sparse config that controller has observed from the cluster state.  It exists in spec because it is an input to the level for the operator |
-| `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves. Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
+| `observedConfig` | \`\` | observedConfig holds a sparse config that controller has observed from the cluster state. It exists in spec because it is an input to the level for the operator |
+| `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself. It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `succeededRevisionLimit` | `integer` | succeededRevisionLimit is the number of successful static pod installer revisions to keep on disk and in the api -1 = unlimited, 0 or unset = 5 (default) |
 | `unsupportedConfigOverrides` | \`\` | unsupportedConfigOverrides overrides the final configuration that was computed by the operator. Red Hat does not support the use of this field. Misuse of this field could lead to unexpected behavior or conflict with other configuration options. Seek guidance from the Red Hat support before using this field. Use of this property blocks cluster upgrades, it must be removed before upgrading your cluster. |
 
@@ -306,7 +306,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be reloaded Service names should be of the format ${{ NAME }}${{ SERVICETYPE }} and can up to 255 characters long. ${{ NAME }} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "\\_", ".", and "". ${{ SERVICETYPE }} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
+| `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be reloaded Service names should be of the format ${NAME}${SERVICETYPE} and can up to 255 characters long. ${NAME} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "\\_", ".", and "". ${SERVICETYPE} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
 
 ### .spec.nodeDisruptionPolicy.files\[\].actions\[\].restart {#_specnodedisruptionpolicyfilesactionsrestart}
 
@@ -323,7 +323,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be restarted Service names should be of the format ${{ NAME }}${{ SERVICETYPE }} and can up to 255 characters long. ${{ NAME }} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "\\_", ".", and "". ${{ SERVICETYPE }} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
+| `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be restarted Service names should be of the format ${NAME}${SERVICETYPE} and can up to 255 characters long. ${NAME} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "\\_", ".", and "". ${SERVICETYPE} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
 
 ### .spec.nodeDisruptionPolicy.sshkey {#_specnodedisruptionpolicysshkey}
 
@@ -386,7 +386,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be reloaded Service names should be of the format ${{ NAME }}${{ SERVICETYPE }} and can up to 255 characters long. ${{ NAME }} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "\\_", ".", and "". ${{ SERVICETYPE }} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
+| `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be reloaded Service names should be of the format ${NAME}${SERVICETYPE} and can up to 255 characters long. ${NAME} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "\\_", ".", and "". ${SERVICETYPE} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
 
 ### .spec.nodeDisruptionPolicy.sshkey.actions\[\].restart {#_specnodedisruptionpolicysshkeyactionsrestart}
 
@@ -403,7 +403,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be restarted Service names should be of the format ${{ NAME }}${{ SERVICETYPE }} and can up to 255 characters long. ${{ NAME }} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "\\_", ".", and "". ${{ SERVICETYPE }} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
+| `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be restarted Service names should be of the format ${NAME}${SERVICETYPE} and can up to 255 characters long. ${NAME} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "\\_", ".", and "". ${SERVICETYPE} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
 
 ### .spec.nodeDisruptionPolicy.units {#_specnodedisruptionpolicyunits}
 
@@ -433,7 +433,7 @@ Required
 | --- | --- | --- |
 | `actions` | `array` | actions represents the series of commands to be executed on changes to the file at the corresponding file path. Actions will be applied in the order that they are set in this list. If there are other incoming changes to other MachineConfig entries in the same update that require a reboot, the reboot will supercede these actions. Valid actions are Reboot, Drain, Reload, DaemonReload and None. The Reboot action and the None action cannot be used in conjunction with any of the other actions. This list supports a maximum of 10 entries. |
 | `actions[]` | `object` |  |
-| `name` | `string` | name represents the service name of a systemd service managed through a MachineConfig Actions specified will be applied for changes to the named service. Service names should be of the format ${{ NAME }}${{ SERVICETYPE }} and can up to 255 characters long. ${{ NAME }} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "\\_", ".", and "". ${{ SERVICETYPE }} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
+| `name` | `string` | name represents the service name of a systemd service managed through a MachineConfig Actions specified will be applied for changes to the named service. Service names should be of the format ${NAME}${SERVICETYPE} and can up to 255 characters long. ${NAME} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "\\_", ".", and "". ${SERVICETYPE} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
 
 ### .spec.nodeDisruptionPolicy.units\[\].actions {#_specnodedisruptionpolicyunitsactions}
 
@@ -478,7 +478,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be reloaded Service names should be of the format ${{ NAME }}${{ SERVICETYPE }} and can up to 255 characters long. ${{ NAME }} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "\\_", ".", and "". ${{ SERVICETYPE }} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
+| `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be reloaded Service names should be of the format ${NAME}${SERVICETYPE} and can up to 255 characters long. ${NAME} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "\\_", ".", and "". ${SERVICETYPE} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
 
 ### .spec.nodeDisruptionPolicy.units\[\].actions\[\].restart {#_specnodedisruptionpolicyunitsactionsrestart}
 
@@ -495,7 +495,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be restarted Service names should be of the format ${{ NAME }}${{ SERVICETYPE }} and can up to 255 characters long. ${{ NAME }} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "\\_", ".", and "". ${{ SERVICETYPE }} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
+| `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be restarted Service names should be of the format ${NAME}${SERVICETYPE} and can up to 255 characters long. ${NAME} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "\\_", ".", and "". ${SERVICETYPE} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
 
 ### .status {#_status}
 
@@ -598,7 +598,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
 | `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
@@ -837,7 +837,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be reloaded Service names should be of the format ${{ NAME }}${{ SERVICETYPE }} and can up to 255 characters long. ${{ NAME }} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "\\_", ".", and "". ${{ SERVICETYPE }} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
+| `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be reloaded Service names should be of the format ${NAME}${SERVICETYPE} and can up to 255 characters long. ${NAME} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "\\_", ".", and "". ${SERVICETYPE} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
 
 ### .status.nodeDisruptionPolicyStatus.clusterPolicies.files\[\].actions\[\].restart {#_statusnodedisruptionpolicystatusclusterpoliciesfilesactionsrestart}
 
@@ -854,7 +854,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be restarted Service names should be of the format ${{ NAME }}${{ SERVICETYPE }} and can up to 255 characters long. ${{ NAME }} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "\\_", ".", and "". ${{ SERVICETYPE }} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
+| `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be restarted Service names should be of the format ${NAME}${SERVICETYPE} and can up to 255 characters long. ${NAME} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "\\_", ".", and "". ${SERVICETYPE} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
 
 ### .status.nodeDisruptionPolicyStatus.clusterPolicies.sshkey {#_statusnodedisruptionpolicystatusclusterpoliciessshkey}
 
@@ -917,7 +917,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be reloaded Service names should be of the format ${{ NAME }}${{ SERVICETYPE }} and can up to 255 characters long. ${{ NAME }} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "\\_", ".", and "". ${{ SERVICETYPE }} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
+| `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be reloaded Service names should be of the format ${NAME}${SERVICETYPE} and can up to 255 characters long. ${NAME} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "\\_", ".", and "". ${SERVICETYPE} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
 
 ### .status.nodeDisruptionPolicyStatus.clusterPolicies.sshkey.actions\[\].restart {#_statusnodedisruptionpolicystatusclusterpoliciessshkeyactionsrestart}
 
@@ -934,7 +934,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be restarted Service names should be of the format ${{ NAME }}${{ SERVICETYPE }} and can up to 255 characters long. ${{ NAME }} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "\\_", ".", and "". ${{ SERVICETYPE }} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
+| `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be restarted Service names should be of the format ${NAME}${SERVICETYPE} and can up to 255 characters long. ${NAME} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "\\_", ".", and "". ${SERVICETYPE} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
 
 ### .status.nodeDisruptionPolicyStatus.clusterPolicies.units {#_statusnodedisruptionpolicystatusclusterpoliciesunits}
 
@@ -964,7 +964,7 @@ Required
 | --- | --- | --- |
 | `actions` | `array` | actions represents the series of commands to be executed on changes to the file at the corresponding file path. Actions will be applied in the order that they are set in this list. If there are other incoming changes to other MachineConfig entries in the same update that require a reboot, the reboot will supercede these actions. Valid actions are Reboot, Drain, Reload, DaemonReload and None. The Reboot action and the None action cannot be used in conjunction with any of the other actions. This list supports a maximum of 10 entries. |
 | `actions[]` | `object` |  |
-| `name` | `string` | name represents the service name of a systemd service managed through a MachineConfig Actions specified will be applied for changes to the named service. Service names should be of the format ${{ NAME }}${{ SERVICETYPE }} and can up to 255 characters long. ${{ NAME }} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "\\_", ".", and "". ${{ SERVICETYPE }} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
+| `name` | `string` | name represents the service name of a systemd service managed through a MachineConfig Actions specified will be applied for changes to the named service. Service names should be of the format ${NAME}${SERVICETYPE} and can up to 255 characters long. ${NAME} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "\\_", ".", and "". ${SERVICETYPE} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
 
 ### .status.nodeDisruptionPolicyStatus.clusterPolicies.units\[\].actions {#_statusnodedisruptionpolicystatusclusterpoliciesunitsactions}
 
@@ -1009,7 +1009,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be reloaded Service names should be of the format ${{ NAME }}${{ SERVICETYPE }} and can up to 255 characters long. ${{ NAME }} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "\\_", ".", and "". ${{ SERVICETYPE }} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
+| `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be reloaded Service names should be of the format ${NAME}${SERVICETYPE} and can up to 255 characters long. ${NAME} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "\\_", ".", and "". ${SERVICETYPE} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
 
 ### .status.nodeDisruptionPolicyStatus.clusterPolicies.units\[\].actions\[\].restart {#_statusnodedisruptionpolicystatusclusterpoliciesunitsactionsrestart}
 
@@ -1026,7 +1026,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be restarted Service names should be of the format ${{ NAME }}${{ SERVICETYPE }} and can up to 255 characters long. ${{ NAME }} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "\\_", ".", and "". ${{ SERVICETYPE }} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
+| `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be restarted Service names should be of the format ${NAME}${SERVICETYPE} and can up to 255 characters long. ${NAME} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "\\_", ".", and "". ${SERVICETYPE} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
 
 ## API endpoints {#_api_endpoints}
 
@@ -1037,13 +1037,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of MachineConfiguration
   - `GET`: list objects of kind MachineConfiguration
   - `POST`: create a MachineConfiguration
-- `/apis/operator.openshift.io/v1/machineconfigurations/{{ name }}`
+- `/apis/operator.openshift.io/v1/machineconfigurations/{name}`
 
   - `DELETE`: delete a MachineConfiguration
   - `GET`: read the specified MachineConfiguration
   - `PATCH`: partially update the specified MachineConfiguration
   - `PUT`: replace the specified MachineConfiguration
-- `/apis/operator.openshift.io/v1/machineconfigurations/{{ name }}/status`
+- `/apis/operator.openshift.io/v1/machineconfigurations/{name}/status`
 
   - `GET`: read status of the specified MachineConfiguration
   - `PATCH`: partially update status of the specified MachineConfiguration
@@ -1117,7 +1117,7 @@ Description
 | 202 - Accepted | [`MachineConfiguration`](/openshift-docs-markdown/rest_api/operator_apis/machineconfiguration-operator-openshift-io-v1#machineconfiguration-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operator.openshift.io/v1/machineconfigurations/{{ name }} {#_apisoperatoropenshiftiov1machineconfigurations_name}
+### /apis/operator.openshift.io/v1/machineconfigurations/{name} {#_apisoperatoropenshiftiov1machineconfigurations_name}
 
 **Global path parameters**
 
@@ -1221,7 +1221,7 @@ Description
 | 201 - Created | [`MachineConfiguration`](/openshift-docs-markdown/rest_api/operator_apis/machineconfiguration-operator-openshift-io-v1#machineconfiguration-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operator.openshift.io/v1/machineconfigurations/{{ name }}/status {#_apisoperatoropenshiftiov1machineconfigurations_name_status}
+### /apis/operator.openshift.io/v1/machineconfigurations/{name}/status {#_apisoperatoropenshiftiov1machineconfigurations_name_status}
 
 **Global path parameters**
 

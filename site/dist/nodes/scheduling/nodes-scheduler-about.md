@@ -16,12 +16,12 @@ Advanced pod scheduling
 
     You can control pod placement by using the following scheduling features:
 
-- Scheduler profiles
-- Pod affinity and anti-affinity rules
-- Node affinity
-- Node selectors
-- Taints and tolerations
-- Node overcommitment
+    - Scheduler profiles
+    - Pod affinity and anti-affinity rules
+    - Node affinity
+    - Node selectors
+    - Taints and tolerations
+    - Node overcommitment
 
 ## About the default scheduler {#about-default-scheduler}
 
@@ -49,7 +49,7 @@ You can configure the cluster scheduler to apply affinity and anti-affinity poli
 Infrastructure topological levels
 :   Administrators can define multiple topological levels for their infrastructure (nodes) by specifying labels on nodes. For example: `region=r1`, `zone=z1`, `rack=s1`.
 
-    These label names have no particular meaning and administrators are free to name their infrastructure levels anything, such as city/building/room. Also, administrators can define any number of levels for their infrastructure topology, with three levels usually being adequate (such as: `regions` -> `zones` -> `racks`).  Administrators can specify affinity and anti-affinity rules at each of these levels in any combination.
+    These label names have no particular meaning and administrators are free to name their infrastructure levels anything, such as city/building/room. Also, administrators can define any number of levels for their infrastructure topology, with three levels usually being adequate (such as: `regions` → `zones` → `racks`).  Administrators can specify affinity and anti-affinity rules at each of these levels in any combination.
 
 Affinity
 :   Administrators should be able to configure the scheduler to specify affinity at any topological level, or even at multiple levels. Affinity at a particular level indicates that all pods that belong to the same service are scheduled onto nodes that belong to the same level. This handles any latency requirements of applications by allowing administrators to ensure that peer pods do not end up being too geographically separated. If no node is available within the same affinity group to host the pod, then the pod is not scheduled.
@@ -65,7 +65,8 @@ Anti-affinity
 
     These advanced scheduling features allow administrators to specify which node a pod can be scheduled on and to force or reject scheduling relative to other pods.
 
-## Additional resources {#additional-resources_nodes-scheduler-about}
+**Additional resources**
+{._additional-resources}
 
 - [Scheduler profiles](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-profiles#nodes-scheduler-profiles)
 - [Pod affinity and anti-affinity rules](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-pod-affinity#nodes-scheduler-pod-affinity)

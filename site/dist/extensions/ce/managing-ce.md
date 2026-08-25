@@ -39,11 +39,11 @@ Currently in Operator Lifecycle Manager (OLM) v1, you cannot query on-cluster ca
    :   Specifies the URL of the catalog registry, such as `registry.redhat.io/redhat/redhat-operator-index`.
 
    `tag`
-   :   Specifies the tag or version of the catalog, such as `v{{ product_version }}` or `latest`.
+   :   Specifies the tag or version of the catalog, such as `v4.22` or `latest`.
 
    ```terminal {title="Example command"}
    $ opm render \
-     registry.redhat.io/redhat/redhat-operator-index:v{{ product_version }} \
+     registry.redhat.io/redhat/redhat-operator-index:v4.22 \
      | jq -cs '[.[] | select(.schema == "olm.bundle" \
      and (.properties[] | select(.type == "olm.csv.metadata").value.installModes[] \
      | select(.type == "AllNamespaces" and .supported == true)) \
@@ -83,7 +83,7 @@ Currently in Operator Lifecycle Manager (OLM) v1, you cannot query on-cluster ca
 
    ```terminal {title="Example command"}
    $ opm render \
-     registry.redhat.io/redhat/redhat-operator-index:v{{ product_version }} \
+     registry.redhat.io/redhat/redhat-operator-index:v4.22 \
      | jq -s '.[] | select( .schema == "olm.package") \
      | select( .name == "openshift-pipelines-operator-rh")'
    ```
@@ -116,27 +116,24 @@ where:
 :   Specifies the URL of the catalog registry, such as `registry.redhat.io/redhat/redhat-operator-index`.
 
 `tag`
-:   Specifies the tag or version of the catalog, such as `v{{ product_version }}` or `latest`.
+:   Specifies the tag or version of the catalog, such as `v4.22` or `latest`.
 
 `jq_request`
 :   Specifies the query you want to run on the catalog.
 
-<details>
-<summary>Example command</summary>
-
+:::details{title="Example command"}
 ```terminal
 $ opm render \
-  registry.redhat.io/redhat/redhat-operator-index:v{{ product_version }} \
+  registry.redhat.io/redhat/redhat-operator-index:v4.22 \
   | jq -cs '[.[] | select(.schema == "olm.bundle" and (.properties[] \
   | select(.type == "olm.csv.metadata").value.installModes[] \
   | select(.type == "AllNamespaces" and .supported == true)) \
   and .spec.webhookdefinitions == null) \
   | .package] | unique[]'
 ```
+:::
 
-</details>
-
-***Common package queries***
+**Common package queries**
 
 <table>
 <thead>
@@ -148,51 +145,24 @@ $ opm render \
 <tbody>
 <tr>
   <td>Available packages in a catalog</td>
-  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;\| jq -s '.[] \</pre></td>
+  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;  | jq -s '.[] | select( .schema == "olm.package")'</pre></td>
 </tr>
 <tr>
-  <td>select( .schema == "olm.package")' ----</td>
   <td>Packages that support <code>AllNamespaces</code> install mode and do not use webhooks</td>
+  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;  | jq -cs '[.[] | select(.schema == "olm.bundle" and (.properties[] \&#10;  | select(.type == "olm.csv.metadata").value.installModes[] \&#10;  | select(.type == "AllNamespaces" and .supported == true)) \&#10;  and .spec.webhookdefinitions == null) \&#10;  | .package] | unique[]'</pre></td>
 </tr>
 <tr>
-  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;\| jq -cs '[.[] \</pre></td>
-  <td>select(.schema == "olm.bundle" and (.properties[] \</td>
-</tr>
-<tr>
-  <td>\</td>
-  <td>select(.type == "olm.csv.metadata").value.installModes[] \</td>
-</tr>
-<tr>
-  <td>\</td>
-  <td>select(.type == "AllNamespaces" and .supported == true)) \</td>
-</tr>
-<tr>
-  <td>\</td>
-  <td>.package] \</td>
-</tr>
-<tr>
-  <td>unique[]' ----</td>
   <td>Package metadata</td>
-</tr>
-<tr>
-  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;\| jq -s '.[] \</pre></td>
-  <td>select( .schema == "olm.package") \</td>
-</tr>
-<tr>
-  <td>\</td>
-  <td>select( .name == "<package_name>")'</td>
+  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;  | jq -s '.[] | select( .schema == "olm.package") \&#10;  | select( .name == "&lt;package_name&gt;")'</pre></td>
 </tr>
 <tr>
   <td>Catalog blobs in a package</td>
-  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;\| jq -s '.[] \</pre></td>
-</tr>
-<tr>
-  <td>select( .package == "<package_name>")' ----</td>
+  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;  | jq -s '.[] | select( .package == "&lt;package_name&gt;")'</pre></td>
 </tr>
 </tbody>
 </table>
 
-***Common channel queries***
+**Common channel queries**
 
 <table>
 <thead>
@@ -204,52 +174,20 @@ $ opm render \
 <tbody>
 <tr>
   <td>Channels in a package</td>
-  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;\| jq -s '.[] \</pre></td>
+  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;  | jq -s '.[] | select( .schema == "olm.channel" ) \&#10;  | select( .package == "&lt;package_name&gt;") | .name'</pre></td>
 </tr>
 <tr>
-  <td>select( .schema == "olm.channel" ) \ \</td>
-  <td>select( .package == "<package_name>") \</td>
-</tr>
-<tr>
-  <td>.name' ----</td>
   <td>Versions in a channel</td>
+  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;  | jq -s '.[] | select( .package == "&lt;package_name&gt;" ) \&#10;  | select( .schema == "olm.channel" ) \&#10;  | select( .name == "&lt;channel_name&gt;" ) .entries \&#10;  | .[] | .name'</pre></td>
 </tr>
 <tr>
-  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;\| jq -s '.[] \</pre></td>
-  <td>select( .package == "<package_name>" ) \</td>
-</tr>
-<tr>
-  <td>\</td>
-  <td>select( .schema == "olm.channel" ) \</td>
-</tr>
-<tr>
-  <td>\</td>
-  <td>select( .name == "<channel_name>" ) .entries \</td>
-</tr>
-<tr>
-  <td>\</td>
-  <td>.[] \</td>
-</tr>
-<tr>
-  <td>.name' ----</td>
   <td><ul><li>Latest version in a channel</li><li>Upgrade path</li></ul></td>
-</tr>
-<tr>
-  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;\| jq -s '.[] \</pre></td>
-  <td>select( .schema == "olm.channel" ) \</td>
-</tr>
-<tr>
-  <td>\</td>
-  <td>select ( .name == "<channel_name>") \</td>
-</tr>
-<tr>
-  <td>\</td>
-  <td>select( .package == "<package_name>")'</td>
+  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;  | jq -s '.[] | select( .schema == "olm.channel" ) \&#10;  | select ( .name == "&lt;channel_name&gt;") \&#10;  | select( .package == "&lt;package_name&gt;")'</pre></td>
 </tr>
 </tbody>
 </table>
 
-***Common bundle queries***
+**Common bundle queries**
 
 <table>
 <thead>
@@ -261,27 +199,11 @@ $ opm render \
 <tbody>
 <tr>
   <td>Bundles in a package</td>
-  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;\| jq -s '.[] \</pre></td>
+  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;  | jq -s '.[] | select( .schema == "olm.bundle" ) \&#10;  | select( .package == "&lt;package_name&gt;") | .name'</pre></td>
 </tr>
 <tr>
-  <td>select( .schema == "olm.bundle" ) \ \</td>
-  <td>select( .package == "<package_name>") \</td>
-</tr>
-<tr>
-  <td>.name' ----</td>
   <td><ul><li>Bundle dependencies</li><li>Available APIs</li></ul></td>
-</tr>
-<tr>
-  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;\| jq -s '.[] \</pre></td>
-  <td>select( .schema == "olm.bundle" ) \</td>
-</tr>
-<tr>
-  <td>\</td>
-  <td>select ( .name == "<bundle_name>") \</td>
-</tr>
-<tr>
-  <td>\</td>
-  <td>select( .package == "<package_name>")'</td>
+  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;  | jq -s '.[] | select( .schema == "olm.bundle" ) \&#10;  | select ( .name == "&lt;bundle_name&gt;") \&#10;  | select( .package == "&lt;package_name&gt;")'</pre></td>
 </tr>
 </tbody>
 </table>
@@ -372,7 +294,7 @@ Use the `opm` CLI tool to download the bundle manifests of the extension that yo
    ```
 
    ```terminal {title="Example command"}
-   $ opm render registry.redhat.io/redhat/redhat-operator-index:v{{ product_version }} | \
+   $ opm render registry.redhat.io/redhat/redhat-operator-index:v4.22 | \
      jq -cs '.[] | select( .schema == "olm.bundle" ) | \
      select( .package == "openshift-pipelines-operator-rh") | \
      {"name":.name, "image":.image}'
@@ -831,7 +753,556 @@ The following procedure uses the `openshift-pipelines-operator-rh.clusterservice
 Review the complete cluster role manifest for the OpenShift Pipelines Operator, including all of the RBAC required to install and manage the extension.
 
 ```yaml
-{% include "./snippets/example-pipelines-installer-clusterrole.yaml" %}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: pipelines-installer-clusterrole
+rules:
+- apiGroups:
+  - olm.operatorframework.io
+  resources:
+  - clusterextensions/finalizers
+  verbs:
+  - update
+  # Scoped to the name of the ClusterExtension
+  resourceNames:
+  - pipes # the value from <metadata.name> from the extension's custom resource (CR)
+# ClusterRoles and ClusterRoleBindings for the controllers of the extension
+- apiGroups:
+  - rbac.authorization.k8s.io
+  resources:
+  - clusterroles
+  verbs:
+  - create
+  - list
+  - watch
+- apiGroups:
+  - rbac.authorization.k8s.io
+  resources:
+  - clusterroles
+  verbs:
+  - get
+  - update
+  - patch
+  - delete
+  resourceNames:
+  - "*"
+- apiGroups:
+  - rbac.authorization.k8s.io
+  resources:
+  - clusterrolebindings
+  verbs:
+  - create
+  - list
+  - watch
+- apiGroups:
+  - rbac.authorization.k8s.io
+  resources:
+  - clusterrolebindings
+  verbs:
+  - get
+  - update
+  - patch
+  - delete
+  resourceNames:
+  - "*"
+# Extension's custom resource definitions
+- apiGroups:
+  - apiextensions.k8s.io
+  resources:
+  - customresourcedefinitions
+  verbs:
+  - create
+  - list
+  - watch
+- apiGroups:
+  - apiextensions.k8s.io
+  resources:
+  - customresourcedefinitions
+  verbs:
+  - get
+  - update
+  - patch
+  - delete
+  resourceNames:
+  - manualapprovalgates.operator.tekton.dev
+  - openshiftpipelinesascodes.operator.tekton.dev
+  - tektonaddons.operator.tekton.dev
+  - tektonchains.operator.tekton.dev
+  - tektonconfigs.operator.tekton.dev
+  - tektonhubs.operator.tekton.dev
+  - tektoninstallersets.operator.tekton.dev
+  - tektonpipelines.operator.tekton.dev
+  - tektonresults.operator.tekton.dev
+  - tektontriggers.operator.tekton.dev
+- apiGroups:
+  - ''
+  resources:
+  - nodes
+  - pods
+  - services
+  - endpoints
+  - persistentvolumeclaims
+  - events
+  - configmaps
+  - secrets
+  - pods/log
+  - limitranges
+  verbs:
+  - create
+  - list
+  - watch
+  - delete
+  - deletecollection
+  - patch
+  - get
+  - update
+- apiGroups:
+  - extensions
+  - apps
+  resources:
+  - ingresses
+  - ingresses/status
+  verbs:
+  - create
+  - list
+  - watch
+  - delete
+  - patch
+  - get
+  - update
+- apiGroups:
+  - ''
+  resources:
+  - namespaces
+  verbs:
+  - get
+  - list
+  - create
+  - update
+  - delete
+  - patch
+  - watch
+- apiGroups:
+  - apps
+  resources:
+  - deployments
+  - daemonsets
+  - replicasets
+  - statefulsets
+  - deployments/finalizers
+  verbs:
+  - delete
+  - deletecollection
+  - create
+  - patch
+  - get
+  - list
+  - update
+  - watch
+- apiGroups:
+  - monitoring.coreos.com
+  resources:
+  - servicemonitors
+  verbs:
+  - get
+  - create
+  - delete
+- apiGroups:
+  - rbac.authorization.k8s.io
+  resources:
+  - clusterroles
+  - roles
+  verbs:
+  - delete
+  - deletecollection
+  - create
+  - patch
+  - get
+  - list
+  - update
+  - watch
+  - bind
+  - escalate
+- apiGroups:
+  - ''
+  resources:
+  - serviceaccounts
+  verbs:
+  - get
+  - list
+  - create
+  - update
+  - delete
+  - patch
+  - watch
+  - impersonate
+- apiGroups:
+  - rbac.authorization.k8s.io
+  resources:
+  - clusterrolebindings
+  - rolebindings
+  verbs:
+  - get
+  - update
+  - delete
+  - patch
+  - create
+  - list
+  - watch
+- apiGroups:
+  - apiextensions.k8s.io
+  resources:
+  - customresourcedefinitions
+  - customresourcedefinitions/status
+  verbs:
+  - get
+  - create
+  - update
+  - delete
+  - list
+  - patch
+  - watch
+- apiGroups:
+  - admissionregistration.k8s.io
+  resources:
+  - mutatingwebhookconfigurations
+  - validatingwebhookconfigurations
+  verbs:
+  - get
+  - list
+  - create
+  - update
+  - delete
+  - patch
+  - watch
+- apiGroups:
+  - build.knative.dev
+  resources:
+  - builds
+  - buildtemplates
+  - clusterbuildtemplates
+  verbs:
+  - get
+  - list
+  - create
+  - update
+  - delete
+  - patch
+  - watch
+- apiGroups:
+  - extensions
+  resources:
+  - deployments
+  verbs:
+  - get
+  - list
+  - create
+  - update
+  - delete
+  - patch
+  - watch
+- apiGroups:
+  - extensions
+  resources:
+  - deployments/finalizers
+  verbs:
+  - get
+  - list
+  - create
+  - update
+  - delete
+  - patch
+  - watch
+- apiGroups:
+  - operator.tekton.dev
+  resources:
+  - '*'
+  - tektonaddons
+  verbs:
+  - delete
+  - deletecollection
+  - create
+  - patch
+  - get
+  - list
+  - update
+  - watch
+- apiGroups:
+  - tekton.dev
+  - triggers.tekton.dev
+  - operator.tekton.dev
+  - pipelinesascode.tekton.dev
+  resources:
+  - '*'
+  verbs:
+  - add
+  - delete
+  - deletecollection
+  - create
+  - patch
+  - get
+  - list
+  - update
+  - watch
+- apiGroups:
+  - dashboard.tekton.dev
+  resources:
+  - '*'
+  - tektonaddons
+  verbs:
+  - delete
+  - deletecollection
+  - create
+  - patch
+  - get
+  - list
+  - update
+  - watch
+- apiGroups:
+  - security.openshift.io
+  resources:
+  - securitycontextconstraints
+  verbs:
+  - use
+  - get
+  - list
+  - create
+  - update
+  - delete
+- apiGroups:
+  - events.k8s.io
+  resources:
+  - events
+  verbs:
+  - create
+- apiGroups:
+  - route.openshift.io
+  resources:
+  - routes
+  verbs:
+  - delete
+  - deletecollection
+  - create
+  - patch
+  - get
+  - list
+  - update
+  - watch
+- apiGroups:
+  - coordination.k8s.io
+  resources:
+  - leases
+  verbs:
+  - get
+  - list
+  - create
+  - update
+  - delete
+  - patch
+  - watch
+- apiGroups:
+  - console.openshift.io
+  resources:
+  - consoleyamlsamples
+  - consoleclidownloads
+  - consolequickstarts
+  - consolelinks
+  verbs:
+  - delete
+  - deletecollection
+  - create
+  - patch
+  - get
+  - list
+  - update
+  - watch
+- apiGroups:
+  - autoscaling
+  resources:
+  - horizontalpodautoscalers
+  verbs:
+  - delete
+  - create
+  - patch
+  - get
+  - list
+  - update
+  - watch
+- apiGroups:
+  - policy
+  resources:
+  - poddisruptionbudgets
+  verbs:
+  - delete
+  - deletecollection
+  - create
+  - patch
+  - get
+  - list
+  - update
+  - watch
+- apiGroups:
+  - monitoring.coreos.com
+  resources:
+  - servicemonitors
+  verbs:
+  - delete
+  - deletecollection
+  - create
+  - patch
+  - get
+  - list
+  - update
+  - watch
+- apiGroups:
+  - batch
+  resources:
+  - jobs
+  - cronjobs
+  verbs:
+  - delete
+  - deletecollection
+  - create
+  - patch
+  - get
+  - list
+  - update
+  - watch
+- apiGroups:
+  - ''
+  resources:
+  - namespaces/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - resolution.tekton.dev
+  resources:
+  - resolutionrequests
+  - resolutionrequests/status
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - delete
+  - update
+  - patch
+- apiGroups:
+  - console.openshift.io
+  resources:
+  - consoleplugins
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - delete
+  - update
+  - patch
+# Deployments specified in install.spec.deployments
+- apiGroups:
+  - apps
+  resources:
+  - deployments
+  verbs:
+  - create
+  - list
+  - watch
+- apiGroups:
+  - apps
+  resources:
+  - deployments
+  verbs:
+  - get
+  - update
+  - patch
+  - delete
+  # scoped to the extension controller deployment name
+  resourceNames:
+  - openshift-pipelines-operator
+  - tekton-operator-webhook
+# Service accounts in the CSV
+- apiGroups:
+  - ""
+  resources:
+  - serviceaccounts
+  verbs:
+  - create
+  - list
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - serviceaccounts
+  verbs:
+  - get
+  - update
+  - patch
+  - delete
+  # scoped to the extension controller's deployment service account
+  resourceNames:
+  - openshift-pipelines-operator
+# Services
+- apiGroups:
+  - ""
+  resources:
+  - services
+  verbs:
+  - create
+- apiGroups:
+  - ""
+  resources:
+  - services
+  verbs:
+  - get
+  - list
+  - watch
+  - update
+  - patch
+  - delete
+  # scoped to the service name
+  resourceNames:
+  - openshift-pipelines-operator-monitor
+  - tekton-operator
+  - tekton-operator-webhook
+# configmaps
+- apiGroups:
+  - ""
+  resources:
+  - configmaps
+  verbs:
+  - create
+- apiGroups:
+  - ""
+  resources:
+  - configmaps
+  verbs:
+  - get
+  - list
+  - watch
+  - update
+  - patch
+  - delete
+  # scoped to the configmap name
+  resourceNames:
+  - config-logging
+  - tekton-config-defaults
+  - tekton-config-observability
+  - tekton-operator-controller-config-leader-election
+  - tekton-operator-info
+  - tekton-operator-webhook-config-leader-election
+- apiGroups:
+  - operator.tekton.dev
+  resources:
+  - tekton-config-read-role
+  - tekton-result-read-role
+  verbs:
+  - get
+  - watch
+  - list
+---
 ```
 
 ### Creating a cluster role binding for an extension {#olmv1-creating-a-cluster-rol-binding_managing-ce}
@@ -1170,6 +1641,7 @@ You can configure the watch namespace for extensions that support namespace-scop
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Supported extensions](/openshift-docs-markdown/extensions/ce/olmv1-supported-extensions#olmv1-supported-extensions)
 - [Projects and namespaces](/openshift-docs-markdown/authentication/using-rbac#rbac-projects-namespaces_using-rbac)
@@ -1266,7 +1738,7 @@ You can update your cluster extension or Operator by manually editing the custom
       ```
 
       ```terminal {title="Example command"}
-      $ opm render registry.redhat.io/redhat/redhat-operator-index:v{{ product_version }} \
+      $ opm render registry.redhat.io/redhat/redhat-operator-index:v4.22 \
         | jq -s '.[] | select( .schema == "olm.channel" ) \
         | select( .package == "openshift-pipelines-operator-rh") | .name'
       ```
@@ -1289,7 +1761,7 @@ You can update your cluster extension or Operator by manually editing the custom
       ```
 
       ```terminal {title="Example command"}
-      $ opm render registry.redhat.io/redhat/redhat-operator-index:v{{ product_version }} \
+      $ opm render registry.redhat.io/redhat/redhat-operator-index:v4.22 \
         | jq -s '.[] | select( .package == "openshift-pipelines-operator-rh" ) \
         | select( .schema == "olm.channel" ) | select( .name == "latest" ) \
         | .entries | .[] | .name'
@@ -1634,6 +2106,7 @@ You can update your cluster extension or Operator by manually editing the custom
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Update paths](/openshift-docs-markdown/extensions/ce/update-paths#update-paths)
 

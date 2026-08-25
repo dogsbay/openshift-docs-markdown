@@ -100,7 +100,7 @@ This integration reduces manual tasks for multi-VM environments and ensures that
 1. Log in to the OpenShift Container Platform web console.
 2. Verify that you can apply bulk actions to VMs.
 
-   1. Go to **Virtualization** -> **VirtualMachines**.
+   1. Go to **Virtualization** → **VirtualMachines**.
    2. Select the checkboxes for two or more existing VMs.
    3. Click the **Actions** drop-down menu. Confirm that you can run the custom action you created.
 
@@ -160,7 +160,8 @@ As a cluster administrator, you can customize the OpenShift Container Platform w
 2. Go to the **Virtualization** page and verify that the custom tab you have created is visible.
 3. Go to the **Create Virtual Machine** page and verify that your custom backup actions or tabs do not appear.
 
-## Additional resources {#additional-resources_virt-customize-web-console}
+**Additional resources**
+{._additional-resources}
 
 - [Dynamic plugins overview](/openshift-docs-markdown/web_console/dynamic-plugin/overview-dynamic-plugin#overview-dynamic-plugin)
 - [Getting started with dynamic plugins](/openshift-docs-markdown/web_console/dynamic-plugin/dynamic-plugins-get-started#dynamic-plugins-get-started)

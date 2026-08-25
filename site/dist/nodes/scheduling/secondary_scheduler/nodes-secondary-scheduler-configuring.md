@@ -20,11 +20,11 @@ You can install the Secondary Scheduler Operator for Red Hat OpenShift through t
 1. Log in to the OpenShift Container Platform web console.
 2. Create the required namespace for the Secondary Scheduler Operator for Red Hat OpenShift.
 
-   1. Navigate to **Administration** -> **Namespaces** and click **Create Namespace**.
+   1. Navigate to **Administration** → **Namespaces** and click **Create Namespace**.
    2. Enter `openshift-secondary-scheduler-operator` in the **Name** field and click **Create**.
 3. Install the Secondary Scheduler Operator for Red Hat OpenShift.
 
-   1. Navigate to **Ecosystem** -> **Software Catalog**.
+   1. Navigate to **Ecosystem** → **Software Catalog**.
    2. Enter **Secondary Scheduler Operator for Red Hat OpenShift** into the filter box.
    3. Select the **Secondary Scheduler Operator for Red Hat OpenShift** and click **Install**.
    4. On the **Install Operator** page:
@@ -39,7 +39,7 @@ You can install the Secondary Scheduler Operator for Red Hat OpenShift through t
 
 **Verification**
 
-1. Navigate to **Ecosystem** -> **Installed Operators**.
+1. Navigate to **Ecosystem** → **Installed Operators**.
 2. Verify that **Secondary Scheduler Operator for Red Hat OpenShift** is listed with a **Status** of **Succeeded**.
 
 ## Deploying a secondary scheduler {#nodes-secondary-scheduler-configuring-console_secondary-scheduler-configuring}
@@ -57,7 +57,7 @@ After you have installed the Secondary Scheduler Operator, you can deploy a seco
 1. Log in to the OpenShift Container Platform web console.
 2. Create config map to hold the configuration for the secondary scheduler.
 
-   1. Navigate to **Workloads** -> **ConfigMaps**.
+   1. Navigate to **Workloads** → **ConfigMaps**.
    2. Click **Create ConfigMap**.
    3. In the YAML editor, enter the config map definition that contains the necessary `KubeSchedulerConfiguration` configuration. For example:
 
@@ -101,7 +101,7 @@ After you have installed the Secondary Scheduler Operator, you can deploy a seco
    4. Click **Create**.
 3. Create the `SecondaryScheduler` CR:
 
-   1. Navigate to **Ecosystem** -> **Installed Operators**.
+   1. Navigate to **Ecosystem** → **Installed Operators**.
    2. Select **Secondary Scheduler Operator for Red Hat OpenShift**.
    3. Select the **Secondary Scheduler** tab and click **Create SecondaryScheduler**.
    4. The **Name** field defaults to `cluster`; do not change this name.
@@ -135,7 +135,7 @@ To schedule a pod by using the secondary scheduler, set the `schedulerName` fiel
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console.
-2. Navigate to **Workloads** -> **Pods**.
+2. Navigate to **Workloads** → **Pods**.
 3. Click **Create Pod**.
 4. In the YAML editor, enter the desired pod configuration and add the `schedulerName` field:
 

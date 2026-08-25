@@ -219,7 +219,8 @@ Node
 > [!NOTE]
 > In a cluster with many Nodes, both `ocp4` Node and `rhcos4` Node scans might take a long time to complete.
 
-## Additional resources {#additional-resources_understanding-compliance}
+**Additional resources**
+{._additional-resources}
 
 - [ACSC Essential Eight - Hardening Linux Workstations and Servers](https://www.cyber.gov.au/acsc/view-all-content/publications/hardening-linux-workstations-and-servers)
 - [OpenSCAP project](https://www.open-scap.org/)

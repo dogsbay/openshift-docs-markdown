@@ -1,5 +1,5 @@
 ---
-title: Backing up etcd data for {{ hcp }} by using the etcd snapshot method
+title: Backing up etcd data for hosted control planes by using the etcd snapshot method
 ---
 
 # Backing up etcd data for hosted control planes by using the etcd snapshot method {#hcp-backup-etcd-snapshot}
@@ -82,6 +82,7 @@ Before you can use the etcd snapshot method to back up your etcd data for hosted
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring OADP](/openshift-docs-markdown/hosted_control_planes/hcp_high_availability/hcp-disaster-recovery-oadp-auto#hcp-dr-prep-oadp-auto_hcp-disaster-recovery-oadp-auto)
 - [Automating the backup and restore process by using DPA](/openshift-docs-markdown/hosted_control_planes/hcp_high_availability/hcp-disaster-recovery-oadp-auto#hcp-dr-oadp-dpa_hcp-disaster-recovery-oadp-auto)
@@ -113,6 +114,7 @@ You can start the etcd snapshot backup process from the hosted control planes co
   Next, the OADP HyperShift plugin and the `HCPEtcdBackup` CR work to complete the backup process.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring the etcd snapshot method](/openshift-docs-markdown/hosted_control_planes/hcp_high_availability/hcp-backup-etcd-snapshot#hcp-backup-etcd-snapshot-config_hcp-backup-etcd-snapshot)
 
@@ -177,6 +179,7 @@ The process to recover a hosted control plane from an etcd snapshot backup invol
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring the etcd snapshot method](/openshift-docs-markdown/hosted_control_planes/hcp_high_availability/hcp-backup-etcd-snapshot#hcp-backup-etcd-snapshot-config_hcp-backup-etcd-snapshot)
 

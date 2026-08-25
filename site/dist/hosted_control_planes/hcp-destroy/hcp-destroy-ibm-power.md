@@ -1,5 +1,5 @@
 ---
-title: Destroying a hosted cluster on {{ ibm_power_title }}
+title: Destroying a hosted cluster on IBM Power
 ---
 
 # Destroying a hosted cluster on IBM Power {#hcp-destroy-ibm-power}

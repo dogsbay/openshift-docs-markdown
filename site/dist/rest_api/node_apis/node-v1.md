@@ -106,7 +106,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `effect` | `string` | Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute. Possible enum values:  - `"NoExecute"` Evict any already-running pods that do not tolerate the taint. Currently enforced by NodeController.  - `"NoSchedule"` Do not allow new pods to schedule onto the node unless they tolerate the taint, but allow all pods submitted to Kubelet without going through the scheduler to start, and allow all already-running pods to continue running. Enforced by the scheduler.  - `"PreferNoSchedule"` Like TaintEffectNoSchedule, but the scheduler tries not to schedule new pods onto the node, rather than prohibiting new pods from scheduling onto the node entirely. Enforced by the scheduler. |
+| `effect` | `string` | Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.<br>Possible enum values: - `"NoExecute"` Evict any already-running pods that do not tolerate the taint. Currently enforced by NodeController. - `"NoSchedule"` Do not allow new pods to schedule onto the node unless they tolerate the taint, but allow all pods submitted to Kubelet without going through the scheduler to start, and allow all already-running pods to continue running. Enforced by the scheduler. - `"PreferNoSchedule"` Like TaintEffectNoSchedule, but the scheduler tries not to schedule new pods onto the node, rather than prohibiting new pods from scheduling onto the node entirely. Enforced by the scheduler. |
 | `key` | `string` | Required. The taint key to be applied to a node. |
 | `timeAdded` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | TimeAdded represents the time at which the taint was added. |
 | `value` | `string` | The taint value corresponding to the taint key. |
@@ -136,7 +136,7 @@ Type
 | `images` | `array` | List of container images on this node |
 | `images[]` | `object` | Describe a container image |
 | `nodeInfo` | `object` | NodeSystemInfo is a set of ids/uuids to uniquely identify the node. |
-| `phase` | `string` | NodePhase is the recently observed lifecycle phase of the node. More info: https://kubernetes.io/docs/concepts/nodes/node/#phase The field is never populated, and now is deprecated. Possible enum values:  - `"Pending"` means the node has been created/added by the system, but not configured.  - `"Running"` means the node has been configured and has Kubernetes components running.  - `"Terminated"` means the node has been removed from the cluster. |
+| `phase` | `string` | NodePhase is the recently observed lifecycle phase of the node. More info: https://kubernetes.io/docs/concepts/nodes/node/#phase The field is never populated, and now is deprecated.<br>Possible enum values: - `"Pending"` means the node has been created/added by the system, but not configured. - `"Running"` means the node has been configured and has Kubernetes components running. - `"Terminated"` means the node has been removed from the cluster. |
 | `runtimeHandlers` | `array` | The available runtime handlers. |
 | `runtimeHandlers[]` | `object` | NodeRuntimeHandler is a set of runtime handler information. |
 | `volumesAttached` | `array` | List of volumes that are attached to the node. |
@@ -534,16 +534,16 @@ The following API endpoints are available:
 - `/api/v1/watch/nodes`
 
   - `GET`: watch individual changes to a list of Node. deprecated: use the 'watch' parameter with a list operation instead.
-- `/api/v1/nodes/{{ name }}`
+- `/api/v1/nodes/{name}`
 
   - `DELETE`: delete a Node
   - `GET`: read the specified Node
   - `PATCH`: partially update the specified Node
   - `PUT`: replace the specified Node
-- `/api/v1/watch/nodes/{{ name }}`
+- `/api/v1/watch/nodes/{name}`
 
   - `GET`: watch changes to an object of kind Node. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
-- `/api/v1/nodes/{{ name }}/status`
+- `/api/v1/nodes/{name}/status`
 
   - `GET`: read status of the specified Node
   - `PATCH`: partially update status of the specified Node
@@ -642,7 +642,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/nodes/{{ name }} {#_apiv1nodes_name}
+### /api/v1/nodes/{name} {#_apiv1nodes_name}
 
 **Global path parameters**
 
@@ -747,7 +747,7 @@ Description
 | 201 - Created | [`Node`](/openshift-docs-markdown/rest_api/node_apis/node-v1#node-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/nodes/{{ name }} {#_apiv1watchnodes_name}
+### /api/v1/watch/nodes/{name} {#_apiv1watchnodes_name}
 
 **Global path parameters**
 
@@ -772,7 +772,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/nodes/{{ name }}/status {#_apiv1nodes_name_status}
+### /api/v1/nodes/{name}/status {#_apiv1nodes_name_status}
 
 **Global path parameters**
 

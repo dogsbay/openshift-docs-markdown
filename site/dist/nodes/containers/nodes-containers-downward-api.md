@@ -205,7 +205,7 @@ You can do this using environment variable or a volume plugin.
 
 ### Consuming container resources using environment variables {#nodes-containers-downward-api-container-resources-envars_nodes-containers-downward-api}
 
-When creating pods, you can use the Downward API to inject information about computing resource requests and limits by using environment variables that correspond to the contents of the `resources` field in the `**spec.container**` field.
+When creating pods, you can use the Downward API to inject information about computing resource requests and limits by using environment variables that correspond to the contents of the `resources` field in the `*spec.container*` field.
 
 > [!NOTE]
 > If the resource limits are not included in the container configuration, the downward API defaults to the node’s CPU and memory allocatable values.
@@ -314,7 +314,7 @@ When creating pods, you can use the Downward API to inject information about com
                     resource: requests.memory
       # ...
       ```
-   2. Create the pod from the `**_volume-pod.yaml_**` file by using the following command:
+   2. Create the pod from the `*_volume-pod.yaml_*` file by using the following command:
 
       ```terminal
       $ oc create -f volume-pod.yaml
@@ -398,7 +398,7 @@ When creating pods, you can use the Downward API to inject configuration map val
 
 1. Create a config map with the values to inject:
 
-   1. Create a `**_configmap.yaml_**` file similar to the following:
+   1. Create a `*_configmap.yaml_*` file similar to the following:
 
       ```yaml
       apiVersion: v1
@@ -496,7 +496,7 @@ If the environment variable reference cannot be resolved, the value will be left
         restartPolicy: Never
       # ...
       ```
-   2. Create the pod from the `**_pod.yaml_**` file by using the following command:
+   2. Create the pod from the `*_pod.yaml_*` file by using the following command:
 
       ```terminal
       $ oc create -f pod.yaml
@@ -544,7 +544,7 @@ When creating a pod, you can escape an environment variable reference by using a
         restartPolicy: Never
       # ...
       ```
-   2. Create the pod from the `**_pod.yaml_**` file by using the following command:
+   2. Create the pod from the `*_pod.yaml_*` file by using the following command:
 
       ```terminal
       $ oc create -f pod.yaml

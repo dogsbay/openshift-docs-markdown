@@ -256,14 +256,14 @@ Follow these instructions if your environment has an external load balancer.
    $ export TCP_INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="tcp")].port}')
    ```
 
-> [!NOTE]
-> In some environments, the load balancer may be exposed using a hostname instead of an IP address. For that case, the ingress gateway’s `EXTERNAL-IP` value is not an IP address. Instead, it is a hostname, and the previous command fails to set the `INGRESS_HOST` environment variable.
->
-> In that case, use the following command to correct the `INGRESS_HOST` value:
+   > [!NOTE]
+   > In some environments, the load balancer may be exposed using a hostname instead of an IP address. For that case, the ingress gateway’s `EXTERNAL-IP` value is not an IP address. Instead, it is a hostname, and the previous command fails to set the `INGRESS_HOST` environment variable.
+   >
+   > In that case, use the following command to correct the `INGRESS_HOST` value:
 
-```terminal
-$ export INGRESS_HOST=$(oc -n istio-system get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
-```
+   ```terminal
+   $ export INGRESS_HOST=$(oc -n istio-system get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+   ```
 
 ##### Determining ingress ports without a load balancer {#ossm-routing-config-ig-no-lb_traffic-management}
 
@@ -288,6 +288,7 @@ If your environment does not have an external load balancer, determine the ingre
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring the node port service range](/openshift-docs-markdown/networking/configuring_network_settings/configuring-node-port-service-range#configuring-node-port-service-range)
 
@@ -381,7 +382,7 @@ The following steps show how to create a gateway and configure a `VirtualService
 
       The expected result is `200`.
 
-## Understanding automatic routes {#ossm-auto-route_traffic-management}
+## Understanding automatic routes {#ossm-auto-route_traffic-management ._additional-resources}
 
 > [!IMPORTANT]
 > Istio OpenShift Routing (IOR) is a deprecated feature. Deprecated functionality is still included in OpenShift Container Platform and continues to be supported; however, it will be removed in a future release of this product and is not recommended for new deployments.
@@ -582,7 +583,7 @@ Without virtual services, Red Hat OpenShift Service Mesh distributes traffic us
 </tr>
 <tr>
   <td>spec: http: - match:</td>
-  <td>The <code>http</code> section contains the virtual service's routing rules which describe match conditions and actions for routing HTTP/1.1, HTTP2, and gRPC traffic sent to the destination as specified in the hosts field. A routing rule consists of the destination where you want the traffic to go and any specified match conditions.The first routing rule in the example has a condition that begins with the match field. In this example, this routing applies to all requests from the user <code>jason</code>. Add the <code>headers</code>, <code>end-user</code>, and <code>exact</code> fields to select the appropriate requests.</td>
+  <td>The <code>http</code> section contains the virtual service's routing rules which describe match conditions and actions for routing HTTP/1.1, HTTP2, and gRPC traffic sent to the destination as specified in the hosts field. A routing rule consists of the destination where you want the traffic to go and any specified match conditions. The first routing rule in the example has a condition that begins with the match field. In this example, this routing applies to all requests from the user <code>jason</code>. Add the <code>headers</code>, <code>end-user</code>, and <code>exact</code> fields to select the appropriate requests.</td>
 </tr>
 <tr>
   <td>spec: http: - match: - destination:</td>
@@ -650,7 +651,7 @@ If you want to disable the automatic creation and management of `NetworkPolicy` 
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, click **Ecosystem** -> **Installed Operators**.
+1. In the OpenShift Container Platform web console, click **Ecosystem** → **Installed Operators**.
 2. Select the project where you installed the Service Mesh control plane, for example `istio-system`, from the **Project** menu.
 3. Click the Red Hat OpenShift Service Mesh Operator. In the **Istio Service Mesh Control Plane** column, click the name of your `ServiceMeshControlPlane`, for example `basic-install`.
 4. On the **Create ServiceMeshControlPlane Details** page, click `YAML` to modify your configuration.
@@ -729,7 +730,7 @@ In the following procedure, the virtual service routes all traffic to `v1` of ea
 1. Apply the virtual services.
 
    ```bash
-   $ oc apply -f https://raw.githubusercontent.com/Maistra/istio/maistra-{{ MaistraVersion }}/samples/bookinfo/networking/virtual-service-all-v1.yaml
+   $ oc apply -f https://raw.githubusercontent.com/Maistra/istio/maistra-2.6/samples/bookinfo/networking/virtual-service-all-v1.yaml
    ```
 2. To verify that you applied the virtual services, display the defined routes with the following command:
 
@@ -774,7 +775,7 @@ Service Mesh does not have any special, built-in understanding of user identity.
 1. Run the following command to enable user-based routing in the Bookinfo sample application.
 
    ```bash
-   $ oc apply -f https://raw.githubusercontent.com/Maistra/istio/maistra-{{ MaistraVersion }}/samples/bookinfo/networking/virtual-service-reviews-test-v2.yaml
+   $ oc apply -f https://raw.githubusercontent.com/Maistra/istio/maistra-2.6/samples/bookinfo/networking/virtual-service-reviews-test-v2.yaml
    ```
 2. Run the following command to confirm the rule is created. This command returns all resources of `kind: VirtualService` in YAML format.
 

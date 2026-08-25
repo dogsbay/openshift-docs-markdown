@@ -1,5 +1,5 @@
 ---
-title: "{{ product_registry }} overview"
+title: OpenShift image registry overview
 ---
 
 # OpenShift image registry overview {#registry-overview}
@@ -63,6 +63,7 @@ The registry is typically used as a publication target for images built on the c
 Image data is stored in two locations. The actual image data is stored in a configurable storage location, such as cloud storage or a filesystem volume. The image metadata, which is exposed by the standard cluster APIs and is used to perform access control, is stored as standard API resources, specifically images and image streams.
 
 **Additional resources**
+{._additional-resources}
 
 - [Image Registry Operator in OpenShift Container Platform](/openshift-docs-markdown/registry/configuring-registry-operator#configuring-registry-operator)
 
@@ -200,6 +201,7 @@ Visit the Quay.io site to set up your own hosted Quay registry account. After th
 You can access your Red Hat Quay registry from OpenShift Container Platform, similar to any remote container image registry.
 
 **Additional resources**
+{._additional-resources}
 
 - [Quay.io](https://quay.io)
 - [Red Hat Quay product documentation](https://access.redhat.com/documentation/en-us/red_hat_quay/)
@@ -222,9 +224,10 @@ All image streams point to the new registry, which uses the installation pull se
 
 You must place your credentials in either of the following places:
 
-- `openshift`** namespace**. Your credentials must exist in the `openshift` namespace so that the image streams in the `openshift` namespace can import.
+- **`openshift` namespace**. Your credentials must exist in the `openshift` namespace so that the image streams in the `openshift` namespace can import.
 - **Your host**. Your credentials must exist on your host because Kubernetes uses the credentials from your host when it goes to pull images.
 
 **Additional resources**
+{._additional-resources}
 
 - [Registry service accounts](https://access.redhat.com/terms-based-registry/)

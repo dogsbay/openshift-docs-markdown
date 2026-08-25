@@ -37,7 +37,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{{ name }}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -48,14 +48,14 @@ Type
 
 The following API endpoints are available:
 
-- `/api/v1/namespaces/{{ namespace }}/bindings`
+- `/api/v1/namespaces/{namespace}/bindings`
 
   - `POST`: create a Binding
-- `/api/v1/namespaces/{{ namespace }}/pods/{{ name }}/binding`
+- `/api/v1/namespaces/{namespace}/pods/{name}/binding`
 
   - `POST`: create binding of a Pod
 
-### /api/v1/namespaces/{{ namespace }}/bindings {#_apiv1namespaces_namespace_bindings}
+### /api/v1/namespaces/{namespace}/bindings {#_apiv1namespaces_namespace_bindings}
 
 **Global query parameters**
 
@@ -89,7 +89,7 @@ Description
 | 202 - Accepted | [`Binding`](/openshift-docs-markdown/rest_api/metadata_apis/binding-v1#binding-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{{ namespace }}/pods/{{ name }}/binding {#_apiv1namespaces_namespace_pods_name_binding}
+### /api/v1/namespaces/{namespace}/pods/{name}/binding {#_apiv1namespaces_namespace_pods_name_binding}
 
 **Global path parameters**
 

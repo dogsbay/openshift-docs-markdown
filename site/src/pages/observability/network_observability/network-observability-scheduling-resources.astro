@@ -21,7 +21,8 @@ const headings = [{"depth":1,"slug":"network-observability-scheduling-resources"
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/observability/network_observability/network-observability-scheduling-resources";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -40,7 +41,7 @@ const pageCategory = ["observability","observability/network_observability"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Scheduling resources {#network-observability-scheduling-resources}\n\nTaints and tolerations help you control which nodes host certain pods. Use these tools, along with node selectors, to guide the placement of network observability components.\n\nA node selector specifies a map of key/value pairs that are defined using custom labels on nodes and selectors specified in pods.\n\nFor the pod to be eligible to run on a node, the pod must have the same key/value node selector as the label on the node.\n\n## Network observability deployment in specific nodes {#network-observability-multi-tenancy_network_observability_scheduling}\n\nConfigure the `FlowCollector` resource using scheduling specifications, including `NodeSelector`, `Tolerations`, and `Affinity`, to control the deployment of network observability components on specific nodes.\n\nThe `spec.agent.ebpf.advanced.scheduling`, `spec.processor.advanced.scheduling`, and `spec.consolePlugin.advanced.scheduling` specifications have the following configurable settings:\n\n- `NodeSelector`\n- `Tolerations`\n- `Affinity`\n- `PriorityClassName`\n\n```yaml {title=\"Sample FlowCollector resource for spec.<component>.advanced.scheduling\"}\napiVersion: flows.netobserv.io/v1beta2\nkind: FlowCollector\nmetadata:\n  name: cluster\nspec:\n# ...\nadvanced:\n  scheduling:\n    tolerations:\n    - key: \"<taint key>\"\n      operator: \"Equal\"\n      value: \"<taint value>\"\n      effect: \"<taint effect>\"\n      nodeSelector:\n        <key>: <value>\n      affinity:\n        nodeAffinity:\n        requiredDuringSchedulingIgnoredDuringExecution:\n          nodeSelectorTerms:\n          - matchExpressions:\n            - key: name\n              operator: In\n              values:\n              - app-worker-node\n      priorityClassName: \"\"\"\n# ...\n```\n\n**Additional resources**\n\n- [Understanding taints and tolerations](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations-about_nodes-scheduler-taints-tolerations)\n- [Assign Pods to Nodes (Kubernetes documentation)](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)\n- [Pod Priority and Preemption (Kubernetes documentation)](https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#priorityclass)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/observability/network_observability/network-observability-scheduling-resources.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Scheduling resources {#network-observability-scheduling-resources}\n\nTaints and tolerations help you control which nodes host certain pods. Use these tools, along with node selectors, to guide the placement of network observability components.\n\nA node selector specifies a map of key/value pairs that are defined using custom labels on nodes and selectors specified in pods.\n\nFor the pod to be eligible to run on a node, the pod must have the same key/value node selector as the label on the node.\n\n## Network observability deployment in specific nodes {#network-observability-multi-tenancy_network_observability_scheduling}\n\nConfigure the `FlowCollector` resource using scheduling specifications, including `NodeSelector`, `Tolerations`, and `Affinity`, to control the deployment of network observability components on specific nodes.\n\nThe `spec.agent.ebpf.advanced.scheduling`, `spec.processor.advanced.scheduling`, and `spec.consolePlugin.advanced.scheduling` specifications have the following configurable settings:\n\n- `NodeSelector`\n- `Tolerations`\n- `Affinity`\n- `PriorityClassName`\n\n```yaml {title=\"Sample FlowCollector resource for spec.<component>.advanced.scheduling\"}\napiVersion: flows.netobserv.io/v1beta2\nkind: FlowCollector\nmetadata:\n  name: cluster\nspec:\n# ...\nadvanced:\n  scheduling:\n    tolerations:\n    - key: \"<taint key>\"\n      operator: \"Equal\"\n      value: \"<taint value>\"\n      effect: \"<taint effect>\"\n      nodeSelector:\n        <key>: <value>\n      affinity:\n        nodeAffinity:\n        requiredDuringSchedulingIgnoredDuringExecution:\n          nodeSelectorTerms:\n          - matchExpressions:\n            - key: name\n              operator: In\n              values:\n              - app-worker-node\n      priorityClassName: \"\"\"\n# ...\n```\n\n**Additional resources**\n{._additional-resources}\n\n- [Understanding taints and tolerations](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations-about_nodes-scheduler-taints-tolerations)\n- [Assign Pods to Nodes (Kubernetes documentation)](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)\n- [Pod Priority and Preemption (Kubernetes documentation)](https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#priorityclass)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/observability/network_observability/network-observability-scheduling-resources.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="network-observability-scheduling-resources" class="group scroll-mt-20">Scheduling resources<a href="#network-observability-scheduling-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Taints and tolerations help you control which nodes host certain pods. Use these tools, along with node selectors, to guide the placement of network observability components.</p>
+      <p class="_abstract">Taints and tolerations help you control which nodes host certain pods. Use these tools, along with node selectors, to guide the placement of network observability components.</p>
       <p>A node selector specifies a map of key/value pairs that are defined using custom labels on nodes and selectors specified in pods.</p>
       <p>For the pod to be eligible to run on a node, the pod must have the same key/value node selector as the label on the node.</p>
       <h2 id="network-observability-multi-tenancy_network_observability_scheduling" class="group scroll-mt-20">Network observability deployment in specific nodes<a href="#network-observability-multi-tenancy_network_observability_scheduling" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
@@ -104,13 +106,15 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li><code>Affinity</code></li>
       <li><code>PriorityClassName</code></li>
       </ul>
-      <CodeBlock code={"apiVersion: flows.netobserv.io/v1beta2\nkind: FlowCollector\nmetadata:\n  name: cluster\nspec:\n# ...\nadvanced:\n  scheduling:\n    tolerations:\n    - key: \"<taint key>\"\n      operator: \"Equal\"\n      value: \"<taint value>\"\n      effect: \"<taint effect>\"\n      nodeSelector:\n        <key>: <value>\n      affinity:\n        nodeAffinity:\n        requiredDuringSchedulingIgnoredDuringExecution:\n          nodeSelectorTerms:\n          - matchExpressions:\n            - key: name\n              operator: In\n              values:\n              - app-worker-node\n      priorityClassName: \"\"\"\n# ..."} lang="yaml" title="Sample FlowCollector resource for spec.&lt;component>.advanced.scheduling" />
-      <p><strong>Additional resources</strong></p>
+      <CodeBlock code={"apiVersion: flows.netobserv.io/v1beta2\nkind: FlowCollector\nmetadata:\n  name: cluster\nspec:\n# ...\nadvanced:\n  scheduling:\n    tolerations:\n    - key: \"<taint key>\"\n      operator: \"Equal\"\n      value: \"<taint value>\"\n      effect: \"<taint effect>\"\n      nodeSelector:\n        <key>: <value>\n      affinity:\n        nodeAffinity:\n        requiredDuringSchedulingIgnoredDuringExecution:\n          nodeSelectorTerms:\n          - matchExpressions:\n            - key: name\n              operator: In\n              values:\n              - app-worker-node\n      priorityClassName: \"\"\"\n# ..."} lang="yaml" title={"Sample FlowCollector resource for spec.<component>.advanced.scheduling"} />
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul>
       <li><a href="/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations-about_nodes-scheduler-taints-tolerations">Understanding taints and tolerations</a></li>
       <li><a href="https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/">Assign Pods to Nodes (Kubernetes documentation)</a></li>
       <li><a href="https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#priorityclass">Pod Priority and Preemption (Kubernetes documentation)</a></li>
       </ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

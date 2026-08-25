@@ -15,7 +15,8 @@ All Red Hat supported images are described in the Red Hat Ecosystem Catalog. Fo
 > [!IMPORTANT]
 > The newer versions of container images are not compatible with earlier versions of OpenShift Container Platform. Verify and use the correct version of container images, based on your version of OpenShift Container Platform.
 
-## Additional resources {#additional-resources_using-images-overview}
+**Additional resources**
+{._additional-resources}
 
 - [Red Hat container registry](https://registry.redhat.io)
 - [Container images section of the Red Hat Ecosystem Catalog](https://catalog.redhat.com/software/containers/explore)

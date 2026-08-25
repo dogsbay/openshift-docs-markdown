@@ -20,7 +20,8 @@ const headings = [{"depth":1,"slug":"adding-user-preferences","text":"Adding use
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/web_console/adding-user-preferences";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -39,7 +40,7 @@ const pageCategory = ["web_console"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Adding user preferences {#adding-user-preferences}\n\nYou can change the default preferences for your profile to meet your requirements. You can set your default project, topology view (graph or list), editing medium (form or YAML), language preferences, and resource type.\n\nThe changes made to the user preferences are automatically saved.\n\n## Setting user preferences {#odc-setting-user-preferences_adding-user-preferences}\n\nYou can set the default user preferences for your cluster.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console using your login credentials.\n2. Use the masthead to access the user preferences under the user profile.\n3. In the **General** section:\n\n   1. In the ***Theme*** field, you can set the theme that you want to work in. The console defaults to the selected theme each time you log in.\n   2. In the **Project** field, select a project you want to work in. The console defaults to the project every time you log in.\n   3. In the **Topology** field, you can set the topology view to default to the graph or list view. If not selected, the console defaults to the last view you used.\n   4. In the **Create/Edit resource method** field, you can set a preference for creating or editing a resource. If both the form and YAML options are available, the console defaults to your selection.\n4. In the **Language** section, select **Default browser language** to use the default browser language settings. Otherwise, select the language that you want to use for the console.\n5. In the **Notifications** section, you can toggle display notifications created by users for specific projects on the **Overview** page or notification drawer.\n6. In the **Applications** section:\n\n   1. You can view the default **Resource type**. For example, if the OpenShift Serverless Operator is installed, the default resource type is **Serverless Deployment**. Otherwise, the default resource type is **Deployment**.\n   2. You can select another resource type to be the default resource type from the **Resource Type** field.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/web_console/adding-user-preferences.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Adding user preferences {#adding-user-preferences}\n\nYou can change the default preferences for your profile to meet your requirements. You can set your default project, topology view (graph or list), editing medium (form or YAML), language preferences, and resource type.\n\nThe changes made to the user preferences are automatically saved.\n\n## Setting user preferences {#odc-setting-user-preferences_adding-user-preferences}\n\nYou can set the default user preferences for your cluster.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console using your login credentials.\n2. Use the masthead to access the user preferences under the user profile.\n3. In the **General** section:\n\n   1. In the **Theme** field, you can set the theme that you want to work in. The console defaults to the selected theme each time you log in.\n   2. In the **Project** field, select a project you want to work in. The console defaults to the project every time you log in.\n   3. In the **Topology** field, you can set the topology view to default to the graph or list view. If not selected, the console defaults to the last view you used.\n   4. In the **Create/Edit resource method** field, you can set a preference for creating or editing a resource. If both the form and YAML options are available, the console defaults to your selection.\n4. In the **Language** section, select **Default browser language** to use the default browser language settings. Otherwise, select the language that you want to use for the console.\n5. In the **Notifications** section, you can toggle display notifications created by users for specific projects on the **Overview** page or notification drawer.\n6. In the **Applications** section:\n\n   1. You can view the default **Resource type**. For example, if the OpenShift Serverless Operator is installed, the default resource type is **Serverless Deployment**. Otherwise, the default resource type is **Deployment**.\n   2. You can select another resource type to be the default resource type from the **Resource Type** field.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/web_console/adding-user-preferences.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,12 +79,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -91,7 +93,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="adding-user-preferences" class="group scroll-mt-20">Adding user preferences<a href="#adding-user-preferences" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can change the default preferences for your profile to meet your requirements. You can set your default project, topology view (graph or list), editing medium (form or YAML), language preferences, and resource type.</p>
+      <p class="_abstract">You can change the default preferences for your profile to meet your requirements. You can set your default project, topology view (graph or list), editing medium (form or YAML), language preferences, and resource type.</p>
       <p>The changes made to the user preferences are automatically saved.</p>
       <h2 id="odc-setting-user-preferences_adding-user-preferences" class="group scroll-mt-20">Setting user preferences<a href="#odc-setting-user-preferences_adding-user-preferences" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">You can set the default user preferences for your cluster.</p>
@@ -102,7 +104,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>
       In the <strong>General</strong> section:
       <ol>
-      <li>In the <em></em><em><strong>Theme</strong></em><em></em> field, you can set the theme that you want to work in. The console defaults to the selected theme each time you log in.</li>
+      <li>In the <strong>Theme</strong> field, you can set the theme that you want to work in. The console defaults to the selected theme each time you log in.</li>
       <li>In the <strong>Project</strong> field, select a project you want to work in. The console defaults to the project every time you log in.</li>
       <li>In the <strong>Topology</strong> field, you can set the topology view to default to the graph or list view. If not selected, the console defaults to the last view you used.</li>
       <li>In the <strong>Create/Edit resource method</strong> field, you can set a preference for creating or editing a resource. If both the form and YAML options are available, the console defaults to your selection.</li>

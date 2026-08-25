@@ -1,5 +1,5 @@
 ---
-title: HostFirmwareSettings []
+title: HostFirmwareSettings [metal3.io/v1alpha1]
 ---
 
 # HostFirmwareSettings \[metal3.io/v1alpha1\] {#hostfirmwaresettings-metal3-io-v1alpha1}
@@ -89,7 +89,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
 | `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
@@ -122,18 +122,18 @@ The following API endpoints are available:
 - `/apis/metal3.io/v1alpha1/hostfirmwaresettings`
 
   - `GET`: list objects of kind HostFirmwareSettings
-- `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostfirmwaresettings`
+- `/apis/metal3.io/v1alpha1/namespaces/{namespace}/hostfirmwaresettings`
 
   - `DELETE`: delete collection of HostFirmwareSettings
   - `GET`: list objects of kind HostFirmwareSettings
   - `POST`: create HostFirmwareSettings
-- `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostfirmwaresettings/{{ name }}`
+- `/apis/metal3.io/v1alpha1/namespaces/{namespace}/hostfirmwaresettings/{name}`
 
   - `DELETE`: delete HostFirmwareSettings
   - `GET`: read the specified HostFirmwareSettings
   - `PATCH`: partially update the specified HostFirmwareSettings
   - `PUT`: replace the specified HostFirmwareSettings
-- `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostfirmwaresettings/{{ name }}/status`
+- `/apis/metal3.io/v1alpha1/namespaces/{namespace}/hostfirmwaresettings/{name}/status`
 
   - `GET`: read status of the specified HostFirmwareSettings
   - `PATCH`: partially update status of the specified HostFirmwareSettings
@@ -158,7 +158,7 @@ Description
 | 200 - OK | [`HostFirmwareSettingsList`](/openshift-docs-markdown/rest_api/objects/index#io-metal3-v1alpha1-HostFirmwareSettingsList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostfirmwaresettings {#_apismetal3iov1alpha1namespaces_namespace_hostfirmwaresettings}
+### /apis/metal3.io/v1alpha1/namespaces/{namespace}/hostfirmwaresettings {#_apismetal3iov1alpha1namespaces_namespace_hostfirmwaresettings}
 
 HTTP method
 :   ```
@@ -226,7 +226,7 @@ Description
 | 202 - Accepted | [`HostFirmwareSettings`](/openshift-docs-markdown/rest_api/provisioning_apis/hostfirmwaresettings-metal3-io-v1alpha1#hostfirmwaresettings-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostfirmwaresettings/{{ name }} {#_apismetal3iov1alpha1namespaces_namespace_hostfirmwaresettings_name}
+### /apis/metal3.io/v1alpha1/namespaces/{namespace}/hostfirmwaresettings/{name} {#_apismetal3iov1alpha1namespaces_namespace_hostfirmwaresettings_name}
 
 **Global path parameters**
 
@@ -330,7 +330,7 @@ Description
 | 201 - Created | [`HostFirmwareSettings`](/openshift-docs-markdown/rest_api/provisioning_apis/hostfirmwaresettings-metal3-io-v1alpha1#hostfirmwaresettings-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostfirmwaresettings/{{ name }}/status {#_apismetal3iov1alpha1namespaces_namespace_hostfirmwaresettings_name_status}
+### /apis/metal3.io/v1alpha1/namespaces/{namespace}/hostfirmwaresettings/{name}/status {#_apismetal3iov1alpha1namespaces_namespace_hostfirmwaresettings_name_status}
 
 **Global path parameters**
 

@@ -1,5 +1,5 @@
 ---
-title: PinnedImageSet []
+title: PinnedImageSet [machineconfiguration.openshift.io/v1]
 ---
 
 # PinnedImageSet \[machineconfiguration.openshift.io/v1\] {#pinnedimageset-machineconfiguration-openshift-io-v1}
@@ -41,7 +41,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `pinnedImages` | `array` | pinnedImages is a list of OCI Image referenced by digest that should be pinned and pre-loaded by the nodes of a MachineConfigPool. Translates into a new file inside the /etc/crio/crio.conf.d directory with content similar to this:      pinned_images = \[              "quay.io/openshift-release-dev/ocp-release@sha256:...",              "quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:...",              "quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:...",              ...      \] Image references must be by digest. A maximum of 500 images may be specified. |
+| `pinnedImages` | `array` | pinnedImages is a list of OCI Image referenced by digest that should be pinned and pre-loaded by the nodes of a MachineConfigPool. Translates into a new file inside the /etc/crio/crio.conf.d directory with content similar to this:<br> pinned_images = \[ "quay.io/openshift-release-dev/ocp-release@sha256:...", "quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:...", "quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:...", ... \]<br>Image references must be by digest. A maximum of 500 images may be specified. |
 | `pinnedImages[]` | `object` | PinnedImageRef represents a reference to an OCI image |
 
 ### .spec.pinnedImages {#_specpinnedimages}
@@ -91,7 +91,7 @@ The following API endpoints are available:
   - `DELETE`: delete collection of PinnedImageSet
   - `GET`: list objects of kind PinnedImageSet
   - `POST`: create a PinnedImageSet
-- `/apis/machineconfiguration.openshift.io/v1/pinnedimagesets/{{ name }}`
+- `/apis/machineconfiguration.openshift.io/v1/pinnedimagesets/{name}`
 
   - `DELETE`: delete a PinnedImageSet
   - `GET`: read the specified PinnedImageSet
@@ -166,7 +166,7 @@ Description
 | 202 - Accepted | [`PinnedImageSet`](/openshift-docs-markdown/rest_api/machine_apis/pinnedimageset-machineconfiguration-openshift-io-v1#pinnedimageset-machineconfiguration-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machineconfiguration.openshift.io/v1/pinnedimagesets/{{ name }} {#_apismachineconfigurationopenshiftiov1pinnedimagesets_name}
+### /apis/machineconfiguration.openshift.io/v1/pinnedimagesets/{name} {#_apismachineconfigurationopenshiftiov1pinnedimagesets_name}
 
 **Global path parameters**
 

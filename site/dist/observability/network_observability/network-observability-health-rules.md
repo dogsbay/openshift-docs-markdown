@@ -415,7 +415,8 @@ If a rule template is included in the `disableAlerts` list, it is not created, e
 
 For a list of alert template names, see "List of default rules".
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [List of default rules](/openshift-docs-markdown/observability/network_observability/network-observability-health-rules#network-observability-default-rules_network-observability-health-rules)
 - [Viewing network observability metrics dashboards](/openshift-docs-markdown/observability/network_observability/metrics-alerts-dashboards#network-observability-viewing-dashboards_metrics-dashboards-alerts)

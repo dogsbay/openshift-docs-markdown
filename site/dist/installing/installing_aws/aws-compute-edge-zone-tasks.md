@@ -61,6 +61,7 @@ Extending nodes to Local Zones or Wavelength Zones locations comprises the follo
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [AWS Local Zones features (AWS documentation)](https://aws.amazon.com/about-aws/global-infrastructure/localzones/features/)
 - [AWS Wavelength features (AWS documentation)](https://aws.amazon.com/wavelength/features/)
@@ -93,6 +94,7 @@ The edge compute pool creates new labels that developers can use to deploy appli
 By default, the machine sets for the edge compute pool define the taint of `NoSchedule` to prevent other workloads from spreading on Local Zones or Wavelength Zones instances. Users can only run user workloads if they define tolerations in the pod specification.
 
 **Additional resources**
+{._additional-resources}
 
 - [How AWS Local Zones work (AWS documentation)](https://docs.aws.amazon.com/local-zones/latest/ug/how-local-zones-work.html)
 - [How AWS Wavelength works (AWS documentation)](https://docs.aws.amazon.com/wavelength/latest/developerguide/how-wavelengths-work.html)
@@ -135,7 +137,7 @@ If your cluster requires different MTU values for different nodes, you must subt
 
 The following table summarizes the migration process by segmenting between the user-initiated steps in the process and the actions that the migration performs in response.
 
-***Live migration of the cluster MTU***
+**Live migration of the cluster MTU**
 
 <table>
 <thead>
@@ -482,7 +484,7 @@ Parameters:
   VpcId:
     Description: VPC ID to associate the Carrier Gateway.
     Type: String
-    AllowedPattern: ^(?:(?:vpc)(?:-[a-zA-Z0-9]+)?\b|(?:[0-9]{1,3}\.){{ 3 }}[0-9]{1,3})$
+    AllowedPattern: ^(?:(?:vpc)(?:-[a-zA-Z0-9]+)?\b|(?:[0-9]{1,3}\.){3}[0-9]{1,3})$
     ConstraintDescription: VPC ID must be with valid name, starting with vpc-.*.
   ClusterName:
     Description: Cluster Name or Prefix name to prepend the tag Name for each subnet.
@@ -575,46 +577,41 @@ You can use the provided CloudFormation template and create a CloudFormation sta
        ParameterKey=PublicRouteTableId,ParameterValue="${ROUTE_TABLE_PUB}" \
        ParameterKey=PublicSubnetCidr,ParameterValue="${SUBNET_CIDR_PUB}" \
        ParameterKey=PrivateRouteTableId,ParameterValue="${ROUTE_TABLE_PVT}" \
+       ParameterKey=PrivateSubnetCidr,ParameterValue="${SUBNET_CIDR_PVT}"
    ```
 
-{% if not outposts %} ParameterKey=PrivateSubnetCidr,ParameterValue="${SUBNET_CIDR_PVT}" {% endif %} {% if outposts %} ParameterKey=PrivateSubnetCidr,ParameterValue="${SUBNET_CIDR_PVT}"
-ParameterKey=PrivateSubnetLabel,ParameterValue="private-outpost"
-ParameterKey=PublicSubnetLabel,ParameterValue="public-outpost"
-ParameterKey=OutpostArn,ParameterValue="${OUTPOST_ARN}" {%- endif %} \`\`\`
+   where
 
-````
-where
+   `<stack_name>`
+   :   Specifies the name for the CloudFormation stack, such as `cluster-wl-<local_zone_shortname>` for Local Zones and `cluster-wl-<wavelength_zone_shortname>` for Wavelength Zones. You need the name of this stack if you remove the cluster.
 
-`<stack_name>`
-:   Specifies the name for the CloudFormation stack, such as `cluster-wl-<local_zone_shortname>` for Local Zones and `cluster-wl-<wavelength_zone_shortname>` for Wavelength Zones. You need the name of this stack if you remove the cluster.
+   `<template>`
+   :   Specifies the relative path and the name of the CloudFormation template YAML file that you saved.
 
-`<template>`
-:   Specifies the relative path and the name of the CloudFormation template YAML file that you saved.
+   `${VPC_ID}`
+   :   Specifies the VPC ID, which is the value `VpcID` in the output of the CloudFormation template for the VPC.
 
-`${{ VPC_ID }}`
-:   Specifies the VPC ID, which is the value `VpcID` in the output of the CloudFormation template for the VPC.
+   `${CLUSTER_NAME}`
+   :   Specifies the value of **ClusterName** to be used as a prefix of the new AWS resource names.
 
-`${{ CLUSTER_NAME }}`
-:   Specifies the value of **ClusterName** to be used as a prefix of the new AWS resource names.
+   `${ZONE_NAME}`
+   :   Specifies the value of Local Zones or Wavelength Zones name to create the subnets.
 
-`${{ ZONE_NAME }}`
-:   Specifies the value of Local Zones or Wavelength Zones name to create the subnets.
+   `${ROUTE_TABLE_PUB}`
+   :   Specifies the Public Route Table Id extracted from the CloudFormation template. For Local Zones, the public route table is extracted from the VPC CloudFormation Stack. For Wavelength Zones, the value must be extracted from the output of the VPC’s carrier gateway CloudFormation stack.
 
-`${{ ROUTE_TABLE_PUB }}`
-:   Specifies the Public Route Table Id extracted from the CloudFormation template. For Local Zones, the public route table is extracted from the VPC CloudFormation Stack. For Wavelength Zones, the value must be extracted from the output of the VPC’s carrier gateway CloudFormation stack.
+   `${SUBNET_CIDR_PUB}`
+   :   Specifies a valid CIDR block that is used to create the public subnet. This block must be part of the VPC CIDR block `VpcCidr`.
 
-`${{ SUBNET_CIDR_PUB }}`
-:   Specifies a valid CIDR block that is used to create the public subnet. This block must be part of the VPC CIDR block `VpcCidr`.
+   `${ROUTE_TABLE_PVT}`
+   :   Specifies the **PrivateRouteTableId** extracted from the output of the VPC’s CloudFormation stack.
 
-`${{ ROUTE_TABLE_PVT }}`
-:   Specifies the **PrivateRouteTableId** extracted from the output of the VPC’s CloudFormation stack.
+   `${SUBNET_CIDR_PVT}`
+   :   Specifies a valid CIDR block that is used to create the private subnet. This block must be part of the VPC CIDR block `VpcCidr`.
 
-`${{ SUBNET_CIDR_PVT }}`
-:   Specifies a valid CIDR block that is used to create the private subnet. This block must be part of the VPC CIDR block `VpcCidr`.
-```text title="Example output"
-arn:aws:cloudformation:us-east-1:123456789012:stack/<stack_name>/dbedae40-820e-11eb-2fd3-12a48460849f
-```
-````
+   ```text {title="Example output"}
+   arn:aws:cloudformation:us-east-1:123456789012:stack/<stack_name>/dbedae40-820e-11eb-2fd3-12a48460849f
+   ```
 
 **Verification**
 
@@ -646,7 +643,7 @@ Parameters:
   VpcId:
     Description: VPC ID that comprises all the target subnets.
     Type: String
-    AllowedPattern: ^(?:(?:vpc)(?:-[a-zA-Z0-9]+)?\b|(?:[0-9]{1,3}\.){{ 3 }}[0-9]{1,3})$
+    AllowedPattern: ^(?:(?:vpc)(?:-[a-zA-Z0-9]+)?\b|(?:[0-9]{1,3}\.){3}[0-9]{1,3})$
     ConstraintDescription: VPC ID must be with valid name, starting with vpc-.*.
   ClusterName:
     Description: Cluster name or prefix name to prepend the Name tag for each subnet.
@@ -664,7 +661,7 @@ Parameters:
     AllowedPattern: ".+"
     ConstraintDescription: PublicRouteTableId parameter must be specified.
   PublicSubnetCidr:
-    AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{{ 2 }}|2[0-4][0-9]|25[0-5])\.){{ 3 }}([0-9]|[1-9][0-9]|1[0-9]{{ 2 }}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-4]))$
+    AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-4]))$
     ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-24.
     Default: 10.0.128.0/20
     Description: CIDR block for public subnet.
@@ -675,28 +672,11 @@ Parameters:
     AllowedPattern: ".+"
     ConstraintDescription: PrivateRouteTableId parameter must be specified.
   PrivateSubnetCidr:
-    AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{{ 2 }}|2[0-4][0-9]|25[0-5])\.){{ 3 }}([0-9]|[1-9][0-9]|1[0-9]{{ 2 }}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-4]))$
+    AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-4]))$
     ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-24.
     Default: 10.0.128.0/20
     Description: CIDR block for private subnet.
     Type: String
-{%- if outposts %}
-  PrivateSubnetLabel:
-    Default: "private"
-    Description: Subnet label to be added when building the subnet name.
-    Type: String
-  PublicSubnetLabel:
-    Default: "public"
-    Description: Subnet label to be added when building the subnet name.
-    Type: String
-  OutpostArn:
-    Default: ""
-    Description: OutpostArn when creating subnets on AWS Outpost.
-    Type: String
-
-Conditions:
-  OutpostEnabled: !Not [!Equals [!Ref "OutpostArn", ""]]
-{% endif %}
 
 Resources:
   PublicSubnet:
@@ -705,19 +685,9 @@ Resources:
       VpcId: !Ref VpcId
       CidrBlock: !Ref PublicSubnetCidr
       AvailabilityZone: !Ref ZoneName
-{%- if outposts %}
-      OutpostArn: !If [ OutpostEnabled, !Ref OutpostArn, !Ref "AWS::NoValue"]
-{%- endif %}
       Tags:
       - Key: Name
-        {%- if not outposts %}
         Value: !Join ['-', [!Ref ClusterName, "public", !Ref ZoneName]]
-{% endif %}
-{% if outposts %}
-        Value: !Join ['-', [ !Ref ClusterName, !Ref PublicSubnetLabel, !Ref ZoneName]]
-      - Key: kubernetes.io/cluster/unmanaged
-        Value: true
-{% endif %}
 
   PublicSubnetRouteTableAssociation:
     Type: "AWS::EC2::SubnetRouteTableAssociation"
@@ -731,19 +701,9 @@ Resources:
       VpcId: !Ref VpcId
       CidrBlock: !Ref PrivateSubnetCidr
       AvailabilityZone: !Ref ZoneName
-{%- if outposts %}
-      OutpostArn: !If [ OutpostEnabled, !Ref OutpostArn, !Ref "AWS::NoValue"]
-{%- endif %}
       Tags:
       - Key: Name
-        {%- if not outposts %}
         Value: !Join ['-', [!Ref ClusterName, "private", !Ref ZoneName]]
-{% endif %}
-{% if outposts %}
-        Value: !Join ['-', [!Ref ClusterName, !Ref PrivateSubnetLabel, !Ref ZoneName]]
-      - Key: kubernetes.io/cluster/unmanaged
-        Value: true
-{% endif %}
 
   PrivateSubnetRouteTableAssociation:
     Type: "AWS::EC2::SubnetRouteTableAssociation"
@@ -828,22 +788,14 @@ The following procedure details how you can create a machine set configuration t
 
 This sample YAML defines a compute machine set that runs in the `us-east-1-nyc-1a` AWS zone and creates nodes that are labeled with `node-role.kubernetes.io/edge: ""`.
 
-The sample YAML specifies a taint to prevent user workloads from being scheduled on
-
-`edge`
-
-nodes.
+The sample YAML specifies a taint to prevent user workloads from being scheduled on `edge` nodes.
 
 After adding the `NoSchedule` taint on the infrastructure node, existing DNS pods running on that node are marked as `misscheduled`. You must either delete or [add toleration on `misscheduled` DNS pods](https://access.redhat.com/solutions/6592171).
 
 > [!NOTE]
 > If you want to reference the sample YAML file in the context of Wavelength Zones, ensure that you replace the AWS Region and zone information with supported Wavelength Zone values.
 
-In this sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and
-
-`<edge>`
-
-is the node label to add.
+In this sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and `<edge>` is the node label to add.
 
 ```yaml
 apiVersion: machine.openshift.io/v1beta1
@@ -851,64 +803,28 @@ kind: MachineSet
 metadata:
   labels:
     machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not (infra or edge) %}
-  name: <infrastructure_id>-<role>-<zone>
-{% endif %}
-{% if infra %}
-  name: <infrastructure_id>-infra-<zone>
-{% endif %}
-{% if edge %}
   name: <infrastructure_id>-edge-<zone>
-{%- endif %}
   namespace: openshift-machine-api
 spec:
   replicas: 1
   selector:
     matchLabels:
       machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if edge %}
       machine.openshift.io/cluster-api-machineset: <infrastructure_id>-edge-<zone>
-{% endif %}
-{% if not (infra or edge) %}
-      machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<zone>
-{% endif %}
-{% if infra %}
-      machine.openshift.io/cluster-api-machineset: <infrastructure_id>-infra-<zone>
-{%- endif %}
   template:
     metadata:
       labels:
         machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not (infra or edge) %}
-        machine.openshift.io/cluster-api-machine-role: <role>
-        machine.openshift.io/cluster-api-machine-type: <role>
-        machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<zone>
-{% endif %}
-{% if infra %}
-        machine.openshift.io/cluster-api-machine-role: infra
-        machine.openshift.io/cluster-api-machine-type: infra
-        machine.openshift.io/cluster-api-machineset: <infrastructure_id>-infra-<zone>
-{% endif %}
-{% if edge %}
         machine.openshift.io/cluster-api-machine-role: edge
         machine.openshift.io/cluster-api-machine-type: edge
         machine.openshift.io/cluster-api-machineset: <infrastructure_id>-edge-<zone>
-{%- endif %}
     spec:
       metadata:
         labels:
-{%- if not (infra or edge) %}
-          node-role.kubernetes.io/<role>: ""
-{% endif %}
-{% if infra %}
-          node-role.kubernetes.io/infra: ""
-{% endif %}
-{% if edge %}
           machine.openshift.io/parent-zone-name: <value_of_ParentZoneName>
           machine.openshift.io/zone-group: <value_of_GroupName>
           machine.openshift.io/zone-type: <value_of_ZoneType>
           node-role.kubernetes.io/edge: ""
-{%- endif %}
       providerSpec:
         value:
           ami:
@@ -939,16 +855,8 @@ spec:
                   values:
                     - <infrastructure_id>-lb
           subnet:
-{%- if not edge %}
-            filters:
-              - name: tag:Name
-                values:
-                  - <infrastructure_id>-subnet-private-<zone>
-                    {% endif %}
-                    {% if edge %}
               id: <value_of_PublicSubnetIds>
           publicIp: true
-{%- endif %}
           tags:
             - name: kubernetes.io/cluster/<infrastructure_id>
               value: owned
@@ -956,16 +864,9 @@ spec:
               value: <custom_tag_value>
           userDataSecret:
             name: worker-user-data
-{%- if infra or edge %}
       taints:
-{%- if infra %}
-        - key: node-role.kubernetes.io/infra
-          {% endif %}
-          {% if edge %}
         - key: node-role.kubernetes.io/edge
-          {%- endif %}
           effect: NoSchedule
-{%- endif %}
 ```
 
 where:
@@ -1107,14 +1008,18 @@ To dynamically manage machine compute resources, you can create your own compute
 
   ```terminal
 
+  NAME                                       DESIRED   CURRENT   READY   AVAILABLE   AGE
+  agl030519-vplxk-edge-us-east-1-nyc-1a      1         1         1       1           11m
+  agl030519-vplxk-worker-us-east-1a          1         1         1       1           55m
+  agl030519-vplxk-worker-us-east-1b          1         1         1       1           55m
+  agl030519-vplxk-worker-us-east-1c          1         1         1       1           55m
+  agl030519-vplxk-worker-us-east-1d          0         0                             55m
+  agl030519-vplxk-worker-us-east-1e          0         0                             55m
+  agl030519-vplxk-worker-us-east-1f          0         0                             55m
+
   ```
 
-{%- if win or post_aws_zones %} NAME                                       DESIRED   CURRENT   READY   AVAILABLE   AGE {%- if win %} agl030519-vplxk-windows-worker-us-east-1a  1         1         1       1           11m {% endif %} {% if post_aws_zones %} agl030519-vplxk-edge-us-east-1-nyc-1a      1         1         1       1           11m {%- endif %} agl030519-vplxk-worker-us-east-1a          1         1         1       1           55m agl030519-vplxk-worker-us-east-1b          1         1         1       1           55m agl030519-vplxk-worker-us-east-1c          1         1         1       1           55m agl030519-vplxk-worker-us-east-1d          0         0                             55m agl030519-vplxk-worker-us-east-1e          0         0                             55m agl030519-vplxk-worker-us-east-1f          0         0                             55m {% endif %} {% if not (win or post_aws_zones) %} NAME                                DESIRED   CURRENT   READY   AVAILABLE   AGE agl030519-vplxk-infra-us-east-1a    1         1         1       1           11m agl030519-vplxk-worker-us-east-1a   1         1         1       1           55m agl030519-vplxk-worker-us-east-1b   1         1         1       1           55m agl030519-vplxk-worker-us-east-1c   1         1         1       1           55m agl030519-vplxk-worker-us-east-1d   0         0                             55m agl030519-vplxk-worker-us-east-1e   0         0                             55m agl030519-vplxk-worker-us-east-1f   0         0                             55m {%- endif %} \`\`\`
-
-```
-When the new compute machine set is available, the `DESIRED` and `CURRENT` values match. If the compute machine set is not available, wait a few minutes and run the command again.
-```
-
+  When the new compute machine set is available, the `DESIRED` and `CURRENT` values match. If the compute machine set is not available, wait a few minutes and run the command again.
 - Optional: To check nodes that were created by the edge machine, run the following command:
 
   ```terminal
@@ -1127,6 +1032,7 @@ When the new compute machine set is available, the `DESIRED` and `CURRENT` value
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing a cluster on AWS with compute nodes on AWS Local Zones](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-localzone#installing-aws-localzone)
 - [Installing a cluster on AWS with compute nodes on AWS Wavelength Zones](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-wavelength-zone#installing-aws-wavelength-zone)

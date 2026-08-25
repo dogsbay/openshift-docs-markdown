@@ -1,5 +1,5 @@
 ---
-title: "{{ hcp_capital }} overview"
+title: Hosted control planes overview
 ---
 
 # Hosted control planes overview {#hcp-overview}
@@ -48,6 +48,7 @@ With hosted control planes, you can pave the way for a true hybrid-cloud approac
 - From an operational perspective, multicluster management is more centralized, which results in fewer external factors that affect the cluster status and consistency. Site reliability engineers have a central place to debug issues and navigate to the cluster data plane, which can lead to shorter Time to Resolution (TTR) and greater productivity.
 
 **Additional resources**
+{._additional-resources}
 
 - [Cluster lifecycle with multicluster engine for Kubernetes Operator overview (Red Hat Advanced Cluster Management official documentation)](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.16/html/clusters/cluster_mce_overview#cluster_mce_overview)
 
@@ -266,6 +267,7 @@ See the following tables to understand the differences between OpenShift Contain
 </table>
 
 **Additional resources**
+{._additional-resources}
 
 - [Enabling etcd encryption](/openshift-docs-markdown/etcd/etcd-encrypt#etcd-encrypt)
 
@@ -300,6 +302,7 @@ You can bring hosted clusters to a Red Hat Advanced Cluster Management hub clus
 For more information, see "Discovering multicluster engine Operator hosted clusters in Red Hat Advanced Cluster Management".
 
 **Additional resources**
+{._additional-resources}
 
 - [Discovering multicluster engine Operator hosted clusters in Red Hat Advanced Cluster Management (Red Hat Advanced Cluster Management official documentation)](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.11/html/clusters/cluster_mce_overview#discover-hosted-acm)
 
@@ -368,6 +371,7 @@ The Control Plane Operator is released as part of each OpenShift Container Platf
 - multi-arch
 
 **Additional resources**
+{._additional-resources}
 
 - [Kubernetes API versioning](https://kubernetes.io/docs/reference/using-api/#api-versioning)
 - [AMD64 release images](https://amd64.ocp.releases.ci.openshift.org/)

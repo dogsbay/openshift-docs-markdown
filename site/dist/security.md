@@ -66,7 +66,8 @@ Administrators can use the [Compliance Operator](/openshift-docs-markdown/securi
 
 Administrators can use the [File Integrity Operator](/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-understanding#understanding-file-integrity-operator) to continually run file integrity checks on cluster nodes and provide a log of files that have been modified.
 
-## Additional resources {#additional-resources_security-compliance-overview}
+**Additional resources**
+{._additional-resources}
 
 - [Understanding authentication](/openshift-docs-markdown/authentication/understanding-authentication#understanding-authentication)
 - [Configuring the internal OAuth server](/openshift-docs-markdown/authentication/configuring-internal-oauth#configuring-internal-oauth)

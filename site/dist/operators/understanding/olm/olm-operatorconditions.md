@@ -45,7 +45,8 @@ spec:
 - The `type` field sets the name of the condition.
 - A `False` value in the `status` field indicates the Operator is not ready to be upgraded. OLM prevents a CSV that replaces the existing CSV of the Operator from leaving the `Pending` phase. A `False` value does not block cluster upgrades.
 
-## Additional resources {#olm-operatorconditions-addtl-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Managing Operator conditions](/openshift-docs-markdown/operators/admin/olm-managing-operatorconditions#olm-operatorconditions)
 - [Understanding how to use pod disruption budgets to specify the number of pods that must be up](/openshift-docs-markdown/nodes/pods/nodes-pods-configuring#nodes-pods-pod-disruption-about_nodes-pods-configuring)

@@ -1,5 +1,5 @@
 ---
-title: FlowSchema []
+title: FlowSchema [flowcontrol.apiserver.k8s.io/v1]
 ---
 
 # FlowSchema \[flowcontrol.apiserver.k8s.io/v1\] {#flowschema-flowcontrol-apiserver-k8s-io-v1}
@@ -38,7 +38,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `distinguisherMethod` | `object` | FlowDistinguisherMethod specifies the method of a flow distinguisher. |
-| `matchingPrecedence` | `integer` | `matchingPrecedence` is used to choose among the FlowSchemas that match a given request. The chosen FlowSchema is among those with the numerically lowest (which we take to be logically highest) MatchingPrecedence.  Each MatchingPrecedence value must be ranged in \[1,10000\]. Note that if the precedence is not specified, it will be set to 1000 as default. |
+| `matchingPrecedence` | `integer` | `matchingPrecedence` is used to choose among the FlowSchemas that match a given request. The chosen FlowSchema is among those with the numerically lowest (which we take to be logically highest) MatchingPrecedence. Each MatchingPrecedence value must be ranged in \[1,10000\]. Note that if the precedence is not specified, it will be set to 1000 as default. |
 | `priorityLevelConfiguration` | `object` | PriorityLevelConfigurationReference contains information that points to the "request-priority" being used. |
 | `rules` | `array` | `rules` describes which requests will match this flow schema. This FlowSchema matches a request if and only if at least one member of rules matches the request. if it is an empty slice, there will be no requests matching the FlowSchema. |
 | `rules[]` | `object` | PolicyRulesWithSubjects prescribes a test that applies to a request to an apiserver. The test considers the subject making the request, the verb being requested, and the resource to be acted upon. This PolicyRulesWithSubjects matches a request if and only if both (a) at least one member of subjects matches the request and (b) at least one member of resourceRules or nonResourceRules matches the request. |
@@ -135,7 +135,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `nonResourceURLs` | `array (string)` | `nonResourceURLs` is a set of url prefixes that a user should have access to and may not be empty. For example:   - "/healthz" is legal   - "/hea\*" is illegal   - "/hea" is legal but matches nothing   - "/hea/*" also matches nothing   - "/healthz/*" matches all per-component health checks. "\*" matches all non-resource urls. if it is present, it must be the only entry. Required. |
+| `nonResourceURLs` | `array (string)` | `nonResourceURLs` is a set of url prefixes that a user should have access to and may not be empty. For example: - "/healthz" is legal - "/hea\*" is illegal - "/hea" is legal but matches nothing - "/hea/*" also matches nothing - "/healthz/*" matches all per-component health checks. "\*" matches all non-resource urls. if it is present, it must be the only entry. Required. |
 | `verbs` | `array (string)` | `verbs` is a list of matching verbs and may not be empty. "\*" matches all verbs. If it is present, it must be the only entry. Required. |
 
 ### .spec.rules\[\].resourceRules {#_specrulesresourcerules}
@@ -167,8 +167,8 @@ Required
 | --- | --- | --- |
 | `apiGroups` | `array (string)` | `apiGroups` is a list of matching API groups and may not be empty. "\*" matches all API groups and, if present, must be the only entry. Required. |
 | `clusterScope` | `boolean` | `clusterScope` indicates whether to match requests that do not specify a namespace (which happens either because the resource is not namespaced or the request targets all namespaces). If this field is omitted or false then the `namespaces` field must contain a non-empty list. |
-| `namespaces` | `array (string)` | `namespaces` is a list of target namespaces that restricts matches.  A request that specifies a target namespace matches only if either (a) this list contains that target namespace or (b) this list contains "**".  Note that "**" matches any specified namespace but does not match a request that *does not specify* a namespace (see the `clusterScope` field for that). This list may be empty, but only if `clusterScope` is true. |
-| `resources` | `array (string)` | `resources` is a list of matching resources (i.e., lowercase and plural) with, if desired, subresource.  For example, \[ "services", "nodes/status" \].  This list may not be empty. "\*" matches all resources and, if present, must be the only entry. Required. |
+| `namespaces` | `array (string)` | `namespaces` is a list of target namespaces that restricts matches. A request that specifies a target namespace matches only if either (a) this list contains that target namespace or (b) this list contains "**". Note that "**" matches any specified namespace but does not match a request that *does not specify* a namespace (see the `clusterScope` field for that). This list may be empty, but only if `clusterScope` is true. |
+| `resources` | `array (string)` | `resources` is a list of matching resources (i.e., lowercase and plural) with, if desired, subresource. For example, \[ "services", "nodes/status" \]. This list may not be empty. "\*" matches all resources and, if present, must be the only entry. Required. |
 | `verbs` | `array (string)` | `verbs` is a list of matching verbs and may not be empty. "\*" matches all verbs and, if present, must be the only entry. Required. |
 
 ### .spec.rules\[\].subjects {#_specrulessubjects}
@@ -309,16 +309,16 @@ The following API endpoints are available:
 - `/apis/flowcontrol.apiserver.k8s.io/v1/watch/flowschemas`
 
   - `GET`: watch individual changes to a list of FlowSchema. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/flowcontrol.apiserver.k8s.io/v1/flowschemas/{{ name }}`
+- `/apis/flowcontrol.apiserver.k8s.io/v1/flowschemas/{name}`
 
   - `DELETE`: delete a FlowSchema
   - `GET`: read the specified FlowSchema
   - `PATCH`: partially update the specified FlowSchema
   - `PUT`: replace the specified FlowSchema
-- `/apis/flowcontrol.apiserver.k8s.io/v1/watch/flowschemas/{{ name }}`
+- `/apis/flowcontrol.apiserver.k8s.io/v1/watch/flowschemas/{name}`
 
   - `GET`: watch changes to an object of kind FlowSchema. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
-- `/apis/flowcontrol.apiserver.k8s.io/v1/flowschemas/{{ name }}/status`
+- `/apis/flowcontrol.apiserver.k8s.io/v1/flowschemas/{name}/status`
 
   - `GET`: read status of the specified FlowSchema
   - `PATCH`: partially update status of the specified FlowSchema
@@ -417,7 +417,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/flowcontrol.apiserver.k8s.io/v1/flowschemas/{{ name }} {#_apisflowcontrolapiserverk8siov1flowschemas_name}
+### /apis/flowcontrol.apiserver.k8s.io/v1/flowschemas/{name} {#_apisflowcontrolapiserverk8siov1flowschemas_name}
 
 **Global path parameters**
 
@@ -522,7 +522,7 @@ Description
 | 201 - Created | [`FlowSchema`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/flowschema-flowcontrol-apiserver-k8s-io-v1#flowschema-flowcontrol-apiserver-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/flowcontrol.apiserver.k8s.io/v1/watch/flowschemas/{{ name }} {#_apisflowcontrolapiserverk8siov1watchflowschemas_name}
+### /apis/flowcontrol.apiserver.k8s.io/v1/watch/flowschemas/{name} {#_apisflowcontrolapiserverk8siov1watchflowschemas_name}
 
 **Global path parameters**
 
@@ -547,7 +547,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/flowcontrol.apiserver.k8s.io/v1/flowschemas/{{ name }}/status {#_apisflowcontrolapiserverk8siov1flowschemas_name_status}
+### /apis/flowcontrol.apiserver.k8s.io/v1/flowschemas/{name}/status {#_apisflowcontrolapiserverk8siov1flowschemas_name_status}
 
 **Global path parameters**
 

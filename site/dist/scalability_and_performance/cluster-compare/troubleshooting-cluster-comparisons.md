@@ -27,7 +27,8 @@ You can optionally configure your reference configuration to avoid this situatio
 1. Ensure the templates feature distinct `apiVersion`, `namespace`, and `kind` values to ensure no duplicate template matching.
 2. Use a user configuration file to manually match a template to a CR. For more information, see "Configuring manual matching between CRs and templates".
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Installing the cluster-compare plugin](/openshift-docs-markdown/scalability_and_performance/cluster-compare/installing-cluster-compare-plugin#installing-cluster-compare_installing-cluster-compare-plugin)
 - [Configuring manual matching between CRs and templates](/openshift-docs-markdown/scalability_and_performance/cluster-compare/advanced-ref-config-customization#cluster-compare-manual-match_advanced-ref-config-customization)

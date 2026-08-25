@@ -1,8 +1,8 @@
 ---
-title: Updating {{ ztp }}
+title: Updating GitOps ZTP
 ---
 
-# Updating {{ ztp }} {#ztp-updating-gitops}
+# Updating GitOps ZTP {#ztp-updating-gitops}
 
 You can update the GitOps Zero Touch Provisioning (ZTP) infrastructure independently from the hub cluster, Red Hat Advanced Cluster Management (RHACM), and the managed OpenShift Container Platform clusters.
 
@@ -15,6 +15,7 @@ You can update the GitOps Zero Touch Provisioning (ZTP) infrastructure independe
 > For more information about `PolicyGenerator` resources, see the RHACM [Integrating Policy Generator](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.17/html-single/governance/index#integrate-policy-generator) documentation.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring managed cluster policies by using PolicyGenerator resources](/openshift-docs-markdown/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-configuring-managed-clusters-policygenerator)
 - [Comparing RHACM PolicyGenerator and PolicyGenTemplate resource patching](/openshift-docs-markdown/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-comparing-pgt-and-rhacm-pg-patching-strategies_ztp-configuring-managed-clusters-policygenerator)
@@ -49,7 +50,7 @@ Use the following procedure to prepare your site for the GitOps Zero Touch Provi
    ```
 
    ```terminal
-   $ podman run --log-driver=none --rm registry.redhat.io/openshift4/ztp-site-generate-rhel8:v{{ product_version }} extract /home/ztp --tar | tar x -C ./update
+   $ podman run --log-driver=none --rm registry.redhat.io/openshift4/ztp-site-generate-rhel8:v4.22 extract /home/ztp --tar | tar x -C ./update
    ```
 
    The `/update` directory contains the following subdirectories:
@@ -141,7 +142,7 @@ When upgrading the `ztp-site-generate` container from an earlier release of GitO
   ```
 
   > [!NOTE]
-  > The files listed in the `generator` sections must contain either `ClusterInstance` or `{{ policy_gen_cr }}` CRs only. If your existing YAML files contain other CRs, for example, `Namespace`, these other CRs must be pulled out into separate files and listed in the `resources` section.
+  > The files listed in the `generator` sections must contain either `ClusterInstance` or `{policy_gen_cr}` CRs only. If your existing YAML files contain other CRs, for example, `Namespace`, these other CRs must be pulled out into separate files and listed in the `resources` section.
 
   The `PolicyGenerator` kustomization file must contain all `PolicyGenerator` YAML files in the `generator` section and `Namespace` CRs in the `resources` section. For example:
 
@@ -177,7 +178,7 @@ When upgrading the `ztp-site-generate` container from an earlier release of GitO
   In OpenShift Container Platform 4.10 and later, the `pre-sync.yaml` and `post-sync.yaml` files are no longer required. The `update/deployment/kustomization.yaml` CR manages the policies deployment on the hub cluster.
 
   > [!NOTE]
-  > There is a set of `pre-sync.yaml` and `post-sync.yaml` files under both the `ClusterInstance` and `{{ policy_gen_cr }}` trees.
+  > There is a set of `pre-sync.yaml` and `post-sync.yaml` files under both the `ClusterInstance` and `{policy_gen_cr}` trees.
 - Review and incorporate recommended changes
 
   Each release may include additional recommended changes to the configuration applied to deployed clusters. Typically these changes result in lower CPU use by the OpenShift platform, additional features, or improved tuning of the platform.
@@ -273,7 +274,7 @@ To pull ISO images for the desired OpenShift Container Platform version, update 
    # ...
      osImages:
        - cpuArchitecture: x86_64
-         openshiftVersion: "{{ product_version }}"
+         openshiftVersion: "4.22"
          rootFSUrl: https://<host>/<path>/rhcos-live-rootfs.x86_64.img
          url: https://<host>/<path>/rhcos-live.x86_64.iso
    ```
@@ -288,6 +289,7 @@ To pull ISO images for the desired OpenShift Container Platform version, update 
 3. Save and quit the editor to apply the changes.
 
 **Additional resources**
+{._additional-resources}
 
 - [Enabling the assisted service](/openshift-docs-markdown/edge_computing/ztp-preparing-the-hub-cluster#enabling-assisted-installer-service-on-bare-metal_ztp-preparing-the-hub-cluster)
 
@@ -298,6 +300,7 @@ If any configuration changes were included in the upgrade due to implementing re
 To roll out the changes, create one or more `ClusterGroupUpgrade` CRs as detailed in the TALM documentation. The CR must contain the list of `Non-Compliant` policies that you want to push out to the managed clusters as well as a list or selector of which clusters should be included in the update.
 
 **Additional resources**
+{._additional-resources}
 
 - [About the Topology Aware Lifecycle Manager configuration](/openshift-docs-markdown/edge_computing/cnf-talm-for-cluster-upgrades#cnf-about-topology-aware-lifecycle-manager-config_cnf-topology-aware-lifecycle-manager)
 - [About the auto-created ClusterGroupUpgrade CR for GitOps ZTP](/openshift-docs-markdown/edge_computing/policygentemplate_for_ztp/ztp-talm-updating-managed-policies#talo-precache-autocreated-cgu-for-ztp_ztp-talm)

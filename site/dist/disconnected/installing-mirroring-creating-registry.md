@@ -56,6 +56,7 @@ The following limitations apply to the *mirror registry for Red Hat OpenShift*:
 - Using the *mirror registry for Red Hat OpenShift* with more than one cluster is discouraged because multiple clusters can create a single point of failure when updating your cluster fleet. Instead, use the *mirror registry for Red Hat OpenShift* to install a cluster that can host a production-grade, highly-available registry such as Red Hat Quay, which can serve OpenShift Container Platform content to other clusters.
 
 **Additional resources**
+{._additional-resources}
 
 - [OpenShift console Downloads](https://console.redhat.com/openshift/downloads#tool-mirror-registry)
 - [Self-managed Red Hat OpenShift sizing and subscription guide](https://www.redhat.com/en/resources/self-managed-openshift-sizing-subscription-guide)
@@ -393,14 +394,14 @@ The following flags are available for the *mirror registry for Red Hat OpenShif
 | `--initPassword` | The password of the init user created during Quay installation. Must be at least eight characters and contain no whitespace. |
 | `--initUser string` | Shows the username of the initial user. Defaults to `init` if left unspecified. |
 | `--no-color`, `-c` | Allows users to disable color sequences and propagate that to Ansible when running install, uninstall, and upgrade commands. |
-| `--quayHostname` | The fully-qualified domain name of the mirror registry that clients will use to contact the registry. Equivalent to `SERVER_HOSTNAME` in the Quay `config.yaml`. Must resolve by DNS. Defaults to `<targetHostname>:8443` if left unspecified. [^1]^ |
+| `--quayHostname` | The fully-qualified domain name of the mirror registry that clients will use to contact the registry. Equivalent to `SERVER_HOSTNAME` in the Quay `config.yaml`. Must resolve by DNS. Defaults to `<targetHostname>:8443` if left unspecified. <sup>\[1\]</sup> |
 | `--quayStorage` | The folder where Quay persistent storage data is saved. Defaults to the `quay-storage` Podman volume. Root privileges are required to uninstall. |
 | `--quayRoot`, `-r` | The directory where container image layer and configuration data is saved, including `rootCA.key`, `rootCA.pem`, and `rootCA.srl` certificates. Defaults to `$HOME/quay-install` if left unspecified. |
 | `--sqliteStorage` | The folder where SQLite database data is saved. Defaults to `sqlite-storage` Podman volume if not specified. Root is required to uninstall. |
 | `--ssh-key`, `-k` | The path of your SSH identity key. Defaults to `~/.ssh/quay_installer` if left unspecified. |
-| `--sslCert` | The path to the SSL/TLS public key / certificate. Defaults to `{{ quayRoot }}/quay-config` and is auto-generated if left unspecified. |
-| `--sslCheckSkip` | Skips the check for the certificate hostname against the `SERVER_HOSTNAME` in the `config.yaml` file. [^2]^ |
-| `--sslKey` | The path to the SSL/TLS private key used for HTTPS communication. Defaults to `{{ quayRoot }}/quay-config` and is auto-generated if left unspecified. |
+| `--sslCert` | The path to the SSL/TLS public key / certificate. Defaults to `{quayRoot}/quay-config` and is auto-generated if left unspecified. |
+| `--sslCheckSkip` | Skips the check for the certificate hostname against the `SERVER_HOSTNAME` in the `config.yaml` file. <sup>\[2\]</sup> |
+| `--sslKey` | The path to the SSL/TLS private key used for HTTPS communication. Defaults to `{quayRoot}/quay-config` and is auto-generated if left unspecified. |
 | `--targetHostname`, `-H` | The hostname of the target you want to install Quay to. Defaults to `$HOST`, for example, a local host, if left unspecified. |
 | `--targetUsername`, `-u` | The user on the target host which will be used for SSH. Defaults to `$USER`, for example, the current user if left unspecified. |
 | `--verbose`, `-v` | Shows debug logs and Ansible Playbook outputs. |
@@ -624,14 +625,11 @@ The following services are installed:
   $ systemctl --user status <service>
   ```
 
-## Additional resources {#additional-resources_installing-mirroring-creating-registry}
+**Additional resources**
+{._additional-resources}
 
 - [Red Hat Quay garbage collection](https://access.redhat.com/documentation/en-us/red_hat_quay/3/html/manage_red_hat_quay/garbage-collection#doc-wrapper)
 - [Securing Red Hat Quay](https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/securing_red_hat_quay/index)
 - [Configuring the system to trust the certificate authority](https://docs.redhat.com/en/documentation/red_hat_quay/3/html-single/securing_red_hat_quay/index#configuring-system-trust-ca)
 - [Mirroring the OpenShift Container Platform image repository](/openshift-docs-markdown/disconnected/installing-mirroring-installation-images#installation-mirror-repository_installing-mirroring-installation-images)
 - [Mirroring Operator catalogs for use with disconnected clusters](/openshift-docs-markdown/disconnected/installing-mirroring-installation-images#olm-mirror-catalog_installing-mirroring-installation-images)
-
-[^1]: 1
-
-[^2]: 2

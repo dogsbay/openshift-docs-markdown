@@ -1,5 +1,5 @@
 ---
-title: VolumeSnapshotContent []
+title: VolumeSnapshotContent [snapshot.storage.k8s.io/v1]
 ---
 
 # VolumeSnapshotContent \[snapshot.storage.k8s.io/v1\] {#volumesnapshotcontent-snapshot-storage-k8s-io-v1}
@@ -43,7 +43,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `deletionPolicy` | `string` | deletionPolicy determines whether this VolumeSnapshotContent and its physical snapshot on the underlying storage system should be deleted when its bound VolumeSnapshot is deleted. Supported values are "Retain" and "Delete". "Retain" means that the VolumeSnapshotContent and its physical snapshot on underlying storage system are kept. "Delete" means that the VolumeSnapshotContent and its physical snapshot on underlying storage system are deleted. For dynamically provisioned snapshots, this field will automatically be filled in by the CSI snapshotter sidecar with the "DeletionPolicy" field defined in the corresponding VolumeSnapshotClass. For pre-existing snapshots, users MUST specify this field when creating the  VolumeSnapshotContent object. Required. |
+| `deletionPolicy` | `string` | deletionPolicy determines whether this VolumeSnapshotContent and its physical snapshot on the underlying storage system should be deleted when its bound VolumeSnapshot is deleted. Supported values are "Retain" and "Delete". "Retain" means that the VolumeSnapshotContent and its physical snapshot on underlying storage system are kept. "Delete" means that the VolumeSnapshotContent and its physical snapshot on underlying storage system are deleted. For dynamically provisioned snapshots, this field will automatically be filled in by the CSI snapshotter sidecar with the "DeletionPolicy" field defined in the corresponding VolumeSnapshotClass. For pre-existing snapshots, users MUST specify this field when creating the VolumeSnapshotContent object. Required. |
 | `driver` | `string` | driver is the name of the CSI driver used to create the physical snapshot on the underlying storage system. This MUST be the same as the name returned by the CSI GetPluginName() call for that driver. Required. |
 | `source` | `object` | source specifies whether the snapshot is (or should be) dynamically provisioned or already exists, and just requires a Kubernetes object representation. This field is immutable after creation. Required. |
 | `sourceVolumeMode` | `string` | SourceVolumeMode is the mode of the volume whose snapshot is taken. Can be either “Filesystem” or “Block”. If not specified, it indicates the source volume’s mode is unknown. This field is immutable. This field is an alpha field. |
@@ -78,7 +78,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{{ name }}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -128,13 +128,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of VolumeSnapshotContent
   - `GET`: list objects of kind VolumeSnapshotContent
   - `POST`: create a VolumeSnapshotContent
-- `/apis/snapshot.storage.k8s.io/v1/volumesnapshotcontents/{{ name }}`
+- `/apis/snapshot.storage.k8s.io/v1/volumesnapshotcontents/{name}`
 
   - `DELETE`: delete a VolumeSnapshotContent
   - `GET`: read the specified VolumeSnapshotContent
   - `PATCH`: partially update the specified VolumeSnapshotContent
   - `PUT`: replace the specified VolumeSnapshotContent
-- `/apis/snapshot.storage.k8s.io/v1/volumesnapshotcontents/{{ name }}/status`
+- `/apis/snapshot.storage.k8s.io/v1/volumesnapshotcontents/{name}/status`
 
   - `GET`: read status of the specified VolumeSnapshotContent
   - `PATCH`: partially update status of the specified VolumeSnapshotContent
@@ -208,7 +208,7 @@ Description
 | 202 - Accepted | [`VolumeSnapshotContent`](/openshift-docs-markdown/rest_api/storage_apis/volumesnapshotcontent-snapshot-storage-k8s-io-v1#volumesnapshotcontent-snapshot-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/snapshot.storage.k8s.io/v1/volumesnapshotcontents/{{ name }} {#_apissnapshotstoragek8siov1volumesnapshotcontents_name}
+### /apis/snapshot.storage.k8s.io/v1/volumesnapshotcontents/{name} {#_apissnapshotstoragek8siov1volumesnapshotcontents_name}
 
 **Global path parameters**
 
@@ -312,7 +312,7 @@ Description
 | 201 - Created | [`VolumeSnapshotContent`](/openshift-docs-markdown/rest_api/storage_apis/volumesnapshotcontent-snapshot-storage-k8s-io-v1#volumesnapshotcontent-snapshot-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/snapshot.storage.k8s.io/v1/volumesnapshotcontents/{{ name }}/status {#_apissnapshotstoragek8siov1volumesnapshotcontents_name_status}
+### /apis/snapshot.storage.k8s.io/v1/volumesnapshotcontents/{name}/status {#_apissnapshotstoragek8siov1volumesnapshotcontents_name_status}
 
 **Global path parameters**
 

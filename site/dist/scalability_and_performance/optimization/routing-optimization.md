@@ -53,7 +53,8 @@ In general, HAProxy can support routes for up to 1000 applications, depending on
 
 Ingress, or router, sharding should be used to serve more routes towards applications and help horizontally scale the routing tier.
 
-## Additional resources {#additional-resources_routing-optimization}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring Ingress Controller sharding by using route labels](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-ingress-controller#nw-ingress-sharding-route-labels_configuring-ingress-cluster-traffic-ingress-controller)
 - [Configuring Ingress Controller sharding by using namespace labels](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-ingress-controller#nw-ingress-sharding-namespace-labels_configuring-ingress-cluster-traffic-ingress-controller)

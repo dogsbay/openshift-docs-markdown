@@ -137,7 +137,7 @@ The **Stop**, **Restart**, and **Pause** actions can display confirmation dialog
 
 **Procedure**
 
-1. Click **Virtualization** -> **Settings** -> **Cluster** -> **General settings**.
+1. Click **Virtualization** → **Settings** → **Cluster** → **General settings**.
 2. Click **VirtualMachine actions confirmation**.
 3. Toggle the **VirtualMachine actions confirmation** setting to **On**.
 
@@ -147,21 +147,21 @@ You can start a virtual machine (VM) from the web console.
 
 **Procedure**
 
-1. Click **Virtualization** -> **VirtualMachines** from the side menu.
+1. Click **Virtualization** → **VirtualMachines** from the side menu.
 2. In the tree view, select the project that contains the VM that you want to start.
 3. Navigate to the appropriate menu for your use case:
 
    - To stay on this page, where you can perform actions on multiple VMs:
 
-     1. Click the Options menu ![](kebab.png "Options menu") located at the far right end of the row and click **Control** -> **Start VirtualMachine**.
+     1. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") located at the far right end of the row and click **Control** → **Start VirtualMachine**.
    - To start the VM from the tree view:
 
      1. Click the **>** icon next to the project name to open the list of VMs.
-     2. Right-click the name of the VM and select **Control** -> **Start**.
+     2. Right-click the name of the VM and select **Control** → **Start**.
    - To view comprehensive information about the selected VM before you start it:
 
      1. Access the **VirtualMachine details** page by clicking the name of the VM.
-     2. Click **Actions** -> **Control** -> **Start**.
+     2. Click **Actions** → **Control** → **Start**.
 
         > [!NOTE]
         > When you start VM that is provisioned from a `URL` source for the first time, the VM has a status of **Importing** while OpenShift Virtualization imports the container from the URL endpoint. Depending on the size of the image, this process might take several minutes.
@@ -172,23 +172,23 @@ You can stop a virtual machine (VM) from the web console.
 
 **Procedure**
 
-1. Click **Virtualization** ->  **VirtualMachines** from the side menu.
+1. Click **Virtualization** →  **VirtualMachines** from the side menu.
 2. In the tree view, select the project that contains the VM that you want to stop.
 3. Navigate to the appropriate menu for your use case:
 
    - To stay on this page, where you can perform actions on multiple VMs:
 
-     1. Click the Options menu ![](kebab.png "Options menu") located at the far right end of the row and click **Control** -> **Stop VirtualMachine**.
+     1. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") located at the far right end of the row and click **Control** → **Stop VirtualMachine**.
      2. If action confirmation is enabled, click **Stop** in the confirmation dialog.
    - To stop the VM from the tree view:
 
      1. Click the **>** icon next to the project name to open the list of VMs.
-     2. Right-click the name of the VM and select **Control** -> **Stop**.
+     2. Right-click the name of the VM and select **Control** → **Stop**.
      3. If action confirmation is enabled, click **Stop** in the confirmation dialog.
    - To view comprehensive information about the selected VM before you stop it:
 
      1. Access the **VirtualMachine details** page by clicking the name of the VM.
-     2. Click **Actions** → **Control** -> **Stop**.
+     2. Click **Actions** → **Control** → **Stop**.
      3. If action confirmation is enabled, click **Stop** in the confirmation dialog.
 
 ## Restarting a virtual machine {#virt-restarting-vm-web_virt-controlling-vm-states}
@@ -202,23 +202,23 @@ You can restart a running virtual machine (VM) from the web console.
 
 **Procedure**
 
-1. Click **Virtualization** -> **VirtualMachines** from the side menu.
+1. Click **Virtualization** → **VirtualMachines** from the side menu.
 2. In the tree view, select the project that contains the VM that you want to restart.
 3. Navigate to the appropriate menu for your use case:
 
    - To stay on this page, where you can perform actions on multiple VMs:
 
-     1. Click the Options menu ![](kebab.png "Options menu") located at the far right end of the row and click **Control** -> **Restart**.
+     1. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") located at the far right end of the row and click **Control** → **Restart**.
      2. If action confirmation is enabled, click **Restart** in the confirmation dialog.
    - To restart the VM from the tree view:
 
      1. Click the **>** icon next to the project name to open the list of VMs.
-     2. Right-click the name of the VM and select **Control** -> **Restart**.
+     2. Right-click the name of the VM and select **Control** → **Restart**.
      3. If action confirmation is enabled, click **Restart** in the confirmation dialog.
    - To view comprehensive information about the selected VM before you restart it:
 
      1. Access the **VirtualMachine details** page by clicking the name of the virtual machine.
-     2. Click **Actions** -> **Restart**.
+     2. Click **Actions** → **Restart**.
      3. If action confirmation is enabled, click **Restart** in the confirmation dialog.
 
 ## Resetting a virtual machine {#virt-resetting-vm-web_virt-controlling-vm-states}
@@ -229,23 +229,23 @@ You can reset a VM from the web console.
 
 **Procedure**
 
-1. Click **Virtualization** -> **VirtualMachines** from the side menu.
+1. Click **Virtualization** → **VirtualMachines** from the side menu.
 2. In the tree view, select the project that contains the VM that you want to restart.
 3. Navigate to the appropriate menu for your use case:
 
    - To stay on this page, where you can perform actions on multiple VMs:
 
-     1. Click the Options menu ![](kebab.png "Options menu") located at the far right end of the row and click **Control** -> **Reset**.
+     1. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") located at the far right end of the row and click **Control** → **Reset**.
      2. If action confirmation is enabled, click **Reset** in the confirmation dialog.
    - To reset the VM from the tree view:
 
      1. Click the **>** icon next to the project name to open the list of VMs.
-     2. Right-click the name of the VM and select **Control** -> **Reset**.
+     2. Right-click the name of the VM and select **Control** → **Reset**.
      3. If action confirmation is enabled, click **Reset** in the confirmation dialog.
    - To view comprehensive information about the selected VM before you reset it:
 
      1. Access the **VirtualMachine details** page by clicking the name of the virtual machine.
-     2. Click **Actions** -> **Control** -> **Reset**.
+     2. Click **Actions** → **Control** → **Reset**.
      3. If action confirmation is enabled, click **Reset** in the confirmation dialog.
 
 ## Pausing a virtual machine {#virt-pausing-vm-web_virt-controlling-vm-states}
@@ -254,23 +254,23 @@ You can pause a virtual machine (VM) from the web console.
 
 **Procedure**
 
-1. Click **Virtualization** -> **VirtualMachines** from the side menu.
+1. Click **Virtualization** → **VirtualMachines** from the side menu.
 2. In the tree view, select the project that contains the VM that you want to pause.
 3. Navigate to the appropriate menu for your use case:
 
    - To stay on this page, where you can perform actions on multiple VMs:
 
-     1. Click the Options menu ![](kebab.png "Options menu") located at the far right end of the row and click **Control** -> **Pause VirtualMachine**.
+     1. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") located at the far right end of the row and click **Control** → **Pause VirtualMachine**.
      2. If action confirmation is enabled, click **Pause** in the confirmation dialog.
    - To pause the VM from the tree view:
 
      1. Click the **>** icon next to the project name to open the list of VMs.
-     2. Right-click the name of the VM and select **Control** -> **Pause**.
+     2. Right-click the name of the VM and select **Control** → **Pause**.
      3. If action confirmation is enabled, click **Pause** in the confirmation dialog.
    - To view comprehensive information about the selected VM before you pause it:
 
      1. Access the **VirtualMachine details** page by clicking the name of the VM.
-     2. Click **Actions** -> **Control** -> **Pause**.
+     2. Click **Actions** → **Control** → **Pause**.
      3. If action confirmation is enabled, click **Pause** in the confirmation dialog.
 
 ## Unpausing a virtual machine {#virt-unpausing-vm-web_virt-controlling-vm-states}
@@ -283,21 +283,21 @@ You can unpause a paused virtual machine (VM) from the web console.
 
 **Procedure**
 
-1. Click **Virtualization** -> **VirtualMachines** from the side menu.
+1. Click **Virtualization** → **VirtualMachines** from the side menu.
 2. In the tree view, select the project that contains the VM that you want to unpause.
 3. Navigate to the appropriate menu for your use case:
 
    - To stay on this page, where you can perform actions on multiple VMs:
 
-     1. Click the Options menu ![](kebab.png "Options menu") located at the far right end of the row and click **Control** -> **Unpause VirtualMachine**.
+     1. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") located at the far right end of the row and click **Control** → **Unpause VirtualMachine**.
    - To unpause the VM from the tree view:
 
      1. Click the **>** icon next to the project name to open the list of VMs.
-     2. Right-click the name of the VM and select **Control** -> **Unpause**.
+     2. Right-click the name of the VM and select **Control** → **Unpause**.
    - To view comprehensive information about the selected VM before you unpause it:
 
      1. Access the **VirtualMachine details** page by clicking the name of the virtual machine.
-     2. Click **Actions** → **Control** -> **Unpause**.
+     2. Click **Actions** → **Control** → **Unpause**.
 
 ## Controlling the state of multiple virtual machines {#virt-controlling-multiple-vms-web_virt-controlling-vm-states}
 
@@ -305,7 +305,7 @@ You can start, stop, restart, pause, and unpause multiple virtual machines (VMs)
 
 **Procedure**
 
-1. Navigate to **Virtualization** -> **VirtualMachines** in the web console.
+1. Navigate to **Virtualization** → **VirtualMachines** in the web console.
 2. Optional: Enable the **Show only projects with VirtualMachines** option above the tree view to limit the displayed projects.
 3. Select a relevant project from the tree view.
 4. Navigate to the appropriate menu for your use case:
@@ -320,6 +320,7 @@ You can start, stop, restart, pause, and unpause multiple virtual machines (VMs)
      2. Click **Actions** and select the intended action from the menu.
      3. If action confirmation is enabled, confirm the action in the confirmation dialog.
 
-## Additional resources {#additional-resources_virt-controlling-vm-states}
+**Additional resources**
+{._additional-resources}
 
 - [Using the CLI tools](/openshift-docs-markdown/virt/getting_started/virt-using-the-cli-tools#virt-using-the-cli-tools)

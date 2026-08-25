@@ -1,5 +1,5 @@
 ---
-title: ClusterAutoscaler []
+title: ClusterAutoscaler [autoscaling.openshift.io/v1]
 ---
 
 # ClusterAutoscaler \[autoscaling.openshift.io/v1\] {#clusterautoscaler-autoscaling-openshift-io-v1}
@@ -38,7 +38,7 @@ Type
 | `balancingIgnoredLabels` | `array (string)` | BalancingIgnoredLabels sets "--balancing-ignore-label <label name>" flag on cluster-autoscaler for each listed label. This option specifies labels that cluster autoscaler should ignore when considering node group similarity. For example, if you have nodes with "topology.ebs.csi.aws.com/zone" label, you can add name of this label here to prevent cluster autoscaler from spliting nodes into different node groups based on its value. |
 | `expanders` | `array (string)` | Sets the type and order of expanders to be used during scale out operations. This option specifies an ordered list, highest priority first, of expanders that will be used by the cluster autoscaler to select node groups for expansion when scaling out. Expanders instruct the autoscaler on how to choose node groups when scaling out the cluster. They can be specified in order so that the result from the first expander is used as the input to the second, and so forth. For example, if set to `[LeastWaste, Random]` the autoscaler will first evaluate node groups to determine which will have the least resource waste, if multiple groups are selected the autoscaler will then randomly choose between those groups to determine the group for scaling. The following expanders are available: \* LeastWaste - selects the node group that will have the least idle CPU (if tied, unused memory) after scale-up. \* Priority - selects the node group that has the highest priority assigned by the user. For details, please see https://github.com/openshift/kubernetes-autoscaler/blob/master/cluster-autoscaler/expander/priority/readme.md \* Random - selects the node group randomly. If not specified, the default value is `Random`, available options are: `LeastWaste`, `Priority`, `Random`. |
 | `ignoreDaemonsetsUtilization` | `boolean` | Enables/Disables `--ignore-daemonsets-utilization` CA feature flag. Should CA ignore DaemonSet pods when calculating resource utilization for scaling down. false by default |
-| `logVerbosity` | `integer` | Sets the autoscaler log level. Default value is 1, level 4 is recommended for DEBUGGING and level 6 will enable almost everything. This option has priority over log level set by the `CLUSTER_AUTOSCALER_VERBOSITY` environment variable. |
+| `logVerbosity` | `integer` | Sets the autoscaler log level. Default value is 1, level 4 is recommended for DEBUGGING and level 6 will enable almost everything.<br>This option has priority over log level set by the `CLUSTER_AUTOSCALER_VERBOSITY` environment variable. |
 | `maxNodeProvisionTime` | `string` | Maximum time CA waits for node to be provisioned |
 | `maxPodGracePeriod` | `integer` | Gives pods graceful termination time before scaling down |
 | `podPriorityThreshold` | `integer` | To allow users to schedule "best-effort" pods, which shouldn’t trigger Cluster Autoscaler actions, but only run when there are spare resources available, More info: https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-does-cluster-autoscaler-work-with-pod-priority-and-preemption |
@@ -189,13 +189,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of ClusterAutoscaler
   - `GET`: list objects of kind ClusterAutoscaler
   - `POST`: create a ClusterAutoscaler
-- `/apis/autoscaling.openshift.io/v1/clusterautoscalers/{{ name }}`
+- `/apis/autoscaling.openshift.io/v1/clusterautoscalers/{name}`
 
   - `DELETE`: delete a ClusterAutoscaler
   - `GET`: read the specified ClusterAutoscaler
   - `PATCH`: partially update the specified ClusterAutoscaler
   - `PUT`: replace the specified ClusterAutoscaler
-- `/apis/autoscaling.openshift.io/v1/clusterautoscalers/{{ name }}/status`
+- `/apis/autoscaling.openshift.io/v1/clusterautoscalers/{name}/status`
 
   - `GET`: read status of the specified ClusterAutoscaler
   - `PATCH`: partially update status of the specified ClusterAutoscaler
@@ -269,7 +269,7 @@ Description
 | 202 - Accepted | [`ClusterAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/clusterautoscaler-autoscaling-openshift-io-v1#clusterautoscaler-autoscaling-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/autoscaling.openshift.io/v1/clusterautoscalers/{{ name }} {#_apisautoscalingopenshiftiov1clusterautoscalers_name}
+### /apis/autoscaling.openshift.io/v1/clusterautoscalers/{name} {#_apisautoscalingopenshiftiov1clusterautoscalers_name}
 
 **Global path parameters**
 
@@ -373,7 +373,7 @@ Description
 | 201 - Created | [`ClusterAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/clusterautoscaler-autoscaling-openshift-io-v1#clusterautoscaler-autoscaling-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/autoscaling.openshift.io/v1/clusterautoscalers/{{ name }}/status {#_apisautoscalingopenshiftiov1clusterautoscalers_name_status}
+### /apis/autoscaling.openshift.io/v1/clusterautoscalers/{name}/status {#_apisautoscalingopenshiftiov1clusterautoscalers_name_status}
 
 **Global path parameters**
 

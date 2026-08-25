@@ -85,151 +85,146 @@ You can get detailed information about the nodes in the cluster, which can help 
   $ oc describe node node1.example.com
   ```
 
-> [!NOTE]
-> The following example contains some values that are specific to OpenShift Container Platform on AWS.
+  > [!NOTE]
+  > The following example contains some values that are specific to OpenShift Container Platform on AWS.
 
-````
-```text title="Example output"
-Name:               node1.example.com
-Roles:              worker
-Labels:             kubernetes.io/os=linux
-                    kubernetes.io/hostname=ip-10-0-131-14
-                    kubernetes.io/arch=amd64
-                    node-role.kubernetes.io/worker=
-                    node.kubernetes.io/instance-type=m4.large
-                    node.openshift.io/os_id=rhcos
-                    node.openshift.io/os_version=4.5
-                    region=east
-                    topology.kubernetes.io/region=us-east-1
-                    topology.kubernetes.io/zone=us-east-1a
-Annotations:        cluster.k8s.io/machine: openshift-machine-api/ahardin-worker-us-east-2a-q5dzc
-                    machineconfiguration.openshift.io/currentConfig: worker-309c228e8b3a92e2235edd544c62fea8
-                    machineconfiguration.openshift.io/desiredConfig: worker-309c228e8b3a92e2235edd544c62fea8
-                    machineconfiguration.openshift.io/state: Done
-                    volumes.kubernetes.io/controller-managed-attach-detach: true
-CreationTimestamp:  Wed, 13 Feb 2019 11:05:57 -0500
-Taints:             <none>
-Unschedulable:      false
-Conditions:
-  Type             Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
-  ----             ------  -----------------                 ------------------                ------                       -------
-  OutOfDisk        False   Wed, 13 Feb 2019 15:09:42 -0500   Wed, 13 Feb 2019 11:05:57 -0500   KubeletHasSufficientDisk     kubelet has sufficient disk space available
-  MemoryPressure   False   Wed, 13 Feb 2019 15:09:42 -0500   Wed, 13 Feb 2019 11:05:57 -0500   KubeletHasSufficientMemory   kubelet has sufficient memory available
-  DiskPressure     False   Wed, 13 Feb 2019 15:09:42 -0500   Wed, 13 Feb 2019 11:05:57 -0500   KubeletHasNoDiskPressure     kubelet has no disk pressure
-  PIDPressure      False   Wed, 13 Feb 2019 15:09:42 -0500   Wed, 13 Feb 2019 11:05:57 -0500   KubeletHasSufficientPID      kubelet has sufficient PID available
-  Ready            True    Wed, 13 Feb 2019 15:09:42 -0500   Wed, 13 Feb 2019 11:07:09 -0500   KubeletReady                 kubelet is posting ready status
-Addresses:
-  InternalIP:   10.0.140.16
-  InternalDNS:  ip-10-0-140-16.us-east-2.compute.internal
-  Hostname:     ip-10-0-140-16.us-east-2.compute.internal
-Capacity:
- attachable-volumes-aws-ebs:  39
- cpu:                         2
- hugepages-1Gi:               0
- hugepages-2Mi:               0
- memory:                      8172516Ki
- pods:                        250
-Allocatable:
- attachable-volumes-aws-ebs:  39
- cpu:                         1500m
- hugepages-1Gi:               0
- hugepages-2Mi:               0
- memory:                      7558116Ki
- pods:                        250
-System Info:
- Machine ID:                              63787c9534c24fde9a0cde35c13f1f66
- System UUID:                             EC22BF97-A006-4A58-6AF8-0A38DEEA122A
- Boot ID:                                 f24ad37d-2594-46b4-8830-7f7555918325
- Kernel Version:                          3.10.0-957.5.1.el7.x86_64
- OS Image:                                Red Hat Enterprise Linux CoreOS 410.8.20190520.0 (Ootpa)
- Operating System:                        linux
- Architecture:                            amd64
- Container Runtime Version:               cri-o://1.35.4-0.6.dev.rhaos4.3.git9ad059b.el8-rc2
- Kubelet Version:                         v1.35.4
- Kube-Proxy Version:                      v1.35.4
-PodCIDR:                                  10.128.4.0/24
-ProviderID:                               aws:///us-east-2a/i-04e87b31dc6b3e171
-Non-terminated Pods:                      (12 in total)
-  Namespace                               Name                                   CPU Requests  CPU Limits  Memory Requests  Memory Limits
-  ---------                               ----                                   ------------  ----------  ---------------  -------------
-  openshift-cluster-node-tuning-operator  tuned-hdl5q                            0 (0%)        0 (0%)      0 (0%)           0 (0%)
-  openshift-dns                           dns-default-l69zr                      0 (0%)        0 (0%)      0 (0%)           0 (0%)
-  openshift-image-registry                node-ca-9hmcg                          0 (0%)        0 (0%)      0 (0%)           0 (0%)
-  openshift-ingress                       router-default-76455c45c-c5ptv         0 (0%)        0 (0%)      0 (0%)           0 (0%)
-  openshift-machine-config-operator       machine-config-daemon-cvqw9            20m (1%)      0 (0%)      50Mi (0%)        0 (0%)
-  openshift-marketplace                   community-operators-f67fh              0 (0%)        0 (0%)      0 (0%)           0 (0%)
-  openshift-monitoring                    alertmanager-main-0                    50m (3%)      50m (3%)    210Mi (2%)       10Mi (0%)
-  openshift-monitoring                    node-exporter-l7q8d                    10m (0%)      20m (1%)    20Mi (0%)        40Mi (0%)
-  openshift-monitoring                    prometheus-adapter-75d769c874-hvb85    0 (0%)        0 (0%)      0 (0%)           0 (0%)
-  openshift-multus                        multus-kw8w5                           0 (0%)        0 (0%)      0 (0%)           0 (0%)
-  openshift-ovn-kubernetes                          ovnkube-node-t4dsn                              80m (0%)     0 (0%)      1630Mi (0%)       0 (0%)
-Allocated resources:
-  (Total limits may be over 100 percent, i.e., overcommitted.)
-  Resource                    Requests     Limits
-  --------                    --------     ------
-  cpu                         380m (25%)   270m (18%)
-  memory                      880Mi (11%)  250Mi (3%)
-  attachable-volumes-aws-ebs  0            0
-Events:
-  Type     Reason                   Age                From                      Message
-  ----     ------                   ----               ----                      -------
-  Normal   NodeHasSufficientPID     6d (x5 over 6d)    kubelet, m01.example.com  Node m01.example.com status is now: NodeHasSufficientPID
-  Normal   NodeAllocatableEnforced  6d                 kubelet, m01.example.com  Updated Node Allocatable limit across pods
-  Normal   NodeHasSufficientMemory  6d (x6 over 6d)    kubelet, m01.example.com  Node m01.example.com status is now: NodeHasSufficientMemory
-  Normal   NodeHasNoDiskPressure    6d (x6 over 6d)    kubelet, m01.example.com  Node m01.example.com status is now: NodeHasNoDiskPressure
-  Normal   NodeHasSufficientDisk    6d (x6 over 6d)    kubelet, m01.example.com  Node m01.example.com status is now: NodeHasSufficientDisk
-  Normal   NodeHasSufficientPID     6d                 kubelet, m01.example.com  Node m01.example.com status is now: NodeHasSufficientPID
-  Normal   Starting                 6d                 kubelet, m01.example.com  Starting kubelet.
-#...
-```
+  ```text {title="Example output"}
+  Name:               node1.example.com
+  Roles:              worker
+  Labels:             kubernetes.io/os=linux
+                      kubernetes.io/hostname=ip-10-0-131-14
+                      kubernetes.io/arch=amd64
+                      node-role.kubernetes.io/worker=
+                      node.kubernetes.io/instance-type=m4.large
+                      node.openshift.io/os_id=rhcos
+                      node.openshift.io/os_version=4.5
+                      region=east
+                      topology.kubernetes.io/region=us-east-1
+                      topology.kubernetes.io/zone=us-east-1a
+  Annotations:        cluster.k8s.io/machine: openshift-machine-api/ahardin-worker-us-east-2a-q5dzc
+                      machineconfiguration.openshift.io/currentConfig: worker-309c228e8b3a92e2235edd544c62fea8
+                      machineconfiguration.openshift.io/desiredConfig: worker-309c228e8b3a92e2235edd544c62fea8
+                      machineconfiguration.openshift.io/state: Done
+                      volumes.kubernetes.io/controller-managed-attach-detach: true
+  CreationTimestamp:  Wed, 13 Feb 2019 11:05:57 -0500
+  Taints:             <none>
+  Unschedulable:      false
+  Conditions:
+    Type             Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+    ----             ------  -----------------                 ------------------                ------                       -------
+    OutOfDisk        False   Wed, 13 Feb 2019 15:09:42 -0500   Wed, 13 Feb 2019 11:05:57 -0500   KubeletHasSufficientDisk     kubelet has sufficient disk space available
+    MemoryPressure   False   Wed, 13 Feb 2019 15:09:42 -0500   Wed, 13 Feb 2019 11:05:57 -0500   KubeletHasSufficientMemory   kubelet has sufficient memory available
+    DiskPressure     False   Wed, 13 Feb 2019 15:09:42 -0500   Wed, 13 Feb 2019 11:05:57 -0500   KubeletHasNoDiskPressure     kubelet has no disk pressure
+    PIDPressure      False   Wed, 13 Feb 2019 15:09:42 -0500   Wed, 13 Feb 2019 11:05:57 -0500   KubeletHasSufficientPID      kubelet has sufficient PID available
+    Ready            True    Wed, 13 Feb 2019 15:09:42 -0500   Wed, 13 Feb 2019 11:07:09 -0500   KubeletReady                 kubelet is posting ready status
+  Addresses:
+    InternalIP:   10.0.140.16
+    InternalDNS:  ip-10-0-140-16.us-east-2.compute.internal
+    Hostname:     ip-10-0-140-16.us-east-2.compute.internal
+  Capacity:
+   attachable-volumes-aws-ebs:  39
+   cpu:                         2
+   hugepages-1Gi:               0
+   hugepages-2Mi:               0
+   memory:                      8172516Ki
+   pods:                        250
+  Allocatable:
+   attachable-volumes-aws-ebs:  39
+   cpu:                         1500m
+   hugepages-1Gi:               0
+   hugepages-2Mi:               0
+   memory:                      7558116Ki
+   pods:                        250
+  System Info:
+   Machine ID:                              63787c9534c24fde9a0cde35c13f1f66
+   System UUID:                             EC22BF97-A006-4A58-6AF8-0A38DEEA122A
+   Boot ID:                                 f24ad37d-2594-46b4-8830-7f7555918325
+   Kernel Version:                          3.10.0-957.5.1.el7.x86_64
+   OS Image:                                Red Hat Enterprise Linux CoreOS 410.8.20190520.0 (Ootpa)
+   Operating System:                        linux
+   Architecture:                            amd64
+   Container Runtime Version:               cri-o://1.35.4-0.6.dev.rhaos4.3.git9ad059b.el8-rc2
+   Kubelet Version:                         v1.35.4
+   Kube-Proxy Version:                      v1.35.4
+  PodCIDR:                                  10.128.4.0/24
+  ProviderID:                               aws:///us-east-2a/i-04e87b31dc6b3e171
+  Non-terminated Pods:                      (12 in total)
+    Namespace                               Name                                   CPU Requests  CPU Limits  Memory Requests  Memory Limits
+    ---------                               ----                                   ------------  ----------  ---------------  -------------
+    openshift-cluster-node-tuning-operator  tuned-hdl5q                            0 (0%)        0 (0%)      0 (0%)           0 (0%)
+    openshift-dns                           dns-default-l69zr                      0 (0%)        0 (0%)      0 (0%)           0 (0%)
+    openshift-image-registry                node-ca-9hmcg                          0 (0%)        0 (0%)      0 (0%)           0 (0%)
+    openshift-ingress                       router-default-76455c45c-c5ptv         0 (0%)        0 (0%)      0 (0%)           0 (0%)
+    openshift-machine-config-operator       machine-config-daemon-cvqw9            20m (1%)      0 (0%)      50Mi (0%)        0 (0%)
+    openshift-marketplace                   community-operators-f67fh              0 (0%)        0 (0%)      0 (0%)           0 (0%)
+    openshift-monitoring                    alertmanager-main-0                    50m (3%)      50m (3%)    210Mi (2%)       10Mi (0%)
+    openshift-monitoring                    node-exporter-l7q8d                    10m (0%)      20m (1%)    20Mi (0%)        40Mi (0%)
+    openshift-monitoring                    prometheus-adapter-75d769c874-hvb85    0 (0%)        0 (0%)      0 (0%)           0 (0%)
+    openshift-multus                        multus-kw8w5                           0 (0%)        0 (0%)      0 (0%)           0 (0%)
+    openshift-ovn-kubernetes                          ovnkube-node-t4dsn                              80m (0%)     0 (0%)      1630Mi (0%)       0 (0%)
+  Allocated resources:
+    (Total limits may be over 100 percent, i.e., overcommitted.)
+    Resource                    Requests     Limits
+    --------                    --------     ------
+    cpu                         380m (25%)   270m (18%)
+    memory                      880Mi (11%)  250Mi (3%)
+    attachable-volumes-aws-ebs  0            0
+  Events:
+    Type     Reason                   Age                From                      Message
+    ----     ------                   ----               ----                      -------
+    Normal   NodeHasSufficientPID     6d (x5 over 6d)    kubelet, m01.example.com  Node m01.example.com status is now: NodeHasSufficientPID
+    Normal   NodeAllocatableEnforced  6d                 kubelet, m01.example.com  Updated Node Allocatable limit across pods
+    Normal   NodeHasSufficientMemory  6d (x6 over 6d)    kubelet, m01.example.com  Node m01.example.com status is now: NodeHasSufficientMemory
+    Normal   NodeHasNoDiskPressure    6d (x6 over 6d)    kubelet, m01.example.com  Node m01.example.com status is now: NodeHasNoDiskPressure
+    Normal   NodeHasSufficientDisk    6d (x6 over 6d)    kubelet, m01.example.com  Node m01.example.com status is now: NodeHasSufficientDisk
+    Normal   NodeHasSufficientPID     6d                 kubelet, m01.example.com  Node m01.example.com status is now: NodeHasSufficientPID
+    Normal   Starting                 6d                 kubelet, m01.example.com  Starting kubelet.
+  #...
+  ```
 
-where:
+  where:
 
-`Names`
-:   Specifies the name of the node.
+  `Names`
+  :   Specifies the name of the node.
 
-`Roles`
-:   Specifies the role of the node, either `master` or `worker`.
+  `Roles`
+  :   Specifies the role of the node, either `master` or `worker`.
 
-`Labels`
-:   Specifies the labels applied to the node.
+  `Labels`
+  :   Specifies the labels applied to the node.
 
-`Annotations`
-:   Specifies the annotations applied to the node.
+  `Annotations`
+  :   Specifies the annotations applied to the node.
 
-`Taints`
-:   Specifies the taints applied to the node.
+  `Taints`
+  :   Specifies the taints applied to the node.
 
-`Conditions`
-:   Specifies the node conditions and status. The `conditions` stanza lists the `Ready`, `PIDPressure`, `MemoryPressure`, `DiskPressure` and `OutOfDisk` status. These condition are described later in this section.
+  `Conditions`
+  :   Specifies the node conditions and status. The `conditions` stanza lists the `Ready`, `PIDPressure`, `MemoryPressure`, `DiskPressure` and `OutOfDisk` status. These condition are described later in this section.
 
-`Addresses`
-:   Specifies the IP address and hostname of the node.
+  `Addresses`
+  :   Specifies the IP address and hostname of the node.
 
-`Capacity`
-:   Specifies the pod resources and allocatable resources.
+  `Capacity`
+  :   Specifies the pod resources and allocatable resources.
 
-`Information`
-:   Specifies information about the node host.
+  `Information`
+  :   Specifies information about the node host.
 
-`Non-terminated Pods`
-:   Specifies the pods on the node.
+  `Non-terminated Pods`
+  :   Specifies the pods on the node.
 
-`Events`
-:   Specifies the events reported by the node.
+  `Events`
+  :   Specifies the events reported by the node.
 
-:::note
-
-The control plane label is not automatically added to newly created or updated master nodes. If you want to use the control plane label for your nodes, you can manually configure the label. For more information, see "Understanding how to update labels on nodes".
-
-:::
-````
+  > [!NOTE]
+  > The control plane label is not automatically added to newly created or updated master nodes. If you want to use the control plane label for your nodes, you can manually configure the label. For more information, see "Understanding how to update labels on nodes".
 
 Among the information shown for nodes, the following node conditions appear in the output of the commands shown in this section:
 
 <a name="machine-health-checks-resource-conditions"></a>
 
-***Node Conditions***
+**Node Conditions**
 
 <table>
 <thead>
@@ -340,6 +335,7 @@ You can display usage statistics about nodes, including CPU, memory, and storage
 
   You must choose the selector (label query) to filter on. Supports `=`, `==`, and `!=`.
 
-## Additional resources {#additional-resources_nodes-nodes-viewing}
+**Additional resources**
+{._additional-resources}
 
 - [Understanding how to update labels on nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working-updating_nodes-nodes-working)

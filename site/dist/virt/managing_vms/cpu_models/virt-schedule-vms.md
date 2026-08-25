@@ -162,5 +162,6 @@ You can use a custom scheduler to schedule a virtual machine (VM) on a node.
      ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Deploying a secondary scheduler](/openshift-docs-markdown/nodes/scheduling/secondary_scheduler/nodes-secondary-scheduler-configuring#nodes-secondary-scheduler-configuring-console_secondary-scheduler-configuring)

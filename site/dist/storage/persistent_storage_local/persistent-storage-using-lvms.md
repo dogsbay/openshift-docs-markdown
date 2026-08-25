@@ -124,7 +124,7 @@ Install LVM Storage from the OpenShift Container Platform web console to dynamic
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console.
-2. Click **Ecosystem** -> **Software Catalog**.
+2. Click **Ecosystem** → **Software Catalog**.
 3. Click **LVM Storage** on the software catalog page.
 4. Set the following options on the **Operator Installation** page:
 
@@ -158,45 +158,45 @@ Install LVM Storage in a disconnected environment where your cluster has no inte
 
 1. Follow the steps in the "Creating the image set configuration" procedure. To create an `ImageSetConfiguration` custom resource (CR) for LVM Storage, you can use the following example `ImageSetConfiguration` CR configuration:
 
-```yaml {title="Example ImageSetConfiguration CR for LVM Storage"}
-kind: ImageSetConfiguration
-apiVersion: mirror.openshift.io/v1alpha2
-archiveSize: 4
-storageConfig:
-  registry:
-    imageURL: example.com/mirror/oc-mirror-metadata
-    skipTLS: false
-mirror:
-  platform:
-    channels:
-    - name: stable-{{ product_version }}
-      type: ocp
-    graph: true
-  operators:
-  - catalog: registry.redhat.io/redhat/redhat-operator-index:v{{ product_version }}
-    packages:
-    - name: lvms-operator
-      channels:
-      - name: stable
-  additionalImages:
-  - name: registry.redhat.io/ubi9/ubi:latest
-  helm: {}
-```
+   ```yaml {title="Example ImageSetConfiguration CR for LVM Storage"}
+   kind: ImageSetConfiguration
+   apiVersion: mirror.openshift.io/v1alpha2
+   archiveSize: 4
+   storageConfig:
+     registry:
+       imageURL: example.com/mirror/oc-mirror-metadata
+       skipTLS: false
+   mirror:
+     platform:
+       channels:
+       - name: stable-4.22
+         type: ocp
+       graph: true
+     operators:
+     - catalog: registry.redhat.io/redhat/redhat-operator-index:v4.22
+       packages:
+       - name: lvms-operator
+         channels:
+         - name: stable
+     additionalImages:
+     - name: registry.redhat.io/ubi9/ubi:latest
+     helm: {}
+   ```
 
-- `archiveSize`: Specifies the maximum size (in GiB) of each file within the image set.
-- `storageConfig`: Specifies the location in which you want to save the image set. This location can be a registry or a local directory. You must configure the `storageConfig` field unless you are using the Technology Preview OCI feature.
-- `storageConfig.registry.imageURL`: Specifies the storage URL for the image stream when using a registry. For more information, see "Why use imagestreams".
-- `mirror.platform.name`: Specifies the channel from which you want to retrieve the OpenShift Container Platform images.
-- `mirror.platform.channels[].name`: Set this field to `true` to generate the OpenShift Update Service (OSUS) graph image. For more information, see "About the OpenShift Update Service".
-- `mirror.operators.catalog`: Specifies the Operator catalog from which you want to retrieve the OpenShift Container Platform images.
-- `mirror.operators.packages.name`: Specifies the Operator packages to include in the image set. If this field is empty, all packages in the catalog are retrieved.
-- `mirror.operators[].packages[].channels.name`: Specifies the channels of the Operator packages to include in the image set. You must include the default channel for the Operator package even if you do not use the bundles in that channel. You can find the default channel by running the following command: `$ oc mirror list operators --catalog=<catalog_name> --package=<package_name>`.
-- `mirror.additionalImages.name`: Specifies any additional images to include in the image set.
-
-1. Follow the procedure in "Mirroring an image set to a mirror registry".
-2. Follow the procedure in "Configuring image registry repository mirroring".
+   - `archiveSize`: Specifies the maximum size (in GiB) of each file within the image set.
+   - `storageConfig`: Specifies the location in which you want to save the image set. This location can be a registry or a local directory. You must configure the `storageConfig` field unless you are using the Technology Preview OCI feature.
+   - `storageConfig.registry.imageURL`: Specifies the storage URL for the image stream when using a registry. For more information, see "Why use imagestreams".
+   - `mirror.platform.name`: Specifies the channel from which you want to retrieve the OpenShift Container Platform images.
+   - `mirror.platform.channels[].name`: Set this field to `true` to generate the OpenShift Update Service (OSUS) graph image. For more information, see "About the OpenShift Update Service".
+   - `mirror.operators.catalog`: Specifies the Operator catalog from which you want to retrieve the OpenShift Container Platform images.
+   - `mirror.operators.packages.name`: Specifies the Operator packages to include in the image set. If this field is empty, all packages in the catalog are retrieved.
+   - `mirror.operators[].packages[].channels.name`: Specifies the channels of the Operator packages to include in the image set. You must include the default channel for the Operator package even if you do not use the bundles in that channel. You can find the default channel by running the following command: `$ oc mirror list operators --catalog=<catalog_name> --package=<package_name>`.
+   - `mirror.additionalImages.name`: Specifies any additional images to include in the image set.
+2. Follow the procedure in "Mirroring an image set to a mirror registry".
+3. Follow the procedure in "Configuring image registry repository mirroring".
 
 **Additional resources**
+{._additional-resources}
 
 - [About disconnected installation mirroring](/openshift-docs-markdown/disconnected/index#installing-mirroring-disconnected-about)
 - [Mirroring the OpenShift Container Platform image repository](/openshift-docs-markdown/disconnected/installing-mirroring-installation-images#installation-mirror-repository_installing-mirroring-installation-images)
@@ -334,6 +334,7 @@ To install LVM Storage on clusters by using Red Hat Advanced Cluster Management
      > The default namespace for the LVM Storage Operator is `openshift-lvm-storage`.
 
 **Additional resources**
+{._additional-resources}
 
 - [About the `LVMCluster` custom resource](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#about-lvmcluster_logical-volume-manager-storage)
 
@@ -558,7 +559,7 @@ The following are optional fields: `fstype`, `nodeSelector`, `deviceSelector`, `
 
 The `LVMCluster` CR fields are described in the following table:
 
-*`LVMCluster`** CR fields***
+**`LVMCluster` CR fields**
 
 <table>
 <thead>
@@ -615,9 +616,9 @@ The `LVMCluster` CR fields are described in the following table:
   <td>Specify the optional device paths.<br><br>If the device path specified in this field does not exist, or the device is not supported by LVM Storage, LVM Storage ignores the device without causing an error.</td>
 </tr>
 <tr>
-  <td>`deviceSelector. forceWipeDevicesAndDestroyAllData`</td>
+  <td><code>deviceSelector. forceWipeDevicesAndDestroyAllData</code></td>
   <td><code>boolean</code></td>
-  <td>LVM Storage uses only those disks that are empty and do not contain file system signatures. To ensure that the disks are empty and do not contain file system signatures, wipe the disks before using them.<br><br>To force wipe the selected devices, set this field to <code>true</code>. By default, this field is set to <code>false</code>.<br><br><dl><dt>Warning</dt><dd>If this field is set to <code>true</code>, LVM Storage wipes all previous data on the devices. Use this feature with caution.</dd></dl><br><br>Wiping the device can lead to inconsistencies in data integrity if any of the following conditions are met:<br><br><ul><li>The device is being used as swap space.</li><li>The device is part of a RAID array.</li><li>The device is mounted.</li></ul>If any of these conditions are true, do not force wipe the disk. Instead, you must manually wipe the disk.</td>
+  <td>LVM Storage uses only those disks that are empty and do not contain file system signatures. To ensure that the disks are empty and do not contain file system signatures, wipe the disks before using them.<br><br>To force wipe the selected devices, set this field to <code>true</code>. By default, this field is set to <code>false</code>.<br><br><dl class="db-admonition db-admonition-warning"><dt>Warning</dt><dd>If this field is set to <code>true</code>, LVM Storage wipes all previous data on the devices. Use this feature with caution.</dd></dl><br><br>Wiping the device can lead to inconsistencies in data integrity if any of the following conditions are met:<br><br><ul><li>The device is being used as swap space.</li><li>The device is part of a RAID array.</li><li>The device is mounted.</li></ul>If any of these conditions are true, do not force wipe the disk. Instead, you must manually wipe the disk.</td>
 </tr>
 <tr>
   <td>deviceClasses.storageClassOptions</td>
@@ -642,7 +643,7 @@ The `LVMCluster` CR fields are described in the following table:
 <tr>
   <td><code>thinPoolConfig.overprovisionRatio</code></td>
   <td><code>integer</code></td>
-  <td>Specify a factor by which you can provision additional storage based on the available storage in the thin pool.<br><br>For example, if this field is set to 10, you can provision up to 10 times the amount of available storage in the thin pool.You can modify this field after the LVM cluster has been created.<br><br>To update the parameter, do any of the following tasks:<br><br><ul><li>To edit the LVM Cluster, run the following command:</li></ul><pre>$ oc edit lvmcluster &lt;lvmcluster_name&gt;</pre><ul><li>To apply a patch, run the following command:</li></ul><pre>$ oc patch lvmcluster &lt;lvmcluster_name&gt; -p &lt;patch_file.yaml&gt;</pre>To disable over-provisioning, set this field to 1.</td>
+  <td>Specify a factor by which you can provision additional storage based on the available storage in the thin pool.<br><br>For example, if this field is set to 10, you can provision up to 10 times the amount of available storage in the thin pool. You can modify this field after the LVM cluster has been created.<br><br>To update the parameter, do any of the following tasks:<br><br><ul><li>To edit the LVM Cluster, run the following command:</li></ul><pre>$ oc edit lvmcluster &lt;lvmcluster_name&gt;</pre><ul><li>To apply a patch, run the following command:</li></ul><pre>$ oc patch lvmcluster &lt;lvmcluster_name&gt; -p &lt;patch_file.yaml&gt;</pre>To disable over-provisioning, set this field to 1.</td>
 </tr>
 <tr>
   <td><code>thinPoolConfig.chunkSize</code></td>
@@ -668,6 +669,7 @@ The `LVMCluster` CR fields are described in the following table:
 </table>
 
 **Additional resources**
+{._additional-resources}
 
 - [Overview of chunk size](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/configuring_and_managing_logical_volumes/index#overview-of-chunk-size_creating-and-managing-thin-provisioned-volumes)
 - [Limitations to configure the size of the devices used in LVM Storage](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#limitations-to-configure-size-of-devices_logical-volume-manager-storage)
@@ -756,6 +758,7 @@ LVM Storage supports dynamic device discovery. If you do not add the `deviceSele
 > - If LVM Storage adds a device to the VG through dynamic device discovery, LVM Storage does not restrict you from removing the device from the node. Removing or updating the devices that are already added to the VG can disrupt the VG. This can also lead to data loss and necessitate manual node remediation.
 
 **Additional resources**
+{._additional-resources}
 
 - [RHEL documentation](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/managing_file_systems/assembly_overview-of-persistent-naming-attributes_managing-file-systems)
 - [Creating a software RAID on an installed system](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/managing_storage_devices/managing-raid_managing-storage-devices#creating-a-software-raid-on-an-installed-system_managing-raid)
@@ -935,6 +938,7 @@ $ pvs -S vgname=<vg_name>
 Replace `<vg_name>` with the name of the volume group.
 
 **Additional resources**
+{._additional-resources}
 
 - [Grouping LVM objects with tags](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/configuring_and_managing_logical_volumes/grouping-lvm-objects-with-tags_configuring-and-managing-logical-volumes#doc-wrapper)
 
@@ -1027,14 +1031,18 @@ You can create an `LVMCluster` custom resource (CR) on a worker node by using th
    - `state`: Specifies the status of the `LVMCluster` CR.
 
      > [!NOTE]
-     > If the `LVMCluster` CR is in the `Failed` state, you can view the reason for failure in the `status` field.
-
-
-   Example of `status` field with the reason for failure: `yaml     status:       deviceClassStatuses:         - name: vg1           nodeStatus:             - node: my-node-1.example.com                reason: no available devices found for volume group               status: Failed       state: Failed     `
-
-   ```
-   :::
-   ```
+     > If the `LVMCluster` CR is in the `Failed` state, you can view the reason for failure in the `status` field. + Example of `status` field with the reason for failure:
+     >
+     > ```yaml
+     > status:
+     >   deviceClassStatuses:
+     >     - name: vg1
+     >       nodeStatus:
+     >         - node: my-node-1.example.com
+     >           reason: no available devices found for volume group
+     >           status: Failed
+     >   state: Failed
+     > ```
 2. To view the storage classes created by LVM Storage for each device class, run the following command:
 
    ```terminal
@@ -1057,6 +1065,7 @@ You can create an `LVMCluster` custom resource (CR) on a worker node by using th
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [About the `LVMCluster` custom resource](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#about-lvmcluster_logical-volume-manager-storage)
 
@@ -1077,7 +1086,7 @@ You can create an `LVMCluster` custom resource (CR) on a worker node by using th
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console.
-2. Click **Ecosystem** -> **Installed Operators**.
+2. Click **Ecosystem** → **Installed Operators**.
 3. In the `openshift-lvm-storage` namespace, click **LVM Storage**.
 4. Click **Create LVMCluster** and select either **Form view** or **YAML view**.
 5. Configure the required `LVMCluster` CR parameters.
@@ -1092,10 +1101,11 @@ You can create an `LVMCluster` custom resource (CR) on a worker node by using th
 **Verification**
 
 1. On the **LVMCLuster** page, check that the `LVMCluster` CR is in the `Ready` state.
-2. Optional: To view the available storage classes created by LVM Storage for each device class, click **Storage** -> **StorageClasses**.
-3. Optional: To view the available volume snapshot classes created by LVM Storage for each device class, click **Storage** -> **VolumeSnapshotClasses**.
+2. Optional: To view the available storage classes created by LVM Storage for each device class, click **Storage** → **StorageClasses**.
+3. Optional: To view the available volume snapshot classes created by LVM Storage for each device class, click **Storage** → **VolumeSnapshotClasses**.
 
 **Additional resources**
+{._additional-resources}
 
 - [About the `LVMCluster` custom resource](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#about-lvmcluster_logical-volume-manager-storage)
 
@@ -1156,6 +1166,7 @@ After installing Logical Volume Manager (LVM) Storage by using RHACM, create an 
    `<cluster_namespace>` is the namespace of the OpenShift Container Platform cluster on which LVM Storage is installed.
 
 **Additional resources**
+{._additional-resources}
 
 - [About the `LVMCluster` custom resource](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#about-lvmcluster_logical-volume-manager-storage)
 
@@ -1214,7 +1225,7 @@ You can delete an `LVMCluster` custom resource (CR) when decommissioning LVM Sto
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console.
-2. Click **Ecosystem** -> **Installed Operators** to view all the installed Operators.
+2. Click **Ecosystem** → **Installed Operators** to view all the installed Operators.
 3. Click **LVM Storage** in the `openshift-lvm-storage` namespace.
 4. Click the **LVMCluster** tab.
 5. From the **Actions**, select **Delete LVMCluster**.
@@ -1573,7 +1584,7 @@ You can configure custom StorageClass behaviors for each device class, including
 
 If you set an empty configuration (storageClassOptions: {}) or omit the field entirely, the Operator uses the following default settings:
 
-***StorageClass Options Reference***
+**StorageClass Options Reference**
 
 <table>
 <thead>
@@ -1604,7 +1615,7 @@ If you set an empty configuration (storageClassOptions: {}) or omit the field en
   <td><code>additionalParameters</code></td>
   <td><code>map[string]string</code></td>
   <td>Yes</td>
-  <td>Adds custom key-value pairs to the <code>StorageClass .parameters</code> map.<br><br>Default: <code>{}</code> (empty). Maximum entries: 16.<br><br>StorageClass parameters are passed to the CSI driver (TopoLVM) during volume provisioning. TopoLVM recognizes only <code>topolvm.io/device-class</code> and <code>csi.storage.k8s.io/fstype</code>. Use <code>additionalParameters</code> for forward-compatibility or for parameters consumed by other Kubernetes components.<br><br>The following keys are managed by LVMS and are rejected at admission:<br><br><ul><li><code>topolvm.io/device-class</code> — automatically set to the device class name</li><li><code>csi.storage.k8s.io/fstype</code> — automatically set from the <code>fstype</code> field on the device class</li></ul><dl><dt>Important</dt><dd>To change the filesystem type, use the <code>fstype</code> field on the device class directly. Do not use <code>additionalParameters</code>.</dd></dl></td>
+  <td>Adds custom key-value pairs to the <code>StorageClass .parameters</code> map.<br><br>Default: <code>{}</code> (empty). Maximum entries: 16.<br><br>StorageClass parameters are passed to the CSI driver (TopoLVM) during volume provisioning. TopoLVM recognizes only <code>topolvm.io/device-class</code> and <code>csi.storage.k8s.io/fstype</code>. Use <code>additionalParameters</code> for forward-compatibility or for parameters consumed by other Kubernetes components.<br><br>The following keys are managed by LVMS and are rejected at admission:<br><br><ul><li><code>topolvm.io/device-class</code> — automatically set to the device class name</li><li><code>csi.storage.k8s.io/fstype</code> — automatically set from the <code>fstype</code> field on the device class</li></ul><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>To change the filesystem type, use the <code>fstype</code> field on the device class directly. Do not use <code>additionalParameters</code>.</dd></dl></td>
   <td><pre>storageClassOptions:&#10;  additionalParameters:&#10;    custom-param-key: custom-param-value</pre></td>
 </tr>
 <tr>
@@ -1847,6 +1858,7 @@ If you do not add the `deviceSelector` field in the `LVMCluster` CR, LVM Storage
 > LVM Storage adds only the supported devices. For information about unsupported devices, see "Devices not supported by LVM Storage".
 
 **Additional resources**
+{._additional-resources}
 
 - [Adding worker nodes to single-node OpenShift clusters](/openshift-docs-markdown/nodes/nodes/nodes-sno-worker-nodes#nodes-sno-worker-nodes)
 - [Devices not supported by LVM Storage](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#lvms-unsupported-devices_logical-volume-manager-storage)
@@ -1870,38 +1882,38 @@ Scale up worker node storage capacity when running out of space, adding new appl
    ```
 2. Add the path to the new device in the `deviceSelector` field.
 
-```yaml {title="Example LVMCluster CR"}
-apiVersion: lvm.topolvm.io/v1alpha1
-kind: LVMCluster
-metadata:
-  name: my-lvmcluster
-spec:
-  storage:
-    deviceClasses:
-# ...
-      deviceSelector:
-        paths:
-        - /dev/disk/by-path/pci-0000:87:00.0-nvme-1
-        - /dev/disk/by-path/pci-0000:88:00.0-nvme-1
-        optionalPaths:
-        - /dev/disk/by-path/pci-0000:89:00.0-nvme-1
-        - /dev/disk/by-path/pci-0000:90:00.0-nvme-1
-# ...
-```
+   ```yaml {title="Example LVMCluster CR"}
+   apiVersion: lvm.topolvm.io/v1alpha1
+   kind: LVMCluster
+   metadata:
+     name: my-lvmcluster
+   spec:
+     storage:
+       deviceClasses:
+   # ...
+         deviceSelector:
+           paths:
+           - /dev/disk/by-path/pci-0000:87:00.0-nvme-1
+           - /dev/disk/by-path/pci-0000:88:00.0-nvme-1
+           optionalPaths:
+           - /dev/disk/by-path/pci-0000:89:00.0-nvme-1
+           - /dev/disk/by-path/pci-0000:90:00.0-nvme-1
+   # ...
+   ```
 
-- `spec...deviceSelector`: Contains the configuration to specify the paths to the devices that you want to add to the LVM volume group. You can specify the device paths in the `paths` field, the `optionalPaths` field, or both. If you do not specify the device paths in both `paths` and `optionalPaths`, Logical Volume Manager (LVM) Storage adds the supported unused devices to the LVM volume group. LVM Storage adds the devices to the LVM volume group only if the following conditions are met:
+   - `spec...deviceSelector`: Contains the configuration to specify the paths to the devices that you want to add to the LVM volume group. You can specify the device paths in the `paths` field, the `optionalPaths` field, or both. If you do not specify the device paths in both `paths` and `optionalPaths`, Logical Volume Manager (LVM) Storage adds the supported unused devices to the LVM volume group. LVM Storage adds the devices to the LVM volume group only if the following conditions are met:
 
-  - The device path exists.
-  - The device is supported by LVM Storage. For information about unsupported devices, see "Devices not supported by LVM Storage".
-- `spec...deviceSelector.paths`: Specifies the device paths. If the device path specified in this field does not exist, or the device is not supported by LVM Storage, the `LVMCluster` CR moves to the `Failed` state.
-- `spec...deviceSelector.optionalPaths`: Specifies the optional device paths. If the device path specified in this field does not exist, or the device is not supported by LVM Storage, LVM Storage ignores the device without causing an error.
+     - The device path exists.
+     - The device is supported by LVM Storage. For information about unsupported devices, see "Devices not supported by LVM Storage".
+   - `spec...deviceSelector.paths`: Specifies the device paths. If the device path specified in this field does not exist, or the device is not supported by LVM Storage, the `LVMCluster` CR moves to the `Failed` state.
+   - `spec...deviceSelector.optionalPaths`: Specifies the optional device paths. If the device path specified in this field does not exist, or the device is not supported by LVM Storage, LVM Storage ignores the device without causing an error.
 
-  > [!IMPORTANT]
-  > After a device is added to the LVM volume group, it cannot be removed.
-
-1. Save the `LVMCluster` CR.
+     > [!IMPORTANT]
+     > After a device is added to the LVM volume group, it cannot be removed.
+3. Save the `LVMCluster` CR.
 
 **Additional resources**
+{._additional-resources}
 
 - [About the `LVMCluster` custom resource](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#about-lvmcluster_logical-volume-manager-storage)
 - [Devices not supported by LVM Storage](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#lvms-unsupported-devices_logical-volume-manager-storage)
@@ -1919,45 +1931,45 @@ Scale up worker node storage capacity when running out of space, adding new appl
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console.
-2. Click **Ecosystem** -> **Installed Operators**.
+2. Click **Ecosystem** → **Installed Operators**.
 3. Click **LVM Storage** in the `openshift-lvm-storage` namespace.
 4. Click the **LVMCluster** tab to view the `LVMCluster` CR created on the cluster.
 5. From the **Actions** menu, select **Edit LVMCluster**.
 6. Click the **YAML** tab.
 7. Edit the `LVMCluster` CR to add the new device path in the `deviceSelector` field:
 
-```yaml {title="Example LVMCluster CR"}
-apiVersion: lvm.topolvm.io/v1alpha1
-kind: LVMCluster
-metadata:
-  name: my-lvmcluster
-spec:
-  storage:
-    deviceClasses:
-# ...
-      deviceSelector:
-        paths:
-        - /dev/disk/by-path/pci-0000:87:00.0-nvme-1
-        - /dev/disk/by-path/pci-0000:88:00.0-nvme-1
-        optionalPaths:
-        - /dev/disk/by-path/pci-0000:89:00.0-nvme-1
-        - /dev/disk/by-path/pci-0000:90:00.0-nvme-1
-# ...
-```
+   ```yaml {title="Example LVMCluster CR"}
+   apiVersion: lvm.topolvm.io/v1alpha1
+   kind: LVMCluster
+   metadata:
+     name: my-lvmcluster
+   spec:
+     storage:
+       deviceClasses:
+   # ...
+         deviceSelector:
+           paths:
+           - /dev/disk/by-path/pci-0000:87:00.0-nvme-1
+           - /dev/disk/by-path/pci-0000:88:00.0-nvme-1
+           optionalPaths:
+           - /dev/disk/by-path/pci-0000:89:00.0-nvme-1
+           - /dev/disk/by-path/pci-0000:90:00.0-nvme-1
+   # ...
+   ```
 
-- `spec...deviceSelector`: Contains the configuration to specify the paths to the devices that you want to add to the LVM volume group. You can specify the device paths in the `paths` field, the `optionalPaths` field, or both. If you do not specify the device paths in both `paths` and `optionalPaths`, Logical Volume Manager (LVM) Storage adds the supported unused devices to the LVM volume group. LVM Storage adds the devices to the LVM volume group only if the following conditions are met:
+   - `spec...deviceSelector`: Contains the configuration to specify the paths to the devices that you want to add to the LVM volume group. You can specify the device paths in the `paths` field, the `optionalPaths` field, or both. If you do not specify the device paths in both `paths` and `optionalPaths`, Logical Volume Manager (LVM) Storage adds the supported unused devices to the LVM volume group. LVM Storage adds the devices to the LVM volume group only if the following conditions are met:
 
-  - The device path exists.
-  - The device is supported by LVM Storage. For information about unsupported devices, see "Devices not supported by LVM Storage".
-- `spec...deviceSelector.paths`: Specifies the device paths. If the device path specified in this field does not exist, or the device is not supported by LVM Storage, the `LVMCluster` CR moves to the `Failed` state.
-- `spec...deviceSelector.optionalPaths`: Specifies the optional device paths. If the device path specified in this field does not exist, or the device is not supported by LVM Storage, LVM Storage ignores the device without causing an error.
+     - The device path exists.
+     - The device is supported by LVM Storage. For information about unsupported devices, see "Devices not supported by LVM Storage".
+   - `spec...deviceSelector.paths`: Specifies the device paths. If the device path specified in this field does not exist, or the device is not supported by LVM Storage, the `LVMCluster` CR moves to the `Failed` state.
+   - `spec...deviceSelector.optionalPaths`: Specifies the optional device paths. If the device path specified in this field does not exist, or the device is not supported by LVM Storage, LVM Storage ignores the device without causing an error.
 
-  > [!IMPORTANT]
-  > After a device is added to the LVM volume group, it cannot be removed.
-
-1. Click **Save**.
+     > [!IMPORTANT]
+     > After a device is added to the LVM volume group, it cannot be removed.
+8. Click **Save**.
 
 **Additional resources**
+{._additional-resources}
 
 - [About the `LVMCluster` custom resource](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#about-lvmcluster_logical-volume-manager-storage)
 - [Devices not supported by LVM Storage](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#lvms-unsupported-devices_logical-volume-manager-storage)
@@ -2023,6 +2035,7 @@ Scale up worker node storage capacity when running out of space, adding new appl
 4. Save the `LVMCluster` CR.
 
 **Additional resources**
+{._additional-resources}
 
 - [About the `LVMCluster` custom resource](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#about-lvmcluster_logical-volume-manager-storage)
 - [Devices not supported by LVM Storage](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#lvms-unsupported-devices_logical-volume-manager-storage)
@@ -2061,6 +2074,7 @@ After scaling up cluster storage, you can expand existing persistent volume clai
   LVM Storage adds the `Resizing` condition to the PVC during expansion. It deletes the `Resizing` condition after the PVC expansion.
 
 **Additional resources**
+{._additional-resources}
 
 - [Ways to scale up the storage of clusters](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#lvms-about-scaling-storage-of-cluster_logical-volume-manager-storage)
 - [Enabling volume expansion support](/openshift-docs-markdown/storage/expanding-persistent-volumes#add-volume-expansion_expanding-persistent-volumes)
@@ -2117,6 +2131,7 @@ LVM Storage has the following limitations for creating volume snapshots in multi
 - Pods relying on the PVC that uses the snapshot data can be scheduled only on the node where you have deployed the original data source.
 
 **Additional resources**
+{._additional-resources}
 
 - [OADP features](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-features-plugins#oadp-features_oadp-features-plugins)
 
@@ -2150,12 +2165,12 @@ You can create volume snapshots based on the available capacity of the thin pool
    2. Specify the name of the source PVC. LVM Storage creates a snapshot of this PVC.
    3. Set this field to the name of a volume snapshot class.
 
-      > [!NOTE]
-      > To get the list of available volume snapshot classes, run the following command:
-      >
-      > ```terminal
-      > $ oc get volumesnapshotclass
-      > ```
+   > [!NOTE]
+   > To get the list of available volume snapshot classes, run the following command:
+   >
+   > ```terminal
+   > $ oc get volumesnapshotclass
+   > ```
 3. Create the volume snapshot in the namespace where you created the source PVC by running the following command:
 
    ```terminal
@@ -2390,7 +2405,7 @@ You can update LVM Storage to ensure compatibility with the OpenShift Container 
    $ oc patch subscription lvms-operator -n openshift-lvm-storage --type merge --patch '{"spec":{"channel":"<update_channel>"}}'
    ```
 
-   Replace `<update_channel>` with the version of LVM Storage that you want to install. For example, `stable-{{ product_version }}`.
+   Replace `<update_channel>` with the version of LVM Storage that you want to install. For example, `stable-4.22`.
 3. View the update events to check that the installation is complete by running the following command:
 
    ```terminal
@@ -2399,12 +2414,12 @@ You can update LVM Storage to ensure compatibility with the OpenShift Container 
 
    ```terminal {title="Example output"}
    ...
-   8m13s       Normal    RequirementsUnknown   clusterserviceversion/lvms-operator.v{{ product_version }}   requirements not yet checked
-   8m11s       Normal    RequirementsNotMet    clusterserviceversion/lvms-operator.v{{ product_version }}   one or more requirements couldn't be found
-   7m50s       Normal    AllRequirementsMet    clusterserviceversion/lvms-operator.v{{ product_version }}   all requirements found, attempting install
-   7m50s       Normal    InstallSucceeded      clusterserviceversion/lvms-operator.v{{ product_version }}   waiting for install components to report healthy
-   7m49s       Normal    InstallWaiting        clusterserviceversion/lvms-operator.v{{ product_version }}   installing: waiting for deployment lvms-operator to become ready: deployment "lvms-operator" waiting for 1 outdated replica(s) to be terminated
-   7m39s       Normal    InstallSucceeded      clusterserviceversion/lvms-operator.v{{ product_version }}   install strategy completed with no errors
+   8m13s       Normal    RequirementsUnknown   clusterserviceversion/lvms-operator.v4.22   requirements not yet checked
+   8m11s       Normal    RequirementsNotMet    clusterserviceversion/lvms-operator.v4.22   one or more requirements couldn't be found
+   7m50s       Normal    AllRequirementsMet    clusterserviceversion/lvms-operator.v4.22   all requirements found, attempting install
+   7m50s       Normal    InstallSucceeded      clusterserviceversion/lvms-operator.v4.22   waiting for install components to report healthy
+   7m49s       Normal    InstallWaiting        clusterserviceversion/lvms-operator.v4.22   installing: waiting for deployment lvms-operator to become ready: deployment "lvms-operator" waiting for 1 outdated replica(s) to be terminated
+   7m39s       Normal    InstallSucceeded      clusterserviceversion/lvms-operator.v4.22   install strategy completed with no errors
    ...
    ```
 
@@ -2417,7 +2432,7 @@ You can update LVM Storage to ensure compatibility with the OpenShift Container 
   ```
 
   ```terminal {title="Example output"}
-  lvms-operator.v{{ product_version }}
+  lvms-operator.v4.22
   ```
 
 ## Monitoring LVM Storage {#lvms-monitoring_logical-volume-manager-storage}
@@ -2438,6 +2453,7 @@ openshift.io/cluster-monitoring=true
 ```
 
 **Additional resources**
+{._additional-resources}
 
 - https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.17/html-single/observability/index\[Observability\]
 - https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.17/html-single/observability/index#adding-custom-metrics\[Adding custom metrics\]
@@ -2452,7 +2468,7 @@ You can monitor LVM Storage by viewing the metrics.
 
 The following table describes the `topolvm` metrics:
 
-`topolvm`** metrics**
+**`topolvm` metrics**
 
 | Alert | Description |
 | --- | --- |
@@ -2548,7 +2564,7 @@ Uninstall LVM Storage when it is no longer needed or before upgrading to a diffe
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console.
-2. Click **Ecosystem** -> **Installed Operators**.
+2. Click **Ecosystem** → **Installed Operators**.
 3. Click **LVM Storage** in the `openshift-lvm-storage` namespace.
 4. Click the **Details** tab.
 5. From the **Actions** menu, select **Uninstall Operator**.
@@ -2698,10 +2714,11 @@ Use the must-gather tool to collect log files and diagnostic information when LV
 - Run the `must-gather` command from the client connected to the LVM Storage cluster:
 
   ```terminal
-  $ oc adm must-gather --image=registry.redhat.io/lvms4/lvms-must-gather-rhel9:v{{ product_version }} --dest-dir=<directory_name>
+  $ oc adm must-gather --image=registry.redhat.io/lvms4/lvms-must-gather-rhel9:v4.22 --dest-dir=<directory_name>
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [About the must-gather tool](/openshift-docs-markdown/support/gathering-cluster-data#about-must-gather_gathering-cluster-data)
 
@@ -2800,6 +2817,7 @@ Resolve the "storage class not found" error by verifying that the LVMCluster cus
      ```
 
 **Additional resources**
+{._additional-resources}
 
 - [About the `LVMCluster` custom resource](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#about-lvmcluster_logical-volume-manager-storage)
 - [Ways to create an `LVMCluster` custom resource](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#about-creating-lvmcluster-cr_logical-volume-manager-storage)
@@ -2838,6 +2856,7 @@ Identify failed nodes causing persistent volume claims (PVCs) to remain in pendi
 If the PVC is stuck in the `Pending` state even after you have resolved any issues with the node, you must perform a forced clean-up. For more information, see "Performing a forced clean-up".
 
 **Additional resources**
+{._additional-resources}
 
 - [Performing a forced clean-up](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#performing-a-forced-cleanup_logical-volume-manager-storage)
 
@@ -2881,6 +2900,7 @@ The following table describes the volume failure error messages:
 If the volume failure messages persist or recur even after you have resolved the issue with the disk, you must perform a forced clean-up. For more information, see "Performing a forced clean-up".
 
 **Additional resources**
+{._additional-resources}
 
 - [Performing a forced clean-up](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-using-lvms#performing-a-forced-cleanup_logical-volume-manager-storage)
 
@@ -2963,6 +2983,7 @@ If the disk or node-related problems persist even after you have completed the t
 
       Replace `<name>` with the name of the `LVMCluster` CR.
 
-## Additional resources {#additional-resources_logical-volume-manager-storage}
+**Additional resources**
+{._additional-resources}
 
 - [Red Hat Advanced Cluster Management for Kubernetes: Installing while connected online](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.17/html/install/installing#installing-while-connected-online)

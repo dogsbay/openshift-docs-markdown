@@ -1,5 +1,5 @@
 ---
-title: ConsoleNotification []
+title: ConsoleNotification [console.openshift.io/v1]
 ---
 
 # ConsoleNotification \[console.openshift.io/v1\] {#consolenotification-console-openshift-io-v1}
@@ -75,13 +75,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of ConsoleNotification
   - `GET`: list objects of kind ConsoleNotification
   - `POST`: create a ConsoleNotification
-- `/apis/console.openshift.io/v1/consolenotifications/{{ name }}`
+- `/apis/console.openshift.io/v1/consolenotifications/{name}`
 
   - `DELETE`: delete a ConsoleNotification
   - `GET`: read the specified ConsoleNotification
   - `PATCH`: partially update the specified ConsoleNotification
   - `PUT`: replace the specified ConsoleNotification
-- `/apis/console.openshift.io/v1/consolenotifications/{{ name }}/status`
+- `/apis/console.openshift.io/v1/consolenotifications/{name}/status`
 
   - `GET`: read status of the specified ConsoleNotification
   - `PATCH`: partially update status of the specified ConsoleNotification
@@ -155,7 +155,7 @@ Description
 | 202 - Accepted | [`ConsoleNotification`](/openshift-docs-markdown/rest_api/console_apis/consolenotification-console-openshift-io-v1#consolenotification-console-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/console.openshift.io/v1/consolenotifications/{{ name }} {#_apisconsoleopenshiftiov1consolenotifications_name}
+### /apis/console.openshift.io/v1/consolenotifications/{name} {#_apisconsoleopenshiftiov1consolenotifications_name}
 
 **Global path parameters**
 
@@ -259,7 +259,7 @@ Description
 | 201 - Created | [`ConsoleNotification`](/openshift-docs-markdown/rest_api/console_apis/consolenotification-console-openshift-io-v1#consolenotification-console-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/console.openshift.io/v1/consolenotifications/{{ name }}/status {#_apisconsoleopenshiftiov1consolenotifications_name_status}
+### /apis/console.openshift.io/v1/consolenotifications/{name}/status {#_apisconsoleopenshiftiov1consolenotifications_name_status}
 
 **Global path parameters**
 

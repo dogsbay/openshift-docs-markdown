@@ -25,7 +25,7 @@ Modify the default settings for CPU and memory requests and limits for your use 
 1. Edit the `HyperConverged` CR by running the following command:
 
    ```terminal
-   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+   $ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv
    ```
 2. Add the `spec.resourceRequirements.storageWorkloads` stanza to the CR, setting the values based on your use case. For example:
 
@@ -46,6 +46,7 @@ Modify the default settings for CPU and memory requests and limits for your use 
    ```
 3. Save and exit the editor to update the `HyperConverged` CR.
 
-## Additional resources {#virt-configuring-cdi-for-namespace-resourcequota_additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Resource quotas per project](/openshift-docs-markdown/applications/quotas/quotas-setting-per-project#quotas-setting-per-project)

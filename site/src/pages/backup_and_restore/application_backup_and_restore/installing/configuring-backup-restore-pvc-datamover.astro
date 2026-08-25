@@ -21,7 +21,8 @@ const headings = [{"depth":1,"slug":"configuring-backup-restore-pvc-datamover","
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/configuring-backup-restore-pvc-datamover";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="configuring-backup-restore-pvc-datamover" class="group scroll-mt-20">Configuring backup and restore PVCs for Data Mover<a href="#configuring-backup-restore-pvc-datamover" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Configure backup and restore persistent volume claims (PVCs) to optimize Data Mover operations. For storage classes like CephFS, these intermediate PVCs allow the system to create read-only volumes from snapshots, resulting in significantly faster backups.</p>
+      <p class="_abstract">Configure backup and restore persistent volume claims (PVCs) to optimize Data Mover operations. For storage classes like CephFS, these intermediate PVCs allow the system to create read-only volumes from snapshots, resulting in significantly faster backups.</p>
       <p>You create a <code>readonly</code> backup PVC by using the <code>nodeAgent.backupPVC</code> section of the <code>DataProtectionApplication</code> (DPA) and setting the <code>readOnly</code> access mode to <code>true</code>.</p>
       <p>You can use the following fields in the <code>nodeAgent.backupPVC</code> section of the DPA to configure the backup PVC.</p>
       <ul>

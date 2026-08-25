@@ -32,11 +32,11 @@ Red Hat Universal Base Images (UBI) were created to encourage anyone building t
 
 Search the Red Hat Ecosystem Catalog to both find and check the health of different UBI images. As someone creating secure container images, you might be interested in these two general types of UBI images:
 
-- ***UBI***: There are standard UBI images for RHEL 7, 8, and 9 (`ubi7/ubi`, `ubi8/ubi`, and `ubi9/ubi`), and minimal images based on those systems (`ubi7/ubi-minimal`, `ubi8/ubi-mimimal`, and ubi9/ubi-minimal). All of these images are preconfigured to point to free repositories of RHEL software that you can add to the container images you build, using standard `yum` and `dnf` commands.
+- **UBI**: There are standard UBI images for RHEL 7, 8, and 9 (`ubi7/ubi`, `ubi8/ubi`, and `ubi9/ubi`), and minimal images based on those systems (`ubi7/ubi-minimal`, `ubi8/ubi-mimimal`, and ubi9/ubi-minimal). All of these images are preconfigured to point to free repositories of RHEL software that you can add to the container images you build, using standard `yum` and `dnf` commands.
 
   > [!NOTE]
   > Red Hat encourages people to use these images on other distributions, such as Fedora and Ubuntu.
-- ***Red Hat Software Collections***\*: Search the Red Hat Ecosystem Catalog for `rhscl/` to find images created to use as base images for specific types of applications. For example, there are Apache httpd (`rhscl/httpd-**`), Python (`rhscl/python-**`), Ruby (`rhscl/ruby-**`), Node.js (`rhscl/nodejs-**`) and Perl (`rhscl/perl-**`) rhscl images.
+- **Red Hat Software Collections**: Search the Red Hat Ecosystem Catalog for `rhscl/` to find images created to use as base images for specific types of applications. For example, there are Apache httpd (`rhscl/httpd-*`), Python (`rhscl/python-*`), Ruby (`rhscl/ruby-*`), Node.js (`rhscl/nodejs-*`) and Perl (`rhscl/perl-*`) rhscl images.
 
 Remember that while UBI images are freely available and redistributable, Red Hat support for these images is only available through Red Hat product subscriptions.
 
@@ -206,5 +206,6 @@ The following is an example of `PATCH` payload data:
 ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Image stream objects](/openshift-docs-markdown/openshift_images/index#overview-of-images)

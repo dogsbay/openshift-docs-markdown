@@ -1,5 +1,5 @@
 ---
-title: Using {{ VirtProductName }} with {{ IBMFusionFirst }}
+title: Using OpenShift Virtualization with IBM Fusion Access for SAN
 ---
 
 # Using OpenShift Virtualization with IBM Fusion Access for SAN {#install-configure-fusion-access-san}
@@ -72,7 +72,7 @@ You can install the Fusion Access for SAN Operator from the software catalog in 
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, navigate to **Ecosystem** -> **Software Catalog**.
+1. In the OpenShift Container Platform web console, navigate to **Ecosystem** → **Software Catalog**.
 2. In the **Filter by keyword** field, type `Fusion Access for SAN`.
 3. Select the **Fusion Access for SAN** tile and click **Install**.
 4. On the **Install Operator** page, keep the default selections for **Update Channel**, **Version**, and **Installation mode**.
@@ -91,7 +91,7 @@ You can install the Fusion Access for SAN Operator from the software catalog in 
 
 **Verification**
 
-1. Navigate to **Ecosystem** -> **Installed Operators**.
+1. Navigate to **Ecosystem** → **Installed Operators**.
 2. Verify that the Fusion Access for SAN Operator is displayed.
 
 ## Creating a Kubernetes pull secret {#creating-pull-secret-fusion-san_install-configure-fusion-access-san}
@@ -121,7 +121,7 @@ After installing the Fusion Access for SAN Operator, you must create a Kubernete
 
 **Verification**
 
-1. In the OpenShift Container Platform web console, navigate to **Workloads** -> **Secrets**.
+1. In the OpenShift Container Platform web console, navigate to **Workloads** → **Secrets**.
 2. Find the `fusion-pullsecret` in the list.
 
 ## Creating the FusionAccess CR {#creating-fusionaccess-cr_install-configure-fusion-access-san}
@@ -138,7 +138,7 @@ Creating the `FusionAccess` CR triggers the installation of the correct version 
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, navigate to **Ecosystem** -> **Installed Operators**.
+1. In the OpenShift Container Platform web console, navigate to **Ecosystem** → **Installed Operators**.
 2. Click the Fusion Access for SAN Operator you installed.
 3. In the **Fusion Access for SAN** page, select the **Fusion Access** tab.
 4. Click **Create FusionAccess**.
@@ -167,7 +167,7 @@ The wizard for creating the storage cluster in the OpenShift Container Platform 
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, navigate to **Storage** -> **Fusion Access for SAN**.
+1. In the OpenShift Container Platform web console, navigate to **Storage** → **Fusion Access for SAN**.
 2. Click **Create storage cluster**.
 3. Select the worker nodes that have shared LUNs.
 
@@ -189,7 +189,7 @@ The file system is based on the storage available in the worker nodes you select
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, navigate to **Storage** -> **Fusion Access for SAN**.
+1. In the OpenShift Container Platform web console, navigate to **Storage** → **Fusion Access for SAN**.
 2. In the **File systems** tab, click **Create file system**.
 3. Enter a **Name** for the new file system.
 4. Select the LUNs that you want to use as the storage volumes for your file system.
@@ -285,7 +285,7 @@ Image registry requirements for kernel module management
 ### Bug fixes {#virt-fusion-access-san-bug-fixes_install-configure-fusion-access-san}
 
 Filesystem creation button stays disabled until daemons are ready
-:   The IBM Fusion Access for SAN Operator was updated to check the readiness of filesystem daemons before allowing a filesystem to be created. The ***Create file system*** button in the web console now stays disabled with a tooltip explaining the condition until the environment is ready. This change prevents filesystems from appearing stuck during creation.
+:   The IBM Fusion Access for SAN Operator was updated to check the readiness of filesystem daemons before allowing a filesystem to be created. The **Create file system** button in the web console now stays disabled with a tooltip explaining the condition until the environment is ready. This change prevents filesystems from appearing stuck during creation.
 
     [OCPNAS-184](https://issues.redhat.com/browse/OCPNAS-184)
 
@@ -307,7 +307,8 @@ Filesystem creation might fail during core pod deletion
 
     [OCPNAS-233](https://issues.redhat.com/browse/OCPNAS-233)
 
-## Additional resources {#additional-resources_install-configure-fusion-access-san}
+**Additional resources**
+{._additional-resources}
 
 - [Creating virtual machines from instance types](/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-from-instance-types#virt-creating-vms-from-instance-types)
 - [Creating virtual machines from templates](/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-from-templates#virt-creating-vms-from-templates)

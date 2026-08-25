@@ -1,5 +1,5 @@
 ---
-title: BrokerTemplateInstance []
+title: BrokerTemplateInstance [template.openshift.io/v1]
 ---
 
 # BrokerTemplateInstance \[template.openshift.io/v1\] {#brokertemplateinstance-template-openshift-io-v1}
@@ -58,13 +58,13 @@ The following API endpoints are available:
 - `/apis/template.openshift.io/v1/watch/brokertemplateinstances`
 
   - `GET`: watch individual changes to a list of BrokerTemplateInstance. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/template.openshift.io/v1/brokertemplateinstances/{{ name }}`
+- `/apis/template.openshift.io/v1/brokertemplateinstances/{name}`
 
   - `DELETE`: delete a BrokerTemplateInstance
   - `GET`: read the specified BrokerTemplateInstance
   - `PATCH`: partially update the specified BrokerTemplateInstance
   - `PUT`: replace the specified BrokerTemplateInstance
-- `/apis/template.openshift.io/v1/watch/brokertemplateinstances/{{ name }}`
+- `/apis/template.openshift.io/v1/watch/brokertemplateinstances/{name}`
 
   - `GET`: watch changes to an object of kind BrokerTemplateInstance. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
 
@@ -161,7 +161,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/template.openshift.io/v1/brokertemplateinstances/{{ name }} {#_apistemplateopenshiftiov1brokertemplateinstances_name}
+### /apis/template.openshift.io/v1/brokertemplateinstances/{name} {#_apistemplateopenshiftiov1brokertemplateinstances_name}
 
 **Global path parameters**
 
@@ -266,7 +266,7 @@ Description
 | 201 - Created | [`BrokerTemplateInstance`](/openshift-docs-markdown/rest_api/template_apis/brokertemplateinstance-template-openshift-io-v1#brokertemplateinstance-template-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/template.openshift.io/v1/watch/brokertemplateinstances/{{ name }} {#_apistemplateopenshiftiov1watchbrokertemplateinstances_name}
+### /apis/template.openshift.io/v1/watch/brokertemplateinstances/{name} {#_apistemplateopenshiftiov1watchbrokertemplateinstances_name}
 
 **Global path parameters**
 

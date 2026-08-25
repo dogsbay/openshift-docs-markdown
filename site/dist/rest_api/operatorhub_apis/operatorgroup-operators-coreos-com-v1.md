@@ -1,5 +1,5 @@
 ---
-title: OperatorGroup []
+title: OperatorGroup [operators.coreos.com/v1]
 ---
 
 # OperatorGroup \[operators.coreos.com/v1\] {#operatorgroup-operators-coreos-com-v1}
@@ -41,7 +41,7 @@ Type
 | `serviceAccountName` | `string` | ServiceAccountName is the admin specified service account which will be used to deploy operator(s) in this operator group. |
 | `staticProvidedAPIs` | `boolean` | Static tells OLM not to update the OperatorGroup’s providedAPIs annotation |
 | `targetNamespaces` | `array (string)` | TargetNamespaces is an explicit set of namespaces to target. If it is set, Selector is ignored. |
-| `upgradeStrategy` | `string` | UpgradeStrategy defines the upgrade strategy for operators in the namespace. There are currently two supported upgrade strategies: Default: OLM will only allow clusterServiceVersions to move to the replacing phase from the succeeded phase. This effectively means that OLM will not allow operators to move to the next version if an installation or upgrade has failed. TechPreviewUnsafeFailForward: OLM will allow clusterServiceVersions to move to the replacing phase from the succeeded phase or from the failed phase. Additionally, OLM will generate new installPlans when a subscription references a failed installPlan and the catalog has been updated with a new upgrade for the existing set of operators. WARNING: The TechPreviewUnsafeFailForward upgrade strategy is unsafe and may result in unexpected behavior or unrecoverable data loss unless you have deep understanding of the set of operators being managed in the namespace. |
+| `upgradeStrategy` | `string` | UpgradeStrategy defines the upgrade strategy for operators in the namespace. There are currently two supported upgrade strategies:<br>Default: OLM will only allow clusterServiceVersions to move to the replacing phase from the succeeded phase. This effectively means that OLM will not allow operators to move to the next version if an installation or upgrade has failed.<br>TechPreviewUnsafeFailForward: OLM will allow clusterServiceVersions to move to the replacing phase from the succeeded phase or from the failed phase. Additionally, OLM will generate new installPlans when a subscription references a failed installPlan and the catalog has been updated with a new upgrade for the existing set of operators.<br>WARNING: The TechPreviewUnsafeFailForward upgrade strategy is unsafe and may result in unexpected behavior or unrecoverable data loss unless you have deep understanding of the set of operators being managed in the namespace. |
 
 ### .spec.selector {#_specselector}
 
@@ -139,7 +139,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
 | `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
@@ -159,7 +159,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{{ name }}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -173,18 +173,18 @@ The following API endpoints are available:
 - `/apis/operators.coreos.com/v1/operatorgroups`
 
   - `GET`: list objects of kind OperatorGroup
-- `/apis/operators.coreos.com/v1/namespaces/{{ namespace }}/operatorgroups`
+- `/apis/operators.coreos.com/v1/namespaces/{namespace}/operatorgroups`
 
   - `DELETE`: delete collection of OperatorGroup
   - `GET`: list objects of kind OperatorGroup
   - `POST`: create an OperatorGroup
-- `/apis/operators.coreos.com/v1/namespaces/{{ namespace }}/operatorgroups/{{ name }}`
+- `/apis/operators.coreos.com/v1/namespaces/{namespace}/operatorgroups/{name}`
 
   - `DELETE`: delete an OperatorGroup
   - `GET`: read the specified OperatorGroup
   - `PATCH`: partially update the specified OperatorGroup
   - `PUT`: replace the specified OperatorGroup
-- `/apis/operators.coreos.com/v1/namespaces/{{ namespace }}/operatorgroups/{{ name }}/status`
+- `/apis/operators.coreos.com/v1/namespaces/{namespace}/operatorgroups/{name}/status`
 
   - `GET`: read status of the specified OperatorGroup
   - `PATCH`: partially update status of the specified OperatorGroup
@@ -209,7 +209,7 @@ Description
 | 200 - OK | [`OperatorGroupList`](/openshift-docs-markdown/rest_api/objects/index#com-coreos-operators-v1-OperatorGroupList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operators.coreos.com/v1/namespaces/{{ namespace }}/operatorgroups {#_apisoperatorscoreoscomv1namespaces_namespace_operatorgroups}
+### /apis/operators.coreos.com/v1/namespaces/{namespace}/operatorgroups {#_apisoperatorscoreoscomv1namespaces_namespace_operatorgroups}
 
 HTTP method
 :   ```
@@ -277,7 +277,7 @@ Description
 | 202 - Accepted | [`OperatorGroup`](/openshift-docs-markdown/rest_api/operatorhub_apis/operatorgroup-operators-coreos-com-v1#operatorgroup-operators-coreos-com-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operators.coreos.com/v1/namespaces/{{ namespace }}/operatorgroups/{{ name }} {#_apisoperatorscoreoscomv1namespaces_namespace_operatorgroups_name}
+### /apis/operators.coreos.com/v1/namespaces/{namespace}/operatorgroups/{name} {#_apisoperatorscoreoscomv1namespaces_namespace_operatorgroups_name}
 
 **Global path parameters**
 
@@ -381,7 +381,7 @@ Description
 | 201 - Created | [`OperatorGroup`](/openshift-docs-markdown/rest_api/operatorhub_apis/operatorgroup-operators-coreos-com-v1#operatorgroup-operators-coreos-com-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operators.coreos.com/v1/namespaces/{{ namespace }}/operatorgroups/{{ name }}/status {#_apisoperatorscoreoscomv1namespaces_namespace_operatorgroups_name_status}
+### /apis/operators.coreos.com/v1/namespaces/{namespace}/operatorgroups/{name}/status {#_apisoperatorscoreoscomv1namespaces_namespace_operatorgroups_name_status}
 
 **Global path parameters**
 

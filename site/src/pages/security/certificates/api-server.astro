@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"api-server-certificates","text":"Adding API
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/certificates/api-server";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="api-server-certificates" class="group scroll-mt-20">Adding API server certificates<a href="#api-server-certificates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>To allow clients outside of the cluster to verify the API server’s certificate, you can replace the default API server certificate with one that is issued by a CA that clients trust.</p>
+      <p class="_abstract">To allow clients outside of the cluster to verify the API server’s certificate, you can replace the default API server certificate with one that is issued by a CA that clients trust.</p>
       <p>By default, the API server certificate is issued by an internal OpenShift Container Platform cluster CA. As a result, clients outside of the cluster cannot verify the API server’s certificate.</p>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>

@@ -1,5 +1,5 @@
 ---
-title: ConsoleYAMLSample []
+title: ConsoleYAMLSample [console.openshift.io/v1]
 ---
 
 # ConsoleYAMLSample \[console.openshift.io/v1\] {#consoleyamlsample-console-openshift-io-v1}
@@ -75,7 +75,7 @@ The following API endpoints are available:
   - `DELETE`: delete collection of ConsoleYAMLSample
   - `GET`: list objects of kind ConsoleYAMLSample
   - `POST`: create a ConsoleYAMLSample
-- `/apis/console.openshift.io/v1/consoleyamlsamples/{{ name }}`
+- `/apis/console.openshift.io/v1/consoleyamlsamples/{name}`
 
   - `DELETE`: delete a ConsoleYAMLSample
   - `GET`: read the specified ConsoleYAMLSample
@@ -150,7 +150,7 @@ Description
 | 202 - Accepted | [`ConsoleYAMLSample`](/openshift-docs-markdown/rest_api/console_apis/consoleyamlsample-console-openshift-io-v1#consoleyamlsample-console-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/console.openshift.io/v1/consoleyamlsamples/{{ name }} {#_apisconsoleopenshiftiov1consoleyamlsamples_name}
+### /apis/console.openshift.io/v1/consoleyamlsamples/{name} {#_apisconsoleopenshiftiov1consoleyamlsamples_name}
 
 **Global path parameters**
 

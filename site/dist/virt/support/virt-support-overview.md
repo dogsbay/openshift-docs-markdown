@@ -78,6 +78,9 @@ To run a self-service review, upload your cluster’s `must-gather` data to the 
 
 The self-service TSR provides a solid baseline for cluster health. If you need additional guidance or a more comprehensive review, contact your Red Hat account team to arrange an assisted review through a Technical Account Manager (TAM) or Red Hat consultant. An assisted review includes human analysis, deeper coverage, and access to checks that are updated more frequently than the self-service version.
 
+**Additional resources**
+{._additional-resources}
+
 - [Technical Supportability Review with AI tool](https://access.redhat.com/support/cases/#/analyze)
 - [Red Hat Technical Supportability Review with AI: Proactive AI-Driven Cluster Assessments for OpenShift Container Platform](https://access.redhat.com/solutions/7141255)
 
@@ -102,15 +105,16 @@ The OpenShift Container Platform web console displays resource usage, alerts, ev
 
 | Page | Description |
 | --- | --- |
-| **Virtualization** -> **VirtualMachines** -> **Overview** page | Cluster details, status, alerts, inventory, and resource usage |
-| **Virtualization** -> **VirtualMachines** -> **Overview** -> **Overview** tab | OpenShift Virtualization resources, usage, alerts, and status |
-| **Virtualization** -> **Migrations** page | Progress of live migrations |
-| **Virtualization** -> **VirtualMachines** -> **Virtual machines** tab | CPU, memory, and storage usage summary |
-| **Virtualization** -> **VirtualMachines** -> **Virtual machines** -> **VirtualMachine details** -> **Metrics** tab | VM resource usage, storage, network, and migration |
-| **Virtualization** -> **VirtualMachines** -> **Virtual machines** -> **VirtualMachine details** -> **Events** tab | List of VM events |
-| **Virtualization** -> **VirtualMachines** -> **Virtual machines** -> **VirtualMachine details** -> **Diagnostics** tab | VM status conditions and volume snapshot status |
+| **Virtualization** → **VirtualMachines** → **Overview** page | Cluster details, status, alerts, inventory, and resource usage |
+| **Virtualization** → **VirtualMachines** → **Overview** → **Overview** tab | OpenShift Virtualization resources, usage, alerts, and status |
+| **Virtualization** → **Migrations** page | Progress of live migrations |
+| **Virtualization** → **VirtualMachines** → **Virtual machines** tab | CPU, memory, and storage usage summary |
+| **Virtualization** → **VirtualMachines** → **Virtual machines** → **VirtualMachine details** → **Metrics** tab | VM resource usage, storage, network, and migration |
+| **Virtualization** → **VirtualMachines** → **Virtual machines** → **VirtualMachine details** → **Events** tab | List of VM events |
+| **Virtualization** → **VirtualMachines** → **Virtual machines** → **VirtualMachine details** → **Diagnostics** tab | VM status conditions and volume snapshot status |
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Submitting a support case](/openshift-docs-markdown/support/getting-support#support-submitting-a-case_getting-support)
 - [Collecting data about your environment](/openshift-docs-markdown/virt/support/virt-collecting-virt-data#virt-collecting-data-about-your-environment_virt-collecting-virt-data)

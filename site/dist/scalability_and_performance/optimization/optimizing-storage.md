@@ -10,7 +10,7 @@ Optimizing storage helps to minimize storage use across all resources. As an adm
 
 To optimize your OpenShift Container Platform environment, review the available persistent storage options. By understanding these choices, you can select the appropriate storage configuration to meet your specific workload requirements.
 
-***Available storage options***
+**Available storage options**
 
 <table>
 <thead>
@@ -104,20 +104,20 @@ Registry
 Scaled registry
 :   In a scaled/HA OpenShift image registry cluster deployment:
 
-- The storage technology must support RWX access mode.
-- The storage technology must ensure read-after-write consistency.
-- The preferred storage technology is object storage.
-- Red Hat OpenShift Data Foundation, Amazon Simple Storage Service (Amazon S3), Google Cloud Storage (GCS), Microsoft Azure Blob Storage, and OpenStack Swift are supported.
-- Object storage should be S3 or Swift compliant.
-- For non-cloud platforms, such as vSphere and bare-metal installations, the only configurable technology is file storage.
-- Block storage is not configurable.
-- The use of Network File System (NFS) storage with OpenShift Container Platform is supported. However, the use of NFS storage with a scaled registry can cause known issues. For more information, see the "Is NFS supported for OpenShift cluster internal components in Production?" Red Hat Knowledgebase solution.
+    - The storage technology must support RWX access mode.
+    - The storage technology must ensure read-after-write consistency.
+    - The preferred storage technology is object storage.
+    - Red Hat OpenShift Data Foundation, Amazon Simple Storage Service (Amazon S3), Google Cloud Storage (GCS), Microsoft Azure Blob Storage, and OpenStack Swift are supported.
+    - Object storage should be S3 or Swift compliant.
+    - For non-cloud platforms, such as vSphere and bare-metal installations, the only configurable technology is file storage.
+    - Block storage is not configurable.
+    - The use of Network File System (NFS) storage with OpenShift Container Platform is supported. However, the use of NFS storage with a scaled registry can cause known issues. For more information, see the "Is NFS supported for OpenShift cluster internal components in Production?" Red Hat Knowledgebase solution.
 
 Metrics
 :   In an OpenShift Container Platform hosted metrics cluster deployment:
 
-- The preferred storage technology is block storage.
-- Object storage is not configurable.
+    - The preferred storage technology is block storage.
+    - Object storage is not configurable.
 
 > [!IMPORTANT]
 > It is not recommended to use file storage for a hosted metrics cluster deployment with production workloads.
@@ -135,14 +135,13 @@ Logging
   - The preferred storage technology is block storage.
   - Object storage is not supported.
 
-> [!NOTE]
-> As of logging version 5.4.3 the OpenShift Elasticsearch Operator is deprecated and is planned to be removed in a future release. Red Hat will provide bug fixes and support for this feature during the current release lifecycle, but this feature will no longer receive enhancements and will be removed. As an alternative to using the OpenShift Elasticsearch Operator to manage the default log storage, you can use the Loki Operator.
+  > [!NOTE]
+  > As of logging version 5.4.3 the OpenShift Elasticsearch Operator is deprecated and is planned to be removed in a future release. Red Hat will provide bug fixes and support for this feature during the current release lifecycle, but this feature will no longer receive enhancements and will be removed. As an alternative to using the OpenShift Elasticsearch Operator to manage the default log storage, you can use the Loki Operator.
 
-Applications
-:   Application use cases vary from application to application, as described in the following examples:
-
-    - Storage technologies that support dynamic PV provisioning have low mount time latencies, and are not tied to nodes to support a healthy cluster.
-    - Application developers are responsible for knowing and understanding the storage requirements for their application, and how it works with the provided storage to ensure that issues do not occur when an application scales or interacts with the storage layer.
+  Applications
+  :   Application use cases vary from application to application, as described in the following examples:
+- Storage technologies that support dynamic PV provisioning have low mount time latencies, and are not tied to nodes to support a healthy cluster.
+- Application developers are responsible for knowing and understanding the storage requirements for their application, and how it works with the provided storage to ensure that issues do not occur when an application scales or interacts with the storage layer.
 
 Other specific application storage recommendations
 
@@ -154,13 +153,14 @@ Other specific application storage recommendations
 
 ```
 :::
+
+*   Red&#160;Hat OpenStack Platform (RHOSP) Cinder: RHOSP Cinder tends to be adept at ROX access mode use cases.
+*   Databases: Databases (RDBMSs, NoSQL DBs, etc.) tend to perform best with dedicated block storage.
+*   The etcd database must have enough storage and adequate performance capacity to enable a large cluster. Information about monitoring and benchmarking tools to establish ample storage and a high-performance environment is described in _Recommended etcd practices_.
 ```
 
-- Red Hat OpenStack Platform (RHOSP) Cinder: RHOSP Cinder tends to be adept at ROX access mode use cases.
-- Databases: Databases (RDBMSs, NoSQL DBs, etc.) tend to perform best with dedicated block storage.
-- The etcd database must have enough storage and adequate performance capacity to enable a large cluster. Information about monitoring and benchmarking tools to establish ample storage and a high-performance environment is described in *Recommended etcd practices*.
-
-## Additional resources {#additional-resources_persistent-storage}
+**Additional resources**
+{._additional-resources}
 
 - [Is NFS supported for OpenShift cluster internal components in Production?](https://access.redhat.com/solutions/3428661)
 
@@ -174,8 +174,8 @@ The following table summarizes the main directories that OpenShift Container Pla
 
 | Directory | Notes | Sizing | Expected growth |
 | --- | --- | --- | --- |
-| ***/var/lib/etcd*** | Used for etcd storage when storing the database. | Less than 20 GB. Database can grow up to 8 GB. | Will grow slowly with the environment. Only storing metadata. Additional 20-25 GB for every additional 8 GB of memory. |
-| ***/var/lib/containers*** | This is the mount point for the CRI-O runtime. Storage used for active container runtimes, including pods, and storage of local images. Not used for registry storage. | 50 GB for a node with 16 GB memory. Note that this sizing should not be used to determine minimum cluster requirements. Additional 20-25 GB for every additional 8 GB of memory. | Growth is limited by capacity for running containers. |
+| ***/var/lib/etcd*** | Used for etcd storage when storing the database. | Less than 20 GB.<br>Database can grow up to 8 GB. | Will grow slowly with the environment. Only storing metadata.<br>Additional 20-25 GB for every additional 8 GB of memory. |
+| ***/var/lib/containers*** | This is the mount point for the CRI-O runtime. Storage used for active container runtimes, including pods, and storage of local images. Not used for registry storage. | 50 GB for a node with 16 GB memory. Note that this sizing should not be used to determine minimum cluster requirements.<br>Additional 20-25 GB for every additional 8 GB of memory. | Growth is limited by capacity for running containers. |
 | ***/var/lib/kubelet*** | Ephemeral volume storage for pods. This includes anything external that is mounted into a container at runtime. Includes environment variables, kube secrets, and data volumes not backed by persistent volumes. | Varies | Minimal if pods requiring storage are using persistent volumes. If using ephemeral storage, this can grow quickly. |
 | ***/var/log*** | Log files for all components. | 10 to 30 GB. | Log files can grow quickly; size can be managed by growing disks or by using log rotate. |
 

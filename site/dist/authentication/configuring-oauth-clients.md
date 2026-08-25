@@ -114,6 +114,7 @@ By default, no token inactivity timeout is set.
 
    This attempt should fail because the token should have expired due to inactivity longer than the configured timeout.
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - \[OAuthClient [oauth.openshift.io/v1](/openshift-docs-markdown/rest_api/oauth_apis/oauthclient-oauth-openshift-io-v1#oauthclient-oauth-openshift-io-v1)\]

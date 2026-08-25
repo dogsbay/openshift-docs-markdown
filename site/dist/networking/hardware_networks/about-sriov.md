@@ -47,7 +47,8 @@ You can enable SR-IOV on a node by using the following command:
 $ oc label node <node_name> feature.node.kubernetes.io/network-sriov.capable="true"
 ```
 
-## Additional resources {#additional-resources-about-sr-iov_about-sriov}
+**Additional resources**
+{._additional-resources}
 
 - [Installing the SR-IOV Network Operator](/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator)
 
@@ -84,7 +85,8 @@ SR-IOV InfiniBand CNI plugin
 > [!NOTE]
 > The SR-IOV Network resources injector and SR-IOV Network Operator webhook are enabled by default and can be disabled by editing the `default` `SriovOperatorConfig` CR. Use caution when disabling the SR-IOV Network Operator Admission Controller webhook. You can disable the webhook under specific circumstances, such as troubleshooting, or if you want to use unsupported devices.
 
-## Additional resources {#configure-multi-networks-additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring multi-network policy](/openshift-docs-markdown/networking/multiple_networks/secondary_networks/configuring-multi-network-policy#configuring-multi-network-policy)
 

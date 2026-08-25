@@ -1,5 +1,5 @@
 ---
-title: Disaster recovery for a hosted cluster by using {{ oadp_short }}
+title: Disaster recovery for a hosted cluster by using OADP
 ---
 
 # Disaster recovery for a hosted cluster by using OADP {#hcp-disaster-recovery-oadp}
@@ -41,6 +41,7 @@ Before you can perform disaster recovery for hosted control planes on Amazon Web
 - Back up the data plane workload and the control plane workload.
 
 **Additional resources**
+{._additional-resources}
 
 - [About installing OADP](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp#about-installing-oadp)
 - [Support for OpenShift API for Data Protection (OADP)](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-intro#oadp-operator-supported_oadp-api)
@@ -72,6 +73,7 @@ Before you can perform disaster recovery for hosted control planes on bare metal
 - Back up the data plane workload and the control plane workload.
 
 **Additional resources**
+{._additional-resources}
 
 - [About installing OADP](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp#about-installing-oadp)
 - [Support for OpenShift API for Data Protection (OADP)](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-intro#oadp-operator-supported_oadp-api)
@@ -86,6 +88,7 @@ If the data plane workload is not important, you can skip this procedure.
 To back up the data plane workload by using the OADP Operator, see "Backing up applications". After you complete those steps, you can restore your hosted cluster by using OADP.
 
 **Additional resources**
+{._additional-resources}
 
 - [Backing up applications](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications)
 
@@ -726,6 +729,7 @@ To monitor and observe the backup process, see "Observing the backup and restore
          ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Removing a cluster by using the console](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#remove-a-cluster-by-using-the-console)
 - [Removing remaining resources after removing a cluster](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#removing-a-cluster-from-management-in-special-cases)

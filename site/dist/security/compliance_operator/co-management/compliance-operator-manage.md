@@ -90,6 +90,7 @@ where:
 
     Each `ProfileBundle` is backed by a deployment. When the Compliance Operator detects that the container image digest has changed, the deployment is updated to reflect the change and parse the content again. Using the digest instead of a tag ensures that you use a stable and predictable set of profiles.
 
-## Additional resources {#additional-resources_managing-compliance}
+**Additional resources**
+{._additional-resources}
 
 - [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)

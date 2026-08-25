@@ -43,7 +43,8 @@ Applications deployed on the cluster use user-provided certificates for default 
 
 Update the secret containing the user-managed certificate as needed.
 
-## Additional resources {#additional-resources_cert-types-user-provided-certificates-for-default-ingress}
+**Additional resources**
+{._additional-resources}
 
 - [Replacing the default ingress certificate](/openshift-docs-markdown/security/certificates/replacing-default-ingress-certificate#replacing-default-ingress)
 - [Setting a custom default certificate](/openshift-docs-markdown/networking/networking_operators/ingress-operator#nw-ingress-setting-a-custom-default-certificate_configuring-ingress)

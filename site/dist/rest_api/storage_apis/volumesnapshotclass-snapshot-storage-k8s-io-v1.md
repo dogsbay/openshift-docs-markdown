@@ -1,5 +1,5 @@
 ---
-title: VolumeSnapshotClass []
+title: VolumeSnapshotClass [snapshot.storage.k8s.io/v1]
 ---
 
 # VolumeSnapshotClass \[snapshot.storage.k8s.io/v1\] {#volumesnapshotclass-snapshot-storage-k8s-io-v1}
@@ -36,7 +36,7 @@ The following API endpoints are available:
   - `DELETE`: delete collection of VolumeSnapshotClass
   - `GET`: list objects of kind VolumeSnapshotClass
   - `POST`: create a VolumeSnapshotClass
-- `/apis/snapshot.storage.k8s.io/v1/volumesnapshotclasses/{{ name }}`
+- `/apis/snapshot.storage.k8s.io/v1/volumesnapshotclasses/{name}`
 
   - `DELETE`: delete a VolumeSnapshotClass
   - `GET`: read the specified VolumeSnapshotClass
@@ -111,7 +111,7 @@ Description
 | 202 - Accepted | [`VolumeSnapshotClass`](/openshift-docs-markdown/rest_api/storage_apis/volumesnapshotclass-snapshot-storage-k8s-io-v1#volumesnapshotclass-snapshot-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/snapshot.storage.k8s.io/v1/volumesnapshotclasses/{{ name }} {#_apissnapshotstoragek8siov1volumesnapshotclasses_name}
+### /apis/snapshot.storage.k8s.io/v1/volumesnapshotclasses/{name} {#_apissnapshotstoragek8siov1volumesnapshotclasses_name}
 
 **Global path parameters**
 

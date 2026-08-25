@@ -1,8 +1,8 @@
 ---
-title: "{{ run_once_operator }} overview"
+title: Run Once Duration Override Operator overview
 ---
 
-# {{ run_once_operator }} overview {#run-once-duration-override-about}
+# Run Once Duration Override Operator overview {#run-once-duration-override-about}
 
 The Run Once Duration Override Operator enforces time limits on run-once pods to prevent tasks from running indefinitely and consuming cluster resources.
 

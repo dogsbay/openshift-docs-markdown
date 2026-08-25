@@ -24,12 +24,13 @@ const headings = [{"depth":1,"slug":"hcp-backup-restore-virt","text":"Backing up
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp_high_availability/hcp-backup-restore-virt";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
-const title = "Backing up and restoring a hosted cluster on {{ VirtProductName }}";
+const title = "Backing up and restoring a hosted cluster on OpenShift Virtualization";
 const description = "You can back up and restore a hosted cluster on OpenShift Virtualization to fix failures." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="hcp-backup-restore-virt" class="group scroll-mt-20">Backing up and restoring a hosted cluster on OpenShift Virtualization<a href="#hcp-backup-restore-virt" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can back up and restore a hosted cluster on OpenShift Virtualization to fix failures.</p>
+      <p class="_abstract">You can back up and restore a hosted cluster on OpenShift Virtualization to fix failures.</p>
       <h2 id="backup-hosted-cluster-virt_hcp-backup-restore-virt" class="group scroll-mt-20">Backing up a hosted cluster on OpenShift Virtualization<a href="#backup-hosted-cluster-virt_hcp-backup-restore-virt" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">When you back up a hosted cluster on OpenShift Virtualization, the hosted cluster can remain running. The backup contains the hosted control plane components and the etcd for the hosted cluster.</p>
       <p>When the hosted cluster is not running compute nodes on external infrastructure, hosted cluster workload data that is stored in persistent volume claims (PVCs) that are provisioned by KubeVirt CSI are also backed up. The backup does not contain any KubeVirt virtual machines (VMs) that are used as compute nodes. Those VMs are automatically re-created after the restore process is completed.</p>

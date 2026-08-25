@@ -1,8 +1,8 @@
 ---
-title: Integrating the {{ cert_manager_operator }} with Istio-CSR
+title: Integrating the cert-manager Operator for Red Hat OpenShift with Istio-CSR
 ---
 
-# Integrating the {{ cert_manager_operator }} with Istio-CSR {#cert-manager-operator-integrating-istio}
+# Integrating the cert-manager Operator for Red Hat OpenShift with Istio-CSR {#cert-manager-operator-integrating-istio}
 
 The cert-manager Operator for Red Hat OpenShift provides enhanced support for securing workloads and control plane components in Red Hat OpenShift Service Mesh or Istio. This includes support for certificates enabling mutual TLS (mTLS), which are signed, delivered, and renewed using cert-manager issuers. You can secure Istio workloads and control plane components by using the cert-manager Operator for Red Hat OpenShift managed Istio-CSR agent.
 
@@ -82,6 +82,7 @@ To enable certificate signing for the Istio-CSR agent, configure a root CA issue
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [cert-manager Operator for Red Hat OpenShift issuer providers](/openshift-docs-markdown/security/cert_manager_operator/index#cert-manager-issuer-types_cert-manager-operator-about)
 

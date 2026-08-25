@@ -18,6 +18,7 @@ After installing the AWS EFS CSI Driver Operator, OpenShift Container Platform i
 - The *AWS EFS CSI driver* enables you to create and mount AWS EFS PVs.
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage)
 - [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
@@ -111,6 +112,7 @@ You can obtain the ARN role in multiple ways. The following procedure shows one 
 Install the AWS EFS CSI Driver Operator. For information, see Inst"alling the AWS EFS CSI Driver Operator".
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing the AWS EFS CSI Driver Operator](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-aws-efs#persistent-storage-csi-olm-operator-install_persistent-storage-csi-aws-efs)
 - [Configuring the Cloud Credential Operator utility](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations)
@@ -129,7 +131,7 @@ Install and configure the AWS EFS Container Storage Interface (CSI) Driver Opera
 1. Log in to the web console.
 2. Install the AWS EFS CSI Operator:
 
-   1. Click **Ecosystem** -> **Software Catalog**.
+   1. Click **Ecosystem** → **Software Catalog**.
    2. Locate the AWS EFS CSI Operator by typing **AWS EFS CSI** in the filter box.
    3. Click the **AWS EFS CSI Driver Operator** button.
 
@@ -160,7 +162,7 @@ After installing the Container Storage Interface (CSI) Driver Operator (a Red Ha
 
 **Procedure**
 
-1. Click **Administration** -> **CustomResourceDefinitions** -> **ClusterCSIDriver**.
+1. Click **Administration** → **CustomResourceDefinitions** → **ClusterCSIDriver**.
 2. On the **Instances** tab, click **Create ClusterCSIDriver**.
 3. Use the following YAML file:
 
@@ -192,14 +194,14 @@ To enable dynamic provisioning of AWS Elastic File System (EFS) volumes using th
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, click **Storage** -> **StorageClasses**.
+1. In the OpenShift Container Platform web console, click **Storage** → **StorageClasses**.
 2. On the **StorageClasses** page, click **Create StorageClass**.
 3. On the **StorageClass** page, perform the following steps:
 
    1. Enter a name to reference the storage class.
    2. Optional: Enter the description.
    3. Select the reclaim policy.
-   4. Select `{{ Provisioner }}` from the **Provisioner** drop-down list.
+   4. Select **`efs.csi.aws.com`** from the **Provisioner** drop-down list.
    5. Optional: Set the configuration parameters for the selected provisioner.
 4. Click **Create**.
 
@@ -235,6 +237,7 @@ To enable dynamic provisioning of AWS Elastic File System (EFS) volumes by using
   > A cluster admin can create several `StorageClass` objects, each using a different EFS volume.
 
 **Additional resources**
+{._additional-resources}
 
 - [AWS EFS CSI Driver Operator](https://github.com/openshift/aws-efs-csi-driver-operator)
 
@@ -244,12 +247,7 @@ To mount AWS Elastic File System (EFS) volumes across AWS accounts, configure cr
 
 **Prerequisites**
 
-- Access to
-
-an OpenShift Container Platform cluster
-
-with administrator rights
-
+- Access to an OpenShift Container Platform cluster with administrator rights
 - Two valid AWS accounts
 - The EFS CSI Operator has been installed. For information about installing the EFS CSI Operator, see the *Installing the AWS EFS CSI Driver Operator* section.
 - Both the OpenShift Container Platform cluster and EFS file system must be located in the same AWS region.
@@ -645,6 +643,7 @@ The following procedure explains how to set up:
        ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Setting the output format in the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-output-format.html)
 
@@ -781,6 +780,7 @@ If you have problems setting up dynamic provisioning, see *AWS EFS troubleshooti
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [AWS EFS CSI driver](https://github.com/openshift/aws-efs-csi-driver)
 - [Creating the AWS EFS storage class](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-aws-efs#storage-create-storage-class_persistent-storage-csi-aws-efs)
@@ -833,6 +833,7 @@ As a consequence, EFS volumes silently ignore FSGroup; OpenShift Container Platf
 Unrelated to this, encryption in transit is enabled by default. For more information, see "Encrypting data in transit".
 
 **Additional resources**
+{._additional-resources}
 
 - [Working with access points](https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html)
 - [Encrypting data in transit](https://docs.aws.amazon.com/efs/latest/ug/encryption-in-transit.html)
@@ -852,11 +853,7 @@ To monitor Elastic File System (EFS) volume space consumption through the web co
 
 **Prerequisites**
 
-- Access to
-
-an OpenShift Container Platform cluster
-
-with administrator rights
+- Access to an OpenShift Container Platform cluster with administrator rights
 
 **Procedure**
 
@@ -894,12 +891,7 @@ You can also disable usage metrics as needed.
 
 **Prerequisites**
 
-- Access to
-
-an OpenShift Container Platform cluster
-
-with administrator rights
-
+- Access to an OpenShift Container Platform cluster with administrator rights
 - Access to OpenShift Container Platform CLI (`oc`)
 
 **Procedure**
@@ -980,9 +972,7 @@ To remove the AWS EFS Container Storage Interface (CSI) Driver Operator and free
 All EFS PVs are inaccessible after uninstalling the AWS EFS CSI Driver Operator (a Red Hat operator).
 
 > [!NOTE]
-> Before you can destroy a cluster (`openshift-install destroy cluster`), you must delete the EFS volume in AWS.
->
-> An OpenShift Container Platform cluster cannot be destroyed when there is an EFS volume that uses the cluster’s VPC. Amazon does not allow deletion of such a VPC.
+> Before you can destroy a cluster (`openshift-install destroy cluster`), you must delete the EFS volume in AWS. An OpenShift Container Platform cluster cannot be destroyed when there is an EFS volume that uses the cluster’s VPC. Amazon does not allow deletion of such a VPC.
 
 **Prerequisites**
 
@@ -994,25 +984,26 @@ All EFS PVs are inaccessible after uninstalling the AWS EFS CSI Driver Operator 
 2. Stop all applications that use AWS EFS PVs.
 3. Delete all AWS EFS PVs:
 
-   1. Click **Storage** -> **PersistentVolumeClaims**.
+   1. Click **Storage** → **PersistentVolumeClaims**.
    2. Select each PVC that is in use by the AWS EFS CSI Driver Operator, click the drop-down menu on the far right of the PVC, and then click **Delete PersistentVolumeClaims**.
 4. Uninstall the AWS EFS CSI driver:
 
    > [!NOTE]
    > Before you can uninstall the Operator, you must remove the CSI driver first.
 
-   1. Click **Administration** -> **CustomResourceDefinitions** -> **ClusterCSIDriver**.
-   2. On the **Instances** tab, for **{{ provisioner }}**, on the far left side, click the drop-down menu, and then click **Delete ClusterCSIDriver**.
+   1. Click **Administration** → **CustomResourceDefinitions** → **ClusterCSIDriver**.
+   2. On the **Instances** tab, for **{provisioner}**, on the far left side, click the drop-down menu, and then click **Delete ClusterCSIDriver**.
    3. When prompted, click **Delete**.
 5. Uninstall the AWS EFS CSI Operator:
 
-   1. Click **Ecosystem** -> **Installed Operators**.
+   1. Click **Ecosystem** → **Installed Operators**.
    2. On the **Installed Operators** page, scroll or type AWS EFS CSI into the **Search by name** box to find the Operator, and then click it.
-   3. On the upper, right of the **Installed Operators > Operator details** page, click **Actions** -> **Uninstall Operator**.
+   3. On the upper, right of the **Installed Operators > Operator details** page, click **Actions** → **Uninstall Operator**.
    4. When prompted on the **Uninstall Operator** window, click the **Uninstall** button to remove the Operator from the namespace. Any applications deployed by the Operator on the cluster need to be cleaned up manually.
 
       After uninstalling, the AWS EFS CSI Driver Operator is no longer listed in the **Installed Operators** section of the web console.
 
-## Additional resources {#additional-resources_persistent-storage-csi-aws-efs}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)

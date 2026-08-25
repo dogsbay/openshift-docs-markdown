@@ -41,6 +41,7 @@ enabled = true
 The `clouds-value` value, `/etc/openstack/secret/clouds.yaml`, is mapped to the `openstack-cloud-credentials` config in the `openshift-cloud-controller-manager` namespace. You can modify the RHOSP cloud in this file as you do any other `clouds.yaml` file.
 
 **Additional resources**
+{._additional-resources}
 
 - [Cloud Controller Manager (Kubernetes documentation)](https://kubernetes.io/docs/concepts/architecture/cloud-controller/)
 
@@ -113,11 +114,11 @@ You can configure load balancer options to control how the Cloud Controller Mana
 </tr>
 <tr>
   <td><code>floating-subnet-tags</code></td>
-  <td>Optional. Tags for the external network subnet used to create floating IP addresses for the load balancer VIP. Can be overridden by the service annotation <code>loadbalancer.openstack.org/floating-subnet-tags</code>. If multiple subnets match these tags, the first one with available IP addresses is used.</td>
+  <td>Optional. Tags for the external network subnet used to create floating IP addresses for the load balancer VIP. Can be overridden by the service annotation <code>loadbalancer.openstack.org/floating-subnet-tags</code>. If multiple subnets match these tags, the first one with available IP addresses is used.<br><br>If the RHOSP network is configured with sharing disabled, for example, with the <code>--no-share</code> flag used during creation, this option is unsupported. Set the network to share to use this option.</td>
 </tr>
 <tr>
   <td><code>lb-method</code></td>
-  <td>The load balancing algorithm used to create the load balancer pool.</td>
+  <td>The load balancing algorithm used to create the load balancer pool. For the Amphora provider the value can be <code>ROUND_ROBIN</code>, <code>LEAST_CONNECTIONS</code>, or <code>SOURCE_IP</code>. The default value is <code>ROUND_ROBIN</code>.<br><br>For the OVN provider, only the <code>SOURCE_IP_PORT</code> algorithm is supported.<br><br>For the Amphora provider, if using the <code>LEAST_CONNECTIONS</code> or <code>SOURCE_IP</code> methods, configure the <code>create-monitor</code> option as <code>true</code> in the <code>cloud-provider-config</code> config map on the <code>openshift-config</code> namespace and <code>ETP:Local</code> on the load-balancer type service to allow balancing algorithm enforcement in the client to service endpoint connections.</td>
 </tr>
 <tr>
   <td><code>lb-provider</code></td>
@@ -137,7 +138,7 @@ You can configure load balancer options to control how the Cloud Controller Mana
 </tr>
 <tr>
   <td><code>create-monitor</code></td>
-  <td>Creates a health monitor for the service load balancer. A health monitor is required for services that declare <code>externalTrafficPolicy: Local</code>. The default value is <code>false</code>.</td>
+  <td>Creates a health monitor for the service load balancer. A health monitor is required for services that declare <code>externalTrafficPolicy: Local</code>. The default value is <code>false</code>.<br><br>This option is unsupported if you use RHOSP earlier than version 17 with the <code>ovn</code> provider.</td>
 </tr>
 <tr>
   <td><code>monitor-delay</code></td>
@@ -170,7 +171,7 @@ You can configure load balancer options to control how the Cloud Controller Mana
 
 The CCM Operator overrides specific options, which you might recognize from configuring RHOSP. Do not configure these options. The options are for informational purposes only.
 
-***Options overridden by the CCM Operator***
+**Options overridden by the CCM Operator**
 
 <table>
 <thead>
@@ -206,7 +207,7 @@ The CCM Operator overrides specific options, which you might recognize from conf
 </tr>
 <tr>
   <td><code>tenant-id</code></td>
-  <td>The Identity service project ID. Leave this option unset if you are using Identity service application credentials.</td>
+  <td>The Identity service project ID. Leave this option unset if you are using Identity service application credentials.<br><br>In version 3 of the Identity API, which changed the identifier <code>tenant</code> to <code>project</code>, the value of <code>tenant-id</code> is automatically mapped to the project construct in the API.</td>
 </tr>
 <tr>
   <td><code>tenant-name</code></td>

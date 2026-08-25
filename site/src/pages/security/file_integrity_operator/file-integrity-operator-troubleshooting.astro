@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"troubleshooting-file-integrity-operator","t
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-troubleshooting";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="troubleshooting-file-integrity-operator" class="group scroll-mt-20">Troubleshooting the File Integrity Operator<a href="#troubleshooting-file-integrity-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Use the following information to troubleshoot common issues with the File Integrity Operator.</p>
+      <p class="_abstract">Use the following information to troubleshoot common issues with the File Integrity Operator.</p>
       <h2 id="_general_troubleshooting" class="group scroll-mt-20">General troubleshooting<a href="#_general_troubleshooting" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <dl class="my-4 space-y-2">
       <dt class="font-semibold">Issue</dt>

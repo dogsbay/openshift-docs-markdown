@@ -19,11 +19,12 @@ import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"using-images-overview","text":"Using images overview"},{"depth":2,"slug":"additional-resources_using-images-overview","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"using-images-overview","text":"Using images overview"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/openshift_images/using_images/using-images-overview";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -42,7 +43,7 @@ const pageCategory = ["openshift_images","openshift_images/using_images"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using images overview {#using-images-overview}\n\nTo build and deploy containerized applications in OpenShift Container Platform, you can use Source-to-Image (S2I), database, and other container images. These images provide the base components you need to run applications on your cluster.\n\nRed Hat official container images are provided in the Red Hat Registry at registry.redhat.io. OpenShift Container Platform's supported S2I, database, and Jenkins images are provided in the `openshift4` repository in the Red Hat Quay Registry. For example, `quay.io/openshift-release-dev/ocp-v4.0-<address>` is the name of an OpenShift Container Platform image.\n\nThe xPaaS middleware images are provided in their product repositories on the Red Hat Registry but suffixed with a `-openshift`. For example, `registry.redhat.io/jboss-eap-6/eap64-openshift` is the name of the Red Hat JBoss Enterprise Application Platform (JBoss EAP) image.\n\nAll Red Hat supported images are described in the Red Hat Ecosystem Catalog. For every version of each image, you can find details on its contents and usage.\n\n> [!IMPORTANT]\n> The newer versions of container images are not compatible with earlier versions of OpenShift Container Platform. Verify and use the correct version of container images, based on your version of OpenShift Container Platform.\n\n## Additional resources {#additional-resources_using-images-overview}\n\n- [Red Hat container registry](https://registry.redhat.io)\n- [Container images section of the Red Hat Ecosystem Catalog](https://catalog.redhat.com/software/containers/explore)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/openshift_images/using_images/using-images-overview.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using images overview {#using-images-overview}\n\nTo build and deploy containerized applications in OpenShift Container Platform, you can use Source-to-Image (S2I), database, and other container images. These images provide the base components you need to run applications on your cluster.\n\nRed Hat official container images are provided in the Red Hat Registry at registry.redhat.io. OpenShift Container Platform's supported S2I, database, and Jenkins images are provided in the `openshift4` repository in the Red Hat Quay Registry. For example, `quay.io/openshift-release-dev/ocp-v4.0-<address>` is the name of an OpenShift Container Platform image.\n\nThe xPaaS middleware images are provided in their product repositories on the Red Hat Registry but suffixed with a `-openshift`. For example, `registry.redhat.io/jboss-eap-6/eap64-openshift` is the name of the Red Hat JBoss Enterprise Application Platform (JBoss EAP) image.\n\nAll Red Hat supported images are described in the Red Hat Ecosystem Catalog. For every version of each image, you can find details on its contents and usage.\n\n> [!IMPORTANT]\n> The newer versions of container images are not compatible with earlier versions of OpenShift Container Platform. Verify and use the correct version of container images, based on your version of OpenShift Container Platform.\n\n**Additional resources**\n{._additional-resources}\n\n- [Red Hat container registry](https://registry.redhat.io)\n- [Container images section of the Red Hat Ecosystem Catalog](https://catalog.redhat.com/software/containers/explore)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/openshift_images/using_images/using-images-overview.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -81,12 +82,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -94,7 +96,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="using-images-overview" class="group scroll-mt-20">Using images overview<a href="#using-images-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>To build and deploy containerized applications in OpenShift Container Platform, you can use Source-to-Image (S2I), database, and other container images. These images provide the base components you need to run applications on your cluster.</p>
+      <p class="_abstract">To build and deploy containerized applications in OpenShift Container Platform, you can use Source-to-Image (S2I), database, and other container images. These images provide the base components you need to run applications on your cluster.</p>
       <p>Red Hat official container images are provided in the Red Hat Registry at registry.redhat.io. OpenShift Container Platform's supported S2I, database, and Jenkins images are provided in the <code>openshift4</code> repository in the Red Hat Quay Registry. For example, <code>quay.io/openshift-release-dev/ocp-v4.0-&lt;address&gt;</code> is the name of an OpenShift Container Platform image.</p>
       <p>The xPaaS middleware images are provided in their product repositories on the Red Hat Registry but suffixed with a <code>-openshift</code>. For example, <code>registry.redhat.io/jboss-eap-6/eap64-openshift</code> is the name of the Red Hat JBoss Enterprise Application Platform (JBoss EAP) image.</p>
       <p>All Red Hat supported images are described in the Red Hat Ecosystem Catalog. For every version of each image, you can find details on its contents and usage.</p>
@@ -104,11 +106,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           <p>The newer versions of container images are not compatible with earlier versions of OpenShift Container Platform. Verify and use the correct version of container images, based on your version of OpenShift Container Platform.</p>
         </AlertDescription>
       </Alert>
-      <h2 id="additional-resources_using-images-overview" class="group scroll-mt-20">Additional resources<a href="#additional-resources_using-images-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul>
       <li><a href="https://registry.redhat.io">Red Hat container registry</a></li>
       <li><a href="https://catalog.redhat.com/software/containers/explore">Container images section of the Red Hat Ecosystem Catalog</a></li>
       </ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

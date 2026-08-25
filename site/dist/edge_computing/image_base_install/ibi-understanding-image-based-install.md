@@ -1,8 +1,8 @@
 ---
-title: Understanding image-based installation and deployment for {{ sno }}
+title: Understanding image-based installation and deployment for single-node OpenShift
 ---
 
-# Understanding image-based installation and deployment for {{ sno }} {#ibi-understanding-image-based-install}
+# Understanding image-based installation and deployment for single-node OpenShift {#ibi-understanding-image-based-install}
 
 Image-based installations significantly reduce the deployment time of single-node OpenShift clusters by streamlining the installation process.
 
@@ -19,7 +19,7 @@ An image-based approach to installing and deploying single-node OpenShift cluste
 
 **Figure 1. Overview of an image-based installation and deployment for managed single-node OpenShift clusters**
 
-![Overview of an image-based installation and deployment](/openshift-docs-markdown/_assets/images/../images/711_OpenShift_IBI_Installation_high-level_0624.png)
+![Overview of an image-based installation and deployment](/openshift-docs-markdown/_assets/images/711_OpenShift_IBI_Installation_high-level_0624.png)
 
 Imaged-based installation
 :   Preinstall multiple hosts with single-node OpenShift at a central site, such as a service depot or a factory. Then, validate the base configuration for these hosts and leverage the image-based approach to perform reproducible factory installs at scale by using a single live installation ISO.
@@ -100,6 +100,7 @@ Image Based Install (IBI) Operator
 :   Creates the installation and configuration ISO, and embeds the seed image URL in the live installation ISO. If the IBI Operator is not used, you must manually attach the configuration ISO to a preinstalled host to complete the deployment.
 
 **Additional resources**
+{._additional-resources}
 
 - [Deploying a single-node OpenShift cluster using the `openshift-install` program](/openshift-docs-markdown/edge_computing/image_base_install/ibi_deploying_sno_clusters/ibi-edge-image-based-install-standalone#create-standalone-config-iso_ibi-edge-image-based-install)
 
@@ -133,6 +134,7 @@ For a successful image-based installation and deployment, see the following guid
   - FIPS configuration
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring a shared container partition between ostree stateroots](/openshift-docs-markdown/edge_computing/image_base_install/ibi-preparing-for-image-based-install#cnf-image-based-upgrade-shared-container-partition_ibi-preparing-image-based-install)
 
@@ -152,6 +154,7 @@ An image-based installation and deployment requires the following minimum softwa
 | `openshift-install` program | 4.17 |
 
 **Additional resources**
+{._additional-resources}
 
 - [Multicluster architecture](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.12/html/about/welcome-to-red-hat-advanced-cluster-management-for-kubernetes#multicluster-architecture)
 - [Understanding the image-based upgrade for single-node OpenShift clusters](/openshift-docs-markdown/edge_computing/image_based_upgrade/cnf-understanding-image-based-upgrade#cnf-understanding-image-based-upgrade)

@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"nodes-dashboard-using","text":"Node metrics
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/nodes-dashboard-using";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="nodes-dashboard-using" class="group scroll-mt-20">Node metrics dashboard<a href="#nodes-dashboard-using" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can use the node metrics dashboard to help you identify potential pod scaling issues.</p>
+      <p class="_abstract">You can use the node metrics dashboard to help you identify potential pod scaling issues.</p>
       <h2 id="nodes-dashboard-using-about_nodes-dashboard-using" class="group scroll-mt-20">About the node metrics dashboard<a href="#nodes-dashboard-using-about_nodes-dashboard-using" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">Administrative and support team members can use the node metrics dashboard to monitor metrics related to pod scaling, including scaling limits used to diagnose and troubleshoot scaling issues. </p>
       <p>Particularly, you can use the visual analytics displayed through the dashboard to monitor workload distributions across nodes. You can use Insights gained from these analytics to determine the health of your CRI-O and Kubelet system components and identify potential sources of excessive or imbalanced resource consumption and system instability.</p>

@@ -2,11 +2,9 @@
 title: Deploy your plugin on a cluster
 ---
 
-# Deploy your plugin on a cluster {#deploy-plugin-cluster_{{ context }}}
+# Deploy your plugin on a cluster {#deploy-plugin-cluster_{context}}
 
-You can deploy the plugin to an OpenShift Container Platform
-
-cluster.
+You can deploy the plugin to an OpenShift Container Platform cluster.
 
 ## Build an image with Docker {#build-image-with-docker_deploy-plugin-cluster}
 
@@ -122,7 +120,7 @@ After pushing an image with your changes to a registry, you can deploy the plugi
 
 **Verification**
 
-- View the list of enabled plugins by navigating from **Administration** -> **Cluster Settings** -> **Configuration** -> **Console** `operator.openshift.io` -> **Console plugins** or by visiting the **Overview** page.
+- View the list of enabled plugins by navigating from **Administration** → **Cluster Settings** → **Configuration** → **Console** `operator.openshift.io` → **Console plugins** or by visiting the **Overview** page.
 
 > [!NOTE]
 > It can take a few minutes for the new plugin configuration to appear. If you do not see your plugin, you might need to refresh your browser if the plugin was recently enabled. If you receive any errors at runtime, check the JS console in browser developer tools to look for any errors in your plugin code.
@@ -253,10 +251,14 @@ You can enable a dynamic plugin to extend the core web console with more feature
 
    The console can take a few minutes to apply the updated configuration.
 
+**Additional resources**
+{._additional-resources}
+
 - [Upstream demo instructions for enabling a plugin](https://github.com/openshift/console/tree/main/dynamic-demo-plugin#enabling-the-plugin)
 - [Helm template that patches the console Operator configuration](https://github.com/openshift/console-plugin-template/blob/3a06152cffdd10ad9654b6b607cb00a055f29733/charts/openshift-console-plugin/templates/patch-consoles-job.yaml)
 
 **Additional resources**
+{._additional-resources}
 
 - [Service CA certificates](/openshift-docs-markdown/security/certificate_types_descriptions/service-ca-certificates#service-ca-certificates)
 - [Securing service traffic using service serving certificate secrets](/openshift-docs-markdown/security/certificates/service-serving-certificate#service-serving-certificate)
@@ -274,6 +276,7 @@ Console users can use the `disable-plugins` query parameter to disable specific 
   > [!NOTE]
   > Cluster administrators can disable plugins in the **Cluster Settings** page of the web console.
 
-## Additional resources {#dynamic-plugins_additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Understanding Helm](/openshift-docs-markdown/applications/working_with_helm_charts/understanding-helm#understaning-helm)

@@ -164,7 +164,8 @@ To migrate from oc-mirror plugin v1 to v2, you must manually update the `ImageSe
       $ oc-mirror delete --delete-yaml-file some-dir/working-dir/delete/delete-images.yaml docker://registry.example:5000 --v2
       ```
 
-## Additional resources {#additional-resources_oc-mirror-migration-v1-to-v2}
+**Additional resources**
+{._additional-resources}
 
 - [Mirroring an image set in a partially disconnected environment](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#oc-mirror-workflows-partially-disconnected-v2_about-installing-oc-mirror-v2)
 - [Mirroring an image set in a fully disconnected environment](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#oc-mirror-workflows-fully-disconnected-v2_about-installing-oc-mirror-v2)

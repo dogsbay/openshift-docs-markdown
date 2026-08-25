@@ -20,11 +20,12 @@ import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
 import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"dynamic-plugins-get-started_{{ context }}","text":"Getting started with dynamic plugins"},{"depth":2,"slug":"dynamic-plugin-development_dynamic-plugins-get-started","text":"Dynamic plugin development"}];
+const headings = [{"depth":1,"slug":"dynamic-plugins-get-started_{context}","text":"Getting started with dynamic plugins"},{"depth":2,"slug":"dynamic-plugin-development_dynamic-plugins-get-started","text":"Dynamic plugin development"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/web_console/dynamic-plugin/dynamic-plugins-get-started";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -43,7 +44,7 @@ const pageCategory = ["web_console","web_console/dynamic-plugin"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Getting started with dynamic plugins {#dynamic-plugins-get-started_{{ context }}}\n\nTo get started using the dynamic plugin, you must set up your environment to write a new OpenShift Container Platform dynamic plugin. For an example of how to write a new plugin, see [Adding a tab to the pods page](/openshift-docs-markdown/web_console/dynamic-plugin/dynamic-plugin-example#adding-tab-to-pods-page_dynamic-plugin-example).\n\n## Dynamic plugin development {#dynamic-plugin-development_dynamic-plugins-get-started}\n\nYou can run the plugin using a local development environment. The OpenShift Container Platform web console runs in a container connected to the cluster you have logged into.\n\n**Prerequisites**\n\n- You must have cloned the [`console-plugin-template`](https://github.com/openshift/console-plugin-template) repository, which contains a template for creating plugins.\n\n  > [!IMPORTANT]\n  > Red Hat does not support custom plugin code. Only [Cooperative community support](https://access.redhat.com/solutions/5893251) is available for your plugin.\n- You must have an OpenShift Container Platform\n\ncluster running.\n\n- You must have the OpenShift CLI (`oc`) installed.\n- You must have [`yarn`](https://yarnpkg.com/) installed.\n- You must have [Docker](https://www.docker.com/) v3.2.0 or later or [Podman](https://podman.io/) v3.2.0 or later installed and running.\n\n**Procedure**\n\n1. Open two terminal windows.\n2. In one terminal window, run the following command to install the dependencies for your plugin using yarn.\n\n   ```terminal\n   $ yarn install\n   ```\n3. After installing, run the following command to start yarn.\n\n   ```terminal\n   $ yarn run start\n   ```\n4. In another terminal window, login to the OpenShift Container Platform web console through the CLI.\n\n   ```terminal\n   $ oc login\n   ```\n5. Run the OpenShift Container Platform web console in a container connected to the cluster you have logged in to by running the following command:\n\n   ```terminal\n   $ yarn run start-console\n   ```\n\n   > [!NOTE]\n   > The `yarn run start-console` command runs an `amd64` image and might fail when run with Apple Silicon and Podman. You can work around it with `qemu-user-static` by running the following commands:\n   >\n   > ```terminal\n   > $ podman machine ssh\n   > ```\n   >\n   > ```terminal\n   > $ sudo -i\n   > ```\n   >\n   > ```terminal\n   > $ rpm-ostree install qemu-user-static\n   > ```\n   >\n   > ```terminal\n   > $ systemctl reboot\n   > ```\n\n**Verification**\n\n- Visit [localhost:9000](http://localhost:9000/example) to view the running plugin. Inspect the value of `window.SERVER_FLAGS.consolePlugins` to see the list of plugins which load at runtime.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/web_console/dynamic-plugin/dynamic-plugins-get-started.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Getting started with dynamic plugins {#dynamic-plugins-get-started_{context}}\n\nTo get started using the dynamic plugin, you must set up your environment to write a new OpenShift Container Platform dynamic plugin. For an example of how to write a new plugin, see [Adding a tab to the pods page](/openshift-docs-markdown/web_console/dynamic-plugin/dynamic-plugin-example#adding-tab-to-pods-page_dynamic-plugin-example).\n\n## Dynamic plugin development {#dynamic-plugin-development_dynamic-plugins-get-started}\n\nYou can run the plugin using a local development environment. The OpenShift Container Platform web console runs in a container connected to the cluster you have logged into.\n\n**Prerequisites**\n\n- You must have cloned the [`console-plugin-template`](https://github.com/openshift/console-plugin-template) repository, which contains a template for creating plugins.\n\n  > [!IMPORTANT]\n  > Red Hat does not support custom plugin code. Only [Cooperative community support](https://access.redhat.com/solutions/5893251) is available for your plugin.\n- You must have an OpenShift Container Platform cluster running.\n- You must have the OpenShift CLI (`oc`) installed.\n- You must have [`yarn`](https://yarnpkg.com/) installed.\n- You must have [Docker](https://www.docker.com/) v3.2.0 or later or [Podman](https://podman.io/) v3.2.0 or later installed and running.\n\n**Procedure**\n\n1. Open two terminal windows.\n2. In one terminal window, run the following command to install the dependencies for your plugin using yarn.\n\n   ```terminal\n   $ yarn install\n   ```\n3. After installing, run the following command to start yarn.\n\n   ```terminal\n   $ yarn run start\n   ```\n4. In another terminal window, login to the OpenShift Container Platform web console through the CLI.\n\n   ```terminal\n   $ oc login\n   ```\n5. Run the OpenShift Container Platform web console in a container connected to the cluster you have logged in to by running the following command:\n\n   ```terminal\n   $ yarn run start-console\n   ```\n\n   > [!NOTE]\n   > The `yarn run start-console` command runs an `amd64` image and might fail when run with Apple Silicon and Podman. You can work around it with `qemu-user-static` by running the following commands:\n   >\n   > ```terminal\n   > $ podman machine ssh\n   > ```\n   >\n   > ```terminal\n   > $ sudo -i\n   > ```\n   >\n   > ```terminal\n   > $ rpm-ostree install qemu-user-static\n   > ```\n   >\n   > ```terminal\n   > $ systemctl reboot\n   > ```\n\n**Verification**\n\n- Visit [localhost:9000](http://localhost:9000/example) to view the running plugin. Inspect the value of `window.SERVER_FLAGS.consolePlugins` to see the list of plugins which load at runtime.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/web_console/dynamic-plugin/dynamic-plugins-get-started.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -82,20 +83,21 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <h1 id="dynamic-plugins-get-started_{{ context }}" class="group scroll-mt-20">Getting started with dynamic plugins<a href="#dynamic-plugins-get-started_{{ context }}" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>To get started using the dynamic plugin, you must set up your environment to write a new OpenShift Container Platform dynamic plugin. For an example of how to write a new plugin, see <a href="/openshift-docs-markdown/web_console/dynamic-plugin/dynamic-plugin-example#adding-tab-to-pods-page_dynamic-plugin-example">Adding a tab to the pods page</a>.</p>
+      <h1 id="dynamic-plugins-get-started_{context}" class="group scroll-mt-20">Getting started with dynamic plugins<a href="#dynamic-plugins-get-started_{context}" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p class="_abstract">To get started using the dynamic plugin, you must set up your environment to write a new OpenShift Container Platform dynamic plugin. For an example of how to write a new plugin, see <a href="/openshift-docs-markdown/web_console/dynamic-plugin/dynamic-plugin-example#adding-tab-to-pods-page_dynamic-plugin-example">Adding a tab to the pods page</a>.</p>
       <h2 id="dynamic-plugin-development_dynamic-plugins-get-started" class="group scroll-mt-20">Dynamic plugin development<a href="#dynamic-plugin-development_dynamic-plugins-get-started" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">You can run the plugin using a local development environment. The OpenShift Container Platform web console runs in a container connected to the cluster you have logged into.</p>
       <p><strong>Prerequisites</strong></p>
@@ -109,10 +111,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
         </AlertDescription>
       </Alert>
       </li>
-      <li>You must have an OpenShift Container Platform</li>
-      </ul>
-      <p>cluster running.</p>
-      <ul>
+      <li>You must have an OpenShift Container Platform cluster running.</li>
       <li>You must have the OpenShift CLI (<code>oc</code>) installed.</li>
       <li>You must have <a href="https://yarnpkg.com/"><code>yarn</code></a> installed.</li>
       <li>You must have <a href="https://www.docker.com/">Docker</a> v3.2.0 or later or <a href="https://podman.io/">Podman</a> v3.2.0 or later installed and running.</li>

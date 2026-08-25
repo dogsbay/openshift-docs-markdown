@@ -422,6 +422,7 @@ After the machine config pools (MCP) enter a ready state, you can perform the cl
   - "Updating a cluster using the CLI"
 
 **Additional resources**
+{._additional-resources}
 
 - [Updating a cluster using the web console](/openshift-docs-markdown/updating/updating_a_cluster/updating-cluster-web-console#update-upgrading-web_updating-cluster-web-console)
 - [Updating a cluster using the CLI](/openshift-docs-markdown/updating/updating_a_cluster/updating-cluster-cli#update-upgrading-cli_updating-cluster-cli)
@@ -449,7 +450,7 @@ After the OpenShift Container Platform update is complete, unpause your custom m
    ```
 2. Optional: Check the progress of the update by using one of the following options:
 
-   1. Check the progress from the web console by clicking **Administration** -> **Cluster settings**.
+   1. Check the progress from the web console by clicking **Administration** → **Cluster settings**.
    2. Check the progress by running the following command:
 
       ```terminal

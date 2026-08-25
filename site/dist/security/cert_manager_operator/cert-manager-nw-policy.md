@@ -44,7 +44,7 @@ You can enable and configure network policies for the cert-manager Operator comp
 <tr>
   <td><code>spec.defaultNetworkPolicy</code></td>
   <td><code>boolean</code></td>
-  <td>Specifies whether to enable the default network policy for the cert-manager Operator components.<dl><dt>Important</dt><dd>Once you enable default network policies, you cannot disable them. This restriction prevents accidental security degradation. Before enabling this setting, ensure that you plan the network policy requirements.</dd></dl></td>
+  <td>Specifies whether to enable the default network policy for the cert-manager Operator components.<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>Once you enable default network policies, you cannot disable them. This restriction prevents accidental security degradation. Before enabling this setting, ensure that you plan the network policy requirements.</dd></dl></td>
 </tr>
 <tr>
   <td><code>spec.networkPolicies</code></td>

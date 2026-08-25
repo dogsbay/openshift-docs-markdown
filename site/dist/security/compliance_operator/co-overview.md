@@ -50,7 +50,8 @@ You can configure, run, tailor, and troubleshoot Compliance Operator scans, and 
 
 [Using the oc-compliance plugin](/openshift-docs-markdown/security/compliance_operator/co-scans/oc-compliance-plug-in-using#using-oc-compliance-plug-in)
 
-## Additional resources {#additional-resources_co-overview}
+**Additional resources**
+{._additional-resources}
 
 - [Compliance Operator release notes](/openshift-docs-markdown/security/compliance_operator/compliance-operator-release-notes#compliance-operator-release-notes)
 - [Product Compliance](https://access.redhat.com/compliance)

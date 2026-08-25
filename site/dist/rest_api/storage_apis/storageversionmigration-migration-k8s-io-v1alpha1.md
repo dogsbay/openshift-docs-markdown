@@ -1,5 +1,5 @@
 ---
-title: StorageVersionMigration []
+title: StorageVersionMigration [migration.k8s.io/v1alpha1]
 ---
 
 # StorageVersionMigration \[migration.k8s.io/v1alpha1\] {#storageversionmigration-migration-k8s-io-v1alpha1}
@@ -112,13 +112,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of StorageVersionMigration
   - `GET`: list objects of kind StorageVersionMigration
   - `POST`: create a StorageVersionMigration
-- `/apis/migration.k8s.io/v1alpha1/storageversionmigrations/{{ name }}`
+- `/apis/migration.k8s.io/v1alpha1/storageversionmigrations/{name}`
 
   - `DELETE`: delete a StorageVersionMigration
   - `GET`: read the specified StorageVersionMigration
   - `PATCH`: partially update the specified StorageVersionMigration
   - `PUT`: replace the specified StorageVersionMigration
-- `/apis/migration.k8s.io/v1alpha1/storageversionmigrations/{{ name }}/status`
+- `/apis/migration.k8s.io/v1alpha1/storageversionmigrations/{name}/status`
 
   - `GET`: read status of the specified StorageVersionMigration
   - `PATCH`: partially update status of the specified StorageVersionMigration
@@ -192,7 +192,7 @@ Description
 | 202 - Accepted | [`StorageVersionMigration`](/openshift-docs-markdown/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/migration.k8s.io/v1alpha1/storageversionmigrations/{{ name }} {#_apismigrationk8siov1alpha1storageversionmigrations_name}
+### /apis/migration.k8s.io/v1alpha1/storageversionmigrations/{name} {#_apismigrationk8siov1alpha1storageversionmigrations_name}
 
 **Global path parameters**
 
@@ -296,7 +296,7 @@ Description
 | 201 - Created | [`StorageVersionMigration`](/openshift-docs-markdown/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/migration.k8s.io/v1alpha1/storageversionmigrations/{{ name }}/status {#_apismigrationk8siov1alpha1storageversionmigrations_name_status}
+### /apis/migration.k8s.io/v1alpha1/storageversionmigrations/{name}/status {#_apismigrationk8siov1alpha1storageversionmigrations_name_status}
 
 **Global path parameters**
 

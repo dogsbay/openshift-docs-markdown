@@ -82,7 +82,7 @@ You can disable TLS (transport layer security) for one or more container registr
 1. Open the `HyperConverged` CR in your default editor by running the following command:
 
    ```terminal
-   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+   $ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv
    ```
 2. Add a list of insecure registries to the `spec.storageImport.insecureRegistries` field.
 
@@ -93,7 +93,7 @@ You can disable TLS (transport layer security) for one or more container registr
    kind: HyperConverged
    metadata:
      name: kubevirt-hyperconverged
-     namespace: {{ CNVNamespace }}
+     namespace: openshift-cnv
    spec:
      storageImport:
        insecureRegistries:
@@ -111,7 +111,7 @@ You can create a virtual machine (VM) by importing a container disk from a conta
 
 **Procedure**
 
-1. Navigate to **Virtualization** -> **Catalog** in the web console.
+1. Navigate to **Virtualization** → **Catalog** in the web console.
 2. Click a template tile without an available boot source.
 3. Click **Customize VirtualMachine**.
 4. On the **Customize template parameters** page, expand **Storage** and select **Registry (creates PVC)** from the **Disk source** list.
@@ -200,7 +200,8 @@ You can create a virtual machine (VM) from a container disk by using the command
    Successfully connected to vm-rhel-9 console. The escape sequence is ^]
    ```
 
-## Additional resources {#additional-resources_virt-creating-vms-from-container-disks}
+**Additional resources**
+{._additional-resources}
 
 - [Managing automatic boot source updates](/openshift-docs-markdown/virt/storage/virt-automatic-bootsource-updates#virt-automatic-bootsource-updates)
 - [Installing the QEMU guest agent](/openshift-docs-markdown/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent)

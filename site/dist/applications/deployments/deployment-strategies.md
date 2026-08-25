@@ -167,11 +167,14 @@ To upgrade an application with minimal downtime in OpenShift Container Platform,
 **Procedure**
 
 1. In the **Topology** view, click the application node to see the **Overview** tab in the side panel. Note that the **Update Strategy** is set to the default **Rolling** strategy.
-2. In the **Actions** drop-down menu, select **Start Rollout** to start a rolling update. The rolling deployment spins up the new version of the application and then terminates the old one. **Figure 1. Rolling update**
+2. In the **Actions** drop-down menu, select **Start Rollout** to start a rolling update. The rolling deployment spins up the new version of the application and then terminates the old one.
+
+   **Figure 1. Rolling update**
 
    ![odc-rolling-update](/openshift-docs-markdown/_assets/images/odc-rolling-update.png)
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating and deploying applications on OpenShift Container Platform using the **Developer** perspective](/openshift-docs-markdown/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-creating-applications-using-developer-perspective)
 - [Viewing the applications in your project, verifying their deployment status, and interacting with them in the **Topology** view](/openshift-docs-markdown/applications/odc-viewing-application-composition-using-topology-view#odc-viewing-application-composition-using-topology-view)
@@ -259,11 +262,12 @@ To switch from a rolling update to a recreate rollout in OpenShift Container Pla
 4. In the **Topology** view, select the node to see the **Overview** tab in the side panel. The **Update Strategy** is now set to **Recreate**.
 5. Use the **Actions** drop-down menu to select **Start Rollout** to start an update using the recreate strategy. The recreate strategy first terminates pods for the older version of the application and then spins up pods for the new version.
 
-   **Figure 1. Recreate update**
+   **Figure 2. Recreate update**
 
 ![odc-recreate-update](/openshift-docs-markdown/_assets/images/odc-recreate-update.png)
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating and deploying applications on OpenShift Container Platform using the **Developer** perspective](/openshift-docs-markdown/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-creating-applications-using-developer-perspective)
 - [Viewing the applications in your project, verifying their deployment status, and interacting with them in the **Topology** view](/openshift-docs-markdown/applications/odc-viewing-application-composition-using-topology-view#odc-viewing-application-composition-using-topology-view)
@@ -294,10 +298,24 @@ In the above example, the `organization/strategy` container image provides the d
 
 Additionally, OpenShift Container Platform provides the following environment variables to the deployment process:
 
-| Environment variable | Description |
-| --- | --- |
-| `OPENSHIFT_DEPLOYMENT_NAME` | The name of the new deployment, a replication controller. |
-| `OPENSHIFT_DEPLOYMENT_NAMESPACE` | The name space of the new deployment. |
+<table>
+<thead>
+<tr>
+  <th>Environment variable</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>OPENSHIFT_DEPLOYMENT_NAME</code></td>
+  <td>The name of the new deployment, a replication controller.</td>
+</tr>
+<tr>
+  <td><code>OPENSHIFT_DEPLOYMENT_NAMESPACE</code></td>
+  <td>The name space of the new deployment.</td>
+</tr>
+</tbody>
+</table>
 
 The replica count of the new deployment will initially be zero. The responsibility of the strategy is to make the new deployment active using the logic that best serves the needs of the user.
 
@@ -383,11 +401,22 @@ pre:
 
 Every hook has a *failure policy*, which defines the action the strategy should take when a hook failure is encountered:
 
-|  |  |
-| --- | --- |
-| `Abort` | The deployment process will be considered a failure if the hook fails. |
-| `Retry` | The hook execution should be retried until it succeeds. |
-| `Ignore` | Any hook failure should be ignored and the deployment should proceed. |
+<table>
+<tbody>
+<tr>
+  <td><code>Abort</code></td>
+  <td>The deployment process will be considered a failure if the hook fails.</td>
+</tr>
+<tr>
+  <td><code>Retry</code></td>
+  <td>The hook execution should be retried until it succeeds.</td>
+</tr>
+<tr>
+  <td><code>Ignore</code></td>
+  <td>Any hook failure should be ignored and the deployment should proceed.</td>
+</tr>
+</tbody>
+</table>
 
 Hooks have a type-specific field that describes how to execute the hook. Currently, pod-based hooks are the only supported hook type, specified by the `execNewPod` field.
 

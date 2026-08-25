@@ -110,16 +110,16 @@ where:
     - `value.cluster`. Specifies a Nutanix Prism Element cluster configuration. In this example, the cluster type is `uuid`, so there is a `uuid` stanza. Replace `<cluster_uuid>` with the cluster UUID.
     - `value.credentialsSecret.name`. Specifies the secret name for the cluster. Do not change this value.
     - `value.image`. Specifies the image to use. Replace `<image_id>` with an image from an existing default compute machine set for the cluster, one of the following options:
-    - `nutanix-windows-server-2022` for Windows Server 2022
-    - `nutanix-windows-server-2025` for Windows Server 2025
 
-      - `value.kind`. Specifies the cloud provider platform type. Do not change this value.
-      - `value.memorySize`. Specifies the amount of memory for the cluster in Gi.
-      - `value.subnets`. Specifies a subnet configuration. In this example, the subnet type is `uuid`, so there is a `uuid` stanza. Replace `<subnet_uuid>` with the subnet UUID.
-      - `value.systemDiskSize`. Specifies the size of the system disk in Gi.
-      - `value.userDataSecret.name`. Specifies the name of the secret in the user data YAML file that is in the `openshift-machine-api` namespace. Use the value that installation program populates in the default compute machine set.
-      - `value.vcpuSockets`. Specifies the number of vCPU sockets.
-      - `value.vcpusPerSocket`. Specifies the number of vCPUs per socket.
+      - `nutanix-windows-server-2022` for Windows Server 2022
+      - `nutanix-windows-server-2025` for Windows Server 2025
+    - `value.kind`. Specifies the cloud provider platform type. Do not change this value.
+    - `value.memorySize`. Specifies the amount of memory for the cluster in Gi.
+    - `value.subnets`. Specifies a subnet configuration. In this example, the subnet type is `uuid`, so there is a `uuid` stanza. Replace `<subnet_uuid>` with the subnet UUID.
+    - `value.systemDiskSize`. Specifies the size of the system disk in Gi.
+    - `value.userDataSecret.name`. Specifies the name of the secret in the user data YAML file that is in the `openshift-machine-api` namespace. Use the value that installation program populates in the default compute machine set.
+    - `value.vcpuSockets`. Specifies the number of vCPU sockets.
+    - `value.vcpusPerSocket`. Specifies the number of vCPUs per socket.
 
 ## Creating a compute machine set {#machineset-creating_creating-windows-machineset-nutanix}
 
@@ -221,15 +221,20 @@ To dynamically manage machine compute resources, you can create your own compute
 
   ```terminal
 
+  NAME                                DESIRED   CURRENT   READY   AVAILABLE   AGE
+  agl030519-vplxk-infra-us-east-1a    1         1         1       1           11m
+  agl030519-vplxk-worker-us-east-1a   1         1         1       1           55m
+  agl030519-vplxk-worker-us-east-1b   1         1         1       1           55m
+  agl030519-vplxk-worker-us-east-1c   1         1         1       1           55m
+  agl030519-vplxk-worker-us-east-1d   0         0                             55m
+  agl030519-vplxk-worker-us-east-1e   0         0                             55m
+  agl030519-vplxk-worker-us-east-1f   0         0                             55m
   ```
 
-{%- if win or post_aws_zones %} NAME                                       DESIRED   CURRENT   READY   AVAILABLE   AGE {%- if win %} agl030519-vplxk-windows-worker-us-east-1a  1         1         1       1           11m {% endif %} {% if post_aws_zones %} agl030519-vplxk-edge-us-east-1-nyc-1a      1         1         1       1           11m {%- endif %} agl030519-vplxk-worker-us-east-1a          1         1         1       1           55m agl030519-vplxk-worker-us-east-1b          1         1         1       1           55m agl030519-vplxk-worker-us-east-1c          1         1         1       1           55m agl030519-vplxk-worker-us-east-1d          0         0                             55m agl030519-vplxk-worker-us-east-1e          0         0                             55m agl030519-vplxk-worker-us-east-1f          0         0                             55m {% endif %} {% if not (win or post_aws_zones) %} NAME                                DESIRED   CURRENT   READY   AVAILABLE   AGE agl030519-vplxk-infra-us-east-1a    1         1         1       1           11m agl030519-vplxk-worker-us-east-1a   1         1         1       1           55m agl030519-vplxk-worker-us-east-1b   1         1         1       1           55m agl030519-vplxk-worker-us-east-1c   1         1         1       1           55m agl030519-vplxk-worker-us-east-1d   0         0                             55m agl030519-vplxk-worker-us-east-1e   0         0                             55m agl030519-vplxk-worker-us-east-1f   0         0                             55m {%- endif %} \`\`\`
+  When the new compute machine set is available, the `DESIRED` and `CURRENT` values match. If the compute machine set is not available, wait a few minutes and run the command again.
 
-```
-When the new compute machine set is available, the `DESIRED` and `CURRENT` values match. If the compute machine set is not available, wait a few minutes and run the command again.
-```
-
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Overview of machine management](/openshift-docs-markdown/machine_management/index#overview-of-machine-management)
 - [Understanding UEFI, Secure Boot, and TPM in the Virtualized Environment (Nutanix documenation)](https://portal.nutanix.com/page/documents/kbs/details?targetId=kA07V000000H3K9SAK)

@@ -1,5 +1,5 @@
 ---
-title: Configuring certificates for {{ hcp }}
+title: Configuring certificates for hosted control planes
 ---
 
 # Configuring certificates for hosted control planes {#hcp-certificates}
@@ -129,10 +129,10 @@ You can customize the Kubernetes API server for your hosted cluster.
         -n <cluster_namespace> \
         -o jsonpath='{.data.kubeconfig}' | base64 -d
       ```
-   2. To retrieve the secret by using the console, go to your hosted cluster and click ***Download Kubeconfig***.
+   2. To retrieve the secret by using the console, go to your hosted cluster and click **Download Kubeconfig**.
 
       > [!NOTE]
-      > You cannot consume the new `kubeconfig` secret by using the ***show login command*** option in the console.
+      > You cannot consume the new `kubeconfig` secret by using the **show login command** option in the console.
 
 ## OAuth server certificates for hosted control planes {#hcp-oauth-server-cert-about_hcp-certificates}
 

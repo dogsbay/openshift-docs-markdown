@@ -32,15 +32,15 @@ To redirect unauthenticated requests from clients expecting `WWW-Authenticate` c
 
 The `provider.challengeURL` and `provider.loginURL` parameters can include the following tokens in the query portion of the URL:
 
-- `${{ url }}` is replaced with the current URL, escaped to be safe in a query parameter.
+- `${url}` is replaced with the current URL, escaped to be safe in a query parameter.
 
-  For example: `https://www.example.com/sso-login?then=${{ url }}`
-- `${{ query }}` is replaced with the current query string, unescaped.
+  For example: `https://www.example.com/sso-login?then=${url}`
+- `${query}` is replaced with the current query string, unescaped.
 
-  For example: `https://www.example.com/auth-proxy/oauth/authorize?${{ query }}`
+  For example: `https://www.example.com/auth-proxy/oauth/authorize?${query}`
 
-> [!IMPORTANT]
-> As of OpenShift Container Platform 4.1, your proxy must support mutual TLS.
+  > [!IMPORTANT]
+  > As of OpenShift Container Platform 4.1, your proxy must support mutual TLS.
 
 ### SSPI connection support on Microsoft Windows {#sspi-windows_configuring-request-header-identity-provider}
 
@@ -111,8 +111,8 @@ spec:
 
 1. This provider name is prefixed to the user name in the request header to form an identity name.
 2. Controls how mappings are established between this provider’s identities and `User` objects.
-3. Optional: URL to redirect unauthenticated `/oauth/authorize` requests to, that will authenticate browser-based clients and then proxy their request to `https://_<namespace_route>_/oauth/authorize`. The URL that proxies to `https://_<namespace_route>_/oauth/authorize` must end with `/authorize` (with no trailing slash), and also proxy subpaths, in order for OAuth approval flows to work properly. `${{ url }}` is replaced with the current URL, escaped to be safe in a query parameter. `${{ query }}` is replaced with the current query string. If this attribute is not defined, then `loginURL` must be used.
-4. Optional: URL to redirect unauthenticated `/oauth/authorize` requests to, that will authenticate clients which expect `WWW-Authenticate` challenges, and then proxy them to `https://_<namespace_route>_/oauth/authorize`. `${{ url }}` is replaced with the current URL, escaped to be safe in a query parameter. `${{ query }}` is replaced with the current query string. If this attribute is not defined, then `challengeURL` must be used.
+3. Optional: URL to redirect unauthenticated `/oauth/authorize` requests to, that will authenticate browser-based clients and then proxy their request to `https://_<namespace_route>_/oauth/authorize`. The URL that proxies to `https://_<namespace_route>_/oauth/authorize` must end with `/authorize` (with no trailing slash), and also proxy subpaths, in order for OAuth approval flows to work properly. `${url}` is replaced with the current URL, escaped to be safe in a query parameter. `${query}` is replaced with the current query string. If this attribute is not defined, then `loginURL` must be used.
+4. Optional: URL to redirect unauthenticated `/oauth/authorize` requests to, that will authenticate clients which expect `WWW-Authenticate` challenges, and then proxy them to `https://_<namespace_route>_/oauth/authorize`. `${url}` is replaced with the current URL, escaped to be safe in a query parameter. `${query}` is replaced with the current query string. If this attribute is not defined, then `challengeURL` must be used.
 5. Reference to an OpenShift Container Platform `ConfigMap` object containing a PEM-encoded certificate bundle. Used as a trust anchor to validate the TLS certificates presented by the remote server.
 
    > [!IMPORTANT]
@@ -124,6 +124,7 @@ spec:
 10. Header names to check, in order, for a preferred user name, if different than the immutable identity determined from the headers specified in `headers`. The first header containing a value is used as the preferred user name when provisioning. Optional, case-insensitive.
 
 **Additional resources**
+{._additional-resources}
 
 - See [Identity provider parameters](/openshift-docs-markdown/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider) for information on parameters, such as `mappingMethod`, that are common to all identity providers.
 
@@ -158,7 +159,7 @@ Apply the identity provider custom resource (CR) to your cluster so users can au
    $ oc whoami
    ```
 
-## Example Apache authentication configuration using request header {#example-apache-auth-config-using-request-header}
+## Example Apache authentication configuration using request header {#example-apache-auth-config-using-request-header ._additional-resources}
 
 This example configures an Apache authentication proxy for the OpenShift Container Platform using the request header identity provider.
 
@@ -197,19 +198,19 @@ This example uses the `mod_auth_gssapi` module to configure an Apache authentica
 
   1. The CA must be stored in the `ca.crt` key of the `ConfigMap` object.
 
-     > [!TIP]
-     > You can alternatively apply the following YAML to create the config map:
-     >
-     > ```yaml
-     > apiVersion: v1
-     > kind: ConfigMap
-     > metadata:
-     >   name: ca-config-map
-     >   namespace: openshift-config
-     > data:
-     >   ca.crt: |
-     >     <CA_certificate_PEM>
-     > ```
+  > [!TIP]
+  > You can alternatively apply the following YAML to create the config map:
+  >
+  > ```yaml
+  > apiVersion: v1
+  > kind: ConfigMap
+  > metadata:
+  >   name: ca-config-map
+  >   namespace: openshift-config
+  > data:
+  >   ca.crt: |
+  >     <CA_certificate_PEM>
+  > ```
 - Generate a client certificate for the proxy. You can generate this certificate by using any x509 certificate tooling. The client certificate must be signed by the CA you generated for validating requests that submit the trusted header.
 - Create the custom resource (CR) for your identity providers.
 

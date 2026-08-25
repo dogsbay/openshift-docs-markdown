@@ -303,7 +303,8 @@ You can run the OpenShift Cluster Capacity Tool as a job inside of a pod by usin
            - 192.168.124.120: 26 instance(s)
    ```
 
-## Additional resources {#nodes-cluster-resource-levels_additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [OpenShift Cluster Capacity Tool](https://catalog.redhat.com/software/containers/openshift4/ose-cluster-capacity/5cca0324d70cc57c44ae8eb6?container-tabs=overview)
 - [cluster-capacity repository](https://github.com/openshift/cluster-capacity)

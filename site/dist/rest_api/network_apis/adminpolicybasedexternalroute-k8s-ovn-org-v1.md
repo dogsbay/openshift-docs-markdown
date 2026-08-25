@@ -1,5 +1,5 @@
 ---
-title: AdminPolicyBasedExternalRoute []
+title: AdminPolicyBasedExternalRoute [k8s.ovn.org/v1]
 ---
 
 # AdminPolicyBasedExternalRoute \[k8s.ovn.org/v1\] {#adminpolicybasedexternalroute-k8s-ovn-org-v1}
@@ -300,13 +300,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of AdminPolicyBasedExternalRoute
   - `GET`: list objects of kind AdminPolicyBasedExternalRoute
   - `POST`: create an AdminPolicyBasedExternalRoute
-- `/apis/k8s.ovn.org/v1/adminpolicybasedexternalroutes/{{ name }}`
+- `/apis/k8s.ovn.org/v1/adminpolicybasedexternalroutes/{name}`
 
   - `DELETE`: delete an AdminPolicyBasedExternalRoute
   - `GET`: read the specified AdminPolicyBasedExternalRoute
   - `PATCH`: partially update the specified AdminPolicyBasedExternalRoute
   - `PUT`: replace the specified AdminPolicyBasedExternalRoute
-- `/apis/k8s.ovn.org/v1/adminpolicybasedexternalroutes/{{ name }}/status`
+- `/apis/k8s.ovn.org/v1/adminpolicybasedexternalroutes/{name}/status`
 
   - `GET`: read status of the specified AdminPolicyBasedExternalRoute
   - `PATCH`: partially update status of the specified AdminPolicyBasedExternalRoute
@@ -380,7 +380,7 @@ Description
 | 202 - Accepted | [`AdminPolicyBasedExternalRoute`](/openshift-docs-markdown/rest_api/network_apis/adminpolicybasedexternalroute-k8s-ovn-org-v1#adminpolicybasedexternalroute-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.ovn.org/v1/adminpolicybasedexternalroutes/{{ name }} {#_apisk8sovnorgv1adminpolicybasedexternalroutes_name}
+### /apis/k8s.ovn.org/v1/adminpolicybasedexternalroutes/{name} {#_apisk8sovnorgv1adminpolicybasedexternalroutes_name}
 
 **Global path parameters**
 
@@ -484,7 +484,7 @@ Description
 | 201 - Created | [`AdminPolicyBasedExternalRoute`](/openshift-docs-markdown/rest_api/network_apis/adminpolicybasedexternalroute-k8s-ovn-org-v1#adminpolicybasedexternalroute-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.ovn.org/v1/adminpolicybasedexternalroutes/{{ name }}/status {#_apisk8sovnorgv1adminpolicybasedexternalroutes_name_status}
+### /apis/k8s.ovn.org/v1/adminpolicybasedexternalroutes/{name}/status {#_apisk8sovnorgv1adminpolicybasedexternalroutes_name_status}
 
 **Global path parameters**
 

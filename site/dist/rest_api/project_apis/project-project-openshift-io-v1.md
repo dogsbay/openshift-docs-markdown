@@ -1,5 +1,5 @@
 ---
-title: Project []
+title: Project [project.openshift.io/v1]
 ---
 
 # Project \[project.openshift.io/v1\] {#project-project-openshift-io-v1}
@@ -55,7 +55,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `conditions` | [`array (NamespaceCondition)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-NamespaceCondition) | Represents the latest available observations of the project current state. |
-| `phase` | `string` | phase is the current lifecycle phase of the project Possible enum values:  - `"Active"` means the namespace is available for use in the system  - `"Terminating"` means the namespace is undergoing graceful termination |
+| `phase` | `string` | phase is the current lifecycle phase of the project<br>Possible enum values: - `"Active"` means the namespace is available for use in the system - `"Terminating"` means the namespace is undergoing graceful termination |
 
 ## API endpoints {#_api_endpoints}
 
@@ -68,13 +68,13 @@ The following API endpoints are available:
 - `/apis/project.openshift.io/v1/watch/projects`
 
   - `GET`: watch individual changes to a list of Project. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/project.openshift.io/v1/projects/{{ name }}`
+- `/apis/project.openshift.io/v1/projects/{name}`
 
   - `DELETE`: delete a Project
   - `GET`: read the specified Project
   - `PATCH`: partially update the specified Project
   - `PUT`: replace the specified Project
-- `/apis/project.openshift.io/v1/watch/projects/{{ name }}`
+- `/apis/project.openshift.io/v1/watch/projects/{name}`
 
   - `GET`: watch changes to an object of kind Project. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
 
@@ -148,7 +148,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/project.openshift.io/v1/projects/{{ name }} {#_apisprojectopenshiftiov1projects_name}
+### /apis/project.openshift.io/v1/projects/{name} {#_apisprojectopenshiftiov1projects_name}
 
 **Global path parameters**
 
@@ -253,7 +253,7 @@ Description
 | 201 - Created | [`Project`](/openshift-docs-markdown/rest_api/project_apis/project-project-openshift-io-v1#project-project-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/project.openshift.io/v1/watch/projects/{{ name }} {#_apisprojectopenshiftiov1watchprojects_name}
+### /apis/project.openshift.io/v1/watch/projects/{name} {#_apisprojectopenshiftiov1watchprojects_name}
 
 **Global path parameters**
 

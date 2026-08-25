@@ -1,5 +1,5 @@
 ---
-title: Control plane configuration options for {{ gcp_full }}
+title: Control plane configuration options for Google Cloud
 ---
 
 # Control plane configuration options for Google Cloud {#cpmso-config-options-gcp}
@@ -46,9 +46,9 @@ metadata:
   name: cluster
   namespace: openshift-machine-api
 spec:
-## ...
+# ...
   template:
-## ...
+# ...
       spec:
         providerSpec:
           value:
@@ -120,7 +120,7 @@ where:
 `spec.template.spec.providerSpec.value.zone`
 :   This parameter is in the failure domain configuration and has an empty value here.
 
-If the cluster uses a failure domain, configure this parameter in the failure domain. If you specify this value in the provider specification when using a failure domain, the Control Plane Machine Set Operator ignores it and uses the value in the failure domain.
+    If the cluster uses a failure domain, configure this parameter in the failure domain. If you specify this value in the provider specification when using a failure domain, the Control Plane Machine Set Operator ignores it and uses the value in the failure domain.
 
 ## Sample Google Cloud failure domain configuration {#cpmso-yaml-failure-domain-gcp_cpmso-config-options-gcp}
 
@@ -137,9 +137,9 @@ metadata:
   name: cluster
   namespace: openshift-machine-api
 spec:
-## ...
+# ...
   template:
-## ...
+# ...
     machines_v1beta1_machine_openshift_io:
       failureDomains:
         gcp:
@@ -148,7 +148,7 @@ spec:
         - zone: <gcp_zone_c>
         - zone: <gcp_zone_d>
         platform: GCP
-## ...
+# ...
 ```
 
 where:
@@ -159,7 +159,8 @@ where:
 `spec.template.machines_v1beta1_machine_openshift_io.failureDomains.platform`
 :   Specifies the cloud provider platform name. Do not change this value.
 
-## Additional resources {#additional-resources_cpmso-config-options-gcp}
+**Additional resources**
+{._additional-resources}
 
 - [Updating the control plane configuration](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-feat-config-update_cpmso-managing-machines)
 - [Configuring Google Cloud features for control plane machines](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso_provider_configurations/cpmso-supported-features-gcp#cpmso-supported-features-gcp)

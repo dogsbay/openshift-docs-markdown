@@ -36,7 +36,7 @@ spec:
             contextPath: /kiali
 ```
 
-`ServiceMeshControlPlane`** Kiali parameters**
+**`ServiceMeshControlPlane` Kiali parameters**
 
 <table>
 <tbody>
@@ -48,7 +48,7 @@ spec:
 </tr>
 <tr>
   <td>spec: addons: kiali: name:</td>
-  <td>Name of Kiali custom resource. If a Kiali CR matching the value of <code>name</code> exists, the {{ SMProductShortname }} Operator will use that CR for the installation. If no Kiali CR exists, the Operator will create one using this <code>name</code> and the configuration options specified in the SMCP.</td>
+  <td>Name of Kiali custom resource. If a Kiali CR matching the value of <code>name</code> exists, the {SMProductShortname} Operator will use that CR for the installation. If no Kiali CR exists, the Operator will create one using this <code>name</code> and the configuration options specified in the SMCP.</td>
   <td>string</td>
   <td><code>kiali</code></td>
 </tr>
@@ -72,7 +72,7 @@ spec:
 </tr>
 <tr>
   <td>kiali: install: dashboard: viewOnly:</td>
-  <td>This parameter enables or disables view-only mode for the Kiali console. When view-only mode is enabled, users cannot use the Kiali console to make changes to the {{ SMProductShortname }}.</td>
+  <td>This parameter enables or disables view-only mode for the Kiali console. When view-only mode is enabled, users cannot use the Kiali console to make changes to the {SMProductShortname}.</td>
   <td><code>true</code>/<code>false</code></td>
   <td><code>false</code></td>
 </tr>
@@ -162,7 +162,7 @@ spec:
 </tr>
 <tr>
   <td>kiali: install: service: nodePort:</td>
-  <td>Use to specify the <code>nodePort</code> for the component's service <code>Values.<component>.service.nodePort.port</code></td>
+  <td>Use to specify the <code>nodePort</code> for the component's service <code>Values.&lt;component&gt;.service.nodePort.port</code></td>
   <td>integer</td>
   <td>N/A</td>
 </tr>

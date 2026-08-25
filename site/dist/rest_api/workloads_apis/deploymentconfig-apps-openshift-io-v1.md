@@ -1,5 +1,5 @@
 ---
-title: DeploymentConfig []
+title: DeploymentConfig [apps.openshift.io/v1]
 ---
 
 # DeploymentConfig \[apps.openshift.io/v1\] {#deploymentconfig-apps-openshift-io-v1}
@@ -329,8 +329,8 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `intervalSeconds` | `integer` | intervalSeconds is the time to wait between polling deployment status after update. If the value is nil, a default will be used. |
-| `maxSurge` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | maxSurge is the maximum number of pods that can be scheduled above the original number of pods. Value can be an absolute number (ex: 5) or a percentage of total pods at the start of the update (ex: 10%). Absolute number is calculated from percentage by rounding up. This cannot be 0 if MaxUnavailable is 0. By default, 25% is used. Example: when this is set to 30%, the new RC can be scaled up by 30% immediately when the rolling update starts. Once old pods have been killed, new RC can be scaled up further, ensuring that total number of pods running at any time during the update is atmost 130% of original pods. |
-| `maxUnavailable` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | maxUnavailable is the maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of total pods at the start of update (ex: 10%). Absolute number is calculated from percentage by rounding down. This cannot be 0 if MaxSurge is 0. By default, 25% is used. Example: when this is set to 30%, the old RC can be scaled down by 30% immediately when the rolling update starts. Once new pods are ready, old RC can be scaled down further, followed by scaling up the new RC, ensuring that at least 70% of original number of pods are available at all times during the update. |
+| `maxSurge` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | maxSurge is the maximum number of pods that can be scheduled above the original number of pods. Value can be an absolute number (ex: 5) or a percentage of total pods at the start of the update (ex: 10%). Absolute number is calculated from percentage by rounding up.<br>This cannot be 0 if MaxUnavailable is 0. By default, 25% is used.<br>Example: when this is set to 30%, the new RC can be scaled up by 30% immediately when the rolling update starts. Once old pods have been killed, new RC can be scaled up further, ensuring that total number of pods running at any time during the update is atmost 130% of original pods. |
+| `maxUnavailable` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | maxUnavailable is the maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of total pods at the start of update (ex: 10%). Absolute number is calculated from percentage by rounding down.<br>This cannot be 0 if MaxSurge is 0. By default, 25% is used.<br>Example: when this is set to 30%, the old RC can be scaled down by 30% immediately when the rolling update starts. Once new pods are ready, old RC can be scaled down further, followed by scaling up the new RC, ensuring that at least 70% of original number of pods are available at all times during the update. |
 | `post` | `object` | LifecycleHook defines a specific deployment lifecycle action. Only one type of action may be specified at any time. |
 | `pre` | `object` | LifecycleHook defines a specific deployment lifecycle action. Only one type of action may be specified at any time. |
 | `timeoutSeconds` | `integer` | timeoutSeconds is the time to wait for updates before giving up. If the value is nil, a default will be used. |
@@ -651,24 +651,24 @@ The following API endpoints are available:
 - `/apis/apps.openshift.io/v1/watch/deploymentconfigs`
 
   - `GET`: watch individual changes to a list of DeploymentConfig. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/apps.openshift.io/v1/namespaces/{{ namespace }}/deploymentconfigs`
+- `/apis/apps.openshift.io/v1/namespaces/{namespace}/deploymentconfigs`
 
   - `DELETE`: delete collection of DeploymentConfig
   - `GET`: list or watch objects of kind DeploymentConfig
   - `POST`: create a DeploymentConfig
-- `/apis/apps.openshift.io/v1/watch/namespaces/{{ namespace }}/deploymentconfigs`
+- `/apis/apps.openshift.io/v1/watch/namespaces/{namespace}/deploymentconfigs`
 
   - `GET`: watch individual changes to a list of DeploymentConfig. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/apps.openshift.io/v1/namespaces/{{ namespace }}/deploymentconfigs/{{ name }}`
+- `/apis/apps.openshift.io/v1/namespaces/{namespace}/deploymentconfigs/{name}`
 
   - `DELETE`: delete a DeploymentConfig
   - `GET`: read the specified DeploymentConfig
   - `PATCH`: partially update the specified DeploymentConfig
   - `PUT`: replace the specified DeploymentConfig
-- `/apis/apps.openshift.io/v1/watch/namespaces/{{ namespace }}/deploymentconfigs/{{ name }}`
+- `/apis/apps.openshift.io/v1/watch/namespaces/{namespace}/deploymentconfigs/{name}`
 
   - `GET`: watch changes to an object of kind DeploymentConfig. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
-- `/apis/apps.openshift.io/v1/namespaces/{{ namespace }}/deploymentconfigs/{{ name }}/status`
+- `/apis/apps.openshift.io/v1/namespaces/{namespace}/deploymentconfigs/{name}/status`
 
   - `GET`: read status of the specified DeploymentConfig
   - `PATCH`: partially update status of the specified DeploymentConfig
@@ -712,7 +712,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps.openshift.io/v1/namespaces/{{ namespace }}/deploymentconfigs {#_apisappsopenshiftiov1namespaces_namespace_deploymentconfigs}
+### /apis/apps.openshift.io/v1/namespaces/{namespace}/deploymentconfigs {#_apisappsopenshiftiov1namespaces_namespace_deploymentconfigs}
 
 HTTP method
 :   ```
@@ -786,7 +786,7 @@ Description
 | 202 - Accepted | [`DeploymentConfig`](/openshift-docs-markdown/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps.openshift.io/v1/watch/namespaces/{{ namespace }}/deploymentconfigs {#_apisappsopenshiftiov1watchnamespaces_namespace_deploymentconfigs}
+### /apis/apps.openshift.io/v1/watch/namespaces/{namespace}/deploymentconfigs {#_apisappsopenshiftiov1watchnamespaces_namespace_deploymentconfigs}
 
 HTTP method
 :   ```
@@ -805,7 +805,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps.openshift.io/v1/namespaces/{{ namespace }}/deploymentconfigs/{{ name }} {#_apisappsopenshiftiov1namespaces_namespace_deploymentconfigs_name}
+### /apis/apps.openshift.io/v1/namespaces/{namespace}/deploymentconfigs/{name} {#_apisappsopenshiftiov1namespaces_namespace_deploymentconfigs_name}
 
 **Global path parameters**
 
@@ -910,7 +910,7 @@ Description
 | 201 - Created | [`DeploymentConfig`](/openshift-docs-markdown/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps.openshift.io/v1/watch/namespaces/{{ namespace }}/deploymentconfigs/{{ name }} {#_apisappsopenshiftiov1watchnamespaces_namespace_deploymentconfigs_name}
+### /apis/apps.openshift.io/v1/watch/namespaces/{namespace}/deploymentconfigs/{name} {#_apisappsopenshiftiov1watchnamespaces_namespace_deploymentconfigs_name}
 
 **Global path parameters**
 
@@ -935,7 +935,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps.openshift.io/v1/namespaces/{{ namespace }}/deploymentconfigs/{{ name }}/status {#_apisappsopenshiftiov1namespaces_namespace_deploymentconfigs_name_status}
+### /apis/apps.openshift.io/v1/namespaces/{namespace}/deploymentconfigs/{name}/status {#_apisappsopenshiftiov1namespaces_namespace_deploymentconfigs_name_status}
 
 **Global path parameters**
 

@@ -23,6 +23,9 @@ For more information, see [SPIFFE Overview](https://spiffe.io/docs/latest/spiffe
 
 The SPIRE Server is the central management component of SPIRE that issues SPIFFE identities and maintains the registration database for a trust domain.
 
+**Additional resources**
+{._additional-resources}
+
 - [About the SPIRE Server](https://spiffe.io/docs/latest/spire-about/spire-concepts/#all-about-the-server)
 
 ## SPIRE Agent {#zero-trust-manager-about-agent_zero-trust-manager-overview}

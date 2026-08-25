@@ -20,12 +20,13 @@ const headings = [{"depth":1,"slug":"lws-release-notes","text":"Leader Worker Se
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/ai_workloads/leader_worker_set/lws-release-notes";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
-const title = "{{ lws_operator }} release notes";
+const title = "Leader Worker Set Operator release notes";
 const description = "Review the Leader Worker Set Operator release notes to track its development and learn what is new and changed with each release." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
@@ -78,12 +79,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -91,7 +93,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="lws-release-notes" class="group scroll-mt-20">Leader Worker Set Operator release notes<a href="#lws-release-notes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Review the Leader Worker Set Operator release notes to track its development and learn what is new and changed with each release.</p>
+      <p class="_abstract">Review the Leader Worker Set Operator release notes to track its development and learn what is new and changed with each release.</p>
       <p>You can use the Leader Worker Set Operator to manage distributed inference workloads and process large-scale inference requests efficiently.</p>
       <p>These release notes track the development of the Leader Worker Set Operator.</p>
       <p>For more information, see <a href="/openshift-docs-markdown/ai_workloads/leader_worker_set/index#lws-about_lws-about">About the Leader Worker Set Operator</a>.</p>

@@ -1,5 +1,5 @@
 ---
-title: "{{ VirtProductName }} release notes"
+title: OpenShift Virtualization release notes
 ---
 
 # OpenShift Virtualization release notes {#virt-4-22-release-notes}
@@ -123,23 +123,27 @@ Recording rules deprecated
 
     [CNV-89006](https://redhat.atlassian.net/browse/CNV-89006)
 
-    The `HotplugVolume` feature gate is deprecated
-    :   The `HotplugVolume` feature gate, which allows you to add storage without restarting your VM, is deprecated and will be removed in a future release. This feature gate will be replaced by `DeclarativeHotplugVolumes`.
+The `HotplugVolume` feature gate is deprecated
+:   The `HotplugVolume` feature gate, which allows you to add storage without restarting your VM, is deprecated and will be removed in a future release. This feature gate will be replaced by `DeclarativeHotplugVolumes`.
 
     > [!NOTE]
     > `DeclarativeHotplugVolumes` does not support hot plugging ephemeral volumes. Ephemeral volumes are hot plugged to a VMI and do not persist in the owner VM. Existing ephemeral volumes that are hot plugged are automatically detached after you switch to the `DeclarativeHotplugVolumes` feature gate.
 
-    [CNV-73301](https://issues.redhat.com/browse/CNV-73301)
+[CNV-73301](https://issues.redhat.com/browse/CNV-73301)
 
 ## Removed features {#virt-4-22-removed_virt-4-22-release-notes}
 
 Removed features are no longer supported in OpenShift Virtualization.
 
 Predefined latency checkup feature removed
-:   In previous versions, cluster and project administrators could use a predefined latency checkup to verify network connectivity and measure latency between two virtual machines (VMs) that are attached to a secondary network interface. With this release, the predefined latency checkup feature is removed. [CNV-77646](https://issues.redhat.com/browse/CNV-77646)
+:   In previous versions, cluster and project administrators could use a predefined latency checkup to verify network connectivity and measure latency between two virtual machines (VMs) that are attached to a secondary network interface. With this release, the predefined latency checkup feature is removed.
+
+    [CNV-77646](https://issues.redhat.com/browse/CNV-77646)
 
 Removed deprecated label from localnet network attachment definition type
-:   The web console no longer displays a **Deprecated** label next to the localnet `NetworkAttachmentDefinition` (NAD) type. This change clarifies that localnet NAD functionality is not deprecated and remains fully supported. You can use either the NAD-based approach or the VM network wizard to create localnet networks for connecting virtual machines to physical networks. [OCPBUGS-83809](https://redhat.atlassian.net/browse/OCPBUGS-83809)
+:   The web console no longer displays a **Deprecated** label next to the localnet `NetworkAttachmentDefinition` (NAD) type. This change clarifies that localnet NAD functionality is not deprecated and remains fully supported. You can use either the NAD-based approach or the VM network wizard to create localnet networks for connecting virtual machines to physical networks.
+
+    [OCPBUGS-83809](https://redhat.atlassian.net/browse/OCPBUGS-83809)
 
 ## Technology Preview features {#virt-4-22-technology-preview_virt-4-22-release-notes}
 
@@ -148,67 +152,107 @@ Some features in this release are currently in Technology Preview. These experim
 [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview)
 
 KubeVirt Redfish for VM management through the Redfish API (Technology Preview)
-:   KubeVirt Redfish exposes OpenShift Virtualization virtual machines through the standard Redfish API. Using KubeVirt Redfish, administrators can manage VM power states, boot configuration, and virtual media attachments. This feature is available as a Technology Preview. For more information, see [Install KubeVirt Redfish](/openshift-docs-markdown/virt/post_installation_configuration/virt-kubevirt-redfish#proc_virt-installing-kubevirt-redfish_virt-kubevirt-redfish).
+:   KubeVirt Redfish exposes OpenShift Virtualization virtual machines through the standard Redfish API. Using KubeVirt Redfish, administrators can manage VM power states, boot configuration, and virtual media attachments. This feature is available as a Technology Preview.
+
+    For more information, see [Install KubeVirt Redfish](/openshift-docs-markdown/virt/post_installation_configuration/virt-kubevirt-redfish#proc_virt-installing-kubevirt-redfish_virt-kubevirt-redfish).
 
 Golden image support for heterogeneous clusters (Technology Preview)
-:   Golden image support is available for heterogeneous clusters, which enables you to create and use golden images for virtual machines in environments with differing node configurations. This capability is a Technology Preview feature. [CNV-62357](https://issues.redhat.com/browse/CNV-62357)
+:   Golden image support is available for heterogeneous clusters, which enables you to create and use golden images for virtual machines in environments with differing node configurations. This capability is a Technology Preview feature.
+
+    [CNV-62357](https://issues.redhat.com/browse/CNV-62357)
 
 Custom video device support in virtual machines (Technology Preview)
-:   You can now configure a custom video device type when creating a virtual machine. Configuring a custom device type overrides the default video configuration, and allows you to specify different video devices, based on your guest operating system requirements and performance needs. This capability is a Technology Preview feature. [CNV-71192](https://issues.redhat.com/browse/CNV-71192)
+:   You can now configure a custom video device type when creating a virtual machine. Configuring a custom device type overrides the default video configuration, and allows you to specify different video devices, based on your guest operating system requirements and performance needs. This capability is a Technology Preview feature.
+
+    [CNV-71192](https://issues.redhat.com/browse/CNV-71192)
 
 Convert an existing VM to a template from the user interface (Technology Preview)
-:   Virtual machine (VM) owners can create, filter, and delete a user-generated template. You can create a template from an existing VM in the same project as the running VM or a different project from the OpenShift Virtualization user interface. To make sure that the data is consistent, stop the VM before you create a template. This capability is a Technology Preview feature. [CNV-81577](https://redhat.atlassian.net/browse/CNV-81577)
+:   Virtual machine (VM) owners can create, filter, and delete a user-generated template. You can create a template from an existing VM in the same project as the running VM or a different project from the OpenShift Virtualization user interface. To make sure that the data is consistent, stop the VM before you create a template. This capability is a Technology Preview feature.
+
+    [CNV-81577](https://redhat.atlassian.net/browse/CNV-81577)
 
 Create virtual machines from in-cluster native templates (Technology Preview)
-:   Virtual machine (VM) owners can create VMs from the OpenShift Virtualization cluster native template custom resource. The VM template tracks a golden image that is updated periodically, reducing errors and ensuring uniformity in the virtualized environment. You can host the template in all namespaces that you can control. [CNV-73392](https://redhat.atlassian.net/browse/CNV-73392)
+:   Virtual machine (VM) owners can create VMs from the OpenShift Virtualization cluster native template custom resource. The VM template tracks a golden image that is updated periodically, reducing errors and ensuring uniformity in the virtualized environment. You can host the template in all namespaces that you can control.
+
+    [CNV-73392](https://redhat.atlassian.net/browse/CNV-73392)
 
 Dual stream support for OpenShift Virtualization clusters (Technology Preview)
-:   You can provision OpenShift Virtualization clusters that run Red Hat Enterprise Linux CoreOS (RHCOS) version 9.8 and version 10.2 in OpenShift Container Platform 4.22. RHCOS 9.8 is the default operating system. VM live migration between RHCOS 9.x and RHCOS 10.x worker nodes is supported in OpenShift Container Platform 4.22. [CNV-49964](https://redhat.atlassian.net/browse/CNV-49964)
+:   You can provision OpenShift Virtualization clusters that run Red Hat Enterprise Linux CoreOS (RHCOS) version 9.8 and version 10.2 in OpenShift Container Platform 4.22. RHCOS 9.8 is the default operating system. VM live migration between RHCOS 9.x and RHCOS 10.x worker nodes is supported in OpenShift Container Platform 4.22.
+
+    [CNV-49964](https://redhat.atlassian.net/browse/CNV-49964)
 
 KubeVirt Redfish for VM management through the Redfish API (Technology Preview)
-:   KubeVirt Redfish exposes OpenShift Virtualization virtual machines through the standard Redfish API. Using KubeVirt Redfish, administrators can manage VM power states, boot configuration, and virtual media attachments. This feature is available as a Technology Preview. For more information, see [Install KubeVirt Redfish](/openshift-docs-markdown/virt/post_installation_configuration/virt-kubevirt-redfish#proc_virt-installing-kubevirt-redfish_virt-kubevirt-redfish).
+:   KubeVirt Redfish exposes OpenShift Virtualization virtual machines through the standard Redfish API. Using KubeVirt Redfish, administrators can manage VM power states, boot configuration, and virtual media attachments. This feature is available as a Technology Preview.
+
+    For more information, see [Install KubeVirt Redfish](/openshift-docs-markdown/virt/post_installation_configuration/virt-kubevirt-redfish#proc_virt-installing-kubevirt-redfish_virt-kubevirt-redfish).
 
 ## Fixed issues {#virt-4-22-bug-fixes_virt-4-22-release-notes}
 
 The following issues are fixed for this release.
 
 Service account volumes preserved during VM migration
-:   Before this update, migrating a virtual machine (VM) invalidated any service account volumes attached to that VM. As a consequence, workloads that relied on service account tokens failed after migration. With this release, service account volumes are preserved during VM migration. As a result, workloads that use service account tokens continue to function correctly after live migration. [CNV-33835](https://issues.redhat.com/browse/CNV-33835)
+:   Before this update, migrating a virtual machine (VM) invalidated any service account volumes attached to that VM. As a consequence, workloads that relied on service account tokens failed after migration. With this release, service account volumes are preserved during VM migration. As a result, workloads that use service account tokens continue to function correctly after live migration.
+
+    [CNV-33835](https://issues.redhat.com/browse/CNV-33835)
 
 ## Known issues {#virt-4-22-known-issues_virt-4-22-release-notes}
 
 Some linked Jira tickets are accessible only with Red Hat credentials.
 
 Non-versioned HyperConverged commands default to v1 API
-:   In this release, the v1 API for the `HyperConverged` custom resource (CR) is introduced, in preparation for a future migration from v1beta1 to v1. Due to the way Kubernetes selects default API versions, non-versioned commands such as `oc get hco`, `oc edit hyperconverged`, and `oc patch hyperconverged` now default to the v1 API. As a consequence, these commands can behave unexpectedly or fail because the v1 API is not yet ready for production use. To work around this problem, use the fully versioned type name `hyperconvergeds.v1beta1.hco.kubevirt.io` when running commands against the `HyperConverged` CR. For example, use `oc get hyperconvergeds.v1beta1.hco.kubevirt.io` instead of `oc get hco`. For the `oc explain` command, use the `--api-version` flag: `oc explain --api-version=hco.kubevirt.io/v1beta1 hco.spec`. As a result, commands target the v1beta1 API as intended. [CNV-78892](https://redhat.atlassian.net/browse/CNV-78892)
+:   In this release, the v1 API for the `HyperConverged` custom resource (CR) is introduced, in preparation for a future migration from v1beta1 to v1. Due to the way Kubernetes selects default API versions, non-versioned commands such as `oc get hco`, `oc edit hyperconverged`, and `oc patch hyperconverged` now default to the v1 API. As a consequence, these commands can behave unexpectedly or fail because the v1 API is not yet ready for production use.
+
+    To work around this problem, use the fully versioned type name `hyperconvergeds.v1beta1.hco.kubevirt.io` when running commands against the `HyperConverged` CR. For example, use `oc get hyperconvergeds.v1beta1.hco.kubevirt.io` instead of `oc get hco`. For the `oc explain` command, use the `--api-version` flag: `oc explain --api-version=hco.kubevirt.io/v1beta1 hco.spec`. As a result, commands target the v1beta1 API as intended.
+
+    [CNV-78892](https://redhat.atlassian.net/browse/CNV-78892)
 
 VMs using the cnv-bridge CNI fail to live migrate after updates from 4.12
-:   When you update from OpenShift Container Platform 4.12 to a newer minor version, virtual machines that use the `cnv-bridge` Container Network Interface (CNI) fail to live migrate. As a consequence, live migration fails for affected VMs. <a name="virt-4-22-ki-networking_virt-4-22-release-notes"></a>
+:   When you update from OpenShift Container Platform 4.12 to a newer minor version, virtual machines that use the `cnv-bridge` Container Network Interface (CNI) fail to live migrate. As a consequence, live migration fails for affected VMs.
 
-    To work around this problem, change the `spec.config.type` field in your `NetworkAttachmentDefinition` manifest from `cnv-bridge` to `bridge` before you perform the update. As a result, live migration succeeds for VMs that use the updated network attachment definitions. [Known issue when migrating VMs that use the cnv-bridge CNI](https://access.redhat.com/solutions/7069807)
+    <a name="virt-4-22-ki-networking_virt-4-22-release-notes"></a>
+
+    To work around this problem, change the `spec.config.type` field in your `NetworkAttachmentDefinition` manifest from `cnv-bridge` to `bridge` before you perform the update. As a result, live migration succeeds for VMs that use the updated network attachment definitions.
+
+    [Known issue when migrating VMs that use the cnv-bridge CNI](https://access.redhat.com/solutions/7069807)
 
 VMs might lose ingress connectivity after live migration over an EVPN-enabled network
-:   When you live migrate a VM across OpenShift Container Platform clusters that leverage a Border Gateway Protocol Ethernet Virtual Private Network (BGP EVPN)-enabled user-defined network, the VM might lose ingress connectivity. [OCPBUGS-86503](https://redhat.atlassian.net/browse/OCPBUGS-86503)
+:   When you live migrate a VM across OpenShift Container Platform clusters that leverage a Border Gateway Protocol Ethernet Virtual Private Network (BGP EVPN)-enabled user-defined network, the VM might lose ingress connectivity.
+
+    [OCPBUGS-86503](https://redhat.atlassian.net/browse/OCPBUGS-86503)
 
 Red Hat OpenShift Service Mesh 3.1.1 and Istio 1.25 and later are incompatible with OpenShift Virtualization
-:   Red Hat OpenShift Service Mesh 3.1.1 and Istio versions 1.25 and later are incompatible with OpenShift Virtualization 4.22 because the `traffic.sidecar.istio.io/kubevirtInterfaces` annotation is deprecated. As a consequence, service mesh integration with OpenShift Virtualization can fail when you use these versions. To work around this problem, when you install Service Mesh for integration with OpenShift Virtualization, select Red Hat OpenShift Service Mesh version 3.0.4 and Istio 1.24.4 instead of the default versions that are displayed in the web console. [OSSM-10883](https://issues.redhat.com/browse/OSSM-10883)
+:   Red Hat OpenShift Service Mesh 3.1.1 and Istio versions 1.25 and later are incompatible with OpenShift Virtualization 4.22 because the `traffic.sidecar.istio.io/kubevirtInterfaces` annotation is deprecated. As a consequence, service mesh integration with OpenShift Virtualization can fail when you use these versions.
+
+    To work around this problem, when you install Service Mesh for integration with OpenShift Virtualization, select Red Hat OpenShift Service Mesh version 3.0.4 and Istio 1.24.4 instead of the default versions that are displayed in the web console.
+
+    [OSSM-10883](https://issues.redhat.com/browse/OSSM-10883)
 
 Node labels remain after uninstalling OpenShift Virtualization
-:   Uninstalling OpenShift Virtualization does not remove the `feature.node.kubevirt.io` node labels that OpenShift Virtualization creates. As a consequence, nodes can still appear as if they are configured for virtualization workloads. <a name="virt-4-22-ki-nodes_virt-4-22-release-notes"></a>
+:   Uninstalling OpenShift Virtualization does not remove the `feature.node.kubevirt.io` node labels that OpenShift Virtualization creates. As a consequence, nodes can still appear as if they are configured for virtualization workloads.
 
-    To work around this problem, manually remove the `feature.node.kubevirt.io` labels from affected nodes after you uninstall OpenShift Virtualization. [CNV-38543](https://issues.redhat.com/browse/CNV-38543)
+    <a name="virt-4-22-ki-nodes_virt-4-22-release-notes"></a>
+
+    To work around this problem, manually remove the `feature.node.kubevirt.io` labels from affected nodes after you uninstall OpenShift Virtualization.
+
+    [CNV-38543](https://issues.redhat.com/browse/CNV-38543)
 
 Live migration fails when VM names exceed 47 characters
-:   Live migration fails if a virtual machine name exceeds 47 characters. As a consequence, you cannot live migrate VMs with longer names. <a name="virt-4-22-ki-virtualization_virt-4-22-release-notes"></a>
+:   Live migration fails if a virtual machine name exceeds 47 characters. As a consequence, you cannot live migrate VMs with longer names.
 
-    To work around this problem, use VM names that are 47 characters or fewer when you create VMs that you plan to live migrate. [CNV-61066](https://issues.redhat.com/browse/CNV-61066)
+    <a name="virt-4-22-ki-virtualization_virt-4-22-release-notes"></a>
+
+    To work around this problem, use VM names that are 47 characters or fewer when you create VMs that you plan to live migrate.
+
+    [CNV-61066](https://issues.redhat.com/browse/CNV-61066)
 
 Upgrading to OpenShift Virtualization 4.22 when using wasp-agent
-:   If you are upgrading OpenShift Virtualization from version 4.20 to 4.22 and using `wasp-agent` to increase VM workload density, you must perform the following steps after you begin the upgrade: . Wait for the Machine Configuration Pool (MCP) to complete updating the control-plane nodes. . Edit the `KubeletConfig` file to remove the `failSwapOn: false` key-value pair. . Wait for the MCP to finish updating the worker nodes.
+:   If you are upgrading OpenShift Virtualization from version 4.20 to 4.22 and using `wasp-agent` to increase VM workload density, you must perform the following steps after you begin the upgrade:
 
-```
-[CNV-89504](https://redhat.atlassian.net/browse/CNV-89504)
-```
+    1. Wait for the Machine Configuration Pool (MCP) to complete updating the control-plane nodes.
+    2. Edit the `KubeletConfig` file to remove the `failSwapOn: false` key-value pair.
+    3. Wait for the MCP to finish updating the worker nodes.
+
+    [CNV-89504](https://redhat.atlassian.net/browse/CNV-89504)
 
 ## Maintenance releases {#virt-maintenance-releases_virt-4-22-release-notes}
 

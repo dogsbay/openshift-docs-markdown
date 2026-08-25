@@ -8,7 +8,7 @@ You can configure live migration settings to ensure that the migration processes
 
 ## Configuring live migration limits and timeouts {#virt-configuring-live-migration-limits_virt-configuring-live-migration}
 
-Configure live migration limits and timeouts for the cluster by updating the `HyperConverged` custom resource (CR), which is located in the `{{ CNVNamespace }}` namespace.
+Configure live migration limits and timeouts for the cluster by updating the `HyperConverged` custom resource (CR), which is located in the `openshift-cnv` namespace.
 
 **Prerequisites**
 
@@ -19,7 +19,7 @@ Configure live migration limits and timeouts for the cluster by updating the `Hy
 - Edit the `HyperConverged` CR and add the necessary live migration parameters:
 
   ```terminal
-  $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+  $ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv
   ```
 
   Example configuration file:
@@ -29,7 +29,7 @@ Configure live migration limits and timeouts for the cluster by updating the `Hy
   kind: HyperConverged
   metadata:
     name: kubevirt-hyperconverged
-    namespace: {{ CNVNamespace }}
+    namespace: openshift-cnv
   spec:
     liveMigrationConfig:
       bandwidthPerMigration: 64Mi
@@ -67,7 +67,7 @@ Configure live migration limits and timeouts for the cluster by updating the `Hy
 
 When migrating a VM running a heavy workload, such as database processing, higher memory dirty rates can prevent the migration from completing. To address this, you can enable post copy mode, which allows the migration to complete when the pre-copy phase cannot converge.
 
-Configure live migration for heavy workloads by updating the `HyperConverged` custom resource (CR) in the `{{ CNVNamespace }}` namespace.
+Configure live migration for heavy workloads by updating the `HyperConverged` custom resource (CR) in the `openshift-cnv` namespace.
 
 **Prerequisites**
 
@@ -78,7 +78,7 @@ Configure live migration for heavy workloads by updating the `HyperConverged` cu
 1. Edit the `HyperConverged` CR and add the necessary parameters for migrating heavy workloads:
 
    ```terminal
-   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+   $ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv
    ```
 
    Example configuration file:
@@ -88,7 +88,7 @@ Configure live migration for heavy workloads by updating the `HyperConverged` cu
    kind: HyperConverged
    metadata:
      name: kubevirt-hyperconverged
-     namespace: {{ CNVNamespace }}
+     namespace: openshift-cnv
    spec:
      liveMigrationConfig:
        bandwidthPerMigration: 0Mi
@@ -117,7 +117,8 @@ Configure live migration for heavy workloads by updating the `HyperConverged` cu
    :   Specifies the length of time, in seconds, at which the migration is canceled if memory copy fails to make progress. Increase this parameter for large memory sizes running heavy workloads.
 
    `allowPostCopy`
-   :   Specifies whether the post copy mode is enabled. You can enable post copy mode to allow the migration of one node to another to converge, even if a VM is running a heavy workload and the memory dirty rate is too high. Set allowPostCopy to true to enable post copy mode. 1.  Optional: If your main network is too busy for the migration, configure a secondary, dedicated migration network.
+   :   Specifies whether the post copy mode is enabled. You can enable post copy mode to allow the migration of one node to another to converge, even if a VM is running a heavy workload and the memory dirty rate is too high. Set allowPostCopy to true to enable post copy mode.
+2. Optional: If your main network is too busy for the migration, configure a secondary, dedicated migration network.
 
    > [!NOTE]
    > Post copy mode can impact performance during the transfer, and should not be used for critical data, or with unstable networks.
@@ -201,12 +202,14 @@ For the policy to apply to a specific group of VMs, all labels on the group of V
    :   Specifies the project labels.
 
    `virtualMachineInstanceSelector`
-   :   Specifies the VM labels. 1.  Create the migration policy by running the following command:
+   :   Specifies the VM labels.
+3. Create the migration policy by running the following command:
 
    ```terminal
    $ oc create -f <migration_policy>.yaml
    ```
 
-## Additional resources {#additional-resources_virt-configuring-live-migration}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring a dedicated network for live migration](/openshift-docs-markdown/virt/vm_networking/virt-dedicated-network-live-migration#virt-configuring-secondary-network-vm-live-migration_virt-dedicated-network-live-migration)

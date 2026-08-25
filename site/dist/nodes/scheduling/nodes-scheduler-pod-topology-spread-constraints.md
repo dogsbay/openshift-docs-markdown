@@ -157,6 +157,7 @@ The previous example defines a `Pod` spec with two pod topology spread constrain
 
 The first constraint distributes pods based on a user-defined label `node`, and the second constraint distributes pods based on a user-defined label `rack`. Both constraints must be met for the pod to be scheduled.
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Understanding how to update labels on nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working-updating_nodes-nodes-working)

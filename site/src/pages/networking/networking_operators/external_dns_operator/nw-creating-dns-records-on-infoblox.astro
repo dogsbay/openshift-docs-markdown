@@ -21,7 +21,8 @@ const headings = [{"depth":1,"slug":"creating-dns-records-on-infoblox","text":"C
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/networking_operators/external_dns_operator/nw-creating-dns-records-on-infoblox";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -40,7 +41,7 @@ const pageCategory = ["networking","networking/networking_operators","networking
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating DNS records on Infoblox {#creating-dns-records-on-infoblox}\n\nTo create DNS records on Infoblox, use the External DNS Operator. The Operator manages external name resolution for your cluster services.\n\n## Creating DNS records on a public DNS zone on Infoblox {#nw-control-dns-records-public-dns-zone-infoblox_creating-dns-records-on-infoblox}\n\nTo create DNS records on Infoblox, use the External DNS Operator. The Operator manages external name resolution for your cluster services.\n\n**Prerequisites**\n\n- You have access to the OpenShift CLI (`oc`).\n- You have access to the Infoblox UI.\n\n**Procedure**\n\n1. Create a `secret` object with Infoblox credentials by running the following command:\n\n   ```terminal\n   $ oc -n external-dns-operator create secret generic infoblox-credentials --from-literal=EXTERNAL_DNS_INFOBLOX_WAPI_USERNAME=<infoblox_username> --from-literal=EXTERNAL_DNS_INFOBLOX_WAPI_PASSWORD=<infoblox_password>\n   ```\n2. Get a list of routes by running the following command:\n\n   ```terminal\n   $ oc get routes --all-namespaces | grep console\n   ```\n\n   ```terminal {title=\"Example output\"}\n   openshift-console          console             console-openshift-console.apps.test.example.com                       console             https   reencrypt/Redirect     None\n   openshift-console          downloads           downloads-openshift-console.apps.test.example.com                     downloads           http    edge/Redirect          None\n   ```\n3. Create a YAML file, for example, `external-dns-sample-infoblox.yaml`, that defines the `ExternalDNS` object:\n\n   ```yaml {title=\"Example external-dns-sample-infoblox.yaml file\"}\n   apiVersion: externaldns.olm.openshift.io/v1beta1\n   kind: ExternalDNS\n   metadata:\n     name: sample-infoblox\n   spec:\n     provider:\n       type: Infoblox\n       infoblox:\n         credentials:\n           name: infoblox-credentials\n         gridHost: ${INFOBLOX_GRID_PUBLIC_IP}\n         wapiPort: 443\n         wapiVersion: \"2.3.1\"\n     domains:\n     - filterType: Include\n       matchType: Exact\n       name: test.example.com\n     source:\n       type: OpenShiftRoute\n       openshiftRouteOptions:\n         routerName: default\n   ```\n\n   where:\n\n   `metadata.name`\n   :   Specifies the External DNS name.\n\n`provider.type`\n:   Specifies the provider type.\n\n`source.type`\n:   Specifies options for the source of DNS records.\n\n`routerName`\n:   If the source type is `OpenShiftRoute`, you can pass the OpenShift Ingress Controller name. External DNS selects the canonical hostname of that router as the target while creating a CNAME record.\n\n1. Create the `ExternalDNS` resource on Infoblox by running the following command:\n\n   ```terminal\n   $ oc create -f external-dns-sample-infoblox.yaml\n   ```\n2. From the Infoblox UI, check the DNS records created for `console` routes:\n\n   1. Click **Data Management** -> **DNS** -> **Zones**.\n   2. Select the zone name.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/networking_operators/external_dns_operator/nw-creating-dns-records-on-infoblox.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating DNS records on Infoblox {#creating-dns-records-on-infoblox}\n\nTo create DNS records on Infoblox, use the External DNS Operator. The Operator manages external name resolution for your cluster services.\n\n## Creating DNS records on a public DNS zone on Infoblox {#nw-control-dns-records-public-dns-zone-infoblox_creating-dns-records-on-infoblox}\n\nTo create DNS records on Infoblox, use the External DNS Operator. The Operator manages external name resolution for your cluster services.\n\n**Prerequisites**\n\n- You have access to the OpenShift CLI (`oc`).\n- You have access to the Infoblox UI.\n\n**Procedure**\n\n1. Create a `secret` object with Infoblox credentials by running the following command:\n\n   ```terminal\n   $ oc -n external-dns-operator create secret generic infoblox-credentials --from-literal=EXTERNAL_DNS_INFOBLOX_WAPI_USERNAME=<infoblox_username> --from-literal=EXTERNAL_DNS_INFOBLOX_WAPI_PASSWORD=<infoblox_password>\n   ```\n2. Get a list of routes by running the following command:\n\n   ```terminal\n   $ oc get routes --all-namespaces | grep console\n   ```\n\n   ```terminal {title=\"Example output\"}\n   openshift-console          console             console-openshift-console.apps.test.example.com                       console             https   reencrypt/Redirect     None\n   openshift-console          downloads           downloads-openshift-console.apps.test.example.com                     downloads           http    edge/Redirect          None\n   ```\n3. Create a YAML file, for example, `external-dns-sample-infoblox.yaml`, that defines the `ExternalDNS` object:\n\n   ```yaml {title=\"Example external-dns-sample-infoblox.yaml file\"}\n   apiVersion: externaldns.olm.openshift.io/v1beta1\n   kind: ExternalDNS\n   metadata:\n     name: sample-infoblox\n   spec:\n     provider:\n       type: Infoblox\n       infoblox:\n         credentials:\n           name: infoblox-credentials\n         gridHost: ${INFOBLOX_GRID_PUBLIC_IP}\n         wapiPort: 443\n         wapiVersion: \"2.3.1\"\n     domains:\n     - filterType: Include\n       matchType: Exact\n       name: test.example.com\n     source:\n       type: OpenShiftRoute\n       openshiftRouteOptions:\n         routerName: default\n   ```\n\n   where:\n\n   `metadata.name`\n   :   Specifies the External DNS name.\n\n`provider.type`\n:   Specifies the provider type.\n\n`source.type`\n:   Specifies options for the source of DNS records.\n\n`routerName`\n:   If the source type is `OpenShiftRoute`, you can pass the OpenShift Ingress Controller name. External DNS selects the canonical hostname of that router as the target while creating a CNAME record.\n\n1. Create the `ExternalDNS` resource on Infoblox by running the following command:\n\n   ```terminal\n   $ oc create -f external-dns-sample-infoblox.yaml\n   ```\n2. From the Infoblox UI, check the DNS records created for `console` routes:\n\n   1. Click **Data Management** → **DNS** → **Zones**.\n   2. Select the zone name.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/networking_operators/external_dns_operator/nw-creating-dns-records-on-infoblox.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="creating-dns-records-on-infoblox" class="group scroll-mt-20">Creating DNS records on Infoblox<a href="#creating-dns-records-on-infoblox" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>To create DNS records on Infoblox, use the External DNS Operator. The Operator manages external name resolution for your cluster services.</p>
+      <p class="_abstract">To create DNS records on Infoblox, use the External DNS Operator. The Operator manages external name resolution for your cluster services.</p>
       <h2 id="nw-control-dns-records-public-dns-zone-infoblox_creating-dns-records-on-infoblox" class="group scroll-mt-20">Creating DNS records on a public DNS zone on Infoblox<a href="#nw-control-dns-records-public-dns-zone-infoblox_creating-dns-records-on-infoblox" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">To create DNS records on Infoblox, use the External DNS Operator. The Operator manages external name resolution for your cluster services.</p>
       <p><strong>Prerequisites</strong></p>
@@ -137,7 +139,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>
       From the Infoblox UI, check the DNS records created for <code>console</code> routes:
       <ol>
-      <li>Click <strong>Data Management</strong> -&gt; <strong>DNS</strong> -&gt; <strong>Zones</strong>.</li>
+      <li>Click <strong>Data Management</strong> → <strong>DNS</strong> → <strong>Zones</strong>.</li>
       <li>Select the zone name.</li>
       </ol>
       </li>

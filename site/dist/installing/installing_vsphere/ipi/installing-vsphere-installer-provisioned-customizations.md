@@ -26,9 +26,7 @@ You must set most of the network configuration parameters during installation, a
 
 ## Internet access for OpenShift Container Platform {#cluster-entitlements_installing-vsphere-installer-provisioned-customizations}
 
-In OpenShift Container Platform 4.22, you require access to the internet to install
-
-your cluster.
+In OpenShift Container Platform 4.22, you require access to the internet to install your cluster.
 
 You must have internet access to perform the following actions:
 
@@ -77,28 +75,30 @@ The following table outlines an example of the relationship among regions, zones
 </thead>
 <tbody>
 <tr>
-  <td>.4+</td>
-  <td>us-east .2+</td>
-  <td>us-east-1</td>
-</tr>
-<tr>
+  <td rowspan="4">us-east</td>
+  <td rowspan="2">us-east-1</td>
   <td>us-east-1a</td>
-  <td>us-east-1b.2+</td>
-  <td>us-east-2</td>
 </tr>
 <tr>
+  <td>us-east-1b</td>
+</tr>
+<tr>
+  <td rowspan="2">us-east-2</td>
   <td>us-east-2a</td>
-  <td>us-east-2b<br><br>.4+</td>
-  <td>us-west</td>
 </tr>
 <tr>
-  <td>.2+</td>
-  <td>us-west-1</td>
+  <td>us-east-2b</td>
+</tr>
+<tr>
+  <td rowspan="4">us-west</td>
+  <td rowspan="2">us-west-1</td>
   <td>us-west-1a</td>
 </tr>
 <tr>
-  <td>us-west-1b .2+</td>
-  <td>us-west-2</td>
+  <td>us-west-1b</td>
+</tr>
+<tr>
+  <td rowspan="2">us-west-2</td>
   <td>us-west-2a</td>
 </tr>
 <tr>
@@ -128,6 +128,7 @@ Review the following key terms, which correspond to parameters in your `install-
 - Zone type: Specifies the `HostGroup` zone type to enable this feature.
 
 **Additional resources**
+{._additional-resources}
 
 - [Additional VMware vSphere configuration parameters](/openshift-docs-markdown/installing/installing_vsphere/installation-config-parameters-vsphere#installation-configuration-parameters-additional-vsphere_installation-config-parameters-vsphere)
 - [Deprecated VMware vSphere configuration parameters](/openshift-docs-markdown/installing/installing_vsphere/installation-config-parameters-vsphere#deprecated-parameters-vsphere_installation-config-parameters-vsphere)
@@ -136,9 +137,7 @@ Review the following key terms, which correspond to parameters in your `install-
 
 ## Creating the installation configuration file {#installation-initializing_installing-vsphere-installer-provisioned-customizations}
 
-You can customize the OpenShift Container Platform cluster you install on
-
-VMware vSphere.
+You can customize the OpenShift Container Platform cluster you install on VMware vSphere.
 
 **Prerequisites**
 
@@ -190,19 +189,15 @@ VMware vSphere.
       The cluster name you enter must match the cluster name you specified when configuring the DNS records.
 2. Modify the `install-config.yaml` file. You can find more information about the available parameters in the "Installation configuration parameters" section.
 
-   ```
-   :::note
-
-   If you are installing a three-node cluster, be sure to set the `compute.replicas` parameter to `0`. This ensures that the cluster’s control planes are schedulable. For more information, see "Installing a three-node cluster on vSphere".
-
-   :::
-   ```
+   > [!NOTE]
+   > If you are installing a three-node cluster, be sure to set the `compute.replicas` parameter to `0`. This ensures that the cluster’s control planes are schedulable. For more information, see "Installing a three-node cluster on vSphere".
 3. Back up the `install-config.yaml` file so that you can use it to install multiple clusters.
 
    > [!IMPORTANT]
    > The `install-config.yaml` file is consumed during the installation process. If you want to reuse the file, you must back it up now.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installation configuration parameters](/openshift-docs-markdown/installing/installing_vsphere/installation-config-parameters-vsphere#installation-config-parameters-vsphere)
 
@@ -222,12 +217,7 @@ sshKey: ssh-ed25519 AAAA...
 compute:
 - name:  <worker_name>
   platform: {}
-{%- if vsphere_upi %}
-  replicas: 0
-{% endif %}
-{% if not vsphere_upi %}
   replicas: 3
-{%- endif %}
 controlPlane:
   name: <control_plane_name>
   platform: {}
@@ -238,12 +228,10 @@ networking:
     hostPrefix: 23
 platform:
   vsphere:
-{%- if not vsphere_upi %}
     apiVIPs:
     - 10.0.0.1
     ingressVIPs:
     - 10.0.0.2
-      {%- endif %}
     failureDomains:
     - name: <failure_domain_name>
       region: <default_region_name>
@@ -300,48 +288,42 @@ Production environments can deny direct access to the internet and instead have 
    proxy:
      httpProxy: http://<username>:<pswd>@<ip>:<port>
      httpsProxy: https://<username>:<pswd>@<ip>:<port>
+     noProxy: example.com
+   additionalTrustBundle: |
+       -----BEGIN CERTIFICATE-----
+       <MY_TRUSTED_CA_CERT>
+       -----END CERTIFICATE-----
+   additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle>
+   # ...
    ```
 
-{%- if not aws %} noProxy: example.com {% endif %} {% if aws %} noProxy: ec2.<aws_region>.amazonaws.com,elasticloadbalancing.<aws_region>.amazonaws.com,s3.<aws_region>.amazonaws.com {%- endif %} additionalTrustBundle: | -----BEGIN CERTIFICATE----- <MY_TRUSTED_CA_CERT> -----END CERTIFICATE----- additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle> # ... \`\`\`
+   where:
 
-````
-where:
+   `proxy.httpProxy`
+   :   Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be `http`.
 
-`proxy.httpProxy`
-:   Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be `http`.
+   `proxy.httpsProxy`
+   :   Specifies a proxy URL to use for creating HTTPS connections outside the cluster.
 
-`proxy.httpsProxy`
-:   Specifies a proxy URL to use for creating HTTPS connections outside the cluster.
+   `proxy.noProxy`
+   :   Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with `.` to match subdomains only. For example, `.y.com` matches `x.y.com`, but not `y.com`. Use `*` to bypass the proxy for all destinations. You must include vCenter’s IP address and the IP range that you use for its machines.
 
-`proxy.noProxy`
-:   Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with `.` to match subdomains only. For example, `.y.com` matches `x.y.com`, but not `y.com`. Use `*` to bypass the proxy for all destinations.
+   `additionalTrustBundle`
+   :   If you specify this value, the installation program generates a config map named `user-ca-bundle` in the `openshift-config` namespace to hold the additional CA certificates. If you specify `additionalTrustBundle` and at least one proxy setting, the `Proxy` object references the `user-ca-bundle` config map in the `trustedCA` field. The Cluster Network Operator then creates a `trusted-ca-bundle` config map that merges the contents specified for the `trustedCA` parameter with the RHCOS trust bundle. You must set the `additionalTrustBundle` field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.
 
-    You must include vCenter’s IP address and the IP range that you use for its machines.
+   `additionalTrustBundlePolicy`
+   :   Specifies the policy that determines the configuration of the `Proxy` object to reference the `user-ca-bundle` config map in the `trustedCA` field. The allowed values are `Proxyonly` and `Always`. Use `Proxyonly` to reference the `user-ca-bundle` config map only when you configure an `http/https` proxy. Use `Always` to always reference the `user-ca-bundle` config map. The default value is `Proxyonly`. Optional parameter.
 
-`additionalTrustBundle`
-:   If you specify this value, the installation program generates a config map named `user-ca-bundle` in the `openshift-config` namespace to hold the additional CA certificates. If you specify `additionalTrustBundle` and at least one proxy setting, the `Proxy` object references the `user-ca-bundle` config map in the `trustedCA` field. The Cluster Network Operator then creates a `trusted-ca-bundle` config map that merges the contents specified for the `trustedCA` parameter with the RHCOS trust bundle. You must set the `additionalTrustBundle` field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.
+   > [!NOTE]
+   > The installation program does not support the proxy `readinessEndpoints` field.
 
-`additionalTrustBundlePolicy`
-:   Specifies the policy that determines the configuration of the `Proxy` object to reference the `user-ca-bundle` config map in the `trustedCA` field. The allowed values are `Proxyonly` and `Always`. Use `Proxyonly` to reference the `user-ca-bundle` config map only when you configure an `http/https` proxy. Use `Always` to always reference the `user-ca-bundle` config map. The default value is `Proxyonly`. Optional parameter.
-
-:::note
-
-The installation program does not support the proxy `readinessEndpoints` field.
-
-:::
-
-:::note
-
-If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
-
-```terminal
-$ ./openshift-install wait-for install-complete --log-level debug
-```
-
-:::
-````
-
-1. Save the file and reference it when installing OpenShift Container Platform.
+   > [!NOTE]
+   > If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
+   >
+   > ```terminal
+   > $ ./openshift-install wait-for install-complete --log-level debug
+   > ```
+2. Save the file and reference it when installing OpenShift Container Platform.
 
    The installation program creates a cluster-wide proxy named `cluster` that uses the proxy settings in the `install-config.yaml` file. If you do not give proxy settings, the installation program still creates a `cluster` `Proxy` object, but it has a nil `spec`.
 
@@ -455,56 +437,56 @@ The default `install-config.yaml` file configuration from the previous release o
    ```
 6. Change to the directory that contains the installation program and initialize the cluster deployment according to your chosen installation requirements.
 
-```yaml {title="Sample install-config.yaml file with multiple data centers defined in a vSphere center"}
-# ...
-compute:
----
-  vsphere:
-      zones:
-        - "<machine_pool_zone_1>"
-        - "<machine_pool_zone_2>"
-# ...
-controlPlane:
-# ...
-vsphere:
-      zones:
-        - "<machine_pool_zone_1>"
-        - "<machine_pool_zone_2>"
-# ...
-platform:
-  vsphere:
-    vcenters:
-# ...
-    datacenters:
-      - <data_center_1_name>
-      - <data_center_2_name>
-    failureDomains:
-    - name: <machine_pool_zone_1>
-      region: <region_tag_1>
-      zone: <zone_tag_1>
-      server: <fully_qualified_domain_name>
-      topology:
-        datacenter: <data_center_1>
-        computeCluster: "/<data_center_1>/host/<cluster1>"
-        networks:
-        - <VM_Network1_name>
-        datastore: "/<data_center_1>/datastore/<datastore1>"
-        resourcePool: "/<data_center_1>/host/<cluster1>/Resources/<resourcePool1>"
-        folder: "/<data_center_1>/vm/<folder1>"
-    - name: <machine_pool_zone_2>
-      region: <region_tag_2>
-      zone: <zone_tag_2>
-      server: <fully_qualified_domain_name>
-      topology:
-        datacenter: <data_center_2>
-        computeCluster: "/<data_center_2>/host/<cluster2>"
-        networks:
-        - <VM_Network2_name>
-        datastore: "/<data_center_2>/datastore/<datastore2>"
-        resourcePool: "/<data_center_2>/host/<cluster2>/Resources/<resourcePool2>"
-        folder: "/<data_center_2>/vm/<folder2>"
-# ...
-```
+   ```yaml {title="Sample install-config.yaml file with multiple data centers defined in a vSphere center"}
+   # ...
+   compute:
+   ---
+     vsphere:
+         zones:
+           - "<machine_pool_zone_1>"
+           - "<machine_pool_zone_2>"
+   # ...
+   controlPlane:
+   # ...
+   vsphere:
+         zones:
+           - "<machine_pool_zone_1>"
+           - "<machine_pool_zone_2>"
+   # ...
+   platform:
+     vsphere:
+       vcenters:
+   # ...
+       datacenters:
+         - <data_center_1_name>
+         - <data_center_2_name>
+       failureDomains:
+       - name: <machine_pool_zone_1>
+         region: <region_tag_1>
+         zone: <zone_tag_1>
+         server: <fully_qualified_domain_name>
+         topology:
+           datacenter: <data_center_1>
+           computeCluster: "/<data_center_1>/host/<cluster1>"
+           networks:
+           - <VM_Network1_name>
+           datastore: "/<data_center_1>/datastore/<datastore1>"
+           resourcePool: "/<data_center_1>/host/<cluster1>/Resources/<resourcePool1>"
+           folder: "/<data_center_1>/vm/<folder1>"
+       - name: <machine_pool_zone_2>
+         region: <region_tag_2>
+         zone: <zone_tag_2>
+         server: <fully_qualified_domain_name>
+         topology:
+           datacenter: <data_center_2>
+           computeCluster: "/<data_center_2>/host/<cluster2>"
+           networks:
+           - <VM_Network2_name>
+           datastore: "/<data_center_2>/datastore/<datastore2>"
+           resourcePool: "/<data_center_2>/host/<cluster2>/Resources/<resourcePool2>"
+           folder: "/<data_center_2>/vm/<folder2>"
+   # ...
+   ```
 
 ### Configuring host groups for a VMware vCenter {#configuring-vsphere-host-groups_installing-vsphere-installer-provisioned-customizations}
 
@@ -558,45 +540,45 @@ The default `install-config.yaml` file configuration from previous releases of O
    ```
 6. Change to the directory that contains the installation program and initialize the cluster deployment according to your chosen installation requirements.
 
-```yaml {title="Sample install-config.yaml file with multiple host groups"}
-platform:
-  vsphere:
-    vcenters:
-# ...
-    datacenters:
-      - <data_center_1_name>
-    failureDomains:
-    - name: <host_group_1>
-      region: <cluster_1_region_tag>
-      zone: <host_group_1_zone_tag>
-      regionType: "ComputeCluster"
-      zoneType: "HostGroup"
-      server: <fully_qualified_domain_name>
-      topology:
-        datacenter: <data_center_1>
-        computeCluster: "/<data_center_1>/host/<cluster_1>"
-        networks:
-        - <VM_Network1_name>
-        hostGroup: <host_group_1_name>
-        datastore: "/<data_center_1>/datastore/<datastore_1>"
-        resourcePool: "/<data_center_1>/host/<cluster_1>/Resources/<resourcePool_1>"
-        folder: "/<data_center_1>/vm/<folder_1>"
-    - name: <host_group_2>
-      region: <cluster_1_region_tag>
-      zone: <host_group_2_zone_tag>
-      regionType: "ComputeCluster"
-      zoneType: "HostGroup"
-      server: <fully_qualified_domain_name>
-      topology:
-        datacenter: <data_center_1>
-        computeCluster: "/<data_center_1>/host/<cluster_1>"
-        networks:
-        - <VM_Network1_name>
-        hostGroup: <host_group_2_name>
-        datastore: "/<data_center_1>/datastore/<datastore_1>"
-        resourcePool: "/<data_center_1>/host/<cluster_1>/Resources/<resourcePool_1>"
-        folder: "/<data_center_1>/vm/<folder_1>"
-```
+   ```yaml {title="Sample install-config.yaml file with multiple host groups"}
+   platform:
+     vsphere:
+       vcenters:
+   # ...
+       datacenters:
+         - <data_center_1_name>
+       failureDomains:
+       - name: <host_group_1>
+         region: <cluster_1_region_tag>
+         zone: <host_group_1_zone_tag>
+         regionType: "ComputeCluster"
+         zoneType: "HostGroup"
+         server: <fully_qualified_domain_name>
+         topology:
+           datacenter: <data_center_1>
+           computeCluster: "/<data_center_1>/host/<cluster_1>"
+           networks:
+           - <VM_Network1_name>
+           hostGroup: <host_group_1_name>
+           datastore: "/<data_center_1>/datastore/<datastore_1>"
+           resourcePool: "/<data_center_1>/host/<cluster_1>/Resources/<resourcePool_1>"
+           folder: "/<data_center_1>/vm/<folder_1>"
+       - name: <host_group_2>
+         region: <cluster_1_region_tag>
+         zone: <host_group_2_zone_tag>
+         regionType: "ComputeCluster"
+         zoneType: "HostGroup"
+         server: <fully_qualified_domain_name>
+         topology:
+           datacenter: <data_center_1>
+           computeCluster: "/<data_center_1>/host/<cluster_1>"
+           networks:
+           - <VM_Network1_name>
+           hostGroup: <host_group_2_name>
+           datastore: "/<data_center_1>/datastore/<datastore_1>"
+           resourcePool: "/<data_center_1>/host/<cluster_1>/Resources/<resourcePool_1>"
+           folder: "/<data_center_1>/vm/<folder_1>"
+   ```
 
 ### Configuring multiple NICs {#installation-vsphere-multiple-nics_installing-vsphere-installer-provisioned-customizations}
 
@@ -661,6 +643,7 @@ For scenarios requiring multiple network interface controller (NIC), you can con
      ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Network configuration parameters](/openshift-docs-markdown/installing/installing_vsphere/installation-config-parameters-vsphere#installation-configuration-parameters-network_installation-config-parameters-vsphere)
 
@@ -790,6 +773,7 @@ For this configuration, you must specify internal and external Classless Inter-D
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [`.spec.platformSpec.vsphere.nodeNetworking`](/openshift-docs-markdown/rest_api/config_apis/infrastructure-config-openshift-io-v1#spec-platformspec-vsphere-nodenetworking)
 
@@ -814,7 +798,7 @@ You can specify the cluster network plugin configuration for your cluster by set
 
 The fields for the Cluster Network Operator (CNO) are described in the following table:
 
-***Cluster Network Operator configuration object***
+**Cluster Network Operator configuration object**
 
 <table>
 <thead>
@@ -838,7 +822,7 @@ The fields for the Cluster Network Operator (CNO) are described in the following
 <tr>
   <td><code>spec.serviceNetwork</code></td>
   <td><code>array</code></td>
-  <td>A block of IP addresses for services. If you use dual-stack networking, specify IPv4 and IPv6 address families. For example:<br><br><pre>spec:&#10;  serviceNetwork:&#10;  - 172.30.0.0/14&#10;  - fd02::/112</pre><br><br>If you install a cluster on AWS with dual-stack networking, the order of addresses must match the dual-stack configuration you selected. For example, if you specified the <code>DualStackIPv4Primary</code>, list the IPv4 address first.<br><br>This value is ready-only and inherited from the <code>Network.config.openshift.io</code> object named <code>cluster</code> during cluster installation.You can customize this field only in the <code>install-config.yaml</code> file before you create the manifests. The value is read-only in the manifest file.</td>
+  <td>A block of IP addresses for services. If you use dual-stack networking, specify IPv4 and IPv6 address families. For example:<br><br><pre>spec:&#10;  serviceNetwork:&#10;  - 172.30.0.0/14&#10;  - fd02::/112</pre><br><br>If you install a cluster on AWS with dual-stack networking, the order of addresses must match the dual-stack configuration you selected. For example, if you specified the <code>DualStackIPv4Primary</code>, list the IPv4 address first.<br><br>   You can customize this field only in the <code>install-config.yaml</code> file before you create the manifests. The value is read-only in the manifest file. </td>
 </tr>
 <tr>
   <td><code>spec.defaultNetwork</code></td>
@@ -848,7 +832,7 @@ The fields for the Cluster Network Operator (CNO) are described in the following
 <tr>
   <td><code>spec.additionalRoutingCapabilities.providers</code></td>
   <td><code>array</code></td>
-  <td>This setting enables a dynamic routing provider. The FRR routing capability provider is required for the route advertisement feature. The only supported value is <code>FRR</code>.<br><br>--<ul><li><code>FRR</code>: The FRR routing provider</li></ul>--<br><br><pre>spec:&#10;  additionalRoutingCapabilities:&#10;    providers:&#10;    - FRR</pre></td>
+  <td>This setting enables a dynamic routing provider. The FRR routing capability provider is required for the route advertisement feature. The only supported value is <code>FRR</code>.<br><br><ul><li><code>FRR</code>: The FRR routing provider</li></ul><br><br><pre>spec:&#10;  additionalRoutingCapabilities:&#10;    providers:&#10;    - FRR</pre></td>
 </tr>
 </tbody>
 </table>
@@ -860,7 +844,7 @@ The fields for the Cluster Network Operator (CNO) are described in the following
 
 The values for the `defaultNetwork` object are defined in the following table:
 
-*`defaultNetwork`** object***
+**`defaultNetwork` object**
 
 <table>
 <thead>
@@ -874,7 +858,7 @@ The values for the `defaultNetwork` object are defined in the following table:
 <tr>
   <td><code>type</code></td>
   <td><code>string</code></td>
-  <td><code>OVNKubernetes</code>. The Red Hat OpenShift Networking network plugin is selected during installation. This value cannot be changed after cluster installation.<dl><dt>Note</dt><dd>OpenShift Container Platform uses the OVN-Kubernetes network plugin by default.</dd></dl></td>
+  <td><code>OVNKubernetes</code>. The Red Hat OpenShift Networking network plugin is selected during installation. This value cannot be changed after cluster installation.<dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>OpenShift Container Platform uses the OVN-Kubernetes network plugin by default.</dd></dl></td>
 </tr>
 <tr>
   <td><code>ovnKubernetesConfig</code></td>
@@ -888,7 +872,7 @@ The values for the `defaultNetwork` object are defined in the following table:
 
 The following table describes the configuration fields for the OVN-Kubernetes network plugin:
 
-*`ovnKubernetesConfig`** object***
+**`ovnKubernetesConfig` object**
 
 <table>
 <thead>
@@ -902,17 +886,17 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>mtu</code></td>
   <td><code>integer</code></td>
-  <td>The maximum transmission unit (MTU) for the Geneve (Generic Network Virtualization Encapsulation) overlay network. This is detected automatically based on the MTU of the primary network interface. You do not normally need to override the detected MTU.<br><br>If the auto-detected value is not what you expect it to be, confirm that the MTU on the primary network interface on your nodes is correct. You cannot use this option to change the MTU value of the primary network interface on the nodes.<br><br>If your cluster requires different MTU values for different nodes, you must set this value to <code>100</code> less than the lowest MTU value in your cluster. For example, if some nodes in your cluster have an MTU of <code>9001</code>, and some have an MTU of <code>1500</code>, you must set this value to <code>1400</code>.The maximum transmission unit (MTU) for the Geneve (Generic Network Virtualization Encapsulation) overlay network. This value is normally configured automatically.</td>
+  <td> The maximum transmission unit (MTU) for the Geneve (Generic Network Virtualization Encapsulation) overlay network. This is detected automatically based on the MTU of the primary network interface. You do not normally need to override the detected MTU.<br><br>If the auto-detected value is not what you expect it to be, confirm that the MTU on the primary network interface on your nodes is correct. You cannot use this option to change the MTU value of the primary network interface on the nodes.<br><br>If your cluster requires different MTU values for different nodes, you must set this value to <code>100</code> less than the lowest MTU value in your cluster. For example, if some nodes in your cluster have an MTU of <code>9001</code>, and some have an MTU of <code>1500</code>, you must set this value to <code>1400</code>.  </td>
 </tr>
 <tr>
   <td><code>genevePort</code></td>
   <td><code>integer</code></td>
-  <td>The port to use for all Geneve packets. The default value is <code>6081</code>. This value cannot be changed after cluster installation.The UDP port for the Geneve overlay network.</td>
+  <td> The port to use for all Geneve packets. The default value is <code>6081</code>. This value cannot be changed after cluster installation.  </td>
 </tr>
 <tr>
   <td><code>ipsecConfig</code></td>
   <td><code>object</code></td>
-  <td>Specify a configuration object for customizing the IPsec configuration.An object describing the IPsec mode for the cluster.</td>
+  <td> Specify a configuration object for customizing the IPsec configuration.  </td>
 </tr>
 <tr>
   <td><code>ipv4</code></td>
@@ -932,17 +916,17 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>routeAdvertisements</code></td>
   <td><code>string</code></td>
-  <td>Specifies whether to advertise cluster network routes. The default value is <code>Disabled</code>.--<ul><li><code>Enabled</code>: Import routes to the cluster network and advertise cluster network routes as configured in <code>RouteAdvertisements</code> objects.</li><li><code>Disabled</code>: Do not import routes to the cluster network or advertise cluster network routes.</li></ul>--</td>
+  <td>Specifies whether to advertise cluster network routes. The default value is <code>Disabled</code>.<ul><li><code>Enabled</code>: Import routes to the cluster network and advertise cluster network routes as configured in <code>RouteAdvertisements</code> objects.</li><li><code>Disabled</code>: Do not import routes to the cluster network or advertise cluster network routes.</li></ul></td>
 </tr>
 <tr>
   <td><code>gatewayConfig</code></td>
   <td><code>object</code></td>
-  <td>Optional: Specify a configuration object for customizing how egress traffic is sent to the node gateway. Valid values are <code>Shared</code> and <code>Local</code>. The default value is <code>Shared</code>. In the default setting, the Open vSwitch (OVS) outputs traffic directly to the node IP interface. If you are using hardware offloading, Red Hat recommends to use the default <code>Shared</code> gateway mode to bypass the host routing plane. In the <code>Local</code> setting, it traverses the host network; consequently, it gets applied to the routing table of the host.<br><br><dl><dt>Note</dt><dd>While migrating egress traffic, you can expect some disruption to workloads and service traffic until the Cluster Network Operator (CNO) successfully rolls out the changes.</dd></dl></td>
+  <td>Optional: Specify a configuration object for customizing how egress traffic is sent to the node gateway. Valid values are <code>Shared</code> and <code>Local</code>. The default value is <code>Shared</code>. In the default setting, the Open vSwitch (OVS) outputs traffic directly to the node IP interface. If you are using hardware offloading, Red Hat recommends to use the default <code>Shared</code> gateway mode to bypass the host routing plane. In the <code>Local</code> setting, it traverses the host network; consequently, it gets applied to the routing table of the host.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>While migrating egress traffic, you can expect some disruption to workloads and service traffic until the Cluster Network Operator (CNO) successfully rolls out the changes.</dd></dl></td>
 </tr>
 </tbody>
 </table>
 
-*`ovnKubernetesConfig.ipv4`** object***
+**`ovnKubernetesConfig.ipv4` object**
 
 <table>
 <thead>
@@ -966,7 +950,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 </tbody>
 </table>
 
-*`ovnKubernetesConfig.ipv6`** object***
+**`ovnKubernetesConfig.ipv6` object**
 
 <table>
 <thead>
@@ -990,7 +974,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 </tbody>
 </table>
 
-*`policyAuditConfig`** object***
+**`policyAuditConfig` object**
 
 <table>
 <thead>
@@ -1019,7 +1003,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>destination</code></td>
   <td>string</td>
-  <td>One of the following additional audit log targets:<br><br><code>libc</code>:: The libc <code>syslog()</code> function of the journald process on the host.<code>udp:<host>:<port></code>:: A syslog server. Replace <code><host>:<port></code> with the host and port of the syslog server.<code>unix:<file></code>:: A Unix Domain Socket file specified by <code><file></code>.<code>null</code>:: Do not send the audit logs to any additional target.</td>
+  <td>One of the following additional audit log targets:<br><br><dl><dt><code>libc</code></dt><dd>The libc <code>syslog()</code> function of the journald process on the host.</dd><dt><code>udp:&lt;host&gt;:&lt;port&gt;</code></dt><dd>A syslog server. Replace <code>&lt;host&gt;:&lt;port&gt;</code> with the host and port of the syslog server.</dd><dt><code>unix:&lt;file&gt;</code></dt><dd>A Unix Domain Socket file specified by <code>&lt;file&gt;</code>.</dd><dt><code>null</code></dt><dd>Do not send the audit logs to any additional target.</dd></dl></td>
 </tr>
 <tr>
   <td><code>syslogFacility</code></td>
@@ -1031,7 +1015,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 
 <a name="gatewayConfig-object_installing-vsphere-installer-provisioned-customizations"></a>
 
-*`gatewayConfig`** object***
+**`gatewayConfig` object**
 
 <table>
 <thead>
@@ -1045,12 +1029,12 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>routingViaHost</code></td>
   <td><code>boolean</code></td>
-  <td>Set this field to <code>true</code> to send egress traffic from pods to the host networking stack.For highly-specialized installations and applications that rely on manually configured routes in the kernel routing table, you might want to route egress traffic to the host networking stack.By default, egress traffic is processed in OVN to exit the cluster and is not affected by specialized routes in the kernel routing table.The default value is <code>false</code>.<br><br>This field has an interaction with the Open vSwitch hardware offloading feature.If you set this field to <code>true</code>, you do not receive the performance benefits of the offloading because egress traffic is processed by the host networking stack.</td>
+  <td>Set this field to <code>true</code> to send egress traffic from pods to the host networking stack. For highly-specialized installations and applications that rely on manually configured routes in the kernel routing table, you might want to route egress traffic to the host networking stack. By default, egress traffic is processed in OVN to exit the cluster and is not affected by specialized routes in the kernel routing table. The default value is <code>false</code>.<br><br>This field has an interaction with the Open vSwitch hardware offloading feature. If you set this field to <code>true</code>, you do not receive the performance benefits of the offloading because egress traffic is processed by the host networking stack.</td>
 </tr>
 <tr>
   <td><code>ipForwarding</code></td>
   <td><code>object</code></td>
-  <td>You can control IP forwarding for all traffic on OVN-Kubernetes managed interfaces by using the <code>ipForwarding</code> specification in the <code>Network</code> resource. Specify <code>Restricted</code> to only allow IP forwarding for Kubernetes related traffic. Specify <code>Global</code> to allow forwarding of all IP traffic. For new installations, the default is <code>Restricted</code>. For updates to OpenShift Container Platform 4.14 or later, the default is <code>Global</code>.<dl><dt>Note</dt><dd>The default value of <code>Restricted</code> sets the IP forwarding to drop.</dd></dl></td>
+  <td>You can control IP forwarding for all traffic on OVN-Kubernetes managed interfaces by using the <code>ipForwarding</code> specification in the <code>Network</code> resource. Specify <code>Restricted</code> to only allow IP forwarding for Kubernetes related traffic. Specify <code>Global</code> to allow forwarding of all IP traffic. For new installations, the default is <code>Restricted</code>. For updates to OpenShift Container Platform 4.14 or later, the default is <code>Global</code>.<dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>The default value of <code>Restricted</code> sets the IP forwarding to drop.</dd></dl></td>
 </tr>
 <tr>
   <td><code>ipv4</code></td>
@@ -1067,7 +1051,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 
 <a name="gatewayconfig-ipv4-object_installing-vsphere-installer-provisioned-customizations"></a>
 
-*`gatewayConfig.ipv4`** object***
+**`gatewayConfig.ipv4` object**
 
 <table>
 <thead>
@@ -1081,14 +1065,14 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>internalMasqueradeSubnet</code></td>
   <td><code>string</code></td>
-  <td>The masquerade IPv4 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses as well as the shared gateway bridge interface. The default value is <code>169.254.169.0/29</code>.<dl><dt>Important</dt><dd>For OpenShift Container Platform 4.17 and later versions, clusters use <code>169.254.0.0/17</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</dd></dl></td>
+  <td>The masquerade IPv4 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses as well as the shared gateway bridge interface. The default value is <code>169.254.169.0/29</code>.<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>For OpenShift Container Platform 4.17 and later versions, clusters use <code>169.254.0.0/17</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</dd></dl></td>
 </tr>
 </tbody>
 </table>
 
 <a name="gatewayconfig-ipv6-object_installing-vsphere-installer-provisioned-customizations"></a>
 
-*`gatewayConfig.ipv6`** object***
+**`gatewayConfig.ipv6` object**
 
 <table>
 <thead>
@@ -1102,14 +1086,14 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>internalMasqueradeSubnet</code></td>
   <td><code>string</code></td>
-  <td>The masquerade IPv6 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses as well as the shared gateway bridge interface. The default value is <code>fd69::/125</code>.<dl><dt>Important</dt><dd>For OpenShift Container Platform 4.17 and later versions, clusters use <code>fd69::/112</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</dd></dl></td>
+  <td>The masquerade IPv6 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses as well as the shared gateway bridge interface. The default value is <code>fd69::/125</code>.<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>For OpenShift Container Platform 4.17 and later versions, clusters use <code>fd69::/112</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</dd></dl></td>
 </tr>
 </tbody>
 </table>
 
 <a name="nw-operator-cr-ipsec_installing-vsphere-installer-provisioned-customizations"></a>
 
-*`ipsecConfig`** object***
+**`ipsecConfig` object**
 
 <table>
 <thead>
@@ -1123,7 +1107,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>mode</code></td>
   <td><code>string</code></td>
-  <td>Specifies the behavior of the IPsec implementation. Must be one of the following values:<br><br>--<ul><li><code>Disabled</code>: IPsec is not enabled on cluster nodes.</li><li><code>External</code>: IPsec is enabled for network traffic with external hosts.</li><li><code>Full</code>: IPsec is enabled for pod traffic and network traffic with external hosts.</li></ul>--</td>
+  <td>Specifies the behavior of the IPsec implementation. Must be one of the following values:<br><br><ul><li><code>Disabled</code>: IPsec is not enabled on cluster nodes.</li><li><code>External</code>: IPsec is enabled for network traffic with external hosts.</li><li><code>Full</code>: IPsec is enabled for pod traffic and network traffic with external hosts.</li></ul></td>
 </tr>
 </tbody>
 </table>
@@ -1447,22 +1431,26 @@ Interval: 10
    ```yaml
    # ...
    platform:
+     vsphere:
+       loadBalancer:
+         type: <loadBalancer_type>
+       apiVIPs:
+       - <api_ip>
+       ingressVIPs:
+       - <ingress_ip>
+   # ...
    ```
 
-{%- if bare_metal %} bare-metal: {% endif %} {% if openstack %} openstack: {% endif %} {% if nutanix %} nutanix: {% endif %} {% if vsphere %} vsphere: {%- endif %} loadBalancer: type: <loadBalancer_type> apiVIPs: - <api_ip> ingressVIPs: - <ingress_ip> # ... \`\`\`
+   where:
 
-```
-where:
+   `<loadBalancer_type>`
+   :   Specifies the load balancer type. Set to `UserManaged` to specify a user-managed load balancer for your cluster. The parameter defaults to `OpenShiftManagedDefault`, which denotes the default internal load balancer. For services defined in an `openshift-kni-infra` namespace, a user-managed load balancer can deploy the `coredns` service to pods in your cluster but ignores `keepalived` and `haproxy` services.
 
-`<loadBalancer_type>`
-:   Specifies the load balancer type. Set to `UserManaged` to specify a user-managed load balancer for your cluster. The parameter defaults to `OpenShiftManagedDefault`, which denotes the default internal load balancer. For services defined in an `openshift-kni-infra` namespace, a user-managed load balancer can deploy the `coredns` service to pods in your cluster but ignores `keepalived` and `haproxy` services.
+   `<api_ip>`
+   :   Specifies the user-managed load balancer’s public IP address for the Kubernetes API. Mandatory parameter.
 
-`<api_ip>`
-:   Specifies the user-managed load balancer’s public IP address for the Kubernetes API. Mandatory parameter.
-
-`<ingress_ip>`
-:   Specifies the user-managed load balancer’s public IP address for ingress traffic. Mandatory parameter.
-```
+   `<ingress_ip>`
+   :   Specifies the user-managed load balancer’s public IP address for ingress traffic. Mandatory parameter.
 
 **Verification**
 
@@ -1565,19 +1553,15 @@ To deploy your OpenShift Container Platform cluster, you can initialize installa
 
 **Procedure**
 
-````
-*   In the directory that contains the installation program, initialize the cluster deployment by running the following command:
+- In the directory that contains the installation program, initialize the cluster deployment by running the following command:
 
 ```terminal
 $ ./openshift-install create cluster --dir <installation_directory> \
     --log-level=info
 ```
-    *   For `<installation_directory>`, specify the
-    location of your customized `./install-config.yaml` file.
 
-    *   To view different installation details, specify `warn`, `debug`, or
-    `error` instead of `info`.
-````
+- For `<installation_directory>`, specify the location of your customized `./install-config.yaml` file.
+- To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
 
 **Verification**
 
@@ -1782,6 +1766,7 @@ To allow the image registry to use block storage types such as vSphere Virtual M
       By creating a custom PVC, you can leave the `claim` field blank for the default automatic creation of an `image-registry-storage` PVC.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring the registry for vSphere](/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-vsphere#registry-configuring-storage-vsphere_configuring-registry-storage-vsphere)
 
@@ -1792,6 +1777,7 @@ To provide metrics about cluster health and the success of updates, the Telemetr
 After you confirm that your [OpenShift Cluster Manager](https://console.redhat.com/openshift) inventory is correct, either maintained automatically by Telemetry or manually by using OpenShift Cluster Manager,use subscription watch to track your OpenShift Container Platform subscriptions at the account or multi-cluster level. For more information about subscription watch, see "Data Gathered and Used by Red Hat’s subscription services" in the *Additional resources* section.
 
 **Additional resources**
+{._additional-resources}
 
 - [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
 
@@ -1875,6 +1861,7 @@ You can configure networking components to run exclusively on the control plane 
    > If control plane nodes are not schedulable after completing this procedure, deploying the cluster will fail.
 
 **Additional resources**
+{._additional-resources}
 
 - [Preparing to install a cluster using installer-provisioned infrastructure](/openshift-docs-markdown/installing/installing_vsphere/ipi/ipi-vsphere-preparing-to-install#ipi-vsphere-preparing-to-install)
 - [OpenShift Container Platform installation and update processes](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)

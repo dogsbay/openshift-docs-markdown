@@ -164,7 +164,8 @@ Use these procedures if the following issues occur:
       > If an unrecognized Prometheus Operator `loglevel` value is included in the config map, the `prometheus-operator` pod might not restart successfully.
    6. Review the debug logs to see if the Prometheus Operator is using the `ServiceMonitor` resource. Review the logs for other related errors.
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Enabling monitoring for user-defined projects](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/preparing-to-configure-the-monitoring-stack-uwm#enabling-monitoring-for-user-defined-projects-uwm_preparing-to-configure-the-monitoring-stack-uwm)
 - [Specifying how a service is monitored](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/configuring-metrics-uwm#specifying-how-a-service-is-monitored_configuring-metrics-uwm)
@@ -193,7 +194,7 @@ You can use the following measures when Prometheus consumes a lot of disk:
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, go to **Observe** -> **Metrics**.
+1. In the OpenShift Container Platform web console, go to **Observe** → **Metrics**.
 2. Enter a Prometheus Query Language (PromQL) query in the **Expression** field. The following example queries help to identify high cardinality metrics that might result in high disk space consumption:
 
    - By running the following query, you can identify the ten jobs that have the highest number of scrape samples:
@@ -237,7 +238,8 @@ You can use the following measures when Prometheus consumes a lot of disk:
       ...
       ```
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Setting scrape intervals, evaluation intervals, and enforced limits for user-defined projects](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/configuring-performance-and-scalability-uwm#setting-scrape-and-evaluation-intervals-limits-for-user-defined-projects_configuring-performance-and-scalability-uwm)
 

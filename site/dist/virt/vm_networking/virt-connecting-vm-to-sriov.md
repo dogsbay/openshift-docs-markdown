@@ -96,10 +96,10 @@ The SR-IOV Network Operator adds the `SriovNetworkNodePolicy.sriovnetwork.opensh
 
 ## Configuring SR-IOV additional network {#nw-sriov-additional-network_virt-connecting-vm-to-sriov}
 
-You can configure an additional network that uses SR-IOV hardware by creating an `{{ rs }}` object. When you create an `{{ rs }}` object, the SR-IOV Network Operator automatically creates a `NetworkAttachmentDefinition` object.
+You can configure an additional network that uses SR-IOV hardware by creating an `SriovNetwork` object. When you create an `SriovNetwork` object, the SR-IOV Network Operator automatically creates a `NetworkAttachmentDefinition` object.
 
 > [!NOTE]
-> Do not modify or delete an `{{ rs }}` object if it is attached to pods or virtual machines in a `running` state.
+> Do not modify or delete an `SriovNetwork` object if it is attached to pods or virtual machines in a `running` state.
 
 **Prerequisites**
 
@@ -129,43 +129,33 @@ You can configure an additional network that uses SR-IOV hardware by creating an
      capabilities: <capabilities>
    ```
 
-{%- if ocp_sriov_net %} ipam: {} linkState: <link_state> maxTxRate: <max_tx_rate> minTxRate: <min_tx_rate> vlanQoS: <vlan_qos> trust: "<trust_vf>" capabilities: <capabilities> {%- endif %} \`\`\` \*   `metadata.name` defines a name for the `SriovNetwork` object. The SR-IOV Network Operator creates a `NetworkAttachmentDefinition` object with same name. \*   `metadata.namespace` defines the namespace where the SR-IOV Network Operator is installed. \*   `spec.resourceName` defines the value of the `.spec.resourceName` parameter in the `SriovNetworkNodePolicy` object that defines the SR-IOV hardware for this additional network. \*   `spec.networkNamespace` defines the target namespace for the `SriovNetwork` object. Only pods or virtual machines in the target namespace can attach to the `SriovNetwork` object. \*   `spec.vlan` an optional field that defines a Virtual LAN (VLAN) ID for the additional network. The integer value must be from `0` to `4095`. The default value is `0`. \*   `spec.spoofChk` an optional field that defines the spoof check mode of the VF. The allowed values are the strings `"on"` and `"off"`.
+   - `metadata.name` defines a name for the `SriovNetwork` object. The SR-IOV Network Operator creates a `NetworkAttachmentDefinition` object with same name.
+   - `metadata.namespace` defines the namespace where the SR-IOV Network Operator is installed.
+   - `spec.resourceName` defines the value of the `.spec.resourceName` parameter in the `SriovNetworkNodePolicy` object that defines the SR-IOV hardware for this additional network.
+   - `spec.networkNamespace` defines the target namespace for the `SriovNetwork` object. Only pods or virtual machines in the target namespace can attach to the `SriovNetwork` object.
+   - `spec.vlan` an optional field that defines a Virtual LAN (VLAN) ID for the additional network. The integer value must be from `0` to `4095`. The default value is `0`.
+   - `spec.spoofChk` an optional field that defines the spoof check mode of the VF. The allowed values are the strings `"on"` and `"off"`.
 
-```
-    :::important
+     > [!IMPORTANT]
+     > You must enclose the value you specify in quotes or the CR is rejected by the SR-IOV Network Operator.
+   - `spec.linkState` an optional field that defines the link state of virtual function (VF). Allowed values are `enable`, `disable` and `auto`.
+   - `spec.maxTxRate` an optional field that defines the maximum transmission rate, in Mbps, for the VF.
+   - `spec.minTxRate` an optional field that defines the minimum transmission rate, in Mbps, for the VF. This value should always be less than or equal to the maximum transmission rate.
 
-    You must enclose the value you specify in quotes or the CR is rejected by the SR-IOV Network Operator.
+     > [!NOTE]
+     > Intel NICs do not support the `minTxRate` parameter. For more information, see [BZ#1772847](https://bugzilla.redhat.com/show_bug.cgi?id=1772847).
+   - `spec.vlanQoS` an optional field that defines the IEEE 802.1p priority level for the VF. The default value is `0`.
+   - `spec.trust` an optional field that defines the trust mode of the VF. The allowed values are the strings `"on"` and `"off"`.
 
-    :::
-
-*   `spec.linkState` an optional field that defines the link state of virtual function (VF). Allowed values are `enable`, `disable` and `auto`.
-*   `spec.maxTxRate` an optional field that defines the maximum transmission rate, in Mbps, for the VF.
-*   `spec.minTxRate` an optional field that defines the minimum transmission rate, in Mbps, for the VF. This value should always be less than or equal to the maximum transmission rate.
-
-    :::note
-
-    Intel NICs do not support the `minTxRate` parameter. For more information, see [BZ#1772847](https://bugzilla.redhat.com/show_bug.cgi?id=1772847).
-
-    :::
-
-*   `spec.vlanQoS` an optional field that defines the IEEE 802.1p priority level for the VF. The default value is `0`.
-*   `spec.trust` an optional field that defines the trust mode of the VF. The allowed values are the strings `"on"` and `"off"`.
-
-    :::important
-
-    You must enclose the value you specify in quotes or the CR is rejected by the SR-IOV Network Operator.
-
-    :::
-
-*   `spec.capabilities` an optional field that defines the capabilities to configure for this network.
-```
-
-1. To create the object, enter the following command. Replace `<name>` with a name for this additional network.
+     > [!IMPORTANT]
+     > You must enclose the value you specify in quotes or the CR is rejected by the SR-IOV Network Operator.
+   - `spec.capabilities` an optional field that defines the capabilities to configure for this network.
+2. To create the object, enter the following command. Replace `<name>` with a name for this additional network.
 
    ```terminal
    $ oc create -f <name>-sriov-network.yaml
    ```
-2. Optional: To confirm that the `NetworkAttachmentDefinition` object associated with the `SriovNetwork` object that you created in the previous step exists, enter the following command. Replace `<namespace>` with the namespace you specified in the `SriovNetwork` object.
+3. Optional: To confirm that the `NetworkAttachmentDefinition` object associated with the `SriovNetwork` object that you created in the previous step exists, enter the following command. Replace `<namespace>` with the namespace you specified in the `SriovNetwork` object.
 
    ```terminal
    $ oc get net-attach-def -n <namespace>
@@ -225,7 +215,7 @@ You can connect a VM to the SR-IOV network by including the network details in t
 
 **Procedure**
 
-1. Navigate to **Virtualization** -> **VirtualMachines**.
+1. Navigate to **Virtualization** → **VirtualMachines**.
 2. Click a VM to view the **VirtualMachine details** page.
 3. On the **Configuration** tab, click the **Network interfaces** tab.
 4. Click **Add network interface**.
@@ -236,6 +226,7 @@ You can connect a VM to the SR-IOV network by including the network details in t
 9. Click **Save**.
 10. Restart or live-migrate the VM to apply the changes.
 
-## Additional resources {#additional-resources_virt-connecting-vm-to-sriov}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring DPDK workloads for improved performance](/openshift-docs-markdown/virt/vm_networking/virt-using-dpdk-with-sriov#virt-using-dpdk-with-sriov)

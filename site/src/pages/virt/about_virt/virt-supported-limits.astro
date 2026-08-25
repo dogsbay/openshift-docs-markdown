@@ -25,11 +25,12 @@ import TableHead from "@ui/table/TableHead.astro";
 import TableHeader from "@ui/table/TableHeader.astro";
 import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"virt-supported-limits","text":"Supported limits"},{"depth":2,"slug":"virt-tested-maximums_virt-supported-limits","text":"Tested maximums for OpenShift Virtualization"},{"depth":3,"slug":"vm-maximums_virt-supported-limits","text":"Virtual machine maximums"},{"depth":3,"slug":"host-maximums_virt-supported-limits","text":"Host maximums"},{"depth":3,"slug":"cluster-maximums_virt-supported-limits","text":"Cluster maximums"},{"depth":2,"slug":"additional-resources_virt-supported-limits","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"virt-supported-limits","text":"Supported limits"},{"depth":2,"slug":"virt-tested-maximums_virt-supported-limits","text":"Tested maximums for OpenShift Virtualization"},{"depth":3,"slug":"vm-maximums_virt-supported-limits","text":"Virtual machine maximums"},{"depth":3,"slug":"host-maximums_virt-supported-limits","text":"Host maximums"},{"depth":3,"slug":"cluster-maximums_virt-supported-limits","text":"Cluster maximums"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/about_virt/virt-supported-limits";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -48,7 +49,7 @@ const pageCategory = ["virt","virt/about_virt"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Supported limits {#virt-supported-limits}\n\nRefer to tested object maximums when planning your environment for your specific use case, and consider all factors that can impact cluster scaling. For information options that impact performance, see the \"OpenShift Virtualization - Tuning & Scaling Guide\" in the Red Hat Knowledgebase.\n\n## Tested maximums for OpenShift Virtualization {#virt-tested-maximums_virt-supported-limits}\n\nMaximums are based on a single cluster of the largest possible size for a OpenShift Virtualization 4.x environment. Approaching the maximum values can reduce performance and increase latency. Consider using multiple smaller clusters if possible to improve performance.\n\n### Virtual machine maximums {#vm-maximums_virt-supported-limits}\n\nMaximums apply to virtual machines (VMs) running on OpenShift Virtualization and are subject to the limits specified in \"Virtualization limits for Red Hat Enterprise Linux with KVM\".\n\n| Objective (per VM) | Tested limit | Theoretical limit |\n| --- | --- | --- |\n| Virtual CPUs | 255 vCPUs | 255 vCPUs |\n| Memory | 6 TB | 16 TB |\n| Single disk size | 100 TB | 100 TB |\n| Hot-pluggable disks | 255 disks | N/A |\n\n> [!NOTE]\n> Each VM must have at least 512 MB of memory. The `fstype` in the guest operating system (OS) must support the maximum limits. Do not use preallocation in data volumes that are larger than 99 TB.\n\n### Host maximums {#host-maximums_virt-supported-limits}\n\nThe following maximums apply to the OpenShift Container Platform hosts used for OpenShift Virtualization.\n\n| Objective (per host) | Tested limit | Theoretical limit |\n| --- | --- | --- |\n| Logical CPU cores or threads | Same as Red Hat Enterprise Linux (RHEL) | N/A |\n| RAM | Same as RHEL | N/A |\n| Simultaneous live migrations | Defaults to 2 outbound migrations per node, and 5 concurrent migrations per cluster | Depends on NIC bandwidth |\n| Live migration bandwidth | No default limit | Depends on NIC bandwidth |\n\n### Cluster maximums {#cluster-maximums_virt-supported-limits}\n\nThe following maximums apply to objects defined in OpenShift Virtualization.\n\n| Objective (per cluster) | Tested limit | Theoretical limit |\n| --- | --- | --- |\n| Number of attached PVs per node | N/A | CSI storage provider dependent |\n| Maximum PV size | N/A | CSI storage provider dependent |\n| Hosts | 500 hosts (100 or fewer recommended) [^1]^ | Same as OpenShift Container Platform |\n| Defined VMs | 10,000 VMs [^2]^ | Same as OpenShift Container Platform |\n\n1. If you use more than 100 nodes, consider using Red Hat Advanced Cluster Management (RHACM) to manage multiple clusters instead of scaling out a single control plane. Larger clusters add complexity, require longer updates, and depending on node size and total object density, they can increase control plane stress.\n\n   Using multiple clusters can be beneficial in areas like per-cluster isolation and high availability.\n2. The maximum number of VMs per node depends on the host hardware and resource capacity. It is also limited by the following parameters:\n\n   - Settings that limit the number of pods that can be scheduled to a node. For example: `maxPods`.\n   - The default number of KVM devices. For example: `devices.kubevirt.io/kvm: 1k`.\n\n## Additional resources {#additional-resources_virt-supported-limits}\n\n- [OpenShift Virtualization - Tuning & Scaling Guide](https://access.redhat.com/articles/6994974)\n- [Virtualization limits for Red Hat Enterprise Linux with KVM](https://access.redhat.com/articles/rhel-kvm-limits)\n- [Planning your environment according to object maximums](/openshift-docs-markdown/scalability_and_performance/planning-your-environment-according-to-object-maximums#planning-your-environment-according-to-object-maximums)\n- [Managing the maximum number of pods per node](/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing-max-pods#nodes-nodes-managing-max-pods)\n- [Red Hat Advanced Cluster Management documentation](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes)\n\n[^1]: 1\n\n[^2]: 2\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/about_virt/virt-supported-limits.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Supported limits {#virt-supported-limits}\n\nRefer to tested object maximums when planning your environment for your specific use case, and consider all factors that can impact cluster scaling. For information options that impact performance, see the \"OpenShift Virtualization - Tuning & Scaling Guide\" in the Red Hat Knowledgebase.\n\n## Tested maximums for OpenShift Virtualization {#virt-tested-maximums_virt-supported-limits}\n\nMaximums are based on a single cluster of the largest possible size for a OpenShift Virtualization 4.x environment. Approaching the maximum values can reduce performance and increase latency. Consider using multiple smaller clusters if possible to improve performance.\n\n### Virtual machine maximums {#vm-maximums_virt-supported-limits}\n\nMaximums apply to virtual machines (VMs) running on OpenShift Virtualization and are subject to the limits specified in \"Virtualization limits for Red Hat Enterprise Linux with KVM\".\n\n| Objective (per VM) | Tested limit | Theoretical limit |\n| --- | --- | --- |\n| Virtual CPUs | 255 vCPUs | 255 vCPUs |\n| Memory | 6 TB | 16 TB |\n| Single disk size | 100 TB | 100 TB |\n| Hot-pluggable disks | 255 disks | N/A |\n\n> [!NOTE]\n> Each VM must have at least 512 MB of memory. The `fstype` in the guest operating system (OS) must support the maximum limits. Do not use preallocation in data volumes that are larger than 99 TB.\n\n### Host maximums {#host-maximums_virt-supported-limits}\n\nThe following maximums apply to the OpenShift Container Platform hosts used for OpenShift Virtualization.\n\n| Objective (per host) | Tested limit | Theoretical limit |\n| --- | --- | --- |\n| Logical CPU cores or threads | Same as Red Hat Enterprise Linux (RHEL) | N/A |\n| RAM | Same as RHEL | N/A |\n| Simultaneous live migrations | Defaults to 2 outbound migrations per node, and 5 concurrent migrations per cluster | Depends on NIC bandwidth |\n| Live migration bandwidth | No default limit | Depends on NIC bandwidth |\n\n### Cluster maximums {#cluster-maximums_virt-supported-limits}\n\nThe following maximums apply to objects defined in OpenShift Virtualization.\n\n| Objective (per cluster) | Tested limit | Theoretical limit |\n| --- | --- | --- |\n| Number of attached PVs per node | N/A | CSI storage provider dependent |\n| Maximum PV size | N/A | CSI storage provider dependent |\n| Hosts | 500 hosts (100 or fewer recommended) <sup>\\[1\\]</sup> | Same as OpenShift Container Platform |\n| Defined VMs | 10,000 VMs <sup>\\[2\\]</sup> | Same as OpenShift Container Platform |\n\n1. If you use more than 100 nodes, consider using Red Hat Advanced Cluster Management (RHACM) to manage multiple clusters instead of scaling out a single control plane. Larger clusters add complexity, require longer updates, and depending on node size and total object density, they can increase control plane stress.\n\n   Using multiple clusters can be beneficial in areas like per-cluster isolation and high availability.\n2. The maximum number of VMs per node depends on the host hardware and resource capacity. It is also limited by the following parameters:\n\n   - Settings that limit the number of pods that can be scheduled to a node. For example: `maxPods`.\n   - The default number of KVM devices. For example: `devices.kubevirt.io/kvm: 1k`.\n\n**Additional resources**\n{._additional-resources}\n\n- [OpenShift Virtualization - Tuning & Scaling Guide](https://access.redhat.com/articles/6994974)\n- [Virtualization limits for Red Hat Enterprise Linux with KVM](https://access.redhat.com/articles/rhel-kvm-limits)\n- [Planning your environment according to object maximums](/openshift-docs-markdown/scalability_and_performance/planning-your-environment-according-to-object-maximums#planning-your-environment-according-to-object-maximums)\n- [Managing the maximum number of pods per node](/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing-max-pods#nodes-nodes-managing-max-pods)\n- [Red Hat Advanced Cluster Management documentation](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/about_virt/virt-supported-limits.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -87,12 +88,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -100,7 +102,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-supported-limits" class="group scroll-mt-20">Supported limits<a href="#virt-supported-limits" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Refer to tested object maximums when planning your environment for your specific use case, and consider all factors that can impact cluster scaling. For information options that impact performance, see the "OpenShift Virtualization - Tuning &amp; Scaling Guide" in the Red Hat Knowledgebase.</p>
+      <p class="_abstract">Refer to tested object maximums when planning your environment for your specific use case, and consider all factors that can impact cluster scaling. For information options that impact performance, see the "OpenShift Virtualization - Tuning &amp; Scaling Guide" in the Red Hat Knowledgebase.</p>
       <h2 id="virt-tested-maximums_virt-supported-limits" class="group scroll-mt-20">Tested maximums for OpenShift Virtualization<a href="#virt-tested-maximums_virt-supported-limits" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">Maximums are based on a single cluster of the largest possible size for a OpenShift Virtualization 4.x environment. Approaching the maximum values can reduce performance and increase latency. Consider using multiple smaller clusters if possible to improve performance.</p>
       <h3 id="vm-maximums_virt-supported-limits" class="group scroll-mt-20">Virtual machine maximums<a href="#vm-maximums_virt-supported-limits" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
@@ -198,12 +200,12 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </TableRow>
       <TableRow>
       <TableCell>Hosts</TableCell>
-      <TableCell>500 hosts (100 or fewer recommended) <sup><a href="#fn-1" id="fnref-1" class="text-primary hover:underline">[1]</a></sup>^</TableCell>
+      <TableCell>500 hosts (100 or fewer recommended) <Fragment set:html={"<sup>"} />[1]<Fragment set:html={"</sup>"} /></TableCell>
       <TableCell>Same as OpenShift Container Platform</TableCell>
       </TableRow>
       <TableRow>
       <TableCell>Defined VMs</TableCell>
-      <TableCell>10,000 VMs <sup><a href="#fn-2" id="fnref-2" class="text-primary hover:underline">[2]</a></sup>^</TableCell>
+      <TableCell>10,000 VMs <Fragment set:html={"<sup>"} />[2]<Fragment set:html={"</sup>"} /></TableCell>
       <TableCell>Same as OpenShift Container Platform</TableCell>
       </TableRow>
       </TableBody>
@@ -221,7 +223,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </ul>
       </li>
       </ol>
-      <h2 id="additional-resources_virt-supported-limits" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-supported-limits" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul>
       <li><a href="https://access.redhat.com/articles/6994974">OpenShift Virtualization - Tuning &amp; Scaling Guide</a></li>
       <li><a href="https://access.redhat.com/articles/rhel-kvm-limits">Virtualization limits for Red Hat Enterprise Linux with KVM</a></li>
@@ -229,13 +232,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li><a href="/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing-max-pods#nodes-nodes-managing-max-pods">Managing the maximum number of pods per node</a></li>
       <li><a href="https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes">Red Hat Advanced Cluster Management documentation</a></li>
       </ul>
-      <hr class="my-8 border-t border-border" data-footnotes-separator />
-      <section class="footnotes" data-footnotes aria-labelledby="footnote-label">
-        <h2 id="footnote-label" class="sr-only">Footnotes</h2>
-        <ol class="list-decimal pl-6 space-y-1 text-sm text-muted-foreground" data-footnote-list>
-      <li id="fn-1" class="text-sm text-muted-foreground">1 <a href="#fnref-1" class="text-primary hover:underline">↩</a></li>
-      <li id="fn-2" class="text-sm text-muted-foreground">2 <a href="#fnref-2" class="text-primary hover:underline">↩</a></li>
-        </ol>
       </section>
     </article>
   </MarkdownContentStack>

@@ -1,5 +1,5 @@
 ---
-title: HostUpdatePolicy []
+title: HostUpdatePolicy [metal3.io/v1alpha1]
 ---
 
 # HostUpdatePolicy \[metal3.io/v1alpha1\] {#hostupdatepolicy-metal3-io-v1alpha1}
@@ -54,12 +54,12 @@ The following API endpoints are available:
 - `/apis/metal3.io/v1alpha1/hostupdatepolicies`
 
   - `GET`: list objects of kind HostUpdatePolicy
-- `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostupdatepolicies`
+- `/apis/metal3.io/v1alpha1/namespaces/{namespace}/hostupdatepolicies`
 
   - `DELETE`: delete collection of HostUpdatePolicy
   - `GET`: list objects of kind HostUpdatePolicy
   - `POST`: create a HostUpdatePolicy
-- `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostupdatepolicies/{{ name }}`
+- `/apis/metal3.io/v1alpha1/namespaces/{namespace}/hostupdatepolicies/{name}`
 
   - `DELETE`: delete a HostUpdatePolicy
   - `GET`: read the specified HostUpdatePolicy
@@ -85,7 +85,7 @@ Description
 | 200 - OK | [`HostUpdatePolicyList`](/openshift-docs-markdown/rest_api/objects/index#io-metal3-v1alpha1-HostUpdatePolicyList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostupdatepolicies {#_apismetal3iov1alpha1namespaces_namespace_hostupdatepolicies}
+### /apis/metal3.io/v1alpha1/namespaces/{namespace}/hostupdatepolicies {#_apismetal3iov1alpha1namespaces_namespace_hostupdatepolicies}
 
 HTTP method
 :   ```
@@ -153,7 +153,7 @@ Description
 | 202 - Accepted | [`HostUpdatePolicy`](/openshift-docs-markdown/rest_api/provisioning_apis/hostupdatepolicy-metal3-io-v1alpha1#hostupdatepolicy-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostupdatepolicies/{{ name }} {#_apismetal3iov1alpha1namespaces_namespace_hostupdatepolicies_name}
+### /apis/metal3.io/v1alpha1/namespaces/{namespace}/hostupdatepolicies/{name} {#_apismetal3iov1alpha1namespaces_namespace_hostupdatepolicies_name}
 
 **Global path parameters**
 

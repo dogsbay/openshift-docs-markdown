@@ -76,6 +76,7 @@ Get information about your cluster so that you can more accurately find potentia
    For more information, see "oc get" and "Reviewing pod status".
 
 **Additional resources**
+{._additional-resources}
 
 - [oc get](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-get)
 - [Reviewing pod status](/openshift-docs-markdown/support/troubleshooting/investigating-pod-issues#reviewing-pod-status_investigating-pod-issues)
@@ -108,6 +109,7 @@ Get logs from the pod so that you can review the logs for issues.
    For more information, see "oc logs", "Logging", and "Inspecting pod and container logs".
 
 **Additional resources**
+{._additional-resources}
 
 - [oc logs](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-logs)
 - [Logging](/openshift-docs-markdown/security/container_security/security-monitoring#security-monitoring-cluster-logging_security-monitoring)
@@ -145,6 +147,7 @@ To troubleshoot pod issues and view detailed information about a pod in OpenShif
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [oc describe](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-describe)
 
@@ -189,6 +192,7 @@ You can review the events in a given namespace to find potential issues.
    For more information, see "Watching cluster events".
 
 **Additional resources**
+{._additional-resources}
 
 - [Watching cluster events](/openshift-docs-markdown/security/container_security/security-monitoring#security-monitoring-events_security-monitoring)
 
@@ -210,6 +214,7 @@ You can directly connect to a currently running pod with the `oc rsh` command, w
   For more information, see "oc rsh" and "Accessing running pods".
 
 **Additional resources**
+{._additional-resources}
 
 - [oc rsh](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-rsh)
 - [Accessing running pods](/openshift-docs-markdown/support/troubleshooting/investigating-pod-issues#accessing-running-pods_investigating-pod-issues)
@@ -251,6 +256,7 @@ To avoid interfering with running traffic, you can use a secondary pod that is a
    For more information, see "oc debug" and "Starting debug pods with root access".
 
 **Additional resources**
+{._additional-resources}
 
 - [oc debug](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-debug)
 - [Starting debug pods with root access](/openshift-docs-markdown/support/troubleshooting/investigating-pod-issues#starting-debug-pods-with-root-access_investigating-pod-issues)
@@ -273,6 +279,7 @@ If you want to run a command or set of commands on a pod without directly loggin
   For more information, see "oc exec" and "Executing remote commands in containers".
 
 **Additional resources**
+{._additional-resources}
 
 - [oc exec](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-exec)
 - [Executing remote commands in containers](/openshift-docs-markdown/nodes/containers/nodes-containers-remote-commands#nodes-containers-remote-commands-about_nodes-containers-remote-commands)

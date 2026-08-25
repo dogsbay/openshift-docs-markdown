@@ -1,8 +1,8 @@
 ---
-title: About image-based deployments for {{ sno }}
+title: About image-based deployments for single-node OpenShift
 ---
 
-# About image-based deployments for {{ sno }} {#ibi-image-based-install-standalone}
+# About image-based deployments for single-node OpenShift {#ibi-image-based-install-standalone}
 
 You can manually generate a configuration ISO by using the `openshift-install` program. Attach the configuration ISO to your preinstalled target host to complete the deployment.
 
@@ -64,21 +64,16 @@ The `openshift-install` program uses these resources to generate a configuration
       sshKey: 'ssh-rsa <your_ssh_pub_key>'
       ```
 
+      -
 
-   For dual-stack networking, you can specify both IPv4 and IPv6 CIDRs using a list format in the `machineNetwork` field. The first CIDR in the list is the primary address family and must match the primary address family of the seed cluster.
+      For dual-stack networking, you can specify both IPv4 and IPv6 CIDRs using a list format in the `machineNetwork` field. The first CIDR in the list is the primary address family and must match the primary address family of the seed cluster.
 
-   ```
-   :::important
-
-   If your cluster deployment requires a proxy configuration, you must do the following:
-
-   *   Create a seed image from a seed cluster featuring a proxy configuration. The proxy configurations do not have to match.
-   *   Configure the `machineNetwork` field in your installation manifest.
-
-   :::
-   ```
-
-   1. Save the file in your working directory.
+      > [!IMPORTANT]
+      > If your cluster deployment requires a proxy configuration, you must do the following:
+      >
+      > - Create a seed image from a seed cluster featuring a proxy configuration. The proxy configurations do not have to match.
+      > - Configure the `machineNetwork` field in your installation manifest.
+   2. Save the file in your working directory.
 3. Optional. Create a configuration template in your working directory by running the following command:
 
    ```terminal
@@ -221,6 +216,7 @@ When the configuration process completes on the host, access the cluster to veri
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Using image pull secrets](/openshift-docs-markdown/openshift_images/managing_images/using-image-pull-secrets)
 - [Reference specifications for the `image-based-installation-config.yaml` manifest](/openshift-docs-markdown/edge_computing/image_base_install/ibi_deploying_sno_clusters/ibi-edge-image-based-install-standalone#ibi-installer-configuration-config_ibi-edge-image-based-install)
@@ -260,7 +256,7 @@ The `openshift-install` program uses the `image-based-config.yaml` manifest to c
 <tr>
   <td><code>networkConfig</code></td>
   <td><code>string</code></td>
-  <td>Specifies networking configurations for the host, for example:</td>
+  <td>Specifies networking configurations for the host, for example: [source,yaml] ---- networkConfig: interfaces: - name: ens1f0 type: ethernet state: up ... ---- If you require static networking, you must install the <code>nmstatectl</code> library on the host that creates the live installation ISO. For further information about defining network configurations by using <code>nmstate</code>, see <a href="https://nmstate.io/">nmstate.io</a>. [IMPORTANT] ==== The name of the interface must match the actual NIC name as shown in the operating system. ====</td>
 </tr>
 <tr>
   <td><code>additionalNTPSources</code></td>
@@ -275,7 +271,7 @@ The `openshift-install` program uses the `image-based-config.yaml` manifest to c
 <tr>
   <td><code>nodeLabels</code></td>
   <td><code>map[string]string</code></td>
-  <td>Specifies custom node labels for the single-node OpenShift node, for example:</td>
+  <td>Specifies custom node labels for the single-node OpenShift node, for example: [source,yaml] ---- nodeLabels: node-role.kubernetes.io/edge: true environment: production ----</td>
 </tr>
 </tbody>
 </table>

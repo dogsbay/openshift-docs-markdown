@@ -80,22 +80,22 @@ For Red Hat Enterprise Linux (RHEL) version 8, you can install the Red Hat Ope
    - Linux (x86_64, amd64)
 
      ```terminal
-     # subscription-manager repos --enable="pipelines-{{ pipelines_version_number }}-for-rhel-8-x86_64-rpms"
+     # subscription-manager repos --enable="pipelines-1.18-for-rhel-8-x86_64-rpms"
      ```
    - Linux on IBM Z(R) and IBM(R) LinuxONE (s390x)
 
      ```terminal
-     # subscription-manager repos --enable="pipelines-{{ pipelines_version_number }}-for-rhel-8-s390x-rpms"
+     # subscription-manager repos --enable="pipelines-1.18-for-rhel-8-s390x-rpms"
      ```
    - Linux on IBM Power(R) (ppc64le)
 
      ```terminal
-     # subscription-manager repos --enable="pipelines-{{ pipelines_version_number }}-for-rhel-8-ppc64le-rpms"
+     # subscription-manager repos --enable="pipelines-1.18-for-rhel-8-ppc64le-rpms"
      ```
    - Linux on ARM (aarch64, arm64)
 
      ```terminal
-     # subscription-manager repos --enable="pipelines-{{ pipelines_version_number }}-for-rhel-8-aarch64-rpms"
+     # subscription-manager repos --enable="pipelines-1.18-for-rhel-8-aarch64-rpms"
      ```
 6. Install the `openshift-pipelines-client` package:
 

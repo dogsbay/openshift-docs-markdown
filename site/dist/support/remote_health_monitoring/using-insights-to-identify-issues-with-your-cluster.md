@@ -22,6 +22,7 @@ The results of the Red Hat Lightspeed analysis are available in the Red Hat Li
 - Share results with other stakeholders.
 
 **Additional resources**
+{._additional-resources}
 
 - [Using the Deployment Validation Operator in your Red Hat Lightspeed workflow](https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html-single/monitoring_your_openshift_cluster_health_with_red_hat_lightspeed_advisor/index#using-the-deployment-validation-operator)
 
@@ -52,7 +53,7 @@ Note that Red Hat Lightspeed repeatedly analyzes your cluster and shows the lat
 
 **Procedure**
 
-1. Navigate to **Advisor** -> **Recommendations** on [OpenShift Cluster Manager](https://console.redhat.com/openshift).
+1. Navigate to **Advisor** → **Recommendations** on [OpenShift Cluster Manager](https://console.redhat.com/openshift).
 
    Depending on the result, the Red Hat Lightspeed advisor service displays one of the following:
 
@@ -75,7 +76,7 @@ The **Recommendations** view, by default, only displays the recommendations that
 
 **Procedure**
 
-1. Navigate to **Advisor** -> **Recommendations** on [OpenShift Cluster Manager](https://console.redhat.com/openshift).
+1. Navigate to **Advisor** → **Recommendations** on [OpenShift Cluster Manager](https://console.redhat.com/openshift).
 2. Click the **X** icons next to the **Clusters Impacted** and **Status** filters.
 
    You can now browse through all of the potential recommendations for your cluster.
@@ -100,6 +101,7 @@ You can set the following filter types:
 - **Risk of change:** Select one or more values from **High**, **Moderate**, **Low**, and **Very low** indicating the risk that the implementation of the resolution could have on cluster operations.
 
 **Additional resources**
+{._additional-resources}
 
 - [Advisor recommendations (Red Hat Hybrid Cloud Console)](https://console.redhat.com/openshift/insights/advisor/recommendations)
 
@@ -150,19 +152,19 @@ You can disable specific recommendations that affect your clusters, so that they
 
 **Procedure**
 
-1. Navigate to **Advisor** -> **Recommendations** on [OpenShift Cluster Manager](https://console.redhat.com/openshift).
+1. Navigate to **Advisor** → **Recommendations** on [OpenShift Cluster Manager](https://console.redhat.com/openshift).
 2. Optional: Use the **Clusters Impacted** and **Status** filters as needed.
 3. Disable an alert by using one of the following methods:
 
    - To disable an alert:
 
-     1. Click the **Options** menu ![](kebab.png "Options menu") for that alert, and then click **Disable recommendation**.
+     1. Click the **Options** menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") for that alert, and then click **Disable recommendation**.
      2. Enter a justification note and click **Save**.
    - To view the clusters affected by this alert before disabling the alert:
 
      1. Click the name of the recommendation to disable. You are directed to the single recommendation page.
      2. Review the list of clusters in the **Affected clusters** section.
-     3. Click **Actions** -> **Disable recommendation** to disable the alert for all of your clusters.
+     3. Click **Actions** → **Disable recommendation** to disable the alert for all of your clusters.
      4. Enter a justification note and click **Save**.
 
 ## Enabling a previously disabled Red Hat Lightspeed advisor service recommendation {#enabling-insights-advisor-recommendations_using-insights-to-identify-issues-with-your-cluster}
@@ -177,14 +179,14 @@ When a recommendation is disabled for all clusters, you no longer see the recomm
 
 **Procedure**
 
-1. Navigate to **Advisor** -> **Recommendations** on [OpenShift Cluster Manager](https://console.redhat.com/openshift).
+1. Navigate to **Advisor** → **Recommendations** on [OpenShift Cluster Manager](https://console.redhat.com/openshift).
 2. Filter the recommendations to display on the disabled recommendations:
 
    1. From the **Status** drop-down menu, select **Status**.
    2. From the **Filter by status** drop-down menu, select **Disabled**.
    3. Optional: Clear the **Clusters impacted** filter.
 3. Locate the recommendation to enable.
-4. Click the Options menu ![](kebab.png "Options menu"), and then click **Enable recommendation**.
+4. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu"), and then click **Enable recommendation**.
 
 ## About Red Hat Lightspeed advisor service recommendations for workloads {#about-insights-advisor-workload-recommendations_using-insights-to-identify-issues-with-your-cluster}
 
@@ -199,6 +201,7 @@ You can see recommendations for workloads at **OpenShift** > **Advisor** > **Wor
 - Excluding objects from workload recommendations in your clusters
 
 **Additional resources**
+{._additional-resources}
 
 - [OpenShift > Advisor > Workloads (Red Hat Hybrid Cloud Console)](https://console.redhat.com/openshift/insights/advisor/workloads)
 - [Information about Kubernetes workloads (Kubernetes documentation)](https://kubernetes.io/docs/concepts/workloads/)
@@ -219,10 +222,13 @@ View the health status of your cluster and potential issues identified by the Re
 
 **Procedure**
 
-1. Navigate to **Home** -> **Overview** in the OpenShift Container Platform web console.
+1. Navigate to **Home** → **Overview** in the OpenShift Container Platform web console.
 2. Click **Insights** on the **Status** card.
 
    A list of potential issues that are grouped by risk is displayed.
 3. Click **View all recommendations in Red Hat Lightspeed Advisor** or click a specific category to view detailed reports in the Hybrid Cloud Console.
+
+**Additional resources**
+{._additional-resources}
 
 - [Red Hat Lightspeed Advisor recommendations](https://console.redhat.com/openshift/insights/advisor/recommendations)

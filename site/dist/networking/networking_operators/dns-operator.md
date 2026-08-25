@@ -101,9 +101,7 @@ A DNS forwarding configuration for the default domain can have both the default 
   $ oc edit dns.operator/default
   ```
 
-  After you issue the previous command, the Operator creates and updates the config map named `dns-default` with additional server configuration blocks based on `spec.servers`.
-
-  If none of the servers have a zone that matches the query, then name resolution falls back to the upstream DNS servers.
+  After you issue the previous command, the Operator creates and updates the config map named `dns-default` with additional server configuration blocks based on `spec.servers`. If none of the servers have a zone that matches the query, then name resolution falls back to the upstream DNS servers.
 
   ```yaml {title="Configuring DNS forwarding"}
   apiVersion: operator.openshift.io/v1
@@ -176,6 +174,9 @@ A DNS forwarding configuration for the default domain can have both the default 
 
   `spec.upstreamResolvers.upstreams.port`
   :   Specifies an optional field to provide a port number. Valid values are between `1` and `65535`; defaults to 853 when omitted.
+
+**Additional resources**
+{._additional-resources}
 
 - [CoreDNS forward documentation](https://coredns.io/plugins/forward/)
 
@@ -387,6 +388,9 @@ where:
                denial 9984 2400
            }
    ```
+
+**Additional resources**
+{._additional-resources}
 
 - [CoreDNS cache](https://coredns.io/plugins/cache/)
 
@@ -621,5 +625,8 @@ Be aware that CoreDNS caches forwarded connections for 10 seconds. CoreDNS will 
    ```
 
    - The `data.Corefile` key contains the Corefile configuration for the DNS server. Changes to the `forwardPlugin` triggers a rolling update of the CoreDNS daemon set.
+
+**Additional resources**
+{._additional-resources}
 
 - [CoreDNS forward documentation](https://coredns.io/plugins/forward/)

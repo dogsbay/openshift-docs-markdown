@@ -26,12 +26,13 @@ const headings = [{"depth":1,"slug":"about-hcp-ha","text":"About high availabili
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp_high_availability/about-hcp-ha";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
-const title = "About high availability for {{ hcp }}";
+const title = "About high availability for hosted control planes";
 const description = "You can maintain high availability (HA) for hosted control planes by recovering etcd members for a hosted cluster, backing up and restoring etcd for a…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
@@ -84,12 +85,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -97,7 +99,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="about-hcp-ha" class="group scroll-mt-20">About high availability for hosted control planes<a href="#about-hcp-ha" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can maintain high availability (HA) for hosted control planes by recovering etcd members for a hosted cluster, backing up and restoring etcd for a hosted cluster, and completing a disaster recovery process for a hosted cluster.</p>
+      <p class="_abstract">You can maintain high availability (HA) for hosted control planes by recovering etcd members for a hosted cluster, backing up and restoring etcd for a hosted cluster, and completing a disaster recovery process for a hosted cluster.</p>
       <h2 id="hcp-mgmt-component-loss-impact_about-hcp-ha" class="group scroll-mt-20">Impact of the failed management cluster component<a href="#hcp-mgmt-component-loss-impact_about-hcp-ha" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">If the management cluster component fails, your workload remains unaffected. In the OpenShift Container Platform management cluster, the control plane is decoupled from the data plane to provide resiliency.</p>
       <p>The following table covers the impact of a failed management cluster component on the control plane and the data plane. However, the table does not cover all scenarios for the management cluster component failures.</p>

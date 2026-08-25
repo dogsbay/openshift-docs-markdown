@@ -19,7 +19,7 @@ You can do this during OpenShift Virtualization installation in the web console 
 1. Open the `HyperConverged` CR by running the following command:
 
    ```terminal
-   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+   $ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv
    ```
 2. Edit the `spec.certConfig` fields as shown in the following example. To avoid overloading the system, ensure that all values are greater than or equal to 10 minutes. Express all values as strings that comply with the golang `ParseDuration` format.
 
@@ -28,7 +28,7 @@ You can do this during OpenShift Virtualization installation in the web console 
    kind: HyperConverged
    metadata:
      name: kubevirt-hyperconverged
-     namespace: {{ CNVNamespace }}
+     namespace: openshift-cnv
    spec:
      certConfig:
        ca:
@@ -71,7 +71,7 @@ apiVersion: hco.kubevirt.io/v1beta1
 kind: HyperConverged
 metadata:
   name: kubevirt-hyperconverged
-  namespace: {{ CNVNamespace }}
+  namespace: openshift-cnv
 spec:
   # ...
   certConfig:
@@ -92,6 +92,7 @@ error: hyperconvergeds.hco.kubevirt.io "kubevirt-hyperconverged" could not be pa
 
 The error message only mentions the first conflict. Review all `certConfig` values before you proceed.
 
-## Additional resources {#additional-resources_virt-configuring-certificate-rotation}
+**Additional resources**
+{._additional-resources}
 
 - [golang `ParseDuration` format](https://golang.org/pkg/time/#ParseDuration)

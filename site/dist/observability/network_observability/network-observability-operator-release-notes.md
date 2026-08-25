@@ -36,13 +36,25 @@ Narrowed Operator ClusterRole to least-privilege RBAC permissions
     For instructions, see "Granting permissions for custom namespace and secret access".
 
 Inherited scheduling configuration for the console plugin static deployment
-:   Before this update, the `netobserv-plugin-static` deployment in the `openshift-netobserv-operator` namespace did not inherit `nodeSelector` and `tolerations` settings from the Operator Subscription. As a consequence, you could not schedule the static console plugin pod onto infrastructure nodes alongside the controller manager. With this release, the `netobserv-plugin-static` deployment inherits the scheduling configuration set on the Operator Subscription. As a result, node placement for the static console plugin is consistent with the controller manager. [NETOBSERV-2575](https://redhat.atlassian.net/browse/NETOBSERV-2575)
+:   Before this update, the `netobserv-plugin-static` deployment in the `openshift-netobserv-operator` namespace did not inherit `nodeSelector` and `tolerations` settings from the Operator Subscription. As a consequence, you could not schedule the static console plugin pod onto infrastructure nodes alongside the controller manager.
+
+    With this release, the `netobserv-plugin-static` deployment inherits the scheduling configuration set on the Operator Subscription. As a result, node placement for the static console plugin is consistent with the controller manager.
+
+    [NETOBSERV-2575](https://redhat.atlassian.net/browse/NETOBSERV-2575)
 
 Resolved Operator startup failure with custom console logos
-:   Before this update, the Network Observability Operator failed to start when the `Console.operator.openshift.io` resource had the `spec.customization.logos` field configured. The Operator incorrectly reported a validation conflict between `logos` and the deprecated `customLogoFile` field, even when only `logos` was set. With this release, the Network Observability Operator correctly handles web console configurations that use the `spec.customization.logos` field. As a result, the Operator starts successfully on clusters with custom console branding. [NETOBSERV-2767](https://redhat.atlassian.net/browse/NETOBSERV-2767)
+:   Before this update, the Network Observability Operator failed to start when the `Console.operator.openshift.io` resource had the `spec.customization.logos` field configured. The Operator incorrectly reported a validation conflict between `logos` and the deprecated `customLogoFile` field, even when only `logos` was set.
+
+    With this release, the Network Observability Operator correctly handles web console configurations that use the `spec.customization.logos` field. As a result, the Operator starts successfully on clusters with custom console branding.
+
+    [NETOBSERV-2767](https://redhat.atlassian.net/browse/NETOBSERV-2767)
 
 Fixed controller crash when FlowCollector is on hold and ServiceAccount is absent
-:   Before this update, the Operator controller panicked with a nil pointer dereference when the `FlowCollector` resource was in `OnHold` mode and the eBPF agent `ServiceAccount` did not exist. As a consequence, the controller manager pod entered a `CrashLoopBackOff` state and all reconciliation stopped. With this release, the Network Observability Operator gracefully skips the deletion step when the `ServiceAccount` is absent during an `OnHold` reconciliation. As a result, the controller manager no longer crashes in this scenario. [NETOBSERV-2839](https://redhat.atlassian.net/browse/NETOBSERV-2839)
+:   Before this update, the Operator controller panicked with a nil pointer dereference when the `FlowCollector` resource was in `OnHold` mode and the eBPF agent `ServiceAccount` did not exist. As a consequence, the controller manager pod entered a `CrashLoopBackOff` state and all reconciliation stopped.
+
+    With this release, the Network Observability Operator gracefully skips the deletion step when the `ServiceAccount` is absent during an `OnHold` reconciliation. As a result, the controller manager no longer crashes in this scenario.
+
+    [NETOBSERV-2839](https://redhat.atlassian.net/browse/NETOBSERV-2839)
 
 ## Network Observability Operator 1.12.1 advisory {#network-observability-operator-release-notes-1-12-1-advisory_network-observability-operator-release-notes}
 
@@ -73,14 +85,20 @@ Transport Layer Security traffic metadata tracking
     To use this feature, enable `TLSTracking` in the `spec.agent.ebpf.features` list of the `FlowCollector` custom resource (CR).
 
 Support for Kafka compression
-:   Message compression configuration is now available when using Kafka to scale network flow collection. Enabling compression reduces the network bandwidth required to transport flows and decreases the storage footprint on Kafka brokers. The following key benefits include:
+:   Message compression configuration is now available when using Kafka to scale network flow collection. Enabling compression reduces the network bandwidth required to transport flows and decreases the storage footprint on Kafka brokers.
+
+    The following key benefits include:
 
     - Reduced network load: Compressing flow data minimizes the traffic volume between the eBPF agent or flowlogs-pipeline and your Kafka cluster.
     - Storage efficiency: Smaller message sizes lead to improved disk space utilization on Kafka brokers.
-    - Tunable performance: Choose from several compression algorithms, such as `gzip`, `snappy`, `lz4`, or `zstd`, to balance CPU usage with compression ratios. To enable this feature, configure the `spec.kafka.compression` and `spec.exporters.kafka.compression` fields in the `FlowCollector` custom resource.
+    - Tunable performance: Choose from several compression algorithms, such as `gzip`, `snappy`, `lz4`, or `zstd`, to balance CPU usage with compression ratios.
+
+    To enable this feature, configure the `spec.kafka.compression` and `spec.exporters.kafka.compression` fields in the `FlowCollector` custom resource.
 
 Simplified secondary network indexing
-:   The configuration process for secondary network indexing is now simplified. The `name` field in the `spec.processor.advanced.secondaryNetworks` list is deprecated and ignored. The Network Observability Operator automatically evaluates all secondary networks regardless of their assigned names, removing the requirement for manual name-matching entries in the `FlowCollector` CR.
+:   The configuration process for secondary network indexing is now simplified.
+
+    The `name` field in the `spec.processor.advanced.secondaryNetworks` list is deprecated and ignored. The Network Observability Operator automatically evaluates all secondary networks regardless of their assigned names, removing the requirement for manual name-matching entries in the `FlowCollector` CR.
 
 OpenShift Container Platform web console compatibility
 :   The Network Observability web console plugin is updated to support OpenShift Container Platform 4.22 and later. Backward compatibility is maintained for OpenShift Container Platform versions 4.14 through 4.21.
@@ -104,7 +122,7 @@ Fixed `--help` flag processing in netobserv-cli
     [NETOBSERV-2617](https://issues.redhat.com/browse/NETOBSERV-2617)
 
 Improved visibility of DNS names warning messages
-:   Before this update, the ***DNS names*** graph repeatedly displayed a warning message on every refresh when running in a Prometheus-only configuration. As a consequence, the persistent warning message covered other dashboard elements.
+:   Before this update, the **DNS names** graph repeatedly displayed a warning message on every refresh when running in a Prometheus-only configuration. As a consequence, the persistent warning message covered other dashboard elements.
 
     With this release, the warning message is only displayed during the initial data load and does not overlay other content. As a result, interface clarity is improved when navigating the dashboard.
 
@@ -173,10 +191,11 @@ The following known issues affect the Network Observability Operator 1.12 releas
 Operator fails to start when custom web console logos are configured
 :   When you configure custom product logos in the `Console.operator.openshift.io` resource using the `spec.customization.logos` field, the Network Observability Operator pod fails to start during installation. The Operator incorrectly reports a validation error indicating that both `logos` and the deprecated `customLogoFile` fields are set, even though only `logos` is configured.
 
-    To work around this problem, manually enable the Network Observability Operator OpenShift Container Platform web console plugin by adding `netobserv-plugin-static` to the `spec.plugins` list in the `Console` cluster resource, or by enabling the plugin through the web console under **Administration** -> **Cluster Settings** -> **Configuration** -> **Console** -> **Console plugins**.
+    To work around this problem, manually enable the Network Observability Operator OpenShift Container Platform web console plugin by adding `netobserv-plugin-static` to the `spec.plugins` list in the `Console` cluster resource, or by enabling the plugin through the web console under **Administration** → **Cluster Settings** → **Configuration** → **Console** → **Console plugins**.
 
     [NETOBSERV-2767](https://issues.redhat.com/browse/NETOBSERV-2767)
 
-## Additional resources {#additional-resources_network-observability-operator-release-notes}
+**Additional resources**
+{._additional-resources}
 
 - [Grant permissions for custom namespace and secret access](/openshift-docs-markdown/observability/network_observability/configuring-operator#network-observability-grant-permissions-custom-namespace-and-secret-access_network_observability)

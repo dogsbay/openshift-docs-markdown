@@ -1,5 +1,5 @@
 ---
-title: EgressService []
+title: EgressService [k8s.ovn.org/v1]
 ---
 
 # EgressService \[k8s.ovn.org/v1\] {#egressservice-k8s-ovn-org-v1}
@@ -108,18 +108,18 @@ The following API endpoints are available:
 - `/apis/k8s.ovn.org/v1/egressservices`
 
   - `GET`: list objects of kind EgressService
-- `/apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/egressservices`
+- `/apis/k8s.ovn.org/v1/namespaces/{namespace}/egressservices`
 
   - `DELETE`: delete collection of EgressService
   - `GET`: list objects of kind EgressService
   - `POST`: create an EgressService
-- `/apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/egressservices/{{ name }}`
+- `/apis/k8s.ovn.org/v1/namespaces/{namespace}/egressservices/{name}`
 
   - `DELETE`: delete an EgressService
   - `GET`: read the specified EgressService
   - `PATCH`: partially update the specified EgressService
   - `PUT`: replace the specified EgressService
-- `/apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/egressservices/{{ name }}/status`
+- `/apis/k8s.ovn.org/v1/namespaces/{namespace}/egressservices/{name}/status`
 
   - `GET`: read status of the specified EgressService
   - `PATCH`: partially update status of the specified EgressService
@@ -144,7 +144,7 @@ Description
 | 200 - OK | [`EgressServiceList`](/openshift-docs-markdown/rest_api/objects/index#org-ovn-k8s-v1-EgressServiceList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/egressservices {#_apisk8sovnorgv1namespaces_namespace_egressservices}
+### /apis/k8s.ovn.org/v1/namespaces/{namespace}/egressservices {#_apisk8sovnorgv1namespaces_namespace_egressservices}
 
 HTTP method
 :   ```
@@ -212,7 +212,7 @@ Description
 | 202 - Accepted | [`EgressService`](/openshift-docs-markdown/rest_api/network_apis/egressservice-k8s-ovn-org-v1#egressservice-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/egressservices/{{ name }} {#_apisk8sovnorgv1namespaces_namespace_egressservices_name}
+### /apis/k8s.ovn.org/v1/namespaces/{namespace}/egressservices/{name} {#_apisk8sovnorgv1namespaces_namespace_egressservices_name}
 
 **Global path parameters**
 
@@ -316,7 +316,7 @@ Description
 | 201 - Created | [`EgressService`](/openshift-docs-markdown/rest_api/network_apis/egressservice-k8s-ovn-org-v1#egressservice-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/egressservices/{{ name }}/status {#_apisk8sovnorgv1namespaces_namespace_egressservices_name_status}
+### /apis/k8s.ovn.org/v1/namespaces/{namespace}/egressservices/{name}/status {#_apisk8sovnorgv1namespaces_namespace_egressservices_name_status}
 
 **Global path parameters**
 

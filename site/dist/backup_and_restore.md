@@ -28,6 +28,7 @@ You might run into several situations where OpenShift Container Platform  does n
 You can always recover from a disaster situation by [restoring your cluster to its previous state](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state#dr-restoring-cluster-state) using the saved etcd snapshots.
 
 **Additional resources**
+{._additional-resources}
 
 - [Quorum protection with machine lifecycle hooks](/openshift-docs-markdown/machine_management/deleting-machine#machine-lifecycle-hook-deletion-etcd_deleting-machine)
 
@@ -51,11 +52,10 @@ OADP has the following requirements:
   - S3-compatible object storage
   - IBM Cloud(R) Object Storage S3
 
-> [!NOTE]
-> If you want to use CSI backup on OCP 4.11 and later, install OADP 1.1.*x*.
->
-> OADP 1.0.*x* does not support CSI backup on OCP 4.11 and later. OADP 1.0.*x* includes Velero 1.7.*x* and expects the API group `snapshot.storage.k8s.io/v1beta1`, which is not present on OCP 4.11 and later.
-
+  > [!NOTE]
+  > If you want to use CSI backup on OCP 4.11 and later, install OADP 1.1.*x*.
+  >
+  > OADP 1.0.*x* does not support CSI backup on OCP 4.11 and later. OADP 1.0.*x* includes Velero 1.7.*x* and expects the API group `snapshot.storage.k8s.io/v1beta1`, which is not present on OCP 4.11 and later.
 - To back up PVs with snapshots, you must have cloud storage that has a native snapshot API or supports Container Storage Interface (CSI) snapshots, such as the following providers:
 
   - Amazon Web Services
@@ -63,8 +63,8 @@ OADP has the following requirements:
   - Google Cloud
   - CSI snapshot-enabled cloud storage, such as Ceph RBD or Ceph FS
 
-> [!NOTE]
-> If you do not want to back up PVs by using snapshots, you can use [Restic](https://restic.net/), which is installed by the OADP Operator by default.
+  > [!NOTE]
+  > If you do not want to back up PVs by using snapshots, you can use [Restic](https://restic.net/), which is installed by the OADP Operator by default.
 
 ### Backing up and restoring applications {#backing-up-and-restoring-applications_backup-restore-overview}
 

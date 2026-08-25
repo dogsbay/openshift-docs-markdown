@@ -72,6 +72,7 @@ To save your logs for further audit and analysis, you can enable the `cluster-lo
 With *audit logs*, you can follow a sequence of activities associated with how a user, administrator, or other OpenShift Container Platform component is behaving. API audit logging is done on each server.
 
 **Additional resources**
+{._additional-resources}
 
 - [List of system events](/openshift-docs-markdown/nodes/clusters/nodes-containers-events#nodes-containers-events)
 - [Viewing audit logs](/openshift-docs-markdown/security/audit-log-view#audit-log-view)

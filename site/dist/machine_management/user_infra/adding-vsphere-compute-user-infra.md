@@ -32,7 +32,7 @@ To scale a user-provisioned OpenShift Container Platform cluster on VMware vSphe
 
 **Procedure**
 
-1. Right-click the template’s name and click **Clone** -> **Clone to Virtual Machine**.
+1. Right-click the template’s name and click **Clone** → **Clone to Virtual Machine**.
 2. On the **Select a name and folder** tab, specify a name for the VM. You might include the machine type in the name, such as `compute-1`.
 
    > [!NOTE]
@@ -50,7 +50,7 @@ To scale a user-provisioned OpenShift Container Platform cluster on VMware vSphe
      - `disk.EnableUUID`: Specify `TRUE`.
 8. In the **Virtual Hardware** panel of the **Customize hardware** tab, modify the specified values as required. Ensure that the amount of RAM, CPU, and disk storage meets the minimum requirements for the machine type. If many networks exist, select **Add New Device** > **Network Adapter**, and then enter your network information in the fields provided by the **New Network** menu item.
 9. Complete the remaining configuration steps. On clicking the **Finish** button, you have completed the cloning operation.
-10. From the **Virtual Machines** tab, right-click on your VM and then select **Power** -> **Power On**.
+10. From the **Virtual Machines** tab, right-click on your VM and then select **Power** → **Power On**.
 
 **Next steps**
 
@@ -114,7 +114,8 @@ To allow newly added machines to join your OpenShift Container Platform cluster,
      where:
 
      `<csr_name>`
-     :   Specifies the name of a CSR from the list of current CSRs. \*   To approve all pending CSRs, run the following command:
+     :   Specifies the name of a CSR from the list of current CSRs.
+   - To approve all pending CSRs, run the following command:
 
      ```terminal
      $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs --no-run-if-empty oc adm certificate approve
@@ -145,7 +146,8 @@ To allow newly added machines to join your OpenShift Container Platform cluster,
      where:
 
      `<csr_name>`
-     :   Specifies the name of a CSR from the list of current CSRs. \*   To approve all pending CSRs, run the following command:
+     :   Specifies the name of a CSR from the list of current CSRs.
+   - To approve all pending CSRs, run the following command:
 
      ```terminal
      $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs oc adm certificate approve

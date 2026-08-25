@@ -17,6 +17,7 @@ Hub-side cluster templates allow you to define configuration policies that can b
 > For more information about `PolicyGenerator` resources, see the RHACM [Integrating Policy Generator](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.17/html-single/governance/index#integrate-policy-generator) documentation.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring managed cluster policies by using PolicyGenerator resources](/openshift-docs-markdown/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-configuring-managed-clusters-policygenerator)
 - [Comparing RHACM PolicyGenerator and PolicyGenTemplate resource patching](/openshift-docs-markdown/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-comparing-pgt-and-rhacm-pg-patching-strategies_ztp-configuring-managed-clusters-policygenerator)
@@ -73,8 +74,7 @@ The following example shows you how to use three `ConfigMap` CRs and one `Policy
 
       `argocd.argoproj.io/sync-options`
       :   The `argocd.argoproj.io/sync-options` annotation is required only if the `ConfigMap` is larger than 1 MiB in size.
-
-      1. Create  a `ConfigMap` CR named `group-zones-configmap` to hold the regional configuration. For example:
+   2. Create  a `ConfigMap` CR named `group-zones-configmap` to hold the regional configuration. For example:
 
       ```yaml
       apiVersion: v1
@@ -87,8 +87,7 @@ The following example shows you how to use three `ConfigMap` CRs and one `Policy
         zone-1-cluster-log-fwd-outputs: "[{\"type\":\"kafka\", \"name\":\"kafka-open\", \"url\":\"tcp://10.46.55.190:9092/test\"}]"
         zone-1-cluster-log-fwd-pipelines: "[{\"inputRefs\":[\"audit\", \"infrastructure\"], \"labels\": {\"label1\": \"test1\", \"label2\": \"test2\", \"label3\": \"test3\", \"label4\": \"test4\"}, \"name\": \"all-to-default\", \"outputRefs\": [\"kafka-open\"]}]"
       ```
-
-      1. Create a `ConfigMap` CR named `site-data-configmap` to hold the site-specific configuration. For example:
+   3. Create a `ConfigMap` CR named `site-data-configmap` to hold the site-specific configuration. For example:
 
       ```yaml
       apiVersion: v1
@@ -115,24 +114,198 @@ The following example shows you how to use three `ConfigMap` CRs and one `Policy
    1. Create a group `PolicyGenerator` CR. This example `PolicyGenerator` CR configures logging, VLAN IDs, NICs and Performance Profile for the clusters that match the labels listed the under `policyDefaults.placement` field:
 
       ```yaml
+      ---
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: PolicyGenerator
+      metadata:
+          name: group-du-sno-pgt
+      placementBindingDefaults:
+          name: group-du-sno-pgt-placement-binding
+      policyDefaults:
+          placement:
+              labelSelector:
+                  matchExpressions:
+                      - key: group-du-sno-zone
+                        operator: In
+                        values:
+                          - zone-1
+                      - key: hardware-type
+                        operator: In
+                        values:
+                          - hardware-type-1
+          remediationAction: inform
+          severity: low
+          namespaceSelector:
+              exclude:
+                  - kube-*
+              include:
+                  - '*'
+          evaluationInterval:
+              compliant: 10m
+              noncompliant: 10s
+      policies:
+          - name: group-du-sno-pgt-group-du-sno-cfg-policy
+            policyAnnotations:
+              ran.openshift.io/ztp-deploy-wave: "10"
+            manifests:
+              - path: source-crs/ClusterLogForwarder.yaml
+                patches:
+                  - spec:
+                      outputs: '{{hub fromConfigMap "" "group-zones-configmap" (printf "%s-cluster-log-fwd-outputs" (index .ManagedClusterLabels "group-du-sno-zone")) | toLiteral hub}}'
+                      pipelines: '{{hub fromConfigMap "" "group-zones-configmap" (printf "%s-cluster-log-fwd-pipelines" (index .ManagedClusterLabels "group-du-sno-zone")) | toLiteral hub}}'
+              - path: source-crs/PerformanceProfile-MCP-master.yaml
+                patches:
+                  - metadata:
+                      name: openshift-node-performance-profile
+                    spec:
+                      additionalKernelArgs:
+                          - rcupdate.rcu_normal_after_boot=0
+                          - vfio_pci.enable_sriov=1
+                          - vfio_pci.disable_idle_d3=1
+                          - efi=runtime
+                      cpu:
+                          isolated: '{{hub fromConfigMap "" "group-hardware-types-configmap" (printf "%s-cpu-isolated" (index .ManagedClusterLabels "hardware-type")) hub}}'
+                          reserved: '{{hub fromConfigMap "" "group-hardware-types-configmap" (printf "%s-cpu-reserved" (index .ManagedClusterLabels "hardware-type")) hub}}'
+                      hugepages:
+                          defaultHugepagesSize: '{{hub fromConfigMap "" "group-hardware-types-configmap" (printf "%s-hugepages-default" (index .ManagedClusterLabels "hardware-type")) hub}}'
+                          pages:
+                              - count: '{{hub fromConfigMap "" "group-hardware-types-configmap" (printf "%s-hugepages-count" (index .ManagedClusterLabels "hardware-type")) | toInt hub}}'
+                                size: '{{hub fromConfigMap "" "group-hardware-types-configmap" (printf "%s-hugepages-size" (index .ManagedClusterLabels "hardware-type")) hub}}'
+                      realTimeKernel:
+                          enabled: true
+          - name: group-du-sno-pgt-group-du-sno-sriov-policy
+            policyAnnotations:
+              ran.openshift.io/ztp-deploy-wave: "100"
+            manifests:
+              - path: source-crs/SriovNetwork.yaml
+                patches:
+                  - metadata:
+                      name: sriov-nw-du-fh
+                    spec:
+                      resourceName: du_fh
+                      vlan: '{{hub fromConfigMap "" "site-data-configmap" (printf "%s-sriov-network-vlan-1" .ManagedClusterName) | toInt hub}}'
+              - path: source-crs/SriovNetworkNodePolicy-MCP-master.yaml
+                patches:
+                  - metadata:
+                      name: sriov-nnp-du-fh
+                    spec:
+                      deviceType: netdevice
+                      isRdma: false
+                      nicSelector:
+                          pfNames: '{{hub fromConfigMap "" "group-hardware-types-configmap" (printf "%s-sriov-node-policy-pfNames-1" (index .ManagedClusterLabels "hardware-type")) | toLiteral hub}}'
+                      numVfs: 8
+                      priority: 10
+                      resourceName: du_fh
+              - path: source-crs/SriovNetwork.yaml
+                patches:
+                  - metadata:
+                      name: sriov-nw-du-mh
+                    spec:
+                      resourceName: du_mh
+                      vlan: '{{hub fromConfigMap "" "site-data-configmap" (printf "%s-sriov-network-vlan-2" .ManagedClusterName) | toInt hub}}'
+              - path: source-crs/SriovNetworkNodePolicy-MCP-master.yaml
+                patches:
+                  - metadata:
+                      name: sriov-nw-du-fh
+                    spec:
+                      deviceType: netdevice
+                      isRdma: false
+                      nicSelector:
+                          pfNames: '{{hub fromConfigMap "" "group-hardware-types-configmap" (printf "%s-sriov-node-policy-pfNames-2" (index .ManagedClusterLabels "hardware-type")) | toLiteral hub}}'
+                      numVfs: 8
+                      priority: 10
+                      resourceName: du_fh
+      ```
+   2. Create a group `PolicyGenTemplate` CR. This example `PolicyGenTemplate` CR configures logging, VLAN IDs, NICs and Performance Profile for the clusters that match the labels listed under `spec.bindingRules`:
 
+      ```yaml
+      apiVersion: ran.openshift.io/v1
+      kind: PolicyGenTemplate
+      metadata:
+        name: group-du-sno-pgt
+        namespace: ztp-group
+      spec:
+        bindingRules:
+          # These policies will correspond to all clusters with these labels
+          group-du-sno-zone: "zone-1"
+          hardware-type: "hardware-type-1"
+        mcp: "master"
+        sourceFiles:
+          - fileName: ClusterLogForwarder.yaml # wave 10
+            policyName: "group-du-sno-cfg-policy"
+            spec:
+              outputs: '{{hub fromConfigMap "" "group-zones-configmap" (printf "%s-cluster-log-fwd-outputs" (index .ManagedClusterLabels "group-du-sno-zone")) | toLiteral hub}}'
+              pipelines: '{{hub fromConfigMap "" "group-zones-configmap" (printf "%s-cluster-log-fwd-pipelines" (index .ManagedClusterLabels "group-du-sno-zone")) | toLiteral hub}}'
+
+          - fileName: PerformanceProfile.yaml # wave 10
+            policyName: "group-du-sno-cfg-policy"
+            metadata:
+              name: openshift-node-performance-profile
+            spec:
+              additionalKernelArgs:
+              - rcupdate.rcu_normal_after_boot=0
+              - vfio_pci.enable_sriov=1
+              - vfio_pci.disable_idle_d3=1
+              - efi=runtime
+              cpu:
+                isolated: '{{hub fromConfigMap "" "group-hardware-types-configmap" (printf "%s-cpu-isolated" (index .ManagedClusterLabels "hardware-type")) hub}}'
+                reserved: '{{hub fromConfigMap "" "group-hardware-types-configmap" (printf "%s-cpu-reserved" (index .ManagedClusterLabels "hardware-type")) hub}}'
+              hugepages:
+                defaultHugepagesSize: '{{hub fromConfigMap "" "group-hardware-types-configmap" (printf "%s-hugepages-default" (index .ManagedClusterLabels "hardware-type")) hub}}'
+                pages:
+                  - size: '{{hub fromConfigMap "" "group-hardware-types-configmap" (printf "%s-hugepages-size" (index .ManagedClusterLabels "hardware-type")) hub}}'
+                    count: '{{hub fromConfigMap "" "group-hardware-types-configmap" (printf "%s-hugepages-count" (index .ManagedClusterLabels "hardware-type")) | toInt hub}}'
+              realTimeKernel:
+                enabled: true
+
+          - fileName: SriovNetwork.yaml # wave 100
+            policyName: "group-du-sno-sriov-policy"
+            metadata:
+              name: sriov-nw-du-fh
+            spec:
+              resourceName: du_fh
+              vlan: '{{hub fromConfigMap "" "site-data-configmap" (printf "%s-sriov-network-vlan-1" .ManagedClusterName) | toInt hub}}'
+
+          - fileName: SriovNetworkNodePolicy.yaml # wave 100
+            policyName: "group-du-sno-sriov-policy"
+            metadata:
+              name: sriov-nnp-du-fh
+            spec:
+              deviceType: netdevice
+              isRdma: false
+              nicSelector:
+                pfNames: '{{hub fromConfigMap "" "group-hardware-types-configmap" (printf "%s-sriov-node-policy-pfNames-1" (index .ManagedClusterLabels "hardware-type")) | toLiteral hub}}'
+              numVfs: 8
+              priority: 10
+              resourceName: du_fh
+
+          - fileName: SriovNetwork.yaml # wave 100
+            policyName: "group-du-sno-sriov-policy"
+            metadata:
+              name: sriov-nw-du-mh
+            spec:
+              resourceName: du_mh
+              vlan: '{{hub fromConfigMap "" "site-data-configmap" (printf "%s-sriov-network-vlan-2" .ManagedClusterName) | toInt hub}}'
+
+          - fileName: SriovNetworkNodePolicy.yaml # wave 100
+            policyName: "group-du-sno-sriov-policy"
+            metadata:
+              name: sriov-nw-du-fh
+            spec:
+              deviceType: netdevice
+              isRdma: false
+              nicSelector:
+                pfNames: '{{hub fromConfigMap "" "group-hardware-types-configmap" (printf "%s-sriov-node-policy-pfNames-2" (index .ManagedClusterLabels "hardware-type")) | toLiteral hub}}'
+              numVfs: 8
+              priority: 10
+              resourceName: du_fh
       ```
 
-{% include "./snippets/pg-ztp-specifying-nics-in-pgt-hub-cluster-templates.yaml" %} ``    1.  Create a group `PolicyGenTemplate` CR.     This example `PolicyGenTemplate` CR configures logging, VLAN IDs, NICs and Performance Profile for the clusters that match the labels listed under `spec.bindingRules`:        ``yaml {% include "./snippets/ztp-specifying-nics-in-pgt-hub-cluster-templates.yaml" %} \`\`\`
-
-```
-:::note
-
-To retrieve site-specific configuration values, use the `.ManagedClusterName` field.
-This is a template context value set to the name of the target managed cluster.
-
-To retrieve group-specific configuration, use the `.ManagedClusterLabels` field.
-This is a template context value set to the value of the managed cluster’s labels.
-
-:::
-```
-
-1. Commit the site `PolicyGenerator` or `PolicyGentemplate` CR in Git and push to the Git repository that is monitored by the ArgoCD application.
+   > [!NOTE]
+   > To retrieve site-specific configuration values, use the `.ManagedClusterName` field. This is a template context value set to the name of the target managed cluster.
+   >
+   > To retrieve group-specific configuration, use the `.ManagedClusterLabels` field. This is a template context value set to the value of the managed cluster’s labels.
+5. Commit the site `PolicyGenerator` or `PolicyGentemplate` CR in Git and push to the Git repository that is monitored by the ArgoCD application.
 
    > [!NOTE]
    > Subsequent changes to the referenced `ConfigMap` CR are not automatically synced to the applied policies. You need to manually sync the new `ConfigMap` changes to update existing `PolicyGenerator` CRs. See "Syncing new ConfigMap changes to existing PolicyGenerator or PolicyGenTemplate CRs".

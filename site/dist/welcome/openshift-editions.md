@@ -38,7 +38,8 @@ Red Hat OpenShift Kubernetes Engine
 Red Hat OpenShift Virtualization Engine
 :   Provides the virtualization capabilities of Red Hat OpenShift in a streamlined, cost-effective solution to deploy, manage, and scale VMs exclusively. For more information, see "Red Hat OpenShift Virtualization Engine" in the *Additional resources* section.
 
-## Additional resources {#additional-resources_openshift-editions}
+**Additional resources**
+{._additional-resources}
 
 - [Red Hat OpenShift Service on AWS (Red Hat product page)](https://www.redhat.com/en/technologies/cloud-computing/openshift/aws)
 - [Microsoft Azure Red Hat OpenShift (Red Hat product page)](https://www.redhat.com/en/technologies/cloud-computing/openshift/azure)

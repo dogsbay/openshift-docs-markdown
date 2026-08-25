@@ -55,7 +55,7 @@ You can run a storage checkup to validate that storage is working correctly for 
 
 **Procedure**
 
-1. Navigate to **Virtualization** -> **Checkups** in the web console.
+1. Navigate to **Virtualization** → **Checkups** in the web console.
 2. Click the **Storage** tab.
 3. Click **Install permissions**.
 4. Click **Run checkup**.
@@ -319,6 +319,7 @@ If a storage checkup fails, there are steps that you can take to identify the re
 2. Search the directory provided by the `must-gather` tool for logs, events, or terms related to the error in the `data.status.failureReason` field value.
 
 **Additional resources**
+{._additional-resources}
 
 - [Collecting data for Red Hat Support](/openshift-docs-markdown/virt/support/virt-collecting-virt-data#virt-collecting-virt-data)
 - [Using the `must-gather` tool for OpenShift Virtualization](/openshift-docs-markdown/virt/support/virt-collecting-virt-data#virt-using-virt-must-gather_virt-collecting-virt-data)

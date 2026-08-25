@@ -1,5 +1,5 @@
 ---
-title: PerformanceProfile []
+title: PerformanceProfile [performance.openshift.io/v2]
 ---
 
 # PerformanceProfile \[performance.openshift.io/v2\] {#performanceprofile-performance-openshift-io-v2}
@@ -69,7 +69,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `balanceIsolated` | `boolean` | BalanceIsolated toggles whether or not the Isolated CPU set is eligible for load balancing work loads. When this option is set to "false", the Isolated CPU set will be static, meaning workloads have to explicitly assign each thread to a specific cpu in order to work across multiple CPUs. Setting this to "true" allows workloads to be balanced across CPUs. Setting this to "false" offers the most predictable performance for guaranteed workloads, but it offloads the complexity of cpu load balancing to the application. Defaults to "true" |
-| `isolated` | `string` | Isolated defines a set of CPUs that will be used to give to application threads the most execution time possible, which means removing as many extraneous tasks off a CPU as possible. It is important to notice the CPU manager can choose any CPU to run the workload except the reserved CPUs. In order to guarantee that your workload will run on the isolated CPU:   1. The union of reserved CPUs and isolated CPUs should include all online CPUs   2. The isolated CPUs field should be the complementary to reserved CPUs field |
+| `isolated` | `string` | Isolated defines a set of CPUs that will be used to give to application threads the most execution time possible, which means removing as many extraneous tasks off a CPU as possible. It is important to notice the CPU manager can choose any CPU to run the workload except the reserved CPUs. In order to guarantee that your workload will run on the isolated CPU: 1. The union of reserved CPUs and isolated CPUs should include all online CPUs 2. The isolated CPUs field should be the complementary to reserved CPUs field |
 | `offlined` | `string` | Offline defines a set of CPUs that will be unused and set offline |
 | `reserved` | `string` | Reserved defines a set of CPUs that will not be used for any container workloads initiated by kubelet. |
 | `shared` | `string` | Shared defines a set of CPUs that will be shared among guaranteed workloads that needs additional cpus which are not exclusive, alongside the isolated, exclusive resources that are being used already by those workloads. |
@@ -277,13 +277,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of PerformanceProfile
   - `GET`: list objects of kind PerformanceProfile
   - `POST`: create a PerformanceProfile
-- `/apis/performance.openshift.io/v2/performanceprofiles/{{ name }}`
+- `/apis/performance.openshift.io/v2/performanceprofiles/{name}`
 
   - `DELETE`: delete a PerformanceProfile
   - `GET`: read the specified PerformanceProfile
   - `PATCH`: partially update the specified PerformanceProfile
   - `PUT`: replace the specified PerformanceProfile
-- `/apis/performance.openshift.io/v2/performanceprofiles/{{ name }}/status`
+- `/apis/performance.openshift.io/v2/performanceprofiles/{name}/status`
 
   - `GET`: read status of the specified PerformanceProfile
   - `PATCH`: partially update status of the specified PerformanceProfile
@@ -357,7 +357,7 @@ Description
 | 202 - Accepted | [`PerformanceProfile`](/openshift-docs-markdown/rest_api/node_apis/performanceprofile-performance-openshift-io-v2#performanceprofile-performance-openshift-io-v2) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/performance.openshift.io/v2/performanceprofiles/{{ name }} {#_apisperformanceopenshiftiov2performanceprofiles_name}
+### /apis/performance.openshift.io/v2/performanceprofiles/{name} {#_apisperformanceopenshiftiov2performanceprofiles_name}
 
 **Global path parameters**
 
@@ -461,7 +461,7 @@ Description
 | 201 - Created | [`PerformanceProfile`](/openshift-docs-markdown/rest_api/node_apis/performanceprofile-performance-openshift-io-v2#performanceprofile-performance-openshift-io-v2) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/performance.openshift.io/v2/performanceprofiles/{{ name }}/status {#_apisperformanceopenshiftiov2performanceprofiles_name_status}
+### /apis/performance.openshift.io/v2/performanceprofiles/{name}/status {#_apisperformanceopenshiftiov2performanceprofiles_name_status}
 
 **Global path parameters**
 

@@ -19,7 +19,7 @@ You can create physical networks for OpenShift Virtualization using the OpenShif
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, go to **Networking** -> **Physical networks**.
+1. In the OpenShift Container Platform web console, go to **Networking** → **Physical networks**.
 2. Click **Create network**. The **Network configuration wizard** is displayed.
 3. On the **Network identity** page, enter a name for your network.
 4. On the **Nodes configuration** page, select either **Apply to all nodes on the cluster** or **Apply to specific subsets of nodes using the nodes selector**.
@@ -49,7 +49,7 @@ A single interface
 
 **Verification**
 
-1. In the OpenShift Container Platform web console, go to **Networking** -> **Physical networks**.
+1. In the OpenShift Container Platform web console, go to **Networking** → **Physical networks**.
 2. Locate your new network in the list.
 3. Expand the network row to view the associated configurations. Verify that the **Enactment state** is **Available** and that the **Nodes** count matches your expectation.
 
@@ -63,8 +63,8 @@ You can add one or more OpenShift Container Platform worker nodes to an existing
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, go to **Networking** -> **Physical networks**.
-2. Click the Options menu ![](kebab.png "Options menu") next to the network that you want to edit.
+1. In the OpenShift Container Platform web console, go to **Networking** → **Physical networks**.
+2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the network that you want to edit.
 3. Click **Configure nodes**. The **Network configuration wizard** is displayed.
 
    > [!NOTE]
@@ -95,9 +95,10 @@ A single interface
     > The system displays only the interfaces that all nodes have in common.
 
     1. Select the **Aggregation mode** from the drop down options.
-    2. On the **Settings** page, enter a **Bridge name** and set the **Maximum Transmission Unit (MTU)**.
-    3. Review the configuration details.
-    4. Click **Create**.
+
+1. On the **Settings** page, enter a **Bridge name** and set the **Maximum Transmission Unit (MTU)**.
+2. Review the configuration details.
+3. Click **Create**.
 
 ## Creating a virtual machine network from a physical network {#creating-vm-network-localnet_configuring-physical-networks}
 
@@ -109,8 +110,8 @@ If your use case does not permit the use of network address translation (NAT), y
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, go to **Networking** -> **Physical networks**.
-2. Click the Options menu ![](kebab.png "Options menu") next to the network that you want to edit.
+1. In the OpenShift Container Platform web console, go to **Networking** → **Physical networks**.
+2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the network that you want to edit.
 3. Click **Create a virtual machines network using this physical network**. The **Create virtual machine network** wizard is displayed with the network name populated.
 4. Select a **Physical network**.
 5. Optional: Select **VLAN tagging** and enter a **VLAN ID**.

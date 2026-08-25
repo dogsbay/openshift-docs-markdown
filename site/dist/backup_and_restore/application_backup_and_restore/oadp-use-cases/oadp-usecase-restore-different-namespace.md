@@ -1,8 +1,8 @@
 ---
-title: "{{ oadp_first }} restore use case"
+title: OpenShift API for Data Protection (OADP) restore use case
 ---
 
-# {{ oadp_first }} restore use case {#oadp-use-cases-restore}
+# OpenShift API for Data Protection (OADP) restore use case {#oadp-use-cases-restore}
 
 Following is a use case for using OADP to restore a backup to a different namespace.
 

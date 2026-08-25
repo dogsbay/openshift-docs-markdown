@@ -29,6 +29,9 @@ The Red Hat Knowledgebase helps you get the most from Red Hat products and tec
 
 It includes articles, product documentation, and videos that outline best practices for installing, configuring, and using Red Hat products. You can also search for solutions to known issues. Each solution has a root cause description and steps to fix the problem.
 
+**Additional resources**
+{._additional-resources}
+
 - [Red Hat Knowledgebase](https://access.redhat.com/knowledgebase)
 
 ### Search the Red Hat Knowledgebase {#support-knowledgebase-search_troubleshooting-intro}
@@ -83,11 +86,11 @@ If you cannot resolve an OpenShift Container Platform issue by using the Red Ha
 
    - To manually obtain your cluster ID using the OpenShift Container Platform web console:
 
-     1. Navigate to **Home** -> **Overview**.
+     1. Navigate to **Home** → **Overview**.
      2. Find the value in the **Cluster ID** field of the **Details** section.
    - Or, open a new support case from the OpenShift Container Platform web console, which automatically fills in your cluster ID.
 
-     1. From the toolbar, navigate to **(?) Help** -> **Open Support Case**.
+     1. From the toolbar, navigate to **(?) Help** → **Open Support Case**.
      2. The **Cluster ID** value automatically fills in.
    - To obtain your cluster ID using the OpenShift CLI (`oc`), run the following command:
 

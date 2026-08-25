@@ -36,6 +36,7 @@ OVN-Kubernetes, the default network provider in OpenShift Container Platform 4.1
 > The earlier list includes join, transit, and masquerade IPv4 and IPv6 address subnets. If your cluster uses OVN-Kubernetes, do not include any of these IP address subnet ranges in any other CIDR definitions in your cluster or infrastructure.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring OVN-Kubernetes internal IP address subnets](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/configure-ovn-kubernetes-subnets#configure-ovn-kubernetes-subnets)
 
@@ -49,6 +50,7 @@ In the Machine classless inter-domain routing (CIDR) field, you must specify the
 The default is `10.0.0.0/16`. This range must not conflict with any connected networks.
 
 **Additional resources**
+{._additional-resources}
 
 - [Cluster Network Operator configuration](/openshift-docs-markdown/networking/networking_operators/cluster-network-operator#nw-operator-cr_cluster-network-operator)
 
@@ -67,6 +69,7 @@ The pod CIDR is the same as the `clusterNetwork` CIDR and the cluster CIDR.
 The range must be large enough to accommodate your workload. The address block must not overlap with any external service accessed from within the cluster. The default is `10.128.0.0/14`. You can expand the range after cluster installation.
 
 **Additional resources**
+{._additional-resources}
 
 - [Cluster Network Operator configuration](/openshift-docs-markdown/networking/networking_operators/cluster-network-operator#nw-operator-cr_cluster-network-operator)
 - [Configuring the cluster network range](/openshift-docs-markdown/networking/configuring_network_settings/configuring-cluster-network-range#configuring-cluster-network-range)

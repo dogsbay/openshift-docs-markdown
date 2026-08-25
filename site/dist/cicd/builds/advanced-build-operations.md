@@ -65,8 +65,8 @@ The maximum duration is counted from the time when a build pod gets scheduled in
     completionDeadlineSeconds: 1800
   ```
 
-> [!NOTE]
-> This setting is not supported with the Pipeline Strategy option.
+  > [!NOTE]
+  > This setting is not supported with the Pipeline Strategy option.
 
 ## Assigning builds to specific nodes {#builds-assigning-builds-to-nodes_advanced-build-operations}
 

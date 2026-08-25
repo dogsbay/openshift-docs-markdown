@@ -26,7 +26,8 @@ const headings = [{"depth":1,"slug":"json-flows-format-reference","text":"Networ
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/observability/network_observability/json-flows-format-reference";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -84,12 +85,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -97,7 +99,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="json-flows-format-reference" class="group scroll-mt-20">Network flows format reference<a href="#json-flows-format-reference" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Review the specifications for the network flow format, which is used internally and for exporting flow data to Kafka.</p>
+      <p class="_abstract">Review the specifications for the network flow format, which is used internally and for exporting flow data to Kafka.</p>
       <h2 id="network-observability-flows-format_json_reference" class="group scroll-mt-20">Network Flows format reference<a href="#network-observability-flows-format_json_reference" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p>This is the specification of the network flows format. That format is used when a Kafka exporter is configured, for Prometheus metrics labels as well as internally for the Loki store.</p>
       <p>The "Filter ID" column shows which related name to use when defining Quick Filters (see <code>spec.consolePlugin.quickFilters</code> in the <code>FlowCollector</code> specification).</p>

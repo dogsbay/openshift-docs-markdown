@@ -18,6 +18,7 @@ Before beginning your cluster installation, you must complete prerequisite tasks
 - You configured your firewall to allow TCP traffic on port `8090` from all hosts to the rendezvous host so that hosts can reach the Assisted Service API during discovery and bootstrap. For more information, see "Port requirements for the rendezvous host".
 
 **Additional resources**
+{._additional-resources}
 
 - [Installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)
 - [Selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing)
@@ -240,37 +241,31 @@ Create the preferred configuration inputs used to create the agent image.
                next-hop-address: 192.168.111.2
                next-hop-interface: eno1
                table-id: 254
+   EOF
    ```
 
-{% if iscsi_boot %} minimalISO: true {% endif %} EOF \`\`\`
+   where:
 
-```
-where:
+   `rendezvousIP`
+   :   Specifies the IP address used to determine which node performs the bootstrapping process as well as running the `assisted-service` component. You must provide the rendezvous IP address when you do not specify at least one host’s IP address in the `networkConfig` parameter. If this address is not provided, one IP address is selected from the provided hosts' `networkConfig`.
 
-`rendezvousIP`
-:   Specifies the IP address used to determine which node performs the bootstrapping process as well as running the `assisted-service` component.
-    You must provide the rendezvous IP address when you do not specify at least one host’s IP address in the `networkConfig` parameter. If this address is not provided, one IP address is selected from the provided hosts' `networkConfig`.
+   `hosts`
+   :   Specifies host configuration. The number of hosts defined must not exceed the total number of hosts defined in the `install-config.yaml` file, which is the sum of the values of the `compute.replicas` and `controlPlane.replicas` parameters. This configuration is optional.
 
-`hosts`
-:   Specifies host configuration. The number of hosts defined must not exceed the total number of hosts defined in the `install-config.yaml` file, which is the sum of the values of the `compute.replicas` and `controlPlane.replicas` parameters. This configuration is optional.
+   `hosts.hostname`
+   :   Specifies a value that overrides the hostname obtained from either the Dynamic Host Configuration Protocol (DHCP) or a reverse DNS lookup. Each host must have a unique hostname supplied by one of these methods. This configuration is optional.
 
-`hosts.hostname`
-:   Specifies a value that overrides the hostname obtained from either the Dynamic Host Configuration Protocol (DHCP) or a reverse DNS lookup. Each host must have a unique hostname supplied by one of these methods. This configuration is optional.
+   `hosts.rootDeviceHints`
+   :   Specifies a configuration that enables provisioning of the Red Hat Enterprise Linux CoreOS (RHCOS) image to a particular device. The installation program examines the devices in the order it discovers them, and compares the discovered values with the hint values. It uses the first discovered device that matches the hint value.
 
-`hosts.rootDeviceHints`
-:   Specifies a configuration that enables provisioning of the Red&#160;Hat Enterprise Linux CoreOS (RHCOS) image to a particular device. The installation program examines the devices in the order it discovers them, and compares the discovered values with the hint values. It uses the first discovered device that matches the hint value.
+       > [!NOTE]
+       > This parameter is mandatory for FCP multipath configurations on IBM Z.
 
-    :::note
-
-    This parameter is mandatory for FCP multipath configurations on IBM Z.
-
-    :::
-
-`hosts.networkConfig`
-:   Specifies the network interface configuration of a host in NMState format. This configuration is optional.
-```
+   `hosts.networkConfig`
+   :   Specifies the network interface configuration of a host in NMState format. This configuration is optional.
 
 **Additional resources**
+{._additional-resources}
 
 - [Deploying with dual-stack networking](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#modifying-install-config-for-dual-stack-network_ipi-install-installation-workflow)
 - [Configuring the install-config yaml file](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#configuring-the-install-config-file_ipi-install-installation-workflow)
@@ -304,10 +299,11 @@ If you create additional manifests to configure your Agent-based installation be
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Using MachineConfig objects to configure nodes](/openshift-docs-markdown/machine_configuration/machine-configs-configure#machine-configs-configure)
 
-### Creating a manifest object that includes a customized br-ex bridge {id="creating-manifest-file-customized-br-ex-bridge_installing-with-agent-based-installer"} {#creating-a-manifest-object-that-includes-a-customized-br-ex-bridge-idcreating-manifest-file-customized-br-ex-bridge_installing-with-agent-based-installer ._abstract}
+### Creating a manifest object that includes a customized br-ex bridge {#creating-manifest-file-customized-br-ex-bridge_installing-with-agent-based-installer}
 
 By default, OpenShift Container Platform automatically configures the Open vSwitch (OVS) `br-ex` bridge on nodes. For advanced networking requirements, you can override this default behavior on bare-metal platforms. To do this, use the Agent-based Installer to create a `MachineConfig` object that includes an NMState configuration file.
 
@@ -512,7 +508,7 @@ The following procedure sets up a separate `/var` partition by adding a machine 
 
    ```yaml
    variant: openshift
-   version: {{ product_version }}.0
+   version: 4.22.0
    metadata:
      labels:
        machineconfiguration.openshift.io/role: worker
@@ -600,6 +596,7 @@ See "Challenges of the network far edge" to learn more about GitOps Zero Touch P
    2. Configure the manifest files in the `mirror` directory.
 
 **Additional resources**
+{._additional-resources}
 
 - [Sample GitOps ZTP custom resources](/openshift-docs-markdown/installing/installing_with_agent_based_installer/installing-with-agent-based-installer#sample-ztp-custom-resources_installing-with-agent-based-installer)
 - [Challenges of the network far edge](/openshift-docs-markdown/edge_computing/ztp-deploying-far-edge-clusters-at-scale#ztp-deploying-far-edge-clusters-at-scale)
@@ -657,6 +654,7 @@ As an optional task, you can encrypt your disk or partition while installing Ope
    :   Specifies the Tang servers if you are using Tang. This value is optional.
 
 **Additional resources**
+{._additional-resources}
 
 - [About disk encryption](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-storage_installing-customizing)
 
@@ -973,7 +971,7 @@ After the installation has started, you can track installation progress and veri
    clusterDeploymentRef:
      name: mycluster
    imageSetRef:
-     name: openshift-{{ product_version }}
+     name: openshift-4.22
    networking:
      clusterNetwork:
      - cidr: 172.21.0.0/16
@@ -1005,7 +1003,7 @@ You can customize the following GitOps ZTP custom resources to specify more deta
     clusterDeploymentRef:
       name: ostest
     imageSetRef:
-      name: openshift-{{ product_version }}
+      name: openshift-4.22
     networking:
       clusterNetwork:
       - cidr: 10.128.0.0/14
@@ -1046,9 +1044,9 @@ To declaratively bind specific bare-metal hosts to a cluster, use the `bmac.agen
 apiVersion: hive.openshift.io/v1
 kind: ClusterImageSet
 metadata:
-  name: openshift-{{ product_version }}
+  name: openshift-4.22
 spec:
-  releaseImage: registry.ci.openshift.org/ocp/release:{{ product_version }}.0-0.nightly-2022-06-06-025509
+  releaseImage: registry.ci.openshift.org/ocp/release:4.22.0-0.nightly-2022-06-06-025509
 ```
 
 ```yaml {title="Example infra-env.yaml file"}
@@ -1120,6 +1118,7 @@ stringData:
 ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Challenges of the network far edge](/openshift-docs-markdown/edge_computing/ztp-deploying-far-edge-clusters-at-scale#ztp-deploying-far-edge-clusters-at-scale)
 

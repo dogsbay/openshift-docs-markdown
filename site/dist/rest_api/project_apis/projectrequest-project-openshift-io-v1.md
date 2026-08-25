@@ -1,5 +1,5 @@
 ---
-title: ProjectRequest []
+title: ProjectRequest [project.openshift.io/v1]
 ---
 
 # ProjectRequest \[project.openshift.io/v1\] {#projectrequest-project-openshift-io-v1}

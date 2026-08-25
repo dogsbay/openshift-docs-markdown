@@ -471,10 +471,9 @@ You can unapply a remediation that was previously applied to roll back a change 
    - `metadata.labels.compliance.openshift.io/scan-name` specifies the scan name of the remediation.
    - `spec.current.object.spec.kubeletConfig.evictionHard.imagefs.available` specifies the remediation that was added to the `KubeletConfig` objects.
 
-> [!NOTE]
-> If the remediation invokes an `evictionHard` kubelet configuration, you must specify all of the `evictionHard` parameters: `memory.available`, `nodefs.available`, `nodefs.inodesFree`, `imagefs.available`, and `imagefs.inodesFree`. If you do not specify all parameters, only the specified parameters are applied and the remediation will not function properly.
-
-1. Remove the remediation:
+     > [!NOTE]
+     > If the remediation invokes an `evictionHard` kubelet configuration, you must specify all of the `evictionHard` parameters: `memory.available`, `nodefs.available`, `nodefs.inodesFree`, `imagefs.available`, and `imagefs.inodesFree`. If you do not specify all parameters, only the specified parameters are applied and the remediation will not function properly.
+2. Remove the remediation:
 
    1. Set `apply` to false for the remediation object:
 
@@ -530,7 +529,8 @@ If possible, a remediation is still created so that the cluster can converge to 
   annotate compliancescans/rhcos4-e8-worker compliance.openshift.io/rescan=
   ```
 
-## Additional resources {#additional-resources_compliance-remediation}
+**Additional resources**
+{._additional-resources}
 
 - [Modifying nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing#nodes-nodes-managing-about_nodes-nodes-managing)
 - [Ignition specification](https://coreos.github.io/ignition/specs/)

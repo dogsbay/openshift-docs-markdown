@@ -14,6 +14,7 @@ You can update the kernel to kernel-rt, reserve CPUs for cluster and operating s
 > When writing your applications, follow the general recommendations described in [RHEL for Real Time processes and threads](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_for_real_time/9/html-single/understanding_rhel_for_real_time/index#assembly_rhel-for-real-time-processes-and-threads_understanding-RHEL-for-Real-Time-core-concepts).
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating a performance profile](/openshift-docs-markdown/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#cnf-create-performance-profiles_cnf-tuning-low-latency-nodes-with-perf-profile)
 
@@ -50,7 +51,7 @@ You can schedule low latency workloads onto a compute node where a performance p
          type: RuntimeDefault
      containers:
      - name: dynamic-low-latency-pod
-       image: "registry.redhat.io/openshift4/cnf-tests-rhel8:v{{ product_version }}"
+       image: "registry.redhat.io/openshift4/cnf-tests-rhel8:v4.22"
        command: ["sleep", "10h"]
        resources:
          requests:
@@ -167,6 +168,7 @@ You can schedule low latency workloads onto a compute node where a performance p
    > When you tune nodes for low latency, the usage of execution probes in conjunction with applications that require guaranteed CPUs can cause latency spikes. Use other probes, such as a properly configured set of network probes, as an alternative.
 
 **Additional resources**
+{._additional-resources}
 
 - [Placing pods on specific nodes using node selectors](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-node-selectors#nodes-pods-node-selectors)
 - [Assigning pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node)
@@ -316,7 +318,7 @@ To protect high priority workloads when using power saving configurations on a n
 
 By disabling P-states and C-states at the pod level, you can configure high priority workloads for best performance and lowest latency.
 
-***Configuration for high priority workloads***
+**Configuration for high priority workloads**
 
 <table>
 <thead>
@@ -367,6 +369,7 @@ By disabling P-states and C-states at the pod level, you can configure high prio
 2. Restart the pods to apply the annotation.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring power saving for nodes that run colocated high and low priority workloads](/openshift-docs-markdown/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#cnf-configuring-power-saving-for-nodes_cnf-tuning-low-latency-nodes-with-perf-profile)
 
@@ -393,6 +396,7 @@ To eliminate CPU throttling for pinned pods, create a pod with the `cpu-quota.cr
   > Only disable CPU CFS quota when the CPU manager static policy is enabled and for pods with guaranteed QoS that use whole CPUs. For example, pods that contain CPU-pinned containers. Otherwise, disabling CPU CFS quota can affect the performance of other containers in the cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Recommended firmware configuration for vDU cluster hosts](/openshift-docs-markdown/edge_computing/ztp-vdu-validating-cluster-tuning#ztp-du-firmware-config-reference_vdu-config-ref)
 
@@ -474,5 +478,6 @@ You can use the `housekeeping` value to reduce the overall CPU footprint by allo
    The output is a hexadecimal bitmask representing the CPUs excluded from IRQ handling.
 
 **Additional resources**
+{._additional-resources}
 
 - [Managing device interrupt processing for guaranteed pod isolated CPUs](/openshift-docs-markdown/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#managing-device-interrupt-processing-for-guaranteed-pod-isolated-cpus_cnf-tuning-low-latency-nodes-with-perf-profile)

@@ -1,5 +1,5 @@
 ---
-title: Uninstalling a cluster on {{ ibm_cloud_title }}
+title: Uninstalling a cluster on IBM Cloud
 ---
 
 # Uninstalling a cluster on IBM Cloud {#uninstalling-cluster-ibm-cloud}
@@ -46,13 +46,14 @@ To remove an OpenShift Container Platform cluster that uses installer-provisione
         For more information about deleting volumes, see the [IBM Cloud(R) CLI documentation](https://cloud.ibm.com/docs/vpc?topic=vpc-infrastructure-cli-plugin-vpc-reference&interface=ui#volume-delete).
 2. Export the API key that was created as part of the installation process.
 
-   ```terminal
-   $ export IC_API_KEY=<api_key>
-   ```
+```terminal
+$ export IC_API_KEY=<api_key>
+```
 
-   > [!NOTE]
-   > You must set the variable name exactly as specified. The installation program expects the variable name to be present to remove the service IDs that were created when the cluster was installed.
-3. From the directory that has the installation program on the computer that you used to install the cluster, run the following command:
+> [!NOTE]
+> You must set the variable name exactly as specified. The installation program expects the variable name to be present to remove the service IDs that were created when the cluster was installed.
+
+1. From the directory that has the installation program on the computer that you used to install the cluster, run the following command:
 
    ```terminal
    $ ./openshift-install destroy cluster \
@@ -69,7 +70,7 @@ To remove an OpenShift Container Platform cluster that uses installer-provisione
 
    > [!NOTE]
    > You must specify the directory that includes the cluster definition files for your cluster. The installation program requires the `metadata.json` file in this directory to delete the cluster.
-4. Remove the manual CCO credentials that were created for the cluster:
+2. Remove the manual CCO credentials that were created for the cluster:
 
    ```terminal
    $ ccoctl ibmcloud delete-service-id \
@@ -79,4 +80,4 @@ To remove an OpenShift Container Platform cluster that uses installer-provisione
 
    > [!NOTE]
    > If your cluster uses Technology Preview features that are enabled by the `TechPreviewNoUpgrade` feature set, you must include the `--enable-tech-preview` parameter.
-5. Optional: Delete the `<installation_directory>` directory and the OpenShift Container Platform installation program.
+3. Optional: Delete the `<installation_directory>` directory and the OpenShift Container Platform installation program.

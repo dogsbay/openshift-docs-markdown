@@ -18,5 +18,6 @@ FIPS compliance is one of the most critical components required in highly secure
 To understand Red Hat’s view of OpenShift Container Platform compliance frameworks, refer to the Risk Management and Regulatory Readiness chapter of the OpenShift Security Guide Book.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing a cluster in FIPS mode](/openshift-docs-markdown/installing/overview/installing-fips#installing-fips-mode_installing-fips)

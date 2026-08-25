@@ -63,7 +63,7 @@ You must configure the network connectivity between machines to allow OpenShift 
 
 Review the following details about the required network ports.
 
-***Ports used for all-machine to all-machine communications***
+**Ports used for all-machine to all-machine communications**
 
 <table>
 <thead>
@@ -82,50 +82,52 @@ Review the following details about the required network ports.
 <tr>
   <td>ICMP</td>
   <td>N/A</td>
-  <td>Network reachability tests<br><br>.3+</td>
+  <td>Network reachability tests</td>
 </tr>
 <tr>
-  <td>TCP</td>
+  <td rowspan="3">TCP</td>
   <td><code>1936</code></td>
   <td>Metrics</td>
 </tr>
 <tr>
   <td><code>9000</code>-<code>9999</code></td>
-  <td>Host level services, including the node exporter on ports <code>9100</code>-<code>9101</code> andthe Cluster Version Operator on port <code>9099</code>.</td>
+  <td>Host level services, including the node exporter on ports <code>9100</code>-<code>9101</code> and the Cluster Version Operator on port <code>9099</code>.</td>
+</tr>
+<tr>
   <td><code>10250</code>-<code>10259</code></td>
+  <td>The default ports that Kubernetes reserves</td>
 </tr>
 <tr>
-  <td>The default ports that Kubernetes reserves<br><br>.5+</td>
-  <td>UDP</td>
+  <td rowspan="4">UDP</td>
   <td><code>6081</code></td>
+  <td>Geneve</td>
 </tr>
 <tr>
-  <td>Geneve</td>
   <td><code>9000</code>-<code>9999</code></td>
   <td>Host level services, including the node exporter on ports <code>9100</code>-<code>9101</code>.</td>
 </tr>
 <tr>
   <td><code>500</code></td>
   <td>IPsec IKE packets</td>
-  <td><code>4500</code></td>
 </tr>
 <tr>
+  <td><code>4500</code></td>
   <td>IPsec NAT-T packets</td>
+</tr>
+<tr>
   <td>TCP/UDP</td>
   <td><code>30000</code>-<code>32767</code></td>
+  <td>Kubernetes node port</td>
 </tr>
 <tr>
-  <td>Kubernetes node port</td>
   <td>ESP</td>
   <td>N/A</td>
-</tr>
-<tr>
   <td>IPsec Encapsulating Security Payload (ESP)</td>
 </tr>
 </tbody>
 </table>
 
-***Ports used for all-machine to control plane communications***
+**Ports used for all-machine to control plane communications**
 
 <table>
 <thead>
@@ -144,7 +146,7 @@ Review the following details about the required network ports.
 </tbody>
 </table>
 
-***Ports used for control plane machine to control plane machine communications***
+**Ports used for control plane machine to control plane machine communications**
 
 <table>
 <thead>
@@ -187,6 +189,7 @@ You can create a custom role for the Container Storage Interface (CSI) driver, t
 To remove a third-party CSI driver, see "Removing a third-party vSphere CSI Driver".
 
 **Additional resources**
+{._additional-resources}
 
 - [Removing a third-party vSphere CSI Driver Operator](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-vsphere#persistent-storage-csi-vsphere-install-issues_persistent-storage-csi-vsphere)
 - [Updating hardware on nodes running on vSphere](/openshift-docs-markdown/updating/updating_a_cluster/updating-hardware-on-nodes-running-on-vsphere#updating-hardware-on-nodes-running-on-vsphere)
@@ -207,7 +210,7 @@ The installation program requires an additional role to create a vSphere virtual
 > [!NOTE]
 > The following tables do not explicitly list the ESXi host object. In the vSphere hierarchy, ESXi hosts are child objects of the cluster. If you apply your custom role to the vSphere vCenter Cluster object with the "Propagate to children" setting enabled, the required privileges automatically propagate down to the ESXi hosts. You do not need to apply permissions directly to individual ESXi host objects.
 
-***Roles and privileges required for installation in vSphere API***
+**Roles and privileges required for installation in vSphere API**
 
 <table>
 <thead>
@@ -251,13 +254,12 @@ The installation program requires an additional role to create a vSphere virtual
 <tr>
   <td>vSphere vCenter data center</td>
   <td>The installation program creates the virtual machine folder.</td>
-
   <td><ul><li><code>InventoryService.Tagging.ObjectAttachable</code></li><li><code>Resource.AssignVMToPool</code></li><li><code>VirtualMachine.Config.AddExistingDisk</code></li><li><code>VirtualMachine.Config.AddNewDisk</code></li><li><code>VirtualMachine.Config.AddRemoveDevice</code></li><li><code>VirtualMachine.Config.AdvancedConfig</code></li><li><code>VirtualMachine.Config.Annotation</code></li><li><code>VirtualMachine.Config.CPUCount</code></li><li><code>VirtualMachine.Config.DiskExtend</code></li><li><code>VirtualMachine.Config.DiskLease</code></li><li><code>VirtualMachine.Config.EditDevice</code></li><li><code>VirtualMachine.Config.Memory</code></li><li><code>VirtualMachine.Config.RemoveDisk</code></li><li><code>VirtualMachine.Config.Rename</code></li><li><code>VirtualMachine.Config.ResetGuestInfo</code></li><li><code>VirtualMachine.Config.Resource</code></li><li><code>VirtualMachine.Config.Settings</code></li><li><code>VirtualMachine.Config.UpgradeVirtualHardware</code></li><li><code>VirtualMachine.Interact.GuestControl</code></li><li><code>VirtualMachine.Interact.PowerOff</code></li><li><code>VirtualMachine.Interact.PowerOn</code></li><li><code>VirtualMachine.Interact.Reset</code></li><li><code>VirtualMachine.Inventory.Create</code></li><li><code>VirtualMachine.Inventory.CreateFromExisting</code></li><li><code>VirtualMachine.Inventory.Delete</code></li><li><code>VirtualMachine.Provisioning.Clone</code></li><li><code>VirtualMachine.Provisioning.DeployTemplate</code></li><li><code>VirtualMachine.Provisioning.MarkAsTemplate</code></li><li><code>Folder.Create</code></li><li><code>Folder.Delete</code></li></ul></td>
 </tr>
 </tbody>
 </table>
 
-***Roles and privileges required for installation in vCenter graphical user interface (GUI)***
+**Roles and privileges required for installation in vCenter graphical user interface (GUI)**
 
 <table>
 <thead>
@@ -301,7 +303,6 @@ The installation program requires an additional role to create a vSphere virtual
 <tr>
   <td>vSphere vCenter data center</td>
   <td>The installation program creates the virtual machine folder.</td>
-
   <td><ul><li><code>"vSphere Tagging"."Assign or Unassign vSphere Tag on Object"</code></li><li><code>Resource."Assign virtual machine to resource pool"</code></li><li><code>VApp.Import</code></li><li><code>"Virtual machine"."Change Configuration"."Add existing disk"</code></li><li><code>"Virtual machine"."Change Configuration"."Add new disk"</code></li><li><code>"Virtual machine"."Change Configuration"."Add or remove device"</code></li><li><code>"Virtual machine"."Change Configuration"."Advanced configuration"</code></li><li><code>"Virtual machine"."Change Configuration"."Set annotation"</code></li><li><code>"Virtual machine"."Change Configuration"."Change CPU count"</code></li><li><code>"Virtual machine"."Change Configuration"."Extend virtual disk"</code></li><li><code>"Virtual machine"."Change Configuration"."Acquire disk lease"</code></li><li><code>"Virtual machine"."Change Configuration"."Modify device settings"</code></li><li><code>"Virtual machine"."Change Configuration"."Change Memory"</code></li><li><code>"Virtual machine"."Change Configuration"."Remove disk"</code></li><li><code>"Virtual machine"."Change Configuration".Rename</code></li><li><code>"Virtual machine"."Change Configuration"."Reset guest information"</code></li><li><code>"Virtual machine"."Change Configuration"."Change resource"</code></li><li><code>"Virtual machine"."Change Configuration"."Change Settings"</code></li><li><code>"Virtual machine"."Change Configuration"."Upgrade virtual machine compatibility"</code></li><li><code>"Virtual machine".Interaction."Guest operating system management by VIX API"</code></li><li><code>"Virtual machine".Interaction."Power off"</code></li><li><code>"Virtual machine".Interaction."Power on"</code></li><li><code>"Virtual machine".Interaction.Reset</code></li><li><code>"Virtual machine"."Edit Inventory"."Create new"</code></li><li><code>"Virtual machine"."Edit Inventory"."Create from existing"</code></li><li><code>"Virtual machine"."Edit Inventory"."Remove"</code></li><li><code>"Virtual machine".Provisioning."Clone virtual machine"</code></li><li><code>"Virtual machine".Provisioning."Deploy template"</code></li><li><code>"Virtual machine".Provisioning."Mark as template"</code></li><li><code>Folder."Create folder"</code></li><li><code>Folder."Delete folder"</code></li></ul></td>
 </tr>
 </tbody>
@@ -309,7 +310,7 @@ The installation program requires an additional role to create a vSphere virtual
 
 Additionally, the user requires some `ReadOnly` permissions, and some of the roles require permission to propagate the permissions to child objects. These settings vary depending on whether or not you install the cluster into an existing folder.
 
-***Required permissions and propagation settings***
+**Required permissions and propagation settings**
 
 <table>
 <thead>
@@ -328,10 +329,7 @@ Additionally, the user requires some `ReadOnly` permissions, and some of the rol
   <td>Listed required privileges</td>
 </tr>
 <tr>
-
-</tr>
-<tr>
-  <td>vSphere vCenter data center</td>
+  <td rowspan="2">vSphere vCenter data center</td>
   <td>Existing folder</td>
   <td>False</td>
   <td><code>ReadOnly</code> permission</td>
@@ -340,39 +338,39 @@ Additionally, the user requires some `ReadOnly` permissions, and some of the rol
   <td>Installation program creates the folder</td>
   <td>True</td>
   <td>Listed required privileges</td>
-  <td>vSphere vCenter Cluster</td>
 </tr>
 <tr>
+  <td>vSphere vCenter Cluster</td>
   <td>Always</td>
   <td>True</td>
   <td>Listed required privileges</td>
-  <td>vSphere vCenter Datastore</td>
 </tr>
 <tr>
+  <td>vSphere vCenter Datastore</td>
   <td>Always</td>
   <td>False</td>
   <td>Listed required privileges</td>
-  <td>vSphere Switch</td>
 </tr>
 <tr>
+  <td>vSphere Switch</td>
   <td>Always</td>
   <td>False</td>
   <td><code>ReadOnly</code> permission</td>
-  <td>vSphere Port Group</td>
 </tr>
 <tr>
+  <td>vSphere Port Group</td>
   <td>Always</td>
   <td>False</td>
   <td>Listed required privileges</td>
-  <td>vSphere vCenter Virtual Machine Folder</td>
 </tr>
 <tr>
+  <td>vSphere vCenter Virtual Machine Folder</td>
   <td>Existing folder</td>
   <td>True</td>
   <td>Listed required privileges</td>
-  <td>vSphere vCenter Resource Pool</td>
 </tr>
 <tr>
+  <td>vSphere vCenter Resource Pool</td>
   <td>Existing resource pool</td>
   <td>True</td>
   <td>Listed required privileges</td>
@@ -400,7 +398,7 @@ The following tables specify how the required vCenter account privileges provide
 
 <a name="installation-vsphere-minimum-permissions-ipi_ipi-vsphere-installation-reqs"></a>
 
-***Minimum permissions on installer-provisioned infrastructure***
+**Minimum permissions on installer-provisioned infrastructure**
 
 <table>
 <thead>
@@ -451,7 +449,7 @@ The following tables specify how the required vCenter account privileges provide
 
 <a name="post-installation-vsphere-minimum-permissions_ipi-vsphere-installation-reqs"></a>
 
-***Minimum permissions for postinstallation management of components***
+**Minimum permissions for postinstallation management of components**
 
 <table>
 <thead>
@@ -495,7 +493,6 @@ The following tables specify how the required vCenter account privileges provide
 <tr>
   <td>vSphere vCenter data center</td>
   <td>If the virtual machine folder does not already exist, the installation program creates the virtual machine folder.</td>
-
   <td><ul><li><code>Resource.AssignVMToPool</code></li><li><code>VirtualMachine.Config.AddExistingDisk</code></li><li><code>VirtualMachine.Config.AddRemoveDevice</code></li><li><code>VirtualMachine.Interact.PowerOff</code></li><li><code>VirtualMachine.Interact.PowerOn</code></li><li><code>VirtualMachine.Provisioning.DeployTemplate</code></li></ul></td>
 </tr>
 </tbody>
@@ -503,7 +500,7 @@ The following tables specify how the required vCenter account privileges provide
 
 <a name="installation-vsphere-minimum-permissions-storage_ipi-vsphere-installation-reqs"></a>
 
-***Minimum permissions for the storage components***
+**Minimum permissions for the storage components**
 
 <table>
 <thead>
@@ -547,7 +544,6 @@ The following tables specify how the required vCenter account privileges provide
 <tr>
   <td>vSphere vCenter data center</td>
   <td>If the virtual machine folder does not already exist, the installation program creates the virtual machine folder.</td>
-
   <td><ul><li><code>VirtualMachine.Config.AddExistingDisk</code></li><li><code>VirtualMachine.Config.AddRemoveDevice</code></li></ul></td>
 </tr>
 </tbody>
@@ -555,7 +551,7 @@ The following tables specify how the required vCenter account privileges provide
 
 <a name="post-installation-vsphere-minimum-machine-api_ipi-vsphere-installation-reqs"></a>
 
-***Minimum permissions for the Machine API***
+**Minimum permissions for the Machine API**
 
 <table>
 <thead>
@@ -599,7 +595,6 @@ The following tables specify how the required vCenter account privileges provide
 <tr>
   <td>vSphere vCenter data center</td>
   <td>If the virtual machine folder does not already exist, the installation program creates the virtual machine folder.</td>
-
   <td><ul><li><code>Resource.AssignVMToPool</code></li><li><code>VirtualMachine.Interact.PowerOff</code></li><li><code>VirtualMachine.Interact.PowerOn</code></li><li><code>VirtualMachine.Provisioning.DeployTemplate</code></li></ul></td>
 </tr>
 </tbody>
@@ -661,8 +656,8 @@ Additionally, you must create the following networking resources before you inst
 
 For a network that uses DHCP, an installer-provisioned vSphere installation requires two static IP addresses:
 
-- The ***API*** address for accessing the cluster API.
-- The ***Ingress*** address for cluster ingress traffic.
+- The **API** address for accessing the cluster API.
+- The **Ingress** address for cluster ingress traffic.
 
 You must give these IP addresses to the installation program when you install the OpenShift Container Platform cluster.
 
@@ -670,7 +665,7 @@ You must give these IP addresses to the installation program when you install th
 
 You must create DNS records for two static IP addresses in the appropriate DNS server for the vCenter instance that hosts your OpenShift Container Platform cluster. In each record, `<cluster_name>` is the cluster name and `<base_domain>` is the cluster base domain that you specify when you install the cluster. A complete DNS record takes the form: `<component>.<cluster_name>.<base_domain>.`.
 
-***Required DNS records***
+**Required DNS records**
 
 <table>
 <thead>
@@ -683,12 +678,12 @@ You must create DNS records for two static IP addresses in the appropriate DNS s
 <tbody>
 <tr>
   <td>API VIP</td>
-  <td><code>api.<cluster_name>.<base_domain>.</code></td>
+  <td><code>api.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
   <td>This DNS A/AAAA or CNAME (Canonical Name) record must point to the load balancer for the control plane machines. This record must be resolvable by both clients external to the cluster and from all the nodes within the cluster.</td>
 </tr>
 <tr>
   <td>Ingress VIP</td>
-  <td><code>*.apps.<cluster_name>.<base_domain>.</code></td>
+  <td><code>*.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
   <td>A wildcard DNS A/AAAA or CNAME record that points to the load balancer that targets the machines that run the Ingress router pods, which are the worker nodes by default. This record must be resolvable by both clients external to the cluster and from all the nodes within the cluster.</td>
 </tr>
 </tbody>
@@ -762,6 +757,7 @@ where:
 After you deployed your cluster to run nodes with static IP addresses, you can scale a machine to use one of these static IP addresses. Additionally, you can use a machine set to configure a machine to use one of the configured static IP addresses.
 
 **Additional resources**
+{._additional-resources}
 
-- [Scaling machines to use static IP addresses](/openshift-docs-markdown/post_installation_configuration/node-tasks.html#nodes-vsphere-scaling-machines-static-ip_post-install-node-tasks)
-- [Using a machine set to scale machines with configured static IP addresses](/openshift-docs-markdown/post_installation_configuration/node-tasks.html#nodes-vsphere-machine-set-scaling-static-ip_post-install-node-tasks)
+- [Scaling machines to use static IP addresses](/openshift-docs-markdown/post_installation_configuration/node-tasks#nodes-vsphere-scaling-machines-static-ip_post-install-node-tasks)
+- [Using a machine set to scale machines with configured static IP addresses](/openshift-docs-markdown/post_installation_configuration/node-tasks#nodes-vsphere-machine-set-scaling-static-ip_post-install-node-tasks)

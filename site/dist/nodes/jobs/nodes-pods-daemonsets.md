@@ -160,6 +160,7 @@ When creating daemon sets, the `nodeSelector` field is used to indicate the node
   Node:        openshift-node01.hostname.com/10.14.20.134
   ```
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Kubernetes documentation about daemon sets](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/)

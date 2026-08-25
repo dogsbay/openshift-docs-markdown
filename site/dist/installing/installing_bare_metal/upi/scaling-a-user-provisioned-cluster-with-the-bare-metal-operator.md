@@ -233,8 +233,8 @@ You can use the Bare Metal Operator (BMO) to provision bare-metal hosts in a use
      4. Replace `<protocol>` with the BMC protocol, such as IPMI, Redfish, or others. Replace `<bmc_url>` with the URL of the bare-metal node’s baseboard management controller.
      5. Optional: Replace `<root_device_hint>` with a device path when specifying a root device hint. See "Root device hints" for additional details.
 
-        > [!IMPORTANT]
-        > If the MAC address of an existing bare-metal node matches the MAC address of the bare-metal host that you are attempting to provision, then the installation will fail. If the host enrollment, inspection, cleaning, or other steps fail, the Bare Metal Operator retries the installation continuously. See "Diagnosing a duplicate MAC address when provisioning a new host in the cluster" for additional details.
+     > [!IMPORTANT]
+     > If the MAC address of an existing bare-metal node matches the MAC address of the bare-metal host that you are attempting to provision, then the installation will fail. If the host enrollment, inspection, cleaning, or other steps fail, the Bare Metal Operator retries the installation continuously. See "Diagnosing a duplicate MAC address when provisioning a new host in the cluster" for additional details.
 2. Create the bare-metal node by running the following command:
 
    ```terminal
@@ -299,6 +299,7 @@ You can use the Bare Metal Operator (BMO) to provision bare-metal hosts in a use
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Preparing the bare-metal node](/openshift-docs-markdown/installing/installing_bare_metal/bare-metal-expanding-the-cluster#preparing-the-bare-metal-node_bare-metal-expanding)
 - [Root device hints](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#root-device-hints_ipi-install-installation-workflow)

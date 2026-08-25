@@ -1,5 +1,5 @@
 ---
-title: Installing {{ kueue_name }} in a disconnected environment
+title: Installing Red&#160;Hat build of Kueue in a disconnected environment
 ---
 
 # Installing Red Hat build of Kueue in a disconnected environment {#install-disconnected}
@@ -51,7 +51,7 @@ You can install the Red Hat Build of Kueue Operator on a OpenShift Container Pla
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, click **Operators** -> **OperatorHub**.
+1. In the OpenShift Container Platform web console, click **Operators** → **OperatorHub**.
 2. Choose **Red Hat Build of Kueue Operator** from the list of available Operators, and click **Install**.
 3. Select **Enable Operator recommended cluster monitoring on this Namespace**.
 
@@ -72,9 +72,10 @@ You can install the Red Hat Build of Kueue Operator on a OpenShift Container Pla
 
 **Verification**
 
-- Go to **Operators** -> **Installed Operators** and confirm that the **Red Hat Build of Kueue Operator** is listed with **Status** as **Succeeded**.
+- Go to **Operators** → **Installed Operators** and confirm that the **Red Hat Build of Kueue Operator** is listed with **Status** as **Succeeded**.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing the cert-manager Operator for Red Hat OpenShift](/openshift-docs-markdown/security/cert_manager_operator/cert-manager-operator-install#installing-the-cert-manager-operator-for-red-hat-openshift)
 
@@ -89,7 +90,7 @@ If you have previously installed Red Hat build of Kueue, you must manually upgr
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, click **Operators** -> **Installed Operators**, then select **Red Hat build of Kueue** from the list.
+1. In the OpenShift Container Platform web console, click **Operators** → **Installed Operators**, then select **Red Hat build of Kueue** from the list.
 2. From the **Actions** drop-down menu, select **Uninstall Operator**.
 3. The **Uninstall Operator?** dialog box opens. Click **Uninstall**.
 
@@ -100,12 +101,12 @@ If you have previously installed Red Hat build of Kueue, you must manually upgr
    > - Any cluster queues, local queues, or resource flavors that you have created
    >
    > Leave this box unchecked when upgrading your cluster to retain your created resources.
-4. In the OpenShift Container Platform web console, click **Operators** -> **OperatorHub**.
+4. In the OpenShift Container Platform web console, click **Operators** → **OperatorHub**.
 5. Choose **Red Hat Build of Kueue Operator** from the list of available Operators, and click **Install**.
 
 **Verification**
 
-1. Go to **Operators** -> **Installed Operators**.
+1. Go to **Operators** → **Installed Operators**.
 2. Confirm that the **Red Hat Build of Kueue Operator** is listed with **Status** as **Succeeded**.
 3. Confirm that the version shown under the Operator name in the list is the latest version.
 
@@ -123,7 +124,7 @@ Ensure that you have completed the following prerequisites:
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, click **Operators** -> **Installed Operators**.
+1. In the OpenShift Container Platform web console, click **Operators** → **Installed Operators**.
 2. In the **Provided APIs** table column, click **Kueue**. This takes you to the **Kueue** tab of the **Operator details** page.
 3. Click **Create Kueue**. This takes you to the **Create Kueue** YAML view.
 4. Enter the details for your `Kueue` CR.
@@ -194,6 +195,7 @@ You must add the `kueue.openshift.io/managed=true` label to each namespace where
 
   When you add this label, you instruct the Red Hat build of Kueue Operator that the namespace is managed by its webhook admission controllers. As a result, any Red Hat build of Kueue resources within that namespace are properly validated and mutated.
 
-## Additional resources {#additional-resources_install-disconnected}
+**Additional resources**
+{._additional-resources}
 
 - [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)

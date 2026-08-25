@@ -1,5 +1,5 @@
 ---
-title: PrometheusRule []
+title: PrometheusRule [monitoring.coreos.com/v1]
 ---
 
 # PrometheusRule \[monitoring.coreos.com/v1\] {#prometheusrule-monitoring-coreos-com-v1}
@@ -25,7 +25,7 @@ Required
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec defines the specification of desired alerting rule definitions for Prometheus. |
-| `status` | `object` | status defines the status subresource. It is under active development and is updated only when the "StatusForConfigurationResources" feature gate is enabled. Most recent observed status of the PrometheusRule. Read-only. More info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status |
+| `status` | `object` | status defines the status subresource. It is under active development and is updated only when the "StatusForConfigurationResources" feature gate is enabled.<br>Most recent observed status of the PrometheusRule. Read-only. More info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status |
 
 ### .spec {#_spec}
 
@@ -68,11 +68,11 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `interval` | `string` | interval defines how often rules in the group are evaluated. |
-| `labels` | `object (string)` | labels define the labels to add or overwrite before storing the result for its rules. The labels defined at the rule level take precedence. It requires Prometheus >= 3.0.0. The field is ignored for Thanos Ruler. |
+| `labels` | `object (string)` | labels define the labels to add or overwrite before storing the result for its rules. The labels defined at the rule level take precedence.<br>It requires Prometheus >= 3.0.0. The field is ignored for Thanos Ruler. |
 | `limit` | `integer` | limit defines the number of alerts an alerting rule and series a recording rule can produce. Limit is supported starting with Prometheus >= 2.31 and Thanos Ruler >= 0.24. |
 | `name` | `string` | name defines the name of the rule group. |
 | `partial_response_strategy` | `string` | partial_response_strategy is only used by ThanosRuler and will be ignored by Prometheus instances. More info: https://github.com/thanos-io/thanos/blob/main/docs/components/rule.md#partial-response |
-| `query_offset` | `string` | query_offset defines the offset the rule evaluation timestamp of this particular group by the specified duration into the past. It requires Prometheus >= v2.53.0. It is not supported for ThanosRuler. |
+| `query_offset` | `string` | query_offset defines the offset the rule evaluation timestamp of this particular group by the specified duration into the past.<br>It requires Prometheus >= v2.53.0. It is not supported for ThanosRuler. |
 | `rules` | `array` | rules defines the list of alerting and recording rules. |
 | `rules[]` | `object` | Rule describes an alerting or recording rule See Prometheus documentation: [alerting](https://www.prometheus.io/docs/prometheus/latest/configuration/alerting_rules/) or [recording](https://www.prometheus.io/docs/prometheus/latest/configuration/recording_rules/#recording-rules) rule |
 
@@ -202,18 +202,18 @@ The following API endpoints are available:
 - `/apis/monitoring.coreos.com/v1/prometheusrules`
 
   - `GET`: list objects of kind PrometheusRule
-- `/apis/monitoring.coreos.com/v1/namespaces/{{ namespace }}/prometheusrules`
+- `/apis/monitoring.coreos.com/v1/namespaces/{namespace}/prometheusrules`
 
   - `DELETE`: delete collection of PrometheusRule
   - `GET`: list objects of kind PrometheusRule
   - `POST`: create a PrometheusRule
-- `/apis/monitoring.coreos.com/v1/namespaces/{{ namespace }}/prometheusrules/{{ name }}`
+- `/apis/monitoring.coreos.com/v1/namespaces/{namespace}/prometheusrules/{name}`
 
   - `DELETE`: delete a PrometheusRule
   - `GET`: read the specified PrometheusRule
   - `PATCH`: partially update the specified PrometheusRule
   - `PUT`: replace the specified PrometheusRule
-- `/apis/monitoring.coreos.com/v1/namespaces/{{ namespace }}/prometheusrules/{{ name }}/status`
+- `/apis/monitoring.coreos.com/v1/namespaces/{namespace}/prometheusrules/{name}/status`
 
   - `GET`: read status of the specified PrometheusRule
   - `PATCH`: partially update status of the specified PrometheusRule
@@ -238,7 +238,7 @@ Description
 | 200 - OK | [`PrometheusRuleList`](/openshift-docs-markdown/rest_api/objects/index#com-coreos-monitoring-v1-PrometheusRuleList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/monitoring.coreos.com/v1/namespaces/{{ namespace }}/prometheusrules {#_apismonitoringcoreoscomv1namespaces_namespace_prometheusrules}
+### /apis/monitoring.coreos.com/v1/namespaces/{namespace}/prometheusrules {#_apismonitoringcoreoscomv1namespaces_namespace_prometheusrules}
 
 HTTP method
 :   ```
@@ -306,7 +306,7 @@ Description
 | 202 - Accepted | [`PrometheusRule`](/openshift-docs-markdown/rest_api/monitoring_apis/prometheusrule-monitoring-coreos-com-v1#prometheusrule-monitoring-coreos-com-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/monitoring.coreos.com/v1/namespaces/{{ namespace }}/prometheusrules/{{ name }} {#_apismonitoringcoreoscomv1namespaces_namespace_prometheusrules_name}
+### /apis/monitoring.coreos.com/v1/namespaces/{namespace}/prometheusrules/{name} {#_apismonitoringcoreoscomv1namespaces_namespace_prometheusrules_name}
 
 **Global path parameters**
 
@@ -410,7 +410,7 @@ Description
 | 201 - Created | [`PrometheusRule`](/openshift-docs-markdown/rest_api/monitoring_apis/prometheusrule-monitoring-coreos-com-v1#prometheusrule-monitoring-coreos-com-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/monitoring.coreos.com/v1/namespaces/{{ namespace }}/prometheusrules/{{ name }}/status {#_apismonitoringcoreoscomv1namespaces_namespace_prometheusrules_name_status}
+### /apis/monitoring.coreos.com/v1/namespaces/{namespace}/prometheusrules/{name}/status {#_apismonitoringcoreoscomv1namespaces_namespace_prometheusrules_name_status}
 
 **Global path parameters**
 

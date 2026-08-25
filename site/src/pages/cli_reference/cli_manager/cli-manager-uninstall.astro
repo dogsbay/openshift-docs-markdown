@@ -19,16 +19,17 @@ import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"cli-manager-uninstall","text":"Uninstalling the {{ cli_manager }}"},{"depth":2,"slug":"cli-manager-uninstalling_cli-manager-uninstall","text":"Uninstalling the CLI Manager Operator"},{"depth":2,"slug":"cli-manager-remove-resources_cli-manager-uninstall","text":"Removing CLI Manager Operator resources"}];
+const headings = [{"depth":1,"slug":"cli-manager-uninstall","text":"Uninstalling the CLI Manager Operator"},{"depth":2,"slug":"cli-manager-uninstalling_cli-manager-uninstall","text":"Uninstalling the CLI Manager Operator"},{"depth":2,"slug":"cli-manager-remove-resources_cli-manager-uninstall","text":"Removing CLI Manager Operator resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/cli_reference/cli_manager/cli-manager-uninstall";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
-const title = "Uninstalling the {{ cli_manager }}";
+const title = "Uninstalling the CLI Manager Operator";
 const description = "You can remove the CLI Manager Operator from OpenShift Container Platform by uninstalling the CLI Manager Operator and removing its related resources." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
@@ -42,7 +43,7 @@ const pageCategory = ["cli_reference","cli_reference/cli_manager"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Uninstalling the {{ cli_manager }} {#cli-manager-uninstall}\n\nYou can remove the CLI Manager Operator from OpenShift Container Platform by uninstalling the CLI Manager Operator and removing its related resources.\n\n> [!IMPORTANT]\n> Using the CLI Manager Operator to install and manage plugins for the OpenShift CLI is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\n## Uninstalling the CLI Manager Operator {#cli-manager-uninstalling_cli-manager-uninstall}\n\nYou can uninstall the CLI Manager Operator by using the web console.\n\n**Prerequisites**\n\n- You are logged in to OpenShift Container Platform as a user with the `cluster-admin` role.\n- You have access to the OpenShift Container Platform web console.\n- The CLI Manager Operator is installed.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console.\n2. Uninstall the CLI Manager Operator by completing the following steps:\n\n   1. Navigate to **Ecosystem** -> **Installed Operators**.\n   2. Click the Options menu ![](kebab.png \"Options menu\") next to the **CLI Manager Operator** entry and click **Uninstall Operator**.\n   3. In the confirmation dialog, click **Uninstall**.\n\n## Removing CLI Manager Operator resources {#cli-manager-remove-resources_cli-manager-uninstall}\n\nOptionally, after you uninstall the CLI Manager Operator, you can remove its related resources from your cluster.\n\n**Prerequisites**\n\n- You are logged in to OpenShift Container Platform as a user with the `cluster-admin` role.\n- You have access to the OpenShift Container Platform web console.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console.\n2. Remove the `openshift-cli-manager-operator` namespace:\n\n   1. Navigate to **Administration** -> **Namespaces**.\n   2. Click the Options menu ![](kebab.png \"Options menu\") next to the **openshift-cli-manager-operator** entry and select **Delete Namespace**.\n   3. In the confirmation dialog, enter `openshift-cli-manager-operator` in the field and click **Delete**.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cli_reference/cli_manager/cli-manager-uninstall.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Uninstalling the CLI Manager Operator {#cli-manager-uninstall}\n\nYou can remove the CLI Manager Operator from OpenShift Container Platform by uninstalling the CLI Manager Operator and removing its related resources.\n\n> [!IMPORTANT]\n> Using the CLI Manager Operator to install and manage plugins for the OpenShift CLI is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\n## Uninstalling the CLI Manager Operator {#cli-manager-uninstalling_cli-manager-uninstall}\n\nYou can uninstall the CLI Manager Operator by using the web console.\n\n**Prerequisites**\n\n- You are logged in to OpenShift Container Platform as a user with the `cluster-admin` role.\n- You have access to the OpenShift Container Platform web console.\n- The CLI Manager Operator is installed.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console.\n2. Uninstall the CLI Manager Operator by completing the following steps:\n\n   1. Navigate to **Ecosystem** → **Installed Operators**.\n   2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png \"Options menu\") next to the **CLI Manager Operator** entry and click **Uninstall Operator**.\n   3. In the confirmation dialog, click **Uninstall**.\n\n## Removing CLI Manager Operator resources {#cli-manager-remove-resources_cli-manager-uninstall}\n\nOptionally, after you uninstall the CLI Manager Operator, you can remove its related resources from your cluster.\n\n**Prerequisites**\n\n- You are logged in to OpenShift Container Platform as a user with the `cluster-admin` role.\n- You have access to the OpenShift Container Platform web console.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console.\n2. Remove the `openshift-cli-manager-operator` namespace:\n\n   1. Navigate to **Administration** → **Namespaces**.\n   2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png \"Options menu\") next to the **openshift-cli-manager-operator** entry and select **Delete Namespace**.\n   3. In the confirmation dialog, enter `openshift-cli-manager-operator` in the field and click **Delete**.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cli_reference/cli_manager/cli-manager-uninstall.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -81,19 +82,20 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <h1 id="cli-manager-uninstall" class="group scroll-mt-20">Uninstalling the {"{"}{"{"} cli_manager {"}"}{"}"}<a href="#cli-manager-uninstall" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <h1 id="cli-manager-uninstall" class="group scroll-mt-20">Uninstalling the CLI Manager Operator<a href="#cli-manager-uninstall" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p>You can remove the CLI Manager Operator from OpenShift Container Platform by uninstalling the CLI Manager Operator and removing its related resources.</p>
       <Alert variant="info" class="my-4">
         <AlertTitle>Important</AlertTitle>
@@ -116,8 +118,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>
       Uninstall the CLI Manager Operator by completing the following steps:
       <ol>
-      <li>Navigate to <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong>.</li>
-      <li>Click the Options menu <img src="kebab.png" alt="" loading="lazy" /> next to the <strong>CLI Manager Operator</strong> entry and click <strong>Uninstall Operator</strong>.</li>
+      <li>Navigate to <strong>Ecosystem</strong> → <strong>Installed Operators</strong>.</li>
+      <li>Click the Options menu <img src="/openshift-docs-markdown/_assets/images/kebab.png" alt="" loading="lazy" /> next to the <strong>CLI Manager Operator</strong> entry and click <strong>Uninstall Operator</strong>.</li>
       <li>In the confirmation dialog, click <strong>Uninstall</strong>.</li>
       </ol>
       </li>
@@ -135,8 +137,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>
       Remove the <code>openshift-cli-manager-operator</code> namespace:
       <ol>
-      <li>Navigate to <strong>Administration</strong> -&gt; <strong>Namespaces</strong>.</li>
-      <li>Click the Options menu <img src="kebab.png" alt="" loading="lazy" /> next to the <strong>openshift-cli-manager-operator</strong> entry and select <strong>Delete Namespace</strong>.</li>
+      <li>Navigate to <strong>Administration</strong> → <strong>Namespaces</strong>.</li>
+      <li>Click the Options menu <img src="/openshift-docs-markdown/_assets/images/kebab.png" alt="" loading="lazy" /> next to the <strong>openshift-cli-manager-operator</strong> entry and select <strong>Delete Namespace</strong>.</li>
       <li>In the confirmation dialog, enter <code>openshift-cli-manager-operator</code> in the field and click <strong>Delete</strong>.</li>
       </ol>
       </li>

@@ -1,5 +1,5 @@
 ---
-title: Machine []
+title: Machine [machine.openshift.io/v1beta1]
 ---
 
 # Machine \[machine.openshift.io/v1beta1\] {#machine-machine-openshift-io-v1beta1}
@@ -129,10 +129,10 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `annotations` | `object (string)` | annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations |
-| `generateName` | `string` | generateName is an optional prefix, used by the server, to generate a unique name ONLY IF the Name field has not been provided. If this field is used, the name returned to the client will be different than the name passed. This value will also be combined with a unique suffix. The provided value has the same validation rules as the Name field, and may be truncated by the length of the suffix required to make the value unique on the server. If this field is specified and the generated name exists, the server will NOT return a 409 - instead, it will either return 201 Created or 500 with Reason ServerTimeout indicating a unique name could not be found in the time allotted, and the client should retry (optionally after the time indicated in the Retry-After header). Applied only if Name is not specified. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#idempotency |
+| `generateName` | `string` | generateName is an optional prefix, used by the server, to generate a unique name ONLY IF the Name field has not been provided. If this field is used, the name returned to the client will be different than the name passed. This value will also be combined with a unique suffix. The provided value has the same validation rules as the Name field, and may be truncated by the length of the suffix required to make the value unique on the server.<br>If this field is specified and the generated name exists, the server will NOT return a 409 - instead, it will either return 201 Created or 500 with Reason ServerTimeout indicating a unique name could not be found in the time allotted, and the client should retry (optionally after the time indicated in the Retry-After header).<br>Applied only if Name is not specified. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#idempotency |
 | `labels` | `object (string)` | Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels |
 | `name` | `string` | name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names |
-| `namespace` | `string` | namespace defines the space within each name must be unique. An empty namespace is equivalent to the "default" namespace, but "default" is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty. Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces |
+| `namespace` | `string` | namespace defines the space within each name must be unique. An empty namespace is equivalent to the "default" namespace, but "default" is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty.<br>Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces |
 | `ownerReferences` | `array` | List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller. |
 | `ownerReferences[]` | `object` | OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field. |
 
@@ -232,8 +232,8 @@ Type
 | `addresses[]` | `object` | NodeAddress contains information for the node’s address. |
 | `conditions` | `array` | conditions defines the current state of the Machine |
 | `conditions[]` | `object` | Condition defines an observation of a Machine API resource operational state. |
-| `errorMessage` | `string` | errorMessage will be set in the event that there is a terminal problem reconciling the Machine and will contain a more verbose string suitable for logging and human consumption. This field should not be set for transitive errors that a controller faces that are expected to be fixed automatically over time (like service outages), but instead indicate that something is fundamentally wrong with the Machine’s spec or the configuration of the controller, and that manual intervention is required. Examples of terminal errors would be invalid combinations of settings in the spec, values that are unsupported by the controller, or the responsible controller itself being critically misconfigured. Any transient errors that occur during the reconciliation of Machines can be added as events to the Machine object and/or logged in the controller’s output. |
-| `errorReason` | `string` | errorReason will be set in the event that there is a terminal problem reconciling the Machine and will contain a succinct value suitable for machine interpretation. This field should not be set for transitive errors that a controller faces that are expected to be fixed automatically over time (like service outages), but instead indicate that something is fundamentally wrong with the Machine’s spec or the configuration of the controller, and that manual intervention is required. Examples of terminal errors would be invalid combinations of settings in the spec, values that are unsupported by the controller, or the responsible controller itself being critically misconfigured. Any transient errors that occur during the reconciliation of Machines can be added as events to the Machine object and/or logged in the controller’s output. |
+| `errorMessage` | `string` | errorMessage will be set in the event that there is a terminal problem reconciling the Machine and will contain a more verbose string suitable for logging and human consumption.<br>This field should not be set for transitive errors that a controller faces that are expected to be fixed automatically over time (like service outages), but instead indicate that something is fundamentally wrong with the Machine’s spec or the configuration of the controller, and that manual intervention is required. Examples of terminal errors would be invalid combinations of settings in the spec, values that are unsupported by the controller, or the responsible controller itself being critically misconfigured.<br>Any transient errors that occur during the reconciliation of Machines can be added as events to the Machine object and/or logged in the controller’s output. |
+| `errorReason` | `string` | errorReason will be set in the event that there is a terminal problem reconciling the Machine and will contain a succinct value suitable for machine interpretation.<br>This field should not be set for transitive errors that a controller faces that are expected to be fixed automatically over time (like service outages), but instead indicate that something is fundamentally wrong with the Machine’s spec or the configuration of the controller, and that manual intervention is required. Examples of terminal errors would be invalid combinations of settings in the spec, values that are unsupported by the controller, or the responsible controller itself being critically misconfigured.<br>Any transient errors that occur during the reconciliation of Machines can be added as events to the Machine object and/or logged in the controller’s output. |
 | `lastOperation` | `object` | lastOperation describes the last-operation performed by the machine-controller. This API should be useful as a history in terms of the latest operation performed on the specific machine. It should also convey the state of the latest-operation for example if it is still on-going, failed or completed successfully. |
 | `lastUpdated` | `string` | lastUpdated identifies when this status was last observed. |
 | `nodeRef` | `object` | nodeRef will point to the corresponding Node if it exists. |
@@ -333,7 +333,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{{ name }}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -347,18 +347,18 @@ The following API endpoints are available:
 - `/apis/machine.openshift.io/v1beta1/machines`
 
   - `GET`: list objects of kind Machine
-- `/apis/machine.openshift.io/v1beta1/namespaces/{{ namespace }}/machines`
+- `/apis/machine.openshift.io/v1beta1/namespaces/{namespace}/machines`
 
   - `DELETE`: delete collection of Machine
   - `GET`: list objects of kind Machine
   - `POST`: create a Machine
-- `/apis/machine.openshift.io/v1beta1/namespaces/{{ namespace }}/machines/{{ name }}`
+- `/apis/machine.openshift.io/v1beta1/namespaces/{namespace}/machines/{name}`
 
   - `DELETE`: delete a Machine
   - `GET`: read the specified Machine
   - `PATCH`: partially update the specified Machine
   - `PUT`: replace the specified Machine
-- `/apis/machine.openshift.io/v1beta1/namespaces/{{ namespace }}/machines/{{ name }}/status`
+- `/apis/machine.openshift.io/v1beta1/namespaces/{namespace}/machines/{name}/status`
 
   - `GET`: read status of the specified Machine
   - `PATCH`: partially update status of the specified Machine
@@ -383,7 +383,7 @@ Description
 | 200 - OK | [`MachineList`](/openshift-docs-markdown/rest_api/objects/index#io-openshift-machine-v1beta1-MachineList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machine.openshift.io/v1beta1/namespaces/{{ namespace }}/machines {#_apismachineopenshiftiov1beta1namespaces_namespace_machines}
+### /apis/machine.openshift.io/v1beta1/namespaces/{namespace}/machines {#_apismachineopenshiftiov1beta1namespaces_namespace_machines}
 
 HTTP method
 :   ```
@@ -451,7 +451,7 @@ Description
 | 202 - Accepted | [`Machine`](/openshift-docs-markdown/rest_api/machine_apis/machine-machine-openshift-io-v1beta1#machine-machine-openshift-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machine.openshift.io/v1beta1/namespaces/{{ namespace }}/machines/{{ name }} {#_apismachineopenshiftiov1beta1namespaces_namespace_machines_name}
+### /apis/machine.openshift.io/v1beta1/namespaces/{namespace}/machines/{name} {#_apismachineopenshiftiov1beta1namespaces_namespace_machines_name}
 
 **Global path parameters**
 
@@ -555,7 +555,7 @@ Description
 | 201 - Created | [`Machine`](/openshift-docs-markdown/rest_api/machine_apis/machine-machine-openshift-io-v1beta1#machine-machine-openshift-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machine.openshift.io/v1beta1/namespaces/{{ namespace }}/machines/{{ name }}/status {#_apismachineopenshiftiov1beta1namespaces_namespace_machines_name_status}
+### /apis/machine.openshift.io/v1beta1/namespaces/{namespace}/machines/{name}/status {#_apismachineopenshiftiov1beta1namespaces_namespace_machines_name_status}
 
 **Global path parameters**
 

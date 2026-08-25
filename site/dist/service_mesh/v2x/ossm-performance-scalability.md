@@ -14,7 +14,7 @@ The settings in the following example are based on 1,000 services and 1,000 requ
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, click **Ecosystem** -> **Installed Operators**.
+1. In the OpenShift Container Platform web console, click **Ecosystem** → **Installed Operators**.
 2. Click the **Project** menu and select the project where you installed the Service Mesh control plane, for example **istio-system**.
 3. Click the Red Hat OpenShift Service Mesh Operator. In the **Istio Service Mesh Control Plane** column, click the name of your `ServiceMeshControlPlane`, for example `basic`.
 4. Add the name of your standalone Jaeger instance to the `ServiceMeshControlPlane`.
@@ -29,7 +29,7 @@ The settings in the following example are based on 1,000 services and 1,000 requ
         name: basic
         namespace: istio-system
       spec:
-        version: v{{ MaistraVersion }}
+        version: v2.6
         proxy:
           runtime:
             container:

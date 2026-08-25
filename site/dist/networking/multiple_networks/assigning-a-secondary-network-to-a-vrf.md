@@ -23,12 +23,13 @@ Multi-tenancy support
 > Using a VRF through the `ip vrf exec` command is not supported in OpenShift Container Platform pods. To use VRF, bind applications directly to the VRF interface.
 
 **Additional resources**
+{._additional-resources}
 
 - [About virtual routing and forwarding](/openshift-docs-markdown/networking/multiple_networks/about-virtual-routing-and-forwarding#cnf-about-virtual-routing-and-forwarding_about-virtual-routing-and-forwarding)
 
 ## Creating a secondary network attachment with the CNI VRF plugin {#cnf-creating-an-additional-network-attachment-with-the-cni-vrf-plug-in_assigning-a-secondary-network-to-a-vrf}
 
-\[role="\_abstract"\] The Cluster Network Operator (CNO) manages secondary network definitions. When you specify a secondary network in the cluster-scoped `Network` custom resource (CR), the CNO automatically creates the `NetworkAttachmentDefinition` CR.
+The Cluster Network Operator (CNO) manages secondary network definitions. When you specify a secondary network in the cluster-scoped `Network` custom resource (CR), the CNO automatically creates the `NetworkAttachmentDefinition` CR.
 
 > [!NOTE]
 > Do not edit the `NetworkAttachmentDefinition` CRs that the Cluster Network Operator manages. Doing so might disrupt network traffic on your secondary network.

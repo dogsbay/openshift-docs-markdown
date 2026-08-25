@@ -16,11 +16,12 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 
-const headings = [{"depth":1,"slug":"cert-types-user-provided-certificates-for-the-api-server","text":"User-provided certificates for the API server"},{"depth":2,"slug":"user-provided-certificates-for-api-server-purpose_cert-types-user-provided-certificates-for-the-api-server","text":"Purpose"},{"depth":2,"slug":"user-provided-certificates-for-api-server-location_cert-types-user-provided-certificates-for-the-api-server","text":"Location"},{"depth":2,"slug":"user-provided-certificates-for-api-server-management_cert-types-user-provided-certificates-for-the-api-server","text":"Management"},{"depth":2,"slug":"user-provided-certificates-for-api-server-expiration_cert-types-user-provided-certificates-for-the-api-server","text":"Expiration"},{"depth":2,"slug":"user-provided-certificates-for-api-server-customization_cert-types-user-provided-certificates-for-the-api-server","text":"Customization"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"cert-types-user-provided-certificates-for-the-api-server","text":"User-provided certificates for the API server"},{"depth":2,"slug":"user-provided-certificates-for-api-server-purpose_cert-types-user-provided-certificates-for-the-api-server","text":"Purpose"},{"depth":2,"slug":"user-provided-certificates-for-api-server-location_cert-types-user-provided-certificates-for-the-api-server","text":"Location"},{"depth":2,"slug":"user-provided-certificates-for-api-server-management_cert-types-user-provided-certificates-for-the-api-server","text":"Management"},{"depth":2,"slug":"user-provided-certificates-for-api-server-expiration_cert-types-user-provided-certificates-for-the-api-server","text":"Expiration"},{"depth":2,"slug":"user-provided-certificates-for-api-server-customization_cert-types-user-provided-certificates-for-the-api-server","text":"Customization"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/certificate_types_descriptions/user-provided-certificates-for-api-server";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -39,7 +40,7 @@ const pageCategory = ["security","security/certificate_types_descriptions"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# User-provided certificates for the API server {#cert-types-user-provided-certificates-for-the-api-server}\n\nReview user-provided TLS certificates for the API server in OpenShift Container Platform to understand their purpose, location, management, and expiration for external client access.\n\n## Purpose {#user-provided-certificates-for-api-server-purpose_cert-types-user-provided-certificates-for-the-api-server}\n\nThe API server is accessible by clients external to the cluster at `api.<cluster_name>.<base_domain>`. You might want clients to access the API server at a different hostname or without the need to distribute the cluster-managed certificate authority (CA) certificates to the clients. The administrator must set a custom default certificate to be used by the API server when serving content.\n\n## Location {#user-provided-certificates-for-api-server-location_cert-types-user-provided-certificates-for-the-api-server}\n\nThe user-provided certificates must be provided in a `kubernetes.io/tls` type `Secret` in the `openshift-config` namespace. Update the API server cluster configuration, the `apiserver/cluster` resource, to enable the use of the user-provided certificate.\n\n## Management {#user-provided-certificates-for-api-server-management_cert-types-user-provided-certificates-for-the-api-server}\n\nUser-provided certificates are managed by the user.\n\n## Expiration {#user-provided-certificates-for-api-server-expiration_cert-types-user-provided-certificates-for-the-api-server}\n\nAPI server client certificate expiration is less than five minutes.\n\n## Customization {#user-provided-certificates-for-api-server-customization_cert-types-user-provided-certificates-for-the-api-server}\n\nUpdate the secret containing the user-managed certificate as needed.\n\n## Additional resources {#_additional_resources}\n\n- [Adding API server certificates](/openshift-docs-markdown/security/certificates/api-server#api-server-certificates)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/certificate_types_descriptions/user-provided-certificates-for-api-server.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# User-provided certificates for the API server {#cert-types-user-provided-certificates-for-the-api-server}\n\nReview user-provided TLS certificates for the API server in OpenShift Container Platform to understand their purpose, location, management, and expiration for external client access.\n\n## Purpose {#user-provided-certificates-for-api-server-purpose_cert-types-user-provided-certificates-for-the-api-server}\n\nThe API server is accessible by clients external to the cluster at `api.<cluster_name>.<base_domain>`. You might want clients to access the API server at a different hostname or without the need to distribute the cluster-managed certificate authority (CA) certificates to the clients. The administrator must set a custom default certificate to be used by the API server when serving content.\n\n## Location {#user-provided-certificates-for-api-server-location_cert-types-user-provided-certificates-for-the-api-server}\n\nThe user-provided certificates must be provided in a `kubernetes.io/tls` type `Secret` in the `openshift-config` namespace. Update the API server cluster configuration, the `apiserver/cluster` resource, to enable the use of the user-provided certificate.\n\n## Management {#user-provided-certificates-for-api-server-management_cert-types-user-provided-certificates-for-the-api-server}\n\nUser-provided certificates are managed by the user.\n\n## Expiration {#user-provided-certificates-for-api-server-expiration_cert-types-user-provided-certificates-for-the-api-server}\n\nAPI server client certificate expiration is less than five minutes.\n\n## Customization {#user-provided-certificates-for-api-server-customization_cert-types-user-provided-certificates-for-the-api-server}\n\nUpdate the secret containing the user-managed certificate as needed.\n\n**Additional resources**\n{._additional-resources}\n\n- [Adding API server certificates](/openshift-docs-markdown/security/certificates/api-server#api-server-certificates)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/certificate_types_descriptions/user-provided-certificates-for-api-server.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,12 +79,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -91,7 +93,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="cert-types-user-provided-certificates-for-the-api-server" class="group scroll-mt-20">User-provided certificates for the API server<a href="#cert-types-user-provided-certificates-for-the-api-server" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Review user-provided TLS certificates for the API server in OpenShift Container Platform to understand their purpose, location, management, and expiration for external client access.</p>
+      <p class="_abstract">Review user-provided TLS certificates for the API server in OpenShift Container Platform to understand their purpose, location, management, and expiration for external client access.</p>
       <h2 id="user-provided-certificates-for-api-server-purpose_cert-types-user-provided-certificates-for-the-api-server" class="group scroll-mt-20">Purpose<a href="#user-provided-certificates-for-api-server-purpose_cert-types-user-provided-certificates-for-the-api-server" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p>The API server is accessible by clients external to the cluster at <code>api.&lt;cluster_name&gt;.&lt;base_domain&gt;</code>. You might want clients to access the API server at a different hostname or without the need to distribute the cluster-managed certificate authority (CA) certificates to the clients. The administrator must set a custom default certificate to be used by the API server when serving content.</p>
       <h2 id="user-provided-certificates-for-api-server-location_cert-types-user-provided-certificates-for-the-api-server" class="group scroll-mt-20">Location<a href="#user-provided-certificates-for-api-server-location_cert-types-user-provided-certificates-for-the-api-server" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
@@ -102,8 +104,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p>API server client certificate expiration is less than five minutes.</p>
       <h2 id="user-provided-certificates-for-api-server-customization_cert-types-user-provided-certificates-for-the-api-server" class="group scroll-mt-20">Customization<a href="#user-provided-certificates-for-api-server-customization_cert-types-user-provided-certificates-for-the-api-server" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p>Update the secret containing the user-managed certificate as needed.</p>
-      <h2 id="_additional_resources" class="group scroll-mt-20">Additional resources<a href="#_additional_resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul><li><a href="/openshift-docs-markdown/security/certificates/api-server#api-server-certificates">Adding API server certificates</a></li></ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"nodes-containers-dev-fuse","text":"Accessin
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/containers/nodes-containers-dev-fuse";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="nodes-containers-dev-fuse" class="group scroll-mt-20">Accessing faster builds with /dev/fuse<a href="#nodes-containers-dev-fuse" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can configure your pods with the <code>/dev/fuse</code> device to enable faster and more efficient container image builds, particularly for unprivileged users. This device allows unprivileged pods to mount overlay filesystems, which can be leveraged by tools such as Podman.</p>
+      <p class="_abstract">You can configure your pods with the <code>/dev/fuse</code> device to enable faster and more efficient container image builds, particularly for unprivileged users. This device allows unprivileged pods to mount overlay filesystems, which can be leveraged by tools such as Podman.</p>
       <h2 id="nodes-containers-dev-fuse-configuring_nodes-containers-dev-fuse" class="group scroll-mt-20">Configuring /dev/fuse for unprivileged builds in pods<a href="#nodes-containers-dev-fuse-configuring_nodes-containers-dev-fuse" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">You can grant an unprivileged pod the capability to perform Filesystem in Userspace (FUSE) mounts by exposing the <code>/dev/fuse</code> device. With this setup, an unprivileged user within the pod can use tools such as <code>podman</code> with storage drivers such as <code>fuse-overlayfs</code> by mimicking privileged build capabilities in a secure and efficient manner without granting full privileged access to the pod.</p>
       <p>You expose the <code>/dev/fuse</code> device by adding the <code>io.kubernetes.cri-o.Devices: "/dev/fuse"</code> annotation to your pod definition.</p>

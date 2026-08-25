@@ -218,6 +218,7 @@ By explicitly setting the cluster network MTU at installation time, you can incl
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Customizing extra installation manifests in the GitOps ZTP pipeline](/openshift-docs-markdown/edge_computing/ztp-advanced-install-ztp#ztp-customizing-the-install-extra-manifests_ztp-advanced-install-ztp)
 

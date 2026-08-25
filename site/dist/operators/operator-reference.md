@@ -6,7 +6,7 @@ title: Cluster Operators reference
 
 This reference guide indexes the *cluster Operators* shipped by Red Hat that serve as the architectural foundation for OpenShift Container Platform. Cluster Operators are installed by default, unless otherwise noted, and are managed by the Cluster Version Operator (CVO). For more details on the control plane architecture, see [Operators in OpenShift Container Platform](/openshift-docs-markdown/architecture/control-plane#operators-overview_control-plane).
 
-Cluster administrators can view cluster Operators in the OpenShift Container Platform web console from the **Administration** -> **Cluster Settings** page.
+Cluster administrators can view cluster Operators in the OpenShift Container Platform web console from the **Administration** → **Cluster Settings** page.
 
 > [!NOTE]
 > Cluster Operators are not managed by Operator Lifecycle Manager (OLM) and the software catalog. OLM and the software catalog are part of the [Operator Framework](https://operatorframework.io/) used in OpenShift Container Platform for installing and running optional [add-on Operators](/openshift-docs-markdown/architecture/control-plane#olm-operators_control-plane).
@@ -25,6 +25,7 @@ Project
 :   [cluster-baremetal-operator](https://github.com/openshift/cluster-baremetal-operator)
 
 **Additional resources**
+{._additional-resources}
 
 - [Bare-metal capability](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-bare-metal-operator_cluster-capabilities)
 
@@ -44,12 +45,11 @@ CRDs
       - CR: `CredentialsRequest`
       - Validation: Yes
 
-    Configuration objects
-
-CRDs
+Configuration objects
 :   No configuration required.
 
-### Additional resources {#additional-resources_cluster-op-ref-cco}
+**Additional resources**
+{._additional-resources}
 
 - [About the Cloud Credential Operator](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator)
 - [`CredentialsRequest` custom resource](/openshift-docs-markdown/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1)
@@ -182,6 +182,7 @@ Project
 :   `cluster-csi-snapshot-controller-operator`
 
 **Additional resources**
+{._additional-resources}
 
 - [CSI snapshot controller capability](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-csi-snapshot-controller-operator_cluster-capabilities)
 
@@ -281,6 +282,7 @@ Project
 :   `cluster-samples-operator`
 
 **Additional resources**
+{._additional-resources}
 
 - [OpenShift samples capability](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-samples-operator_cluster-capabilities)
 
@@ -302,6 +304,7 @@ Notes
 :   The storage class that the Operator creates can be made non-default by editing its annotation, but this storage class cannot be deleted as long as the Operator runs.
 
 **Additional resources**
+{._additional-resources}
 
 - [Storage capability](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-storage-operator_cluster-capabilities)
 
@@ -318,6 +321,7 @@ For more information regarding cluster version condition types, see "Understandi
 [cluster-version-operator](https://github.com/openshift/cluster-version-operator)
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding cluster version condition types](/openshift-docs-markdown/updating/understanding_updates/intro-to-updates#understanding-clusterversion-conditiontypes_understanding-openshift-updates)
 
@@ -333,6 +337,7 @@ Project
 :   See "console-operator".
 
 **Additional resources**
+{._additional-resources}
 
 - [Web console capability](/openshift-docs-markdown/installing/overview/cluster-capabilities#console-operator_cluster-capabilities)
 
@@ -355,7 +360,8 @@ The Control Plane Machine Set Operator automates the management of control plane
   - CR: `ControlPlaneMachineSet`
   - Validation: Yes
 
-### Additional resources {#additional-resources_cluster-op-ref-cpmso}
+**Additional resources**
+{._additional-resources}
 
 - [About control plane machine sets](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-about#cpmso-about)
 - [`ControlPlaneMachineSet` custom resource](/openshift-docs-markdown/rest_api/machine_apis/controlplanemachineset-machine-openshift-io-v1#controlplanemachineset-machine-openshift-io-v1)
@@ -411,9 +417,7 @@ CRDs
       - CR: `clusteringresses`
       - Validation: No
 
-    Configuration objects
-
-CRDs
+Configuration objects
 :   - Cluster config
 
       - Type Name: `clusteringresses.ingress.openshift.io`
@@ -424,22 +428,24 @@ CRDs
       $ oc get clusteringresses.ingress.openshift.io -n openshift-ingress-operator default -o yaml
       ```
 
-    Notes
-    :   The Ingress Operator sets up the router in the `openshift-ingress` project and creates the deployment for the router:
+Notes
+:   The Ingress Operator sets up the router in the `openshift-ingress` project and creates the deployment for the router:
 
-    ````
-      ```terminal
-      $ oc get deployment -n openshift-ingress
-      ```
-      The Ingress Operator uses the `clusterNetwork[].cidr` from the `network/cluster` status to determine what mode (IPv4, IPv6, or dual stack) the managed Ingress Controller (router) should operate in. For example, if `clusterNetwork` contains only a v6 `cidr`, then the Ingress Controller operates in IPv6-only mode.
-      In the following example, Ingress Controllers managed by the Ingress Operator will run in IPv4-only mode because only one cluster network exists and the network is an IPv4 `cidr`:
-      ```terminal
-      $ oc get network/cluster -o jsonpath='{.status.clusterNetwork[*]}'
-      ```
-      ```terminal title="Example output"
-      map[cidr:10.128.0.0/14 hostPrefix:23]
-      ```
-    ````
+    ```terminal
+    $ oc get deployment -n openshift-ingress
+    ```
+
+    The Ingress Operator uses the `clusterNetwork[].cidr` from the `network/cluster` status to determine what mode (IPv4, IPv6, or dual stack) the managed Ingress Controller (router) should operate in. For example, if `clusterNetwork` contains only a v6 `cidr`, then the Ingress Controller operates in IPv6-only mode.
+
+    In the following example, Ingress Controllers managed by the Ingress Operator will run in IPv4-only mode because only one cluster network exists and the network is an IPv4 `cidr`:
+
+    ```terminal
+    $ oc get network/cluster -o jsonpath='{.status.clusterNetwork[*]}'
+    ```
+
+    ```terminal {title="Example output"}
+    map[cidr:10.128.0.0/14 hostPrefix:23]
+    ```
 
 ## Insights Operator {#insights-operator_operator-reference}
 
@@ -457,6 +463,7 @@ Notes
 :   Insights Operator complements OpenShift Container Platform Telemetry.
 
 **Additional resources**
+{._additional-resources}
 
 - [Insights capability](/openshift-docs-markdown/installing/overview/cluster-capabilities#insights-operator_cluster-capabilities)
 - [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
@@ -578,6 +585,7 @@ Project
 :   `operator-marketplace`
 
 **Additional resources**
+{._additional-resources}
 
 - [Marketplace capability](/openshift-docs-markdown/installing/overview/cluster-capabilities#marketplace-operator_cluster-capabilities)
 
@@ -605,7 +613,8 @@ The Node Tuning Operator is part of a standard OpenShift Container Platform inst
 Project
 :   `cluster-node-tuning-operator`
 
-### Additional resources {#cluster-operators-ref-nto-addtl-resources}
+**Additional resources**
+{._additional-resources}
 
 - [About low latency](/openshift-docs-markdown/scalability_and_performance/cnf-understanding-low-latency#cnf-understanding-low-latency_cnf-understanding-low-latency)
 
@@ -656,9 +665,7 @@ Operator Lifecycle Manager (OLM) Classic helps users install, update, and manage
 
 OLM runs by default in OpenShift Container Platform 4.22, which aids cluster administrators
 
-in installing, upgrading, and granting access to Operators running on their cluster. The OpenShift Container Platform web console provides management screens for cluster administrators
-
-to install Operators, as well as grant specific projects access to use the catalog of Operators available on the cluster.
+in installing, upgrading, and granting access to Operators running on their cluster. The OpenShift Container Platform web console provides management screens for cluster administrators to install Operators, as well as grant specific projects access to use the catalog of Operators available on the cluster.
 
 For developers, a self-service experience allows provisioning and configuring instances of databases, monitoring, and big data services without having to be subject matter experts, because the Operator has that knowledge baked into it.
 
@@ -703,7 +710,7 @@ A *package manifest* is an entry in the Catalog Registry that associates a packa
 
 Operator Lifecycle Manager (OLM) and the Catalog Operator manage the following custom resource definitions (CRDs) that form the basis of the Operator Framework.
 
-***CRDs managed by OLM and Catalog Operators***
+**CRDs managed by OLM and Catalog Operators**
 
 <table>
 <thead>
@@ -752,12 +759,36 @@ Each of these Operators is also responsible for creating the following resources
 
 **Resources created by OLM and Catalog Operators**
 
-| Resource | Owner |
-| --- | --- |
-| `Deployments` .4+.^ | OLM |
-| `ServiceAccounts` | `(Cluster)Roles` |
-| `(Cluster)RoleBindings` | `CustomResourceDefinitions` (CRDs) .2+.^ |
-| Catalog | `ClusterServiceVersions` |
+<table>
+<thead>
+<tr>
+  <th>Resource</th>
+  <th>Owner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>Deployments</code></td>
+  <td rowspan="4">OLM</td>
+</tr>
+<tr>
+  <td><code>ServiceAccounts</code></td>
+</tr>
+<tr>
+  <td><code>(Cluster)Roles</code></td>
+</tr>
+<tr>
+  <td><code>(Cluster)RoleBindings</code></td>
+</tr>
+<tr>
+  <td><code>CustomResourceDefinitions</code> (CRDs)</td>
+  <td rowspan="2">Catalog</td>
+</tr>
+<tr>
+  <td><code>ClusterServiceVersions</code></td>
+</tr>
+</tbody>
+</table>
 
 ### Cluster Operators {#_cluster_operators}
 
@@ -772,7 +803,8 @@ In OpenShift Container Platform, OLM functionality is provided across a set of c
 `operator-lifecycle-manager-packageserver`
 :   Represents an API extension server responsible for collecting metadata from all catalogs on the cluster and serves the user-facing `PackageManifest` API.
 
-### Additional resources {#cluster-operators-ref-olm-addtl-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Understanding Operator Lifecycle Manager (OLM)](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-understanding-olm)
 
@@ -806,7 +838,8 @@ Operator Lifecycle Manager (OLM) v1 comprises the following component projects:
   - `operator-framework/operator-controller`
   - `operator-framework/catalogd`
 
-### Additional resources {#cluster-operators-ref-olmv1-addtl-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Extensions overview](/openshift-docs-markdown/extensions/index#extensions-overview)
 - [Compatibility with OpenShift Container Platform versions](/openshift-docs-markdown/extensions/ce/update-paths#olmv1-ocp-compat_update-paths)
@@ -837,5 +870,6 @@ No configuration is required.
 - The Operator performs checks that are related to storage.
 
 **Additional resources**
+{._additional-resources}
 
 - [Using the vSphere Problem Detector Operator](/openshift-docs-markdown/installing/installing_vsphere/using-vsphere-problem-detector-operator#using-vsphere-problem-detector-operator)

@@ -1,5 +1,5 @@
 ---
-title: "{{ olmv1 }} components overview"
+title: OLM v1 components overview
 ---
 
 # OLM v1 components overview {#olm-components}
@@ -12,7 +12,8 @@ Operator Controller
 Catalogd
 :   Unpacks file-based catalog (FBC) content and hosts metadata so users can discover installable extensions.
 
-## Additional resources {#additional-resources_olm-components}
+**Additional resources**
+{._additional-resources}
 
 - [Operator Controller](/openshift-docs-markdown/extensions/arch/operator-controller#operator-controller)
 - [Catalogd](/openshift-docs-markdown/extensions/arch/catalogd#catalogd)

@@ -33,6 +33,7 @@ Additionally, you can use the etcd Operator to deploy and manage the etcd cluste
 > etcd holds the cluster state, which is constantly updated. This state is continuously persisted, which leads to a high number of small changes at high frequency. As a result, it is critical to back up the etcd cluster member with fast, low-latency I/O. For more information about best practices for etcd, see "Recommended etcd practices".
 
 **Additional resources**
+{._additional-resources}
 
 - [Recommended etcd practices](/openshift-docs-markdown/etcd/etcd-practices#etcd-practices)
 
@@ -63,7 +64,7 @@ OpenShift Container Platform maintains etcd timers that are optimized for each p
 
 These parameters do not provide all of the information for the control plane or for etcd. An etcd cluster is sensitive to disk latencies. Because etcd must persist proposals to its log, disk activity from other processes might cause long `fsync` latencies. The consequence is that etcd might miss heartbeats, causing request timeouts and temporary leader loss. During a leader loss and reelection, the Kubernetes API cannot process any request that causes a service-affecting event and instability of the cluster.
 
-## Effects of disk latency on etcd {#etcd-perf-disk-latency_etcd-overview}
+### Effects of disk latency on etcd {#etcd-perf-disk-latency_etcd-overview}
 
 An etcd cluster is sensitive to disk latencies. To understand the disk latency that etcd experiences by etcd in your control plane environment, run the Flexible I/O Tester (fio) tests or suite, to check etcd disk performance in OpenShift Container Platform.
 
@@ -110,7 +111,7 @@ By using the `etcdctl` CLI, you can watch the latency for reaching consensus as 
 
 The etcd peer round- trip time (RTT) is not the same as the network RTT. This calculation is an end-to-end test metric about how quickly replication can occur among members.
 
-The etcd peer RTT is the metric that shows the latency of etcd to finish replicating a client request among all the etcd members. The OpenShift Container Platform console provides dashboards to visualize the various etcd metrics. In the console, click **Observe** -> **Dashboards**.  From the dropdown list, select **etcd**.
+The etcd peer RTT is the metric that shows the latency of etcd to finish replicating a client request among all the etcd members. The OpenShift Container Platform console provides dashboards to visualize the various etcd metrics. In the console, click **Observe** → **Dashboards**.  From the dropdown list, select **etcd**.
 
 A plot that summarizes the etcd peer RTT is near the end of the etcd **Dashboard** page.
 

@@ -9,7 +9,8 @@ The File Integrity Operator continually runs file integrity checks on the cluste
 > [!NOTE]
 > File Integrity Operator is not supported on HCP clusters.
 
-## Additional resources {#fio-overview_additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [File Integrity Operator release notes](/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-release-notes#file-integrity-operator-release-notes)
 - [File Integrity Operator support](/openshift-docs-markdown/security/file_integrity_operator/fio-support#fio-support)

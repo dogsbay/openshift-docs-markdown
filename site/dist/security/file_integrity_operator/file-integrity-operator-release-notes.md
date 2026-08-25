@@ -113,10 +113,10 @@ This update addresses a CVE in an underlying dependency.
 
 - You can install and use the File Integrity Operator in an OpenShift Container Platform cluster running in FIPS mode.
 
-> [!IMPORTANT]
-> To enable FIPS mode for your cluster, you must run the installation program from a Red Hat Enterprise Linux (RHEL) computer configured to operate in FIPS mode. For more information about configuring FIPS mode on RHEL, see [Switching RHEL to FIPS mode](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/security_hardening/switching-rhel-to-fips-mode_security-hardening).
->
-> When running Red Hat Enterprise Linux (RHEL) or Red Hat Enterprise Linux CoreOS (RHCOS) booted in FIPS mode, OpenShift Container Platform core components use the RHEL cryptographic libraries that have been submitted to NIST for FIPS 140-2/140-3 Validation on only the x86_64, ppc64le, and s390x architectures.
+  > [!IMPORTANT]
+  > To enable FIPS mode for your cluster, you must run the installation program from a Red Hat Enterprise Linux (RHEL) computer configured to operate in FIPS mode. For more information about configuring FIPS mode on RHEL, see [Switching RHEL to FIPS mode](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/security_hardening/switching-rhel-to-fips-mode_security-hardening).
+  >
+  > When running Red Hat Enterprise Linux (RHEL) or Red Hat Enterprise Linux CoreOS (RHCOS) booted in FIPS mode, OpenShift Container Platform core components use the RHEL cryptographic libraries that have been submitted to NIST for FIPS 140-2/140-3 Validation on only the x86_64, ppc64le, and s390x architectures.
 
 ### Bug fixes {#file-integrity-operator-1-3-3-bug-fixes_file-integrity-operator-release-notes-v0}
 
@@ -271,7 +271,8 @@ The following Red Hat Bug Fix Advisory (RHBA) is available for the OpenShift Fil
 
 - Before this update, when the Operator automatically upgraded, outdated daemon sets were not removed. With this release, outdated daemon sets are removed during the automatic upgrade.
 
-## Additional resources {#file-integrity-operator-release-notes_additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Understanding the File Integrity Operator](/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-understanding#understanding-file-integrity-operator)
 - [Updating the File Integrity Operator](/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-updating#olm-preparing-upgrade_file-integrity-operator-updating)

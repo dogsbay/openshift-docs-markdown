@@ -43,10 +43,10 @@ Required
 | `containers` | `array` | List of containers belonging to the pod. Containers cannot currently be added or removed. There must be at least one container in a Pod. Cannot be updated. |
 | `containers[]` | `object` | A single application container that you want to run within a pod. |
 | `dnsConfig` | `object` | PodDNSConfig defines the DNS parameters of a pod in addition to those generated from DNSPolicy. |
-| `dnsPolicy` | `string` | Set DNS policy for the pod. Defaults to "ClusterFirst". Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'. DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy. To have DNS options set along with hostNetwork, you have to specify DNS policy explicitly to 'ClusterFirstWithHostNet'. Possible enum values:  - `"ClusterFirst"` indicates that the pod should use cluster DNS first unless hostNetwork is true, if it is available, then fall back on the default (as determined by kubelet) DNS settings.  - `"ClusterFirstWithHostNet"` indicates that the pod should use cluster DNS first, if it is available, then fall back on the default (as determined by kubelet) DNS settings.  - `"Default"` indicates that the pod should use the default (as determined by kubelet) DNS settings.  - `"None"` indicates that the pod should use empty DNS settings. DNS parameters such as nameservers and search paths should be defined via DNSConfig. |
+| `dnsPolicy` | `string` | Set DNS policy for the pod. Defaults to "ClusterFirst". Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'. DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy. To have DNS options set along with hostNetwork, you have to specify DNS policy explicitly to 'ClusterFirstWithHostNet'.<br>Possible enum values: - `"ClusterFirst"` indicates that the pod should use cluster DNS first unless hostNetwork is true, if it is available, then fall back on the default (as determined by kubelet) DNS settings. - `"ClusterFirstWithHostNet"` indicates that the pod should use cluster DNS first, if it is available, then fall back on the default (as determined by kubelet) DNS settings. - `"Default"` indicates that the pod should use the default (as determined by kubelet) DNS settings. - `"None"` indicates that the pod should use empty DNS settings. DNS parameters such as nameservers and search paths should be defined via DNSConfig. |
 | `enableServiceLinks` | `boolean` | EnableServiceLinks indicates whether information about services should be injected into pod’s environment variables, matching the syntax of Docker links. Optional: Defaults to true. |
 | `ephemeralContainers` | `array` | List of ephemeral containers run in this pod. Ephemeral containers may be run in an existing pod to perform user-initiated actions such as debugging. This list cannot be specified when creating a pod, and it cannot be modified by updating the pod spec. In order to add an ephemeral container to an existing pod, use the pod’s ephemeralcontainers subresource. |
-| `ephemeralContainers[]` | `object` | An EphemeralContainer is a temporary container that you may add to an existing Pod for user-initiated activities such as debugging. Ephemeral containers have no resource or scheduling guarantees, and they will not be restarted when they exit or when a Pod is removed or restarted. The kubelet may evict a Pod if an ephemeral container causes the Pod to exceed its resource allocation. To add an ephemeral container, use the ephemeralcontainers subresource of an existing Pod. Ephemeral containers may not be removed or restarted. |
+| `ephemeralContainers[]` | `object` | An EphemeralContainer is a temporary container that you may add to an existing Pod for user-initiated activities such as debugging. Ephemeral containers have no resource or scheduling guarantees, and they will not be restarted when they exit or when a Pod is removed or restarted. The kubelet may evict a Pod if an ephemeral container causes the Pod to exceed its resource allocation.<br>To add an ephemeral container, use the ephemeralcontainers subresource of an existing Pod. Ephemeral containers may not be removed or restarted. |
 | `hostAliases` | `array` | HostAliases is an optional list of hosts and IPs that will be injected into the pod’s hosts file if specified. |
 | `hostAliases[]` | `object` | HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod’s hosts file. |
 | `hostIPC` | `boolean` | Use the host’s ipc namespace. Optional: Default to false. |
@@ -54,7 +54,7 @@ Required
 | `hostPID` | `boolean` | Use the host’s pid namespace. Optional: Default to false. |
 | `hostUsers` | `boolean` | Use the host’s user namespace. Optional: Default to true. If set to true or not present, the pod will be run in the host user namespace, useful for when the pod needs a feature only available to the host user namespace, such as loading a kernel module with CAP_SYS_MODULE. When set to false, a new userns is created for the pod. Setting false is useful for mitigating container breakout vulnerabilities even allowing users to run their containers as root without actually having root privileges on the host. This field is alpha-level and is only honored by servers that enable the UserNamespacesSupport feature. |
 | `hostname` | `string` | Specifies the hostname of the Pod If not specified, the pod’s hostname will be set to a system-defined value. |
-| `hostnameOverride` | `string` | HostnameOverride specifies an explicit override for the pod’s hostname as perceived by the pod. This field only specifies the pod’s hostname and does not affect its DNS records. When this field is set to a non-empty string: - It takes precedence over the values set in `hostname` and `subdomain`. - The Pod’s hostname will be set to this value. - `setHostnameAsFQDN` must be nil or set to false. - `hostNetwork` must be set to false. This field must be a valid DNS subdomain as defined in RFC 1123 and contain at most 64 characters. Requires the HostnameOverride feature gate to be enabled. |
+| `hostnameOverride` | `string` | HostnameOverride specifies an explicit override for the pod’s hostname as perceived by the pod. This field only specifies the pod’s hostname and does not affect its DNS records. When this field is set to a non-empty string: - It takes precedence over the values set in `hostname` and `subdomain`. - The Pod’s hostname will be set to this value. - `setHostnameAsFQDN` must be nil or set to false. - `hostNetwork` must be set to false.<br>This field must be a valid DNS subdomain as defined in RFC 1123 and contain at most 64 characters. Requires the HostnameOverride feature gate to be enabled. |
 | `imagePullSecrets` | `array` | ImagePullSecrets is an optional list of references to secrets in the same namespace to use for pulling any of the images used by this PodSpec. If specified, these secrets will be passed to individual puller implementations for them to use. More info: https://kubernetes.io/docs/concepts/containers/images#specifying-imagepullsecrets-on-a-pod |
 | `imagePullSecrets[]` | `object` | LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace. |
 | `initContainers` | `array` | List of initialization containers belonging to the pod. Init containers are executed in order prior to containers being started. If any init container fails, the pod is considered to have failed and is handled according to its restartPolicy. The name for an init container or normal container must be unique among all containers. Init containers may not have Lifecycle actions, Readiness probes, Liveness probes, or Startup probes. The resourceRequirements of an init container are taken into account during scheduling by finding the highest request/limit for each resource type, and then using the max of that value or the sum of the normal containers. Limits are applied to init containers in a similar fashion. Init containers cannot currently be added or removed. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/ |
@@ -63,20 +63,20 @@ Required
 | `nodeSelector` | `object (string)` | NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node’s labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/ |
 | `os` | `object` | PodOS defines the OS parameters of a pod. |
 | `overhead` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. This field will be autopopulated at admission time by the RuntimeClass admission controller. If the RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests. The RuntimeClass admission controller will reject Pod create requests which have the overhead already set. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the value defined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero. More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md |
-| `preemptionPolicy` | `string` | PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset. Possible enum values:  - `"Never"` means that pod never preempts other pods with lower priority.  - `"PreemptLowerPriority"` means that pod can preempt other pods with lower priority. |
+| `preemptionPolicy` | `string` | PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset.<br>Possible enum values: - `"Never"` means that pod never preempts other pods with lower priority. - `"PreemptLowerPriority"` means that pod can preempt other pods with lower priority. |
 | `priority` | `integer` | The priority value. Various system components use this field to find the priority of the pod. When Priority Admission Controller is enabled, it prevents users from setting this field. The admission controller populates this field from PriorityClassName. The higher the value, the higher the priority. |
 | `priorityClassName` | `string` | If specified, indicates the pod’s priority. "system-node-critical" and "system-cluster-critical" are two special keywords which indicate the highest priorities with the former being the highest priority. Any other name must be defined by creating a PriorityClass object with that name. If not specified, the pod priority will be default or zero if there is no default. |
 | `readinessGates` | `array` | If specified, all readiness gates will be evaluated for pod readiness. A pod is ready when all its containers are ready AND all conditions specified in the readiness gates have status equal to "True" More info: https://git.k8s.io/enhancements/keps/sig-network/580-pod-readiness-gates |
 | `readinessGates[]` | `object` | PodReadinessGate contains the reference to a pod condition |
-| `resourceClaims` | `array` | ResourceClaims defines which ResourceClaims must be allocated and reserved before the Pod is allowed to start. The resources will be made available to those containers which consume them by name. This is a stable field but requires that the DynamicResourceAllocation feature gate is enabled. This field is immutable. |
-| `resourceClaims[]` | `object` | PodResourceClaim references exactly one ResourceClaim, either directly or by naming a ResourceClaimTemplate which is then turned into a ResourceClaim for the pod. It adds a name to it that uniquely identifies the ResourceClaim inside the Pod. Containers that need access to the ResourceClaim reference it with this name. |
+| `resourceClaims` | `array` | ResourceClaims defines which ResourceClaims must be allocated and reserved before the Pod is allowed to start. The resources will be made available to those containers which consume them by name.<br>This is a stable field but requires that the DynamicResourceAllocation feature gate is enabled.<br>This field is immutable. |
+| `resourceClaims[]` | `object` | PodResourceClaim references exactly one ResourceClaim, either directly or by naming a ResourceClaimTemplate which is then turned into a ResourceClaim for the pod.<br>It adds a name to it that uniquely identifies the ResourceClaim inside the Pod. Containers that need access to the ResourceClaim reference it with this name. |
 | `resources` | `object` | ResourceRequirements describes the compute resource requirements. |
-| `restartPolicy` | `string` | Restart policy for all containers within the pod. One of Always, OnFailure, Never. In some contexts, only a subset of those values may be permitted. Default to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy Possible enum values:  - `"Always"`  - `"Never"`  - `"OnFailure"` |
-| `runtimeClassName` | `string` | RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the "legacy" RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class |
+| `restartPolicy` | `string` | Restart policy for all containers within the pod. One of Always, OnFailure, Never. In some contexts, only a subset of those values may be permitted. Default to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy<br>Possible enum values: - `"Always"` - `"Never"` - `"OnFailure"` |
+| `runtimeClassName` | `string` | RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod. If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the "legacy" RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class |
 | `schedulerName` | `string` | If specified, the pod will be dispatched by specified scheduler. If not specified, the pod will be dispatched by default scheduler. |
-| `schedulingGates` | `array` | SchedulingGates is an opaque list of values that if specified will block scheduling the pod. If schedulingGates is not empty, the pod will stay in the SchedulingGated state and the scheduler will not attempt to schedule the pod. SchedulingGates can only be set at pod creation time, and be removed only afterwards. |
+| `schedulingGates` | `array` | SchedulingGates is an opaque list of values that if specified will block scheduling the pod. If schedulingGates is not empty, the pod will stay in the SchedulingGated state and the scheduler will not attempt to schedule the pod.<br>SchedulingGates can only be set at pod creation time, and be removed only afterwards. |
 | `schedulingGates[]` | `object` | PodSchedulingGate is associated to a Pod to guard its scheduling. |
-| `securityContext` | `object` | PodSecurityContext holds pod-level security attributes and common container settings. Some fields are also present in container.securityContext.  Field values of container.securityContext take precedence over field values of PodSecurityContext. |
+| `securityContext` | `object` | PodSecurityContext holds pod-level security attributes and common container settings. Some fields are also present in container.securityContext. Field values of container.securityContext take precedence over field values of PodSecurityContext. |
 | `serviceAccount` | `string` | DeprecatedServiceAccount is a deprecated alias for ServiceAccountName. Deprecated: Use serviceAccountName instead. |
 | `serviceAccountName` | `string` | ServiceAccountName is the name of the ServiceAccount to use to run this pod. More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/ |
 | `setHostnameAsFQDN` | `boolean` | If true the pod’s hostname will be configured as the pod’s FQDN, rather than the leaf name (the default). In Linux containers, this means setting the FQDN in the hostname field of the kernel (the nodename field of struct utsname). In Windows containers, this means setting the registry value of hostname for the registry key HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters to FQDN. If a pod does not have FQDN, this has no effect. Default to false. |
@@ -196,7 +196,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `key` | `string` | The label key that the selector applies to. |
-| `operator` | `string` | Represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt. Possible enum values:  - `"DoesNotExist"`  - `"Exists"`  - `"Gt"`  - `"In"`  - `"Lt"`  - `"NotIn"` |
+| `operator` | `string` | Represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.<br>Possible enum values: - `"DoesNotExist"` - `"Exists"` - `"Gt"` - `"In"` - `"Lt"` - `"NotIn"` |
 | `values` | `array (string)` | An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch. |
 
 ### .spec.affinity.nodeAffinity.preferredDuringSchedulingIgnoredDuringExecution\[\].preference.matchFields {#_specaffinitynodeaffinitypreferredduringschedulingignoredduringexecutionpreferencematchfields}
@@ -226,7 +226,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `key` | `string` | The label key that the selector applies to. |
-| `operator` | `string` | Represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt. Possible enum values:  - `"DoesNotExist"`  - `"Exists"`  - `"Gt"`  - `"In"`  - `"Lt"`  - `"NotIn"` |
+| `operator` | `string` | Represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.<br>Possible enum values: - `"DoesNotExist"` - `"Exists"` - `"Gt"` - `"In"` - `"Lt"` - `"NotIn"` |
 | `values` | `array (string)` | An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch. |
 
 ### .spec.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution {#_specaffinitynodeaffinityrequiredduringschedulingignoredduringexecution}
@@ -301,7 +301,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `key` | `string` | The label key that the selector applies to. |
-| `operator` | `string` | Represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt. Possible enum values:  - `"DoesNotExist"`  - `"Exists"`  - `"Gt"`  - `"In"`  - `"Lt"`  - `"NotIn"` |
+| `operator` | `string` | Represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.<br>Possible enum values: - `"DoesNotExist"` - `"Exists"` - `"Gt"` - `"In"` - `"Lt"` - `"NotIn"` |
 | `values` | `array (string)` | An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch. |
 
 ### .spec.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms\[\].matchFields {#_specaffinitynodeaffinityrequiredduringschedulingignoredduringexecutionnodeselectortermsmatchfields}
@@ -331,7 +331,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `key` | `string` | The label key that the selector applies to. |
-| `operator` | `string` | Represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt. Possible enum values:  - `"DoesNotExist"`  - `"Exists"`  - `"Gt"`  - `"In"`  - `"Lt"`  - `"NotIn"` |
+| `operator` | `string` | Represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.<br>Possible enum values: - `"DoesNotExist"` - `"Exists"` - `"Gt"` - `"In"` - `"Lt"` - `"NotIn"` |
 | `values` | `array (string)` | An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch. |
 
 ### .spec.affinity.podAffinity {#_specaffinitypodaffinity}
@@ -566,7 +566,7 @@ Required
 | `envFrom` | `array` | List of sources to populate environment variables in the container. The keys defined within a source may consist of any printable ASCII characters except '='. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated. |
 | `envFrom[]` | `object` | EnvFromSource represents the source of a set of ConfigMaps or Secrets |
 | `image` | `string` | Container image name. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets. |
-| `imagePullPolicy` | `string` | Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images Possible enum values:  - `"Always"` means that kubelet always attempts to pull the latest image. Container will fail If the pull fails.  - `"IfNotPresent"` means that kubelet pulls if the image isn’t present on disk. Container will fail if the image isn’t present and the pull fails.  - `"Never"` means that kubelet never pulls an image, but only uses a local image. Container will fail if the image isn’t present |
+| `imagePullPolicy` | `string` | Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images<br>Possible enum values: - `"Always"` means that kubelet always attempts to pull the latest image. Container will fail If the pull fails. - `"IfNotPresent"` means that kubelet pulls if the image isn’t present on disk. Container will fail if the image isn’t present and the pull fails. - `"Never"` means that kubelet never pulls an image, but only uses a local image. Container will fail if the image isn’t present |
 | `lifecycle` | `object` | Lifecycle describes actions that the management system should take in response to container lifecycle events. For the PostStart and PreStop lifecycle handlers, management of the container blocks until the action is complete, unless the container process fails, in which case the handler is aborted. |
 | `livenessProbe` | `object` | Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic. |
 | `name` | `string` | Name of the container specified as a DNS_LABEL. Each container in a pod must have a unique name (DNS_LABEL). Cannot be updated. |
@@ -579,12 +579,12 @@ Required
 | `restartPolicy` | `string` | RestartPolicy defines the restart behavior of individual containers in a pod. This overrides the pod-level restart policy. When this field is not specified, the restart behavior is defined by the Pod’s restart policy and the container type. Additionally, setting the RestartPolicy as "Always" for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy "Always" will be shut down. This lifecycle differs from normal init containers and is often referred to as a "sidecar" container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed. |
 | `restartPolicyRules` | `array` | Represents a list of rules to be checked to determine if the container should be restarted on exit. The rules are evaluated in order. Once a rule matches a container exit condition, the remaining rules are ignored. If no rule matches the container exit condition, the Container-level restart policy determines the whether the container is restarted or not. Constraints on the rules: - At most 20 rules are allowed. - Rules can have the same action. - Identical rules are not forbidden in validations. When rules are specified, container MUST set RestartPolicy explicitly even it if matches the Pod’s RestartPolicy. |
 | `restartPolicyRules[]` | `object` | ContainerRestartRule describes how a container exit is handled. |
-| `securityContext` | `object` | SecurityContext holds security configuration that will be applied to a container. Some fields are present in both SecurityContext and PodSecurityContext.  When both are set, the values in SecurityContext take precedence. |
+| `securityContext` | `object` | SecurityContext holds security configuration that will be applied to a container. Some fields are present in both SecurityContext and PodSecurityContext. When both are set, the values in SecurityContext take precedence. |
 | `startupProbe` | `object` | Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic. |
 | `stdin` | `boolean` | Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false. |
 | `stdinOnce` | `boolean` | Whether the container runtime should close the stdin channel after it has been opened by a single attach. When stdin is true the stdin stream will remain open across multiple attach sessions. If stdinOnce is set to true, stdin is opened on container start, is empty until the first client attaches to stdin, and then remains open and accepts data until the client disconnects, at which time stdin is closed and remains closed until the container is restarted. If this flag is false, a container processes that reads from stdin will never receive an EOF. Default is false |
 | `terminationMessagePath` | `string` | Optional: Path at which the file to which the container’s termination message will be written is mounted into the container’s filesystem. Message written is intended to be brief final status, such as an assertion failure message. Will be truncated by the node if greater than 4096 bytes. The total message length across all containers will be limited to 12kb. Defaults to /dev/termination-log. Cannot be updated. |
-| `terminationMessagePolicy` | `string` | Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated. Possible enum values:  - `"FallbackToLogsOnError"` will read the most recent contents of the container logs for the container status message when the container exits with an error and the terminationMessagePath has no contents.  - `"File"` is the default behavior and will set the container status message to the contents of the container’s terminationMessagePath when the container exits. |
+| `terminationMessagePolicy` | `string` | Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated.<br>Possible enum values: - `"FallbackToLogsOnError"` will read the most recent contents of the container logs for the container status message when the container exits with an error and the terminationMessagePath has no contents. - `"File"` is the default behavior and will set the container status message to the contents of the container’s terminationMessagePath when the container exits. |
 | `tty` | `boolean` | Whether this container should allocate a TTY for itself, also requires 'stdin' to be true. Default is false. |
 | `volumeDevices` | `array` | volumeDevices is the list of block devices to be used by the container. |
 | `volumeDevices[]` | `object` | volumeDevice describes a mapping of a raw block device within a container. |
@@ -694,7 +694,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `key` | `string` | The key within the env file. An invalid key will prevent the pod from starting. The keys defined within a source may consist of any printable ASCII characters except '='. During Alpha stage of the EnvFiles feature gate, the key size is limited to 128 characters. |
-| `optional` | `boolean` | Specify whether the file or its key must be defined. If the file or key does not exist, then the env var is not published. If optional is set to true and the specified key does not exist, the environment variable will not be set in the Pod’s containers. If optional is set to false and the specified key does not exist, an error will be returned during Pod creation. |
+| `optional` | `boolean` | Specify whether the file or its key must be defined. If the file or key does not exist, then the env var is not published. If optional is set to true and the specified key does not exist, the environment variable will not be set in the Pod’s containers.<br>If optional is set to false and the specified key does not exist, an error will be returned during Pod creation. |
 | `path` | `string` | The path within the volume from which to select the file. Must be relative and may not contain the '..' path or start with '..'. |
 | `volumeName` | `string` | The name of the volume mount containing the env file. |
 
@@ -732,7 +732,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -758,9 +758,9 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `configMapRef` | `object` | ConfigMapEnvSource selects a ConfigMap to populate the environment variables with. The contents of the target ConfigMap’s Data field will represent the key-value pairs as environment variables. |
+| `configMapRef` | `object` | ConfigMapEnvSource selects a ConfigMap to populate the environment variables with.<br>The contents of the target ConfigMap’s Data field will represent the key-value pairs as environment variables. |
 | `prefix` | `string` | Optional text to prepend to the name of each environment variable. May consist of any printable ASCII characters except '='. |
-| `secretRef` | `object` | SecretEnvSource selects a Secret to populate the environment variables with. The contents of the target Secret’s Data field will represent the key-value pairs as environment variables. |
+| `secretRef` | `object` | SecretEnvSource selects a Secret to populate the environment variables with.<br>The contents of the target Secret’s Data field will represent the key-value pairs as environment variables. |
 
 ### .spec.containers\[\].envFrom\[\].configMapRef {#_speccontainersenvfromconfigmapref}
 
@@ -810,7 +810,7 @@ Type
 | --- | --- | --- |
 | `postStart` | `object` | LifecycleHandler defines a specific action that should be taken in a lifecycle hook. One and only one of the fields, except TCPSocket must be specified. |
 | `preStop` | `object` | LifecycleHandler defines a specific action that should be taken in a lifecycle hook. One and only one of the fields, except TCPSocket must be specified. |
-| `stopSignal` | `string` | StopSignal defines which signal will be sent to a container when it is being stopped. If not specified, the default is defined by the container runtime in use. StopSignal can only be set for Pods with a non-empty .spec.os.name Possible enum values:  - `"SIGABRT"`  - `"SIGALRM"`  - `"SIGBUS"`  - `"SIGCHLD"`  - `"SIGCLD"`  - `"SIGCONT"`  - `"SIGFPE"`  - `"SIGHUP"`  - `"SIGILL"`  - `"SIGINT"`  - `"SIGIO"`  - `"SIGIOT"`  - `"SIGKILL"`  - `"SIGPIPE"`  - `"SIGPOLL"`  - `"SIGPROF"`  - `"SIGPWR"`  - `"SIGQUIT"`  - `"SIGRTMAX"`  - `"SIGRTMAX-1"`  - `"SIGRTMAX-10"`  - `"SIGRTMAX-11"`  - `"SIGRTMAX-12"`  - `"SIGRTMAX-13"`  - `"SIGRTMAX-14"`  - `"SIGRTMAX-2"`  - `"SIGRTMAX-3"`  - `"SIGRTMAX-4"`  - `"SIGRTMAX-5"`  - `"SIGRTMAX-6"`  - `"SIGRTMAX-7"`  - `"SIGRTMAX-8"`  - `"SIGRTMAX-9"`  - `"SIGRTMIN"`  - `"SIGRTMIN+1"`  - `"SIGRTMIN+10"`  - `"SIGRTMIN+11"`  - `"SIGRTMIN+12"`  - `"SIGRTMIN+13"`  - `"SIGRTMIN+14"`  - `"SIGRTMIN+15"`  - `"SIGRTMIN+2"`  - `"SIGRTMIN+3"`  - `"SIGRTMIN+4"`  - `"SIGRTMIN+5"`  - `"SIGRTMIN+6"`  - `"SIGRTMIN+7"`  - `"SIGRTMIN+8"`  - `"SIGRTMIN+9"`  - `"SIGSEGV"`  - `"SIGSTKFLT"`  - `"SIGSTOP"`  - `"SIGSYS"`  - `"SIGTERM"`  - `"SIGTRAP"`  - `"SIGTSTP"`  - `"SIGTTIN"`  - `"SIGTTOU"`  - `"SIGURG"`  - `"SIGUSR1"`  - `"SIGUSR2"`  - `"SIGVTALRM"`  - `"SIGWINCH"`  - `"SIGXCPU"`  - `"SIGXFSZ"` |
+| `stopSignal` | `string` | StopSignal defines which signal will be sent to a container when it is being stopped. If not specified, the default is defined by the container runtime in use. StopSignal can only be set for Pods with a non-empty .spec.os.name<br>Possible enum values: - `"SIGABRT"` - `"SIGALRM"` - `"SIGBUS"` - `"SIGCHLD"` - `"SIGCLD"` - `"SIGCONT"` - `"SIGFPE"` - `"SIGHUP"` - `"SIGILL"` - `"SIGINT"` - `"SIGIO"` - `"SIGIOT"` - `"SIGKILL"` - `"SIGPIPE"` - `"SIGPOLL"` - `"SIGPROF"` - `"SIGPWR"` - `"SIGQUIT"` - `"SIGRTMAX"` - `"SIGRTMAX-1"` - `"SIGRTMAX-10"` - `"SIGRTMAX-11"` - `"SIGRTMAX-12"` - `"SIGRTMAX-13"` - `"SIGRTMAX-14"` - `"SIGRTMAX-2"` - `"SIGRTMAX-3"` - `"SIGRTMAX-4"` - `"SIGRTMAX-5"` - `"SIGRTMAX-6"` - `"SIGRTMAX-7"` - `"SIGRTMAX-8"` - `"SIGRTMAX-9"` - `"SIGRTMIN"` - `"SIGRTMIN+1"` - `"SIGRTMIN+10"` - `"SIGRTMIN+11"` - `"SIGRTMIN+12"` - `"SIGRTMIN+13"` - `"SIGRTMIN+14"` - `"SIGRTMIN+15"` - `"SIGRTMIN+2"` - `"SIGRTMIN+3"` - `"SIGRTMIN+4"` - `"SIGRTMIN+5"` - `"SIGRTMIN+6"` - `"SIGRTMIN+7"` - `"SIGRTMIN+8"` - `"SIGRTMIN+9"` - `"SIGSEGV"` - `"SIGSTKFLT"` - `"SIGSTOP"` - `"SIGSYS"` - `"SIGTERM"` - `"SIGTRAP"` - `"SIGTSTP"` - `"SIGTTIN"` - `"SIGTTOU"` - `"SIGURG"` - `"SIGUSR1"` - `"SIGUSR2"` - `"SIGVTALRM"` - `"SIGWINCH"` - `"SIGXCPU"` - `"SIGXFSZ"` |
 
 ### .spec.containers\[\].lifecycle.postStart {#_speccontainerslifecyclepoststart}
 
@@ -841,7 +841,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\\ |
+| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\|', etc) won’t work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy. |
 
 ### .spec.containers\[\].lifecycle.postStart.httpGet {#_speccontainerslifecyclepoststarthttpget}
 
@@ -863,7 +863,7 @@ Required
 | `httpHeaders[]` | `object` | HTTPHeader describes a custom header to be used in HTTP probes |
 | `path` | `string` | Path to access on the HTTP server. |
 | `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
-| `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. Possible enum values:  - `"HTTP"` means that the scheme used will be http://  - `"HTTPS"` means that the scheme used will be https:// |
+| `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP.<br>Possible enum values: - `"HTTP"` means that the scheme used will be http:// - `"HTTPS"` means that the scheme used will be https:// |
 
 ### .spec.containers\[\].lifecycle.postStart.httpGet.httpHeaders {#_speccontainerslifecyclepoststarthttpgethttpheaders}
 
@@ -958,7 +958,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\\ |
+| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\|', etc) won’t work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy. |
 
 ### .spec.containers\[\].lifecycle.preStop.httpGet {#_speccontainerslifecycleprestophttpget}
 
@@ -980,7 +980,7 @@ Required
 | `httpHeaders[]` | `object` | HTTPHeader describes a custom header to be used in HTTP probes |
 | `path` | `string` | Path to access on the HTTP server. |
 | `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
-| `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. Possible enum values:  - `"HTTP"` means that the scheme used will be http://  - `"HTTPS"` means that the scheme used will be https:// |
+| `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP.<br>Possible enum values: - `"HTTP"` means that the scheme used will be http:// - `"HTTPS"` means that the scheme used will be https:// |
 
 ### .spec.containers\[\].lifecycle.preStop.httpGet.httpHeaders {#_speccontainerslifecycleprestophttpgethttpheaders}
 
@@ -1081,7 +1081,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\\ |
+| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\|', etc) won’t work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy. |
 
 ### .spec.containers\[\].livenessProbe.grpc {#_speccontainerslivenessprobegrpc}
 
@@ -1099,7 +1099,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `port` | `integer` | Port number of the gRPC service. Number must be in the range 1 to 65535. |
-| `service` | `string` | Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC. |
+| `service` | `string` | Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).<br>If this is not specified, the default behavior is defined by gRPC. |
 
 ### .spec.containers\[\].livenessProbe.httpGet {#_speccontainerslivenessprobehttpget}
 
@@ -1121,7 +1121,7 @@ Required
 | `httpHeaders[]` | `object` | HTTPHeader describes a custom header to be used in HTTP probes |
 | `path` | `string` | Path to access on the HTTP server. |
 | `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
-| `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. Possible enum values:  - `"HTTP"` means that the scheme used will be http://  - `"HTTPS"` means that the scheme used will be https:// |
+| `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP.<br>Possible enum values: - `"HTTP"` means that the scheme used will be http:// - `"HTTPS"` means that the scheme used will be https:// |
 
 ### .spec.containers\[\].livenessProbe.httpGet.httpHeaders {#_speccontainerslivenessprobehttpgethttpheaders}
 
@@ -1199,7 +1199,7 @@ Required
 | `hostIP` | `string` | What host IP to bind the external port to. |
 | `hostPort` | `integer` | Number of port to expose on the host. If specified, this must be a valid port number, 0 < x < 65536. If HostNetwork is specified, this must match ContainerPort. Most containers do not need this. |
 | `name` | `string` | If specified, this must be an IANA_SVC_NAME and unique within the pod. Each named port in a pod must have a unique name. Name for the port that can be referred to by services. |
-| `protocol` | `string` | Protocol for port. Must be UDP, TCP, or SCTP. Defaults to "TCP". Possible enum values:  - `"SCTP"` is the SCTP protocol.  - `"TCP"` is the TCP protocol.  - `"UDP"` is the UDP protocol. |
+| `protocol` | `string` | Protocol for port. Must be UDP, TCP, or SCTP. Defaults to "TCP".<br>Possible enum values: - `"SCTP"` is the SCTP protocol. - `"TCP"` is the TCP protocol. - `"UDP"` is the UDP protocol. |
 
 ### .spec.containers\[\].readinessProbe {#_speccontainersreadinessprobe}
 
@@ -1236,7 +1236,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\\ |
+| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\|', etc) won’t work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy. |
 
 ### .spec.containers\[\].readinessProbe.grpc {#_speccontainersreadinessprobegrpc}
 
@@ -1254,7 +1254,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `port` | `integer` | Port number of the gRPC service. Number must be in the range 1 to 65535. |
-| `service` | `string` | Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC. |
+| `service` | `string` | Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).<br>If this is not specified, the default behavior is defined by gRPC. |
 
 ### .spec.containers\[\].readinessProbe.httpGet {#_speccontainersreadinessprobehttpget}
 
@@ -1276,7 +1276,7 @@ Required
 | `httpHeaders[]` | `object` | HTTPHeader describes a custom header to be used in HTTP probes |
 | `path` | `string` | Path to access on the HTTP server. |
 | `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
-| `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. Possible enum values:  - `"HTTP"` means that the scheme used will be http://  - `"HTTPS"` means that the scheme used will be https:// |
+| `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP.<br>Possible enum values: - `"HTTP"` means that the scheme used will be http:// - `"HTTPS"` means that the scheme used will be https:// |
 
 ### .spec.containers\[\].readinessProbe.httpGet.httpHeaders {#_speccontainersreadinessprobehttpgethttpheaders}
 
@@ -1366,7 +1366,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. |
+| `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.<br>This field depends on the DynamicResourceAllocation feature gate.<br>This field is immutable. It can only be set for containers. |
 | `claims[]` | `object` | ResourceClaim references one entry in PodSpec.ResourceClaims. |
 | `limits` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
 | `requests` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
@@ -1446,7 +1446,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `operator` | `string` | Represents the relationship between the container exit code(s) and the specified values. Possible values are: - In: the requirement is satisfied if the container exit code is in the   set of specified values. - NotIn: the requirement is satisfied if the container exit code is   not in the set of specified values. |
+| `operator` | `string` | Represents the relationship between the container exit code(s) and the specified values. Possible values are: - In: the requirement is satisfied if the container exit code is in the set of specified values. - NotIn: the requirement is satisfied if the container exit code is not in the set of specified values. |
 | `values` | `array (integer)` | Specifies the set of values to check for container exit codes. At most 255 elements are allowed. |
 
 ### .spec.containers\[\].securityContext {#_speccontainerssecuritycontext}
@@ -1465,11 +1465,11 @@ Type
 | `appArmorProfile` | `object` | AppArmorProfile defines a pod or container’s AppArmor settings. |
 | `capabilities` | `object` | Adds and removes POSIX capabilities from running containers. |
 | `privileged` | `boolean` | Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows. |
-| `procMount` | `string` | procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows. Possible enum values:  - `"Default"` uses the container runtime defaults for readonly and masked paths for /proc. Most container runtimes mask certain paths in /proc to avoid accidental security exposure of special devices or information.  - `"Unmasked"` bypasses the default masking behavior of the container runtime and ensures the newly created /proc the container stays in tact with no modifications. |
+| `procMount` | `string` | procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.<br>Possible enum values: - `"Default"` uses the container runtime defaults for readonly and masked paths for /proc. Most container runtimes mask certain paths in /proc to avoid accidental security exposure of special devices or information. - `"Unmasked"` bypasses the default masking behavior of the container runtime and ensures the newly created /proc the container stays in tact with no modifications. |
 | `readOnlyRootFilesystem` | `boolean` | Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows. |
-| `runAsGroup` | `integer` | The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows. |
-| `runAsNonRoot` | `boolean` | Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. |
-| `runAsUser` | `integer` | The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows. |
+| `runAsGroup` | `integer` | The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows. |
+| `runAsNonRoot` | `boolean` | Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. |
+| `runAsUser` | `integer` | The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows. |
 | `seLinuxOptions` | `object` | SELinuxOptions are the labels to be applied to the container |
 | `seccompProfile` | `object` | SeccompProfile defines a pod/container’s seccomp profile settings. Only one profile source may be set. |
 | `windowsOptions` | `object` | WindowsSecurityContextOptions contain Windows-specific options and credentials. |
@@ -1490,7 +1490,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `localhostProfile` | `string` | localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is "Localhost". |
-| `type` | `string` | type indicates which kind of AppArmor profile will be applied. Valid options are:   Localhost - a profile pre-loaded on the node.   RuntimeDefault - the container runtime’s default profile.   Unconfined - no AppArmor enforcement. Possible enum values:  - `"Localhost"` indicates that a profile pre-loaded on the node should be used.  - `"RuntimeDefault"` indicates that the container runtime’s default AppArmor profile should be used.  - `"Unconfined"` indicates that no AppArmor profile should be enforced. |
+| `type` | `string` | type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime’s default profile. Unconfined - no AppArmor enforcement.<br>Possible enum values: - `"Localhost"` indicates that a profile pre-loaded on the node should be used. - `"RuntimeDefault"` indicates that the container runtime’s default AppArmor profile should be used. - `"Unconfined"` indicates that no AppArmor profile should be enforced. |
 
 ### .spec.containers\[\].securityContext.capabilities {#_speccontainerssecuritycontextcapabilities}
 
@@ -1540,7 +1540,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `localhostProfile` | `string` | localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet’s configured seccomp profile location. Must be set if type is "Localhost". Must NOT be set for any other type. |
-| `type` | `string` | type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied. Possible enum values:  - `"Localhost"` indicates a profile defined in a file on the node should be used. The file’s location relative to <kubelet-root-dir>/seccomp.  - `"RuntimeDefault"` represents the default container runtime seccomp profile.  - `"Unconfined"` indicates no seccomp profile is applied (A.K.A. unconfined). |
+| `type` | `string` | type indicates which kind of seccomp profile will be applied. Valid options are:<br>Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.<br>Possible enum values: - `"Localhost"` indicates a profile defined in a file on the node should be used. The file’s location relative to <kubelet-root-dir>/seccomp. - `"RuntimeDefault"` represents the default container runtime seccomp profile. - `"Unconfined"` indicates no seccomp profile is applied (A.K.A. unconfined). |
 
 ### .spec.containers\[\].securityContext.windowsOptions {#_speccontainerssecuritycontextwindowsoptions}
 
@@ -1594,7 +1594,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\\ |
+| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\|', etc) won’t work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy. |
 
 ### .spec.containers\[\].startupProbe.grpc {#_speccontainersstartupprobegrpc}
 
@@ -1612,7 +1612,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `port` | `integer` | Port number of the gRPC service. Number must be in the range 1 to 65535. |
-| `service` | `string` | Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC. |
+| `service` | `string` | Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).<br>If this is not specified, the default behavior is defined by gRPC. |
 
 ### .spec.containers\[\].startupProbe.httpGet {#_speccontainersstartupprobehttpget}
 
@@ -1634,7 +1634,7 @@ Required
 | `httpHeaders[]` | `object` | HTTPHeader describes a custom header to be used in HTTP probes |
 | `path` | `string` | Path to access on the HTTP server. |
 | `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
-| `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. Possible enum values:  - `"HTTP"` means that the scheme used will be http://  - `"HTTPS"` means that the scheme used will be https:// |
+| `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP.<br>Possible enum values: - `"HTTP"` means that the scheme used will be http:// - `"HTTPS"` means that the scheme used will be https:// |
 
 ### .spec.containers\[\].startupProbe.httpGet.httpHeaders {#_speccontainersstartupprobehttpgethttpheaders}
 
@@ -1738,11 +1738,11 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `mountPath` | `string` | Path within the container at which the volume should be mounted.  Must not contain ':'. |
-| `mountPropagation` | `string` | mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None). Possible enum values:  - `"Bidirectional"` means that the volume in a container will receive new mounts from the host or other containers, and its own mounts will be propagated from the container to the host or other containers. Note that this mode is recursively applied to all mounts in the volume ("rshared" in Linux terminology).  - `"HostToContainer"` means that the volume in a container will receive new mounts from the host or other containers, but filesystems mounted inside the container won’t be propagated to the host or other containers. Note that this mode is recursively applied to all mounts in the volume ("rslave" in Linux terminology).  - `"None"` means that the volume in a container will not receive new mounts from the host or other containers, and filesystems mounted inside the container won’t be propagated to the host or other containers. Note that this mode corresponds to "private" in Linux terminology. |
+| `mountPath` | `string` | Path within the container at which the volume should be mounted. Must not contain ':'. |
+| `mountPropagation` | `string` | mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).<br>Possible enum values: - `"Bidirectional"` means that the volume in a container will receive new mounts from the host or other containers, and its own mounts will be propagated from the container to the host or other containers. Note that this mode is recursively applied to all mounts in the volume ("rshared" in Linux terminology). - `"HostToContainer"` means that the volume in a container will receive new mounts from the host or other containers, but filesystems mounted inside the container won’t be propagated to the host or other containers. Note that this mode is recursively applied to all mounts in the volume ("rslave" in Linux terminology). - `"None"` means that the volume in a container will not receive new mounts from the host or other containers, and filesystems mounted inside the container won’t be propagated to the host or other containers. Note that this mode corresponds to "private" in Linux terminology. |
 | `name` | `string` | This must match the Name of a Volume. |
 | `readOnly` | `boolean` | Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false. |
-| `recursiveReadOnly` | `string` | RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only.  If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime.  If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled. |
+| `recursiveReadOnly` | `string` | RecursiveReadOnly specifies whether read-only mounts should be handled recursively.<br>If ReadOnly is false, this field has no meaning and must be unspecified.<br>If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason.<br>If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None).<br>If this field is not specified, it is treated as an equivalent of Disabled. |
 | `subPath` | `string` | Path within the volume from which the container’s volume should be mounted. Defaults to "" (volume’s root). |
 | `subPathExpr` | `string` | Expanded path within the volume from which the container’s volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container’s environment. Defaults to "" (volume’s root). SubPathExpr and SubPath are mutually exclusive. |
 
@@ -1822,7 +1822,7 @@ Required
 | `envFrom` | `array` | List of sources to populate environment variables in the container. The keys defined within a source may consist of any printable ASCII characters except '='. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated. |
 | `envFrom[]` | `object` | EnvFromSource represents the source of a set of ConfigMaps or Secrets |
 | `image` | `string` | Container image name. More info: https://kubernetes.io/docs/concepts/containers/images |
-| `imagePullPolicy` | `string` | Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images Possible enum values:  - `"Always"` means that kubelet always attempts to pull the latest image. Container will fail If the pull fails.  - `"IfNotPresent"` means that kubelet pulls if the image isn’t present on disk. Container will fail if the image isn’t present and the pull fails.  - `"Never"` means that kubelet never pulls an image, but only uses a local image. Container will fail if the image isn’t present |
+| `imagePullPolicy` | `string` | Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images<br>Possible enum values: - `"Always"` means that kubelet always attempts to pull the latest image. Container will fail If the pull fails. - `"IfNotPresent"` means that kubelet pulls if the image isn’t present on disk. Container will fail if the image isn’t present and the pull fails. - `"Never"` means that kubelet never pulls an image, but only uses a local image. Container will fail if the image isn’t present |
 | `lifecycle` | `object` | Lifecycle describes actions that the management system should take in response to container lifecycle events. For the PostStart and PreStop lifecycle handlers, management of the container blocks until the action is complete, unless the container process fails, in which case the handler is aborted. |
 | `livenessProbe` | `object` | Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic. |
 | `name` | `string` | Name of the ephemeral container specified as a DNS_LABEL. This name must be unique among all containers, init containers and ephemeral containers. |
@@ -1835,13 +1835,13 @@ Required
 | `restartPolicy` | `string` | Restart policy for the container to manage the restart behavior of each container within a pod. You cannot set this field on ephemeral containers. |
 | `restartPolicyRules` | `array` | Represents a list of rules to be checked to determine if the container should be restarted on exit. You cannot set this field on ephemeral containers. |
 | `restartPolicyRules[]` | `object` | ContainerRestartRule describes how a container exit is handled. |
-| `securityContext` | `object` | SecurityContext holds security configuration that will be applied to a container. Some fields are present in both SecurityContext and PodSecurityContext.  When both are set, the values in SecurityContext take precedence. |
+| `securityContext` | `object` | SecurityContext holds security configuration that will be applied to a container. Some fields are present in both SecurityContext and PodSecurityContext. When both are set, the values in SecurityContext take precedence. |
 | `startupProbe` | `object` | Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic. |
 | `stdin` | `boolean` | Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false. |
 | `stdinOnce` | `boolean` | Whether the container runtime should close the stdin channel after it has been opened by a single attach. When stdin is true the stdin stream will remain open across multiple attach sessions. If stdinOnce is set to true, stdin is opened on container start, is empty until the first client attaches to stdin, and then remains open and accepts data until the client disconnects, at which time stdin is closed and remains closed until the container is restarted. If this flag is false, a container processes that reads from stdin will never receive an EOF. Default is false |
-| `targetContainerName` | `string` | If set, the name of the container from PodSpec that this ephemeral container targets. The ephemeral container will be run in the namespaces (IPC, PID, etc) of this container. If not set then the ephemeral container uses the namespaces configured in the Pod spec. The container runtime must implement support for this feature. If the runtime does not support namespace targeting then the result of setting this field is undefined. |
+| `targetContainerName` | `string` | If set, the name of the container from PodSpec that this ephemeral container targets. The ephemeral container will be run in the namespaces (IPC, PID, etc) of this container. If not set then the ephemeral container uses the namespaces configured in the Pod spec.<br>The container runtime must implement support for this feature. If the runtime does not support namespace targeting then the result of setting this field is undefined. |
 | `terminationMessagePath` | `string` | Optional: Path at which the file to which the container’s termination message will be written is mounted into the container’s filesystem. Message written is intended to be brief final status, such as an assertion failure message. Will be truncated by the node if greater than 4096 bytes. The total message length across all containers will be limited to 12kb. Defaults to /dev/termination-log. Cannot be updated. |
-| `terminationMessagePolicy` | `string` | Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated. Possible enum values:  - `"FallbackToLogsOnError"` will read the most recent contents of the container logs for the container status message when the container exits with an error and the terminationMessagePath has no contents.  - `"File"` is the default behavior and will set the container status message to the contents of the container’s terminationMessagePath when the container exits. |
+| `terminationMessagePolicy` | `string` | Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated.<br>Possible enum values: - `"FallbackToLogsOnError"` will read the most recent contents of the container logs for the container status message when the container exits with an error and the terminationMessagePath has no contents. - `"File"` is the default behavior and will set the container status message to the contents of the container’s terminationMessagePath when the container exits. |
 | `tty` | `boolean` | Whether this container should allocate a TTY for itself, also requires 'stdin' to be true. Default is false. |
 | `volumeDevices` | `array` | volumeDevices is the list of block devices to be used by the container. |
 | `volumeDevices[]` | `object` | volumeDevice describes a mapping of a raw block device within a container. |
@@ -1951,7 +1951,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `key` | `string` | The key within the env file. An invalid key will prevent the pod from starting. The keys defined within a source may consist of any printable ASCII characters except '='. During Alpha stage of the EnvFiles feature gate, the key size is limited to 128 characters. |
-| `optional` | `boolean` | Specify whether the file or its key must be defined. If the file or key does not exist, then the env var is not published. If optional is set to true and the specified key does not exist, the environment variable will not be set in the Pod’s containers. If optional is set to false and the specified key does not exist, an error will be returned during Pod creation. |
+| `optional` | `boolean` | Specify whether the file or its key must be defined. If the file or key does not exist, then the env var is not published. If optional is set to true and the specified key does not exist, the environment variable will not be set in the Pod’s containers.<br>If optional is set to false and the specified key does not exist, an error will be returned during Pod creation. |
 | `path` | `string` | The path within the volume from which to select the file. Must be relative and may not contain the '..' path or start with '..'. |
 | `volumeName` | `string` | The name of the volume mount containing the env file. |
 
@@ -1989,7 +1989,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -2015,9 +2015,9 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `configMapRef` | `object` | ConfigMapEnvSource selects a ConfigMap to populate the environment variables with. The contents of the target ConfigMap’s Data field will represent the key-value pairs as environment variables. |
+| `configMapRef` | `object` | ConfigMapEnvSource selects a ConfigMap to populate the environment variables with.<br>The contents of the target ConfigMap’s Data field will represent the key-value pairs as environment variables. |
 | `prefix` | `string` | Optional text to prepend to the name of each environment variable. May consist of any printable ASCII characters except '='. |
-| `secretRef` | `object` | SecretEnvSource selects a Secret to populate the environment variables with. The contents of the target Secret’s Data field will represent the key-value pairs as environment variables. |
+| `secretRef` | `object` | SecretEnvSource selects a Secret to populate the environment variables with.<br>The contents of the target Secret’s Data field will represent the key-value pairs as environment variables. |
 
 ### .spec.ephemeralContainers\[\].envFrom\[\].configMapRef {#_specephemeralcontainersenvfromconfigmapref}
 
@@ -2067,7 +2067,7 @@ Type
 | --- | --- | --- |
 | `postStart` | `object` | LifecycleHandler defines a specific action that should be taken in a lifecycle hook. One and only one of the fields, except TCPSocket must be specified. |
 | `preStop` | `object` | LifecycleHandler defines a specific action that should be taken in a lifecycle hook. One and only one of the fields, except TCPSocket must be specified. |
-| `stopSignal` | `string` | StopSignal defines which signal will be sent to a container when it is being stopped. If not specified, the default is defined by the container runtime in use. StopSignal can only be set for Pods with a non-empty .spec.os.name Possible enum values:  - `"SIGABRT"`  - `"SIGALRM"`  - `"SIGBUS"`  - `"SIGCHLD"`  - `"SIGCLD"`  - `"SIGCONT"`  - `"SIGFPE"`  - `"SIGHUP"`  - `"SIGILL"`  - `"SIGINT"`  - `"SIGIO"`  - `"SIGIOT"`  - `"SIGKILL"`  - `"SIGPIPE"`  - `"SIGPOLL"`  - `"SIGPROF"`  - `"SIGPWR"`  - `"SIGQUIT"`  - `"SIGRTMAX"`  - `"SIGRTMAX-1"`  - `"SIGRTMAX-10"`  - `"SIGRTMAX-11"`  - `"SIGRTMAX-12"`  - `"SIGRTMAX-13"`  - `"SIGRTMAX-14"`  - `"SIGRTMAX-2"`  - `"SIGRTMAX-3"`  - `"SIGRTMAX-4"`  - `"SIGRTMAX-5"`  - `"SIGRTMAX-6"`  - `"SIGRTMAX-7"`  - `"SIGRTMAX-8"`  - `"SIGRTMAX-9"`  - `"SIGRTMIN"`  - `"SIGRTMIN+1"`  - `"SIGRTMIN+10"`  - `"SIGRTMIN+11"`  - `"SIGRTMIN+12"`  - `"SIGRTMIN+13"`  - `"SIGRTMIN+14"`  - `"SIGRTMIN+15"`  - `"SIGRTMIN+2"`  - `"SIGRTMIN+3"`  - `"SIGRTMIN+4"`  - `"SIGRTMIN+5"`  - `"SIGRTMIN+6"`  - `"SIGRTMIN+7"`  - `"SIGRTMIN+8"`  - `"SIGRTMIN+9"`  - `"SIGSEGV"`  - `"SIGSTKFLT"`  - `"SIGSTOP"`  - `"SIGSYS"`  - `"SIGTERM"`  - `"SIGTRAP"`  - `"SIGTSTP"`  - `"SIGTTIN"`  - `"SIGTTOU"`  - `"SIGURG"`  - `"SIGUSR1"`  - `"SIGUSR2"`  - `"SIGVTALRM"`  - `"SIGWINCH"`  - `"SIGXCPU"`  - `"SIGXFSZ"` |
+| `stopSignal` | `string` | StopSignal defines which signal will be sent to a container when it is being stopped. If not specified, the default is defined by the container runtime in use. StopSignal can only be set for Pods with a non-empty .spec.os.name<br>Possible enum values: - `"SIGABRT"` - `"SIGALRM"` - `"SIGBUS"` - `"SIGCHLD"` - `"SIGCLD"` - `"SIGCONT"` - `"SIGFPE"` - `"SIGHUP"` - `"SIGILL"` - `"SIGINT"` - `"SIGIO"` - `"SIGIOT"` - `"SIGKILL"` - `"SIGPIPE"` - `"SIGPOLL"` - `"SIGPROF"` - `"SIGPWR"` - `"SIGQUIT"` - `"SIGRTMAX"` - `"SIGRTMAX-1"` - `"SIGRTMAX-10"` - `"SIGRTMAX-11"` - `"SIGRTMAX-12"` - `"SIGRTMAX-13"` - `"SIGRTMAX-14"` - `"SIGRTMAX-2"` - `"SIGRTMAX-3"` - `"SIGRTMAX-4"` - `"SIGRTMAX-5"` - `"SIGRTMAX-6"` - `"SIGRTMAX-7"` - `"SIGRTMAX-8"` - `"SIGRTMAX-9"` - `"SIGRTMIN"` - `"SIGRTMIN+1"` - `"SIGRTMIN+10"` - `"SIGRTMIN+11"` - `"SIGRTMIN+12"` - `"SIGRTMIN+13"` - `"SIGRTMIN+14"` - `"SIGRTMIN+15"` - `"SIGRTMIN+2"` - `"SIGRTMIN+3"` - `"SIGRTMIN+4"` - `"SIGRTMIN+5"` - `"SIGRTMIN+6"` - `"SIGRTMIN+7"` - `"SIGRTMIN+8"` - `"SIGRTMIN+9"` - `"SIGSEGV"` - `"SIGSTKFLT"` - `"SIGSTOP"` - `"SIGSYS"` - `"SIGTERM"` - `"SIGTRAP"` - `"SIGTSTP"` - `"SIGTTIN"` - `"SIGTTOU"` - `"SIGURG"` - `"SIGUSR1"` - `"SIGUSR2"` - `"SIGVTALRM"` - `"SIGWINCH"` - `"SIGXCPU"` - `"SIGXFSZ"` |
 
 ### .spec.ephemeralContainers\[\].lifecycle.postStart {#_specephemeralcontainerslifecyclepoststart}
 
@@ -2098,7 +2098,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\\ |
+| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\|', etc) won’t work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy. |
 
 ### .spec.ephemeralContainers\[\].lifecycle.postStart.httpGet {#_specephemeralcontainerslifecyclepoststarthttpget}
 
@@ -2120,7 +2120,7 @@ Required
 | `httpHeaders[]` | `object` | HTTPHeader describes a custom header to be used in HTTP probes |
 | `path` | `string` | Path to access on the HTTP server. |
 | `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
-| `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. Possible enum values:  - `"HTTP"` means that the scheme used will be http://  - `"HTTPS"` means that the scheme used will be https:// |
+| `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP.<br>Possible enum values: - `"HTTP"` means that the scheme used will be http:// - `"HTTPS"` means that the scheme used will be https:// |
 
 ### .spec.ephemeralContainers\[\].lifecycle.postStart.httpGet.httpHeaders {#_specephemeralcontainerslifecyclepoststarthttpgethttpheaders}
 
@@ -2215,7 +2215,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\\ |
+| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\|', etc) won’t work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy. |
 
 ### .spec.ephemeralContainers\[\].lifecycle.preStop.httpGet {#_specephemeralcontainerslifecycleprestophttpget}
 
@@ -2237,7 +2237,7 @@ Required
 | `httpHeaders[]` | `object` | HTTPHeader describes a custom header to be used in HTTP probes |
 | `path` | `string` | Path to access on the HTTP server. |
 | `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
-| `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. Possible enum values:  - `"HTTP"` means that the scheme used will be http://  - `"HTTPS"` means that the scheme used will be https:// |
+| `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP.<br>Possible enum values: - `"HTTP"` means that the scheme used will be http:// - `"HTTPS"` means that the scheme used will be https:// |
 
 ### .spec.ephemeralContainers\[\].lifecycle.preStop.httpGet.httpHeaders {#_specephemeralcontainerslifecycleprestophttpgethttpheaders}
 
@@ -2338,7 +2338,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\\ |
+| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\|', etc) won’t work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy. |
 
 ### .spec.ephemeralContainers\[\].livenessProbe.grpc {#_specephemeralcontainerslivenessprobegrpc}
 
@@ -2356,7 +2356,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `port` | `integer` | Port number of the gRPC service. Number must be in the range 1 to 65535. |
-| `service` | `string` | Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC. |
+| `service` | `string` | Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).<br>If this is not specified, the default behavior is defined by gRPC. |
 
 ### .spec.ephemeralContainers\[\].livenessProbe.httpGet {#_specephemeralcontainerslivenessprobehttpget}
 
@@ -2378,7 +2378,7 @@ Required
 | `httpHeaders[]` | `object` | HTTPHeader describes a custom header to be used in HTTP probes |
 | `path` | `string` | Path to access on the HTTP server. |
 | `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
-| `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. Possible enum values:  - `"HTTP"` means that the scheme used will be http://  - `"HTTPS"` means that the scheme used will be https:// |
+| `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP.<br>Possible enum values: - `"HTTP"` means that the scheme used will be http:// - `"HTTPS"` means that the scheme used will be https:// |
 
 ### .spec.ephemeralContainers\[\].livenessProbe.httpGet.httpHeaders {#_specephemeralcontainerslivenessprobehttpgethttpheaders}
 
@@ -2456,7 +2456,7 @@ Required
 | `hostIP` | `string` | What host IP to bind the external port to. |
 | `hostPort` | `integer` | Number of port to expose on the host. If specified, this must be a valid port number, 0 < x < 65536. If HostNetwork is specified, this must match ContainerPort. Most containers do not need this. |
 | `name` | `string` | If specified, this must be an IANA_SVC_NAME and unique within the pod. Each named port in a pod must have a unique name. Name for the port that can be referred to by services. |
-| `protocol` | `string` | Protocol for port. Must be UDP, TCP, or SCTP. Defaults to "TCP". Possible enum values:  - `"SCTP"` is the SCTP protocol.  - `"TCP"` is the TCP protocol.  - `"UDP"` is the UDP protocol. |
+| `protocol` | `string` | Protocol for port. Must be UDP, TCP, or SCTP. Defaults to "TCP".<br>Possible enum values: - `"SCTP"` is the SCTP protocol. - `"TCP"` is the TCP protocol. - `"UDP"` is the UDP protocol. |
 
 ### .spec.ephemeralContainers\[\].readinessProbe {#_specephemeralcontainersreadinessprobe}
 
@@ -2493,7 +2493,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\\ |
+| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\|', etc) won’t work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy. |
 
 ### .spec.ephemeralContainers\[\].readinessProbe.grpc {#_specephemeralcontainersreadinessprobegrpc}
 
@@ -2511,7 +2511,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `port` | `integer` | Port number of the gRPC service. Number must be in the range 1 to 65535. |
-| `service` | `string` | Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC. |
+| `service` | `string` | Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).<br>If this is not specified, the default behavior is defined by gRPC. |
 
 ### .spec.ephemeralContainers\[\].readinessProbe.httpGet {#_specephemeralcontainersreadinessprobehttpget}
 
@@ -2533,7 +2533,7 @@ Required
 | `httpHeaders[]` | `object` | HTTPHeader describes a custom header to be used in HTTP probes |
 | `path` | `string` | Path to access on the HTTP server. |
 | `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
-| `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. Possible enum values:  - `"HTTP"` means that the scheme used will be http://  - `"HTTPS"` means that the scheme used will be https:// |
+| `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP.<br>Possible enum values: - `"HTTP"` means that the scheme used will be http:// - `"HTTPS"` means that the scheme used will be https:// |
 
 ### .spec.ephemeralContainers\[\].readinessProbe.httpGet.httpHeaders {#_specephemeralcontainersreadinessprobehttpgethttpheaders}
 
@@ -2623,7 +2623,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. |
+| `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.<br>This field depends on the DynamicResourceAllocation feature gate.<br>This field is immutable. It can only be set for containers. |
 | `claims[]` | `object` | ResourceClaim references one entry in PodSpec.ResourceClaims. |
 | `limits` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
 | `requests` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
@@ -2703,7 +2703,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `operator` | `string` | Represents the relationship between the container exit code(s) and the specified values. Possible values are: - In: the requirement is satisfied if the container exit code is in the   set of specified values. - NotIn: the requirement is satisfied if the container exit code is   not in the set of specified values. |
+| `operator` | `string` | Represents the relationship between the container exit code(s) and the specified values. Possible values are: - In: the requirement is satisfied if the container exit code is in the set of specified values. - NotIn: the requirement is satisfied if the container exit code is not in the set of specified values. |
 | `values` | `array (integer)` | Specifies the set of values to check for container exit codes. At most 255 elements are allowed. |
 
 ### .spec.ephemeralContainers\[\].securityContext {#_specephemeralcontainerssecuritycontext}
@@ -2722,11 +2722,11 @@ Type
 | `appArmorProfile` | `object` | AppArmorProfile defines a pod or container’s AppArmor settings. |
 | `capabilities` | `object` | Adds and removes POSIX capabilities from running containers. |
 | `privileged` | `boolean` | Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows. |
-| `procMount` | `string` | procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows. Possible enum values:  - `"Default"` uses the container runtime defaults for readonly and masked paths for /proc. Most container runtimes mask certain paths in /proc to avoid accidental security exposure of special devices or information.  - `"Unmasked"` bypasses the default masking behavior of the container runtime and ensures the newly created /proc the container stays in tact with no modifications. |
+| `procMount` | `string` | procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.<br>Possible enum values: - `"Default"` uses the container runtime defaults for readonly and masked paths for /proc. Most container runtimes mask certain paths in /proc to avoid accidental security exposure of special devices or information. - `"Unmasked"` bypasses the default masking behavior of the container runtime and ensures the newly created /proc the container stays in tact with no modifications. |
 | `readOnlyRootFilesystem` | `boolean` | Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows. |
-| `runAsGroup` | `integer` | The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows. |
-| `runAsNonRoot` | `boolean` | Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. |
-| `runAsUser` | `integer` | The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows. |
+| `runAsGroup` | `integer` | The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows. |
+| `runAsNonRoot` | `boolean` | Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. |
+| `runAsUser` | `integer` | The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows. |
 | `seLinuxOptions` | `object` | SELinuxOptions are the labels to be applied to the container |
 | `seccompProfile` | `object` | SeccompProfile defines a pod/container’s seccomp profile settings. Only one profile source may be set. |
 | `windowsOptions` | `object` | WindowsSecurityContextOptions contain Windows-specific options and credentials. |
@@ -2747,7 +2747,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `localhostProfile` | `string` | localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is "Localhost". |
-| `type` | `string` | type indicates which kind of AppArmor profile will be applied. Valid options are:   Localhost - a profile pre-loaded on the node.   RuntimeDefault - the container runtime’s default profile.   Unconfined - no AppArmor enforcement. Possible enum values:  - `"Localhost"` indicates that a profile pre-loaded on the node should be used.  - `"RuntimeDefault"` indicates that the container runtime’s default AppArmor profile should be used.  - `"Unconfined"` indicates that no AppArmor profile should be enforced. |
+| `type` | `string` | type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime’s default profile. Unconfined - no AppArmor enforcement.<br>Possible enum values: - `"Localhost"` indicates that a profile pre-loaded on the node should be used. - `"RuntimeDefault"` indicates that the container runtime’s default AppArmor profile should be used. - `"Unconfined"` indicates that no AppArmor profile should be enforced. |
 
 ### .spec.ephemeralContainers\[\].securityContext.capabilities {#_specephemeralcontainerssecuritycontextcapabilities}
 
@@ -2797,7 +2797,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `localhostProfile` | `string` | localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet’s configured seccomp profile location. Must be set if type is "Localhost". Must NOT be set for any other type. |
-| `type` | `string` | type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied. Possible enum values:  - `"Localhost"` indicates a profile defined in a file on the node should be used. The file’s location relative to <kubelet-root-dir>/seccomp.  - `"RuntimeDefault"` represents the default container runtime seccomp profile.  - `"Unconfined"` indicates no seccomp profile is applied (A.K.A. unconfined). |
+| `type` | `string` | type indicates which kind of seccomp profile will be applied. Valid options are:<br>Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.<br>Possible enum values: - `"Localhost"` indicates a profile defined in a file on the node should be used. The file’s location relative to <kubelet-root-dir>/seccomp. - `"RuntimeDefault"` represents the default container runtime seccomp profile. - `"Unconfined"` indicates no seccomp profile is applied (A.K.A. unconfined). |
 
 ### .spec.ephemeralContainers\[\].securityContext.windowsOptions {#_specephemeralcontainerssecuritycontextwindowsoptions}
 
@@ -2851,7 +2851,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\\ |
+| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\|', etc) won’t work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy. |
 
 ### .spec.ephemeralContainers\[\].startupProbe.grpc {#_specephemeralcontainersstartupprobegrpc}
 
@@ -2869,7 +2869,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `port` | `integer` | Port number of the gRPC service. Number must be in the range 1 to 65535. |
-| `service` | `string` | Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC. |
+| `service` | `string` | Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).<br>If this is not specified, the default behavior is defined by gRPC. |
 
 ### .spec.ephemeralContainers\[\].startupProbe.httpGet {#_specephemeralcontainersstartupprobehttpget}
 
@@ -2891,7 +2891,7 @@ Required
 | `httpHeaders[]` | `object` | HTTPHeader describes a custom header to be used in HTTP probes |
 | `path` | `string` | Path to access on the HTTP server. |
 | `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
-| `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. Possible enum values:  - `"HTTP"` means that the scheme used will be http://  - `"HTTPS"` means that the scheme used will be https:// |
+| `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP.<br>Possible enum values: - `"HTTP"` means that the scheme used will be http:// - `"HTTPS"` means that the scheme used will be https:// |
 
 ### .spec.ephemeralContainers\[\].startupProbe.httpGet.httpHeaders {#_specephemeralcontainersstartupprobehttpgethttpheaders}
 
@@ -2995,11 +2995,11 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `mountPath` | `string` | Path within the container at which the volume should be mounted.  Must not contain ':'. |
-| `mountPropagation` | `string` | mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None). Possible enum values:  - `"Bidirectional"` means that the volume in a container will receive new mounts from the host or other containers, and its own mounts will be propagated from the container to the host or other containers. Note that this mode is recursively applied to all mounts in the volume ("rshared" in Linux terminology).  - `"HostToContainer"` means that the volume in a container will receive new mounts from the host or other containers, but filesystems mounted inside the container won’t be propagated to the host or other containers. Note that this mode is recursively applied to all mounts in the volume ("rslave" in Linux terminology).  - `"None"` means that the volume in a container will not receive new mounts from the host or other containers, and filesystems mounted inside the container won’t be propagated to the host or other containers. Note that this mode corresponds to "private" in Linux terminology. |
+| `mountPath` | `string` | Path within the container at which the volume should be mounted. Must not contain ':'. |
+| `mountPropagation` | `string` | mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).<br>Possible enum values: - `"Bidirectional"` means that the volume in a container will receive new mounts from the host or other containers, and its own mounts will be propagated from the container to the host or other containers. Note that this mode is recursively applied to all mounts in the volume ("rshared" in Linux terminology). - `"HostToContainer"` means that the volume in a container will receive new mounts from the host or other containers, but filesystems mounted inside the container won’t be propagated to the host or other containers. Note that this mode is recursively applied to all mounts in the volume ("rslave" in Linux terminology). - `"None"` means that the volume in a container will not receive new mounts from the host or other containers, and filesystems mounted inside the container won’t be propagated to the host or other containers. Note that this mode corresponds to "private" in Linux terminology. |
 | `name` | `string` | This must match the Name of a Volume. |
 | `readOnly` | `boolean` | Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false. |
-| `recursiveReadOnly` | `string` | RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only.  If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime.  If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled. |
+| `recursiveReadOnly` | `string` | RecursiveReadOnly specifies whether read-only mounts should be handled recursively.<br>If ReadOnly is false, this field has no meaning and must be unspecified.<br>If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason.<br>If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None).<br>If this field is not specified, it is treated as an equivalent of Disabled. |
 | `subPath` | `string` | Path within the volume from which the container’s volume should be mounted. Defaults to "" (volume’s root). |
 | `subPathExpr` | `string` | Expanded path within the volume from which the container’s volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container’s environment. Defaults to "" (volume’s root). SubPathExpr and SubPath are mutually exclusive. |
 
@@ -3087,7 +3087,7 @@ Required
 | `envFrom` | `array` | List of sources to populate environment variables in the container. The keys defined within a source may consist of any printable ASCII characters except '='. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated. |
 | `envFrom[]` | `object` | EnvFromSource represents the source of a set of ConfigMaps or Secrets |
 | `image` | `string` | Container image name. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets. |
-| `imagePullPolicy` | `string` | Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images Possible enum values:  - `"Always"` means that kubelet always attempts to pull the latest image. Container will fail If the pull fails.  - `"IfNotPresent"` means that kubelet pulls if the image isn’t present on disk. Container will fail if the image isn’t present and the pull fails.  - `"Never"` means that kubelet never pulls an image, but only uses a local image. Container will fail if the image isn’t present |
+| `imagePullPolicy` | `string` | Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images<br>Possible enum values: - `"Always"` means that kubelet always attempts to pull the latest image. Container will fail If the pull fails. - `"IfNotPresent"` means that kubelet pulls if the image isn’t present on disk. Container will fail if the image isn’t present and the pull fails. - `"Never"` means that kubelet never pulls an image, but only uses a local image. Container will fail if the image isn’t present |
 | `lifecycle` | `object` | Lifecycle describes actions that the management system should take in response to container lifecycle events. For the PostStart and PreStop lifecycle handlers, management of the container blocks until the action is complete, unless the container process fails, in which case the handler is aborted. |
 | `livenessProbe` | `object` | Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic. |
 | `name` | `string` | Name of the container specified as a DNS_LABEL. Each container in a pod must have a unique name (DNS_LABEL). Cannot be updated. |
@@ -3100,12 +3100,12 @@ Required
 | `restartPolicy` | `string` | RestartPolicy defines the restart behavior of individual containers in a pod. This overrides the pod-level restart policy. When this field is not specified, the restart behavior is defined by the Pod’s restart policy and the container type. Additionally, setting the RestartPolicy as "Always" for the init container will have the following effect: this init container will be continually restarted on exit until all regular containers have terminated. Once all regular containers have completed, all init containers with restartPolicy "Always" will be shut down. This lifecycle differs from normal init containers and is often referred to as a "sidecar" container. Although this init container still starts in the init container sequence, it does not wait for the container to complete before proceeding to the next init container. Instead, the next init container starts immediately after this init container is started, or after any startupProbe has successfully completed. |
 | `restartPolicyRules` | `array` | Represents a list of rules to be checked to determine if the container should be restarted on exit. The rules are evaluated in order. Once a rule matches a container exit condition, the remaining rules are ignored. If no rule matches the container exit condition, the Container-level restart policy determines the whether the container is restarted or not. Constraints on the rules: - At most 20 rules are allowed. - Rules can have the same action. - Identical rules are not forbidden in validations. When rules are specified, container MUST set RestartPolicy explicitly even it if matches the Pod’s RestartPolicy. |
 | `restartPolicyRules[]` | `object` | ContainerRestartRule describes how a container exit is handled. |
-| `securityContext` | `object` | SecurityContext holds security configuration that will be applied to a container. Some fields are present in both SecurityContext and PodSecurityContext.  When both are set, the values in SecurityContext take precedence. |
+| `securityContext` | `object` | SecurityContext holds security configuration that will be applied to a container. Some fields are present in both SecurityContext and PodSecurityContext. When both are set, the values in SecurityContext take precedence. |
 | `startupProbe` | `object` | Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic. |
 | `stdin` | `boolean` | Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false. |
 | `stdinOnce` | `boolean` | Whether the container runtime should close the stdin channel after it has been opened by a single attach. When stdin is true the stdin stream will remain open across multiple attach sessions. If stdinOnce is set to true, stdin is opened on container start, is empty until the first client attaches to stdin, and then remains open and accepts data until the client disconnects, at which time stdin is closed and remains closed until the container is restarted. If this flag is false, a container processes that reads from stdin will never receive an EOF. Default is false |
 | `terminationMessagePath` | `string` | Optional: Path at which the file to which the container’s termination message will be written is mounted into the container’s filesystem. Message written is intended to be brief final status, such as an assertion failure message. Will be truncated by the node if greater than 4096 bytes. The total message length across all containers will be limited to 12kb. Defaults to /dev/termination-log. Cannot be updated. |
-| `terminationMessagePolicy` | `string` | Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated. Possible enum values:  - `"FallbackToLogsOnError"` will read the most recent contents of the container logs for the container status message when the container exits with an error and the terminationMessagePath has no contents.  - `"File"` is the default behavior and will set the container status message to the contents of the container’s terminationMessagePath when the container exits. |
+| `terminationMessagePolicy` | `string` | Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated.<br>Possible enum values: - `"FallbackToLogsOnError"` will read the most recent contents of the container logs for the container status message when the container exits with an error and the terminationMessagePath has no contents. - `"File"` is the default behavior and will set the container status message to the contents of the container’s terminationMessagePath when the container exits. |
 | `tty` | `boolean` | Whether this container should allocate a TTY for itself, also requires 'stdin' to be true. Default is false. |
 | `volumeDevices` | `array` | volumeDevices is the list of block devices to be used by the container. |
 | `volumeDevices[]` | `object` | volumeDevice describes a mapping of a raw block device within a container. |
@@ -3215,7 +3215,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `key` | `string` | The key within the env file. An invalid key will prevent the pod from starting. The keys defined within a source may consist of any printable ASCII characters except '='. During Alpha stage of the EnvFiles feature gate, the key size is limited to 128 characters. |
-| `optional` | `boolean` | Specify whether the file or its key must be defined. If the file or key does not exist, then the env var is not published. If optional is set to true and the specified key does not exist, the environment variable will not be set in the Pod’s containers. If optional is set to false and the specified key does not exist, an error will be returned during Pod creation. |
+| `optional` | `boolean` | Specify whether the file or its key must be defined. If the file or key does not exist, then the env var is not published. If optional is set to true and the specified key does not exist, the environment variable will not be set in the Pod’s containers.<br>If optional is set to false and the specified key does not exist, an error will be returned during Pod creation. |
 | `path` | `string` | The path within the volume from which to select the file. Must be relative and may not contain the '..' path or start with '..'. |
 | `volumeName` | `string` | The name of the volume mount containing the env file. |
 
@@ -3253,7 +3253,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -3279,9 +3279,9 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `configMapRef` | `object` | ConfigMapEnvSource selects a ConfigMap to populate the environment variables with. The contents of the target ConfigMap’s Data field will represent the key-value pairs as environment variables. |
+| `configMapRef` | `object` | ConfigMapEnvSource selects a ConfigMap to populate the environment variables with.<br>The contents of the target ConfigMap’s Data field will represent the key-value pairs as environment variables. |
 | `prefix` | `string` | Optional text to prepend to the name of each environment variable. May consist of any printable ASCII characters except '='. |
-| `secretRef` | `object` | SecretEnvSource selects a Secret to populate the environment variables with. The contents of the target Secret’s Data field will represent the key-value pairs as environment variables. |
+| `secretRef` | `object` | SecretEnvSource selects a Secret to populate the environment variables with.<br>The contents of the target Secret’s Data field will represent the key-value pairs as environment variables. |
 
 ### .spec.initContainers\[\].envFrom\[\].configMapRef {#_specinitcontainersenvfromconfigmapref}
 
@@ -3331,7 +3331,7 @@ Type
 | --- | --- | --- |
 | `postStart` | `object` | LifecycleHandler defines a specific action that should be taken in a lifecycle hook. One and only one of the fields, except TCPSocket must be specified. |
 | `preStop` | `object` | LifecycleHandler defines a specific action that should be taken in a lifecycle hook. One and only one of the fields, except TCPSocket must be specified. |
-| `stopSignal` | `string` | StopSignal defines which signal will be sent to a container when it is being stopped. If not specified, the default is defined by the container runtime in use. StopSignal can only be set for Pods with a non-empty .spec.os.name Possible enum values:  - `"SIGABRT"`  - `"SIGALRM"`  - `"SIGBUS"`  - `"SIGCHLD"`  - `"SIGCLD"`  - `"SIGCONT"`  - `"SIGFPE"`  - `"SIGHUP"`  - `"SIGILL"`  - `"SIGINT"`  - `"SIGIO"`  - `"SIGIOT"`  - `"SIGKILL"`  - `"SIGPIPE"`  - `"SIGPOLL"`  - `"SIGPROF"`  - `"SIGPWR"`  - `"SIGQUIT"`  - `"SIGRTMAX"`  - `"SIGRTMAX-1"`  - `"SIGRTMAX-10"`  - `"SIGRTMAX-11"`  - `"SIGRTMAX-12"`  - `"SIGRTMAX-13"`  - `"SIGRTMAX-14"`  - `"SIGRTMAX-2"`  - `"SIGRTMAX-3"`  - `"SIGRTMAX-4"`  - `"SIGRTMAX-5"`  - `"SIGRTMAX-6"`  - `"SIGRTMAX-7"`  - `"SIGRTMAX-8"`  - `"SIGRTMAX-9"`  - `"SIGRTMIN"`  - `"SIGRTMIN+1"`  - `"SIGRTMIN+10"`  - `"SIGRTMIN+11"`  - `"SIGRTMIN+12"`  - `"SIGRTMIN+13"`  - `"SIGRTMIN+14"`  - `"SIGRTMIN+15"`  - `"SIGRTMIN+2"`  - `"SIGRTMIN+3"`  - `"SIGRTMIN+4"`  - `"SIGRTMIN+5"`  - `"SIGRTMIN+6"`  - `"SIGRTMIN+7"`  - `"SIGRTMIN+8"`  - `"SIGRTMIN+9"`  - `"SIGSEGV"`  - `"SIGSTKFLT"`  - `"SIGSTOP"`  - `"SIGSYS"`  - `"SIGTERM"`  - `"SIGTRAP"`  - `"SIGTSTP"`  - `"SIGTTIN"`  - `"SIGTTOU"`  - `"SIGURG"`  - `"SIGUSR1"`  - `"SIGUSR2"`  - `"SIGVTALRM"`  - `"SIGWINCH"`  - `"SIGXCPU"`  - `"SIGXFSZ"` |
+| `stopSignal` | `string` | StopSignal defines which signal will be sent to a container when it is being stopped. If not specified, the default is defined by the container runtime in use. StopSignal can only be set for Pods with a non-empty .spec.os.name<br>Possible enum values: - `"SIGABRT"` - `"SIGALRM"` - `"SIGBUS"` - `"SIGCHLD"` - `"SIGCLD"` - `"SIGCONT"` - `"SIGFPE"` - `"SIGHUP"` - `"SIGILL"` - `"SIGINT"` - `"SIGIO"` - `"SIGIOT"` - `"SIGKILL"` - `"SIGPIPE"` - `"SIGPOLL"` - `"SIGPROF"` - `"SIGPWR"` - `"SIGQUIT"` - `"SIGRTMAX"` - `"SIGRTMAX-1"` - `"SIGRTMAX-10"` - `"SIGRTMAX-11"` - `"SIGRTMAX-12"` - `"SIGRTMAX-13"` - `"SIGRTMAX-14"` - `"SIGRTMAX-2"` - `"SIGRTMAX-3"` - `"SIGRTMAX-4"` - `"SIGRTMAX-5"` - `"SIGRTMAX-6"` - `"SIGRTMAX-7"` - `"SIGRTMAX-8"` - `"SIGRTMAX-9"` - `"SIGRTMIN"` - `"SIGRTMIN+1"` - `"SIGRTMIN+10"` - `"SIGRTMIN+11"` - `"SIGRTMIN+12"` - `"SIGRTMIN+13"` - `"SIGRTMIN+14"` - `"SIGRTMIN+15"` - `"SIGRTMIN+2"` - `"SIGRTMIN+3"` - `"SIGRTMIN+4"` - `"SIGRTMIN+5"` - `"SIGRTMIN+6"` - `"SIGRTMIN+7"` - `"SIGRTMIN+8"` - `"SIGRTMIN+9"` - `"SIGSEGV"` - `"SIGSTKFLT"` - `"SIGSTOP"` - `"SIGSYS"` - `"SIGTERM"` - `"SIGTRAP"` - `"SIGTSTP"` - `"SIGTTIN"` - `"SIGTTOU"` - `"SIGURG"` - `"SIGUSR1"` - `"SIGUSR2"` - `"SIGVTALRM"` - `"SIGWINCH"` - `"SIGXCPU"` - `"SIGXFSZ"` |
 
 ### .spec.initContainers\[\].lifecycle.postStart {#_specinitcontainerslifecyclepoststart}
 
@@ -3362,7 +3362,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\\ |
+| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\|', etc) won’t work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy. |
 
 ### .spec.initContainers\[\].lifecycle.postStart.httpGet {#_specinitcontainerslifecyclepoststarthttpget}
 
@@ -3384,7 +3384,7 @@ Required
 | `httpHeaders[]` | `object` | HTTPHeader describes a custom header to be used in HTTP probes |
 | `path` | `string` | Path to access on the HTTP server. |
 | `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
-| `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. Possible enum values:  - `"HTTP"` means that the scheme used will be http://  - `"HTTPS"` means that the scheme used will be https:// |
+| `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP.<br>Possible enum values: - `"HTTP"` means that the scheme used will be http:// - `"HTTPS"` means that the scheme used will be https:// |
 
 ### .spec.initContainers\[\].lifecycle.postStart.httpGet.httpHeaders {#_specinitcontainerslifecyclepoststarthttpgethttpheaders}
 
@@ -3479,7 +3479,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\\ |
+| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\|', etc) won’t work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy. |
 
 ### .spec.initContainers\[\].lifecycle.preStop.httpGet {#_specinitcontainerslifecycleprestophttpget}
 
@@ -3501,7 +3501,7 @@ Required
 | `httpHeaders[]` | `object` | HTTPHeader describes a custom header to be used in HTTP probes |
 | `path` | `string` | Path to access on the HTTP server. |
 | `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
-| `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. Possible enum values:  - `"HTTP"` means that the scheme used will be http://  - `"HTTPS"` means that the scheme used will be https:// |
+| `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP.<br>Possible enum values: - `"HTTP"` means that the scheme used will be http:// - `"HTTPS"` means that the scheme used will be https:// |
 
 ### .spec.initContainers\[\].lifecycle.preStop.httpGet.httpHeaders {#_specinitcontainerslifecycleprestophttpgethttpheaders}
 
@@ -3602,7 +3602,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\\ |
+| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\|', etc) won’t work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy. |
 
 ### .spec.initContainers\[\].livenessProbe.grpc {#_specinitcontainerslivenessprobegrpc}
 
@@ -3620,7 +3620,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `port` | `integer` | Port number of the gRPC service. Number must be in the range 1 to 65535. |
-| `service` | `string` | Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC. |
+| `service` | `string` | Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).<br>If this is not specified, the default behavior is defined by gRPC. |
 
 ### .spec.initContainers\[\].livenessProbe.httpGet {#_specinitcontainerslivenessprobehttpget}
 
@@ -3642,7 +3642,7 @@ Required
 | `httpHeaders[]` | `object` | HTTPHeader describes a custom header to be used in HTTP probes |
 | `path` | `string` | Path to access on the HTTP server. |
 | `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
-| `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. Possible enum values:  - `"HTTP"` means that the scheme used will be http://  - `"HTTPS"` means that the scheme used will be https:// |
+| `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP.<br>Possible enum values: - `"HTTP"` means that the scheme used will be http:// - `"HTTPS"` means that the scheme used will be https:// |
 
 ### .spec.initContainers\[\].livenessProbe.httpGet.httpHeaders {#_specinitcontainerslivenessprobehttpgethttpheaders}
 
@@ -3720,7 +3720,7 @@ Required
 | `hostIP` | `string` | What host IP to bind the external port to. |
 | `hostPort` | `integer` | Number of port to expose on the host. If specified, this must be a valid port number, 0 < x < 65536. If HostNetwork is specified, this must match ContainerPort. Most containers do not need this. |
 | `name` | `string` | If specified, this must be an IANA_SVC_NAME and unique within the pod. Each named port in a pod must have a unique name. Name for the port that can be referred to by services. |
-| `protocol` | `string` | Protocol for port. Must be UDP, TCP, or SCTP. Defaults to "TCP". Possible enum values:  - `"SCTP"` is the SCTP protocol.  - `"TCP"` is the TCP protocol.  - `"UDP"` is the UDP protocol. |
+| `protocol` | `string` | Protocol for port. Must be UDP, TCP, or SCTP. Defaults to "TCP".<br>Possible enum values: - `"SCTP"` is the SCTP protocol. - `"TCP"` is the TCP protocol. - `"UDP"` is the UDP protocol. |
 
 ### .spec.initContainers\[\].readinessProbe {#_specinitcontainersreadinessprobe}
 
@@ -3757,7 +3757,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\\ |
+| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\|', etc) won’t work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy. |
 
 ### .spec.initContainers\[\].readinessProbe.grpc {#_specinitcontainersreadinessprobegrpc}
 
@@ -3775,7 +3775,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `port` | `integer` | Port number of the gRPC service. Number must be in the range 1 to 65535. |
-| `service` | `string` | Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC. |
+| `service` | `string` | Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).<br>If this is not specified, the default behavior is defined by gRPC. |
 
 ### .spec.initContainers\[\].readinessProbe.httpGet {#_specinitcontainersreadinessprobehttpget}
 
@@ -3797,7 +3797,7 @@ Required
 | `httpHeaders[]` | `object` | HTTPHeader describes a custom header to be used in HTTP probes |
 | `path` | `string` | Path to access on the HTTP server. |
 | `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
-| `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. Possible enum values:  - `"HTTP"` means that the scheme used will be http://  - `"HTTPS"` means that the scheme used will be https:// |
+| `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP.<br>Possible enum values: - `"HTTP"` means that the scheme used will be http:// - `"HTTPS"` means that the scheme used will be https:// |
 
 ### .spec.initContainers\[\].readinessProbe.httpGet.httpHeaders {#_specinitcontainersreadinessprobehttpgethttpheaders}
 
@@ -3887,7 +3887,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. |
+| `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.<br>This field depends on the DynamicResourceAllocation feature gate.<br>This field is immutable. It can only be set for containers. |
 | `claims[]` | `object` | ResourceClaim references one entry in PodSpec.ResourceClaims. |
 | `limits` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
 | `requests` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
@@ -3967,7 +3967,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `operator` | `string` | Represents the relationship between the container exit code(s) and the specified values. Possible values are: - In: the requirement is satisfied if the container exit code is in the   set of specified values. - NotIn: the requirement is satisfied if the container exit code is   not in the set of specified values. |
+| `operator` | `string` | Represents the relationship between the container exit code(s) and the specified values. Possible values are: - In: the requirement is satisfied if the container exit code is in the set of specified values. - NotIn: the requirement is satisfied if the container exit code is not in the set of specified values. |
 | `values` | `array (integer)` | Specifies the set of values to check for container exit codes. At most 255 elements are allowed. |
 
 ### .spec.initContainers\[\].securityContext {#_specinitcontainerssecuritycontext}
@@ -3986,11 +3986,11 @@ Type
 | `appArmorProfile` | `object` | AppArmorProfile defines a pod or container’s AppArmor settings. |
 | `capabilities` | `object` | Adds and removes POSIX capabilities from running containers. |
 | `privileged` | `boolean` | Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows. |
-| `procMount` | `string` | procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows. Possible enum values:  - `"Default"` uses the container runtime defaults for readonly and masked paths for /proc. Most container runtimes mask certain paths in /proc to avoid accidental security exposure of special devices or information.  - `"Unmasked"` bypasses the default masking behavior of the container runtime and ensures the newly created /proc the container stays in tact with no modifications. |
+| `procMount` | `string` | procMount denotes the type of proc mount to use for the containers. The default value is Default which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.<br>Possible enum values: - `"Default"` uses the container runtime defaults for readonly and masked paths for /proc. Most container runtimes mask certain paths in /proc to avoid accidental security exposure of special devices or information. - `"Unmasked"` bypasses the default masking behavior of the container runtime and ensures the newly created /proc the container stays in tact with no modifications. |
 | `readOnlyRootFilesystem` | `boolean` | Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows. |
-| `runAsGroup` | `integer` | The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows. |
-| `runAsNonRoot` | `boolean` | Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. |
-| `runAsUser` | `integer` | The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows. |
+| `runAsGroup` | `integer` | The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows. |
+| `runAsNonRoot` | `boolean` | Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. |
+| `runAsUser` | `integer` | The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows. |
 | `seLinuxOptions` | `object` | SELinuxOptions are the labels to be applied to the container |
 | `seccompProfile` | `object` | SeccompProfile defines a pod/container’s seccomp profile settings. Only one profile source may be set. |
 | `windowsOptions` | `object` | WindowsSecurityContextOptions contain Windows-specific options and credentials. |
@@ -4011,7 +4011,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `localhostProfile` | `string` | localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is "Localhost". |
-| `type` | `string` | type indicates which kind of AppArmor profile will be applied. Valid options are:   Localhost - a profile pre-loaded on the node.   RuntimeDefault - the container runtime’s default profile.   Unconfined - no AppArmor enforcement. Possible enum values:  - `"Localhost"` indicates that a profile pre-loaded on the node should be used.  - `"RuntimeDefault"` indicates that the container runtime’s default AppArmor profile should be used.  - `"Unconfined"` indicates that no AppArmor profile should be enforced. |
+| `type` | `string` | type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime’s default profile. Unconfined - no AppArmor enforcement.<br>Possible enum values: - `"Localhost"` indicates that a profile pre-loaded on the node should be used. - `"RuntimeDefault"` indicates that the container runtime’s default AppArmor profile should be used. - `"Unconfined"` indicates that no AppArmor profile should be enforced. |
 
 ### .spec.initContainers\[\].securityContext.capabilities {#_specinitcontainerssecuritycontextcapabilities}
 
@@ -4061,7 +4061,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `localhostProfile` | `string` | localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet’s configured seccomp profile location. Must be set if type is "Localhost". Must NOT be set for any other type. |
-| `type` | `string` | type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied. Possible enum values:  - `"Localhost"` indicates a profile defined in a file on the node should be used. The file’s location relative to <kubelet-root-dir>/seccomp.  - `"RuntimeDefault"` represents the default container runtime seccomp profile.  - `"Unconfined"` indicates no seccomp profile is applied (A.K.A. unconfined). |
+| `type` | `string` | type indicates which kind of seccomp profile will be applied. Valid options are:<br>Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.<br>Possible enum values: - `"Localhost"` indicates a profile defined in a file on the node should be used. The file’s location relative to <kubelet-root-dir>/seccomp. - `"RuntimeDefault"` represents the default container runtime seccomp profile. - `"Unconfined"` indicates no seccomp profile is applied (A.K.A. unconfined). |
 
 ### .spec.initContainers\[\].securityContext.windowsOptions {#_specinitcontainerssecuritycontextwindowsoptions}
 
@@ -4115,7 +4115,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\\ |
+| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\|', etc) won’t work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy. |
 
 ### .spec.initContainers\[\].startupProbe.grpc {#_specinitcontainersstartupprobegrpc}
 
@@ -4133,7 +4133,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `port` | `integer` | Port number of the gRPC service. Number must be in the range 1 to 65535. |
-| `service` | `string` | Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC. |
+| `service` | `string` | Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).<br>If this is not specified, the default behavior is defined by gRPC. |
 
 ### .spec.initContainers\[\].startupProbe.httpGet {#_specinitcontainersstartupprobehttpget}
 
@@ -4155,7 +4155,7 @@ Required
 | `httpHeaders[]` | `object` | HTTPHeader describes a custom header to be used in HTTP probes |
 | `path` | `string` | Path to access on the HTTP server. |
 | `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
-| `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. Possible enum values:  - `"HTTP"` means that the scheme used will be http://  - `"HTTPS"` means that the scheme used will be https:// |
+| `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP.<br>Possible enum values: - `"HTTP"` means that the scheme used will be http:// - `"HTTPS"` means that the scheme used will be https:// |
 
 ### .spec.initContainers\[\].startupProbe.httpGet.httpHeaders {#_specinitcontainersstartupprobehttpgethttpheaders}
 
@@ -4259,11 +4259,11 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `mountPath` | `string` | Path within the container at which the volume should be mounted.  Must not contain ':'. |
-| `mountPropagation` | `string` | mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None). Possible enum values:  - `"Bidirectional"` means that the volume in a container will receive new mounts from the host or other containers, and its own mounts will be propagated from the container to the host or other containers. Note that this mode is recursively applied to all mounts in the volume ("rshared" in Linux terminology).  - `"HostToContainer"` means that the volume in a container will receive new mounts from the host or other containers, but filesystems mounted inside the container won’t be propagated to the host or other containers. Note that this mode is recursively applied to all mounts in the volume ("rslave" in Linux terminology).  - `"None"` means that the volume in a container will not receive new mounts from the host or other containers, and filesystems mounted inside the container won’t be propagated to the host or other containers. Note that this mode corresponds to "private" in Linux terminology. |
+| `mountPath` | `string` | Path within the container at which the volume should be mounted. Must not contain ':'. |
+| `mountPropagation` | `string` | mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None).<br>Possible enum values: - `"Bidirectional"` means that the volume in a container will receive new mounts from the host or other containers, and its own mounts will be propagated from the container to the host or other containers. Note that this mode is recursively applied to all mounts in the volume ("rshared" in Linux terminology). - `"HostToContainer"` means that the volume in a container will receive new mounts from the host or other containers, but filesystems mounted inside the container won’t be propagated to the host or other containers. Note that this mode is recursively applied to all mounts in the volume ("rslave" in Linux terminology). - `"None"` means that the volume in a container will not receive new mounts from the host or other containers, and filesystems mounted inside the container won’t be propagated to the host or other containers. Note that this mode corresponds to "private" in Linux terminology. |
 | `name` | `string` | This must match the Name of a Volume. |
 | `readOnly` | `boolean` | Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false. |
-| `recursiveReadOnly` | `string` | RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only.  If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime.  If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled. |
+| `recursiveReadOnly` | `string` | RecursiveReadOnly specifies whether read-only mounts should be handled recursively.<br>If ReadOnly is false, this field has no meaning and must be unspecified.<br>If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only. If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime. If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason.<br>If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None).<br>If this field is not specified, it is treated as an equivalent of Disabled. |
 | `subPath` | `string` | Path within the volume from which the container’s volume should be mounted. Defaults to "" (volume’s root). |
 | `subPathExpr` | `string` | Expanded path within the volume from which the container’s volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container’s environment. Defaults to "" (volume’s root). SubPathExpr and SubPath are mutually exclusive. |
 
@@ -4343,8 +4343,8 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | Name uniquely identifies this resource claim inside the pod. This must be a DNS_LABEL. |
-| `resourceClaimName` | `string` | ResourceClaimName is the name of a ResourceClaim object in the same namespace as this pod. Exactly one of ResourceClaimName and ResourceClaimTemplateName must be set. |
-| `resourceClaimTemplateName` | `string` | ResourceClaimTemplateName is the name of a ResourceClaimTemplate object in the same namespace as this pod. The template will be used to create a new ResourceClaim, which will be bound to this pod. When this pod is deleted, the ResourceClaim will also be deleted. The pod name and resource name, along with a generated component, will be used to form a unique name for the ResourceClaim, which will be recorded in pod.status.resourceClaimStatuses. This field is immutable and no changes will be made to the corresponding ResourceClaim by the control plane after creating the ResourceClaim. Exactly one of ResourceClaimName and ResourceClaimTemplateName must be set. |
+| `resourceClaimName` | `string` | ResourceClaimName is the name of a ResourceClaim object in the same namespace as this pod.<br>Exactly one of ResourceClaimName and ResourceClaimTemplateName must be set. |
+| `resourceClaimTemplateName` | `string` | ResourceClaimTemplateName is the name of a ResourceClaimTemplate object in the same namespace as this pod.<br>The template will be used to create a new ResourceClaim, which will be bound to this pod. When this pod is deleted, the ResourceClaim will also be deleted. The pod name and resource name, along with a generated component, will be used to form a unique name for the ResourceClaim, which will be recorded in pod.status.resourceClaimStatuses.<br>This field is immutable and no changes will be made to the corresponding ResourceClaim by the control plane after creating the ResourceClaim.<br>Exactly one of ResourceClaimName and ResourceClaimTemplateName must be set. |
 
 ### .spec.resources {#_specresources}
 
@@ -4358,7 +4358,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. |
+| `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.<br>This field depends on the DynamicResourceAllocation feature gate.<br>This field is immutable. It can only be set for containers. |
 | `claims[]` | `object` | ResourceClaim references one entry in PodSpec.ResourceClaims. |
 | `limits` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
 | `requests` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
@@ -4437,16 +4437,16 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `appArmorProfile` | `object` | AppArmorProfile defines a pod or container’s AppArmor settings. |
-| `fsGroup` | `integer` | A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR’d with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows. |
-| `fsGroupChangePolicy` | `string` | fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are "OnRootMismatch" and "Always". If not specified, "Always" is used. Note that this field cannot be set when spec.os.name is windows. Possible enum values:  - `"Always"` indicates that volume’s ownership and permissions should always be changed whenever volume is mounted inside a Pod. This the default behavior.  - `"OnRootMismatch"` indicates that volume’s ownership and permissions will be changed only when permission and ownership of root directory does not match with expected permissions on the volume. This can help shorten the time it takes to change ownership and permissions of a volume. |
-| `runAsGroup` | `integer` | The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows. |
-| `runAsNonRoot` | `boolean` | Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. |
-| `runAsUser` | `integer` | The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows. |
-| `seLinuxChangePolicy` | `string` | seLinuxChangePolicy defines how the container’s SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are "MountOption" and "Recursive". "Recursive" means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node. "MountOption" mounts all eligible Pod volumes with `-o context` mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. "MountOption" value is allowed only when SELinuxMount feature gate is enabled. If not specified and SELinuxMount feature gate is enabled, "MountOption" is used. If not specified and SELinuxMount feature gate is disabled, "MountOption" is used for ReadWriteOncePod volumes and "Recursive" for all other volumes. This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers. All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows. |
+| `fsGroup` | `integer` | A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:<br>1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR’d with rw-rw----<br>If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows. |
+| `fsGroupChangePolicy` | `string` | fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are "OnRootMismatch" and "Always". If not specified, "Always" is used. Note that this field cannot be set when spec.os.name is windows.<br>Possible enum values: - `"Always"` indicates that volume’s ownership and permissions should always be changed whenever volume is mounted inside a Pod. This the default behavior. - `"OnRootMismatch"` indicates that volume’s ownership and permissions will be changed only when permission and ownership of root directory does not match with expected permissions on the volume. This can help shorten the time it takes to change ownership and permissions of a volume. |
+| `runAsGroup` | `integer` | The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows. |
+| `runAsNonRoot` | `boolean` | Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. |
+| `runAsUser` | `integer` | The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows. |
+| `seLinuxChangePolicy` | `string` | seLinuxChangePolicy defines how the container’s SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are "MountOption" and "Recursive".<br>"Recursive" means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node.<br>"MountOption" mounts all eligible Pod volumes with `-o context` mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. "MountOption" value is allowed only when SELinuxMount feature gate is enabled.<br>If not specified and SELinuxMount feature gate is enabled, "MountOption" is used. If not specified and SELinuxMount feature gate is disabled, "MountOption" is used for ReadWriteOncePod volumes and "Recursive" for all other volumes.<br>This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers.<br>All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows. |
 | `seLinuxOptions` | `object` | SELinuxOptions are the labels to be applied to the container |
 | `seccompProfile` | `object` | SeccompProfile defines a pod/container’s seccomp profile settings. Only one profile source may be set. |
-| `supplementalGroups` | `array (integer)` | A list of groups applied to the first process run in each container, in addition to the container’s primary GID and fsGroup (if specified).  If the SupplementalGroupsPolicy feature is enabled, the supplementalGroupsPolicy field determines whether these are in addition to or instead of any group memberships defined in the container image. If unspecified, no additional groups are added, though group memberships defined in the container image may still be used, depending on the supplementalGroupsPolicy field. Note that this field cannot be set when spec.os.name is windows. |
-| `supplementalGroupsPolicy` | `string` | Defines how supplemental groups of the first container processes are calculated. Valid values are "Merge" and "Strict". If not specified, "Merge" is used. (Alpha) Using the field requires the SupplementalGroupsPolicy feature gate to be enabled and the container runtime must implement support for this feature. Note that this field cannot be set when spec.os.name is windows. Possible enum values:  - `"Merge"` means that the container’s provided SupplementalGroups and FsGroup (specified in SecurityContext) will be merged with the primary user’s groups as defined in the container image (in /etc/group).  - `"Strict"` means that the container’s provided SupplementalGroups and FsGroup (specified in SecurityContext) will be used instead of any groups defined in the container image. |
+| `supplementalGroups` | `array (integer)` | A list of groups applied to the first process run in each container, in addition to the container’s primary GID and fsGroup (if specified). If the SupplementalGroupsPolicy feature is enabled, the supplementalGroupsPolicy field determines whether these are in addition to or instead of any group memberships defined in the container image. If unspecified, no additional groups are added, though group memberships defined in the container image may still be used, depending on the supplementalGroupsPolicy field. Note that this field cannot be set when spec.os.name is windows. |
+| `supplementalGroupsPolicy` | `string` | Defines how supplemental groups of the first container processes are calculated. Valid values are "Merge" and "Strict". If not specified, "Merge" is used. (Alpha) Using the field requires the SupplementalGroupsPolicy feature gate to be enabled and the container runtime must implement support for this feature. Note that this field cannot be set when spec.os.name is windows.<br>Possible enum values: - `"Merge"` means that the container’s provided SupplementalGroups and FsGroup (specified in SecurityContext) will be merged with the primary user’s groups as defined in the container image (in /etc/group). - `"Strict"` means that the container’s provided SupplementalGroups and FsGroup (specified in SecurityContext) will be used instead of any groups defined in the container image. |
 | `sysctls` | `array` | Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows. |
 | `sysctls[]` | `object` | Sysctl defines a kernel parameter to be set |
 | `windowsOptions` | `object` | WindowsSecurityContextOptions contain Windows-specific options and credentials. |
@@ -4467,7 +4467,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `localhostProfile` | `string` | localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is "Localhost". |
-| `type` | `string` | type indicates which kind of AppArmor profile will be applied. Valid options are:   Localhost - a profile pre-loaded on the node.   RuntimeDefault - the container runtime’s default profile.   Unconfined - no AppArmor enforcement. Possible enum values:  - `"Localhost"` indicates that a profile pre-loaded on the node should be used.  - `"RuntimeDefault"` indicates that the container runtime’s default AppArmor profile should be used.  - `"Unconfined"` indicates that no AppArmor profile should be enforced. |
+| `type` | `string` | type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime’s default profile. Unconfined - no AppArmor enforcement.<br>Possible enum values: - `"Localhost"` indicates that a profile pre-loaded on the node should be used. - `"RuntimeDefault"` indicates that the container runtime’s default AppArmor profile should be used. - `"Unconfined"` indicates that no AppArmor profile should be enforced. |
 
 ### .spec.securityContext.seLinuxOptions {#_specsecuritycontextselinuxoptions}
 
@@ -4502,7 +4502,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `localhostProfile` | `string` | localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet’s configured seccomp profile location. Must be set if type is "Localhost". Must NOT be set for any other type. |
-| `type` | `string` | type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied. Possible enum values:  - `"Localhost"` indicates a profile defined in a file on the node should be used. The file’s location relative to <kubelet-root-dir>/seccomp.  - `"RuntimeDefault"` represents the default container runtime seccomp profile.  - `"Unconfined"` indicates no seccomp profile is applied (A.K.A. unconfined). |
+| `type` | `string` | type indicates which kind of seccomp profile will be applied. Valid options are:<br>Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.<br>Possible enum values: - `"Localhost"` indicates a profile defined in a file on the node should be used. The file’s location relative to <kubelet-root-dir>/seccomp. - `"RuntimeDefault"` represents the default container runtime seccomp profile. - `"Unconfined"` indicates no seccomp profile is applied (A.K.A. unconfined). |
 
 ### .spec.securityContext.sysctls {#_specsecuritycontextsysctls}
 
@@ -4572,9 +4572,9 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `effect` | `string` | Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute. Possible enum values:  - `"NoExecute"` Evict any already-running pods that do not tolerate the taint. Currently enforced by NodeController.  - `"NoSchedule"` Do not allow new pods to schedule onto the node unless they tolerate the taint, but allow all pods submitted to Kubelet without going through the scheduler to start, and allow all already-running pods to continue running. Enforced by the scheduler.  - `"PreferNoSchedule"` Like TaintEffectNoSchedule, but the scheduler tries not to schedule new pods onto the node, rather than prohibiting new pods from scheduling onto the node entirely. Enforced by the scheduler. |
+| `effect` | `string` | Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.<br>Possible enum values: - `"NoExecute"` Evict any already-running pods that do not tolerate the taint. Currently enforced by NodeController. - `"NoSchedule"` Do not allow new pods to schedule onto the node unless they tolerate the taint, but allow all pods submitted to Kubelet without going through the scheduler to start, and allow all already-running pods to continue running. Enforced by the scheduler. - `"PreferNoSchedule"` Like TaintEffectNoSchedule, but the scheduler tries not to schedule new pods onto the node, rather than prohibiting new pods from scheduling onto the node entirely. Enforced by the scheduler. |
 | `key` | `string` | Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys. |
-| `operator` | `string` | Operator represents a key’s relationship to the value. Valid operators are Exists, Equal, Lt, and Gt. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category. Lt and Gt perform numeric comparisons (requires feature gate TaintTolerationComparisonOperators). Possible enum values:  - `"Equal"`  - `"Exists"`  - `"Gt"`  - `"Lt"` |
+| `operator` | `string` | Operator represents a key’s relationship to the value. Valid operators are Exists, Equal, Lt, and Gt. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category. Lt and Gt perform numeric comparisons (requires feature gate TaintTolerationComparisonOperators).<br>Possible enum values: - `"Equal"` - `"Exists"` - `"Gt"` - `"Lt"` |
 | `tolerationSeconds` | `integer` | TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system. |
 | `value` | `string` | Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string. |
 
@@ -4606,21 +4606,13 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `labelSelector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain. |
-| `matchLabelKeys` | `array (string)` | MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn’t set. Keys that don’t exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector. This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default). |
-| `maxSkew` | `integer` | MaxSkew describes the degree to which pods may be unevenly distributed. When `whenUnsatisfiable=DoNotSchedule`, it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. \\ |
-| zone1 \\ | zone2 \\ | zone3 \\ |
-| \\ | P P  \\ | P P  \\ |
-| P   \\ | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2; scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When `whenUnsatisfiable=ScheduleAnyway`, it is used to give higher precedence to topologies that satisfy it. It’s a required field. Default value is 1 and 0 is not allowed. | `minDomains` |
-| `integer` | MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats "global minimum" as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won’t schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule. For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: \\ | zone1 \\ |
-| zone2 \\ | zone3 \\ | \\ |
-| P P  \\ | P P  \\ | P P  \\ |
-| The number of domains is less than 5(MinDomains), so "global minimum" is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew. | `nodeAffinityPolicy` | `string` |
-| NodeAffinityPolicy indicates how we will treat Pod’s nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy. Possible enum values:  - `"Honor"` means use this scheduling directive when calculating pod topology spread skew.  - `"Ignore"` means ignore this scheduling directive when calculating pod topology spread skew. | `nodeTaintsPolicy` | `string` |
-| NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy. Possible enum values:  - `"Honor"` means use this scheduling directive when calculating pod topology spread skew.  - `"Ignore"` means ignore this scheduling directive when calculating pod topology spread skew. | `topologyKey` | `string` |
-| TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a "bucket", and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes meet the requirements of nodeAffinityPolicy and nodeTaintsPolicy. e.g. If TopologyKey is "kubernetes.io/hostname", each Node is a domain of that topology. And, if TopologyKey is "topology.kubernetes.io/zone", each zone is a domain of that topology. It’s a required field. | `whenUnsatisfiable` | `string` |
-| WhenUnsatisfiable indicates how to deal with a pod if it doesn’t satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it. - ScheduleAnyway tells the scheduler to schedule the pod in any location,   but giving higher precedence to topologies that would help reduce the   skew. A constraint is considered "Unsatisfiable" for an incoming pod if and only if every possible node assignment for that pod would violate "MaxSkew" on some topology. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 3/1/1: \\ | zone1 \\ | zone2 \\ |
-| zone3 \\ | \\ | P P P \\ |
-| P   \\ | P   \\ | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won’t make it **more** imbalanced. It’s a required field. Possible enum values:  - `"DoNotSchedule"` instructs the scheduler not to schedule the pod when constraints are not satisfied.  - `"ScheduleAnyway"` instructs the scheduler to schedule the pod even if constraints are not satisfied. |
+| `matchLabelKeys` | `array (string)` | MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn’t set. Keys that don’t exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.<br>This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default). |
+| `maxSkew` | `integer` | MaxSkew describes the degree to which pods may be unevenly distributed. When `whenUnsatisfiable=DoNotSchedule`, it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. \| zone1 \| zone2 \| zone3 \| \| P P \| P P \| P \| - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2; scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When `whenUnsatisfiable=ScheduleAnyway`, it is used to give higher precedence to topologies that satisfy it. It’s a required field. Default value is 1 and 0 is not allowed. |
+| `minDomains` | `integer` | MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats "global minimum" as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won’t schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.<br>For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: \| zone1 \| zone2 \| zone3 \| \| P P \| P P \| P P \| The number of domains is less than 5(MinDomains), so "global minimum" is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew. |
+| `nodeAffinityPolicy` | `string` | NodeAffinityPolicy indicates how we will treat Pod’s nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.<br>If this value is nil, the behavior is equivalent to the Honor policy.<br>Possible enum values: - `"Honor"` means use this scheduling directive when calculating pod topology spread skew. - `"Ignore"` means ignore this scheduling directive when calculating pod topology spread skew. |
+| `nodeTaintsPolicy` | `string` | NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.<br>If this value is nil, the behavior is equivalent to the Ignore policy.<br>Possible enum values: - `"Honor"` means use this scheduling directive when calculating pod topology spread skew. - `"Ignore"` means ignore this scheduling directive when calculating pod topology spread skew. |
+| `topologyKey` | `string` | TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a "bucket", and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes meet the requirements of nodeAffinityPolicy and nodeTaintsPolicy. e.g. If TopologyKey is "kubernetes.io/hostname", each Node is a domain of that topology. And, if TopologyKey is "topology.kubernetes.io/zone", each zone is a domain of that topology. It’s a required field. |
+| `whenUnsatisfiable` | `string` | WhenUnsatisfiable indicates how to deal with a pod if it doesn’t satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it. - ScheduleAnyway tells the scheduler to schedule the pod in any location, but giving higher precedence to topologies that would help reduce the skew. A constraint is considered "Unsatisfiable" for an incoming pod if and only if every possible node assignment for that pod would violate "MaxSkew" on some topology. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 3/1/1: \| zone1 \| zone2 \| zone3 \| \| P P P \| P \| P \| If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won’t make it **more** imbalanced. It’s a required field.<br>Possible enum values: - `"DoNotSchedule"` instructs the scheduler not to schedule the pod when constraints are not satisfied. - `"ScheduleAnyway"` instructs the scheduler to schedule the pod even if constraints are not satisfied. |
 
 ### .spec.volumes {#_specvolumes}
 
@@ -4647,12 +4639,12 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `awsElasticBlockStore` | `object` | Represents a Persistent Disk resource in AWS. An AWS EBS disk must exist before mounting to a container. The disk must also be in the same AWS zone as the kubelet. An AWS EBS disk can only be mounted as read/write once. AWS EBS volumes support ownership management and SELinux relabeling. |
+| `awsElasticBlockStore` | `object` | Represents a Persistent Disk resource in AWS.<br>An AWS EBS disk must exist before mounting to a container. The disk must also be in the same AWS zone as the kubelet. An AWS EBS disk can only be mounted as read/write once. AWS EBS volumes support ownership management and SELinux relabeling. |
 | `azureDisk` | `object` | AzureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. |
 | `azureFile` | `object` | AzureFile represents an Azure File Service mount on the host and bind mount to the pod. |
 | `cephfs` | `object` | Represents a Ceph Filesystem mount that lasts the lifetime of a pod Cephfs volumes do not support ownership management or SELinux relabeling. |
 | `cinder` | `object` | Represents a cinder volume resource in Openstack. A Cinder volume must exist before mounting to a container. The volume must also be in the same region as the kubelet. Cinder volumes support ownership management and SELinux relabeling. |
-| `configMap` | `object` | Adapts a ConfigMap into a volume. The contents of the target ConfigMap’s Data field will be presented in a volume as files using the keys in the Data field as the file names, unless the items element is populated with specific mappings of keys to paths. ConfigMap volumes support ownership management and SELinux relabeling. |
+| `configMap` | `object` | Adapts a ConfigMap into a volume.<br>The contents of the target ConfigMap’s Data field will be presented in a volume as files using the keys in the Data field as the file names, unless the items element is populated with specific mappings of keys to paths. ConfigMap volumes support ownership management and SELinux relabeling. |
 | `csi` | `object` | Represents a source location of a volume to mount, managed by an external CSI driver |
 | `downwardAPI` | `object` | DownwardAPIVolumeSource represents a volume containing downward API info. Downward API volumes support ownership management and SELinux relabeling. |
 | `emptyDir` | `object` | Represents an empty directory for a pod. Empty directory volumes support ownership management and SELinux relabeling. |
@@ -4660,8 +4652,8 @@ Required
 | `fc` | `object` | Represents a Fibre Channel volume. Fibre Channel volumes can only be mounted as read/write once. Fibre Channel volumes support ownership management and SELinux relabeling. |
 | `flexVolume` | `object` | FlexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. |
 | `flocker` | `object` | Represents a Flocker volume mounted by the Flocker agent. One and only one of datasetName and datasetUUID should be set. Flocker volumes do not support ownership management or SELinux relabeling. |
-| `gcePersistentDisk` | `object` | Represents a Persistent Disk resource in Google Compute Engine. A GCE PD must exist before mounting to a container. The disk must also be in the same GCE project and zone as the kubelet. A GCE PD can only be mounted as read/write once or read-only many times. GCE PDs support ownership management and SELinux relabeling. |
-| `gitRepo` | `object` | Represents a volume that is populated with the contents of a git repository. Git repo volumes do not support ownership management. Git repo volumes support SELinux relabeling. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod’s container. |
+| `gcePersistentDisk` | `object` | Represents a Persistent Disk resource in Google Compute Engine.<br>A GCE PD must exist before mounting to a container. The disk must also be in the same GCE project and zone as the kubelet. A GCE PD can only be mounted as read/write once or read-only many times. GCE PDs support ownership management and SELinux relabeling. |
+| `gitRepo` | `object` | Represents a volume that is populated with the contents of a git repository. Git repo volumes do not support ownership management. Git repo volumes support SELinux relabeling.<br>DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod’s container. |
 | `glusterfs` | `object` | Represents a Glusterfs mount that lasts the lifetime of a pod. Glusterfs volumes do not support ownership management or SELinux relabeling. |
 | `hostPath` | `object` | Represents a host path mapped into a pod. Host path volumes do not support ownership management or SELinux relabeling. |
 | `image` | `object` | ImageVolumeSource represents a image volume resource. |
@@ -4675,7 +4667,7 @@ Required
 | `quobyte` | `object` | Represents a Quobyte mount that lasts the lifetime of a pod. Quobyte volumes do not support ownership management or SELinux relabeling. |
 | `rbd` | `object` | Represents a Rados Block Device mount that lasts the lifetime of a pod. RBD volumes support ownership management and SELinux relabeling. |
 | `scaleIO` | `object` | ScaleIOVolumeSource represents a persistent ScaleIO volume |
-| `secret` | `object` | Adapts a Secret into a volume. The contents of the target Secret’s Data field will be presented in a volume as files using the keys in the Data field as the file names. Secret volumes support ownership management and SELinux relabeling. |
+| `secret` | `object` | Adapts a Secret into a volume.<br>The contents of the target Secret’s Data field will be presented in a volume as files using the keys in the Data field as the file names. Secret volumes support ownership management and SELinux relabeling. |
 | `storageos` | `object` | Represents a StorageOS persistent volume resource. |
 | `vsphereVolume` | `object` | Represents a vSphere volume resource. |
 
@@ -4717,11 +4709,11 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `cachingMode` | `string` | cachingMode is the Host Caching mode: None, Read Only, Read Write. Possible enum values:  - `"None"`  - `"ReadOnly"`  - `"ReadWrite"` |
+| `cachingMode` | `string` | cachingMode is the Host Caching mode: None, Read Only, Read Write.<br>Possible enum values: - `"None"` - `"ReadOnly"` - `"ReadWrite"` |
 | `diskName` | `string` | diskName is the Name of the data disk in the blob storage |
 | `diskURI` | `string` | diskURI is the URI of data disk in the blob storage |
 | `fsType` | `string` | fsType is Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. |
-| `kind` | `string` | kind expected values are Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set). defaults to shared Possible enum values:  - `"Dedicated"`  - `"Managed"`  - `"Shared"` |
+| `kind` | `string` | kind expected values are Shared: multiple blob disks per storage account Dedicated: single blob disk per storage account Managed: azure managed data disk (only in managed availability set). defaults to shared<br>Possible enum values: - `"Dedicated"` - `"Managed"` - `"Shared"` |
 | `readOnly` | `boolean` | readOnly Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. |
 
 ### .spec.volumes\[\].azureFile {#_specvolumesazurefile}
@@ -4741,7 +4733,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `readOnly` | `boolean` | readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. |
-| `secretName` | `string` | secretName is the  name of secret that contains Azure Storage Account Name and Key |
+| `secretName` | `string` | secretName is the name of secret that contains Azure Storage Account Name and Key |
 | `shareName` | `string` | shareName is the azure share Name |
 
 ### .spec.volumes\[\].cephfs {#_specvolumescephfs}
@@ -4942,7 +4934,7 @@ Required
 | --- | --- | --- |
 | `fieldRef` | `object` | ObjectFieldSelector selects an APIVersioned field of an object. |
 | `mode` | `integer` | Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. |
-| `path` | `string` | Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..' |
+| `path` | `string` | Required: Path is the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..' |
 | `resourceFieldRef` | `object` | ResourceFieldSelector represents container resources (cpu, memory) and their output format |
 
 ### .spec.volumes\[\].downwardAPI.items\[\].fieldRef {#_specvolumesdownwardapiitemsfieldref}
@@ -5048,7 +5040,7 @@ Type
 | `selector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | selector is a label query over volumes to consider for binding. |
 | `storageClassName` | `string` | storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1 |
 | `volumeAttributesClassName` | `string` | volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string or nil value indicates that no VolumeAttributesClass will be applied to the claim. If the claim enters an Infeasible error state, this field can be reset to its previous value (including nil) to cancel the modification. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ |
-| `volumeMode` | `string` | volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec. Possible enum values:  - `"Block"` means the volume will not be formatted with a filesystem and will remain a raw block device.  - `"Filesystem"` means the volume will be or is formatted with a filesystem. |
+| `volumeMode` | `string` | volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.<br>Possible enum values: - `"Block"` means the volume will not be formatted with a filesystem and will remain a raw block device. - `"Filesystem"` means the volume will be or is formatted with a filesystem. |
 | `volumeName` | `string` | volumeName is the binding reference to the PersistentVolume backing this claim. |
 
 ### .spec.volumes\[\].ephemeral.volumeClaimTemplate.spec.dataSource {#_specvolumesephemeralvolumeclaimtemplatespecdatasource}
@@ -5172,7 +5164,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `datasetName` | `string` | datasetName is Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated |
+| `datasetName` | `string` | datasetName is Name of the dataset stored as metadata → name on the dataset for Flocker should be considered as deprecated |
 | `datasetUUID` | `string` | datasetUUID is the UUID of the dataset. This is unique identifier of a Flocker dataset |
 
 ### .spec.volumes\[\].gcePersistentDisk {#_specvolumesgcepersistentdisk}
@@ -5214,7 +5206,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `directory` | `string` | directory is the target directory name. Must not contain or start with '..'.  If '.' is supplied, the volume directory will be the git repository.  Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name. |
+| `directory` | `string` | directory is the target directory name. Must not contain or start with '..'. If '.' is supplied, the volume directory will be the git repository. Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name. |
 | `repository` | `string` | repository is the URL |
 | `revision` | `string` | revision is the commit hash for the specified revision. |
 
@@ -5254,7 +5246,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `path` | `string` | path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath |
-| `type` | `string` | type for HostPath Volume Defaults to "" More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath Possible enum values:  - `""` For backwards compatible, leave it empty if unset  - `"BlockDevice"` A block device must exist at the given path  - `"CharDevice"` A character device must exist at the given path  - `"Directory"` A directory must exist at the given path  - `"DirectoryOrCreate"` If nothing exists at the given path, an empty directory will be created there as needed with file mode 0755, having the same group and ownership with Kubelet.  - `"File"` A file must exist at the given path  - `"FileOrCreate"` If nothing exists at the given path, an empty file will be created there as needed with file mode 0644, having the same group and ownership with Kubelet.  - `"Socket"` A UNIX socket must exist at the given path |
+| `type` | `string` | type for HostPath Volume Defaults to "" More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath<br>Possible enum values: - `""` For backwards compatible, leave it empty if unset - `"BlockDevice"` A block device must exist at the given path - `"CharDevice"` A character device must exist at the given path - `"Directory"` A directory must exist at the given path - `"DirectoryOrCreate"` If nothing exists at the given path, an empty directory will be created there as needed with file mode 0755, having the same group and ownership with Kubelet. - `"File"` A file must exist at the given path - `"FileOrCreate"` If nothing exists at the given path, an empty file will be created there as needed with file mode 0644, having the same group and ownership with Kubelet. - `"Socket"` A UNIX socket must exist at the given path |
 
 ### .spec.volumes\[\].image {#_specvolumesimage}
 
@@ -5268,7 +5260,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `pullPolicy` | `string` | Policy for pulling OCI objects. Possible values are: Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn’t present. IfNotPresent: the kubelet pulls if the reference isn’t already present on disk. Container creation will fail if the reference isn’t present and the pull fails. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Possible enum values:  - `"Always"` means that kubelet always attempts to pull the latest image. Container will fail If the pull fails.  - `"IfNotPresent"` means that kubelet pulls if the image isn’t present on disk. Container will fail if the image isn’t present and the pull fails.  - `"Never"` means that kubelet never pulls an image, but only uses a local image. Container will fail if the image isn’t present |
+| `pullPolicy` | `string` | Policy for pulling OCI objects. Possible values are: Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn’t present. IfNotPresent: the kubelet pulls if the reference isn’t already present on disk. Container creation will fail if the reference isn’t present and the pull fails. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.<br>Possible enum values: - `"Always"` means that kubelet always attempts to pull the latest image. Container will fail If the pull fails. - `"IfNotPresent"` means that kubelet pulls if the image isn’t present on disk. Container will fail if the image isn’t present and the pull fails. - `"Never"` means that kubelet never pulls an image, but only uses a local image. Container will fail if the image isn’t present |
 | `reference` | `string` | Required: Image or artifact reference to be used. Behaves in the same way as pod.spec.containers\[\*\].image. Pull secrets will be assembled in the same way as for the container image by looking up node credentials, SA image pull secrets, and pod spec image pull secrets. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets. |
 
 ### .spec.volumes\[\].iscsi {#_specvolumesiscsi}
@@ -5428,10 +5420,10 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `clusterTrustBundle` | `object` | ClusterTrustBundleProjection describes how to select a set of ClusterTrustBundle objects and project their contents into the pod filesystem. |
-| `configMap` | `object` | Adapts a ConfigMap into a projected volume. The contents of the target ConfigMap’s Data field will be presented in a projected volume as files using the keys in the Data field as the file names, unless the items element is populated with specific mappings of keys to paths. Note that this is identical to a configmap volume source without the default mode. |
+| `configMap` | `object` | Adapts a ConfigMap into a projected volume.<br>The contents of the target ConfigMap’s Data field will be presented in a projected volume as files using the keys in the Data field as the file names, unless the items element is populated with specific mappings of keys to paths. Note that this is identical to a configmap volume source without the default mode. |
 | `downwardAPI` | `object` | Represents downward API info for projecting into a projected volume. Note that this is identical to a downwardAPI volume source without the default mode. |
 | `podCertificate` | `object` | PodCertificateProjection provides a private key and X.509 certificate in the pod filesystem. |
-| `secret` | `object` | Adapts a secret into a projected volume. The contents of the target Secret’s Data field will be presented in a projected volume as files using the keys in the Data field as the file names. Note that this is identical to a secret volume source without the default mode. |
+| `secret` | `object` | Adapts a secret into a projected volume.<br>The contents of the target Secret’s Data field will be presented in a projected volume as files using the keys in the Data field as the file names. Note that this is identical to a secret volume source without the default mode. |
 | `serviceAccountToken` | `object` | ServiceAccountTokenProjection represents a projected service account token volume. This projection can be used to insert a service account token into the pods runtime filesystem for use against APIs (Kubernetes API Server or otherwise). |
 
 ### .spec.volumes\[\].projected.sources\[\].clusterTrustBundle {#_specvolumesprojectedsourcesclustertrustbundle}
@@ -5449,11 +5441,11 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `labelSelector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | Select all ClusterTrustBundles that match this label selector.  Only has effect if signerName is set.  Mutually-exclusive with name.  If unset, interpreted as "match nothing".  If set but empty, interpreted as "match everything". |
-| `name` | `string` | Select a single ClusterTrustBundle by object name.  Mutually-exclusive with signerName and labelSelector. |
-| `optional` | `boolean` | If true, don’t block pod startup if the referenced ClusterTrustBundle(s) aren’t available.  If using name, then the named ClusterTrustBundle is allowed not to exist.  If using signerName, then the combination of signerName and labelSelector is allowed to match zero ClusterTrustBundles. |
+| `labelSelector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | Select all ClusterTrustBundles that match this label selector. Only has effect if signerName is set. Mutually-exclusive with name. If unset, interpreted as "match nothing". If set but empty, interpreted as "match everything". |
+| `name` | `string` | Select a single ClusterTrustBundle by object name. Mutually-exclusive with signerName and labelSelector. |
+| `optional` | `boolean` | If true, don’t block pod startup if the referenced ClusterTrustBundle(s) aren’t available. If using name, then the named ClusterTrustBundle is allowed not to exist. If using signerName, then the combination of signerName and labelSelector is allowed to match zero ClusterTrustBundles. |
 | `path` | `string` | Relative path from the volume root to write the bundle. |
-| `signerName` | `string` | Select all ClusterTrustBundles that match this signer name. Mutually-exclusive with name.  The contents of all selected ClusterTrustBundles will be unified and deduplicated. |
+| `signerName` | `string` | Select all ClusterTrustBundles that match this signer name. Mutually-exclusive with name. The contents of all selected ClusterTrustBundles will be unified and deduplicated. |
 
 ### .spec.volumes\[\].projected.sources\[\].configMap {#_specvolumesprojectedsourcesconfigmap}
 
@@ -5546,7 +5538,7 @@ Required
 | --- | --- | --- |
 | `fieldRef` | `object` | ObjectFieldSelector selects an APIVersioned field of an object. |
 | `mode` | `integer` | Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. |
-| `path` | `string` | Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..' |
+| `path` | `string` | Required: Path is the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..' |
 | `resourceFieldRef` | `object` | ResourceFieldSelector represents container resources (cpu, memory) and their output format |
 
 ### .spec.volumes\[\].projected.sources\[\].downwardAPI.items\[\].fieldRef {#_specvolumesprojectedsourcesdownwardapiitemsfieldref}
@@ -5602,13 +5594,13 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `certificateChainPath` | `string` | Write the certificate chain at this path in the projected volume. Most applications should use credentialBundlePath.  When using keyPath and certificateChainPath, your application needs to check that the key and leaf certificate are consistent, because it is possible to read the files mid-rotation. |
-| `credentialBundlePath` | `string` | Write the credential bundle at this path in the projected volume. The credential bundle is a single file that contains multiple PEM blocks. The first PEM block is a PRIVATE KEY block, containing a PKCS#8 private key. The remaining blocks are CERTIFICATE blocks, containing the issued certificate chain from the signer (leaf and any intermediates). Using credentialBundlePath lets your Pod’s application code make a single atomic read that retrieves a consistent key and certificate chain.  If you project them to separate files, your application code will need to additionally check that the leaf certificate was issued to the key. |
-| `keyPath` | `string` | Write the key at this path in the projected volume. Most applications should use credentialBundlePath.  When using keyPath and certificateChainPath, your application needs to check that the key and leaf certificate are consistent, because it is possible to read the files mid-rotation. |
-| `keyType` | `string` | The type of keypair Kubelet will generate for the pod. Valid values are "RSA3072", "RSA4096", "ECDSAP256", "ECDSAP384", "ECDSAP521", and "ED25519". |
-| `maxExpirationSeconds` | `integer` | maxExpirationSeconds is the maximum lifetime permitted for the certificate. Kubelet copies this value verbatim into the PodCertificateRequests it generates for this projection. If omitted, kube-apiserver will set it to 86400(24 hours). kube-apiserver will reject values shorter than 3600 (1 hour).  The maximum allowable value is 7862400 (91 days). The signer implementation is then free to issue a certificate with any lifetime **shorter** than MaxExpirationSeconds, but no shorter than 3600 seconds (1 hour).  This constraint is enforced by kube-apiserver. `kubernetes.io` signers will never issue certificates with a lifetime longer than 24 hours. |
+| `certificateChainPath` | `string` | Write the certificate chain at this path in the projected volume.<br>Most applications should use credentialBundlePath. When using keyPath and certificateChainPath, your application needs to check that the key and leaf certificate are consistent, because it is possible to read the files mid-rotation. |
+| `credentialBundlePath` | `string` | Write the credential bundle at this path in the projected volume.<br>The credential bundle is a single file that contains multiple PEM blocks. The first PEM block is a PRIVATE KEY block, containing a PKCS#8 private key.<br>The remaining blocks are CERTIFICATE blocks, containing the issued certificate chain from the signer (leaf and any intermediates).<br>Using credentialBundlePath lets your Pod’s application code make a single atomic read that retrieves a consistent key and certificate chain. If you project them to separate files, your application code will need to additionally check that the leaf certificate was issued to the key. |
+| `keyPath` | `string` | Write the key at this path in the projected volume.<br>Most applications should use credentialBundlePath. When using keyPath and certificateChainPath, your application needs to check that the key and leaf certificate are consistent, because it is possible to read the files mid-rotation. |
+| `keyType` | `string` | The type of keypair Kubelet will generate for the pod.<br>Valid values are "RSA3072", "RSA4096", "ECDSAP256", "ECDSAP384", "ECDSAP521", and "ED25519". |
+| `maxExpirationSeconds` | `integer` | maxExpirationSeconds is the maximum lifetime permitted for the certificate.<br>Kubelet copies this value verbatim into the PodCertificateRequests it generates for this projection.<br>If omitted, kube-apiserver will set it to 86400(24 hours). kube-apiserver will reject values shorter than 3600 (1 hour). The maximum allowable value is 7862400 (91 days).<br>The signer implementation is then free to issue a certificate with any lifetime **shorter** than MaxExpirationSeconds, but no shorter than 3600 seconds (1 hour). This constraint is enforced by kube-apiserver. `kubernetes.io` signers will never issue certificates with a lifetime longer than 24 hours. |
 | `signerName` | `string` | Kubelet’s generated CSRs will be addressed to this signer. |
-| `userAnnotations` | `object (string)` | userAnnotations allow pod authors to pass additional information to the signer implementation.  Kubernetes does not restrict or validate this metadata in any way. These values are copied verbatim into the `spec.unverifiedUserAnnotations` field of the PodCertificateRequest objects that Kubelet creates. Entries are subject to the same validation as object metadata annotations, with the addition that all keys must be domain-prefixed. No restrictions are placed on values, except an overall size limitation on the entire field. Signers should document the keys and values they support. Signers should deny requests that contain keys they do not recognize. |
+| `userAnnotations` | `object (string)` | userAnnotations allow pod authors to pass additional information to the signer implementation. Kubernetes does not restrict or validate this metadata in any way.<br>These values are copied verbatim into the `spec.unverifiedUserAnnotations` field of the PodCertificateRequest objects that Kubelet creates.<br>Entries are subject to the same validation as object metadata annotations, with the addition that all keys must be domain-prefixed. No restrictions are placed on values, except an overall size limitation on the entire field.<br>Signers should document the keys and values they support. Signers should deny requests that contain keys they do not recognize. |
 
 ### .spec.volumes\[\].projected.sources\[\].secret {#_specvolumesprojectedsourcessecret}
 
@@ -5847,8 +5839,8 @@ Type
 | `fsType` | `string` | fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. |
 | `readOnly` | `boolean` | readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. |
 | `secretRef` | `object` | LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace. |
-| `volumeName` | `string` | volumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace. |
-| `volumeNamespace` | `string` | volumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod’s namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to "default" if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created. |
+| `volumeName` | `string` | volumeName is the human-readable name of the StorageOS volume. Volume names are only unique within a namespace. |
+| `volumeNamespace` | `string` | volumeNamespace specifies the scope of the volume within StorageOS. If no namespace is specified then the Pod’s namespace will be used. This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to "default" if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created. |
 
 ### .spec.volumes\[\].storageos.secretRef {#_specvolumesstorageossecretref}
 
@@ -5932,11 +5924,11 @@ Type
 | `message` | `string` | A human readable message indicating details about why the pod is in this condition. |
 | `nominatedNodeName` | `string` | nominatedNodeName is set only when this pod preempts other pods on the node, but it cannot be scheduled right away as preemption victims receive their graceful termination periods. This field does not guarantee that the pod will be scheduled on this node. Scheduler may decide to place the pod elsewhere if other nodes become available sooner. Scheduler may also decide to give the resources on this node to a higher priority pod that is created after preemption. As a result, this field may be different than PodSpec.nodeName when the pod is scheduled. |
 | `observedGeneration` | `integer` | If set, this represents the .metadata.generation that the pod status was set based upon. The PodObservedGenerationTracking feature gate must be enabled to use this field. |
-| `phase` | `string` | The phase of a Pod is a simple, high-level summary of where the Pod is in its lifecycle. The conditions array, the reason and message fields, and the individual container status arrays contain more detail about the pod’s status. There are five possible phase values: Pending: The pod has been accepted by the Kubernetes system, but one or more of the container images has not been created. This includes time before being scheduled as well as time spent downloading images over the network, which could take a while. Running: The pod has been bound to a node, and all of the containers have been created. At least one container is still running, or is in the process of starting or restarting. Succeeded: All containers in the pod have terminated in success, and will not be restarted. Failed: All containers in the pod have terminated, and at least one container has terminated in failure. The container either exited with non-zero status or was terminated by the system. Unknown: For some reason the state of the pod could not be obtained, typically due to an error in communicating with the host of the pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-phase Possible enum values:  - `"Failed"` means that all containers in the pod have terminated, and at least one container has terminated in a failure (exited with a non-zero exit code or was stopped by the system).  - `"Pending"` means the pod has been accepted by the system, but one or more of the containers has not been started. This includes time before being bound to a node, as well as time spent pulling images onto the host.  - `"Running"` means the pod has been bound to a node and all of the containers have been started. At least one container is still running or is in the process of being restarted.  - `"Succeeded"` means that all containers in the pod have voluntarily terminated with a container exit code of 0, and the system is not going to restart any of these containers.  - `"Unknown"` means that for some reason the state of the pod could not be obtained, typically due to an error in communicating with the host of the pod. Deprecated: It isn’t being set since 2015 (74da3b14b0c0f658b3bb8d2def5094686d0e9095) |
+| `phase` | `string` | The phase of a Pod is a simple, high-level summary of where the Pod is in its lifecycle. The conditions array, the reason and message fields, and the individual container status arrays contain more detail about the pod’s status. There are five possible phase values:<br>Pending: The pod has been accepted by the Kubernetes system, but one or more of the container images has not been created. This includes time before being scheduled as well as time spent downloading images over the network, which could take a while. Running: The pod has been bound to a node, and all of the containers have been created. At least one container is still running, or is in the process of starting or restarting. Succeeded: All containers in the pod have terminated in success, and will not be restarted. Failed: All containers in the pod have terminated, and at least one container has terminated in failure. The container either exited with non-zero status or was terminated by the system. Unknown: For some reason the state of the pod could not be obtained, typically due to an error in communicating with the host of the pod.<br>More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-phase<br>Possible enum values: - `"Failed"` means that all containers in the pod have terminated, and at least one container has terminated in a failure (exited with a non-zero exit code or was stopped by the system). - `"Pending"` means the pod has been accepted by the system, but one or more of the containers has not been started. This includes time before being bound to a node, as well as time spent pulling images onto the host. - `"Running"` means the pod has been bound to a node and all of the containers have been started. At least one container is still running or is in the process of being restarted. - `"Succeeded"` means that all containers in the pod have voluntarily terminated with a container exit code of 0, and the system is not going to restart any of these containers. - `"Unknown"` means that for some reason the state of the pod could not be obtained, typically due to an error in communicating with the host of the pod. Deprecated: It isn’t being set since 2015 (74da3b14b0c0f658b3bb8d2def5094686d0e9095) |
 | `podIP` | `string` | podIP address allocated to the pod. Routable at least within the cluster. Empty if not yet allocated. |
 | `podIPs` | `array` | podIPs holds the IP addresses allocated to the pod. If this field is specified, the 0th entry must match the podIP field. Pods may be allocated at most 1 value for each of IPv4 and IPv6. This list is empty if no IPs have been allocated yet. |
 | `podIPs[]` | `object` | PodIP represents a single IP address allocated to the pod. |
-| `qosClass` | `string` | The Quality of Service (QOS) classification assigned to the pod based on resource requirements See PodQOSClass type for available QOS classes More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-qos/#quality-of-service-classes Possible enum values:  - `"BestEffort"` is the BestEffort qos class.  - `"Burstable"` is the Burstable qos class.  - `"Guaranteed"` is the Guaranteed qos class. |
+| `qosClass` | `string` | The Quality of Service (QOS) classification assigned to the pod based on resource requirements See PodQOSClass type for available QOS classes More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-qos/#quality-of-service-classes<br>Possible enum values: - `"BestEffort"` is the BestEffort qos class. - `"Burstable"` is the Burstable qos class. - `"Guaranteed"` is the Guaranteed qos class. |
 | `reason` | `string` | A brief CamelCase message indicating details about why the pod is in this state. e.g. 'Evicted' |
 | `resize` | `string` | Status of resources resize desired for pod’s containers. It is empty if no resources resize is pending. Any changes to container resources will automatically set this to "Proposed" Deprecated: Resize status is moved to two pod conditions PodResizePending and PodResizeInProgress. PodResizePending will track states where the spec has been resized, but the Kubelet has not yet allocated the resources. PodResizeInProgress will track in-progress resizes, and should be present whenever allocated resources != acknowledged resources. |
 | `resourceClaimStatuses` | `array` | Status of resource claims. |
@@ -6015,12 +6007,12 @@ Required
 | `imageID` | `string` | ImageID is the image ID of the container’s image. The image ID may not match the image ID of the image used in the PodSpec, as it may have been resolved by the runtime. |
 | `lastState` | `object` | ContainerState holds a possible state of container. Only one of its members may be specified. If none of them is specified, the default one is ContainerStateWaiting. |
 | `name` | `string` | Name is a DNS_LABEL representing the unique name of the container. Each container in a pod must have a unique name across all container types. Cannot be updated. |
-| `ready` | `boolean` | Ready specifies whether the container is currently passing its readiness check. The value will change as readiness probes keep executing. If no readiness probes are specified, this field defaults to true once the container is fully started (see Started field). The value is typically used to determine whether a container is ready to accept traffic. |
+| `ready` | `boolean` | Ready specifies whether the container is currently passing its readiness check. The value will change as readiness probes keep executing. If no readiness probes are specified, this field defaults to true once the container is fully started (see Started field).<br>The value is typically used to determine whether a container is ready to accept traffic. |
 | `resources` | `object` | ResourceRequirements describes the compute resource requirements. |
 | `restartCount` | `integer` | RestartCount holds the number of times the container has been restarted. Kubelet makes an effort to always increment the value, but there are cases when the state may be lost due to node restarts and then the value may be reset to 0. The value is never negative. |
 | `started` | `boolean` | Started indicates whether the container has finished its postStart lifecycle hook and passed its startup probe. Initialized as false, becomes true after startupProbe is considered successful. Resets to false when the container is restarted, or if kubelet loses state temporarily. In both cases, startup probes will run again. Is always true when no startupProbe is defined and container is running and has passed the postStart lifecycle hook. The null value must be treated the same as false. |
 | `state` | `object` | ContainerState holds a possible state of container. Only one of its members may be specified. If none of them is specified, the default one is ContainerStateWaiting. |
-| `stopSignal` | `string` | StopSignal reports the effective stop signal for this container Possible enum values:  - `"SIGABRT"`  - `"SIGALRM"`  - `"SIGBUS"`  - `"SIGCHLD"`  - `"SIGCLD"`  - `"SIGCONT"`  - `"SIGFPE"`  - `"SIGHUP"`  - `"SIGILL"`  - `"SIGINT"`  - `"SIGIO"`  - `"SIGIOT"`  - `"SIGKILL"`  - `"SIGPIPE"`  - `"SIGPOLL"`  - `"SIGPROF"`  - `"SIGPWR"`  - `"SIGQUIT"`  - `"SIGRTMAX"`  - `"SIGRTMAX-1"`  - `"SIGRTMAX-10"`  - `"SIGRTMAX-11"`  - `"SIGRTMAX-12"`  - `"SIGRTMAX-13"`  - `"SIGRTMAX-14"`  - `"SIGRTMAX-2"`  - `"SIGRTMAX-3"`  - `"SIGRTMAX-4"`  - `"SIGRTMAX-5"`  - `"SIGRTMAX-6"`  - `"SIGRTMAX-7"`  - `"SIGRTMAX-8"`  - `"SIGRTMAX-9"`  - `"SIGRTMIN"`  - `"SIGRTMIN+1"`  - `"SIGRTMIN+10"`  - `"SIGRTMIN+11"`  - `"SIGRTMIN+12"`  - `"SIGRTMIN+13"`  - `"SIGRTMIN+14"`  - `"SIGRTMIN+15"`  - `"SIGRTMIN+2"`  - `"SIGRTMIN+3"`  - `"SIGRTMIN+4"`  - `"SIGRTMIN+5"`  - `"SIGRTMIN+6"`  - `"SIGRTMIN+7"`  - `"SIGRTMIN+8"`  - `"SIGRTMIN+9"`  - `"SIGSEGV"`  - `"SIGSTKFLT"`  - `"SIGSTOP"`  - `"SIGSYS"`  - `"SIGTERM"`  - `"SIGTRAP"`  - `"SIGTSTP"`  - `"SIGTTIN"`  - `"SIGTTOU"`  - `"SIGURG"`  - `"SIGUSR1"`  - `"SIGUSR2"`  - `"SIGVTALRM"`  - `"SIGWINCH"`  - `"SIGXCPU"`  - `"SIGXFSZ"` |
+| `stopSignal` | `string` | StopSignal reports the effective stop signal for this container<br>Possible enum values: - `"SIGABRT"` - `"SIGALRM"` - `"SIGBUS"` - `"SIGCHLD"` - `"SIGCLD"` - `"SIGCONT"` - `"SIGFPE"` - `"SIGHUP"` - `"SIGILL"` - `"SIGINT"` - `"SIGIO"` - `"SIGIOT"` - `"SIGKILL"` - `"SIGPIPE"` - `"SIGPOLL"` - `"SIGPROF"` - `"SIGPWR"` - `"SIGQUIT"` - `"SIGRTMAX"` - `"SIGRTMAX-1"` - `"SIGRTMAX-10"` - `"SIGRTMAX-11"` - `"SIGRTMAX-12"` - `"SIGRTMAX-13"` - `"SIGRTMAX-14"` - `"SIGRTMAX-2"` - `"SIGRTMAX-3"` - `"SIGRTMAX-4"` - `"SIGRTMAX-5"` - `"SIGRTMAX-6"` - `"SIGRTMAX-7"` - `"SIGRTMAX-8"` - `"SIGRTMAX-9"` - `"SIGRTMIN"` - `"SIGRTMIN+1"` - `"SIGRTMIN+10"` - `"SIGRTMIN+11"` - `"SIGRTMIN+12"` - `"SIGRTMIN+13"` - `"SIGRTMIN+14"` - `"SIGRTMIN+15"` - `"SIGRTMIN+2"` - `"SIGRTMIN+3"` - `"SIGRTMIN+4"` - `"SIGRTMIN+5"` - `"SIGRTMIN+6"` - `"SIGRTMIN+7"` - `"SIGRTMIN+8"` - `"SIGRTMIN+9"` - `"SIGSEGV"` - `"SIGSTKFLT"` - `"SIGSTOP"` - `"SIGSYS"` - `"SIGTERM"` - `"SIGTRAP"` - `"SIGTSTP"` - `"SIGTTIN"` - `"SIGTTOU"` - `"SIGURG"` - `"SIGUSR1"` - `"SIGUSR2"` - `"SIGVTALRM"` - `"SIGWINCH"` - `"SIGXCPU"` - `"SIGXFSZ"` |
 | `user` | `object` | ContainerUser represents user identity information |
 | `volumeMounts` | `array` | Status of volume mounts. |
 | `volumeMounts[]` | `object` | VolumeMountStatus shows status of volume mounts. |
@@ -6079,7 +6071,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `health` | `string` | Health of the resource. can be one of:  - Healthy: operates as normal  - Unhealthy: reported unhealthy. We consider this a temporary health issue               since we do not have a mechanism today to distinguish               temporary and permanent issues.  - Unknown: The status cannot be determined.             For example, Device Plugin got unregistered and hasn’t been re-registered since. In future we may want to introduce the PermanentlyUnhealthy Status. |
+| `health` | `string` | Health of the resource. can be one of: - Healthy: operates as normal - Unhealthy: reported unhealthy. We consider this a temporary health issue since we do not have a mechanism today to distinguish temporary and permanent issues. - Unknown: The status cannot be determined. For example, Device Plugin got unregistered and hasn’t been re-registered since.<br>In future we may want to introduce the PermanentlyUnhealthy Status. |
 | `resourceID` | `string` | ResourceID is the unique identifier of the resource. See the ResourceID type for more information. |
 
 ### .status.containerStatuses\[\].lastState {#_statuscontainerstatuseslaststate}
@@ -6162,7 +6154,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. |
+| `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.<br>This field depends on the DynamicResourceAllocation feature gate.<br>This field is immutable. It can only be set for containers. |
 | `claims[]` | `object` | ResourceClaim references one entry in PodSpec.ResourceClaims. |
 | `limits` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
 | `requests` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
@@ -6369,12 +6361,12 @@ Required
 | `imageID` | `string` | ImageID is the image ID of the container’s image. The image ID may not match the image ID of the image used in the PodSpec, as it may have been resolved by the runtime. |
 | `lastState` | `object` | ContainerState holds a possible state of container. Only one of its members may be specified. If none of them is specified, the default one is ContainerStateWaiting. |
 | `name` | `string` | Name is a DNS_LABEL representing the unique name of the container. Each container in a pod must have a unique name across all container types. Cannot be updated. |
-| `ready` | `boolean` | Ready specifies whether the container is currently passing its readiness check. The value will change as readiness probes keep executing. If no readiness probes are specified, this field defaults to true once the container is fully started (see Started field). The value is typically used to determine whether a container is ready to accept traffic. |
+| `ready` | `boolean` | Ready specifies whether the container is currently passing its readiness check. The value will change as readiness probes keep executing. If no readiness probes are specified, this field defaults to true once the container is fully started (see Started field).<br>The value is typically used to determine whether a container is ready to accept traffic. |
 | `resources` | `object` | ResourceRequirements describes the compute resource requirements. |
 | `restartCount` | `integer` | RestartCount holds the number of times the container has been restarted. Kubelet makes an effort to always increment the value, but there are cases when the state may be lost due to node restarts and then the value may be reset to 0. The value is never negative. |
 | `started` | `boolean` | Started indicates whether the container has finished its postStart lifecycle hook and passed its startup probe. Initialized as false, becomes true after startupProbe is considered successful. Resets to false when the container is restarted, or if kubelet loses state temporarily. In both cases, startup probes will run again. Is always true when no startupProbe is defined and container is running and has passed the postStart lifecycle hook. The null value must be treated the same as false. |
 | `state` | `object` | ContainerState holds a possible state of container. Only one of its members may be specified. If none of them is specified, the default one is ContainerStateWaiting. |
-| `stopSignal` | `string` | StopSignal reports the effective stop signal for this container Possible enum values:  - `"SIGABRT"`  - `"SIGALRM"`  - `"SIGBUS"`  - `"SIGCHLD"`  - `"SIGCLD"`  - `"SIGCONT"`  - `"SIGFPE"`  - `"SIGHUP"`  - `"SIGILL"`  - `"SIGINT"`  - `"SIGIO"`  - `"SIGIOT"`  - `"SIGKILL"`  - `"SIGPIPE"`  - `"SIGPOLL"`  - `"SIGPROF"`  - `"SIGPWR"`  - `"SIGQUIT"`  - `"SIGRTMAX"`  - `"SIGRTMAX-1"`  - `"SIGRTMAX-10"`  - `"SIGRTMAX-11"`  - `"SIGRTMAX-12"`  - `"SIGRTMAX-13"`  - `"SIGRTMAX-14"`  - `"SIGRTMAX-2"`  - `"SIGRTMAX-3"`  - `"SIGRTMAX-4"`  - `"SIGRTMAX-5"`  - `"SIGRTMAX-6"`  - `"SIGRTMAX-7"`  - `"SIGRTMAX-8"`  - `"SIGRTMAX-9"`  - `"SIGRTMIN"`  - `"SIGRTMIN+1"`  - `"SIGRTMIN+10"`  - `"SIGRTMIN+11"`  - `"SIGRTMIN+12"`  - `"SIGRTMIN+13"`  - `"SIGRTMIN+14"`  - `"SIGRTMIN+15"`  - `"SIGRTMIN+2"`  - `"SIGRTMIN+3"`  - `"SIGRTMIN+4"`  - `"SIGRTMIN+5"`  - `"SIGRTMIN+6"`  - `"SIGRTMIN+7"`  - `"SIGRTMIN+8"`  - `"SIGRTMIN+9"`  - `"SIGSEGV"`  - `"SIGSTKFLT"`  - `"SIGSTOP"`  - `"SIGSYS"`  - `"SIGTERM"`  - `"SIGTRAP"`  - `"SIGTSTP"`  - `"SIGTTIN"`  - `"SIGTTOU"`  - `"SIGURG"`  - `"SIGUSR1"`  - `"SIGUSR2"`  - `"SIGVTALRM"`  - `"SIGWINCH"`  - `"SIGXCPU"`  - `"SIGXFSZ"` |
+| `stopSignal` | `string` | StopSignal reports the effective stop signal for this container<br>Possible enum values: - `"SIGABRT"` - `"SIGALRM"` - `"SIGBUS"` - `"SIGCHLD"` - `"SIGCLD"` - `"SIGCONT"` - `"SIGFPE"` - `"SIGHUP"` - `"SIGILL"` - `"SIGINT"` - `"SIGIO"` - `"SIGIOT"` - `"SIGKILL"` - `"SIGPIPE"` - `"SIGPOLL"` - `"SIGPROF"` - `"SIGPWR"` - `"SIGQUIT"` - `"SIGRTMAX"` - `"SIGRTMAX-1"` - `"SIGRTMAX-10"` - `"SIGRTMAX-11"` - `"SIGRTMAX-12"` - `"SIGRTMAX-13"` - `"SIGRTMAX-14"` - `"SIGRTMAX-2"` - `"SIGRTMAX-3"` - `"SIGRTMAX-4"` - `"SIGRTMAX-5"` - `"SIGRTMAX-6"` - `"SIGRTMAX-7"` - `"SIGRTMAX-8"` - `"SIGRTMAX-9"` - `"SIGRTMIN"` - `"SIGRTMIN+1"` - `"SIGRTMIN+10"` - `"SIGRTMIN+11"` - `"SIGRTMIN+12"` - `"SIGRTMIN+13"` - `"SIGRTMIN+14"` - `"SIGRTMIN+15"` - `"SIGRTMIN+2"` - `"SIGRTMIN+3"` - `"SIGRTMIN+4"` - `"SIGRTMIN+5"` - `"SIGRTMIN+6"` - `"SIGRTMIN+7"` - `"SIGRTMIN+8"` - `"SIGRTMIN+9"` - `"SIGSEGV"` - `"SIGSTKFLT"` - `"SIGSTOP"` - `"SIGSYS"` - `"SIGTERM"` - `"SIGTRAP"` - `"SIGTSTP"` - `"SIGTTIN"` - `"SIGTTOU"` - `"SIGURG"` - `"SIGUSR1"` - `"SIGUSR2"` - `"SIGVTALRM"` - `"SIGWINCH"` - `"SIGXCPU"` - `"SIGXFSZ"` |
 | `user` | `object` | ContainerUser represents user identity information |
 | `volumeMounts` | `array` | Status of volume mounts. |
 | `volumeMounts[]` | `object` | VolumeMountStatus shows status of volume mounts. |
@@ -6433,7 +6425,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `health` | `string` | Health of the resource. can be one of:  - Healthy: operates as normal  - Unhealthy: reported unhealthy. We consider this a temporary health issue               since we do not have a mechanism today to distinguish               temporary and permanent issues.  - Unknown: The status cannot be determined.             For example, Device Plugin got unregistered and hasn’t been re-registered since. In future we may want to introduce the PermanentlyUnhealthy Status. |
+| `health` | `string` | Health of the resource. can be one of: - Healthy: operates as normal - Unhealthy: reported unhealthy. We consider this a temporary health issue since we do not have a mechanism today to distinguish temporary and permanent issues. - Unknown: The status cannot be determined. For example, Device Plugin got unregistered and hasn’t been re-registered since.<br>In future we may want to introduce the PermanentlyUnhealthy Status. |
 | `resourceID` | `string` | ResourceID is the unique identifier of the resource. See the ResourceID type for more information. |
 
 ### .status.ephemeralContainerStatuses\[\].lastState {#_statusephemeralcontainerstatuseslaststate}
@@ -6516,7 +6508,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. |
+| `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.<br>This field depends on the DynamicResourceAllocation feature gate.<br>This field is immutable. It can only be set for containers. |
 | `claims[]` | `object` | ResourceClaim references one entry in PodSpec.ResourceClaims. |
 | `limits` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
 | `requests` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
@@ -6702,7 +6694,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `requestMappings` | `array` | RequestMappings identifies the mapping of <container, extended resource backed by DRA> to  device request in the generated ResourceClaim. |
+| `requestMappings` | `array` | RequestMappings identifies the mapping of <container, extended resource backed by DRA> to device request in the generated ResourceClaim. |
 | `requestMappings[]` | `object` | ContainerExtendedResourceRequest has the mapping of container name, extended resource name to the device request name. |
 | `resourceClaimName` | `string` | ResourceClaimName is the name of the ResourceClaim that was generated for the Pod in the namespace of the Pod. |
 
@@ -6801,12 +6793,12 @@ Required
 | `imageID` | `string` | ImageID is the image ID of the container’s image. The image ID may not match the image ID of the image used in the PodSpec, as it may have been resolved by the runtime. |
 | `lastState` | `object` | ContainerState holds a possible state of container. Only one of its members may be specified. If none of them is specified, the default one is ContainerStateWaiting. |
 | `name` | `string` | Name is a DNS_LABEL representing the unique name of the container. Each container in a pod must have a unique name across all container types. Cannot be updated. |
-| `ready` | `boolean` | Ready specifies whether the container is currently passing its readiness check. The value will change as readiness probes keep executing. If no readiness probes are specified, this field defaults to true once the container is fully started (see Started field). The value is typically used to determine whether a container is ready to accept traffic. |
+| `ready` | `boolean` | Ready specifies whether the container is currently passing its readiness check. The value will change as readiness probes keep executing. If no readiness probes are specified, this field defaults to true once the container is fully started (see Started field).<br>The value is typically used to determine whether a container is ready to accept traffic. |
 | `resources` | `object` | ResourceRequirements describes the compute resource requirements. |
 | `restartCount` | `integer` | RestartCount holds the number of times the container has been restarted. Kubelet makes an effort to always increment the value, but there are cases when the state may be lost due to node restarts and then the value may be reset to 0. The value is never negative. |
 | `started` | `boolean` | Started indicates whether the container has finished its postStart lifecycle hook and passed its startup probe. Initialized as false, becomes true after startupProbe is considered successful. Resets to false when the container is restarted, or if kubelet loses state temporarily. In both cases, startup probes will run again. Is always true when no startupProbe is defined and container is running and has passed the postStart lifecycle hook. The null value must be treated the same as false. |
 | `state` | `object` | ContainerState holds a possible state of container. Only one of its members may be specified. If none of them is specified, the default one is ContainerStateWaiting. |
-| `stopSignal` | `string` | StopSignal reports the effective stop signal for this container Possible enum values:  - `"SIGABRT"`  - `"SIGALRM"`  - `"SIGBUS"`  - `"SIGCHLD"`  - `"SIGCLD"`  - `"SIGCONT"`  - `"SIGFPE"`  - `"SIGHUP"`  - `"SIGILL"`  - `"SIGINT"`  - `"SIGIO"`  - `"SIGIOT"`  - `"SIGKILL"`  - `"SIGPIPE"`  - `"SIGPOLL"`  - `"SIGPROF"`  - `"SIGPWR"`  - `"SIGQUIT"`  - `"SIGRTMAX"`  - `"SIGRTMAX-1"`  - `"SIGRTMAX-10"`  - `"SIGRTMAX-11"`  - `"SIGRTMAX-12"`  - `"SIGRTMAX-13"`  - `"SIGRTMAX-14"`  - `"SIGRTMAX-2"`  - `"SIGRTMAX-3"`  - `"SIGRTMAX-4"`  - `"SIGRTMAX-5"`  - `"SIGRTMAX-6"`  - `"SIGRTMAX-7"`  - `"SIGRTMAX-8"`  - `"SIGRTMAX-9"`  - `"SIGRTMIN"`  - `"SIGRTMIN+1"`  - `"SIGRTMIN+10"`  - `"SIGRTMIN+11"`  - `"SIGRTMIN+12"`  - `"SIGRTMIN+13"`  - `"SIGRTMIN+14"`  - `"SIGRTMIN+15"`  - `"SIGRTMIN+2"`  - `"SIGRTMIN+3"`  - `"SIGRTMIN+4"`  - `"SIGRTMIN+5"`  - `"SIGRTMIN+6"`  - `"SIGRTMIN+7"`  - `"SIGRTMIN+8"`  - `"SIGRTMIN+9"`  - `"SIGSEGV"`  - `"SIGSTKFLT"`  - `"SIGSTOP"`  - `"SIGSYS"`  - `"SIGTERM"`  - `"SIGTRAP"`  - `"SIGTSTP"`  - `"SIGTTIN"`  - `"SIGTTOU"`  - `"SIGURG"`  - `"SIGUSR1"`  - `"SIGUSR2"`  - `"SIGVTALRM"`  - `"SIGWINCH"`  - `"SIGXCPU"`  - `"SIGXFSZ"` |
+| `stopSignal` | `string` | StopSignal reports the effective stop signal for this container<br>Possible enum values: - `"SIGABRT"` - `"SIGALRM"` - `"SIGBUS"` - `"SIGCHLD"` - `"SIGCLD"` - `"SIGCONT"` - `"SIGFPE"` - `"SIGHUP"` - `"SIGILL"` - `"SIGINT"` - `"SIGIO"` - `"SIGIOT"` - `"SIGKILL"` - `"SIGPIPE"` - `"SIGPOLL"` - `"SIGPROF"` - `"SIGPWR"` - `"SIGQUIT"` - `"SIGRTMAX"` - `"SIGRTMAX-1"` - `"SIGRTMAX-10"` - `"SIGRTMAX-11"` - `"SIGRTMAX-12"` - `"SIGRTMAX-13"` - `"SIGRTMAX-14"` - `"SIGRTMAX-2"` - `"SIGRTMAX-3"` - `"SIGRTMAX-4"` - `"SIGRTMAX-5"` - `"SIGRTMAX-6"` - `"SIGRTMAX-7"` - `"SIGRTMAX-8"` - `"SIGRTMAX-9"` - `"SIGRTMIN"` - `"SIGRTMIN+1"` - `"SIGRTMIN+10"` - `"SIGRTMIN+11"` - `"SIGRTMIN+12"` - `"SIGRTMIN+13"` - `"SIGRTMIN+14"` - `"SIGRTMIN+15"` - `"SIGRTMIN+2"` - `"SIGRTMIN+3"` - `"SIGRTMIN+4"` - `"SIGRTMIN+5"` - `"SIGRTMIN+6"` - `"SIGRTMIN+7"` - `"SIGRTMIN+8"` - `"SIGRTMIN+9"` - `"SIGSEGV"` - `"SIGSTKFLT"` - `"SIGSTOP"` - `"SIGSYS"` - `"SIGTERM"` - `"SIGTRAP"` - `"SIGTSTP"` - `"SIGTTIN"` - `"SIGTTOU"` - `"SIGURG"` - `"SIGUSR1"` - `"SIGUSR2"` - `"SIGVTALRM"` - `"SIGWINCH"` - `"SIGXCPU"` - `"SIGXFSZ"` |
 | `user` | `object` | ContainerUser represents user identity information |
 | `volumeMounts` | `array` | Status of volume mounts. |
 | `volumeMounts[]` | `object` | VolumeMountStatus shows status of volume mounts. |
@@ -6865,7 +6857,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `health` | `string` | Health of the resource. can be one of:  - Healthy: operates as normal  - Unhealthy: reported unhealthy. We consider this a temporary health issue               since we do not have a mechanism today to distinguish               temporary and permanent issues.  - Unknown: The status cannot be determined.             For example, Device Plugin got unregistered and hasn’t been re-registered since. In future we may want to introduce the PermanentlyUnhealthy Status. |
+| `health` | `string` | Health of the resource. can be one of: - Healthy: operates as normal - Unhealthy: reported unhealthy. We consider this a temporary health issue since we do not have a mechanism today to distinguish temporary and permanent issues. - Unknown: The status cannot be determined. For example, Device Plugin got unregistered and hasn’t been re-registered since.<br>In future we may want to introduce the PermanentlyUnhealthy Status. |
 | `resourceID` | `string` | ResourceID is the unique identifier of the resource. See the ResourceID type for more information. |
 
 ### .status.initContainerStatuses\[\].lastState {#_statusinitcontainerstatuseslaststate}
@@ -6948,7 +6940,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. |
+| `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.<br>This field depends on the DynamicResourceAllocation feature gate.<br>This field is immutable. It can only be set for containers. |
 | `claims[]` | `object` | ResourceClaim references one entry in PodSpec.ResourceClaims. |
 | `limits` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
 | `requests` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
@@ -7185,7 +7177,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. |
+| `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.<br>This field depends on the DynamicResourceAllocation feature gate.<br>This field is immutable. It can only be set for containers. |
 | `claims[]` | `object` | ResourceClaim references one entry in PodSpec.ResourceClaims. |
 | `limits` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
 | `requests` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
@@ -7232,37 +7224,37 @@ The following API endpoints are available:
 - `/api/v1/watch/pods`
 
   - `GET`: watch individual changes to a list of Pod. deprecated: use the 'watch' parameter with a list operation instead.
-- `/api/v1/namespaces/{{ namespace }}/pods`
+- `/api/v1/namespaces/{namespace}/pods`
 
   - `DELETE`: delete collection of Pod
   - `GET`: list or watch objects of kind Pod
   - `POST`: create a Pod
-- `/api/v1/watch/namespaces/{{ namespace }}/pods`
+- `/api/v1/watch/namespaces/{namespace}/pods`
 
   - `GET`: watch individual changes to a list of Pod. deprecated: use the 'watch' parameter with a list operation instead.
-- `/api/v1/namespaces/{{ namespace }}/pods/{{ name }}`
+- `/api/v1/namespaces/{namespace}/pods/{name}`
 
   - `DELETE`: delete a Pod
   - `GET`: read the specified Pod
   - `PATCH`: partially update the specified Pod
   - `PUT`: replace the specified Pod
-- `/api/v1/namespaces/{{ namespace }}/pods/{{ name }}/log`
+- `/api/v1/namespaces/{namespace}/pods/{name}/log`
 
   - `GET`: read log of the specified Pod
-- `/api/v1/watch/namespaces/{{ namespace }}/pods/{{ name }}`
+- `/api/v1/watch/namespaces/{namespace}/pods/{name}`
 
   - `GET`: watch changes to an object of kind Pod. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
-- `/api/v1/namespaces/{{ namespace }}/pods/{{ name }}/resize`
+- `/api/v1/namespaces/{namespace}/pods/{name}/resize`
 
   - `GET`: read resize of the specified Pod
   - `PATCH`: partially update resize of the specified Pod
   - `PUT`: replace resize of the specified Pod
-- `/api/v1/namespaces/{{ namespace }}/pods/{{ name }}/status`
+- `/api/v1/namespaces/{namespace}/pods/{name}/status`
 
   - `GET`: read status of the specified Pod
   - `PATCH`: partially update status of the specified Pod
   - `PUT`: replace status of the specified Pod
-- `/api/v1/namespaces/{{ namespace }}/pods/{{ name }}/ephemeralcontainers`
+- `/api/v1/namespaces/{namespace}/pods/{name}/ephemeralcontainers`
 
   - `GET`: read ephemeralcontainers of the specified Pod
   - `PATCH`: partially update ephemeralcontainers of the specified Pod
@@ -7306,7 +7298,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{{ namespace }}/pods {#_apiv1namespaces_namespace_pods}
+### /api/v1/namespaces/{namespace}/pods {#_apiv1namespaces_namespace_pods}
 
 HTTP method
 :   ```
@@ -7380,7 +7372,7 @@ Description
 | 202 - Accepted | [`Pod`](/openshift-docs-markdown/rest_api/workloads_apis/pod-v1#pod-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/namespaces/{{ namespace }}/pods {#_apiv1watchnamespaces_namespace_pods}
+### /api/v1/watch/namespaces/{namespace}/pods {#_apiv1watchnamespaces_namespace_pods}
 
 HTTP method
 :   ```
@@ -7399,7 +7391,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{{ namespace }}/pods/{{ name }} {#_apiv1namespaces_namespace_pods_name}
+### /api/v1/namespaces/{namespace}/pods/{name} {#_apiv1namespaces_namespace_pods_name}
 
 **Global path parameters**
 
@@ -7504,7 +7496,7 @@ Description
 | 201 - Created | [`Pod`](/openshift-docs-markdown/rest_api/workloads_apis/pod-v1#pod-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{{ namespace }}/pods/{{ name }}/log {#_apiv1namespaces_namespace_pods_name_log}
+### /api/v1/namespaces/{namespace}/pods/{name}/log {#_apiv1namespaces_namespace_pods_name_log}
 
 **Global path parameters**
 
@@ -7529,7 +7521,7 @@ Description
 | 200 - OK | `string` |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/namespaces/{{ namespace }}/pods/{{ name }} {#_apiv1watchnamespaces_namespace_pods_name}
+### /api/v1/watch/namespaces/{namespace}/pods/{name} {#_apiv1watchnamespaces_namespace_pods_name}
 
 **Global path parameters**
 
@@ -7554,7 +7546,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{{ namespace }}/pods/{{ name }}/resize {#_apiv1namespaces_namespace_pods_name_resize}
+### /api/v1/namespaces/{namespace}/pods/{name}/resize {#_apiv1namespaces_namespace_pods_name_resize}
 
 **Global path parameters**
 
@@ -7635,7 +7627,7 @@ Description
 | 201 - Created | [`Pod`](/openshift-docs-markdown/rest_api/workloads_apis/pod-v1#pod-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{{ namespace }}/pods/{{ name }}/status {#_apiv1namespaces_namespace_pods_name_status}
+### /api/v1/namespaces/{namespace}/pods/{name}/status {#_apiv1namespaces_namespace_pods_name_status}
 
 **Global path parameters**
 
@@ -7716,7 +7708,7 @@ Description
 | 201 - Created | [`Pod`](/openshift-docs-markdown/rest_api/workloads_apis/pod-v1#pod-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{{ namespace }}/pods/{{ name }}/ephemeralcontainers {#_apiv1namespaces_namespace_pods_name_ephemeralcontainers}
+### /api/v1/namespaces/{namespace}/pods/{name}/ephemeralcontainers {#_apiv1namespaces_namespace_pods_name_ephemeralcontainers}
 
 **Global path parameters**
 

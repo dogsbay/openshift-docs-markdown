@@ -1,8 +1,8 @@
 ---
-title: Configuring the egress proxy for the {{ cert_manager_operator }}
+title: Configuring the egress proxy for the cert-manager Operator for Red Hat OpenShift
 ---
 
-# Configuring the egress proxy for the {{ cert_manager_operator }} {#cert-manager-operator-proxy}
+# Configuring the egress proxy for the cert-manager Operator for Red Hat OpenShift {#cert-manager-operator-proxy}
 
 If a cluster-wide egress proxy is configured in OpenShift Container Platform, Operator Lifecycle Manager (OLM) automatically configures Operators that it manages with the cluster-wide proxy. OLM automatically updates all of the Operator’s deployments with the `HTTP_PROXY`, `HTTPS_PROXY`, `NO_PROXY` environment variables.
 
@@ -71,6 +71,7 @@ If your OpenShift Container Platform cluster has the cluster-wide proxy enabled,
    [{"configMap":{"defaultMode":420,"name":"trusted-ca"},"name":"trusted-ca"}]
    ```
 
-## Additional resources {#cert-manager-operator-proxy_additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring proxy support in Operator Lifecycle Manager](/openshift-docs-markdown/operators/admin/olm-configuring-proxy-support#olm-configuring-proxy-support)

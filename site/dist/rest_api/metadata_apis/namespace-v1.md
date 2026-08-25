@@ -50,7 +50,7 @@ Type
 | --- | --- | --- |
 | `conditions` | `array` | Represents the latest available observations of a namespace’s current state. |
 | `conditions[]` | `object` | NamespaceCondition contains details about state of namespace. |
-| `phase` | `string` | Phase is the current lifecycle phase of the namespace. More info: https://kubernetes.io/docs/tasks/administer-cluster/namespaces/ Possible enum values:  - `"Active"` means the namespace is available for use in the system  - `"Terminating"` means the namespace is undergoing graceful termination |
+| `phase` | `string` | Phase is the current lifecycle phase of the namespace. More info: https://kubernetes.io/docs/tasks/administer-cluster/namespaces/<br>Possible enum values: - `"Active"` means the namespace is available for use in the system - `"Terminating"` means the namespace is undergoing graceful termination |
 
 ### .status.conditions {#_statusconditions}
 
@@ -95,21 +95,21 @@ The following API endpoints are available:
 - `/api/v1/watch/namespaces`
 
   - `GET`: watch individual changes to a list of Namespace. deprecated: use the 'watch' parameter with a list operation instead.
-- `/api/v1/namespaces/{{ name }}`
+- `/api/v1/namespaces/{name}`
 
   - `DELETE`: delete a Namespace
   - `GET`: read the specified Namespace
   - `PATCH`: partially update the specified Namespace
   - `PUT`: replace the specified Namespace
-- `/api/v1/watch/namespaces/{{ name }}`
+- `/api/v1/watch/namespaces/{name}`
 
   - `GET`: watch changes to an object of kind Namespace. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
-- `/api/v1/namespaces/{{ name }}/status`
+- `/api/v1/namespaces/{name}/status`
 
   - `GET`: read status of the specified Namespace
   - `PATCH`: partially update status of the specified Namespace
   - `PUT`: replace status of the specified Namespace
-- `/api/v1/namespaces/{{ name }}/finalize`
+- `/api/v1/namespaces/{name}/finalize`
 
   - `PUT`: replace finalize of the specified Namespace
 
@@ -183,7 +183,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{{ name }} {#_apiv1namespaces_name}
+### /api/v1/namespaces/{name} {#_apiv1namespaces_name}
 
 **Global path parameters**
 
@@ -288,7 +288,7 @@ Description
 | 201 - Created | [`Namespace`](/openshift-docs-markdown/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/namespaces/{{ name }} {#_apiv1watchnamespaces_name}
+### /api/v1/watch/namespaces/{name} {#_apiv1watchnamespaces_name}
 
 **Global path parameters**
 
@@ -313,7 +313,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{{ name }}/status {#_apiv1namespaces_name_status}
+### /api/v1/namespaces/{name}/status {#_apiv1namespaces_name_status}
 
 **Global path parameters**
 
@@ -394,7 +394,7 @@ Description
 | 201 - Created | [`Namespace`](/openshift-docs-markdown/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{{ name }}/finalize {#_apiv1namespaces_name_finalize}
+### /api/v1/namespaces/{name}/finalize {#_apiv1namespaces_name_finalize}
 
 **Global path parameters**
 

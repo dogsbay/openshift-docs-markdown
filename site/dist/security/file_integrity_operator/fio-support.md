@@ -24,6 +24,7 @@ To identify issues with your cluster, you can use Red Hat Lightspeed in [OpenSh
 
 To suggest improvements or report errors, give specific details such as the section name and OpenShift Container Platform version.
 
-## Additional resources {#additional-resources_fio-support}
+**Additional resources**
+{._additional-resources}
 
 - [OpenShift Container Platform Operator Life Cycles on the Red Hat Customer Portal](https://access.redhat.com/support/policy/updates/openshift_operators)

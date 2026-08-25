@@ -38,7 +38,7 @@ Type
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `subsets` | `array` | The set of all endpoints is the union of all subsets. Addresses are placed into subsets according to the IPs they share. A single address with multiple ports, some of which are ready and some of which are not (because they come from different containers) will result in the address being displayed in different subsets for the different ports. No address will appear in both Addresses and NotReadyAddresses in the same subset. Sets of addresses and ports that comprise a service. |
-| `subsets[]` | `object` | EndpointSubset is a group of addresses with a common set of ports. The expanded set of endpoints is the Cartesian product of Addresses x Ports. For example, given: 	{ 	  Addresses: \[{"ip": "10.10.1.1"}, {"ip": "10.10.2.2"}\], 	  Ports:     \[{"name": "a", "port": 8675}, {"name": "b", "port": 309}\] 	} The resulting set of endpoints can be viewed as: 	a: \[ 10.10.1.1:8675, 10.10.2.2:8675 \], 	b: \[ 10.10.1.1:309, 10.10.2.2:309 \] Deprecated: This API is deprecated in v1.33+. |
+| `subsets[]` | `object` | EndpointSubset is a group of addresses with a common set of ports. The expanded set of endpoints is the Cartesian product of Addresses x Ports. For example, given:<br>	{ Addresses: \[{"ip": "10.10.1.1"}, {"ip": "10.10.2.2"}\], Ports: \[{"name": "a", "port": 8675}, {"name": "b", "port": 309}\] }<br>The resulting set of endpoints can be viewed as:<br>	a: \[ 10.10.1.1:8675, 10.10.2.2:8675 \], b: \[ 10.10.1.1:309, 10.10.2.2:309 \]<br>Deprecated: This API is deprecated in v1.33+. |
 
 ### .subsets {#_subsets}
 
@@ -128,7 +128,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{{ name }}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -178,7 +178,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{{ name }}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -210,10 +210,10 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `appProtocol` | `string` | The application protocol for this port. This is used as a hint for implementations to offer richer behavior for protocols that they understand. This field follows standard Kubernetes label syntax. Valid values are either: \* Un-prefixed protocol names - reserved for IANA standard service names (as per RFC-6335 and https://www.iana.org/assignments/service-names). \* Kubernetes-defined prefixed names:   \* 'kubernetes.io/h2c' - HTTP/2 prior knowledge over cleartext as described in https://www.rfc-editor.org/rfc/rfc9113.html#name-starting-http-2-with-prior-   \* 'kubernetes.io/ws'  - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455   \* 'kubernetes.io/wss' - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455 \* Other protocols should use implementation-defined prefixed names such as mycompany.com/my-custom-protocol. |
-| `name` | `string` | The name of this port.  This must match the 'name' field in the corresponding ServicePort. Must be a DNS_LABEL. Optional only if one port is defined. |
+| `appProtocol` | `string` | The application protocol for this port. This is used as a hint for implementations to offer richer behavior for protocols that they understand. This field follows standard Kubernetes label syntax. Valid values are either:<br>\* Un-prefixed protocol names - reserved for IANA standard service names (as per RFC-6335 and https://www.iana.org/assignments/service-names).<br>\* Kubernetes-defined prefixed names: \* 'kubernetes.io/h2c' - HTTP/2 prior knowledge over cleartext as described in https://www.rfc-editor.org/rfc/rfc9113.html#name-starting-http-2-with-prior- \* 'kubernetes.io/ws' - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455 \* 'kubernetes.io/wss' - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455<br>\* Other protocols should use implementation-defined prefixed names such as mycompany.com/my-custom-protocol. |
+| `name` | `string` | The name of this port. This must match the 'name' field in the corresponding ServicePort. Must be a DNS_LABEL. Optional only if one port is defined. |
 | `port` | `integer` | The port number of the endpoint. |
-| `protocol` | `string` | The IP protocol for this port. Must be UDP, TCP, or SCTP. Default is TCP. Possible enum values:  - `"SCTP"` is the SCTP protocol.  - `"TCP"` is the TCP protocol.  - `"UDP"` is the UDP protocol. |
+| `protocol` | `string` | The IP protocol for this port. Must be UDP, TCP, or SCTP. Default is TCP.<br>Possible enum values: - `"SCTP"` is the SCTP protocol. - `"TCP"` is the TCP protocol. - `"UDP"` is the UDP protocol. |
 
 ## API endpoints {#_api_endpoints}
 
@@ -225,21 +225,21 @@ The following API endpoints are available:
 - `/api/v1/watch/endpoints`
 
   - `GET`: watch individual changes to a list of Endpoints. deprecated: use the 'watch' parameter with a list operation instead.
-- `/api/v1/namespaces/{{ namespace }}/endpoints`
+- `/api/v1/namespaces/{namespace}/endpoints`
 
   - `DELETE`: delete collection of Endpoints
   - `GET`: list or watch objects of kind Endpoints
   - `POST`: create Endpoints
-- `/api/v1/watch/namespaces/{{ namespace }}/endpoints`
+- `/api/v1/watch/namespaces/{namespace}/endpoints`
 
   - `GET`: watch individual changes to a list of Endpoints. deprecated: use the 'watch' parameter with a list operation instead.
-- `/api/v1/namespaces/{{ namespace }}/endpoints/{{ name }}`
+- `/api/v1/namespaces/{namespace}/endpoints/{name}`
 
   - `DELETE`: delete Endpoints
   - `GET`: read the specified Endpoints
   - `PATCH`: partially update the specified Endpoints
   - `PUT`: replace the specified Endpoints
-- `/api/v1/watch/namespaces/{{ namespace }}/endpoints/{{ name }}`
+- `/api/v1/watch/namespaces/{namespace}/endpoints/{name}`
 
   - `GET`: watch changes to an object of kind Endpoints. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
 
@@ -281,7 +281,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{{ namespace }}/endpoints {#_apiv1namespaces_namespace_endpoints}
+### /api/v1/namespaces/{namespace}/endpoints {#_apiv1namespaces_namespace_endpoints}
 
 HTTP method
 :   ```
@@ -355,7 +355,7 @@ Description
 | 202 - Accepted | [`Endpoints`](/openshift-docs-markdown/rest_api/network_apis/endpoints-v1#endpoints-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/namespaces/{{ namespace }}/endpoints {#_apiv1watchnamespaces_namespace_endpoints}
+### /api/v1/watch/namespaces/{namespace}/endpoints {#_apiv1watchnamespaces_namespace_endpoints}
 
 HTTP method
 :   ```
@@ -374,7 +374,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{{ namespace }}/endpoints/{{ name }} {#_apiv1namespaces_namespace_endpoints_name}
+### /api/v1/namespaces/{namespace}/endpoints/{name} {#_apiv1namespaces_namespace_endpoints_name}
 
 **Global path parameters**
 
@@ -479,7 +479,7 @@ Description
 | 201 - Created | [`Endpoints`](/openshift-docs-markdown/rest_api/network_apis/endpoints-v1#endpoints-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/namespaces/{{ namespace }}/endpoints/{{ name }} {#_apiv1watchnamespaces_namespace_endpoints_name}
+### /api/v1/watch/namespaces/{namespace}/endpoints/{name} {#_apiv1watchnamespaces_namespace_endpoints_name}
 
 **Global path parameters**
 

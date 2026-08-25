@@ -76,11 +76,12 @@ The following table summarizes the different OpenShift Container Platform strate
 | `BalancedAllocation` | Favors compute nodes with the most balanced CPU and memory usage across NUMA zones. | Prevents skewed usage patterns where one resource type, such as CPU, is exhausted while another, such as memory, remains idle. |
 
 **Additional resources**
+{._additional-resources}
 
 - [Scheduling pods using a secondary scheduler](/openshift-docs-markdown/nodes/scheduling/secondary_scheduler/nodes-secondary-scheduler-configuring#secondary-scheduler-configuring)
 - [Changing where high-performance workloads run](/openshift-docs-markdown/scalability_and_performance/cnf-numa-aware-scheduling#cnf-changing-where-high-performance-workloads-run_numa-aware)
 
-## Installing the NUMA Resources Operator {#installing-the-numa-resources-operator_numa-aware}
+## Installing the NUMA Resources Operator {#installing-the-numa-resources-operator_numa-aware ._additional-resources}
 
 NUMA Resources Operator deploys resources that allow you to schedule NUMA-aware workloads and deployments. You can install the NUMA Resources Operator using the OpenShift Container Platform CLI or the web console.
 
@@ -142,7 +143,7 @@ To enable NUMA-aware scheduling for high-performance workloads, install the NUMA
         name: numaresources-operator
         namespace: openshift-numaresources
       spec:
-        channel: "{{ product_version }}"
+        channel: "4.22"
         name: numaresources-operator
         source: redhat-operators
         sourceNamespace: openshift-marketplace
@@ -164,7 +165,7 @@ To enable NUMA-aware scheduling for high-performance workloads, install the NUMA
 
    ```terminal {title="Example output"}
    NAME                             DISPLAY                  VERSION   REPLACES   PHASE
-   numaresources-operator.v{{ product_version }}.2   numaresources-operator   {{ product_version }}.2               Succeeded
+   numaresources-operator.v4.22.2   numaresources-operator   4.22.2               Succeeded
    ```
 
 ### Installing the NUMA Resources Operator using the web console {#cnf-installing-numa-resources-operator-console_numa-aware}
@@ -175,16 +176,16 @@ To enable NUMA-aware scheduling for high-performance workloads, install the NUMA
 
 1. Create a namespace for the NUMA Resources Operator:
 
-   1. In the OpenShift Container Platform web console, click **Administration** -> **Namespaces**.
+   1. In the OpenShift Container Platform web console, click **Administration** → **Namespaces**.
    2. Click **Create Namespace**, enter `openshift-numaresources` in the **Name** field, and then click **Create**.
 2. Install the NUMA Resources Operator:
 
-   1. In the OpenShift Container Platform web console, click **Ecosystem** -> **Software Catalog**.
+   1. In the OpenShift Container Platform web console, click **Ecosystem** → **Software Catalog**.
    2. Choose **numaresources-operator** from the list of available Operators, and then click **Install**.
    3. In the **Installed Namespaces** field, select the `openshift-numaresources` namespace, and then click **Install**.
 3. Optional: Verify that the NUMA Resources Operator installed successfully:
 
-   1. Switch to the **Ecosystem** -> **Installed Operators** page.
+   1. Switch to the **Ecosystem** → **Installed Operators** page.
    2. Ensure that **NUMA Resources Operator** is listed in the `openshift-numaresources` namespace with a **Status** of **InstallSucceeded**.
 
       > [!NOTE]
@@ -192,8 +193,8 @@ To enable NUMA-aware scheduling for high-performance workloads, install the NUMA
 
       If the Operator does not appear as installed, to troubleshoot further:
 
-      - Go to the **Ecosystem** -> **Installed Operators** page and inspect the **Operator Subscriptions** and **Install Plans** tabs for any failure or errors under **Status**.
-      - Go to the **Workloads** -> **Pods** page and check the logs for pods in the `default` project.
+      - Go to the **Ecosystem** → **Installed Operators** page and inspect the **Operator Subscriptions** and **Install Plans** tabs for any failure or errors under **Status**.
+      - Go to the **Workloads** → **Pods** page and check the logs for pods in the `default` project.
 
 ## Configuring a single NUMA node policy {#cnf-configuring-single-numa-policy_numa-aware}
 
@@ -223,7 +224,7 @@ kind: NUMAResourcesScheduler
 metadata:
   name: example-auto-ha
 spec:
-  imageSpec: 'registry.redhat.io/openshift4/noderesourcetopology-scheduler-rhel9:v{{ product_version }}'
+  imageSpec: 'registry.redhat.io/openshift4/noderesourcetopology-scheduler-rhel9:v4.22'
   # The 'replicas' field is not included, enabling auto-detection.
 ```
 
@@ -246,7 +247,7 @@ You can set a specific number of scheduler replicas by updating the `spec.replic
    metadata:
      name: example-custom
    spec:
-     imageSpec: 'registry.redhat.io/openshift4/noderesourcetopology-scheduler-rhel9:v{{ product_version }}'
+     imageSpec: 'registry.redhat.io/openshift4/noderesourcetopology-scheduler-rhel9:v4.22'
      replicas: 2
    # ...
    ```
@@ -270,7 +271,7 @@ You can disable the NUMA-aware scheduler to stop all running scheduler pods and 
    metadata:
      name: example-disable
    spec:
-     imageSpec: 'registry.redhat.io/openshift4/noderesourcetopology-scheduler-rhel9:v{{ product_version }}'
+     imageSpec: 'registry.redhat.io/openshift4/noderesourcetopology-scheduler-rhel9:v4.22'
      replicas: 0
    # ...
    ```
@@ -299,7 +300,7 @@ You can verify the status of the NUMA-aware scheduler to ensure the scheduler is
    secondary-scheduler-5b8c9d479d-q8c7b   1/1     Running   0          5m
    ```
 
-   Using the default HA mode, the number of pods equals the number of control-plane nodes. A standard HA OpenShift Container Platform cluster typically has three control-plane nodes, and therefore displays three pods. If you ***customized the replicas***\*, the number of pods matches the value you set. If you **disabled the scheduler**\*, there are no running pods with this label.
+   Using the default HA mode, the number of pods equals the number of control-plane nodes. A standard HA OpenShift Container Platform cluster typically has three control-plane nodes, and therefore displays three pods. If you **customized the replicas**, the number of pods matches the value you set. If you **disabled the scheduler**, there are no running pods with this label.
 
    > [!NOTE]
    > A limit of 3 replicas is enforced for the NUMA-aware scheduler. On a hosted control planes cluster, the scheduler pods run on the compute nodes of the hosted-cluster.
@@ -328,6 +329,7 @@ You can verify the status of the NUMA-aware scheduler to ensure the scheduler is
    The `Replicas` line shows a deployment configured for 3 replicas, with all 3 updated and available.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring image registry repository mirroring](/openshift-docs-markdown/disconnected/updating/disconnected-update#images-configuration-registry-mirror-configuring_updating-disconnected-cluster)
 - [About the Performance Profile Creator](/openshift-docs-markdown/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#cnf-about-the-profile-creator-tool_cnf-tuning-low-latency-nodes-with-perf-profile)
@@ -637,6 +639,7 @@ After you install the NUMA Resources Operator, create the `NUMAResourcesOperator
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating a performance profile](/openshift-docs-markdown/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#cnf-create-performance-profiles_cnf-tuning-low-latency-nodes-with-perf-profile)
 
@@ -656,7 +659,7 @@ To optimize the placement of high-performance workloads, deploy the NUMA-aware s
       metadata:
         name: numaresourcesscheduler
       spec:
-        imageSpec: "registry.redhat.io/openshift4/noderesourcetopology-scheduler-rhel9:v{{ product_version }}"
+        imageSpec: "registry.redhat.io/openshift4/noderesourcetopology-scheduler-rhel9:v4.22"
       # ...
       ```
 
@@ -698,6 +701,7 @@ To optimize the placement of high-performance workloads, deploy the NUMA-aware s
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring image registry repository mirroring](/openshift-docs-markdown/disconnected/updating/disconnected-update#images-configuration-registry-mirror_updating-disconnected-cluster)
 
@@ -995,17 +999,16 @@ After applying the configuration, verify that the NUMA Resources Operator is cor
    $ oc get nodes
    ```
 
-```terminal {title="Example output:"}
-NAME                STATUS   ROLES                         AGE     VERSION
-worker-0            Ready    worker,worker-cnf             100m    v1.35.4
-worker-1            Ready    worker                        93m     v1.35.4
-master-0            Ready    control-plane,master,worker   108m    v1.35.4
-master-1            Ready    control-plane,master,worker   107m    v1.35.4
-master-2            Ready    control-plane,master,worker   107m    v1.35.4
-worker-2            Ready    worker                        100m    v1.35.4
-```
-
-1. Verify that the NUMA Resources Operator’s pods are running on the intended nodes by running the following command. You should see a numaresourcesoperator pod for each node group you specified in the CR:
+   ```terminal {title="Example output:"}
+   NAME                STATUS   ROLES                         AGE     VERSION
+   worker-0            Ready    worker,worker-cnf             100m    v1.35.4
+   worker-1            Ready    worker                        93m     v1.35.4
+   master-0            Ready    control-plane,master,worker   108m    v1.35.4
+   master-1            Ready    control-plane,master,worker   107m    v1.35.4
+   master-2            Ready    control-plane,master,worker   107m    v1.35.4
+   worker-2            Ready    worker                        100m    v1.35.4
+   ```
+2. Verify that the NUMA Resources Operator’s pods are running on the intended nodes by running the following command. You should see a numaresourcesoperator pod for each node group you specified in the CR:
 
    ```terminal
    $ oc get pods -n openshift-numaresources -o wide
@@ -1019,7 +1022,7 @@ worker-2            Ready    worker                        100m    v1.35.4
    numaresourcesoperator-master-zm79n                 2/2     Running   0          20m     10.128.0.44   master-1   <none>           2/2
    numaresourcesoperator-worker-cnf-gqlmd             2/2     Running   0          4m27s   10.128.2.21   worker-0   <none>           2/2
    ```
-2. Confirm that the NUMA Resources Operator has collected and reported the NUMA topology data for all nodes in the specified groups by running the following command:
+3. Confirm that the NUMA Resources Operator has collected and reported the NUMA topology data for all nodes in the specified groups by running the following command:
 
    ```terminal
    $ oc get noderesourcetopologies.topology.node.k8s.io
@@ -1034,7 +1037,7 @@ worker-2            Ready    worker                        100m    v1.35.4
    ```
 
    The presence of a `NodeResourceTopology` resource for a node confirms that the NUMA Resources Operator was able to schedule a pod on it to collect the data, enabling topology-aware scheduling.
-3. Inspect a single Node Resource Topology by running the following command:
+4. Inspect a single Node Resource Topology by running the following command:
 
    ```terminal
    $ oc get noderesourcetopologies <master_node_name> -o yaml
@@ -1433,7 +1436,7 @@ The lower the interval, the greater the network load. The `cacheResyncPeriod` sp
    metadata:
      name: numaresourcesscheduler
    spec:
-     imageSpec: "registry.redhat.io/openshift4/noderesourcetopology-scheduler-container-rhel8:v{{ product_version }}"
+     imageSpec: "registry.redhat.io/openshift4/noderesourcetopology-scheduler-container-rhel8:v4.22"
      cacheResyncPeriod: "5s"
    ```
 
@@ -1642,7 +1645,7 @@ Acceptable values are `Normal`, `Debug`, and `Trace`, with `Trace` being the mos
    metadata:
      name: numaresourcesscheduler
    spec:
-     imageSpec: "registry.redhat.io/openshift4/noderesourcetopology-scheduler-container-rhel8:v{{ product_version }}"
+     imageSpec: "registry.redhat.io/openshift4/noderesourcetopology-scheduler-container-rhel8:v4.22"
      logLevel: Debug
    # ...
    ```
@@ -1888,5 +1891,5 @@ You can use the `oc adm must-gather` CLI command to collect information about yo
 - To collect NUMA Resources Operator data with `must-gather`, you must specify the NUMA Resources Operator `must-gather` image.
 
   ```terminal
-  $ oc adm must-gather --image=registry.redhat.io/openshift4/numaresources-must-gather-rhel9:v{{ product_version }}
+  $ oc adm must-gather --image=registry.redhat.io/openshift4/numaresources-must-gather-rhel9:v4.22
   ```

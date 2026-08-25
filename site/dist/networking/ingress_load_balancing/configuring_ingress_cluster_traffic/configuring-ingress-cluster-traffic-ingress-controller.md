@@ -323,7 +323,7 @@ Ingress Controller sharding is useful when balancing incoming traffic load among
 
 You can use namespace labels to configure Ingress Controller sharding so that the Ingress Controller serves any route in any namespace that is selected by the namespace selector.
 
-**Figure 1. Ingress sharding by using namespace labels**
+**Figure 2. Ingress sharding by using namespace labels**
 
 ![A diagram showing multiple Ingress Controllers with different namespace selectors serving routes that belong to the namespace containing a label that matches a given namespace selector](/openshift-docs-markdown/_assets/images/nw-sharding-namespace-labels.png)
 

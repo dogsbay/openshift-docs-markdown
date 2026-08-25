@@ -1,5 +1,5 @@
 ---
-title: AppliedClusterResourceQuota []
+title: AppliedClusterResourceQuota [quota.openshift.io/v1]
 ---
 
 # AppliedClusterResourceQuota \[quota.openshift.io/v1\] {#appliedclusterresourcequota-quota-openshift-io-v1}
@@ -45,7 +45,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `quota` | [`ResourceQuotaSpec`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ResourceQuotaSpec) | quota defines the desired quota |
-| `selector` | `object` | ClusterResourceQuotaSelector is used to select projects.  At least one of LabelSelector or AnnotationSelector must present.  If only one is present, it is the only selection criteria.  If both are specified, the project must match both restrictions. |
+| `selector` | `object` | ClusterResourceQuotaSelector is used to select projects. At least one of LabelSelector or AnnotationSelector must present. If only one is present, it is the only selection criteria. If both are specified, the project must match both restrictions. |
 
 ### .spec.selector {#_specselector}
 
@@ -77,7 +77,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `namespaces` | `array` | namespaces slices the usage by project.  This division allows for quick resolution of deletion reconciliation inside of a single project without requiring a recalculation across all projects.  This can be used to pull the deltas for a given project. |
+| `namespaces` | `array` | namespaces slices the usage by project. This division allows for quick resolution of deletion reconciliation inside of a single project without requiring a recalculation across all projects. This can be used to pull the deltas for a given project. |
 | `namespaces[]` | `object` | ResourceQuotaStatusByNamespace gives status for a particular project |
 | `total` | [`ResourceQuotaStatus`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ResourceQuotaStatus) | total defines the actual enforced quota and its current usage across all projects |
 
@@ -117,10 +117,10 @@ The following API endpoints are available:
 - `/apis/quota.openshift.io/v1/appliedclusterresourcequotas`
 
   - `GET`: list objects of kind AppliedClusterResourceQuota
-- `/apis/quota.openshift.io/v1/namespaces/{{ namespace }}/appliedclusterresourcequotas`
+- `/apis/quota.openshift.io/v1/namespaces/{namespace}/appliedclusterresourcequotas`
 
   - `GET`: list objects of kind AppliedClusterResourceQuota
-- `/apis/quota.openshift.io/v1/namespaces/{{ namespace }}/appliedclusterresourcequotas/{{ name }}`
+- `/apis/quota.openshift.io/v1/namespaces/{namespace}/appliedclusterresourcequotas/{name}`
 
   - `GET`: read the specified AppliedClusterResourceQuota
 
@@ -143,7 +143,7 @@ Description
 | 200 - OK | [`AppliedClusterResourceQuotaList`](/openshift-docs-markdown/rest_api/objects/index#com-github-openshift-api-quota-v1-AppliedClusterResourceQuotaList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/quota.openshift.io/v1/namespaces/{{ namespace }}/appliedclusterresourcequotas {#_apisquotaopenshiftiov1namespaces_namespace_appliedclusterresourcequotas}
+### /apis/quota.openshift.io/v1/namespaces/{namespace}/appliedclusterresourcequotas {#_apisquotaopenshiftiov1namespaces_namespace_appliedclusterresourcequotas}
 
 HTTP method
 :   ```
@@ -162,7 +162,7 @@ Description
 | 200 - OK | [`AppliedClusterResourceQuotaList`](/openshift-docs-markdown/rest_api/objects/index#com-github-openshift-api-quota-v1-AppliedClusterResourceQuotaList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/quota.openshift.io/v1/namespaces/{{ namespace }}/appliedclusterresourcequotas/{{ name }} {#_apisquotaopenshiftiov1namespaces_namespace_appliedclusterresourcequotas_name}
+### /apis/quota.openshift.io/v1/namespaces/{namespace}/appliedclusterresourcequotas/{name} {#_apisquotaopenshiftiov1namespaces_namespace_appliedclusterresourcequotas_name}
 
 **Global path parameters**
 

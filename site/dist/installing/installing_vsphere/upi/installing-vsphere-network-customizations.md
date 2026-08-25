@@ -23,9 +23,7 @@ You must set most of the network configuration parameters during installation, a
 
 ## Internet access for OpenShift Container Platform {#cluster-entitlements_installing-vsphere-network-customizations}
 
-In OpenShift Container Platform 4.22, you require access to the internet to install
-
-your cluster.
+In OpenShift Container Platform 4.22, you require access to the internet to install your cluster.
 
 You must have internet access to perform the following actions:
 
@@ -74,28 +72,30 @@ The following table outlines an example of the relationship among regions, zones
 </thead>
 <tbody>
 <tr>
-  <td>.4+</td>
-  <td>us-east .2+</td>
-  <td>us-east-1</td>
-</tr>
-<tr>
+  <td rowspan="4">us-east</td>
+  <td rowspan="2">us-east-1</td>
   <td>us-east-1a</td>
-  <td>us-east-1b.2+</td>
-  <td>us-east-2</td>
 </tr>
 <tr>
+  <td>us-east-1b</td>
+</tr>
+<tr>
+  <td rowspan="2">us-east-2</td>
   <td>us-east-2a</td>
-  <td>us-east-2b<br><br>.4+</td>
-  <td>us-west</td>
 </tr>
 <tr>
-  <td>.2+</td>
-  <td>us-west-1</td>
+  <td>us-east-2b</td>
+</tr>
+<tr>
+  <td rowspan="4">us-west</td>
+  <td rowspan="2">us-west-1</td>
   <td>us-west-1a</td>
 </tr>
 <tr>
-  <td>us-west-1b .2+</td>
-  <td>us-west-2</td>
+  <td>us-west-1b</td>
+</tr>
+<tr>
+  <td rowspan="2">us-west-2</td>
   <td>us-west-2a</td>
 </tr>
 <tr>
@@ -105,6 +105,7 @@ The following table outlines an example of the relationship among regions, zones
 </table>
 
 **Additional resources**
+{._additional-resources}
 
 - [Additional VMware vSphere configuration parameters](/openshift-docs-markdown/installing/installing_vsphere/installation-config-parameters-vsphere#installation-configuration-parameters-additional-vsphere_installation-config-parameters-vsphere)
 - [Deprecated VMware vSphere configuration parameters](/openshift-docs-markdown/installing/installing_vsphere/installation-config-parameters-vsphere#deprecated-parameters-vsphere_installation-config-parameters-vsphere)
@@ -135,13 +136,8 @@ Installing the cluster requires that you manually create the installation config
    > You must create a directory. Some installation assets, such as bootstrap X.509 certificates have short expiration intervals, so you must not reuse an installation directory. If you want to reuse individual files from another cluster installation, you can copy them into your directory. However, the file names for the installation assets might change between releases. Use caution when copying installation files from an earlier OpenShift Container Platform version.
 2. Customize the provided sample `install-config.yaml` file template and save the file in the `<installation_directory>`.
 
-   ```
-   :::note
-
-   You must name this configuration file `install-config.yaml`.
-
-   :::
-   ```
+   > [!NOTE]
+   > You must name this configuration file `install-config.yaml`.
 3. If you are installing a three-node cluster or a cluster with user-provisioned infrastructure, set the `compute.replicas` parameter to `0`. In a three-node cluster, this ensures that the cluster’s control planes are schedulable. For more information, see "Installing a three-node cluster". In a cluster with user-provisioned infrastructure, you must manually deploy compute machines before you finish installing OpenShift Container Platform.
 4. Back up the `install-config.yaml` file so that you can use it to install many clusters.
 
@@ -149,6 +145,7 @@ Installing the cluster requires that you manually create the installation config
    > Back up the `install-config.yaml` file now, because the installation process consumes the file in the next step.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installation configuration parameters](/openshift-docs-markdown/installing/installing_vsphere/installation-config-parameters-vsphere#installation-config-parameters-vsphere)
 
@@ -168,12 +165,7 @@ sshKey: ssh-ed25519 AAAA...
 compute:
 - name:  <worker_name>
   platform: {}
-{%- if vsphere_upi %}
   replicas: 0
-{% endif %}
-{% if not vsphere_upi %}
-  replicas: 3
-{%- endif %}
 controlPlane:
   name: <control_plane_name>
   platform: {}
@@ -184,12 +176,6 @@ networking:
     hostPrefix: 23
 platform:
   vsphere:
-{%- if not vsphere_upi %}
-    apiVIPs:
-    - 10.0.0.1
-    ingressVIPs:
-    - 10.0.0.2
-      {%- endif %}
     failureDomains:
     - name: <failure_domain_name>
       region: <default_region_name>
@@ -246,48 +232,42 @@ Production environments can deny direct access to the internet and instead have 
    proxy:
      httpProxy: http://<username>:<pswd>@<ip>:<port>
      httpsProxy: https://<username>:<pswd>@<ip>:<port>
+     noProxy: example.com
+   additionalTrustBundle: |
+       -----BEGIN CERTIFICATE-----
+       <MY_TRUSTED_CA_CERT>
+       -----END CERTIFICATE-----
+   additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle>
+   # ...
    ```
 
-{%- if not aws %} noProxy: example.com {% endif %} {% if aws %} noProxy: ec2.<aws_region>.amazonaws.com,elasticloadbalancing.<aws_region>.amazonaws.com,s3.<aws_region>.amazonaws.com {%- endif %} additionalTrustBundle: | -----BEGIN CERTIFICATE----- <MY_TRUSTED_CA_CERT> -----END CERTIFICATE----- additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle> # ... \`\`\`
+   where:
 
-````
-where:
+   `proxy.httpProxy`
+   :   Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be `http`.
 
-`proxy.httpProxy`
-:   Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be `http`.
+   `proxy.httpsProxy`
+   :   Specifies a proxy URL to use for creating HTTPS connections outside the cluster.
 
-`proxy.httpsProxy`
-:   Specifies a proxy URL to use for creating HTTPS connections outside the cluster.
+   `proxy.noProxy`
+   :   Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with `.` to match subdomains only. For example, `.y.com` matches `x.y.com`, but not `y.com`. Use `*` to bypass the proxy for all destinations. You must include vCenter’s IP address and the IP range that you use for its machines.
 
-`proxy.noProxy`
-:   Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with `.` to match subdomains only. For example, `.y.com` matches `x.y.com`, but not `y.com`. Use `*` to bypass the proxy for all destinations.
+   `additionalTrustBundle`
+   :   If you specify this value, the installation program generates a config map named `user-ca-bundle` in the `openshift-config` namespace to hold the additional CA certificates. If you specify `additionalTrustBundle` and at least one proxy setting, the `Proxy` object references the `user-ca-bundle` config map in the `trustedCA` field. The Cluster Network Operator then creates a `trusted-ca-bundle` config map that merges the contents specified for the `trustedCA` parameter with the RHCOS trust bundle. You must set the `additionalTrustBundle` field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.
 
-    You must include vCenter’s IP address and the IP range that you use for its machines.
+   `additionalTrustBundlePolicy`
+   :   Specifies the policy that determines the configuration of the `Proxy` object to reference the `user-ca-bundle` config map in the `trustedCA` field. The allowed values are `Proxyonly` and `Always`. Use `Proxyonly` to reference the `user-ca-bundle` config map only when you configure an `http/https` proxy. Use `Always` to always reference the `user-ca-bundle` config map. The default value is `Proxyonly`. Optional parameter.
 
-`additionalTrustBundle`
-:   If you specify this value, the installation program generates a config map named `user-ca-bundle` in the `openshift-config` namespace to hold the additional CA certificates. If you specify `additionalTrustBundle` and at least one proxy setting, the `Proxy` object references the `user-ca-bundle` config map in the `trustedCA` field. The Cluster Network Operator then creates a `trusted-ca-bundle` config map that merges the contents specified for the `trustedCA` parameter with the RHCOS trust bundle. You must set the `additionalTrustBundle` field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.
+   > [!NOTE]
+   > The installation program does not support the proxy `readinessEndpoints` field.
 
-`additionalTrustBundlePolicy`
-:   Specifies the policy that determines the configuration of the `Proxy` object to reference the `user-ca-bundle` config map in the `trustedCA` field. The allowed values are `Proxyonly` and `Always`. Use `Proxyonly` to reference the `user-ca-bundle` config map only when you configure an `http/https` proxy. Use `Always` to always reference the `user-ca-bundle` config map. The default value is `Proxyonly`. Optional parameter.
-
-:::note
-
-The installation program does not support the proxy `readinessEndpoints` field.
-
-:::
-
-:::note
-
-If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
-
-```terminal
-$ ./openshift-install wait-for install-complete --log-level debug
-```
-
-:::
-````
-
-1. Save the file and reference it when installing OpenShift Container Platform.
+   > [!NOTE]
+   > If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
+   >
+   > ```terminal
+   > $ ./openshift-install wait-for install-complete --log-level debug
+   > ```
+2. Save the file and reference it when installing OpenShift Container Platform.
 
    The installation program creates a cluster-wide proxy named `cluster` that uses the proxy settings in the `install-config.yaml` file. If you do not give proxy settings, the installation program still creates a `cluster` `Proxy` object, but it has a nil `spec`.
 
@@ -347,56 +327,56 @@ The default `install-config.yaml` file configuration from the previous release o
    ```
 6. Change to the directory that contains the installation program and initialize the cluster deployment according to your chosen installation requirements.
 
-```yaml {title="Sample install-config.yaml file with multiple data centers defined in a vSphere center"}
-# ...
-compute:
----
-  vsphere:
-      zones:
-        - "<machine_pool_zone_1>"
-        - "<machine_pool_zone_2>"
-# ...
-controlPlane:
-# ...
-vsphere:
-      zones:
-        - "<machine_pool_zone_1>"
-        - "<machine_pool_zone_2>"
-# ...
-platform:
-  vsphere:
-    vcenters:
-# ...
-    datacenters:
-      - <data_center_1_name>
-      - <data_center_2_name>
-    failureDomains:
-    - name: <machine_pool_zone_1>
-      region: <region_tag_1>
-      zone: <zone_tag_1>
-      server: <fully_qualified_domain_name>
-      topology:
-        datacenter: <data_center_1>
-        computeCluster: "/<data_center_1>/host/<cluster1>"
-        networks:
-        - <VM_Network1_name>
-        datastore: "/<data_center_1>/datastore/<datastore1>"
-        resourcePool: "/<data_center_1>/host/<cluster1>/Resources/<resourcePool1>"
-        folder: "/<data_center_1>/vm/<folder1>"
-    - name: <machine_pool_zone_2>
-      region: <region_tag_2>
-      zone: <zone_tag_2>
-      server: <fully_qualified_domain_name>
-      topology:
-        datacenter: <data_center_2>
-        computeCluster: "/<data_center_2>/host/<cluster2>"
-        networks:
-        - <VM_Network2_name>
-        datastore: "/<data_center_2>/datastore/<datastore2>"
-        resourcePool: "/<data_center_2>/host/<cluster2>/Resources/<resourcePool2>"
-        folder: "/<data_center_2>/vm/<folder2>"
-# ...
-```
+   ```yaml {title="Sample install-config.yaml file with multiple data centers defined in a vSphere center"}
+   # ...
+   compute:
+   ---
+     vsphere:
+         zones:
+           - "<machine_pool_zone_1>"
+           - "<machine_pool_zone_2>"
+   # ...
+   controlPlane:
+   # ...
+   vsphere:
+         zones:
+           - "<machine_pool_zone_1>"
+           - "<machine_pool_zone_2>"
+   # ...
+   platform:
+     vsphere:
+       vcenters:
+   # ...
+       datacenters:
+         - <data_center_1_name>
+         - <data_center_2_name>
+       failureDomains:
+       - name: <machine_pool_zone_1>
+         region: <region_tag_1>
+         zone: <zone_tag_1>
+         server: <fully_qualified_domain_name>
+         topology:
+           datacenter: <data_center_1>
+           computeCluster: "/<data_center_1>/host/<cluster1>"
+           networks:
+           - <VM_Network1_name>
+           datastore: "/<data_center_1>/datastore/<datastore1>"
+           resourcePool: "/<data_center_1>/host/<cluster1>/Resources/<resourcePool1>"
+           folder: "/<data_center_1>/vm/<folder1>"
+       - name: <machine_pool_zone_2>
+         region: <region_tag_2>
+         zone: <zone_tag_2>
+         server: <fully_qualified_domain_name>
+         topology:
+           datacenter: <data_center_2>
+           computeCluster: "/<data_center_2>/host/<cluster2>"
+           networks:
+           - <VM_Network2_name>
+           datastore: "/<data_center_2>/datastore/<datastore2>"
+           resourcePool: "/<data_center_2>/host/<cluster2>/Resources/<resourcePool2>"
+           folder: "/<data_center_2>/vm/<folder2>"
+   # ...
+   ```
 
 ## Network configuration phases {#nw-network-config_installing-vsphere-network-customizations}
 
@@ -533,6 +513,7 @@ For this configuration, you must specify internal and external Classless Inter-D
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Cluster Network Operator configuration](/openshift-docs-markdown/installing/installing_vsphere/upi/installing-vsphere-network-customizations#nw-operator-cr_installing-vsphere-network-customizations)
 - [`.spec.platformSpec.vsphere.nodeNetworking`](/openshift-docs-markdown/rest_api/config_apis/infrastructure-config-openshift-io-v1#spec-platformspec-vsphere-nodenetworking)
@@ -558,7 +539,7 @@ You can specify the cluster network plugin configuration for your cluster by set
 
 The fields for the Cluster Network Operator (CNO) are described in the following table:
 
-***Cluster Network Operator configuration object***
+**Cluster Network Operator configuration object**
 
 <table>
 <thead>
@@ -582,7 +563,7 @@ The fields for the Cluster Network Operator (CNO) are described in the following
 <tr>
   <td><code>spec.serviceNetwork</code></td>
   <td><code>array</code></td>
-  <td>A block of IP addresses for services. If you use dual-stack networking, specify IPv4 and IPv6 address families. For example:<br><br><pre>spec:&#10;  serviceNetwork:&#10;  - 172.30.0.0/14&#10;  - fd02::/112</pre><br><br>If you install a cluster on AWS with dual-stack networking, the order of addresses must match the dual-stack configuration you selected. For example, if you specified the <code>DualStackIPv4Primary</code>, list the IPv4 address first.<br><br>This value is ready-only and inherited from the <code>Network.config.openshift.io</code> object named <code>cluster</code> during cluster installation.You can customize this field only in the <code>install-config.yaml</code> file before you create the manifests. The value is read-only in the manifest file.</td>
+  <td>A block of IP addresses for services. If you use dual-stack networking, specify IPv4 and IPv6 address families. For example:<br><br><pre>spec:&#10;  serviceNetwork:&#10;  - 172.30.0.0/14&#10;  - fd02::/112</pre><br><br>If you install a cluster on AWS with dual-stack networking, the order of addresses must match the dual-stack configuration you selected. For example, if you specified the <code>DualStackIPv4Primary</code>, list the IPv4 address first.<br><br>   You can customize this field only in the <code>install-config.yaml</code> file before you create the manifests. The value is read-only in the manifest file. </td>
 </tr>
 <tr>
   <td><code>spec.defaultNetwork</code></td>
@@ -592,7 +573,7 @@ The fields for the Cluster Network Operator (CNO) are described in the following
 <tr>
   <td><code>spec.additionalRoutingCapabilities.providers</code></td>
   <td><code>array</code></td>
-  <td>This setting enables a dynamic routing provider. The FRR routing capability provider is required for the route advertisement feature. The only supported value is <code>FRR</code>.<br><br>--<ul><li><code>FRR</code>: The FRR routing provider</li></ul>--<br><br><pre>spec:&#10;  additionalRoutingCapabilities:&#10;    providers:&#10;    - FRR</pre></td>
+  <td>This setting enables a dynamic routing provider. The FRR routing capability provider is required for the route advertisement feature. The only supported value is <code>FRR</code>.<br><br><ul><li><code>FRR</code>: The FRR routing provider</li></ul><br><br><pre>spec:&#10;  additionalRoutingCapabilities:&#10;    providers:&#10;    - FRR</pre></td>
 </tr>
 </tbody>
 </table>
@@ -604,7 +585,7 @@ The fields for the Cluster Network Operator (CNO) are described in the following
 
 The values for the `defaultNetwork` object are defined in the following table:
 
-*`defaultNetwork`** object***
+**`defaultNetwork` object**
 
 <table>
 <thead>
@@ -618,7 +599,7 @@ The values for the `defaultNetwork` object are defined in the following table:
 <tr>
   <td><code>type</code></td>
   <td><code>string</code></td>
-  <td><code>OVNKubernetes</code>. The Red Hat OpenShift Networking network plugin is selected during installation. This value cannot be changed after cluster installation.<dl><dt>Note</dt><dd>OpenShift Container Platform uses the OVN-Kubernetes network plugin by default.</dd></dl></td>
+  <td><code>OVNKubernetes</code>. The Red Hat OpenShift Networking network plugin is selected during installation. This value cannot be changed after cluster installation.<dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>OpenShift Container Platform uses the OVN-Kubernetes network plugin by default.</dd></dl></td>
 </tr>
 <tr>
   <td><code>ovnKubernetesConfig</code></td>
@@ -632,7 +613,7 @@ The values for the `defaultNetwork` object are defined in the following table:
 
 The following table describes the configuration fields for the OVN-Kubernetes network plugin:
 
-*`ovnKubernetesConfig`** object***
+**`ovnKubernetesConfig` object**
 
 <table>
 <thead>
@@ -646,17 +627,17 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>mtu</code></td>
   <td><code>integer</code></td>
-  <td>The maximum transmission unit (MTU) for the Geneve (Generic Network Virtualization Encapsulation) overlay network. This is detected automatically based on the MTU of the primary network interface. You do not normally need to override the detected MTU.<br><br>If the auto-detected value is not what you expect it to be, confirm that the MTU on the primary network interface on your nodes is correct. You cannot use this option to change the MTU value of the primary network interface on the nodes.<br><br>If your cluster requires different MTU values for different nodes, you must set this value to <code>100</code> less than the lowest MTU value in your cluster. For example, if some nodes in your cluster have an MTU of <code>9001</code>, and some have an MTU of <code>1500</code>, you must set this value to <code>1400</code>.The maximum transmission unit (MTU) for the Geneve (Generic Network Virtualization Encapsulation) overlay network. This value is normally configured automatically.</td>
+  <td> The maximum transmission unit (MTU) for the Geneve (Generic Network Virtualization Encapsulation) overlay network. This is detected automatically based on the MTU of the primary network interface. You do not normally need to override the detected MTU.<br><br>If the auto-detected value is not what you expect it to be, confirm that the MTU on the primary network interface on your nodes is correct. You cannot use this option to change the MTU value of the primary network interface on the nodes.<br><br>If your cluster requires different MTU values for different nodes, you must set this value to <code>100</code> less than the lowest MTU value in your cluster. For example, if some nodes in your cluster have an MTU of <code>9001</code>, and some have an MTU of <code>1500</code>, you must set this value to <code>1400</code>.  </td>
 </tr>
 <tr>
   <td><code>genevePort</code></td>
   <td><code>integer</code></td>
-  <td>The port to use for all Geneve packets. The default value is <code>6081</code>. This value cannot be changed after cluster installation.The UDP port for the Geneve overlay network.</td>
+  <td> The port to use for all Geneve packets. The default value is <code>6081</code>. This value cannot be changed after cluster installation.  </td>
 </tr>
 <tr>
   <td><code>ipsecConfig</code></td>
   <td><code>object</code></td>
-  <td>Specify a configuration object for customizing the IPsec configuration.An object describing the IPsec mode for the cluster.</td>
+  <td> Specify a configuration object for customizing the IPsec configuration.  </td>
 </tr>
 <tr>
   <td><code>ipv4</code></td>
@@ -676,17 +657,17 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>routeAdvertisements</code></td>
   <td><code>string</code></td>
-  <td>Specifies whether to advertise cluster network routes. The default value is <code>Disabled</code>.--<ul><li><code>Enabled</code>: Import routes to the cluster network and advertise cluster network routes as configured in <code>RouteAdvertisements</code> objects.</li><li><code>Disabled</code>: Do not import routes to the cluster network or advertise cluster network routes.</li></ul>--</td>
+  <td>Specifies whether to advertise cluster network routes. The default value is <code>Disabled</code>.<ul><li><code>Enabled</code>: Import routes to the cluster network and advertise cluster network routes as configured in <code>RouteAdvertisements</code> objects.</li><li><code>Disabled</code>: Do not import routes to the cluster network or advertise cluster network routes.</li></ul></td>
 </tr>
 <tr>
   <td><code>gatewayConfig</code></td>
   <td><code>object</code></td>
-  <td>Optional: Specify a configuration object for customizing how egress traffic is sent to the node gateway. Valid values are <code>Shared</code> and <code>Local</code>. The default value is <code>Shared</code>. In the default setting, the Open vSwitch (OVS) outputs traffic directly to the node IP interface. If you are using hardware offloading, Red Hat recommends to use the default <code>Shared</code> gateway mode to bypass the host routing plane. In the <code>Local</code> setting, it traverses the host network; consequently, it gets applied to the routing table of the host.<br><br><dl><dt>Note</dt><dd>While migrating egress traffic, you can expect some disruption to workloads and service traffic until the Cluster Network Operator (CNO) successfully rolls out the changes.</dd></dl></td>
+  <td>Optional: Specify a configuration object for customizing how egress traffic is sent to the node gateway. Valid values are <code>Shared</code> and <code>Local</code>. The default value is <code>Shared</code>. In the default setting, the Open vSwitch (OVS) outputs traffic directly to the node IP interface. If you are using hardware offloading, Red Hat recommends to use the default <code>Shared</code> gateway mode to bypass the host routing plane. In the <code>Local</code> setting, it traverses the host network; consequently, it gets applied to the routing table of the host.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>While migrating egress traffic, you can expect some disruption to workloads and service traffic until the Cluster Network Operator (CNO) successfully rolls out the changes.</dd></dl></td>
 </tr>
 </tbody>
 </table>
 
-*`ovnKubernetesConfig.ipv4`** object***
+**`ovnKubernetesConfig.ipv4` object**
 
 <table>
 <thead>
@@ -710,7 +691,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 </tbody>
 </table>
 
-*`ovnKubernetesConfig.ipv6`** object***
+**`ovnKubernetesConfig.ipv6` object**
 
 <table>
 <thead>
@@ -734,7 +715,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 </tbody>
 </table>
 
-*`policyAuditConfig`** object***
+**`policyAuditConfig` object**
 
 <table>
 <thead>
@@ -763,7 +744,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>destination</code></td>
   <td>string</td>
-  <td>One of the following additional audit log targets:<br><br><code>libc</code>:: The libc <code>syslog()</code> function of the journald process on the host.<code>udp:<host>:<port></code>:: A syslog server. Replace <code><host>:<port></code> with the host and port of the syslog server.<code>unix:<file></code>:: A Unix Domain Socket file specified by <code><file></code>.<code>null</code>:: Do not send the audit logs to any additional target.</td>
+  <td>One of the following additional audit log targets:<br><br><dl><dt><code>libc</code></dt><dd>The libc <code>syslog()</code> function of the journald process on the host.</dd><dt><code>udp:&lt;host&gt;:&lt;port&gt;</code></dt><dd>A syslog server. Replace <code>&lt;host&gt;:&lt;port&gt;</code> with the host and port of the syslog server.</dd><dt><code>unix:&lt;file&gt;</code></dt><dd>A Unix Domain Socket file specified by <code>&lt;file&gt;</code>.</dd><dt><code>null</code></dt><dd>Do not send the audit logs to any additional target.</dd></dl></td>
 </tr>
 <tr>
   <td><code>syslogFacility</code></td>
@@ -775,7 +756,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 
 <a name="gatewayConfig-object_installing-vsphere-network-customizations"></a>
 
-*`gatewayConfig`** object***
+**`gatewayConfig` object**
 
 <table>
 <thead>
@@ -789,12 +770,12 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>routingViaHost</code></td>
   <td><code>boolean</code></td>
-  <td>Set this field to <code>true</code> to send egress traffic from pods to the host networking stack.For highly-specialized installations and applications that rely on manually configured routes in the kernel routing table, you might want to route egress traffic to the host networking stack.By default, egress traffic is processed in OVN to exit the cluster and is not affected by specialized routes in the kernel routing table.The default value is <code>false</code>.<br><br>This field has an interaction with the Open vSwitch hardware offloading feature.If you set this field to <code>true</code>, you do not receive the performance benefits of the offloading because egress traffic is processed by the host networking stack.</td>
+  <td>Set this field to <code>true</code> to send egress traffic from pods to the host networking stack. For highly-specialized installations and applications that rely on manually configured routes in the kernel routing table, you might want to route egress traffic to the host networking stack. By default, egress traffic is processed in OVN to exit the cluster and is not affected by specialized routes in the kernel routing table. The default value is <code>false</code>.<br><br>This field has an interaction with the Open vSwitch hardware offloading feature. If you set this field to <code>true</code>, you do not receive the performance benefits of the offloading because egress traffic is processed by the host networking stack.</td>
 </tr>
 <tr>
   <td><code>ipForwarding</code></td>
   <td><code>object</code></td>
-  <td>You can control IP forwarding for all traffic on OVN-Kubernetes managed interfaces by using the <code>ipForwarding</code> specification in the <code>Network</code> resource. Specify <code>Restricted</code> to only allow IP forwarding for Kubernetes related traffic. Specify <code>Global</code> to allow forwarding of all IP traffic. For new installations, the default is <code>Restricted</code>. For updates to OpenShift Container Platform 4.14 or later, the default is <code>Global</code>.<dl><dt>Note</dt><dd>The default value of <code>Restricted</code> sets the IP forwarding to drop.</dd></dl></td>
+  <td>You can control IP forwarding for all traffic on OVN-Kubernetes managed interfaces by using the <code>ipForwarding</code> specification in the <code>Network</code> resource. Specify <code>Restricted</code> to only allow IP forwarding for Kubernetes related traffic. Specify <code>Global</code> to allow forwarding of all IP traffic. For new installations, the default is <code>Restricted</code>. For updates to OpenShift Container Platform 4.14 or later, the default is <code>Global</code>.<dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>The default value of <code>Restricted</code> sets the IP forwarding to drop.</dd></dl></td>
 </tr>
 <tr>
   <td><code>ipv4</code></td>
@@ -811,7 +792,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 
 <a name="gatewayconfig-ipv4-object_installing-vsphere-network-customizations"></a>
 
-*`gatewayConfig.ipv4`** object***
+**`gatewayConfig.ipv4` object**
 
 <table>
 <thead>
@@ -825,14 +806,14 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>internalMasqueradeSubnet</code></td>
   <td><code>string</code></td>
-  <td>The masquerade IPv4 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses as well as the shared gateway bridge interface. The default value is <code>169.254.169.0/29</code>.<dl><dt>Important</dt><dd>For OpenShift Container Platform 4.17 and later versions, clusters use <code>169.254.0.0/17</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</dd></dl></td>
+  <td>The masquerade IPv4 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses as well as the shared gateway bridge interface. The default value is <code>169.254.169.0/29</code>.<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>For OpenShift Container Platform 4.17 and later versions, clusters use <code>169.254.0.0/17</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</dd></dl></td>
 </tr>
 </tbody>
 </table>
 
 <a name="gatewayconfig-ipv6-object_installing-vsphere-network-customizations"></a>
 
-*`gatewayConfig.ipv6`** object***
+**`gatewayConfig.ipv6` object**
 
 <table>
 <thead>
@@ -846,14 +827,14 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>internalMasqueradeSubnet</code></td>
   <td><code>string</code></td>
-  <td>The masquerade IPv6 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses as well as the shared gateway bridge interface. The default value is <code>fd69::/125</code>.<dl><dt>Important</dt><dd>For OpenShift Container Platform 4.17 and later versions, clusters use <code>fd69::/112</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</dd></dl></td>
+  <td>The masquerade IPv6 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses as well as the shared gateway bridge interface. The default value is <code>fd69::/125</code>.<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>For OpenShift Container Platform 4.17 and later versions, clusters use <code>fd69::/112</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</dd></dl></td>
 </tr>
 </tbody>
 </table>
 
 <a name="nw-operator-cr-ipsec_installing-vsphere-network-customizations"></a>
 
-*`ipsecConfig`** object***
+**`ipsecConfig` object**
 
 <table>
 <thead>
@@ -867,7 +848,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>mode</code></td>
   <td><code>string</code></td>
-  <td>Specifies the behavior of the IPsec implementation. Must be one of the following values:<br><br>--<ul><li><code>Disabled</code>: IPsec is not enabled on cluster nodes.</li><li><code>External</code>: IPsec is enabled for network traffic with external hosts.</li><li><code>Full</code>: IPsec is enabled for pod traffic and network traffic with external hosts.</li></ul>--</td>
+  <td>Specifies the behavior of the IPsec implementation. Must be one of the following values:<br><br><ul><li><code>Disabled</code>: IPsec is not enabled on cluster nodes.</li><li><code>External</code>: IPsec is enabled for network traffic with external hosts.</li><li><code>Full</code>: IPsec is enabled for pod traffic and network traffic with external hosts.</li></ul></td>
 </tr>
 </tbody>
 </table>
@@ -1023,7 +1004,7 @@ To install OpenShift Container Platform on user-provisioned infrastructure on VM
 
    1. Click the **VMs and Templates** view.
    2. Right-click the name of your data center.
-   3. Click **New Folder** -> **New VM and Template Folder**.
+   3. Click **New Folder** → **New VM and Template Folder**.
    4. In the window that is displayed, enter the folder name. If you did not specify an existing folder in the `install-config.yaml` file, then create a folder with the same name as the infrastructure ID. You use this folder name so vCenter dynamically provisions storage in the appropriate location for its Workspace configuration.
 7. In the vSphere Client, create a template for the OVA image and then clone the template as needed.
 
@@ -1032,7 +1013,7 @@ To install OpenShift Container Platform on user-provisioned infrastructure on VM
 
    1. From the **Hosts and Clusters** tab, right-click your cluster name and select **Deploy OVF Template**.
    2. On the **Select an OVF** tab, specify the name of the RHCOS OVA file that you downloaded.
-   3. On the **Select a name and folder** tab, set a **Virtual machine name** for your template, such as `Template-{{ op_system }}`. Click the name of your vSphere cluster and select the folder you created in the previous step.
+   3. On the **Select a name and folder** tab, set a **Virtual machine name** for your template, such as `Template-RHCOS`. Click the name of your vSphere cluster and select the folder you created in the previous step.
    4. On the **Select a compute resource** tab, click the name of your vSphere cluster.
    5. On the **Select storage** tab, configure the storage options for your VM.
 
@@ -1050,7 +1031,7 @@ To install OpenShift Container Platform on user-provisioned infrastructure on VM
    > It is recommended that you update the hardware version of the VM template to version 15 before creating VMs from it, if necessary. Using hardware version 13 for your cluster nodes running on vSphere is now deprecated. If your imported template defaults to hardware version 13, you must ensure that your ESXi host is on 6.7U3 or later before upgrading the VM template to hardware version 15. If your vSphere version is less than 6.7U3, you can skip this upgrade step; however, a future version of OpenShift Container Platform is scheduled to remove support for hardware version 13 and vSphere versions less than 6.7U3.
 9. After the template deploys, deploy a VM for a machine in the cluster.
 
-   1. Right-click the template name and click **Clone** -> **Clone to Virtual Machine**.
+   1. Right-click the template name and click **Clone** → **Clone to Virtual Machine**.
    2. On the **Select a name and folder** tab, specify a name for the VM. You might include the machine type in the name, such as `control-plane-0` or `compute-1`.
 
       > [!NOTE]
@@ -1088,7 +1069,7 @@ To install OpenShift Container Platform on user-provisioned infrastructure on VM
         - Create a child resource pool from the cluster’s root resource pool. Perform resource allocation in this child resource pool.
    7. In the **Virtual Hardware** panel of the **Customize hardware** tab, modify the specified values as required. Ensure that the amount of RAM, CPU, and disk storage meets the minimum requirements for the machine type.
    8. Complete the remaining configuration steps. On clicking the **Finish** button, you have completed the cloning operation.
-   9. From the **Virtual Machines** tab, right-click on your VM and then select **Power** -> **Power On**.
+   9. From the **Virtual Machines** tab, right-click on your VM and then select **Power** → **Power On**.
    10. Check the console output to verify that Ignition ran.
 
        ```terminal {title="Example command"}
@@ -1114,7 +1095,7 @@ To scale a user-provisioned OpenShift Container Platform cluster on VMware vSphe
 
 **Procedure**
 
-1. Right-click the template’s name and click **Clone** -> **Clone to Virtual Machine**.
+1. Right-click the template’s name and click **Clone** → **Clone to Virtual Machine**.
 2. On the **Select a name and folder** tab, specify a name for the VM. You might include the machine type in the name, such as `compute-1`.
 
    > [!NOTE]
@@ -1132,7 +1113,7 @@ To scale a user-provisioned OpenShift Container Platform cluster on VMware vSphe
      - `disk.EnableUUID`: Specify `TRUE`.
 8. In the **Virtual Hardware** panel of the **Customize hardware** tab, modify the specified values as required. Ensure that the amount of RAM, CPU, and disk storage meets the minimum requirements for the machine type. If many networks exist, select **Add New Device** > **Network Adapter**, and then enter your network information in the fields provided by the **New Network** menu item.
 9. Complete the remaining configuration steps. On clicking the **Finish** button, you have completed the cloning operation.
-10. From the **Virtual Machines** tab, right-click on your VM and then select **Power** -> **Power On**.
+10. From the **Virtual Machines** tab, right-click on your VM and then select **Power** → **Power On**.
 
 **Next steps**
 
@@ -1193,7 +1174,7 @@ Because `/var` must be in place before a fresh installation of Red Hat Enterpri
 
    ```yaml
    variant: openshift
-   version: {{ product_version }}.0
+   version: 4.22.0
    metadata:
      labels:
        machineconfiguration.openshift.io/role: worker
@@ -1383,7 +1364,8 @@ To allow newly added machines to join your OpenShift Container Platform cluster,
      where:
 
      `<csr_name>`
-     :   Specifies the name of a CSR from the list of current CSRs. \*   To approve all pending CSRs, run the following command:
+     :   Specifies the name of a CSR from the list of current CSRs.
+   - To approve all pending CSRs, run the following command:
 
      ```terminal
      $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs --no-run-if-empty oc adm certificate approve
@@ -1414,7 +1396,8 @@ To allow newly added machines to join your OpenShift Container Platform cluster,
      where:
 
      `<csr_name>`
-     :   Specifies the name of a CSR from the list of current CSRs. \*   To approve all pending CSRs, run the following command:
+     :   Specifies the name of a CSR from the list of current CSRs.
+   - To approve all pending CSRs, run the following command:
 
      ```terminal
      $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs oc adm certificate approve
@@ -1455,37 +1438,37 @@ After the control plane initializes, you must immediately configure some Operato
 
    ```terminal {title="Example output"}
    NAME                                       VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE
-   authentication                             {{ product_version }}.0    True        False         False      19m
-   baremetal                                  {{ product_version }}.0    True        False         False      37m
-   cloud-credential                           {{ product_version }}.0    True        False         False      40m
-   cluster-autoscaler                         {{ product_version }}.0    True        False         False      37m
-   config-operator                            {{ product_version }}.0    True        False         False      38m
-   console                                    {{ product_version }}.0    True        False         False      26m
-   csi-snapshot-controller                    {{ product_version }}.0    True        False         False      37m
-   dns                                        {{ product_version }}.0    True        False         False      37m
-   etcd                                       {{ product_version }}.0    True        False         False      36m
-   image-registry                             {{ product_version }}.0    True        False         False      31m
-   ingress                                    {{ product_version }}.0    True        False         False      30m
-   insights                                   {{ product_version }}.0    True        False         False      31m
-   kube-apiserver                             {{ product_version }}.0    True        False         False      26m
-   kube-controller-manager                    {{ product_version }}.0    True        False         False      36m
-   kube-scheduler                             {{ product_version }}.0    True        False         False      36m
-   kube-storage-version-migrator              {{ product_version }}.0    True        False         False      37m
-   machine-api                                {{ product_version }}.0    True        False         False      29m
-   machine-approver                           {{ product_version }}.0    True        False         False      37m
-   machine-config                             {{ product_version }}.0    True        False         False      36m
-   marketplace                                {{ product_version }}.0    True        False         False      37m
-   monitoring                                 {{ product_version }}.0    True        False         False      29m
-   network                                    {{ product_version }}.0    True        False         False      38m
-   node-tuning                                {{ product_version }}.0    True        False         False      37m
-   openshift-apiserver                        {{ product_version }}.0    True        False         False      32m
-   openshift-controller-manager               {{ product_version }}.0    True        False         False      30m
-   openshift-samples                          {{ product_version }}.0    True        False         False      32m
-   operator-lifecycle-manager                 {{ product_version }}.0    True        False         False      37m
-   operator-lifecycle-manager-catalog         {{ product_version }}.0    True        False         False      37m
-   operator-lifecycle-manager-packageserver   {{ product_version }}.0    True        False         False      32m
-   service-ca                                 {{ product_version }}.0    True        False         False      38m
-   storage                                    {{ product_version }}.0    True        False         False      37m
+   authentication                             4.22.0    True        False         False      19m
+   baremetal                                  4.22.0    True        False         False      37m
+   cloud-credential                           4.22.0    True        False         False      40m
+   cluster-autoscaler                         4.22.0    True        False         False      37m
+   config-operator                            4.22.0    True        False         False      38m
+   console                                    4.22.0    True        False         False      26m
+   csi-snapshot-controller                    4.22.0    True        False         False      37m
+   dns                                        4.22.0    True        False         False      37m
+   etcd                                       4.22.0    True        False         False      36m
+   image-registry                             4.22.0    True        False         False      31m
+   ingress                                    4.22.0    True        False         False      30m
+   insights                                   4.22.0    True        False         False      31m
+   kube-apiserver                             4.22.0    True        False         False      26m
+   kube-controller-manager                    4.22.0    True        False         False      36m
+   kube-scheduler                             4.22.0    True        False         False      36m
+   kube-storage-version-migrator              4.22.0    True        False         False      37m
+   machine-api                                4.22.0    True        False         False      29m
+   machine-approver                           4.22.0    True        False         False      37m
+   machine-config                             4.22.0    True        False         False      36m
+   marketplace                                4.22.0    True        False         False      37m
+   monitoring                                 4.22.0    True        False         False      29m
+   network                                    4.22.0    True        False         False      38m
+   node-tuning                                4.22.0    True        False         False      37m
+   openshift-apiserver                        4.22.0    True        False         False      32m
+   openshift-controller-manager               4.22.0    True        False         False      30m
+   openshift-samples                          4.22.0    True        False         False      32m
+   operator-lifecycle-manager                 4.22.0    True        False         False      37m
+   operator-lifecycle-manager-catalog         4.22.0    True        False         False      37m
+   operator-lifecycle-manager-packageserver   4.22.0    True        False         False      32m
+   service-ca                                 4.22.0    True        False         False      38m
+   storage                                    4.22.0    True        False         False      37m
    ```
 2. Configure the Operators that are not available.
 
@@ -1570,6 +1553,7 @@ To allow the image registry to use block storage types such as vSphere Virtual M
       By creating a custom PVC, you can leave the `claim` field blank for the default automatic creation of an `image-registry-storage` PVC.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring the registry for vSphere](/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-vsphere#registry-configuring-storage-vsphere_configuring-registry-storage-vsphere)
 
@@ -1592,37 +1576,37 @@ To finalize the installation on user-provisioned infrastructure, complete the cl
 
    ```terminal {title="Example output"}
    NAME                                       VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE
-   authentication                             {{ product_version }}.0    True        False         False      19m
-   baremetal                                  {{ product_version }}.0    True        False         False      37m
-   cloud-credential                           {{ product_version }}.0    True        False         False      40m
-   cluster-autoscaler                         {{ product_version }}.0    True        False         False      37m
-   config-operator                            {{ product_version }}.0    True        False         False      38m
-   console                                    {{ product_version }}.0    True        False         False      26m
-   csi-snapshot-controller                    {{ product_version }}.0    True        False         False      37m
-   dns                                        {{ product_version }}.0    True        False         False      37m
-   etcd                                       {{ product_version }}.0    True        False         False      36m
-   image-registry                             {{ product_version }}.0    True        False         False      31m
-   ingress                                    {{ product_version }}.0    True        False         False      30m
-   insights                                   {{ product_version }}.0    True        False         False      31m
-   kube-apiserver                             {{ product_version }}.0    True        False         False      26m
-   kube-controller-manager                    {{ product_version }}.0    True        False         False      36m
-   kube-scheduler                             {{ product_version }}.0    True        False         False      36m
-   kube-storage-version-migrator              {{ product_version }}.0    True        False         False      37m
-   machine-api                                {{ product_version }}.0    True        False         False      29m
-   machine-approver                           {{ product_version }}.0    True        False         False      37m
-   machine-config                             {{ product_version }}.0    True        False         False      36m
-   marketplace                                {{ product_version }}.0    True        False         False      37muser
-   monitoring                                 {{ product_version }}.0    True        False         False      29m
-   network                                    {{ product_version }}.0    True        False         False      38m
-   node-tuning                                {{ product_version }}.0    True        False         False      37m
-   openshift-apiserver                        {{ product_version }}.0    True        False         False      32muser
-   openshift-controller-manager               {{ product_version }}.0    True        False         False      30m
-   openshift-samples                          {{ product_version }}.0    True        False         False      32m
-   operator-lifecycle-manager                 {{ product_version }}.0    True        False         False      37m
-   operator-lifecycle-manager-catalog         {{ product_version }}.0    True        False         False      37m
-   operator-lifecycle-manager-packageserver   {{ product_version }}.0    True        False         False      32m
-   service-ca                                 {{ product_version }}.0    True        False         False      38m
-   storage                                    {{ product_version }}.0    True        False         False      37m
+   authentication                             4.22.0    True        False         False      19m
+   baremetal                                  4.22.0    True        False         False      37m
+   cloud-credential                           4.22.0    True        False         False      40m
+   cluster-autoscaler                         4.22.0    True        False         False      37m
+   config-operator                            4.22.0    True        False         False      38m
+   console                                    4.22.0    True        False         False      26m
+   csi-snapshot-controller                    4.22.0    True        False         False      37m
+   dns                                        4.22.0    True        False         False      37m
+   etcd                                       4.22.0    True        False         False      36m
+   image-registry                             4.22.0    True        False         False      31m
+   ingress                                    4.22.0    True        False         False      30m
+   insights                                   4.22.0    True        False         False      31m
+   kube-apiserver                             4.22.0    True        False         False      26m
+   kube-controller-manager                    4.22.0    True        False         False      36m
+   kube-scheduler                             4.22.0    True        False         False      36m
+   kube-storage-version-migrator              4.22.0    True        False         False      37m
+   machine-api                                4.22.0    True        False         False      29m
+   machine-approver                           4.22.0    True        False         False      37m
+   machine-config                             4.22.0    True        False         False      36m
+   marketplace                                4.22.0    True        False         False      37muser
+   monitoring                                 4.22.0    True        False         False      29m
+   network                                    4.22.0    True        False         False      38m
+   node-tuning                                4.22.0    True        False         False      37m
+   openshift-apiserver                        4.22.0    True        False         False      32muser
+   openshift-controller-manager               4.22.0    True        False         False      30m
+   openshift-samples                          4.22.0    True        False         False      32m
+   operator-lifecycle-manager                 4.22.0    True        False         False      37m
+   operator-lifecycle-manager-catalog         4.22.0    True        False         False      37m
+   operator-lifecycle-manager-packageserver   4.22.0    True        False         False      32m
+   service-ca                                 4.22.0    True        False         False      38m
+   storage                                    4.22.0    True        False         False      37m
    ```
 
    Alternatively, the following command notifies you when all of the clusters are available. The command also retrieves and displays credentials:
@@ -1676,6 +1660,7 @@ To finalize the installation on user-provisioned infrastructure, complete the cl
    See "Enabling multipathing with kernel arguments on RHCOS" in the *Postinstallation machine configuration tasks* documentation for more information.
 
 **Additional resources**
+{._additional-resources}
 
 - [Adding compute machines to vSphere](/openshift-docs-markdown/machine_management/user_infra/adding-vsphere-compute-user-infra#adding-vsphere-compute-user-infra)
 
@@ -1732,6 +1717,7 @@ To provide metrics about cluster health and the success of updates, the Telemetr
 After you confirm that your [OpenShift Cluster Manager](https://console.redhat.com/openshift) inventory is correct, either maintained automatically by Telemetry or manually by using OpenShift Cluster Manager,use subscription watch to track your OpenShift Container Platform subscriptions at the account or multi-cluster level. For more information about subscription watch, see "Data Gathered and Used by Red Hat’s subscription services" in the *Additional resources* section.
 
 **Additional resources**
+{._additional-resources}
 
 - [Preparing to install a cluster using user-provisioned infrastructure](/openshift-docs-markdown/installing/installing_vsphere/upi/upi-vsphere-preparing-to-install#upi-vsphere-preparing-to-install)
 - [OpenShift Container Platform installation and update processes](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)

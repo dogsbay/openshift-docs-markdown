@@ -23,13 +23,13 @@ Review the following information regarding backing up applications by using OADP
 
   For more information, see *Restic restore partially failing on Red Hat OpenShift Container Platform 4.15 due to changed PSA policy*.
 
-> [!IMPORTANT]
-> The OpenShift API for Data Protection (OADP) does not support backing up volume snapshots that were created by other software.
+  > [!IMPORTANT]
+  > The OpenShift API for Data Protection (OADP) does not support backing up volume snapshots that were created by other software.
 
-> [!IMPORTANT]
-> The `.../.snapshot` directory is a snapshot copy directory, which is used by several NFS servers. This directory has read-only access by default, so Velero cannot restore to this directory.
->
-> Do not give Velero write access to the `.snapshot` directory, and disable client access to this directory.
+  > [!IMPORTANT]
+  > The `.../.snapshot` directory is a snapshot copy directory, which is used by several NFS servers. This directory has read-only access by default, so Velero cannot restore to this directory.
+  >
+  > Do not give Velero write access to the `.snapshot` directory, and disable client access to this directory.
 
 ## Previewing resources before running backup and restore {#oadp-review-backup-restore_backing-up-applications}
 
@@ -76,6 +76,7 @@ OADP backs up application resources based on the type, namespace, or label. This
    Replace `<restore_name>` with the name of the restore.
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating a Backup CR](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-creating-backup-cr#oadp-creating-backup-cr-doc)
 - [Creating backup hooks](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-creating-backup-hooks-doc#oadp-creating-backup-hooks-doc)

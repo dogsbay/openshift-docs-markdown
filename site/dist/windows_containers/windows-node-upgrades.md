@@ -56,7 +56,7 @@ You can use the OpenShift Container Platform web console to perform a Control Pl
    > Delete the Operator only. Do not delete the Windows namespace or any Windows workloads.
 
    1. Log in to the OpenShift Container Platform web console.
-   2. Navigate to **Ecosystem** -> **Software Catalog**.
+   2. Navigate to **Ecosystem** → **Software Catalog**.
    3. Use the **Filter by keyword** box to search for `Red Hat Windows Machine Config Operator`.
    4. Click the **Red Hat Windows Machine Config Operator** tile. The Operator tile indicates it is installed.
    5. In the **Windows Machine Config Operator** descriptor page, click **Uninstall**.
@@ -87,7 +87,8 @@ You can use the OpenShift CLI (`oc`) to perform a Control Plane Only update of t
 
 - On the Verify that the **Status** shows **Succeeded** to confirm successful installation of the WMCO.
 
-## Additional resources {#additional-resources_windows-node-upgrades}
+**Additional resources**
+{._additional-resources}
 
 - [Updating installed Operators](/openshift-docs-markdown/operators/admin/olm-upgrading-operators#olm-upgrading-operators)
 - [Performing a Control Plane Only update](/openshift-docs-markdown/updating/updating_a_cluster/control-plane-only-update#control-plane-only-update)

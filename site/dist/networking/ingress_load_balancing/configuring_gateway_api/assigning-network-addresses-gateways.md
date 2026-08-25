@@ -19,7 +19,7 @@ To successfully assign network addresses to your gateway, complete the following
 
 ## Understand gateway address assignment and types {#understand-gateway-address-assignment_assigning-network-addresses-gateways}
 
-\[role="\_abstract"\] OpenShift Container Platform automatically handles address assignment by provisioning a `LoadBalancer` service when you create a `Gateway` resource. The network address assigned to your gateway corresponds to the IP address or hostname of this underlying load balancer.
+OpenShift Container Platform automatically handles address assignment by provisioning a `LoadBalancer` service when you create a `Gateway` resource. The network address assigned to your gateway corresponds to the IP address or hostname of this underlying load balancer.
 
 > [!IMPORTANT]
 > Do not define the `spec.addresses` field. Manually requesting specific network addresses is not currently supported in OpenShift Container Platform. If you attempt to request a specific address manually, the gateway enters an error state.

@@ -28,6 +28,7 @@ You can complete the following configurations after you install a cluster on RHO
 - If you did not configure RHOSP to accept application traffic over floating IP addresses, configure RHOSP access with floating IP addresses.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)
 - [Selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing)
@@ -41,9 +42,7 @@ You can complete the following configurations after you install a cluster on RHO
 
 ## Internet access for OpenShift Container Platform {#cluster-entitlements_installing-openstack-user}
 
-In OpenShift Container Platform 4.22, you require access to the internet to install
-
-your cluster.
+In OpenShift Container Platform 4.22, you require access to the internet to install your cluster.
 
 You must have internet access to perform the following actions:
 
@@ -203,20 +202,20 @@ Download Ansible playbooks that you can use to install OpenShift Container Platf
 
   ```terminal
   $ xargs -n 1 curl -O <<< '
-          https://raw.githubusercontent.com/openshift/installer/release-{{ product_version }}/upi/openstack/bootstrap.yaml
-          https://raw.githubusercontent.com/openshift/installer/release-{{ product_version }}/upi/openstack/common.yaml
-          https://raw.githubusercontent.com/openshift/installer/release-{{ product_version }}/upi/openstack/compute-nodes.yaml
-          https://raw.githubusercontent.com/openshift/installer/release-{{ product_version }}/upi/openstack/control-plane.yaml
-          https://raw.githubusercontent.com/openshift/installer/release-{{ product_version }}/upi/openstack/down-bootstrap.yaml
-          https://raw.githubusercontent.com/openshift/installer/release-{{ product_version }}/upi/openstack/down-compute-nodes.yaml
-          https://raw.githubusercontent.com/openshift/installer/release-{{ product_version }}/upi/openstack/down-control-plane.yaml
-          https://raw.githubusercontent.com/openshift/installer/release-{{ product_version }}/upi/openstack/down-network.yaml
-          https://raw.githubusercontent.com/openshift/installer/release-{{ product_version }}/upi/openstack/down-security-groups.yaml
-          https://raw.githubusercontent.com/openshift/installer/release-{{ product_version }}/upi/openstack/down-containers.yaml
-          https://raw.githubusercontent.com/openshift/installer/release-{{ product_version }}/upi/openstack/inventory.yaml
-          https://raw.githubusercontent.com/openshift/installer/release-{{ product_version }}/upi/openstack/network.yaml
-          https://raw.githubusercontent.com/openshift/installer/release-{{ product_version }}/upi/openstack/security-groups.yaml
-          https://raw.githubusercontent.com/openshift/installer/release-{{ product_version }}/upi/openstack/update-network-resources.yaml'
+          https://raw.githubusercontent.com/openshift/installer/release-4.22/upi/openstack/bootstrap.yaml
+          https://raw.githubusercontent.com/openshift/installer/release-4.22/upi/openstack/common.yaml
+          https://raw.githubusercontent.com/openshift/installer/release-4.22/upi/openstack/compute-nodes.yaml
+          https://raw.githubusercontent.com/openshift/installer/release-4.22/upi/openstack/control-plane.yaml
+          https://raw.githubusercontent.com/openshift/installer/release-4.22/upi/openstack/down-bootstrap.yaml
+          https://raw.githubusercontent.com/openshift/installer/release-4.22/upi/openstack/down-compute-nodes.yaml
+          https://raw.githubusercontent.com/openshift/installer/release-4.22/upi/openstack/down-control-plane.yaml
+          https://raw.githubusercontent.com/openshift/installer/release-4.22/upi/openstack/down-network.yaml
+          https://raw.githubusercontent.com/openshift/installer/release-4.22/upi/openstack/down-security-groups.yaml
+          https://raw.githubusercontent.com/openshift/installer/release-4.22/upi/openstack/down-containers.yaml
+          https://raw.githubusercontent.com/openshift/installer/release-4.22/upi/openstack/inventory.yaml
+          https://raw.githubusercontent.com/openshift/installer/release-4.22/upi/openstack/network.yaml
+          https://raw.githubusercontent.com/openshift/installer/release-4.22/upi/openstack/security-groups.yaml
+          https://raw.githubusercontent.com/openshift/installer/release-4.22/upi/openstack/update-network-resources.yaml'
   ```
 
   The playbooks are downloaded to your machine.
@@ -259,14 +258,8 @@ the host you are using for installation.
    ```
 6. Download your installation [pull secret from Red Hat OpenShift Cluster Manager](https://console.redhat.com/openshift/install/pull-secret). This pull secret allows you to authenticate with the services that are provided by the included authorities, including Quay.io, which serves the container images for OpenShift Container Platform components.
 
-   ```
-   :::tip
-
-   Alternatively, you can retrieve the installation program from the [Red&#160;Hat Customer Portal](https://access.redhat.com/downloads/content/290/), where you can specify a version of the installation program to download.
-   However, you must have an active subscription to access this page.
-
-   :::
-   ```
+   > [!TIP]
+   > Alternatively, you can retrieve the installation program from the [Red Hat Customer Portal](https://access.redhat.com/downloads/content/290/), where you can specify a version of the installation program to download. However, you must have an active subscription to access this page.
 
 ## Generating a key pair for cluster node SSH access {#ssh-agent-using_installing-openstack-user}
 
@@ -402,11 +395,8 @@ The OpenShift Container Platform installation process requires external network 
 
   A network with an external router type appears in the network list. If at least one does not, see [Creating a default floating IP network](https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/16.0/html/director_installation_and_usage/performing-overcloud-post-installation-tasks#creating-a-default-floating-ip-network) and [Creating a default provider network](https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/16.0/html/director_installation_and_usage/performing-overcloud-post-installation-tasks#creating-a-default-provider-network).
 
-  -
-
-  :::
-
-  If the Neutron trunk service plugin is enabled, a trunk port is created by default. For more information, see [Neutron trunk port](https://wiki.openstack.org/wiki/Neutron/TrunkPort).
+  > [!NOTE]
+  > If the Neutron trunk service plugin is enabled, a trunk port is created by default. For more information, see [Neutron trunk port](https://wiki.openstack.org/wiki/Neutron/TrunkPort).
 
 ## Access to the environment {#installation-osp-accessing-api_installing-openstack-user}
 
@@ -416,9 +406,7 @@ You can configure OpenShift Container Platform API and application access by usi
 
 ### Enabling access with floating IP addresses {#installation-osp-accessing-api-floating_installing-openstack-user}
 
-Create floating IP (FIP) addresses for external access to the OpenShift Container Platform
-
-API, cluster applications, and the bootstrap process.
+Create floating IP (FIP) addresses for external access to the OpenShift Container Platform API, cluster applications, and the bootstrap process.
 
 **Procedure**
 
@@ -455,24 +443,16 @@ API, cluster applications, and the bootstrap process.
    > - `application_floating_ip integrated-oauth-server-openshift-authentication.apps.<cluster_name>.<base_domain>`
    >
    > The cluster domain names in the `/etc/hosts` file grant access to the web console and the monitoring interface of your cluster locally. You can also use the `kubectl` or `oc`. You can access the user applications by using the additional entries pointing to the <application_floating_ip>. This action makes the API and applications accessible to only you, which is not suitable for production deployment, but does allow installation for development and testing.
-5. Add the FIPs to the
-
-   `inventory.yaml`
-
-   file as the values of the following
-
-   variables:
+5. Add the FIPs to the `inventory.yaml` file as the values of the following variables:
 
    - `os_api_fip`
    - `os_bootstrap_fip`
    - `os_ingress_fip`
 
-     If you use these values, you must also enter an external network as the value of the
+     If you use these values, you must also enter an external network as the value of the `os_external_network` variable in the `inventory.yaml` file.
 
-     `os_external_network` variable in the `inventory.yaml` file.
-
-> [!TIP]
-> You can make OpenShift Container Platform resources available outside of the cluster by assigning a floating IP address and updating your firewall configuration.
+     > [!TIP]
+     > You can make OpenShift Container Platform resources available outside of the cluster by assigning a floating IP address and updating your firewall configuration.
 
 ### Completing installation without floating IP addresses {#installation-osp-accessing-api-no-floating_installing-openstack-user}
 
@@ -480,41 +460,23 @@ You can install OpenShift Container Platform on Red Hat OpenStack Platform (RHO
 
 **Procedure**
 
-1. In the
+1. In the `inventory.yaml` file, do not define the following variables:
 
-`inventory.yaml`
+   - `os_api_fip`
+   - `os_bootstrap_fip`
+   - `os_ingress_fip`
+2. If you cannot provide an external network, you can also leave `os_external_network` blank. If you do not provide a value for `os_external_network`, a router is not created for you, and, without additional action, the installer will fail to retrieve an image from Glance. Later in the installation process, when you create network resources, you must configure external connectivity on your own.
+3. If you run the installer with the `wait-for` command from a system that cannot reach the cluster API due to a lack of floating IP addresses or name resolution, installation fails. To prevent installation failure in these cases, you can use a proxy network or run the installer from a system that is on the same network as your machines.
 
-file, do not define the following
-
-variables:
-
-```
-*   `os_api_fip`
-*   `os_bootstrap_fip`
-*   `os_ingress_fip`
-```
-
-1. If you cannot provide an external network, you can also leave `os_external_network` blank. If you do not provide a value for `os_external_network`, a router is not created for you, and, without additional action, the installer will fail to retrieve an image from Glance. Later in the installation process, when you create network resources, you must configure external connectivity on your own.
-2. If you run the installer
-
-with the `wait-for` command
-
-from a system that cannot reach the cluster API due to a lack of floating IP addresses or name resolution, installation fails. To prevent installation failure in these cases, you can use a proxy network or run the installer from a system that is on the same network as your machines.
-
-````
-:::note
-
-You can enable name resolution by creating DNS records for the API and Ingress ports. For example:
-
-```dns
-api.<cluster_name>.<base_domain>.  IN  A  <api_port_IP>
-*.apps.<cluster_name>.<base_domain>. IN  A <ingress_port_IP>
-```
-
-If you do not control the DNS server, you can add the record to your `/etc/hosts` file. This action makes the API accessible to only you, which is not suitable for production deployment but does allow installation for development and testing.
-
-:::
-````
+   > [!NOTE]
+   > You can enable name resolution by creating DNS records for the API and Ingress ports. For example:
+   >
+   > ```dns
+   > api.<cluster_name>.<base_domain>.  IN  A  <api_port_IP>
+   > *.apps.<cluster_name>.<base_domain>. IN  A <ingress_port_IP>
+   > ```
+   >
+   > If you do not control the DNS server, you can add the record to your `/etc/hosts` file. This action makes the API accessible to only you, which is not suitable for production deployment but does allow installation for development and testing.
 
 ## Defining parameters for the installation program {#installation-osp-describing-cloud-parameters_installing-openstack-user}
 
@@ -618,9 +580,7 @@ Create the network resources that an OpenShift Container Platform on Red Hat Op
 
 ## Creating the installation configuration file {#installation-initializing_installing-openstack-user}
 
-You can customize the OpenShift Container Platform cluster you install on
-
-Red Hat OpenStack Platform (RHOSP).
+You can customize the OpenShift Container Platform cluster you install on Red Hat OpenStack Platform (RHOSP).
 
 **Prerequisites**
 
@@ -662,6 +622,7 @@ Red Hat OpenStack Platform (RHOSP).
 You now have the file `install-config.yaml` in the directory that you specified.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installation configuration parameters for OpenStack](/openshift-docs-markdown/installing/installing_openstack/installation-config-parameters-openstack#installation-config-parameters-openstack)
 
@@ -696,9 +657,7 @@ The example `install-config.yaml` files demonstrate all of the possible Red Hat
 > [!IMPORTANT]
 > This sample file is provided for reference only. You must obtain your `install-config.yaml` file by using the installation program.
 
-<details>
-<summary>Example single stack `install-config.yaml` file</summary>
-
+:::details{title="Example single stack `install-config.yaml` file"}
 ```yaml
 apiVersion: v1
 baseDomain: example.com
@@ -729,18 +688,13 @@ platform:
     externalNetwork: external
     computeFlavor: m1.xlarge
     apiFloatingIP: 128.0.0.1
-{%- if not openshift_origin %}
 fips: false
-{%- endif %}
 pullSecret: '{"auths": ...}'
 sshKey: ssh-ed25519 AAAA...
 ```
+:::
 
-</details>
-
-<details>
-<summary>Example dual stack `install-config.yaml` file</summary>
-
+:::details{title="Example dual stack `install-config.yaml` file"}
 ```yaml
 apiVersion: v1
 baseDomain: example.com
@@ -792,8 +746,7 @@ fips: false
 pullSecret: '{"auths": ...}'
 sshKey: ssh-ed25519 AAAA...
 ```
-
-</details>
+:::
 
 ### Setting a custom subnet for machines {#installation-osp-fixing-subnet_installing-openstack-user}
 
@@ -899,6 +852,7 @@ Example provider network types include flat (untagged) and VLAN (802.1Q tagged).
 You can learn more about provider and tenant networks in the RHOSP documentation.
 
 **Additional resources**
+{._additional-resources}
 
 - [The RHOSP documentation](https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/16.1/html/networking_guide/networking-overview_rhosp-network#tenant-provider-networks_network-overview)
 
@@ -944,6 +898,7 @@ To learn more about creating networks on RHOSP, read the provider networks docum
 5. Optional: To secure the network, create role-based access control (RBAC) rules that limit network access to a single project.
 
 **Additional resources**
+{._additional-resources}
 
 - [The provider networks documentation](https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/16.1/html/networking_guide/networking-overview_rhosp-network#tenant-provider-networks_network-overview)
 - [role-based access control (RBAC)](https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/16.1/html/networking_guide/config-rbac-policies_rhosp-network#proc_create-rbac-policies_config-rbac-policies)
@@ -1303,11 +1258,7 @@ Update the network resources that an OpenShift Container Platform on Red Hat Op
 
 ### Deploying a cluster with bare-metal machines {#installation-osp-deploying-bare-metal-machines_installing-openstack-user}
 
-If you want your cluster to use bare-metal machines, modify the
-
-`inventory.yaml`
-
-file. Your cluster can have compute machines running on bare metal.
+If you want your cluster to use bare-metal machines, modify the `inventory.yaml` file. Your cluster can have compute machines running on bare metal.
 
 > [!NOTE]
 > Be sure that your `install-config.yaml` file reflects whether the RHOSP network that you use for bare-metal workers supports floating IP addresses or not.
@@ -1349,6 +1300,8 @@ file. Your cluster can have compute machines running on bare metal.
       `all.hosts.localhost.os_flavor_worker`
       :   Specifies a bare-metal flavor to use for compute machines. Use the updated `inventory.yaml` file to complete the installation process. Machines that are created during deployment use the flavor that you added to the file.
 
+      -
+
       > [!NOTE]
       > The installation program may time out while waiting for bare-metal machines to boot.
       >
@@ -1359,6 +1312,7 @@ file. Your cluster can have compute machines running on bare metal.
       > ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Bare Metal service (Ironic)](https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/16.1/html/bare_metal_provisioning/index)
 - [A RHOSP flavor](https://docs.redhat.com/en/documentation/red_hat_openstack_platform/17.1/html/configuring_the_bare_metal_provisioning_service/assembly_configuring-the-bare-metal-provisioning-service-after-deployment#proc_creating-flavors-for-launching-bare-metal-instances_bare-metal-post-deployment)
@@ -1572,7 +1526,8 @@ To allow newly added machines to join your OpenShift Container Platform cluster,
      where:
 
      `<csr_name>`
-     :   Specifies the name of a CSR from the list of current CSRs. \*   To approve all pending CSRs, run the following command:
+     :   Specifies the name of a CSR from the list of current CSRs.
+   - To approve all pending CSRs, run the following command:
 
      ```terminal
      $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs --no-run-if-empty oc adm certificate approve
@@ -1603,7 +1558,8 @@ To allow newly added machines to join your OpenShift Container Platform cluster,
      where:
 
      `<csr_name>`
-     :   Specifies the name of a CSR from the list of current CSRs. \*   To approve all pending CSRs, run the following command:
+     :   Specifies the name of a CSR from the list of current CSRs.
+   - To approve all pending CSRs, run the following command:
 
      ```terminal
      $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs oc adm certificate approve
@@ -1651,5 +1607,6 @@ To provide metrics about cluster health and the success of updates, the Telemetr
 After you confirm that your [OpenShift Cluster Manager](https://console.redhat.com/openshift) inventory is correct, either maintained automatically by Telemetry or manually by using OpenShift Cluster Manager,use subscription watch to track your OpenShift Container Platform subscriptions at the account or multi-cluster level. For more information about subscription watch, see "Data Gathered and Used by Red Hat’s subscription services" in the *Additional resources* section.
 
 **Additional resources**
+{._additional-resources}
 
 - [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)

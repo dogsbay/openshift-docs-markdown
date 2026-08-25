@@ -21,12 +21,13 @@ const headings = [{"depth":1,"slug":"hcp-recovering-etcd-cluster","text":"Recove
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp_high_availability/hcp-recovering-etcd-cluster";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
-const title = "Recovering an unhealthy etcd cluster for {{ hcp }}";
+const title = "Recovering an unhealthy etcd cluster for hosted control planes";
 const description = "In a highly available control plane, three etcd pods run as a part of a stateful set in an etcd cluster. To recover an etcd cluster, identify unhealthy…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="hcp-recovering-etcd-cluster" class="group scroll-mt-20">Recovering an unhealthy etcd cluster for hosted control planes<a href="#hcp-recovering-etcd-cluster" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>In a highly available control plane, three etcd pods run as a part of a stateful set in an etcd cluster. To recover an etcd cluster, identify unhealthy etcd pods by checking the etcd cluster health.</p>
+      <p class="_abstract">In a highly available control plane, three etcd pods run as a part of a stateful set in an etcd cluster. To recover an etcd cluster, identify unhealthy etcd pods by checking the etcd cluster health.</p>
       <h2 id="hosted-cluster-etcd-status_hcp-recovering-etcd-cluster" class="group scroll-mt-20">Checking the status of an etcd cluster<a href="#hosted-cluster-etcd-status_hcp-recovering-etcd-cluster" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">You can check the status of the etcd cluster health by logging into any etcd pod.</p>
       <p><strong>Procedure</strong></p>

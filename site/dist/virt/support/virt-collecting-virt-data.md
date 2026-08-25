@@ -78,7 +78,7 @@ You can add optional environment details and scripts to the `must-gather` comman
 
   ```terminal
   $ oc adm must-gather \
-    --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v{{ HCOVersion }} \
+    --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v4.22.6 \
     -- /usr/bin/gather
   ```
 
@@ -93,7 +93,7 @@ You can add optional environment details and scripts to the `must-gather` comman
 
      ```terminal
      $ oc adm must-gather \
-       --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v{{ HCOVersion }} \
+       --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v4.22.6 \
        -- PROS=<number> /usr/bin/gather
      ```
 
@@ -102,7 +102,7 @@ You can add optional environment details and scripts to the `must-gather` comman
 
      ```terminal
      $ oc adm must-gather \
-       --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v{{ HCOVersion }} \
+       --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v4.22.6 \
        -- NS=<namespace name> VM=<VM name> /usr/bin/gather --vms_details
      ```
 
@@ -111,14 +111,14 @@ You can add optional environment details and scripts to the `must-gather` comman
 
      ```terminal
      $ oc adm must-gather \
-      --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v{{ HCOVersion }} \
+      --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v4.22.6 \
       /usr/bin/gather --images
      ```
   4. Run the following command to collect information about instance types from the cluster:
 
      ```terminal
      $ oc adm must-gather \
-      --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v{{ HCOVersion }} \
+      --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v4.22.6 \
       /usr/bin/gather --instancetypes
      ```
 
@@ -171,7 +171,7 @@ You can run a script by itself or with one or more compatible environment variab
 
 ```terminal {title="must-gather syntax with optional parameters"}
 $ oc adm must-gather \
-  --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v{{ HCOVersion }} \
+  --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v4.22.6 \
   -- <environment_variable_1> <environment_variable_2> <script_name>
 ```
 
@@ -180,7 +180,7 @@ $ oc adm must-gather \
 | Script | Compatible environment variable |
 | --- | --- |
 | `/usr/bin/gather` | \* `PROS=<number_of_processes>` |
-| `/usr/bin/gather --vms_details` | \* For a namespace: `NS=<namespace_name>` \* For a VM: `VM=<vm_name> NS=<namespace_name>` \* `PROS=<number_of_processes>` |
+| `/usr/bin/gather --vms_details` | \* For a namespace: `NS=<namespace_name>`<br>\* For a VM: `VM=<vm_name> NS=<namespace_name>`<br>\* `PROS=<number_of_processes>` |
 | `/usr/bin/gather --images` | \* `PROS=<number_of_processes>` |
 
 ## Generating a VM memory dump {#virt-generating-a-vm-memory-dump_virt-collecting-virt-data}
@@ -251,10 +251,14 @@ To run a self-service review, upload your cluster’s `must-gather` data to the 
 
 The self-service TSR provides a solid baseline for cluster health. If you need additional guidance or a more comprehensive review, contact your Red Hat account team to arrange an assisted review through a Technical Account Manager (TAM) or Red Hat consultant. An assisted review includes human analysis, deeper coverage, and access to checks that are updated more frequently than the self-service version.
 
+**Additional resources**
+{._additional-resources}
+
 - [Technical Supportability Review with AI tool](https://access.redhat.com/support/cases/#/analyze)
 - [Red Hat Technical Supportability Review with AI: Proactive AI-Driven Cluster Assessments for OpenShift Container Platform](https://access.redhat.com/solutions/7141255)
 
-## Additional resources {#additional-resources_virt-collecting-virt-data}
+**Additional resources**
+{._additional-resources}
 
 - [VM support overview](/openshift-docs-markdown/virt/support/virt-support-overview#virt-support-overview)
 - [How to provide log files to Red Hat Support (Red Hat Knowledgebase)](https://access.redhat.com/solutions/2112)

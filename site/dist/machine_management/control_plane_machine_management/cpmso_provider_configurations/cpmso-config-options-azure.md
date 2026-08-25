@@ -1,5 +1,5 @@
 ---
-title: Control plane configuration options for {{ azure_full }}
+title: Control plane configuration options for Microsoft Azure
 ---
 
 # Control plane configuration options for Microsoft Azure {#cpmso-config-options-azure}
@@ -137,9 +137,9 @@ metadata:
   name: cluster
   namespace: openshift-machine-api
 spec:
-## ...
+# ...
   template:
-## ...
+# ...
     machines_v1beta1_machine_openshift_io:
       failureDomains:
         azure:
@@ -150,7 +150,7 @@ spec:
         - zone: "3"
           subnet: <subnet_zone_3>
         platform: Azure
-## ...
+# ...
 ```
 
 where:
@@ -167,7 +167,8 @@ where:
 `spec.template.machines_v1beta1_machine_openshift_io.failureDomains.platform`
 :   Specifies the cloud provider platform name. Do not change this value.
 
-## Additional resources {#additional-resources_cpmso-config-options-azure}
+**Additional resources**
+{._additional-resources}
 
 - [Updating the control plane configuration](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-feat-config-update_cpmso-managing-machines)
 - [Configuring Microsoft Azure features for control plane machines](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso_provider_configurations/cpmso-supported-features-azure#cpmso-supported-features-azure)

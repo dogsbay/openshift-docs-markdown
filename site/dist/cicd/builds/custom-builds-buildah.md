@@ -117,7 +117,7 @@ You can define a `BuildConfig` object that uses the custom strategy in conjuncti
          from:
            kind: ImageStreamTag
            name: custom-builder-image:latest
-           namespace: <yourproject> # (1)
+           namespace: <yourproject> (1)
      output:
        to:
          kind: ImageStreamTag

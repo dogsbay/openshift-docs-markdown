@@ -49,7 +49,8 @@ This procedure explains how to disable Istio OpenShift Routing (IOR) in Red Hat
   1. Specify new routes in the same namespace as the ingress gateway `Service` object.
   2. Use the name of ingress gateway `Service` object that is the target.
 
-## Additional resources {#additional-resources_route-migration}
+**Additional resources**
+{._additional-resources}
 
 - [Creating an HTTP-based Route](/openshift-docs-markdown/networking/ingress_load_balancing/routes/creating-basic-routes#nw-creating-a-route_route-configuration)
 - [Understanding automatic routes](/openshift-docs-markdown/service_mesh/v2x/ossm-traffic-manage#ossm-auto-route_traffic-management)

@@ -131,9 +131,7 @@ To manage your cluster and deploy applications from the command line on macOS, i
 You can download the OpenShift CLI (`oc`) from the web OpenShift Container Platform console and install it to interact with OpenShift Container Platform clusters from a terminal on Linux, Windows, or macOS.
 
 > [!IMPORTANT]
-> If you installed an earlier version of `oc`, you cannot use it to complete all of the commands in OpenShift Container Platform 4.22.
->
-> Download and install the new version of `oc`.
+> If you installed an earlier version of `oc`, you cannot use it to complete all of the commands in OpenShift Container Platform 4.22. Download and install the new version of `oc`.
 
 #### Installing the OpenShift CLI on Linux using the web console {#cli-installing-cli-web-console-macos-linux_cli-developer-commands}
 
@@ -251,9 +249,7 @@ For Red Hat Enterprise Linux (RHEL), you can install the OpenShift CLI (`oc`) a
    ```terminal
    # subscription-manager list --available --matches '*OpenShift*'
    ```
-4. In the output for the previous command, find the pool ID for an OpenShift Container Platform
-
-   subscription and attach the subscription to the registered system:
+4. In the output for the previous command, find the pool ID for an OpenShift Container Platform subscription and attach the subscription to the registered system:
 
    ```terminal
    # subscription-manager attach --pool=<pool_id>
@@ -261,7 +257,7 @@ For Red Hat Enterprise Linux (RHEL), you can install the OpenShift CLI (`oc`) a
 5. Enable the repositories required by OpenShift Container Platform 4.22.
 
    ```terminal
-   # subscription-manager repos --enable="rhocp-{{ product_version }}-for-rhel-8-x86_64-rpms"
+   # subscription-manager repos --enable="rhocp-4.22-for-rhel-8-x86_64-rpms"
    ```
 6. Install the `openshift-clients` package:
 
@@ -376,27 +372,26 @@ You can log in to the OpenShift CLI (`oc`) with the help of a web browser to acc
    Optionally, you can specify the server URL and callback port. For example, `oc login <cluster_url> --web --callback-port 8280 localhost:8443`.
 2. The web browser opens automatically. If it does not, click the link in the command output. If you do not specify the OpenShift Container Platform server `oc` tries to open the web console of the cluster specified in the current `oc` configuration file. If no `oc` configuration exists, `oc` prompts interactively for the server URL.
 
-```terminal {title="Example output"}
-Opening login URL in the default browser: https://openshift.example.com
-Opening in existing browser session.
-```
+   ```terminal {title="Example output"}
+   Opening login URL in the default browser: https://openshift.example.com
+   Opening in existing browser session.
+   ```
+3. If more than one identity provider is available, select your choice from the options provided.
+4. Enter your username and password into the corresponding browser fields. After you are logged in, the browser displays the text `access token received successfully; please return to your terminal`.
+5. Check the CLI for a login confirmation.
 
-1. If more than one identity provider is available, select your choice from the options provided.
-2. Enter your username and password into the corresponding browser fields. After you are logged in, the browser displays the text `access token received successfully; please return to your terminal`.
-3. Check the CLI for a login confirmation.
+   ```terminal {title="Example output"}
+   Login successful.
 
-```terminal {title="Example output"}
-Login successful.
+   You don't have any projects. You can try to create a new project, by running
 
-You don't have any projects. You can try to create a new project, by running
+       oc new-project <projectname>
+   ```
 
-    oc new-project <projectname>
-```
+   > [!NOTE]
+   > The web console defaults to the profile used in the previous session. To switch between Administrator and Developer profiles, log out of the OpenShift Container Platform web console and clear the cache.
 
-> [!NOTE]
-> The web console defaults to the profile used in the previous session. To switch between Administrator and Developer profiles, log out of the OpenShift Container Platform web console and clear the cache.
-
-You can now create a project or issue other commands for managing your cluster.
+   You can now create a project or issue other commands for managing your cluster.
 
 ## Using the OpenShift CLI {#cli-using-cli_cli-developer-commands}
 

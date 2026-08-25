@@ -1,5 +1,5 @@
 ---
-title: UserIdentityMapping []
+title: UserIdentityMapping [user.openshift.io/v1]
 ---
 
 # UserIdentityMapping \[user.openshift.io/v1\] {#useridentitymapping-user-openshift-io-v1}
@@ -31,7 +31,7 @@ The following API endpoints are available:
 - `/apis/user.openshift.io/v1/useridentitymappings`
 
   - `POST`: create an UserIdentityMapping
-- `/apis/user.openshift.io/v1/useridentitymappings/{{ name }}`
+- `/apis/user.openshift.io/v1/useridentitymappings/{name}`
 
   - `DELETE`: delete an UserIdentityMapping
   - `GET`: read the specified UserIdentityMapping
@@ -72,7 +72,7 @@ Description
 | 202 - Accepted | [`UserIdentityMapping`](/openshift-docs-markdown/rest_api/user_and_group_apis/useridentitymapping-user-openshift-io-v1#useridentitymapping-user-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/user.openshift.io/v1/useridentitymappings/{{ name }} {#_apisuseropenshiftiov1useridentitymappings_name}
+### /apis/user.openshift.io/v1/useridentitymappings/{name} {#_apisuseropenshiftiov1useridentitymappings_name}
 
 **Global path parameters**
 

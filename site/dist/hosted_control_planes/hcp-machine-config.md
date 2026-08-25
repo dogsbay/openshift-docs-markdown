@@ -1,5 +1,5 @@
 ---
-title: Handling machine configuration for {{ hcp }}
+title: Handling machine configuration for hosted control planes
 ---
 
 # Handling machine configuration for hosted control planes {#hcp-machine-config}
@@ -288,7 +288,7 @@ You must configure and deploy the hosted cluster on AWS.
 
    ```terminal {title="Example output"}
    NAME                                         DISPLAY                   VERSION               REPLACES                                     PHASE
-   sriov-network-operator.{{ product_version }}.0-202211021237   SR-IOV Network Operator   {{ product_version }}.0-202211021237   sriov-network-operator.{{ product_version }}.0-202210290517   Succeeded
+   sriov-network-operator.4.22.0-202211021237   SR-IOV Network Operator   4.22.0-202211021237   sriov-network-operator.4.22.0-202210290517   Succeeded
    ```
 2. To verify that the SR-IOV pods are deployed, run the following command:
 
@@ -307,7 +307,7 @@ You can configure the Network Time Protocol (NTP) server for your hosted cluster
    ```yaml {title="Example 99-worker-chrony.bu configuration"}
    # ...
    variant: openshift
-   version: {{ product_version }}.0
+   version: 4.22.0
    metadata:
      name: 99-worker-chrony
      labels:
@@ -447,6 +447,7 @@ You can configure the Network Time Protocol (NTP) server for your hosted cluster
     > If you modify the `InfraEnv` CR, confirm that the `InfraEnv` CR has created a new Discovery Image by looking at the `createdTime` field. If you already booted hosts, boot them again with the latest Discovery Image.
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating machine configs with Butane](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-butane_installing-customizing)
 - [Creating a host inventory by using the command line interface](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html-single/clusters/index#create-host-inventory-cli)
@@ -494,6 +495,7 @@ To scale up and down the workloads in your hosted cluster, you can use the `Scal
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Scaling the NodePool object for a hosted cluster (bare-metal platforms)](/openshift-docs-markdown/hosted_control_planes/hcp-manage/hcp-manage-bm#hcp-bm-scale-np_hcp-manage-bm)
 - [Scaling the NodePool object for a hosted cluster (non-bare metal agent machines)](/openshift-docs-markdown/hosted_control_planes/hcp-manage/hcp-manage-non-bm#hcp-bm-scale-np_hcp-manage-non-bm)

@@ -1,5 +1,5 @@
 ---
-title: Operator []
+title: Operator [operators.coreos.com/v1]
 ---
 
 # Operator \[operators.coreos.com/v1\] {#operator-operators-coreos-com-v1}
@@ -136,7 +136,7 @@ Type
 | `apiVersion` | `string` | API version of the referent. |
 | `conditions` | `array` | Conditions represents the latest state of the component. |
 | `conditions[]` | `object` | Condition represent the latest available observations of an component’s state. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{{ name }}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -185,13 +185,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of Operator
   - `GET`: list objects of kind Operator
   - `POST`: create an Operator
-- `/apis/operators.coreos.com/v1/operators/{{ name }}`
+- `/apis/operators.coreos.com/v1/operators/{name}`
 
   - `DELETE`: delete an Operator
   - `GET`: read the specified Operator
   - `PATCH`: partially update the specified Operator
   - `PUT`: replace the specified Operator
-- `/apis/operators.coreos.com/v1/operators/{{ name }}/status`
+- `/apis/operators.coreos.com/v1/operators/{name}/status`
 
   - `GET`: read status of the specified Operator
   - `PATCH`: partially update status of the specified Operator
@@ -265,7 +265,7 @@ Description
 | 202 - Accepted | [`Operator`](/openshift-docs-markdown/rest_api/operatorhub_apis/operator-operators-coreos-com-v1#operator-operators-coreos-com-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operators.coreos.com/v1/operators/{{ name }} {#_apisoperatorscoreoscomv1operators_name}
+### /apis/operators.coreos.com/v1/operators/{name} {#_apisoperatorscoreoscomv1operators_name}
 
 **Global path parameters**
 
@@ -369,7 +369,7 @@ Description
 | 201 - Created | [`Operator`](/openshift-docs-markdown/rest_api/operatorhub_apis/operator-operators-coreos-com-v1#operator-operators-coreos-com-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operators.coreos.com/v1/operators/{{ name }}/status {#_apisoperatorscoreoscomv1operators_name_status}
+### /apis/operators.coreos.com/v1/operators/{name}/status {#_apisoperatorscoreoscomv1operators_name_status}
 
 **Global path parameters**
 

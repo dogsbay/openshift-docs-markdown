@@ -171,7 +171,7 @@ Review the following security changes to consider when transitioning from OpenSh
 
 #### Unauthenticated access to discovery endpoints {#_unauthenticated_access_to_discovery_endpoints}
 
-In OpenShift Container Platform 3.11, an unauthenticated user could access the discovery endpoints (for example, `/api/**` and `/apis/**`). For security reasons, unauthenticated access to the discovery endpoints is no longer allowed in OpenShift Container Platform 4.22. If you do need to allow unauthenticated access, you can configure the RBAC settings as necessary; however, be sure to consider the security implications as this can expose internal cluster components to the external network.
+In OpenShift Container Platform 3.11, an unauthenticated user could access the discovery endpoints (for example, `/api/*` and `/apis/*`). For security reasons, unauthenticated access to the discovery endpoints is no longer allowed in OpenShift Container Platform 4.22. If you do need to allow unauthenticated access, you can configure the RBAC settings as necessary; however, be sure to consider the security implications as this can expose internal cluster components to the external network.
 
 #### Identity providers {#_identity_providers}
 

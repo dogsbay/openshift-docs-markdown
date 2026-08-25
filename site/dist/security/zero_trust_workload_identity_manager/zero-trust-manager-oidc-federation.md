@@ -555,20 +555,20 @@ Install HashiCorp Vault to serve as an OpenID Connect (OIDC) provider. This esta
   $ curl -s $VAULT_ADDR/v1/sys/health | jq
   ```
 
-```JSON {title="Example output"}
-{
-  "initialized": true,
-  "sealed": true,
-  "standby": true,
-  "performance_standby": false,
-  "replication_performance_mode": "disabled",
-  "replication_dr_mode": "disabled",
-  "server_time_utc": 1663786574,
-  "version": "1.19.0",
-  "cluster_name": "vault-cluster-a1b2c3d4",
-  "cluster_id": "5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b"
-}
-```
+  ```JSON {title="Example output"}
+  {
+    "initialized": true,
+    "sealed": true,
+    "standby": true,
+    "performance_standby": false,
+    "replication_performance_mode": "disabled",
+    "replication_dr_mode": "disabled",
+    "server_time_utc": 1663786574,
+    "version": "1.19.0",
+    "cluster_name": "vault-cluster-a1b2c3d4",
+    "cluster_id": "5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b"
+  }
+  ```
 
 ### Initializing and unsealing Vault {#zero-trust-manager-initialize-vault-oidc_zero-trust-manager-oidc-federation}
 

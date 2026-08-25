@@ -1,8 +1,8 @@
 ---
-title: Configuring log levels for cert-manager and the {{ cert_manager_operator }}
+title: Configuring log levels for cert-manager and the cert-manager Operator for Red Hat OpenShift
 ---
 
-# Configuring log levels for cert-manager and the {{ cert_manager_operator }} {#cert-manager-log-levels}
+# Configuring log levels for cert-manager and the cert-manager Operator for Red Hat OpenShift {#cert-manager-log-levels}
 
 To troubleshoot issues with the cert-manager components and the cert-manager Operator for Red Hat OpenShift, you can configure the log level verbosity.
 
@@ -94,6 +94,7 @@ To troubleshoot issues and control log volume, set the log level for the cert-ma
    $ oc logs deploy/cert-manager-operator-controller-manager -n cert-manager-operator
    ```
 
-## Additional resources {#cert-manager-log-levels_additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Customizing cert-manager Operator API fields](/openshift-docs-markdown/security/cert_manager_operator/cert-manager-customizing-api-fields#cert-manager-customizing-api-fields)

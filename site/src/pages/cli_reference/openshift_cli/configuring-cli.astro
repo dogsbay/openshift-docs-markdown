@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"cli-configuring-cli","text":"Configuring th
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/cli_reference/openshift_cli/configuring-cli";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="cli-configuring-cli" class="group scroll-mt-20">Configuring the OpenShift CLI<a href="#cli-configuring-cli" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can customize your command-line environment after installing the OpenShift CLI (<code>oc</code>).</p>
+      <p class="_abstract">You can customize your command-line environment after installing the OpenShift CLI (<code>oc</code>).</p>
       <h2 id="cli-enabling-tab-completion" class="group scroll-mt-20">Enabling tab completion<a href="#cli-enabling-tab-completion" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p>You can enable tab completion for the Bash or Zsh shells.</p>
       <h3 id="cli-enabling-tab-completion_cli-configuring-cli" class="group scroll-mt-20">Enabling tab completion for Bash<a href="#cli-enabling-tab-completion_cli-configuring-cli" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>

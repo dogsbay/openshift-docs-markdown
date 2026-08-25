@@ -1,5 +1,5 @@
 ---
-title: ImageStreamTag []
+title: ImageStreamTag [image.openshift.io/v1]
 ---
 
 # ImageStreamTag \[image.openshift.io/v1\] {#imagestreamtag-image-openshift-io-v1}
@@ -28,7 +28,7 @@ Required
 | `conditions` | `array` | conditions is an array of conditions that apply to the image stream tag. |
 | `conditions[]` | `object` | TagEventCondition contains condition information for a tag event. |
 | `generation` | `integer` | generation is the current generation of the tagged image - if tag is provided and this value is not equal to the tag generation, a user has requested an import that has not completed, or conditions will be filled out indicating any error. |
-| `image` | `object` | Image is an immutable representation of a container image and its metadata at a point in time. Images are named by taking a hash of their contents (metadata and content) and any change in format, content, or metadata results in a new name. The images resource is primarily for use by cluster administrators and integrations like the cluster image registry - end users, instead, access images via the imagestreamtags or imagestreamimages resources. While image metadata is stored in the API, any integration that implements the container image registry API must provide its own storage for the raw manifest data, image config, and layer contents. Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
+| `image` | `object` | Image is an immutable representation of a container image and its metadata at a point in time. Images are named by taking a hash of their contents (metadata and content) and any change in format, content, or metadata results in a new name. The images resource is primarily for use by cluster administrators and integrations like the cluster image registry - end users, instead, access images via the imagestreamtags or imagestreamimages resources. While image metadata is stored in the API, any integration that implements the container image registry API must provide its own storage for the raw manifest data, image config, and layer contents.<br>Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `lookupPolicy` | `object` | ImageLookupPolicy describes how an image stream can be used to override the image references used by pods, builds, and other resources in a namespace. |
 | `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
@@ -97,7 +97,7 @@ Type
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `signatures` | `array` | signatures holds all signatures of the image. |
-| `signatures[]` | `object` | ImageSignature holds a signature of an image. It allows to verify image identity and possibly other claims as long as the signature is trusted. Based on this information it is possible to restrict runnable images to those matching cluster-wide policy. Mandatory fields should be parsed by clients doing image verification. The others are parsed from signature’s content by the server. They serve just an informative purpose. Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
+| `signatures[]` | `object` | ImageSignature holds a signature of an image. It allows to verify image identity and possibly other claims as long as the signature is trusted. Based on this information it is possible to restrict runnable images to those matching cluster-wide policy. Mandatory fields should be parsed by clients doing image verification. The others are parsed from signature’s content by the server. They serve just an informative purpose.<br>Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
 
 ### .image.dockerImageLayers {#_imagedockerimagelayers}
 
@@ -307,7 +307,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `annotations` | `object (string)` | Optional; if specified, annotations that are applied to images retrieved via ImageStreamTags. |
-| `from` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | Optional; if specified, a reference to another image that this tag should point to. Valid values are ImageStreamTag, ImageStreamImage, and DockerImage.  ImageStreamTag references can only reference a tag within this same ImageStream. |
+| `from` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | Optional; if specified, a reference to another image that this tag should point to. Valid values are ImageStreamTag, ImageStreamImage, and DockerImage. ImageStreamTag references can only reference a tag within this same ImageStream. |
 | `generation` | `integer` | generation is a counter that tracks mutations to the spec tag (user intent). When a tag reference is changed the generation is set to match the current stream generation (which is incremented every time spec is changed). Other processes in the system like the image importer observe that the generation of spec tag is newer than the generation recorded in the status and use that as a trigger to import the newest remote tag. To trigger a new import, clients may set this value to zero which will reset the generation to the latest stream generation. Legacy clients will send this value as nil which will be merged with the current tag generation. |
 | `importPolicy` | `object` | TagImportPolicy controls how images related to this tag will be imported. |
 | `name` | `string` | name of the tag |
@@ -354,11 +354,11 @@ The following API endpoints are available:
 - `/apis/image.openshift.io/v1/imagestreamtags`
 
   - `GET`: list objects of kind ImageStreamTag
-- `/apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreamtags`
+- `/apis/image.openshift.io/v1/namespaces/{namespace}/imagestreamtags`
 
   - `GET`: list objects of kind ImageStreamTag
   - `POST`: create an ImageStreamTag
-- `/apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreamtags/{{ name }}`
+- `/apis/image.openshift.io/v1/namespaces/{namespace}/imagestreamtags/{name}`
 
   - `DELETE`: delete an ImageStreamTag
   - `GET`: read the specified ImageStreamTag
@@ -384,7 +384,7 @@ Description
 | 200 - OK | [`ImageStreamTagList`](/openshift-docs-markdown/rest_api/objects/index#com-github-openshift-api-image-v1-ImageStreamTagList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreamtags {#_apisimageopenshiftiov1namespaces_namespace_imagestreamtags}
+### /apis/image.openshift.io/v1/namespaces/{namespace}/imagestreamtags {#_apisimageopenshiftiov1namespaces_namespace_imagestreamtags}
 
 HTTP method
 :   ```
@@ -435,7 +435,7 @@ Description
 | 202 - Accepted | [`ImageStreamTag`](/openshift-docs-markdown/rest_api/image_apis/imagestreamtag-image-openshift-io-v1#imagestreamtag-image-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreamtags/{{ name }} {#_apisimageopenshiftiov1namespaces_namespace_imagestreamtags_name}
+### /apis/image.openshift.io/v1/namespaces/{namespace}/imagestreamtags/{name} {#_apisimageopenshiftiov1namespaces_namespace_imagestreamtags_name}
 
 **Global path parameters**
 

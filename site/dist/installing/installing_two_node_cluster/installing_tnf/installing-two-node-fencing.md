@@ -35,7 +35,7 @@ Each cluster machine must meet the following minimum requirements:
 
 **Minimum resource requirements**
 
-| Machine | Operating System | CPU [^1]^ | RAM | Storage | Input/Output Per Second (IOPS) [^2]^ |
+| Machine | Operating System | CPU <sup>\[1\]</sup> | RAM | Storage | Input/Output Per Second (IOPS) <sup>\[1\]</sup> |
 | --- | --- | --- | --- | --- | --- |
 | Bootstrap | RHCOS | 4 | 16 GB | 120 GB | 300 |
 | Control plane | RHCOS | 4 | 16 GB | 120 GB | 300 |
@@ -62,7 +62,7 @@ DNS A/AAAA or CNAME records are used for name resolution and PTR records are use
 
 The following DNS records are required for a user-provisioned OpenShift Container Platform cluster and they must be in place before installation. In each record, `<cluster_name>` is the cluster name and `<base_domain>` is the base domain that you specify in the `install-config.yaml` file. A complete DNS record takes the form: `<component>.<cluster_name>.<base_domain>.`.
 
-***Required DNS records***
+**Required DNS records**
 
 <table>
 <thead>
@@ -74,34 +74,28 @@ The following DNS records are required for a user-provisioned OpenShift Containe
 </thead>
 <tbody>
 <tr>
-  <td>.2+a</td>
-  <td>Kubernetes API</td>
-  <td><code>api.<cluster_name>.<base_domain>.</code></td>
+  <td rowspan="2">Kubernetes API</td>
+  <td><code>api.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
+  <td>A DNS A/AAAA or CNAME record, and a DNS PTR record, to identify the API load balancer. These records must be resolvable by both clients external to the cluster and from all the nodes within the cluster.</td>
 </tr>
 <tr>
-  <td>A DNS A/AAAA or CNAME record, and a DNS PTR record, to identify the API load balancer. These records must be resolvable by both clients external to the cluster and from all the nodes within the cluster.</td>
-  <td><code>api-int.<cluster_name>.<base_domain>.</code></td>
-  <td>A DNS A/AAAA or CNAME record, and a DNS PTR record, to internally identify the API load balancer. These records must be resolvable from all the nodes within the cluster.<dl><dt>Important</dt><dd>The API server must be able to resolve the worker nodes by the hostnamesthat are recorded in Kubernetes. If the API server cannot resolve the nodenames, then proxied API calls can fail, and you cannot retrieve logs from pods.</dd></dl></td>
+  <td><code>api-int.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
+  <td>A DNS A/AAAA or CNAME record, and a DNS PTR record, to internally identify the API load balancer. These records must be resolvable from all the nodes within the cluster.<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>The API server must be able to resolve the worker nodes by the hostnames that are recorded in Kubernetes. If the API server cannot resolve the node names, then proxied API calls can fail, and you cannot retrieve logs from pods.</dd></dl></td>
 </tr>
 <tr>
   <td>Routes</td>
-  <td><code>*.apps.<cluster_name>.<base_domain>.</code></td>
-  <td>A wildcard DNS A/AAAA or CNAME record that refers to the application ingress load balancer. The application ingress load balancer targets the machines that run the Ingress Controller pods.ifeval::["installing-two-node-fencing" == "installing-two-node-fencing"]By default, the Ingress Controller pods run on compute nodes. In cluster topologies without dedicated compute nodes, such as two-node or three-node clusters, the control plane nodes also carry the worker label, so the Ingress pods are scheduled on the control plane nodes.ifeval::["installing-two-node-fencing" != "installing-two-node-fencing"]The Ingress Controller pods run on the compute machines by default.These records must be resolvable by both clients external to the cluster and from all the nodes within the cluster.<br><br>For example, <code>console-openshift-console.apps.<cluster_name>.<base_domain></code> is used as a wildcard route to the OpenShift Container Platform console.</td>
+  <td><code>*.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
+  <td>A wildcard DNS A/AAAA or CNAME record that refers to the application ingress load balancer. The application ingress load balancer targets the machines that run the Ingress Controller pods.  By default, the Ingress Controller pods run on compute nodes. In cluster topologies without dedicated compute nodes, such as two-node or three-node clusters, the control plane nodes also carry the worker label, so the Ingress pods are scheduled on the control plane nodes.   These records must be resolvable by both clients external to the cluster and from all the nodes within the cluster.<br><br>For example, <code>console-openshift-console.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;</code> is used as a wildcard route to the OpenShift Container Platform console.</td>
 </tr>
 <tr>
   <td>Bootstrap machine</td>
-  <td><code>bootstrap.<cluster_name>.<base_domain>.</code></td>
-  <td>A DNS A/AAAA or CNAME record, and a DNS PTR record, to identify the bootstrapmachine. These records must be resolvable by the nodes within the cluster.</td>
+  <td><code>bootstrap.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
+  <td>A DNS A/AAAA or CNAME record, and a DNS PTR record, to identify the bootstrap machine. These records must be resolvable by the nodes within the cluster.</td>
 </tr>
 <tr>
   <td>Control plane machines</td>
-  <td><code><control_plane><n>.<cluster_name>.<base_domain>.</code></td>
-  <td>DNS A/AAAA or CNAME records and DNS PTR records to identify each machinefor the control plane nodes. These records must be resolvable by the nodes within the cluster.<br><br>ifeval::["installing-two-node-fencing" != "installing-two-node-fencing"]</td>
-</tr>
-<tr>
-  <td>Compute machines</td>
-  <td><code><compute><n>.<cluster_name>.<base_domain>.</code></td>
-  <td>DNS A/AAAA or CNAME records and DNS PTR records to identify each machinefor the worker nodes. These records must be resolvable by the nodes within the cluster.</td>
+  <td><code>&lt;control_plane&gt;&lt;n&gt;.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
+  <td>DNS A/AAAA or CNAME records and DNS PTR records to identify each machine for the control plane nodes. These records must be resolvable by the nodes within the cluster.</td>
 </tr>
 </tbody>
 </table>
@@ -156,12 +150,6 @@ bootstrap.ocp4.example.com.	IN	A	192.168.1.96
 control-plane0.ocp4.example.com.	IN	A	192.168.1.97
 control-plane1.ocp4.example.com.	IN	A	192.168.1.98
 ;
-{%- if context != "installing-two-node-fencing" %}
-control-plane2.ocp4.example.com.	IN	A	192.168.1.99
-;
-compute0.ocp4.example.com.	IN	A	192.168.1.11
-compute1.ocp4.example.com.	IN	A	192.168.1.7
-{%- endif %}
 ;
 ;EOF
 ```
@@ -203,12 +191,6 @@ $TTL 1W
 97.1.168.192.in-addr.arpa.	IN	PTR	control-plane0.ocp4.example.com.
 98.1.168.192.in-addr.arpa.	IN	PTR	control-plane1.ocp4.example.com.
 ;
-{%- if context != "installing-two-node-fencing" %}
-99.1.168.192.in-addr.arpa.	IN	PTR	control-plane2.ocp4.example.com.
-;
-11.1.168.192.in-addr.arpa.	IN	PTR	compute0.ocp4.example.com.
-7.1.168.192.in-addr.arpa.	IN	PTR	compute1.ocp4.example.com.
-{%- endif %}
 ;
 ;EOF
 ```
@@ -259,7 +241,7 @@ A/AAAA records are used for name resolution and PTR records are used for reverse
 
 Installer-provisioned installation includes functionality that uses cluster membership information to generate A/AAAA records. This resolves the node names to their IP addresses. In each record, `<cluster_name>` is the cluster name and `<base_domain>` is the base domain that you specify in the `install-config.yaml` file. A complete DNS record takes the form: `<component>.<cluster_name>.<base_domain>.`.
 
-***Required DNS records***
+**Required DNS records**
 
 <table>
 <thead>
@@ -272,13 +254,13 @@ Installer-provisioned installation includes functionality that uses cluster memb
 <tbody>
 <tr>
   <td>Kubernetes API</td>
-  <td><code>api.<cluster_name>.<base_domain>.</code></td>
+  <td><code>api.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
   <td>An A/AAAA record and a PTR record identify the API load balancer. These records must be resolvable by both clients external to the cluster and from all the nodes within the cluster.</td>
 </tr>
 <tr>
   <td>Routes</td>
-  <td><code>*.apps.<cluster_name>.<base_domain>.</code></td>
-  <td>The wildcard A/AAAA record refers to the application ingress load balancer. The application ingress load balancer targets the nodes that run the Ingress Controller pods. The Ingress Controller pods run on the worker nodes by default. These records must be resolvable by both clients external to the cluster and from all the nodes within the cluster.<br><br>For example, <code>console-openshift-console.apps.<cluster_name>.<base_domain></code> is used as a wildcard route to the OpenShift Container Platform console.</td>
+  <td><code>*.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
+  <td>The wildcard A/AAAA record refers to the application ingress load balancer. The application ingress load balancer targets the nodes that run the Ingress Controller pods. The Ingress Controller pods run on the worker nodes by default. These records must be resolvable by both clients external to the cluster and from all the nodes within the cluster.<br><br>For example, <code>console-openshift-console.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;</code> is used as a wildcard route to the OpenShift Container Platform console.</td>
 </tr>
 </tbody>
 </table>
@@ -292,12 +274,9 @@ You must create a manifest object to modify the cluster’s network configuratio
 
 For instructions on creating this manifest, see "Creating a manifest file for a customized br-ex bridge".
 
-## Additional resources {#additional-resources_installing-two-node-fencing}
+**Additional resources**
+{._additional-resources}
 
 - [Installing RHCOS and starting the OpenShift Container Platform bootstrap process](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal-network-customizations#creating-machines-bare-metal_installing-bare-metal-network-customizations)
 - [Creating a manifest file for a customized br-ex bridge](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#creating-manifest-file-customized-br-ex-bridge_ipi-install-installation-workflow)
 - [Configuring and managing high availability clusters in RHEL](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/configuring_and_managing_high_availability_clusters/index)
-
-[^1]: 1
-
-[^2]: 1

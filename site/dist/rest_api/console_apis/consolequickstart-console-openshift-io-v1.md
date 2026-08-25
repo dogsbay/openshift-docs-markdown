@@ -1,5 +1,5 @@
 ---
-title: ConsoleQuickStart []
+title: ConsoleQuickStart [console.openshift.io/v1]
 ---
 
 # ConsoleQuickStart \[console.openshift.io/v1\] {#consolequickstart-console-openshift-io-v1}
@@ -81,15 +81,15 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `fieldSelector` | `object` | fieldSelector describes the limitation on access based on field.  It can only limit access, not broaden it. |
-| `group` | `string` | Group is the API Group of the Resource.  "\*" means all. |
-| `labelSelector` | `object` | labelSelector describes the limitation on access based on labels.  It can only limit access, not broaden it. |
+| `fieldSelector` | `object` | fieldSelector describes the limitation on access based on field. It can only limit access, not broaden it. |
+| `group` | `string` | Group is the API Group of the Resource. "\*" means all. |
+| `labelSelector` | `object` | labelSelector describes the limitation on access based on labels. It can only limit access, not broaden it. |
 | `name` | `string` | Name is the name of the resource being requested for a "get" or deleted for a "delete". "" (empty) means all. |
-| `namespace` | `string` | Namespace is the namespace of the action being requested.  Currently, there is no distinction between no namespace and all namespaces "" (empty) is defaulted for LocalSubjectAccessReviews "" (empty) is empty for cluster-scoped resources "" (empty) means "all" for namespace scoped resources from a SubjectAccessReview or SelfSubjectAccessReview |
-| `resource` | `string` | Resource is one of the existing resource types.  "\*" means all. |
-| `subresource` | `string` | Subresource is one of the existing resource types.  "" means none. |
-| `verb` | `string` | Verb is a kubernetes resource API verb, like: get, list, watch, create, update, delete, proxy.  "\*" means all. |
-| `version` | `string` | Version is the API Version of the Resource.  "\*" means all. |
+| `namespace` | `string` | Namespace is the namespace of the action being requested. Currently, there is no distinction between no namespace and all namespaces "" (empty) is defaulted for LocalSubjectAccessReviews "" (empty) is empty for cluster-scoped resources "" (empty) means "all" for namespace scoped resources from a SubjectAccessReview or SelfSubjectAccessReview |
+| `resource` | `string` | Resource is one of the existing resource types. "\*" means all. |
+| `subresource` | `string` | Subresource is one of the existing resource types. "" means none. |
+| `verb` | `string` | Verb is a kubernetes resource API verb, like: get, list, watch, create, update, delete, proxy. "\*" means all. |
+| `version` | `string` | Version is the API Version of the Resource. "\*" means all. |
 
 ### .spec.accessReviewResources\[\].fieldSelector {#_specaccessreviewresourcesfieldselector}
 
@@ -261,7 +261,7 @@ The following API endpoints are available:
   - `DELETE`: delete collection of ConsoleQuickStart
   - `GET`: list objects of kind ConsoleQuickStart
   - `POST`: create a ConsoleQuickStart
-- `/apis/console.openshift.io/v1/consolequickstarts/{{ name }}`
+- `/apis/console.openshift.io/v1/consolequickstarts/{name}`
 
   - `DELETE`: delete a ConsoleQuickStart
   - `GET`: read the specified ConsoleQuickStart
@@ -336,7 +336,7 @@ Description
 | 202 - Accepted | [`ConsoleQuickStart`](/openshift-docs-markdown/rest_api/console_apis/consolequickstart-console-openshift-io-v1#consolequickstart-console-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/console.openshift.io/v1/consolequickstarts/{{ name }} {#_apisconsoleopenshiftiov1consolequickstarts_name}
+### /apis/console.openshift.io/v1/consolequickstarts/{name} {#_apisconsoleopenshiftiov1consolequickstarts_name}
 
 **Global path parameters**
 

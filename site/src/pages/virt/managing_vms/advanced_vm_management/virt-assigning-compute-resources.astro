@@ -17,11 +17,12 @@ import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-assigning-compute-resources","text":"Assigning compute resources"},{"depth":2,"slug":"overcommitting_virt-assigning-compute-resources","text":"Overcommitting CPU resources"},{"depth":2,"slug":"virt-setting-cpu-allocation-ratio_virt-assigning-compute-resources","text":"Setting the CPU allocation ratio"},{"depth":2,"slug":"additional-resources_virt-assigning-compute-resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"virt-assigning-compute-resources","text":"Assigning compute resources"},{"depth":2,"slug":"overcommitting_virt-assigning-compute-resources","text":"Overcommitting CPU resources"},{"depth":2,"slug":"virt-setting-cpu-allocation-ratio_virt-assigning-compute-resources","text":"Setting the CPU allocation ratio"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-assigning-compute-resources";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -40,7 +41,7 @@ const pageCategory = ["virt","virt/managing_vms","virt/managing_vms/advanced_vm_
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Assigning compute resources {#virt-assigning-compute-resources}\n\nIn OpenShift Virtualization, compute resources assigned to virtual machines (VMs) are backed by either guaranteed CPUs or time-sliced CPU shares.\n\nGuaranteed CPUs, also known as CPU reservation, dedicate CPU cores or threads to a specific workload, which makes them unavailable to any other workload. Assigning guaranteed CPUs to a VM ensures that the VM will have sole access to a reserved physical CPU. Enable dedicated resources for VMs to use a guaranteed CPU.\n\nTime-sliced CPUs dedicate a slice of time on a shared physical CPU to each workload. You can specify the size of the slice during VM creation, or when the VM is offline. By default, each vCPU receives 100 milliseconds, or 1/10 of a second, of physical CPU time.\n\nThe type of CPU reservation depends on the instance type or VM configuration.\n\n## Overcommitting CPU resources {#overcommitting_virt-assigning-compute-resources}\n\nTime-slicing allows multiple virtual CPUs (vCPUs) to share a single physical CPU. This is known as *CPU overcommitment*. Guaranteed VMs can not be overcommitted.\n\nConfigure CPU overcommitment to prioritize VM density over performance when assigning CPUs to VMs. With a higher CPU over-commitment of vCPUs, more VMs fit onto a given node.\n\n## Setting the CPU allocation ratio {#virt-setting-cpu-allocation-ratio_virt-assigning-compute-resources}\n\nThe CPU Allocation Ratio specifies the degree of overcommitment by mapping vCPUs to time slices of physical CPUs.\n\nFor example, a mapping or ratio of 10:1 maps 10 virtual CPUs to 1 physical CPU by using time slices.\n\nTo change the default number of vCPUs mapped to each physical CPU, set the `vmiCPUAllocationRatio` value in the `HyperConverged` CR. The pod CPU request is calculated by multiplying the number of vCPUs by the reciprocal of the CPU allocation ratio. For example, if `vmiCPUAllocationRatio` is set to 10, OpenShift Virtualization will request 10 times fewer CPUs on the pod for that VM.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Open the `HyperConverged` CR in your default editor by running the following command:\n\n   ```terminal\n   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}\n   ```\n2. Set the `vmiCPUAllocationRatio`:\n\n   ```yaml\n   ...\n   spec:\n     resourceRequirements:\n       vmiCPUAllocationRatio: 1\n   # ...\n   ```\n\n   When `vmiCPUAllocationRatio` is set to `1`, the maximum amount of vCPUs are requested for the pod.\n\n## Additional resources {#additional-resources_virt-assigning-compute-resources}\n\n- [Enabling dedicated resources for virtual machines](/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-dedicated-resources-vm#virt-dedicated-resources-vm)\n- [Pod Quality of Service Classes](https://kubernetes.io/docs/concepts/workloads/pods/pod-qos/)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-assigning-compute-resources.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Assigning compute resources {#virt-assigning-compute-resources}\n\nIn OpenShift Virtualization, compute resources assigned to virtual machines (VMs) are backed by either guaranteed CPUs or time-sliced CPU shares.\n\nGuaranteed CPUs, also known as CPU reservation, dedicate CPU cores or threads to a specific workload, which makes them unavailable to any other workload. Assigning guaranteed CPUs to a VM ensures that the VM will have sole access to a reserved physical CPU. Enable dedicated resources for VMs to use a guaranteed CPU.\n\nTime-sliced CPUs dedicate a slice of time on a shared physical CPU to each workload. You can specify the size of the slice during VM creation, or when the VM is offline. By default, each vCPU receives 100 milliseconds, or 1/10 of a second, of physical CPU time.\n\nThe type of CPU reservation depends on the instance type or VM configuration.\n\n## Overcommitting CPU resources {#overcommitting_virt-assigning-compute-resources ._overcommitting}\n\nTime-slicing allows multiple virtual CPUs (vCPUs) to share a single physical CPU. This is known as *CPU overcommitment*. Guaranteed VMs can not be overcommitted.\n\nConfigure CPU overcommitment to prioritize VM density over performance when assigning CPUs to VMs. With a higher CPU over-commitment of vCPUs, more VMs fit onto a given node.\n\n## Setting the CPU allocation ratio {#virt-setting-cpu-allocation-ratio_virt-assigning-compute-resources}\n\nThe CPU Allocation Ratio specifies the degree of overcommitment by mapping vCPUs to time slices of physical CPUs.\n\nFor example, a mapping or ratio of 10:1 maps 10 virtual CPUs to 1 physical CPU by using time slices.\n\nTo change the default number of vCPUs mapped to each physical CPU, set the `vmiCPUAllocationRatio` value in the `HyperConverged` CR. The pod CPU request is calculated by multiplying the number of vCPUs by the reciprocal of the CPU allocation ratio. For example, if `vmiCPUAllocationRatio` is set to 10, OpenShift Virtualization will request 10 times fewer CPUs on the pod for that VM.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Open the `HyperConverged` CR in your default editor by running the following command:\n\n   ```terminal\n   $ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv\n   ```\n2. Set the `vmiCPUAllocationRatio`:\n\n   ```yaml\n   ...\n   spec:\n     resourceRequirements:\n       vmiCPUAllocationRatio: 1\n   # ...\n   ```\n\n   When `vmiCPUAllocationRatio` is set to `1`, the maximum amount of vCPUs are requested for the pod.\n\n**Additional resources**\n{._additional-resources}\n\n- [Enabling dedicated resources for virtual machines](/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-dedicated-resources-vm#virt-dedicated-resources-vm)\n- [Pod Quality of Service Classes](https://kubernetes.io/docs/concepts/workloads/pods/pod-qos/)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-assigning-compute-resources.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,11 +94,11 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-assigning-compute-resources" class="group scroll-mt-20">Assigning compute resources<a href="#virt-assigning-compute-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>In OpenShift Virtualization, compute resources assigned to virtual machines (VMs) are backed by either guaranteed CPUs or time-sliced CPU shares.</p>
+      <p class="_abstract">In OpenShift Virtualization, compute resources assigned to virtual machines (VMs) are backed by either guaranteed CPUs or time-sliced CPU shares.</p>
       <p>Guaranteed CPUs, also known as CPU reservation, dedicate CPU cores or threads to a specific workload, which makes them unavailable to any other workload. Assigning guaranteed CPUs to a VM ensures that the VM will have sole access to a reserved physical CPU. Enable dedicated resources for VMs to use a guaranteed CPU.</p>
       <p>Time-sliced CPUs dedicate a slice of time on a shared physical CPU to each workload. You can specify the size of the slice during VM creation, or when the VM is offline. By default, each vCPU receives 100 milliseconds, or 1/10 of a second, of physical CPU time.</p>
       <p>The type of CPU reservation depends on the instance type or VM configuration.</p>
-      <h2 id="overcommitting_virt-assigning-compute-resources" class="group scroll-mt-20">Overcommitting CPU resources<a href="#overcommitting_virt-assigning-compute-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <h2 id="overcommitting_virt-assigning-compute-resources" class="group scroll-mt-20 _overcommitting">Overcommitting CPU resources<a href="#overcommitting_virt-assigning-compute-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p>Time-slicing allows multiple virtual CPUs (vCPUs) to share a single physical CPU. This is known as <em>CPU overcommitment</em>. Guaranteed VMs can not be overcommitted.</p>
       <p>Configure CPU overcommitment to prioritize VM density over performance when assigning CPUs to VMs. With a higher CPU over-commitment of vCPUs, more VMs fit onto a given node.</p>
       <h2 id="virt-setting-cpu-allocation-ratio_virt-assigning-compute-resources" class="group scroll-mt-20">Setting the CPU allocation ratio<a href="#virt-setting-cpu-allocation-ratio_virt-assigning-compute-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
@@ -109,7 +111,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <ol>
       <li>
       Open the <code>HyperConverged</code> CR in your default editor by running the following command:
-      <CodeBlock code={"$ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}"} lang="terminal" />
+      <CodeBlock code={"$ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv"} lang="terminal" />
       </li>
       <li>
       Set the <code>vmiCPUAllocationRatio</code>:
@@ -117,11 +119,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p>When <code>vmiCPUAllocationRatio</code> is set to <code>1</code>, the maximum amount of vCPUs are requested for the pod.</p>
       </li>
       </ol>
-      <h2 id="additional-resources_virt-assigning-compute-resources" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-assigning-compute-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul>
       <li><a href="/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-dedicated-resources-vm#virt-dedicated-resources-vm">Enabling dedicated resources for virtual machines</a></li>
       <li><a href="https://kubernetes.io/docs/concepts/workloads/pods/pod-qos/">Pod Quality of Service Classes</a></li>
       </ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

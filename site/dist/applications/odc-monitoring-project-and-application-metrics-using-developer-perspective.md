@@ -38,7 +38,9 @@ After you create applications in your project and deploy them, you can use the *
    - Select an option from the **Refresh Interval** list to determine the time period after which the data is refreshed.
    - Hover your cursor over the graphs to see specific details for your pod.
    - Click **Inspect** located in the upper-right corner of every graph to see any particular graph details. The graph details appear in the **Metrics** tab.
-3. Optional: Use the **Metrics** tab to query for the required project metric. **Figure 1. Monitoring metrics**
+3. Optional: Use the **Metrics** tab to query for the required project metric.
+
+   **Figure 1. Monitoring metrics**
 
    ![odc_project_metrics](/openshift-docs-markdown/_assets/images/odc_project_metrics.png)
 
@@ -51,7 +53,9 @@ After you create applications in your project and deploy them, you can use the *
 
    - See the rules that trigger alerts for the applications in your project.
    - Identify the alerts firing in the project.
-   - Silence such alerts if required. **Figure 2. Monitoring alerts**
+   - Silence such alerts if required.
+
+   **Figure 2. Monitoring alerts**
 
    ![odc_project_alerts](/openshift-docs-markdown/_assets/images/odc_project_alerts.png)
 
@@ -60,8 +64,10 @@ After you create applications in your project and deploy them, you can use the *
    - Use the **Filter** list to filter the alerts by their **Alert State** and **Severity**.
    - Click on an alert to go to the details page for that alert. In the **Alerts Details** page, you can click **View Metrics** to see the metrics for the alert.
    - Use the **Notifications** toggle adjoining an alert rule to silence all the alerts for that rule, and then select the duration for which the alerts will be silenced from the **Silence for** list. You must have the permissions to edit alerts to see the **Notifications** toggle.
-   - Use the Options menu ![](kebab.png "Options menu") adjoining an alert rule to see the details of the alerting rule.
-5. Optional: Use the **Events** tab to see the events for your project. **Figure 3. Monitoring events**
+   - Use the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") adjoining an alert rule to see the details of the alerting rule.
+5. Optional: Use the **Events** tab to see the events for your project.
+
+   **Figure 3. Monitoring events**
 
    ![odc_project_events](/openshift-docs-markdown/_assets/images/odc_project_events.png)
 
@@ -85,7 +91,7 @@ To see the alerts for your workload:
    > [!NOTE]
    > Only critical and warning alerts in the **Firing** state are displayed in the **Topology** view. Alerts in the **Silenced**, **Pending** and **Not Firing** states are not displayed.
 
-   **Figure 1. Monitoring application metrics**
+   **Figure 4. Monitoring application metrics**
 
    ![odc_app_metrics](/openshift-docs-markdown/_assets/images/odc_app_metrics.png)
 
@@ -103,7 +109,7 @@ In the **Developer** perspective, the project dashboard shows the **Image Vulner
 
 Based on the severity level, you can prioritize vulnerabilities and fix them in an organized manner.
 
-**Figure 1. Viewing image vulnerabilities**
+**Figure 5. Viewing image vulnerabilities**
 
 ![odc_image_vulnerabilities](/openshift-docs-markdown/_assets/images/odc_image_vulnerabilities.png)
 
@@ -137,6 +143,7 @@ After you create applications in your project and deploy them, use the **Develop
       - **Base image** vulnerabilities display information from a Red Hat Security Advisory (RHSA).
       - **App dependency** vulnerabilities display information from the Snyk security application.
 
-## Additional resources {#additional-resources-odc-monitoring-project-and-application-metrics-using-developer-perspective}
+**Additional resources**
+{._additional-resources}
 
 - [About OpenShift Container Platform monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/about_monitoring/about-ocp-monitoring)

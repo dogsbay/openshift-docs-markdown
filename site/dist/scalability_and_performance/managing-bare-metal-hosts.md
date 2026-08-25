@@ -22,7 +22,7 @@ You can maintain the details of the bare metal hosts in your cluster from the Op
 
 1. From the web console, comlete the following steps:
 
-   1. Navigate to **Compute** -> **Bare Metal Hosts**.
+   1. Navigate to **Compute** → **Bare Metal Hosts**.
    2. Select a task from the **Actions** drop-down menu.
    3. Manage items such as baseboard management controller (BMC) details, boot MAC address for the host, enable power management, and so on. You can also review the details of the network interfaces and drives for the host.
 2. Move a bare-metal host into maintenance mode. When you move a host into maintenance mode, the scheduler moves all managed workloads off the corresponding bare-metal node. No new workloads are scheduled while in maintenance mode.
@@ -35,6 +35,7 @@ You can maintain the details of the bare metal hosts in your cluster from the Op
       > Powering off the host without first moving the daemon set and unmanaged static pods to another node can cause service disruption and loss of data.
 
 **Additional resources**
+{._additional-resources}
 
 - [Adding compute machines to bare metal](/openshift-docs-markdown/machine_management/user_infra/adding-bare-metal-compute-user-infra#adding-bare-metal-compute-user-infra)
 
@@ -49,14 +50,14 @@ You can add bare-metal hosts to the cluster by using the web console.
 
 **Procedure**
 
-1. In the web console, navigate to **Compute** -> **Bare Metal Hosts**.
-2. Select **Add Host** -> **New with Dialog**.
+1. In the web console, navigate to **Compute** → **Bare Metal Hosts**.
+2. Select **Add Host** → **New with Dialog**.
 3. Specify a unique name for the new bare-metal host.
 4. Set the **Boot MAC address**.
 5. Set the **Baseboard Management Console (BMC) Address**.
 6. Enter the user credentials for the baseboard management controller (BMC) of the host.
 7. Select to power on the host after creation, and select **Create**.
-8. Scale up the number of replicas to match the number of available bare metal hosts. Navigate to **Compute** -> **MachineSets**, and increase the number of machine replicas in the cluster by selecting **Edit Machine count** from the **Actions** drop-down menu.
+8. Scale up the number of replicas to match the number of available bare metal hosts. Navigate to **Compute** → **MachineSets**, and increase the number of machine replicas in the cluster by selecting **Edit Machine count** from the **Actions** drop-down menu.
 
    > [!NOTE]
    > You can also manage the number of bare-metal nodes by using the `oc scale` command and the appropriate bare-metal compute machine set.
@@ -73,8 +74,8 @@ You can add bare-metal hosts to the cluster in the web console by using a YAML f
 
 **Procedure**
 
-1. In the web console, navigate to **Compute** -> **Bare Metal Hosts**.
-2. Select **Add Host** -> **New from YAML**.
+1. In the web console, navigate to **Compute** → **Bare Metal Hosts**.
+2. Select **Add Host** → **New from YAML**.
 3. Copy and paste the below YAML, modifying the relevant fields with the details of your host:
 
    ```yaml
@@ -101,12 +102,13 @@ You can add bare-metal hosts to the cluster in the web console by using a YAML f
 :   Specifies whether to require TLS host validation between the cluster and the baseboard management controller (BMC). When this field is set to `true`, TLS host validation is disabled.
 
 1. Select **Create** to save the YAML and create the new bare-metal host.
-2. Scale up the number of replicas to match the number of available bare-metal hosts. Navigate to **Compute** -> **MachineSets**, and increase the number of machines in the cluster by selecting **Edit Machine count** from the **Actions** drop-down menu.
+2. Scale up the number of replicas to match the number of available bare-metal hosts. Navigate to **Compute** → **MachineSets**, and increase the number of machines in the cluster by selecting **Edit Machine count** from the **Actions** drop-down menu.
 
    > [!NOTE]
    > You can also manage the number of bare-metal nodes by using the `oc scale` command and the appropriate bare-metal compute machine set.
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding secrets](/openshift-docs-markdown/nodes/pods/nodes-pods-secrets#nodes-pods-secrets-about_nodes-pods-secrets)
 
@@ -172,6 +174,7 @@ Consider an example during provisioning when a bare-metal host reboot is trigger
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Expanding the cluster](/openshift-docs-markdown/installing/installing_bare_metal/bare-metal-expanding-the-cluster#bare-metal-expanding-the-cluster)
 - [MachineHealthChecks on bare metal](/openshift-docs-markdown/machine_management/deploying-machine-health-checks#machine-health-checks-bare-metal_deploying-machine-health-checks)
@@ -190,7 +193,7 @@ You can power off bare-metal cluster hosts in the web console. Before you power 
 
 1. Navigate to **Nodes** and select the node that you want to power off. Expand the **Actions** menu and select **Mark as unschedulable**.
 2. Manually delete or relocate running pods on the node by adjusting the pod deployments or scaling down workloads on the node to zero. Wait for the drain process to complete.
-3. Navigate to **Compute** -> **Bare Metal Hosts**.
+3. Navigate to **Compute** → **Bare Metal Hosts**.
 4. Expand the **Options menu** for the bare-metal host that you want to power off, and select **Power Off**.
 5. Select **Immediate power off**.
 

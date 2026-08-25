@@ -28,6 +28,7 @@ As an Operator author preparing an Operator for use alongside the updated CCO in
 > Your code should check for secrets that never appear and warn users to follow the fallback instructions you have provided. For more information, see the "Alternative method" subsection.
 
 **Additional resources**
+{._additional-resources}
 
 - [OLM-managed Operator support for authentication with AWS STS](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds-aws-olm_cco-short-term-creds)
 - [Installing from OperatorHub using the web console](/openshift-docs-markdown/operators/admin/olm-adding-operators-to-cluster#olm-installing-from-software-catalog-using-web-console_olm-adding-operators-to-a-cluster)

@@ -204,5 +204,6 @@ When you are using the GitOps Zero Touch Provisioning (ZTP) workflow, you do the
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing Butane](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-butane-install_installing-customizing)

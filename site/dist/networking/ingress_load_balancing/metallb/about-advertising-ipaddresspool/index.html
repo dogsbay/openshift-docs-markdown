@@ -1,8 +1,16 @@
-<!DOCTYPE html><html lang="en" data-astro-cid-vg5xjwtk><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>About advertising for the IP address pools | OpenShift Container Platform</title><meta name="description" content="You can configure MetalLB so that the IP address is advertised with layer 2 protocols, the BGP protocol, or both."><link rel="icon" href="/openshift-docs-markdown/favicon.ico"><link rel="canonical" href="https://dogsbay.github.io/openshift-docs-markdown/networking/ingress_load_balancing/metallb/about-advertising-ipaddresspool/"><link rel="alternate" type="text/markdown" href="/openshift-docs-markdown/networking/ingress_load_balancing/metallb/about-advertising-ipaddresspool.md"><link rel="alternate" type="text/plain" title="llms.txt" href="/openshift-docs-markdown/llms.txt"><link rel="describedby" type="text/plain" href="/openshift-docs-markdown/llms.txt"><meta property="og:type" content="article"><meta property="og:title" content="About advertising for the IP address pools"><meta property="og:description" content="You can configure MetalLB so that the IP address is advertised with layer 2 protocols, the BGP protocol, or both."><meta property="og:site_name" content="OpenShift Container Platform"><meta property="og:url" content="https://dogsbay.github.io/openshift-docs-markdown/networking/ingress_load_balancing/metallb/about-advertising-ipaddresspool/"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="About advertising for the IP address pools"><meta name="twitter:description" content="You can configure MetalLB so that the IP address is advertised with layer 2 protocols, the BGP protocol, or both."><script>
-      if (localStorage.getItem("theme") === "dark") {
-        document.documentElement.classList.add("dark");
-      }
-    </script><link rel="stylesheet" href="/openshift-docs-markdown/_astro/RightRailStack.BrFMoueR.css"></head><body class="bg-background text-foreground antialiased" data-astro-cid-vg5xjwtk><div class="group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-sidebar" data-component="sidebar-provider" style="--sidebar-width: 16rem; --sidebar-width-icon: 3rem;" data-astro-cid-vg5xjwtk="true"><div data-component="sidebar" data-collapsible="icon" data-side="left" data-variant="sidebar" data-default-open="true"><div class="group peer text-sidebar-foreground max-md:hidden" data-sidebar-desktop data-state="expanded" data-collapsible="" data-variant="sidebar" data-side="left"><div class="relative w-[var(--sidebar-width)] bg-transparent transition-[width] duration-200 ease-linear group-data-[collapsible=offcanvas]:w-0 group-data-[side=right]:rotate-180 group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)]"></div><div class="fixed inset-y-0 z-10 h-svh w-[var(--sidebar-width)] transition-[left,right,width] duration-200 ease-linear max-md:hidden md:flex group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)] group-data-[side=left]:border-r  data-[side=left]:left-0 data-[side=left]:group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)] " data-side="left" data-astro-cid-vg5xjwtk="true"><div class="flex size-full flex-col bg-sidebar " data-sidebar="sidebar-inner"><div class="flex flex-col gap-2 p-2" data-sidebar="header" data-astro-cid-vg5xjwtk="true"><ul class="flex w-full min-w-0 flex-col gap-0" data-sidebar="menu" data-astro-cid-vg5xjwtk="true"><li class="group/menu-item relative" data-sidebar="menu-item" data-astro-cid-vg5xjwtk="true"><a class="peer/menu-button group/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left outline-none ring-sidebar-ring transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active]:bg-sidebar-accent data-[active]:font-medium data-[active]:text-sidebar-accent-foreground [&amp;>span:last-child]:truncate [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 group-data-[collapsible=icon]:!size-8 h-12 text-sm group-data-[collapsible=icon]:!p-0" href="/openshift-docs-markdown" data-sidebar="menu-button" data-size="lg" data-astro-cid-vg5xjwtk="true"><div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground" data-astro-cid-vg5xjwtk><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg></div><div class="grid flex-1 text-left text-sm leading-tight" data-astro-cid-vg5xjwtk><span class="truncate font-semibold" data-astro-cid-vg5xjwtk>OpenShift Container Platform</span><span class="truncate text-xs text-sidebar-foreground/70" data-astro-cid-vg5xjwtk>Documentation</span></div></a></li></ul></div><div class="mx-2 w-auto bg-sidebar-border h-px shrink-0" role="separator" data-astro-cid-vg5xjwtk="true"></div><div class="flex min-h-0 flex-1 flex-col gap-0 overflow-auto group-data-[collapsible=icon]:overflow-hidden [&amp;::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" data-sidebar="content" data-astro-cid-vg5xjwtk="true"><div class="relative flex w-full min-w-0 flex-col p-2" data-sidebar="group" data-astro-cid-vg5xjwtk="true"><div class="w-full text-sm" data-sidebar="group-content" data-astro-cid-vg5xjwtk="true"><div id="docs-nav-root" data-nav-url="/openshift-docs-markdown/_dogsbay/nav.json" data-current-path="/openshift-docs-markdown/networking/ingress_load_balancing/metallb/about-advertising-ipaddresspool" data-base-path="/openshift-docs-markdown" data-version data-locale aria-busy="true" aria-label="Documentation navigation"><ul class="flex min-w-0 flex-col" data-sidebar="nav-tree" data-level="0"><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 50%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 67%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 84%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 66%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 83%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 65%;"></div></div></li></ul><noscript><p class="px-2 py-1.5 text-sm text-sidebar-foreground/70">JavaScript is required to render the sidebar. Use the<a href="/openshift-docs-markdown/sitemap.xml" class="underline">sitemap</a>to browse all pages.</p></noscript></div><script type="module" src="/openshift-docs-markdown/_astro/DocsNavClient.astro_astro_type_script_index_0_lang.Ia5x0gzz.js"></script></div></div></div><button class="absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] hover:after:bg-sidebar-border group-data-[side=left]:-right-4 group-data-[side=right]:left-0 sm:flex group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full hover:group-data-[collapsible=offcanvas]:bg-sidebar" data-part="rail" aria-label="Toggle Sidebar" tabindex="-1" title="Toggle Sidebar" type="button" data-astro-cid-vg5xjwtk="true"></button></div></div></div><div class="fixed inset-0 z-50 bg-black/80" data-sidebar-mobile-backdrop hidden></div><div class="fixed inset-y-0 z-50 flex h-svh w-[18rem] flex-col bg-sidebar p-0 text-sidebar-foreground left-0" data-sidebar-mobile data-state="closed" hidden></div></div><div class="relative flex w-full flex-1 flex-col bg-background md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2" data-astro-cid-vg5xjwtk="true"><header class="sticky top-0 z-40 flex h-12 shrink-0 items-center gap-2 border-b bg-background/95 px-4 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60" data-astro-cid-vg5xjwtk><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-sm hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring -ml-1" data-part="sidebar-trigger" type="button" data-astro-cid-vg5xjwtk="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M9 3v18"></path></svg><span class="sr-only">Toggle Sidebar</span></button><div class="shrink-0 bg-border w-[1px] self-stretch mr-2 h-4" role="separator" aria-orientation="vertical" data-orientation="vertical" data-astro-cid-vg5xjwtk="true"></div><span class="text-sm text-muted-foreground" data-page-title data-astro-cid-vg5xjwtk>About advertising for the IP address pools</span><div class="ml-auto flex items-center gap-2" data-astro-cid-vg5xjwtk><div class="flex items-center" data-component="page-actions" data-pagefind-ignore><div class="relative inline-block" data-component="dropdown-menu"><button class="justify-center inline-flex h-8 items-center gap-1 rounded-md border border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="trigger" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Copy or open page actions"><span>Copy or open</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="z-50 overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md min-w-[12rem]" data-part="content" data-side="bottom" data-align="end" role="menu" hidden><button type="button" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-action="copy-markdown" data-copy-text="# About advertising for the IP address pools {#about-advertise-for-ipaddress-pools}
+<!DOCTYPE html><html lang="en" data-astro-cid-vg5xjwtk><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>About advertising for the IP address pools | OpenShift Container Platform</title><meta name="description" content="You can configure MetalLB so that the IP address is advertised with layer 2 protocols, the BGP protocol, or both."><link rel="canonical" href="https://dogsbay.github.io/openshift-docs-markdown/networking/ingress_load_balancing/metallb/about-advertising-ipaddresspool/"><link rel="alternate" type="text/markdown" href="/openshift-docs-markdown/networking/ingress_load_balancing/metallb/about-advertising-ipaddresspool.md"><link rel="alternate" type="text/plain" title="llms.txt" href="/openshift-docs-markdown/llms.txt"><link rel="describedby" type="text/plain" href="/openshift-docs-markdown/llms.txt"><meta property="og:type" content="article"><meta property="og:title" content="About advertising for the IP address pools"><meta property="og:description" content="You can configure MetalLB so that the IP address is advertised with layer 2 protocols, the BGP protocol, or both."><meta property="og:site_name" content="OpenShift Container Platform"><meta property="og:url" content="https://dogsbay.github.io/openshift-docs-markdown/networking/ingress_load_balancing/metallb/about-advertising-ipaddresspool/"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","name":"About advertising for the IP address pools","headline":"About advertising for the IP address pools","description":"You can configure MetalLB so that the IP address is advertised with layer 2 protocols, the BGP protocol, or both.","url":"https://dogsbay.github.io/openshift-docs-markdown/networking/ingress_load_balancing/metallb/about-advertising-ipaddresspool/"}</script><meta name="twitter:card" content="summary"><meta name="twitter:title" content="About advertising for the IP address pools"><meta name="twitter:description" content="You can configure MetalLB so that the IP address is advertised with layer 2 protocols, the BGP protocol, or both."><script>
+      (function () {
+        var stored = null;
+        try {
+          stored = localStorage.getItem("theme");
+        } catch (e) {}
+        var dark =
+          stored === "dark" ||
+          (stored !== "light" &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches);
+        if (dark) document.documentElement.classList.add("dark");
+      })();
+    </script><link rel="stylesheet" href="/openshift-docs-markdown/_astro/site.nwB6sGJi.css"><link rel="stylesheet" href="/openshift-docs-markdown/_astro/RightRailStack.CyFG1Fhc.css"></head><body class="bg-background text-foreground antialiased" data-astro-cid-vg5xjwtk><div class="group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-sidebar" data-component="sidebar-provider" style="--sidebar-width: 16rem; --sidebar-width-icon: 3rem;" data-astro-cid-vg5xjwtk="true"><div data-component="sidebar" data-collapsible="icon" data-side="left" data-variant="sidebar" data-default-open="true"><div class="group peer text-sidebar-foreground max-md:hidden" data-sidebar-desktop data-state="expanded" data-collapsible="" data-variant="sidebar" data-side="left"><div class="relative w-[var(--sidebar-width)] bg-transparent transition-[width] duration-200 ease-linear group-data-[collapsible=offcanvas]:w-0 group-data-[side=right]:rotate-180 group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)]"></div><div class="fixed inset-y-0 z-10 h-svh w-[var(--sidebar-width)] transition-[left,right,width] duration-200 ease-linear max-md:hidden md:flex group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)] group-data-[side=left]:border-r  data-[side=left]:left-0 data-[side=left]:group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)] " data-side="left" data-astro-cid-vg5xjwtk="true"><div class="flex size-full flex-col bg-sidebar " data-sidebar="sidebar-inner"><div class="flex flex-col gap-2 p-2" data-sidebar="header" data-astro-cid-vg5xjwtk="true"><ul class="flex w-full min-w-0 flex-col gap-0" data-sidebar="menu" data-astro-cid-vg5xjwtk="true"><li class="group/menu-item relative" data-sidebar="menu-item" data-astro-cid-vg5xjwtk="true"><a class="peer/menu-button group/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left outline-none ring-sidebar-ring transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active]:bg-sidebar-accent data-[active]:font-medium data-[active]:text-sidebar-accent-foreground [&amp;>span:last-child]:truncate [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 group-data-[collapsible=icon]:!size-8 h-12 text-sm group-data-[collapsible=icon]:!p-0" href="/openshift-docs-markdown" data-sidebar="menu-button" data-size="lg" data-astro-cid-vg5xjwtk="true"><div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground" data-astro-cid-vg5xjwtk><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg></div><div class="grid flex-1 text-left text-sm leading-tight" data-astro-cid-vg5xjwtk><span class="truncate font-semibold" data-astro-cid-vg5xjwtk>OpenShift Container Platform</span><span class="truncate text-xs text-sidebar-foreground/70" data-astro-cid-vg5xjwtk>Documentation</span></div></a></li></ul></div><div class="mx-2 w-auto bg-sidebar-border h-px shrink-0" role="separator" data-astro-cid-vg5xjwtk="true"></div><div class="flex min-h-0 flex-1 flex-col gap-0 overflow-auto group-data-[collapsible=icon]:overflow-hidden [&amp;::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" data-sidebar="content" data-astro-cid-vg5xjwtk="true"><div class="relative flex w-full min-w-0 flex-col p-2" data-sidebar="group" data-astro-cid-vg5xjwtk="true"><div class="w-full text-sm" data-sidebar="group-content" data-astro-cid-vg5xjwtk="true"><div id="docs-nav-root" role="navigation" data-nav-url="/openshift-docs-markdown/_dogsbay/nav.json" data-current-path="/openshift-docs-markdown/networking/ingress_load_balancing/metallb/about-advertising-ipaddresspool" data-base-path="/openshift-docs-markdown" data-namespace data-version data-locale aria-busy="true" aria-label="Documentation navigation"><ul class="flex min-w-0 flex-col" data-sidebar="nav-tree" data-level="0"><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 50%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 67%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 84%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 66%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 83%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 65%;"></div></div></li></ul><noscript><p class="px-2 py-1.5 text-sm text-sidebar-foreground/70">JavaScript is required to render the sidebar. Use the<a href="/openshift-docs-markdown/sitemap-index.xml" class="underline">sitemap</a>to browse all pages.</p></noscript></div><script type="module" src="/openshift-docs-markdown/_astro/DocsNavClient.astro_astro_type_script_index_0_lang.CPxOEnVC.js"></script></div></div></div><button class="absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] hover:after:bg-sidebar-border group-data-[side=left]:-right-4 group-data-[side=right]:left-0 sm:flex group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full hover:group-data-[collapsible=offcanvas]:bg-sidebar" data-part="rail" aria-label="Toggle Sidebar" tabindex="-1" title="Toggle Sidebar" type="button" data-astro-cid-vg5xjwtk="true"></button></div></div></div><div class="fixed inset-0 z-50 bg-black/80" data-sidebar-mobile-backdrop hidden></div><div class="fixed inset-y-0 z-50 flex h-svh w-[18rem] flex-col bg-sidebar p-0 text-sidebar-foreground left-0" data-sidebar-mobile data-state="closed" hidden></div></div><div class="relative flex w-full flex-1 flex-col bg-background md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2" data-astro-cid-vg5xjwtk="true"><header class="sticky top-0 z-40 flex h-[var(--db-header-height)] shrink-0 items-center gap-2 border-b bg-background/95 px-4 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60" data-astro-cid-vg5xjwtk><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-sm hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring -ml-1" data-part="sidebar-trigger" type="button" data-astro-cid-vg5xjwtk="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M9 3v18"></path></svg><span class="sr-only">Toggle Sidebar</span></button><div class="shrink-0 bg-border w-[1px] self-stretch mr-2 h-4" role="separator" aria-orientation="vertical" data-orientation="vertical" data-astro-cid-vg5xjwtk="true"></div><span class="text-sm text-muted-foreground" data-page-title data-astro-cid-vg5xjwtk>About advertising for the IP address pools</span><div class="ml-auto flex items-center gap-2" data-astro-cid-vg5xjwtk><div class="flex items-center" data-component="page-actions" data-pagefind-ignore><div class="relative inline-block" data-component="dropdown-menu"><button class="justify-center inline-flex h-8 items-center gap-1 rounded-md border border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="trigger" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Copy or open page actions"><span>Copy or open</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="z-50 overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md min-w-[12rem]" data-part="content" data-side="bottom" data-align="end" role="menu" hidden><button type="button" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-action="copy-markdown" data-copy-text="# About advertising for the IP address pools {#about-advertise-for-ipaddress-pools}
 
 You can configure MetalLB so that the IP address is advertised with layer 2 protocols, the BGP protocol, or both.
 
@@ -18,7 +26,7 @@ To configure how the cluster announces IP addresses to external peers, define th
 
 The following table describes the parameters for the `BGPAdvertisements` CR:
 
-***BGPAdvertisements configuration***
+**BGPAdvertisements configuration**
 
 <table>
 <thead>
@@ -404,7 +412,7 @@ To configure how application services are announced over a Layer 2 network, defi
 
 The following table details parameters for the `l2Advertisements` CR:
 
-***L2 advertisements configuration***
+**L2 advertisements configuration**
 
 <table>
 <thead>
@@ -444,339 +452,331 @@ The following table details parameters for the `l2Advertisements` CR:
   <td><code>spec.nodeSelectors</code></td>
   <td><code>string</code></td>
   <td>Optional: <code>NodeSelectors</code> limits the nodes to announce as next hops for the load balancer IP. If empty, MetalLB announces all nodes as next hops.<br><br>
+<dl class=&quot;db-admonition db-admonition-important&quot;><dt>Important</dt><dd>Limiting the nodes to announce as next hops is a Technology Preview feature only. Technology Preview features are not supported with Red&amp;#160;Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process. For more information about the support scope of Red Hat Technology Preview features, see <a href=&quot;https://access.redhat.com/support/offerings/techpreview/&quot;>Technology Preview Features Support Scope</a>.</dd></dl></td>
+</tr>
+<tr>
+  <td><code>spec.interfaces</code></td>
+  <td><code>string</code></td>
+  <td>Optional: The list of <code>interfaces</code> to announce the load balancer IP address.</td>
+</tr>
+</tbody>
+</table>
 
-> [!IMPORTANT]
-> Limiting the nodes to announce as next hops is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
->
-> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
->
-> :::</td>
->
-> </tr>
-> <tr>
->   <td><code>spec.interfaces</code></td>
->   <td><code>string</code></td>
->   <td>Optional: The list of <code>interfaces</code> to announce the load balancer IP address.</td>
-> </tr>
-> </tbody>
-> </table>
->
->
-> ## Configuring MetalLB with an L2 advertisement {#nw-metallb-configure-with-L2-advertisement_about-advertising-ip-address-pool}
->
-> You can configure MetalLB so that the `IPAddressPool` is advertised with the L2 protocol.
->
-> **Prerequisites**
->
-> - Install the OpenShift CLI (`oc`).
-> - Log in as a user with `cluster-admin` privileges.
-> - Install the MetalLB Operator and start MetalLB.
->
-> **Procedure**
->
-> 1. Create an IP address pool.
->
->    1. Create a file, such as `ipaddresspool.yaml`, with content like the following example:
->
->       ```yaml
->       apiVersion: metallb.io/v1beta1
->       kind: IPAddressPool
->       metadata:
->         namespace: metallb-system
->         name: doc-example-l2
->       spec:
->         addresses:
->           - <ip_address_range>
->         autoAssign: false
->       ```
->
->       - `<ip_address_range>` specifies a range of IP addresses that are routable on your network, for example `4.4.4.0/24`.
->    2. Apply the configuration for the IP address pool:
->
->       ```terminal
->       $ oc apply -f ipaddresspool.yaml
->       ```
-> 2. Create an L2 advertisement.
->
->    1. Create a file, such as `l2advertisement.yaml`, with content like the following example:
->
->       ```yaml
->       apiVersion: metallb.io/v1beta1
->       kind: L2Advertisement
->       metadata:
->         name: l2advertisement
->         namespace: metallb-system
->       spec:
->         ipAddressPools:
->          - doc-example-l2
->       ```
->    2. Apply the configuration:
->
->       ```terminal
->       $ oc apply -f l2advertisement.yaml
->       ```
->
-> **Verification**
->
-> 1. Verify that the IP address pool is created:
->
->    ```terminal
->    $ oc get ipaddresspool -n metallb-system
->    ```
->
->    The following is example output:
->
->    ```terminal
->    NAME             AUTO ASSIGN   AVOID BUGGY IPS   ADDRESSES
->    doc-example-l2   false         false             [&quot;4.4.4.0/24&quot;]
->    ```
-> 2. Verify that the L2 advertisement is created:
->
->    ```terminal
->    $ oc get l2advertisement -n metallb-system
->    ```
->
->    The following is example output:
->
->    ```terminal
->    NAME              IPADDRESSPOOLS     IPADDRESSPOOL SELECTORS   INTERFACES
->    l2advertisement   [&quot;doc-example-l2&quot;]
->    ```
->
-> ## Configuring MetalLB with an L2 advertisement and labels {#nw-metallb-configure-with-L2-advertisement-label_about-advertising-ip-address-pool}
->
-> You can use the `ipAddressPoolSelectors` field in the `L2Advertisement` custom resource definition to associate the `IPAddressPool` with the advertisement based on the label assigned to the pool instead of the pool name. The example configures MetalLB to advertise the pool over Layer 2 by using `ipAddressPoolSelectors`.
->
-> **Prerequisites**
->
-> - Install the OpenShift CLI (`oc`).
-> - Log in as a user with `cluster-admin` privileges.
->
-> **Procedure**
->
-> 1. Create an IP address pool.
->
->    1. Create a file, such as `ipaddresspool.yaml`, with content like the following example:
->
->       ```yaml
->       apiVersion: metallb.io/v1beta1
->       kind: IPAddressPool
->       metadata:
->         namespace: metallb-system
->         name: doc-example-l2-label
->         labels:
->           zone: east
->       spec:
->         addresses:
->           - 172.31.249.87/32
->       # ...
->       ```
->    2. Apply the configuration for the IP address pool:
->
->       ```terminal
->       $ oc apply -f ipaddresspool.yaml
->       ```
-> 2. Create an L2 advertisement that advertises the IP address by using `ipAddressPoolSelectors`.
->
->    1. Create a file, such as `l2advertisement.yaml`, with content like the following example:
->
->       ```yaml
->       apiVersion: metallb.io/v1beta1
->       kind: L2Advertisement
->       metadata:
->         name: l2advertisement-label
->         namespace: metallb-system
->       spec:
->         ipAddressPoolSelectors:
->           - matchExpressions:
->               - key: zone
->                 operator: In
->                 values:
->                   - east
->       # ...
->       ```
->    2. Apply the configuration:
->
->       ```terminal
->       $ oc apply -f l2advertisement.yaml
->       ```
->
-> ## Apply different Layer 2 advertisement policies on a shared IP address pool {#nw-metallb-service-selectors-shared-pool-l2_about-advertising-ip-address-pool}
->
-> Use this procedure when many `L2Advertisement` resources reference the same `IPAddressPool` and each advertisement must apply different Layer 2 settings to a different group of `LoadBalancer` services. You match services with `spec.serviceSelectors` so each advertisement applies only where its selectors match.
->
-> **Prerequisites**
->
-> - You created the `IPAddressPool` that your advertisements reference (for example, `doc-example-l2-label`).
->
-> **Procedure**
->
-> 1. Create two `L2Advertisement` resources that reference the same `IPAddressPool` but use different `serviceSelectors` so that each advertisement applies Layer 2 settings to a different group of services.
->
->    The following example uses two `LoadBalancer` services that share one pool and use the labels `app: web` and `app: api`. It does not include a catch-all `L2Advertisement` with no `serviceSelectors`; for that behavior, see the description of `spec.serviceSelectors` in &quot;About the L2Advertisement custom resource&quot;. Each manifest lists `ipAddressPools` and `serviceSelectors`; add other fields such as `interfaces` or `nodeSelectors` when your deployment requires them.
->
->    > [!NOTE]
->    > The label keys and values you set under `spec.serviceSelectors` must match the labels on each `LoadBalancer` service that should use this advertisement, and you must use the same keys and values consistently across both advertisement manifests in this procedure (for example, `app: web` and `app: api`). This procedure shows those selectors in the manifests first; add matching labels on your services in the next step. For how `spec.serviceSelectors` interacts with the `metallb.io/allow-shared-ip` annotation, see &quot;About the L2Advertisement custom resource&quot;.
->
->    1. Create a file, such as `l2advertisement-web.yaml`, with content similar to the following example:
->
->       ```yaml
->       apiVersion: metallb.io/v1beta1
->       kind: L2Advertisement
->       metadata:
->         name: l2advertisement-web
->         namespace: metallb-system
->       spec:
->         ipAddressPools:
->         - doc-example-l2-label
->         serviceSelectors:
->         - matchLabels:
->             app: web
->       ```
->
->       where:
->
->       `doc-example-l2-label`
->       :   Specifies the name of the `IPAddressPool` that both Layer 2 advertisements share.
->
->       `serviceSelectors`
->       :   Specifies label selectors so MetalLB applies this advertisement only to `LoadBalancer` services whose labels include `app: web`.
->    2. Apply the configuration by running the following command:
->
->       ```terminal
->       $ oc apply -f l2advertisement-web.yaml
->       ```
->    3. Create a file, such as `l2advertisement-api.yaml`, with content similar to the following example:
->
->       ```yaml
->       apiVersion: metallb.io/v1beta1
->       kind: L2Advertisement
->       metadata:
->         name: l2advertisement-api
->         namespace: metallb-system
->       spec:
->         ipAddressPools:
->         - doc-example-l2-label
->         serviceSelectors:
->         - matchLabels:
->             app: api
->       ```
->
->       where:
->
->       `doc-example-l2-label`
->       :   Specifies the same shared `IPAddressPool` name as the first Layer 2 advertisement.
->
->       `serviceSelectors`
->       :   Specifies label selectors so MetalLB applies this advertisement only to `LoadBalancer` services whose labels include `app: api`.
->    4. Apply the configuration by running the following command:
->
->       ```terminal
->       $ oc apply -f l2advertisement-api.yaml
->       ```
->
->       A `LoadBalancer` service whose labels include `app: web` receives the Layer 2 settings from `l2advertisement-web`. A service whose labels include `app: api` receives the Layer 2 settings from `l2advertisement-api`. Each advertisement applies only to services that satisfy its `serviceSelectors`.
->
->       For the same pattern for BGP on a shared pool, see **Apply different BGP advertisement policies on a shared IP address pool**.
-> 2. Add labels to each `LoadBalancer` service that must match the advertisements.
->
->    1. Label the service that should match `app: web` by running the following command:
->
->       ```terminal
->       $ oc label service <service_web_name> app=web -n <project>
->       ```
->
->       where:
->
->       `<service_web_name>`
->       :   Specifies the name of the `LoadBalancer` service.
->
->       `<project>`
->       :   Specifies the namespace that contains the service.
->    2. Label the service that should match `app: api` by running the following command:
->
->       ```terminal
->       $ oc label service <service_api_name> app=api -n <project>
->       ```
->
->       where:
->
->       `<service_api_name>`
->       :   Specifies the name of the `LoadBalancer` service.
->
->       `<project>`
->       :   Specifies the namespace that contains the service.
->
-> ## Configuring MetalLB with an L2 advertisement for selected interfaces {#nw-metallb-configure-with-L2-advertisement-interface_about-advertising-ip-address-pool}
->
-> By default, the IP addresses from IP address pool that has been assigned to the service, is advertised from all the network interfaces. You can use the `interfaces` field in the `L2Advertisement` custom resource definition to restrict those network interfaces that advertise the IP address pool.
->
-> The example in the procedure shows how to configure MetalLB so that the IP address pool is advertised only from the network interfaces listed in the `interfaces` parameter of all nodes.
->
-> **Prerequisites**
->
-> - You have installed the OpenShift CLI (`oc`).
-> - You are logged in as a user with `cluster-admin` privileges.
->
-> **Procedure**
->
-> 1. Create an IP address pool.
->
->    1. Create a file, such as `ipaddresspool.yaml`, and enter the configuration details as shown in the following example:
->
->       ```yaml
->       apiVersion: metallb.io/v1beta1
->       kind: IPAddressPool
->       metadata:
->         namespace: metallb-system
->         name: doc-example-l2
->       spec:
->         addresses:
->           - 4.4.4.0/24
->         autoAssign: false
->       # ...
->       ```
->    2. Apply the configuration for the IP address pool as shown in the following example:
->
->       ```terminal
->       $ oc apply -f ipaddresspool.yaml
->       ```
-> 2. Create an L2 advertisement with the `interfaces` selector to advertise the IP address.
->
->    1. Create a YAML file, such as `l2advertisement.yaml`, and enter the configuration details as shown the following example:
->
->       ```yaml
->       apiVersion: metallb.io/v1beta1
->       kind: L2Advertisement
->       metadata:
->         name: l2advertisement
->         namespace: metallb-system
->       spec:
->         ipAddressPools:
->          - doc-example-l2
->          interfaces:
->          - interfaceA
->          - interfaceB
->       # ...
->       ```
->    2. Apply the configuration for the advertisement as shown in the following example:
->
->       ```terminal
->       $ oc apply -f l2advertisement.yaml
->       ```
->
->       > [!IMPORTANT]
->       > The interface selector does not affect how MetalLB chooses the node to announce a given IP by using L2. The chosen node does not announce the service if the node does not have the selected interface.
->
-> ## Configure MetalLB with secondary networks {#nw-metallb-configure-secondary-interface_about-advertising-ip-address-pool}
->
-> In environments with multiple network interfaces, you might need MetalLB to advertise load-balancer IP addresses on a secondary interface for network traffic segmentation. To route traffic using a secondary interface, you must do the following:
->
-> - Enable IP forwarding on the secondary interface so that the interface can forward packets to the pods.
-> - Enable local gateway mode at the cluster level so that traffic uses the host networking stack.
->
-> > [!NOTE]
-> > From OpenShift Container Platform 4.14, IP forwarding is disabled by default on cluster nodes for improved security. Clusters upgraded from 4.13 might already have IP forwarding enabled because existing node settings are preserved during upgrade.
+## Configuring MetalLB with an L2 advertisement {#nw-metallb-configure-with-L2-advertisement_about-advertising-ip-address-pool}
+
+You can configure MetalLB so that the `IPAddressPool` is advertised with the L2 protocol.
+
+**Prerequisites**
+
+- Install the OpenShift CLI (`oc`).
+- Log in as a user with `cluster-admin` privileges.
+- Install the MetalLB Operator and start MetalLB.
+
+**Procedure**
+
+1. Create an IP address pool.
+
+   1. Create a file, such as `ipaddresspool.yaml`, with content like the following example:
+
+      ```yaml
+      apiVersion: metallb.io/v1beta1
+      kind: IPAddressPool
+      metadata:
+        namespace: metallb-system
+        name: doc-example-l2
+      spec:
+        addresses:
+          - <ip_address_range>
+        autoAssign: false
+      ```
+
+      - `<ip_address_range>` specifies a range of IP addresses that are routable on your network, for example `4.4.4.0/24`.
+   2. Apply the configuration for the IP address pool:
+
+      ```terminal
+      $ oc apply -f ipaddresspool.yaml
+      ```
+2. Create an L2 advertisement.
+
+   1. Create a file, such as `l2advertisement.yaml`, with content like the following example:
+
+      ```yaml
+      apiVersion: metallb.io/v1beta1
+      kind: L2Advertisement
+      metadata:
+        name: l2advertisement
+        namespace: metallb-system
+      spec:
+        ipAddressPools:
+         - doc-example-l2
+      ```
+   2. Apply the configuration:
+
+      ```terminal
+      $ oc apply -f l2advertisement.yaml
+      ```
+
+**Verification**
+
+1. Verify that the IP address pool is created:
+
+   ```terminal
+   $ oc get ipaddresspool -n metallb-system
+   ```
+
+   The following is example output:
+
+   ```terminal
+   NAME             AUTO ASSIGN   AVOID BUGGY IPS   ADDRESSES
+   doc-example-l2   false         false             [&quot;4.4.4.0/24&quot;]
+   ```
+2. Verify that the L2 advertisement is created:
+
+   ```terminal
+   $ oc get l2advertisement -n metallb-system
+   ```
+
+   The following is example output:
+
+   ```terminal
+   NAME              IPADDRESSPOOLS     IPADDRESSPOOL SELECTORS   INTERFACES
+   l2advertisement   [&quot;doc-example-l2&quot;]
+   ```
+
+## Configuring MetalLB with an L2 advertisement and labels {#nw-metallb-configure-with-L2-advertisement-label_about-advertising-ip-address-pool}
+
+You can use the `ipAddressPoolSelectors` field in the `L2Advertisement` custom resource definition to associate the `IPAddressPool` with the advertisement based on the label assigned to the pool instead of the pool name. The example configures MetalLB to advertise the pool over Layer 2 by using `ipAddressPoolSelectors`.
+
+**Prerequisites**
+
+- Install the OpenShift CLI (`oc`).
+- Log in as a user with `cluster-admin` privileges.
+
+**Procedure**
+
+1. Create an IP address pool.
+
+   1. Create a file, such as `ipaddresspool.yaml`, with content like the following example:
+
+      ```yaml
+      apiVersion: metallb.io/v1beta1
+      kind: IPAddressPool
+      metadata:
+        namespace: metallb-system
+        name: doc-example-l2-label
+        labels:
+          zone: east
+      spec:
+        addresses:
+          - 172.31.249.87/32
+      # ...
+      ```
+   2. Apply the configuration for the IP address pool:
+
+      ```terminal
+      $ oc apply -f ipaddresspool.yaml
+      ```
+2. Create an L2 advertisement that advertises the IP address by using `ipAddressPoolSelectors`.
+
+   1. Create a file, such as `l2advertisement.yaml`, with content like the following example:
+
+      ```yaml
+      apiVersion: metallb.io/v1beta1
+      kind: L2Advertisement
+      metadata:
+        name: l2advertisement-label
+        namespace: metallb-system
+      spec:
+        ipAddressPoolSelectors:
+          - matchExpressions:
+              - key: zone
+                operator: In
+                values:
+                  - east
+      # ...
+      ```
+   2. Apply the configuration:
+
+      ```terminal
+      $ oc apply -f l2advertisement.yaml
+      ```
+
+## Apply different Layer 2 advertisement policies on a shared IP address pool {#nw-metallb-service-selectors-shared-pool-l2_about-advertising-ip-address-pool}
+
+Use this procedure when many `L2Advertisement` resources reference the same `IPAddressPool` and each advertisement must apply different Layer 2 settings to a different group of `LoadBalancer` services. You match services with `spec.serviceSelectors` so each advertisement applies only where its selectors match.
+
+**Prerequisites**
+
+- You created the `IPAddressPool` that your advertisements reference (for example, `doc-example-l2-label`).
+
+**Procedure**
+
+1. Create two `L2Advertisement` resources that reference the same `IPAddressPool` but use different `serviceSelectors` so that each advertisement applies Layer 2 settings to a different group of services.
+
+   The following example uses two `LoadBalancer` services that share one pool and use the labels `app: web` and `app: api`. It does not include a catch-all `L2Advertisement` with no `serviceSelectors`; for that behavior, see the description of `spec.serviceSelectors` in &quot;About the L2Advertisement custom resource&quot;. Each manifest lists `ipAddressPools` and `serviceSelectors`; add other fields such as `interfaces` or `nodeSelectors` when your deployment requires them.
+
+   > [!NOTE]
+   > The label keys and values you set under `spec.serviceSelectors` must match the labels on each `LoadBalancer` service that should use this advertisement, and you must use the same keys and values consistently across both advertisement manifests in this procedure (for example, `app: web` and `app: api`). This procedure shows those selectors in the manifests first; add matching labels on your services in the next step. For how `spec.serviceSelectors` interacts with the `metallb.io/allow-shared-ip` annotation, see &quot;About the L2Advertisement custom resource&quot;.
+
+   1. Create a file, such as `l2advertisement-web.yaml`, with content similar to the following example:
+
+      ```yaml
+      apiVersion: metallb.io/v1beta1
+      kind: L2Advertisement
+      metadata:
+        name: l2advertisement-web
+        namespace: metallb-system
+      spec:
+        ipAddressPools:
+        - doc-example-l2-label
+        serviceSelectors:
+        - matchLabels:
+            app: web
+      ```
+
+      where:
+
+      `doc-example-l2-label`
+      :   Specifies the name of the `IPAddressPool` that both Layer 2 advertisements share.
+
+      `serviceSelectors`
+      :   Specifies label selectors so MetalLB applies this advertisement only to `LoadBalancer` services whose labels include `app: web`.
+   2. Apply the configuration by running the following command:
+
+      ```terminal
+      $ oc apply -f l2advertisement-web.yaml
+      ```
+   3. Create a file, such as `l2advertisement-api.yaml`, with content similar to the following example:
+
+      ```yaml
+      apiVersion: metallb.io/v1beta1
+      kind: L2Advertisement
+      metadata:
+        name: l2advertisement-api
+        namespace: metallb-system
+      spec:
+        ipAddressPools:
+        - doc-example-l2-label
+        serviceSelectors:
+        - matchLabels:
+            app: api
+      ```
+
+      where:
+
+      `doc-example-l2-label`
+      :   Specifies the same shared `IPAddressPool` name as the first Layer 2 advertisement.
+
+      `serviceSelectors`
+      :   Specifies label selectors so MetalLB applies this advertisement only to `LoadBalancer` services whose labels include `app: api`.
+   4. Apply the configuration by running the following command:
+
+      ```terminal
+      $ oc apply -f l2advertisement-api.yaml
+      ```
+
+      A `LoadBalancer` service whose labels include `app: web` receives the Layer 2 settings from `l2advertisement-web`. A service whose labels include `app: api` receives the Layer 2 settings from `l2advertisement-api`. Each advertisement applies only to services that satisfy its `serviceSelectors`.
+
+      For the same pattern for BGP on a shared pool, see **Apply different BGP advertisement policies on a shared IP address pool**.
+2. Add labels to each `LoadBalancer` service that must match the advertisements.
+
+   1. Label the service that should match `app: web` by running the following command:
+
+      ```terminal
+      $ oc label service <service_web_name> app=web -n <project>
+      ```
+
+      where:
+
+      `<service_web_name>`
+      :   Specifies the name of the `LoadBalancer` service.
+
+      `<project>`
+      :   Specifies the namespace that contains the service.
+   2. Label the service that should match `app: api` by running the following command:
+
+      ```terminal
+      $ oc label service <service_api_name> app=api -n <project>
+      ```
+
+      where:
+
+      `<service_api_name>`
+      :   Specifies the name of the `LoadBalancer` service.
+
+      `<project>`
+      :   Specifies the namespace that contains the service.
+
+## Configuring MetalLB with an L2 advertisement for selected interfaces {#nw-metallb-configure-with-L2-advertisement-interface_about-advertising-ip-address-pool}
+
+By default, the IP addresses from IP address pool that has been assigned to the service, is advertised from all the network interfaces. You can use the `interfaces` field in the `L2Advertisement` custom resource definition to restrict those network interfaces that advertise the IP address pool.
+
+The example in the procedure shows how to configure MetalLB so that the IP address pool is advertised only from the network interfaces listed in the `interfaces` parameter of all nodes.
+
+**Prerequisites**
+
+- You have installed the OpenShift CLI (`oc`).
+- You are logged in as a user with `cluster-admin` privileges.
+
+**Procedure**
+
+1. Create an IP address pool.
+
+   1. Create a file, such as `ipaddresspool.yaml`, and enter the configuration details as shown in the following example:
+
+      ```yaml
+      apiVersion: metallb.io/v1beta1
+      kind: IPAddressPool
+      metadata:
+        namespace: metallb-system
+        name: doc-example-l2
+      spec:
+        addresses:
+          - 4.4.4.0/24
+        autoAssign: false
+      # ...
+      ```
+   2. Apply the configuration for the IP address pool as shown in the following example:
+
+      ```terminal
+      $ oc apply -f ipaddresspool.yaml
+      ```
+2. Create an L2 advertisement with the `interfaces` selector to advertise the IP address.
+
+   1. Create a YAML file, such as `l2advertisement.yaml`, and enter the configuration details as shown the following example:
+
+      ```yaml
+      apiVersion: metallb.io/v1beta1
+      kind: L2Advertisement
+      metadata:
+        name: l2advertisement
+        namespace: metallb-system
+      spec:
+        ipAddressPools:
+         - doc-example-l2
+         interfaces:
+         - interfaceA
+         - interfaceB
+      # ...
+      ```
+   2. Apply the configuration for the advertisement as shown in the following example:
+
+      ```terminal
+      $ oc apply -f l2advertisement.yaml
+      ```
+
+      > [!IMPORTANT]
+      > The interface selector does not affect how MetalLB chooses the node to announce a given IP by using L2. The chosen node does not announce the service if the node does not have the selected interface.
+
+## Configure MetalLB with secondary networks {#nw-metallb-configure-secondary-interface_about-advertising-ip-address-pool}
+
+In environments with multiple network interfaces, you might need MetalLB to advertise load-balancer IP addresses on a secondary interface for network traffic segmentation. To route traffic using a secondary interface, you must do the following:
+
+- Enable IP forwarding on the secondary interface so that the interface can forward packets to the pods.
+- Enable local gateway mode at the cluster level so that traffic uses the host networking stack.
+
+> [!NOTE]
+> From OpenShift Container Platform 4.14, IP forwarding is disabled by default on cluster nodes for improved security. Clusters upgraded from 4.13 might already have IP forwarding enabled because existing node settings are preserved during upgrade.
 
 **Prerequisites**
 
@@ -845,11 +845,12 @@ The following table details parameters for the `l2Advertisements` CR:
    net.ipv4.conf.eth1.forwarding = 1
    ```
 
-## Additional resources {#additional-resources_about-advertiseipaddress}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring a community alias](/openshift-docs-markdown/networking/ingress_load_balancing/metallb/metallb-configure-community-alias#metallb-configure-community-alias)
 - [Enable IP forwarding on specific interfaces](/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#nw-nmstate-enable-per-interface-ip-forwarding_k8s-nmstate-updating-node-network-config)
-"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-copy-label>Copy markdown</span></button><a href="https://dogsbay.github.io/openshift-docs-markdown/networking/ingress_load_balancing/metallb/about-advertising-ipaddresspool.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-action="open-markdown"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7"></path><path d="M10 14L21 3"></path><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"></path></svg><span>Open markdown</span></a><div class="-mx-1 my-1 h-px bg-muted" role="separator"></div><a href="https://claude.ai/new?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fnetworking%2Fingress_load_balancing%2Fmetallb%2Fabout-advertising-ipaddresspool.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="claude" target="_blank" rel="noopener noreferrer" aria-label="Open in Claude — opens in new tab"><span>Open in Claude</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://chatgpt.com/?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fnetworking%2Fingress_load_balancing%2Fmetallb%2Fabout-advertising-ipaddresspool.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="chatgpt" target="_blank" rel="noopener noreferrer" aria-label="Open in ChatGPT — opens in new tab"><span>Open in ChatGPT</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://www.perplexity.ai/search?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fnetworking%2Fingress_load_balancing%2Fmetallb%2Fabout-advertising-ipaddresspool.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="perplexity" target="_blank" rel="noopener noreferrer" aria-label="Open in Perplexity — opens in new tab"><span>Open in Perplexity</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://gemini.google.com/app?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fnetworking%2Fingress_load_balancing%2Fmetallb%2Fabout-advertising-ipaddresspool.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="gemini" target="_blank" rel="noopener noreferrer" aria-label="Open in Gemini — opens in new tab"><span>Open in Gemini</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a></div></div></div><script type="module" src="/openshift-docs-markdown/_astro/PageActions.astro_astro_type_script_index_0_lang.CVy3d9SA.js"></script><dialog data-search-dialog data-pagefind-url="/openshift-docs-markdown/pagefind/" data-nav-url="/openshift-docs-markdown/_dogsbay/nav.json" data-taxonomy-display class="fixed left-1/2 top-[10vh] z-50 w-[calc(100vw-2rem)] max-w-4xl -translate-x-1/2 rounded-xl border border-border bg-popover p-0 text-popover-foreground shadow-2xl backdrop:bg-black/40 backdrop:backdrop-blur-sm"><form method="dialog" class="flex flex-col"><div class="flex items-center gap-2 border-b border-border px-4"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-muted-foreground" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><input type="search" data-search-input placeholder="Search docs..." autocomplete="off" spellcheck="false" class="flex h-12 w-full rounded-md bg-transparent text-sm outline-none placeholder:text-muted-foreground" aria-label="Search documentation"><kbd class="rounded border border-border px-1.5 py-0.5 font-mono text-xs text-muted-foreground">Esc</kbd></div><div data-search-body class="flex max-h-[60vh]"><aside data-search-facets class="hidden w-56 shrink-0 overflow-y-auto border-r border-border p-3 text-sm" aria-label="Filter results"></aside><div data-search-results class="flex-1 overflow-y-auto p-2 text-sm" aria-live="polite"><div data-search-empty class="px-3 py-8 text-center text-muted-foreground">Start typing to search...</div></div></div></form></dialog><button type="button" data-search-trigger class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" aria-label="Open search"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><span class="hidden sm:inline">Search</span><kbd class="hidden rounded border border-border px-1.5 py-0.5 font-mono text-[10px] sm:inline">⌘K</kbd></button><script type="module" src="/openshift-docs-markdown/_astro/SearchDialog.astro_astro_type_script_index_0_lang.DMuy_a6u.js"></script><button class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background text-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-component="theme-toggle" type="button" aria-label="Toggle dark mode" data-astro-cid-vg5xjwtk="true"><svg class="dark:hidden h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"></path></svg><svg class="hidden dark:block h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"></path></svg></button><script type="module">function e(){document.querySelectorAll(`[data-component='theme-toggle']`).forEach(e=>{e.addEventListener(`click`,()=>{let e=document.documentElement.classList.toggle(`dark`);localStorage.setItem(`theme`,e?`dark`:`light`)})})}e(),document.addEventListener(`astro:after-swap`,e);</script></div></header><div class="flex min-w-0" data-astro-cid-vg5xjwtk><main class="min-w-0 flex-1 px-6 py-8 lg:px-12" data-pagefind-body data-astro-cid-vg5xjwtk><div hidden data-pagefind-filter="category:networking" data-astro-cid-vg5xjwtk></div><div hidden data-pagefind-filter="category:networking/ingress_load_balancing" data-astro-cid-vg5xjwtk></div><div hidden data-pagefind-filter="category:networking/ingress_load_balancing/metallb" data-astro-cid-vg5xjwtk></div><div class="mx-auto max-w-3xl" data-astro-cid-vg5xjwtk><details class="dba-toc-top not-prose mb-6 rounded-md border" data-toc-top data-astro-cid-vg5xjwtk><summary class="cursor-pointer list-none px-3 py-2 text-sm font-medium text-muted-foreground" data-astro-cid-vg5xjwtk>On this page</summary><div class="border-t px-3 py-2" data-astro-cid-vg5xjwtk><nav class="text-sm" aria-label="Table of contents"><ul class="mt-2 space-y-1"><li><a href="#nw-metallb-bgpadvertisement-cr_about-advertising-ip-address-pool" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="nw-metallb-bgpadvertisement-cr_about-advertising-ip-address-pool">About the BGPAdvertisement custom resource</a></li><li><a href="#nw-metallb-configure-BGP-advertisement-basic-use-case_about-advertising-ip-address-pool" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="nw-metallb-configure-BGP-advertisement-basic-use-case_about-advertising-ip-address-pool">Configure MetalLB with a BGP advertisement and a basic use case</a></li><li><a href="#nw-metallb-advertise-a-basic-address-pool-configuration-bgp_about-advertising-ip-address-pool" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="nw-metallb-advertise-a-basic-address-pool-configuration-bgp_about-advertising-ip-address-pool">Advertising a basic address pool configuration with BGP</a></li><li><a href="#nw-metallb-configure-BGP-advertisement-advanced-use-case_about-advertising-ip-address-pool" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="nw-metallb-configure-BGP-advertisement-advanced-use-case_about-advertising-ip-address-pool">Configuring MetalLB with a BGP advertisement and an advanced use case</a></li><li><a href="#nw-metallb-advertise-an-advanced-address-pool-configuration-bgp_about-advertising-ip-address-pool" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="nw-metallb-advertise-an-advanced-address-pool-configuration-bgp_about-advertising-ip-address-pool">Advertising an advanced address pool configuration with BGP</a></li><li><a href="#nw-metallb-service-selectors-shared-pool-bgp_about-advertising-ip-address-pool" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="nw-metallb-service-selectors-shared-pool-bgp_about-advertising-ip-address-pool">Apply different BGP advertisement policies on a shared IP address pool</a></li><li><a href="#nw-metallb-advertise-ip-pools-to-node-subset_about-advertising-ip-address-pool" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="nw-metallb-advertise-ip-pools-to-node-subset_about-advertising-ip-address-pool">Advertising an IP address pool from a subset of nodes</a></li><li><a href="#nw-metallb-l2padvertisement-cr_about-advertising-ip-address-pool" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="nw-metallb-l2padvertisement-cr_about-advertising-ip-address-pool">About the L2Advertisement custom resource</a></li><li><a href="#additional-resources_about-advertiseipaddress" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="additional-resources_about-advertiseipaddress">Additional resources</a></li></ul></nav></div></details><article class="docs-prose"><h1 id="about-advertise-for-ipaddress-pools" class="group scroll-mt-20">About advertising for the IP address pools<a href="#about-advertise-for-ipaddress-pools" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1><p>You can configure MetalLB so that the IP address is advertised with layer 2 protocols, the BGP protocol, or both.</p><p>With layer 2, MetalLB provides a fault-tolerant external IP address. With BGP, MetalLB provides fault-tolerance for the external IP address and load balancing.</p><p>MetalLB supports advertising by using Layer 2 and BGP for the same set of IP addresses.</p><p>MetalLB provides the flexibility to assign address pools to specific BGP peers, effectively limiting advertising to a subset of nodes on the network. This allows for more complex configurations, such as facilitating the isolation of nodes or the segmentation of the network.</p><h2 id="nw-metallb-bgpadvertisement-cr_about-advertising-ip-address-pool" class="group scroll-mt-20">About the BGPAdvertisement custom resource<a href="#nw-metallb-bgpadvertisement-cr_about-advertising-ip-address-pool" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">To configure how the cluster announces IP addresses to external peers, define the properties of the <code>BGPAdvertisement</code> custom resource (CR). Specifying these parameters ensures that MetalLB correctly manages routing advertisements for your application services within the network.</p><p>The following table describes the parameters for the <code>BGPAdvertisements</code> CR:</p><p><em></em><em><strong>BGPAdvertisements configuration</strong></em><em></em></p><table>
+"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-copy-label>Copy markdown</span></button><a href="https://dogsbay.github.io/openshift-docs-markdown/networking/ingress_load_balancing/metallb/about-advertising-ipaddresspool.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-action="open-markdown"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7"></path><path d="M10 14L21 3"></path><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"></path></svg><span>Open markdown</span></a><div class="-mx-1 my-1 h-px bg-muted" role="separator"></div><a href="https://claude.ai/new?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fnetworking%2Fingress_load_balancing%2Fmetallb%2Fabout-advertising-ipaddresspool.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="claude" target="_blank" rel="noopener noreferrer" aria-label="Open in Claude — opens in new tab"><span>Open in Claude</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://chatgpt.com/?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fnetworking%2Fingress_load_balancing%2Fmetallb%2Fabout-advertising-ipaddresspool.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="chatgpt" target="_blank" rel="noopener noreferrer" aria-label="Open in ChatGPT — opens in new tab"><span>Open in ChatGPT</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://www.perplexity.ai/search?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fnetworking%2Fingress_load_balancing%2Fmetallb%2Fabout-advertising-ipaddresspool.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="perplexity" target="_blank" rel="noopener noreferrer" aria-label="Open in Perplexity — opens in new tab"><span>Open in Perplexity</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://gemini.google.com/app?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fnetworking%2Fingress_load_balancing%2Fmetallb%2Fabout-advertising-ipaddresspool.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="gemini" target="_blank" rel="noopener noreferrer" aria-label="Open in Gemini — opens in new tab"><span>Open in Gemini</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a></div></div></div><script type="module" src="/openshift-docs-markdown/_astro/PageActions.astro_astro_type_script_index_0_lang.CVy3d9SA.js"></script><dialog data-search-dialog data-pagefind-url="/openshift-docs-markdown/pagefind/" data-nav-url="/openshift-docs-markdown/_dogsbay/nav.json" data-taxonomy-display data-scope-product data-scope-version class="fixed left-1/2 top-[10vh] z-50 w-[calc(100vw-2rem)] max-w-4xl -translate-x-1/2 rounded-xl border border-border bg-popover p-0 text-popover-foreground shadow-2xl backdrop:bg-black/40 backdrop:backdrop-blur-sm"><form method="dialog" class="flex flex-col"><div class="flex items-center gap-2 border-b border-border px-4"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-muted-foreground" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><input type="search" data-search-input placeholder="Search docs..." autocomplete="off" spellcheck="false" class="flex h-12 w-full rounded-md bg-transparent text-sm outline-none placeholder:text-muted-foreground" aria-label="Search documentation"><kbd class="rounded border border-border px-1.5 py-0.5 font-mono text-xs text-muted-foreground">Esc</kbd></div><div data-search-body class="flex max-h-[60vh]"><aside data-search-facets class="hidden w-56 shrink-0 overflow-y-auto border-r border-border p-3 text-sm" aria-label="Filter results"></aside><div data-search-results class="flex-1 overflow-y-auto p-2 text-sm" aria-live="polite"><div data-search-empty class="px-3 py-8 text-center text-muted-foreground">Start typing to search...</div></div></div></form></dialog><button type="button" data-search-trigger class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" aria-label="Open search"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><span class="hidden sm:inline">Search</span><kbd class="hidden rounded border border-border px-1.5 py-0.5 font-mono text-[10px] sm:inline">⌘K</kbd></button><script type="module" src="/openshift-docs-markdown/_astro/SearchDialog.astro_astro_type_script_index_0_lang.gNyNyjwZ.js"></script><button class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background text-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-component="theme-toggle" type="button" aria-label="Toggle dark mode" data-astro-cid-vg5xjwtk="true"><svg class="dark:hidden h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"></path></svg><svg class="hidden dark:block h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"></path></svg></button><script type="module">function e(){document.querySelectorAll(`[data-component='theme-toggle']`).forEach(e=>{e.addEventListener(`click`,()=>{let e=document.documentElement.classList.toggle(`dark`);localStorage.setItem(`theme`,e?`dark`:`light`)})})}e(),document.addEventListener(`astro:after-swap`,e);</script></div></header><div class="flex min-w-0" data-astro-cid-vg5xjwtk><main class="min-w-0 flex-1 px-6 py-8 lg:px-12" data-pagefind-body data-astro-cid-vg5xjwtk><div hidden data-pagefind-filter="category:networking" data-astro-cid-vg5xjwtk></div><div hidden data-pagefind-filter="category:networking/ingress_load_balancing" data-astro-cid-vg5xjwtk></div><div hidden data-pagefind-filter="category:networking/ingress_load_balancing/metallb" data-astro-cid-vg5xjwtk></div><div class="mx-auto max-w-3xl" data-astro-cid-vg5xjwtk><details class="dba-toc-top not-prose mb-6 rounded-md border" data-toc-top data-astro-cid-vg5xjwtk><summary class="cursor-pointer list-none px-3 py-2 text-sm font-medium text-muted-foreground" data-astro-cid-vg5xjwtk>On this page</summary><div class="border-t px-3 py-2" data-astro-cid-vg5xjwtk><nav class="text-sm" aria-label="Table of contents"><ul class="mt-2 space-y-1"><li><a href="#nw-metallb-bgpadvertisement-cr_about-advertising-ip-address-pool" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="nw-metallb-bgpadvertisement-cr_about-advertising-ip-address-pool">About the BGPAdvertisement custom resource</a></li><li><a href="#nw-metallb-configure-BGP-advertisement-basic-use-case_about-advertising-ip-address-pool" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="nw-metallb-configure-BGP-advertisement-basic-use-case_about-advertising-ip-address-pool">Configure MetalLB with a BGP advertisement and a basic use case</a></li><li><a href="#nw-metallb-advertise-a-basic-address-pool-configuration-bgp_about-advertising-ip-address-pool" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="nw-metallb-advertise-a-basic-address-pool-configuration-bgp_about-advertising-ip-address-pool">Advertising a basic address pool configuration with BGP</a></li><li><a href="#nw-metallb-configure-BGP-advertisement-advanced-use-case_about-advertising-ip-address-pool" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="nw-metallb-configure-BGP-advertisement-advanced-use-case_about-advertising-ip-address-pool">Configuring MetalLB with a BGP advertisement and an advanced use case</a></li><li><a href="#nw-metallb-advertise-an-advanced-address-pool-configuration-bgp_about-advertising-ip-address-pool" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="nw-metallb-advertise-an-advanced-address-pool-configuration-bgp_about-advertising-ip-address-pool">Advertising an advanced address pool configuration with BGP</a></li><li><a href="#nw-metallb-service-selectors-shared-pool-bgp_about-advertising-ip-address-pool" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="nw-metallb-service-selectors-shared-pool-bgp_about-advertising-ip-address-pool">Apply different BGP advertisement policies on a shared IP address pool</a></li><li><a href="#nw-metallb-advertise-ip-pools-to-node-subset_about-advertising-ip-address-pool" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="nw-metallb-advertise-ip-pools-to-node-subset_about-advertising-ip-address-pool">Advertising an IP address pool from a subset of nodes</a></li><li><a href="#nw-metallb-l2padvertisement-cr_about-advertising-ip-address-pool" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="nw-metallb-l2padvertisement-cr_about-advertising-ip-address-pool">About the L2Advertisement custom resource</a></li><li><a href="#nw-metallb-configure-with-L2-advertisement_about-advertising-ip-address-pool" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="nw-metallb-configure-with-L2-advertisement_about-advertising-ip-address-pool">Configuring MetalLB with an L2 advertisement</a></li><li><a href="#nw-metallb-configure-with-L2-advertisement-label_about-advertising-ip-address-pool" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="nw-metallb-configure-with-L2-advertisement-label_about-advertising-ip-address-pool">Configuring MetalLB with an L2 advertisement and labels</a></li><li><a href="#nw-metallb-service-selectors-shared-pool-l2_about-advertising-ip-address-pool" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="nw-metallb-service-selectors-shared-pool-l2_about-advertising-ip-address-pool">Apply different Layer 2 advertisement policies on a shared IP address pool</a></li><li><a href="#nw-metallb-configure-with-L2-advertisement-interface_about-advertising-ip-address-pool" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="nw-metallb-configure-with-L2-advertisement-interface_about-advertising-ip-address-pool">Configuring MetalLB with an L2 advertisement for selected interfaces</a></li><li><a href="#nw-metallb-configure-secondary-interface_about-advertising-ip-address-pool" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="nw-metallb-configure-secondary-interface_about-advertising-ip-address-pool">Configure MetalLB with secondary networks</a></li></ul></nav></div></details><article class="docs-prose"><h1 id="about-advertise-for-ipaddress-pools" class="group scroll-mt-20">About advertising for the IP address pools<a href="#about-advertise-for-ipaddress-pools" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1><p class="_abstract">You can configure MetalLB so that the IP address is advertised with layer 2 protocols, the BGP protocol, or both.</p><p>With layer 2, MetalLB provides a fault-tolerant external IP address. With BGP, MetalLB provides fault-tolerance for the external IP address and load balancing.</p><p>MetalLB supports advertising by using Layer 2 and BGP for the same set of IP addresses.</p><p>MetalLB provides the flexibility to assign address pools to specific BGP peers, effectively limiting advertising to a subset of nodes on the network. This allows for more complex configurations, such as facilitating the isolation of nodes or the segmentation of the network.</p><h2 id="nw-metallb-bgpadvertisement-cr_about-advertising-ip-address-pool" class="group scroll-mt-20">About the BGPAdvertisement custom resource<a href="#nw-metallb-bgpadvertisement-cr_about-advertising-ip-address-pool" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">To configure how the cluster announces IP addresses to external peers, define the properties of the <code>BGPAdvertisement</code> custom resource (CR). Specifying these parameters ensures that MetalLB correctly manages routing advertisements for your application services within the network.</p><p>The following table describes the parameters for the <code>BGPAdvertisements</code> CR:</p><p><strong>BGPAdvertisements configuration</strong></p><table>
 <thead>
 <tr>
   <th>Parameter</th>
@@ -1107,7 +1108,7 @@ spec:
 <span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      kubernetes.io/hostname</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">NodeA</span></span>
 <span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">  - </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">matchLabels</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
 <span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      kubernetes.io/hostname</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">NodeB</span></span>
-<span class="line"><span style="--shiki-light:#6E7781;--shiki-dark:#8B949E"># ...</span></span></code></pre></div></div></li></ol><h2 id="nw-metallb-l2padvertisement-cr_about-advertising-ip-address-pool" class="group scroll-mt-20">About the L2Advertisement custom resource<a href="#nw-metallb-l2padvertisement-cr_about-advertising-ip-address-pool" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">To configure how application services are announced over a Layer 2 network, define the properties in the <code>L2Advertisement</code> custom resource (CR). Establishing these parameters ensures that MetalLB correctly manages routing for your load-balancer IP addresses within the local network infrastructure.</p><p>The following table details parameters for the <code>l2Advertisements</code> CR:</p><p><em></em><em><strong>L2 advertisements configuration</strong></em><em></em></p><table>
+<span class="line"><span style="--shiki-light:#6E7781;--shiki-dark:#8B949E"># ...</span></span></code></pre></div></div></li></ol><h2 id="nw-metallb-l2padvertisement-cr_about-advertising-ip-address-pool" class="group scroll-mt-20">About the L2Advertisement custom resource<a href="#nw-metallb-l2padvertisement-cr_about-advertising-ip-address-pool" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">To configure how application services are announced over a Layer 2 network, define the properties in the <code>L2Advertisement</code> custom resource (CR). Establishing these parameters ensures that MetalLB correctly manages routing for your load-balancer IP addresses within the local network infrastructure.</p><p>The following table details parameters for the <code>l2Advertisements</code> CR:</p><p><strong>L2 advertisements configuration</strong></p><table>
 <thead>
 <tr>
   <th>Parameter</th>
@@ -1145,7 +1146,8 @@ spec:
   <td><code>spec.nodeSelectors</code></td>
   <td><code>string</code></td>
   <td>Optional: <code>NodeSelectors</code> limits the nodes to announce as next hops for the load balancer IP. If empty, MetalLB announces all nodes as next hops.<br><br>
-<div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-info/50 bg-info/5 text-foreground [&amp;>svg]:text-info my-4" data-variant="info" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Important</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>Limiting the nodes to announce as next hops is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p><p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p><p>:::</td></p></tr>
+<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>Limiting the nodes to announce as next hops is a Technology Preview feature only. Technology Preview features are not supported with Red&#160;Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process. For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl></td>
+</tr>
 <tr>
   <td><code>spec.interfaces</code></td>
   <td><code>string</code></td>
@@ -1311,7 +1313,7 @@ spec:
 <span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">   interfaces</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
 <span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">   - </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">interfaceA</span></span>
 <span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">   - </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">interfaceB</span></span>
-<span class="line"><span style="--shiki-light:#6E7781;--shiki-dark:#8B949E"># ...</span></span></code></pre></div></div></li><li>Apply the configuration for the advertisement as shown in the following example:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ oc apply -f l2advertisement.yaml" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> oc</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> apply</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> -f</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> l2advertisement.yaml</span></span></code></pre></div></div><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-info/50 bg-info/5 text-foreground [&amp;>svg]:text-info my-4" data-variant="info" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Important</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>The interface selector does not affect how MetalLB chooses the node to announce a given IP by using L2. The chosen node does not announce the service if the node does not have the selected interface.</p></div></div></li></ol></li></ol><h2 id="nw-metallb-configure-secondary-interface_about-advertising-ip-address-pool" class="group scroll-mt-20">Configure MetalLB with secondary networks<a href="#nw-metallb-configure-secondary-interface_about-advertising-ip-address-pool" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">In environments with multiple network interfaces, you might need MetalLB to advertise load-balancer IP addresses on a secondary interface for network traffic segmentation. To route traffic using a secondary interface, you must do the following:</p><ul><li>Enable IP forwarding on the secondary interface so that the interface can forward packets to the pods.</li><li>Enable local gateway mode at the cluster level so that traffic uses the host networking stack.</li></ul><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>From OpenShift Container Platform 4.14, IP forwarding is disabled by default on cluster nodes for improved security. Clusters upgraded from 4.13 might already have IP forwarding enabled because existing node settings are preserved during upgrade.</p></div></div></div></div><p><strong>Prerequisites</strong></p><ul><li>You installed and configured MetalLB.</li><li>You identified the secondary network interface on each node.</li><li>You installed the Kubernetes NMState Operator.</li><li>You have access to the cluster as a user with the <code>cluster-admin</code> role.</li><li>You have installed the OpenShift CLI (<code>oc</code>).</li></ul><p><strong>Procedure</strong></p><ol><li>Enable local gateway mode by patching the Cluster Network Operator to set <code>routingViaHost</code> to <code>true</code>:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ oc patch network.operator cluster -p '{&quot;spec&quot;:{&quot;defaultNetwork&quot;:{&quot;ovnKubernetesConfig&quot;:{&quot;gatewayConfig&quot;: {&quot;routingViaHost&quot;: true} }}}}' --type=merge" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> oc</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> patch</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> network.operator</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> cluster</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> -p</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> '{"spec":{"defaultNetwork":{"ovnKubernetesConfig":{"gatewayConfig": {"routingViaHost": true} }}}}'</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> --type=merge</span></span></code></pre></div></div><p>This setting routes traffic through the host networking stack, which is required for MetalLB to use secondary interfaces.</p></li><li>Create a <code>NodeNetworkConfigurationPolicy</code> manifest to enable IP forwarding on the secondary interface, such as <code>eth1</code>:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">yaml</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="apiVersion: nmstate.io/v1
+<span class="line"><span style="--shiki-light:#6E7781;--shiki-dark:#8B949E"># ...</span></span></code></pre></div></div></li><li>Apply the configuration for the advertisement as shown in the following example:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ oc apply -f l2advertisement.yaml" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> oc</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> apply</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> -f</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> l2advertisement.yaml</span></span></code></pre></div></div><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-info/50 bg-info/5 text-foreground [&amp;>svg]:text-info my-4" data-variant="info" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Important</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>The interface selector does not affect how MetalLB chooses the node to announce a given IP by using L2. The chosen node does not announce the service if the node does not have the selected interface.</p></div></div></li></ol></li></ol><h2 id="nw-metallb-configure-secondary-interface_about-advertising-ip-address-pool" class="group scroll-mt-20">Configure MetalLB with secondary networks<a href="#nw-metallb-configure-secondary-interface_about-advertising-ip-address-pool" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">In environments with multiple network interfaces, you might need MetalLB to advertise load-balancer IP addresses on a secondary interface for network traffic segmentation. To route traffic using a secondary interface, you must do the following:</p><ul><li>Enable IP forwarding on the secondary interface so that the interface can forward packets to the pods.</li><li>Enable local gateway mode at the cluster level so that traffic uses the host networking stack.</li></ul><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>From OpenShift Container Platform 4.14, IP forwarding is disabled by default on cluster nodes for improved security. Clusters upgraded from 4.13 might already have IP forwarding enabled because existing node settings are preserved during upgrade.</p></div></div><p><strong>Prerequisites</strong></p><ul><li>You installed and configured MetalLB.</li><li>You identified the secondary network interface on each node.</li><li>You installed the Kubernetes NMState Operator.</li><li>You have access to the cluster as a user with the <code>cluster-admin</code> role.</li><li>You have installed the OpenShift CLI (<code>oc</code>).</li></ul><p><strong>Procedure</strong></p><ol><li>Enable local gateway mode by patching the Cluster Network Operator to set <code>routingViaHost</code> to <code>true</code>:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ oc patch network.operator cluster -p '{&quot;spec&quot;:{&quot;defaultNetwork&quot;:{&quot;ovnKubernetesConfig&quot;:{&quot;gatewayConfig&quot;: {&quot;routingViaHost&quot;: true} }}}}' --type=merge" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> oc</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> patch</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> network.operator</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> cluster</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> -p</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> '{"spec":{"defaultNetwork":{"ovnKubernetesConfig":{"gatewayConfig": {"routingViaHost": true} }}}}'</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> --type=merge</span></span></code></pre></div></div><p>This setting routes traffic through the host networking stack, which is required for MetalLB to use secondary interfaces.</p></li><li>Create a <code>NodeNetworkConfigurationPolicy</code> manifest to enable IP forwarding on the secondary interface, such as <code>eth1</code>:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">yaml</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="apiVersion: nmstate.io/v1
 kind: NodeNetworkConfigurationPolicy
 metadata:
   name: enable-forwarding-eth1
@@ -1341,4 +1343,4 @@ spec:
 <span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        enabled</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">true</span></span>
 <span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        forwarding</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">true</span></span></code></pre></div></div><ul><li><code>interfaces.name</code> defines the name of the secondary interface on which to enable IP forwarding.</li><li><code>ipv4.forwarding</code> enables IPv4 forwarding on the interface.</li></ul></li><li>Apply the policy by running the following command:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ oc apply -f enable-forwarding-eth1.yaml" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> oc</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> apply</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> -f</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> enable-forwarding-eth1.yaml</span></span></code></pre></div></div></li></ol><p><strong>Verification</strong></p><ol><li>Verify that the policy was applied by running the following command:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ oc get nncp" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> oc</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> get</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> nncp</span></span></code></pre></div></div><div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">Example output</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="NAME                      STATUS      REASON
 enable-forwarding-eth1    Available   SuccessfullyConfigured" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">NAME</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">                      STATUS</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">      REASON</span></span>
-<span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">enable-forwarding-eth1</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">    Available</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">   SuccessfullyConfigured</span></span></code></pre></div></div></li><li>Verify that IP forwarding is enabled on a node by running the following command, replacing <code>&lt;node_name&gt;</code> with the name of the node:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ oc debug node/<node_name> -- chroot /host sysctl net.ipv4.conf.eth1.forwarding" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> oc</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> debug</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> node/</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72">&#x3C;</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">node_nam</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">e</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72">></span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> --</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> chroot</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> /host</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> sysctl</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> net.ipv4.conf.eth1.forwarding</span></span></code></pre></div></div><div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">Example output</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="net.ipv4.conf.eth1.forwarding = 1" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">net.ipv4.conf.eth1.forwarding</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> =</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> 1</span></span></code></pre></div></div></li></ol><h2 id="additional-resources_about-advertiseipaddress" class="group scroll-mt-20">Additional resources<a href="#additional-resources_about-advertiseipaddress" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><ul><li><a href="/openshift-docs-markdown/networking/ingress_load_balancing/metallb/metallb-configure-community-alias#metallb-configure-community-alias">Configuring a community alias</a></li><li><a href="/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#nw-nmstate-enable-per-interface-ip-forwarding_k8s-nmstate-updating-node-network-config">Enable IP forwarding on specific interfaces</a></li></ul></article><footer class="mt-12 border-t pt-6"><nav class="flex items-center justify-between gap-4" aria-label="Page navigation"><a href="/openshift-docs-markdown/networking/ingress_load_balancing/metallb/metallb-configure-address-pools" class="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" rel="prev"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg><div class="text-left"><div class="text-xs text-muted-foreground">Previous</div><div>Configuring MetalLB address pools</div></div></a><a href="/openshift-docs-markdown/networking/ingress_load_balancing/metallb/metallb-configure-bgp-peers" class="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" rel="next"><div class="text-right"><div class="text-xs text-muted-foreground">Next</div><div>Configuring MetalLB BGP peers</div></div><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></a></nav><div class="mt-6 flex flex-wrap items-center justify-between gap-2 border-t pt-4 text-xs text-muted-foreground"><span></span><a href="/openshift-docs-markdown/llms.txt" class="hover:text-foreground" data-llms-link aria-label="View this site as llms.txt for LLMs">View as llms.txt</a></div></footer></div></main><aside class="dba-right-rail sticky top-12 hidden h-[calc(100vh-3rem)] w-80 shrink-0 overflow-y-auto border-l p-4 lg:block xl:w-96" data-right-rail data-astro-cid-vg5xjwtk></aside></div></div></div></body></html><script type="module" src="/openshift-docs-markdown/_astro/DocsLayout.astro_astro_type_script_index_0_lang.BNhrzmBU.js"></script>
+<span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">enable-forwarding-eth1</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">    Available</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">   SuccessfullyConfigured</span></span></code></pre></div></div></li><li>Verify that IP forwarding is enabled on a node by running the following command, replacing <code>&lt;node_name&gt;</code> with the name of the node:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ oc debug node/<node_name> -- chroot /host sysctl net.ipv4.conf.eth1.forwarding" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> oc</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> debug</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> node/</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72">&#x3C;</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">node_nam</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">e</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72">></span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> --</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> chroot</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> /host</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> sysctl</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> net.ipv4.conf.eth1.forwarding</span></span></code></pre></div></div><div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">Example output</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="net.ipv4.conf.eth1.forwarding = 1" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">net.ipv4.conf.eth1.forwarding</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> =</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> 1</span></span></code></pre></div></div></li></ol><section class="related-resources _additional-resources"><p class="related-resources-title">Additional resources</p><ul><li><a href="/openshift-docs-markdown/networking/ingress_load_balancing/metallb/metallb-configure-community-alias#metallb-configure-community-alias">Configuring a community alias</a></li><li><a href="/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#nw-nmstate-enable-per-interface-ip-forwarding_k8s-nmstate-updating-node-network-config">Enable IP forwarding on specific interfaces</a></li></ul></section></article><footer class="mt-12 border-t pt-6"><nav class="flex items-center justify-between gap-4" aria-label="Page navigation"><a href="/openshift-docs-markdown/networking/ingress_load_balancing/metallb/metallb-configure-address-pools" class="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" rel="prev"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg><div class="text-left"><div class="text-xs text-muted-foreground">Previous</div><div>Configuring MetalLB address pools</div></div></a><a href="/openshift-docs-markdown/networking/ingress_load_balancing/metallb/metallb-configure-bgp-peers" class="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" rel="next"><div class="text-right"><div class="text-xs text-muted-foreground">Next</div><div>Configuring MetalLB BGP peers</div></div><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></a></nav><div class="mt-6 flex flex-wrap items-center justify-between gap-2 border-t pt-4 text-xs text-muted-foreground"><span></span><a href="/openshift-docs-markdown/llms.txt" class="hover:text-foreground" data-llms-link aria-label="View this site as llms.txt for LLMs">View as llms.txt</a></div></footer></div></main><aside class="dba-right-rail sticky top-12 hidden h-[calc(100vh-3rem)] w-80 shrink-0 overflow-y-auto border-l p-4 lg:block xl:w-96" data-right-rail data-astro-cid-vg5xjwtk></aside></div></div></div></body></html><script type="module" src="/openshift-docs-markdown/_astro/DocsLayout.astro_astro_type_script_index_0_lang.BNhrzmBU.js"></script>

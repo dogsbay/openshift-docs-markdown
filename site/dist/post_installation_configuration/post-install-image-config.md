@@ -191,7 +191,8 @@ You can ensure that you always have access to the latest versions of the Cluster
    Tag: 1.12	Scheduled: true
    ```
 
-## Additional resources {#additional-resources_post-install-image-config}
+**Additional resources**
+{._additional-resources}
 
 - [Using image pull secrets](/openshift-docs-markdown/openshift_images/managing_images/using-image-pull-secrets#using-image-pull-secrets)
 - [Overview of images](/openshift-docs-markdown/openshift_images/index#overview-of-images)

@@ -24,12 +24,13 @@ const headings = [{"depth":1,"slug":"configuring-registry-storage-openstack","te
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-osp";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
-const title = "Configuring the registry for {{ rh_openstack }}";
+const title = "Configuring the registry for RHOSP";
 const description = "You configure the image registry to use custom storage on clusters that run on RHOSP. You must configure custom storage to use a Cinder volume in a…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="configuring-registry-storage-openstack" class="group scroll-mt-20">Configuring the registry for RHOSP<a href="#configuring-registry-storage-openstack" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You configure the image registry to use custom storage on clusters that run on RHOSP. You must configure custom storage to use a Cinder volume in a specific availability zone.</p>
+      <p class="_abstract">You configure the image registry to use custom storage on clusters that run on RHOSP. You must configure custom storage to use a Cinder volume in a specific availability zone.</p>
       <h2 id="installation-registry-osp-creating-custom-pvc_configuring-registry-storage-openstack" class="group scroll-mt-20">Configuring an image registry with custom storage on clusters that run on RHOSP<a href="#installation-registry-osp-creating-custom-pvc_configuring-registry-storage-openstack" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">After you install a cluster on Red Hat OpenStack Platform (RHOSP), you can use a Cinder volume that is in a specific availability zone for registry storage.</p>
       <p><strong>Procedure</strong></p>

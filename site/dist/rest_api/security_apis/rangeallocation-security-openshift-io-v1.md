@@ -1,5 +1,5 @@
 ---
-title: RangeAllocation []
+title: RangeAllocation [security.openshift.io/v1]
 ---
 
 # RangeAllocation \[security.openshift.io/v1\] {#rangeallocation-security-openshift-io-v1}
@@ -23,7 +23,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `data` | `string` | data is a byte array representing the serialized state of a range allocation.  It is a bitmap with each bit set to one to represent a range is taken. |
+| `data` | `string` | data is a byte array representing the serialized state of a range allocation. It is a bitmap with each bit set to one to represent a range is taken. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `range` | `string` | range is a string representing a unique label for a range of uids, "1000000000-2000000000/10000". |
@@ -40,13 +40,13 @@ The following API endpoints are available:
 - `/apis/security.openshift.io/v1/watch/rangeallocations`
 
   - `GET`: watch individual changes to a list of RangeAllocation. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/security.openshift.io/v1/rangeallocations/{{ name }}`
+- `/apis/security.openshift.io/v1/rangeallocations/{name}`
 
   - `DELETE`: delete a RangeAllocation
   - `GET`: read the specified RangeAllocation
   - `PATCH`: partially update the specified RangeAllocation
   - `PUT`: replace the specified RangeAllocation
-- `/apis/security.openshift.io/v1/watch/rangeallocations/{{ name }}`
+- `/apis/security.openshift.io/v1/watch/rangeallocations/{name}`
 
   - `GET`: watch changes to an object of kind RangeAllocation. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
 
@@ -143,7 +143,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/security.openshift.io/v1/rangeallocations/{{ name }} {#_apissecurityopenshiftiov1rangeallocations_name}
+### /apis/security.openshift.io/v1/rangeallocations/{name} {#_apissecurityopenshiftiov1rangeallocations_name}
 
 **Global path parameters**
 
@@ -248,7 +248,7 @@ Description
 | 201 - Created | [`RangeAllocation`](/openshift-docs-markdown/rest_api/security_apis/rangeallocation-security-openshift-io-v1#rangeallocation-security-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/security.openshift.io/v1/watch/rangeallocations/{{ name }} {#_apissecurityopenshiftiov1watchrangeallocations_name}
+### /apis/security.openshift.io/v1/watch/rangeallocations/{name} {#_apissecurityopenshiftiov1watchrangeallocations_name}
 
 **Global path parameters**
 

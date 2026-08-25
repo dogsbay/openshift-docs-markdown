@@ -1,5 +1,5 @@
 ---
-title: TestExtensionAdmission []
+title: TestExtensionAdmission [testextension.redhat.io/v1]
 ---
 
 # TestExtensionAdmission \[testextension.redhat.io/v1\] {#testextensionadmission-testextension-redhat-io-v1}
@@ -48,13 +48,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of TestExtensionAdmission
   - `GET`: list objects of kind TestExtensionAdmission
   - `POST`: create a TestExtensionAdmission
-- `/apis/testextension.redhat.io/v1/testextensionadmissions/{{ name }}`
+- `/apis/testextension.redhat.io/v1/testextensionadmissions/{name}`
 
   - `DELETE`: delete a TestExtensionAdmission
   - `GET`: read the specified TestExtensionAdmission
   - `PATCH`: partially update the specified TestExtensionAdmission
   - `PUT`: replace the specified TestExtensionAdmission
-- `/apis/testextension.redhat.io/v1/testextensionadmissions/{{ name }}/status`
+- `/apis/testextension.redhat.io/v1/testextensionadmissions/{name}/status`
 
   - `GET`: read status of the specified TestExtensionAdmission
   - `PATCH`: partially update status of the specified TestExtensionAdmission
@@ -128,7 +128,7 @@ Description
 | 202 - Accepted | [`TestExtensionAdmission`](/openshift-docs-markdown/rest_api/extension_apis/testextensionadmission-testextension-redhat-io-v1#testextensionadmission-testextension-redhat-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/testextension.redhat.io/v1/testextensionadmissions/{{ name }} {#_apistestextensionredhatiov1testextensionadmissions_name}
+### /apis/testextension.redhat.io/v1/testextensionadmissions/{name} {#_apistestextensionredhatiov1testextensionadmissions_name}
 
 **Global path parameters**
 
@@ -232,7 +232,7 @@ Description
 | 201 - Created | [`TestExtensionAdmission`](/openshift-docs-markdown/rest_api/extension_apis/testextensionadmission-testextension-redhat-io-v1#testextensionadmission-testextension-redhat-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/testextension.redhat.io/v1/testextensionadmissions/{{ name }}/status {#_apistestextensionredhatiov1testextensionadmissions_name_status}
+### /apis/testextension.redhat.io/v1/testextensionadmissions/{name}/status {#_apistestextensionredhatiov1testextensionadmissions_name_status}
 
 **Global path parameters**
 

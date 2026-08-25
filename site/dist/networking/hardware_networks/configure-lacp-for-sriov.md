@@ -91,7 +91,7 @@ Install the PF Status Relay Operator to enable OpenShift Container Platform to u
 
 1. Install the PF Status Relay Operator:
 
-   1. In the OpenShift Container Platform web console, click **Ecosystem** -> **Software Catalog**.
+   1. In the OpenShift Container Platform web console, click **Ecosystem** → **Software Catalog**.
    2. Select **PF Status Relay Operator** from the list of available Operators, and then click **Install**.
    3. On the **Install Operator** page, under **Installed Namespace**, select **Operator recommended Namespace**.
    4. Click **Install**.

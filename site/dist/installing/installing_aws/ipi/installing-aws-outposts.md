@@ -4,13 +4,17 @@ title: Extending an AWS VPC cluster into an AWS Outpost
 
 # Extending an AWS VPC cluster into an AWS Outpost {#installing-aws-outposts}
 
-In OpenShift Container Platform version 4.14, you could install a cluster on Amazon Web Services (AWS) with compute nodes running in AWS Outposts as a Technology Preview. As of OpenShift Container Platform version 4.15, this installation method is no longer supported. Instead, you can install a cluster on AWS into an existing VPC, and provision compute nodes on AWS Outposts as a postinstallation configuration task.
+In OpenShift Container Platform version 4.14, you could install a cluster on Amazon Web Services (AWS) with compute nodes running in AWS Outposts as a Technology Preview. As of OpenShift Container Platform version 4.15, this installation method is no longer supported.
 
-After [installing a cluster on Amazon Web Services (AWS) into an existing Amazon Virtual Private Cloud (VPC)](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-vpc#installing-aws-vpc), you can create a compute machine set that deploys compute machines in AWS Outposts. AWS Outposts is an AWS edge compute service that enables using many features of a cloud-based AWS deployment with the reduced latency of an on-premise environment. For more information, see the [AWS Outposts documentation](https://docs.aws.amazon.com/outposts/).
+Instead, you can install a cluster on AWS into an existing VPC, and provision compute nodes on AWS Outposts as a postinstallation configuration task.
+
+After following the instructions in "Installing a cluster on Amazon Web Services (AWS) into an existing Amazon Virtual Private Cloud (VPC)", you can create a compute machine set that deploys compute machines in AWS Outposts. AWS Outposts is an AWS edge compute service that enables using many features of a cloud-based AWS deployment with the reduced latency of an on-premise environment. For more information, see the "AWS Outposts documentation".
 
 ## AWS Outposts on OpenShift Container Platform requirements and limitations {#aws-outposts-requirements-limitations_installing-aws-outposts}
 
-You can manage the resources on your AWS Outpost similarly to those on a cloud-based AWS cluster if you configure your OpenShift Container Platform cluster to accommodate the following requirements and limitations:
+You can manage the resources on your AWS Outpost similarly to those on a cloud-based AWS cluster if you configure your OpenShift Container Platform cluster to accommodate several requirements and limitations.
+
+You must accommodate the following requirements and limitations:
 
 - To extend an OpenShift Container Platform cluster on AWS into an Outpost, you must have installed the cluster into an existing Amazon Virtual Private Cloud (VPC).
 - The infrastructure of an Outpost is tied to an availability zone in an AWS region and uses a dedicated subnet. Edge compute machines deployed into an Outpost must use the Outpost subnet and the availability zone that the Outpost is tied to.
@@ -28,6 +32,7 @@ You can manage the resources on your AWS Outpost similarly to those on a cloud-b
   For more information, see "Using the AWS Load Balancer Operator in an AWS VPC cluster extended into an Outpost".
 
 **Additional resources**
+{._additional-resources}
 
 - [Using the AWS Load Balancer Operator in an AWS VPC cluster extended into an Outpost](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-outposts#nw-aws-load-balancer-with-outposts_installing-aws-outposts)
 
@@ -298,6 +303,7 @@ Finalize the MTU migration to apply the new maximum transmission unit (MTU) sett
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Changing the MTU for the cluster network](/openshift-docs-markdown/networking/advanced_networking/changing-cluster-network-mtu#changing-cluster-network-mtu)
 
@@ -332,29 +338,47 @@ You can use the provided CloudFormation template and create a CloudFormation sta
        ParameterKey=PublicRouteTableId,ParameterValue="${ROUTE_TABLE_PUB}" \
        ParameterKey=PublicSubnetCidr,ParameterValue="${SUBNET_CIDR_PUB}" \
        ParameterKey=PrivateRouteTableId,ParameterValue="${ROUTE_TABLE_PVT}" \
+       ParameterKey=PrivateSubnetCidr,ParameterValue="${SUBNET_CIDR_PVT}" \
+       ParameterKey=PrivateSubnetLabel,ParameterValue="private-outpost" \
+       ParameterKey=PublicSubnetLabel,ParameterValue="public-outpost" \
+       ParameterKey=OutpostArn,ParameterValue="${OUTPOST_ARN}"
    ```
 
-{% if not outposts %} ParameterKey=PrivateSubnetCidr,ParameterValue="${SUBNET_CIDR_PVT}" {% endif %} {% if outposts %} ParameterKey=PrivateSubnetCidr,ParameterValue="${SUBNET_CIDR_PVT}"
-ParameterKey=PrivateSubnetLabel,ParameterValue="private-outpost"
-ParameterKey=PublicSubnetLabel,ParameterValue="public-outpost"
-ParameterKey=OutpostArn,ParameterValue="${OUTPOST_ARN}" {%- endif %} \`\`\`
+   where
 
-````
-where
-`<stack_name>`:: Specifies the name for the CloudFormation stack, such as `cluster-<outpost_name>`.
-`<template>`:: Specifies the relative path and the name of the CloudFormation template YAML file that you saved.
-`${{ VPC_ID }}`:: Specifies the VPC ID, which is the value `VpcID` in the output of the CloudFormation template for the VPC.
-`${{ CLUSTER_NAME }}`:: Specifies the value of **ClusterName** to be used as a prefix of the new AWS resource names.
-`${{ ZONE_NAME }}`:: Specifies the value of AWS Outposts name to create the subnets.
-`${{ ROUTE_TABLE_PUB }}`:: Specifies the Public Route Table ID created in the `${{ VPC_ID }}` used to associate the public subnets on Outposts. Specify the public route table to associate the Outpost subnet created by this stack.
-`${{ SUBNET_CIDR_PUB }}`:: Specifies a valid CIDR block that is used to create the public subnet. This block must be part of the VPC CIDR block `VpcCidr`.
-`${{ OUTPOST_ARN }}`:: Specifies the Amazon Resource Name (ARN) for the Outpost.
-`${{ SUBNET_CIDR_PVT }}`:: Specifies a valid CIDR block that is used to create the private subnet. This block must be part of the VPC CIDR block `VpcCidr`.
-`${{ ROUTE_TABLE_PVT }}`:: Specifies the Private Route Table ID created in the `${{ VPC_ID }}` used to associate the private subnets on Outposts. Specify the private route table to associate the Outpost subnet created by this stack.
-```text title="Example output"
-arn:aws:cloudformation:us-east-1:123456789012:stack/<stack_name>/dbedae40-820e-11eb-2fd3-12a48460849f
-```
-````
+   `<stack_name>`
+   :   Specifies the name for the CloudFormation stack, such as `cluster-<outpost_name>`.
+
+   `<template>`
+   :   Specifies the relative path and the name of the CloudFormation template YAML file that you saved.
+
+   `${VPC_ID}`
+   :   Specifies the VPC ID, which is the value `VpcID` in the output of the CloudFormation template for the VPC.
+
+   `${CLUSTER_NAME}`
+   :   Specifies the value of **ClusterName** to be used as a prefix of the new AWS resource names.
+
+   `${ZONE_NAME}`
+   :   Specifies the value of AWS Outposts name to create the subnets.
+
+   `${ROUTE_TABLE_PUB}`
+   :   Specifies the Public Route Table ID created in the `${VPC_ID}` used to associate the public subnets on Outposts. Specify the public route table to associate the Outpost subnet created by this stack.
+
+   `${SUBNET_CIDR_PUB}`
+   :   Specifies a valid CIDR block that is used to create the public subnet. This block must be part of the VPC CIDR block `VpcCidr`.
+
+   `${OUTPOST_ARN}`
+   :   Specifies the Amazon Resource Name (ARN) for the Outpost.
+
+   `${SUBNET_CIDR_PVT}`
+   :   Specifies a valid CIDR block that is used to create the private subnet. This block must be part of the VPC CIDR block `VpcCidr`.
+
+   `${ROUTE_TABLE_PVT}`
+   :   Specifies the Private Route Table ID created in the `${VPC_ID}` used to associate the private subnets on Outposts. Specify the private route table to associate the Outpost subnet created by this stack.
+
+   ```text {title="Example output"}
+   arn:aws:cloudformation:us-east-1:123456789012:stack/<stack_name>/dbedae40-820e-11eb-2fd3-12a48460849f
+   ```
 
 **Verification**
 
@@ -386,7 +410,7 @@ Parameters:
   VpcId:
     Description: VPC ID that comprises all the target subnets.
     Type: String
-    AllowedPattern: ^(?:(?:vpc)(?:-[a-zA-Z0-9]+)?\b|(?:[0-9]{1,3}\.){{ 3 }}[0-9]{1,3})$
+    AllowedPattern: ^(?:(?:vpc)(?:-[a-zA-Z0-9]+)?\b|(?:[0-9]{1,3}\.){3}[0-9]{1,3})$
     ConstraintDescription: VPC ID must be with valid name, starting with vpc-.*.
   ClusterName:
     Description: Cluster name or prefix name to prepend the Name tag for each subnet.
@@ -404,7 +428,7 @@ Parameters:
     AllowedPattern: ".+"
     ConstraintDescription: PublicRouteTableId parameter must be specified.
   PublicSubnetCidr:
-    AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{{ 2 }}|2[0-4][0-9]|25[0-5])\.){{ 3 }}([0-9]|[1-9][0-9]|1[0-9]{{ 2 }}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-4]))$
+    AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-4]))$
     ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-24.
     Default: 10.0.128.0/20
     Description: CIDR block for public subnet.
@@ -415,12 +439,11 @@ Parameters:
     AllowedPattern: ".+"
     ConstraintDescription: PrivateRouteTableId parameter must be specified.
   PrivateSubnetCidr:
-    AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{{ 2 }}|2[0-4][0-9]|25[0-5])\.){{ 3 }}([0-9]|[1-9][0-9]|1[0-9]{{ 2 }}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-4]))$
+    AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-4]))$
     ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-24.
     Default: 10.0.128.0/20
     Description: CIDR block for private subnet.
     Type: String
-{%- if outposts %}
   PrivateSubnetLabel:
     Default: "private"
     Description: Subnet label to be added when building the subnet name.
@@ -436,7 +459,6 @@ Parameters:
 
 Conditions:
   OutpostEnabled: !Not [!Equals [!Ref "OutpostArn", ""]]
-{% endif %}
 
 Resources:
   PublicSubnet:
@@ -445,19 +467,12 @@ Resources:
       VpcId: !Ref VpcId
       CidrBlock: !Ref PublicSubnetCidr
       AvailabilityZone: !Ref ZoneName
-{%- if outposts %}
       OutpostArn: !If [ OutpostEnabled, !Ref OutpostArn, !Ref "AWS::NoValue"]
-{%- endif %}
       Tags:
       - Key: Name
-        {%- if not outposts %}
-        Value: !Join ['-', [!Ref ClusterName, "public", !Ref ZoneName]]
-{% endif %}
-{% if outposts %}
         Value: !Join ['-', [ !Ref ClusterName, !Ref PublicSubnetLabel, !Ref ZoneName]]
       - Key: kubernetes.io/cluster/unmanaged
         Value: true
-{% endif %}
 
   PublicSubnetRouteTableAssociation:
     Type: "AWS::EC2::SubnetRouteTableAssociation"
@@ -471,19 +486,12 @@ Resources:
       VpcId: !Ref VpcId
       CidrBlock: !Ref PrivateSubnetCidr
       AvailabilityZone: !Ref ZoneName
-{%- if outposts %}
       OutpostArn: !If [ OutpostEnabled, !Ref OutpostArn, !Ref "AWS::NoValue"]
-{%- endif %}
       Tags:
       - Key: Name
-        {%- if not outposts %}
-        Value: !Join ['-', [!Ref ClusterName, "private", !Ref ZoneName]]
-{% endif %}
-{% if outposts %}
         Value: !Join ['-', [!Ref ClusterName, !Ref PrivateSubnetLabel, !Ref ZoneName]]
       - Key: kubernetes.io/cluster/unmanaged
         Value: true
-{% endif %}
 
   PrivateSubnetRouteTableAssociation:
     Type: "AWS::EC2::SubnetRouteTableAssociation"
@@ -1012,9 +1020,8 @@ You must annotate Ingress resources with the Outpost subnet or the VPC subnet, b
   :   Specifies the subnet to use. To use the Application Load Balancer in an Outpost, specify the Outpost subnet ID. To use the Application Load Balancer in the cloud, you must specify at least two subnets in different availability zones.
 
 **Additional resources**
-
-- [Creating the AWS Load Balancer Controller](/openshift-docs-markdown/networking/networking_operators/aws_load_balancer_operator/install-aws-load-balancer-operator#nw-creating-instance-aws-load-balancer-controller_aws-load-balancer-operator)
-
-## Additional resources {#additional-installing-aws-outposts}
+{._additional-resources}
 
 - [Installing a cluster on AWS into an existing VPC](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-vpc#installing-aws-vpc)
+- [AWS Outposts documentation](https://docs.aws.amazon.com/outposts/)
+- [Creating the AWS Load Balancer Controller](/openshift-docs-markdown/networking/networking_operators/aws_load_balancer_operator/install-aws-load-balancer-operator#nw-creating-instance-aws-load-balancer-controller_aws-load-balancer-operator)

@@ -1,5 +1,5 @@
 ---
-title: Configuring {{ rh_openstack_first }} features for control plane machines
+title: Configuring Red&#160;Hat OpenStack Platform (RHOSP) features for control plane machines
 ---
 
 # Configuring Red Hat OpenStack Platform (RHOSP) features for control plane machines {#cpmso-supported-features-openstack}
@@ -37,7 +37,8 @@ In RHOSP, flavors define the compute, memory, and storage capacity of computing 
 
    After you save your changes, machines are replaced with ones that use the flavor you chose.
 
-## Additional resources {#additional-resources_cpmso-supported-features-openstack}
+**Additional resources**
+{._additional-resources}
 
 - [Updating the control plane configuration](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-feat-config-update_cpmso-managing-machines)
-- [Control plane configuration options for {{ rh_openstack_full }}](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso_provider_configurations/cpmso-config-options-openstack#cpmso-config-options-openstack)
+- [Control plane configuration options for {rh_openstack_full}](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso_provider_configurations/cpmso-config-options-openstack#cpmso-config-options-openstack)

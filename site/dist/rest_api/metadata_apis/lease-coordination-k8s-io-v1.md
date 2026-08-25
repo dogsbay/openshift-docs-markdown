@@ -1,5 +1,5 @@
 ---
-title: Lease []
+title: Lease [coordination.k8s.io/v1]
 ---
 
 # Lease \[coordination.k8s.io/v1\] {#lease-coordination-k8s-io-v1}
@@ -51,21 +51,21 @@ The following API endpoints are available:
 - `/apis/coordination.k8s.io/v1/watch/leases`
 
   - `GET`: watch individual changes to a list of Lease. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/coordination.k8s.io/v1/namespaces/{{ namespace }}/leases`
+- `/apis/coordination.k8s.io/v1/namespaces/{namespace}/leases`
 
   - `DELETE`: delete collection of Lease
   - `GET`: list or watch objects of kind Lease
   - `POST`: create a Lease
-- `/apis/coordination.k8s.io/v1/watch/namespaces/{{ namespace }}/leases`
+- `/apis/coordination.k8s.io/v1/watch/namespaces/{namespace}/leases`
 
   - `GET`: watch individual changes to a list of Lease. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/coordination.k8s.io/v1/namespaces/{{ namespace }}/leases/{{ name }}`
+- `/apis/coordination.k8s.io/v1/namespaces/{namespace}/leases/{name}`
 
   - `DELETE`: delete a Lease
   - `GET`: read the specified Lease
   - `PATCH`: partially update the specified Lease
   - `PUT`: replace the specified Lease
-- `/apis/coordination.k8s.io/v1/watch/namespaces/{{ namespace }}/leases/{{ name }}`
+- `/apis/coordination.k8s.io/v1/watch/namespaces/{namespace}/leases/{name}`
 
   - `GET`: watch changes to an object of kind Lease. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
 
@@ -107,7 +107,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/coordination.k8s.io/v1/namespaces/{{ namespace }}/leases {#_apiscoordinationk8siov1namespaces_namespace_leases}
+### /apis/coordination.k8s.io/v1/namespaces/{namespace}/leases {#_apiscoordinationk8siov1namespaces_namespace_leases}
 
 HTTP method
 :   ```
@@ -181,7 +181,7 @@ Description
 | 202 - Accepted | [`Lease`](/openshift-docs-markdown/rest_api/metadata_apis/lease-coordination-k8s-io-v1#lease-coordination-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/coordination.k8s.io/v1/watch/namespaces/{{ namespace }}/leases {#_apiscoordinationk8siov1watchnamespaces_namespace_leases}
+### /apis/coordination.k8s.io/v1/watch/namespaces/{namespace}/leases {#_apiscoordinationk8siov1watchnamespaces_namespace_leases}
 
 HTTP method
 :   ```
@@ -200,7 +200,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/coordination.k8s.io/v1/namespaces/{{ namespace }}/leases/{{ name }} {#_apiscoordinationk8siov1namespaces_namespace_leases_name}
+### /apis/coordination.k8s.io/v1/namespaces/{namespace}/leases/{name} {#_apiscoordinationk8siov1namespaces_namespace_leases_name}
 
 **Global path parameters**
 
@@ -305,7 +305,7 @@ Description
 | 201 - Created | [`Lease`](/openshift-docs-markdown/rest_api/metadata_apis/lease-coordination-k8s-io-v1#lease-coordination-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/coordination.k8s.io/v1/watch/namespaces/{{ namespace }}/leases/{{ name }} {#_apiscoordinationk8siov1watchnamespaces_namespace_leases_name}
+### /apis/coordination.k8s.io/v1/watch/namespaces/{namespace}/leases/{name} {#_apiscoordinationk8siov1watchnamespaces_namespace_leases_name}
 
 **Global path parameters**
 

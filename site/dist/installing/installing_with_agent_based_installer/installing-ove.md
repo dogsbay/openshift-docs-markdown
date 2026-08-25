@@ -97,7 +97,7 @@ Once the rendezvous node has been booted from the ISO image, configure details a
       > If you have already added custom manifests, clearing the **Include custom manifests** checkbox automatically deletes them all. You must confirm the deletion.
    6. Optional: Under **Encryption of installation disks**, select the toggle switch for each disk you want to encrypt.
    7. If you are encrypting disks, select either **TPM v2** or **Tang** as your encryption method.
-   8. If you are encrypting disks using a Tang server, enter the ***Server URL*** and ***Server Thumbprint*** in the ***Tang servers*** section of the page. You can select ***Add another Tang server*** to configure details for additional Tang server.
+   8. If you are encrypting disks using a Tang server, enter the **Server URL** and **Server Thumbprint** in the **Tang servers** section of the page. You can select **Add another Tang server** to configure details for additional Tang server.
    9. Click **Next** to continue. Once you proceed to the next page, you cannot go back to change any of these cluster details.
 3. Choose additional Operators to install in the **Operators** page:
 
@@ -175,7 +175,8 @@ Before you can finally initiate the cluster installation, you must verify host d
 
     Once the cluster is installed, you can visit this URL and sign in to the web console with your downloaded credentials.
 
-## Additional resources {#additional-resources_installing-ove}
+**Additional resources**
+{._additional-resources}
 
 - [Installing virtctl](/openshift-docs-markdown/virt/getting_started/virt-using-the-cli-tools#virt-installing-virtctl-binary_virt-using-the-cli-tools)
 - [Creating virtual machines from instance types](/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-from-instance-types#virt-creating-vms-from-instance-types)

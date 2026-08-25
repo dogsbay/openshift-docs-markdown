@@ -1,5 +1,5 @@
 ---
-title: Deploying {{ hcp }} on {{ ibm_z_title }}
+title: Deploying hosted control planes on IBM Z
 ---
 
 # Deploying hosted control planes on IBM Z {#hcp-deploy-ibmz}
@@ -37,6 +37,7 @@ Ensure you meet the prerequisites to configure hosted control planes on IBM Z.
 > The *management* cluster can run on either the x86_64 architecture, supported beginning with OpenShift Container Platform 4.17 and multicluster engine for Kubernetes Operator 2.7, or the s390x architecture, supported beginning with OpenShift Container Platform 4.20 and multicluster engine for Kubernetes Operator 2.10.
 
 **Additional resources**
+{._additional-resources}
 
 - [Advanced configuration](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#advanced-config-engine)
 - [Enabling the central infrastructure management service](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#enable-cim)
@@ -224,6 +225,7 @@ On bare-metal infrastructure, you can create or import a hosted cluster. After y
 5. Confirm that the hosted cluster is ready. The status of `Available: True` indicates the readiness of the control plane.
 
 **Additional resources**
+{._additional-resources}
 
 - [Manually importing a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-import#hcp-import)
 - [Extracting the release image digest](/openshift-docs-markdown/hosted_control_planes/hcp-disconnected/hcp-deploy-dc-bm#hcp-dc-extract_hcp-deploy-dc-bm)
@@ -501,6 +503,7 @@ You can add the Logical Partition (LPAR) on IBM Z or IBM LinuxONE as a compute n
 5. Repeat the procedure for all other machines in the cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing in an LPAR](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/performing_a_standard_rhel_8_installation/installing-in-an-lpar_installing-rhel)
 

@@ -1,5 +1,5 @@
 ---
-title: PodNetworkConnectivityCheck []
+title: PodNetworkConnectivityCheck [controlplane.operator.openshift.io/v1alpha1]
 ---
 
 # PodNetworkConnectivityCheck \[controlplane.operator.openshift.io/v1alpha1\] {#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1}
@@ -278,18 +278,18 @@ The following API endpoints are available:
 - `/apis/controlplane.operator.openshift.io/v1alpha1/podnetworkconnectivitychecks`
 
   - `GET`: list objects of kind PodNetworkConnectivityCheck
-- `/apis/controlplane.operator.openshift.io/v1alpha1/namespaces/{{ namespace }}/podnetworkconnectivitychecks`
+- `/apis/controlplane.operator.openshift.io/v1alpha1/namespaces/{namespace}/podnetworkconnectivitychecks`
 
   - `DELETE`: delete collection of PodNetworkConnectivityCheck
   - `GET`: list objects of kind PodNetworkConnectivityCheck
   - `POST`: create a PodNetworkConnectivityCheck
-- `/apis/controlplane.operator.openshift.io/v1alpha1/namespaces/{{ namespace }}/podnetworkconnectivitychecks/{{ name }}`
+- `/apis/controlplane.operator.openshift.io/v1alpha1/namespaces/{namespace}/podnetworkconnectivitychecks/{name}`
 
   - `DELETE`: delete a PodNetworkConnectivityCheck
   - `GET`: read the specified PodNetworkConnectivityCheck
   - `PATCH`: partially update the specified PodNetworkConnectivityCheck
   - `PUT`: replace the specified PodNetworkConnectivityCheck
-- `/apis/controlplane.operator.openshift.io/v1alpha1/namespaces/{{ namespace }}/podnetworkconnectivitychecks/{{ name }}/status`
+- `/apis/controlplane.operator.openshift.io/v1alpha1/namespaces/{namespace}/podnetworkconnectivitychecks/{name}/status`
 
   - `GET`: read status of the specified PodNetworkConnectivityCheck
   - `PATCH`: partially update status of the specified PodNetworkConnectivityCheck
@@ -314,7 +314,7 @@ Description
 | 200 - OK | [`PodNetworkConnectivityCheckList`](/openshift-docs-markdown/rest_api/objects/index#io-openshift-operator-controlplane-v1alpha1-PodNetworkConnectivityCheckList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/controlplane.operator.openshift.io/v1alpha1/namespaces/{{ namespace }}/podnetworkconnectivitychecks {#_apiscontrolplaneoperatoropenshiftiov1alpha1namespaces_namespace_podnetworkconnectivitychecks}
+### /apis/controlplane.operator.openshift.io/v1alpha1/namespaces/{namespace}/podnetworkconnectivitychecks {#_apiscontrolplaneoperatoropenshiftiov1alpha1namespaces_namespace_podnetworkconnectivitychecks}
 
 HTTP method
 :   ```
@@ -382,7 +382,7 @@ Description
 | 202 - Accepted | [`PodNetworkConnectivityCheck`](/openshift-docs-markdown/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/controlplane.operator.openshift.io/v1alpha1/namespaces/{{ namespace }}/podnetworkconnectivitychecks/{{ name }} {#_apiscontrolplaneoperatoropenshiftiov1alpha1namespaces_namespace_podnetworkconnectivitychecks_name}
+### /apis/controlplane.operator.openshift.io/v1alpha1/namespaces/{namespace}/podnetworkconnectivitychecks/{name} {#_apiscontrolplaneoperatoropenshiftiov1alpha1namespaces_namespace_podnetworkconnectivitychecks_name}
 
 **Global path parameters**
 
@@ -486,7 +486,7 @@ Description
 | 201 - Created | [`PodNetworkConnectivityCheck`](/openshift-docs-markdown/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/controlplane.operator.openshift.io/v1alpha1/namespaces/{{ namespace }}/podnetworkconnectivitychecks/{{ name }}/status {#_apiscontrolplaneoperatoropenshiftiov1alpha1namespaces_namespace_podnetworkconnectivitychecks_name_status}
+### /apis/controlplane.operator.openshift.io/v1alpha1/namespaces/{namespace}/podnetworkconnectivitychecks/{name}/status {#_apiscontrolplaneoperatoropenshiftiov1alpha1namespaces_namespace_podnetworkconnectivitychecks_name_status}
 
 **Global path parameters**
 

@@ -171,4 +171,4 @@ Configure pod priority and preemption by creating priority class objects with as
       $ oc create -f <file-name>.yaml
       ```
 
-   You can add the priority name directly to the pod configuration or to a pod template.
+      You can add the priority name directly to the pod configuration or to a pod template.

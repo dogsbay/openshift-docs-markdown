@@ -1,5 +1,5 @@
 ---
-title: "{{ VirtProductName }} Architecture"
+title: OpenShift Virtualization Architecture
 ---
 
 # OpenShift Virtualization Architecture {#virt-architecture}
@@ -102,6 +102,7 @@ The OpenShift Virtualization Operator, `virt-operator`, deploys, upgrades, and m
 | `daemonset/virt-handler` | Monitors any changes to a VM and instructs `virt-launcher` to perform the required operations. This component is node-specific. |
 | `pod/virt-launcher` | Contains the VM that was created by the user as implemented by `libvirt` and `qemu`. |
 
-## Additional resources {#additional-resources_virt-architecture}
+**Additional resources**
+{._additional-resources}
 
 - [virtctl client commands](/openshift-docs-markdown/virt/getting_started/virt-using-the-cli-tools#virt-using-the-cli-tools)

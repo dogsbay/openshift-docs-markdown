@@ -75,7 +75,7 @@ Use the OpenShift Container Platform web console to create a network attachment 
 
 **Procedure**
 
-1. In the web console, click **Networking** -> **NetworkAttachmentDefinitions**.
+1. In the web console, click **Networking** → **NetworkAttachmentDefinitions**.
 2. Click **Create Network Attachment Definition**.
 
    > [!NOTE]
@@ -131,7 +131,7 @@ To configure a dedicated secondary network for live migration, you must first cr
    kind: NetworkAttachmentDefinition
    metadata:
      name: my-secondary-network
-     namespace: {{ CNVNamespace }}
+     namespace: openshift-cnv
    spec:
      config: '{
        "cniVersion": "0.3.1",
@@ -153,7 +153,7 @@ To configure a dedicated secondary network for live migration, you must first cr
 2. Open the `HyperConverged` CR in your default editor by running the following command:
 
    ```terminal
-   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+   $ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv
    ```
 3. Add the name of the `NetworkAttachmentDefinition` object to the `spec.liveMigrationConfig` stanza of the `HyperConverged` CR.
 
@@ -164,7 +164,7 @@ To configure a dedicated secondary network for live migration, you must first cr
    kind: HyperConverged
    metadata:
      name: kubevirt-hyperconverged
-     namespace: {{ CNVNamespace }}
+     namespace: openshift-cnv
    spec:
      liveMigrationConfig:
        completionTimeoutPerGiB: 800
@@ -197,7 +197,7 @@ You can select a dedicated network for live migration by using the OpenShift Con
 
 **Procedure**
 
-1. Go to **Virtualization -> Settings** in the OpenShift Container Platform web console.
+1. Go to **Virtualization → Settings** in the OpenShift Container Platform web console.
 2. On the **Cluster** tab, click **General settiings**.
 3. Click **Live Migration**.
 4. Select the network from the **Live migration network** list.
@@ -296,7 +296,7 @@ You can enable the creation of load balancer services for a virtual machine (VM)
 
 **Procedure**
 
-1. Go to **Virtualization** -> **Settings**.
+1. Go to **Virtualization** → **Settings**.
 2. Click **Cluster**.
 3. Expand **General settings** and **SSH configuration**.
 4. Set **SSH over LoadBalancer service** to on.
@@ -340,7 +340,8 @@ As a cluster administrator, you can configure additional routes to the `cdi-uplo
    `<route_name>`
    :   Specifies the name of the route you created.
 
-## Additional resources {#additional-resources_virt-post-install-network-config}
+**Additional resources**
+{._additional-resources}
 
 - [Kubernetes NMState Operator](/openshift-docs-markdown/networking/networking_operators/k8s-nmstate-about-the-k8s-nmstate-operator#k8s-nmstate-about-the-k8s-nmstate-operator)
 - [SR-IOV Operator](/openshift-docs-markdown/networking/hardware_networks/about-sriov#about-sriov)

@@ -1,5 +1,5 @@
 ---
-title: Configuring additional devices in an {{ ibm_z_title }} or {{ ibm_linuxone_title }} environment
+title: Configuring additional devices in an IBM Z or IBM LinuxONE environment
 ---
 
 # Configuring additional devices in an IBM Z or IBM LinuxONE environment {#post-install-configure-additional-devices-ibm-z}
@@ -19,6 +19,7 @@ You can configure devices by adding udev rules by using the Machine Config Opera
 > The procedures described here apply only to z/VM installations. If you have installed your cluster with RHEL KVM on IBM Z(R) or IBM(R) LinuxONE infrastructure, no additional configuration is needed inside the KVM guest after the devices were added to the KVM guests. However, both in z/VM and RHEL KVM environments the next steps to configure the Local Storage Operator and Kubernetes NMState Operator need to be applied.
 
 **Additional resources**
+{._additional-resources}
 
 - [Machine configuration overview](/openshift-docs-markdown/machine_configuration/index#machine-config-overview)
 
@@ -271,6 +272,7 @@ You can use the Machine Config Operator (MCO) to configure additional devices in
       :   Specifies the path where the udev rule is located.
 
 **Additional resources**
+{._additional-resources}
 
 - [Install and configure the Local Storage Operator](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-local#persistent-storage-using-local-volume)
 - [Observing and updating the node network state and configuration](/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#k8s-nmstate-updating-node-network-config)
@@ -305,6 +307,7 @@ After installation, you can manually configure additional devices on IBM Z(R) or
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [chzdev - Configure IBM Z(R) devices (IBM(R) Documentation)](https://www.ibm.com/docs/en/linux-on-systems?topic=commands-chzdev)
 - [Persistent device configuration (IBM(R) Documentation)](https://www.ibm.com/docs/en/linux-on-systems?topic=linuxonibm/com.ibm.linux.z.ludd/ludd_c_perscfg.html)
@@ -375,6 +378,7 @@ After installation, you can enable multipathing for Fibre Channel Protocol (FCP)
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Install and configure the Local Storage Operator](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-local#persistent-storage-using-local-volume)
 - [Observing and updating the node network state and configuration](/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#k8s-nmstate-updating-node-network-config)

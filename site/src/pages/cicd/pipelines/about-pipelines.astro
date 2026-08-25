@@ -23,12 +23,13 @@ const headings = [{"depth":1,"slug":"about-pipelines","text":"About Red Hat Ope
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/cicd/pipelines/about-pipelines";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
-const title = "About {{ pipelines_title }}";
+const title = "About Red&#160;Hat OpenShift Pipelines";
 const description = "Red Hat OpenShift Pipelines is a cloud-native, continuous integration and continuous delivery (CI/CD) solution based on Kubernetes resources. It uses…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
@@ -81,12 +82,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >

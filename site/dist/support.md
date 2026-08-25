@@ -96,7 +96,8 @@ You can troubleshoot these components by using the following procedures:
   - Determine why Prometheus is consuming a lot of disk space.
 - **OpenShift CLI (`oc`) issues**: Investigate OpenShift CLI (`oc`) issues by increasing the log level.
 
-## Additional resources {#additional-resources_support-overview}
+**Additional resources**
+{._additional-resources}
 
 - [Getting support](/openshift-docs-markdown/support/getting-support#getting-support)
 - [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)

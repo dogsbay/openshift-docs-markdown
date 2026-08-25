@@ -12,6 +12,7 @@ Persistent volumes (PVs) and persistent volume claims (PVCs) provide a convenien
 > The in-tree NFS provisioner does not support user namespaces.
 
 **Additional resources**
+{._additional-resources}
 
 - [Mounting NFS shares](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/managing_file_systems/mounting-nfs-shares_managing-file-systems)
 
@@ -337,11 +338,11 @@ Depending on what version of NFS is being used and how it is configured, there m
 <tbody>
 <tr>
   <td>NFSv4 mount incorrectly shows all files with ownership of <code>nobody:nobody</code></td>
-  <td><ul><li>Could be attributed to the ID mapping settings, found in <code>/etc/idmapd.conf</code> on your NFS.</li><li>See https://access.redhat.com/solutions/33455[this Red Hat Solution].</li></ul></td>
+  <td><ul><li>Could be attributed to the ID mapping settings, found in <code>/etc/idmapd.conf</code> on your NFS.</li><li>See <a href="https://access.redhat.com/solutions/33455">this Red Hat Solution</a>.</li></ul></td>
 </tr>
 <tr>
   <td>Disabling ID mapping on NFSv4</td>
-  <td><ul><li>On the NFS server, run the following command:</li></ul>+<pre># echo 'Y' &gt; /sys/module/nfsd/parameters/nfs4_disable_idmapping</pre></td>
+  <td><ul><li>On the NFS server, run the following command:</li></ul><pre># echo 'Y' &gt; /sys/module/nfsd/parameters/nfs4_disable_idmapping</pre></td>
 </tr>
 </tbody>
 </table>

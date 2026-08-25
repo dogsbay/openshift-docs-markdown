@@ -15,9 +15,7 @@ The cluster autoscaler adjusts the size of an OpenShift Container Platform clust
 
 The cluster autoscaler increases the size of the cluster when there are pods that fail to schedule on any of the current worker nodes due to insufficient resources or when another node is necessary to meet deployment needs. The cluster autoscaler does not increase the cluster resources beyond the limits that you specify.
 
-The cluster autoscaler computes the total memory, CPU, and GPU
-
-on all nodes the cluster, even though it does not manage the control plane nodes. These values are not single-machine oriented. They are an aggregation of all the resources in the entire cluster. For example, if you set the maximum memory resource limit, the cluster autoscaler includes all the nodes in the cluster when calculating the current memory usage. That calculation is then used to determine if the cluster autoscaler has the capacity to add more worker resources.
+The cluster autoscaler computes the total memory, CPU, and GPU on all nodes the cluster, even though it does not manage the control plane nodes. These values are not single-machine oriented. They are an aggregation of all the resources in the entire cluster. For example, if you set the maximum memory resource limit, the cluster autoscaler includes all the nodes in the cluster when calculating the current memory usage. That calculation is then used to determine if the cluster autoscaler has the capacity to add more worker resources.
 
 > [!IMPORTANT]
 > Ensure that the `maxNodesTotal` value in the `ClusterAutoscaler` custom resource (CR) that you create is large enough to account for the total possible number of machines in your cluster. This value must encompass the number of control plane machines and the possible number of compute machines that you might scale to.
@@ -106,7 +104,7 @@ spec:
   expanders: ["Random"]
 ```
 
-***Cluster autoscaler parameters***
+**Cluster autoscaler parameters**
 
 <table>
 <thead>
@@ -142,7 +140,7 @@ spec:
 </tr>
 <tr>
   <td><code>gpus.type</code></td>
-  <td>Optional: To configure the cluster autoscaler to deploy GPU-enabled nodes, specify a <code>type</code> value.</td>
+  <td>Optional: To configure the cluster autoscaler to deploy GPU-enabled nodes, specify a <code>type</code> value. This value must match the value of the <code>spec.template.spec.metadata.labels[cluster-api/accelerator]</code> label in the machine set that manages the GPU-enabled nodes of that type. For example, this value might be <code>nvidia-t4</code> to represent Nvidia T4 GPUs, or <code>nvidia-a10g</code> for A10G GPUs. For more information, see "Labeling GPU machine sets for the cluster autoscaler".</td>
 </tr>
 <tr>
   <td><code>gpus.min</code></td>
@@ -198,7 +196,7 @@ spec:
 </tr>
 <tr>
   <td><code>expanders</code></td>
-  <td>Optional: Specify any expanders that you want the cluster autoscaler to use.The following values are valid:<br><br><ul><li><code>LeastWaste</code>: Selects the machine set that minimizes the idle CPU after scaling.</li></ul>If multiple machine sets would yield the same amount of idle CPU, the selection minimizes unused memory.<ul><li><code>Priority</code>: Selects the machine set with the highest user-assigned priority.</li></ul>To use this expander, you must create a config map that defines the priority of your machine sets.For more information, see "Configuring a priority expander for the cluster autoscaler."<ul><li><code>Random</code>: (Default) Selects the machine set randomly.</li></ul>If you do not specify a value, the default value of <code>Random</code> is used.<br><br>You can specify multiple expanders by using the <code>[LeastWaste, Priority]</code> format.The cluster autoscaler applies each expander according to the specified order.<br><br>In the <code>[LeastWaste, Priority]</code> example, the cluster autoscaler first evaluates according to the <code>LeastWaste</code> criteria.If more than one machine set satisfies the <code>LeastWaste</code> criteria equally well, the cluster autoscaler then evaluates according to the <code>Priority</code> criteria.If more than one machine set satisfies all of the specified expanders equally well, the cluster autoscaler selects one to use at random.</td>
+  <td>Optional: Specify any expanders that you want the cluster autoscaler to use. The following values are valid:<br><br><ul><li><code>LeastWaste</code>: Selects the machine set that minimizes the idle CPU after scaling.</li></ul>If multiple machine sets would yield the same amount of idle CPU, the selection minimizes unused memory.<ul><li><code>Priority</code>: Selects the machine set with the highest user-assigned priority.</li></ul>To use this expander, you must create a config map that defines the priority of your machine sets. For more information, see "Configuring a priority expander for the cluster autoscaler."<ul><li><code>Random</code>: (Default) Selects the machine set randomly.</li></ul>If you do not specify a value, the default value of <code>Random</code> is used.<br><br>You can specify multiple expanders by using the <code>[LeastWaste, Priority]</code> format. The cluster autoscaler applies each expander according to the specified order.<br><br>In the <code>[LeastWaste, Priority]</code> example, the cluster autoscaler first evaluates according to the <code>LeastWaste</code> criteria. If more than one machine set satisfies the <code>LeastWaste</code> criteria equally well, the cluster autoscaler then evaluates according to the <code>Priority</code> criteria. If more than one machine set satisfies all of the specified expanders equally well, the cluster autoscaler selects one to use at random.</td>
 </tr>
 </tbody>
 </table>
@@ -311,11 +309,11 @@ Label your machine sets to indicate which machines the cluster autoscaler can us
 
 ### Deploying a cluster autoscaler {#ClusterAutoscaler-deploying_applying-autoscaling}
 
-To deploy a cluster autoscaler, you create an instance of the `{{ FeatureResourceName }}` resource.
+To deploy a cluster autoscaler, you create an instance of the `ClusterAutoscaler` resource.
 
 **Procedure**
 
-1. Create a YAML file for a `{{ FeatureResourceName }}` resource that contains the custom resource definition.
+1. Create a YAML file for a `ClusterAutoscaler` resource that contains the custom resource definition.
 2. Create the custom resource in the cluster by running the following command:
 
    ```terminal
@@ -390,11 +388,11 @@ where:
 
 ### Deploying a machine autoscaler {#MachineAutoscaler-deploying_applying-autoscaling}
 
-To deploy a machine autoscaler, you create an instance of the `{{ FeatureResourceName }}` resource.
+To deploy a machine autoscaler, you create an instance of the `MachineAutoscaler` resource.
 
 **Procedure**
 
-1. Create a YAML file for a `{{ FeatureResourceName }}` resource that contains the custom resource definition.
+1. Create a YAML file for a `MachineAutoscaler` resource that contains the custom resource definition.
 2. Create the custom resource in the cluster by running the following command:
 
    ```terminal
@@ -519,6 +517,7 @@ To disable the cluster autoscaler, you delete the corresponding `ClusterAutoscal
 - Disabling the cluster autoscaler by deleting the `ClusterAutoscaler` CR prevents the cluster from autoscaling but does not delete any existing machine autoscalers on the cluster. To clean up unneeded machine autoscalers, see "Disabling a machine autoscaler".
 - If you need to re-enable the cluster autoscaler, use the `<cluster_autoscaler_name_backup>.yaml` backup file and follow the instructions in "Deploying a cluster autoscaler".
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Including pod priority in pod scheduling decisions in OpenShift Container Platform](/openshift-docs-markdown/nodes/pods/nodes-pods-priority#nodes-pods-priority)

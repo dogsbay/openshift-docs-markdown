@@ -12,7 +12,7 @@ To control when OpenShift Container Platform pulls container images from registr
 
 The following table lists the possible values for the `imagePullPolicy` parameter:
 
-`imagePullPolicy`** values**
+**`imagePullPolicy` values**
 
 | Value | Description |
 | --- | --- |

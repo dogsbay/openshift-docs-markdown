@@ -4,7 +4,7 @@ title: Accessing the registry
 
 # Accessing the registry {#accessing-the-registry}
 
-\[role="\_abstract"\] You can access a registry to view logs and metrics. You can also secure and expose the registry.
+You can access a registry to view logs and metrics. You can also secure and expose the registry.
 
 After you logged in to the registry by using the `podman login` command, you can push or pull images from the integrated registry directly by using `podman push` or `podman pull` commands. The commands that you can use depend on your user permissions.
 
@@ -89,7 +89,7 @@ You can access the registry from inside the cluster by using internal routes.
 
 ## Checking the status of the registry pods {#checking-the-status-of-registry-pods_accessing-the-registry}
 
-\[role="\_abstract"\] As a cluster administrator,
+As a cluster administrator,
 
 you can list the image registry pods running in the `openshift-image-registry` project and check their status.
 
@@ -116,7 +116,7 @@ you can list the image registry pods running in the `openshift-image-registry` p
 
 ## Viewing registry logs {#registry-viewing-logs_accessing-the-registry}
 
-\[role="\_abstract"\] You can view the logs for the registry by using the `oc logs` command.
+You can view the logs for the registry by using the `oc logs` command.
 
 **Procedure**
 
@@ -200,7 +200,8 @@ The OpenShift Container Registry provides an endpoint for [Prometheus metrics](h
      imageregistry_http_request_duration_seconds_sum{method="get"} 12.260727916000022
      ```
 
-## Additional resources {#accessing-the-registry-additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Allowing pods to reference images across projects](/openshift-docs-markdown/openshift_images/managing_images/using-image-pull-secrets#images-allow-pods-to-reference-images-across-projects_using-image-pull-secrets)
 - [Removing the kubeadmin user](/openshift-docs-markdown/authentication/remove-kubeadmin#removing-kubeadmin_removing-kubeadmin)

@@ -29,6 +29,7 @@ AWS EBS CSI driver
 For information about dynamically provisioning AWS EBS persistent volumes in OpenShift Container Platform, see "Dynamic provisioning".
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage)
 - [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
@@ -70,6 +71,7 @@ This features supports the following storage types:
   For information about installing with IBM Cloud with user-managed encryption, see "User-managed encryption for IBM Cloud" and "Installing on IBM Cloud".
 
 **Additional resources**
+{._additional-resources}
 
 - [Optional AWS configuration parameters](/openshift-docs-markdown/installing/installing_aws/installation-config-parameters-aws#installation-configuration-parameters-optional-aws_installation-config-parameters-aws)
 
@@ -89,5 +91,6 @@ For OpenShift Container Platform 4.22, and later, only AWS Elastic Block Storage
 For information about installing an OpenShift Container Platform cluster into the AWS EUSC, see "AWS EUSC region".
 
 **Additional resources**
+{._additional-resources}
 
 - [AWS EUSC region](/openshift-docs-markdown/installing/installing_aws/installing-aws-account#installation-aws-eusc_region_installing-aws-account)

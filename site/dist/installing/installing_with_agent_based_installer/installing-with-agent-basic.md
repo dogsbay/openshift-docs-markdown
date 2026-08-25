@@ -20,6 +20,7 @@ Before beginning your cluster installation, you must complete prerequisite tasks
 - You configured your firewall to allow TCP traffic on port `8090` from all hosts to the rendezvous host so that hosts can reach the Assisted Service API during discovery and bootstrap. For more information, see "Port requirements for the rendezvous host".
 
 **Additional resources**
+{._additional-resources}
 
 - [OpenShift Container Platform installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)
 - [Selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing)
@@ -316,6 +317,7 @@ If you encounter a failed Agent-based installation, you can gather log data to p
 5. Excluding the `/auth` subdirectory, attach the installation directory used during the deployment to your support case on the [Red Hat Customer Portal](https://access.redhat.com).
 6. Attach all other data gathered from this procedure to your support case.
 
-## Additional resources {#additional-resources_installing-with-agent-basic}
+**Additional resources**
+{._additional-resources}
 
 - [Installing a cluster with customizations](/openshift-docs-markdown/installing/installing_with_agent_based_installer/installing-with-agent-based-installer#installing-with-agent-based-installer)

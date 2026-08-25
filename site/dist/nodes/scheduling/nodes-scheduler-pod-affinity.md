@@ -620,8 +620,8 @@ To control the placement of an Operator pod, complete the following steps.
 
    where:
 
-`spec.config.affinity`
-:   Specifies a `podAffinity` or `podAntiAffinity`.
+   `spec.config.affinity`
+   :   Specifies a `podAffinity` or `podAntiAffinity`.
 
 **Verification**
 
@@ -636,6 +636,7 @@ To control the placement of an Operator pod, complete the following steps.
   custom-metrics-autoscaler-operator-5dcc45d656-bhshg   1/1     Running   0          50s   10.131.0.20   ip-10-0-185-229.ec2.internal   <none>           <none>
   ```
 
-## Additional resources {#additional-resources_nodes-scheduler-pod-affinity}
+**Additional resources**
+{._additional-resources}
 
 - [Node label (Kubernetes documentation)](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#built-in-node-labels)

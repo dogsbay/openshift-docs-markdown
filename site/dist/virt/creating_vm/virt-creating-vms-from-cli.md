@@ -166,7 +166,8 @@ You can configure the following video device types:
 | ARM64 | BIOS/EFI | `virtio` | `virtio`, `ramfb` |
 | s390x | BIOS/EFI | `virtio` | `virtio` |
 
-## Additional resources {#additional-resources_virt-creating-vms-cli}
+**Additional resources**
+{._additional-resources}
 
 - [SSH access for virtual machines](/openshift-docs-markdown/virt/managing_vms/ssh/virt-accessing-vm-ssh#virt-accessing-vm-ssh)
 - [Creating virtual machines from instance types](/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-from-instance-types#virt-creating-vms-from-instance-types)

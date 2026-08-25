@@ -1,5 +1,5 @@
 ---
-title: InsightsOperator []
+title: InsightsOperator [operator.openshift.io/v1]
 ---
 
 # InsightsOperator \[operator.openshift.io/v1\] {#insightsoperator-operator-openshift-io-v1}
@@ -37,11 +37,11 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `logLevel` | `string` | logLevel is an intent based logging for an overall component.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands.  Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
+| `logLevel` | `string` | logLevel is an intent based logging for an overall component. It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands. Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `managementState` | `string` | managementState indicates whether and how the operator should manage the component |
-| `observedConfig` | \`\` | observedConfig holds a sparse config that controller has observed from the cluster state.  It exists in spec because it is an input to the level for the operator |
-| `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves.  Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
-| `unsupportedConfigOverrides` | \`\` | unsupportedConfigOverrides holds a sparse config that will override any previously set options.  It only needs to be the fields to override it will end up overlaying in the following order: 1. hardcoded defaults 2. observedConfig 3. unsupportedConfigOverrides |
+| `observedConfig` | \`\` | observedConfig holds a sparse config that controller has observed from the cluster state. It exists in spec because it is an input to the level for the operator |
+| `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself. It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves. Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
+| `unsupportedConfigOverrides` | \`\` | unsupportedConfigOverrides holds a sparse config that will override any previously set options. It only needs to be the fields to override it will end up overlaying in the following order: 1. hardcoded defaults 2. observedConfig 3. unsupportedConfigOverrides |
 
 ### .status {#_status}
 
@@ -138,7 +138,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `conditions` | `array` | conditions provide details on the status of each gatherer. |
-| `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. --- This struct is intended for direct use as an array at the field path .status.conditions.  For example, type FooStatus struct{     // Represents the observations of a foo’s current state.     // Known .status.conditions.type are: "Available", "Progressing", and "Degraded"     // +patchMergeKey=type     // +patchStrategy=merge     // +listType=map     // +listMapKey=type     Conditions \[\]metav1.Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" protobuf:"bytes,1,rep,name=conditions"`      // other fields } |
+| `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. --- This struct is intended for direct use as an array at the field path .status.conditions. For example, type FooStatus struct{ // Represents the observations of a foo’s current state. // Known .status.conditions.type are: "Available", "Progressing", and "Degraded" // +patchMergeKey=type // +patchStrategy=merge // +listType=map // +listMapKey=type Conditions \[\]metav1.Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" protobuf:"bytes,1,rep,name=conditions"` // other fields } |
 | `lastGatherDuration` | `string` | lastGatherDuration represents the time spent gathering. |
 | `name` | `string` | name is the name of the gatherer. |
 
@@ -171,7 +171,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
 | `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
@@ -265,18 +265,18 @@ The following API endpoints are available:
   - `DELETE`: delete collection of InsightsOperator
   - `GET`: list objects of kind InsightsOperator
   - `POST`: create an InsightsOperator
-- `/apis/operator.openshift.io/v1/insightsoperators/{{ name }}`
+- `/apis/operator.openshift.io/v1/insightsoperators/{name}`
 
   - `DELETE`: delete an InsightsOperator
   - `GET`: read the specified InsightsOperator
   - `PATCH`: partially update the specified InsightsOperator
   - `PUT`: replace the specified InsightsOperator
-- `/apis/operator.openshift.io/v1/insightsoperators/{{ name }}/scale`
+- `/apis/operator.openshift.io/v1/insightsoperators/{name}/scale`
 
   - `GET`: read scale of the specified InsightsOperator
   - `PATCH`: partially update scale of the specified InsightsOperator
   - `PUT`: replace scale of the specified InsightsOperator
-- `/apis/operator.openshift.io/v1/insightsoperators/{{ name }}/status`
+- `/apis/operator.openshift.io/v1/insightsoperators/{name}/status`
 
   - `GET`: read status of the specified InsightsOperator
   - `PATCH`: partially update status of the specified InsightsOperator
@@ -350,7 +350,7 @@ Description
 | 202 - Accepted | [`InsightsOperator`](/openshift-docs-markdown/rest_api/operator_apis/insightsoperator-operator-openshift-io-v1#insightsoperator-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operator.openshift.io/v1/insightsoperators/{{ name }} {#_apisoperatoropenshiftiov1insightsoperators_name}
+### /apis/operator.openshift.io/v1/insightsoperators/{name} {#_apisoperatoropenshiftiov1insightsoperators_name}
 
 **Global path parameters**
 
@@ -454,7 +454,7 @@ Description
 | 201 - Created | [`InsightsOperator`](/openshift-docs-markdown/rest_api/operator_apis/insightsoperator-operator-openshift-io-v1#insightsoperator-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operator.openshift.io/v1/insightsoperators/{{ name }}/scale {#_apisoperatoropenshiftiov1insightsoperators_name_scale}
+### /apis/operator.openshift.io/v1/insightsoperators/{name}/scale {#_apisoperatoropenshiftiov1insightsoperators_name_scale}
 
 **Global path parameters**
 
@@ -534,7 +534,7 @@ Description
 | 201 - Created | [`Scale`](/openshift-docs-markdown/rest_api/autoscale_apis/scale-autoscaling-v1#scale-autoscaling-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operator.openshift.io/v1/insightsoperators/{{ name }}/status {#_apisoperatoropenshiftiov1insightsoperators_name_status}
+### /apis/operator.openshift.io/v1/insightsoperators/{name}/status {#_apisoperatoropenshiftiov1insightsoperators_name_status}
 
 **Global path parameters**
 

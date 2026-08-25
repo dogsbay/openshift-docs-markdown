@@ -1,5 +1,5 @@
 ---
-title: Creating an {{ ibm_power_server_title }} workspace
+title: Creating an IBM Power Virtual Server workspace
 ---
 
 # Creating an IBM Power Virtual Server workspace {#creating-ibm-power-vs-workspace}
@@ -19,6 +19,7 @@ To set up the infrastructure needed for your OpenShift Container Platform cluste
    $ ibmcloud resource service-instance <workspace name>
    ```
 
-## Additional resources {#additional-resources_creating-ibm-power-vs-workspace}
+**Additional resources**
+{._additional-resources}
 
 - [Installing a cluster on IBM Power(R) Virtual Server with customizations](/openshift-docs-markdown/installing/installing_ibm_powervs/installing-ibm-power-vs-customizations#installing-ibm-power-vs-customizations)

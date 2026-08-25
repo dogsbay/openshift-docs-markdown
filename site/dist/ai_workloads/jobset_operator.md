@@ -1,5 +1,5 @@
 ---
-title: "{{ js_operator }} overview"
+title: JobSet Operator overview
 ---
 
 # JobSet Operator overview {#js-about}
@@ -22,8 +22,12 @@ The JobSet Operator offers startup control, allowing you to define a specific st
 
 JobSet Operator makes managing large, distributed, and coordinated computing tasks on OpenShift Container Platform easier, turning many individual components into one resilient and manageable system.
 
+**Additional resources**
+{._additional-resources}
+
 - [JobSet project](https://jobset.sigs.k8s.io/docs/overview/)
 
-## Additional resources {#js-about_additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [JobSet documentation (Kubernetes)](https://jobset.sigs.k8s.io/docs/overview/)

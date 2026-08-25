@@ -1,5 +1,5 @@
 ---
-title: NodeMetrics []
+title: NodeMetrics [metrics.k8s.io/v1beta1]
 ---
 
 # NodeMetrics \[metrics.k8s.io/v1beta1\] {#nodemetrics-metrics-k8s-io-v1beta1}
@@ -35,7 +35,7 @@ The following API endpoints are available:
 - `/apis/metrics.k8s.io/v1beta1/nodes`
 
   - `GET`: list objects of kind NodeMetrics
-- `/apis/metrics.k8s.io/v1beta1/nodes/{{ name }}`
+- `/apis/metrics.k8s.io/v1beta1/nodes/{name}`
 
   - `GET`: read the specified NodeMetrics
 
@@ -57,7 +57,7 @@ Description
 | --- | --- |
 | 200 - OK | [`NodeMetricsList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-metrics-pkg-apis-metrics-v1beta1-NodeMetricsList) schema |
 
-### /apis/metrics.k8s.io/v1beta1/nodes/{{ name }} {#_apismetricsk8siov1beta1nodes_name}
+### /apis/metrics.k8s.io/v1beta1/nodes/{name} {#_apismetricsk8siov1beta1nodes_name}
 
 **Global path parameters**
 

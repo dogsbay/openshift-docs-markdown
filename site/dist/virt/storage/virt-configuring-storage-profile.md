@@ -158,20 +158,31 @@ The system creates storage profiles for each storage class automatically. You ca
    Spec:
    Status:
      Claim Property Sets:
+       accessModes:
+         ReadWriteMany
+       volumeMode:  Block
+       accessModes:
+         ReadWriteOnce
+       volumeMode:  Block
+       accessModes:
+         ReadWriteOnce
+       volumeMode:                   Filesystem
+     Clone Strategy:                  csi-clone
+     Data Import Cron Source Format:  snapshot
+     Provisioner:                     openshift-storage.rbd.csi.ceph.com
+     Snapshot Class:                  ocs-storagecluster-rbdplugin-snapclass
+     Storage Class:                   ocs-storagecluster-ceph-rbd-virtualization
+   Events:                            <none>
    ```
 
-{%- if not openshift_dedicated %} accessModes: ReadWriteMany volumeMode:  Block {%- endif %} accessModes: ReadWriteOnce volumeMode:  Block accessModes: ReadWriteOnce volumeMode:                   Filesystem Clone Strategy:                  csi-clone Data Import Cron Source Format:  snapshot Provisioner:                     openshift-storage.rbd.csi.ceph.com Snapshot Class:                  ocs-storagecluster-rbdplugin-snapclass Storage Class:                   ocs-storagecluster-ceph-rbd-virtualization Events:                            <none> \`\`\`
+   `status.claimPropertySets`
+   :   `Claim Property Sets` is an ordered list of `AccessMode`/`VolumeMode` pairs, which describe the PVC modes that are used to provision VM disks.
 
-```
-`status.claimPropertySets`
-:   `Claim Property Sets` is an ordered list of `AccessMode`/`VolumeMode` pairs, which describe the PVC modes that are used to provision VM disks.
+   `status.cloneStrategy`
+   :   The `Clone Strategy` line indicates the clone strategy to be used.
 
-`status.cloneStrategy`
-:   The `Clone Strategy` line indicates the clone strategy to be used.
-
-`status.dataImportCronSourceFormat`
-:   `Data Import Cron Source Format` indicates whether boot source images on this storage are stored as PVCs or volume snapshots.
-```
+   `status.dataImportCronSourceFormat`
+   :   `Data Import Cron Source Format` indicates whether boot source images on this storage are stored as PVCs or volume snapshots.
 
 ### Setting a default cloning strategy by using a storage profile {#virt-customizing-storage-profile-default-cloning-strategy_virt-configuring-storage-profile}
 

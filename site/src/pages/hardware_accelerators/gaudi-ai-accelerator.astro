@@ -20,7 +20,8 @@ const headings = [{"depth":1,"slug":"gaudi-ai-accelerator","text":"Intel Gaudi A
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hardware_accelerators/gaudi-ai-accelerator";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -39,7 +40,7 @@ const pageCategory = ["hardware_accelerators"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Intel Gaudi AI accelerators {#gaudi-ai-accelerator}\n\nYou can use Intel Gaudi AI accelerators for your OpenShift Container Platform generative AI and machine learning (AI/ML) applications. Intel Gaudi AI accelerators offer a cost-efficient, flexible, and scalable solution for optimized deep learning workloads.\n\nRed Hat supports Intel Gaudi 2 and Intel Gaudi 3 devices. Intel Gaudi 3 devices provide significant improvements in training speed and energy efficiency.\n\n## Intel Gaudi AI accelerators prerequisites {#gaudi-ai-accelerators-prerequisites_gaudi-ai-accelerator}\n\n- You have a working OpenShift Container Platform cluster with at least one GPU worker node.\n- You have access to the OpenShift Container Platform cluster as a cluster-admin to perform the required steps.\n- You have installed OpenShift CLI (`oc`).\n- You have installed the Node Feature Discovery (NFD) Operator and created a `NodeFeatureDiscovery` instance.\n\n**Additional resources**\n\n- [OpenShift Installation](https://docs.habana.ai/en/latest/Installation_Guide/Additional_Installation/OpenShift_Installation/index.html) (Intel Gaudi documentation)\n- [Intel Gaudi AI Accelerator integration](https://docs.redhat.com/en/documentation/red_hat_openshift_ai_self-managed/2.20/html/working_with_accelerators/intel-gaudi-ai-accelerator-integration_accelerators#intel-gaudi-ai-accelerator-integration_accelerators)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hardware_accelerators/gaudi-ai-accelerator.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Intel Gaudi AI accelerators {#gaudi-ai-accelerator}\n\nYou can use Intel Gaudi AI accelerators for your OpenShift Container Platform generative AI and machine learning (AI/ML) applications. Intel Gaudi AI accelerators offer a cost-efficient, flexible, and scalable solution for optimized deep learning workloads.\n\nRed Hat supports Intel Gaudi 2 and Intel Gaudi 3 devices. Intel Gaudi 3 devices provide significant improvements in training speed and energy efficiency.\n\n## Intel Gaudi AI accelerators prerequisites {#gaudi-ai-accelerators-prerequisites_gaudi-ai-accelerator}\n\n- You have a working OpenShift Container Platform cluster with at least one GPU worker node.\n- You have access to the OpenShift Container Platform cluster as a cluster-admin to perform the required steps.\n- You have installed OpenShift CLI (`oc`).\n- You have installed the Node Feature Discovery (NFD) Operator and created a `NodeFeatureDiscovery` instance.\n\n**Additional resources**\n{._additional-resources}\n\n- [OpenShift Installation](https://docs.habana.ai/en/latest/Installation_Guide/Additional_Installation/OpenShift_Installation/index.html) (Intel Gaudi documentation)\n- [Intel Gaudi AI Accelerator integration](https://docs.redhat.com/en/documentation/red_hat_openshift_ai_self-managed/2.20/html/working_with_accelerators/intel-gaudi-ai-accelerator-integration_accelerators#intel-gaudi-ai-accelerator-integration_accelerators)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hardware_accelerators/gaudi-ai-accelerator.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,12 +79,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -100,11 +102,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>You have installed OpenShift CLI (<code>oc</code>).</li>
       <li>You have installed the Node Feature Discovery (NFD) Operator and created a <code>NodeFeatureDiscovery</code> instance.</li>
       </ul>
-      <p><strong>Additional resources</strong></p>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul>
       <li><a href="https://docs.habana.ai/en/latest/Installation_Guide/Additional_Installation/OpenShift_Installation/index.html">OpenShift Installation</a> (Intel Gaudi documentation)</li>
       <li><a href="https://docs.redhat.com/en/documentation/red_hat_openshift_ai_self-managed/2.20/html/working_with_accelerators/intel-gaudi-ai-accelerator-integration_accelerators#intel-gaudi-ai-accelerator-integration_accelerators">Intel Gaudi AI Accelerator integration</a></li>
       </ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

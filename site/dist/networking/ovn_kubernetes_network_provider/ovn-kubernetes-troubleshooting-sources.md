@@ -58,12 +58,13 @@ To monitor OVN-Kubernetes component health in OpenShift Container Platform, you 
    > The expectation is all container statuses are reporting as `true`. Failure of a readiness probe sets the status to `false`.
 
 **Additional resources**
+{._additional-resources}
 
 - [Monitoring application health by using health checks](/openshift-docs-markdown/applications/application-health#application-health)
 
 ## Viewing OVN-Kubernetes alerts in the console {#nw-ovn-kubernetes-alerts-console_ovn-kubernetes-sources-of-troubleshooting-information}
 
-To view OVN-Kubernetes alerts in the OpenShift Container Platform web console, you can open **Observe** -> **Alerting** to inspect rules, alerts, and silences.
+To view OVN-Kubernetes alerts in the OpenShift Container Platform web console, you can open **Observe** → **Alerting** to inspect rules, alerts, and silences.
 
 The Alerting UI provides detailed information about alerts and their governing alerting rules and silences.
 
@@ -73,8 +74,8 @@ The Alerting UI provides detailed information about alerts and their governing a
 
 **Procedure**
 
-1. In the **Administrator** perspective, select **Observe** -> **Alerting**. The three main pages in the Alerting UI in this perspective are the **Alerts**, **Silences**, and **Alerting Rules** pages.
-2. View the rules for OVN-Kubernetes alerts by selecting **Observe** -> **Alerting** -> **Alerting Rules**.
+1. In the **Administrator** perspective, select **Observe** → **Alerting**. The three main pages in the Alerting UI in this perspective are the **Alerts**, **Silences**, and **Alerting Rules** pages.
+2. View the rules for OVN-Kubernetes alerts by selecting **Observe** → **Alerting** → **Alerting Rules**.
 
 ## Viewing OVN-Kubernetes alerts in the CLI {#nw-ovn-kubernetes-alerts-cli_ovn-kubernetes-sources-of-troubleshooting-information}
 
@@ -175,7 +176,7 @@ To view OVN-Kubernetes pod logs in the OpenShift Container Platform web console,
 
 **Procedure**
 
-1. In the OpenShift Container Platform console, navigate to **Workloads** -> **Pods** or navigate to the pod through the resource you want to investigate.
+1. In the OpenShift Container Platform console, navigate to **Workloads** → **Pods** or navigate to the pod through the resource you want to investigate.
 2. Select the `openshift-ovn-kubernetes` project from the drop-down menu.
 3. Click the name of the pod you want to investigate.
 4. Click **Logs**. By default for the `ovnkube-master` the logs associated with the `northd` container are displayed.
@@ -510,7 +511,8 @@ After you have opened a bash shell inside of the `ovnkube-node` pod, the followi
 | `-output-file` | Output file to write the samples to. |
 | `-print-full-packet` | Print full received packet. When false, only source and destination IPs are printed with every sample. |
 
-## Additional resources {#additional-resources_ovn-kubernetes-sources-of-troubleshooting-information}
+**Additional resources**
+{._additional-resources}
 
 - [Gathering data about your cluster for Red Hat Support](/openshift-docs-markdown/support/gathering-cluster-data#support_gathering_data_gathering-cluster-data)
 - [Implementation of connection health checks](/openshift-docs-markdown/networking/advanced_networking/verifying-connectivity-endpoint#nw-pod-network-connectivity-implementation_verifying-connectivity-endpoint)

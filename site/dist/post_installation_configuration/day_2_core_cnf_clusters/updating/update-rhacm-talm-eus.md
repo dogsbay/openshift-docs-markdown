@@ -1,8 +1,8 @@
 ---
-title: Complete an EUS-to-EUS cluster update with {{ cgu_operator }}
+title: Complete an EUS-to-EUS cluster update with TALM
 ---
 
-# Complete an EUS-to-EUS cluster update with {{ cgu_operator }} {#core-cluster-upgrades-eus}
+# Complete an EUS-to-EUS cluster update with TALM {#core-cluster-upgrades-eus}
 
 You can partially skip intermediate odd-numbered releases by using control-plane-only EUS-to-EUS updates with RHACM policies and Topology Aware Lifecycle Manager (TALM). With this approach, you can manage control plane and worker version skew during staged rollouts.
 
@@ -298,7 +298,8 @@ The following procedure demonstrates an EUS-to-EUS update using an example clust
 - If the control plane update gets stuck, check for Operator compatibility issues with the target EUS version.
 - If worker nodes fail to update after unpause, check the `MachineConfigPool` resource status and node logs.
 
-## Additional resources {#additional-resources_core-cluster-upgrades-eus}
+**Additional resources**
+{._additional-resources}
 
 - [Prepare RHACM policies and TALM for cluster updates](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-preparing-policies#core-cluster-upgrades-preparing-policies)
 - [Manage worker nodes during a cluster update with TALM](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-worker-management#core-cluster-upgrades-worker-management)

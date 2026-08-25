@@ -1,5 +1,5 @@
 ---
-title: Configuring {{ aws_full }} features for control plane machines
+title: Configuring Amazon Web Services features for control plane machines
 ---
 
 # Configuring Amazon Web Services features for control plane machines {#cpmso-supported-features-aws}
@@ -67,6 +67,7 @@ If the security posture of your organization does not allow clusters to use an o
    ````
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring the Ingress Controller endpoint publishing scope to Internal](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/nw-configuring-ingress-controller-endpoint-publishing-strategy#nw-ingresscontroller-change-internal_nw-configuring-ingress-controller-endpoint-publishing-strategy)
 
@@ -134,16 +135,29 @@ You can configure a machine set to deploy machines on Elastic Fabric Adapter (EF
 
    ```yaml
 
+   apiVersion: machine.openshift.io/v1
+   kind: ControlPlaneMachineSet
+   # ...
+   spec:
+     template:
+       machines_v1beta1_machine_openshift_io:
+         spec:
+           providerSpec:
+             value:
+               instanceType: <supported_instance_type>
+               networkInterfaceType: <interface_type>
+               placement:
+                 availabilityZone: <zone>
+                 region: <region>
+               placementGroupName: <placement_group>
+               placementGroupPartition: <placement_group_partition_number>
+
    ```
 
-{%- if cpmso %} apiVersion: machine.openshift.io/v1 kind: ControlPlaneMachineSet # ... spec: template: machines_v1beta1_machine_openshift_io: spec: providerSpec: value: instanceType: <supported_instance_type> networkInterfaceType: <interface_type> placement: availabilityZone: <zone> region: <region> placementGroupName: <placement_group> placementGroupPartition: <placement_group_partition_number> {% endif %} {% if not cpmso %} apiVersion: machine.openshift.io/v1beta1 kind: MachineSet # ... spec: template: spec: providerSpec: value: instanceType: <supported_instance_type> networkInterfaceType: <interface_type> placement: availabilityZone: <zone> region: <region> placementGroupName: <placement_group> placementGroupPartition: <placement_group_partition_number> {%- endif %} \`\`\`
+   where:
 
-```
-where:
-
-`<supported_instance_type>`
-:   Specifies an instance type that [supports EFAs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html#efa-instance-types).
-```
+   `<supported_instance_type>`
+   :   Specifies an instance type that [supports EFAs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html#efa-instance-types).
 
 `<interface_type>`
 :   Specifies the network interface type. To use an EFA, set this value to `EFA`.
@@ -201,17 +215,22 @@ You can specify whether to require the use of IMDSv2 by adding or editing the va
 
    ```yaml
 
+   apiVersion: machine.openshift.io/v1
+   kind: ControlPlaneMachineSet
+   # ...
+   spec:
+     template:
+       machines_v1beta1_machine_openshift_io:
+         spec:
+           providerSpec:
+             value:
+               imetadataServiceOptions:
+                 authentication: Required
+
    ```
 
-{%- if cpmso %} apiVersion: machine.openshift.io/v1 kind: ControlPlaneMachineSet # ... spec: template: machines_v1beta1_machine_openshift_io: spec: providerSpec: value: imetadataServiceOptions: authentication: Required {% endif %} {% if not cpmso %} apiVersion: machine.openshift.io/v1beta1 kind: MachineSet # ... spec: template: spec: providerSpec: value: metadataServiceOptions: authentication: Required {%- endif %} \`\`\`
-
-```
-To require IMDSv2, set the `metadataServiceOptions.authentication` parameter value to `Required`.
-To allow the use of both IMDSv1 and IMDSv2, set the parameter value to `Optional`.
-If you do not specify a value, machines that the machine set creates allow the use of both IMDSv1 and IMDSv2.
-```
-
-1. Save your changes and exit the object specification.
+   To require IMDSv2, set the `metadataServiceOptions.authentication` parameter value to `Required`. To allow the use of both IMDSv1 and IMDSv2, set the parameter value to `Optional`. If you do not specify a value, machines that the machine set creates allow the use of both IMDSv1 and IMDSv2.
+3. Save your changes and exit the object specification.
 
    When you save an update to the control plane machine set, the Control Plane Machine Set Operator updates the control plane machines according to your configured update strategy.
 
@@ -219,6 +238,7 @@ If you do not specify a value, machines that the machine set creates allow the u
    - For clusters that are configured to use the `OnDelete` update strategy, you must replace your control plane machines manually.
 
 **Additional resources**
+{._additional-resources}
 
 - [Boot image management](/openshift-docs-markdown/machine_configuration/mco-update-boot-images#mco-update-boot-images)
 
@@ -270,15 +290,22 @@ Public tenancy is the default tenancy. Instances with public tenancy run on shar
 
    ```yaml
 
+   apiVersion: machine.openshift.io/v1
+   kind: ControlPlaneMachineSet
+   # ...
+   spec:
+     template:
+       machines_v1beta1_machine_openshift_io:
+         spec:
+           providerSpec:
+             value:
+               placement:
+                 tenancy: dedicated
+
    ```
 
-{%- if cpmso %} apiVersion: machine.openshift.io/v1 kind: ControlPlaneMachineSet # ... spec: template: machines_v1beta1_machine_openshift_io: spec: providerSpec: value: placement: tenancy: dedicated {% endif %} {% if not cpmso %} apiVersion: machine.openshift.io/v1beta1 kind: MachineSet # ... spec: template: spec: providerSpec: value: placement: tenancy: dedicated {%- endif %} \`\`\`
-
-```
-To use Dedicated Instances, set the `placement.tenancy` parameter value to `dedicated`.
-```
-
-1. Save your changes and exit the object specification.
+   To use Dedicated Instances, set the `placement.tenancy` parameter value to `dedicated`.
+3. Save your changes and exit the object specification.
 
    When you save an update to the control plane machine set, the Control Plane Machine Set Operator updates the control plane machines according to your configured update strategy.
 
@@ -287,25 +314,13 @@ To use Dedicated Instances, set the `placement.tenancy` parameter value to `dedi
 
 ## Configuring Capacity Reservations by using machine sets {#machineset-capacity-reservation_cpmso-supported-features-aws}
 
-You can configure a machine set to deploy machines on any available resources that match the parameters of a capacity request that you define by using
-
-Capacity Reservations on Amazon Web Services clusters, including On-Demand Capacity Reservations and Capacity Blocks for ML.
+You can configure a machine set to deploy machines on any available resources that match the parameters of a capacity request that you define by using Capacity Reservations on Amazon Web Services clusters, including On-Demand Capacity Reservations and Capacity Blocks for ML.
 
 You can configure a machine set to deploy machines on any available resources that match the parameters of a capacity request that you define.
 
-These parameters specify the
+These parameters specify the instance type, region, and number of instances that you want to reserve. If your Capacity Reservation can accommodate the capacity request, the deployment succeeds.
 
-instance type,
-
-region, and number of instances that you want to reserve. If your
-
-Capacity Reservation
-
-can accommodate the capacity request, the deployment succeeds.
-
-For more information, including limitations and suggested use cases for this
-
-Amazon Web Services offering, see [On-Demand Capacity Reservations and Capacity Blocks for ML](https://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/capacity-reservation-overview.html) in the AWS documentation.
+For more information, including limitations and suggested use cases for this Amazon Web Services offering, see [On-Demand Capacity Reservations and Capacity Blocks for ML](https://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/capacity-reservation-overview.html) in the AWS documentation.
 
 **Prerequisites**
 
@@ -337,16 +352,29 @@ tag:compute[]\[\] . In a text editor, open an existing machine set custom resour
        spec:
          providerSpec:
            value:
+             capacityReservationId: <capacity_reservation>
+             marketType: <market_type>
+   end::compute[]
+   tag::controlplane[]
+   apiVersion: machine.openshift.io/v1
+   kind: ControlPlaneMachineSet
+   # ...
+   spec:
+     template:
+       machines_v1beta1_machine_openshift_io:
+         spec:
+           providerSpec:
+             value:
+               capacityReservationId: <capacity_reservation>
+               marketType: <market_type>
+   end::controlplane[]
+   # ...
    ```
 
-{%- if azure %} capacityReservationGroupID: <capacity_reservation_group> {% endif %} {% if aws %} capacityReservationId: <capacity_reservation> marketType: <market_type> {%- endif %} end:compute[]\[\] tag:controlplane[]\[\] apiVersion: machine.openshift.io/v1 kind: ControlPlaneMachineSet # ... spec: template: machines_v1beta1_machine_openshift_io: spec: providerSpec: value: {%- if azure %} capacityReservationGroupID: <capacity_reservation_group> {% endif %} {% if aws %} capacityReservationId: <capacity_reservation> marketType: <market_type> {%- endif %} end:controlplane[]\[\] # ... \`\`\`
+   where:
 
-```
-where:
-
-`<capacity_reservation>`
-:   Specifies the ID of the Capacity Block for ML or On-Demand Capacity Reservation that you want the machine set to deploy machines on.
-```
+   `<capacity_reservation>`
+   :   Specifies the ID of the Capacity Block for ML or On-Demand Capacity Reservation that you want the machine set to deploy machines on.
 
 `<market_type>`
 :   Specifies the market type to use. The following values are valid:
@@ -390,7 +418,8 @@ where:
 
   In the output, verify that the characteristics of the listed machines match the parameters of your Capacity Reservation.
 
-## Additional resources {#additional-resources_cpmso-supported-features-aws}
+**Additional resources**
+{._additional-resources}
 
 - [Updating the control plane configuration](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-feat-config-update_cpmso-managing-machines)
 - [Control plane configuration options for Amazon Web Services](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso_provider_configurations/cpmso-config-options-aws#cpmso-config-options-aws)

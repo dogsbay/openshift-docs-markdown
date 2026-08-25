@@ -144,6 +144,7 @@ Consider using the customized `br-ex` bridge configuration for any of the follow
 - Scaling compute nodes to apply the manifest object that includes a customized `br-ex` bridge to each compute node that exists in your cluster. For more information, see "Expanding the cluster" in the *Additional resources* section.
 
 **Additional resources**
+{._additional-resources}
 
 - [Converting to a dual-stack cluster network](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/converting-to-dual-stack#nw-dual-stack-convert_converting-to-dual-stack)
 - [Expanding the cluster](/openshift-docs-markdown/installing/installing_bare_metal/bare-metal-expanding-the-cluster#bare-metal-expanding-the-cluster)

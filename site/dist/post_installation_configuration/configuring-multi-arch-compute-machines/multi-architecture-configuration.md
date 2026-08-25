@@ -23,18 +23,93 @@ To create a cluster with multi-architecture compute machines with different inst
 
 **Cluster with multi-architecture compute machine installation options**
 
-| Documentation section | Platform | User-provisioned installation | Installer-provisioned installation | Control Plane | Compute node |
-| --- | --- | --- | --- | --- | --- |
-| "Creating a cluster with multi-architecture compute machines on Azure" | Microsoft Azure | ✓ | ✓ | `aarch64` or `x86_64` | `aarch64`, `x86_64` |
-| "Creating a cluster with multi-architecture compute machines on AWS" | Amazon Web Services (AWS) | ✓ | ✓ | `aarch64` or `x86_64` | `aarch64`, `x86_64` |
-| "Creating a cluster with multi-architecture compute machines on Google Cloud" | Google Cloud |  | ✓ | `aarch64` or `x86_64` | `aarch64`, `x86_64` .3+ |
-| "Creating a cluster with multi-architecture compute machines on bare metal, IBM Power, or IBM Z" | Bare metal | ✓ | ✓ | `aarch64` or `x86_64` | `aarch64`, `x86_64` |
-| IBM Power | ✓ |  | `x86_64` or `ppc64le` | `x86_64`, `ppc64le` | IBM Z |
-| ✓ |  | `x86_64` or `s390x` | `x86_64`, `s390x` | "Creating a cluster with multi-architecture compute machines on IBM Z(R) and IBM(R) LinuxONE with z/VM" | IBM Z(R) and IBM(R) LinuxONE |
-| ✓ |  | `x86_64`, `s390x` | `x86_64`, `s390x` | "Creating a cluster with multi-architecture compute machines on IBM Z(R) and IBM(R) LinuxONE with RHEL KVM" | IBM Z(R) and IBM(R) LinuxONE |
-| ✓ |  | `x86_64`, `s390x` | `x86_64`, `s390x` | "Creating a cluster with multi-architecture compute machines on IBM Power(R)" | IBM Power(R) |
+<table>
+<thead>
+<tr>
+  <th>Documentation section</th>
+  <th>Platform</th>
+  <th>User-provisioned installation</th>
+  <th>Installer-provisioned installation</th>
+  <th>Control Plane</th>
+  <th>Compute node</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>"Creating a cluster with multi-architecture compute machines on Azure"</td>
+  <td>Microsoft Azure</td>
+  <td>&#10003;</td>
+  <td>&#10003;</td>
+  <td><code>aarch64</code> or <code>x86_64</code></td>
+  <td><code>aarch64</code>, <code>x86_64</code></td>
+</tr>
+<tr>
+  <td>"Creating a cluster with multi-architecture compute machines on AWS"</td>
+  <td>Amazon Web Services (AWS)</td>
+  <td>&#10003;</td>
+  <td>&#10003;</td>
+  <td><code>aarch64</code> or <code>x86_64</code></td>
+  <td><code>aarch64</code>, <code>x86_64</code></td>
+</tr>
+<tr>
+  <td>"Creating a cluster with multi-architecture compute machines on Google Cloud"</td>
+  <td>Google Cloud</td>
+  <td></td>
+  <td>&#10003;</td>
+  <td><code>aarch64</code> or <code>x86_64</code></td>
+  <td><code>aarch64</code>, <code>x86_64</code></td>
+</tr>
+<tr>
+  <td rowspan="3">"Creating a cluster with multi-architecture compute machines on bare metal, IBM Power, or IBM Z"</td>
+  <td>Bare metal</td>
+  <td>&#10003;</td>
+  <td>&#10003;</td>
+  <td><code>aarch64</code> or <code>x86_64</code></td>
+  <td><code>aarch64</code>, <code>x86_64</code></td>
+</tr>
+<tr>
+  <td>IBM Power</td>
+  <td>&#10003;</td>
+  <td></td>
+  <td><code>x86_64</code> or <code>ppc64le</code></td>
+  <td><code>x86_64</code>, <code>ppc64le</code></td>
+</tr>
+<tr>
+  <td>IBM Z</td>
+  <td>&#10003;</td>
+  <td></td>
+  <td><code>x86_64</code> or <code>s390x</code></td>
+  <td><code>x86_64</code>, <code>s390x</code></td>
+</tr>
+<tr>
+  <td>"Creating a cluster with multi-architecture compute machines on IBM Z(R) and IBM(R) LinuxONE with z/VM"</td>
+  <td>IBM Z(R) and IBM(R) LinuxONE</td>
+  <td>&#10003;</td>
+  <td></td>
+  <td><code>x86_64</code>, <code>s390x</code></td>
+  <td><code>x86_64</code>, <code>s390x</code></td>
+</tr>
+<tr>
+  <td>"Creating a cluster with multi-architecture compute machines on IBM Z(R) and IBM(R) LinuxONE with RHEL KVM"</td>
+  <td>IBM Z(R) and IBM(R) LinuxONE</td>
+  <td>&#10003;</td>
+  <td></td>
+  <td><code>x86_64</code>, <code>s390x</code></td>
+  <td><code>x86_64</code>, <code>s390x</code></td>
+</tr>
+<tr>
+  <td>"Creating a cluster with multi-architecture compute machines on IBM Power(R)"</td>
+  <td>IBM Power(R)</td>
+  <td>&#10003;</td>
+  <td></td>
+  <td><code>x86_64</code></td>
+  <td><code>x86_64</code>, <code>ppc64le</code></td>
+</tr>
+</tbody>
+</table>
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating a cluster with multi-architecture compute machines on Azure](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-azure#creating-multi-arch-compute-nodes-azure)
 - [Creating a cluster with multi-architecture compute machines on AWS](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-aws#creating-multi-arch-compute-nodes-aws)
@@ -89,10 +164,12 @@ Before you can start adding compute nodes of different architectures to your clu
   > To migrate your cluster so the cluster supports multi-architecture compute machines, see "Migrating to a cluster with multi-architecture compute machines".
 
 **Additional resources**
+{._additional-resources}
 
 - [Migrating to a cluster with multi-architecture compute machines](/openshift-docs-markdown/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-payload)
 
-## Additional resources {#additional-resources_multi-architecture-configuration}
+**Additional resources**
+{._additional-resources}
 
 - [Assigning pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)
 - [Deploying OpenShift 4.x on non-tested platforms using the bare metal install method (Red Hat Knowledgebase article)](https://access.redhat.com/articles/4207611)

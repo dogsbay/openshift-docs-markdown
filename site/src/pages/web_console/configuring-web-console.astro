@@ -21,7 +21,8 @@ const headings = [{"depth":1,"slug":"configuring-web-console","text":"Configurin
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/web_console/configuring-web-console";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -40,7 +41,7 @@ const pageCategory = ["web_console"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the web console in OpenShift Container Platform {#configuring-web-console}\n\nYou can change the OpenShift Container Platform web console to set a logout redirect URL or disable the quick start tutorials.\n\n## Prerequisites {#_prerequisites}\n\n- Deploy an OpenShift Container Platform cluster.\n\n## Configuring the web console {#web-console-configuration_configuring-web-console}\n\nYou can configure the web console settings by editing the `console.config.openshift.io` resource.\n\n**Procedure**\n\n1. Edit the `console.config.openshift.io` resource:\n\n   ```terminal\n   $ oc edit console.config.openshift.io cluster\n   ```\n\n   The following example displays the sample resource definition for the console:\n\n   ```yaml\n   apiVersion: config.openshift.io/v1\n   kind: Console\n   metadata:\n     name: cluster\n   spec:\n     authentication:\n       logoutRedirect: \"\"\n   status:\n     consoleURL: \"\"\n   ```\n\n   The `logoutRedirect` field specifies the URL of the page to load when a user logs out of the web console. If you do not specify a value, the user returns to the login page for the web console. Specifying a `logoutRedirect` URL allows your users to perform single logout (SLO) through the identity provider to delete their single sign-on session.\n\n   The `consoleURL` field is the web console URL. To update this to a custom value, see **Customizing the web console URL**.\n\n## Disabling quick starts in the web console {#disable-quickstarts-admin-console_configuring-web-console}\n\nYou can use the **Administrator** perspective of the web console to disable one or more quick starts.\n\n**Prerequisites**\n\n- You have cluster administrator permissions and are logged in to the web console.\n\n**Procedure**\n\n1. In the **Administrator** perspective, navigate to **Administration** -> **Cluster Settings**.\n2. On the **Cluster Settings** page, click the **Configuration** tab.\n3. On the **Configuration** page, click the **Console** configuration resource with the description **operator.openshift.io**. ![Image of the Configuration page showing the correct Console configuration resource to select](/openshift-docs-markdown/_assets/images/cluster-settings-console.png)\n4. From the **Action** drop-down list, select **Customize**, which opens the **Cluster configuration** page.\n5. On the **General** tab, in the **Quick starts** section, you can select items in either the **Enabled** or **Disabled** list, and move them from one list to the other by using the arrow buttons.\n\n   - To enable or disable a single quick start, click the quick start, then use the single arrow buttons to move the quick start to the appropriate list.\n   - To enable or disable multiple quick starts at once, press Ctrl and click the quick starts you want to move. Then, use the single arrow buttons to move the quick starts to the appropriate list.\n   - To enable or disable all quick starts at once, click the double arrow buttons to move all of the quick starts to the appropriate list.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/web_console/configuring-web-console.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the web console in OpenShift Container Platform {#configuring-web-console}\n\nYou can change the OpenShift Container Platform web console to set a logout redirect URL or disable the quick start tutorials.\n\n## Prerequisites {#_prerequisites}\n\n- Deploy an OpenShift Container Platform cluster.\n\n## Configuring the web console {#web-console-configuration_configuring-web-console}\n\nYou can configure the web console settings by editing the `console.config.openshift.io` resource.\n\n**Procedure**\n\n1. Edit the `console.config.openshift.io` resource:\n\n   ```terminal\n   $ oc edit console.config.openshift.io cluster\n   ```\n\n   The following example displays the sample resource definition for the console:\n\n   ```yaml\n   apiVersion: config.openshift.io/v1\n   kind: Console\n   metadata:\n     name: cluster\n   spec:\n     authentication:\n       logoutRedirect: \"\"\n   status:\n     consoleURL: \"\"\n   ```\n\n   The `logoutRedirect` field specifies the URL of the page to load when a user logs out of the web console. If you do not specify a value, the user returns to the login page for the web console. Specifying a `logoutRedirect` URL allows your users to perform single logout (SLO) through the identity provider to delete their single sign-on session.\n\n   The `consoleURL` field is the web console URL. To update this to a custom value, see **Customizing the web console URL**.\n\n## Disabling quick starts in the web console {#disable-quickstarts-admin-console_configuring-web-console}\n\nYou can use the **Administrator** perspective of the web console to disable one or more quick starts.\n\n**Prerequisites**\n\n- You have cluster administrator permissions and are logged in to the web console.\n\n**Procedure**\n\n1. In the **Administrator** perspective, navigate to **Administration** → **Cluster Settings**.\n2. On the **Cluster Settings** page, click the **Configuration** tab.\n3. On the **Configuration** page, click the **Console** configuration resource with the description **operator.openshift.io**. ![Image of the Configuration page showing the correct Console configuration resource to select](/openshift-docs-markdown/_assets/images/cluster-settings-console.png)\n4. From the **Action** drop-down list, select **Customize**, which opens the **Cluster configuration** page.\n5. On the **General** tab, in the **Quick starts** section, you can select items in either the **Enabled** or **Disabled** list, and move them from one list to the other by using the arrow buttons.\n\n   - To enable or disable a single quick start, click the quick start, then use the single arrow buttons to move the quick start to the appropriate list.\n   - To enable or disable multiple quick starts at once, press Ctrl and click the quick starts you want to move. Then, use the single arrow buttons to move the quick starts to the appropriate list.\n   - To enable or disable all quick starts at once, click the double arrow buttons to move all of the quick starts to the appropriate list.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/web_console/configuring-web-console.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="configuring-web-console" class="group scroll-mt-20">Configuring the web console in OpenShift Container Platform<a href="#configuring-web-console" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can change the OpenShift Container Platform web console to set a logout redirect URL or disable the quick start tutorials.</p>
+      <p class="_abstract">You can change the OpenShift Container Platform web console to set a logout redirect URL or disable the quick start tutorials.</p>
       <h2 id="_prerequisites" class="group scroll-mt-20">Prerequisites<a href="#_prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li>Deploy an OpenShift Container Platform cluster.</li></ul>
       <h2 id="web-console-configuration_configuring-web-console" class="group scroll-mt-20">Configuring the web console<a href="#web-console-configuration_configuring-web-console" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
@@ -114,7 +116,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <ul><li>You have cluster administrator permissions and are logged in to the web console.</li></ul>
       <p><strong>Procedure</strong></p>
       <ol>
-      <li>In the <strong>Administrator</strong> perspective, navigate to <strong>Administration</strong> -&gt; <strong>Cluster Settings</strong>.</li>
+      <li>In the <strong>Administrator</strong> perspective, navigate to <strong>Administration</strong> → <strong>Cluster Settings</strong>.</li>
       <li>On the <strong>Cluster Settings</strong> page, click the <strong>Configuration</strong> tab.</li>
       <li>On the <strong>Configuration</strong> page, click the <strong>Console</strong> configuration resource with the description <strong>operator.openshift.io</strong>. <img src="/openshift-docs-markdown/_assets/images/cluster-settings-console.png" alt="Image of the Configuration page showing the correct Console configuration resource to select" loading="lazy" /></li>
       <li>From the <strong>Action</strong> drop-down list, select <strong>Customize</strong>, which opens the <strong>Cluster configuration</strong> page.</li>

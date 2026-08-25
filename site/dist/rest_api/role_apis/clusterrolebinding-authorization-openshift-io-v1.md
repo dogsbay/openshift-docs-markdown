@@ -1,5 +1,5 @@
 ---
-title: ClusterRoleBinding []
+title: ClusterRoleBinding [authorization.openshift.io/v1]
 ---
 
 # ClusterRoleBinding \[authorization.openshift.io/v1\] {#clusterrolebinding-authorization-openshift-io-v1}
@@ -38,7 +38,7 @@ The following API endpoints are available:
 
   - `GET`: list objects of kind ClusterRoleBinding
   - `POST`: create a ClusterRoleBinding
-- `/apis/authorization.openshift.io/v1/clusterrolebindings/{{ name }}`
+- `/apis/authorization.openshift.io/v1/clusterrolebindings/{name}`
 
   - `DELETE`: delete a ClusterRoleBinding
   - `GET`: read the specified ClusterRoleBinding
@@ -96,7 +96,7 @@ Description
 | 202 - Accepted | [`ClusterRoleBinding`](/openshift-docs-markdown/rest_api/role_apis/clusterrolebinding-authorization-openshift-io-v1#clusterrolebinding-authorization-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/authorization.openshift.io/v1/clusterrolebindings/{{ name }} {#_apisauthorizationopenshiftiov1clusterrolebindings_name}
+### /apis/authorization.openshift.io/v1/clusterrolebindings/{name} {#_apisauthorizationopenshiftiov1clusterrolebindings_name}
 
 **Global path parameters**
 

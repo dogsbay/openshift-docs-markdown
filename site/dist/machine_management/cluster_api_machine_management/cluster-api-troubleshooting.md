@@ -28,8 +28,7 @@ Consequence
 :   Because of this behavior, the following unintended outcomes can occur on a cluster that uses the Cluster API:
 
     - For namespaces that contain both types of objects, commands such as `oc get machine` return only Cluster API objects.
-
-- For namespaces that contain only Machine API objects, commands such as `oc get machine` return no results.
+    - For namespaces that contain only Machine API objects, commands such as `oc get machine` return no results.
 
 Workaround
 :   You can ensure that `oc` commands act on the type of objects you intend by using the corresponding fully qualified name.

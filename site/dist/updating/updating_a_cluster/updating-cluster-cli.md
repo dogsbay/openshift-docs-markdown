@@ -20,10 +20,11 @@ However, note the following limitations:
   - If the update contains machine configuration changes that do not require a reboot, the downtime is less, and the impact on the cluster management and user workloads is lessened. In this case, the node draining step is skipped with single-node OpenShift Container Platform because there is no other node in the cluster to reschedule the workloads to.
   - If the update payload does not contain an operating system update or machine configuration changes, a short API outage occurs and resolves quickly.
 
-> [!IMPORTANT]
-> There are conditions, such as bugs in an updated package, that can cause the single node to not restart after a reboot. In this case, the update does not rollback automatically.
+  > [!IMPORTANT]
+  > There are conditions, such as bugs in an updated package, that can cause the single node to not restart after a reboot. In this case, the update does not rollback automatically.
 
 **Additional resources**
+{._additional-resources}
 
 - [About the Machine Config Operator](/openshift-docs-markdown/architecture/control-plane#about-machine-config-operator_control-plane)
 
@@ -46,6 +47,7 @@ You must satisfy the following prerequisites before updating a cluster using the
 > - Using the `unsupportedConfigOverrides` section to modify the configuration of an Operator is unsupported and might block cluster updates. You must remove this setting before you can update your cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Support policy for unmanaged Operators](/openshift-docs-markdown/architecture/architecture-installation#unmanaged-operators_architecture-installation)
 - [Using RBAC to define and apply permissions](/openshift-docs-markdown/authentication/using-rbac#using-rbac)
@@ -159,11 +161,11 @@ You can find information about available OpenShift Container Platform advisories
    ```
 
    ```terminal {title="Example command"}
-   $ oc adm upgrade channel stable-{{ product_version }}
+   $ oc adm upgrade channel stable-4.22
    ```
 
    > [!IMPORTANT]
-   > For production clusters, you must subscribe to a `stable-\*`, `eus-**`, or `fast-**` channel.
+   > For production clusters, you must subscribe to a `stable-\*`, `eus-*`, or `fast-*` channel.
 
    > [!NOTE]
    > When you are ready to move to the next minor version, choose the channel that corresponds to that minor version. The sooner you declare the update channel, the more effectively the cluster can recommend update paths to your target version. The cluster might take some time to evaluate all the possible updates that are available and offer the best update recommendations to choose from. Update recommendations can change over time, as they are based on what update options are available at the time.
@@ -230,6 +232,7 @@ You can find information about available OpenShift Container Platform advisories
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Performing a Control Plane Only update](/openshift-docs-markdown/updating/updating_a_cluster/control-plane-only-update#control-plane-only-update)
 - [Understanding update channels and releases](/openshift-docs-markdown/updating/understanding_updates/understanding-update-channels-release#understanding-update-channels-releases)

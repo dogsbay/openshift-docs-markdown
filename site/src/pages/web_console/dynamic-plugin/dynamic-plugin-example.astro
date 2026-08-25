@@ -20,11 +20,12 @@ import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
 import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"dynamic-plugin-example_{{ context }}","text":"Dynamic plugin example"},{"depth":2,"slug":"adding-tab-to-pods-page_dynamic-plugin-example","text":"Adding a tab to the pods page"}];
+const headings = [{"depth":1,"slug":"dynamic-plugin-example_{context}","text":"Dynamic plugin example"},{"depth":2,"slug":"adding-tab-to-pods-page_dynamic-plugin-example","text":"Adding a tab to the pods page"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/web_console/dynamic-plugin/dynamic-plugin-example";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -43,7 +44,7 @@ const pageCategory = ["web_console","web_console/dynamic-plugin"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Dynamic plugin example {#dynamic-plugin-example_{{ context }}}\n\nBefore working through the example, verify that the plugin is working by following the steps in [Dynamic plugin development](/openshift-docs-markdown/web_console/dynamic-plugin/dynamic-plugins-get-started#dynamic-plugin-development_dynamic-plugins-get-started)\n\n## Adding a tab to the pods page {#adding-tab-to-pods-page_dynamic-plugin-example}\n\nThere are different customizations you can make to the OpenShift Container Platform web console. The following procedure adds a tab to the **Pod details** page as an example extension to your plugin.\n\n> [!NOTE]\n> The OpenShift Container Platform web console runs in a container connected to the cluster you have logged into. See \"Dynamic plugin development\" for information to test the plugin before creating your own.\n\n**Procedure**\n\n1. Visit the [`console-plugin-template`](https://github.com/openshift/console-plugin-template) repository containing a template for creating plugins in a new tab.\n\n   > [!IMPORTANT]\n   > Custom plugin code is not supported by Red Hat. Only [Cooperative community support](https://access.redhat.com/solutions/5893251) is available for your plugin.\n2. Create a GitHub repository for the template by clicking **Use this template** -> ***Create new repository***.\n3. Rename the new repository with the name of your plugin.\n4. Clone the new repository to your local machine so you can edit the code.\n5. Edit the `package.json` file, adding your plugin’s metadata to the `consolePlugin` declaration. For example:\n\n```json\n\"consolePlugin\": {\n  \"name\": \"my-plugin\",\n  \"version\": \"0.0.1\",\n  \"displayName\": \"My Plugin\",\n  \"description\": \"Enjoy this shiny, new console plugin!\",\n  \"exposedModules\": {\n    \"ExamplePage\": \"./components/ExamplePage\"\n  },\n  \"dependencies\": {\n    \"@console/pluginAPI\": \"/*\"\n  }\n}\n```\n\nwhere:\n\n`consolePlugin.name.my-plugin`\n:   Update the name of your plugin.\n\n`consolePlugin.version.0.0.1`\n:   Update the version.\n\n`consolePlugin.displayName.My Plugin`\n:   Update the display name for your plugin.\n\n`consolePlugin.description.Enjoy this shiny, new console plugin!`\n:   Update the description with a synopsis about your plugin.\n\n1. Add the following to the `console-extensions.json` file:\n\n```json\n{\n  \"type\": \"console.tab/horizontalNav\",\n  \"properties\": {\n    \"page\": {\n      \"name\": \"Example Tab\",\n      \"href\": \"example\"\n    },\n    \"model\": {\n      \"group\": \"core\",\n      \"version\": \"v1\",\n      \"kind\": \"Pod\"\n    },\n    \"component\": { \"$codeRef\": \"ExampleTab\" }\n  }\n}\n```\n\n1. Edit the `package.json` file to include the following changes:\n\n```json\n        \"exposedModules\": {\n            \"ExamplePage\": \"./components/ExamplePage\",\n            \"ExampleTab\": \"./components/ExampleTab\"\n        }\n```\n\n1. Write a message to display on a new custom tab on the **Pods** page by creating a new file `src/components/ExampleTab.tsx` and adding the following script:\n\n```tsx\nimport * as React from 'react';\n\nexport default function ExampleTab() {\n    return (\n        <p>This is a custom tab added to a resource using a dynamic plugin.</p>\n    );\n}\n```\n\n1. Install a Helm chart with the name of the plugin as the Helm release name into a new namespace or an existing namespace as specified by the `-n` command-line option to deploy your plugin on a cluster. Provide the location of the image within the `plugin.image` parameter by using the following command:\n\n   ```terminal\n   $ helm upgrade -i  my-plugin charts/openshift-console-plugin -n my-plugin-namespace --create-namespace --set plugin.image=my-plugin-image-location\n   ```\n\n   > [!NOTE]\n   > For more information on deploying your plugin on a cluster, see \"Deploy your plugin on a cluster\".\n\n**Verification**\n\n- Visit a **Pod** page to view the added tab.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/web_console/dynamic-plugin/dynamic-plugin-example.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Dynamic plugin example {#dynamic-plugin-example_{context}}\n\nBefore working through the example, verify that the plugin is working by following the steps in [Dynamic plugin development](/openshift-docs-markdown/web_console/dynamic-plugin/dynamic-plugins-get-started#dynamic-plugin-development_dynamic-plugins-get-started)\n\n## Adding a tab to the pods page {#adding-tab-to-pods-page_dynamic-plugin-example}\n\nThere are different customizations you can make to the OpenShift Container Platform web console. The following procedure adds a tab to the **Pod details** page as an example extension to your plugin.\n\n> [!NOTE]\n> The OpenShift Container Platform web console runs in a container connected to the cluster you have logged into. See \"Dynamic plugin development\" for information to test the plugin before creating your own.\n\n**Procedure**\n\n1. Visit the [`console-plugin-template`](https://github.com/openshift/console-plugin-template) repository containing a template for creating plugins in a new tab.\n\n   > [!IMPORTANT]\n   > Custom plugin code is not supported by Red Hat. Only [Cooperative community support](https://access.redhat.com/solutions/5893251) is available for your plugin.\n2. Create a GitHub repository for the template by clicking **Use this template** → ***Create new repository***.\n3. Rename the new repository with the name of your plugin.\n4. Clone the new repository to your local machine so you can edit the code.\n5. Edit the `package.json` file, adding your plugin’s metadata to the `consolePlugin` declaration. For example:\n\n   ```json\n   \"consolePlugin\": {\n     \"name\": \"my-plugin\",\n     \"version\": \"0.0.1\",\n     \"displayName\": \"My Plugin\",\n     \"description\": \"Enjoy this shiny, new console plugin!\",\n     \"exposedModules\": {\n       \"ExamplePage\": \"./components/ExamplePage\"\n     },\n     \"dependencies\": {\n       \"@console/pluginAPI\": \"/*\"\n     }\n   }\n   ```\n\n   where:\n\n   `consolePlugin.name.my-plugin`\n   :   Update the name of your plugin.\n\n   `consolePlugin.version.0.0.1`\n   :   Update the version.\n\n   `consolePlugin.displayName.My Plugin`\n   :   Update the display name for your plugin.\n\n   `consolePlugin.description.Enjoy this shiny, new console plugin!`\n   :   Update the description with a synopsis about your plugin.\n6. Add the following to the `console-extensions.json` file:\n\n   ```json\n   {\n     \"type\": \"console.tab/horizontalNav\",\n     \"properties\": {\n       \"page\": {\n         \"name\": \"Example Tab\",\n         \"href\": \"example\"\n       },\n       \"model\": {\n         \"group\": \"core\",\n         \"version\": \"v1\",\n         \"kind\": \"Pod\"\n       },\n       \"component\": { \"$codeRef\": \"ExampleTab\" }\n     }\n   }\n   ```\n7. Edit the `package.json` file to include the following changes:\n\n   ```json\n           \"exposedModules\": {\n               \"ExamplePage\": \"./components/ExamplePage\",\n               \"ExampleTab\": \"./components/ExampleTab\"\n           }\n   ```\n8. Write a message to display on a new custom tab on the **Pods** page by creating a new file `src/components/ExampleTab.tsx` and adding the following script:\n\n   ```tsx\n   import * as React from 'react';\n\n   export default function ExampleTab() {\n       return (\n           <p>This is a custom tab added to a resource using a dynamic plugin.</p>\n       );\n   }\n   ```\n9. Install a Helm chart with the name of the plugin as the Helm release name into a new namespace or an existing namespace as specified by the `-n` command-line option to deploy your plugin on a cluster. Provide the location of the image within the `plugin.image` parameter by using the following command:\n\n   ```terminal\n   $ helm upgrade -i  my-plugin charts/openshift-console-plugin -n my-plugin-namespace --create-namespace --set plugin.image=my-plugin-image-location\n   ```\n\n   > [!NOTE]\n   > For more information on deploying your plugin on a cluster, see \"Deploy your plugin on a cluster\".\n\n**Verification**\n\n- Visit a **Pod** page to view the added tab.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/web_console/dynamic-plugin/dynamic-plugin-example.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -82,20 +83,21 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <h1 id="dynamic-plugin-example_{{ context }}" class="group scroll-mt-20">Dynamic plugin example<a href="#dynamic-plugin-example_{{ context }}" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Before working through the example, verify that the plugin is working by following the steps in <a href="/openshift-docs-markdown/web_console/dynamic-plugin/dynamic-plugins-get-started#dynamic-plugin-development_dynamic-plugins-get-started">Dynamic plugin development</a></p>
+      <h1 id="dynamic-plugin-example_{context}" class="group scroll-mt-20">Dynamic plugin example<a href="#dynamic-plugin-example_{context}" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p class="_abstract">Before working through the example, verify that the plugin is working by following the steps in <a href="/openshift-docs-markdown/web_console/dynamic-plugin/dynamic-plugins-get-started#dynamic-plugin-development_dynamic-plugins-get-started">Dynamic plugin development</a></p>
       <h2 id="adding-tab-to-pods-page_dynamic-plugin-example" class="group scroll-mt-20">Adding a tab to the pods page<a href="#adding-tab-to-pods-page_dynamic-plugin-example" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">There are different customizations you can make to the OpenShift Container Platform web console. The following procedure adds a tab to the <strong>Pod details</strong> page as an example extension to your plugin.</p>
       <Alert variant="note" class="my-4">
@@ -115,11 +117,11 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
         </AlertDescription>
       </Alert>
       </li>
-      <li>Create a GitHub repository for the template by clicking <strong>Use this template</strong> -&gt; <em><strong>Create new repository</strong></em>.</li>
+      <li>Create a GitHub repository for the template by clicking <strong>Use this template</strong> → <em><strong>Create new repository</strong></em>.</li>
       <li>Rename the new repository with the name of your plugin.</li>
       <li>Clone the new repository to your local machine so you can edit the code.</li>
-      <li>Edit the <code>package.json</code> file, adding your plugin’s metadata to the <code>consolePlugin</code> declaration. For example:</li>
-      </ol>
+      <li>
+      Edit the <code>package.json</code> file, adding your plugin’s metadata to the <code>consolePlugin</code> declaration. For example:
       <CodeBlock code={"\"consolePlugin\": {\n  \"name\": \"my-plugin\",\n  \"version\": \"0.0.1\",\n  \"displayName\": \"My Plugin\",\n  \"description\": \"Enjoy this shiny, new console plugin!\",\n  \"exposedModules\": {\n    \"ExamplePage\": \"./components/ExamplePage\"\n  },\n  \"dependencies\": {\n    \"@console/pluginAPI\": \"/*\"\n  }\n}"} lang="json" />
       <p>where:</p>
       <dl class="my-4 space-y-2">
@@ -132,13 +134,19 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <dt class="font-semibold"><code>consolePlugin.description.Enjoy this shiny, new console plugin!</code></dt>
       <dd class="ml-6 text-muted-foreground"><p>Update the description with a synopsis about your plugin.</p></dd>
       </dl>
-      <ol><li>Add the following to the <code>console-extensions.json</code> file:</li></ol>
+      </li>
+      <li>
+      Add the following to the <code>console-extensions.json</code> file:
       <CodeBlock code={"{\n  \"type\": \"console.tab/horizontalNav\",\n  \"properties\": {\n    \"page\": {\n      \"name\": \"Example Tab\",\n      \"href\": \"example\"\n    },\n    \"model\": {\n      \"group\": \"core\",\n      \"version\": \"v1\",\n      \"kind\": \"Pod\"\n    },\n    \"component\": { \"$codeRef\": \"ExampleTab\" }\n  }\n}"} lang="json" />
-      <ol><li>Edit the <code>package.json</code> file to include the following changes:</li></ol>
+      </li>
+      <li>
+      Edit the <code>package.json</code> file to include the following changes:
       <CodeBlock code={"        \"exposedModules\": {\n            \"ExamplePage\": \"./components/ExamplePage\",\n            \"ExampleTab\": \"./components/ExampleTab\"\n        }"} lang="json" />
-      <ol><li>Write a message to display on a new custom tab on the <strong>Pods</strong> page by creating a new file <code>src/components/ExampleTab.tsx</code> and adding the following script:</li></ol>
+      </li>
+      <li>
+      Write a message to display on a new custom tab on the <strong>Pods</strong> page by creating a new file <code>src/components/ExampleTab.tsx</code> and adding the following script:
       <CodeBlock code={"import * as React from 'react';\n\nexport default function ExampleTab() {\n    return (\n        <p>This is a custom tab added to a resource using a dynamic plugin.</p>\n    );\n}"} lang="tsx" />
-      <ol>
+      </li>
       <li>
       Install a Helm chart with the name of the plugin as the Helm release name into a new namespace or an existing namespace as specified by the <code>-n</code> command-line option to deploy your plugin on a cluster. Provide the location of the image within the <code>plugin.image</code> parameter by using the following command:
       <CodeBlock code={"$ helm upgrade -i  my-plugin charts/openshift-console-plugin -n my-plugin-namespace --create-namespace --set plugin.image=my-plugin-image-location"} lang="terminal" />

@@ -1,5 +1,5 @@
 ---
-title: OperatorHub []
+title: OperatorHub [config.openshift.io/v1]
 ---
 
 # OperatorHub \[config.openshift.io/v1\] {#operatorhub-config-openshift-io-v1}
@@ -116,13 +116,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of OperatorHub
   - `GET`: list objects of kind OperatorHub
   - `POST`: create an OperatorHub
-- `/apis/config.openshift.io/v1/operatorhubs/{{ name }}`
+- `/apis/config.openshift.io/v1/operatorhubs/{name}`
 
   - `DELETE`: delete an OperatorHub
   - `GET`: read the specified OperatorHub
   - `PATCH`: partially update the specified OperatorHub
   - `PUT`: replace the specified OperatorHub
-- `/apis/config.openshift.io/v1/operatorhubs/{{ name }}/status`
+- `/apis/config.openshift.io/v1/operatorhubs/{name}/status`
 
   - `GET`: read status of the specified OperatorHub
   - `PATCH`: partially update status of the specified OperatorHub
@@ -196,7 +196,7 @@ Description
 | 202 - Accepted | [`OperatorHub`](/openshift-docs-markdown/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/operatorhubs/{{ name }} {#_apisconfigopenshiftiov1operatorhubs_name}
+### /apis/config.openshift.io/v1/operatorhubs/{name} {#_apisconfigopenshiftiov1operatorhubs_name}
 
 **Global path parameters**
 
@@ -300,7 +300,7 @@ Description
 | 201 - Created | [`OperatorHub`](/openshift-docs-markdown/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/operatorhubs/{{ name }}/status {#_apisconfigopenshiftiov1operatorhubs_name_status}
+### /apis/config.openshift.io/v1/operatorhubs/{name}/status {#_apisconfigopenshiftiov1operatorhubs_name_status}
 
 **Global path parameters**
 

@@ -1,8 +1,8 @@
 ---
-title: Creating a compute machine set on {{ azure_short }}
+title: Creating a compute machine set on Azure
 ---
 
-# Creating a compute machine set on {{ azure_short }} {#creating-machineset-azure}
+# Creating a compute machine set on Azure {#creating-machineset-azure}
 
 You can create a different compute machine set to serve a specific purpose in your OpenShift Container Platform cluster on Microsoft Azure. For example, you might create infrastructure machine sets and related machines so that you can move supporting workloads to the new machines.
 
@@ -21,17 +21,9 @@ You can create a different compute machine set to serve a specific purpose in yo
 
 You can define a machine set YAML to provision nodes by specifying parameters such as `vmSize` and `image`. You can use this to automate and scale infrastructure consistently, to ensure compute nodes meet specific workload requirements within the cluster.
 
-The sample YAML defines a compute machine set that runs in the `1` Microsoft Azure zone in a region and creates nodes that are labeled with
+The sample YAML defines a compute machine set that runs in the `1` Microsoft Azure zone in a region and creates nodes that are labeled with `node-role.kubernetes.io/<role>: ""`. .
 
-`node-role.kubernetes.io/<role>: ""`.
-
-.
-
-In the sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and
-
-`<role>`
-
-is the node label to add.
+In the sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and `<role>` is the node label to add.
 
 ```yaml
 apiVersion: machine.openshift.io/v1beta1
@@ -39,54 +31,30 @@ kind: MachineSet
 metadata:
   labels:
     machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not infra %}
     machine.openshift.io/cluster-api-machine-role: <role>
     machine.openshift.io/cluster-api-machine-type: <role>
   name: <infrastructure_id>-<role>-<region>
-{% endif %}
-{% if infra %}
-    machine.openshift.io/cluster-api-machine-role: infra
-    machine.openshift.io/cluster-api-machine-type: infra
-  name: <infrastructure_id>-infra-<region>
-{%- endif %}
   namespace: openshift-machine-api
 spec:
   replicas: 1
   selector:
     matchLabels:
       machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not infra %}
       machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<region>
-{% endif %}
-{% if infra %}
-      machine.openshift.io/cluster-api-machineset: <infrastructure_id>-infra-<region>
-{%- endif %}
   template:
     metadata:
       creationTimestamp: null
       labels:
         machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not infra %}
         machine.openshift.io/cluster-api-machine-role: <role>
         machine.openshift.io/cluster-api-machine-type: <role>
         machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<region>
-{% endif %}
-{% if infra %}
-        machine.openshift.io/cluster-api-machine-role: infra
-        machine.openshift.io/cluster-api-machine-type: infra
-        machine.openshift.io/cluster-api-machineset: <infrastructure_id>-infra-<region>
-{%- endif %}
     spec:
       metadata:
         creationTimestamp: null
         labels:
           machine.openshift.io/cluster-api-machineset: <machineset_name>
-{%- if not infra %}
           node-role.kubernetes.io/<role>: ""
-{% endif %}
-{% if infra %}
-          node-role.kubernetes.io/infra: ""
-{%- endif %}
       providerSpec:
         value:
           apiVersion: machine.openshift.io/v1beta1
@@ -126,11 +94,6 @@ spec:
           vmSize: Standard_D4s_v3
           vnet: <infrastructure_id>-vnet
           zone: "1"
-{%- if infra %}
-      taints:
-      - key: node-role.kubernetes.io/infra
-        effect: NoSchedule
-{%- endif %}
 ```
 
 where:
@@ -178,6 +141,7 @@ where:
 > The value of the `spec.template.spec.providerSpec.value.zone` parameter specifies the zone within your region to place machines on. Ensure that your region supports the zone that you specify. If your region supports availability zones, you must specify the zone. Specifying the zone avoids volume node affinity failure when a pod requires a persistent volume attachment. To do this, you can create a compute machine set for each zone in the same region.
 
 **Additional resources**
+{._additional-resources}
 
 - [Manually updating the boot image](/openshift-docs-markdown/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)
 
@@ -281,13 +245,17 @@ To dynamically manage machine compute resources, you can create your own compute
 
   ```terminal
 
+  NAME                                DESIRED   CURRENT   READY   AVAILABLE   AGE
+  agl030519-vplxk-infra-us-east-1a    1         1         1       1           11m
+  agl030519-vplxk-worker-us-east-1a   1         1         1       1           55m
+  agl030519-vplxk-worker-us-east-1b   1         1         1       1           55m
+  agl030519-vplxk-worker-us-east-1c   1         1         1       1           55m
+  agl030519-vplxk-worker-us-east-1d   0         0                             55m
+  agl030519-vplxk-worker-us-east-1e   0         0                             55m
+  agl030519-vplxk-worker-us-east-1f   0         0                             55m
   ```
 
-{%- if win or post_aws_zones %} NAME                                       DESIRED   CURRENT   READY   AVAILABLE   AGE {%- if win %} agl030519-vplxk-windows-worker-us-east-1a  1         1         1       1           11m {% endif %} {% if post_aws_zones %} agl030519-vplxk-edge-us-east-1-nyc-1a      1         1         1       1           11m {%- endif %} agl030519-vplxk-worker-us-east-1a          1         1         1       1           55m agl030519-vplxk-worker-us-east-1b          1         1         1       1           55m agl030519-vplxk-worker-us-east-1c          1         1         1       1           55m agl030519-vplxk-worker-us-east-1d          0         0                             55m agl030519-vplxk-worker-us-east-1e          0         0                             55m agl030519-vplxk-worker-us-east-1f          0         0                             55m {% endif %} {% if not (win or post_aws_zones) %} NAME                                DESIRED   CURRENT   READY   AVAILABLE   AGE agl030519-vplxk-infra-us-east-1a    1         1         1       1           11m agl030519-vplxk-worker-us-east-1a   1         1         1       1           55m agl030519-vplxk-worker-us-east-1b   1         1         1       1           55m agl030519-vplxk-worker-us-east-1c   1         1         1       1           55m agl030519-vplxk-worker-us-east-1d   0         0                             55m agl030519-vplxk-worker-us-east-1e   0         0                             55m agl030519-vplxk-worker-us-east-1f   0         0                             55m {%- endif %} \`\`\`
-
-```
-When the new compute machine set is available, the `DESIRED` and `CURRENT` values match. If the compute machine set is not available, wait a few minutes and run the command again.
-```
+  When the new compute machine set is available, the `DESIRED` and `CURRENT` values match. If the compute machine set is not available, wait a few minutes and run the command again.
 
 ## Labeling GPU machine sets for the cluster autoscaler {#machineset-label-gpu-autoscaler_creating-machineset-azure}
 
@@ -323,6 +291,7 @@ Label your machine sets to indicate which machines the cluster autoscaler can us
       > You must specify the value of this label for the `spec.resourceLimits.gpus.type` parameter in your `ClusterAutoscaler` CR. For more information, see "Cluster autoscaler resource definition".
 
 **Additional resources**
+{._additional-resources}
 
 - [Cluster autoscaler resource definition](/openshift-docs-markdown/machine_management/applying-autoscaling#cluster-autoscaler-cr_applying-autoscaling)
 
@@ -431,9 +400,7 @@ You can enable boot diagnostics on Microsoft Azure machines that your machine se
 
 **Prerequisites**
 
-- Have an existing Azure
-
-cluster.
+- Have an existing Azure cluster.
 
 **Procedure**
 
@@ -496,9 +463,7 @@ When Azure terminates an instance, a termination handler running on the Spot VM 
 
 ### Creating Spot VMs by using compute machine sets {#_creating_spot_vms_by_using_compute_machine_sets}
 
-You can save on costs by creating a compute machine set that deploys machines as non-guaranteed instances.
-
-To launch a Spot VM on Azure, you add `spotVMOptions` to your compute machine set YAML file.
+You can save on costs by creating a compute machine set that deploys machines as non-guaranteed instances. To launch a Spot VM on Azure, you add `spotVMOptions` to your compute machine set YAML file.
 
 **Procedure**
 
@@ -520,6 +485,9 @@ To launch a Spot VM on Azure, you add `spotVMOptions` to your compute machine se
 ## Machine sets that deploy machines on Ephemeral OS disks {#machineset-azure-ephemeral-os_creating-machineset-azure}
 
 You can create a compute machine set running on Microsoft Azure that deploys machines on Ephemeral OS disks. Ephemeral OS disks use local VM capacity rather than remote Microsoft Azure Storage. The configuration, therefore, incurs no additional cost and provides lower latency for reading, writing, and reimaging.
+
+**Additional resources**
+{._additional-resources}
 
 - [Ephemeral OS disks for Azure VMs (Azure documentation)](https://docs.microsoft.com/en-us/azure/virtual-machines/ephemeral-os-disks)
 
@@ -588,6 +556,7 @@ You can also create a persistent volume claim (PVC) that dynamically binds to a 
 > Data disks do not support the ability to specify disk throughput or disk IOPS. You can configure these properties by using PVCs.
 
 **Additional resources**
+{._additional-resources}
 
 - [Ultra disks (Azure documentation)](https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types#ultra-disks)
 - [Machine sets that deploy machines on ultra disks using CSI PVCs](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-azure#machineset-azure-ultra-disk_persistent-storage-csi-azure)
@@ -603,7 +572,7 @@ You can deploy machines with ultra disks on Microsoft Azure by editing your mach
 
 **Procedure**
 
-1. Create a custom secret in the `openshift-machine-api` namespace by using the `{{ machine_role }}` data secret by running the following command:
+1. Create a custom secret in the `openshift-machine-api` namespace by using the `{machine_role}` data secret by running the following command:
 
    ```terminal
    $ oc -n openshift-machine-api \
@@ -614,7 +583,7 @@ You can deploy machines with ultra disks on Microsoft Azure by editing your mach
    where:
 
    `<role>`
-   :   Replace with `{{ machine_role }}`.
+   :   Replace with `{machine_role}`.
 
    `userData.txt`
    :   Specifies `userData.txt` as the name of the new custom secret.
@@ -688,7 +657,7 @@ You can deploy machines with ultra disks on Microsoft Azure by editing your mach
    --template='{{index .data.disableTemplating | base64decode}}' | jq > disableTemplating.txt
    ```
 
-   Replace `<role>` with `{{ machine_role }}`.
+   Replace `<role>` with `{machine_role}`.
 4. Combine the `userData.txt` file and `disableTemplating.txt` file to create a data secret file by running the following command:
 
    ```terminal
@@ -697,7 +666,7 @@ You can deploy machines with ultra disks on Microsoft Azure by editing your mach
    --from-file=disableTemplating=disableTemplating.txt
    ```
 
-   For `<role>-user-data-x5`, specify the name of the secret. Replace `<role>` with `{{ machine_role }}`.
+   For `<role>-user-data-x5`, specify the name of the secret. Replace `<role>` with `{machine_role}`.
 5. Copy an existing Azure `MachineSet` custom resource (CR) and edit it by running the following command:
 
    ```terminal
@@ -722,28 +691,32 @@ You can deploy machines with ultra disks on Microsoft Azure by editing your mach
          providerSpec:
            value:
              ultraSSDCapability: Enabled
+             dataDisks:
+             - nameSuffix: ultrassd
+               lun: 0
+               diskSizeGB: 4
+               deletionPolicy: Delete
+               cachingType: None
+               managedDisk:
+                 storageAccountType: UltraSSD_LRS
+             userDataSecret:
+               name: <role>-user-data-x5
    ```
 
-{%- if mapi %} dataDisks: - nameSuffix: ultrassd lun: 0 diskSizeGB: 4 deletionPolicy: Delete cachingType: None managedDisk: storageAccountType: UltraSSD_LRS userDataSecret: name: <role>-user-data-x5 {%- endif %} \`\`\`
+   where:
 
-```
-where:
+   `spec.template.spec.metadata.labels.disk`
+   :   Specifies a label to use to select a node that is created by this machine set. The example uses `disk.ultrassd` for this value.
 
-`spec.template.spec.metadata.labels.disk`
-:   Specifies a label to use to select a node that is created by this machine set. The example uses `disk.ultrassd` for this value.
+   `spec.template.spec.providerSpec.value.ultraSSDCapability`
+   :   Enables the use of ultra disks. For `dataDisks`, include the entire stanza.
 
-`spec.template.spec.providerSpec.value.ultraSSDCapability`
-:   Enables the use of ultra disks.
-    For `dataDisks`, include the entire stanza.
+   `spec.template.spec.providerSpec.value.dataDisks`
+   :   Ensure you include the entire stanza for `dataDisks`.
 
-`spec.template.spec.providerSpec.value.dataDisks`
-:   Ensure you include the entire stanza for `dataDisks`.
-
-`spec.template.spec.providerSpec.value.userDataSecret.name`
-:   Specifies the user data secret created earlier. Replace `<role>` with `{{ machine_role }}`.
-```
-
-1. Create a machine set by using the updated configuration by running the following command:
+   `spec.template.spec.providerSpec.value.userDataSecret.name`
+   :   Specifies the user data secret created earlier. Replace `<role>` with `{machine_role}`.
+7. Create a machine set by using the updated configuration by running the following command:
 
    ```terminal
    $ oc create -f <machine_set_name>.yaml
@@ -853,6 +826,9 @@ An Azure Key Vault, a disk encryption set, and an encryption key are required to
           storageAccountType: Premium_LRS
   ```
 
+**Additional resources**
+{._additional-resources}
+
 - [Customer-managed keys (Azure documentation)](https://docs.microsoft.com/en-us/azure/virtual-machines/disk-encryption#customer-managed-keys)
 
 ## Configuring trusted launch for Azure virtual machines by using machine sets {#machineset-azure-trusted-launch_creating-machineset-azure}
@@ -866,7 +842,7 @@ For example, you can configure these machines to use UEFI security features such
 
 **UEFI feature combination compatibility**
 
-| Secure Boot[^1]^ | vTPM[^2]^ | Valid configuration |
+| Secure Boot<sup>\[1\]</sup> | vTPM<sup>\[2\]</sup> | Valid configuration |
 | --- | --- | --- |
 | Enabled | Enabled | Yes |
 | Enabled | Disabled | Yes |
@@ -889,25 +865,39 @@ For more information about related features and functionality, see the Microsoft
 
    ```yaml {title="Sample valid configuration with UEFI Secure Boot and vTPM enabled"}
 
+   apiVersion: machine.openshift.io/v1beta1
+   kind: MachineSet
+
+   # ...
+   spec:
+     template:
+       machines_v1beta1_machine_openshift_io:
+         spec:
+           providerSpec:
+             value:
+               securityProfile:
+                 settings:
+                   securityType: TrustedLaunch
+                   trustedLaunch:
+                     uefiSettings:
+                       secureBoot: Enabled
+                       virtualizedTrustedPlatformModule: Enabled
+   # ...
    ```
 
-{%- if not cpmso %} apiVersion: machine.openshift.io/v1beta1 kind: MachineSet {% endif %} {% if cpmso %} apiVersion: machine.openshift.io/v1 kind: ControlPlaneMachineSet {%- endif %} # ... spec: template: machines_v1beta1_machine_openshift_io: spec: providerSpec: value: securityProfile: settings: securityType: TrustedLaunch trustedLaunch: uefiSettings: secureBoot: Enabled virtualizedTrustedPlatformModule: Enabled # ... \`\`\`
+   where:
 
-```
-where:
+   `spec.template.machines_v1beta1_machine_openshift_io.spec.providerSpec.value.securityProfile.settings.securityType`
+   :   Enables the use of trusted launch for Azure virtual machines. This value is required for all valid configurations.
 
-`spec.template.machines_v1beta1_machine_openshift_io.spec.providerSpec.value.securityProfile.settings.securityType`
-:   Enables the use of trusted launch for Azure virtual machines. This value is required for all valid configurations.
+   `spec.template.machines_v1beta1_machine_openshift_io.spec.providerSpec.value.securityProfile.settings.trustedLaunch.uefiSettings`
+   :   Specifies which UEFI security features to use. This section is required for all valid configurations.
 
-`spec.template.machines_v1beta1_machine_openshift_io.spec.providerSpec.value.securityProfile.settings.trustedLaunch.uefiSettings`
-:   Specifies which UEFI security features to use. This section is required for all valid configurations.
+   `spec.template.machines_v1beta1_machine_openshift_io.spec.providerSpec.value.securityProfile.settings.trustedLaunch.uefiSettings.secureBoot`
+   :   Enables UEFI Secure Boot.
 
-`spec.template.machines_v1beta1_machine_openshift_io.spec.providerSpec.value.securityProfile.settings.trustedLaunch.uefiSettings.secureBoot`
-:   Enables UEFI Secure Boot.
-
-`spec.template.machines_v1beta1_machine_openshift_io.spec.providerSpec.value.securityProfile.settings.trustedLaunch.uefiSettings.virtualizedTrustedPlatformModule`
-:   Enables the use of a vTPM.
-```
+   `spec.template.machines_v1beta1_machine_openshift_io.spec.providerSpec.value.securityProfile.settings.trustedLaunch.uefiSettings.virtualizedTrustedPlatformModule`
+   :   Enables the use of a vTPM.
 
 **Verification**
 
@@ -927,39 +917,63 @@ For more information about related features and functionality, see the Microsoft
 **Procedure**
 
 1. In a text editor, open the YAML file for an existing machine set or create a new one.
-2. Edit the following section under the `providerSpec` field: **Sample configuration**
+2. Edit the following section under the `providerSpec` field:
+
+   **Sample configuration**
 
    ```yaml
 
+   apiVersion: machine.openshift.io/v1beta1
+   kind: MachineSet
+
+   # ...
+   spec:
+     template:
+       spec:
+         providerSpec:
+           value:
+             osDisk:
+               # ...
+               managedDisk:
+                 securityProfile:
+                   securityEncryptionType: VMGuestStateOnly
+               # ...
+             securityProfile:
+               settings:
+                   securityType: ConfidentialVM
+                   confidentialVM:
+                     uefiSettings:
+                       secureBoot: Disabled
+                       virtualizedTrustedPlatformModule: Enabled
+             vmSize: Standard_DC16ads_v5
+   # ...
    ```
 
-{%- if not cpmso %} apiVersion: machine.openshift.io/v1beta1 kind: MachineSet {% endif %} {% if cpmso %} apiVersion: machine.openshift.io/v1 kind: ControlPlaneMachineSet {%- endif %} # ... spec: template: spec: providerSpec: value: osDisk: # ... managedDisk: securityProfile: securityEncryptionType: VMGuestStateOnly # ... securityProfile: settings: securityType: ConfidentialVM confidentialVM: uefiSettings: secureBoot: Disabled virtualizedTrustedPlatformModule: Enabled vmSize: Standard_DC16ads_v5 # ... \`\`\` where:
+   where:
 
-```
-`spec.template.spec.providerSpec.value.osDisk.managedDisk.securityProfile`
-:   Specifies security profile settings for the managed disk when using a confidential VM.
+   `spec.template.spec.providerSpec.value.osDisk.managedDisk.securityProfile`
+   :   Specifies security profile settings for the managed disk when using a confidential VM.
 
-`spec.template.spec.providerSpec.value.osDisk.managedDisk.securityProfile.securityEncryptionType`
-:   Enables encryption of the Microsoft Azure VM Guest State (VMGS) blob. This setting requires the use of vTPM.
+   `spec.template.spec.providerSpec.value.osDisk.managedDisk.securityProfile.securityEncryptionType`
+   :   Enables encryption of the Microsoft Azure VM Guest State (VMGS) blob. This setting requires the use of vTPM.
 
-`spec.template.spec.providerSpec.value.securityProfile`
-:   Specifies security profile settings for the confidential VM.
+   `spec.template.spec.providerSpec.value.securityProfile`
+   :   Specifies security profile settings for the confidential VM.
 
-`spec.template.spec.providerSpec.value.securityProfile.settings.securityType`
-:   Enables the use of confidential VMs. This value is required for all valid configurations.
+   `spec.template.spec.providerSpec.value.securityProfile.settings.securityType`
+   :   Enables the use of confidential VMs. This value is required for all valid configurations.
 
-`spec.template.spec.providerSpec.value.securityProfile.settings.confidentialVM.uefiSettings`
-:    Specifies which UEFI security features to use. This section is required for all valid configurations.
+   `spec.template.spec.providerSpec.value.securityProfile.settings.confidentialVM.uefiSettings`
+   :   Specifies which UEFI security features to use. This section is required for all valid configurations.
 
-`spec.template.spec.providerSpec.value.securityProfile.settings.confidentialVM.uefiSettings.secureBoot`
-:   Disables UEFI Secure Boot.
+   `spec.template.spec.providerSpec.value.securityProfile.settings.confidentialVM.uefiSettings.secureBoot`
+   :   Disables UEFI Secure Boot.
 
-`spec.template.spec.providerSpec.value.securityProfile.settings.confidentialVM.uefiSettings.virtualizedTrustedPlatformModule`
-:   Enables the use of a vTPM.
+   `spec.template.spec.providerSpec.value.securityProfile.settings.confidentialVM.uefiSettings.virtualizedTrustedPlatformModule`
+   :   Enables the use of a vTPM.
 
-`spec.template.spec.providerSpec.value.vmSize`
-:   Specifies an instance type that supports confidential VMs.
-```
+   `spec.template.spec.providerSpec.value.vmSize`
+   :   Specifies an instance type that supports confidential VMs.
 
 **Verification**
 
@@ -967,11 +981,7 @@ For more information about related features and functionality, see the Microsoft
 
 ## Accelerated Networking for Microsoft Azure VMs {#machineset-azure-accelerated-networking_creating-machineset-azure}
 
-You can enable Accelerated Networking, which uses single root I/O virtualization (SR-IOV) to provide Microsoft Azure VMs with a more direct path to the switch,
-
-during or
-
-after installation. This enhances network performance.
+You can enable Accelerated Networking, which uses single root I/O virtualization (SR-IOV) to provide Microsoft Azure VMs with a more direct path to the switch, during or after installation. This enhances network performance.
 
 ### Limitations {#machineset-azure-accelerated-networking-limits_creating-machineset-azure}
 
@@ -1024,30 +1034,19 @@ You can enable Accelerated Networking on Microsoft Azure by adding `acceleratedN
 - On the Microsoft Azure portal, review the **Networking** settings page for a machine provisioned by the machine set, and verify that the `Accelerated networking` field is set to `Enabled`.
 
 **Additional resources**
+{._additional-resources}
 
 - [Enabling Accelerated Networking during installation](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#machineset-azure-enabling-accelerated-networking-new-install_installing-azure-customizations)
 
 ## Configuring Capacity Reservations by using machine sets {#machineset-capacity-reservation_creating-machineset-azure}
 
-You can configure a machine set to deploy machines on any available resources that match the parameters of a capacity request that you define by using
-
-on-demand Capacity Reservation with Capacity Reservation groups on Microsoft Azure clusters.
+You can configure a machine set to deploy machines on any available resources that match the parameters of a capacity request that you define by using on-demand Capacity Reservation with Capacity Reservation groups on Microsoft Azure clusters.
 
 You can configure a machine set to deploy machines on any available resources that match the parameters of a capacity request that you define.
 
-These parameters specify the
+These parameters specify the VM size, region, and number of instances that you want to reserve. If your Azure subscription quota can accommodate the capacity request, the deployment succeeds.
 
-VM size,
-
-region, and number of instances that you want to reserve. If your
-
-Azure subscription quota
-
-can accommodate the capacity request, the deployment succeeds.
-
-For more information, including limitations and suggested use cases for this
-
-Microsoft Azure offering, see [On-demand Capacity Reservation](https://learn.microsoft.com/en-us/azure/virtual-machines/capacity-reservation-overview) in the Azure documentation.
+For more information, including limitations and suggested use cases for this Microsoft Azure offering, see [On-demand Capacity Reservation](https://learn.microsoft.com/en-us/azure/virtual-machines/capacity-reservation-overview) in the Azure documentation.
 
 > [!NOTE]
 > You cannot change an existing Capacity Reservation configuration for a machine set. To use a different Capacity Reservation group, you must replace the machine set and the machines that the previous machine set deployed.
@@ -1082,18 +1081,28 @@ tag:compute[]\[\] . In a text editor, open an existing machine set custom resour
        spec:
          providerSpec:
            value:
+             capacityReservationGroupID: <capacity_reservation_group>
+   end::compute[]
+   tag::controlplane[]
+   apiVersion: machine.openshift.io/v1
+   kind: ControlPlaneMachineSet
+   # ...
+   spec:
+     template:
+       machines_v1beta1_machine_openshift_io:
+         spec:
+           providerSpec:
+             value:
+               capacityReservationGroupID: <capacity_reservation_group>
+   end::controlplane[]
+   # ...
    ```
 
-{%- if azure %} capacityReservationGroupID: <capacity_reservation_group> {% endif %} {% if aws %} capacityReservationId: <capacity_reservation> marketType: <market_type> {%- endif %} end:compute[]\[\] tag:controlplane[]\[\] apiVersion: machine.openshift.io/v1 kind: ControlPlaneMachineSet # ... spec: template: machines_v1beta1_machine_openshift_io: spec: providerSpec: value: {%- if azure %} capacityReservationGroupID: <capacity_reservation_group> {% endif %} {% if aws %} capacityReservationId: <capacity_reservation> marketType: <market_type> {%- endif %} end:controlplane[]\[\] # ... \`\`\`
+   where:
 
-```
-where:
-
-`<capacity_reservation_group>`
-:   Specifies the ID of the Capacity Reservation group that you want the machine set to deploy machines on.
-```
-
-1. Save your changes and exit the object specification. tag:controlplane[]\[\]
+   `<capacity_reservation_group>`
+   :   Specifies the ID of the Capacity Reservation group that you want the machine set to deploy machines on.
+2. Save your changes and exit the object specification. tag:controlplane[]\[\]
 
    When you save an update to the control plane machine set, the Control Plane Machine Set Operator updates the control plane machines according to your configured update strategy.
 
@@ -1461,8 +1470,8 @@ The following table lists the validated instance types:
    myclustername-nc4ast4-gpu-worker-centralus1-w9bqn   Running   Standard_NC4as_T4_v3   centralus   1      21m
    ```
 
-> [!NOTE]
-> There is no need to specify a namespace for the node. The node definition is cluster scoped.
+   > [!NOTE]
+   > There is no need to specify a namespace for the node. The node definition is cluster scoped.
 
 ## Deploying the Node Feature Discovery Operator {#nvidia-gpu-aws-deploying-the-node-feature-discovery-operator_creating-machineset-azure}
 
@@ -1524,9 +1533,6 @@ The NFD Operator identifies hardware device features in nodes. It solves the gen
    `10de` appears in the node feature list for the GPU-enabled node. This mean the NFD Operator correctly identified the node from the GPU-enabled MachineSet.
 
 **Additional resources**
+{._additional-resources}
 
 - [Manually scaling a compute machine set](/openshift-docs-markdown/machine_management/manually-scaling-machineset#manually-scaling-machineset)
-
-[^1]: 1
-
-[^2]: 2

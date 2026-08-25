@@ -164,6 +164,7 @@ You can also list the current update channel and review the available cluster up
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Querying Operator status after installation](/openshift-docs-markdown/support/troubleshooting/troubleshooting-installations#querying-operator-status-after-installation_troubleshooting-installations)
 - [Troubleshooting Operator issues](/openshift-docs-markdown/support/troubleshooting/troubleshooting-operator-issues#troubleshooting-operator-issues)
@@ -289,6 +290,7 @@ You can verify the status of the cluster nodes after an installation.
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Verifying node health](/openshift-docs-markdown/support/troubleshooting/verifying-node-health#verifying-node-health)
 
@@ -313,7 +315,7 @@ The **Overview** page displays the following information:
 
 **Procedure**
 
-- Navigate to **Home** -> **Overview**.
+- Navigate to **Home** → **Overview**.
 
 ## Reviewing the cluster status from Red Hat OpenShift Cluster Manager {#reviewing-cluster-status-from-the-openshift-cluster-manager_validating-an-installation}
 
@@ -351,6 +353,7 @@ From the OpenShift Container Platform web console, you can review detailed infor
    - Health-check status by category
 
 **Additional resources**
+{._additional-resources}
 
 - [Using Red Hat Lightspeed to identify issues with your cluster](/openshift-docs-markdown/support/remote_health_monitoring/using-insights-to-identify-issues-with-your-cluster#using-insights-to-identify-issues-with-your-cluster)
 
@@ -376,7 +379,7 @@ As an administrator, you can access dashboards for core OpenShift Container Plat
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, navigate to **Observe** -> **Dashboards**.
+1. In the OpenShift Container Platform web console, navigate to **Observe** → **Dashboards**.
 2. Choose a dashboard in the **Dashboard** list. Some dashboards, such as the **etcd** dashboard, produce additional sub-menus when selected.
 3. Optional: Select a time range for the graphs in the **Time Range** list.
 
@@ -389,6 +392,7 @@ As an administrator, you can access dashboards for core OpenShift Container Plat
 5. Hover over each of the graphs within a dashboard to display detailed information about specific items.
 
 **Additional resources**
+{._additional-resources}
 
 - [About OpenShift Container Platform monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/about_monitoring/about-ocp-monitoring)
 
@@ -403,11 +407,12 @@ Alerts provide notifications when a set of defined conditions are true in an Ope
 
 **Procedure**
 
-1. In the **Administrator** perspective, navigate to the **Observe** -> **Alerting** -> **Alerts** page.
+1. In the **Administrator** perspective, navigate to the **Observe** → **Alerting** → **Alerts** page.
 2. Review the alerts that are firing, including their **Severity**, **State**, and **Source**. Use this information to identify which alerts require immediate attention.
 3. Select an alert to view more detailed information in the **Alert Details** page.
 
 **Additional resources**
+{._additional-resources}
 
 - [Managing alerts as an Administrator](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/managing_alerts/managing-alerts-as-an-administrator)
 - [Troubleshooting installations](/openshift-docs-markdown/support/troubleshooting/troubleshooting-installations#troubleshooting-installations)

@@ -1,5 +1,5 @@
 ---
-title: Updating {{ VirtProductName }}
+title: Updating OpenShift Virtualization
 ---
 
 # Updating OpenShift Virtualization {#upgrading-virt}
@@ -57,7 +57,7 @@ You can control how and when updates are installed by changing the update channe
 
 **Procedure**
 
-1. Click **Ecosystem** -> **Installed Operators**.
+1. Click **Ecosystem** → **Installed Operators**.
 2. Select **OpenShift Virtualization** from the list.
 3. Click the **Subscription** tab.
 4. In the **Subscription details** section, click the setting that you want to change. For example, to change the approval strategy from **Manual** to **Automatic**, click **Manual**.
@@ -80,12 +80,12 @@ If an installed Operator has the approval strategy in its subscription set to **
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, navigate to **Ecosystem** -> **Installed Operators**.
+1. In the OpenShift Container Platform web console, navigate to **Ecosystem** → **Installed Operators**.
 2. Operators that have a pending update display a status with **Upgrade available**. Click the name of the Operator you want to update.
 3. Click the **Subscription** tab. Any updates requiring approval are displayed next to **Upgrade status**. For example, it might display **1 requires approval**.
 4. Click **1 requires approval**, then click **Preview Install Plan**.
 5. Review the resources that are listed as available for update. When satisfied, click **Approve**.
-6. Navigate back to the **Ecosystem** -> **Installed Operators** page to monitor the progress of the update. When complete, the status changes to **Succeeded** and **Up to date**.
+6. Navigate back to the **Ecosystem** → **Installed Operators** page to monitor the progress of the update. When complete, the status changes to **Succeeded** and **Up to date**.
 
 ## Remove unused Operators and resources {#virt-update-removing-unused_upgrading-virt}
 
@@ -121,7 +121,7 @@ To monitor the status of a OpenShift Virtualization Operator update, watch the c
 1. Run the following command:
 
    ```terminal
-   $ oc get csv -n {{ CNVNamespace }}
+   $ oc get csv -n openshift-cnv
    ```
 2. Review the output, checking the `PHASE` field. For example:
 
@@ -133,8 +133,8 @@ To monitor the status of a OpenShift Virtualization Operator update, watch the c
 3. Optional: Monitor the aggregated status of all OpenShift Virtualization component conditions by running the following command:
 
    ```terminal
-   $ oc get {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} \
-     -o=jsonpath='{range .status.conditions[*]}{.type}{"\t"}{.status}{"\t"}{.message}{"\n"}{{ end }}'
+   $ oc get hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv \
+     -o=jsonpath='{range .status.conditions[*]}{.type}{"\t"}{.status}{"\t"}{.message}{"\n"}{end}'
    ```
 
    A successful upgrade results in the following output:
@@ -202,7 +202,7 @@ You can configure how virtual machine workloads are updated during cluster upgra
 1. To open the `HyperConverged` CR in your default editor, run the following command:
 
    ```terminal
-   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+   $ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv
    ```
 2. Edit the `workloadUpdateStrategy` stanza of the `HyperConverged` CR. For example:
 
@@ -299,18 +299,18 @@ When updating between Extended Update Support (EUS) versions, temporarily disabl
 
    ```terminal
    $ oc get kv kubevirt-kubevirt-hyperconverged \
-     -n {{ CNVNamespace }} -o jsonpath='{.spec.workloadUpdateStrategy.workloadUpdateMethods}'
+     -n openshift-cnv -o jsonpath='{.spec.workloadUpdateStrategy.workloadUpdateMethods}'
    ```
 2. Disable workload update methods by running the following command:
 
    ```terminal
-   $ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} \
+   $ oc patch hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv \
      --type json -p '[{"op":"replace","path":"/spec/workloadUpdateStrategy/workloadUpdateMethods", "value":[]}]'
    ```
 3. Ensure that the `HyperConverged` Operator is `Upgradeable`:
 
    ```terminal
-   $ oc get {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} -o json | jq ".status.conditions"
+   $ oc get hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv -o json | jq ".status.conditions"
    ```
 4. Update your cluster from the source EUS version to the next minor version of OpenShift Container Platform:
 
@@ -332,12 +332,12 @@ When updating between Extended Update Support (EUS) versions, temporarily disabl
 7. Monitor the OpenShift Virtualization update:
 
    ```terminal
-   $ oc get csv -n {{ CNVNamespace }}
+   $ oc get csv -n openshift-cnv
    ```
 8. Confirm that OpenShift Virtualization updated to the latest z-stream release of the intermediate version:
 
    ```terminal
-   $ oc get {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} -o json | jq ".status.versions"
+   $ oc get hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv -o json | jq ".status.versions"
    ```
 9. Wait until the `HyperConverged` Operator again reports the `Upgradeable` condition.
 10. Update OpenShift Container Platform to the target EUS version.
@@ -353,15 +353,15 @@ When updating between Extended Update Support (EUS) versions, temporarily disabl
 13. Monitor the update:
 
     ```terminal
-    $ oc get csv -n {{ CNVNamespace }}
+    $ oc get csv -n openshift-cnv
     ```
 
     The update completes when the `VERSION` field matches the target EUS version and the `PHASE` field reads `Succeeded`.
 14. Restore the `workloadUpdateMethods` configuration recorded in step 1:
 
     ```terminal
-    $ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} --type json -p \
-    "[{\"op\":\"add\",\"path\":\"/spec/workloadUpdateStrategy/workloadUpdateMethods\", \"value\":{{ WorkloadUpdateMethodConfig }}}]"
+    $ oc patch hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv --type json -p \
+    "[{\"op\":\"add\",\"path\":\"/spec/workloadUpdateStrategy/workloadUpdateMethods\", \"value\":{WorkloadUpdateMethodConfig}}]"
     ```
 
 **Verification**
@@ -389,7 +389,8 @@ Red Hat promotes some candidate releases to the **stable** channel. Other candi
 > [!IMPORTANT]
 > Use the candidate channel only for testing where you can delete and re-create the cluster.
 
-## Additional resources {#additional-resources_upgrading-virt}
+**Additional resources**
+{._additional-resources}
 
 - [OpenShift Container Platform Life Cycle Policy](https://access.redhat.com/support/policy/updates/openshift)
 - [Performing a Control Plane Only update](/openshift-docs-markdown/updating/updating_a_cluster/control-plane-only-update#control-plane-only-update)

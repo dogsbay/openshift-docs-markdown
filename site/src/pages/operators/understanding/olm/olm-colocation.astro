@@ -20,7 +20,8 @@ const headings = [{"depth":1,"slug":"olm-colocation","text":"Multitenancy and Op
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/operators/understanding/olm/olm-colocation";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -39,7 +40,7 @@ const pageCategory = ["operators","operators/understanding","operators/understan
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Multitenancy and Operator colocation {#olm-colocation}\n\nWhen Operators share a namespace, Operator Lifecycle Manager (OLM) treats them as related, which affects how they behave during updates.\n\n## Colocation of Operators in a namespace {#olm-colocation-namespaces_olm-colocation}\n\nOperator Lifecycle Manager (OLM) treats OLM-managed Operators that are installed in the same namespace as related Operators. Even if the Operators are not actually related, OLM considers their states, such as their version and update policy, when any one of them is updated.\n\nThis default behavior manifests in two ways:\n\n- `InstallPlan` resources of pending updates include `ClusterServiceVersion` (CSV) resources of all other Operators that are in the same namespace.\n- All Operators in the same namespace share the same update policy. For example, if one Operator is set to manual updates, all other Operators' update policies are also set to manual.\n\nThese scenarios can lead to the following issues:\n\n- It becomes hard to reason about install plans for Operator updates, because there are many more resources defined in them than just the updated Operator.\n- It becomes impossible to have some Operators in a namespace update automatically while other are updated manually, which is a common desire for cluster administrators.\n\nThese issues usually surface because, when installing Operators with the OpenShift Container Platform web console, the default behavior installs Operators that support the **All namespaces** install mode into the default `openshift-operators` global namespace.\n\nAs a cluster administrator,\n\nyou can bypass this default behavior manually by using the following workflow:\n\n1. Create a namespace for the installation of the Operator.\n2. Create a custom *global Operator group*, which is an Operator group that watches all namespaces. By associating this Operator group with the namespace you just created, it makes the installation namespace a global namespace, which makes Operators installed there available in all namespaces.\n3. Install the desired Operator in the installation namespace.\n\nIf the Operator has dependencies, the dependencies are automatically installed in the pre-created namespace. As a result, it is then valid for the dependency Operators to have the same update policy and shared install plans. For a detailed procedure, see \"Installing global Operators in custom namespaces\".\n\n**Additional resources**\n\n- [Installing global Operators in custom namespaces](/openshift-docs-markdown/operators/admin/olm-adding-operators-to-cluster#olm-installing-global-namespaces_olm-adding-operators-to-a-cluster)\n- [Operators in multitenant clusters](/openshift-docs-markdown/operators/understanding/olm-multitenancy#olm-multitenancy)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/operators/understanding/olm/olm-colocation.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Multitenancy and Operator colocation {#olm-colocation}\n\nWhen Operators share a namespace, Operator Lifecycle Manager (OLM) treats them as related, which affects how they behave during updates.\n\n## Colocation of Operators in a namespace {#olm-colocation-namespaces_olm-colocation}\n\nOperator Lifecycle Manager (OLM) treats OLM-managed Operators that are installed in the same namespace as related Operators. Even if the Operators are not actually related, OLM considers their states, such as their version and update policy, when any one of them is updated.\n\nThis default behavior manifests in two ways:\n\n- `InstallPlan` resources of pending updates include `ClusterServiceVersion` (CSV) resources of all other Operators that are in the same namespace.\n- All Operators in the same namespace share the same update policy. For example, if one Operator is set to manual updates, all other Operators' update policies are also set to manual.\n\nThese scenarios can lead to the following issues:\n\n- It becomes hard to reason about install plans for Operator updates, because there are many more resources defined in them than just the updated Operator.\n- It becomes impossible to have some Operators in a namespace update automatically while other are updated manually, which is a common desire for cluster administrators.\n\nThese issues usually surface because, when installing Operators with the OpenShift Container Platform web console, the default behavior installs Operators that support the **All namespaces** install mode into the default `openshift-operators` global namespace.\n\nAs a cluster administrator,\n\nyou can bypass this default behavior manually by using the following workflow:\n\n1. Create a namespace for the installation of the Operator.\n2. Create a custom *global Operator group*, which is an Operator group that watches all namespaces. By associating this Operator group with the namespace you just created, it makes the installation namespace a global namespace, which makes Operators installed there available in all namespaces.\n3. Install the desired Operator in the installation namespace.\n\nIf the Operator has dependencies, the dependencies are automatically installed in the pre-created namespace. As a result, it is then valid for the dependency Operators to have the same update policy and shared install plans. For a detailed procedure, see \"Installing global Operators in custom namespaces\".\n\n**Additional resources**\n{._additional-resources}\n\n- [Installing global Operators in custom namespaces](/openshift-docs-markdown/operators/admin/olm-adding-operators-to-cluster#olm-installing-global-namespaces_olm-adding-operators-to-a-cluster)\n- [Operators in multitenant clusters](/openshift-docs-markdown/operators/understanding/olm-multitenancy#olm-multitenancy)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/operators/understanding/olm/olm-colocation.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,12 +79,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -91,7 +93,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="olm-colocation" class="group scroll-mt-20">Multitenancy and Operator colocation<a href="#olm-colocation" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>When Operators share a namespace, Operator Lifecycle Manager (OLM) treats them as related, which affects how they behave during updates.</p>
+      <p class="_abstract">When Operators share a namespace, Operator Lifecycle Manager (OLM) treats them as related, which affects how they behave during updates.</p>
       <h2 id="olm-colocation-namespaces_olm-colocation" class="group scroll-mt-20">Colocation of Operators in a namespace<a href="#olm-colocation-namespaces_olm-colocation" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">Operator Lifecycle Manager (OLM) treats OLM-managed Operators that are installed in the same namespace as related Operators. Even if the Operators are not actually related, OLM considers their states, such as their version and update policy, when any one of them is updated.</p>
       <p>This default behavior manifests in two ways:</p>
@@ -113,11 +115,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>Install the desired Operator in the installation namespace.</li>
       </ol>
       <p>If the Operator has dependencies, the dependencies are automatically installed in the pre-created namespace. As a result, it is then valid for the dependency Operators to have the same update policy and shared install plans. For a detailed procedure, see "Installing global Operators in custom namespaces".</p>
-      <p><strong>Additional resources</strong></p>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul>
       <li><a href="/openshift-docs-markdown/operators/admin/olm-adding-operators-to-cluster#olm-installing-global-namespaces_olm-adding-operators-to-a-cluster">Installing global Operators in custom namespaces</a></li>
       <li><a href="/openshift-docs-markdown/operators/understanding/olm-multitenancy#olm-multitenancy">Operators in multitenant clusters</a></li>
       </ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

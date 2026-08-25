@@ -2,7 +2,7 @@
 title: Getting started with dynamic plugins
 ---
 
-# Getting started with dynamic plugins {#dynamic-plugins-get-started_{{ context }}}
+# Getting started with dynamic plugins {#dynamic-plugins-get-started_{context}}
 
 To get started using the dynamic plugin, you must set up your environment to write a new OpenShift Container Platform dynamic plugin. For an example of how to write a new plugin, see [Adding a tab to the pods page](/openshift-docs-markdown/web_console/dynamic-plugin/dynamic-plugin-example#adding-tab-to-pods-page_dynamic-plugin-example).
 
@@ -16,10 +16,7 @@ You can run the plugin using a local development environment. The OpenShift Cont
 
   > [!IMPORTANT]
   > Red Hat does not support custom plugin code. Only [Cooperative community support](https://access.redhat.com/solutions/5893251) is available for your plugin.
-- You must have an OpenShift Container Platform
-
-cluster running.
-
+- You must have an OpenShift Container Platform cluster running.
 - You must have the OpenShift CLI (`oc`) installed.
 - You must have [`yarn`](https://yarnpkg.com/) installed.
 - You must have [Docker](https://www.docker.com/) v3.2.0 or later or [Podman](https://podman.io/) v3.2.0 or later installed and running.

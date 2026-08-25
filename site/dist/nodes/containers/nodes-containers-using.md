@@ -54,6 +54,7 @@ runC has some benefits over crun, including:
 
 You can move between the two container runtimes as needed.
 
-## Additional resources {#additional-resources_nodes-containers-using}
+**Additional resources**
+{._additional-resources}
 
 - [Creating a `ContainerRuntimeConfig` CR to edit CRI-O parameters](/openshift-docs-markdown/machine_configuration/machine-configs-custom#create-a-containerruntimeconfig_machine-configs-custom)

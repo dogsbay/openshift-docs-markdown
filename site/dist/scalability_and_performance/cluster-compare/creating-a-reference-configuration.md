@@ -115,25 +115,33 @@ You can handle variable content within a template by using Golang templating syn
       app: guestbook
       tier: frontend
   spec:
+    {{- if and .spec.type (eq (.spec.type) "NodePort" "LoadBalancer") }}
+    type: {{.spec.type }}
+    {{- else }}
+    type: should be NodePort or LoadBalancer
+    {{- end }}
+    ports:
+    - port: 80
+    selector:
+      app: guestbook
+      {{- if .spec.selector.tier }}
+      tier: frontend
+      {{- end }}
   ```
 
-{{- if and .spec.type (eq (.spec.type) "NodePort" "LoadBalancer") }} type: {{.spec.type }} {{- else }} type: should be NodePort or LoadBalancer {{- end }} ports: - port: 80 selector: app: guestbook {{- if .spec.selector.tier }} tier: frontend {{- end }} \`\`\`
+  where:
 
-```
-where:
+  `name: frontend`
+  :   Configures a required field that must match the specified value.
 
-`name: frontend`
-:   Configures a required field that must match the specified value.
+  `namespace: \{{ .metadata.namespace }}`
+  :   Configures a required field that can have any value.
 
-`namespace: \{{ .metadata.namespace }}`
-:   Configures a required field that can have any value.
+  `type: \{{.spec.type }}`
+  :   Configures validation for the `.spec.type` field.
 
-`type: \{{.spec.type }}`
-:   Configures validation for the `.spec.type` field.
-
-`\{{- if .spec.selector.tier }}`
-:   Configures an optional field.
-```
+  `\{{- if .spec.selector.tier }}`
+  :   Configures an optional field.
 
 ### Reference template functions {#cluster-compare-templating-reference_creating-a-reference-configuration}
 
@@ -141,7 +149,7 @@ The `cluster-compare` plugin supports all `sprig` library functions, except for 
 
 The following table describes the additional template functions for the `cluster-compare` plugin:
 
-***Additional cluster-compare template functions***
+**Additional cluster-compare template functions**
 
 <table>
 <thead>
@@ -155,57 +163,42 @@ The following table describes the additional template functions for the `cluster
 <tr>
   <td><code>fromJson</code></td>
   <td>Parses the incoming string as a structured JSON object.</td>
-  <td>`value: {{ obj := spec.jsontext \</td>
+  <td><code>value: {obj := spec.jsontext | fromJson}{obj.field}</code></td>
 </tr>
 <tr>
-  <td>fromJson }}{{ obj.field }}`</td>
   <td><code>fromJsonArray</code></td>
   <td>Parses the incoming string as a structured JSON array.</td>
+  <td><code>value: {obj := spec.jsontext | fromJson}{index $obj 0}</code></td>
 </tr>
 <tr>
-  <td>`value: {{ obj := spec.jsontext \</td>
-  <td>fromJson }}{{ index $obj 0 }}`</td>
   <td><code>fromYaml</code></td>
-</tr>
-<tr>
   <td>Parses the incoming string as a structured YAML object.</td>
-  <td>`value: {{ obj := spec.yamltext \</td>
-  <td>fromYaml }}{{ obj.field }}`</td>
+  <td><code>value: {obj := spec.yamltext | fromYaml}{obj.field}</code></td>
 </tr>
 <tr>
   <td><code>fromYamlArray</code></td>
   <td>Parses the incoming string as a structured YAML array.</td>
-  <td>`value: {{ obj := spec.yamltext \</td>
+  <td><code>value: {obj := spec.yamltext | fromYaml}{index $obj 0 }</code></td>
 </tr>
 <tr>
-  <td>fromYaml }}{{ index $obj 0 }`</td>
   <td><code>toJson</code></td>
   <td>Renders incoming data as JSON while preserving object types.</td>
+  <td><code>jsonstring: {{ $variable | toJson}</code></td>
 </tr>
 <tr>
-  <td>`jsonstring: {{ $variable \</td>
-  <td>toJson }}`</td>
   <td><code>toToml</code></td>
-</tr>
-<tr>
   <td>Renders the incoming string as structured TOML data.</td>
-  <td>`tomlstring: {{ $variable \</td>
-  <td>toToml }}`</td>
+  <td><code>tomlstring: {$variable | toToml}</code></td>
 </tr>
 <tr>
   <td><code>toYaml</code></td>
   <td>Renders incoming data as YAML while preserving object types.</td>
-  <td>For simple scalar values: `value: {{ $data \</td>
-</tr>
-<tr>
-  <td>toYaml }}` For lists or dictionaries: `value: {{ $dict \</td>
-  <td>toYaml \</td>
-  <td>nindent 2 }}`</td>
+  <td>For simple scalar values: <code>value: {$data | toYaml}</code><br><br>For lists or dictionaries: <code>value: {$dict | toYaml | nindent 2}</code></td>
 </tr>
 <tr>
   <td><code>doNotMatch</code></td>
   <td>Prevents a template from matching a cluster resource, even if it would normally match. You can use this function inside a template to conditionally exclude certain resources from correlation. The specified reason is logged when running with the <code>--verbose</code> flag. Templates excluded due to <code>doNotMatch</code> are not considered comparison failures. This function is especially useful when your template does not specify a fixed name or namespace. In these cases, you can use the <code>doNotMatch</code> function to exclude specific resources based on other fields, such as <code>labels</code> or <code>annotations</code>.</td>
-  <td><code>{{ if $condition }}{{ doNotMatch $reason }}{{ end }}</code></td>
+  <td><code>{if $condition}{doNotMatch $reason}{end}</code></td>
 </tr>
 <tr>
   <td><code>lookupCRs</code></td>
@@ -246,23 +239,24 @@ metadata:
   name: kubernetes-dashboard-settings
   namespace: kubernetes-dashboard
 data:
-{{- $objlist := lookupCRs "apps/v1" "Deployment" "kubernetes-dashboard" "*" }}
-{{- $dashboardName := "unknown" }}
-{{- $metricsName := "unknown" }}
-{{- range $obj := $objlist }}
-{{- $appname := index $obj "metadata" "labels" "k8s-app" }}
-{{- if contains "metrics" $appname }}
-{{- $metricsName = $obj.metadata.name }}
-{{- end }}
-{{- if eq "kubernetes-dashboard" $appname }}
-{{- $dashboardName = $obj.metadata.name }}
-{{- end }}
-{{- end }}
+  {{- $objlist := lookupCRs "apps/v1" "Deployment" "kubernetes-dashboard" "*" }}
+  {{- $dashboardName := "unknown" }}
+  {{- $metricsName := "unknown" }}
+  {{- range $obj := $objlist }}
+    {{- $appname := index $obj "metadata" "labels" "k8s-app" }}
+    {{- if contains "metrics" $appname }}
+      {{- $metricsName = $obj.metadata.name }}
+    {{- end }}
+    {{- if eq "kubernetes-dashboard" $appname }}
+      {{- $dashboardName = $obj.metadata.name }}
+    {{- end }}
+  {{- end }}
   dashboard: {{ $dashboardName }}
   metrics: {{ $metricsName }}
 ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Sprig Function Documentation](https://masterminds.github.io/sprig/)
 

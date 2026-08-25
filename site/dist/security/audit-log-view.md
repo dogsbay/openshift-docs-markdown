@@ -242,7 +242,8 @@ You can use the must-gather tool to collect the audit logs for debugging your cl
    Replace `must-gather.local.472290403699006248` with the actual directory name.
 3. Attach the compressed file to your support case on the [the **Customer Support** page](https://access.redhat.com/support/cases/#/case/list) of the Red Hat Customer Portal.
 
-## Additional resources {#viewing-audit-logs-additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Must-gather tool](/openshift-docs-markdown/support/gathering-cluster-data#about-must-gather_gathering-cluster-data)
 - [API audit log event structure](https://github.com/kubernetes/apiserver/blob/master/pkg/apis/audit/v1/types.go#L72)

@@ -15,18 +15,13 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
-import Table from "@ui/table/Table.astro";
-import TableBody from "@ui/table/TableBody.astro";
-import TableCell from "@ui/table/TableCell.astro";
-import TableHead from "@ui/table/TableHead.astro";
-import TableHeader from "@ui/table/TableHeader.astro";
-import TableRow from "@ui/table/TableRow.astro";
 
 const headings = [{"depth":1,"slug":"deprecated-features","text":"Deprecated features"},{"depth":2,"slug":"deprecated","text":"Features deprecated in OpenShift Container Platform v4"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/whats_new/deprecated-features";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -45,7 +40,7 @@ const pageCategory = ["whats_new"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Deprecated features {#deprecated-features}\n\nLarge changes to the underlying architecture and installation process are applied in OpenShift Container Platform v4, and many features from OpenShift Container Platform v3 are now deprecated.\n\n## Features deprecated in OpenShift Container Platform v4 {#deprecated}\n\n**Features Deprecated in 4.22**\n\n| Feature | Justification |\n| --- | --- |\n| Hawkular | Replaced by cluster monitoring. |\n| Cassandra | Replaced by cluster monitoring. |\n| Heapster | Replaced by Prometheus adapter. |\n| Atomic Host | Replaced by Red Hat Enterprise Linux CoreOS (RHCOS). |\n| System containers | Replaced by Red Hat Enterprise Linux CoreOS (RHCOS). |\n| `projectatomic/docker-1.13` additional search registries | CRI-O is the default container runtime for OpenShift Container Platform v4 on Fedora. |\n| `oc adm diagnostics` | Operator-based diagnostics. |\n| `oc adm registry` | Replaced by the Image Registry Operator. |\n| Custom strategy builds using Docker | If you want to continue using custom builds, you should replace your Docker invocations with Podman or Buildah. The custom build strategy will not be removed, but the functionality changed significantly in OpenShift v4. |\n| Cockpit | Improved OpenShift v4 web console. |\n| Stand-alone registry installations | Quay is Red Hat’s container image registry. |\n| DNSmasq | CoreDNS is the default. |\n| External etcd nodes | etcd is always on the cluster in OpenShift v4. |\n| CloudForms OpenShift Provider and Podified CloudForms | Replaced by built-in management tooling. |\n| Volume Provisioning via installer | Replaced by dynamic volumes or, if NFS is required, NFS provisioner. |\n| Blue-green installation method | Ease of upgrade is a core value of OpenShift v4. |\n| OpenShift Service Broker and Service Catalog | The Service Catalog and the OpenShift service brokers are being replaced over the course of several future OpenShift v4 releases. Reference the Operator Framework and Operator Lifecycle Manager (OLM) to continue providing your applications to OpenShift v4 clusters. These new technologies provide many benefits around complete management of the lifecycle of your application. |\n| `oc adm ca` | Certificates are managed by Operators internally. |\n| `oc adm create-api-client-config` .2+.^ | Functions are managed by Operators internally. |\n| `oc adm create-bootstrap-policy-file` | `oc adm policy reconcile-sccs` |\n| Functions are managed by `openshift-apiserver` internally. | Web console |\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/whats_new/deprecated-features.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Deprecated features {#deprecated-features}\n\nLarge changes to the underlying architecture and installation process are applied in OpenShift Container Platform v4, and many features from OpenShift Container Platform v3 are now deprecated.\n\n## Features deprecated in OpenShift Container Platform v4 {#deprecated}\n\n**Features Deprecated in 4.22**\n\n<table>\n<thead>\n<tr>\n  <th>Feature</th>\n  <th>Justification</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td>Hawkular</td>\n  <td>Replaced by cluster monitoring.</td>\n</tr>\n<tr>\n  <td>Cassandra</td>\n  <td>Replaced by cluster monitoring.</td>\n</tr>\n<tr>\n  <td>Heapster</td>\n  <td>Replaced by Prometheus adapter.</td>\n</tr>\n<tr>\n  <td>Atomic Host</td>\n  <td>Replaced by Red&#160;Hat Enterprise Linux CoreOS (RHCOS).</td>\n</tr>\n<tr>\n  <td>System containers</td>\n  <td>Replaced by Red&#160;Hat Enterprise Linux CoreOS (RHCOS).</td>\n</tr>\n<tr>\n  <td><code>projectatomic/docker-1.13</code> additional search registries</td>\n  <td>CRI-O is the default container runtime for OpenShift Container Platform v4 on Fedora.</td>\n</tr>\n<tr>\n  <td><code>oc adm diagnostics</code></td>\n  <td>Operator-based diagnostics.</td>\n</tr>\n<tr>\n  <td><code>oc adm registry</code></td>\n  <td>Replaced by the Image Registry Operator.</td>\n</tr>\n<tr>\n  <td>Custom strategy builds using Docker</td>\n  <td>If you want to continue using custom builds, you should replace your Docker invocations with Podman or Buildah. The custom build strategy will not be removed, but the functionality changed significantly in OpenShift v4.</td>\n</tr>\n<tr>\n  <td>Cockpit</td>\n  <td>Improved OpenShift v4 web console.</td>\n</tr>\n<tr>\n  <td>Stand-alone registry installations</td>\n  <td>Quay is Red Hat's container image registry.</td>\n</tr>\n<tr>\n  <td>DNSmasq</td>\n  <td>CoreDNS is the default.</td>\n</tr>\n<tr>\n  <td>External etcd nodes</td>\n  <td>etcd is always on the cluster in OpenShift v4.</td>\n</tr>\n<tr>\n  <td>CloudForms OpenShift Provider and Podified CloudForms</td>\n  <td>Replaced by built-in management tooling.</td>\n</tr>\n<tr>\n  <td>Volume Provisioning via installer</td>\n  <td>Replaced by dynamic volumes or, if NFS is required, NFS provisioner.</td>\n</tr>\n<tr>\n  <td>Blue-green installation method</td>\n  <td>Ease of upgrade is a core value of OpenShift v4.</td>\n</tr>\n<tr>\n  <td>OpenShift Service Broker and Service Catalog</td>\n  <td>The Service Catalog and the OpenShift service brokers are being replaced over the course of several future OpenShift v4 releases. Reference the Operator Framework and Operator Lifecycle Manager (OLM) to continue providing your applications to OpenShift v4 clusters. These new technologies provide many benefits around complete management of the lifecycle of your application.</td>\n</tr>\n<tr>\n  <td><code>oc adm ca</code></td>\n  <td>Certificates are managed by Operators internally.</td>\n</tr>\n<tr>\n  <td><code>oc adm create-api-client-config</code></td>\n  <td rowspan=\"2\">Functions are managed by Operators internally.</td>\n</tr>\n<tr>\n  <td><code>oc adm create-bootstrap-policy-file</code></td>\n</tr>\n<tr>\n  <td><code>oc adm policy reconcile-sccs</code></td>\n  <td>Functions are managed by <code>openshift-apiserver</code> internally.</td>\n</tr>\n<tr>\n  <td>Web console</td>\n  <td>The web console from OpenShift v3 has been replaced by a new web console in OpenShift v4.</td>\n</tr>\n</tbody>\n</table>\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/whats_new/deprecated-features.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -84,12 +79,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -100,100 +96,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p>Large changes to the underlying architecture and installation process are applied in OpenShift Container Platform v4, and many features from OpenShift Container Platform v3 are now deprecated.</p>
       <h2 id="deprecated" class="group scroll-mt-20">Features deprecated in OpenShift Container Platform v4<a href="#deprecated" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p><strong>Features Deprecated in 4.22</strong></p>
-      <Table class="my-4">
-      <TableHeader>
-      <TableRow>
-      <TableHead>Feature</TableHead>
-      <TableHead>Justification</TableHead>
-      </TableRow>
-      </TableHeader>
-      <TableBody>
-      <TableRow>
-      <TableCell>Hawkular</TableCell>
-      <TableCell>Replaced by cluster monitoring.</TableCell>
-      </TableRow>
-      <TableRow>
-      <TableCell>Cassandra</TableCell>
-      <TableCell>Replaced by cluster monitoring.</TableCell>
-      </TableRow>
-      <TableRow>
-      <TableCell>Heapster</TableCell>
-      <TableCell>Replaced by Prometheus adapter.</TableCell>
-      </TableRow>
-      <TableRow>
-      <TableCell>Atomic Host</TableCell>
-      <TableCell>Replaced by Red Hat Enterprise Linux CoreOS (RHCOS).</TableCell>
-      </TableRow>
-      <TableRow>
-      <TableCell>System containers</TableCell>
-      <TableCell>Replaced by Red Hat Enterprise Linux CoreOS (RHCOS).</TableCell>
-      </TableRow>
-      <TableRow>
-      <TableCell><code>projectatomic/docker-1.13</code> additional search registries</TableCell>
-      <TableCell>CRI-O is the default container runtime for OpenShift Container Platform v4 on Fedora.</TableCell>
-      </TableRow>
-      <TableRow>
-      <TableCell><code>oc adm diagnostics</code></TableCell>
-      <TableCell>Operator-based diagnostics.</TableCell>
-      </TableRow>
-      <TableRow>
-      <TableCell><code>oc adm registry</code></TableCell>
-      <TableCell>Replaced by the Image Registry Operator.</TableCell>
-      </TableRow>
-      <TableRow>
-      <TableCell>Custom strategy builds using Docker</TableCell>
-      <TableCell>If you want to continue using custom builds, you should replace your Docker invocations with Podman or Buildah. The custom build strategy will not be removed, but the functionality changed significantly in OpenShift v4.</TableCell>
-      </TableRow>
-      <TableRow>
-      <TableCell>Cockpit</TableCell>
-      <TableCell>Improved OpenShift v4 web console.</TableCell>
-      </TableRow>
-      <TableRow>
-      <TableCell>Stand-alone registry installations</TableCell>
-      <TableCell>Quay is Red Hat’s container image registry.</TableCell>
-      </TableRow>
-      <TableRow>
-      <TableCell>DNSmasq</TableCell>
-      <TableCell>CoreDNS is the default.</TableCell>
-      </TableRow>
-      <TableRow>
-      <TableCell>External etcd nodes</TableCell>
-      <TableCell>etcd is always on the cluster in OpenShift v4.</TableCell>
-      </TableRow>
-      <TableRow>
-      <TableCell>CloudForms OpenShift Provider and Podified CloudForms</TableCell>
-      <TableCell>Replaced by built-in management tooling.</TableCell>
-      </TableRow>
-      <TableRow>
-      <TableCell>Volume Provisioning via installer</TableCell>
-      <TableCell>Replaced by dynamic volumes or, if NFS is required, NFS provisioner.</TableCell>
-      </TableRow>
-      <TableRow>
-      <TableCell>Blue-green installation method</TableCell>
-      <TableCell>Ease of upgrade is a core value of OpenShift v4.</TableCell>
-      </TableRow>
-      <TableRow>
-      <TableCell>OpenShift Service Broker and Service Catalog</TableCell>
-      <TableCell>The Service Catalog and the OpenShift service brokers are being replaced over the course of several future OpenShift v4 releases. Reference the Operator Framework and Operator Lifecycle Manager (OLM) to continue providing your applications to OpenShift v4 clusters. These new technologies provide many benefits around complete management of the lifecycle of your application.</TableCell>
-      </TableRow>
-      <TableRow>
-      <TableCell><code>oc adm ca</code></TableCell>
-      <TableCell>Certificates are managed by Operators internally.</TableCell>
-      </TableRow>
-      <TableRow>
-      <TableCell><code>oc adm create-api-client-config</code> .2+.^</TableCell>
-      <TableCell>Functions are managed by Operators internally.</TableCell>
-      </TableRow>
-      <TableRow>
-      <TableCell><code>oc adm create-bootstrap-policy-file</code></TableCell>
-      <TableCell><code>oc adm policy reconcile-sccs</code></TableCell>
-      </TableRow>
-      <TableRow>
-      <TableCell>Functions are managed by <code>openshift-apiserver</code> internally.</TableCell>
-      <TableCell>Web console</TableCell>
-      </TableRow>
-      </TableBody>
-      </Table>
+      <Fragment set:html={"<table>\n<thead>\n<tr>\n  <th>Feature</th>\n  <th>Justification</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td>Hawkular</td>\n  <td>Replaced by cluster monitoring.</td>\n</tr>\n<tr>\n  <td>Cassandra</td>\n  <td>Replaced by cluster monitoring.</td>\n</tr>\n<tr>\n  <td>Heapster</td>\n  <td>Replaced by Prometheus adapter.</td>\n</tr>\n<tr>\n  <td>Atomic Host</td>\n  <td>Replaced by Red&#160;Hat Enterprise Linux CoreOS (RHCOS).</td>\n</tr>\n<tr>\n  <td>System containers</td>\n  <td>Replaced by Red&#160;Hat Enterprise Linux CoreOS (RHCOS).</td>\n</tr>\n<tr>\n  <td><code>projectatomic/docker-1.13</code> additional search registries</td>\n  <td>CRI-O is the default container runtime for OpenShift Container Platform v4 on Fedora.</td>\n</tr>\n<tr>\n  <td><code>oc adm diagnostics</code></td>\n  <td>Operator-based diagnostics.</td>\n</tr>\n<tr>\n  <td><code>oc adm registry</code></td>\n  <td>Replaced by the Image Registry Operator.</td>\n</tr>\n<tr>\n  <td>Custom strategy builds using Docker</td>\n  <td>If you want to continue using custom builds, you should replace your Docker invocations with Podman or Buildah. The custom build strategy will not be removed, but the functionality changed significantly in OpenShift v4.</td>\n</tr>\n<tr>\n  <td>Cockpit</td>\n  <td>Improved OpenShift v4 web console.</td>\n</tr>\n<tr>\n  <td>Stand-alone registry installations</td>\n  <td>Quay is Red Hat's container image registry.</td>\n</tr>\n<tr>\n  <td>DNSmasq</td>\n  <td>CoreDNS is the default.</td>\n</tr>\n<tr>\n  <td>External etcd nodes</td>\n  <td>etcd is always on the cluster in OpenShift v4.</td>\n</tr>\n<tr>\n  <td>CloudForms OpenShift Provider and Podified CloudForms</td>\n  <td>Replaced by built-in management tooling.</td>\n</tr>\n<tr>\n  <td>Volume Provisioning via installer</td>\n  <td>Replaced by dynamic volumes or, if NFS is required, NFS provisioner.</td>\n</tr>\n<tr>\n  <td>Blue-green installation method</td>\n  <td>Ease of upgrade is a core value of OpenShift v4.</td>\n</tr>\n<tr>\n  <td>OpenShift Service Broker and Service Catalog</td>\n  <td>The Service Catalog and the OpenShift service brokers are being replaced over the course of several future OpenShift v4 releases. Reference the Operator Framework and Operator Lifecycle Manager (OLM) to continue providing your applications to OpenShift v4 clusters. These new technologies provide many benefits around complete management of the lifecycle of your application.</td>\n</tr>\n<tr>\n  <td><code>oc adm ca</code></td>\n  <td>Certificates are managed by Operators internally.</td>\n</tr>\n<tr>\n  <td><code>oc adm create-api-client-config</code></td>\n  <td rowspan=\"2\">Functions are managed by Operators internally.</td>\n</tr>\n<tr>\n  <td><code>oc adm create-bootstrap-policy-file</code></td>\n</tr>\n<tr>\n  <td><code>oc adm policy reconcile-sccs</code></td>\n  <td>Functions are managed by <code>openshift-apiserver</code> internally.</td>\n</tr>\n<tr>\n  <td>Web console</td>\n  <td>The web console from OpenShift v3 has been replaced by a new web console in OpenShift v4.</td>\n</tr>\n</tbody>\n</table>"} />
     </article>
   </MarkdownContentStack>
 </DocsLayout>

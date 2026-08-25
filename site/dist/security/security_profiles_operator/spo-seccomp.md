@@ -127,7 +127,7 @@ You can use the `ProfileBinding` resource to bind a security profile to the `Sec
 
 **Procedure**
 
-1. To bind a pod that uses a `quay.io/security-profiles-operator/test-nginx-unprivileged:1.21` image to the example `{{ kind }}` profile, create a `ProfileBinding` object in the same namespace with the pod and the `{{ kind }}` objects:
+1. To bind a pod that uses a `quay.io/security-profiles-operator/test-nginx-unprivileged:1.21` image to the example `SeccompProfile` profile, create a `ProfileBinding` object in the same namespace with the pod and the `SeccompProfile` objects:
 
    ```yaml
    apiVersion: security-profiles-operator.x-k8s.io/v1alpha1
@@ -137,7 +137,7 @@ You can use the `ProfileBinding` resource to bind a security profile to the `Sec
      name: nginx-binding
    spec:
      profileRef:
-       kind: {{ kind }}
+       kind: SeccompProfile
        name: profile
      image: quay.io/security-profiles-operator/test-nginx-unprivileged:1.21
    ```
@@ -223,7 +223,7 @@ When using the log enricher for recording seccomp profiles, verify the log enric
      namespace: my-namespace
      name: test-recording
    spec:
-     kind: {{ kind }}
+     kind: SeccompProfile
      recorder: logs
      podSelector:
        matchLabels:
@@ -311,12 +311,12 @@ To reuse one recorded profile when deploying applications with a `ReplicaSet` or
    apiVersion: security-profiles-operator.x-k8s.io/v1alpha1
    kind: ProfileRecording
    metadata:
-     # The name of the Recording is the same as the resulting {{ kind }} CRD
+     # The name of the Recording is the same as the resulting SeccompProfile CRD
      # after reconciliation.
      name: test-recording
      namespace: my-namespace
    spec:
-     kind: {{ kind }}
+     kind: SeccompProfile
      recorder: logs
      mergeStrategy: containers
      podSelector:
@@ -366,7 +366,7 @@ To reuse one recorded profile when deploying applications with a `ReplicaSet` or
 6. To start the merge operation and generate the results profile, run the following command:
 
    ```terminal
-   $ oc get {{ object }} -lspo.x-k8s.io/recording-id=test-recording -n my-namespace
+   $ oc get seccompprofiles -lspo.x-k8s.io/recording-id=test-recording -n my-namespace
    ```
 
    ```terminal {title="Example output for seccomp profile"}
@@ -376,10 +376,11 @@ To reuse one recorded profile when deploying applications with a `ReplicaSet` or
 7. To view the permissions used by any of the containers, run the following command:
 
    ```terminal
-   $ oc get {{ object }} test-recording-nginx-record -o yaml
+   $ oc get seccompprofiles test-recording-nginx-record -o yaml
    ```
 
-## Additional resources {#additional-resources_spo-seccomp}
+**Additional resources**
+{._additional-resources}
 
 - [Managing security context constraints](/openshift-docs-markdown/authentication/managing-security-context-constraints#managing-pod-security-policies)
 - [Managing SCCs in OpenShift](https://cloud.redhat.com/blog/managing-sccs-in-openshift)

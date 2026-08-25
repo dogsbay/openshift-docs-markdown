@@ -16,11 +16,12 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 
-const headings = [{"depth":1,"slug":"troubleshooting","text":"Troubleshooting"},{"depth":2,"slug":"additional-resources_oadp-troubleshooting","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"troubleshooting","text":"Troubleshooting"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/troubleshooting";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -39,7 +40,7 @@ const pageCategory = ["backup_and_restore","backup_and_restore/application_backu
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Troubleshooting {#troubleshooting}\n\nTroubleshoot OpenShift API for Data Protection (OADP) issues by using diagnostic tools such as the OADP CLI, webhooks, `must-gather` custom resource, and other methods. This helps you identify and resolve problems with backup and restore operations.\n\nYou can troubleshoot OADP issues by using the following methods:\n\n- Debug Velero custom resources (CRs) by using the OpenShift CLI tool.\n- Debug Velero or Restic pod crashes, which are caused due to a lack of memory or CPU.\n- Debug issues with Velero and admission webhooks.\n- Check OADP installation issues, OADP Operator issues, backup and restore CR issues, and Restic issues.\n- Use the available OADP timeouts to reduce errors, retries, or failures.\n- Run the `DataProtectionTest` (DPT) custom resource to verify your backup storage bucket configuration and check the CSI snapshot readiness for persistent volume claims.\n- Collect logs and CR information by using the `must-gather` tool.\n- Monitor and analyze the workload performance with the help of OADP monitoring.\n\n## Additional resources {#additional-resources_oadp-troubleshooting}\n\n- [Debugging with the OpenShift CLI tool](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-cli-tool#oadp-debugging-oc-cli_oadp-cli-tool)\n- [Debugging backups and restores using the OADP CLI](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-cli-tool#migration-debugging-velero-resources_oadp-cli-tool)\n- [Pods crash or restart due to lack of memory or CPU](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/pods-crash-or-restart-due-to-lack-of-memory-or-cpu#pods-crash-or-restart-due-to-lack-of-memory-or-cpu)\n- [Restoring workarounds for Velero backups that use admission webhooks](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/restoring-workarounds-for-velero-backups-that-use-admission-webhooks#restoring-workarounds-for-velero-backups-that-use-admission-webhooks)\n- [OADP installation issues](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-installation-issues#oadp-installation-issues)\n- [OADP Operator issues](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-operator-issues#oadp-operator-issues)\n- [Backup and restore CR issues](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/backup-and-restore-cr-issues#backup-and-restore-cr-issues)\n- [Restic issues](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/restic-issues#restic-issues)\n- [OADP timeouts](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-timeouts#oadp-timeouts)\n- [DataProtectionTest custom resource](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-data-protection-test#oadp-data-protection-test)\n- [Using the must-gather tool](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/using-the-must-gather-tool#using-the-must-gather-tool)\n- [OADP monitoring](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-monitoring#oadp-monitoring)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/troubleshooting.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Troubleshooting {#troubleshooting}\n\nTroubleshoot OpenShift API for Data Protection (OADP) issues by using diagnostic tools such as the OADP CLI, webhooks, `must-gather` custom resource, and other methods. This helps you identify and resolve problems with backup and restore operations.\n\nYou can troubleshoot OADP issues by using the following methods:\n\n- Debug Velero custom resources (CRs) by using the OpenShift CLI tool.\n- Debug Velero or Restic pod crashes, which are caused due to a lack of memory or CPU.\n- Debug issues with Velero and admission webhooks.\n- Check OADP installation issues, OADP Operator issues, backup and restore CR issues, and Restic issues.\n- Use the available OADP timeouts to reduce errors, retries, or failures.\n- Run the `DataProtectionTest` (DPT) custom resource to verify your backup storage bucket configuration and check the CSI snapshot readiness for persistent volume claims.\n- Collect logs and CR information by using the `must-gather` tool.\n- Monitor and analyze the workload performance with the help of OADP monitoring.\n\n**Additional resources**\n{._additional-resources}\n\n- [Debugging with the OpenShift CLI tool](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-cli-tool#oadp-debugging-oc-cli_oadp-cli-tool)\n- [Debugging backups and restores using the OADP CLI](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-cli-tool#migration-debugging-velero-resources_oadp-cli-tool)\n- [Pods crash or restart due to lack of memory or CPU](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/pods-crash-or-restart-due-to-lack-of-memory-or-cpu#pods-crash-or-restart-due-to-lack-of-memory-or-cpu)\n- [Restoring workarounds for Velero backups that use admission webhooks](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/restoring-workarounds-for-velero-backups-that-use-admission-webhooks#restoring-workarounds-for-velero-backups-that-use-admission-webhooks)\n- [OADP installation issues](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-installation-issues#oadp-installation-issues)\n- [OADP Operator issues](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-operator-issues#oadp-operator-issues)\n- [Backup and restore CR issues](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/backup-and-restore-cr-issues#backup-and-restore-cr-issues)\n- [Restic issues](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/restic-issues#restic-issues)\n- [OADP timeouts](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-timeouts#oadp-timeouts)\n- [DataProtectionTest custom resource](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-data-protection-test#oadp-data-protection-test)\n- [Using the must-gather tool](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/using-the-must-gather-tool#using-the-must-gather-tool)\n- [OADP monitoring](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-monitoring#oadp-monitoring)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/troubleshooting.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,12 +79,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -91,7 +93,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="troubleshooting" class="group scroll-mt-20">Troubleshooting<a href="#troubleshooting" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Troubleshoot OpenShift API for Data Protection (OADP) issues by using diagnostic tools such as the OADP CLI, webhooks, <code>must-gather</code> custom resource, and other methods. This helps you identify and resolve problems with backup and restore operations.</p>
+      <p class="_abstract">Troubleshoot OpenShift API for Data Protection (OADP) issues by using diagnostic tools such as the OADP CLI, webhooks, <code>must-gather</code> custom resource, and other methods. This helps you identify and resolve problems with backup and restore operations.</p>
       <p>You can troubleshoot OADP issues by using the following methods:</p>
       <ul>
       <li>Debug Velero custom resources (CRs) by using the OpenShift CLI tool.</li>
@@ -103,7 +105,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>Collect logs and CR information by using the <code>must-gather</code> tool.</li>
       <li>Monitor and analyze the workload performance with the help of OADP monitoring.</li>
       </ul>
-      <h2 id="additional-resources_oadp-troubleshooting" class="group scroll-mt-20">Additional resources<a href="#additional-resources_oadp-troubleshooting" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul>
       <li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-cli-tool#oadp-debugging-oc-cli_oadp-cli-tool">Debugging with the OpenShift CLI tool</a></li>
       <li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-cli-tool#migration-debugging-velero-resources_oadp-cli-tool">Debugging backups and restores using the OADP CLI</a></li>
@@ -118,6 +121,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/using-the-must-gather-tool#using-the-must-gather-tool">Using the must-gather tool</a></li>
       <li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-monitoring#oadp-monitoring">OADP monitoring</a></li>
       </ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

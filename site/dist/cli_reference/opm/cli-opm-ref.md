@@ -25,7 +25,7 @@ $ opm <command> [<subcommand>] [<argument>] [<flags>]
 >
 > For the most recent list of major functionality that has been deprecated or removed within OpenShift Container Platform, refer to the *Deprecated and removed features* section of the OpenShift Container Platform release notes.
 
-## generate {#opm-cli-ref-generate_{{ Context }}}
+## generate {#opm-cli-ref-generate_{Context}}
 
 Generate various artifacts for declarative config indexes.
 
@@ -33,13 +33,13 @@ Generate various artifacts for declarative config indexes.
 $ opm generate <subcommand> [<flags>]
 ```
 
-`generate`** subcommands**
+**`generate` subcommands**
 
 | Subcommand | Description |
 | --- | --- |
 | `dockerfile` | Generate a Dockerfile for a declarative config index. |
 
-`generate`** flags**
+**`generate` flags**
 
 | Flags | Description |
 | --- | --- |
@@ -58,7 +58,7 @@ Generate a Dockerfile for a declarative config index.
 $ opm generate dockerfile <dcRootDir> [<flags>]
 ```
 
-`generate dockerfile`** flags**
+**`generate dockerfile` flags**
 
 | Flag | Description |
 | --- | --- |
@@ -67,7 +67,7 @@ $ opm generate dockerfile <dcRootDir> [<flags>]
 | `-h`, `--help` | Help for Dockerfile. |
 
 > [!NOTE]
-> To build with the official Red Hat image, use the `registry.redhat.io/openshift4/ose-operator-registry-rhel9:v{{ product_version }}` value with the `-i` flag.
+> To build with the official Red Hat image, use the `registry.redhat.io/openshift4/ose-operator-registry-rhel9:v4.22` value with the `-i` flag.
 
 ## index {#opm-cli-ref-index_cli-opm-ref}
 
@@ -86,7 +86,7 @@ Generate Operator index for SQLite database format container images from pre-exi
 $ opm index <subcommand> [<flags>]
 ```
 
-`index`** subcommands**
+**`index` subcommands**
 
 | Subcommand | Description |
 | --- | --- |
@@ -103,7 +103,7 @@ Add Operator bundles to an index.
 $ opm index add [<flags>]
 ```
 
-`index add`** flags**
+**`index add` flags**
 
 | Flag | Description |
 | --- | --- |
@@ -127,7 +127,7 @@ Prune an index of all but specified packages.
 $ opm index prune [<flags>]
 ```
 
-`index prune`** flags**
+**`index prune` flags**
 
 | Flag | Description |
 | --- | --- |
@@ -148,7 +148,7 @@ Prune an index of stranded bundles, which are bundles that are not associated wi
 $ opm index prune-stranded [<flags>]
 ```
 
-`index prune-stranded`** flags**
+**`index prune-stranded` flags**
 
 | Flag | Description |
 | --- | --- |
@@ -169,7 +169,7 @@ Delete an entire Operator from an index.
 $ opm index rm [<flags>]
 ```
 
-`index rm`** flags**
+**`index rm` flags**
 
 | Flag | Description |
 | --- | --- |
@@ -186,6 +186,7 @@ $ opm index rm [<flags>]
 | `-t`, `--tag` (string) | Custom tag for container image being built. |
 
 **Additional resources**
+{._additional-resources}
 
 - [Operator Framework packaging format](/openshift-docs-markdown/operators/understanding/olm-packaging-format#olm-file-based-catalogs_olm-packaging-format)
 - [Managing custom catalogs](/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-managing-custom-catalogs-fb)
@@ -199,7 +200,7 @@ Generate an `olm.package` declarative config blob.
 $ opm init <package_name> [<flags>]
 ```
 
-`init`** flags**
+**`init` flags**
 
 | Flag | Description |
 | --- | --- |
@@ -221,7 +222,7 @@ Migrate a SQLite database format index image or database file to a file-based ca
 $ opm migrate <index_ref> <output_dir> [<flags>]
 ```
 
-`migrate`** flags**
+**`migrate` flags**
 
 | Flag | Description |
 | --- | --- |
@@ -235,7 +236,7 @@ Generate a declarative config blob from the provided index images, bundle images
 $ opm render <index_image | bundle_image | sqlite_file> [<flags>]
 ```
 
-`render`** flags**
+**`render` flags**
 
 | Flag | Description |
 | --- | --- |
@@ -252,7 +253,7 @@ Serve declarative configs via a GRPC server.
 $ opm serve <source_path> [<flags>]
 ```
 
-`serve`** flags**
+**`serve` flags**
 
 | Flag | Description |
 | --- | --- |

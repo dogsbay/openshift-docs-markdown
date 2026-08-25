@@ -1,5 +1,5 @@
 ---
-title: AlertmanagerConfig []
+title: AlertmanagerConfig [monitoring.coreos.com/v1beta1]
 ---
 
 # AlertmanagerConfig \[monitoring.coreos.com/v1beta1\] {#alertmanagerconfig-monitoring-coreos-com-v1beta1}
@@ -25,7 +25,7 @@ Required
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec defines the specification of AlertmanagerConfigSpec |
-| `status` | `object` | status defines the status subresource. It is under active development and is updated only when the "StatusForConfigurationResources" feature gate is enabled. Most recent observed status of the ServiceMonitor. Read-only. More info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status |
+| `status` | `object` | status defines the status subresource. It is under active development and is updated only when the "StatusForConfigurationResources" feature gate is enabled.<br>Most recent observed status of the ServiceMonitor. Read-only. More info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status |
 
 ### .spec {#_spec}
 
@@ -239,7 +239,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -260,12 +260,12 @@ Type
 | `bearerTokenSecret` | `object` | bearerTokenSecret defines the secret’s key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. |
 | `enableHttp2` | `boolean` | enableHttp2 can be used to disable HTTP2. |
 | `followRedirects` | `boolean` | followRedirects defines whether HTTP requests follow HTTP 3xx redirects. When true, the client will automatically follow redirect responses. |
-| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `oauth2` | `object` | oauth2 defines the OAuth2 client credentials used to fetch a token for the targets. This enables OAuth2 authentication flow for HTTP requests. |
-| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyConnectHeader{}` | `array` |  |
 | `proxyConnectHeader{}[]` | `object` | SecretKeySelector selects a key of a Secret. |
-| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyURL` | `string` | proxyURL defines an optional proxy URL for HTTP requests. If defined, this field takes precedence over `proxyUrl`. |
 | `proxyUrl` | `string` | proxyUrl defines the HTTP proxy server to use. |
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration for the client. This includes settings for certificates, CA validation, and TLS protocol options. |
@@ -283,7 +283,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `credentials` | `object` | credentials defines a key of a Secret in the namespace that contains the credentials for authentication. |
-| `type` | `string` | type defines the authentication type. The value is case-insensitive. "Basic" is not a supported value. Default: "Bearer" |
+| `type` | `string` | type defines the authentication type. The value is case-insensitive.<br>"Basic" is not a supported value.<br>Default: "Bearer" |
 
 ### .spec.receivers\[\].discordConfigs\[\].httpConfig.authorization.credentials {#_specreceiversdiscordconfigshttpconfigauthorizationcredentials}
 
@@ -300,7 +300,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -334,7 +334,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -353,7 +353,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -373,7 +373,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | key defines the key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | key defines the key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | name defines the name of the secret in the object’s namespace to select from. |
 
 ### .spec.receivers\[\].discordConfigs\[\].httpConfig.oauth2 {#_specreceiversdiscordconfigshttpconfigoauth2}
@@ -396,11 +396,11 @@ Required
 | `clientId` | `object` | clientId defines a key of a Secret or ConfigMap containing the OAuth2 client’s ID. |
 | `clientSecret` | `object` | clientSecret defines a key of a Secret containing the OAuth2 client’s secret. |
 | `endpointParams` | `object (string)` | endpointParams configures the HTTP parameters to append to the token URL. |
-| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
-| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyConnectHeader{}` | `array` |  |
 | `proxyConnectHeader{}[]` | `object` | SecretKeySelector selects a key of a Secret. |
-| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyUrl` | `string` | proxyUrl defines the HTTP proxy server to use. |
 | `scopes` | `array (string)` | scopes defines the OAuth2 scopes used for the token request. |
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0. |
@@ -455,7 +455,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -474,7 +474,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -514,7 +514,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -534,8 +534,8 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
 
 ### .spec.receivers\[\].discordConfigs\[\].httpConfig.oauth2.tlsConfig.ca {#_specreceiversdiscordconfigshttpconfigoauth2tlsconfigca}
@@ -587,7 +587,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -640,7 +640,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -659,7 +659,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -699,7 +699,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -719,8 +719,8 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
 
 ### .spec.receivers\[\].discordConfigs\[\].httpConfig.tlsConfig.ca {#_specreceiversdiscordconfigshttpconfigtlsconfigca}
@@ -772,7 +772,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -825,7 +825,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -844,7 +844,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -903,7 +903,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | key defines the key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | key defines the key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | name defines the name of the secret in the object’s namespace to select from. |
 
 ### .spec.receivers\[\].emailConfigs\[\].authSecret {#_specreceiversemailconfigsauthsecret}
@@ -922,7 +922,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | key defines the key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | key defines the key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | name defines the name of the secret in the object’s namespace to select from. |
 
 ### .spec.receivers\[\].emailConfigs\[\].headers {#_specreceiversemailconfigsheaders}
@@ -970,8 +970,8 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
 
 ### .spec.receivers\[\].emailConfigs\[\].tlsConfig.ca {#_specreceiversemailconfigstlsconfigca}
@@ -1023,7 +1023,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -1076,7 +1076,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -1095,7 +1095,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -1148,12 +1148,12 @@ Type
 | `bearerTokenSecret` | `object` | bearerTokenSecret defines the secret’s key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. |
 | `enableHttp2` | `boolean` | enableHttp2 can be used to disable HTTP2. |
 | `followRedirects` | `boolean` | followRedirects defines whether HTTP requests follow HTTP 3xx redirects. When true, the client will automatically follow redirect responses. |
-| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `oauth2` | `object` | oauth2 defines the OAuth2 client credentials used to fetch a token for the targets. This enables OAuth2 authentication flow for HTTP requests. |
-| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyConnectHeader{}` | `array` |  |
 | `proxyConnectHeader{}[]` | `object` | SecretKeySelector selects a key of a Secret. |
-| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyURL` | `string` | proxyURL defines an optional proxy URL for HTTP requests. If defined, this field takes precedence over `proxyUrl`. |
 | `proxyUrl` | `string` | proxyUrl defines the HTTP proxy server to use. |
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration for the client. This includes settings for certificates, CA validation, and TLS protocol options. |
@@ -1171,7 +1171,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `credentials` | `object` | credentials defines a key of a Secret in the namespace that contains the credentials for authentication. |
-| `type` | `string` | type defines the authentication type. The value is case-insensitive. "Basic" is not a supported value. Default: "Bearer" |
+| `type` | `string` | type defines the authentication type. The value is case-insensitive.<br>"Basic" is not a supported value.<br>Default: "Bearer" |
 
 ### .spec.receivers\[\].msteamsConfigs\[\].httpConfig.authorization.credentials {#_specreceiversmsteamsconfigshttpconfigauthorizationcredentials}
 
@@ -1188,7 +1188,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -1222,7 +1222,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -1241,7 +1241,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -1261,7 +1261,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | key defines the key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | key defines the key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | name defines the name of the secret in the object’s namespace to select from. |
 
 ### .spec.receivers\[\].msteamsConfigs\[\].httpConfig.oauth2 {#_specreceiversmsteamsconfigshttpconfigoauth2}
@@ -1284,11 +1284,11 @@ Required
 | `clientId` | `object` | clientId defines a key of a Secret or ConfigMap containing the OAuth2 client’s ID. |
 | `clientSecret` | `object` | clientSecret defines a key of a Secret containing the OAuth2 client’s secret. |
 | `endpointParams` | `object (string)` | endpointParams configures the HTTP parameters to append to the token URL. |
-| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
-| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyConnectHeader{}` | `array` |  |
 | `proxyConnectHeader{}[]` | `object` | SecretKeySelector selects a key of a Secret. |
-| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyUrl` | `string` | proxyUrl defines the HTTP proxy server to use. |
 | `scopes` | `array (string)` | scopes defines the OAuth2 scopes used for the token request. |
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0. |
@@ -1343,7 +1343,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -1362,7 +1362,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -1402,7 +1402,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -1422,8 +1422,8 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
 
 ### .spec.receivers\[\].msteamsConfigs\[\].httpConfig.oauth2.tlsConfig.ca {#_specreceiversmsteamsconfigshttpconfigoauth2tlsconfigca}
@@ -1475,7 +1475,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -1528,7 +1528,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -1547,7 +1547,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -1587,7 +1587,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -1607,8 +1607,8 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
 
 ### .spec.receivers\[\].msteamsConfigs\[\].httpConfig.tlsConfig.ca {#_specreceiversmsteamsconfigshttpconfigtlsconfigca}
@@ -1660,7 +1660,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -1713,7 +1713,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -1732,7 +1732,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -1751,7 +1751,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -1800,12 +1800,12 @@ Type
 | `bearerTokenSecret` | `object` | bearerTokenSecret defines the secret’s key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. |
 | `enableHttp2` | `boolean` | enableHttp2 can be used to disable HTTP2. |
 | `followRedirects` | `boolean` | followRedirects defines whether HTTP requests follow HTTP 3xx redirects. When true, the client will automatically follow redirect responses. |
-| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `oauth2` | `object` | oauth2 defines the OAuth2 client credentials used to fetch a token for the targets. This enables OAuth2 authentication flow for HTTP requests. |
-| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyConnectHeader{}` | `array` |  |
 | `proxyConnectHeader{}[]` | `object` | SecretKeySelector selects a key of a Secret. |
-| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyURL` | `string` | proxyURL defines an optional proxy URL for HTTP requests. If defined, this field takes precedence over `proxyUrl`. |
 | `proxyUrl` | `string` | proxyUrl defines the HTTP proxy server to use. |
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration for the client. This includes settings for certificates, CA validation, and TLS protocol options. |
@@ -1823,7 +1823,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `credentials` | `object` | credentials defines a key of a Secret in the namespace that contains the credentials for authentication. |
-| `type` | `string` | type defines the authentication type. The value is case-insensitive. "Basic" is not a supported value. Default: "Bearer" |
+| `type` | `string` | type defines the authentication type. The value is case-insensitive.<br>"Basic" is not a supported value.<br>Default: "Bearer" |
 
 ### .spec.receivers\[\].msteamsv2Configs\[\].httpConfig.authorization.credentials {#_specreceiversmsteamsv2configshttpconfigauthorizationcredentials}
 
@@ -1840,7 +1840,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -1874,7 +1874,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -1893,7 +1893,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -1913,7 +1913,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | key defines the key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | key defines the key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | name defines the name of the secret in the object’s namespace to select from. |
 
 ### .spec.receivers\[\].msteamsv2Configs\[\].httpConfig.oauth2 {#_specreceiversmsteamsv2configshttpconfigoauth2}
@@ -1936,11 +1936,11 @@ Required
 | `clientId` | `object` | clientId defines a key of a Secret or ConfigMap containing the OAuth2 client’s ID. |
 | `clientSecret` | `object` | clientSecret defines a key of a Secret containing the OAuth2 client’s secret. |
 | `endpointParams` | `object (string)` | endpointParams configures the HTTP parameters to append to the token URL. |
-| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
-| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyConnectHeader{}` | `array` |  |
 | `proxyConnectHeader{}[]` | `object` | SecretKeySelector selects a key of a Secret. |
-| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyUrl` | `string` | proxyUrl defines the HTTP proxy server to use. |
 | `scopes` | `array (string)` | scopes defines the OAuth2 scopes used for the token request. |
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0. |
@@ -1995,7 +1995,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -2014,7 +2014,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -2054,7 +2054,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -2074,8 +2074,8 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
 
 ### .spec.receivers\[\].msteamsv2Configs\[\].httpConfig.oauth2.tlsConfig.ca {#_specreceiversmsteamsv2configshttpconfigoauth2tlsconfigca}
@@ -2127,7 +2127,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -2180,7 +2180,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -2199,7 +2199,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -2239,7 +2239,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -2259,8 +2259,8 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
 
 ### .spec.receivers\[\].msteamsv2Configs\[\].httpConfig.tlsConfig.ca {#_specreceiversmsteamsv2configshttpconfigtlsconfigca}
@@ -2312,7 +2312,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -2365,7 +2365,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -2384,7 +2384,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -2403,7 +2403,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -2462,7 +2462,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | key defines the key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | key defines the key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | name defines the name of the secret in the object’s namespace to select from. |
 
 ### .spec.receivers\[\].opsgenieConfigs\[\].details {#_specreceiversopsgenieconfigsdetails}
@@ -2511,12 +2511,12 @@ Type
 | `bearerTokenSecret` | `object` | bearerTokenSecret defines the secret’s key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. |
 | `enableHttp2` | `boolean` | enableHttp2 can be used to disable HTTP2. |
 | `followRedirects` | `boolean` | followRedirects defines whether HTTP requests follow HTTP 3xx redirects. When true, the client will automatically follow redirect responses. |
-| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `oauth2` | `object` | oauth2 defines the OAuth2 client credentials used to fetch a token for the targets. This enables OAuth2 authentication flow for HTTP requests. |
-| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyConnectHeader{}` | `array` |  |
 | `proxyConnectHeader{}[]` | `object` | SecretKeySelector selects a key of a Secret. |
-| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyURL` | `string` | proxyURL defines an optional proxy URL for HTTP requests. If defined, this field takes precedence over `proxyUrl`. |
 | `proxyUrl` | `string` | proxyUrl defines the HTTP proxy server to use. |
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration for the client. This includes settings for certificates, CA validation, and TLS protocol options. |
@@ -2534,7 +2534,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `credentials` | `object` | credentials defines a key of a Secret in the namespace that contains the credentials for authentication. |
-| `type` | `string` | type defines the authentication type. The value is case-insensitive. "Basic" is not a supported value. Default: "Bearer" |
+| `type` | `string` | type defines the authentication type. The value is case-insensitive.<br>"Basic" is not a supported value.<br>Default: "Bearer" |
 
 ### .spec.receivers\[\].opsgenieConfigs\[\].httpConfig.authorization.credentials {#_specreceiversopsgenieconfigshttpconfigauthorizationcredentials}
 
@@ -2551,7 +2551,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -2585,7 +2585,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -2604,7 +2604,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -2624,7 +2624,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | key defines the key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | key defines the key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | name defines the name of the secret in the object’s namespace to select from. |
 
 ### .spec.receivers\[\].opsgenieConfigs\[\].httpConfig.oauth2 {#_specreceiversopsgenieconfigshttpconfigoauth2}
@@ -2647,11 +2647,11 @@ Required
 | `clientId` | `object` | clientId defines a key of a Secret or ConfigMap containing the OAuth2 client’s ID. |
 | `clientSecret` | `object` | clientSecret defines a key of a Secret containing the OAuth2 client’s secret. |
 | `endpointParams` | `object (string)` | endpointParams configures the HTTP parameters to append to the token URL. |
-| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
-| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyConnectHeader{}` | `array` |  |
 | `proxyConnectHeader{}[]` | `object` | SecretKeySelector selects a key of a Secret. |
-| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyUrl` | `string` | proxyUrl defines the HTTP proxy server to use. |
 | `scopes` | `array (string)` | scopes defines the OAuth2 scopes used for the token request. |
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0. |
@@ -2706,7 +2706,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -2725,7 +2725,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -2765,7 +2765,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -2785,8 +2785,8 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
 
 ### .spec.receivers\[\].opsgenieConfigs\[\].httpConfig.oauth2.tlsConfig.ca {#_specreceiversopsgenieconfigshttpconfigoauth2tlsconfigca}
@@ -2838,7 +2838,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -2891,7 +2891,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -2910,7 +2910,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -2950,7 +2950,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -2970,8 +2970,8 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
 
 ### .spec.receivers\[\].opsgenieConfigs\[\].httpConfig.tlsConfig.ca {#_specreceiversopsgenieconfigshttpconfigtlsconfigca}
@@ -3023,7 +3023,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -3076,7 +3076,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -3095,7 +3095,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -3218,12 +3218,12 @@ Type
 | `bearerTokenSecret` | `object` | bearerTokenSecret defines the secret’s key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. |
 | `enableHttp2` | `boolean` | enableHttp2 can be used to disable HTTP2. |
 | `followRedirects` | `boolean` | followRedirects defines whether HTTP requests follow HTTP 3xx redirects. When true, the client will automatically follow redirect responses. |
-| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `oauth2` | `object` | oauth2 defines the OAuth2 client credentials used to fetch a token for the targets. This enables OAuth2 authentication flow for HTTP requests. |
-| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyConnectHeader{}` | `array` |  |
 | `proxyConnectHeader{}[]` | `object` | SecretKeySelector selects a key of a Secret. |
-| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyURL` | `string` | proxyURL defines an optional proxy URL for HTTP requests. If defined, this field takes precedence over `proxyUrl`. |
 | `proxyUrl` | `string` | proxyUrl defines the HTTP proxy server to use. |
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration for the client. This includes settings for certificates, CA validation, and TLS protocol options. |
@@ -3241,7 +3241,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `credentials` | `object` | credentials defines a key of a Secret in the namespace that contains the credentials for authentication. |
-| `type` | `string` | type defines the authentication type. The value is case-insensitive. "Basic" is not a supported value. Default: "Bearer" |
+| `type` | `string` | type defines the authentication type. The value is case-insensitive.<br>"Basic" is not a supported value.<br>Default: "Bearer" |
 
 ### .spec.receivers\[\].pagerdutyConfigs\[\].httpConfig.authorization.credentials {#_specreceiverspagerdutyconfigshttpconfigauthorizationcredentials}
 
@@ -3258,7 +3258,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -3292,7 +3292,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -3311,7 +3311,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -3331,7 +3331,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | key defines the key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | key defines the key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | name defines the name of the secret in the object’s namespace to select from. |
 
 ### .spec.receivers\[\].pagerdutyConfigs\[\].httpConfig.oauth2 {#_specreceiverspagerdutyconfigshttpconfigoauth2}
@@ -3354,11 +3354,11 @@ Required
 | `clientId` | `object` | clientId defines a key of a Secret or ConfigMap containing the OAuth2 client’s ID. |
 | `clientSecret` | `object` | clientSecret defines a key of a Secret containing the OAuth2 client’s secret. |
 | `endpointParams` | `object (string)` | endpointParams configures the HTTP parameters to append to the token URL. |
-| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
-| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyConnectHeader{}` | `array` |  |
 | `proxyConnectHeader{}[]` | `object` | SecretKeySelector selects a key of a Secret. |
-| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyUrl` | `string` | proxyUrl defines the HTTP proxy server to use. |
 | `scopes` | `array (string)` | scopes defines the OAuth2 scopes used for the token request. |
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0. |
@@ -3413,7 +3413,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -3432,7 +3432,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -3472,7 +3472,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -3492,8 +3492,8 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
 
 ### .spec.receivers\[\].pagerdutyConfigs\[\].httpConfig.oauth2.tlsConfig.ca {#_specreceiverspagerdutyconfigshttpconfigoauth2tlsconfigca}
@@ -3545,7 +3545,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -3598,7 +3598,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -3617,7 +3617,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -3657,7 +3657,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -3677,8 +3677,8 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
 
 ### .spec.receivers\[\].pagerdutyConfigs\[\].httpConfig.tlsConfig.ca {#_specreceiverspagerdutyconfigshttpconfigtlsconfigca}
@@ -3730,7 +3730,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -3783,7 +3783,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -3802,7 +3802,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -3873,7 +3873,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | key defines the key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | key defines the key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | name defines the name of the secret in the object’s namespace to select from. |
 
 ### .spec.receivers\[\].pagerdutyConfigs\[\].serviceKey {#_specreceiverspagerdutyconfigsservicekey}
@@ -3892,7 +3892,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | key defines the key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | key defines the key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | name defines the name of the secret in the object’s namespace to select from. |
 
 ### .spec.receivers\[\].pushoverConfigs {#_specreceiverspushoverconfigs}
@@ -3953,12 +3953,12 @@ Type
 | `bearerTokenSecret` | `object` | bearerTokenSecret defines the secret’s key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. |
 | `enableHttp2` | `boolean` | enableHttp2 can be used to disable HTTP2. |
 | `followRedirects` | `boolean` | followRedirects defines whether HTTP requests follow HTTP 3xx redirects. When true, the client will automatically follow redirect responses. |
-| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `oauth2` | `object` | oauth2 defines the OAuth2 client credentials used to fetch a token for the targets. This enables OAuth2 authentication flow for HTTP requests. |
-| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyConnectHeader{}` | `array` |  |
 | `proxyConnectHeader{}[]` | `object` | SecretKeySelector selects a key of a Secret. |
-| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyURL` | `string` | proxyURL defines an optional proxy URL for HTTP requests. If defined, this field takes precedence over `proxyUrl`. |
 | `proxyUrl` | `string` | proxyUrl defines the HTTP proxy server to use. |
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration for the client. This includes settings for certificates, CA validation, and TLS protocol options. |
@@ -3976,7 +3976,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `credentials` | `object` | credentials defines a key of a Secret in the namespace that contains the credentials for authentication. |
-| `type` | `string` | type defines the authentication type. The value is case-insensitive. "Basic" is not a supported value. Default: "Bearer" |
+| `type` | `string` | type defines the authentication type. The value is case-insensitive.<br>"Basic" is not a supported value.<br>Default: "Bearer" |
 
 ### .spec.receivers\[\].pushoverConfigs\[\].httpConfig.authorization.credentials {#_specreceiverspushoverconfigshttpconfigauthorizationcredentials}
 
@@ -3993,7 +3993,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -4027,7 +4027,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -4046,7 +4046,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -4066,7 +4066,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | key defines the key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | key defines the key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | name defines the name of the secret in the object’s namespace to select from. |
 
 ### .spec.receivers\[\].pushoverConfigs\[\].httpConfig.oauth2 {#_specreceiverspushoverconfigshttpconfigoauth2}
@@ -4089,11 +4089,11 @@ Required
 | `clientId` | `object` | clientId defines a key of a Secret or ConfigMap containing the OAuth2 client’s ID. |
 | `clientSecret` | `object` | clientSecret defines a key of a Secret containing the OAuth2 client’s secret. |
 | `endpointParams` | `object (string)` | endpointParams configures the HTTP parameters to append to the token URL. |
-| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
-| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyConnectHeader{}` | `array` |  |
 | `proxyConnectHeader{}[]` | `object` | SecretKeySelector selects a key of a Secret. |
-| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyUrl` | `string` | proxyUrl defines the HTTP proxy server to use. |
 | `scopes` | `array (string)` | scopes defines the OAuth2 scopes used for the token request. |
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0. |
@@ -4148,7 +4148,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -4167,7 +4167,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -4207,7 +4207,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -4227,8 +4227,8 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
 
 ### .spec.receivers\[\].pushoverConfigs\[\].httpConfig.oauth2.tlsConfig.ca {#_specreceiverspushoverconfigshttpconfigoauth2tlsconfigca}
@@ -4280,7 +4280,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -4333,7 +4333,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -4352,7 +4352,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -4392,7 +4392,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -4412,8 +4412,8 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
 
 ### .spec.receivers\[\].pushoverConfigs\[\].httpConfig.tlsConfig.ca {#_specreceiverspushoverconfigshttpconfigtlsconfigca}
@@ -4465,7 +4465,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -4518,7 +4518,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -4537,7 +4537,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -4557,7 +4557,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | key defines the key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | key defines the key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | name defines the name of the secret in the object’s namespace to select from. |
 
 ### .spec.receivers\[\].pushoverConfigs\[\].userKey {#_specreceiverspushoverconfigsuserkey}
@@ -4576,7 +4576,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | key defines the key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | key defines the key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | name defines the name of the secret in the object’s namespace to select from. |
 
 ### .spec.receivers\[\].rocketchatConfigs {#_specreceiversrocketchatconfigs}
@@ -4695,12 +4695,12 @@ Type
 | `bearerTokenSecret` | `object` | bearerTokenSecret defines the secret’s key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. |
 | `enableHttp2` | `boolean` | enableHttp2 can be used to disable HTTP2. |
 | `followRedirects` | `boolean` | followRedirects defines whether HTTP requests follow HTTP 3xx redirects. When true, the client will automatically follow redirect responses. |
-| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `oauth2` | `object` | oauth2 defines the OAuth2 client credentials used to fetch a token for the targets. This enables OAuth2 authentication flow for HTTP requests. |
-| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyConnectHeader{}` | `array` |  |
 | `proxyConnectHeader{}[]` | `object` | SecretKeySelector selects a key of a Secret. |
-| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyURL` | `string` | proxyURL defines an optional proxy URL for HTTP requests. If defined, this field takes precedence over `proxyUrl`. |
 | `proxyUrl` | `string` | proxyUrl defines the HTTP proxy server to use. |
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration for the client. This includes settings for certificates, CA validation, and TLS protocol options. |
@@ -4718,7 +4718,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `credentials` | `object` | credentials defines a key of a Secret in the namespace that contains the credentials for authentication. |
-| `type` | `string` | type defines the authentication type. The value is case-insensitive. "Basic" is not a supported value. Default: "Bearer" |
+| `type` | `string` | type defines the authentication type. The value is case-insensitive.<br>"Basic" is not a supported value.<br>Default: "Bearer" |
 
 ### .spec.receivers\[\].rocketchatConfigs\[\].httpConfig.authorization.credentials {#_specreceiversrocketchatconfigshttpconfigauthorizationcredentials}
 
@@ -4735,7 +4735,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -4769,7 +4769,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -4788,7 +4788,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -4808,7 +4808,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | key defines the key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | key defines the key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | name defines the name of the secret in the object’s namespace to select from. |
 
 ### .spec.receivers\[\].rocketchatConfigs\[\].httpConfig.oauth2 {#_specreceiversrocketchatconfigshttpconfigoauth2}
@@ -4831,11 +4831,11 @@ Required
 | `clientId` | `object` | clientId defines a key of a Secret or ConfigMap containing the OAuth2 client’s ID. |
 | `clientSecret` | `object` | clientSecret defines a key of a Secret containing the OAuth2 client’s secret. |
 | `endpointParams` | `object (string)` | endpointParams configures the HTTP parameters to append to the token URL. |
-| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
-| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyConnectHeader{}` | `array` |  |
 | `proxyConnectHeader{}[]` | `object` | SecretKeySelector selects a key of a Secret. |
-| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyUrl` | `string` | proxyUrl defines the HTTP proxy server to use. |
 | `scopes` | `array (string)` | scopes defines the OAuth2 scopes used for the token request. |
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0. |
@@ -4890,7 +4890,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -4909,7 +4909,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -4949,7 +4949,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -4969,8 +4969,8 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
 
 ### .spec.receivers\[\].rocketchatConfigs\[\].httpConfig.oauth2.tlsConfig.ca {#_specreceiversrocketchatconfigshttpconfigoauth2tlsconfigca}
@@ -5022,7 +5022,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -5075,7 +5075,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -5094,7 +5094,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -5134,7 +5134,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -5154,8 +5154,8 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
 
 ### .spec.receivers\[\].rocketchatConfigs\[\].httpConfig.tlsConfig.ca {#_specreceiversrocketchatconfigshttpconfigtlsconfigca}
@@ -5207,7 +5207,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -5260,7 +5260,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -5279,7 +5279,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -5298,7 +5298,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -5317,7 +5317,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -5440,7 +5440,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | key defines the key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | key defines the key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | name defines the name of the secret in the object’s namespace to select from. |
 
 ### .spec.receivers\[\].slackConfigs\[\].fields {#_specreceiversslackconfigsfields}
@@ -5490,12 +5490,12 @@ Type
 | `bearerTokenSecret` | `object` | bearerTokenSecret defines the secret’s key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. |
 | `enableHttp2` | `boolean` | enableHttp2 can be used to disable HTTP2. |
 | `followRedirects` | `boolean` | followRedirects defines whether HTTP requests follow HTTP 3xx redirects. When true, the client will automatically follow redirect responses. |
-| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `oauth2` | `object` | oauth2 defines the OAuth2 client credentials used to fetch a token for the targets. This enables OAuth2 authentication flow for HTTP requests. |
-| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyConnectHeader{}` | `array` |  |
 | `proxyConnectHeader{}[]` | `object` | SecretKeySelector selects a key of a Secret. |
-| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyURL` | `string` | proxyURL defines an optional proxy URL for HTTP requests. If defined, this field takes precedence over `proxyUrl`. |
 | `proxyUrl` | `string` | proxyUrl defines the HTTP proxy server to use. |
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration for the client. This includes settings for certificates, CA validation, and TLS protocol options. |
@@ -5513,7 +5513,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `credentials` | `object` | credentials defines a key of a Secret in the namespace that contains the credentials for authentication. |
-| `type` | `string` | type defines the authentication type. The value is case-insensitive. "Basic" is not a supported value. Default: "Bearer" |
+| `type` | `string` | type defines the authentication type. The value is case-insensitive.<br>"Basic" is not a supported value.<br>Default: "Bearer" |
 
 ### .spec.receivers\[\].slackConfigs\[\].httpConfig.authorization.credentials {#_specreceiversslackconfigshttpconfigauthorizationcredentials}
 
@@ -5530,7 +5530,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -5564,7 +5564,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -5583,7 +5583,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -5603,7 +5603,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | key defines the key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | key defines the key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | name defines the name of the secret in the object’s namespace to select from. |
 
 ### .spec.receivers\[\].slackConfigs\[\].httpConfig.oauth2 {#_specreceiversslackconfigshttpconfigoauth2}
@@ -5626,11 +5626,11 @@ Required
 | `clientId` | `object` | clientId defines a key of a Secret or ConfigMap containing the OAuth2 client’s ID. |
 | `clientSecret` | `object` | clientSecret defines a key of a Secret containing the OAuth2 client’s secret. |
 | `endpointParams` | `object (string)` | endpointParams configures the HTTP parameters to append to the token URL. |
-| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
-| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyConnectHeader{}` | `array` |  |
 | `proxyConnectHeader{}[]` | `object` | SecretKeySelector selects a key of a Secret. |
-| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyUrl` | `string` | proxyUrl defines the HTTP proxy server to use. |
 | `scopes` | `array (string)` | scopes defines the OAuth2 scopes used for the token request. |
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0. |
@@ -5685,7 +5685,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -5704,7 +5704,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -5744,7 +5744,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -5764,8 +5764,8 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
 
 ### .spec.receivers\[\].slackConfigs\[\].httpConfig.oauth2.tlsConfig.ca {#_specreceiversslackconfigshttpconfigoauth2tlsconfigca}
@@ -5817,7 +5817,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -5870,7 +5870,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -5889,7 +5889,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -5929,7 +5929,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -5949,8 +5949,8 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
 
 ### .spec.receivers\[\].slackConfigs\[\].httpConfig.tlsConfig.ca {#_specreceiversslackconfigshttpconfigtlsconfigca}
@@ -6002,7 +6002,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -6055,7 +6055,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -6074,7 +6074,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -6128,12 +6128,12 @@ Type
 | `bearerTokenSecret` | `object` | bearerTokenSecret defines the secret’s key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. |
 | `enableHttp2` | `boolean` | enableHttp2 can be used to disable HTTP2. |
 | `followRedirects` | `boolean` | followRedirects defines whether HTTP requests follow HTTP 3xx redirects. When true, the client will automatically follow redirect responses. |
-| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `oauth2` | `object` | oauth2 defines the OAuth2 client credentials used to fetch a token for the targets. This enables OAuth2 authentication flow for HTTP requests. |
-| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyConnectHeader{}` | `array` |  |
 | `proxyConnectHeader{}[]` | `object` | SecretKeySelector selects a key of a Secret. |
-| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyURL` | `string` | proxyURL defines an optional proxy URL for HTTP requests. If defined, this field takes precedence over `proxyUrl`. |
 | `proxyUrl` | `string` | proxyUrl defines the HTTP proxy server to use. |
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration for the client. This includes settings for certificates, CA validation, and TLS protocol options. |
@@ -6151,7 +6151,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `credentials` | `object` | credentials defines a key of a Secret in the namespace that contains the credentials for authentication. |
-| `type` | `string` | type defines the authentication type. The value is case-insensitive. "Basic" is not a supported value. Default: "Bearer" |
+| `type` | `string` | type defines the authentication type. The value is case-insensitive.<br>"Basic" is not a supported value.<br>Default: "Bearer" |
 
 ### .spec.receivers\[\].snsConfigs\[\].httpConfig.authorization.credentials {#_specreceiverssnsconfigshttpconfigauthorizationcredentials}
 
@@ -6168,7 +6168,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -6202,7 +6202,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -6221,7 +6221,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -6241,7 +6241,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | key defines the key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | key defines the key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | name defines the name of the secret in the object’s namespace to select from. |
 
 ### .spec.receivers\[\].snsConfigs\[\].httpConfig.oauth2 {#_specreceiverssnsconfigshttpconfigoauth2}
@@ -6264,11 +6264,11 @@ Required
 | `clientId` | `object` | clientId defines a key of a Secret or ConfigMap containing the OAuth2 client’s ID. |
 | `clientSecret` | `object` | clientSecret defines a key of a Secret containing the OAuth2 client’s secret. |
 | `endpointParams` | `object (string)` | endpointParams configures the HTTP parameters to append to the token URL. |
-| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
-| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyConnectHeader{}` | `array` |  |
 | `proxyConnectHeader{}[]` | `object` | SecretKeySelector selects a key of a Secret. |
-| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyUrl` | `string` | proxyUrl defines the HTTP proxy server to use. |
 | `scopes` | `array (string)` | scopes defines the OAuth2 scopes used for the token request. |
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0. |
@@ -6323,7 +6323,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -6342,7 +6342,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -6382,7 +6382,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -6402,8 +6402,8 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
 
 ### .spec.receivers\[\].snsConfigs\[\].httpConfig.oauth2.tlsConfig.ca {#_specreceiverssnsconfigshttpconfigoauth2tlsconfigca}
@@ -6455,7 +6455,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -6508,7 +6508,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -6527,7 +6527,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -6567,7 +6567,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -6587,8 +6587,8 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
 
 ### .spec.receivers\[\].snsConfigs\[\].httpConfig.tlsConfig.ca {#_specreceiverssnsconfigshttpconfigtlsconfigca}
@@ -6640,7 +6640,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -6693,7 +6693,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -6712,7 +6712,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -6750,7 +6750,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -6769,7 +6769,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -6825,7 +6825,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | key defines the key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | key defines the key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | name defines the name of the secret in the object’s namespace to select from. |
 
 ### .spec.receivers\[\].telegramConfigs\[\].httpConfig {#_specreceiverstelegramconfigshttpconfig}
@@ -6845,12 +6845,12 @@ Type
 | `bearerTokenSecret` | `object` | bearerTokenSecret defines the secret’s key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. |
 | `enableHttp2` | `boolean` | enableHttp2 can be used to disable HTTP2. |
 | `followRedirects` | `boolean` | followRedirects defines whether HTTP requests follow HTTP 3xx redirects. When true, the client will automatically follow redirect responses. |
-| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `oauth2` | `object` | oauth2 defines the OAuth2 client credentials used to fetch a token for the targets. This enables OAuth2 authentication flow for HTTP requests. |
-| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyConnectHeader{}` | `array` |  |
 | `proxyConnectHeader{}[]` | `object` | SecretKeySelector selects a key of a Secret. |
-| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyURL` | `string` | proxyURL defines an optional proxy URL for HTTP requests. If defined, this field takes precedence over `proxyUrl`. |
 | `proxyUrl` | `string` | proxyUrl defines the HTTP proxy server to use. |
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration for the client. This includes settings for certificates, CA validation, and TLS protocol options. |
@@ -6868,7 +6868,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `credentials` | `object` | credentials defines a key of a Secret in the namespace that contains the credentials for authentication. |
-| `type` | `string` | type defines the authentication type. The value is case-insensitive. "Basic" is not a supported value. Default: "Bearer" |
+| `type` | `string` | type defines the authentication type. The value is case-insensitive.<br>"Basic" is not a supported value.<br>Default: "Bearer" |
 
 ### .spec.receivers\[\].telegramConfigs\[\].httpConfig.authorization.credentials {#_specreceiverstelegramconfigshttpconfigauthorizationcredentials}
 
@@ -6885,7 +6885,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -6919,7 +6919,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -6938,7 +6938,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -6958,7 +6958,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | key defines the key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | key defines the key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | name defines the name of the secret in the object’s namespace to select from. |
 
 ### .spec.receivers\[\].telegramConfigs\[\].httpConfig.oauth2 {#_specreceiverstelegramconfigshttpconfigoauth2}
@@ -6981,11 +6981,11 @@ Required
 | `clientId` | `object` | clientId defines a key of a Secret or ConfigMap containing the OAuth2 client’s ID. |
 | `clientSecret` | `object` | clientSecret defines a key of a Secret containing the OAuth2 client’s secret. |
 | `endpointParams` | `object (string)` | endpointParams configures the HTTP parameters to append to the token URL. |
-| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
-| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyConnectHeader{}` | `array` |  |
 | `proxyConnectHeader{}[]` | `object` | SecretKeySelector selects a key of a Secret. |
-| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyUrl` | `string` | proxyUrl defines the HTTP proxy server to use. |
 | `scopes` | `array (string)` | scopes defines the OAuth2 scopes used for the token request. |
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0. |
@@ -7040,7 +7040,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -7059,7 +7059,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -7099,7 +7099,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -7119,8 +7119,8 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
 
 ### .spec.receivers\[\].telegramConfigs\[\].httpConfig.oauth2.tlsConfig.ca {#_specreceiverstelegramconfigshttpconfigoauth2tlsconfigca}
@@ -7172,7 +7172,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -7225,7 +7225,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -7244,7 +7244,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -7284,7 +7284,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -7304,8 +7304,8 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
 
 ### .spec.receivers\[\].telegramConfigs\[\].httpConfig.tlsConfig.ca {#_specreceiverstelegramconfigshttpconfigtlsconfigca}
@@ -7357,7 +7357,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -7410,7 +7410,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -7429,7 +7429,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -7486,7 +7486,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | key defines the key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | key defines the key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | name defines the name of the secret in the object’s namespace to select from. |
 
 ### .spec.receivers\[\].victoropsConfigs\[\].customFields {#_specreceiversvictoropsconfigscustomfields}
@@ -7535,12 +7535,12 @@ Type
 | `bearerTokenSecret` | `object` | bearerTokenSecret defines the secret’s key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. |
 | `enableHttp2` | `boolean` | enableHttp2 can be used to disable HTTP2. |
 | `followRedirects` | `boolean` | followRedirects defines whether HTTP requests follow HTTP 3xx redirects. When true, the client will automatically follow redirect responses. |
-| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `oauth2` | `object` | oauth2 defines the OAuth2 client credentials used to fetch a token for the targets. This enables OAuth2 authentication flow for HTTP requests. |
-| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyConnectHeader{}` | `array` |  |
 | `proxyConnectHeader{}[]` | `object` | SecretKeySelector selects a key of a Secret. |
-| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyURL` | `string` | proxyURL defines an optional proxy URL for HTTP requests. If defined, this field takes precedence over `proxyUrl`. |
 | `proxyUrl` | `string` | proxyUrl defines the HTTP proxy server to use. |
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration for the client. This includes settings for certificates, CA validation, and TLS protocol options. |
@@ -7558,7 +7558,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `credentials` | `object` | credentials defines a key of a Secret in the namespace that contains the credentials for authentication. |
-| `type` | `string` | type defines the authentication type. The value is case-insensitive. "Basic" is not a supported value. Default: "Bearer" |
+| `type` | `string` | type defines the authentication type. The value is case-insensitive.<br>"Basic" is not a supported value.<br>Default: "Bearer" |
 
 ### .spec.receivers\[\].victoropsConfigs\[\].httpConfig.authorization.credentials {#_specreceiversvictoropsconfigshttpconfigauthorizationcredentials}
 
@@ -7575,7 +7575,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -7609,7 +7609,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -7628,7 +7628,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -7648,7 +7648,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | key defines the key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | key defines the key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | name defines the name of the secret in the object’s namespace to select from. |
 
 ### .spec.receivers\[\].victoropsConfigs\[\].httpConfig.oauth2 {#_specreceiversvictoropsconfigshttpconfigoauth2}
@@ -7671,11 +7671,11 @@ Required
 | `clientId` | `object` | clientId defines a key of a Secret or ConfigMap containing the OAuth2 client’s ID. |
 | `clientSecret` | `object` | clientSecret defines a key of a Secret containing the OAuth2 client’s secret. |
 | `endpointParams` | `object (string)` | endpointParams configures the HTTP parameters to append to the token URL. |
-| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
-| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyConnectHeader{}` | `array` |  |
 | `proxyConnectHeader{}[]` | `object` | SecretKeySelector selects a key of a Secret. |
-| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyUrl` | `string` | proxyUrl defines the HTTP proxy server to use. |
 | `scopes` | `array (string)` | scopes defines the OAuth2 scopes used for the token request. |
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0. |
@@ -7730,7 +7730,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -7749,7 +7749,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -7789,7 +7789,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -7809,8 +7809,8 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
 
 ### .spec.receivers\[\].victoropsConfigs\[\].httpConfig.oauth2.tlsConfig.ca {#_specreceiversvictoropsconfigshttpconfigoauth2tlsconfigca}
@@ -7862,7 +7862,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -7915,7 +7915,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -7934,7 +7934,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -7974,7 +7974,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -7994,8 +7994,8 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
 
 ### .spec.receivers\[\].victoropsConfigs\[\].httpConfig.tlsConfig.ca {#_specreceiversvictoropsconfigshttpconfigtlsconfigca}
@@ -8047,7 +8047,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -8100,7 +8100,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -8119,7 +8119,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -8171,12 +8171,12 @@ Type
 | `bearerTokenSecret` | `object` | bearerTokenSecret defines the secret’s key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. |
 | `enableHttp2` | `boolean` | enableHttp2 can be used to disable HTTP2. |
 | `followRedirects` | `boolean` | followRedirects defines whether HTTP requests follow HTTP 3xx redirects. When true, the client will automatically follow redirect responses. |
-| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `oauth2` | `object` | oauth2 defines the OAuth2 client credentials used to fetch a token for the targets. This enables OAuth2 authentication flow for HTTP requests. |
-| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyConnectHeader{}` | `array` |  |
 | `proxyConnectHeader{}[]` | `object` | SecretKeySelector selects a key of a Secret. |
-| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyURL` | `string` | proxyURL defines an optional proxy URL for HTTP requests. If defined, this field takes precedence over `proxyUrl`. |
 | `proxyUrl` | `string` | proxyUrl defines the HTTP proxy server to use. |
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration for the client. This includes settings for certificates, CA validation, and TLS protocol options. |
@@ -8194,7 +8194,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `credentials` | `object` | credentials defines a key of a Secret in the namespace that contains the credentials for authentication. |
-| `type` | `string` | type defines the authentication type. The value is case-insensitive. "Basic" is not a supported value. Default: "Bearer" |
+| `type` | `string` | type defines the authentication type. The value is case-insensitive.<br>"Basic" is not a supported value.<br>Default: "Bearer" |
 
 ### .spec.receivers\[\].webexConfigs\[\].httpConfig.authorization.credentials {#_specreceiverswebexconfigshttpconfigauthorizationcredentials}
 
@@ -8211,7 +8211,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -8245,7 +8245,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -8264,7 +8264,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -8284,7 +8284,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | key defines the key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | key defines the key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | name defines the name of the secret in the object’s namespace to select from. |
 
 ### .spec.receivers\[\].webexConfigs\[\].httpConfig.oauth2 {#_specreceiverswebexconfigshttpconfigoauth2}
@@ -8307,11 +8307,11 @@ Required
 | `clientId` | `object` | clientId defines a key of a Secret or ConfigMap containing the OAuth2 client’s ID. |
 | `clientSecret` | `object` | clientSecret defines a key of a Secret containing the OAuth2 client’s secret. |
 | `endpointParams` | `object (string)` | endpointParams configures the HTTP parameters to append to the token URL. |
-| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
-| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyConnectHeader{}` | `array` |  |
 | `proxyConnectHeader{}[]` | `object` | SecretKeySelector selects a key of a Secret. |
-| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyUrl` | `string` | proxyUrl defines the HTTP proxy server to use. |
 | `scopes` | `array (string)` | scopes defines the OAuth2 scopes used for the token request. |
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0. |
@@ -8366,7 +8366,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -8385,7 +8385,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -8425,7 +8425,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -8445,8 +8445,8 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
 
 ### .spec.receivers\[\].webexConfigs\[\].httpConfig.oauth2.tlsConfig.ca {#_specreceiverswebexconfigshttpconfigoauth2tlsconfigca}
@@ -8498,7 +8498,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -8551,7 +8551,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -8570,7 +8570,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -8610,7 +8610,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -8630,8 +8630,8 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
 
 ### .spec.receivers\[\].webexConfigs\[\].httpConfig.tlsConfig.ca {#_specreceiverswebexconfigshttpconfigtlsconfigca}
@@ -8683,7 +8683,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -8736,7 +8736,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -8755,7 +8755,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -8805,12 +8805,12 @@ Type
 | `bearerTokenSecret` | `object` | bearerTokenSecret defines the secret’s key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. |
 | `enableHttp2` | `boolean` | enableHttp2 can be used to disable HTTP2. |
 | `followRedirects` | `boolean` | followRedirects defines whether HTTP requests follow HTTP 3xx redirects. When true, the client will automatically follow redirect responses. |
-| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `oauth2` | `object` | oauth2 defines the OAuth2 client credentials used to fetch a token for the targets. This enables OAuth2 authentication flow for HTTP requests. |
-| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyConnectHeader{}` | `array` |  |
 | `proxyConnectHeader{}[]` | `object` | SecretKeySelector selects a key of a Secret. |
-| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyURL` | `string` | proxyURL defines an optional proxy URL for HTTP requests. If defined, this field takes precedence over `proxyUrl`. |
 | `proxyUrl` | `string` | proxyUrl defines the HTTP proxy server to use. |
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration for the client. This includes settings for certificates, CA validation, and TLS protocol options. |
@@ -8828,7 +8828,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `credentials` | `object` | credentials defines a key of a Secret in the namespace that contains the credentials for authentication. |
-| `type` | `string` | type defines the authentication type. The value is case-insensitive. "Basic" is not a supported value. Default: "Bearer" |
+| `type` | `string` | type defines the authentication type. The value is case-insensitive.<br>"Basic" is not a supported value.<br>Default: "Bearer" |
 
 ### .spec.receivers\[\].webhookConfigs\[\].httpConfig.authorization.credentials {#_specreceiverswebhookconfigshttpconfigauthorizationcredentials}
 
@@ -8845,7 +8845,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -8879,7 +8879,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -8898,7 +8898,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -8918,7 +8918,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | key defines the key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | key defines the key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | name defines the name of the secret in the object’s namespace to select from. |
 
 ### .spec.receivers\[\].webhookConfigs\[\].httpConfig.oauth2 {#_specreceiverswebhookconfigshttpconfigoauth2}
@@ -8941,11 +8941,11 @@ Required
 | `clientId` | `object` | clientId defines a key of a Secret or ConfigMap containing the OAuth2 client’s ID. |
 | `clientSecret` | `object` | clientSecret defines a key of a Secret containing the OAuth2 client’s secret. |
 | `endpointParams` | `object (string)` | endpointParams configures the HTTP parameters to append to the token URL. |
-| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
-| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyConnectHeader{}` | `array` |  |
 | `proxyConnectHeader{}[]` | `object` | SecretKeySelector selects a key of a Secret. |
-| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyUrl` | `string` | proxyUrl defines the HTTP proxy server to use. |
 | `scopes` | `array (string)` | scopes defines the OAuth2 scopes used for the token request. |
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0. |
@@ -9000,7 +9000,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -9019,7 +9019,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -9059,7 +9059,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -9079,8 +9079,8 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
 
 ### .spec.receivers\[\].webhookConfigs\[\].httpConfig.oauth2.tlsConfig.ca {#_specreceiverswebhookconfigshttpconfigoauth2tlsconfigca}
@@ -9132,7 +9132,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -9185,7 +9185,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -9204,7 +9204,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -9244,7 +9244,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -9264,8 +9264,8 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
 
 ### .spec.receivers\[\].webhookConfigs\[\].httpConfig.tlsConfig.ca {#_specreceiverswebhookconfigshttpconfigtlsconfigca}
@@ -9317,7 +9317,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -9370,7 +9370,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -9389,7 +9389,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -9409,7 +9409,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | key defines the key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | key defines the key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | name defines the name of the secret in the object’s namespace to select from. |
 
 ### .spec.receivers\[\].wechatConfigs {#_specreceiverswechatconfigs}
@@ -9442,10 +9442,9 @@ Type
 | `message` | `string` | message defines the API request data as defined by the WeChat API. This contains the actual notification content to be sent. |
 | `messageType` | `string` | messageType defines the type of message to send. Valid values include "text", "markdown", and other WeChat Work supported message types. |
 | `sendResolved` | `boolean` | sendResolved defines whether or not to notify about resolved alerts. |
-| `toParty` | `string` | toParty defines the target department(s) to receive the notification. Can be a single department ID or multiple department IDs separated by '\\ |
-| '. | `toTag` | `string` |
-| toTag defines the target tag(s) to receive the notification. Can be a single tag ID or multiple tag IDs separated by '\\ | '. | `toUser` |
-| `string` | toUser defines the target user(s) to receive the notification. Can be a single user ID or multiple user IDs separated by '\\ | '. |
+| `toParty` | `string` | toParty defines the target department(s) to receive the notification. Can be a single department ID or multiple department IDs separated by '\|'. |
+| `toTag` | `string` | toTag defines the target tag(s) to receive the notification. Can be a single tag ID or multiple tag IDs separated by '\|'. |
+| `toUser` | `string` | toUser defines the target user(s) to receive the notification. Can be a single user ID or multiple user IDs separated by '\|'. |
 
 ### .spec.receivers\[\].wechatConfigs\[\].apiSecret {#_specreceiverswechatconfigsapisecret}
 
@@ -9463,7 +9462,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | key defines the key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | key defines the key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | name defines the name of the secret in the object’s namespace to select from. |
 
 ### .spec.receivers\[\].wechatConfigs\[\].httpConfig {#_specreceiverswechatconfigshttpconfig}
@@ -9483,12 +9482,12 @@ Type
 | `bearerTokenSecret` | `object` | bearerTokenSecret defines the secret’s key that contains the bearer token to be used by the client for authentication. The secret needs to be in the same namespace as the AlertmanagerConfig object and accessible by the Prometheus Operator. |
 | `enableHttp2` | `boolean` | enableHttp2 can be used to disable HTTP2. |
 | `followRedirects` | `boolean` | followRedirects defines whether HTTP requests follow HTTP 3xx redirects. When true, the client will automatically follow redirect responses. |
-| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `oauth2` | `object` | oauth2 defines the OAuth2 client credentials used to fetch a token for the targets. This enables OAuth2 authentication flow for HTTP requests. |
-| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyConnectHeader{}` | `array` |  |
 | `proxyConnectHeader{}[]` | `object` | SecretKeySelector selects a key of a Secret. |
-| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyURL` | `string` | proxyURL defines an optional proxy URL for HTTP requests. If defined, this field takes precedence over `proxyUrl`. |
 | `proxyUrl` | `string` | proxyUrl defines the HTTP proxy server to use. |
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration for the client. This includes settings for certificates, CA validation, and TLS protocol options. |
@@ -9506,7 +9505,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `credentials` | `object` | credentials defines a key of a Secret in the namespace that contains the credentials for authentication. |
-| `type` | `string` | type defines the authentication type. The value is case-insensitive. "Basic" is not a supported value. Default: "Bearer" |
+| `type` | `string` | type defines the authentication type. The value is case-insensitive.<br>"Basic" is not a supported value.<br>Default: "Bearer" |
 
 ### .spec.receivers\[\].wechatConfigs\[\].httpConfig.authorization.credentials {#_specreceiverswechatconfigshttpconfigauthorizationcredentials}
 
@@ -9523,7 +9522,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -9557,7 +9556,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -9576,7 +9575,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -9596,7 +9595,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | key defines the key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | key defines the key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | name defines the name of the secret in the object’s namespace to select from. |
 
 ### .spec.receivers\[\].wechatConfigs\[\].httpConfig.oauth2 {#_specreceiverswechatconfigshttpconfigoauth2}
@@ -9619,11 +9618,11 @@ Required
 | `clientId` | `object` | clientId defines a key of a Secret or ConfigMap containing the OAuth2 client’s ID. |
 | `clientSecret` | `object` | clientSecret defines a key of a Secret containing the OAuth2 client’s secret. |
 | `endpointParams` | `object (string)` | endpointParams configures the HTTP parameters to append to the token URL. |
-| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
-| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyConnectHeader{}` | `array` |  |
 | `proxyConnectHeader{}[]` | `object` | SecretKeySelector selects a key of a Secret. |
-| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyUrl` | `string` | proxyUrl defines the HTTP proxy server to use. |
 | `scopes` | `array (string)` | scopes defines the OAuth2 scopes used for the token request. |
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0. |
@@ -9678,7 +9677,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -9697,7 +9696,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -9737,7 +9736,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -9757,8 +9756,8 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
 
 ### .spec.receivers\[\].wechatConfigs\[\].httpConfig.oauth2.tlsConfig.ca {#_specreceiverswechatconfigshttpconfigoauth2tlsconfigca}
@@ -9810,7 +9809,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -9863,7 +9862,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -9882,7 +9881,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -9922,7 +9921,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -9942,8 +9941,8 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
 
 ### .spec.receivers\[\].wechatConfigs\[\].httpConfig.tlsConfig.ca {#_specreceiverswechatconfigshttpconfigtlsconfigca}
@@ -9995,7 +9994,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -10048,7 +10047,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -10067,7 +10066,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -10326,18 +10325,18 @@ The following API endpoints are available:
 - `/apis/monitoring.coreos.com/v1beta1/alertmanagerconfigs`
 
   - `GET`: list objects of kind AlertmanagerConfig
-- `/apis/monitoring.coreos.com/v1beta1/namespaces/{{ namespace }}/alertmanagerconfigs`
+- `/apis/monitoring.coreos.com/v1beta1/namespaces/{namespace}/alertmanagerconfigs`
 
   - `DELETE`: delete collection of AlertmanagerConfig
   - `GET`: list objects of kind AlertmanagerConfig
   - `POST`: create an AlertmanagerConfig
-- `/apis/monitoring.coreos.com/v1beta1/namespaces/{{ namespace }}/alertmanagerconfigs/{{ name }}`
+- `/apis/monitoring.coreos.com/v1beta1/namespaces/{namespace}/alertmanagerconfigs/{name}`
 
   - `DELETE`: delete an AlertmanagerConfig
   - `GET`: read the specified AlertmanagerConfig
   - `PATCH`: partially update the specified AlertmanagerConfig
   - `PUT`: replace the specified AlertmanagerConfig
-- `/apis/monitoring.coreos.com/v1beta1/namespaces/{{ namespace }}/alertmanagerconfigs/{{ name }}/status`
+- `/apis/monitoring.coreos.com/v1beta1/namespaces/{namespace}/alertmanagerconfigs/{name}/status`
 
   - `GET`: read status of the specified AlertmanagerConfig
   - `PATCH`: partially update status of the specified AlertmanagerConfig
@@ -10362,7 +10361,7 @@ Description
 | 200 - OK | [`AlertmanagerConfigList`](/openshift-docs-markdown/rest_api/objects/index#com-coreos-monitoring-v1beta1-AlertmanagerConfigList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/monitoring.coreos.com/v1beta1/namespaces/{{ namespace }}/alertmanagerconfigs {#_apismonitoringcoreoscomv1beta1namespaces_namespace_alertmanagerconfigs}
+### /apis/monitoring.coreos.com/v1beta1/namespaces/{namespace}/alertmanagerconfigs {#_apismonitoringcoreoscomv1beta1namespaces_namespace_alertmanagerconfigs}
 
 HTTP method
 :   ```
@@ -10430,7 +10429,7 @@ Description
 | 202 - Accepted | [`AlertmanagerConfig`](/openshift-docs-markdown/rest_api/monitoring_apis/alertmanagerconfig-monitoring-coreos-com-v1beta1#alertmanagerconfig-monitoring-coreos-com-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/monitoring.coreos.com/v1beta1/namespaces/{{ namespace }}/alertmanagerconfigs/{{ name }} {#_apismonitoringcoreoscomv1beta1namespaces_namespace_alertmanagerconfigs_name}
+### /apis/monitoring.coreos.com/v1beta1/namespaces/{namespace}/alertmanagerconfigs/{name} {#_apismonitoringcoreoscomv1beta1namespaces_namespace_alertmanagerconfigs_name}
 
 **Global path parameters**
 
@@ -10534,7 +10533,7 @@ Description
 | 201 - Created | [`AlertmanagerConfig`](/openshift-docs-markdown/rest_api/monitoring_apis/alertmanagerconfig-monitoring-coreos-com-v1beta1#alertmanagerconfig-monitoring-coreos-com-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/monitoring.coreos.com/v1beta1/namespaces/{{ namespace }}/alertmanagerconfigs/{{ name }}/status {#_apismonitoringcoreoscomv1beta1namespaces_namespace_alertmanagerconfigs_name_status}
+### /apis/monitoring.coreos.com/v1beta1/namespaces/{namespace}/alertmanagerconfigs/{name}/status {#_apismonitoringcoreoscomv1beta1namespaces_namespace_alertmanagerconfigs_name_status}
 
 **Global path parameters**
 

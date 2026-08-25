@@ -63,7 +63,7 @@ A config map is similar to a secret, but designed to more conveniently support w
 
 Controllers can be written to tolerate missing configuration data. Consult individual components configured by using config maps on a case-by-case basis.
 
-`ConfigMap`** objects reside in a project.**
+**`ConfigMap` objects reside in a project.**
 
 They can only be referenced by pods in the same project.
 
@@ -72,6 +72,7 @@ They can only be referenced by pods in the same project.
 This includes any pods created by using the CLI, or indirectly from a replication controller. It does not include pods created by using the OpenShift Container Platform node’s `--manifest-url` flag, its `--config` flag, or its REST API because these are not common ways to create pods.
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating and using config maps](/openshift-docs-markdown/nodes/pods/nodes-pods-configmaps)
 

@@ -93,7 +93,8 @@ As a Red Hat storage solution, Red Hat OpenShift Data Foundation is completely i
 | Resolve issues encountered during operations | [Troubleshooting OpenShift Data Foundation 4.12](https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation/4.12/html/troubleshooting_openshift_data_foundation) |
 | Migrating your OpenShift Container Platform cluster from version 3 to version 4 | [Migration](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.12/html/migrating_from_version_3_to_4/index) |
 
-## Additional resources {#additional-resources_post-install-storage-configuration}
+**Additional resources**
+{._additional-resources}
 
 - [Dynamic provisioning](/openshift-docs-markdown/storage/dynamic-provisioning#dynamic-provisioning)
 - [Red Hat OpenShift Data Foundation documentation](https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation)

@@ -1,8 +1,8 @@
 ---
-title: Authenticating the {{ cert_manager_operator }}
+title: Authenticating the cert-manager Operator for Red Hat OpenShift
 ---
 
-# Authenticating the {{ cert_manager_operator }} {#cert-manager-authenticate}
+# Authenticating the cert-manager Operator for Red Hat OpenShift {#cert-manager-authenticate}
 
 To enable the operator to manage components on your cloud provider, authenticate the cert-manager Operator for Red Hat OpenShift by configuring cloud credentials. You can grant the Operator access to external services required for certificate issuance, such as DNS providers.
 
@@ -197,7 +197,8 @@ To securely access AWS resources from your applications without managing long-li
    AWS_WEB_IDENTITY_TOKEN_FILE=/var/run/secrets/eks.amazonaws.com/serviceaccount/token
    ```
 
-<a name="additional-resources_cert-manager-authenticate-gcp"></a>**Additional resources**
+**Additional resources**
+{._additional-resources}
 
 - [Configuring the Cloud Credential Operator utility](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations)
 
@@ -411,7 +412,8 @@ To securely access Google Cloud resources from your applications without managin
          secretName: gcp-credentials
    ```
 
-<a name="additional-resources_cert-manager-authenticate-gcp-workload-identity"></a>**Additional resources**
+**Additional resources**
+{._additional-resources}
 
 - [Configuring the Cloud Credential Operator utility](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#cco-ccoctl-configuring_installing-gcp-customizations)
 - [Manual mode with short-term credentials for components](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds)

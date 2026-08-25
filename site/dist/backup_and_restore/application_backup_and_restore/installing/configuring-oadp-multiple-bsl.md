@@ -1,8 +1,8 @@
 ---
-title: Configuring the {{ oadp_first }} with more than one Backup Storage Location
+title: Configuring the OpenShift API for Data Protection (OADP) with more than one Backup Storage Location
 ---
 
-# Configuring the {{ oadp_first }} with more than one Backup Storage Location {#configuring-oadp-multiple-bsl}
+# Configuring the OpenShift API for Data Protection (OADP) with more than one Backup Storage Location {#configuring-oadp-multiple-bsl}
 
 Configure multiple backup storage locations (BSLs) in the Data Protection Application (DPA) to store backups across different regions or storage providers. This provides flexibility and redundancy for your backup strategy.
 
@@ -357,5 +357,6 @@ Configure two backup storage locations with different cloud credentials to back 
     :   Specifies the name of the backup.
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating profiles for different credentials](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-aws#oadp-aws-secrets-for-different-credentials_installing-oadp-aws)

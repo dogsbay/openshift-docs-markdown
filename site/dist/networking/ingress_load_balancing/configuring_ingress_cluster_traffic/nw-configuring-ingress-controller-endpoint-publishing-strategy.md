@@ -286,7 +286,8 @@ Before you set a `NodePort`-type `Service` for each project, read the following 
      Hello OpenShift!
      ```
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Ingress Controller configuration parameters](/openshift-docs-markdown/networking/networking_operators/ingress-operator#nw-ingress-controller-configuration-parameters_configuring-ingress)
 - [Setting RHOSP Cloud Controller Manager options](/openshift-docs-markdown/installing/installing_openstack/installing-openstack-installer-custom#installation-osp-setting-cloud-provider-options_installing-openstack-installer-custom)

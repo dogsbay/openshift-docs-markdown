@@ -201,7 +201,8 @@ If the SCC is allowed for the pod, the kubelet runs the pod with the specified s
 > [!NOTE]
 > The custom SCC must have the appropriate priority to be automatically assigned to the pod or meet other conditions required by the pod, such as allowing CAP_NET_ADMIN.
 
-## Additional resources {#additional-resources_configuring-seccomp-profiles}
+**Additional resources**
+{._additional-resources}
 
 - [Managing security context constraints](/openshift-docs-markdown/authentication/managing-security-context-constraints)
 - [Machine Config Overview](/openshift-docs-markdown/machine_configuration/index#machine-config-overview)

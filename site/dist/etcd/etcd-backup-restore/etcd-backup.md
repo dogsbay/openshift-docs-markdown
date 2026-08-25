@@ -98,6 +98,7 @@ For a Two-Node with Fencing (TNF) setup, follow the steps to back up etcd data o
      > The etcd encryption only encrypts values, not keys. This means that resource types, namespaces, and object names are not encrypted.
 
 **Additional resources**
+{._additional-resources}
 
 - [Restoring to an earlier cluster state](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state#dr-restoring-cluster-state)
 - [Recovering an unhealthy etcd cluster for hosted control planes](/openshift-docs-markdown/hosted_control_planes/hcp_high_availability/hcp-recovering-etcd-cluster#hcp-recovering-etcd-cluster)

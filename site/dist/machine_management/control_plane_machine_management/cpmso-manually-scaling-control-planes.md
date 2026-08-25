@@ -340,5 +340,5 @@ Add a control plane node to recover from a degraded state, perform deep-level de
 
    ```terminal {title="Example output"}
    NAME      VERSION   AVAILABLE   PROGRESSING   SINCE   STATUS
-   version   {{ product_title }}.5    True        False         5h57m   Cluster version is {{ product_title }}.5
+   version   OpenShift Container Platform.5    True        False         5h57m   Cluster version is OpenShift Container Platform.5
    ```

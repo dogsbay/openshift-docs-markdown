@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"persistent-storage-csi-vol-populators","tex
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-vol-populators";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="persistent-storage-csi-vol-populators" class="group scroll-mt-20">Volume populators<a href="#persistent-storage-csi-vol-populators" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Volume populators enable the automatic pre-loading of data into a volume during dynamic provisioning, instead of provisioning an empty volume.</p>
+      <p class="_abstract">Volume populators enable the automatic pre-loading of data into a volume during dynamic provisioning, instead of provisioning an empty volume.</p>
       <h2 id="persistent-storage-csi-vol-populator_persistent-storage-csi-vol-populators" class="group scroll-mt-20">Volume populators overview<a href="#persistent-storage-csi-vol-populator_persistent-storage-csi-vol-populators" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">With volume populators, using the <code>dataSourceRef</code> field, you can prepopulate volumes from a Custom Resource Definition (CRD) instead of only persistent volume claims (PVCs) and snapshots.</p>
       <p>In OpenShift Container Platform versions 4.12 through 4.19, the <code>dataSource</code> field in a PVC spec provides volume populator capability. However, it is limited to using only PVCs and snapshots as the data source for populating volumes.</p>

@@ -28,11 +28,10 @@ Approval Strategy
 
     If you choose automatic updates for an installed Operator, when a new version of that Operator is available in the selected channel, Operator Lifecycle Manager (OLM) automatically upgrades the running instance of your Operator without human intervention.
 
-    If you select manual updates, when a newer version of an Operator is available, OLM creates an update request. As a cluster administrator,
-
-    you must then manually approve that update request to have the Operator updated to the new version.
+    If you select manual updates, when a newer version of an Operator is available, OLM creates an update request. As a cluster administrator, you must then manually approve that update request to have the Operator updated to the new version.
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding the software catalog](/openshift-docs-markdown/operators/understanding/olm-understanding-software-catalog#olm-understanding-software-catalog)
 
@@ -46,8 +45,8 @@ To install and subscribe to an Operator from the software catalog, you can use t
 
 **Procedure**
 
-1. Navigate in the web console to the **Ecosystem** -> **Software Catalog** page.
-2. Scroll or type a keyword into the **Filter by keyword** box to find the Operator you want. For example, type `{{ filter_type }}` to find the Advanced Cluster Management for Kubernetes Operator.
+1. Navigate in the web console to the **Ecosystem** → **Software Catalog** page.
+2. Scroll or type a keyword into the **Filter by keyword** box to find the Operator you want. For example, type `advanced` to find the Advanced Cluster Management for Kubernetes Operator.
 
    You can also filter options by **Infrastructure Features**. For example, select **Disconnected** if you want to see Operators that work in disconnected environments, also known as restricted network environments.
 3. Select the Operator to display additional information.
@@ -87,20 +86,21 @@ To install and subscribe to an Operator from the software catalog, you can use t
 
 **Verification**
 
-- After the upgrade status of the subscription is **Up to date**, select **Ecosystem** -> **Installed Operators** to verify that the cluster service version (CSV) of the installed Operator eventually shows up. The **Status** should eventually resolve to **Succeeded** in the relevant namespace.
+- After the upgrade status of the subscription is **Up to date**, select **Ecosystem** → **Installed Operators** to verify that the cluster service version (CSV) of the installed Operator eventually shows up. The **Status** should eventually resolve to **Succeeded** in the relevant namespace.
 
   > [!NOTE]
   > For the **All namespaces...** installation mode, the status resolves to **Succeeded** in the `openshift-operators` namespace, but the status is **Copied** if you check in other namespaces.
 
   If it does not:
 
-  - Check the logs in any pods in the `openshift-operators` project (or other relevant namespace if **A specific namespace...** installation mode was selected) on the **Workloads** -> **Pods** page that are reporting issues to troubleshoot further.
+  - Check the logs in any pods in the `openshift-operators` project (or other relevant namespace if **A specific namespace...** installation mode was selected) on the **Workloads** → **Pods** page that are reporting issues to troubleshoot further.
 - When the Operator is installed, the metadata indicates which channel and version are installed.
 
   > [!NOTE]
   > The **Channel** and **Version** dropdown menus are still available for viewing other version metadata in this catalog context.
 
 **Additional resources**
+{._additional-resources}
 
 - [Manually approving a pending Operator update](/openshift-docs-markdown/operators/admin/olm-upgrading-operators#olm-approving-pending-upgrade_olm-upgrading-operators)
 
@@ -428,6 +428,7 @@ At this point, OLM is now aware of the selected Operator. A cluster service vers
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [About Operator groups](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-operatorgroups#olm-operatorgroups-about_olm-understanding-operatorgroups)
 - [Installing global Operators in custom namespaces](/openshift-docs-markdown/operators/admin/olm-adding-operators-to-cluster#olm-installing-global-namespaces_olm-adding-operators-to-a-cluster)
@@ -486,6 +487,7 @@ In the following procedure, the *tenant* is a user or group of users that share 
       ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Operators in multitenant clusters](/openshift-docs-markdown/operators/understanding/olm-multitenancy#olm-multitenancy)
 
@@ -544,6 +546,7 @@ When installing Operators with the OpenShift Container Platform web console, the
   > When you initiate the Operator installation, if the Operator has dependencies, the dependencies are also automatically installed in the custom global namespace. As a result, it is then valid for the dependency Operators to have the same update policy and shared install plans.
 
 **Additional resources**
+{._additional-resources}
 
 - [Multitenancy and Operator colocation](/openshift-docs-markdown/operators/understanding/olm/olm-colocation#olm-colocation)
 
@@ -566,6 +569,7 @@ For Operand pods
 :   Using an installed Operator, users can create an application in the project, which places the custom resource (CR) owned by the Operator in the project. As a result, the Operand pods are placed on the specified nodes, unless the Operator is deploying cluster-wide objects or resources in other namespaces, in which case this customized pod placement does not apply.
 
 **Additional resources**
+{._additional-resources}
 
 - [Adding taints and tolerations manually to nodes](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations-adding_nodes-scheduler-taints-tolerations)
 - [Adding taints and tolerations with compute machine sets](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations-adding-machineset_nodes-scheduler-taints-tolerations)
@@ -751,11 +755,13 @@ To control the placement of an Operator pod, complete the following steps.
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding pod affinity](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-pod-affinity#nodes-scheduler-pod-affinity-about_nodes-scheduler-pod-affinity)
 - [Understanding node affinity](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-node-affinity#nodes-scheduler-node-affinity-about_nodes-scheduler-node-affinity)
 - [Understanding how to update labels on nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working-updating_nodes-nodes-working)
 
-## Additional resources {#additional-resources_olm-adding-operators-to-a-cluster}
+**Additional resources**
+{._additional-resources}
 
 - [Multitenancy and Operator colocation](/openshift-docs-markdown/operators/understanding/olm/olm-colocation#olm-colocation)

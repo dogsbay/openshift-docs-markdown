@@ -20,9 +20,7 @@ To optimize performance and maintain more control over your hardware in OpenShif
 
 ## Internet access for OpenShift Container Platform {#cluster-entitlements_installing-bare-metal}
 
-In OpenShift Container Platform 4.22, you require access to the internet to install
-
-your cluster.
+In OpenShift Container Platform 4.22, you require access to the internet to install your cluster.
 
 You must have internet access to perform the following actions:
 
@@ -34,6 +32,7 @@ You must have internet access to perform the following actions:
 > If your cluster cannot have direct internet access, you can perform a restricted network installation on some types of infrastructure that you provision. During that process, you download the required content and use it to populate a mirror registry with the installation packages. With some installation types, the environment that you install your cluster in will not require internet access. Before you update the cluster, you update the content of the mirror registry.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing a user-provisioned bare metal cluster on a restricted network](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-restricted-networks-bare-metal#installing-restricted-networks-bare-metal)
 
@@ -62,62 +61,49 @@ The smallest OpenShift Container Platform clusters require the following hosts:
 
 The bootstrap and control plane machines must use Red Hat Enterprise Linux CoreOS (RHCOS) as the operating system. However, the compute machines can use Red Hat Enterprise Linux CoreOS (RHCOS), Red Hat Enterprise Linux (RHEL) 8.6 and later.
 
-RHCOS is based on Red Hat Enterprise Linux (RHEL) 9.8 and inherits all of its hardware certifications and requirements.
-
-See [Red Hat Enterprise Linux technology capabilities and limits](https://access.redhat.com/articles/rhel-limits).
+RHCOS is based on Red Hat Enterprise Linux (RHEL) 9.8 and inherits all of its hardware certifications and requirements. See [Red Hat Enterprise Linux technology capabilities and limits](https://access.redhat.com/articles/rhel-limits).
 
 ### Minimum resource requirements for cluster installation {#installation-minimum-resource-requirements_installing-bare-metal}
 
 To ensure that your OpenShift Container Platform cluster runs as expected, each cluster machine must meet minimum CPU, memory, and storage requirements.
 
-***Minimum resource requirements***
+**Minimum resource requirements**
 
 <table>
 <thead>
 <tr>
   <th>Machine</th>
   <th>Operating system</th>
-
   <th>CPU</th>
   <th>RAM</th>
   <th>Storage</th>
+  <th>Input/Output Per Second (IOPS)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td>Input/Output Per Second (IOPS)</td>
   <td>Bootstrap</td>
   <td>RHCOS</td>
-
   <td>4</td>
   <td>16 GB</td>
   <td>100 GB</td>
   <td>300</td>
 </tr>
 <tr>
-
   <td>Control plane</td>
   <td>RHCOS</td>
-
   <td>4</td>
   <td>16 GB</td>
   <td>100 GB</td>
+  <td>300</td>
 </tr>
 <tr>
-  <td>300</td>
-
   <td>Compute</td>
-
   <td>RHCOS</td>
-
   <td>2</td>
   <td>8 GB</td>
   <td>100 GB</td>
   <td>300</td>
-
-</tr>
-<tr>
-
 </tr>
 </tbody>
 </table>
@@ -139,6 +125,7 @@ To ensure that your OpenShift Container Platform cluster runs as expected, each 
 If an instance type for your platform meets the minimum requirements for cluster machines, it is supported to use in OpenShift Container Platform.
 
 **Additional resources**
+{._additional-resources}
 
 - [Optimizing storage](/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 
@@ -149,6 +136,7 @@ On user-provisioned infrastructure, you must implement a mechanism for approving
 The `kube-controller-manager` only approves the kubelet client CSRs. The `machine-approver` cannot guarantee the validity of a serving certificate that kubelet credentials request because it cannot confirm that the correct machine issued the request. You must find and implement a method of verifying the validity of the kubelet serving certificate requests and approving them.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring a three-node cluster](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#installation-three-node-cluster_installing-bare-metal)
 - [Approving the certificate signing requests for your machines](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#installation-approve-csrs_installing-bare-metal)
@@ -181,7 +169,7 @@ This section provides details about the ports that are required.
 > [!IMPORTANT]
 > In connected OpenShift Container Platform environments, all nodes are required to have internet access to pull images for platform containers and provide telemetry data to Red Hat.
 
-***Ports used for all-machine to all-machine communications***
+**Ports used for all-machine to all-machine communications**
 
 <table>
 <thead>
@@ -195,56 +183,60 @@ This section provides details about the ports that are required.
 <tr>
   <td>ICMP</td>
   <td>N/A</td>
-  <td>Network reachability tests<br><br>.4+</td>
+  <td>Network reachability tests</td>
 </tr>
 <tr>
-  <td>TCP</td>
+  <td rowspan="4">TCP</td>
   <td><code>1936</code></td>
   <td>Metrics</td>
 </tr>
 <tr>
   <td><code>9000</code>-<code>9999</code></td>
-  <td>Host level services, including the node exporter on ports <code>9100</code>-<code>9101</code> andthe Cluster Version Operator on port <code>9099</code>.</td>
+  <td>Host level services, including the node exporter on ports <code>9100</code>-<code>9101</code> and the Cluster Version Operator on port <code>9099</code>.</td>
+</tr>
+<tr>
   <td><code>10250</code>-<code>10259</code></td>
-</tr>
-<tr>
   <td>The default ports that Kubernetes reserves</td>
-  <td><code>22623</code></td>
-  <td>The port handles traffic from the Machine Config Server and directs the traffic to the control plane machines..6+</td>
 </tr>
 <tr>
-  <td>UDP</td>
+  <td><code>22623</code></td>
+  <td>The port handles traffic from the Machine Config Server and directs the traffic to the control plane machines.</td>
+</tr>
+<tr>
+  <td rowspan="5">UDP</td>
   <td><code>6081</code></td>
   <td>Geneve</td>
 </tr>
 <tr>
   <td><code>9000</code>-<code>9999</code></td>
   <td>Host level services, including the node exporter on ports <code>9100</code>-<code>9101</code>.</td>
-  <td><code>500</code></td>
 </tr>
 <tr>
+  <td><code>500</code></td>
   <td>IPsec IKE packets</td>
+</tr>
+<tr>
   <td><code>4500</code></td>
   <td>IPsec NAT-T packets</td>
 </tr>
 <tr>
   <td><code>123</code></td>
   <td>Network Time Protocol (NTP) on UDP port <code>123</code>. If an external NTP time server is configured, you must open UDP port <code>123</code>.</td>
-  <td>TCP/UDP</td>
 </tr>
 <tr>
+  <td>TCP/UDP</td>
   <td><code>30000</code>-<code>32767</code></td>
   <td>Kubernetes node port</td>
-  <td>ESP</td>
 </tr>
 <tr>
+  <td>ESP</td>
   <td>N/A</td>
   <td>IPsec Encapsulating Security Payload (ESP)</td>
 </tr>
 </tbody>
 </table>
 
-***Ports used for all-machine to control plane communications***
+**Ports used for all-machine to control plane communications**
 
 <table>
 <thead>
@@ -263,7 +255,7 @@ This section provides details about the ports that are required.
 </tbody>
 </table>
 
-***Ports used for control plane machine to control plane machine communications***
+**Ports used for control plane machine to control plane machine communications**
 
 <table>
 <thead>
@@ -289,6 +281,7 @@ OpenShift Container Platform clusters are configured to use a public Network Tim
 If a DHCP server provides NTP server information, the chrony time service on the Red Hat Enterprise Linux CoreOS (RHCOS) machines read the information and can sync the clock with the NTP servers.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring chrony time service](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-chrony_installing-customizing)
 
@@ -312,7 +305,7 @@ DNS A/AAAA or CNAME records are used for name resolution and PTR records are use
 
 The following DNS records are required for a user-provisioned OpenShift Container Platform cluster and they must be in place before installation. In each record, `<cluster_name>` is the cluster name and `<base_domain>` is the base domain that you specify in the `install-config.yaml` file. A complete DNS record takes the form: `<component>.<cluster_name>.<base_domain>.`.
 
-***Required DNS records***
+**Required DNS records**
 
 <table>
 <thead>
@@ -324,34 +317,33 @@ The following DNS records are required for a user-provisioned OpenShift Containe
 </thead>
 <tbody>
 <tr>
-  <td>.2+a</td>
-  <td>Kubernetes API</td>
-  <td><code>api.<cluster_name>.<base_domain>.</code></td>
+  <td rowspan="2">Kubernetes API</td>
+  <td><code>api.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
+  <td>A DNS A/AAAA or CNAME record, and a DNS PTR record, to identify the API load balancer. These records must be resolvable by both clients external to the cluster and from all the nodes within the cluster.</td>
 </tr>
 <tr>
-  <td>A DNS A/AAAA or CNAME record, and a DNS PTR record, to identify the API load balancer. These records must be resolvable by both clients external to the cluster and from all the nodes within the cluster.</td>
-  <td><code>api-int.<cluster_name>.<base_domain>.</code></td>
-  <td>A DNS A/AAAA or CNAME record, and a DNS PTR record, to internally identify the API load balancer. These records must be resolvable from all the nodes within the cluster.<dl><dt>Important</dt><dd>The API server must be able to resolve the worker nodes by the hostnamesthat are recorded in Kubernetes. If the API server cannot resolve the nodenames, then proxied API calls can fail, and you cannot retrieve logs from pods.</dd></dl></td>
+  <td><code>api-int.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
+  <td>A DNS A/AAAA or CNAME record, and a DNS PTR record, to internally identify the API load balancer. These records must be resolvable from all the nodes within the cluster.<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>The API server must be able to resolve the worker nodes by the hostnames that are recorded in Kubernetes. If the API server cannot resolve the node names, then proxied API calls can fail, and you cannot retrieve logs from pods.</dd></dl></td>
 </tr>
 <tr>
   <td>Routes</td>
-  <td><code>*.apps.<cluster_name>.<base_domain>.</code></td>
-  <td>A wildcard DNS A/AAAA or CNAME record that refers to the application ingress load balancer. The application ingress load balancer targets the machines that run the Ingress Controller pods.ifeval::["installing-bare-metal" == "installing-two-node-fencing"]By default, the Ingress Controller pods run on compute nodes. In cluster topologies without dedicated compute nodes, such as two-node or three-node clusters, the control plane nodes also carry the worker label, so the Ingress pods are scheduled on the control plane nodes.ifeval::["installing-bare-metal" != "installing-two-node-fencing"]The Ingress Controller pods run on the compute machines by default.These records must be resolvable by both clients external to the cluster and from all the nodes within the cluster.<br><br>For example, <code>console-openshift-console.apps.<cluster_name>.<base_domain></code> is used as a wildcard route to the OpenShift Container Platform console.</td>
+  <td><code>*.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
+  <td>A wildcard DNS A/AAAA or CNAME record that refers to the application ingress load balancer. The application ingress load balancer targets the machines that run the Ingress Controller pods.   The Ingress Controller pods run on the compute machines by default.  These records must be resolvable by both clients external to the cluster and from all the nodes within the cluster.<br><br>For example, <code>console-openshift-console.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;</code> is used as a wildcard route to the OpenShift Container Platform console.</td>
 </tr>
 <tr>
   <td>Bootstrap machine</td>
-  <td><code>bootstrap.<cluster_name>.<base_domain>.</code></td>
-  <td>A DNS A/AAAA or CNAME record, and a DNS PTR record, to identify the bootstrapmachine. These records must be resolvable by the nodes within the cluster.</td>
+  <td><code>bootstrap.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
+  <td>A DNS A/AAAA or CNAME record, and a DNS PTR record, to identify the bootstrap machine. These records must be resolvable by the nodes within the cluster.</td>
 </tr>
 <tr>
   <td>Control plane machines</td>
-  <td><code><control_plane><n>.<cluster_name>.<base_domain>.</code></td>
-  <td>DNS A/AAAA or CNAME records and DNS PTR records to identify each machinefor the control plane nodes. These records must be resolvable by the nodes within the cluster.<br><br>ifeval::["installing-bare-metal" != "installing-two-node-fencing"]</td>
+  <td><code>&lt;control_plane&gt;&lt;n&gt;.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
+  <td>DNS A/AAAA or CNAME records and DNS PTR records to identify each machine for the control plane nodes. These records must be resolvable by the nodes within the cluster.</td>
 </tr>
 <tr>
   <td>Compute machines</td>
-  <td><code><compute><n>.<cluster_name>.<base_domain>.</code></td>
-  <td>DNS A/AAAA or CNAME records and DNS PTR records to identify each machinefor the worker nodes. These records must be resolvable by the nodes within the cluster.</td>
+  <td><code>&lt;compute&gt;&lt;n&gt;.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
+  <td>DNS A/AAAA or CNAME records and DNS PTR records to identify each machine for the worker nodes. These records must be resolvable by the nodes within the cluster.</td>
 </tr>
 </tbody>
 </table>
@@ -403,12 +395,10 @@ bootstrap.ocp4.example.com.	IN	A	192.168.1.96
 control-plane0.ocp4.example.com.	IN	A	192.168.1.97
 control-plane1.ocp4.example.com.	IN	A	192.168.1.98
 ;
-{%- if context != "installing-two-node-fencing" %}
 control-plane2.ocp4.example.com.	IN	A	192.168.1.99
 ;
 compute0.ocp4.example.com.	IN	A	192.168.1.11
 compute1.ocp4.example.com.	IN	A	192.168.1.7
-{%- endif %}
 ;
 ;EOF
 ```
@@ -453,12 +443,10 @@ $TTL 1W
 97.1.168.192.in-addr.arpa.	IN	PTR	control-plane0.ocp4.example.com.
 98.1.168.192.in-addr.arpa.	IN	PTR	control-plane1.ocp4.example.com.
 ;
-{%- if context != "installing-two-node-fencing" %}
 99.1.168.192.in-addr.arpa.	IN	PTR	control-plane2.ocp4.example.com.
 ;
 11.1.168.192.in-addr.arpa.	IN	PTR	compute0.ocp4.example.com.
 7.1.168.192.in-addr.arpa.	IN	PTR	compute1.ocp4.example.com.
-{%- endif %}
 ;
 ;EOF
 ```
@@ -484,6 +472,7 @@ where:
 > A PTR record is not required for the OpenShift Container Platform application wildcard.
 
 **Additional resources**
+{._additional-resources}
 
 - [Validating DNS resolution for user-provisioned infrastructure](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#installation-user-provisioned-validating-dns_installing-bare-metal)
 
@@ -555,13 +544,13 @@ The load balancing infrastructure must meet the following requirements:
   - Layer 4 load balancing only. This can be referred to as Raw TCP or SSL Passthrough mode.
   - A stateless load balancing algorithm. The options vary based on the load balancer implementation.
 
-> [!IMPORTANT]
-> Do not configure session persistence for an API load balancer. Configuring session persistence for a Kubernetes API server might cause performance issues from excess application traffic for your OpenShift Container Platform cluster and the Kubernetes API that runs inside the cluster.
+  > [!IMPORTANT]
+  > Do not configure session persistence for an API load balancer. Configuring session persistence for a Kubernetes API server might cause performance issues from excess application traffic for your OpenShift Container Platform cluster and the Kubernetes API that runs inside the cluster.
 
 Configure the following ports on both the front and back of the API load balancers:
 
 | Port | Back-end machines (pool members) | Internal | External | Description |
-| --- | --- | --- | --- | --- |
+| --- | --- | :---: | :---: | --- |
 | `6443` | Bootstrap and control plane. You remove the bootstrap machine from the load balancer after the bootstrap machine initializes the cluster control plane. You must configure the `/readyz` endpoint for the API server health check probe. | X | X | Kubernetes API server |
 | `22623` | Bootstrap and control plane. You remove the bootstrap machine from the load balancer after the bootstrap machine initializes the cluster control plane. | X |  | Machine config server |
 
@@ -573,15 +562,15 @@ Configure the following ports on both the front and back of the API load balance
   - Layer 4 load balancing only. This can be referred to as Raw TCP or SSL Passthrough mode.
   - A connection-based or session-based persistence is recommended, based on the options available and types of applications that will be hosted on the platform.
 
-> [!TIP]
-> If the true IP address of the client can be seen by the application Ingress load balancer, enabling source IP-based session persistence can improve performance for applications that use end-to-end TLS encryption.
+  > [!TIP]
+  > If the true IP address of the client can be seen by the application Ingress load balancer, enabling source IP-based session persistence can improve performance for applications that use end-to-end TLS encryption.
 
 Configure the following ports on both the front and back of the load balancers:
 
 **Application Ingress load balancer**
 
 | Port | Back-end machines (pool members) | Internal | External | Description |
-| --- | --- | --- | --- | --- |
+| --- | --- | :---: | :---: | --- |
 | `443` | The machines that run the Ingress Controller pods, compute, or worker, by default. | X | X | HTTPS traffic |
 | `80` | The machines that run the Ingress Controller pods, compute, or worker, by default. | X | X | HTTP traffic |
 
@@ -846,6 +835,7 @@ After you install Red Hat Enterprise Linux CoreOS (RHCOS) and the system reboot
 - Scaling compute nodes to apply the manifest object that includes a customized `br-ex` bridge to each compute node that exists in your cluster. For more information, see "Expanding the cluster".
 
 **Additional resources**
+{._additional-resources}
 
 - [Converting to a dual-stack cluster network](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/converting-to-dual-stack#nw-dual-stack-convert_converting-to-dual-stack)
 - [Expanding the cluster](/openshift-docs-markdown/installing/installing_bare_metal/bare-metal-expanding-the-cluster#bare-metal-expanding-the-cluster)
@@ -1163,6 +1153,7 @@ After preparation, your cluster infrastructure must meet the requirements outlin
    > Some load balancing solutions require the DNS name resolution for the cluster nodes to be in place before the load balancing is initialized.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing RHCOS and starting the OpenShift Container Platform bootstrap process](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#creating-machines-bare-metal_installing-bare-metal)
 - [Setting the cluster node hostnames through DHCP](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#installation-host-names-dhcp-user-infra_installing-bare-metal)
@@ -1274,6 +1265,7 @@ To prevent network-related installation failures and ensure node connectivity in
    3. Use this method to perform reverse lookups against the IP addresses for the control plane and compute nodes. Check that the results correspond to the DNS record names of each node.
 
 **Additional resources**
+{._additional-resources}
 
 - [User-provisioned DNS requirements](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#installation-dns-user-infra_installing-bare-metal)
 - [Load balancing requirements for user-provisioned infrastructure](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#installation-load-balancing-user-infra_installing-bare-metal)
@@ -1349,6 +1341,7 @@ If you want to SSH in to your cluster nodes to perform installation debugging or
 - When you install OpenShift Container Platform, provide the SSH public key to the installation program. If you install a cluster on infrastructure that you provision, you must provide the key to the installation program.
 
 **Additional resources**
+{._additional-resources}
 
 - [Verifying node health](/openshift-docs-markdown/support/troubleshooting/verifying-node-health#verifying-node-health)
 
@@ -1382,14 +1375,8 @@ the host you are using for installation.
    ```
 6. Download your installation [pull secret from Red Hat OpenShift Cluster Manager](https://console.redhat.com/openshift/install/pull-secret). This pull secret allows you to authenticate with the services that are provided by the included authorities, including Quay.io, which serves the container images for OpenShift Container Platform components.
 
-   ```
-   :::tip
-
-   Alternatively, you can retrieve the installation program from the [Red&#160;Hat Customer Portal](https://access.redhat.com/downloads/content/290/), where you can specify a version of the installation program to download.
-   However, you must have an active subscription to access this page.
-
-   :::
-   ```
+   > [!TIP]
+   > Alternatively, you can retrieve the installation program from the [Red Hat Customer Portal](https://access.redhat.com/downloads/content/290/), where you can specify a version of the installation program to download. However, you must have an active subscription to access this page.
 
 ## Installing the OpenShift CLI on Linux {#cli-installing-cli-linux_installing-bare-metal}
 
@@ -1514,19 +1501,15 @@ Installing the cluster requires that you manually create the installation config
    > You must create a directory. Some installation assets, such as bootstrap X.509 certificates have short expiration intervals, so you must not reuse an installation directory. If you want to reuse individual files from another cluster installation, you can copy them into your directory. However, the file names for the installation assets might change between releases. Use caution when copying installation files from an earlier OpenShift Container Platform version.
 2. Customize the provided sample `install-config.yaml` file template and save the file in the `<installation_directory>`.
 
-   ```
-   :::note
-
-   You must name this configuration file `install-config.yaml`.
-
-   :::
-   ```
+   > [!NOTE]
+   > You must name this configuration file `install-config.yaml`.
 3. Back up the `install-config.yaml` file so that you can use it to install many clusters.
 
    > [!IMPORTANT]
    > Back up the `install-config.yaml` file now, because the installation process consumes the file in the next step.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installation configuration parameters for bare metal](/openshift-docs-markdown/installing/installing_bare_metal/upi/installation-config-parameters-bare-metal#installation-config-parameters-bare-metal)
 
@@ -1541,22 +1524,10 @@ compute:
 - hyperthreading: Enabled
   name: worker
   replicas: 0
-{%- if ibm_z or ibm_z_kvm %}
-  architecture: s390x
-{% endif %}
-{% if ibm_power %}
-  architecture: ppc64le
-{%- endif %}
 controlPlane:
   hyperthreading: Enabled
   name: master
   replicas: 3
-{%- if ibm_z or ibm_z_kvm %}
-  architecture: s390x
-{% endif %}
-{% if ibm_power %}
-  architecture: ppc64le
-{%- endif %}
 metadata:
   name: test
 networking:
@@ -1570,83 +1541,12 @@ networking:
   - 172.30.0.0/16
 platform:
   none: {}
-{%- if not openshift_origin %}
 fips: false
-{% endif %}
-{% if not restricted %}
-{% if not openshift_origin %}
+
 pullSecret: '{"auths": ...}'
-{% endif %}
-{% if openshift_origin %}
-pullSecret: '{"auths": ...}'
-{% endif %}
-{% if not openshift_origin %}
+
 sshKey: 'ssh-ed25519 AAAA...'
-{% endif %}
-{% if openshift_origin %}
-sshKey: 'ssh-ed25519 AAAA...'
-{% endif %}
-{% endif %}
-{% if restricted %}
-{% if not openshift_origin %}
-pullSecret: '{"auths":{"<local_registry>": {"auth": "<credentials>","email": "you@example.com"}}}'
-{% endif %}
-{% if openshift_origin %}
-pullSecret: '{"auths":{"<local_registry>": {"auth": "<credentials>","email": "you@example.com"}}}'
-{% endif %}
-{% if not openshift_origin %}
-sshKey: 'ssh-ed25519 AAAA...'
-{% endif %}
-{% if openshift_origin %}
-sshKey: 'ssh-ed25519 AAAA...'
-{% endif %}
-{% endif %}
-{% if restricted %}
-{% if not openshift_origin %}
-additionalTrustBundle: |
-  -----BEGIN CERTIFICATE-----
-  ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
-  -----END CERTIFICATE-----
-imageContentSources:
-- mirrors:
-  {%- if ibm_z or ibm_z_kvm %}
-  - <local_repository>/ocp4/openshift4
-  source: quay.io/openshift-release-dev/ocp-release
-- mirrors:
-  - <local_repository>/ocp4/openshift4
-  source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
-{% endif %}
-{% if not (ibm_z or ibm_z_kvm) %}
-  - <local_registry>/<local_repository_name>/release
-  source: quay.io/openshift-release-dev/ocp-release
-- mirrors:
-  - <local_registry>/<local_repository_name>/release
-  source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
-{% endif %}
-{% endif %}
-{% if openshift_origin %}
-additionalTrustBundle: |
-  -----BEGIN CERTIFICATE-----
-  ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
-  -----END CERTIFICATE-----
-imageContentSources:
-- mirrors:
-  {%- if ibm_z or ibm_z_kvm %}
-  - <local_repository>/ocp4/openshift4
-  source: quay.io/openshift-release-dev/ocp-release
-- mirrors:
-  - <local_repository>/ocp4/openshift4
-  source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
-{% endif %}
-{% if not (ibm_z or ibm_z_kvm) %}
-  - <local_registry>/<local_repository_name>/release
-  source: quay.io/openshift-release-dev/ocp-release
-- mirrors:
-  - <local_registry>/<local_repository_name>/release
-  source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
-{% endif %}
-{% endif %}
-{%- endif %}
+
 ```
 
 where:
@@ -1697,9 +1597,7 @@ where:
 :   Specifies the IP address pool to use for service IP addresses. You can enter only one IP address pool. This block must not overlap with existing physical networks. If you need to access the services from an external network, configure load balancers and routers to manage the traffic.
 
 `platform`
-:   Specifies the platform. You must set the platform to `none`. You cannot provide additional platform configuration variables for
-
-    your platform.
+:   Specifies the platform. You must set the platform to `none`. You cannot provide additional platform configuration variables for your platform.
 
 > [!IMPORTANT]
 > Clusters that are installed with the platform type `none` are unable to use some features, such as managing compute machines with the Machine API. This limitation applies even if the compute machines that are attached to the cluster are installed on a platform that would normally support the feature. This parameter cannot be changed after installation.
@@ -1715,13 +1613,13 @@ where:
 `pullSecret`
 :   Specifies the [pull secret from Red Hat OpenShift Cluster Manager](https://console.redhat.com/openshift/install/pull-secret). This pull secret allows you to authenticate with the services that are provided by the included authorities, including Quay.io, which serves the container images for OpenShift Container Platform components.
 
-`sshKey`
-:   Specifies the SSH public key for the `core` user in Red Hat Enterprise Linux CoreOS (RHCOS).
+`sshKey`:: Specifies the SSH public key for the `core` user in Red Hat Enterprise Linux CoreOS (RHCOS).
 
 > [!NOTE]
 > For production OpenShift Container Platform clusters on which you want to perform installation debugging or disaster recovery, specify an SSH key that your `ssh-agent` process uses.
 
 **Additional resources**
+{._additional-resources}
 
 - [Load balancing requirements for user-provisioned infrastructure](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#installation-load-balancing-user-infra_installing-bare-metal)
 - [Cluster capabilities](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-capabilities)
@@ -1754,46 +1652,42 @@ Production environments can deny direct access to the internet and instead have 
    proxy:
      httpProxy: http://<username>:<pswd>@<ip>:<port>
      httpsProxy: https://<username>:<pswd>@<ip>:<port>
+     noProxy: example.com
+   additionalTrustBundle: |
+       -----BEGIN CERTIFICATE-----
+       <MY_TRUSTED_CA_CERT>
+       -----END CERTIFICATE-----
+   additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle>
+   # ...
    ```
 
-{%- if not aws %} noProxy: example.com {% endif %} {% if aws %} noProxy: ec2.<aws_region>.amazonaws.com,elasticloadbalancing.<aws_region>.amazonaws.com,s3.<aws_region>.amazonaws.com {%- endif %} additionalTrustBundle: | -----BEGIN CERTIFICATE----- <MY_TRUSTED_CA_CERT> -----END CERTIFICATE----- additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle> # ... \`\`\`
+   where:
 
-````
-where:
+   `proxy.httpProxy`
+   :   Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be `http`.
 
-`proxy.httpProxy`
-:   Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be `http`.
+   `proxy.httpsProxy`
+   :   Specifies a proxy URL to use for creating HTTPS connections outside the cluster.
 
-`proxy.httpsProxy`
-:   Specifies a proxy URL to use for creating HTTPS connections outside the cluster.
+   `proxy.noProxy`
+   :   Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with `.` to match subdomains only. For example, `.y.com` matches `x.y.com`, but not `y.com`. Use `*` to bypass the proxy for all destinations.
 
-`proxy.noProxy`
-:   Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with `.` to match subdomains only. For example, `.y.com` matches `x.y.com`, but not `y.com`. Use `*` to bypass the proxy for all destinations.
+   `additionalTrustBundle`
+   :   If you specify this value, the installation program generates a config map named `user-ca-bundle` in the `openshift-config` namespace to hold the additional CA certificates. If you specify `additionalTrustBundle` and at least one proxy setting, the `Proxy` object references the `user-ca-bundle` config map in the `trustedCA` field. The Cluster Network Operator then creates a `trusted-ca-bundle` config map that merges the contents specified for the `trustedCA` parameter with the RHCOS trust bundle. You must set the `additionalTrustBundle` field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.
 
-`additionalTrustBundle`
-:   If you specify this value, the installation program generates a config map named `user-ca-bundle` in the `openshift-config` namespace to hold the additional CA certificates. If you specify `additionalTrustBundle` and at least one proxy setting, the `Proxy` object references the `user-ca-bundle` config map in the `trustedCA` field. The Cluster Network Operator then creates a `trusted-ca-bundle` config map that merges the contents specified for the `trustedCA` parameter with the RHCOS trust bundle. You must set the `additionalTrustBundle` field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.
+   `additionalTrustBundlePolicy`
+   :   Specifies the policy that determines the configuration of the `Proxy` object to reference the `user-ca-bundle` config map in the `trustedCA` field. The allowed values are `Proxyonly` and `Always`. Use `Proxyonly` to reference the `user-ca-bundle` config map only when you configure an `http/https` proxy. Use `Always` to always reference the `user-ca-bundle` config map. The default value is `Proxyonly`. Optional parameter.
 
-`additionalTrustBundlePolicy`
-:   Specifies the policy that determines the configuration of the `Proxy` object to reference the `user-ca-bundle` config map in the `trustedCA` field. The allowed values are `Proxyonly` and `Always`. Use `Proxyonly` to reference the `user-ca-bundle` config map only when you configure an `http/https` proxy. Use `Always` to always reference the `user-ca-bundle` config map. The default value is `Proxyonly`. Optional parameter.
+   > [!NOTE]
+   > The installation program does not support the proxy `readinessEndpoints` field.
 
-:::note
-
-The installation program does not support the proxy `readinessEndpoints` field.
-
-:::
-
-:::note
-
-If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
-
-```terminal
-$ ./openshift-install wait-for install-complete --log-level debug
-```
-
-:::
-````
-
-1. Save the file and reference it when installing OpenShift Container Platform.
+   > [!NOTE]
+   > If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
+   >
+   > ```terminal
+   > $ ./openshift-install wait-for install-complete --log-level debug
+   > ```
+2. Save the file and reference it when installing OpenShift Container Platform.
 
    The installation program creates a cluster-wide proxy named `cluster` that uses the proxy settings in the `install-config.yaml` file. If you do not give proxy settings, the installation program still creates a `cluster` `Proxy` object, but it has a nil `spec`.
 
@@ -1970,9 +1864,8 @@ The installation program converts the installation configuration into Kubernetes
    └── worker.ign
    ```
 
-   :::
-
 **Additional resources**
+{._additional-resources}
 
 - [Recovering from expired control plane certificates](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-3-expired-certs#dr-recovering-expired-certs)
 
@@ -1999,6 +1892,7 @@ You can configure RHCOS during ISO and PXE installations by using the following 
 Whether to use an ISO or PXE install depends on your situation. A PXE install requires an available DHCP service and more preparation, but can make the installation process more automated. An ISO install is a more manual process and can be inconvenient if you are setting up more than a few machines.
 
 **Additional resources**
+{._additional-resources}
 
 - [coreos-installer image mirror](https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/coreos-installer/)
 
@@ -2197,7 +2091,6 @@ You can use PXE or iPXE booting to install RHCOS on the machines.
        APPEND initrd=http://<HTTP_server>/rhcos-<version>-live-initramfs.<architecture>.img coreos.live.rootfs_url=http://<HTTP_server>/rhcos-<version>-live-rootfs.<architecture>.img coreos.inst.install_dev=/dev/sda coreos.inst.ignition_url=http://<HTTP_server>/bootstrap.ign
    ```
 
-   ```
    where:
 
    `kernel`
@@ -2206,79 +2099,70 @@ You can use PXE or iPXE booting to install RHCOS on the machines.
    `initrd=main`
    :   If you use multiple NICs, specify a single interface in the `ip` option. For example, to use DHCP on a NIC that is named `eno1`, set `ip=eno1:dhcp`. Specify the locations of the RHCOS files that you uploaded to your HTTP server. The `initrd` parameter value is the location of the `initramfs` file, the `coreos.live.rootfs_url` parameter value is the location of the `rootfs` file, and the `coreos.inst.ignition_url` parameter value is the location of the bootstrap Ignition config file. You can also add more kernel arguments to the `APPEND` line to configure networking or other boot options.
 
-   :::note
+   > [!NOTE]
+   > This configuration does not enable serial console access on machines with a graphical console. To configure a different console, add one or more `console=` arguments to the `APPEND` line. For example, add `console=tty0 console=ttyS0` to set the first PC serial port as the primary console and the graphical console as a secondary console. For more information, see [How does one set up a serial terminal and/or console in Red Hat Enterprise Linux?](https://access.redhat.com/articles/7212) and "Enabling the serial console for PXE and ISO installation" in the "Advanced RHCOS installation configuration" section.
 
-   This configuration does not enable serial console access on machines with a graphical console. To configure a different console, add one or more `console=` arguments to the `APPEND` line. For example, add `console=tty0 console=ttyS0` to set the first PC serial port as the primary console and the graphical console as a secondary console. For more information, see [How does one set up a serial terminal and/or console in Red Hat Enterprise Linux?](https://access.redhat.com/articles/7212) and "Enabling the serial console for PXE and ISO installation" in the "Advanced RHCOS installation configuration" section.
+- For iPXE (`x86_64`
 
-   :::
-   ```
+  - `aarch64` ):
 
-   - For iPXE (`x86_64`
+  ```
+  kernel http://<HTTP_server>/rhcos-<version>-live-kernel-<architecture> initrd=main coreos.live.rootfs_url=http://<HTTP_server>/rhcos-<version>-live-rootfs.<architecture>.img coreos.inst.install_dev=/dev/sda coreos.inst.ignition_url=http://<HTTP_server>/bootstrap.ign
+  initrd --name main http://<HTTP_server>/rhcos-<version>-live-initramfs.<architecture>.img
+  boot
+  ```
 
-   - `aarch64`
+  `kernel`
+  :   Specify the locations of the RHCOS files that you uploaded to your HTTP server. The `kernel` parameter value is the location of the `kernel` file, the `initrd=main` argument is needed for booting on UEFI systems, the `coreos.live.rootfs_url` parameter value is the location of the `rootfs` file, and the `coreos.inst.ignition_url` parameter value is the location of the bootstrap Ignition config file. If you use multiple NICs, specify a single interface in the `ip` option. For example, to use DHCP on a NIC that is named `eno1`, set `ip=eno1:dhcp`.
 
-   ): `    kernel http://<HTTP_server>/rhcos-<version>-live-kernel-<architecture> initrd=main coreos.live.rootfs_url=http://<HTTP_server>/rhcos-<version>-live-rootfs.<architecture>.img coreos.inst.install_dev=/dev/sda coreos.inst.ignition_url=http://<HTTP_server>/bootstrap.ign     initrd --name main http://<HTTP_server>/rhcos-<version>-live-initramfs.<architecture>.img     boot    `
+  `initrd`
+  :   Specify the location of the `initramfs` file that you uploaded to your HTTP server.
 
-   ```
-   `kernel`
-   :   Specify the locations of the RHCOS files that you uploaded to your HTTP server. The `kernel` parameter value is the location of the `kernel` file, the `initrd=main` argument is needed for booting on UEFI systems, the `coreos.live.rootfs_url` parameter value is the location of the `rootfs` file, and the `coreos.inst.ignition_url` parameter value is the location of the bootstrap Ignition config file. If you use multiple NICs, specify a single interface in the `ip` option.
-       For example, to use DHCP on a NIC that is named `eno1`, set `ip=eno1:dhcp`.
+  > [!NOTE]
+  > This configuration does not enable serial console access on machines with a graphical console.  To configure a different console, add one or more `console=` arguments to the `kernel` line.  For example, add `console=tty0 console=ttyS0` to set the first PC serial port as the primary console and the graphical console as a secondary console.  For more information, see [How does one set up a serial terminal and/or console in Red Hat Enterprise Linux?](https://access.redhat.com/articles/7212) and "Enabling the serial console for PXE and ISO installation" in the "Advanced RHCOS installation configuration" section.
 
-   `initrd`
-   :   Specify the location of the `initramfs` file that you uploaded to your HTTP server.
+  > [!NOTE]
+  > To network boot the CoreOS `kernel` on `aarch64` architecture, you need to use a version of iPXE build with the `IMAGE_GZIP` option enabled. See [`IMAGE_GZIP` option in iPXE](https://ipxe.org/buildcfg/image_gzip).
+- For PXE (with UEFI and Grub as second stage) on `aarch64`:
 
-   :::note
+  ```
+  menuentry 'Install CoreOS' {
+      linux rhcos-<version>-live-kernel-<architecture>  coreos.live.rootfs_url=http://<HTTP_server>/rhcos-<version>-live-rootfs.<architecture>.img coreos.inst.install_dev=/dev/sda coreos.inst.ignition_url=http://<HTTP_server>/bootstrap.ign
+      initrd rhcos-<version>-live-initramfs.<architecture>.img
+  }
+  ```
 
-   This configuration does not enable serial console access on machines with a graphical console.  To configure a different console, add one or more `console=` arguments to the `kernel` line.  For example, add `console=tty0 console=ttyS0` to set the first PC serial port as the primary console and the graphical console as a secondary console.  For more information, see [How does one set up a serial terminal and/or console in Red Hat Enterprise Linux?](https://access.redhat.com/articles/7212) and "Enabling the serial console for PXE and ISO installation" in the "Advanced RHCOS installation configuration" section.
+  where:
 
-   :::
+  `coreos.live.rootfs_url`
+  :   Specify the locations of the RHCOS files that you uploaded to your HTTP/TFTP server.
 
-   :::note
+  `kernel`
+  :   The `kernel` parameter value is the location of the `kernel` file on your TFTP server. The `coreos.live.rootfs_url` parameter value is the location of the `rootfs` file, and the `coreos.inst.ignition_url` parameter value is the location of the bootstrap Ignition config file on your HTTP Server. If you use multiple NICs, specify a single interface in the `ip` option. For example, to use DHCP on a NIC that is named `eno1`, set `ip=eno1:dhcp`.
 
-   To network boot the CoreOS `kernel` on `aarch64` architecture, you need to use a version of iPXE build with the `IMAGE_GZIP` option enabled. See [`IMAGE_GZIP` option in iPXE](https://ipxe.org/buildcfg/image_gzip).
+  `initrd rhcos`
+  :   Specify the location of the `initramfs` file that you uploaded to your TFTP server.
 
-   :::
-   ```
-
-   - For PXE (with UEFI and Grub as second stage) on `aarch64`:
-
-     ```
-     menuentry 'Install CoreOS' {
-         linux rhcos-<version>-live-kernel-<architecture>  coreos.live.rootfs_url=http://<HTTP_server>/rhcos-<version>-live-rootfs.<architecture>.img coreos.inst.install_dev=/dev/sda coreos.inst.ignition_url=http://<HTTP_server>/bootstrap.ign
-         initrd rhcos-<version>-live-initramfs.<architecture>.img
-     }
-     ```
-
-     where:
-
-     `coreos.live.rootfs_url`
-     :   Specify the locations of the RHCOS files that you uploaded to your HTTP/TFTP server.
-
-     `kernel`
-     :   The `kernel` parameter value is the location of the `kernel` file on your TFTP server. The `coreos.live.rootfs_url` parameter value is the location of the `rootfs` file, and the `coreos.inst.ignition_url` parameter value is the location of the bootstrap Ignition config file on your HTTP Server. If you use multiple NICs, specify a single interface in the `ip` option. For example, to use DHCP on a NIC that is named `eno1`, set `ip=eno1:dhcp`.
-
-     `initrd rhcos`
-     :   Specify the location of the `initramfs` file that you uploaded to your TFTP server.
-8. Monitor the progress of the RHCOS installation on the console of the machine.
+1. Monitor the progress of the RHCOS installation on the console of the machine.
 
    > [!IMPORTANT]
    > Be sure that the installation is successful on each node before commencing with the OpenShift Container Platform installation. Observing the installation process can also help to determine the cause of RHCOS installation issues that might arise.
-9. After RHCOS installs, the system reboots. During reboot, the system applies the Ignition config file that you specified.
-10. Check the console output to verify that Ignition ran.
+2. After RHCOS installs, the system reboots. During reboot, the system applies the Ignition config file that you specified.
+3. Check the console output to verify that Ignition ran.
 
-    ```terminal {title="Example command"}
-    Ignition: ran on 2022/03/14 14:48:33 UTC (this boot)
-    Ignition: user-provided config was applied
-    ```
-11. Continue to create the machines for your cluster.
+   ```terminal {title="Example command"}
+   Ignition: ran on 2022/03/14 14:48:33 UTC (this boot)
+   Ignition: user-provided config was applied
+   ```
+4. Continue to create the machines for your cluster.
 
-    > [!IMPORTANT]
-    > You must create the bootstrap and control plane machines at this time. If the control plane machines are not made schedulable, also create at least two compute machines before you install the cluster.
+   > [!IMPORTANT]
+   > You must create the bootstrap and control plane machines at this time. If the control plane machines are not made schedulable, also create at least two compute machines before you install the cluster.
 
-    If the required network, DNS, and load balancer infrastructure are in place, the OpenShift Container Platform bootstrap process begins automatically after the RHCOS nodes have rebooted.
+   If the required network, DNS, and load balancer infrastructure are in place, the OpenShift Container Platform bootstrap process begins automatically after the RHCOS nodes have rebooted.
 
-    > [!NOTE]
-    > RHCOS nodes do not include a default password for the  `core` user. You can access the nodes by running `ssh core@<node>.<cluster_name>.<base_domain>` as a user with access to the SSH private key that is paired to the public key that you specified in your `install_config.yaml` file. OpenShift Container Platform 4 cluster nodes running RHCOS are immutable and rely on Operators to apply cluster changes. Accessing cluster nodes by using SSH is not recommended. However, when investigating installation issues, if the OpenShift Container Platform API is not available, or the kubelet is not properly functioning on a target node, SSH access might be required for debugging or disaster recovery.
+   > [!NOTE]
+   > RHCOS nodes do not include a default password for the  `core` user. You can access the nodes by running `ssh core@<node>.<cluster_name>.<base_domain>` as a user with access to the SSH private key that is paired to the public key that you specified in your `install_config.yaml` file. OpenShift Container Platform 4 cluster nodes running RHCOS are immutable and rely on Operators to apply cluster changes. Accessing cluster nodes by using SSH is not recommended. However, when investigating installation issues, if the OpenShift Container Platform API is not available, or the kubelet is not properly functioning on a target node, SSH access might be required for debugging or disaster recovery.
 
 ### Advanced RHCOS installation configuration {#installation-user-infra-machines-advanced_installing-bare-metal}
 
@@ -2371,7 +2255,7 @@ The following procedure sets up a separate `/var` partition by adding a machine 
 
    ```yaml
    variant: openshift
-   version: {{ product_version }}.0
+   version: 4.22.0
    metadata:
      labels:
        machineconfiguration.openshift.io/role: worker
@@ -2495,18 +2379,19 @@ When doing an RHCOS manual installation, there are two types of Ignition configs
 
 When manually installing RHCOS, you can provide the following two types of Ignition configs:
 
-- ***Permanent install Ignition config***: Every manual RHCOS installation needs to pass one of the Ignition config files generated by `openshift-installer`, such as `bootstrap.ign`, `master.ign` and `worker.ign`, to carry out the installation.
+- **Permanent install Ignition config**: Every manual RHCOS installation needs to pass one of the Ignition config files generated by `openshift-installer`, such as `bootstrap.ign`, `master.ign` and `worker.ign`, to carry out the installation.
 
 > [!IMPORTANT]
 > Do not modify these Ignition config files directly. You can update the manifest files that are wrapped into the Ignition config files, as outlined in examples in the preceding sections.
 
 For PXE installations, you can pass the Ignition configs on the `APPEND` line using the `coreos.inst.ignition_url=` option. For ISO installations, after the ISO boots to the shell prompt, you must identify the Ignition config on the `coreos-installer` command line with the `--ignition-url=` option. In both cases, only HTTP and HTTPS protocols are supported.
 
-- ***Live install Ignition config***: This type can be created by using the `coreos-installer` `customize` subcommand of `coreos-installer` and its various options. With this method, the Ignition config passes to the live install medium, runs immediately upon booting, and performs setup tasks before or after the RHCOS system installs to disk. This method must be only used for performing tasks that must be done once and not applied again later, such as with advanced partitioning that cannot be done using a machine config.
+- **Live install Ignition config**: This type can be created by using the `coreos-installer` `customize` subcommand of `coreos-installer` and its various options. With this method, the Ignition config passes to the live install medium, runs immediately upon booting, and performs setup tasks before or after the RHCOS system installs to disk. This method must be only used for performing tasks that must be done once and not applied again later, such as with advanced partitioning that cannot be done using a machine config.
 
 For PXE or ISO boots, you can create the Ignition config and `APPEND` the `ignition.config.url=` option to identify the location of the Ignition config. You also need to append `ignition.firstboot ignition.platform.id=metal` else the `ignition.config.url` option is ignored.
 
 **Additional resources**
+{._additional-resources}
 
 - [Getting started with nmcli](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_and_managing_networking/index#getting-started-with-nmcli_configuring-and-managing-networking)
 - [Getting started with nmtui](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_and_managing_networking/index#getting-started-with-nmtui_configuring-and-managing-networking)
@@ -2577,9 +2462,7 @@ The `customize` subcommand is a general-purpose tool that can embed other types 
 
 #### Customizing a live RHCOS ISO image {#installation-user-infra-machines-advanced-customizing-live-iso_installing-bare-metal}
 
-You can customize a live RHCOS ISO image directly with the `coreos-installer iso customize`
-
-subcommand. When you boot the ISO image, the customizations are applied automatically. You can use this feature to configure the ISO image to automatically install RHCOS.
+You can customize a live RHCOS ISO image directly with the `coreos-installer iso customize` subcommand. When you boot the ISO image, the customizations are applied automatically. You can use this feature to configure the ISO image to automatically install RHCOS.
 
 **Procedure**
 
@@ -2776,6 +2659,7 @@ You can set the iSCSI target and initiator values for automatic mounting, bootin
    For more information about the iSCSI options supported by `dracut`, see the `dracut.cmdline` manual page.
 
 **Additional resources**
+{._additional-resources}
 
 - [`dracut.cmdline` manual page](https://www.man7.org/linux/man-pages/man7/dracut.cmdline.7.html)
 
@@ -2824,16 +2708,13 @@ You can set the iSCSI target and initiator values for automatic mounting, bootin
    For more information about see the `dracut.cmdline` manual page.
 
 **Additional resources**
+{._additional-resources}
 
 - [`dracut.cmdline` manual page](https://www.man7.org/linux/man-pages/man7/dracut.cmdline.7.html)
 
 #### Customizing a live RHCOS PXE environment {#installation-user-infra-machines-advanced-customizing-live-pxe_installing-bare-metal}
 
-You can customize a live RHCOS PXE environment directly with the
-
-`coreos-installer pxe customize`
-
-subcommand. When you boot the PXE environment, the customizations are applied automatically. You can use this feature to configure the PXE environment to automatically install RHCOS.
+You can customize a live RHCOS PXE environment directly with the `coreos-installer pxe customize` subcommand. When you boot the PXE environment, the customizations are applied automatically. You can use this feature to configure the PXE environment to automatically install RHCOS.
 
 **Procedure**
 
@@ -3093,6 +2974,7 @@ The following information provides examples for configuring networking and bondi
 The networking options are passed to the `dracut` tool during system boot. For more information about the networking options supported by `dracut`, see `dracut.cmdline` manual page.
 
 **Additional resources**
+{._additional-resources}
 
 - [`dracut.cmdline` manual page](https://www.man7.org/linux/man-pages/man7/dracut.cmdline.7.html)
 
@@ -3298,7 +3180,7 @@ You can install RHCOS by running `coreos-installer install <options> <device>` a
 
 The following table shows the subcommands, options, and arguments you can pass to the `coreos-installer` command.
 
-*`coreos-installer`** subcommands, command-line options, and arguments***
+**`coreos-installer` subcommands, command-line options, and arguments**
 
 <table>
 <thead>
@@ -3312,175 +3194,179 @@ The following table shows the subcommands, options, and arguments you can pass t
   <td><strong><em>Description</em></strong></td>
 </tr>
 <tr>
-  <td><code>$ coreos-installer install <options> <device></code></td>
-  <td>Embed an Ignition config in an ISO image.<br><br>2+</td>
+  <td><code>$ coreos-installer install &lt;options&gt; &lt;device&gt;</code></td>
+  <td>Embed an Ignition config in an ISO image.</td>
 </tr>
 <tr>
-  <td><strong>coreos-installer install subcommand options</strong></td>
+  <td colspan="2"><strong>coreos-installer install subcommand options</strong></td>
+</tr>
+<tr>
   <td><strong><em>Option</em></strong></td>
-</tr>
-<tr>
   <td><strong><em>Description</em></strong></td>
-  <td><code>-u</code>, <code>--image-url <url></code></td>
 </tr>
 <tr>
+  <td><code>-u</code>, <code>--image-url &lt;url&gt;</code></td>
   <td>Specify the image URL manually.</td>
-  <td><code>-f</code>, <code>--image-file <path></code></td>
 </tr>
 <tr>
+  <td><code>-f</code>, <code>--image-file &lt;path&gt;</code></td>
   <td>Specify a local image file manually. Used for debugging.</td>
-  <td><code>-i,</code> <code>--ignition-file <path></code></td>
 </tr>
 <tr>
+  <td><code>-i,</code> <code>--ignition-file &lt;path&gt;</code></td>
   <td>Embed an Ignition config from a file.</td>
-  <td><code>-I</code>, <code>--ignition-url <URL></code></td>
 </tr>
 <tr>
+  <td><code>-I</code>, <code>--ignition-url &lt;URL&gt;</code></td>
   <td>Embed an Ignition config from a URL.</td>
-  <td><code>--ignition-hash <digest></code></td>
 </tr>
 <tr>
+  <td><code>--ignition-hash &lt;digest&gt;</code></td>
   <td>Digest <code>type-value</code> of the Ignition config.</td>
-  <td><code>-p</code>, <code>--platform <name></code></td>
 </tr>
 <tr>
+  <td><code>-p</code>, <code>--platform &lt;name&gt;</code></td>
   <td>Override the Ignition platform ID for the installed system.</td>
-  <td><code>--console <spec></code></td>
 </tr>
 <tr>
-  <td>Set the kernel and boot loader console for the installed system. For more information about the format of <code><spec></code>, see the <a href="https://www.kernel.org/doc/html/latest/admin-guide/serial-console.html">Linux kernel serial console</a> documentation.</td>
-  <td><code>--append-karg <arg>...</code></td>
+  <td><code>--console &lt;spec&gt;</code></td>
+  <td>Set the kernel and boot loader console for the installed system. For more information about the format of <code>&lt;spec&gt;</code>, see the <a href="https://www.kernel.org/doc/html/latest/admin-guide/serial-console.html">Linux kernel serial console</a> documentation.</td>
 </tr>
 <tr>
+  <td><code>--append-karg &lt;arg&gt;...</code></td>
   <td>Append a default kernel argument to the installed system.</td>
-  <td><code>--delete-karg <arg>...</code></td>
 </tr>
 <tr>
+  <td><code>--delete-karg &lt;arg&gt;...</code></td>
   <td>Delete a default kernel argument from the installed system.</td>
+</tr>
+<tr>
   <td><code>-n</code>, <code>--copy-network</code></td>
+  <td>Copy the network configuration from the install environment.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>The <code>--copy-network</code> option only copies networking configuration found under <code>/etc/NetworkManager/system-connections</code>. In particular, it does not copy the system hostname.</dd></dl></td>
 </tr>
 <tr>
-  <td>Copy the network configuration from the install environment.<br><br><dl><dt>Important</dt><dd>The <code>--copy-network</code> option only copies networking configuration found under <code>/etc/NetworkManager/system-connections</code>. In particular, it does not copy the system hostname.</dd></dl></td>
-  <td><code>--network-dir <path></code></td>
-</tr>
-<tr>
+  <td><code>--network-dir &lt;path&gt;</code></td>
   <td>For use with <code>-n</code>. Default is <code>/etc/NetworkManager/system-connections/</code>.</td>
-  <td><code>--save-partlabel <lx>..</code></td>
 </tr>
 <tr>
+  <td><code>--save-partlabel &lt;lx&gt;..</code></td>
   <td>Save partitions with this label glob.</td>
-  <td><code>--save-partindex <id>...</code></td>
 </tr>
 <tr>
+  <td><code>--save-partindex &lt;id&gt;...</code></td>
   <td>Save partitions with this number or range.</td>
+</tr>
+<tr>
   <td><code>--insecure</code></td>
-</tr>
-<tr>
   <td>Skip RHCOS image signature verification.</td>
+</tr>
+<tr>
   <td><code>--insecure-ignition</code></td>
-</tr>
-<tr>
   <td>Allow Ignition URL without HTTPS or hash.</td>
-  <td><code>--architecture <name></code></td>
 </tr>
 <tr>
+  <td><code>--architecture &lt;name&gt;</code></td>
   <td>Target CPU architecture. Valid values are <code>x86_64</code> and <code>aarch64</code>.</td>
+</tr>
+<tr>
   <td><code>--preserve-on-error</code></td>
-</tr>
-<tr>
   <td>Do not clear partition table on error.</td>
-  <td><code>-h</code>, <code>--help</code></td>
 </tr>
 <tr>
-  <td>Print help information.<br><br>2+</td>
-  <td><strong>coreos-installer install subcommand argument</strong></td>
+  <td><code>-h</code>, <code>--help</code></td>
+  <td>Print help information.</td>
+</tr>
+<tr>
+  <td colspan="2"><strong>coreos-installer install subcommand argument</strong></td>
 </tr>
 <tr>
   <td><strong><em>Argument</em></strong></td>
   <td><strong><em>Description</em></strong></td>
 </tr>
 <tr>
-  <td><code><device></code></td>
-  <td>The destination device.<br><br>2+</td>
+  <td><code>&lt;device&gt;</code></td>
+  <td>The destination device.</td>
 </tr>
 <tr>
-  <td><strong>coreos-installer ISO subcommands</strong></td>
+  <td colspan="2"><strong>coreos-installer ISO subcommands</strong></td>
+</tr>
+<tr>
   <td><strong><em>Subcommand</em></strong></td>
-</tr>
-<tr>
   <td><strong><em>Description</em></strong></td>
-  <td><code>$ coreos-installer iso customize <options> <ISO_image></code></td>
 </tr>
 <tr>
+  <td><code>$ coreos-installer iso customize &lt;options&gt; &lt;ISO_image&gt;</code></td>
   <td>Customize a RHCOS live ISO image.</td>
-  <td><code>coreos-installer iso reset <options> <ISO_image></code></td>
 </tr>
 <tr>
+  <td><code>coreos-installer iso reset &lt;options&gt; &lt;ISO_image&gt;</code></td>
   <td>Restore a RHCOS live ISO image to default settings.</td>
-  <td><code>coreos-installer iso ignition remove <options> <ISO_image></code></td>
 </tr>
 <tr>
-  <td>Remove the embedded Ignition config from an ISO image.<br><br>2+</td>
-  <td><strong>coreos-installer ISO customize subcommand options</strong></td>
+  <td><code>coreos-installer iso ignition remove &lt;options&gt; &lt;ISO_image&gt;</code></td>
+  <td>Remove the embedded Ignition config from an ISO image.</td>
+</tr>
+<tr>
+  <td colspan="2"><strong>coreos-installer ISO customize subcommand options</strong></td>
 </tr>
 <tr>
   <td><strong><em>Option</em></strong></td>
   <td><strong><em>Description</em></strong></td>
 </tr>
 <tr>
-  <td><code>--dest-ignition <path></code></td>
+  <td><code>--dest-ignition &lt;path&gt;</code></td>
   <td>Merge the specified Ignition config file into a new configuration fragment for the destination system.</td>
 </tr>
 <tr>
-  <td><code>--dest-console <spec></code></td>
+  <td><code>--dest-console &lt;spec&gt;</code></td>
   <td>Specify the kernel and boot loader console for the destination system.</td>
 </tr>
 <tr>
-  <td><code>--dest-device <path></code></td>
+  <td><code>--dest-device &lt;path&gt;</code></td>
   <td>Install and overwrite the specified destination device.</td>
 </tr>
 <tr>
-  <td><code>--dest-karg-append <arg></code></td>
+  <td><code>--dest-karg-append &lt;arg&gt;</code></td>
   <td>Add a kernel argument to each boot of the destination system.</td>
 </tr>
 <tr>
-  <td><code>--dest-karg-delete <arg></code></td>
+  <td><code>--dest-karg-delete &lt;arg&gt;</code></td>
   <td>Delete a kernel argument from each boot of the destination system.</td>
 </tr>
 <tr>
-  <td><code>--network-keyfile <path></code></td>
+  <td><code>--network-keyfile &lt;path&gt;</code></td>
   <td>Configure networking by using the specified NetworkManager keyfile for live and destination systems.</td>
 </tr>
 <tr>
-  <td><code>--ignition-ca <path></code></td>
+  <td><code>--ignition-ca &lt;path&gt;</code></td>
   <td>Specify an additional TLS certificate authority to be trusted by Ignition.</td>
 </tr>
 <tr>
-  <td><code>--pre-install <path></code></td>
+  <td><code>--pre-install &lt;path&gt;</code></td>
   <td>Run the specified script before installation.</td>
 </tr>
 <tr>
-  <td><code>--post-install <path></code></td>
+  <td><code>--post-install &lt;path&gt;</code></td>
   <td>Run the specified script after installation.</td>
 </tr>
 <tr>
-  <td><code>--installer-config <path></code></td>
+  <td><code>--installer-config &lt;path&gt;</code></td>
   <td>Apply the specified installer configuration file.</td>
 </tr>
 <tr>
-  <td><code>--live-ignition <path></code></td>
+  <td><code>--live-ignition &lt;path&gt;</code></td>
   <td>Merge the specified Ignition config file into a new configuration fragment for the live environment.</td>
 </tr>
 <tr>
-  <td><code>--live-karg-append <arg></code></td>
+  <td><code>--live-karg-append &lt;arg&gt;</code></td>
   <td>Add a kernel argument to each boot of the live environment.</td>
 </tr>
 <tr>
-  <td><code>--live-karg-delete <arg></code></td>
+  <td><code>--live-karg-delete &lt;arg&gt;</code></td>
   <td>Delete a kernel argument from each boot of the live environment.</td>
 </tr>
 <tr>
-  <td><code>--live-karg-replace <k=o=n></code></td>
+  <td><code>--live-karg-replace &lt;k=o=n&gt;</code></td>
   <td>Replace a kernel argument in each boot of the live environment, in the form <code>key=old=new</code>.</td>
 </tr>
 <tr>
@@ -3488,80 +3374,84 @@ The following table shows the subcommands, options, and arguments you can pass t
   <td>Overwrite an existing Ignition config.</td>
 </tr>
 <tr>
-  <td><code>-o</code>, <code>--output <path></code></td>
+  <td><code>-o</code>, <code>--output &lt;path&gt;</code></td>
   <td>Write the ISO to a new output file.</td>
 </tr>
 <tr>
   <td><code>-h</code>, <code>--help</code></td>
-  <td>Print help information.<br><br>2+</td>
+  <td>Print help information.</td>
 </tr>
 <tr>
-  <td><strong>coreos-installer PXE subcommands</strong></td>
+  <td colspan="2"><strong>coreos-installer PXE subcommands</strong></td>
+</tr>
+<tr>
   <td><strong><em>Subcommand</em></strong></td>
+  <td><strong><em>Description</em></strong></td>
 </tr>
 <tr>
-  <td><strong><em>Description</em></strong></td>
   <td colspan="2">Note that not all of these options are accepted by all subcommands.</td>
 </tr>
 <tr>
-  <td><code>coreos-installer pxe customize <options> <path></code></td>
+  <td><code>coreos-installer pxe customize &lt;options&gt; &lt;path&gt;</code></td>
   <td>Customize a RHCOS live PXE boot config.</td>
 </tr>
 <tr>
-  <td><code>coreos-installer pxe ignition wrap <options></code></td>
+  <td><code>coreos-installer pxe ignition wrap &lt;options&gt;</code></td>
   <td>Wrap an Ignition config in an image.</td>
 </tr>
 <tr>
-  <td><code>coreos-installer pxe ignition unwrap <options> <image_name></code></td>
-  <td>Show the wrapped Ignition config in an image.<br><br>2+</td>
+  <td><code>coreos-installer pxe ignition unwrap &lt;options&gt; &lt;image_name&gt;</code></td>
+  <td>Show the wrapped Ignition config in an image.</td>
 </tr>
 <tr>
-  <td><strong>coreos-installer PXE customize subcommand options</strong></td>
+  <td colspan="2"><strong>coreos-installer PXE customize subcommand options</strong></td>
+</tr>
+<tr>
   <td><strong><em>Option</em></strong></td>
+  <td><strong><em>Description</em></strong></td>
 </tr>
 <tr>
-  <td><strong><em>Description</em></strong></td>
   <td colspan="2">Note that not all of these options are accepted by all subcommands.</td>
 </tr>
 <tr>
-  <td><code>--dest-ignition <path></code></td>
+  <td><code>--dest-ignition &lt;path&gt;</code></td>
   <td>Merge the specified Ignition config file into a new configuration fragment for the destination system.</td>
 </tr>
 <tr>
-  <td><code>--dest-console <spec></code></td>
+  <td><code>--dest-console &lt;spec&gt;</code></td>
   <td>Specify the kernel and boot loader console for the destination system.</td>
 </tr>
 <tr>
-  <td><code>--dest-device <path></code></td>
+  <td><code>--dest-device &lt;path&gt;</code></td>
   <td>Install and overwrite the specified destination device.</td>
 </tr>
 <tr>
-  <td><code>--network-keyfile <path></code></td>
+  <td><code>--network-keyfile &lt;path&gt;</code></td>
   <td>Configure networking by using the specified NetworkManager keyfile for live and destination systems.</td>
 </tr>
 <tr>
-  <td><code>--ignition-ca <path></code></td>
+  <td><code>--ignition-ca &lt;path&gt;</code></td>
   <td>Specify an additional TLS certificate authority to be trusted by Ignition.</td>
 </tr>
 <tr>
-  <td><code>--pre-install <path></code></td>
+  <td><code>--pre-install &lt;path&gt;</code></td>
   <td>Run the specified script before installation.</td>
 </tr>
 <tr>
-  <td><code>post-install <path></code></td>
+  <td><code>post-install &lt;path&gt;</code></td>
   <td>Run the specified script after installation.</td>
 </tr>
 <tr>
-  <td><code>--installer-config <path></code></td>
+  <td><code>--installer-config &lt;path&gt;</code></td>
   <td>Apply the specified installer configuration file.</td>
 </tr>
 <tr>
-  <td><code>--live-ignition <path></code></td>
+  <td><code>--live-ignition &lt;path&gt;</code></td>
   <td>Merge the specified Ignition config file into a new configuration fragment for the live environment.</td>
 </tr>
 <tr>
-  <td><code>-o,</code> <code>--output <path></code></td>
-  <td>Write the initramfs to a new output file.<br><br><dl><dt>Note</dt><dd>This option is required for PXE environments.</dd></dl></td>
+  <td><code>-o,</code> <code>--output &lt;path&gt;</code></td>
+  <td>Write the initramfs to a new output file.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>This option is required for PXE environments.</dd></dl></td>
 </tr>
 <tr>
   <td><code>-h</code>, <code>--help</code></td>
@@ -3577,7 +3467,7 @@ You can automatically start `coreos-installer` options at boot time by passing `
 
 The following table shows the RHCOS live installer `coreos.inst` boot options for ISO and PXE installations.
 
-*`coreos.inst`** boot options***
+**`coreos.inst` boot options**
 
 <table>
 <thead>
@@ -3589,7 +3479,7 @@ The following table shows the RHCOS live installer `coreos.inst` boot options fo
 <tbody>
 <tr>
   <td><code>coreos.inst.install_dev</code></td>
-  <td>Required. The block device on the system to install to.<br><br><dl><dt>Note</dt><dd>It is recommended to use the full path, such as <code>/dev/sda</code>, although <code>sda</code> is allowed.</dd></dl></td>
+  <td>Required. The block device on the system to install to.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>It is recommended to use the full path, such as <code>/dev/sda</code>, although <code>sda</code> is allowed.</dd></dl></td>
 </tr>
 <tr>
   <td><code>coreos.inst.ignition_url</code></td>
@@ -3720,7 +3610,7 @@ RHCOS also supports multipathing on a secondary disk. Instead of kernel argument
 
    ```yaml {title="Example multipath-config.bu"}
    variant: openshift
-   version: {{ product_version }}.0
+   version: 4.22.0
    systemd:
      units:
        - name: mpath-configure.service
@@ -3833,35 +3723,26 @@ You can manually install RHCOS on an iSCSI target.
 
    ```text
 
+   $ coreos-installer install \
+   /dev/disk/by-path/ip-<IP_address>:<port>-iscsi-<target_iqn>-lun-<lun> \
+   --append-karg rd.iscsi.initiator=<initiator_iqn> \
+   --append.karg netroot=<target_iqn> \
+   --console ttyS0,115200n8
+   --ignition-file <path_to_file>
+
    ```
 
-{%- if not restricted %} $ coreos-installer install
-/dev/disk/by-path/ip-<IP_address>:<port>-iscsi-<target_iqn>-lun-<lun>
---append-karg rd.iscsi.initiator=<initiator_iqn>
---append.karg netroot=<target_iqn>
---console ttyS0,115200n8 --ignition-file <path_to_file> {% endif %} {% if restricted %} $ coreos-installer install
-/dev/disk/by-path/ip-<IP_address>:<port>-iscsi-<target_iqn>-lun-<lun>
---append-karg rd.iscsi.initiator=<initiator_iqn>
---append.karg netroot=<target_iqn>
---console ttyS0,115200n8
---ignition-file <path_to_file>
---offline {%- endif %} \`\`\`
+   where:
 
-```
-where:
+   `/dev/disk/by-path/ip`
+   :   Specifies the installation location. You must provide the IP address of the target portal, the associated port number, the target iSCSI node in IQN format, and the iSCSI logical unit number (LUN).
 
-`/dev/disk/by-path/ip`
-:   Specifies the installation location. You must provide the IP address of the target portal, the associated port number, the target iSCSI node in IQN format, and the iSCSI logical unit number (LUN).
+   `<initiator_iqn>`
+   :   Specifies the iSCSI initiator, or client, name in IQN format. The initiator forms a session to connect to the iSCSI target.
 
-`<initiator_iqn>`
-:   Specifies the iSCSI initiator, or client, name in IQN format. The initiator forms a session to connect to the iSCSI target.
-
-`<target_iqn>`
-:   Specifies the iSCSI target, or server, name in IQN format.
-For more information about the iSCSI options supported by `dracut`, see the [`dracut.cmdline` manual page](https://www.man7.org/linux/man-pages/man7/dracut.cmdline.7.html).
-```
-
-1. Unmount the iSCSI disk with the following command:
+   `<target_iqn>`
+   :   Specifies the iSCSI target, or server, name in IQN format. For more information about the iSCSI options supported by `dracut`, see the [`dracut.cmdline` manual page](https://www.man7.org/linux/man-pages/man7/dracut.cmdline.7.html).
+3. Unmount the iSCSI disk with the following command:
 
    ```text
    $ iscsiadm --mode node --logoutall=all
@@ -3904,36 +3785,26 @@ On a completely diskless machine, the iSCSI target and initiator values can be p
 
    ```text
 
+   $ coreos-installer install \
+       /dev/mapper/mpatha \
+       --append-karg rd.iscsi.firmware=1 \
+       --append-karg rd.multipath=default \
+       --console ttyS0 \
+       --ignition-file <path_to_file>
+
    ```
 
-{%- if not restricted %} $ coreos-installer install
-/dev/mapper/mpatha
---append-karg rd.iscsi.firmware=1
---append-karg rd.multipath=default
---console ttyS0
---ignition-file <path_to_file> {% endif %} {% if restricted %} $ coreos-installer install
-/dev/mapper/mpatha
---append-karg rd.iscsi.firmware=1
---append-karg rd.multipath=default
---console ttyS0
---ignition-file <path_to_file>
---offline {%- endif %} \`\`\`
+   where:
 
-```
-where:
+   `/dev/mapper/mpatha`
+   :   Specifies the path of a single multipathed device. If there are multiple multipath devices connected, or to be explicit, you can use the World Wide Name (WWN) symlink available in `/dev/disk/by-path`.
 
-`/dev/mapper/mpatha`
-:   Specifies the path of a single multipathed device. If there are multiple multipath devices connected, or to be explicit, you can use the World Wide Name (WWN) symlink available in `/dev/disk/by-path`.
+   `rd.iscsi.firmware=1`
+   :   Specifies that the iSCSI parameter is read from the BIOS firmware.
 
-`rd.iscsi.firmware=1`
-:   Specifies that the iSCSI parameter is read from the BIOS firmware.
-
-`rd.multipath=default`
-:   Specifies to enable multipathing. Optional parameter.
-For more information about the iSCSI options supported by `dracut`, see the `dracut.cmdline` manual page.
-```
-
-1. Unmount the iSCSI disk:
+   `rd.multipath=default`
+   :   Specifies to enable multipathing. Optional parameter. For more information about the iSCSI options supported by `dracut`, see the `dracut.cmdline` manual page.
+4. Unmount the iSCSI disk:
 
    ```text
    $ iscsiadm --mode node --logout=all
@@ -3942,6 +3813,7 @@ For more information about the iSCSI options supported by `dracut`, see the `dra
    You can also perform this procedure by using the `coreos-installer iso customize` or `coreos-installer pxe customize` subcommands.
 
 **Additional resources**
+{._additional-resources}
 
 - [`dracut.cmdline` manual page](https://www.man7.org/linux/man-pages/man7/dracut.cmdline.7.html)
 - [Installing RHCOS and starting the OpenShift Container Platform bootstrap process](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#creating-machines-bare-metal_installing-bare-metal)
@@ -3989,6 +3861,7 @@ The OpenShift Container Platform bootstrap process begins after the cluster node
    > You must remove the bootstrap machine from the load balancer at this point. You can also remove or reformat the bootstrap machine itself.
 
 **Additional resources**
+{._additional-resources}
 
 - [Monitoring installation progress](/openshift-docs-markdown/support/troubleshooting/troubleshooting-installations#monitoring-installation-progress_troubleshooting-installations)
 
@@ -4088,7 +3961,8 @@ To allow newly added machines to join your OpenShift Container Platform cluster,
      where:
 
      `<csr_name>`
-     :   Specifies the name of a CSR from the list of current CSRs. \*   To approve all pending CSRs, run the following command:
+     :   Specifies the name of a CSR from the list of current CSRs.
+   - To approve all pending CSRs, run the following command:
 
      ```terminal
      $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs --no-run-if-empty oc adm certificate approve
@@ -4119,7 +3993,8 @@ To allow newly added machines to join your OpenShift Container Platform cluster,
      where:
 
      `<csr_name>`
-     :   Specifies the name of a CSR from the list of current CSRs. \*   To approve all pending CSRs, run the following command:
+     :   Specifies the name of a CSR from the list of current CSRs.
+   - To approve all pending CSRs, run the following command:
 
      ```terminal
      $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs oc adm certificate approve
@@ -4143,6 +4018,7 @@ To allow newly added machines to join your OpenShift Container Platform cluster,
    > You might need to wait a few minutes after approval of the server CSRs for the machines to change to the `Ready` status.
 
 **Additional resources**
+{._additional-resources}
 
 - [Certificate Signing Requests](https://kubernetes.io/docs/reference/access-authn-authz/certificate-signing-requests/)
 
@@ -4164,41 +4040,42 @@ After the control plane initializes, you must immediately configure some Operato
 
    ```terminal {title="Example output"}
    NAME                                       VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE
-   authentication                             {{ product_version }}.0    True        False         False      19m
-   baremetal                                  {{ product_version }}.0    True        False         False      37m
-   cloud-credential                           {{ product_version }}.0    True        False         False      40m
-   cluster-autoscaler                         {{ product_version }}.0    True        False         False      37m
-   config-operator                            {{ product_version }}.0    True        False         False      38m
-   console                                    {{ product_version }}.0    True        False         False      26m
-   csi-snapshot-controller                    {{ product_version }}.0    True        False         False      37m
-   dns                                        {{ product_version }}.0    True        False         False      37m
-   etcd                                       {{ product_version }}.0    True        False         False      36m
-   image-registry                             {{ product_version }}.0    True        False         False      31m
-   ingress                                    {{ product_version }}.0    True        False         False      30m
-   insights                                   {{ product_version }}.0    True        False         False      31m
-   kube-apiserver                             {{ product_version }}.0    True        False         False      26m
-   kube-controller-manager                    {{ product_version }}.0    True        False         False      36m
-   kube-scheduler                             {{ product_version }}.0    True        False         False      36m
-   kube-storage-version-migrator              {{ product_version }}.0    True        False         False      37m
-   machine-api                                {{ product_version }}.0    True        False         False      29m
-   machine-approver                           {{ product_version }}.0    True        False         False      37m
-   machine-config                             {{ product_version }}.0    True        False         False      36m
-   marketplace                                {{ product_version }}.0    True        False         False      37m
-   monitoring                                 {{ product_version }}.0    True        False         False      29m
-   network                                    {{ product_version }}.0    True        False         False      38m
-   node-tuning                                {{ product_version }}.0    True        False         False      37m
-   openshift-apiserver                        {{ product_version }}.0    True        False         False      32m
-   openshift-controller-manager               {{ product_version }}.0    True        False         False      30m
-   openshift-samples                          {{ product_version }}.0    True        False         False      32m
-   operator-lifecycle-manager                 {{ product_version }}.0    True        False         False      37m
-   operator-lifecycle-manager-catalog         {{ product_version }}.0    True        False         False      37m
-   operator-lifecycle-manager-packageserver   {{ product_version }}.0    True        False         False      32m
-   service-ca                                 {{ product_version }}.0    True        False         False      38m
-   storage                                    {{ product_version }}.0    True        False         False      37m
+   authentication                             4.22.0    True        False         False      19m
+   baremetal                                  4.22.0    True        False         False      37m
+   cloud-credential                           4.22.0    True        False         False      40m
+   cluster-autoscaler                         4.22.0    True        False         False      37m
+   config-operator                            4.22.0    True        False         False      38m
+   console                                    4.22.0    True        False         False      26m
+   csi-snapshot-controller                    4.22.0    True        False         False      37m
+   dns                                        4.22.0    True        False         False      37m
+   etcd                                       4.22.0    True        False         False      36m
+   image-registry                             4.22.0    True        False         False      31m
+   ingress                                    4.22.0    True        False         False      30m
+   insights                                   4.22.0    True        False         False      31m
+   kube-apiserver                             4.22.0    True        False         False      26m
+   kube-controller-manager                    4.22.0    True        False         False      36m
+   kube-scheduler                             4.22.0    True        False         False      36m
+   kube-storage-version-migrator              4.22.0    True        False         False      37m
+   machine-api                                4.22.0    True        False         False      29m
+   machine-approver                           4.22.0    True        False         False      37m
+   machine-config                             4.22.0    True        False         False      36m
+   marketplace                                4.22.0    True        False         False      37m
+   monitoring                                 4.22.0    True        False         False      29m
+   network                                    4.22.0    True        False         False      38m
+   node-tuning                                4.22.0    True        False         False      37m
+   openshift-apiserver                        4.22.0    True        False         False      32m
+   openshift-controller-manager               4.22.0    True        False         False      30m
+   openshift-samples                          4.22.0    True        False         False      32m
+   operator-lifecycle-manager                 4.22.0    True        False         False      37m
+   operator-lifecycle-manager-catalog         4.22.0    True        False         False      37m
+   operator-lifecycle-manager-packageserver   4.22.0    True        False         False      32m
+   service-ca                                 4.22.0    True        False         False      38m
+   storage                                    4.22.0    True        False         False      37m
    ```
 2. Configure the Operators that are not available.
 
 **Additional resources**
+{._additional-resources}
 
 - [Gathering logs from a failed installation](/openshift-docs-markdown/support/troubleshooting/troubleshooting-installations#installation-bootstrap-gather_troubleshooting-installations)
 - [Troubleshooting Operator issues](/openshift-docs-markdown/support/troubleshooting/troubleshooting-operator-issues#troubleshooting-operator-issues)
@@ -4224,10 +4101,7 @@ As a cluster administrator, following installation you must configure your regis
 **Prerequisites**
 
 - You have access to the cluster as a user with the `cluster-admin` role.
-- You have a cluster
-
-that uses manually-provisioned Red Hat Enterprise Linux CoreOS (RHCOS) nodes, such as bare metal.
-
+- You have a cluster that uses manually-provisioned Red Hat Enterprise Linux CoreOS (RHCOS) nodes, such as bare metal.
 - You have provisioned persistent storage for your cluster, such as Red Hat OpenShift Data Foundation.
 
   > [!IMPORTANT]
@@ -4273,7 +4147,7 @@ that uses manually-provisioned Red Hat Enterprise Linux CoreOS (RHCOS) nodes, s
 
    ```terminal {title="Example output"}
    NAME             VERSION              AVAILABLE   PROGRESSING   DEGRADED   SINCE   MESSAGE
-   image-registry   {{ product_version }}                 True        False         False      6h50m
+   image-registry   4.22                 True        False         False      6h50m
    ```
 5. Ensure that your registry is set to managed to enable building and pushing of images.
 
@@ -4403,37 +4277,37 @@ To finalize the installation on user-provisioned infrastructure, complete the cl
 
    ```terminal {title="Example output"}
    NAME                                       VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE
-   authentication                             {{ product_version }}.0    True        False         False      19m
-   baremetal                                  {{ product_version }}.0    True        False         False      37m
-   cloud-credential                           {{ product_version }}.0    True        False         False      40m
-   cluster-autoscaler                         {{ product_version }}.0    True        False         False      37m
-   config-operator                            {{ product_version }}.0    True        False         False      38m
-   console                                    {{ product_version }}.0    True        False         False      26m
-   csi-snapshot-controller                    {{ product_version }}.0    True        False         False      37m
-   dns                                        {{ product_version }}.0    True        False         False      37m
-   etcd                                       {{ product_version }}.0    True        False         False      36m
-   image-registry                             {{ product_version }}.0    True        False         False      31m
-   ingress                                    {{ product_version }}.0    True        False         False      30m
-   insights                                   {{ product_version }}.0    True        False         False      31m
-   kube-apiserver                             {{ product_version }}.0    True        False         False      26m
-   kube-controller-manager                    {{ product_version }}.0    True        False         False      36m
-   kube-scheduler                             {{ product_version }}.0    True        False         False      36m
-   kube-storage-version-migrator              {{ product_version }}.0    True        False         False      37m
-   machine-api                                {{ product_version }}.0    True        False         False      29m
-   machine-approver                           {{ product_version }}.0    True        False         False      37m
-   machine-config                             {{ product_version }}.0    True        False         False      36m
-   marketplace                                {{ product_version }}.0    True        False         False      37muser
-   monitoring                                 {{ product_version }}.0    True        False         False      29m
-   network                                    {{ product_version }}.0    True        False         False      38m
-   node-tuning                                {{ product_version }}.0    True        False         False      37m
-   openshift-apiserver                        {{ product_version }}.0    True        False         False      32muser
-   openshift-controller-manager               {{ product_version }}.0    True        False         False      30m
-   openshift-samples                          {{ product_version }}.0    True        False         False      32m
-   operator-lifecycle-manager                 {{ product_version }}.0    True        False         False      37m
-   operator-lifecycle-manager-catalog         {{ product_version }}.0    True        False         False      37m
-   operator-lifecycle-manager-packageserver   {{ product_version }}.0    True        False         False      32m
-   service-ca                                 {{ product_version }}.0    True        False         False      38m
-   storage                                    {{ product_version }}.0    True        False         False      37m
+   authentication                             4.22.0    True        False         False      19m
+   baremetal                                  4.22.0    True        False         False      37m
+   cloud-credential                           4.22.0    True        False         False      40m
+   cluster-autoscaler                         4.22.0    True        False         False      37m
+   config-operator                            4.22.0    True        False         False      38m
+   console                                    4.22.0    True        False         False      26m
+   csi-snapshot-controller                    4.22.0    True        False         False      37m
+   dns                                        4.22.0    True        False         False      37m
+   etcd                                       4.22.0    True        False         False      36m
+   image-registry                             4.22.0    True        False         False      31m
+   ingress                                    4.22.0    True        False         False      30m
+   insights                                   4.22.0    True        False         False      31m
+   kube-apiserver                             4.22.0    True        False         False      26m
+   kube-controller-manager                    4.22.0    True        False         False      36m
+   kube-scheduler                             4.22.0    True        False         False      36m
+   kube-storage-version-migrator              4.22.0    True        False         False      37m
+   machine-api                                4.22.0    True        False         False      29m
+   machine-approver                           4.22.0    True        False         False      37m
+   machine-config                             4.22.0    True        False         False      36m
+   marketplace                                4.22.0    True        False         False      37muser
+   monitoring                                 4.22.0    True        False         False      29m
+   network                                    4.22.0    True        False         False      38m
+   node-tuning                                4.22.0    True        False         False      37m
+   openshift-apiserver                        4.22.0    True        False         False      32muser
+   openshift-controller-manager               4.22.0    True        False         False      30m
+   openshift-samples                          4.22.0    True        False         False      32m
+   operator-lifecycle-manager                 4.22.0    True        False         False      37m
+   operator-lifecycle-manager-catalog         4.22.0    True        False         False      37m
+   operator-lifecycle-manager-packageserver   4.22.0    True        False         False      32m
+   service-ca                                 4.22.0    True        False         False      38m
+   storage                                    4.22.0    True        False         False      37m
    ```
 
    Alternatively, the following command notifies you when all of the clusters are available. The command also retrieves and displays credentials:
@@ -4493,6 +4367,7 @@ To provide metrics about cluster health and the success of updates, the Telemetr
 After you confirm that your [OpenShift Cluster Manager](https://console.redhat.com/openshift) inventory is correct, either maintained automatically by Telemetry or manually by using OpenShift Cluster Manager,use subscription watch to track your OpenShift Container Platform subscriptions at the account or multi-cluster level. For more information about subscription watch, see "Data Gathered and Used by Red Hat’s subscription services" in the *Additional resources* section.
 
 **Additional resources**
+{._additional-resources}
 
 - [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
 - [Validating an installation](/openshift-docs-markdown/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation)

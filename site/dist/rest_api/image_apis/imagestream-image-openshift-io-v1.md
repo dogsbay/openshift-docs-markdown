@@ -1,5 +1,5 @@
 ---
-title: ImageStream []
+title: ImageStream [image.openshift.io/v1]
 ---
 
 # ImageStream \[image.openshift.io/v1\] {#imagestream-image-openshift-io-v1}
@@ -84,7 +84,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `annotations` | `object (string)` | Optional; if specified, annotations that are applied to images retrieved via ImageStreamTags. |
-| `from` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | Optional; if specified, a reference to another image that this tag should point to. Valid values are ImageStreamTag, ImageStreamImage, and DockerImage.  ImageStreamTag references can only reference a tag within this same ImageStream. |
+| `from` | [`ObjectReference`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | Optional; if specified, a reference to another image that this tag should point to. Valid values are ImageStreamTag, ImageStreamImage, and DockerImage. ImageStreamTag references can only reference a tag within this same ImageStream. |
 | `generation` | `integer` | generation is a counter that tracks mutations to the spec tag (user intent). When a tag reference is changed the generation is set to match the current stream generation (which is incremented every time spec is changed). Other processes in the system like the image importer observe that the generation of spec tag is newer than the generation recorded in the status and use that as a trigger to import the newest remote tag. To trigger a new import, clients may set this value to zero which will reset the generation to the latest stream generation. Legacy clients will send this value as nil which will be merged with the current tag generation. |
 | `importPolicy` | `object` | TagImportPolicy controls how images related to this tag will be imported. |
 | `name` | `string` | name of the tag |
@@ -250,24 +250,24 @@ The following API endpoints are available:
 - `/apis/image.openshift.io/v1/watch/imagestreams`
 
   - `GET`: watch individual changes to a list of ImageStream. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreams`
+- `/apis/image.openshift.io/v1/namespaces/{namespace}/imagestreams`
 
   - `DELETE`: delete collection of ImageStream
   - `GET`: list or watch objects of kind ImageStream
   - `POST`: create an ImageStream
-- `/apis/image.openshift.io/v1/watch/namespaces/{{ namespace }}/imagestreams`
+- `/apis/image.openshift.io/v1/watch/namespaces/{namespace}/imagestreams`
 
   - `GET`: watch individual changes to a list of ImageStream. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreams/{{ name }}`
+- `/apis/image.openshift.io/v1/namespaces/{namespace}/imagestreams/{name}`
 
   - `DELETE`: delete an ImageStream
   - `GET`: read the specified ImageStream
   - `PATCH`: partially update the specified ImageStream
   - `PUT`: replace the specified ImageStream
-- `/apis/image.openshift.io/v1/watch/namespaces/{{ namespace }}/imagestreams/{{ name }}`
+- `/apis/image.openshift.io/v1/watch/namespaces/{namespace}/imagestreams/{name}`
 
   - `GET`: watch changes to an object of kind ImageStream. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
-- `/apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreams/{{ name }}/status`
+- `/apis/image.openshift.io/v1/namespaces/{namespace}/imagestreams/{name}/status`
 
   - `GET`: read status of the specified ImageStream
   - `PATCH`: partially update status of the specified ImageStream
@@ -311,7 +311,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreams {#_apisimageopenshiftiov1namespaces_namespace_imagestreams}
+### /apis/image.openshift.io/v1/namespaces/{namespace}/imagestreams {#_apisimageopenshiftiov1namespaces_namespace_imagestreams}
 
 HTTP method
 :   ```
@@ -385,7 +385,7 @@ Description
 | 202 - Accepted | [`ImageStream`](/openshift-docs-markdown/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/image.openshift.io/v1/watch/namespaces/{{ namespace }}/imagestreams {#_apisimageopenshiftiov1watchnamespaces_namespace_imagestreams}
+### /apis/image.openshift.io/v1/watch/namespaces/{namespace}/imagestreams {#_apisimageopenshiftiov1watchnamespaces_namespace_imagestreams}
 
 HTTP method
 :   ```
@@ -404,7 +404,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreams/{{ name }} {#_apisimageopenshiftiov1namespaces_namespace_imagestreams_name}
+### /apis/image.openshift.io/v1/namespaces/{namespace}/imagestreams/{name} {#_apisimageopenshiftiov1namespaces_namespace_imagestreams_name}
 
 **Global path parameters**
 
@@ -509,7 +509,7 @@ Description
 | 201 - Created | [`ImageStream`](/openshift-docs-markdown/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/image.openshift.io/v1/watch/namespaces/{{ namespace }}/imagestreams/{{ name }} {#_apisimageopenshiftiov1watchnamespaces_namespace_imagestreams_name}
+### /apis/image.openshift.io/v1/watch/namespaces/{namespace}/imagestreams/{name} {#_apisimageopenshiftiov1watchnamespaces_namespace_imagestreams_name}
 
 **Global path parameters**
 
@@ -534,7 +534,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreams/{{ name }}/status {#_apisimageopenshiftiov1namespaces_namespace_imagestreams_name_status}
+### /apis/image.openshift.io/v1/namespaces/{namespace}/imagestreams/{name}/status {#_apisimageopenshiftiov1namespaces_namespace_imagestreams_name_status}
 
 **Global path parameters**
 

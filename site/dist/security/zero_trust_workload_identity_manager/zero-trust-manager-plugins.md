@@ -133,6 +133,7 @@ Install cert-manager Operator for Red Hat OpenShift and create an `Issuer` or `C
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [cert-manager Operator for Red Hat OpenShift](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/security_and_compliance/cert-manager-operator-for-red-hat-openshift)
 
@@ -263,11 +264,11 @@ Resolve the most common cert-manager Operator for Red Hat OpenShift upstream aut
 
 | Symptom or error | Likely cause | Section |
 | --- | --- | --- |
-| `certificaterequests... is forbidden` | Missing permissions or wrong `namespace` | [#!cert-manager-plugin-permission-issuer_zero-trust-manager-plugins](#cert-manager-plugin-permission-issuer_zero-trust-manager-plugins) |
-| `issuer ... not found` | Wrong `issuerName`, `issuerKind`, or issuer namespace | [#!cert-manager-plugin-permission-issuer_zero-trust-manager-plugins](#cert-manager-plugin-permission-issuer_zero-trust-manager-plugins) |
-| Issuer not `READY` | Issuer misconfiguration | [#!cert-manager-plugin-permission-issuer_zero-trust-manager-plugins](#cert-manager-plugin-permission-issuer_zero-trust-manager-plugins) |
-| `CertificateRequest` not approved or denied | Approval policy or approver configuration | [#!cert-manager-plugin-certificaterequest_zero-trust-manager-plugins](#cert-manager-plugin-certificaterequest_zero-trust-manager-plugins) |
-| UpstreamAuthority fails to load in SPIRE Server logs | Invalid or incomplete `spec.upstreamAuthority.certManager` | [#!cert-manager-plugin-certificaterequest_zero-trust-manager-plugins](#cert-manager-plugin-certificaterequest_zero-trust-manager-plugins) |
+| `certificaterequests... is forbidden` | Missing permissions or wrong `namespace` | [cert-manager-plugin-permission-issuer_zero-trust-manager-plugins](#cert-manager-plugin-permission-issuer_zero-trust-manager-plugins) |
+| `issuer ... not found` | Wrong `issuerName`, `issuerKind`, or issuer namespace | [cert-manager-plugin-permission-issuer_zero-trust-manager-plugins](#cert-manager-plugin-permission-issuer_zero-trust-manager-plugins) |
+| Issuer not `READY` | Issuer misconfiguration | [cert-manager-plugin-permission-issuer_zero-trust-manager-plugins](#cert-manager-plugin-permission-issuer_zero-trust-manager-plugins) |
+| `CertificateRequest` not approved or denied | Approval policy or approver configuration | [cert-manager-plugin-certificaterequest_zero-trust-manager-plugins](#cert-manager-plugin-certificaterequest_zero-trust-manager-plugins) |
+| UpstreamAuthority fails to load in SPIRE Server logs | Invalid or incomplete `spec.upstreamAuthority.certManager` | [cert-manager-plugin-certificaterequest_zero-trust-manager-plugins](#cert-manager-plugin-certificaterequest_zero-trust-manager-plugins) |
 
 ### Permission and issuer errors {#cert-manager-plugin-permission-issuer_zero-trust-manager-plugins}
 
@@ -516,10 +517,10 @@ Resolve the most common SPIRE Vault upstream authority failures on OpenShift Con
 
 | Symptom or error | Likely cause | Section |
 | --- | --- | --- |
-| Connection refused, timeout, or unreachable Vault | Wrong `vaultAddr` or network path from the SPIRE Server pod | [#!spire-vault-troubleshooting-connection-tls_zero-trust-manager-plugins](#spire-vault-troubleshooting-connection-tls_zero-trust-manager-plugins) |
-| `x509: certificate signed by unknown authority` | Missing or invalid `caCertSecretRef` Secret | [#!spire-vault-troubleshooting-connection-tls_zero-trust-manager-plugins](#spire-vault-troubleshooting-connection-tls_zero-trust-manager-plugins) |
-| Vault `403` or Kubernetes auth failure | Vault role, ServiceAccount binding, or signing policy misconfiguration | [#!spire-vault-troubleshooting-authentication_zero-trust-manager-plugins](#spire-vault-troubleshooting-authentication_zero-trust-manager-plugins) |
-| `requested TTL ... exceeds max_lease_ttl` | `caValidity` exceeds the Vault PKI limit | [#!spire-vault-troubleshooting-ttl_zero-trust-manager-plugins](#spire-vault-troubleshooting-ttl_zero-trust-manager-plugins) |
+| Connection refused, timeout, or unreachable Vault | Wrong `vaultAddr` or network path from the SPIRE Server pod | [spire-vault-troubleshooting-connection-tls_zero-trust-manager-plugins](#spire-vault-troubleshooting-connection-tls_zero-trust-manager-plugins) |
+| `x509: certificate signed by unknown authority` | Missing or invalid `caCertSecretRef` Secret | [spire-vault-troubleshooting-connection-tls_zero-trust-manager-plugins](#spire-vault-troubleshooting-connection-tls_zero-trust-manager-plugins) |
+| Vault `403` or Kubernetes auth failure | Vault role, ServiceAccount binding, or signing policy misconfiguration | [spire-vault-troubleshooting-authentication_zero-trust-manager-plugins](#spire-vault-troubleshooting-authentication_zero-trust-manager-plugins) |
+| `requested TTL ... exceeds max_lease_ttl` | `caValidity` exceeds the Vault PKI limit | [spire-vault-troubleshooting-ttl_zero-trust-manager-plugins](#spire-vault-troubleshooting-ttl_zero-trust-manager-plugins) |
 
 ### Connection and TLS errors {#spire-vault-troubleshooting-connection-tls_zero-trust-manager-plugins}
 

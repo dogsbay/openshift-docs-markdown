@@ -62,6 +62,9 @@ When requesting an OAuth token using the implicit grant flow (`response_type=tok
 </tbody>
 </table>
 
+**Additional resources**
+{._additional-resources}
+
 - [Authorization Code Grant](https://tools.ietf.org/html/rfc6749#section-4.1)
 - [Implicit Grant](https://tools.ietf.org/html/rfc6749#section-4.2)
 - [Access Token Response](https://tools.ietf.org/html/rfc6749#section-4.2.2)
@@ -195,7 +198,7 @@ By default, no token inactivity timeout is set.
 
    ```terminal {title="Example output"}
    NAME             VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE
-   authentication   {{ product_version }}.0    True        False         False      145m
+   authentication   4.22.0    True        False         False      145m
    ```
 3. Check that a new revision of the Kubernetes API server pods has rolled out. This will take several minutes.
 
@@ -207,7 +210,7 @@ By default, no token inactivity timeout is set.
 
    ```terminal {title="Example output"}
    NAME             VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE
-   kube-apiserver   {{ product_version }}.0     True        False         False      145m
+   kube-apiserver   4.22.0     True        False         False      145m
    ```
 
    If `PROGRESSING` is showing `True`, wait a few minutes and try again.
@@ -336,6 +339,9 @@ where:
 `code_challenge_methods_supported`
 :   Specifies a JSON array containing a list of PKCE RFC 7636 code challenge methods supported by this authorization server. Code challenge method values are used in the `code_challenge_method` parameter defined in Section 4.3 of RFC 7636. The valid code challenge method values are those registered in the IANA PKCE Code Challenge Methods registry.
 
+**Additional resources**
+{._additional-resources}
+
 - [OAuth 2.0 Authorization Server Metadata](https://tools.ietf.org/html/draft-ietf-oauth-discovery-10)
 - [RFC 5785 - Defining Well-Known Uniform Resource Identifiers](https://tools.ietf.org/html/rfc5785)
 - [RFC 6749 - The OAuth 2.0 Authorization Framework](https://tools.ietf.org/html/rfc6749)
@@ -377,28 +383,28 @@ Events:
 
 The following is a list of the possible event errors:
 
-***No redirect URI annotations or an invalid URI is specified***
+**No redirect URI annotations or an invalid URI is specified**
 
 ```terminal
 Reason                  Message
 NoSAOAuthRedirectURIs   system:serviceaccount:myproject:proxy has no redirectURIs; set serviceaccounts.openshift.io/oauth-redirecturi.<some-value>=<redirect> or create a dynamic URI using serviceaccounts.openshift.io/oauth-redirectreference.<some-value>=<reference>
 ```
 
-***Invalid route specified***
+**Invalid route specified**
 
 ```terminal
 Reason                  Message
 NoSAOAuthRedirectURIs   [routes.route.openshift.io "<name>" not found, system:serviceaccount:myproject:proxy has no redirectURIs; set serviceaccounts.openshift.io/oauth-redirecturi.<some-value>=<redirect> or create a dynamic URI using serviceaccounts.openshift.io/oauth-redirectreference.<some-value>=<reference>]
 ```
 
-***Invalid reference type specified***
+**Invalid reference type specified**
 
 ```terminal
 Reason                  Message
 NoSAOAuthRedirectURIs   [no kind "<name>" is registered for version "v1", system:serviceaccount:myproject:proxy has no redirectURIs; set serviceaccounts.openshift.io/oauth-redirecturi.<some-value>=<redirect> or create a dynamic URI using serviceaccounts.openshift.io/oauth-redirectreference.<some-value>=<reference>]
 ```
 
-***Missing SA tokens***
+**Missing SA tokens**
 
 ```terminal
 Reason                  Message

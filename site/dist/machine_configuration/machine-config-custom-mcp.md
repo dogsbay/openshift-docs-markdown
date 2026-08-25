@@ -256,7 +256,8 @@ The following procedure shows you how to create a new custom machine config pool
 
    In this example, the `ci-ln-g5tpp5k-72292-hz2mw-worker-b-ps8xh` node is an existing node that was moved to the `custom` machine config pool.
 
-## Additional resources {#additional-resources_machine-config-creating-custom-mcp}
+**Additional resources**
+{._additional-resources}
 
 - [Node configuration management with machine config pools](/openshift-docs-markdown/machine_configuration/index#architecture-machine-config-pools_machine-config-overview)
 - [Manually updating the boot image](/openshift-docs-markdown/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)

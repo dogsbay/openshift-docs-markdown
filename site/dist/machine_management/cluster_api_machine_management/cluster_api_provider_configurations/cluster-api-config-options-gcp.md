@@ -1,5 +1,5 @@
 ---
-title: Cluster API configuration options for {{ gcp_full }}
+title: Cluster API configuration options for Google Cloud
 ---
 
 # Cluster API configuration options for Google Cloud {#cluster-api-config-options-gcp}

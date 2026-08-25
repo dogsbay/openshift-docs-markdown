@@ -81,11 +81,11 @@ stderr=Fatal: unable to open config file: Stat: The specified key does not exist
    logSource="pkg/backup/backup.go:435" name=mysql-7d99fc949-qbkds
   ```
 
-## Troubleshooting restic restore partially failed issue on {{ ocp }} 4.14 onward due to changed PSA policy {#oadp-restic-restore-failing-psa-policy_restic-issues}
+## Troubleshooting restic restore partially failed issue on {ocp} 4.14 onward due to changed PSA policy {#oadp-restic-restore-failing-psa-policy_restic-issues}
 
-Resolve a partial failure of Restic restore on {{ ocp }} 4.14 onward caused by Pod Security Admission (PSA) policy enforcement by adjusting the `restore-resource-priorities` field in your `DataProtectionApplication` (DPA) custom resource (CR). By doing so, you ensure that `SecurityContextConstraints` (SCC) resources are restored before pods. This helps you to complete restore operations successfully when PSA policies deny pod admission due to Velero resource restore order.
+Resolve a partial failure of Restic restore on {ocp} 4.14 onward caused by Pod Security Admission (PSA) policy enforcement by adjusting the `restore-resource-priorities` field in your `DataProtectionApplication` (DPA) custom resource (CR). By doing so, you ensure that `SecurityContextConstraints` (SCC) resources are restored before pods. This helps you to complete restore operations successfully when PSA policies deny pod admission due to Velero resource restore order.
 
-From 4.14 onward, {{ ocp }} enforces a PSA policy that can hinder the readiness of pods during a Restic restore process. If an SCC resource is not found when a pod is created, and the PSA policy on the pod is not set up to meet the required standards, pod admission is denied.
+From 4.14 onward, {ocp} enforces a PSA policy that can hinder the readiness of pods during a Restic restore process. If an SCC resource is not found when a pod is created, and the PSA policy on the pod is not set up to meet the required standards, pod admission is denied.
 
 Review the following example error:
 
@@ -141,7 +141,10 @@ restore=openshift-adp/todolist-backup-0780518c-08ed-11ee-805c-0a580a80e92c\n]",
    :   If you have an existing restore resource priority list, ensure you combine that existing list with the complete list.
 2. Ensure that the security standards for the application pods are aligned, as provided in [Fixing PodSecurity Admission warnings for deployments](https://access.redhat.com/solutions/7002730), to prevent deployment warnings. If the application is not aligned with security standards, an error can occur regardless of the SCC. 
 
-> [!NOTE]
-> This solution is temporary, and ongoing discussions are in progress to address it.
+   > [!NOTE]
+   > This solution is temporary, and ongoing discussions are in progress to address it.
+
+**Additional resources**
+{._additional-resources}
 
 - [Fixing PodSecurity Admission warnings for deployments](https://access.redhat.com/solutions/7002730)

@@ -66,82 +66,74 @@ If you are aware of the downsides and trade-offs of having the `kdump` service e
 > - In the `KDUMP_COMMANDLINE_APPEND` setting, replace `nr_cpus=1` with `maxcpus=1` because the `nr_cpus` parameter is not supported on this platform. Ensure that these adjustments are applied when configuring kdump on ppc64le systems.
 
 > [!NOTE]
-> See "Customizing nodes" in the *Installing -> Installation configuration* section for more information and examples on how to use Ignition configs.
+> See "Customizing nodes" in the *Installing → Installation configuration* section for more information and examples on how to use Ignition configs.
 
 **Procedure**
 
 1. Create a Butane config file, `99-worker-kdump.bu`, that configures and enables kdump. This creates a `MachineConfig` object for cluster-wide configuration:
 
    > [!NOTE]
+   > The [Butane version](https://coreos.github.io/butane/specs/) you specify in the config file should match the OpenShift Container Platform version and always ends in `0`. For example, `4.22.0`. See "Creating machine configs with Butane" for information about Butane.
+
+   ```yaml
+   variant: openshift
+   version: 4.22.0
+   metadata:
+     name: 99-worker-kdump
+     labels:
+       machineconfiguration.openshift.io/role: worker
+   openshift:
+     kernel_arguments:
+       - crashkernel=256M
+   storage:
+     files:
+       - path: /etc/kdump.conf
+         mode: 0644
+         overwrite: true
+         contents:
+           inline: |
+             path /var/crash
+             core_collector makedumpfile -l --message-level 7 -d 31
+
+       - path: /etc/sysconfig/kdump
+         mode: 0644
+         overwrite: true
+         contents:
+           inline: |
+             KDUMP_COMMANDLINE_REMOVE="hugepages hugepagesz slub_debug quiet log_buf_len swiotlb"
+             KDUMP_COMMANDLINE_APPEND="irqpoll nr_cpus=1 reset_devices cgroup_disable=memory mce=off numa=off udev.children-max=2 panic=10 rootflags=nofail acpi_no_memhotplug transparent_hugepage=never nokaslr novmcoredd hest_disable"
+             KEXEC_ARGS="-s"
+             KDUMP_IMG="vmlinuz"
+
+   systemd:
+     units:
+       - name: kdump.service
+         enabled: true
+   ```
+
+   where
+   :   - Replace `worker` with `master` in both locations when creating a `MachineConfig` object for control plane nodes.
+
+   - Provide kernel arguments to reserve memory for the crash kernel. You can add other kernel arguments if necessary. For the `ppc64le` platform, the recommended value for `crashkernel` is `crashkernel=2G-4G:384M,4G-16G:512M,16G-64G:1G,64G-128G:2G,128G-:4G`.
+   - If you want to change the contents of `/etc/kdump.conf` from the default, include this section and modify the `inline` subsection accordingly.
+   - If you want to change the contents of `/etc/sysconfig/kdump` from the default, include this section and modify the `inline` subsection accordingly.
+   - For the `ppc64le` platform, replace `nr_cpus=1` with `maxcpus=1`, which is not supported on this platform.
+
+   > [!NOTE]
+   > To export the dumps to NFS targets, some kernel modules must be explicitly added to the configuration file:
    >
-
-The [Butane version](https://coreos.github.io/butane/specs/) you specify in the config file should match the OpenShift Container Platform version and always ends in `0`. For example, `{{ product_version }}.0`. See "Creating machine configs with Butane" for information about Butane.
-
-````
-:::
-
-```yaml
-variant: openshift
-version: {{ product_version }}.0
-metadata:
-  name: 99-worker-kdump
-  labels:
-    machineconfiguration.openshift.io/role: worker
-openshift:
-  kernel_arguments:
-    - crashkernel=256M
-storage:
-  files:
-    - path: /etc/kdump.conf
-      mode: 0644
-      overwrite: true
-      contents:
-        inline: |
-          path /var/crash
-          core_collector makedumpfile -l --message-level 7 -d 31
-
-    - path: /etc/sysconfig/kdump
-      mode: 0644
-      overwrite: true
-      contents:
-        inline: |
-          KDUMP_COMMANDLINE_REMOVE="hugepages hugepagesz slub_debug quiet log_buf_len swiotlb"
-          KDUMP_COMMANDLINE_APPEND="irqpoll nr_cpus=1 reset_devices cgroup_disable=memory mce=off numa=off udev.children-max=2 panic=10 rootflags=nofail acpi_no_memhotplug transparent_hugepage=never nokaslr novmcoredd hest_disable"
-          KEXEC_ARGS="-s"
-          KDUMP_IMG="vmlinuz"
-
-systemd:
-  units:
-    - name: kdump.service
-      enabled: true
-```
-
-where
-````
-
-:   \*   Replace `worker` with `master` in both locations when creating a `MachineConfig` object for control plane nodes. \*   Provide kernel arguments to reserve memory for the crash kernel. You can add other kernel arguments if necessary. For the `ppc64le` platform, the recommended value for `crashkernel` is `crashkernel=2G-4G:384M,4G-16G:512M,16G-64G:1G,64G-128G:2G,128G-:4G`. \*   If you want to change the contents of `/etc/kdump.conf` from the default, include this section and modify the `inline` subsection accordingly. \*   If you want to change the contents of `/etc/sysconfig/kdump` from the default, include this section and modify the `inline` subsection accordingly. \*   For the `ppc64le` platform, replace `nr_cpus=1` with `maxcpus=1`, which is not supported on this platform.
-
-````
-:::note
-
-To export the dumps to NFS targets, some kernel modules must be explicitly added to the configuration file:
-
-```text title="Example /etc/kdump.conf file"
-nfs server.example.com:/export/cores
-core_collector makedumpfile -l --message-level 7 -d 31
-extra_bins /sbin/mount.nfs
-extra_modules nfs nfsv3 nfs_layout_nfsv41_files blocklayoutdriver nfs_layout_flexfiles nfs_layout_nfsv41_files
-```
-
-:::
-````
-
-1. Use Butane to generate a machine config YAML file, `99-worker-kdump.yaml`, containing the configuration to be delivered to the nodes:
+   > ```text {title="Example /etc/kdump.conf file"}
+   > nfs server.example.com:/export/cores
+   > core_collector makedumpfile -l --message-level 7 -d 31
+   > extra_bins /sbin/mount.nfs
+   > extra_modules nfs nfsv3 nfs_layout_nfsv41_files blocklayoutdriver nfs_layout_flexfiles nfs_layout_nfsv41_files
+   > ```
+2. Use Butane to generate a machine config YAML file, `99-worker-kdump.yaml`, containing the configuration to be delivered to the nodes:
 
    ```terminal
    $ butane 99-worker-kdump.bu -o 99-worker-kdump.yaml
    ```
-2. Put the YAML file into the `<installation_directory>/manifests/` directory during cluster setup. You can also create this `MachineConfig` object after cluster setup with the YAML file:
+3. Put the YAML file into the `<installation_directory>/manifests/` directory during cluster setup. You can also create this `MachineConfig` object after cluster setup with the YAML file:
 
    ```terminal
    $ oc create -f 99-worker-kdump.yaml
@@ -159,6 +151,7 @@ See the [Analyzing a core dump](https://access.redhat.com/documentation/en-us/re
 > It is recommended to perform vmcore analysis on a separate RHEL system.
 
 **Additional resources**
+{._additional-resources}
 
 - [Setting up kdump in RHEL](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/managing_monitoring_and_updating_the_kernel/configuring-kdump-on-the-command-line_managing-monitoring-and-updating-the-kernel)
 - [Linux kernel documentation for kdump](https://www.kernel.org/doc/html/latest/admin-guide/kdump/kdump.html)

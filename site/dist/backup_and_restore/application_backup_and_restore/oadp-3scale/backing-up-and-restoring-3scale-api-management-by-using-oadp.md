@@ -19,6 +19,7 @@ You can configure OADP to perform the following operations with 3scale API Manag
 - Restore the components to scale up the 3scale operator and deployment. For more details, see *Restoring 3scale API Management*.
 
 **Additional resources**
+{._additional-resources}
 
 - [Backing up 3scale API Management](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-3scale/backing-up-3scale-api-management-by-using-oadp#backing-up-3scale-api-management-by-using-oadp)
 - [Restoring 3scale API Management](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-3scale/restoring-3scale-api-management-by-using-oadp#restoring-3scale-api-management-by-using-oadp)

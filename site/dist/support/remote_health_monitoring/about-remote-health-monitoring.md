@@ -27,6 +27,7 @@ These benefits are listed as follows:
 - **Predictive analytics**. The insights displayed for your cluster on [OpenShift Cluster Manager](https://console.redhat.com/openshift) are enabled by the information collected from connected clusters. Red Hat is investing in applying deep learning, machine learning, and artificial intelligence automation to help identify issues that OpenShift Container Platform clusters are exposed to.
 
 **Additional resources**
+{._additional-resources}
 
 - [Red Hat Customer Portal](https://access.redhat.com/support/)
 
@@ -39,6 +40,7 @@ This stream of data is used by Red Hat to monitor the clusters in real-time and
 This debugging information is available to Red Hat Support and Engineering teams with the same restrictions as accessing data reported through support cases. All connected cluster information is used by Red Hat to help make OpenShift Container Platform better and more intuitive to use.
 
 **Additional resources**
+{._additional-resources}
 
 - [OpenShift Container Platform update documentation](/openshift-docs-markdown/updating/updating_a_cluster/updating-cluster-web-console#updating-cluster-web-console)
 
@@ -69,6 +71,7 @@ Usage information
     Telemetry does not collect identifying information such as usernames or passwords. Red Hat does not intend to collect personal information. If Red Hat discovers that personal information has been inadvertently received, Red Hat will delete such information. To the extent that any telemetry data constitutes personal data, please refer to the [Red Hat Privacy Statement](https://www.redhat.com/en/about/privacy-policy) for more information about Red Hat’s privacy practices.
 
 **Additional resources**
+{._additional-resources}
 
 - [Showing data collected by Telemetry](/openshift-docs-markdown/support/remote_health_monitoring/showing-data-collected-by-remote-health-monitoring#showing-data-collected-from-the-cluster_showing-data-collected-by-remote-health-monitoring)
 - [Upstream cluster-monitoring-operator source code](https://github.com/openshift/cluster-monitoring-operator/blob/master/manifests/0000_50_cluster-monitoring-operator_04-config.yaml)
@@ -89,6 +92,7 @@ Red Hat uses all connected cluster information to:
 - Make OpenShift Container Platform more intuitive
 
 **Additional resources**
+{._additional-resources}
 
 - [Red Hat Lightspeed Data & Application Security](https://console.redhat.com/security/insights)
 - [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
@@ -109,6 +113,7 @@ The type of information is listed as follows:
 - If an Operator reports an issue, information is collected about core OpenShift Container Platform pods in the `openshift-&#42;` and `kube-&#42;` projects. This includes state, resource, security context, volume information, and more.
 
 **Additional resources**
+{._additional-resources}
 
 - [Showing data collected by the Insights Operator](/openshift-docs-markdown/support/remote_health_monitoring/showing-data-collected-by-remote-health-monitoring#insights-operator-showing-data-collected-from-the-cluster_showing-data-collected-by-remote-health-monitoring)
 - [What data is being collected by the Insights Operator in OpenShift? (Knowledgebase article)](https://access.redhat.com/solutions/7066188)
@@ -129,6 +134,7 @@ Telemetry and Insights Operator data flow
 :   ![Telemetry and Insights Operator data flow](/openshift-docs-markdown/_assets/images/telmetry-and-insights-operator-data-flow.png)
 
 **Additional resources**
+{._additional-resources}
 
 - [About OpenShift Container Platform monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/about_monitoring/about-ocp-monitoring)
 - [Configuring your firewall](/openshift-docs-markdown/installing/install_config/configuring-firewall#configuring-firewall)
@@ -154,6 +160,7 @@ User control / enabling and disabling telemetry and configuration data collectio
 :   You can disable OpenShift Container Platform Telemetry and the Insights Operator by following the instructions "Remote health reporting".
 
 **Additional resources**
+{._additional-resources}
 
 - [Information collected by Telemetry](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#what-information-is-collected_about-remote-health-monitoring)
 - [Information collected by the Insights Operator](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#insights-operator-what-information-is-collected_about-remote-health-monitoring)

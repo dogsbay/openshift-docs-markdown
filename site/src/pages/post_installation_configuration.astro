@@ -16,11 +16,12 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 
-const headings = [{"depth":1,"slug":"post-install-configuration-overview","text":"Postinstallation configuration overview"},{"depth":2,"slug":"post-install-tasks_post-installation-configuration-overview","text":"Postinstallation configuration tasks"},{"depth":2,"slug":"additional-resources_post-installation-configuration-overview","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"post-install-configuration-overview","text":"Postinstallation configuration overview"},{"depth":2,"slug":"post-install-tasks_post-installation-configuration-overview","text":"Postinstallation configuration tasks"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/post_installation_configuration";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -39,7 +40,7 @@ const pageCategory = null;
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Postinstallation configuration overview {#post-install-configuration-overview}\n\nAfter installing OpenShift Container Platform, you can configure machines, cluster services, nodes, networking, storage, users, and alert notifications to meet your operational requirements.\n\nAfter installing OpenShift Container Platform, a cluster administrator can configure and customize the following components:\n\n- Machine\n- Bare metal\n- Cluster\n- Node\n- Network\n- Storage\n- Users\n- Alerts and notifications\n\n## Postinstallation configuration tasks {#post-install-tasks_post-installation-configuration-overview}\n\nYou can perform the postinstallation configuration tasks to configure your environment to meet your needs.\n\nThe following lists details these configurations:\n\n- Configure operating system features: The Machine Config Operator (MCO) manages `MachineConfig` objects. By using the MCO, you can configure nodes and custom resources.\n- Configure cluster features. You can modify the following features of an OpenShift Container Platform cluster:\n\n  - Image registry\n  - Networking configuration\n  - Image build behavior\n  - Identity provider\n  - The etcd configuration\n  - Machine set creation to handle the workloads\n  - Cloud provider credential management\n- Configuring a private cluster: By default, the installation program provisions OpenShift Container Platform by using a publicly accessible DNS and endpoints. To make your cluster accessible only from within an internal network, configure the following components to make them private:\n\n  - DNS\n  - Ingress Controller\n  - API server\n- Perform node operations: By default, OpenShift Container Platform uses Red Hat Enterprise Linux CoreOS (RHCOS) compute machines. You can perform the following node operations:\n\n  - Add and remove compute machines.\n  - Add and remove taints and tolerations.\n  - Configure the maximum number of pods per node.\n  - Enable Device Manager.\n- Configure users: Users can authenticate themselves to the API by using OAuth access tokens. You can configure OAuth to perform the following tasks:\n\n  - Specify an identity provider.\n  - Use role-based access control to define and grant permissions to users.\n  - Install an Operator from the software catalog.\n- Configuring alert notifications: By default, firing alerts are displayed on the Alerting UI of the web console. You can also configure OpenShift Container Platform to send alert notifications to external systems.\n\n## Additional resources {#additional-resources_post-installation-configuration-overview}\n\n- [Configure operating system features](/openshift-docs-markdown/machine_configuration/index#machine-config-overview)\n- [Configure cluster features](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#post-install-cluster-tasks)\n- [Configuring a private cluster](/openshift-docs-markdown/post_installation_configuration/configuring-private-cluster#configuring-private-cluster)\n- [Perform node operations](/openshift-docs-markdown/post_installation_configuration/node-tasks#post-install-node-tasks)\n- [Configure users](/openshift-docs-markdown/post_installation_configuration/preparing-for-users#post-install-preparing-for-users)\n- [Configuring alert notifications](/openshift-docs-markdown/post_installation_configuration/configuring-alert-notifications#configuring-alert-notifications)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Postinstallation configuration overview {#post-install-configuration-overview}\n\nAfter installing OpenShift Container Platform, you can configure machines, cluster services, nodes, networking, storage, users, and alert notifications to meet your operational requirements.\n\nAfter installing OpenShift Container Platform, a cluster administrator can configure and customize the following components:\n\n- Machine\n- Bare metal\n- Cluster\n- Node\n- Network\n- Storage\n- Users\n- Alerts and notifications\n\n## Postinstallation configuration tasks {#post-install-tasks_post-installation-configuration-overview}\n\nYou can perform the postinstallation configuration tasks to configure your environment to meet your needs.\n\nThe following lists details these configurations:\n\n- Configure operating system features: The Machine Config Operator (MCO) manages `MachineConfig` objects. By using the MCO, you can configure nodes and custom resources.\n- Configure cluster features. You can modify the following features of an OpenShift Container Platform cluster:\n\n  - Image registry\n  - Networking configuration\n  - Image build behavior\n  - Identity provider\n  - The etcd configuration\n  - Machine set creation to handle the workloads\n  - Cloud provider credential management\n- Configuring a private cluster: By default, the installation program provisions OpenShift Container Platform by using a publicly accessible DNS and endpoints. To make your cluster accessible only from within an internal network, configure the following components to make them private:\n\n  - DNS\n  - Ingress Controller\n  - API server\n- Perform node operations: By default, OpenShift Container Platform uses Red Hat Enterprise Linux CoreOS (RHCOS) compute machines. You can perform the following node operations:\n\n  - Add and remove compute machines.\n  - Add and remove taints and tolerations.\n  - Configure the maximum number of pods per node.\n  - Enable Device Manager.\n- Configure users: Users can authenticate themselves to the API by using OAuth access tokens. You can configure OAuth to perform the following tasks:\n\n  - Specify an identity provider.\n  - Use role-based access control to define and grant permissions to users.\n  - Install an Operator from the software catalog.\n- Configuring alert notifications: By default, firing alerts are displayed on the Alerting UI of the web console. You can also configure OpenShift Container Platform to send alert notifications to external systems.\n\n**Additional resources**\n{._additional-resources}\n\n- [Configure operating system features](/openshift-docs-markdown/machine_configuration/index#machine-config-overview)\n- [Configure cluster features](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#post-install-cluster-tasks)\n- [Configuring a private cluster](/openshift-docs-markdown/post_installation_configuration/configuring-private-cluster#configuring-private-cluster)\n- [Perform node operations](/openshift-docs-markdown/post_installation_configuration/node-tasks#post-install-node-tasks)\n- [Configure users](/openshift-docs-markdown/post_installation_configuration/preparing-for-users#post-install-preparing-for-users)\n- [Configuring alert notifications](/openshift-docs-markdown/post_installation_configuration/configuring-alert-notifications#configuring-alert-notifications)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,12 +79,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -91,7 +93,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="post-install-configuration-overview" class="group scroll-mt-20">Postinstallation configuration overview<a href="#post-install-configuration-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>After installing OpenShift Container Platform, you can configure machines, cluster services, nodes, networking, storage, users, and alert notifications to meet your operational requirements.</p>
+      <p class="_abstract">After installing OpenShift Container Platform, you can configure machines, cluster services, nodes, networking, storage, users, and alert notifications to meet your operational requirements.</p>
       <p>After installing OpenShift Container Platform, a cluster administrator can configure and customize the following components:</p>
       <ul>
       <li>Machine</li>
@@ -147,7 +149,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </li>
       <li>Configuring alert notifications: By default, firing alerts are displayed on the Alerting UI of the web console. You can also configure OpenShift Container Platform to send alert notifications to external systems.</li>
       </ul>
-      <h2 id="additional-resources_post-installation-configuration-overview" class="group scroll-mt-20">Additional resources<a href="#additional-resources_post-installation-configuration-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul>
       <li><a href="/openshift-docs-markdown/machine_configuration/index#machine-config-overview">Configure operating system features</a></li>
       <li><a href="/openshift-docs-markdown/post_installation_configuration/cluster-tasks#post-install-cluster-tasks">Configure cluster features</a></li>
@@ -156,6 +159,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li><a href="/openshift-docs-markdown/post_installation_configuration/preparing-for-users#post-install-preparing-for-users">Configure users</a></li>
       <li><a href="/openshift-docs-markdown/post_installation_configuration/configuring-alert-notifications#configuring-alert-notifications">Configuring alert notifications</a></li>
       </ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

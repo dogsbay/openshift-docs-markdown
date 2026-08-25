@@ -1,5 +1,5 @@
 ---
-title: StorageState []
+title: StorageState [migration.k8s.io/v1alpha1]
 ---
 
 # StorageState \[migration.k8s.io/v1alpha1\] {#storagestate-migration-k8s-io-v1alpha1}
@@ -76,13 +76,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of StorageState
   - `GET`: list objects of kind StorageState
   - `POST`: create a StorageState
-- `/apis/migration.k8s.io/v1alpha1/storagestates/{{ name }}`
+- `/apis/migration.k8s.io/v1alpha1/storagestates/{name}`
 
   - `DELETE`: delete a StorageState
   - `GET`: read the specified StorageState
   - `PATCH`: partially update the specified StorageState
   - `PUT`: replace the specified StorageState
-- `/apis/migration.k8s.io/v1alpha1/storagestates/{{ name }}/status`
+- `/apis/migration.k8s.io/v1alpha1/storagestates/{name}/status`
 
   - `GET`: read status of the specified StorageState
   - `PATCH`: partially update status of the specified StorageState
@@ -156,7 +156,7 @@ Description
 | 202 - Accepted | [`StorageState`](/openshift-docs-markdown/rest_api/storage_apis/storagestate-migration-k8s-io-v1alpha1#storagestate-migration-k8s-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/migration.k8s.io/v1alpha1/storagestates/{{ name }} {#_apismigrationk8siov1alpha1storagestates_name}
+### /apis/migration.k8s.io/v1alpha1/storagestates/{name} {#_apismigrationk8siov1alpha1storagestates_name}
 
 **Global path parameters**
 
@@ -260,7 +260,7 @@ Description
 | 201 - Created | [`StorageState`](/openshift-docs-markdown/rest_api/storage_apis/storagestate-migration-k8s-io-v1alpha1#storagestate-migration-k8s-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/migration.k8s.io/v1alpha1/storagestates/{{ name }}/status {#_apismigrationk8siov1alpha1storagestates_name_status}
+### /apis/migration.k8s.io/v1alpha1/storagestates/{name}/status {#_apismigrationk8siov1alpha1storagestates_name_status}
 
 **Global path parameters**
 

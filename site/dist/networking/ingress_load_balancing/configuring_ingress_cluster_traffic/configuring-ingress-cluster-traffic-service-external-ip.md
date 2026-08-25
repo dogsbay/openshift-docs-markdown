@@ -80,7 +80,7 @@ The examples in the procedure use a scenario that manually attaches an ExternalI
    mysql-55-rhel7     172.30.131.89   192.174.120.10  3306/TCP   13m
    ```
 
-## Additional resources {#configuring-ingress-cluster-traffic-service-external-ip-additional-resources}
+## Additional resources {#configuring-ingress-cluster-traffic-service-external-ip-additional-resources ._additional-resources}
 
 [Configuring ExternalIPs for services](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-externalip#configuring-externalip)
 

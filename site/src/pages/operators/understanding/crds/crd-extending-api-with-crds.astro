@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"crd-extending-api-with-crds","text":"Extend
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/operators/understanding/crds/crd-extending-api-with-crds";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="crd-extending-api-with-crds" class="group scroll-mt-20">Extending the Kubernetes API with custom resource definitions<a href="#crd-extending-api-with-crds" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>To extend the Kubernetes API with custom object types that behave like built-in Kubernetes objects, cluster administrators can create and manage custom resource definitions (CRDs) on their OpenShift Container Platform cluster.</p>
+      <p class="_abstract">To extend the Kubernetes API with custom object types that behave like built-in Kubernetes objects, cluster administrators can create and manage custom resource definitions (CRDs) on their OpenShift Container Platform cluster.</p>
       <h2 id="crd-custom-resource-definitions_crd-extending-api-with-crds" class="group scroll-mt-20">Custom resource definitions<a href="#crd-custom-resource-definitions_crd-extending-api-with-crds" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">In the Kubernetes API, a <em>resource</em> is an endpoint that stores a collection of API objects of a certain kind. For example, the built-in <code>Pods</code> resource contains a collection of <code>Pod</code> objects.</p>
       <p>A <em>custom resource definition</em> (CRD) object defines a new, unique object type, called a <em>kind</em>, in the cluster and lets the Kubernetes API server handle its entire lifecycle.</p>

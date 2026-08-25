@@ -379,7 +379,8 @@ To verify that an ingress default deny network policy blocks traffic in OpenShif
     </html>
     ```
 
-## Additional resources {#additional-resources_ovn-kubernetes-tracing-with-ovnkube}
+**Additional resources**
+{._additional-resources}
 
 - [Tracing Openflow with ovnkube-trace utility](https://access.redhat.com/solutions/5887511)
 - [ovnkube-trace](https://github.com/ovn-kubernetes/ovn-kubernetes/blob/master/docs/troubleshooting/ovnkube-trace.md)

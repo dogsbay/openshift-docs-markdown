@@ -95,6 +95,7 @@ The Performance Profile Creator (PPC) tool requires `must-gather` data. As a clu
       ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Gathering data about your cluster](/openshift-docs-markdown/support/gathering-cluster-data#nodes-nodes-managing)
 
@@ -138,7 +139,7 @@ The PPC tool is designed to be hosted-cluster aware. When it detects a hosted cl
    ```terminal
    $ podman run --entrypoint performance-profile-creator \
        -v /path/to/must-gather:/must-gather:z \
-       registry.redhat.io/openshift4/ose-cluster-node-tuning-rhel9-operator:v{{ product_version }} \
+       registry.redhat.io/openshift4/ose-cluster-node-tuning-rhel9-operator:v4.22 \
        --must-gather-dir-path /must-gather \
        --reserved-cpu-count=2 \
        --rt-kernel=false \
@@ -223,6 +224,7 @@ The PPC tool is designed to be hosted-cluster aware. When it detects a hosted cl
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Performance Profile Creator arguments](/openshift-docs-markdown/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#performance-profile-creator-arguments_cnf-tuning-low-latency-nodes-with-perf-profile)
 

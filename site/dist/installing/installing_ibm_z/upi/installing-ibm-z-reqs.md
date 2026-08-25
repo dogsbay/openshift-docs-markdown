@@ -1,5 +1,5 @@
 ---
-title: Installation requirements for {{ ibm_z_title }} and {{ ibm_linuxone_title }} infrastructure
+title: Installation requirements for IBM Z and IBM LinuxONE infrastructure
 ---
 
 # Installation requirements for IBM Z and IBM LinuxONE infrastructure {#installing-ibm-z-reqs}
@@ -30,15 +30,13 @@ The smallest OpenShift Container Platform clusters require the following hosts:
 
 The bootstrap, control plane, and compute machines must use Red Hat Enterprise Linux CoreOS (RHCOS) as the operating system.
 
-RHCOS is based on Red Hat Enterprise Linux (RHEL) 9.8 and inherits all of its hardware certifications and requirements.
-
-See [Red Hat Enterprise Linux technology capabilities and limits](https://access.redhat.com/articles/rhel-limits).
+RHCOS is based on Red Hat Enterprise Linux (RHEL) 9.8 and inherits all of its hardware certifications and requirements. See [Red Hat Enterprise Linux technology capabilities and limits](https://access.redhat.com/articles/rhel-limits).
 
 ### Minimum resource requirements for cluster installation {#installation-minimum-resource-requirements_installing-ibm-z-reqs}
 
 To ensure that your OpenShift Container Platform cluster runs as expected, each cluster machine must meet minimum CPU, memory, and storage requirements.
 
-***Minimum resource requirements***
+**Minimum resource requirements**
 
 <table>
 <thead>
@@ -47,49 +45,39 @@ To ensure that your OpenShift Container Platform cluster runs as expected, each 
   <th>Operating system</th>
   <th>vCPU</th>
   <th>Virtual RAM</th>
-
   <th>Storage</th>
+  <th>Input/Output Per Second (IOPS)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td>Input/Output Per Second (IOPS)</td>
   <td>Bootstrap</td>
   <td>RHCOS</td>
-
   <td>4</td>
   <td>16 GB</td>
   <td>100 GB</td>
-
+  <td>N/A</td>
 </tr>
 <tr>
-  <td>N/A</td>
   <td>Control plane</td>
   <td>RHCOS</td>
-
   <td>4</td>
   <td>16 GB</td>
   <td>100 GB</td>
+  <td>N/A</td>
 </tr>
 <tr>
-
-  <td>N/A</td>
   <td>Compute</td>
   <td>RHCOS</td>
-
   <td>2</td>
   <td>8 GB</td>
   <td>100 GB</td>
-
   <td>N/A</td>
-
-</tr>
-<tr>
-
 </tr>
 </tbody>
 </table>
-*   One physical core (IFL) provides two logical cores (threads) when SMT-2 is enabled. The hypervisor can provide two or more vCPUs.
+
+- One physical core (IFL) provides two logical cores (threads) when SMT-2 is enabled. The hypervisor can provide two or more vCPUs.
 
 > [!NOTE]
 > In OpenShift Container Platform version 4.22, RHCOS uses RHEL version 9.8, which updates the micro-architecture requirements. Each architecture requires the following minimum instruction set architectures (ISA):
@@ -103,7 +91,8 @@ To ensure that your OpenShift Container Platform cluster runs as expected, each 
 
 If an instance type for your platform meets the minimum requirements for cluster machines, it is supported to use in OpenShift Container Platform.
 
-## Additional resources {#additional-resources_resource-requirements_installing-ibm-z-reqs}
+**Additional resources**
+{._additional-resources}
 
 - [Bridging a HiperSockets LAN with a z/VM Virtual Switch (IBM(R) Documentation)](https://www.ibm.com/docs/en/zvm/latest?topic=networks-bridging-hipersockets-lan-zvm-virtual-switch)
 - [Scaling HyperPAV alias devices on Linux guests on z/VM](https://public.dhe.ibm.com/software/dw/linux390/perf/zvm_hpav00.pdf)
@@ -165,7 +154,7 @@ The RHEL KVM host in your environment must meet certain requirements to host the
 | --- | --- | --- | --- |
 | Network Interface Card (NIC) | One single z/VM virtual NIC in layer 2 mode | - | - |
 | Virtual switch (vSwitch) | z/VM VSWITCH in layer 2 Ethernet mode | - | - |
-| Network adapter | Direct-attached OSA, RoCE, or HiperSockets | Direct-attached OSA, RoCE, or HiperSockets | A RHEL KVM host configured with OSA, RoCE, or HiperSockets Either a RHEL KVM host that is configured to use bridged networking in libvirt or MacVTap to connect the network to the guests. See [Types of virtual network connections](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_and_managing_virtualization/index#types-of-virtual-machine-network-connections_configuring-virtual-machine-network-connections). |
+| Network adapter | Direct-attached OSA, RoCE, or HiperSockets | Direct-attached OSA, RoCE, or HiperSockets | A RHEL KVM host configured with OSA, RoCE, or HiperSockets<br>Either a RHEL KVM host that is configured to use bridged networking in libvirt or MacVTap to connect the network to the guests.<br>See [Types of virtual network connections](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_and_managing_virtualization/index#types-of-virtual-machine-network-connections_configuring-virtual-machine-network-connections). |
 
 #### Disk storage {#ibm-z-disk-storage_installing-ibm-z-reqs}
 
@@ -205,7 +194,8 @@ While OpenShift Container Platform runs on the minimum IBM Z(R) hardware require
 > [!NOTE]
 > When working in a z/VM environment, to ensure the availability of integral components in an overcommitted environment, increase the priority of the control plane by using the CP command `SET SHARE`. Do the same for infrastructure nodes, if they exist. See [SET SHARE](https://www.ibm.com/docs/en/zvm/latest?topic=commands-set-share) (IBM(R) Documentation).
 
-## Additional resources {#additional-resources_storage_installing-ibm-z-reqs}
+**Additional resources**
+{._additional-resources}
 
 - [Optimizing storage](/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 
@@ -242,7 +232,7 @@ This section provides details about the ports that are required.
 > [!IMPORTANT]
 > In connected OpenShift Container Platform environments, all nodes are required to have internet access to pull images for platform containers and provide telemetry data to Red Hat.
 
-***Ports used for all-machine to all-machine communications***
+**Ports used for all-machine to all-machine communications**
 
 <table>
 <thead>
@@ -256,56 +246,60 @@ This section provides details about the ports that are required.
 <tr>
   <td>ICMP</td>
   <td>N/A</td>
-  <td>Network reachability tests<br><br>.4+</td>
+  <td>Network reachability tests</td>
 </tr>
 <tr>
-  <td>TCP</td>
+  <td rowspan="4">TCP</td>
   <td><code>1936</code></td>
   <td>Metrics</td>
 </tr>
 <tr>
   <td><code>9000</code>-<code>9999</code></td>
-  <td>Host level services, including the node exporter on ports <code>9100</code>-<code>9101</code> andthe Cluster Version Operator on port <code>9099</code>.</td>
+  <td>Host level services, including the node exporter on ports <code>9100</code>-<code>9101</code> and the Cluster Version Operator on port <code>9099</code>.</td>
+</tr>
+<tr>
   <td><code>10250</code>-<code>10259</code></td>
-</tr>
-<tr>
   <td>The default ports that Kubernetes reserves</td>
-  <td><code>22623</code></td>
-  <td>The port handles traffic from the Machine Config Server and directs the traffic to the control plane machines..6+</td>
 </tr>
 <tr>
-  <td>UDP</td>
+  <td><code>22623</code></td>
+  <td>The port handles traffic from the Machine Config Server and directs the traffic to the control plane machines.</td>
+</tr>
+<tr>
+  <td rowspan="5">UDP</td>
   <td><code>6081</code></td>
   <td>Geneve</td>
 </tr>
 <tr>
   <td><code>9000</code>-<code>9999</code></td>
   <td>Host level services, including the node exporter on ports <code>9100</code>-<code>9101</code>.</td>
-  <td><code>500</code></td>
 </tr>
 <tr>
+  <td><code>500</code></td>
   <td>IPsec IKE packets</td>
+</tr>
+<tr>
   <td><code>4500</code></td>
   <td>IPsec NAT-T packets</td>
 </tr>
 <tr>
   <td><code>123</code></td>
   <td>Network Time Protocol (NTP) on UDP port <code>123</code>. If an external NTP time server is configured, you must open UDP port <code>123</code>.</td>
-  <td>TCP/UDP</td>
 </tr>
 <tr>
+  <td>TCP/UDP</td>
   <td><code>30000</code>-<code>32767</code></td>
   <td>Kubernetes node port</td>
-  <td>ESP</td>
 </tr>
 <tr>
+  <td>ESP</td>
   <td>N/A</td>
   <td>IPsec Encapsulating Security Payload (ESP)</td>
 </tr>
 </tbody>
 </table>
 
-***Ports used for all-machine to control plane communications***
+**Ports used for all-machine to control plane communications**
 
 <table>
 <thead>
@@ -324,7 +318,7 @@ This section provides details about the ports that are required.
 </tbody>
 </table>
 
-***Ports used for control plane machine to control plane machine communications***
+**Ports used for control plane machine to control plane machine communications**
 
 <table>
 <thead>
@@ -349,7 +343,8 @@ OpenShift Container Platform clusters are configured to use a public Network Tim
 
 If a DHCP server provides NTP server information, the chrony time service on the Red Hat Enterprise Linux CoreOS (RHCOS) machines read the information and can sync the clock with the NTP servers.
 
-## Additional resources {#additional-resources_network_installing-ibm-z-reqs}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring chrony time service](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-chrony_installing-customizing)
 
@@ -373,7 +368,7 @@ DNS A/AAAA or CNAME records are used for name resolution and PTR records are use
 
 The following DNS records are required for a user-provisioned OpenShift Container Platform cluster and they must be in place before installation. In each record, `<cluster_name>` is the cluster name and `<base_domain>` is the base domain that you specify in the `install-config.yaml` file. A complete DNS record takes the form: `<component>.<cluster_name>.<base_domain>.`.
 
-***Required DNS records***
+**Required DNS records**
 
 <table>
 <thead>
@@ -385,34 +380,33 @@ The following DNS records are required for a user-provisioned OpenShift Containe
 </thead>
 <tbody>
 <tr>
-  <td>.2+a</td>
-  <td>Kubernetes API</td>
-  <td><code>api.<cluster_name>.<base_domain>.</code></td>
+  <td rowspan="2">Kubernetes API</td>
+  <td><code>api.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
+  <td>A DNS A/AAAA or CNAME record, and a DNS PTR record, to identify the API load balancer. These records must be resolvable by both clients external to the cluster and from all the nodes within the cluster.</td>
 </tr>
 <tr>
-  <td>A DNS A/AAAA or CNAME record, and a DNS PTR record, to identify the API load balancer. These records must be resolvable by both clients external to the cluster and from all the nodes within the cluster.</td>
-  <td><code>api-int.<cluster_name>.<base_domain>.</code></td>
-  <td>A DNS A/AAAA or CNAME record, and a DNS PTR record, to internally identify the API load balancer. These records must be resolvable from all the nodes within the cluster.<dl><dt>Important</dt><dd>The API server must be able to resolve the worker nodes by the hostnamesthat are recorded in Kubernetes. If the API server cannot resolve the nodenames, then proxied API calls can fail, and you cannot retrieve logs from pods.</dd></dl></td>
+  <td><code>api-int.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
+  <td>A DNS A/AAAA or CNAME record, and a DNS PTR record, to internally identify the API load balancer. These records must be resolvable from all the nodes within the cluster.<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>The API server must be able to resolve the worker nodes by the hostnames that are recorded in Kubernetes. If the API server cannot resolve the node names, then proxied API calls can fail, and you cannot retrieve logs from pods.</dd></dl></td>
 </tr>
 <tr>
   <td>Routes</td>
-  <td><code>*.apps.<cluster_name>.<base_domain>.</code></td>
-  <td>A wildcard DNS A/AAAA or CNAME record that refers to the application ingress load balancer. The application ingress load balancer targets the machines that run the Ingress Controller pods.ifeval::["installing-ibm-z-reqs" == "installing-two-node-fencing"]By default, the Ingress Controller pods run on compute nodes. In cluster topologies without dedicated compute nodes, such as two-node or three-node clusters, the control plane nodes also carry the worker label, so the Ingress pods are scheduled on the control plane nodes.ifeval::["installing-ibm-z-reqs" != "installing-two-node-fencing"]The Ingress Controller pods run on the compute machines by default.These records must be resolvable by both clients external to the cluster and from all the nodes within the cluster.<br><br>For example, <code>console-openshift-console.apps.<cluster_name>.<base_domain></code> is used as a wildcard route to the OpenShift Container Platform console.</td>
+  <td><code>*.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
+  <td>A wildcard DNS A/AAAA or CNAME record that refers to the application ingress load balancer. The application ingress load balancer targets the machines that run the Ingress Controller pods.   The Ingress Controller pods run on the compute machines by default.  These records must be resolvable by both clients external to the cluster and from all the nodes within the cluster.<br><br>For example, <code>console-openshift-console.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;</code> is used as a wildcard route to the OpenShift Container Platform console.</td>
 </tr>
 <tr>
   <td>Bootstrap machine</td>
-  <td><code>bootstrap.<cluster_name>.<base_domain>.</code></td>
-  <td>A DNS A/AAAA or CNAME record, and a DNS PTR record, to identify the bootstrapmachine. These records must be resolvable by the nodes within the cluster.</td>
+  <td><code>bootstrap.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
+  <td>A DNS A/AAAA or CNAME record, and a DNS PTR record, to identify the bootstrap machine. These records must be resolvable by the nodes within the cluster.</td>
 </tr>
 <tr>
   <td>Control plane machines</td>
-  <td><code><control_plane><n>.<cluster_name>.<base_domain>.</code></td>
-  <td>DNS A/AAAA or CNAME records and DNS PTR records to identify each machinefor the control plane nodes. These records must be resolvable by the nodes within the cluster.<br><br>ifeval::["installing-ibm-z-reqs" != "installing-two-node-fencing"]</td>
+  <td><code>&lt;control_plane&gt;&lt;n&gt;.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
+  <td>DNS A/AAAA or CNAME records and DNS PTR records to identify each machine for the control plane nodes. These records must be resolvable by the nodes within the cluster.</td>
 </tr>
 <tr>
   <td>Compute machines</td>
-  <td><code><compute><n>.<cluster_name>.<base_domain>.</code></td>
-  <td>DNS A/AAAA or CNAME records and DNS PTR records to identify each machinefor the worker nodes. These records must be resolvable by the nodes within the cluster.</td>
+  <td><code>&lt;compute&gt;&lt;n&gt;.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
+  <td>DNS A/AAAA or CNAME records and DNS PTR records to identify each machine for the worker nodes. These records must be resolvable by the nodes within the cluster.</td>
 </tr>
 </tbody>
 </table>
@@ -464,12 +458,10 @@ bootstrap.ocp4.example.com.	IN	A	192.168.1.96
 control-plane0.ocp4.example.com.	IN	A	192.168.1.97
 control-plane1.ocp4.example.com.	IN	A	192.168.1.98
 ;
-{%- if context != "installing-two-node-fencing" %}
 control-plane2.ocp4.example.com.	IN	A	192.168.1.99
 ;
 compute0.ocp4.example.com.	IN	A	192.168.1.11
 compute1.ocp4.example.com.	IN	A	192.168.1.7
-{%- endif %}
 ;
 ;EOF
 ```
@@ -514,12 +506,10 @@ $TTL 1W
 97.1.168.192.in-addr.arpa.	IN	PTR	control-plane0.ocp4.example.com.
 98.1.168.192.in-addr.arpa.	IN	PTR	control-plane1.ocp4.example.com.
 ;
-{%- if context != "installing-two-node-fencing" %}
 99.1.168.192.in-addr.arpa.	IN	PTR	control-plane2.ocp4.example.com.
 ;
 11.1.168.192.in-addr.arpa.	IN	PTR	compute0.ocp4.example.com.
 7.1.168.192.in-addr.arpa.	IN	PTR	compute1.ocp4.example.com.
-{%- endif %}
 ;
 ;EOF
 ```
@@ -558,13 +548,13 @@ The load balancing infrastructure must meet the following requirements:
   - Layer 4 load balancing only. This can be referred to as Raw TCP or SSL Passthrough mode.
   - A stateless load balancing algorithm. The options vary based on the load balancer implementation.
 
-> [!IMPORTANT]
-> Do not configure session persistence for an API load balancer. Configuring session persistence for a Kubernetes API server might cause performance issues from excess application traffic for your OpenShift Container Platform cluster and the Kubernetes API that runs inside the cluster.
+  > [!IMPORTANT]
+  > Do not configure session persistence for an API load balancer. Configuring session persistence for a Kubernetes API server might cause performance issues from excess application traffic for your OpenShift Container Platform cluster and the Kubernetes API that runs inside the cluster.
 
 Configure the following ports on both the front and back of the API load balancers:
 
 | Port | Back-end machines (pool members) | Internal | External | Description |
-| --- | --- | --- | --- | --- |
+| --- | --- | :---: | :---: | --- |
 | `6443` | Bootstrap and control plane. You remove the bootstrap machine from the load balancer after the bootstrap machine initializes the cluster control plane. You must configure the `/readyz` endpoint for the API server health check probe. | X | X | Kubernetes API server |
 | `22623` | Bootstrap and control plane. You remove the bootstrap machine from the load balancer after the bootstrap machine initializes the cluster control plane. | X |  | Machine config server |
 
@@ -576,15 +566,15 @@ Configure the following ports on both the front and back of the API load balance
   - Layer 4 load balancing only. This can be referred to as Raw TCP or SSL Passthrough mode.
   - A connection-based or session-based persistence is recommended, based on the options available and types of applications that will be hosted on the platform.
 
-> [!TIP]
-> If the true IP address of the client can be seen by the application Ingress load balancer, enabling source IP-based session persistence can improve performance for applications that use end-to-end TLS encryption.
+  > [!TIP]
+  > If the true IP address of the client can be seen by the application Ingress load balancer, enabling source IP-based session persistence can improve performance for applications that use end-to-end TLS encryption.
 
 Configure the following ports on both the front and back of the load balancers:
 
 **Application Ingress load balancer**
 
 | Port | Back-end machines (pool members) | Internal | External | Description |
-| --- | --- | --- | --- | --- |
+| --- | --- | :---: | :---: | --- |
 | `443` | The machines that run the Ingress Controller pods, compute, or worker, by default. | X | X | HTTPS traffic |
 | `80` | The machines that run the Ingress Controller pods, compute, or worker, by default. | X | X | HTTP traffic |
 

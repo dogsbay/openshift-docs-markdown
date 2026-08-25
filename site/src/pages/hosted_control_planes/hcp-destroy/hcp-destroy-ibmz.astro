@@ -24,12 +24,13 @@ const headings = [{"depth":1,"slug":"hcp-destroy-ibmz","text":"Destroying a host
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp-destroy/hcp-destroy-ibmz";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
-const title = "Destroying a hosted cluster on {{ ibm_z_title }}";
+const title = "Destroying a hosted cluster on IBM Z";
 const description = "You might want to remove a hosted cluster if you are no longer using it, you are trying to reduce resources, or the hosted cluster is experiencing issues…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="hcp-destroy-ibmz" class="group scroll-mt-20">Destroying a hosted cluster on IBM Z<a href="#hcp-destroy-ibmz" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You might want to remove a hosted cluster if you are no longer using it, you are trying to reduce resources, or the hosted cluster is experiencing issues that are difficult to resolve.</p>
+      <p class="_abstract">You might want to remove a hosted cluster if you are no longer using it, you are trying to reduce resources, or the hosted cluster is experiencing issues that are difficult to resolve.</p>
       <h2 id="destroy-hc-ibmz-cli_hcp-destroy-ibmz" class="group scroll-mt-20">Destroying a hosted cluster on x86 bare metal with IBM Z compute nodes<a href="#destroy-hc-ibmz-cli_hcp-destroy-ibmz" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">To destroy a hosted cluster and its managed cluster on <code>x86</code> bare metal with IBM Z(R) compute nodes, you can use the command-line interface (CLI).</p>
       <p><strong>Procedure</strong></p>

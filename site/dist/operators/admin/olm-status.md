@@ -24,6 +24,7 @@ Subscriptions can report the following condition types:
 > Default OpenShift Container Platform cluster Operators are managed by the Cluster Version Operator (CVO) and they do not have a `Subscription` object. Application Operators are managed by Operator Lifecycle Manager (OLM) and they have a `Subscription` object.
 
 **Additional resources**
+{._additional-resources}
 
 - [Refreshing failing subscriptions](/openshift-docs-markdown/operators/admin/olm-deleting-operators-from-cluster#olm-refresh-subs_olm-deleting-operators-from-a-cluster)
 
@@ -81,10 +82,10 @@ You can view the status of an Operator catalog source by using the CLI.
 
 **Procedure**
 
-1. List the catalog sources in a namespace. For example, you can check the `{{ global_ns }}` namespace, which is used for cluster-wide catalog sources:
+1. List the catalog sources in a namespace. For example, you can check the `openshift-marketplace` namespace, which is used for cluster-wide catalog sources:
 
    ```terminal
-   $ oc get catalogsources -n {{ global_ns }}
+   $ oc get catalogsources -n openshift-marketplace
    ```
 
    ```terminal {title="Example output"}
@@ -97,12 +98,12 @@ You can view the status of an Operator catalog source by using the CLI.
 2. Use the `oc describe` command to get more details and status about a catalog source:
 
    ```terminal
-   $ oc describe catalogsource example-catalog -n {{ global_ns }}
+   $ oc describe catalogsource example-catalog -n openshift-marketplace
    ```
 
    ```terminal {title="Example output"}
    Name:         example-catalog
-   Namespace:    {{ global_ns }}
+   Namespace:    openshift-marketplace
    Labels:       <none>
    Annotations:  operatorframework.io/managed-by: marketplace-operator
                  target.workload.openshift.io/management: {"effect": "PreferredDuringScheduling"}
@@ -111,7 +112,7 @@ You can view the status of an Operator catalog source by using the CLI.
    # ...
    Status:
      Connection State:
-       Address:              example-catalog.{{ global_ns }}.svc:50051
+       Address:              example-catalog.openshift-marketplace.svc:50051
        Last Connect:         2021-09-09T17:07:35Z
        Last Observed State:  TRANSIENT_FAILURE
      Registry Service:
@@ -119,7 +120,7 @@ You can view the status of an Operator catalog source by using the CLI.
        Port:               50051
        Protocol:           grpc
        Service Name:       example-catalog
-       Service Namespace:  {{ global_ns }}
+       Service Namespace:  openshift-marketplace
    # ...
    ```
 
@@ -127,7 +128,7 @@ You can view the status of an Operator catalog source by using the CLI.
 3. List the pods in the namespace where your catalog source was created:
 
    ```terminal
-   $ oc get pods -n {{ global_ns }}
+   $ oc get pods -n openshift-marketplace
    ```
 
    ```terminal {title="Example output"}
@@ -143,19 +144,19 @@ You can view the status of an Operator catalog source by using the CLI.
 4. Use the `oc describe` command to inspect a pod for more detailed information:
 
    ```terminal
-   $ oc describe pod example-catalog-bwt8z -n {{ global_ns }}
+   $ oc describe pod example-catalog-bwt8z -n openshift-marketplace
    ```
 
    ```terminal {title="Example output"}
    Name:         example-catalog-bwt8z
-   Namespace:    {{ global_ns }}
+   Namespace:    openshift-marketplace
    Priority:     0
    Node:         ci-ln-jyryyg2-f76d1-ggdbq-worker-b-vsxjd/10.0.128.2
    ...
    Events:
      Type     Reason          Age                From               Message
      ----     ------          ----               ----               -------
-     Normal   Scheduled       48s                default-scheduler  Successfully assigned {{ global_ns }}/example-catalog-bwt8z to ci-ln-jyryyf2-f76d1-fgdbq-worker-b-vsxjd
+     Normal   Scheduled       48s                default-scheduler  Successfully assigned openshift-marketplace/example-catalog-bwt8z to ci-ln-jyryyf2-f76d1-fgdbq-worker-b-vsxjd
      Normal   AddedInterface  47s                multus             Add eth0 [10.131.0.40/23] from openshift-sdn
      Normal   BackOff         20s (x2 over 46s)  kubelet            Back-off pulling image "quay.io/example-org/example-catalog:v1"
      Warning  Failed          20s (x2 over 46s)  kubelet            Error: ImagePullBackOff
@@ -167,7 +168,8 @@ You can view the status of an Operator catalog source by using the CLI.
    In the preceding example output, the error messages indicate that the catalog source’s index image is failing to pull successfully because of an authorization issue. For example, the index image might be stored in a registry that requires login credentials.
 
 **Additional resources**
+{._additional-resources}
 
-- [Operator Lifecycle Manager concepts and resources -> Catalog source](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-catalogsource_olm-understanding-olm)
+- [Operator Lifecycle Manager concepts and resources → Catalog source](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-catalogsource_olm-understanding-olm)
 - [gRPC documentation: States of Connectivity](https://grpc.github.io/grpc/core/md_doc_connectivity-semantics-and-api.html)
 - [Accessing images for Operators from private registries](/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-accessing-images-private-registries_olm-managing-custom-catalogs)

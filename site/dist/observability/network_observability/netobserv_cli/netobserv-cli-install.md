@@ -68,6 +68,7 @@ Installing the Network Observability CLI (`oc netobserv`) is a separate procedur
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing and using CLI plugins](/openshift-docs-markdown/cli_reference/openshift_cli/extending-cli-plugins#cli-installing-plugins_cli-extend-plugins)
 - [Installing the CLI Manager Operator](/openshift-docs-markdown/cli_reference/cli_manager/cli-manager-install#installing-cli-manager)

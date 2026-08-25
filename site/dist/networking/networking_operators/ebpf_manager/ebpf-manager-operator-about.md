@@ -40,7 +40,8 @@ The eBPF Manager Operator offers the following features:
 - Facilitates the coexistence of multiple eBPF programs from different sources using protocols like libxdp for XDP and TC programs, enhancing interoperability.
 - Streamlines the deployment and lifecycle management of eBPF programs in Kubernetes. Developers can focus on program interaction rather than lifecycle management, with support for existing eBPF libraries like Cilium, libbpf, and Aya.
 
-## Additional resources {#additional-resources_bpfman-operator-about}
+**Additional resources**
+{._additional-resources}
 
 - [eBPF Documentation](https://ebpf.io/what-is-ebpf/)
 - [bpfman](https://bpfman.io/latest)

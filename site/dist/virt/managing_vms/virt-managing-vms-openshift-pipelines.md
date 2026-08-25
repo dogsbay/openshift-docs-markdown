@@ -1,8 +1,8 @@
 ---
-title: Manage virtual machines with {{ pipelines_shortname }}
+title: Manage virtual machines with OpenShift Pipelines
 ---
 
-# Manage virtual machines with {{ pipelines_shortname }} {#virt-managing-vms-openshift-pipelines}
+# Manage virtual machines with OpenShift Pipelines {#virt-managing-vms-openshift-pipelines}
 
 Red Hat OpenShift Pipelines is a Kubernetes-native CI/CD framework that allows developers to design and run each step of the CI/CD pipeline in its own container.
 
@@ -58,7 +58,7 @@ You can run the example pipelines from the **Pipelines** menu in the web console
 
 **Procedure**
 
-1. Click **Pipelines** -> **Pipelines** in the side menu.
+1. Click **Pipelines** → **Pipelines** in the side menu.
 2. Select a pipeline to open the **Pipeline details** page.
 3. From the **Actions** list, select **Start**. The **Start Pipeline** dialog is displayed.
 4. Keep the default values for the parameters and then click **Start** to run the pipeline. The **Details** tab tracks the progress of each task and displays the pipeline status.
@@ -99,7 +99,7 @@ Use a `PipelineRun` resource to run the example pipelines. A `PipelineRun` objec
            -   name: name
                value: windows-efi-installer
            -   name: version
-               value: {{ product_version }}
+               value: 4.22
            resolver: hub
        taskRunSpecs:
        -   pipelineTaskName: modify-windows-iso-file
@@ -136,7 +136,8 @@ You can clean up deprecated or unused resources associated with the Red Hat Ope
 
   If the Red Hat OpenShift Pipelines Operator custom resource definitions (CRDs) have already been removed, the command may return an error. You can safely ignore this, as all other matching resources will still be deleted.
 
-## Additional resources {#additional-resources_virt-managing-vms-openshift-pipelines}
+**Additional resources**
+{._additional-resources}
 
 - [Understanding OpenShift Pipelines](https://docs.openshift.com/pipelines/latest/about/understanding-openshift-pipelines.html)
 - [Task catalog (ArtifactHub)](https://artifacthub.io/packages/search?repo=redhat-tekton-tasks&sort=relevance&page=1)

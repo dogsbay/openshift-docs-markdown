@@ -1,5 +1,5 @@
 ---
-title: KubeControllerManager []
+title: KubeControllerManager [operator.openshift.io/v1]
 ---
 
 # KubeControllerManager \[operator.openshift.io/v1\] {#kubecontrollermanager-operator-openshift-io-v1}
@@ -41,10 +41,10 @@ Type
 | --- | --- | --- |
 | `failedRevisionLimit` | `integer` | failedRevisionLimit is the number of failed static pod installer revisions to keep on disk and in the api -1 = unlimited, 0 or unset = 5 (default) |
 | `forceRedeploymentReason` | `string` | forceRedeploymentReason can be used to force the redeployment of the operand by providing a unique string. This provides a mechanism to kick a previously failed deployment and provide a reason why you think it will work this time instead of failing again on the same config. |
-| `logLevel` | `string` | logLevel is an intent based logging for an overall component.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands. Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
+| `logLevel` | `string` | logLevel is an intent based logging for an overall component. It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `managementState` | `string` | managementState indicates whether and how the operator should manage the component |
-| `observedConfig` | \`\` | observedConfig holds a sparse config that controller has observed from the cluster state.  It exists in spec because it is an input to the level for the operator |
-| `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves. Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
+| `observedConfig` | \`\` | observedConfig holds a sparse config that controller has observed from the cluster state. It exists in spec because it is an input to the level for the operator |
+| `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself. It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `succeededRevisionLimit` | `integer` | succeededRevisionLimit is the number of successful static pod installer revisions to keep on disk and in the api -1 = unlimited, 0 or unset = 5 (default) |
 | `unsupportedConfigOverrides` | \`\` | unsupportedConfigOverrides overrides the final configuration that was computed by the operator. Red Hat does not support the use of this field. Misuse of this field could lead to unexpected behavior or conflict with other configuration options. Seek guidance from the Red Hat support before using this field. Use of this property blocks cluster upgrades, it must be removed before upgrading your cluster. |
 | `useMoreSecureServiceCA` | `boolean` | useMoreSecureServiceCA indicates that the service-ca.crt provided in SA token volumes should include only enough certificates to validate service serving certificates. Once set to true, it cannot be set to false. Even if someone finds a way to set it back to false, the service-ca.crt files that previously existed will only have the more secure content. |
@@ -100,7 +100,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` |  |
 | `reason` | `string` |  |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
@@ -185,13 +185,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of KubeControllerManager
   - `GET`: list objects of kind KubeControllerManager
   - `POST`: create a KubeControllerManager
-- `/apis/operator.openshift.io/v1/kubecontrollermanagers/{{ name }}`
+- `/apis/operator.openshift.io/v1/kubecontrollermanagers/{name}`
 
   - `DELETE`: delete a KubeControllerManager
   - `GET`: read the specified KubeControllerManager
   - `PATCH`: partially update the specified KubeControllerManager
   - `PUT`: replace the specified KubeControllerManager
-- `/apis/operator.openshift.io/v1/kubecontrollermanagers/{{ name }}/status`
+- `/apis/operator.openshift.io/v1/kubecontrollermanagers/{name}/status`
 
   - `GET`: read status of the specified KubeControllerManager
   - `PATCH`: partially update status of the specified KubeControllerManager
@@ -265,7 +265,7 @@ Description
 | 202 - Accepted | [`KubeControllerManager`](/openshift-docs-markdown/rest_api/operator_apis/kubecontrollermanager-operator-openshift-io-v1#kubecontrollermanager-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operator.openshift.io/v1/kubecontrollermanagers/{{ name }} {#_apisoperatoropenshiftiov1kubecontrollermanagers_name}
+### /apis/operator.openshift.io/v1/kubecontrollermanagers/{name} {#_apisoperatoropenshiftiov1kubecontrollermanagers_name}
 
 **Global path parameters**
 
@@ -369,7 +369,7 @@ Description
 | 201 - Created | [`KubeControllerManager`](/openshift-docs-markdown/rest_api/operator_apis/kubecontrollermanager-operator-openshift-io-v1#kubecontrollermanager-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operator.openshift.io/v1/kubecontrollermanagers/{{ name }}/status {#_apisoperatoropenshiftiov1kubecontrollermanagers_name_status}
+### /apis/operator.openshift.io/v1/kubecontrollermanagers/{name}/status {#_apisoperatoropenshiftiov1kubecontrollermanagers_name_status}
 
 **Global path parameters**
 

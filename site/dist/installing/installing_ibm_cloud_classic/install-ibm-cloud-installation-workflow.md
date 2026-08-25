@@ -1,8 +1,8 @@
 ---
-title: Setting up the environment for an OpenShift Container Platform installation on {{ ibm_cloud_bm }}
+title: Setting up the environment for an OpenShift Container Platform installation on IBM Cloud(R) Bare Metal (Classic)
 ---
 
-# Setting up the environment for an OpenShift Container Platform installation on {{ ibm_cloud_bm }} {#install-ibm-cloud-installation-workflow}
+# Setting up the environment for an OpenShift Container Platform installation on IBM Cloud(R) Bare Metal (Classic) {#install-ibm-cloud-installation-workflow}
 
 After you complete the prerequisites, set up the environment for an OpenShift Container Platform installation on IBM Cloud(R) Bare Metal (Classic) by preparing the provisioner node, configuring the network, and deploying the cluster.
 
@@ -208,7 +208,7 @@ Before you install OpenShift Container Platform on IBM Cloud(R) Bare Metal (Clas
     $ vim pull-secret.txt
     ```
 
-    Go to [Install on Bare Metal with user-provisioned infrastructure](https://console.redhat.com/openshift/install/metal/user-provisioned). In step 1, click ***Download pull secret***. Paste the contents into the `pull-secret.txt` file and save the contents in the `kni` user’s home directory.
+    Go to [Install on Bare Metal with user-provisioned infrastructure](https://console.redhat.com/openshift/install/metal/user-provisioned). In step 1, click **Download pull secret**. Paste the contents into the `pull-secret.txt` file and save the contents in the `kni` user’s home directory.
 
 ## Configuring the public subnet {#configuring-the-public-subnet_install-ibm-cloud-installation-workflow}
 
@@ -375,7 +375,7 @@ Use the `stable-4.x` version of the installation program and your selected archi
 - Retrieve the installation program by running one of the following commands:
 
   ```terminal
-  $ export VERSION=stable-{{ product_version }}
+  $ export VERSION=stable-4.22
   ```
 
   ```terminal
@@ -531,7 +531,7 @@ The `install-config.yaml` file requires some additional details. Most of the inf
 
 Some parameters, such as the cluster domain name, are required in the `install-config.yaml` file when installing a cluster on bare metal. Others, such as the provisioning network CIDR, are optional.
 
-***Required parameters***
+**Required parameters**
 
 <table>
 <thead>
@@ -550,7 +550,7 @@ Some parameters, such as the cluster domain name, are required in the `install-c
 <tr>
   <td><code>bootMode</code></td>
   <td><code>UEFI</code></td>
-  <td>The boot mode for a node. Options are <code>legacy</code>, <code>UEFI</code>, and <code>UEFISecureBoot</code>. If <code>bootMode</code> is not set, Ironic sets it while inspecting the node.<br><br><dl><dt>Note</dt><dd>For hardware that implements <code>BootMode</code> read-only, such as HP or Cisco, do not leave this parameter blank. You must manually set the system to UEFI mode before installation and explicitly set this parameter to UEFI.</dd></dl></td>
+  <td>The boot mode for a node. Options are <code>legacy</code>, <code>UEFI</code>, and <code>UEFISecureBoot</code>. If <code>bootMode</code> is not set, Ironic sets it while inspecting the node.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>For hardware that implements <code>BootMode</code> read-only, such as HP or Cisco, do not leave this parameter blank. You must manually set the system to UEFI mode before installation and explicitly set this parameter to UEFI.</dd></dl></td>
 </tr>
 <tr>
   <td><pre>platform:&#10;  baremetal:&#10;    bootstrapExternalStaticDNS</pre></td>
@@ -608,27 +608,32 @@ Some parameters, such as the cluster domain name, are required in the `install-c
   <td>Replicas sets the number of control plane nodes included as part of the OpenShift Container Platform cluster.</td>
 </tr>
 <tr>
-  <td>The name of the network interface on nodes connected to the provisioning network. For OpenShift Container Platform 4.9 and later releases, use the <code>bootMACAddress</code> parameter to enable Ironic to identify the IP address of the NIC instead of using the <code>provisioningNetworkInterface</code> parameter to identify the name of the NIC.</td>
   <td><code>provisioningNetworkInterface</code></td>
+  <td></td>
+  <td>The name of the network interface on nodes connected to the provisioning network. For OpenShift Container Platform 4.9 and later releases, use the <code>bootMACAddress</code> parameter to enable Ironic to identify the IP address of the NIC instead of using the <code>provisioningNetworkInterface</code> parameter to identify the name of the NIC.</td>
+</tr>
+<tr>
   <td><code>defaultMachinePlatform</code></td>
-</tr>
-<tr>
+  <td></td>
   <td>The default configuration used for machine pools without a platform configuration.</td>
-  <td><code>apiVIPs</code></td>
-  <td>(Optional) The virtual IP address for Kubernetes API communication.<br><br>You must either provide this setting in the <code>install-config.yaml</code> file as a reserved IP from the <code>MachineNetwork</code> parameter or preconfigured in the DNS so that the default name resolves correctly. Use the virtual IP address and not the FQDN when adding a value to the <code>apiVIPs</code> configuration setting in the <code>install-config.yaml</code> file. For dual-stack networking, the primary IP address can be either an IPv4 network or an IPv6 network. If not set, the installation program uses <code>api.<cluster_name>.<base_domain></code> to derive the IP address from the DNS.<br><br><dl><dt>Note</dt><dd>Before OpenShift Container Platform 4.12, the cluster installation program only accepted an IPv4 address or an IPv6 address for the <code>apiVIP</code> parameter. From OpenShift Container Platform 4.12 or later, the <code>apiVIP</code> parameter is deprecated. Instead, use a list format for the <code>apiVIPs</code> parameter to specify an IPv4 address, an IPv6 address or both IP address formats.</dd></dl></td>
 </tr>
 <tr>
+  <td><code>apiVIPs</code></td>
+  <td>(Optional) The virtual IP address for Kubernetes API communication.<br><br>You must either provide this setting in the <code>install-config.yaml</code> file as a reserved IP from the <code>MachineNetwork</code> parameter or preconfigured in the DNS so that the default name resolves correctly. Use the virtual IP address and not the FQDN when adding a value to the <code>apiVIPs</code> configuration setting in the <code>install-config.yaml</code> file. For dual-stack networking, the primary IP address can be either an IPv4 network or an IPv6 network. If not set, the installation program uses <code>api.&lt;cluster_name&gt;.&lt;base_domain&gt;</code> to derive the IP address from the DNS.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>Before OpenShift Container Platform 4.12, the cluster installation program only accepted an IPv4 address or an IPv6 address for the <code>apiVIP</code> parameter. From OpenShift Container Platform 4.12 or later, the <code>apiVIP</code> parameter is deprecated. Instead, use a list format for the <code>apiVIPs</code> parameter to specify an IPv4 address, an IPv6 address or both IP address formats.</dd></dl></td>
   <td><code>bmcCACert</code></td>
+</tr>
+<tr>
+  <td></td>
   <td><code>redfish</code> and <code>redfish-virtualmedia</code> need this parameter to manage BMC addresses when using self-signed certificates with <code>disableCertificateVerification</code> set to <code>False</code>.</td>
   <td><code>ingressVIPs</code></td>
 </tr>
 <tr>
-  <td>(Optional) The virtual IP address for ingress traffic.<br><br>You must either provide this setting in the <code>install-config.yaml</code> file as a reserved IP from the <code>MachineNetwork</code> parameter or preconfigured in the DNS so that the default name resolves correctly. Use the virtual IP address and not the FQDN when adding a value to the <code>ingressVIPs</code> configuration setting in the <code>install-config.yaml</code> file. For dual-stack networking, the primary IP address can be either an IPv4 network or an IPv6 network. If not set, the installation program uses <code>test.apps.<cluster_name>.<base_domain></code> to derive the IP address from the DNS.<br><br><dl><dt>Note</dt><dd>Before OpenShift Container Platform 4.12, the cluster installation program only accepted an IPv4 address or an IPv6 address for the <code>ingressVIP</code> parameter. In OpenShift Container Platform 4.12 and later, the <code>ingressVIP</code> parameter is deprecated. Instead, use a list format for the <code>ingressVIPs</code> parameter to specify an IPv4 addresses, an IPv6 addresses or both IP address formats.</dd></dl></td>
+  <td>(Optional) The virtual IP address for ingress traffic.<br><br>You must either provide this setting in the <code>install-config.yaml</code> file as a reserved IP from the <code>MachineNetwork</code> parameter or preconfigured in the DNS so that the default name resolves correctly. Use the virtual IP address and not the FQDN when adding a value to the <code>ingressVIPs</code> configuration setting in the <code>install-config.yaml</code> file. For dual-stack networking, the primary IP address can be either an IPv4 network or an IPv6 network. If not set, the installation program uses <code>test.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;</code> to derive the IP address from the DNS.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>Before OpenShift Container Platform 4.12, the cluster installation program only accepted an IPv4 address or an IPv6 address for the <code>ingressVIP</code> parameter. In OpenShift Container Platform 4.12 and later, the <code>ingressVIP</code> parameter is deprecated. Instead, use a list format for the <code>ingressVIPs</code> parameter to specify an IPv4 addresses, an IPv6 addresses or both IP address formats.</dd></dl></td>
 </tr>
 </tbody>
 </table>
 
-***Optional Parameters***
+**Optional Parameters**
 
 <table>
 <thead>
@@ -687,12 +692,12 @@ Some parameters, such as the cluster domain name, are required in the `install-c
 <tr>
   <td><code>bootstrapOSImage</code></td>
   <td></td>
-  <td>A URL to override the default operating system image for the bootstrap node. The URL must contain a SHA-256 hash of the image. For example:</td>
+  <td>A URL to override the default operating system image for the bootstrap node. The URL must contain a SHA-256 hash of the image. For example: <code>https://mirror.openshift.com/rhcos-&lt;version&gt;-qemu.qcow2.gz?sha256=&lt;uncompressed_sha256&gt;</code>.</td>
 </tr>
 <tr>
   <td><code>provisioningNetwork</code></td>
   <td></td>
-  <td>The <code>provisioningNetwork</code> parameter determines whether the cluster uses the provisioning network. If it does, the parameter also determines if the cluster manages the network.</td>
+  <td>The <code>provisioningNetwork</code> parameter determines whether the cluster uses the provisioning network. If it does, the parameter also determines if the cluster manages the network.<br><br><code>Disabled</code>: Set this parameter to <code>Disabled</code> to disable the requirement for a provisioning network. When set to <code>Disabled</code>, you must only use virtual media based provisioning, or install the cluster by using the Assisted Installer. If <code>Disabled</code> and using power management, BMCs must be accessible from the bare metal network. If <code>Disabled</code>, you must provide two IP addresses on the bare metal network for the provisioning services to use.<br><br><code>Managed</code>: Set this parameter to <code>Managed</code>, which is the default, to fully manage the provisioning network, including DHCP, TFTP, and so on.<br><br><code>Unmanaged</code>: Set this parameter to <code>Unmanaged</code> to enable the provisioning network but take care of manual configuration of DHCP. Virtual media provisioning is recommended but PXE is still available if required.</td>
 </tr>
 <tr>
   <td><code>httpProxy</code></td>
@@ -716,7 +721,7 @@ Some parameters, such as the cluster domain name, are required in the `install-c
 
 The `hosts` parameter is a list of separate bare metal assets used to build the cluster.
 
-***Hosts***
+**Hosts**
 
 <table>
 <thead>
@@ -770,7 +775,7 @@ The `hosts` parameter is a list of separate bare metal assets used to build the 
 <tr>
   <td><code>bootMACAddress</code></td>
   <td></td>
-  <td>The MAC address of the NIC that the host uses for the provisioning network. Ironic retrieves the IP address by using the <code>bootMACAddress</code> parameter. Then, it binds to the host.<br><br><dl><dt>Note</dt><dd>You must provide a valid MAC address from the host if you disabled the provisioning network.</dd></dl></td>
+  <td>The MAC address of the NIC that the host uses for the provisioning network. Ironic retrieves the IP address by using the <code>bootMACAddress</code> parameter. Then, it binds to the host.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>You must provide a valid MAC address from the host if you disabled the provisioning network.</dd></dl></td>
 </tr>
 <tr>
   <td><code>networkConfig</code></td>
@@ -796,7 +801,7 @@ The `rootDeviceHints` parameter enables the installer to provision the Red Hat 
 <tbody>
 <tr>
   <td><code>deviceName</code></td>
-  <td>A string containing a Linux device name such as <code>/dev/vda</code> or <code>/dev/disk/by-path/</code>.<dl><dt>Note</dt><dd>It is recommended to use the <code>/dev/disk/by-path/<device_path></code> link to the storage location.</dd></dl><br><br>The hint must match the actual value exactly.</td>
+  <td>A string containing a Linux device name such as <code>/dev/vda</code> or <code>/dev/disk/by-path/</code>.<dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>It is recommended to use the <code>/dev/disk/by-path/&lt;device_path&gt;</code> link to the storage location.</dd></dl><br><br>The hint must match the actual value exactly.</td>
 </tr>
 <tr>
   <td><code>hctl</code></td>

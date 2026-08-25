@@ -40,9 +40,9 @@ Required
 | --- | --- | --- |
 | `behavior` | `object` | HorizontalPodAutoscalerBehavior configures the scaling behavior of the target in both Up and Down directions (scaleUp and scaleDown fields respectively). |
 | `maxReplicas` | `integer` | maxReplicas is the upper limit for the number of replicas to which the autoscaler can scale up. It cannot be less that minReplicas. |
-| `metrics` | `array` | metrics contains the specifications for which to use to calculate the desired replica count (the maximum replica count across all metrics will be used).  The desired replica count is calculated multiplying the ratio between the target value and the current value by the current number of pods.  Ergo, metrics used must decrease as the pod count is increased, and vice-versa.  See the individual metric source types for more information about how each type of metric must respond. If not set, the default metric will be set to 80% average CPU utilization. |
+| `metrics` | `array` | metrics contains the specifications for which to use to calculate the desired replica count (the maximum replica count across all metrics will be used). The desired replica count is calculated multiplying the ratio between the target value and the current value by the current number of pods. Ergo, metrics used must decrease as the pod count is increased, and vice-versa. See the individual metric source types for more information about how each type of metric must respond. If not set, the default metric will be set to 80% average CPU utilization. |
 | `metrics[]` | `object` | MetricSpec specifies how to scale based on a single metric (only `type` and one other matching field should be set at once). |
-| `minReplicas` | `integer` | minReplicas is the lower limit for the number of replicas to which the autoscaler can scale down.  It defaults to 1 pod.  minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured.  Scaling is active as long as at least one metric value is available. |
+| `minReplicas` | `integer` | minReplicas is the lower limit for the number of replicas to which the autoscaler can scale down. It defaults to 1 pod. minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured. Scaling is active as long as at least one metric value is available. |
 | `scaleTargetRef` | `object` | CrossVersionObjectReference contains enough information to let you identify the referred resource. |
 
 ### .spec.behavior {#_specbehavior}
@@ -57,8 +57,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `scaleDown` | `object` | HPAScalingRules configures the scaling behavior for one direction via scaling Policy Rules and a configurable metric tolerance. Scaling Policy Rules are applied after calculating DesiredReplicas from metrics for the HPA. They can limit the scaling velocity by specifying scaling policies. They can prevent flapping by specifying the stabilization window, so that the number of replicas is not set instantly, instead, the safest value from the stabilization window is chosen. The tolerance is applied to the metric values and prevents scaling too eagerly for small metric variations. (Note that setting a tolerance requires the beta HPAConfigurableTolerance feature gate to be enabled.) |
-| `scaleUp` | `object` | HPAScalingRules configures the scaling behavior for one direction via scaling Policy Rules and a configurable metric tolerance. Scaling Policy Rules are applied after calculating DesiredReplicas from metrics for the HPA. They can limit the scaling velocity by specifying scaling policies. They can prevent flapping by specifying the stabilization window, so that the number of replicas is not set instantly, instead, the safest value from the stabilization window is chosen. The tolerance is applied to the metric values and prevents scaling too eagerly for small metric variations. (Note that setting a tolerance requires the beta HPAConfigurableTolerance feature gate to be enabled.) |
+| `scaleDown` | `object` | HPAScalingRules configures the scaling behavior for one direction via scaling Policy Rules and a configurable metric tolerance.<br>Scaling Policy Rules are applied after calculating DesiredReplicas from metrics for the HPA. They can limit the scaling velocity by specifying scaling policies. They can prevent flapping by specifying the stabilization window, so that the number of replicas is not set instantly, instead, the safest value from the stabilization window is chosen.<br>The tolerance is applied to the metric values and prevents scaling too eagerly for small metric variations. (Note that setting a tolerance requires the beta HPAConfigurableTolerance feature gate to be enabled.) |
+| `scaleUp` | `object` | HPAScalingRules configures the scaling behavior for one direction via scaling Policy Rules and a configurable metric tolerance.<br>Scaling Policy Rules are applied after calculating DesiredReplicas from metrics for the HPA. They can limit the scaling velocity by specifying scaling policies. They can prevent flapping by specifying the stabilization window, so that the number of replicas is not set instantly, instead, the safest value from the stabilization window is chosen.<br>The tolerance is applied to the metric values and prevents scaling too eagerly for small metric variations. (Note that setting a tolerance requires the beta HPAConfigurableTolerance feature gate to be enabled.) |
 
 ### .spec.behavior.scaleDown {#_specbehaviorscaledown}
 
@@ -80,7 +80,7 @@ Type
 | `policies[]` | `object` | HPAScalingPolicy is a single policy which must hold true for a specified past interval. |
 | `selectPolicy` | `string` | selectPolicy is used to specify which policy should be used. If not set, the default value Max is used. |
 | `stabilizationWindowSeconds` | `integer` | stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long). |
-| `tolerance` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | tolerance is the tolerance on the ratio between the current and desired metric value under which no updates are made to the desired number of replicas (e.g. 0.01 for 1%). Must be greater than or equal to zero. If not set, the default cluster-wide tolerance is applied (by default 10%). For example, if autoscaling is configured with a memory consumption target of 100Mi, and scale-down and scale-up tolerances of 5% and 1% respectively, scaling will be triggered when the actual consumption falls below 95Mi or exceeds 101Mi. This is an beta field and requires the HPAConfigurableTolerance feature gate to be enabled. |
+| `tolerance` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | tolerance is the tolerance on the ratio between the current and desired metric value under which no updates are made to the desired number of replicas (e.g. 0.01 for 1%). Must be greater than or equal to zero. If not set, the default cluster-wide tolerance is applied (by default 10%).<br>For example, if autoscaling is configured with a memory consumption target of 100Mi, and scale-down and scale-up tolerances of 5% and 1% respectively, scaling will be triggered when the actual consumption falls below 95Mi or exceeds 101Mi.<br>This is an beta field and requires the HPAConfigurableTolerance feature gate to be enabled. |
 
 ### .spec.behavior.scaleDown.policies {#_specbehaviorscaledownpolicies}
 
@@ -133,7 +133,7 @@ Type
 | `policies[]` | `object` | HPAScalingPolicy is a single policy which must hold true for a specified past interval. |
 | `selectPolicy` | `string` | selectPolicy is used to specify which policy should be used. If not set, the default value Max is used. |
 | `stabilizationWindowSeconds` | `integer` | stabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long). |
-| `tolerance` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | tolerance is the tolerance on the ratio between the current and desired metric value under which no updates are made to the desired number of replicas (e.g. 0.01 for 1%). Must be greater than or equal to zero. If not set, the default cluster-wide tolerance is applied (by default 10%). For example, if autoscaling is configured with a memory consumption target of 100Mi, and scale-down and scale-up tolerances of 5% and 1% respectively, scaling will be triggered when the actual consumption falls below 95Mi or exceeds 101Mi. This is an beta field and requires the HPAConfigurableTolerance feature gate to be enabled. |
+| `tolerance` | [`Quantity`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | tolerance is the tolerance on the ratio between the current and desired metric value under which no updates are made to the desired number of replicas (e.g. 0.01 for 1%). Must be greater than or equal to zero. If not set, the default cluster-wide tolerance is applied (by default 10%).<br>For example, if autoscaling is configured with a memory consumption target of 100Mi, and scale-down and scale-up tolerances of 5% and 1% respectively, scaling will be triggered when the actual consumption falls below 95Mi or exceeds 101Mi.<br>This is an beta field and requires the HPAConfigurableTolerance feature gate to be enabled. |
 
 ### .spec.behavior.scaleUp.policies {#_specbehaviorscaleuppolicies}
 
@@ -191,12 +191,12 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `containerResource` | `object` | ContainerResourceMetricSource indicates how to scale on a resource metric known to Kubernetes, as specified in requests and limits, describing each pod in the current scale target (e.g. CPU or memory).  The values will be averaged together before being compared to the target.  Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.  Only one "target" type should be set. |
+| `containerResource` | `object` | ContainerResourceMetricSource indicates how to scale on a resource metric known to Kubernetes, as specified in requests and limits, describing each pod in the current scale target (e.g. CPU or memory). The values will be averaged together before being compared to the target. Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source. Only one "target" type should be set. |
 | `external` | `object` | ExternalMetricSource indicates how to scale on a metric not associated with any Kubernetes object (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster). |
 | `object` | `object` | ObjectMetricSource indicates how to scale on a metric describing a kubernetes object (for example, hits-per-second on an Ingress object). |
 | `pods` | `object` | PodsMetricSource indicates how to scale on a metric describing each pod in the current scale target (for example, transactions-processed-per-second). The values will be averaged together before being compared to the target value. |
-| `resource` | `object` | ResourceMetricSource indicates how to scale on a resource metric known to Kubernetes, as specified in requests and limits, describing each pod in the current scale target (e.g. CPU or memory).  The values will be averaged together before being compared to the target.  Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.  Only one "target" type should be set. |
-| `type` | `string` | type is the type of metric source.  It should be one of "ContainerResource", "External", "Object", "Pods" or "Resource", each mapping to a matching field in the object. |
+| `resource` | `object` | ResourceMetricSource indicates how to scale on a resource metric known to Kubernetes, as specified in requests and limits, describing each pod in the current scale target (e.g. CPU or memory). The values will be averaged together before being compared to the target. Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source. Only one "target" type should be set. |
+| `type` | `string` | type is the type of metric source. It should be one of "ContainerResource", "External", "Object", "Pods" or "Resource", each mapping to a matching field in the object. |
 
 ### .spec.metrics\[\].containerResource {#_specmetricscontainerresource}
 
@@ -572,12 +572,12 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `containerResource` | `object` | ContainerResourceMetricStatus indicates the current value of a resource metric known to Kubernetes, as specified in requests and limits, describing a single container in each pod in the current scale target (e.g. CPU or memory).  Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source. |
+| `containerResource` | `object` | ContainerResourceMetricStatus indicates the current value of a resource metric known to Kubernetes, as specified in requests and limits, describing a single container in each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source. |
 | `external` | `object` | ExternalMetricStatus indicates the current value of a global metric not associated with any Kubernetes object. |
 | `object` | `object` | ObjectMetricStatus indicates the current value of a metric describing a kubernetes object (for example, hits-per-second on an Ingress object). |
 | `pods` | `object` | PodsMetricStatus indicates the current value of a metric describing each pod in the current scale target (for example, transactions-processed-per-second). |
-| `resource` | `object` | ResourceMetricStatus indicates the current value of a resource metric known to Kubernetes, as specified in requests and limits, describing each pod in the current scale target (e.g. CPU or memory).  Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source. |
-| `type` | `string` | type is the type of metric source.  It will be one of "ContainerResource", "External", "Object", "Pods" or "Resource", each corresponds to a matching field in the object. |
+| `resource` | `object` | ResourceMetricStatus indicates the current value of a resource metric known to Kubernetes, as specified in requests and limits, describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source. |
+| `type` | `string` | type is the type of metric source. It will be one of "ContainerResource", "External", "Object", "Pods" or "Resource", each corresponds to a matching field in the object. |
 
 ### .status.currentMetrics\[\].containerResource {#_statuscurrentmetricscontainerresource}
 
@@ -842,24 +842,24 @@ The following API endpoints are available:
 - `/apis/autoscaling/v2/watch/horizontalpodautoscalers`
 
   - `GET`: watch individual changes to a list of HorizontalPodAutoscaler. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/autoscaling/v2/namespaces/{{ namespace }}/horizontalpodautoscalers`
+- `/apis/autoscaling/v2/namespaces/{namespace}/horizontalpodautoscalers`
 
   - `DELETE`: delete collection of HorizontalPodAutoscaler
   - `GET`: list or watch objects of kind HorizontalPodAutoscaler
   - `POST`: create a HorizontalPodAutoscaler
-- `/apis/autoscaling/v2/watch/namespaces/{{ namespace }}/horizontalpodautoscalers`
+- `/apis/autoscaling/v2/watch/namespaces/{namespace}/horizontalpodautoscalers`
 
   - `GET`: watch individual changes to a list of HorizontalPodAutoscaler. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/autoscaling/v2/namespaces/{{ namespace }}/horizontalpodautoscalers/{{ name }}`
+- `/apis/autoscaling/v2/namespaces/{namespace}/horizontalpodautoscalers/{name}`
 
   - `DELETE`: delete a HorizontalPodAutoscaler
   - `GET`: read the specified HorizontalPodAutoscaler
   - `PATCH`: partially update the specified HorizontalPodAutoscaler
   - `PUT`: replace the specified HorizontalPodAutoscaler
-- `/apis/autoscaling/v2/watch/namespaces/{{ namespace }}/horizontalpodautoscalers/{{ name }}`
+- `/apis/autoscaling/v2/watch/namespaces/{namespace}/horizontalpodautoscalers/{name}`
 
   - `GET`: watch changes to an object of kind HorizontalPodAutoscaler. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
-- `/apis/autoscaling/v2/namespaces/{{ namespace }}/horizontalpodautoscalers/{{ name }}/status`
+- `/apis/autoscaling/v2/namespaces/{namespace}/horizontalpodautoscalers/{name}/status`
 
   - `GET`: read status of the specified HorizontalPodAutoscaler
   - `PATCH`: partially update status of the specified HorizontalPodAutoscaler
@@ -903,7 +903,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/autoscaling/v2/namespaces/{{ namespace }}/horizontalpodautoscalers {#_apisautoscalingv2namespaces_namespace_horizontalpodautoscalers}
+### /apis/autoscaling/v2/namespaces/{namespace}/horizontalpodautoscalers {#_apisautoscalingv2namespaces_namespace_horizontalpodautoscalers}
 
 HTTP method
 :   ```
@@ -977,7 +977,7 @@ Description
 | 202 - Accepted | [`HorizontalPodAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/autoscaling/v2/watch/namespaces/{{ namespace }}/horizontalpodautoscalers {#_apisautoscalingv2watchnamespaces_namespace_horizontalpodautoscalers}
+### /apis/autoscaling/v2/watch/namespaces/{namespace}/horizontalpodautoscalers {#_apisautoscalingv2watchnamespaces_namespace_horizontalpodautoscalers}
 
 HTTP method
 :   ```
@@ -996,7 +996,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/autoscaling/v2/namespaces/{{ namespace }}/horizontalpodautoscalers/{{ name }} {#_apisautoscalingv2namespaces_namespace_horizontalpodautoscalers_name}
+### /apis/autoscaling/v2/namespaces/{namespace}/horizontalpodautoscalers/{name} {#_apisautoscalingv2namespaces_namespace_horizontalpodautoscalers_name}
 
 **Global path parameters**
 
@@ -1101,7 +1101,7 @@ Description
 | 201 - Created | [`HorizontalPodAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/autoscaling/v2/watch/namespaces/{{ namespace }}/horizontalpodautoscalers/{{ name }} {#_apisautoscalingv2watchnamespaces_namespace_horizontalpodautoscalers_name}
+### /apis/autoscaling/v2/watch/namespaces/{namespace}/horizontalpodautoscalers/{name} {#_apisautoscalingv2watchnamespaces_namespace_horizontalpodautoscalers_name}
 
 **Global path parameters**
 
@@ -1126,7 +1126,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/autoscaling/v2/namespaces/{{ namespace }}/horizontalpodautoscalers/{{ name }}/status {#_apisautoscalingv2namespaces_namespace_horizontalpodautoscalers_name_status}
+### /apis/autoscaling/v2/namespaces/{namespace}/horizontalpodautoscalers/{name}/status {#_apisautoscalingv2namespaces_namespace_horizontalpodautoscalers_name_status}
 
 **Global path parameters**
 

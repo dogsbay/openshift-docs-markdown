@@ -43,7 +43,9 @@ You might need to perform manual recovery steps if a disruption event prevents f
       $ oc edit secret fencing-credentials-<node_name>
       ```
 
-      The secret contains the following data keys: **Data keys**
+      The secret contains the following data keys:
+
+      **Data keys**
 
       | Key | Description | Changes during credential rotation? |
       | --- | --- | --- |
@@ -373,6 +375,7 @@ This scenario typically occurs when you need to replace a control plane node (on
 For information about verifying that both control plane nodes and etcd are operating correctly, see "Verifying etcd health in a two-node OpenShift cluster with fencing".
 
 **Additional resources**
+{._additional-resources}
 
 - [Restoring etcd from a backup](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd-restoring_backing-up-etcd)
 - [Verifying etcd health in a two-node OpenShift cluster with fencing](/openshift-docs-markdown/installing/installing_two_node_cluster/installing_tnf/install-post-tnf#installation-verifying-etcd-health_install-post-tnf)
@@ -551,9 +554,9 @@ You can replace a failed control plane node in a two-node OpenShift cluster. The
               name: master-user-data-managed
       ```
 
-      - `metadata.annotations.metal3.io/BareMetalHost`: Replace `{{ bmh_name }}` with the name of the BMH object that is associated with the host that you are replacing.
-      - `labels.machine.openshift.io/cluster-api-cluster`: Replace `{{ machine_hash_label }}` with the label that you fetched from the machine you deleted.
-      - `metadata.name`: Replace `{{ machine_name }}` with the name of the machine you deleted.
+      - `metadata.annotations.metal3.io/BareMetalHost`: Replace `{bmh_name}` with the name of the BMH object that is associated with the host that you are replacing.
+      - `labels.machine.openshift.io/cluster-api-cluster`: Replace `{machine_hash_label}` with the label that you fetched from the machine you deleted.
+      - `metadata.name`: Replace `{machine_name}` with the name of the machine you deleted.
    3. Create the new BMH object and the secret to store the BMC credentials by running the following command:
 
       ```terminal
@@ -592,8 +595,8 @@ You can replace a failed control plane node in a two-node OpenShift cluster. The
       ```
 
       - `metadata.name`: Specify the name of the secret.
-      - `metadata.name`: Replace `{{ bmh_name }}` with the name of the BMH object that you deleted.
-      - `bmc.address`: Replace `{{ uuid }}` with the UUID of the node that you created.
+      - `metadata.name`: Replace `{bmh_name}` with the name of the BMH object that you deleted.
+      - `bmc.address`: Replace `{uuid}` with the UUID of the node that you created.
       - `bmc.credentialsName`: Replace `name` with the name of the secret that you created.
       - `bootMACAddress`: Specify the MAC address of the provisioning network interface. This is the MAC address the node uses to identify itself when communicating with Ironic during provisioning.
 5. Verify that the new node has reached the `Provisioned` state by running the following command:
@@ -777,32 +780,32 @@ $ oc debug node/<node_name> --chroot /host /usr/local/bin/fencing_validator
 
 This command does not reboot or fence any nodes. These checks are read-only and safe to run at any time. They run the following non-disruptive checks and report the results:
 
-1. ***OpenShift version check*** - Confirms the cluster is running OpenShift Container Platform 4.20.0 or later.
-2. ***Node count check*** - Confirms exactly 2 control-plane nodes exist.
-3. ***Transport connectivity*** - Establishes a connection to both nodes (via SSH or `oc debug`).
-4. ***STONITH device check*** - Verifies that STONITH devices are present and enabled in Pacemaker.
-5. ***Pacemaker status*** - Confirms both nodes are reporting ONLINE in the Pacemaker cluster.
-6. ***Daemon health*** - Checks that `corosync`, `pacemaker`, and `pcsd` services are active on both nodes.
-7. ***etcd quorum*** - Verifies that etcd has 2 healthy voting members and the cluster has quorum.
-8. ***Fencing secrets*** - Confirms that the fencing credential secrets (used by STONITH to authenticate to the BMC/IPMI) exist and are correctly bound to each node.
+1. **OpenShift version check** - Confirms the cluster is running OpenShift Container Platform 4.20.0 or later.
+2. **Node count check** - Confirms exactly 2 control-plane nodes exist.
+3. **Transport connectivity** - Establishes a connection to both nodes (via SSH or `oc debug`).
+4. **STONITH device check** - Verifies that STONITH devices are present and enabled in Pacemaker.
+5. **Pacemaker status** - Confirms both nodes are reporting ONLINE in the Pacemaker cluster.
+6. **Daemon health** - Checks that `corosync`, `pacemaker`, and `pcsd` services are active on both nodes.
+7. **etcd quorum** - Verifies that etcd has 2 healthy voting members and the cluster has quorum.
+8. **Fencing secrets** - Confirms that the fencing credential secrets (used by STONITH to authenticate to the BMC/IPMI) exist and are correctly bound to each node.
 
    When all non-disruptive checks pass, the output resembles the following:
 
-```terminal
-[INFO]
-====
-OpenShift version: 4.20.0 - OK [INFO]  Detected 2 control-plane nodes [INFO]  Transport: ssh [OK]    STONITH devices found and enabled [OK]    Both nodes ONLINE in Pacemaker [OK]    All daemons healthy on both nodes [OK]    etcd quorum healthy (2/2 voters) [OK]    Fencing secrets correctly bound [INFO]  All non-disruptive checks passed When something fails:
-====
-```
+   ```terminal
+   [INFO]
+   ====
+   OpenShift version: 4.20.0 - OK [INFO]  Detected 2 control-plane nodes [INFO]  Transport: ssh [OK]    STONITH devices found and enabled [OK]    Both nodes ONLINE in Pacemaker [OK]    All daemons healthy on both nodes [OK]    etcd quorum healthy (2/2 voters) [OK]    Fencing secrets correctly bound [INFO]  All non-disruptive checks passed When something fails:
+   ====
+   ```
 
-When non-disruptive checks fail, the output resembles the following:
+   When non-disruptive checks fail, the output resembles the following:
 
-```terminal
-[INFO]
-====
-OpenShift version: 4.20.0 - OK [INFO]  Detected 2 control-plane nodes [INFO]  Transport: ssh [ERROR] No STONITH devices found - fencing is not configured
-====
-```
+   ```terminal
+   [INFO]
+   ====
+   OpenShift version: 4.20.0 - OK [INFO]  Detected 2 control-plane nodes [INFO]  Transport: ssh [ERROR] No STONITH devices found - fencing is not configured
+   ====
+   ```
 
 ### Fencing validator script for disruptive checks {#fencing-validator-script-for-disruptive-checks_install-post-tnf}
 
@@ -825,14 +828,14 @@ $ oc debug node/<node_name> --chroot /host /usr/local/bin/fencing_validator --di
 
 The fencing validator script with `--disruptive` flag runs the following checks:
 
-1. ***Fence Node A*** - Triggers STONITH to reboot the first control-plane node.
-2. ***Verify NotReady*** - Waits for Kubernetes to report the node A as `NotReady`, which confirms the reboot happened.
-3. ***Verify recovery*** - Waits for the node A to come back to the `Ready` state, rejoin the Pacemaker cluster as `ONLINE`, and for etcd to regain quorum.
-4. ***Post-recovery daemon check*** - Re-checks all daemons are healthy after recovery.
-5. ***Fence Node B*** - Triggers STONITH to reboot the second node.
-6. . ***Verify NotReady*** - Waits for Kubernetes to report the node B as `NotReady`, which confirms the reboot happened.
-7. ***Verify recovery*** - Waits for the node B to come back to the `Ready` state, rejoin the Pacemaker cluster as `ONLINE`, and for etcd to regain quorum.
-8. ***Post-recovery daemon check*** - Re-checks all daemons are healthy after recovery.
+1. **Fence Node A** - Triggers STONITH to reboot the first control-plane node.
+2. **Verify NotReady** - Waits for Kubernetes to report the node A as `NotReady`, which confirms the reboot happened.
+3. **Verify recovery** - Waits for the node A to come back to the `Ready` state, rejoin the Pacemaker cluster as `ONLINE`, and for etcd to regain quorum.
+4. **Post-recovery daemon check** - Re-checks all daemons are healthy after recovery.
+5. **Fence Node B** - Triggers STONITH to reboot the second node.
+6. . **Verify NotReady** - Waits for Kubernetes to report the node B as `NotReady`, which confirms the reboot happened.
+7. **Verify recovery** - Waits for the node B to come back to the `Ready` state, rejoin the Pacemaker cluster as `ONLINE`, and for etcd to regain quorum.
+8. **Post-recovery daemon check** - Re-checks all daemons are healthy after recovery.
 
 ### Exit codes for fencing-validator script {#exit-codes-for-fencing-validator-script_install-post-tnf}
 

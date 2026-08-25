@@ -49,6 +49,9 @@ Some of the benefits of using containers include:
 | Simpler, lighter, and denser than virtual machines | Deploy to any environment in seconds and enable CI/CD |
 | Portable across different environments | Easily access and share containerized components |
 
+**Additional resources**
+{._additional-resources}
+
 - [Understanding Linux containers](https://www.redhat.com/en/topics/containers)
 - [Building, running, and managing containers](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/building_running_and_managing_containers/index)
 
@@ -65,6 +68,7 @@ OpenShift Container Platform is designed to lock down Kubernetes security and in
 OpenShift Container Platform can use Red Hat’s experience in uncovering and rapidly deploying fixes for vulnerabilities in the platform itself and the containerized applications running on the platform. Red Hat’s experience also extends to efficiently integrating new components with OpenShift Container Platform as they become available and adapting technologies to individual customer needs.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring periodic importing of imagestreamtags](/openshift-docs-markdown/openshift_images/image-streams-manage#images-imagestreams-import_image-streams-managing)
 - [OpenShift Container Platform architecture](/openshift-docs-markdown/architecture/architecture#architecture)

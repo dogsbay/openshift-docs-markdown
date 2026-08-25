@@ -1,5 +1,5 @@
 ---
-title: OAuthClientAuthorization []
+title: OAuthClientAuthorization [oauth.openshift.io/v1]
 ---
 
 # OAuthClientAuthorization \[oauth.openshift.io/v1\] {#oauthclientauthorization-oauth-openshift-io-v1}
@@ -38,13 +38,13 @@ The following API endpoints are available:
 - `/apis/oauth.openshift.io/v1/watch/oauthclientauthorizations`
 
   - `GET`: watch individual changes to a list of OAuthClientAuthorization. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/oauth.openshift.io/v1/oauthclientauthorizations/{{ name }}`
+- `/apis/oauth.openshift.io/v1/oauthclientauthorizations/{name}`
 
   - `DELETE`: delete an OAuthClientAuthorization
   - `GET`: read the specified OAuthClientAuthorization
   - `PATCH`: partially update the specified OAuthClientAuthorization
   - `PUT`: replace the specified OAuthClientAuthorization
-- `/apis/oauth.openshift.io/v1/watch/oauthclientauthorizations/{{ name }}`
+- `/apis/oauth.openshift.io/v1/watch/oauthclientauthorizations/{name}`
 
   - `GET`: watch changes to an object of kind OAuthClientAuthorization. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
 
@@ -141,7 +141,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/oauth.openshift.io/v1/oauthclientauthorizations/{{ name }} {#_apisoauthopenshiftiov1oauthclientauthorizations_name}
+### /apis/oauth.openshift.io/v1/oauthclientauthorizations/{name} {#_apisoauthopenshiftiov1oauthclientauthorizations_name}
 
 **Global path parameters**
 
@@ -246,7 +246,7 @@ Description
 | 201 - Created | [`OAuthClientAuthorization`](/openshift-docs-markdown/rest_api/oauth_apis/oauthclientauthorization-oauth-openshift-io-v1#oauthclientauthorization-oauth-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/oauth.openshift.io/v1/watch/oauthclientauthorizations/{{ name }} {#_apisoauthopenshiftiov1watchoauthclientauthorizations_name}
+### /apis/oauth.openshift.io/v1/watch/oauthclientauthorizations/{name} {#_apisoauthopenshiftiov1watchoauthclientauthorizations_name}
 
 **Global path parameters**
 

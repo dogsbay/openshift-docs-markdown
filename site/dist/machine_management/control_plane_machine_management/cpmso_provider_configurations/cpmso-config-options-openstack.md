@@ -1,5 +1,5 @@
 ---
-title: Control plane configuration options for {{ rh_openstack_first }}
+title: Control plane configuration options for Red&#160;Hat OpenStack Platform (RHOSP)
 ---
 
 # Control plane configuration options for Red Hat OpenStack Platform (RHOSP) {#cpmso-config-options-openstack}
@@ -124,7 +124,8 @@ where:
 `spec.template.machines_v1beta1_machine_openshift_io.failureDomains.platform`
 :   Specifies the cloud provider platform name. Do not change this value.
 
-## Additional resources {#additional-resources_cpmso-config-options-openstack}
+**Additional resources**
+{._additional-resources}
 
 - [Updating the control plane configuration](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-feat-config-update_cpmso-managing-machines)
 - [Configuring RHOSP features for control plane machines](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso_provider_configurations/cpmso-supported-features-openstack#cpmso-supported-features-openstack)

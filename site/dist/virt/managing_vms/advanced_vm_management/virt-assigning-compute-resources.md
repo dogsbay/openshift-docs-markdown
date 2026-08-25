@@ -12,7 +12,7 @@ Time-sliced CPUs dedicate a slice of time on a shared physical CPU to each workl
 
 The type of CPU reservation depends on the instance type or VM configuration.
 
-## Overcommitting CPU resources {#overcommitting_virt-assigning-compute-resources}
+## Overcommitting CPU resources {#overcommitting_virt-assigning-compute-resources ._overcommitting}
 
 Time-slicing allows multiple virtual CPUs (vCPUs) to share a single physical CPU. This is known as *CPU overcommitment*. Guaranteed VMs can not be overcommitted.
 
@@ -35,7 +35,7 @@ To change the default number of vCPUs mapped to each physical CPU, set the `vmiC
 1. Open the `HyperConverged` CR in your default editor by running the following command:
 
    ```terminal
-   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+   $ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv
    ```
 2. Set the `vmiCPUAllocationRatio`:
 
@@ -49,7 +49,8 @@ To change the default number of vCPUs mapped to each physical CPU, set the `vmiC
 
    When `vmiCPUAllocationRatio` is set to `1`, the maximum amount of vCPUs are requested for the pod.
 
-## Additional resources {#additional-resources_virt-assigning-compute-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Enabling dedicated resources for virtual machines](/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-dedicated-resources-vm#virt-dedicated-resources-vm)
 - [Pod Quality of Service Classes](https://kubernetes.io/docs/concepts/workloads/pods/pod-qos/)

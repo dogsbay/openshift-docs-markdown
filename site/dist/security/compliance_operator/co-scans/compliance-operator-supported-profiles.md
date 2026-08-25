@@ -24,10 +24,10 @@ When working with the Compliance Operator (CO), you can use the profiles provide
 
 | Profile | Profile title | Application | Industry compliance benchmark | Supported architectures | Supported platforms |
 | --- | --- | --- | --- | --- | --- |
-| ocp4-cis [^1]^ | CIS Red Hat OpenShift Container Platform Benchmark v1.9.0 | Platform | [CIS Benchmarks ™](https://www.cisecurity.org/cis-benchmarks/) [^2]^ | `x86_64`  `ppc64le`  `s390x`  `aarch64` |  |
-| ocp4-cis-1-9[^3]^ | CIS Red Hat OpenShift Container Platform Benchmark v1.9.0 | Platform | [CIS Benchmarks ™](https://www.cisecurity.org/cis-benchmarks/) [^4]^ | `x86_64`  `ppc64le`  `s390x`  `aarch64` |  |
-| ocp4-cis-node [^5]^ | CIS Red Hat OpenShift Container Platform Benchmark v1.9.0 | Node [^6]^ | [CIS Benchmarks ™](https://www.cisecurity.org/cis-benchmarks/) [^7]^ | `x86_64`  `ppc64le`  `s390x`  `aarch64` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
-| ocp4-cis-node-1-9[^8]^ | CIS Red Hat OpenShift Container Platform Benchmark v1.9.0 | Node [^9]^ | [CIS Benchmarks ™](https://www.cisecurity.org/cis-benchmarks/) [^10]^ | `x86_64`  `ppc64le`  `s390x`  `aarch64` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
+| ocp4-cis <sup>\[1\]</sup> | CIS Red Hat OpenShift Container Platform Benchmark v1.9.0 | Platform | [CIS Benchmarks ™](https://www.cisecurity.org/cis-benchmarks/) <sup>\[4\]</sup> | `x86_64` `ppc64le` `s390x` `aarch64` |  |
+| ocp4-cis-1-9<sup>\[3\]</sup> | CIS Red Hat OpenShift Container Platform Benchmark v1.9.0 | Platform | [CIS Benchmarks ™](https://www.cisecurity.org/cis-benchmarks/) <sup>\[4\]</sup> | `x86_64` `ppc64le` `s390x` `aarch64` |  |
+| ocp4-cis-node <sup>\[1\]</sup> | CIS Red Hat OpenShift Container Platform Benchmark v1.9.0 | Node <sup>\[2\]</sup> | [CIS Benchmarks ™](https://www.cisecurity.org/cis-benchmarks/) <sup>\[4\]</sup> | `x86_64` `ppc64le` `s390x` `aarch64` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
+| ocp4-cis-node-1-9<sup>\[3\]</sup> | CIS Red Hat OpenShift Container Platform Benchmark v1.9.0 | Node <sup>\[2\]</sup> | [CIS Benchmarks ™](https://www.cisecurity.org/cis-benchmarks/) <sup>\[4\]</sup> | `x86_64` `ppc64le` `s390x` `aarch64` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
 
 1. The  `ocp4-cis` and `ocp4-cis-node` profiles maintain the most up-to-date version of the CIS benchmark as it becomes available in the Compliance Operator. If you want to adhere to a specific version, such as CIS v1.9.0, use the `ocp4-cis-1-9` and `ocp4-cis-node-1-9` profiles.
 2. Node profiles must be used with the relevant Platform profile. For more information, see *Compliance Operator profile types*.
@@ -40,12 +40,12 @@ When working with the Compliance Operator (CO), you can use the profiles provide
 
 | Profile | Profile title | Application | Industry compliance benchmark | Supported architectures | Supported platforms |
 | --- | --- | --- | --- | --- | --- |
-| ocp4-bsi [^11]^ | BSI IT-Grundschutz (Basic Protection) Building Block SYS.1.6 and APP.4.4 | Platform | [BSI Basic Protection Compendium](https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Grundschutz/International/bsi_it_gs_comp_2022.pdf) | `x86_64` |  |
-| ocp4-bsi-node [^12]^ | BSI IT-Grundschutz (Basic Protection) Building Block SYS.1.6 and APP.4.4 | Node [^13]^ | [BSI Basic Protection Compendium](https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Grundschutz/International/bsi_it_gs_comp_2022.pdf) | `x86_64` |  |
-| rhcos4-bsi [^14]^ | BSI IT-Grundschutz (Basic Protection) Building Block SYS.1.6 and APP.4.4 | Node [^15]^ | [BSI Basic Protection Compendium](https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Grundschutz/International/bsi_it_gs_comp_2022.pdf) | `x86_64` |  |
-| ocp4-bsi-2022 [^16]^ | BSI IT-Grundschutz (Basic Protection) Building Block SYS.1.6 and APP.4.4 | Platform | [BSI Basic Protection Compendium](https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Grundschutz/International/bsi_it_gs_comp_2022.pdf) | `x86_64` |  |
-| ocp4-bsi-node-2022 [^17]^ | BSI IT-Grundschutz (Basic Protection) Building Block SYS.1.6 and APP.4.4 | Node [^18]^ | [BSI Basic Protection Compendium](https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Grundschutz/International/bsi_it_gs_comp_2022.pdf) | `x86_64` |  |
-| rhcos4-bsi-2022 [^19]^ | BSI IT-Grundschutz (Basic Protection) Building Block SYS.1.6 and APP.4.4 | Node [^20]^ | [BSI Basic Protection Compendium](https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Grundschutz/International/bsi_it_gs_comp_2022.pdf) | `x86_64` |  |
+| ocp4-bsi <sup>\[1\]</sup> | BSI IT-Grundschutz (Basic Protection) Building Block SYS.1.6 and APP.4.4 | Platform | [BSI Basic Protection Compendium](https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Grundschutz/International/bsi_it_gs_comp_2022.pdf) | `x86_64` |  |
+| ocp4-bsi-node <sup>\[1\]</sup> | BSI IT-Grundschutz (Basic Protection) Building Block SYS.1.6 and APP.4.4 | Node <sup>\[2\]</sup> | [BSI Basic Protection Compendium](https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Grundschutz/International/bsi_it_gs_comp_2022.pdf) | `x86_64` |  |
+| rhcos4-bsi <sup>\[1\]</sup> | BSI IT-Grundschutz (Basic Protection) Building Block SYS.1.6 and APP.4.4 | Node <sup>\[2\]</sup> | [BSI Basic Protection Compendium](https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Grundschutz/International/bsi_it_gs_comp_2022.pdf) | `x86_64` |  |
+| ocp4-bsi-2022 <sup>\[3\]</sup> | BSI IT-Grundschutz (Basic Protection) Building Block SYS.1.6 and APP.4.4 | Platform | [BSI Basic Protection Compendium](https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Grundschutz/International/bsi_it_gs_comp_2022.pdf) | `x86_64` |  |
+| ocp4-bsi-node-2022 <sup>\[3\]</sup> | BSI IT-Grundschutz (Basic Protection) Building Block SYS.1.6 and APP.4.4 | Node <sup>\[2\]</sup> | [BSI Basic Protection Compendium](https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Grundschutz/International/bsi_it_gs_comp_2022.pdf) | `x86_64` |  |
+| rhcos4-bsi-2022 <sup>\[3\]</sup> | BSI IT-Grundschutz (Basic Protection) Building Block SYS.1.6 and APP.4.4 | Node <sup>\[2\]</sup> | [BSI Basic Protection Compendium](https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Grundschutz/International/bsi_it_gs_comp_2022.pdf) | `x86_64` |  |
 
 1. The  `ocp4-bsi`, `ocp4-bsi-node`, and `rhcos4-bsi` profiles maintain the most up-to-date version of the BSI Basic Protection Profile as it becomes available in the Compliance Operator. If you want to adhere to a specific version, such as BSI 2022, use the `ocp4-bsi-2022`, `ocp4-bsi-node-2022` or `rhcos4-bsi-2022` profiles.
 2. Node profiles must be used with the relevant Platform profile. For more information, see *Compliance Operator profile types*.
@@ -71,11 +71,11 @@ For more information, see [**BSI Quick Check**](https://access.redhat.com/articl
 
 | Profile | Profile title | Application | Industry compliance benchmark | Supported architectures | Supported platforms |
 | --- | --- | --- | --- | --- | --- |
-| ocp4-high [^21]^ | NIST 800-53 High-Impact Baseline for Red Hat OpenShift - Platform level | Platform | [NIST SP-800-53 Release Search](https://csrc.nist.gov/Projects/risk-management/sp800-53-controls/release-search#!/800-53) | `x86_64` |  |
-| ocp4-high-node [^22]^ | NIST 800-53 High-Impact Baseline for Red Hat OpenShift - Node level | Node [^23]^ | [NIST SP-800-53 Release Search](https://csrc.nist.gov/Projects/risk-management/sp800-53-controls/release-search#!/800-53) | `x86_64` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
-| ocp4-high-node-rev-4 | NIST 800-53 High-Impact Baseline for Red Hat OpenShift - Node level | Node [^24]^ | [NIST SP-800-53 Release Search](https://csrc.nist.gov/Projects/risk-management/sp800-53-controls/release-search#!/800-53) | `x86_64` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
+| ocp4-high <sup>\[1\]</sup> | NIST 800-53 High-Impact Baseline for Red Hat OpenShift - Platform level | Platform | [NIST SP-800-53 Release Search](https://csrc.nist.gov/Projects/risk-management/sp800-53-controls/release-search#!/800-53) | `x86_64` |  |
+| ocp4-high-node <sup>\[1\]</sup> | NIST 800-53 High-Impact Baseline for Red Hat OpenShift - Node level | Node <sup>\[2\]</sup> | [NIST SP-800-53 Release Search](https://csrc.nist.gov/Projects/risk-management/sp800-53-controls/release-search#!/800-53) | `x86_64` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
+| ocp4-high-node-rev-4 | NIST 800-53 High-Impact Baseline for Red Hat OpenShift - Node level | Node <sup>\[2\]</sup> | [NIST SP-800-53 Release Search](https://csrc.nist.gov/Projects/risk-management/sp800-53-controls/release-search#!/800-53) | `x86_64` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
 | ocp4-high-rev-4 | NIST 800-53 High-Impact Baseline for Red Hat OpenShift - Platform level | Platform | [NIST SP-800-53 Release Search](https://csrc.nist.gov/Projects/risk-management/sp800-53-controls/release-search#!/800-53) | `x86_64` |  |
-| rhcos4-high [^25]^ | NIST 800-53 High-Impact Baseline for Red Hat Enterprise Linux CoreOS | Node | [NIST SP-800-53 Release Search](https://csrc.nist.gov/Projects/risk-management/sp800-53-controls/release-search#!/800-53) | `x86_64` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
+| rhcos4-high <sup>\[1\]</sup> | NIST 800-53 High-Impact Baseline for Red Hat Enterprise Linux CoreOS | Node | [NIST SP-800-53 Release Search](https://csrc.nist.gov/Projects/risk-management/sp800-53-controls/release-search#!/800-53) | `x86_64` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
 | rhcos4-high-rev-4 | NIST 800-53 High-Impact Baseline for Red Hat Enterprise Linux CoreOS | Node | [NIST SP-800-53 Release Search](https://csrc.nist.gov/Projects/risk-management/sp800-53-controls/release-search#!/800-53) | `x86_64` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
 
 1. The  `ocp4-high`, `ocp4-high-node` and `rhcos4-high` profiles maintain the most up-to-date version of the FedRAMP High standard as it becomes available in the Compliance Operator. If you want to adhere to a specific version, such as FedRAMP high R4, use the `ocp4-high-rev-4` and `ocp4-high-node-rev-4` profiles.
@@ -87,12 +87,12 @@ For more information, see [**BSI Quick Check**](https://access.redhat.com/articl
 
 | Profile | Profile title | Application | Industry compliance benchmark | Supported architectures | Supported platforms |
 | --- | --- | --- | --- | --- | --- |
-| ocp4-moderate [^26]^ | NIST 800-53 Moderate-Impact Baseline for Red Hat OpenShift - Platform level | Platform | [NIST SP-800-53 Release Search](https://nvd.nist.gov/800-53/Rev4/impact/moderate) | `x86_64`  `ppc64le`  `s390x`  `aarch64` |  |
-| ocp4-moderate-node [^27]^ | NIST 800-53 Moderate-Impact Baseline for Red Hat OpenShift - Node level | Node [^28]^ | [NIST SP-800-53 Release Search](https://nvd.nist.gov/800-53/Rev4/impact/moderate) | `x86_64`  `ppc64le`  `s390x`  `aarch64` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
-| ocp4-moderate-node-rev-4 | NIST 800-53 Moderate-Impact Baseline for Red Hat OpenShift - Node level | Node [^29]^ | [NIST SP-800-53 Release Search](https://nvd.nist.gov/800-53/Rev4/impact/moderate) | `x86_64`  `ppc64le`  `s390x`  `aarch64` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
-| ocp4-moderate-rev-4 | NIST 800-53 Moderate-Impact Baseline for Red Hat OpenShift - Platform level | Platform | [NIST SP-800-53 Release Search](https://nvd.nist.gov/800-53/Rev4/impact/moderate) | `x86_64`  `ppc64le`  `s390x`  `aarch64` |  |
-| rhcos4-moderate [^30]^ | NIST 800-53 Moderate-Impact Baseline for Red Hat Enterprise Linux CoreOS | Node | [NIST SP-800-53 Release Search](https://nvd.nist.gov/800-53/Rev4/impact/moderate) | `x86_64`  `aarch64` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
-| rhcos4-moderate-rev-4 | NIST 800-53 Moderate-Impact Baseline for Red Hat Enterprise Linux CoreOS | Node | [NIST SP-800-53 Release Search](https://nvd.nist.gov/800-53/Rev4/impact/moderate) | `x86_64`  `aarch64` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
+| ocp4-moderate <sup>\[1\]</sup> | NIST 800-53 Moderate-Impact Baseline for Red Hat OpenShift - Platform level | Platform | [NIST SP-800-53 Release Search](https://nvd.nist.gov/800-53/Rev4/impact/moderate) | `x86_64` `ppc64le` `s390x` `aarch64` |  |
+| ocp4-moderate-node <sup>\[1\]</sup> | NIST 800-53 Moderate-Impact Baseline for Red Hat OpenShift - Node level | Node <sup>\[2\]</sup> | [NIST SP-800-53 Release Search](https://nvd.nist.gov/800-53/Rev4/impact/moderate) | `x86_64` `ppc64le` `s390x` `aarch64` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
+| ocp4-moderate-node-rev-4 | NIST 800-53 Moderate-Impact Baseline for Red Hat OpenShift - Node level | Node <sup>\[2\]</sup> | [NIST SP-800-53 Release Search](https://nvd.nist.gov/800-53/Rev4/impact/moderate) | `x86_64` `ppc64le` `s390x` `aarch64` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
+| ocp4-moderate-rev-4 | NIST 800-53 Moderate-Impact Baseline for Red Hat OpenShift - Platform level | Platform | [NIST SP-800-53 Release Search](https://nvd.nist.gov/800-53/Rev4/impact/moderate) | `x86_64` `ppc64le` `s390x` `aarch64` |  |
+| rhcos4-moderate <sup>\[1\]</sup> | NIST 800-53 Moderate-Impact Baseline for Red Hat Enterprise Linux CoreOS | Node | [NIST SP-800-53 Release Search](https://nvd.nist.gov/800-53/Rev4/impact/moderate) | `x86_64` `aarch64` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
+| rhcos4-moderate-rev-4 | NIST 800-53 Moderate-Impact Baseline for Red Hat Enterprise Linux CoreOS | Node | [NIST SP-800-53 Release Search](https://nvd.nist.gov/800-53/Rev4/impact/moderate) | `x86_64` `aarch64` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
 
 1. The  `ocp4-moderate`, `ocp4-moderate-node` and `rhcos4-moderate` profiles maintain the most up-to-date version of the FedRAMP Moderate standard as it becomes available in the Compliance Operator. If you want to adhere to a specific version, such as FedRAMP Moderate R4, use the `ocp4-moderate-rev-4` and `ocp4-moderate-node-rev-4` profiles.
 2. Node profiles must be used with the relevant Platform profile. For more information, see *Compliance Operator profile types*.
@@ -104,7 +104,7 @@ For more information, see [**BSI Quick Check**](https://access.redhat.com/articl
 | Profile | Profile title | Application | Industry compliance benchmark | Supported architectures | Supported platforms |
 | --- | --- | --- | --- | --- | --- |
 | ocp4-nerc-cip | North American Electric Reliability Corporation (NERC) Critical Infrastructure Protection (CIP) cybersecurity standards profile for the OpenShift Container Platform - Platform level | Platform | [NERC CIP Standards](https://www.nerc.com/pa/Stand/Pages/USRelStand.aspx) | `x86_64` |  |
-| ocp4-nerc-cip-node | North American Electric Reliability Corporation (NERC) Critical Infrastructure Protection (CIP) cybersecurity standards profile for the OpenShift Container Platform - Node level | Node [^31]^ | [NERC CIP Standards](https://www.nerc.com/pa/Stand/Pages/USRelStand.aspx) | `x86_64` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
+| ocp4-nerc-cip-node | North American Electric Reliability Corporation (NERC) Critical Infrastructure Protection (CIP) cybersecurity standards profile for the OpenShift Container Platform - Node level | Node <sup>\[1\]</sup> | [NERC CIP Standards](https://www.nerc.com/pa/Stand/Pages/USRelStand.aspx) | `x86_64` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
 | rhcos4-nerc-cip | North American Electric Reliability Corporation (NERC) Critical Infrastructure Protection (CIP) cybersecurity standards profile for Red Hat Enterprise Linux CoreOS | Node | [NERC CIP Standards](https://www.nerc.com/pa/Stand/Pages/USRelStand.aspx) | `x86_64` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
 
 1. Node profiles must be used with the relevant Platform profile. For more information, see *Compliance Operator profile types*.
@@ -115,12 +115,12 @@ For more information, see [**BSI Quick Check**](https://access.redhat.com/articl
 
 | Profile | Profile title | Application | Industry compliance benchmark | Supported architectures | Supported platforms |
 | --- | --- | --- | --- | --- | --- |
-| ocp4-pci-dss [^32]^ | PCI-DSS v4 Control Baseline for OpenShift Container Platform 4 | Platform | [PCI Security Standards ® Council Document Library](https://www.pcisecuritystandards.org/document_library?document=pci_dss) | `x86_64`  `ppc64le`  `aarch64` |  |
-| ocp4-pci-dss-3-2 [^33]^ | PCI-DSS v3.2.1 Control Baseline for OpenShift Container Platform 4 | Platform | [PCI Security Standards ® Council Document Library](https://www.pcisecuritystandards.org/document_library?document=pci_dss) | `x86_64`  `ppc64le`  `s390x`  `aarch64` |  |
-| ocp4-pci-dss-4-0 | PCI-DSS v4 Control Baseline for OpenShift Container Platform 4 | Platform | [PCI Security Standards ® Council Document Library](https://www.pcisecuritystandards.org/document_library?document=pci_dss) | `x86_64`  `ppc64le`  `aarch64` |  |
-| ocp4-pci-dss-node [^34]^ | PCI-DSS v4 Control Baseline for OpenShift Container Platform 4 | Node [^35]^ | [PCI Security Standards ® Council Document Library](https://www.pcisecuritystandards.org/document_library?document=pci_dss) | `x86_64`  `ppc64le`  `aarch64` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
-| ocp4-pci-dss-node-3-2 [^36]^ | PCI-DSS v3.2.1 Control Baseline for OpenShift Container Platform 4 | Node [^37]^ | [PCI Security Standards ® Council Document Library](https://www.pcisecuritystandards.org/document_library?document=pci_dss) | `x86_64`  `ppc64le`  `s390x`  `aarch64` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
-| ocp4-pci-dss-node-4-0 | PCI-DSS v4 Control Baseline for OpenShift Container Platform 4 | Node [^38]^ | [PCI Security Standards ® Council Document Library](https://www.pcisecuritystandards.org/document_library?document=pci_dss) | `x86_64`  `ppc64le`  `aarch64` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
+| ocp4-pci-dss <sup>\[1\]</sup> | PCI-DSS v4 Control Baseline for OpenShift Container Platform 4 | Platform | [PCI Security Standards ® Council Document Library](https://www.pcisecuritystandards.org/document_library?document=pci_dss) | `x86_64` `ppc64le` `aarch64` |  |
+| ocp4-pci-dss-3-2 <sup>\[3\]</sup> | PCI-DSS v3.2.1 Control Baseline for OpenShift Container Platform 4 | Platform | [PCI Security Standards ® Council Document Library](https://www.pcisecuritystandards.org/document_library?document=pci_dss) | `x86_64` `ppc64le` `s390x` `aarch64` |  |
+| ocp4-pci-dss-4-0 | PCI-DSS v4 Control Baseline for OpenShift Container Platform 4 | Platform | [PCI Security Standards ® Council Document Library](https://www.pcisecuritystandards.org/document_library?document=pci_dss) | `x86_64` `ppc64le` `aarch64` |  |
+| ocp4-pci-dss-node <sup>\[1\]</sup> | PCI-DSS v4 Control Baseline for OpenShift Container Platform 4 | Node <sup>\[2\]</sup> | [PCI Security Standards ® Council Document Library](https://www.pcisecuritystandards.org/document_library?document=pci_dss) | `x86_64` `ppc64le` `aarch64` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
+| ocp4-pci-dss-node-3-2 <sup>\[3\]</sup> | PCI-DSS v3.2.1 Control Baseline for OpenShift Container Platform 4 | Node <sup>\[2\]</sup> | [PCI Security Standards ® Council Document Library](https://www.pcisecuritystandards.org/document_library?document=pci_dss) | `x86_64` `ppc64le` `s390x` `aarch64` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
+| ocp4-pci-dss-node-4-0 | PCI-DSS v4 Control Baseline for OpenShift Container Platform 4 | Node <sup>\[2\]</sup> | [PCI Security Standards ® Council Document Library](https://www.pcisecuritystandards.org/document_library?document=pci_dss) | `x86_64` `ppc64le` `aarch64` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
 
 1. The  `ocp4-pci-dss` and `ocp4-pci-dss-node` profiles maintain the most up-to-date version of the PCI-DSS standard as it becomes available in the Compliance Operator. If you want to adhere to a specific version, such as PCI-DSS v3.2.1, use the `ocp4-pci-dss-3-2` and `ocp4-pci-dss-node-3-2` profiles.
 2. Node profiles must be used with the relevant Platform profile. For more information, see *Compliance Operator profile types*.
@@ -135,12 +135,12 @@ For more information, see [**BSI Quick Check**](https://access.redhat.com/articl
 
 | Profile | Profile title | Application | Industry compliance benchmark | Supported architectures | Supported platforms |
 | --- | --- | --- | --- | --- | --- |
-| ocp4-stig [^39]^ | Defense Information Systems Agency Security Technical Implementation Guide (DISA STIG) for Red Hat OpenShift[^40]^ | Platform | [DISA-STIG](https://public.cyber.mil/stigs/downloads/) | `x86_64`  `ppc64le` |  |
-| ocp4-stig-node [^41]^ | Defense Information Systems Agency Security Technical Implementation Guide (DISA STIG) for Red Hat OpenShift[^42]^ | Node [^43]^ | [DISA-STIG](https://public.cyber.mil/stigs/downloads/) | `x86_64`  `ppc64le` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
-| ocp4-stig-v2r3 | Defense Information Systems Agency Security Technical Implementation Guide (DISA STIG) for Red Hat OpenShift V2R3 | Platform | [DISA-STIG](https://public.cyber.mil/stigs/downloads/) | `x86_64`  `ppc64le` |  |
-| ocp4-stig-node-v2r3 [^44]^ | Defense Information Systems Agency Security Technical Implementation Guide (DISA STIG) for Red Hat OpenShift V2R3 | Node | [DISA-STIG](https://public.cyber.mil/stigs/downloads/) | `x86_64`  `ppc64le` |  |
-| rhcos4-stig[^45]^ | Defense Information Systems Agency Security Technical Implementation Guide (DISA STIG) for Red Hat OpenShift[^46]^ | Node | [DISA-STIG](https://public.cyber.mil/stigs/downloads/) | `x86_64`  `ppc64le` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
-| rhcos4-stig-v2r3 | Defense Information Systems Agency Security Technical Implementation Guide (DISA STIG) for Red Hat OpenShift V2R3 | Node | [DISA-STIG](https://public.cyber.mil/stigs/downloads/) | `x86_64`  `ppc64le` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
+| ocp4-stig <sup>\[1\]</sup> | Defense Information Systems Agency Security Technical Implementation Guide (DISA STIG) for Red Hat OpenShift<sup>\[3\]</sup> | Platform | [DISA-STIG](https://public.cyber.mil/stigs/downloads/) | `x86_64` `ppc64le` |  |
+| ocp4-stig-node <sup>\[1\]</sup> | Defense Information Systems Agency Security Technical Implementation Guide (DISA STIG) for Red Hat OpenShift<sup>\[3\]</sup> | Node <sup>\[2\]</sup> | [DISA-STIG](https://public.cyber.mil/stigs/downloads/) | `x86_64` `ppc64le` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
+| ocp4-stig-v2r3 | Defense Information Systems Agency Security Technical Implementation Guide (DISA STIG) for Red Hat OpenShift V2R3 | Platform | [DISA-STIG](https://public.cyber.mil/stigs/downloads/) | `x86_64` `ppc64le` |  |
+| ocp4-stig-node-v2r3 <sup>\[1\]</sup> | Defense Information Systems Agency Security Technical Implementation Guide (DISA STIG) for Red Hat OpenShift V2R3 | Node | [DISA-STIG](https://public.cyber.mil/stigs/downloads/) | `x86_64` `ppc64le` |  |
+| rhcos4-stig<sup>\[1\]</sup> | Defense Information Systems Agency Security Technical Implementation Guide (DISA STIG) for Red Hat OpenShift<sup>\[3\]</sup> | Node | [DISA-STIG](https://public.cyber.mil/stigs/downloads/) | `x86_64` `ppc64le` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
+| rhcos4-stig-v2r3 | Defense Information Systems Agency Security Technical Implementation Guide (DISA STIG) for Red Hat OpenShift V2R3 | Node | [DISA-STIG](https://public.cyber.mil/stigs/downloads/) | `x86_64` `ppc64le` | Red Hat OpenShift Service on AWS with hosted control planes (ROSA HCP) |
 
 1. The  `ocp4-stig`, `ocp4-stig-node` and `rhcos4-stig` profiles maintain the most up-to-date version of the DISA-STIG benchmark as it becomes available in the Compliance Operator. If you want to adhere to a specific version, such as DISA-STIG V2R3, use the `ocp4-stig-v2r3` and `ocp4-stig-node-v2r3` profiles.
 2. Node profiles must be used with the relevant Platform profile. For more information, see *Compliance Operator profile types*.
@@ -183,99 +183,8 @@ Node
 > [!NOTE]
 > In a cluster with many Nodes, both `ocp4` Node and `rhcos4` Node scans might take a long time to complete.
 
-## Additional resources {#additional-resources_compliance-operator-supported-profiles}
+**Additional resources**
+{._additional-resources}
 
 - [Red Hat Knowledgebase Solution #6983418](https://access.redhat.com/solutions/6983418)
 - [Product Compliance](https://access.redhat.com/compliance)
-
-[^1]: 1
-
-[^2]: 4
-
-[^3]: 3
-
-[^4]: 4
-
-[^5]: 1
-
-[^6]: 2
-
-[^7]: 4
-
-[^8]: 3
-
-[^9]: 2
-
-[^10]: 4
-
-[^11]: 1
-
-[^12]: 1
-
-[^13]: 2
-
-[^14]: 1
-
-[^15]: 2
-
-[^16]: 3
-
-[^17]: 3
-
-[^18]: 2
-
-[^19]: 3
-
-[^20]: 2
-
-[^21]: 1
-
-[^22]: 1
-
-[^23]: 2
-
-[^24]: 2
-
-[^25]: 1
-
-[^26]: 1
-
-[^27]: 1
-
-[^28]: 2
-
-[^29]: 2
-
-[^30]: 1
-
-[^31]: 1
-
-[^32]: 1
-
-[^33]: 3
-
-[^34]: 1
-
-[^35]: 2
-
-[^36]: 3
-
-[^37]: 2
-
-[^38]: 2
-
-[^39]: 1
-
-[^40]: 3
-
-[^41]: 1
-
-[^42]: 3
-
-[^43]: 2
-
-[^44]: 1
-
-[^45]: 1
-
-[^46]: 3

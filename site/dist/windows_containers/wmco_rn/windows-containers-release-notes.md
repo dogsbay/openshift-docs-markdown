@@ -1,5 +1,5 @@
 ---
-title: "{{ productwinc }} release notes"
+title: Red&#160;Hat OpenShift support for Windows Containers release notes
 ---
 
 # Red Hat OpenShift support for Windows Containers release notes {#windows-containers-release-notes}

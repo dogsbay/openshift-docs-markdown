@@ -1,5 +1,5 @@
 ---
-title: About the {{ DTShortName }}
+title: About the Distributed Tracing Platform
 ---
 
 # About the Distributed Tracing Platform {#distr-tracing-tempo-architecture}

@@ -1,5 +1,5 @@
 ---
-title: Introduction to {{ kueue_name }}
+title: Introduction to Red&#160;Hat build of Kueue
 ---
 
 # Introduction to Red Hat build of Kueue {#about-kueue}
@@ -47,6 +47,7 @@ The Red Hat build of Kueue workflow can be described at a high level as follows
 6. The Kubernetes scheduler assigns pods to a node in the cluster.
 7. The Kubernetes cluster autoscaler provisions more nodes as required.
 
-## Additional resources {#additional-resources_about-kueue}
+**Additional resources**
+{._additional-resources}
 
 - [Kueue (upstream documentation)](https://kueue.sigs.k8s.io/docs/)

@@ -26,7 +26,7 @@ The Cluster Network Addons Operator (CNAO) deploys a Domain Name Server (DNS) se
 1. Edit the `HyperConverged` CR in your default editor by running the following command:
 
    ```terminal
-   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+   $ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv
    ```
 2. Enable the DNS server and monitoring components according to the following example:
 
@@ -35,7 +35,7 @@ The Cluster Network Addons Operator (CNAO) deploys a Domain Name Server (DNS) se
    kind: HyperConverged
    metadata:
      name: kubevirt-hyperconverged
-     namespace: {{ CNVNamespace }}
+     namespace: openshift-cnv
    spec:
        featureGates:
          deployKubeSecondaryDNS: true
@@ -47,13 +47,13 @@ The Cluster Network Addons Operator (CNAO) deploys a Domain Name Server (DNS) se
 4. Create a load balancer service to expose the DNS server outside the cluster by running the `oc expose` command according to the following example:
 
    ```terminal
-   $ oc expose -n {{ CNVNamespace }} deployment/secondary-dns --name=dns-lb \
+   $ oc expose -n openshift-cnv deployment/secondary-dns --name=dns-lb \
      --type=LoadBalancer --port=53 --target-port=5353 --protocol='UDP'
    ```
 5. Retrieve the external IP address by running the following command:
 
    ```terminal
-   $ oc get service -n {{ CNVNamespace }}
+   $ oc get service -n openshift-cnv
    ```
 
    Example output:
@@ -65,7 +65,7 @@ The Cluster Network Addons Operator (CNAO) deploys a Domain Name Server (DNS) se
 6. Edit the `HyperConverged` CR again:
 
    ```terminal
-   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+   $ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv
    ```
 7. Add the external IP address that you previously retrieved to the `kubeSecondaryDNSNameServerIP` field in the enterprise DNS server records. For example:
 
@@ -74,7 +74,7 @@ The Cluster Network Addons Operator (CNAO) deploys a Domain Name Server (DNS) se
    kind: HyperConverged
    metadata:
      name: kubevirt-hyperconverged
-     namespace: {{ CNVNamespace }}
+     namespace: openshift-cnv
    spec:
      featureGates:
        deployKubeSecondaryDNS: true
@@ -162,7 +162,8 @@ You can access a running virtual machine (VM) attached to a secondary network in
    $ ssh <user_name>@<interface_name>.<vm_name>.<namespace>.vm.<cluster_fqdn>
    ```
 
-## Additional resources {#additional-resources_virt-accessing-vm-secondary-network-fqdn}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring ingress cluster traffic by using a load balancer](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-load-balancer#configuring-ingress-cluster-traffic-load-balancer)
 - [About MetalLB and the MetalLB Operator](/openshift-docs-markdown/networking/networking_operators/metallb-operator/about-metallb#about-metallb)

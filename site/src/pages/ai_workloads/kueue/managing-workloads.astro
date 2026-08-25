@@ -21,7 +21,8 @@ const headings = [{"depth":1,"slug":"managing-workloads","text":"Managing jobs a
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/ai_workloads/kueue/managing-workloads";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="managing-workloads" class="group scroll-mt-20">Managing jobs and workloads<a href="#managing-workloads" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>When you create jobs in your cluster, Red Hat build of Kueue represents each job as a <code>Workload</code> object to track resource requirements, decisions, and statuses.</p>
+      <p class="_abstract">When you create jobs in your cluster, Red Hat build of Kueue represents each job as a <code>Workload</code> object to track resource requirements, decisions, and statuses.</p>
       <p>Red Hat build of Kueue does not directly manipulate your jobs. Instead, Red Hat build of Kueue manages <code>Workload</code> objects that represent the resource requirements of a job, and syncs any decisions and statuses between the two objects.</p>
       <h2 id="label-namespaces_managing-workloads" class="group scroll-mt-20">Labeling namespaces to allow Red Hat build of Kueue to manage jobs<a href="#label-namespaces_managing-workloads" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">You must add the <code>kueue.openshift.io/managed=true</code> label to each namespace where you want Red Hat build of Kueue to manage jobs, because the Operator only enforces policies on labeled namespaces.</p>

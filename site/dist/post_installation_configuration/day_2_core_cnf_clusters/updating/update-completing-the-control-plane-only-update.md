@@ -82,6 +82,7 @@ When you update to all versions from 4.11 and later, you must manually acknowled
   > In this example, the cluster is updated from version 4.14 to 4.15, and then from 4.15 to 4.16 in a Control Plane Only update.
 
 **Additional resources**
+{._additional-resources}
 
 - [Kubernetes API removals](/openshift-docs-markdown/updating/preparing_for_updates/updating-cluster-prepare#kube-api-removals_updating-cluster-prepare)
 
@@ -101,18 +102,20 @@ When updating from one y-stream release to the next, you must ensure that the in
    ```
 
    > [!IMPORTANT]
-   > - ***Control plane only update***: Ensure you point to the interim <y+1> release path
-   > - ***Y-stream update*** - Ensure you use the correct <y.z> release that follows the Kubernetes [version skew policy](https://kubernetes.io/releases/version-skew-policy/).
-   > - ***Z-stream update*** - Verify that there are no problems moving to that specific release
+   > - **Control plane only update**: Ensure you point to the interim <y+1> release path
+   > - **Y-stream update** - Ensure you use the correct <y.z> release that follows the Kubernetes [version skew policy](https://kubernetes.io/releases/version-skew-policy/).
+   > - **Z-stream update** - Verify that there are no problems moving to that specific release
 
    ```terminal
    Requested update to <version>
    ```
 
+   -
 
-where: `<version>`:: Specifies the version number for your particular update, such as `4.15.33`.
+   where: `<version>`:: Specifies the version number for your particular update, such as `4.15.33`.
 
 **Additional resources**
+{._additional-resources}
 
 - [Selecting the target release](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-api#update-selecting-the-target-release_update-api)
 
@@ -277,6 +280,7 @@ Software needs to vetted before it is loaded onto a production cluster. Producti
   > Sometimes you have to approve an update twice because some Operators have interim z-stream release versions that need to be installed before the final version.
 
 **Additional resources**
+{._additional-resources}
 
 - [Updating the worker nodes](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-completing-the-control-plane-only-update#update-updating-the-worker-nodes_completing-the-update)
 
@@ -409,6 +413,7 @@ When moving between y-stream releases, you must run a patch command to explicitl
   > In this example, the cluster is updated from version 4.14 to 4.15, and then from 4.15 to 4.16 in a Control Plane Only update.
 
 **Additional resources**
+{._additional-resources}
 
 - [Preparing to update to OpenShift Container Platform 4.22](/openshift-docs-markdown/updating/preparing_for_updates/updating-cluster-prepare#updating-cluster-prepare)
 
@@ -522,6 +527,7 @@ Monitor the second part of the cluster update to the <y+1> version.
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Monitoring the cluster update](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-completing-the-control-plane-only-update#update-monitoring-the-cluster-update_completing-the-update)
 
@@ -567,6 +573,7 @@ When the cluster Operators update process is complete, each control plane nodes 
 > During this part of the update, messages are reported that state cluster Operators are being updated again or are in a degraded state. This is because the control plane node is offline while it reboots nodes.
 
 **Additional resources**
+{._additional-resources}
 
 - [Monitoring the cluster update](/openshift-docs-markdown/edge_computing/day_2_core_cnf_clusters/updating/update-completing-the-control-plane-only-update#update-monitoring-the-cluster-update_completing-the-update)
 - [Updating the OLM Operators](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-completing-the-control-plane-only-update#update-updating-the-olm-operators_completing-the-update)

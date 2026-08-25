@@ -20,7 +20,8 @@ const headings = [{"depth":1,"slug":"virt-dedicated-resources-vm","text":"Enabli
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-dedicated-resources-vm";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -39,7 +40,7 @@ const pageCategory = ["virt","virt/managing_vms","virt/managing_vms/advanced_vm_
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Enabling dedicated resources for virtual machines {#virt-dedicated-resources-vm}\n\nTo improve performance, you can dedicate node resources, such as CPU, to a virtual machine.\n\n## About dedicated resources {#virt-about-dedicated-resources_virt-dedicated-resources-vm}\n\nWhen you enable dedicated resources for your virtual machine, your virtual machine’s workload is scheduled on CPUs that will not be used by other processes.\n\nBy using dedicated resources, you can improve the performance of the virtual machine and the accuracy of latency predictions.\n\n## Enabling dedicated resources for a virtual machine {#virt-enabling-dedicated-resources_virt-dedicated-resources-vm}\n\nYou can enable dedicated resources for a virtual machine in the **Details** tab. Virtual machines that were created from a Red Hat template can be configured with dedicated resources.\n\n**Prerequisites**\n\n- The CPU Manager must be configured on the node. Verify that the node has the `cpumanager = true` label before scheduling virtual machine workloads.\n- The virtual machine must be powered off.\n\n**Procedure**\n\n1. In the OpenShift Container Platform console, click **Virtualization** -> **VirtualMachines** from the side menu.\n2. Select a virtual machine to open the **VirtualMachine details** page.\n3. On the **Configuration -> Scheduling** tab, click the edit icon beside **Dedicated Resources**.\n4. Select **Schedule this workload with dedicated resources (guaranteed policy)**.\n5. Click **Save**.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-dedicated-resources-vm.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Enabling dedicated resources for virtual machines {#virt-dedicated-resources-vm}\n\nTo improve performance, you can dedicate node resources, such as CPU, to a virtual machine.\n\n## About dedicated resources {#virt-about-dedicated-resources_virt-dedicated-resources-vm}\n\nWhen you enable dedicated resources for your virtual machine, your virtual machine’s workload is scheduled on CPUs that will not be used by other processes.\n\nBy using dedicated resources, you can improve the performance of the virtual machine and the accuracy of latency predictions.\n\n## Enabling dedicated resources for a virtual machine {#virt-enabling-dedicated-resources_virt-dedicated-resources-vm}\n\nYou can enable dedicated resources for a virtual machine in the **Details** tab. Virtual machines that were created from a Red Hat template can be configured with dedicated resources.\n\n**Prerequisites**\n\n- The CPU Manager must be configured on the node. Verify that the node has the `cpumanager = true` label before scheduling virtual machine workloads.\n- The virtual machine must be powered off.\n\n**Procedure**\n\n1. In the OpenShift Container Platform console, click **Virtualization** → **VirtualMachines** from the side menu.\n2. Select a virtual machine to open the **VirtualMachine details** page.\n3. On the **Configuration -> Scheduling** tab, click the edit icon beside **Dedicated Resources**.\n4. Select **Schedule this workload with dedicated resources (guaranteed policy)**.\n5. Click **Save**.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-dedicated-resources-vm.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,12 +79,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -91,7 +93,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-dedicated-resources-vm" class="group scroll-mt-20">Enabling dedicated resources for virtual machines<a href="#virt-dedicated-resources-vm" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>To improve performance, you can dedicate node resources, such as CPU, to a virtual machine.</p>
+      <p class="_abstract">To improve performance, you can dedicate node resources, such as CPU, to a virtual machine.</p>
       <h2 id="virt-about-dedicated-resources_virt-dedicated-resources-vm" class="group scroll-mt-20">About dedicated resources<a href="#virt-about-dedicated-resources_virt-dedicated-resources-vm" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">When you enable dedicated resources for your virtual machine, your virtual machine’s workload is scheduled on CPUs that will not be used by other processes.</p>
       <p>By using dedicated resources, you can improve the performance of the virtual machine and the accuracy of latency predictions.</p>
@@ -104,7 +106,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </ul>
       <p><strong>Procedure</strong></p>
       <ol>
-      <li>In the OpenShift Container Platform console, click <strong>Virtualization</strong> -&gt; <strong>VirtualMachines</strong> from the side menu.</li>
+      <li>In the OpenShift Container Platform console, click <strong>Virtualization</strong> → <strong>VirtualMachines</strong> from the side menu.</li>
       <li>Select a virtual machine to open the <strong>VirtualMachine details</strong> page.</li>
       <li>On the <strong>Configuration -&gt; Scheduling</strong> tab, click the edit icon beside <strong>Dedicated Resources</strong>.</li>
       <li>Select <strong>Schedule this workload with dedicated resources (guaranteed policy)</strong>.</li>

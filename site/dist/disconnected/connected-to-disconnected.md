@@ -48,6 +48,7 @@ The following prerequisites must be met:
 - Access to the internet to obtain the necessary container images.
 
 **Additional resources**
+{._additional-resources}
 
 - [Red Hat Quay](https://www.redhat.com/en/technologies/cloud-computing/quay)
 - [JFrog Artifactory](https://jfrog.com/artifactory/)
@@ -230,6 +231,7 @@ After the cluster is properly configured, you can mirror the images from your ex
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Mirroring an Operator catalog](/openshift-docs-markdown/disconnected/using-olm#olm-mirror-catalog_olm-restricted-networks)
 - [OpenShift CLI administrator command reference](/openshift-docs-markdown/cli_reference/openshift_cli/administrator-cli-commands#oc-adm-catalog-mirror)
@@ -443,6 +445,7 @@ After mirroring all the required repositories and configuring your cluster to wo
 > The Insights Operator is degraded when the cluster loses its Internet connection. You can avoid this problem by temporarily disabling the Insights Operator until you can restore it. For more information, see "Disabling the Insights Operator".
 
 **Additional resources**
+{._additional-resources}
 
 - [Disabling the Insights Operator](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#insights-operator-new-pull-secret-disabled_remote-health-reporting)
 
@@ -479,6 +482,7 @@ Use the following procedure to recover from a degraded Insights Operator.
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Red Hat Lightspeed](https://console.redhat.com)
 

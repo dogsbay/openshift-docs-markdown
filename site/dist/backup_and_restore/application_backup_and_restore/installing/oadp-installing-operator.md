@@ -18,11 +18,11 @@ Install the OADP Operator by using the OpenShift Container Platform web console.
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, click **Ecosystem** -> **Software Catalog**.
+1. In the OpenShift Container Platform web console, click **Ecosystem** → **Software Catalog**.
 2. Use the **Filter by keyword** field to find the **OADP Operator**.
 3. Select the **OADP Operator** and click **Install**.
 4. Click **Install** to install the Operator in the `openshift-adp` project.
-5. Click **Ecosystem** -> **Installed Operators** to verify the installation.
+5. Click **Ecosystem** → **Installed Operators** to verify the installation.
 
 ## OADP-Velero-OpenShift Container Platform version relationship {#velero-oadp-version-relationship_installing-oadp-operator}
 
@@ -42,10 +42,14 @@ Review the version relationship between OADP, Velero, and OpenShift Container Pl
 | 1.4.3 | 1.14 | 4.14-4.18 |
 | 1.5.0 | 1.16 | 4.19 |
 
+**Additional resources**
+{._additional-resources}
+
 - [Velero 1.12 documentation](https://velero.io/docs/v1.12/)
 - [Velero 1.14 documentation](https://velero.io/docs/v1.14/)
 - [Velero 1.16 documentation](https://velero.io/docs/v1.16/)
 
-## Additional resources {#additional-resources_installing-oadp-operator}
+**Additional resources**
+{._additional-resources}
 
 - [Velero 1.16](https://velero.io/docs/v1.16/)

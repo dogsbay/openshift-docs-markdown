@@ -20,7 +20,8 @@ const headings = [{"depth":1,"slug":"using-dashboard-to-get-cluster-info","text"
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/web_console/using-dashboard-to-get-cluster-information";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -39,7 +40,7 @@ const pageCategory = ["web_console"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using the OpenShift Container Platform dashboard to get cluster information {#using-dashboard-to-get-cluster-info}\n\nThe OpenShift Container Platform web console captures high-level information about the cluster.\n\n## About the OpenShift Container Platform dashboards page {#virt-about-the-overview-dashboard_using-dashboard-to-get-cluster-info}\n\nAccess the OpenShift Container Platform dashboard, which captures high-level information about the cluster, by navigating to **Home** -> **Overview** from the OpenShift Container Platform web console.\n\nThe OpenShift Container Platform dashboard provides various cluster information, captured in individual dashboard cards.\n\nThe OpenShift Container Platform dashboard consists of the following cards:\n\n- **Details** provides a brief overview of informational cluster details.\n\n  Statuses include **OK**, **error**, **warning**, **in progress**, and **unknown**. Resources can add custom status names.\n\n  - Cluster ID\n  - Provider\n  - Version\n- **Cluster Inventory** details the number of resources and associated statuses. It is helpful when intervention is required to resolve problems, including information about:\n\n  - Number of nodes.\n  - Number of pods.\n  - Persistent storage volume claims.\n  - Bare-metal hosts in the cluster, listed according to their state (only available in **metal3** environment).\n- **Status** helps administrators understand how cluster resources are consumed. Click a resource to jump to a detailed page listing pods and nodes that consume the largest amount of the specified cluster resource (CPU, memory, or storage).\n- **Cluster Utilization** shows the capacity of various resources over a specified period of time, to help administrators understand the scale and frequency of high resource consumption, including information about:\n\n  - CPU time.\n  - Memory allocation.\n  - Storage consumed.\n  - Network resources consumed.\n  - Pod count.\n- **Activity** lists messages related to recent activity in the cluster, such as pod creation or virtual machine migration to another host.\n\n## Recognizing resource and project limits and quotas {#recognize-resource-limits-quotas}\n\nYou can view a graphical representation of available resources in the **Topology** view of the web console **Developer** perspective.\n\nIf a resource has a message about resource limitations or quotas being reached, a border is displayed around the resource name to indicate this. Click the resource to open a side panel to see the message. If the **Topology** view is zoomed out, a dot next to the resource name indicates that a message is available.\n\nIf you are using **List View** from the **View Shortcuts** menu, resources appear as a list. The **Alerts** column indicates if a message is available.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/web_console/using-dashboard-to-get-cluster-information.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using the OpenShift Container Platform dashboard to get cluster information {#using-dashboard-to-get-cluster-info}\n\nThe OpenShift Container Platform web console captures high-level information about the cluster.\n\n## About the OpenShift Container Platform dashboards page {#virt-about-the-overview-dashboard_using-dashboard-to-get-cluster-info}\n\nAccess the OpenShift Container Platform dashboard, which captures high-level information about the cluster, by navigating to **Home** → **Overview** from the OpenShift Container Platform web console.\n\nThe OpenShift Container Platform dashboard provides various cluster information, captured in individual dashboard cards.\n\nThe OpenShift Container Platform dashboard consists of the following cards:\n\n- **Details** provides a brief overview of informational cluster details.\n\n  Statuses include **OK**, **error**, **warning**, **in progress**, and **unknown**. Resources can add custom status names.\n\n  - Cluster ID\n  - Provider\n  - Version\n- **Cluster Inventory** details the number of resources and associated statuses. It is helpful when intervention is required to resolve problems, including information about:\n\n  - Number of nodes.\n  - Number of pods.\n  - Persistent storage volume claims.\n  - Bare-metal hosts in the cluster, listed according to their state (only available in **metal3** environment).\n- **Status** helps administrators understand how cluster resources are consumed. Click a resource to jump to a detailed page listing pods and nodes that consume the largest amount of the specified cluster resource (CPU, memory, or storage).\n- **Cluster Utilization** shows the capacity of various resources over a specified period of time, to help administrators understand the scale and frequency of high resource consumption, including information about:\n\n  - CPU time.\n  - Memory allocation.\n  - Storage consumed.\n  - Network resources consumed.\n  - Pod count.\n- **Activity** lists messages related to recent activity in the cluster, such as pod creation or virtual machine migration to another host.\n\n## Recognizing resource and project limits and quotas {#recognize-resource-limits-quotas}\n\nYou can view a graphical representation of available resources in the **Topology** view of the web console **Developer** perspective.\n\nIf a resource has a message about resource limitations or quotas being reached, a border is displayed around the resource name to indicate this. Click the resource to open a side panel to see the message. If the **Topology** view is zoomed out, a dot next to the resource name indicates that a message is available.\n\nIf you are using **List View** from the **View Shortcuts** menu, resources appear as a list. The **Alerts** column indicates if a message is available.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/web_console/using-dashboard-to-get-cluster-information.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,12 +79,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -91,9 +93,9 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="using-dashboard-to-get-cluster-info" class="group scroll-mt-20">Using the OpenShift Container Platform dashboard to get cluster information<a href="#using-dashboard-to-get-cluster-info" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>The OpenShift Container Platform web console captures high-level information about the cluster.</p>
+      <p class="_abstract">The OpenShift Container Platform web console captures high-level information about the cluster.</p>
       <h2 id="virt-about-the-overview-dashboard_using-dashboard-to-get-cluster-info" class="group scroll-mt-20">About the OpenShift Container Platform dashboards page<a href="#virt-about-the-overview-dashboard_using-dashboard-to-get-cluster-info" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
-      <p class="_abstract">Access the OpenShift Container Platform dashboard, which captures high-level information about the cluster, by navigating to <strong>Home</strong> -&gt; <strong>Overview</strong> from the OpenShift Container Platform web console.</p>
+      <p class="_abstract">Access the OpenShift Container Platform dashboard, which captures high-level information about the cluster, by navigating to <strong>Home</strong> → <strong>Overview</strong> from the OpenShift Container Platform web console.</p>
       <p>The OpenShift Container Platform dashboard provides various cluster information, captured in individual dashboard cards.</p>
       <p>The OpenShift Container Platform dashboard consists of the following cards:</p>
       <ul>

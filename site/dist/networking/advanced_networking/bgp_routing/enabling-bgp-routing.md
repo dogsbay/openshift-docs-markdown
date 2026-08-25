@@ -36,6 +36,7 @@ If you are using BGP routing in conjunction with the MetalLB Operator, the neces
   }'
   ```
 
-## Additional resources {#additional-resources_enabling-bgp-routing}
+**Additional resources**
+{._additional-resources}
 
 - [Improve east-west performance by routing pods on the underlay with BGP](/openshift-docs-markdown/networking/advanced_networking/bgp_routing/no-overlay-mode-bgp-routing#no-overlay-mode-bgp-routing)

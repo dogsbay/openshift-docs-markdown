@@ -20,7 +20,8 @@ const headings = [{"depth":1,"slug":"installing-mirroring-disconnected-about","t
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/disconnected";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -78,12 +79,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -91,7 +93,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="installing-mirroring-disconnected-about" class="group scroll-mt-20">About disconnected installation mirroring<a href="#installing-mirroring-disconnected-about" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>As a cluster administrator, you can use a mirror registry to ensure that your clusters only use container images that satisfy your organizational controls on external content.</p>
+      <p class="_abstract">As a cluster administrator, you can use a mirror registry to ensure that your clusters only use container images that satisfy your organizational controls on external content.</p>
       <h2 id="installing-mirroring-disconnected-con_installing-mirroring-disconnected-about" class="group scroll-mt-20">Mirror registries for installing clusters in disconnected environments<a href="#installing-mirroring-disconnected-con_installing-mirroring-disconnected-about" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">You must mirror required container images into a disconnected environment before you can install and provision a cluster there. To mirror those container images, you must have a mirror registry.</p>
       <p>Consider the following options for creating and using a mirror registry:</p>

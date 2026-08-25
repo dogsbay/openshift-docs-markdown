@@ -1,5 +1,5 @@
 ---
-title: Group []
+title: Group [user.openshift.io/v1]
 ---
 
 # Group \[user.openshift.io/v1\] {#group-user-openshift-io-v1}
@@ -38,13 +38,13 @@ The following API endpoints are available:
 - `/apis/user.openshift.io/v1/watch/groups`
 
   - `GET`: watch individual changes to a list of Group. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/user.openshift.io/v1/groups/{{ name }}`
+- `/apis/user.openshift.io/v1/groups/{name}`
 
   - `DELETE`: delete a Group
   - `GET`: read the specified Group
   - `PATCH`: partially update the specified Group
   - `PUT`: replace the specified Group
-- `/apis/user.openshift.io/v1/watch/groups/{{ name }}`
+- `/apis/user.openshift.io/v1/watch/groups/{name}`
 
   - `GET`: watch changes to an object of kind Group. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
 
@@ -141,7 +141,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/user.openshift.io/v1/groups/{{ name }} {#_apisuseropenshiftiov1groups_name}
+### /apis/user.openshift.io/v1/groups/{name} {#_apisuseropenshiftiov1groups_name}
 
 **Global path parameters**
 
@@ -246,7 +246,7 @@ Description
 | 201 - Created | [`Group`](/openshift-docs-markdown/rest_api/user_and_group_apis/group-user-openshift-io-v1#group-user-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/user.openshift.io/v1/watch/groups/{{ name }} {#_apisuseropenshiftiov1watchgroups_name}
+### /apis/user.openshift.io/v1/watch/groups/{name} {#_apisuseropenshiftiov1watchgroups_name}
 
 **Global path parameters**
 

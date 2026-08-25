@@ -55,7 +55,8 @@ The following prerequisites are required to add certificates into the host NSS d
   > [!NOTE]
   > The NMState Operator is supported on Google Cloud only for configuring IPsec.
 
-## Additional resources {#additional-resources_k8s-nmstate-about-the-k8s-nmstate-operator_configuring-ipsec-ovn}
+**Additional resources**
+{._additional-resources}
 
 - [Kubernetes NMState Operator](/openshift-docs-markdown/networking/networking_operators/k8s-nmstate-about-the-k8s-nmstate-operator#k8s-nmstate-about-the-k8s-nmstate-operator)
 
@@ -63,7 +64,7 @@ The following prerequisites are required to add certificates into the host NSS d
 
 When IPsec is enabled in OpenShift Container Platform, you must configure the network connectivity between machines to allow cluster components to communicate. Each machine must be able to resolve the hostnames of all other machines in the cluster.
 
-***Ports used for all-machine to all-machine communications***
+**Ports used for all-machine to all-machine communications**
 
 <table>
 <thead>
@@ -75,12 +76,11 @@ When IPsec is enabled in OpenShift Container Platform, you must configure the ne
 </thead>
 <tbody>
 <tr>
-  <td>.2+</td>
-  <td>UDP</td>
+  <td rowspan="2">UDP</td>
   <td><code>500</code></td>
+  <td>IPsec IKE packets</td>
 </tr>
 <tr>
-  <td>IPsec IKE packets</td>
   <td><code>4500</code></td>
   <td>IPsec NAT-T packets</td>
 </tr>
@@ -361,74 +361,67 @@ To configure IPsec encryption for traffic between OpenShift Container Platform a
 6. To create Butane config files for the control plane and compute nodes, enter the following command:
 
    > [!NOTE]
-   >
+   > The [Butane version](https://coreos.github.io/butane/specs/) you specify in the config file should match the OpenShift Container Platform version and always ends in `0`. For example, `4.22.0`. See "Creating machine configs with Butane" for information about Butane.
 
-The [Butane version](https://coreos.github.io/butane/specs/) you specify in the config file should match the OpenShift Container Platform version and always ends in `0`. For example, `{{ product_version }}.0`. See "Creating machine configs with Butane" for information about Butane.
+   ```terminal
+   $ for role in master worker; do
+     cat >> "99-ipsec-${role}-endpoint-config.bu" <<-EOF
+     variant: openshift
+     version: 4.22.0
+     metadata:
+       name: 99-${role}-import-certs
+       labels:
+         machineconfiguration.openshift.io/role: $role
+     systemd:
+       units:
+       - name: ipsec-import.service
+         enabled: true
+         contents: |
+           [Unit]
+           Description=Import external certs into ipsec NSS
+           Before=ipsec.service
 
-````
-:::
+           [Service]
+           Type=oneshot
+           ExecStart=/usr/local/bin/ipsec-addcert.sh
+           RemainAfterExit=false
+           StandardOutput=journal
 
-```terminal
-$ for role in master worker; do
-  cat >> "99-ipsec-${role}-endpoint-config.bu" <<-EOF
-  variant: openshift
-  version: {{ product_version }}.0
-  metadata:
-    name: 99-${role}-import-certs
-    labels:
-      machineconfiguration.openshift.io/role: $role
-  systemd:
-    units:
-    - name: ipsec-import.service
-      enabled: true
-      contents: |
-        [Unit]
-        Description=Import external certs into ipsec NSS
-        Before=ipsec.service
-
-        [Service]
-        Type=oneshot
-        ExecStart=/usr/local/bin/ipsec-addcert.sh
-        RemainAfterExit=false
-        StandardOutput=journal
-
-        [Install]
-        WantedBy=multi-user.target
-  storage:
-    files:
-    - path: /etc/pki/certs/ca.pem
-      mode: 0400
-      overwrite: true
-      contents:
-        local: ca.pem
-    - path: /etc/pki/certs/left_server.p12
-      mode: 0400
-      overwrite: true
-      contents:
-        local: left_server.p12
-    - path: /usr/local/bin/ipsec-addcert.sh
-      mode: 0740
-      overwrite: true
-      contents:
-        inline: |
-          #!/bin/bash -e
-          echo "importing cert to NSS"
-          certutil -A -n "CA" -t "CT,C,C" -d /var/lib/ipsec/nss/ -i /etc/pki/certs/ca.pem
-          pk12util -W "" -i /etc/pki/certs/left_server.p12 -d /var/lib/ipsec/nss/
-          certutil -M -n "left_server" -t "u,u,u" -d /var/lib/ipsec/nss/
-EOF
-done
-```
-````
-
-1. To transform the Butane files that you created in the earlier step into machine configs, enter the following command:
+           [Install]
+           WantedBy=multi-user.target
+     storage:
+       files:
+       - path: /etc/pki/certs/ca.pem
+         mode: 0400
+         overwrite: true
+         contents:
+           local: ca.pem
+       - path: /etc/pki/certs/left_server.p12
+         mode: 0400
+         overwrite: true
+         contents:
+           local: left_server.p12
+       - path: /usr/local/bin/ipsec-addcert.sh
+         mode: 0740
+         overwrite: true
+         contents:
+           inline: |
+             #!/bin/bash -e
+             echo "importing cert to NSS"
+             certutil -A -n "CA" -t "CT,C,C" -d /var/lib/ipsec/nss/ -i /etc/pki/certs/ca.pem
+             pk12util -W "" -i /etc/pki/certs/left_server.p12 -d /var/lib/ipsec/nss/
+             certutil -M -n "left_server" -t "u,u,u" -d /var/lib/ipsec/nss/
+   EOF
+   done
+   ```
+7. To transform the Butane files that you created in the earlier step into machine configs, enter the following command:
 
    ```terminal
    $ for role in master worker; do
      butane -d . 99-ipsec-${role}-endpoint-config.bu -o ./99-ipsec-$role-endpoint-config.yaml
    done
    ```
-2. To apply the machine configs to your cluster, enter the following command:
+8. To apply the machine configs to your cluster, enter the following command:
 
    ```terminal
    $ for role in master worker; do
@@ -474,7 +467,8 @@ done
       $ oc get mcp worker -o yaml | grep 80-ipsec-worker-extensions -c
       ```
 
-## Additional resources {#additional-resources_nw-ovn-ipsec_configuring-ipsec-ovn}
+**Additional resources**
+{._additional-resources}
 
 - [IPsec Encryption](https://nmstate.io/devel/yaml_api.html#ipsec-encryption)
 - [Installing Butane](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-butane-install_installing-customizing)
@@ -558,7 +552,8 @@ To disable IPsec encryption in OpenShift Container Platform, you can patch the c
       ```
 2. Optional: You can increase the size of your cluster MTU by `46` bytes because there is no longer any overhead from the IPsec Encapsulating Security Payload (ESP) header in IP packets.
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring a VPN with IPsec](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html/configuring_and_managing_networking/setting-up-an-ipsec-vpn)
 - [Installing Butane](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-butane-install_installing-customizing)

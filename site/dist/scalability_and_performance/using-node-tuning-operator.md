@@ -113,7 +113,7 @@ Verify the TuneD profiles that are applied to your cluster node.
 
    ```terminal {title="Example output"}
    NAME          VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE   MESSAGE
-   node-tuning   {{ product_version }}.1    True        False         True       60m     1/5 Profiles with bootcmdline conflict
+   node-tuning   4.22.1    True        False         True       60m     1/5 Profiles with bootcmdline conflict
    ```
 
    The `ClusterOperator/node-tuning` object also contains useful information about the Operator and its node agents' health. For example, Operator misconfiguration is reported by `ClusterOperator/node-tuning` status messages.
@@ -478,6 +478,7 @@ where:
 > You can use Topology Aware Lifecycle Manager to perform a controlled reboot across a fleet of spoke clusters to apply a deferred tuning change. For more information about coordinated reboots, see "Coordinating reboots for configuration changes".
 
 **Additional resources**
+{._additional-resources}
 
 - [Coordinating reboots for configuration changes](/openshift-docs-markdown/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-coordinating-reboots-for-config-changes_ztp-configuring-managed-clusters-policygenerator)
 

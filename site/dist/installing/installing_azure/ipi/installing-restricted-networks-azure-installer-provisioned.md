@@ -62,6 +62,9 @@ You can use Azure Firewall to restrict the outbound routing for the Virtual Netw
 > [!IMPORTANT]
 > If you use Azure Firewall to restrict internet access, you must set the `publish` field to `Internal` in the `install-config.yaml` file. Azure Firewall does not work properly with Azure public load balancers.
 
+**Additional resources**
+{._additional-resources}
+
 - [Providing user-defined routing with Azure Firewall](https://learn.microsoft.com/en-us/azure/aks/egress-outboundtype#deploy-a-cluster-with-outbound-type-of-udr-and-azure-firewall)
 - [Azure Firewall does not work properly with Azure public load balancers](https://learn.microsoft.com/en-us/azure/firewall/integrate-lb)
 
@@ -113,7 +116,7 @@ The network security groups for the subnets that host the compute and control pl
 > [!IMPORTANT]
 > The network security group rules must be in place before you install the cluster. If you attempt to install a cluster without the required access, the installation program cannot reach the Azure APIs, and installation fails.
 
-***Required ports***
+**Required ports**
 
 <table>
 <thead>
@@ -151,13 +154,13 @@ The network security groups for the subnets that host the compute and control pl
 </tr>
 <tr>
   <td><code>*</code></td>
-  <td>Allows connections to Azure APIs. You must set a Destination Service Tag to <code>AzureCloud</code>. ^[1]^</td>
+  <td>Allows connections to Azure APIs. You must set a Destination Service Tag to <code>AzureCloud</code>. <sup>[1]</sup></td>
   <td>x</td>
   <td>x</td>
 </tr>
 <tr>
   <td><code>*</code></td>
-  <td>Denies connections to the internet. You must set a Destination Service Tag to <code>Internet</code>. ^[1]^</td>
+  <td>Denies connections to the internet. You must set a Destination Service Tag to <code>Internet</code>. <sup>[1]</sup></td>
   <td>x</td>
   <td>x</td>
 </tr>
@@ -173,7 +176,7 @@ The network security groups for the subnets that host the compute and control pl
 
 Because cluster components do not modify the user-provided network security groups, which the Kubernetes controllers update, a pseudo-network security group is created for the Kubernetes controller to modify without impacting the rest of the environment.
 
-***Ports used for all-machine to all-machine communications***
+**Ports used for all-machine to all-machine communications**
 
 <table>
 <thead>
@@ -187,35 +190,39 @@ Because cluster components do not modify the user-provided network security grou
 <tr>
   <td>ICMP</td>
   <td>N/A</td>
-  <td>Network reachability tests<br><br>.3+</td>
+  <td>Network reachability tests</td>
 </tr>
 <tr>
-  <td>TCP</td>
+  <td rowspan="3">TCP</td>
   <td><code>1936</code></td>
   <td>Metrics</td>
 </tr>
 <tr>
   <td><code>9000</code>-<code>9999</code></td>
-  <td>Host level services, including the node exporter on ports <code>9100</code>-<code>9101</code> andthe Cluster Version Operator on port <code>9099</code>.</td>
+  <td>Host level services, including the node exporter on ports <code>9100</code>-<code>9101</code> and the Cluster Version Operator on port <code>9099</code>.</td>
+</tr>
+<tr>
   <td><code>10250</code>-<code>10259</code></td>
+  <td>The default ports that Kubernetes reserves</td>
 </tr>
 <tr>
-  <td>The default ports that Kubernetes reserves<br><br>.5+</td>
-  <td>UDP</td>
+  <td rowspan="5">UDP</td>
   <td><code>6081</code></td>
+  <td>Geneve</td>
 </tr>
 <tr>
-  <td>Geneve</td>
   <td><code>9000</code>-<code>9999</code></td>
   <td>Host level services, including the node exporter on ports <code>9100</code>-<code>9101</code>.</td>
 </tr>
 <tr>
   <td><code>500</code></td>
   <td>IPsec IKE packets</td>
-  <td><code>4500</code></td>
 </tr>
 <tr>
+  <td><code>4500</code></td>
   <td>IPsec NAT-T packets</td>
+</tr>
+<tr>
   <td><code>123</code></td>
   <td>Network Time Protocol (NTP) on UDP port <code>123</code>. If you configure an external NTP time server, you must open UDP port <code>123</code>.</td>
 </tr>
@@ -232,7 +239,7 @@ Because cluster components do not modify the user-provided network security grou
 </tbody>
 </table>
 
-***Ports used for control plane machine to control plane machine communications***
+**Ports used for control plane machine to control plane machine communications**
 
 <table>
 <thead>
@@ -262,6 +269,7 @@ The Azure credentials that you use when you create your cluster do not need the 
 Because the cluster is unable to modify network security groups in an existing subnet, there is no way to isolate clusters from each other on the VNet.
 
 **Additional resources**
+{._additional-resources}
 
 - [About the OVN-Kubernetes network plugin](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes)
 - [Configuring your firewall](/openshift-docs-markdown/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)
@@ -270,9 +278,7 @@ Because the cluster is unable to modify network security groups in an existing s
 
 ## Creating the installation configuration file {#installation-initializing_installing-restricted-networks-azure-installer-provisioned}
 
-You can customize the OpenShift Container Platform cluster you install on
-
-Microsoft Azure.
+You can customize the OpenShift Container Platform cluster you install on Microsoft Azure.
 
 > [!IMPORTANT]
 > Do not specify `windows`, `microsoft`, or other variants of these words in the `metadata.name` parameter of the `install-config.yaml` file. Specifying one of these words for the cluster name causes the installation program to generate an error message like the following example message:
@@ -420,6 +426,7 @@ Microsoft Azure.
    If previously not detected, the installation program creates an `osServicePrincipal.json` configuration file and stores this file in the `~/.azure/` directory on your computer. This ensures that the installation program can load the profile when it is creating an OpenShift Container Platform cluster on the target platform.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installation configuration parameters for Azure](/openshift-docs-markdown/installing/installing_azure/installation-config-parameters-azure#installation-config-parameters-azure)
 
@@ -427,7 +434,7 @@ Microsoft Azure.
 
 To ensure that your OpenShift Container Platform cluster runs as expected, each cluster machine must meet minimum CPU, memory, and storage requirements.
 
-***Minimum resource requirements***
+**Minimum resource requirements**
 
 <table>
 <thead>
@@ -436,45 +443,34 @@ To ensure that your OpenShift Container Platform cluster runs as expected, each 
   <th>Operating system</th>
   <th>vCPU</th>
   <th>Virtual RAM</th>
-
   <th>Storage</th>
+  <th>Input/Output Per Second (IOPS)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td>Input/Output Per Second (IOPS)</td>
   <td>Bootstrap</td>
   <td>RHCOS</td>
-
   <td>4</td>
   <td>16 GB</td>
   <td>100 GB</td>
   <td>300</td>
 </tr>
 <tr>
-
   <td>Control plane</td>
   <td>RHCOS</td>
-
   <td>4</td>
   <td>16 GB</td>
   <td>100 GB</td>
+  <td>300</td>
 </tr>
 <tr>
-  <td>300</td>
-
   <td>Compute</td>
-
   <td>RHCOS</td>
-
   <td>2</td>
   <td>8 GB</td>
   <td>100 GB</td>
   <td>300</td>
-
-</tr>
-<tr>
-
 </tr>
 </tbody>
 </table>
@@ -502,14 +498,11 @@ If an instance type for your platform meets the minimum requirements for cluster
 
 There are several Microsoft Azure instance types tested with OpenShift Container Platform. Choose a listed instance type when you install a cluster on 64-bit x86 infrastructure.
 
-<details>
-<summary>Machine types based on 64-bit x86 architecture</summary>
-
-```
-### General Purpose
+:::details{title="Machine types based on 64-bit x86 architecture"}
+##### General Purpose
 
 | Azure VM Series | Family Name |
-|-----------------|-------------|
+| --- | --- |
 | Basv2-series | `standardBasv2Family` |
 | BS-series | `standardBSFamily` |
 | Bsv2-series | `standardBsv2Family` |
@@ -543,10 +536,10 @@ There are several Microsoft Azure instance types tested with OpenShift Container
 | Dsv5-series | `standardDSv5Family` |
 | Dsv6-series | `StandardDsv6Family` |
 
-### Memory Optimized
+##### Memory Optimized
 
 | Azure VM Series | Family Name |
-|-----------------|-------------|
+| --- | --- |
 | Eadsv5-series | `standardEADSv5Family`, `standardEIADSv5Family` |
 | Eadsv6-series | `standardEadv6Family` |
 | Easv4-series | `standardEASv4Family`, `standardEIASv4Family` |
@@ -577,10 +570,10 @@ There are several Microsoft Azure instance types tested with OpenShift Container
 | Msv2 Medium Memory-series | `standardMISMediumMemoryv2Family`, `standardMSMediumMemoryv2Family` |
 | Msv3 Medium Memory-series | `standardMSMediumMemoryv3Family` |
 
-### Compute Optimized
+##### Compute Optimized
 
 | Azure VM Series | Family Name |
-|-----------------|-------------|
+| --- | --- |
 | Falsv6-series | `StandardFalsv6Family` |
 | Famsv6-series | `StandardFamsv6Family` |
 | Fasv6-series | `StandardFasv6Family` |
@@ -590,10 +583,10 @@ There are several Microsoft Azure instance types tested with OpenShift Container
 | FX-series | `standardFXMDVSFamily` |
 | FXmsv2-series | `StandardFXmsv2Family` |
 
-### Storage Optimized
+##### Storage Optimized
 
 | Azure VM Series | Family Name |
-|-----------------|-------------|
+| --- | --- |
 | GS-series | `standardGSFamily` |
 | Laosv4-series | `standardLaosv4Family` |
 | Lasv3-series | `standardLASv3Family` |
@@ -603,10 +596,10 @@ There are several Microsoft Azure instance types tested with OpenShift Container
 | Lsv3-series | `standardLSv3Family` |
 | Lsv4-series | `standardLsv4Family` |
 
-### GPU Accelerated
+##### GPU Accelerated
 
 | Azure VM Series | Family Name |
-|-----------------|-------------|
+| --- | --- |
 | NC_A100_v4-series | `StandardNCADSA100v4Family` |
 | NCads_H100_v5-series | `StandardNCadsH100v5Family` |
 | NCCads_H100_v5-series | `StandardNCCads2023Family` |
@@ -621,37 +614,32 @@ There are several Microsoft Azure instance types tested with OpenShift Container
 | NVads V710 v5-series | `StandardNVadsV710v5Family` |
 | NVv3-series | `standardNVSv3Family` |
 
-### FPGA Accelerated
+##### FPGA Accelerated
 
 | Azure VM Series | Family Name |
-|-----------------|-------------|
+| --- | --- |
 | NPS-series | `standardNPSFamily` |
 
-### High Performance Compute
+##### High Performance Compute
 
 | Azure VM Series | Family Name |
-|-----------------|-------------|
+| --- | --- |
 | HBv2-series | `standardHBrsv2Family` |
 | HBv4-series | `standardHBv4Family` |
 | HBv5-series | `standardHBv5Family` |
 | HC-series | `standardHCSFamily` |
 | HX-series | `standardHXFamily` |
-```
-
-</details>
+:::
 
 ### Tested instance types for Azure on 64-bit ARM infrastructures {#installation-azure-arm-tested-machine-types_installing-restricted-networks-azure-installer-provisioned}
 
 There are several Microsoft Azure ARM64 instance types tested with OpenShift Container Platform. Choose a listed instance type when you install a cluster on 64-bit ARM infrastructure.
 
-<details>
-<summary>Machine types based on 64-bit ARM architecture</summary>
-
-```
-### General Purpose (ARM64)
+:::details{title="Machine types based on 64-bit ARM architecture"}
+##### General Purpose (ARM64)
 
 | Azure VM Series | Family Name |
-|-----------------|-------------|
+| --- | --- |
 | Bpsv2-series | `standardBpsv2Family` |
 | Dpdsv5-series | `standardDPDSv5Family` |
 | Dpldsv5-series | `standardDPLDSv5Family` |
@@ -662,17 +650,15 @@ There are several Microsoft Azure ARM64 instance types tested with OpenShift Con
 | Dplsv6-series | `StandardDplsv6Family` |
 | Dpsv6-series | `StandardDpsv6Family` |
 
-### Memory Optimized (ARM64)
+##### Memory Optimized (ARM64)
 
 | Azure VM Series | Family Name |
-|-----------------|-------------|
+| --- | --- |
 | Epdsv5-series | `standardEPDSv5Family` |
 | Epsv5-series | `standardEPSv5Family` |
 | Epdsv6-series | `StandardEpdsv6Family` |
 | Epsv6-series | `StandardEpsv6Family` |
-```
-
-</details>
+:::
 
 ### Enabling trusted launch for Azure VMs {#installation-azure-trusted-launch_installing-restricted-networks-azure-installer-provisioned}
 
@@ -956,6 +942,7 @@ where:
 :   Specifies parameters that apply to the infrastructure platform that hosts the cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installation configuration parameters for Azure](/openshift-docs-markdown/installing/installing_azure/installation-config-parameters-azure#installation-config-parameters-azure)
 
@@ -983,46 +970,42 @@ Production environments can deny direct access to the internet and instead have 
    proxy:
      httpProxy: http://<username>:<pswd>@<ip>:<port>
      httpsProxy: https://<username>:<pswd>@<ip>:<port>
+     noProxy: example.com
+   additionalTrustBundle: |
+       -----BEGIN CERTIFICATE-----
+       <MY_TRUSTED_CA_CERT>
+       -----END CERTIFICATE-----
+   additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle>
+   # ...
    ```
 
-{%- if not aws %} noProxy: example.com {% endif %} {% if aws %} noProxy: ec2.<aws_region>.amazonaws.com,elasticloadbalancing.<aws_region>.amazonaws.com,s3.<aws_region>.amazonaws.com {%- endif %} additionalTrustBundle: | -----BEGIN CERTIFICATE----- <MY_TRUSTED_CA_CERT> -----END CERTIFICATE----- additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle> # ... \`\`\`
+   where:
 
-````
-where:
+   `proxy.httpProxy`
+   :   Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be `http`.
 
-`proxy.httpProxy`
-:   Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be `http`.
+   `proxy.httpsProxy`
+   :   Specifies a proxy URL to use for creating HTTPS connections outside the cluster.
 
-`proxy.httpsProxy`
-:   Specifies a proxy URL to use for creating HTTPS connections outside the cluster.
+   `proxy.noProxy`
+   :   Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with `.` to match subdomains only. For example, `.y.com` matches `x.y.com`, but not `y.com`. Use `*` to bypass the proxy for all destinations.
 
-`proxy.noProxy`
-:   Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with `.` to match subdomains only. For example, `.y.com` matches `x.y.com`, but not `y.com`. Use `*` to bypass the proxy for all destinations.
+   `additionalTrustBundle`
+   :   If you specify this value, the installation program generates a config map named `user-ca-bundle` in the `openshift-config` namespace to hold the additional CA certificates. If you specify `additionalTrustBundle` and at least one proxy setting, the `Proxy` object references the `user-ca-bundle` config map in the `trustedCA` field. The Cluster Network Operator then creates a `trusted-ca-bundle` config map that merges the contents specified for the `trustedCA` parameter with the RHCOS trust bundle. You must set the `additionalTrustBundle` field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.
 
-`additionalTrustBundle`
-:   If you specify this value, the installation program generates a config map named `user-ca-bundle` in the `openshift-config` namespace to hold the additional CA certificates. If you specify `additionalTrustBundle` and at least one proxy setting, the `Proxy` object references the `user-ca-bundle` config map in the `trustedCA` field. The Cluster Network Operator then creates a `trusted-ca-bundle` config map that merges the contents specified for the `trustedCA` parameter with the RHCOS trust bundle. You must set the `additionalTrustBundle` field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.
+   `additionalTrustBundlePolicy`
+   :   Specifies the policy that determines the configuration of the `Proxy` object to reference the `user-ca-bundle` config map in the `trustedCA` field. The allowed values are `Proxyonly` and `Always`. Use `Proxyonly` to reference the `user-ca-bundle` config map only when you configure an `http/https` proxy. Use `Always` to always reference the `user-ca-bundle` config map. The default value is `Proxyonly`. Optional parameter.
 
-`additionalTrustBundlePolicy`
-:   Specifies the policy that determines the configuration of the `Proxy` object to reference the `user-ca-bundle` config map in the `trustedCA` field. The allowed values are `Proxyonly` and `Always`. Use `Proxyonly` to reference the `user-ca-bundle` config map only when you configure an `http/https` proxy. Use `Always` to always reference the `user-ca-bundle` config map. The default value is `Proxyonly`. Optional parameter.
+   > [!NOTE]
+   > The installation program does not support the proxy `readinessEndpoints` field.
 
-:::note
-
-The installation program does not support the proxy `readinessEndpoints` field.
-
-:::
-
-:::note
-
-If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
-
-```terminal
-$ ./openshift-install wait-for install-complete --log-level debug
-```
-
-:::
-````
-
-1. Save the file and reference it when installing OpenShift Container Platform.
+   > [!NOTE]
+   > If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
+   >
+   > ```terminal
+   > $ ./openshift-install wait-for install-complete --log-level debug
+   > ```
+2. Save the file and reference it when installing OpenShift Container Platform.
 
    The installation program creates a cluster-wide proxy named `cluster` that uses the proxy settings in the `install-config.yaml` file. If you do not give proxy settings, the installation program still creates a `cluster` `Proxy` object, but it has a nil `spec`.
 
@@ -1037,6 +1020,9 @@ By default, administrator-level secrets are stored in the `kube-system` project.
 
 - To manage long-term cloud credentials manually, follow the procedure in "Manually creating long-term credentials".
 - To use short-term credentials that are managed outside the cluster for individual components, follow the procedures in "Configuring an Azure cluster to use short-term credentials".
+
+**Additional resources**
+{._additional-resources}
 
 - [Manually creating long-term credentials](/openshift-docs-markdown/installing/installing_azure/ipi/installing-restricted-networks-azure-installer-provisioned#manually-create-iam_installing-restricted-networks-azure-installer-provisioned)
 - [Configuring an Azure cluster to use short-term credentials](/openshift-docs-markdown/installing/installing_azure/ipi/installing-restricted-networks-azure-installer-provisioned#installing-azure-with-short-term-creds_installing-restricted-networks-azure-installer-provisioned)
@@ -1099,11 +1085,12 @@ The Cloud Credential Operator (CCO) can be put into manual mode prior to install
    spec:
      providerSpec:
        apiVersion: cloudcredential.openshift.io/v1
+       kind: AzureProviderSpec
+       roleBindings:
+       - role: Contributor
+     ...
    ```
-
-{%- if aws %} kind: AWSProviderSpec statementEntries: - effect: Allow action: - iam:GetUser - iam:GetUserPolicy - iam:ListAccessKeys resource: "\*" {% endif %} {% if azure or ash %} kind: AzureProviderSpec roleBindings: - role: Contributor {% endif %} {% if google_cloud_platform %} kind: GCPProviderSpec predefinedRoles: - roles/storage.admin - roles/iam.serviceAccountUser skipServiceCheck: true {%- endif %} ... \`\`\`
-
-1. Create YAML files for secrets in the `openshift-install` manifests directory that you generated previously. The secrets must be stored using the namespace and secret name defined in the `spec.secretRef` for each `CredentialsRequest` object.
+5. Create YAML files for secrets in the `openshift-install` manifests directory that you generated previously. The secrets must be stored using the namespace and secret name defined in the `spec.secretRef` for each `CredentialsRequest` object.
 
    ```yaml {title="Sample CredentialsRequest object with secrets"}
    apiVersion: cloudcredential.openshift.io/v1
@@ -1115,17 +1102,34 @@ The Cloud Credential Operator (CCO) can be put into manual mode prior to install
    spec:
      providerSpec:
        apiVersion: cloudcredential.openshift.io/v1
+       kind: AzureProviderSpec
+       roleBindings:
+       - role: Contributor
+         ...
+     secretRef:
+       name: <component_secret>
+       namespace: <component_namespace>
+     ...
    ```
 
-{%- if aws %} kind: AWSProviderSpec statementEntries: - effect: Allow action: - s3:CreateBucket - s3:DeleteBucket resource: "\*" {% endif %} {% if ash or azure %} kind: AzureProviderSpec roleBindings: - role: Contributor {% endif %} {% if gcp %} kind: GCPProviderSpec predefinedRoles: - roles/iam.securityReviewer - roles/iam.roleViewer skipServiceCheck: true {%- endif %} ... secretRef: name: <component_secret> namespace: <component_namespace> ... `   `yaml title="Sample Secret object" apiVersion: v1 kind: Secret metadata: name: <component_secret> namespace: <component_namespace> {%- if aws %} data: aws_access_key_id: <base64_encoded_aws_access_key_id> aws_secret_access_key: <base64_encoded_aws_secret_access_key> {% endif %} {% if azure or ash %} data: azure_subscription_id: <base64_encoded_azure_subscription_id> azure_client_id: <base64_encoded_azure_client_id> azure_client_secret: <base64_encoded_azure_client_secret> azure_tenant_id: <base64_encoded_azure_tenant_id> azure_resource_prefix: <base64_encoded_azure_resource_prefix> azure_resourcegroup: <base64_encoded_azure_resourcegroup> azure_region: <base64_encoded_azure_region> {% endif %} {% if google_cloud_platform %} data: service_account.json: <base64_encoded_gcp_service_account_file> {%- endif %} \`\`\`
+   ```yaml {title="Sample Secret object"}
+   apiVersion: v1
+   kind: Secret
+   metadata:
+     name: <component_secret>
+     namespace: <component_namespace>
+   data:
+     azure_subscription_id: <base64_encoded_azure_subscription_id>
+     azure_client_id: <base64_encoded_azure_client_id>
+     azure_client_secret: <base64_encoded_azure_client_secret>
+     azure_tenant_id: <base64_encoded_azure_tenant_id>
+     azure_resource_prefix: <base64_encoded_azure_resource_prefix>
+     azure_resourcegroup: <base64_encoded_azure_resourcegroup>
+     azure_region: <base64_encoded_azure_region>
+   ```
 
-```
-:::important
-
-Before upgrading a cluster that uses manually maintained credentials, you must ensure that the CCO is in an upgradeable state.
-
-:::
-```
+   > [!IMPORTANT]
+   > Before upgrading a cluster that uses manually maintained credentials, you must ensure that the CCO is in an upgradeable state.
 
 ### Configuring an Azure cluster to use short-term credentials {#installing-azure-with-short-term-creds_installing-restricted-networks-azure-installer-provisioned}
 
@@ -1133,7 +1137,7 @@ To install a cluster that uses Microsoft Entra Workload ID, you must configure t
 
 #### Configuring the Cloud Credential Operator utility {#cco-ccoctl-configuring_installing-restricted-networks-azure-installer-provisioned}
 
-{.\_abstract} To create and manage cloud credentials from outside of the cluster when the Cloud Credential Operator (CCO) is operating in manual mode, extract and prepare the CCO utility (`ccoctl`) binary.
+To create and manage cloud credentials from outside of the cluster when the Cloud Credential Operator (CCO) is operating in manual mode, extract and prepare the CCO utility (`ccoctl`) binary.
 
 > [!NOTE]
 > The `ccoctl` utility is a Linux binary that must run in a Linux environment.
@@ -1298,7 +1302,34 @@ You must have:
      --preserve-existing-roles
    ```
 
-   where: `<azure_infra_name>`:: Specifies the user-defined name for all created Azure resources used for tracking. `<ccoctl_output_dir>`:: Specifies the directory in which you want the `ccoctl` utility to create objects. By default, the utility creates objects in the directory in which the commands are run. This parameter is optional. `<azure_region>`:: Specifies the Azure region in which cloud resources will be created. `<azure_subscription_id>`:: Specifies the Azure subscription ID to use. `<path_to_credentials_requests_directory>`:: Specifies the directory containing the files for the component `CredentialsRequest` objects. `<azure_dns_zone_resource_group_name>`:: Specifies the name of the resource group containing the cluster’s base domain Azure DNS zone. `<azure_tenant_id>`:: Specifies the Azure tenant ID to use. `<azure_resource_group>`:: Specifies the virtual network resource group if it is different from the cluster resource group. This parameter is optional. `--preserve-existing-roles`:: Specifies that any custom role assignments you define on managed identities are not removed during OpenShift Container Platform updates. This parameter is optional.
+   where:
+
+   `<azure_infra_name>`
+   :   Specifies the user-defined name for all created Azure resources used for tracking.
+
+   `<ccoctl_output_dir>`
+   :   Specifies the directory in which you want the `ccoctl` utility to create objects. By default, the utility creates objects in the directory in which the commands are run. This parameter is optional.
+
+   `<azure_region>`
+   :   Specifies the Azure region in which cloud resources will be created.
+
+   `<azure_subscription_id>`
+   :   Specifies the Azure subscription ID to use.
+
+   `<path_to_credentials_requests_directory>`
+   :   Specifies the directory containing the files for the component `CredentialsRequest` objects.
+
+   `<azure_dns_zone_resource_group_name>`
+   :   Specifies the name of the resource group containing the cluster’s base domain Azure DNS zone.
+
+   `<azure_tenant_id>`
+   :   Specifies the Azure tenant ID to use.
+
+   `<azure_resource_group>`
+   :   Specifies the virtual network resource group if it is different from the cluster resource group. This parameter is optional.
+
+   `--preserve-existing-roles`
+   :   Specifies that any custom role assignments you define on managed identities are not removed during OpenShift Container Platform updates. This parameter is optional.
 
    > [!NOTE]
    > If your cluster uses Technology Preview features that are enabled by the `TechPreviewNoUpgrade` feature set, you must include the `--enable-tech-preview` parameter.
@@ -1394,19 +1425,15 @@ To deploy your OpenShift Container Platform cluster, you can initialize installa
 
 **Procedure**
 
-````
-*   In the directory that contains the installation program, initialize the cluster deployment by running the following command:
+- In the directory that contains the installation program, initialize the cluster deployment by running the following command:
 
 ```terminal
 $ ./openshift-install create cluster --dir <installation_directory> \
     --log-level=info
 ```
-    *   For `<installation_directory>`, specify the
-    location of your customized `./install-config.yaml` file.
 
-    *   To view different installation details, specify `warn`, `debug`, or
-    `error` instead of `info`.
-````
+- For `<installation_directory>`, specify the location of your customized `./install-config.yaml` file.
+- To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
 
 **Verification**
 
@@ -1578,7 +1605,8 @@ The `kubeconfig` file is specific to a cluster and OpenShift Container Platform 
 - "Customize your cluster"
 - "Remote health reporting"
 
-## Additional resources {#additional-resources_installing-restricted-networks-azure-installer-provisioned}
+**Additional resources**
+{._additional-resources}
 
 - [Mirroring images for a disconnected installation by using the oc adm command](/openshift-docs-markdown/disconnected/installing-mirroring-installation-images#installation-about-mirror-registry_installing-mirroring-installation-images)
 - [Customize your cluster](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations)

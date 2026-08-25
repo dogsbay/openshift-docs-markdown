@@ -39,10 +39,7 @@ As a cluster administrator, following installation you must configure your regis
 **Prerequisites**
 
 - You have access to the cluster as a user with the `cluster-admin` role.
-- You have a cluster
-
-that uses manually-provisioned Red Hat Enterprise Linux CoreOS (RHCOS) nodes, such as bare metal.
-
+- You have a cluster that uses manually-provisioned Red Hat Enterprise Linux CoreOS (RHCOS) nodes, such as bare metal.
 - You have provisioned persistent storage for your cluster, such as Red Hat OpenShift Data Foundation.
 
   > [!IMPORTANT]
@@ -88,7 +85,7 @@ that uses manually-provisioned Red Hat Enterprise Linux CoreOS (RHCOS) nodes, s
 
    ```terminal {title="Example output"}
    NAME             VERSION              AVAILABLE   PROGRESSING   DEGRADED   SINCE   MESSAGE
-   image-registry   {{ product_version }}                 True        False         False      6h50m
+   image-registry   4.22                 True        False         False      6h50m
    ```
 5. Ensure that your registry is set to managed to enable building and pushing of images.
 
@@ -390,7 +387,8 @@ Use the following procedure to configure the image registry to use CephFS storag
    $ oc patch config.image/cluster -p '{"spec":{"managementState":"Managed","replicas":2,"storage":{"managementState":"Unmanaged","pvc":{"claim":"registry-storage-pvc"}}}}' --type=merge
    ```
 
-## Additional resources {#configuring-registry-storage-baremetal-addtl-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Recommended configurable storage technology](/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 - [Configuring Image Registry to use OpenShift Data Foundation](https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation/latest/html-single/managing_and_allocating_storage_resources/index#configuring-image-registry-to-use-openshift-data-foundation_rhodf)

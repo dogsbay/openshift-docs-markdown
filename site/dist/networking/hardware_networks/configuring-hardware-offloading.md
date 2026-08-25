@@ -49,6 +49,7 @@ Before you configure hardware offloading, ensure that the following conditions a
 - In your OVN-Kubernetes network plugin configuration, the `gatewayConfig.routingViaHost` field is set to `false`.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing the SR-IOV Network Operator](/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator)
 - [About the OVN-Kubernetes network plugin](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes)
@@ -353,7 +354,8 @@ This procedure results in the creation of two pools: the first has a virtual fun
       $ oc create -f hardware-offload-config.yaml
       ```
 
-<a name="additional-resources_using-vf-improve-network-traffic-performance"></a>**Additional resources**
+**Additional resources**
+{._additional-resources}
 
 - [SR-IOV network node configuration object](/openshift-docs-markdown/networking/hardware_networks/configuring-sriov-device#nw-sriov-networknodepolicy-object_configuring-sriov-device)
 

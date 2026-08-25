@@ -1,5 +1,5 @@
 ---
-title: Installing {{ VirtProductName }} on {{ ibm_cloud_title }} bare-metal nodes
+title: Installing OpenShift Virtualization on IBM Cloud bare-metal nodes
 ---
 
 # Installing OpenShift Virtualization on IBM Cloud bare-metal nodes {#virt-install-ibm-cloud-bm-nodes}
@@ -277,7 +277,7 @@ Complete the cluster configuration by installing software on the control plane a
       - **Password**: The root user password you configured.
    3. Click **Save and Mount**.
    4. Verify the ISO mounted successfully.
-   5. Restart the server by selecting **Remote Control** -> **Power Control** -> **Reset Server** -> **Perform Action**.
+   5. Restart the server by selecting **Remote Control** → **Power Control** → **Reset Server** → **Perform Action**.
 2. Return to the **Assisted Installer** service.
 3. Select the **Install OpenShift Virtualization** and **Install OpenShift Data Foundation** checkboxes in the **Assisted Installer** options.
 4. Select a role for each host.
@@ -295,9 +295,9 @@ Complete the cluster configuration by installing software on the control plane a
 
        > [!NOTE]
        > The IP address and credentials for IPMI console access is available in the **Remote management** section for each server.
-    2. Select **Virtual Media** -> **CD-Rom Image**.
+    2. Select **Virtual Media** → **CD-Rom Image**.
     3. Click **Unmount**.
-    4. Select **Remote Control** -> **Power Control** -> **Reset Server** -> **Perform Action** to restart the server.
+    4. Select **Remote Control** → **Power Control** → **Reset Server** → **Perform Action** to restart the server.
 11. Locate the **Cluster Credentials** section of the installation summary.
 12. Perform the following tasks in the **Cluster Credentials** section:
 

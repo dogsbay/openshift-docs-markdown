@@ -1,5 +1,5 @@
 ---
-title: NodeSlicePool []
+title: NodeSlicePool [whereabouts.cni.cncf.io/v1alpha1]
 ---
 
 # NodeSlicePool \[whereabouts.cni.cncf.io/v1alpha1\] {#nodeslicepool-whereabouts-cni-cncf-io-v1alpha1}
@@ -94,12 +94,12 @@ The following API endpoints are available:
 - `/apis/whereabouts.cni.cncf.io/v1alpha1/nodeslicepools`
 
   - `GET`: list objects of kind NodeSlicePool
-- `/apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/nodeslicepools`
+- `/apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{namespace}/nodeslicepools`
 
   - `DELETE`: delete collection of NodeSlicePool
   - `GET`: list objects of kind NodeSlicePool
   - `POST`: create a NodeSlicePool
-- `/apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/nodeslicepools/{{ name }}`
+- `/apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{namespace}/nodeslicepools/{name}`
 
   - `DELETE`: delete a NodeSlicePool
   - `GET`: read the specified NodeSlicePool
@@ -125,7 +125,7 @@ Description
 | 200 - OK | [`NodeSlicePoolList`](/openshift-docs-markdown/rest_api/objects/index#io-cncf-cni-whereabouts-v1alpha1-NodeSlicePoolList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/nodeslicepools {#_apiswhereaboutscnicncfiov1alpha1namespaces_namespace_nodeslicepools}
+### /apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{namespace}/nodeslicepools {#_apiswhereaboutscnicncfiov1alpha1namespaces_namespace_nodeslicepools}
 
 HTTP method
 :   ```
@@ -193,7 +193,7 @@ Description
 | 202 - Accepted | [`NodeSlicePool`](/openshift-docs-markdown/rest_api/network_apis/nodeslicepool-whereabouts-cni-cncf-io-v1alpha1#nodeslicepool-whereabouts-cni-cncf-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/nodeslicepools/{{ name }} {#_apiswhereaboutscnicncfiov1alpha1namespaces_namespace_nodeslicepools_name}
+### /apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{namespace}/nodeslicepools/{name} {#_apiswhereaboutscnicncfiov1alpha1namespaces_namespace_nodeslicepools_name}
 
 **Global path parameters**
 

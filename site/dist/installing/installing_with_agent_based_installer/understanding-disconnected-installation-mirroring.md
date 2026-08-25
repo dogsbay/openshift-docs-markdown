@@ -76,31 +76,31 @@ You must use the output of either the `oc adm release mirror` command or the oc-
    > [!IMPORTANT]
    > The value must be the contents of the certificate file that you used for your mirror registry. The certificate file can be an existing, trusted certificate authority, or the self-signed certificate that you generated for the mirror registry.
 
-```yaml {title="Example install-config.yaml file"}
-  additionalTrustBundle: |
-    -----BEGIN CERTIFICATE-----
-    ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
-    -----END CERTIFICATE-----
-```
-
-1. If you are using GitOps ZTP manifests: add the `registries.conf` and `ca-bundle.crt` files  to the `mirror` path to add the mirror configuration in the agent ISO image.
+   ```yaml {title="Example install-config.yaml file"}
+     additionalTrustBundle: |
+       -----BEGIN CERTIFICATE-----
+       ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
+       -----END CERTIFICATE-----
+   ```
+5. If you are using GitOps ZTP manifests: add the `registries.conf` and `ca-bundle.crt` files  to the `mirror` path to add the mirror configuration in the agent ISO image.
 
    > [!NOTE]
    > You can create the `registries.conf` file from the output of either the `oc adm release mirror` command or the `oc mirror` plugin. The format of the `/etc/containers/registries.conf` file has changed. It is now version 2 and in TOML format.
 
-```toml {title="Example registries.conf file"}
-[[registry]]
-location = "registry.ci.openshift.org/ocp/release" mirror-by-digest-only = true
+   ```toml {title="Example registries.conf file"}
+   [[registry]]
+   location = "registry.ci.openshift.org/ocp/release" mirror-by-digest-only = true
 
-[[registry.mirror]] location = "virthost.ostest.test.metalkube.org:5000/localimages/local-release-image"
+   [[registry.mirror]] location = "virthost.ostest.test.metalkube.org:5000/localimages/local-release-image"
 
-[[registry]]
-location = "quay.io/openshift-release-dev/ocp-v4.0-art-dev" mirror-by-digest-only = true
+   [[registry]]
+   location = "quay.io/openshift-release-dev/ocp-v4.0-art-dev" mirror-by-digest-only = true
 
-[[registry.mirror]] location = "virthost.ostest.test.metalkube.org:5000/localimages/local-release-image"
-```
+   [[registry.mirror]] location = "virthost.ostest.test.metalkube.org:5000/localimages/local-release-image"
+   ```
 
-## Additional resources {#additional-resources_understanding-disconnected-installation-mirroring}
+**Additional resources**
+{._additional-resources}
 
 - [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)
 - [Mirroring images for a disconnected installation](/openshift-docs-markdown/disconnected/installing-mirroring-installation-images#installing-mirroring-installation-images)

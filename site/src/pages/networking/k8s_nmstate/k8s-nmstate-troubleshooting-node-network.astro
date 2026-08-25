@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"k8s-nmstate-troubleshooting-node-network","
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-troubleshooting-node-network";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="k8s-nmstate-troubleshooting-node-network" class="group scroll-mt-20">Troubleshooting node network configuration<a href="#k8s-nmstate-troubleshooting-node-network" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>If the node network configuration encounters an issue, the policy is automatically rolled back and the enactments report failure. This includes issues such as:</p>
+      <p class="_abstract">If the node network configuration encounters an issue, the policy is automatically rolled back and the enactments report failure. This includes issues such as:</p>
       <ul>
       <li>The configuration fails to be applied on the host.</li>
       <li>The host loses connection to the default gateway.</li>

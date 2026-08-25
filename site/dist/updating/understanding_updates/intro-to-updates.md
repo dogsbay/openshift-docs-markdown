@@ -6,7 +6,7 @@ title: Introduction to OpenShift updates
 
 With OpenShift Container Platform 4, you can update an OpenShift Container Platform cluster with a single operation by using the web console or the OpenShift CLI (`oc`).
 
-Platform administrators can view new update options either by going to **Administration** -> **Cluster Settings** in the web console or by looking at the output of the `oc adm upgrade` command.
+Platform administrators can view new update options either by going to **Administration** → **Cluster Settings** in the web console or by looking at the output of the `oc adm upgrade` command.
 
 ## Cluster update overview {#about-updates_understanding-openshift-updates}
 
@@ -75,6 +75,7 @@ The following list provides common questions regarding the availability of an up
 - Once a z-stream release is published, it also appears in the `fast` channel for that minor version. After a delay, the z-stream release may then appear in that minor version’s `stable` channel.
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding update channels and releases](/openshift-docs-markdown/updating/understanding_updates/understanding-update-channels-release#understanding-update-channels-releases)
 
@@ -168,11 +169,13 @@ Recommended update edge
 :   A *recommended update edge* is a recommended update between OpenShift Container Platform releases. Whether a given update is recommended can depend on the cluster’s configured channel, current version, known bugs, and other information. OSUS communicates the recommended edges to the CVO, which runs in every cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Machine Config Overview](/openshift-docs-markdown/machine_configuration/index#machine-config-overview)
 - [Using the OpenShift Update Service in a disconnected environment](/openshift-docs-markdown/disconnected/updating/disconnected-update-osus#update-service-overview_updating-disconnected-cluster-osus)
 - [Update channels](/openshift-docs-markdown/updating/understanding_updates/understanding-update-channels-release#understanding-update-channels_understanding-update-channels-releases)
 
-## Additional resources {#understanding-openshift-updates-additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [How cluster updates work](/openshift-docs-markdown/updating/understanding_updates/how-updates-work#how-updates-work)

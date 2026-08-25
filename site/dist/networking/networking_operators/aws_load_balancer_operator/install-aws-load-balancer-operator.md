@@ -18,7 +18,7 @@ To deploy the AWS Load Balancer Operator, install the Operator by using the web 
 
 **Procedure**
 
-1. Navigate to **Ecosystem** -> **Software Catalog** in the OpenShift Container Platform web console.
+1. Navigate to **Ecosystem** → **Software Catalog** in the OpenShift Container Platform web console.
 2. Select the **AWS Load Balancer Operator**. You can use the **Filter by keyword** text box or the filter list to search for the AWS Load Balancer Operator from the list of Operators.
 3. Select the `aws-load-balancer-operator` namespace.
 4. On the **Install Operator** page, select the following options:
@@ -162,27 +162,26 @@ You can install only a single instance of the `AWSLoadBalancerController` object
    `spec.subnetTagging`
    :   Specifies the subnet tagging method for the AWS Load Balancer Controller. The following values are valid: \*   `Auto`: The AWS Load Balancer Operator determines the subnets that belong to the cluster and tags them appropriately. The Operator cannot determine the role correctly if the internal subnet tags are not present on internal subnet. \*   `Manual`: You manually tag the subnets that belong to the cluster with the appropriate role tags. Use this option if you installed your cluster on user-provided infrastructure.
 
-`spec.additionalResourceTags`
-:   Specifies the tags used by the AWS Load Balancer Controller when it provisions AWS resources.
+   `spec.additionalResourceTags`
+   :   Specifies the tags used by the AWS Load Balancer Controller when it provisions AWS resources.
 
-`ingressClass`
-:   Specifies the ingress class name. The default value is `alb`.
+   `ingressClass`
+   :   Specifies the ingress class name. The default value is `alb`.
 
-`config.replicas`
-:   Specifies the number of replicas of the AWS Load Balancer Controller.
+   `config.replicas`
+   :   Specifies the number of replicas of the AWS Load Balancer Controller.
 
-`enabledAddons`
-:   Specifies annotations as an add-on for the AWS Load Balancer Controller.
+   `enabledAddons`
+   :   Specifies annotations as an add-on for the AWS Load Balancer Controller.
 
-`AWSWAFv2`
-:   Specifies that enablement of the `alb.ingress.kubernetes.io/wafv2-acl-arn` annotation.
-
-1. Create the `AWSLoadBalancerController` object by running the following command:
+   `AWSWAFv2`
+   :   Specifies that enablement of the `alb.ingress.kubernetes.io/wafv2-acl-arn` annotation.
+2. Create the `AWSLoadBalancerController` object by running the following command:
 
    ```terminal
    $ oc create -f sample-aws-lb.yaml
    ```
-2. Create a YAML file that defines the `Deployment` resource:
+3. Create a YAML file that defines the `Deployment` resource:
 
    ```yaml {title="Example sample-aws-lb.yaml file"}
    apiVersion: apps/v1
@@ -223,7 +222,7 @@ You can install only a single instance of the `AWSLoadBalancerController` object
 
    `spec.replicas`
    :   Specifies the number of replicas of the deployment.
-3. Create a YAML file that defines the `Service` resource:
+4. Create a YAML file that defines the `Service` resource:
 
    ```yaml {title="Example service-albo.yaml file"}
    apiVersion: v1
@@ -248,7 +247,7 @@ You can install only a single instance of the `AWSLoadBalancerController` object
 
    `metadata.name`
    :   Specifies the service name.
-4. Create a YAML file that defines the `Ingress` resource:
+5. Create a YAML file that defines the `Ingress` resource:
 
    ```yaml {title="Example ingress-albo.yaml file"}
    apiVersion: networking.k8s.io/v1

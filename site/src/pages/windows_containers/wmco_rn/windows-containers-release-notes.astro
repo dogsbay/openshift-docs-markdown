@@ -20,12 +20,13 @@ const headings = [{"depth":1,"slug":"windows-containers-release-notes","text":"R
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/windows_containers/wmco_rn/windows-containers-release-notes";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
-const title = "{{ productwinc }} release notes";
+const title = "Red&#160;Hat OpenShift support for Windows Containers release notes";
 const description = "You can review the release notes to learn about the changes introduced through each release of the Red Hat OpenShift support for Windows Containers and…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
@@ -78,12 +79,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -91,7 +93,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="windows-containers-release-notes" class="group scroll-mt-20">Red Hat OpenShift support for Windows Containers release notes<a href="#windows-containers-release-notes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can review the release notes to learn about the changes introduced through each release of the Red Hat OpenShift support for Windows Containers and the Windows Machine Config Operator (WMCO).</p>
+      <p class="_abstract">You can review the release notes to learn about the changes introduced through each release of the Red Hat OpenShift support for Windows Containers and the Windows Machine Config Operator (WMCO). </p>
       <h2 id="windows-containers-release-notes-10-22-1_windows-containers-release-notes" class="group scroll-mt-20">Release notes for Red Hat Windows Machine Config Operator 10.22.1<a href="#windows-containers-release-notes-10-22-1_windows-containers-release-notes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p>Issued: 28 July 2026</p>
       <p class="_abstract">You can review the release notes to learn about the bug fixes and Common Vulnerabilities and Exposures (CVEs) fixes in the Windows Machine Config Operator (WMCO) version 10.22.1.</p>

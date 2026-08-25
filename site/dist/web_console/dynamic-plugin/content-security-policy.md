@@ -2,7 +2,7 @@
 title: Content Security Policy (CSP)
 ---
 
-# Content Security Policy (CSP) {#content-security-policy_{{ context }}}
+# Content Security Policy (CSP) {#content-security-policy_{context}}
 
 Specify Content Security Policy (CSP) directives for your dynamic plugin using the `contentSecurityPolicy` field in `ConsolePluginSpec`. CSP restricts which sources supply scripts, styles, images, and fonts, mitigating risks for plugins loading resources externally.
 
@@ -31,7 +31,8 @@ The OpenShift Container Platform web console aggregates the CSP directives acros
 - The total size of all values across directives must not exceed 8192 bytes (8KB).
 - Each value must be unique, and additional validation rules are in place to ensure no quotes, spaces, commas, or wildcard symbols are used.
 
-## Additional resources {#content-security-policy_additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Content Security Policy (CSP)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)
 - [Enabling feature sets using the web console](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features-console_nodes-cluster-enabling)

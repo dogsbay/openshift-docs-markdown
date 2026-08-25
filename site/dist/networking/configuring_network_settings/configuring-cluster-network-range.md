@@ -91,7 +91,8 @@ To expand the cluster network IP address range in OpenShift Container Platform t
    [{"cidr":"10.217.0.0/14","hostPrefix":23}]
    ```
 
-## Additional resources {#additional-resources_configuring-cluster-network-range}
+**Additional resources**
+{._additional-resources}
 
 - [OVN-Kubernetes network plugin](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes)
 - [Red Hat OpenShift Network Calculator](https://access.redhat.com/labs/ocpnc/)

@@ -73,9 +73,7 @@ $ oc adm must-gather --image="$(oc get packagemanifests openshift-custom-metrics
 
    **Example must-gather output for the Custom Metric Autoscaler**
 
-   <details>
-   <summary>Details</summary>
-
+   :::details{title="Details"}
    ```terminal
    └── openshift-keda
        ├── apps
@@ -155,9 +153,7 @@ $ oc adm must-gather --image="$(oc get packagemanifests openshift-custom-metrics
        └── route.openshift.io
            └── routes.yaml
    ```
-
-   </details>
-
+   :::
 3. Create a compressed file from the `must-gather` directory that was created in your working directory. For example, on a computer that uses a Linux operating system, run the following command:
 
    ```terminal

@@ -15,7 +15,7 @@ Review the specific compute resources, storage resources, and object counts that
 > [!NOTE]
 > A pod is in a terminal state if `status.phase in (Failed, Succeeded)` is true.
 
-***Compute resources managed by quota***
+**Compute resources managed by quota**
 
 <table>
 <thead>
@@ -52,7 +52,7 @@ Review the specific compute resources, storage resources, and object counts that
 </tbody>
 </table>
 
-***Storage resources managed by quota***
+**Storage resources managed by quota**
 
 <table>
 <thead>
@@ -71,11 +71,11 @@ Review the specific compute resources, storage resources, and object counts that
   <td>The total number of persistent volume claims that can exist in the project.</td>
 </tr>
 <tr>
-  <td><code><storage-class-name>.storageclass.storage.k8s.io/requests.storage</code></td>
+  <td><code>&lt;storage-class-name&gt;.storageclass.storage.k8s.io/requests.storage</code></td>
   <td>The sum of storage requests across all persistent volume claims in any state that have a matching storage class, cannot exceed this value.</td>
 </tr>
 <tr>
-  <td><code><storage-class-name>.storageclass.storage.k8s.io/persistentvolumeclaims</code></td>
+  <td><code>&lt;storage-class-name&gt;.storageclass.storage.k8s.io/persistentvolumeclaims</code></td>
   <td>The total number of persistent volume claims with a matching storage class that can exist in the project.</td>
 </tr>
 <tr>
@@ -95,7 +95,7 @@ Review the specific compute resources, storage resources, and object counts that
 
 <a name="quotas-object-counts-managed_quotas-setting-per-project"></a>
 
-***Object counts managed by quota***
+**Object counts managed by quota**
 
 <table>
 <thead>
@@ -729,7 +729,7 @@ Configure explicit resource quotas in a project request template to apply specif
 
       - By using the web console:
 
-        1. Navigate to the **Administration** -> **Cluster Settings** page.
+        1. Navigate to the **Administration** → **Cluster Settings** page.
         2. Click **Configuration** to view all configuration resources.
         3. Find the entry for **Project** and click **Edit YAML**.
       - By using the CLI:

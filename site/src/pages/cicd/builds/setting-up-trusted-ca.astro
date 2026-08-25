@@ -17,16 +17,17 @@ import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"setting-up-trusted-ca","text":"Setting up additional trusted certificate authorities for builds"},{"depth":2,"slug":"configmap-adding-ca_setting-up-trusted-ca","text":"Adding certificate authorities to the cluster"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"setting-up-trusted-ca","text":"Setting up additional trusted certificate authorities for builds"},{"depth":2,"slug":"configmap-adding-ca_setting-up-trusted-ca","text":"Adding certificate authorities to the cluster"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/cicd/builds/setting-up-trusted-ca";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
-const title = "Setting up additional trusted certificate authorities for builds {id=\"setting-up-trusted-ca\"}";
+const title = "Setting up additional trusted certificate authorities for builds";
 const description = "Use the following sections to set up additional certificate authorities (CA) to be trusted by builds when pulling images from an image registry." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
@@ -40,7 +41,7 @@ const pageCategory = ["cicd","cicd/builds"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Setting up additional trusted certificate authorities for builds {#setting-up-trusted-ca}\n\nUse the following sections to set up additional certificate authorities (CA) to be trusted by builds when pulling images from an image registry.\n\nThe procedure requires a cluster administrator to create a `ConfigMap` and add additional CAs as keys in the `ConfigMap`.\n\n- The `ConfigMap` must be created in the `openshift-config` namespace.\n- `domain` is the key in the `ConfigMap` and `value` is the PEM-encoded certificate.\n\n  - Each CA must be associated with a domain. The domain format is `hostname[..port]`.\n- The `ConfigMap` name must be set in the `image.config.openshift.io/cluster` cluster scoped configuration resource’s `spec.additionalTrustedCA` field.\n\n## Adding certificate authorities to the cluster {#configmap-adding-ca_setting-up-trusted-ca}\n\nYou can add certificate authorities (CA) to the cluster for use when pushing and pulling images with the following procedure.\n\n**Prerequisites**\n\n- You must have access to the public certificates of the registry, usually a `hostname/ca.crt` file located in the `/etc/docker/certs.d/` directory.\n\n**Procedure**\n\n1. Create a `ConfigMap` in the `openshift-config` namespace containing the trusted certificates for the registries that use self-signed certificates. For each CA file, ensure the key in the `ConfigMap` is the hostname of the registry in the `hostname[..port]` format:\n\n   ```terminal\n   $ oc create configmap registry-cas -n openshift-config \\\n   --from-file=myregistry.corp.com..5000=/etc/docker/certs.d/myregistry.corp.com:5000/ca.crt \\\n   --from-file=otherregistry.com=/etc/docker/certs.d/otherregistry.com/ca.crt\n   ```\n2. Update the cluster image configuration:\n\n   ```terminal\n   $ oc patch image.config.openshift.io/cluster --patch '{\"spec\":{\"additionalTrustedCA\":{\"name\":\"registry-cas\"}}}' --type=merge\n   ```\n\n## Additional resources {#_additional_resources}\n\n- [Create a `ConfigMap`](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-a-configmap)\n- [Secrets and `ConfigMaps`](https://kubectl.docs.kubernetes.io/guides/config_management/secrets_configmaps/)\n- [Configuring a custom PKI](/openshift-docs-markdown/networking/configuring_network_settings/configuring-a-custom-pki#configuring-a-custom-pki)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/setting-up-trusted-ca.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Setting up additional trusted certificate authorities for builds {#setting-up-trusted-ca}\n\nUse the following sections to set up additional certificate authorities (CA) to be trusted by builds when pulling images from an image registry.\n\nThe procedure requires a cluster administrator to create a `ConfigMap` and add additional CAs as keys in the `ConfigMap`.\n\n- The `ConfigMap` must be created in the `openshift-config` namespace.\n- `domain` is the key in the `ConfigMap` and `value` is the PEM-encoded certificate.\n\n  - Each CA must be associated with a domain. The domain format is `hostname[..port]`.\n- The `ConfigMap` name must be set in the `image.config.openshift.io/cluster` cluster scoped configuration resource’s `spec.additionalTrustedCA` field.\n\n## Adding certificate authorities to the cluster {#configmap-adding-ca_setting-up-trusted-ca}\n\nYou can add certificate authorities (CA) to the cluster for use when pushing and pulling images with the following procedure.\n\n**Prerequisites**\n\n- You must have access to the public certificates of the registry, usually a `hostname/ca.crt` file located in the `/etc/docker/certs.d/` directory.\n\n**Procedure**\n\n1. Create a `ConfigMap` in the `openshift-config` namespace containing the trusted certificates for the registries that use self-signed certificates. For each CA file, ensure the key in the `ConfigMap` is the hostname of the registry in the `hostname[..port]` format:\n\n   ```terminal\n   $ oc create configmap registry-cas -n openshift-config \\\n   --from-file=myregistry.corp.com..5000=/etc/docker/certs.d/myregistry.corp.com:5000/ca.crt \\\n   --from-file=otherregistry.com=/etc/docker/certs.d/otherregistry.com/ca.crt\n   ```\n2. Update the cluster image configuration:\n\n   ```terminal\n   $ oc patch image.config.openshift.io/cluster --patch '{\"spec\":{\"additionalTrustedCA\":{\"name\":\"registry-cas\"}}}' --type=merge\n   ```\n\n**Additional resources**\n{._additional-resources}\n\n- [Create a `ConfigMap`](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-a-configmap)\n- [Secrets and `ConfigMaps`](https://kubectl.docs.kubernetes.io/guides/config_management/secrets_configmaps/)\n- [Configuring a custom PKI](/openshift-docs-markdown/networking/configuring_network_settings/configuring-a-custom-pki#configuring-a-custom-pki)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/setting-up-trusted-ca.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -117,12 +119,14 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <CodeBlock code={"$ oc patch image.config.openshift.io/cluster --patch '{\"spec\":{\"additionalTrustedCA\":{\"name\":\"registry-cas\"}}}' --type=merge"} lang="terminal" />
       </li>
       </ol>
-      <h2 id="_additional_resources" class="group scroll-mt-20">Additional resources<a href="#_additional_resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul>
       <li><a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-a-configmap">Create a <code>ConfigMap</code></a></li>
       <li><a href="https://kubectl.docs.kubernetes.io/guides/config_management/secrets_configmaps/">Secrets and <code>ConfigMaps</code></a></li>
       <li><a href="/openshift-docs-markdown/networking/configuring_network_settings/configuring-a-custom-pki#configuring-a-custom-pki">Configuring a custom PKI</a></li>
       </ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

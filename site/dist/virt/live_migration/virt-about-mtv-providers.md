@@ -1,5 +1,5 @@
 ---
-title: About {{ mtv_first }} providers
+title: About Migration Toolkit for Virtualization (MTV) providers
 ---
 
 # About Migration Toolkit for Virtualization (MTV) providers {#virt-about-mtv-providers}
@@ -194,7 +194,8 @@ When you register an OpenShift Virtualization provider in the Migration Toolkit 
 8. Copy the printed token.
 9. In the Migration Toolkit for Virtualization (MTV) web console, when you create a provider and select **OpenShift Virtualization**, paste the token into the **Service account bearer token** field.
 
-## Additional resources {#additional-resources_virt-about-mtv-providers}
+**Additional resources**
+{._additional-resources}
 
 - [Adding a Red Hat OpenShift Virtualization source provider](https://docs.redhat.com/en/documentation/migration_toolkit_for_virtualization/2.9/html-single/installing_and_using_the_migration_toolkit_for_virtualization/index#adding-source-provider_cnv)
 - [Adding an OpenShift Virtualization destination provider](https://docs.redhat.com/en/documentation/migration_toolkit_for_virtualization/2.9/html-single/installing_and_using_the_migration_toolkit_for_virtualization/index#adding-source-provider_dest_cnv)

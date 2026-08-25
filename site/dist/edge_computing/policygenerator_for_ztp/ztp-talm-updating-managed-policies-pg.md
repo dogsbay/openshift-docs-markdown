@@ -1,8 +1,8 @@
 ---
-title: Updating managed clusters in a disconnected environment with PolicyGenerator resources and {{ cgu_operator }}
+title: Updating managed clusters in a disconnected environment with PolicyGenerator resources and TALM
 ---
 
-# Updating managed clusters in a disconnected environment with PolicyGenerator resources and {{ cgu_operator }} {#ztp-topology-aware-lifecycle-manager-pg}
+# Updating managed clusters in a disconnected environment with PolicyGenerator resources and TALM {#ztp-topology-aware-lifecycle-manager-pg}
 
 You can use the Topology Aware Lifecycle Manager (TALM) to manage the software lifecycle of managed clusters that you have deployed using GitOps Zero Touch Provisioning (ZTP) and Topology Aware Lifecycle Manager (TALM). TALM uses Red Hat Advanced Cluster Management (RHACM) PolicyGenerator policies to manage and control changes applied to target clusters.
 
@@ -29,7 +29,7 @@ You must mirror both the platform image and Operator images that you want to upd
         - mirror-ocp-registry.ibmcloud.io.cpak:5000/openshift-release-dev/openshift4
         source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
      ```
-  2. Save the image signature of the required platform image that was mirrored. You must add the image signature to the `{{ policy_gen_cr }}` CR for platform updates. To get the image signature, perform the following steps:
+  2. Save the image signature of the required platform image that was mirrored. You must add the image signature to the `PolicyGenerator` CR for platform updates. To get the image signature, perform the following steps:
 
      1. Specify the required OpenShift Container Platform tag by running the following command:
 
@@ -81,13 +81,14 @@ You must mirror both the platform image and Operator images that you want to upd
      2. Make a local copy of the upstream graph. Host the update graph on an `http` or `https` server in the disconnected environment that has access to the managed cluster. To download the update graph, use the following command:
 
         ```terminal
-        $ curl -s https://api.openshift.com/api/upgrades_info/v1/graph?channel=stable-{{ product_version }} -o ~/upgrade-graph_stable-{{ product_version }}
+        $ curl -s https://api.openshift.com/api/upgrades_info/v1/graph?channel=stable-4.22 -o ~/upgrade-graph_stable-4.22
         ```
 - For Operator updates, you must perform the following task:
 
   - Mirror the Operator catalogs. Ensure that the required Operator images are mirrored by following the procedure in the "Mirroring Operator catalogs for use with disconnected clusters" section.
 
 **Additional resources**
+{._additional-resources}
 
 - [About the Topology Aware Lifecycle Manager](/openshift-docs-markdown/edge_computing/cnf-talm-for-cluster-upgrades#cnf-about-topology-aware-lifecycle-manager-config_cnf-topology-aware-lifecycle-manager)
 - [Upgrading GitOps ZTP](/openshift-docs-markdown/edge_computing/ztp-updating-gitops#ztp-updating-gitops)
@@ -111,92 +112,88 @@ You can perform a platform update with the TALM.
 
 **Procedure**
 
-1. Create a `{{ policy_gen_cr }}` CR for the platform update:
+1. Create a `PolicyGenerator` CR for the platform update:
 
-   1. Save the following `{{ policy_gen_cr }}` CR in the `du-upgrade.yaml` file: The following example shows the `{{ policy_gen_cr }}` CR for platform update:
+   1. Save the following `PolicyGenerator` CR in the `du-upgrade.yaml` file: The following example shows the `PolicyGenerator` CR for platform update:
 
-```yaml
-apiVersion: policy.open-cluster-management.io/v1
-kind: PolicyGenerator
-metadata:
-    name: du-upgrade
-placementBindingDefaults:
-    name: du-upgrade-placement-binding
-policyDefaults:
-    namespace: ztp-group-du-sno
-    placement:
-        labelSelector:
-            matchExpressions:
-                - key: group-du-sno
-                  operator: Exists
-    remediationAction: inform
-    severity: low
-    namespaceSelector:
-        exclude:
-            - kube-*
-        include:
-            - '*'
-    evaluationInterval:
-        compliant: 10m
-        noncompliant: 10s
-policies:
-    - name: du-upgrade-platform-upgrade
-      policyAnnotations:
-        ran.openshift.io/ztp-deploy-wave: "100"
-      manifests:
-        - path: source-crs/ClusterVersion.yaml
-          patches:
-            - metadata:
-                name: version
-              spec:
-                channel: stable-{{ product_version }}
-                desiredUpdate:
-                    version: {{ product_version }}.4
-                upstream: http://upgrade.example.com/images/upgrade-graph_stable-{{ product_version }}
-              status:
-                history:
-                    - state: Completed
-                      version: {{ product_version }}.4
-    - name: du-upgrade-platform-upgrade-prep
-      policyAnnotations:
-        ran.openshift.io/ztp-deploy-wave: "1"
-      manifests:
-        - path: source-crs/ImageSignature.yaml
-        - path: source-crs/DisconnectedICSP.yaml
-          patches:
-            - metadata:
-                name: disconnected-internal-icsp-for-ocp
-              spec:
-                repositoryDigestMirrors:
-                    - mirrors:
-                        - quay-intern.example.com/ocp4/openshift-release-dev
-                      source: quay.io/openshift-release-dev/ocp-release
-                    - mirrors:
-                        - quay-intern.example.com/ocp4/openshift-release-dev
-                      source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
-```
+      ```yaml
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: PolicyGenerator
+      metadata:
+          name: du-upgrade
+      placementBindingDefaults:
+          name: du-upgrade-placement-binding
+      policyDefaults:
+          namespace: ztp-group-du-sno
+          placement:
+              labelSelector:
+                  matchExpressions:
+                      - key: group-du-sno
+                        operator: Exists
+          remediationAction: inform
+          severity: low
+          namespaceSelector:
+              exclude:
+                  - kube-*
+              include:
+                  - '*'
+          evaluationInterval:
+              compliant: 10m
+              noncompliant: 10s
+      policies:
+          - name: du-upgrade-platform-upgrade
+            policyAnnotations:
+              ran.openshift.io/ztp-deploy-wave: "100"
+            manifests:
+              - path: source-crs/ClusterVersion.yaml
+                patches:
+                  - metadata:
+                      name: version
+                    spec:
+                      channel: stable-4.22
+                      desiredUpdate:
+                          version: 4.22.4
+                      upstream: http://upgrade.example.com/images/upgrade-graph_stable-4.22
+                    status:
+                      history:
+                          - state: Completed
+                            version: 4.22.4
+          - name: du-upgrade-platform-upgrade-prep
+            policyAnnotations:
+              ran.openshift.io/ztp-deploy-wave: "1"
+            manifests:
+              - path: source-crs/ImageSignature.yaml
+              - path: source-crs/DisconnectedICSP.yaml
+                patches:
+                  - metadata:
+                      name: disconnected-internal-icsp-for-ocp
+                    spec:
+                      repositoryDigestMirrors:
+                          - mirrors:
+                              - quay-intern.example.com/ocp4/openshift-release-dev
+                            source: quay.io/openshift-release-dev/ocp-release
+                          - mirrors:
+                              - quay-intern.example.com/ocp4/openshift-release-dev
+                            source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
+      ```
 
-- `source-crs/ClusterVersion.yaml` - Shows the `ClusterVersion` CR to trigger the update. The `channel`, `upstream`, and `desiredVersion` fields are all required for image precaching.
-- `source-crs/ImageSignature.yaml` - Contains the image signature of the required release image. The image signature is used to verify the image before applying the platform update.
-- `repositoryDigestMirrors` - Shows the mirror repository that contains the required OpenShift Container Platform image. Get the mirrors from the `imageContentSources.yaml` file that you saved when following the procedures in the "Setting up the environment" section.
+      - `source-crs/ClusterVersion.yaml` - Shows the `ClusterVersion` CR to trigger the update. The `channel`, `upstream`, and `desiredVersion` fields are all required for image precaching.
+      - `source-crs/ImageSignature.yaml` - Contains the image signature of the required release image. The image signature is used to verify the image before applying the platform update.
+      - `repositoryDigestMirrors` - Shows the mirror repository that contains the required OpenShift Container Platform image. Get the mirrors from the `imageContentSources.yaml` file that you saved when following the procedures in the "Setting up the environment" section.
 
-  ```
-  The `{{ policy_gen_cr }}` CR generates two policies:
+      The `PolicyGenerator` CR generates two policies:
 
-  *   The `du-upgrade-platform-upgrade-prep` policy does the preparation work for the platform update. It creates the `ConfigMap` CR for the required release image signature, creates the image content source of the mirrored release image repository, and updates the cluster version with the required update channel and the update graph reachable by the managed cluster in the disconnected environment.
-  *   The `du-upgrade-platform-upgrade` policy is used to perform platform upgrade.
-  ```
+      - The `du-upgrade-platform-upgrade-prep` policy does the preparation work for the platform update. It creates the `ConfigMap` CR for the required release image signature, creates the image content source of the mirrored release image repository, and updates the cluster version with the required update channel and the update graph reachable by the managed cluster in the disconnected environment.
+      - The `du-upgrade-platform-upgrade` policy is used to perform platform upgrade.
+   2. Add the `du-upgrade.yaml` file contents to the `kustomization.yaml` file located in the GitOps ZTP Git repository for the `PolicyGenerator` CRs and push the changes to the Git repository.
 
-  1. Add the `du-upgrade.yaml` file contents to the `kustomization.yaml` file located in the GitOps ZTP Git repository for the `{{ policy_gen_cr }}` CRs and push the changes to the Git repository.
+      ArgoCD pulls the changes from the Git repository and generates the policies on the hub cluster.
+   3. Check the created policies by running the following command:
 
-     ArgoCD pulls the changes from the Git repository and generates the policies on the hub cluster.
-  2. Check the created policies by running the following command:
-
-     ```terminal
-     $ oc get policies -A | grep platform-upgrade
-     ```
-
-1. Create the `ClusterGroupUpdate` CR for the platform update with the `spec.enable` field set to `false`.
+      ```terminal
+      $ oc get policies -A | grep platform-upgrade
+      ```
+2. Create the `ClusterGroupUpdate` CR for the platform update with the `spec.enable` field set to `false`.
 
    1. Save the content of the platform update `ClusterGroupUpdate` CR with the `du-upgrade-platform-upgrade-prep` and the `du-upgrade-platform-upgrade` policies and the target clusters to the `cgu-platform-upgrade.yml` file, as shown in the following example:
 
@@ -222,7 +219,7 @@ policies:
       ```terminal
       $ oc apply -f cgu-platform-upgrade.yml
       ```
-2. Optional: Precache the images for the platform update.
+3. Optional: Precache the images for the platform update.
 
    1. Enable precaching in the `ClusterGroupUpdate` CR by running the following command:
 
@@ -235,7 +232,7 @@ policies:
       ```terminal
       $ oc get cgu cgu-platform-upgrade -o jsonpath='{.status.precaching.status}'
       ```
-3. Start the platform update:
+4. Start the platform update:
 
    1. Enable the `cgu-platform-upgrade` policy and disable pre-caching by running the following command:
 
@@ -250,6 +247,7 @@ policies:
       ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Preparing the disconnected environment](/openshift-docs-markdown/edge_computing/ztp-preparing-the-hub-cluster#ztp-acm-adding-images-to-mirror-registry_ztp-preparing-the-hub-cluster)
 
@@ -268,137 +266,129 @@ You can perform an Operator update with the TALM.
 
 **Procedure**
 
-1. Update the `{{ policy_gen_cr }}` CR for the Operator update.
+1. Update the `PolicyGenerator` CR for the Operator update.
 
-   1. Update the `du-upgrade` `{{ policy_gen_cr }}` CR with the following additional contents in the `du-upgrade.yaml` file:
+   1. Update the `du-upgrade` `PolicyGenerator` CR with the following additional contents in the `du-upgrade.yaml` file:
 
-```yaml
-apiVersion: policy.open-cluster-management.io/v1
-kind: PolicyGenerator
-metadata:
-    name: du-upgrade
-placementBindingDefaults:
-    name: du-upgrade-placement-binding
-policyDefaults:
-    namespace: ztp-group-du-sno
-    placement:
-        labelSelector:
-            matchExpressions:
-                - key: group-du-sno
-                  operator: Exists
-    remediationAction: inform
-    severity: low
-    namespaceSelector:
-        exclude:
-            - kube-*
-        include:
-            - '*'
-    evaluationInterval:
-        compliant: 10m
-        noncompliant: 10s
-policies:
-    - name: du-upgrade-operator-catsrc-policy
-      policyAnnotations:
-        ran.openshift.io/ztp-deploy-wave: "1"
-      manifests:
-        - path: source-crs/DefaultCatsrc.yaml
-          patches:
-            - metadata:
-                name: redhat-operators-disconnected
-              spec:
-                displayName: Red Hat Operators Catalog
-                image: registry.example.com:5000/olm/redhat-operators-disconnected:v{{ product_version }}
-                updateStrategy:
-                    registryPoll:
-                        interval: 1h
-              status:
-                connectionState:
-                    lastObservedState: READY
-```
+      ```yaml
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: PolicyGenerator
+      metadata:
+          name: du-upgrade
+      placementBindingDefaults:
+          name: du-upgrade-placement-binding
+      policyDefaults:
+          namespace: ztp-group-du-sno
+          placement:
+              labelSelector:
+                  matchExpressions:
+                      - key: group-du-sno
+                        operator: Exists
+          remediationAction: inform
+          severity: low
+          namespaceSelector:
+              exclude:
+                  - kube-*
+              include:
+                  - '*'
+          evaluationInterval:
+              compliant: 10m
+              noncompliant: 10s
+      policies:
+          - name: du-upgrade-operator-catsrc-policy
+            policyAnnotations:
+              ran.openshift.io/ztp-deploy-wave: "1"
+            manifests:
+              - path: source-crs/DefaultCatsrc.yaml
+                patches:
+                  - metadata:
+                      name: redhat-operators-disconnected
+                    spec:
+                      displayName: Red Hat Operators Catalog
+                      image: registry.example.com:5000/olm/redhat-operators-disconnected:v4.22
+                      updateStrategy:
+                          registryPoll:
+                              interval: 1h
+                    status:
+                      connectionState:
+                          lastObservedState: READY
+      ```
 
-- `image` - Contains the required Operator images. If the index images are always pushed to the same image name and tag, this change is not needed.
-- `updateStrategy` - Sets how frequently the Operator Lifecycle Manager (OLM) polls the index image for new Operator versions with the `registryPoll.interval` field. This change is not needed if a new index image tag is always pushed for y-stream and z-stream Operator updates. The `registryPoll.interval` field can be set to a shorter interval to expedite the update, however shorter intervals increase computational load. To counteract this, you can restore `registryPoll.interval` to the default value once the update is complete.
-- `lastObservedState` - Displays the observed state of the catalog connection. The `READY` value ensures that the `CatalogSource` policy is ready, indicating that the index pod is pulled and is running. This way, TALM upgrades the Operators based on up-to-date policy compliance states.
+      - `image` - Contains the required Operator images. If the index images are always pushed to the same image name and tag, this change is not needed.
+      - `updateStrategy` - Sets how frequently the Operator Lifecycle Manager (OLM) polls the index image for new Operator versions with the `registryPoll.interval` field. This change is not needed if a new index image tag is always pushed for y-stream and z-stream Operator updates. The `registryPoll.interval` field can be set to a shorter interval to expedite the update, however shorter intervals increase computational load. To counteract this, you can restore `registryPoll.interval` to the default value once the update is complete.
+      - `lastObservedState` - Displays the observed state of the catalog connection. The `READY` value ensures that the `CatalogSource` policy is ready, indicating that the index pod is pulled and is running. This way, TALM upgrades the Operators based on up-to-date policy compliance states.
+   2. This update generates one policy, `du-upgrade-operator-catsrc-policy`, to update the `redhat-operators-disconnected` catalog source with the new index images that contain the required Operators images.
 
-  1. This update generates one policy, `du-upgrade-operator-catsrc-policy`, to update the `redhat-operators-disconnected` catalog source with the new index images that contain the required Operators images.
+      > [!NOTE]
+      > If you want to use the image precaching for Operators and there are Operators from a different catalog source other than `redhat-operators-disconnected`, you must perform the following tasks:
+      >
+      > - Prepare a separate catalog source policy with the new index image or registry poll interval update for the different catalog source.
+      > - Prepare a separate subscription policy for the required Operators that are from the different catalog source.
 
-     > [!NOTE]
-     > If you want to use the image precaching for Operators and there are Operators from a different catalog source other than `redhat-operators-disconnected`, you must perform the following tasks:
-     >
-     > - Prepare a separate catalog source policy with the new index image or registry poll interval update for the different catalog source.
-     > - Prepare a separate subscription policy for the required Operators that are from the different catalog source.
+      For example, the required SRIOV-FEC Operator is available in the `certified-operators` catalog source. To update the catalog source and the Operator subscription, add the following contents to generate two policies, `du-upgrade-fec-catsrc-policy` and `du-upgrade-subscriptions-fec-policy`:
 
-     For example, the required SRIOV-FEC Operator is available in the `certified-operators` catalog source. To update the catalog source and the Operator subscription, add the following contents to generate two policies, `du-upgrade-fec-catsrc-policy` and `du-upgrade-subscriptions-fec-policy`:
+      ```yaml
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: PolicyGenerator
+      metadata:
+          name: du-upgrade
+      placementBindingDefaults:
+          name: du-upgrade-placement-binding
+      policyDefaults:
+          namespace: ztp-group-du-sno
+          placement:
+              labelSelector:
+                  matchExpressions:
+                      - key: group-du-sno
+                        operator: Exists
+          remediationAction: inform
+          severity: low
+          namespaceSelector:
+              exclude:
+                  - kube-*
+              include:
+                  - '*'
+          evaluationInterval:
+              compliant: 10m
+              noncompliant: 10s
+      policies:
+          - name: du-upgrade-fec-catsrc-policy
+            policyAnnotations:
+              ran.openshift.io/ztp-deploy-wave: "1"
+            manifests:
+              - path: source-crs/DefaultCatsrc.yaml
+                patches:
+                  - metadata:
+                      name: certified-operators
+                    spec:
+                      displayName: Intel SRIOV-FEC Operator
+                      image: registry.example.com:5000/olm/far-edge-sriov-fec:v4.10
+                      updateStrategy:
+                          registryPoll:
+                              interval: 10m
+          - name: du-upgrade-subscriptions-fec-policy
+            policyAnnotations:
+              ran.openshift.io/ztp-deploy-wave: "2"
+            manifests:
+              - path: source-crs/AcceleratorsSubscription.yaml
+                patches:
+                  - spec:
+                      channel: stable
+                      source: certified-operators
+      ```
+   3. Remove the specified subscriptions channels in the common `PolicyGenerator` CR, if they exist. The default subscriptions channels from the GitOps ZTP image are used for the update.
 
-```yaml
-apiVersion: policy.open-cluster-management.io/v1
-kind: PolicyGenerator
-metadata:
-    name: du-upgrade
-placementBindingDefaults:
-    name: du-upgrade-placement-binding
-policyDefaults:
-    namespace: ztp-group-du-sno
-    placement:
-        labelSelector:
-            matchExpressions:
-                - key: group-du-sno
-                  operator: Exists
-    remediationAction: inform
-    severity: low
-    namespaceSelector:
-        exclude:
-            - kube-*
-        include:
-            - '*'
-    evaluationInterval:
-        compliant: 10m
-        noncompliant: 10s
-policies:
-    - name: du-upgrade-fec-catsrc-policy
-      policyAnnotations:
-        ran.openshift.io/ztp-deploy-wave: "1"
-      manifests:
-        - path: source-crs/DefaultCatsrc.yaml
-          patches:
-            - metadata:
-                name: certified-operators
-              spec:
-                displayName: Intel SRIOV-FEC Operator
-                image: registry.example.com:5000/olm/far-edge-sriov-fec:v4.10
-                updateStrategy:
-                    registryPoll:
-                        interval: 10m
-    - name: du-upgrade-subscriptions-fec-policy
-      policyAnnotations:
-        ran.openshift.io/ztp-deploy-wave: "2"
-      manifests:
-        - path: source-crs/AcceleratorsSubscription.yaml
-          patches:
-            - spec:
-                channel: stable
-                source: certified-operators
-```
+      > [!NOTE]
+      > The default channel for the Operators applied through GitOps ZTP 4.22 is `stable`, except for the `performance-addon-operator`. As of OpenShift Container Platform 4.11, the `performance-addon-operator` functionality was moved to the `node-tuning-operator`. For the 4.10 release, the default channel for PAO is `v4.10`. You can also specify the default channels in the common `PolicyGenerator` CR.
+   4. Push the `PolicyGenerator` CRs updates to the GitOps ZTP Git repository.
 
-````
-1.  Remove the specified subscriptions channels in the common `{{ policy_gen_cr }}` CR, if they exist. The default subscriptions channels from the GitOps ZTP image are used for the update.
+      ArgoCD pulls the changes from the Git repository and generates the policies on the hub cluster.
+   5. Check the created policies by running the following command:
 
-    :::note
-
-    The default channel for the Operators applied through GitOps ZTP 4.22 is `stable`, except for the `performance-addon-operator`. As of OpenShift Container Platform 4.11, the `performance-addon-operator` functionality was moved to the `node-tuning-operator`. For the 4.10 release, the default channel for PAO is `v4.10`. You can also specify the default channels in the common `{{ policy_gen_cr }}` CR.
-
-    :::
-
-1.  Push the `{{ policy_gen_cr }}` CRs updates to the GitOps ZTP Git repository.
-
-    ArgoCD pulls the changes from the Git repository and generates the policies on the hub cluster.
-1.  Check the created policies by running the following command:
-    ```terminal
-    $ oc get policies -A | grep -E "catsrc-policy|subscription"
-    ```
-````
-
-1. Apply the required catalog source updates before starting the Operator update.
+      ```terminal
+      $ oc get policies -A | grep -E "catsrc-policy|subscription"
+      ```
+2. Apply the required catalog source updates before starting the Operator update.
 
    1. Save the content of the `ClusterGroupUpgrade` CR named `operator-upgrade-prep` with the catalog source policies and the target managed clusters to the `cgu-operator-upgrade-prep.yml` file:
 
@@ -427,9 +417,9 @@ policies:
       ```terminal
       $ oc get policies -A | grep -E "catsrc-policy"
       ```
-2. Create the `ClusterGroupUpgrade` CR for the Operator update with the `spec.enable` field set to `false`.
+3. Create the `ClusterGroupUpgrade` CR for the Operator update with the `spec.enable` field set to `false`.
 
-   1. Save the content of the Operator update `ClusterGroupUpgrade` CR with the `du-upgrade-operator-catsrc-policy` policy and the subscription policies created from the common `{{ policy_gen_cr }}` and the target clusters to the `cgu-operator-upgrade.yml` file, as shown in the following example:
+   1. Save the content of the Operator update `ClusterGroupUpgrade` CR with the `du-upgrade-operator-catsrc-policy` policy and the subscription policies created from the common `PolicyGenerator` and the target clusters to the `cgu-operator-upgrade.yml` file, as shown in the following example:
 
       ```yaml
       apiVersion: ran.openshift.io/v1alpha1
@@ -459,7 +449,7 @@ policies:
       ```terminal
       $ oc apply -f cgu-operator-upgrade.yml
       ```
-3. Optional: Precache the images for the Operator update.
+4. Optional: Precache the images for the Operator update.
 
    1. Before starting image precaching, verify the subscription policy is `NonCompliant` at this point by running the following command:
 
@@ -510,7 +500,7 @@ policies:
           }
       ]
       ```
-4. Start the Operator update.
+5. Start the Operator update.
 
    1. Enable the `cgu-operator-upgrade` `ClusterGroupUpgrade` CR and disable precaching to start the Operator update by running the following command:
 
@@ -525,6 +515,7 @@ policies:
       ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Upgrading GitOps ZTP](/openshift-docs-markdown/edge_computing/ztp-updating-gitops#ztp-updating-gitops)
 
@@ -534,47 +525,46 @@ In some scenarios, Topology Aware Lifecycle Manager (TALM) might miss Operator u
 
 After a catalog source update, it takes time for the Operator Lifecycle Manager (OLM) to update the subscription status. The status of the subscription policy might continue to show as compliant while TALM decides whether remediation is needed. As a result, the Operator specified in the subscription policy does not get upgraded.
 
-To avoid this scenario, add another catalog source configuration to the `{{ policy_gen_cr }}` and specify this configuration in the subscription for any Operators that require an update.
+To avoid this scenario, add another catalog source configuration to the `PolicyGenerator` and specify this configuration in the subscription for any Operators that require an update.
 
 **Procedure**
 
-1. Add a catalog source configuration in the `{{ policy_gen_cr }}` resource:
+1. Add a catalog source configuration in the `PolicyGenerator` resource:
 
-```yaml
-manifests:
-- path: source-crs/DefaultCatsrc.yaml
-  patches:
-    - metadata:
-        name: redhat-operators-disconnected
-      spec:
-        displayName: Red Hat Operators Catalog
-        image: registry.example.com:5000/olm/redhat-operators-disconnected:v{product-version}
-        updateStrategy:
-            registryPoll:
-                interval: 1h
-      status:
-        connectionState:
-            lastObservedState: READY
-- path: source-crs/DefaultCatsrc.yaml
-  patches:
-    - metadata:
-        name: redhat-operators-disconnected-v2
-      spec:
-        displayName: Red Hat Operators Catalog v2
-        image: registry.example.com:5000/olm/redhat-operators-disconnected:<version>
-        updateStrategy:
-            registryPoll:
-                interval: 1h
-      status:
-        connectionState:
-            lastObservedState: READY
-```
+   ```yaml
+   manifests:
+   - path: source-crs/DefaultCatsrc.yaml
+     patches:
+       - metadata:
+           name: redhat-operators-disconnected
+         spec:
+           displayName: Red Hat Operators Catalog
+           image: registry.example.com:5000/olm/redhat-operators-disconnected:v{product-version}
+           updateStrategy:
+               registryPoll:
+                   interval: 1h
+         status:
+           connectionState:
+               lastObservedState: READY
+   - path: source-crs/DefaultCatsrc.yaml
+     patches:
+       - metadata:
+           name: redhat-operators-disconnected-v2
+         spec:
+           displayName: Red Hat Operators Catalog v2
+           image: registry.example.com:5000/olm/redhat-operators-disconnected:<version>
+           updateStrategy:
+               registryPoll:
+                   interval: 1h
+         status:
+           connectionState:
+               lastObservedState: READY
+   ```
 
-- `name` - Update the name for the new configuration.
-- `displayName` - Update the display name for the new configuration.
-- `image` - Update the index image URL. This `policies.manifests.patches.spec.image` field overrides any configuration in the `DefaultCatsrc.yaml` file.
-
-1. Update the `Subscription` resource to point to the new configuration for Operators that require an update:
+   - `name` - Update the name for the new configuration.
+   - `displayName` - Update the display name for the new configuration.
+   - `image` - Update the index image URL. This `policies.manifests.patches.spec.image` field overrides any configuration in the `DefaultCatsrc.yaml` file.
+2. Update the `Subscription` resource to point to the new configuration for Operators that require an update:
 
    ```yaml
    apiVersion: operators.coreos.com/v1alpha1
@@ -588,7 +578,7 @@ manifests:
    # ...
    ```
 
-   - `redhat-operators-disconnected-v2` specifies the name of the additional catalog source configuration that you defined in the `{{ policy_gen_cr }}` resource.
+   - `redhat-operators-disconnected-v2` specifies the name of the additional catalog source configuration that you defined in the `PolicyGenerator` resource.
 
 ## Performing a platform and an Operator update together {#talo-operator-and-platform-update_ztp-talm-pg}
 
@@ -604,7 +594,7 @@ You can perform a platform and an Operator update at the same time.
 
 **Procedure**
 
-1. Create the `{{ policy_gen_cr }}` CR for the updates by following the steps described in the "Performing a platform update" and "Performing an Operator update" sections.
+1. Create the `PolicyGenerator` CR for the updates by following the steps described in the "Performing a platform update" and "Performing an Operator update" sections.
 2. Apply the prep work for the platform and the Operator update.
 
    1. Save the content of the `ClusterGroupUpgrade` CR with the policies for platform update preparation work, catalog source updates, and target clusters to the `cgu-platform-operator-upgrade-prep.yml` file, for example:
@@ -712,7 +702,7 @@ Do not install the Performance Addon Operator on clusters running OpenShift Cont
 > [!NOTE]
 > You need to remove any policies that create Performance Addon Operator subscriptions to prevent a re-installation of the Operator.
 
-The reference DU profile includes the Performance Addon Operator in the `{{ policy_gen_cr }}` CR `{{ policy_prefix }}common-ranGen.yaml`. To remove the subscription from deployed managed clusters, you must update `{{ policy_prefix }}common-ranGen.yaml`.
+The reference DU profile includes the Performance Addon Operator in the `PolicyGenerator` CR `acm-common-ranGen.yaml`. To remove the subscription from deployed managed clusters, you must update `acm-common-ranGen.yaml`.
 
 > [!NOTE]
 > If you install Performance Addon Operator 4.10.3-5 or later on OpenShift Container Platform 4.11 or later, the Performance Addon Operator detects the cluster version and automatically hibernates to avoid interfering with the Node Tuning Operator functions. However, to ensure best performance, remove the Performance Addon Operator from your OpenShift Container Platform 4.11 clusters.
@@ -725,23 +715,27 @@ The reference DU profile includes the Performance Addon Operator in the `{{ poli
 
 **Procedure**
 
-1. Change the `complianceType` to `mustnothave` for the Performance Addon Operator namespace, Operator group, and subscription in the `{{ policy_prefix }}common-ranGen.yaml` file.
+1. Change the `complianceType` to `mustnothave` for the Performance Addon Operator namespace, Operator group, and subscription in the `acm-common-ranGen.yaml` file.
 
    ```yaml
 
+   - name: group-du-sno-pg-subscriptions-policy
+     policyAnnotations:
+       ran.openshift.io/ztp-deploy-wave: "2"
+     manifests:
+       - path: source-crs/PaoSubscriptionNS.yaml
+       - path: source-crs/PaoSubscriptionOperGroup.yaml
+       - path: source-crs/PaoSubscription.yaml
    ```
-
-{%- if policy-gen-cr == "PolicyGenTemplate" %} {% include "./snippets/pgt-cnf-topology-aware-lifecycle-manager-pao-update.yaml" %} {% endif %} {% if policy-gen-cr == "PolicyGenerator" %} {% include "./snippets/pg-cnf-topology-aware-lifecycle-manager-pao-update.yaml" %} {%- endif %} \`\`\`
-
-1. Merge the changes with your custom site repository and wait for the ArgoCD application to synchronize the change to the hub cluster. The status of the `common-subscriptions-policy` policy changes to `Non-Compliant`.
-2. Apply the change to your target clusters by using the Topology Aware Lifecycle Manager. For more information about rolling out configuration changes, see the "Additional resources" section.
-3. Monitor the process. When the status of the `common-subscriptions-policy` policy for a target cluster  is `Compliant`, the Performance Addon Operator has been removed from the cluster. Get the status of the `common-subscriptions-policy` by running the following command:
+2. Merge the changes with your custom site repository and wait for the ArgoCD application to synchronize the change to the hub cluster. The status of the `common-subscriptions-policy` policy changes to `Non-Compliant`.
+3. Apply the change to your target clusters by using the Topology Aware Lifecycle Manager. For more information about rolling out configuration changes, see the "Additional resources" section.
+4. Monitor the process. When the status of the `common-subscriptions-policy` policy for a target cluster  is `Compliant`, the Performance Addon Operator has been removed from the cluster. Get the status of the `common-subscriptions-policy` by running the following command:
 
    ```terminal
    $ oc get policy -n ztp-common common-subscriptions-policy
    ```
-4. Delete the Performance Addon Operator namespace, Operator group and subscription CRs from `{{ rangen_yaml_path }}` in the `{{ policy_prefix }}common-ranGen.yaml` file.
-5. Merge the changes with your custom site repository and wait for the ArgoCD application to synchronize the change to the hub cluster. The policy remains compliant.
+5. Delete the Performance Addon Operator namespace, Operator group and subscription CRs from `policies.manifests` in the `acm-common-ranGen.yaml` file.
+6. Merge the changes with your custom site repository and wait for the ArgoCD application to synchronize the change to the hub cluster. The policy remains compliant.
 
 ## Precaching user-specified images with TALM on single-node OpenShift clusters {#talm-prechache-user-specified-images-concept_ztp-talm-pg}
 
@@ -995,6 +989,7 @@ You must create the `PreCachingConfig` CR before or concurrently with the `Clust
       ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Using the container image precache feature](/openshift-docs-markdown/edge_computing/cnf-talm-for-cluster-upgrades#talo-precache-feature-concept_cnf-topology-aware-lifecycle-manager)
 

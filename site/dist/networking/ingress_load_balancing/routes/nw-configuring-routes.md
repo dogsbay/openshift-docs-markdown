@@ -46,8 +46,7 @@ Order of precedence
 :   When the same HTTP header is modified both in the Ingress Controller and in a route, HAProxy prioritizes the actions in certain ways depending on whether it is a request or response header.
 
     - For HTTP response headers, actions specified in the Ingress Controller are executed after the actions specified in a route. This means that the actions specified in the Ingress Controller take precedence.
-
-- For HTTP request headers, actions specified in a route are executed after the actions specified in the Ingress Controller. This means that the actions specified in the route take precedence.
+    - For HTTP request headers, actions specified in a route are executed after the actions specified in the Ingress Controller. This means that the actions specified in the route take precedence.
 
 For example, a cluster administrator sets the X-Frame-Options response header with the value `DENY` in the Ingress Controller using the following configuration:
 
@@ -106,7 +105,7 @@ Additionally, any actions defined in either the Ingress Controller or a route ov
 Special case headers
 :   The following headers are either prevented entirely from being set or deleted, or allowed under specific circumstances:
 
-***Special case header configuration options***
+**Special case header configuration options**
 
 <table>
 <thead>
@@ -283,20 +282,20 @@ The Ingress Controller can set the default options for all the routes it exposes
 
 | Variable | Description |
 | --- | --- |
-| `haproxy.router.openshift.io/balance` | Sets the load-balancing algorithm. Available options are `random`, `source`, `roundrobin`\[^1^\], and `leastconn`.  The default value is `source` for TLS passthrough routes. For all other routes, the default is `random`. |
-| `haproxy.router.openshift.io/disable_cookies` | Disables the use of cookies to track related connections. If set to ’true'` or ’TRUE'`, the balance algorithm is used to choose which back-end serves connections for each incoming HTTP request. |
+| `haproxy.router.openshift.io/balance` | Sets the load-balancing algorithm. Available options are `random`, `source`, `roundrobin`\[<sup>1</sup>\], and `leastconn`. The default value is `source` for TLS passthrough routes. For all other routes, the default is `random`. |
+| `haproxy.router.openshift.io/disable_cookies` | Disables the use of cookies to track related connections. If set to `'true'` or `'TRUE'`, the balance algorithm is used to choose which back-end serves connections for each incoming HTTP request. |
 | `router.openshift.io/cookie_name` | Specifies an optional cookie to use for this route. The name must consist of any combination of upper and lower case letters, digits, "\\_", and "-". The default is the hashed internal key name for the route. |
-| `haproxy.router.openshift.io/pod-concurrent-connections` | Sets the maximum number of connections that are allowed to a backing pod from a router.<br> Note: If there are multiple pods, each can have this many connections.  If you have multiple routers, there is no coordination among them, each may connect this many times. If not set, or set to 0, there is no limit. |
-| `haproxy.router.openshift.io/rate-limit-connections` | Setting ’true'` or ’TRUE'` enables rate limiting functionality which is implemented through stick-tables on the specific backend per route.<br> Note: Using this annotation provides basic protection against denial-of-service attacks. |
+| `haproxy.router.openshift.io/pod-concurrent-connections` | Sets the maximum number of connections that are allowed to a backing pod from a router.<br> Note: If there are multiple pods, each can have this many connections. If you have multiple routers, there is no coordination among them, each may connect this many times. If not set, or set to 0, there is no limit. |
+| `haproxy.router.openshift.io/rate-limit-connections` | Setting `'true'` or `'TRUE'` enables rate limiting functionality which is implemented through stick-tables on the specific backend per route.<br> Note: Using this annotation provides basic protection against denial-of-service attacks. |
 | `haproxy.router.openshift.io/rate-limit-connections.concurrent-tcp` | Limits the number of concurrent TCP connections made through the same source IP address. It accepts a numeric value.<br> Note: Using this annotation provides basic protection against denial-of-service attacks. |
 | `haproxy.router.openshift.io/rate-limit-connections.rate-http` | Limits the rate at which a client with the same source IP address can make HTTP requests. It accepts a numeric value. <br> Note: Using this annotation provides basic protection against denial-of-service attacks. |
-| `haproxy.router.openshift.io/rate-limit-connections.rate-tcp` | Limits the rate at which a client with the same source IP address can make TCP connections. It accepts a numeric value.  + |
+| `haproxy.router.openshift.io/rate-limit-connections.rate-tcp` | Limits the rate at which a client with the same source IP address can make TCP connections. It accepts a numeric value. + |
 | `router.openshift.io/haproxy.health.check.interval` | Sets the interval for the back-end health checks. (TimeUnits) |
-| `haproxy.router.openshift.io/ip_allowlist` | Sets an allowlist for the route. The allowlist is a space-separated list of IP addresses and CIDR ranges for the approved source addresses. Requests from IP addresses that are not in the allowlist are dropped. The maximum number of IP addresses and CIDR ranges directly visible in the `haproxy.config` file is 61. \[^2^\] |
+| `haproxy.router.openshift.io/ip_allowlist` | Sets an allowlist for the route. The allowlist is a space-separated list of IP addresses and CIDR ranges for the approved source addresses. Requests from IP addresses that are not in the allowlist are dropped.<br>The maximum number of IP addresses and CIDR ranges directly visible in the `haproxy.config` file is 61. \[<sup>2</sup>\] |
 | `haproxy.router.openshift.io/hsts_header` | Sets a Strict-Transport-Security header for the edge terminated or re-encrypt route. |
 | `haproxy.router.openshift.io/rewrite-target` | Sets the rewrite path of the request on the backend. |
-| `router.openshift.io/cookie-same-site` | Sets a value to restrict cookies. The values are: `Lax`: the browser does not send cookies on cross-site requests, but does send cookies when users navigate to the origin site from an external site. This is the default browser behavior when the `SameSite` value is not specified. `Strict`: the browser sends cookies only for same-site requests. `None`: the browser sends cookies for both cross-site and same-site requests. This value is applicable to re-encrypt and edge routes only. For more information, see the [SameSite cookies documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite). |
-| `haproxy.router.openshift.io/set-forwarded-headers` | Sets the policy for handling the `Forwarded` and `X-Forwarded-For` HTTP headers per route. The values are: `append`: appends the header, preserving any existing header. This is the default value. `replace`: sets the header, removing any existing header. `never`: never sets the header, but preserves any existing header. `if-none`: sets the header if it is not already set. |
+| `router.openshift.io/cookie-same-site` | Sets a value to restrict cookies. The values are:<br>`Lax`: the browser does not send cookies on cross-site requests, but does send cookies when users navigate to the origin site from an external site. This is the default browser behavior when the `SameSite` value is not specified.<br>`Strict`: the browser sends cookies only for same-site requests.<br>`None`: the browser sends cookies for both cross-site and same-site requests.<br>This value is applicable to re-encrypt and edge routes only. For more information, see the [SameSite cookies documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite). |
+| `haproxy.router.openshift.io/set-forwarded-headers` | Sets the policy for handling the `Forwarded` and `X-Forwarded-For` HTTP headers per route. The values are:<br>`append`: appends the header, preserving any existing header. This is the default value.<br>`replace`: sets the header, removing any existing header.<br>`never`: never sets the header, but preserves any existing header.<br>`if-none`: sets the header if it is not already set. |
 
 1. By default, the router reloads every 5 s which resets the balancing connection across pods from the beginning. As a result, the `roundrobin` state is not preserved across reloads. This algorithm works best when pods have nearly identical computing capabilites and storage capacity. If your application or service has continuously changing endpoints, for example, due to the use of a CI/CD pipeline, uneven balancing can result. In this case, use a different algorithm.
 2. If the number of IP addresses and CIDR ranges in an allowlist exceeds 61, they are written into a separate file that is then referenced from the `haproxy.config` file. This file is stored in the `/var/lib/haproxy/router/allowlists` folder.
@@ -345,7 +344,9 @@ metadata:
 ...
 ```
 
-1. Sets `/` as rewrite path of the request on the backend.
+```
+1.  Sets `/` as rewrite path of the request on the backend.
+```
 
 Setting the `haproxy.router.openshift.io/rewrite-target` annotation on a route specifies that the Ingress Controller should rewrite paths in HTTP requests using this route before forwarding the requests to the backend application. The part of the request path that matches the path specified in `spec.path` is replaced with the rewrite target specified in the annotation.
 

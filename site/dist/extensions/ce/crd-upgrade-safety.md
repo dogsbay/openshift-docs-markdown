@@ -9,6 +9,7 @@ When you update a custom resource definition (CRD) provided by a cluster extensi
 The CRD update must pass the validation checks before the change is allowed to progress on a cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Updating a cluster extension](/openshift-docs-markdown/extensions/ce/managing-ce#olmv1-updating-an-operator_managing-ce)
 

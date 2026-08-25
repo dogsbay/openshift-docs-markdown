@@ -44,30 +44,27 @@ For this URL:
 </thead>
 <tbody>
 <tr>
-  <td>.^</td>
   <td><code>ldap</code></td>
+  <td>For regular LDAP, use the string <code>ldap</code>. For secure LDAP (LDAPS), use <code>ldaps</code> instead.</td>
 </tr>
 <tr>
-  <td>For regular LDAP, use the string <code>ldap</code>. For secure LDAP (LDAPS), use <code>ldaps</code> instead. .^</td>
   <td><code>host:port</code></td>
+  <td>The name and port of the LDAP server. Defaults to <code>localhost:389</code> for LDAP and <code>localhost:636</code> for LDAPS.</td>
 </tr>
 <tr>
-  <td>The name and port of the LDAP server. Defaults to <code>localhost:389</code> for LDAP and <code>localhost:636</code> for LDAPS. .^</td>
   <td><code>basedn</code></td>
+  <td>The DN of the branch of the directory where all searches should start from. At the very least, this must be the top of your directory tree, but it could also specify a subtree in the directory.</td>
 </tr>
 <tr>
-  <td>The DN of the branch of the directory where all searches should start from. At the very least, this must be the top of your directory tree, but it could also specify a subtree in the directory. .^</td>
   <td><code>attribute</code></td>
+  <td>The attribute to search for. Although RFC 2255 allows a comma-separated list of attributes, only the first attribute is used, no matter how many are provided. If no attributes are provided, the default is to use <code>uid</code>. It is recommended to choose an attribute that is unique across all entries in the subtree you are using.</td>
 </tr>
 <tr>
-  <td>The attribute to search for. Although RFC 2255 allows a comma-separated list of attributes, only the first attribute is used, no matter how many are provided. If no attributes are provided, the default is to use <code>uid</code>. It is recommended to choose an attribute that is unique across all entries in the subtree you are using. .^</td>
   <td><code>scope</code></td>
+  <td>The scope of the search. Can be either <code>one</code> or <code>sub</code>. If the scope is not provided, the default is to use a scope of <code>sub</code>.</td>
 </tr>
 <tr>
-  <td>The scope of the search. Can be either <code>one</code> or <code>sub</code>. If the scope is not provided, the default is to use a scope of <code>sub</code>. .^</td>
   <td><code>filter</code></td>
-</tr>
-<tr>
   <td>A valid LDAP search filter. If not provided, defaults to <code>(objectClass=*)</code></td>
 </tr>
 </tbody>
@@ -216,6 +213,7 @@ where:
 > To allowlist users for an LDAP integration, use the `lookup` mapping method. Before a login from LDAP is allowed, a cluster administrator must create an `Identity` object and a `User` object for each LDAP user.
 
 **Additional resources**
+{._additional-resources}
 
 - [Identity provider parameters](/openshift-docs-markdown/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider)
 

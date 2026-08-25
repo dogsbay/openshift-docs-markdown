@@ -63,10 +63,10 @@ Dockerfile
 hosted control planes
 :   A OpenShift Container Platform feature that enables hosting a control plane on the OpenShift Container Platform cluster from its data plane and workers. This model performs the following actions:
 
-- Optimize infrastructure costs required for the control planes.
-- Improve the cluster creation time.
-- Enable hosting the control plane using the Kubernetes native high level primitives. For example, deployments and stateful sets.
-- Allow a strong network segmentation between the control plane and workloads.
+    - Optimize infrastructure costs required for the control planes.
+    - Improve the cluster creation time.
+    - Enable hosting the control plane using the Kubernetes native high level primitives. For example, deployments and stateful sets.
+    - Allow a strong network segmentation between the control plane and workloads.
 
 hybrid cloud deployments
 :   Deployments that deliver a consistent platform across bare metal, virtual, private, and public cloud environments. This offers speed, agility, and portability.
@@ -126,11 +126,7 @@ OpenShift image registry
 :   A registry provided by OpenShift Container Platform to manage images.
 
 Operator
-:   The preferred method of packaging, deploying, and managing a Kubernetes application in
-
-    an
-
-    OpenShift Container Platform cluster. An Operator takes human operational knowledge and encodes it into software that is packaged and shared with customers.
+:   The preferred method of packaging, deploying, and managing a Kubernetes application in an OpenShift Container Platform cluster. An Operator takes human operational knowledge and encodes it into software that is packaged and shared with customers.
 
 OperatorHub
 :   A platform that contains various OpenShift Container Platform Operators to install.
@@ -196,6 +192,7 @@ worker node
 :   Nodes that are responsible for executing workloads for cluster users. Worker nodes are also known as compute nodes.
 
 **Additional resources**
+{._additional-resources}
 
 - [Product architecture](/openshift-docs-markdown/architecture/architecture#architecture)
 - [OpenShift Container Platform networking](/openshift-docs-markdown/networking/networking_overview/understanding-networking#understanding-networking)
@@ -277,7 +274,8 @@ cgroup v2 offers several improvements over cgroup v1, including a unified hierar
 >   - IBM Semeru Runtimes: jdk8u345-b01, 11.0.16.0, 17.0.4.0, 18.0.2.0 and later
 >   - IBM SDK Java Technology Edition Version (IBM Java): 8.0.7.15 and later
 
-## Additional resources {#additional-resources_architecture-overview}
+**Additional resources**
+{._additional-resources}
 
 - [Hosted control planes overview](/openshift-docs-markdown/hosted_control_planes/index#hcp-overview)
 - [Installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)

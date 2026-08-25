@@ -344,7 +344,8 @@ To enable all-multicast mode on network interfaces in OpenShift Container Platfo
    `net1@if24`
    :   Specifies the secondary interface configured with the network-attachment-definition that supports the all-multicast mode (ALLMULTI flag).
 
-## Additional resources {#additional-resources_nodes-setting-interface-level-network-sysctls_configure-syscontrols-interface-tuning-cni}
+**Additional resources**
+{._additional-resources}
 
 - [Using sysctls in containers](/openshift-docs-markdown/nodes/containers/nodes-containers-sysctls#nodes-containers-sysctls)
 - [SR-IOV network node configuration object](/openshift-docs-markdown/networking/hardware_networks/configuring-sriov-device#nw-sriov-networknodepolicy-object_configuring-sriov-device)

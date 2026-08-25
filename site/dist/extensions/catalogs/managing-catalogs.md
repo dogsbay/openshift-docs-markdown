@@ -22,6 +22,7 @@ You can discover installable content by querying a catalog for Kubernetes extens
 Catalogd is a Kubernetes extension that unpacks catalog content for on-cluster clients and is part of the Operator Lifecycle Manager (OLM) v1 suite of microservices. Currently, catalogd unpacks catalog content that is packaged and distributed as container images.
 
 **Additional resources**
+{._additional-resources}
 
 - [File-based catalogs](/openshift-docs-markdown/extensions/catalogs/fbc#fbc)
 
@@ -41,7 +42,7 @@ spec:
   source:
     image:
       pollIntervalMinutes: <poll_interval_duration>
-      ref: registry.redhat.io/redhat/redhat-operator-index:v{{ product_version }}
+      ref: registry.redhat.io/redhat/redhat-operator-index:v4.22
     type: Image
 ```
 
@@ -58,7 +59,7 @@ priority: -200
     type: image
     image:
       pollIntervalMinutes: 10
-      ref: registry.redhat.io/redhat/certified-operator-index:v{{ product_version }}
+      ref: registry.redhat.io/redhat/certified-operator-index:v4.22
     type: Image
 ```
 
@@ -72,7 +73,7 @@ spec:
   source:
     image:
       pollIntervalMinutes: 10
-      ref: registry.redhat.io/redhat/redhat-marketplace-index:v{{ product_version }}
+      ref: registry.redhat.io/redhat/redhat-marketplace-index:v4.22
     type: Image
 ```
 
@@ -86,7 +87,7 @@ spec:
   source:
     image:
       pollIntervalMinutes: 10
-      ref: registry.redhat.io/redhat/community-operator-index:v{{ product_version }}
+      ref: registry.redhat.io/redhat/community-operator-index:v4.22
     type: Image
 ```
 
@@ -116,7 +117,7 @@ To add a catalog to a cluster for Operator Lifecycle Manager (OLM) v1 usage, cre
      source:
        image:
          pollIntervalMinutes: 10
-         ref: registry.redhat.io/redhat/community-operator-index:v{{ product_version }}
+         ref: registry.redhat.io/redhat/community-operator-index:v4.22
        type: Image
    ```
 
@@ -187,7 +188,7 @@ To add a catalog to a cluster for Operator Lifecycle Manager (OLM) v1 usage, cre
        Source:
          Image:
            Poll Interval Minutes:  10
-           Ref:                    registry.redhat.io/redhat/community-operator-index:v{{ product_version }}
+           Ref:                    registry.redhat.io/redhat/community-operator-index:v4.22
          Type:                     Image
      Status:
        Conditions:

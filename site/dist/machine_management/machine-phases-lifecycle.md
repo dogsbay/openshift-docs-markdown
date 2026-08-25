@@ -94,7 +94,7 @@ To troubleshoot issues with a machine, you can find the phase of a machine by us
 **Procedure**
 
 1. Log in to the web console as a user with the `cluster-admin` role.
-2. Navigate to **Compute** -> **Machines**.
+2. Navigate to **Compute** → **Machines**.
 3. On the **Machines** page, select the name of the machine that you want to find the phase of.
 4. On the **Machine details** page, select the **YAML** tab.
 5. In the YAML block, find the value of the `status.phase` field.
@@ -111,6 +111,7 @@ To troubleshoot issues with a machine, you can find the phase of a machine by us
 
    In this example, the phase is `Running`.
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Lifecycle hooks for the machine deletion phase](/openshift-docs-markdown/machine_management/deleting-machine#machine-lifecycle-hook-deletion_deleting-machine)

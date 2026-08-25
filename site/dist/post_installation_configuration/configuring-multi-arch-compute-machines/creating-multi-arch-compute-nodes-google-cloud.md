@@ -168,7 +168,8 @@ You can add multi-architecture compute machines to a multi-architecture cluster 
    $ oc get nodes
    ```
 
-## Additional resources {#additional-resources_creating-multi-arch-compute-nodes-google-cloud}
+**Additional resources**
+{._additional-resources}
 
 - [Migrating to a cluster with multi-architecture compute machines](/openshift-docs-markdown/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-payload)
 - [Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multiarch-tuning-operator)

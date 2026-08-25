@@ -34,21 +34,21 @@ The following API endpoints are available:
 - `/api/v1/watch/secrets`
 
   - `GET`: watch individual changes to a list of Secret. deprecated: use the 'watch' parameter with a list operation instead.
-- `/api/v1/namespaces/{{ namespace }}/secrets`
+- `/api/v1/namespaces/{namespace}/secrets`
 
   - `DELETE`: delete collection of Secret
   - `GET`: list or watch objects of kind Secret
   - `POST`: create a Secret
-- `/api/v1/watch/namespaces/{{ namespace }}/secrets`
+- `/api/v1/watch/namespaces/{namespace}/secrets`
 
   - `GET`: watch individual changes to a list of Secret. deprecated: use the 'watch' parameter with a list operation instead.
-- `/api/v1/namespaces/{{ namespace }}/secrets/{{ name }}`
+- `/api/v1/namespaces/{namespace}/secrets/{name}`
 
   - `DELETE`: delete a Secret
   - `GET`: read the specified Secret
   - `PATCH`: partially update the specified Secret
   - `PUT`: replace the specified Secret
-- `/api/v1/watch/namespaces/{{ namespace }}/secrets/{{ name }}`
+- `/api/v1/watch/namespaces/{namespace}/secrets/{name}`
 
   - `GET`: watch changes to an object of kind Secret. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
 
@@ -90,7 +90,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{{ namespace }}/secrets {#_apiv1namespaces_namespace_secrets}
+### /api/v1/namespaces/{namespace}/secrets {#_apiv1namespaces_namespace_secrets}
 
 HTTP method
 :   ```
@@ -164,7 +164,7 @@ Description
 | 202 - Accepted | [`Secret`](/openshift-docs-markdown/rest_api/security_apis/secret-v1#secret-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/namespaces/{{ namespace }}/secrets {#_apiv1watchnamespaces_namespace_secrets}
+### /api/v1/watch/namespaces/{namespace}/secrets {#_apiv1watchnamespaces_namespace_secrets}
 
 HTTP method
 :   ```
@@ -183,7 +183,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{{ namespace }}/secrets/{{ name }} {#_apiv1namespaces_namespace_secrets_name}
+### /api/v1/namespaces/{namespace}/secrets/{name} {#_apiv1namespaces_namespace_secrets_name}
 
 **Global path parameters**
 
@@ -288,7 +288,7 @@ Description
 | 201 - Created | [`Secret`](/openshift-docs-markdown/rest_api/security_apis/secret-v1#secret-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/namespaces/{{ namespace }}/secrets/{{ name }} {#_apiv1watchnamespaces_namespace_secrets_name}
+### /api/v1/watch/namespaces/{namespace}/secrets/{name} {#_apiv1watchnamespaces_namespace_secrets_name}
 
 **Global path parameters**
 

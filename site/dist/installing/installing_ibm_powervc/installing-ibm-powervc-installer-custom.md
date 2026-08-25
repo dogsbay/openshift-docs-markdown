@@ -16,6 +16,7 @@ Before you install a OpenShift Container Platform cluster on IBM PowerVC, verify
 - You have a DHCP server backing the IBM PowerVC network you intend to use.
 
 **Additional resources**
+{._additional-resources}
 
 - [OpenShift Container Platform installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)
 - [Selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing)
@@ -50,7 +51,7 @@ IBM recommends that the network is set as a DHCP network in IBM PowerVC. You mus
 
 DNS records pointing to a `LoadBalancer` service are required for installation. In each record, `<cluster_name>` is the cluster name and `<base_domain>` is the cluster base domain that you specify when you install the cluster. A complete DNS record takes the form: `<component>.<cluster_name>.<base_domain>.`.
 
-***Required DNS records***
+**Required DNS records**
 
 <table>
 <thead>
@@ -63,17 +64,17 @@ DNS records pointing to a `LoadBalancer` service are required for installation. 
 <tbody>
 <tr>
   <td>API VIP</td>
-  <td><code>api.<cluster_name>.<base_domain>.</code></td>
+  <td><code>api.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
   <td>This DNS A/AAAA or CNAME (Canonical Name) record must point to the load balancer for the cluster. This record must be resolvable by both clients external to the cluster and from all the nodes within the cluster.</td>
 </tr>
 <tr>
   <td>API VIP</td>
-  <td><code>api-int.<cluster_name>.<base_domain>.</code></td>
+  <td><code>api-int.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
   <td>This DNS A/AAAA or CNAME (Canonical Name) record must point to the load balancer for the cluster. This record must be resolvable by all the nodes within the cluster.</td>
 </tr>
 <tr>
   <td>Ingress VIP</td>
-  <td><code>*.apps.<cluster_name>.<base_domain>.</code></td>
+  <td><code>*.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
   <td>A wildcard DNS A/AAAA or CNAME record that points to the load balancer that targets the machines that run the Ingress router pods, which are the compute nodes by default. This record must be resolvable by both clients external to the cluster and from all the nodes within the cluster.</td>
 </tr>
 </tbody>
@@ -109,13 +110,13 @@ The load balancing infrastructure must meet the following requirements:
   - Layer 4 load balancing only. This can be referred to as Raw TCP or SSL Passthrough mode.
   - A stateless load balancing algorithm. The options vary based on the load balancer implementation.
 
-> [!IMPORTANT]
-> Do not configure session persistence for an API load balancer. Configuring session persistence for a Kubernetes API server might cause performance issues from excess application traffic for your OpenShift Container Platform cluster and the Kubernetes API that runs inside the cluster.
+  > [!IMPORTANT]
+  > Do not configure session persistence for an API load balancer. Configuring session persistence for a Kubernetes API server might cause performance issues from excess application traffic for your OpenShift Container Platform cluster and the Kubernetes API that runs inside the cluster.
 
 Configure the following ports on both the front and back of the API load balancers:
 
 | Port | Back-end machines (pool members) | Internal | External | Description |
-| --- | --- | --- | --- | --- |
+| --- | --- | :---: | :---: | --- |
 | `6443` | Bootstrap and control plane. You remove the bootstrap machine from the load balancer after the bootstrap machine initializes the cluster control plane. You must configure the `/readyz` endpoint for the API server health check probe. | X | X | Kubernetes API server |
 | `22623` | Bootstrap and control plane. You remove the bootstrap machine from the load balancer after the bootstrap machine initializes the cluster control plane. | X |  | Machine config server |
 
@@ -127,15 +128,15 @@ Configure the following ports on both the front and back of the API load balance
   - Layer 4 load balancing only. This can be referred to as Raw TCP or SSL Passthrough mode.
   - A connection-based or session-based persistence is recommended, based on the options available and types of applications that will be hosted on the platform.
 
-> [!TIP]
-> If the true IP address of the client can be seen by the application Ingress load balancer, enabling source IP-based session persistence can improve performance for applications that use end-to-end TLS encryption.
+  > [!TIP]
+  > If the true IP address of the client can be seen by the application Ingress load balancer, enabling source IP-based session persistence can improve performance for applications that use end-to-end TLS encryption.
 
 Configure the following ports on both the front and back of the load balancers:
 
 **Application Ingress load balancer**
 
 | Port | Back-end machines (pool members) | Internal | External | Description |
-| --- | --- | --- | --- | --- |
+| --- | --- | :---: | :---: | --- |
 | `443` | The machines that run the Ingress Controller pods, compute, or worker, by default. | X | X | HTTPS traffic |
 | `80` | The machines that run the Ingress Controller pods, compute, or worker, by default. | X | X | HTTP traffic |
 
@@ -258,20 +259,12 @@ the host you are using for installation.
    ```
 6. Download your installation [pull secret from Red Hat OpenShift Cluster Manager](https://console.redhat.com/openshift/install/pull-secret). This pull secret allows you to authenticate with the services that are provided by the included authorities, including Quay.io, which serves the container images for OpenShift Container Platform components.
 
-   ```
-   :::tip
-
-   Alternatively, you can retrieve the installation program from the [Red&#160;Hat Customer Portal](https://access.redhat.com/downloads/content/290/), where you can specify a version of the installation program to download.
-   However, you must have an active subscription to access this page.
-
-   :::
-   ```
+   > [!TIP]
+   > Alternatively, you can retrieve the installation program from the [Red Hat Customer Portal](https://access.redhat.com/downloads/content/290/), where you can specify a version of the installation program to download. However, you must have an active subscription to access this page.
 
 ## Creating the installation configuration file {#installation-initializing_installing-ibm-powervc-installer-custom}
 
-You can customize the OpenShift Container Platform cluster you install on
-
-IBM PowerVC.
+You can customize the OpenShift Container Platform cluster you install on IBM PowerVC.
 
 **Prerequisites**
 
@@ -367,6 +360,7 @@ platform:
 - `controlPlanePort.fixedIPs.subnet.id`: Specifies the subnet that is served by the user-managed DHCP server.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installation configuration parameters for IBM PowerVC](/openshift-docs-markdown/installing/installing_ibm_powervc/installation-config-parameters-ibm-powervc#installation-config-parameters-ibm-powervc)
 
@@ -385,19 +379,15 @@ To deploy your OpenShift Container Platform cluster, you can initialize installa
 
 **Procedure**
 
-````
-*   In the directory that contains the installation program, initialize the cluster deployment by running the following command:
+- In the directory that contains the installation program, initialize the cluster deployment by running the following command:
 
 ```terminal
 $ ./openshift-install create cluster --dir <installation_directory> \
     --log-level=info
 ```
-    *   For `<installation_directory>`, specify the
-    location of your customized `./install-config.yaml` file.
 
-    *   To view different installation details, specify `warn`, `debug`, or
-    `error` instead of `info`.
-````
+- For `<installation_directory>`, specify the location of your customized `./install-config.yaml` file.
+- To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
 
 **Verification**
 
@@ -598,7 +588,8 @@ The `kubeconfig` file is specific to a cluster and OpenShift Container Platform 
 - "Customize your cluster"
 - "Remote health reporting"
 
-<a name="additional-resources_installing-ibm-powervc-customizations-console"></a>**Additional resources**
+**Additional resources**
+{._additional-resources}
 
 - [Accessing the web console](/openshift-docs-markdown/web_console/web-console#web-console)
 
@@ -608,6 +599,7 @@ To provide metrics about cluster health and the success of updates, the Telemetr
 
 After you confirm that your [OpenShift Cluster Manager](https://console.redhat.com/openshift) inventory is correct, either maintained automatically by Telemetry or manually by using OpenShift Cluster Manager,use subscription watch to track your OpenShift Container Platform subscriptions at the account or multi-cluster level. For more information about subscription watch, see "Data Gathered and Used by Red Hat’s subscription services" in the *Additional resources* section.
 
-<a name="additional-resources_installing-ibm-powervc-customizations-telemetry"></a>**Additional resources**
+**Additional resources**
+{._additional-resources}
 
 - [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)

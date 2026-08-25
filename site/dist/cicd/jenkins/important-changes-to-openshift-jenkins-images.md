@@ -99,7 +99,7 @@ Yes. We align with the Jenkins upstream lifecycle and follow the LTS version. Re
 
 To verify the current Jenkins LTS version:
 
-- Navigate to the Jenkins Catalog -> Packages section
+- Navigate to the Jenkins Catalog → Packages section
 - Search for “Jenkins”
 - The result will show two packages, one of which is the Jenkins LTS package.
 
@@ -177,7 +177,7 @@ pipeline {
     agent any
 
     tools {
-        oc 'oc-{{ product_version }}'
+        oc 'oc-4.22'
     }
 
     stages {
@@ -190,7 +190,8 @@ pipeline {
 }
 ```
 
-## Additional resources {#additional-resources_important-changes-to-openshift-jenkins-images_important-changes-to-openshift-jenkins-images}
+**Additional resources**
+{._additional-resources}
 
 - [Adding tags to image streams](/openshift-docs-markdown/openshift_images/managing_images/tagging-images#images-add-tags-to-imagestreams_tagging-images)
 - [Configuring periodic importing of image stream tags](/openshift-docs-markdown/openshift_images/image-streams-manage#images-imagestream-import_image-streams-managing)

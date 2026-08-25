@@ -50,35 +50,27 @@ After uninstalling an OpenShift Container Platform cluster that uses short-term 
 
 **Procedure**
 
-````
-*   Delete the Azure resources that `ccoctl` created by running the following command:
+- Delete the Azure resources that `ccoctl` created by running the following command:
 
 ```terminal
-$ ccoctl {{ cp_name }} delete \
+$ ccoctl azure delete \
   --name=<name> \
-````
-
-{% if aws_sts %} --region=<{{ cp_name }}\_region> {% endif %} {% if gcp_workload_id %} --project=<{{ cp_name }}\_project_id>
---credentials-requests-dir=<path_to_credentials_requests_directory>
---force-delete-custom-roles {% endif %} {% if azure_workload_id %} --region=<{{ cp_name }}\_region>
---subscription-id=<{{ cp_name }}\_subscription_id>
---delete-oidc-resource-group {%- endif %} \`\`\`
-
+  --region=<azure_region> \
+  --subscription-id=<azure_subscription_id> \
+  --delete-oidc-resource-group
 ```
-    where:
 
-    `<name>`
-    :   Matches the name that was originally used to create and tag the cloud resources.
+where:
 
-    `<{{ cp_name }}_region>`
-    :   is the Azure region in which to delete cloud resources.
+`<name>`
+:   Matches the name that was originally used to create and tag the cloud resources.
 
-    `<{{ cp_name }}_subscription_id>`
-    :   is the Azure subscription ID for which to delete cloud resources.
-```
+`<azure_region>`
+:   is the Azure region in which to delete cloud resources.
+
+`<azure_subscription_id>`
+:   is the Azure subscription ID for which to delete cloud resources.
 
 **Verification**
 
-```
-*   To verify that the resources are deleted, query Azure. For more information, refer to Azure documentation.
-```
+- To verify that the resources are deleted, query Azure. For more information, refer to Azure documentation.

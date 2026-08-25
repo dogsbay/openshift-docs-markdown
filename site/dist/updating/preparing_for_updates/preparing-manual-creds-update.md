@@ -47,12 +47,21 @@ IBM Cloud and Nutanix
     3. Indicate that the cluster is ready to update with the `upgradeable-to` annotation.
 
 Microsoft Azure Stack Hub
-:   These clusters use manual mode with long-term credentials and do not use the `ccoctl` utility. Administrators of clusters on these platforms must take the following actions: . Extract and prepare the `CredentialsRequest` custom resources (CRs) for the new release. . Manually update the cloud provider resources for the new release. . Indicate that the cluster is ready to update with the `upgradeable-to` annotation.
+:   These clusters use manual mode with long-term credentials and do not use the `ccoctl` utility.
+
+    Administrators of clusters on these platforms must take the following actions:
+
+    1. Extract and prepare the `CredentialsRequest` custom resources (CRs) for the new release.
+    2. Manually update the cloud provider resources for the new release.
+    3. Indicate that the cluster is ready to update with the `upgradeable-to` annotation.
 
 Amazon Web Services (AWS), global Microsoft Azure, and Google Cloud
-:   Clusters installed on these platforms support multiple CCO modes. The required update process depends on the mode that the cluster is configured to use. If you are not sure what mode the CCO is configured to use on your cluster, you can use the web console or the CLI to determine this information.
+:   Clusters installed on these platforms support multiple CCO modes.
+
+    The required update process depends on the mode that the cluster is configured to use. If you are not sure what mode the CCO is configured to use on your cluster, you can use the web console or the CLI to determine this information.
 
 **Additional resources**
+{._additional-resources}
 
 - [Determining the Cloud Credential Operator mode by using the web console](/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#cco-determine-mode-gui_preparing-manual-creds-update)
 - [Determining the Cloud Credential Operator mode by using the CLI](/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#cco-determine-mode-cli_preparing-manual-creds-update)
@@ -75,24 +84,24 @@ Before you perform upgrades or troubleshoot, ensure you understand your cluster�
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console as a user with the `cluster-admin` role.
-2. Navigate to **Administration** -> **Cluster Settings**.
+2. Navigate to **Administration** → **Cluster Settings**.
 3. On the **Cluster Settings** page, select the **Configuration** tab.
 4. Under **Configuration resource**, select **CloudCredential**.
 5. On the **CloudCredential details** page, select the **YAML** tab.
 6. In the YAML block, check the value of `spec.credentialsMode`. The following values are possible, though not all are supported on all platforms:
 
-   - ’'\`: The CCO is operating in the default mode. In this configuration, the CCO operates in mint or passthrough mode, depending on the credentials provided during installation.
+   - `''`: The CCO is operating in the default mode. In this configuration, the CCO operates in mint or passthrough mode, depending on the credentials provided during installation.
    - `Mint`: The CCO is operating in mint mode.
    - `Passthrough`: The CCO is operating in passthrough mode.
    - `Manual`: The CCO is operating in manual mode.
 
    > [!IMPORTANT]
-   > To determine the specific configuration of an AWS, Google Cloud, or global Microsoft Azure cluster that has a `spec.credentialsMode` of ’'`, `Mint`, or `Manual\`, you must investigate further.
+   > To determine the specific configuration of an AWS, Google Cloud, or global Microsoft Azure cluster that has a `spec.credentialsMode` of `''`, `Mint`, or `Manual`, you must investigate further.
    >
    > AWS and Google Cloud clusters support using mint mode with the root secret deleted. If the cluster is specifically configured to use mint mode or uses mint mode by default, you must determine if the root secret is present on the cluster before updating.
    >
    > An AWS, Google Cloud, or global Microsoft Azure cluster that uses manual mode might be configured to create and manage cloud credentials from outside of the cluster with AWS STS, Google Cloud Workload Identity, or Microsoft Entra Workload ID. You can determine whether your cluster uses this strategy by examining the cluster `Authentication` object.
-7. AWS or Google Cloud clusters that use mint mode only: To determine whether the cluster is operating without the root secret, navigate to **Workloads** -> **Secrets** and look for the root secret for your cloud provider.
+7. AWS or Google Cloud clusters that use mint mode only: To determine whether the cluster is operating without the root secret, navigate to **Workloads** → **Secrets** and look for the root secret for your cloud provider.
 
    > [!NOTE]
    > Ensure that the **Project** dropdown is set to **All Projects**.
@@ -106,16 +115,17 @@ Before you perform upgrades or troubleshoot, ensure you understand your cluster�
    - If you do not see these values, your cluster is using the CCO in mint mode with the root secret removed.
 8. AWS, Google Cloud, or global Microsoft Azure clusters that use manual mode only: To determine whether the cluster is configured to create and manage cloud credentials from outside of the cluster, you must check the cluster `Authentication` object YAML values.
 
-   1. Navigate to **Administration** -> **Cluster Settings**.
+   1. Navigate to **Administration** → **Cluster Settings**.
    2. On the **Cluster Settings** page, select the **Configuration** tab.
    3. Under **Configuration resource**, select **Authentication**.
    4. On the **Authentication details** page, select the **YAML** tab.
    5. In the YAML block, check the value of the `.spec.serviceAccountIssuer` parameter.
 
       - A value that contains a URL that is associated with your cloud provider indicates that the CCO is using manual mode with short-term credentials for components. These clusters are configured using the `ccoctl` utility to create and manage cloud credentials from outside of the cluster.
-      - An empty value (’'`) indicates that the cluster is using the CCO in manual mode but was not configured using the `ccoctl\` utility.
+      - An empty value (`''`) indicates that the cluster is using the CCO in manual mode but was not configured using the `ccoctl` utility.
 
 **Additional resources**
+{._additional-resources}
 
 - [Extracting and preparing credentials request resources](/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#cco-ccoctl-upgrading-extracting_preparing-manual-creds-update)
 
@@ -145,13 +155,13 @@ Before you perform upgrades or troubleshoot, ensure you understand your cluster�
 
    The following output values are possible, though not all are supported on all platforms:
 
-   - ’'\`: The CCO is operating in the default mode. In this configuration, the CCO operates in mint or passthrough mode, depending on the credentials provided during installation.
+   - `''`: The CCO is operating in the default mode. In this configuration, the CCO operates in mint or passthrough mode, depending on the credentials provided during installation.
    - `Mint`: The CCO is operating in mint mode.
    - `Passthrough`: The CCO is operating in passthrough mode.
    - `Manual`: The CCO is operating in manual mode.
 
    > [!IMPORTANT]
-   > To determine the specific configuration of an AWS, Google Cloud, or global Microsoft Azure cluster that has a `spec.credentialsMode` of ’'`, `Mint`, or `Manual\`, you must investigate further.
+   > To determine the specific configuration of an AWS, Google Cloud, or global Microsoft Azure cluster that has a `spec.credentialsMode` of `''`, `Mint`, or `Manual`, you must investigate further.
    >
    > AWS and Google Cloud clusters support using mint mode with the root secret deleted. If the cluster is specifically configured to use mint mode or uses mint mode by default, you must determine if the root secret is present on the cluster before updating.
    >
@@ -199,6 +209,7 @@ After you determine the Cloud Credential Operator mode, it is important to under
   3. Update the `upgradeable-to` annotation to indicate that the cluster is ready to update.
 
 **Additional resources**
+{._additional-resources}
 
 - [Extracting and preparing credentials request resources](/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#cco-ccoctl-upgrading-extracting_preparing-manual-creds-update)
 
@@ -298,13 +309,14 @@ Before updating a cluster that uses the Cloud Credential Operator (CCO) in manua
 - If your cluster was not configured with the `ccoctl` utility, manually update your cloud provider resources.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring the Cloud Credential Operator utility for a cluster update](/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#cco-ccoctl-configuring_preparing-manual-creds-update)
 - [Manually updating cloud provider resources](/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#manually-maintained-credentials-upgrade_preparing-manual-creds-update)
 
 ## Configuring the Cloud Credential Operator utility for a cluster update {#_configuring_the_cloud_credential_operator_utility_for_a_cluster_update}
 
-{.\_abstract} To upgrade a cluster that uses the Cloud Credential Operator (CCO) in manual mode to create and manage cloud credentials from outside of the cluster, extract and prepare the CCO utility (`ccoctl`) binary.
+To upgrade a cluster that uses the Cloud Credential Operator (CCO) in manual mode to create and manage cloud credentials from outside of the cluster, extract and prepare the CCO utility (`ccoctl`) binary.
 
 > [!NOTE]
 > The `ccoctl` utility is a Linux binary that must run in a Linux environment.
@@ -530,7 +542,7 @@ Update the cloud provider resources for your OpenShift Container Platform cluste
    `<path_to_directory_for_credentials_requests>`
    :   Specifies the directory containing the files for the component `CredentialsRequest` objects.
 
-   `"${{ OIDC_ISSUER_URL }}"`
+   `"${OIDC_ISSUER_URL}"`
    :   Specifies the OIDC issuer URL from the existing cluster. You can obtain this value by running the following command:
 
        ```terminal
@@ -542,7 +554,7 @@ Update the cloud provider resources for your OpenShift Container Platform cluste
    `<azure_dns_zone_resourcegroup_name>`
    :   Specifies the name of the resource group that contains the DNS zone.
 
-   `"${{ AZURE_INSTALL_RG }}"`
+   `"${AZURE_INSTALL_RG}"`
    :   Specifies the Azure resource group name. You can obtain this value by running the following command:
 
        ```terminal
@@ -588,6 +600,7 @@ You can verify that the required provider resources and permissions policies are
 - Update the `upgradeable-to` annotation to indicate that the cluster is ready to upgrade.
 
 **Additional resources**
+{._additional-resources}
 
 - [Indicating that the cluster is ready to upgrade](/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#cco-manual-upgrade-annotation_preparing-manual-creds-update)
 
@@ -717,6 +730,7 @@ Before you upgrade a cluster with manually maintained credentials, you must crea
 - Update the `upgradeable-to` annotation to indicate that the cluster is ready to upgrade.
 
 **Additional resources**
+{._additional-resources}
 
 - [Manually creating long-term credentials for AWS](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#manually-create-iam_installing-aws-customizations)
 - [Manually creating long-term credentials for Azure](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#manually-create-iam_installing-azure-customizations)
@@ -756,7 +770,7 @@ Modify the `CloudCredential` resource to include an `upgradeable-to` annotation.
 
 **Verification**
 
-1. In the **Administrator** perspective of the web console, navigate to **Administration** -> **Cluster Settings**.
+1. In the **Administrator** perspective of the web console, navigate to **Administration** → **Cluster Settings**.
 2. To view the CCO status details, click **cloud-credential** in the **Cluster Operators** list.
 
    - If the **Upgradeable** status in the **Conditions** section is **False**, verify that the `upgradeable-to` annotation is free of typographical errors.

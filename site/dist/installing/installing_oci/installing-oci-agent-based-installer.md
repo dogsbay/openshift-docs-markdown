@@ -1,5 +1,5 @@
 ---
-title: Installing a cluster on {{ oci_distributed_no_rt }} by using the Agent-based Installer
+title: Installing a cluster on Oracle Distributed Cloud by using the Agent-based Installer
 ---
 
 # Installing a cluster on Oracle Distributed Cloud by using the Agent-based Installer {#installing-oci-agent-based-installer}
@@ -49,7 +49,7 @@ Oracle Distributed Cloud provides services that can meet your regulatory complia
 
 By running your OpenShift Container Platform cluster on Oracle Distributed Cloud, you can access the following capabilities:
 
-- Compute flexible shapes, where you can customize the number of Oracle(R) CPUs (OCPUs) and memory resources for your VM. With access to this capability, a cluster’s workload can perform operations in a resource-balanced environment. You can find all RHEL-certified OCI shapes by going to the Oracle page on the Red Hat Ecosystem Catalog portal.
+- Compute flexible shapes, where you can customize the number of Oracle® CPUs (OCPUs) and memory resources for your VM. With access to this capability, a cluster’s workload can perform operations in a resource-balanced environment. You can find all RHEL-certified OCI shapes by going to the Oracle page on the Red Hat Ecosystem Catalog portal.
 - Block Volume storage, where you can configure scaling and auto-tuning settings for your storage volume, so that the Block Volume service automatically adjusts the performance level to optimize performance.
 
 > [!IMPORTANT]
@@ -62,6 +62,7 @@ By running your OpenShift Container Platform cluster on Oracle Distributed Cloud
 > Consider reserving additional VPUs to provide sufficient capacity for updates and scaling activities. For more information about VPUs, see Volume Performance Units (Oracle documentation).
 
 **Additional resources**
+{._additional-resources}
 
 - [Installation process](/openshift-docs-markdown/architecture/architecture-installation#installation-process_architecture-installation)
 - [Internet access for OpenShift Container Platform](/openshift-docs-markdown/installing/installing_platform_agnostic/installing-platform-agnostic#cluster-entitlements_installing-platform-agnostic)
@@ -117,6 +118,7 @@ The Agent-based Installer method for installing an OpenShift Container Platform 
   For installations in a disconnected environment, see [Provisioning OCI Resources for the Agent-based Installer in Disconnected Environments (Oracle documentation)](https://docs.oracle.com/iaas/Content/openshift-on-oci/agent-prereq.htm).
 
 **Additional resources**
+{._additional-resources}
 
 - [Learn About Oracle Cloud Basics (Oracle documentation)](https://docs.oracle.com/en-us/iaas/Content/GSG/Concepts/concepts.htm)
 
@@ -278,6 +280,7 @@ Both of these components are required to perform the cluster installation, but t
       > Consider that the full ISO image, which is in excess of `1` GB, includes the rootfs image. The image is larger than the minimal ISO Image, which is typically less than `150` MB.
 
 **Additional resources**
+{._additional-resources}
 
 - [About OpenShift Container Platform installation](/openshift-docs-markdown/architecture/architecture-installation#installation-overview_architecture-installation)
 - [Selecting a cluster installation type](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing-selecting-cluster-type_installing-preparing)
@@ -391,6 +394,7 @@ Additionally, you must create a compute instance from the supplied base image, s
    > Before you create the compute instance, check that you have enough memory and disk resources for your cluster. Additionally, ensure that at least one compute instance has the same IP address as the address stated under `rendezvousIP` in the `agent-config.yaml` file.
 
 **Additional resources**
+{._additional-resources}
 
 - [Instance Sizing Recommendations for OpenShift Container Platform Nodes (Oracle documentation)](https://docs.oracle.com/iaas/Content/openshift-on-oci/installing-agent-about-instance-configurations.htm)
 - [Troubleshooting OpenShift Container Platform on OCI (Oracle documentation)](https://docs.oracle.com/iaas/Content/openshift-on-oci/openshift-troubleshooting.htm)
@@ -449,7 +453,8 @@ Verify that your cluster was installed and is running effectively on Oracle(R) D
         …
     ```
 
-## Additional resources {#additional-resources_installing-oci-agent-based-installer}
+**Additional resources**
+{._additional-resources}
 
 - [Gathering log data from a failed Agent-based installation](/openshift-docs-markdown/installing/installing_with_agent_based_installer/installing-with-agent-based-installer#installing-ocp-agent-gather-log_installing-with-agent-based-installer)
 - [Adding worker nodes to an on-premise cluster](/openshift-docs-markdown/nodes/nodes/nodes-nodes-adding-node-iso#adding-node-iso)

@@ -48,6 +48,7 @@ There are limitations to consider before deploying a machine health check:
 - A machine is remediated immediately if the `Machine` resource phase is `Failed`.
 
 **Additional resources**
+{._additional-resources}
 
 - [About listing all the nodes in a cluster](/openshift-docs-markdown/nodes/nodes/nodes-nodes-viewing#nodes-nodes-viewing-listing_nodes-nodes-viewing)
 - [Short-circuiting machine health check remediation](/openshift-docs-markdown/machine_management/deploying-machine-health-checks#machine-health-checks-short-circuiting_deploying-machine-health-checks)

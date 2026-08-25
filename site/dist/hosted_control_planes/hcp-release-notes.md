@@ -85,13 +85,15 @@ In the following table, features are marked with the following statuses:
 | Hosted control planes for OpenShift Container Platform on RHOSP | Technology Preview | Technology Preview | Technology Preview |
 | Custom taints and tolerations | Technology Preview | Technology Preview | Technology Preview |
 | NVIDIA GPU devices on hosted control planes for OpenShift Virtualization | Technology Preview | Technology Preview | Technology Preview |
-| Hosted control planes for OpenShift Virtualization on IBM Z [^1]^ | Not Available | Technology Preview | General Availability |
+| Hosted control planes for OpenShift Virtualization on IBM Z <sup>\[1\]</sup> | Not Available | Technology Preview | General Availability |
 | Hosted control planes on IBM Z in a disconnected environment | General Availability | General Availability | General Availability |
 | Hosted control planes for OpenShift Container Platform on Microsoft Azure | Not Available | Not Available | Technology Preview |
 | Backup and restore with the etcd snapshot method | Not Available | Not Available | Technology Preview |
 | Restoring a hosted cluster to a new management cluster by using OADP | Technology Preview | Technology Preview | Technology Preview |
 
-1. Hosted control planes for OpenShift Virtualization on IBM Z is supported as Technology Preview starting with OpenShift Container Platform 4.21, multicluster engine for Kubernetes Operator 2.11, and Red Hat Advanced Cluster Management (RHACM) 2.16. Creating hosted control planes with external infrastructure is not supported.
+```
+1.  Hosted control planes for OpenShift Virtualization on IBM Z is supported as Technology Preview starting with OpenShift Container Platform 4.21, multicluster engine for Kubernetes Operator 2.11, and Red&#160;Hat Advanced Cluster Management (RHACM) 2.16. Creating hosted control planes with external infrastructure is not supported.
+```
 
 ## Known issues {#hcp-release-notes-known-issues_hcp-release-notes}
 
@@ -131,5 +133,3 @@ This section includes several known issues for hosted control planes for OpenShi
 
   - The service publishing strategy for the `Konnectivity` service is set to `Route`.
   - The management cluster uses Virtual Router Redundancy Protocol (VRRP) VIP for ingress.
-
-[^1]: 1

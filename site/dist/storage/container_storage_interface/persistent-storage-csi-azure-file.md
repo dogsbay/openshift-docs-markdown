@@ -28,6 +28,7 @@ Azure File CSI Driver Operator does not support the following:
 For more information about supported features, see "Supported CSI drivers and features".
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage)
 - [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
@@ -130,7 +131,7 @@ Enable Azure File dynamic provisioning across Azure subscriptions by granting th
        Or
    - Log in to the Azure portal and on the left menu, click **Resource groups**:
 
-     1. Choose the resource group in Subscription B to which you want to assign a role by clicking **resource group** -> **Access control (IAM)** -> **Role assignments** tab to view current assignments, and then click **Add** > **Add role assignment**.
+     1. Choose the resource group in Subscription B to which you want to assign a role by clicking **resource group** → **Access control (IAM)** → **Role assignments** tab to view current assignments, and then click **Add** > **Add role assignment**.
      2. On the **Role** tab, choose the contributor role to assign, and then click **Next**. You can also create and choose your own role with required permission.
      3. On the **Members** tab:
 
@@ -381,6 +382,7 @@ Use static provisioning to manually create persistent volumes (PVs) for existing
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Persistent storage using Azure File](/openshift-docs-markdown/storage/persistent_storage/persistent-storage-azure-file#persistent-storage-using-azure-file)
 - [Access modes](/openshift-docs-markdown/storage/understanding-persistent-storage#pv-access-modes_understanding-persistent-storage)

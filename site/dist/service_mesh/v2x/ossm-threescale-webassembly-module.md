@@ -79,6 +79,7 @@ See [custom resource definition](/openshift-docs-markdown/operators/understandin
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Migrating from `ServiceMeshExtension` to `WasmPlugin` resources](/openshift-docs-markdown/service_mesh/v2x/ossm-extensions#ossm-extensions-migration-overview_ossm-extensions)
 - [Custom Resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources)
@@ -180,6 +181,9 @@ The custom resources (CRs) set up the service entries and destination rules for 
 
 Alternatively, you can deploy an in-mesh 3scale service. To deploy an in-mesh 3scale service, change the location of the services in the CR by deploying 3scale and linking to the deployment.
 
+**Additional resources**
+{._additional-resources}
+
 - [Service entry and destination rule documentation](/openshift-docs-markdown/service_mesh/v2x/ossm-traffic-manage#ossm-routing-service-entries_traffic-management)
 
 ## The 3scale WebAssembly module configuration {#ossm-threescale-webassembly-module-configuration_ossm-threescale-webassembly-module}
@@ -248,7 +252,7 @@ spec:
 # ...
 ```
 
-*`system`** object fields***
+**`system` object fields**
 
 <table>
 <thead>
@@ -295,7 +299,7 @@ upstream:
 # ...
 ```
 
-*`upstream`** object fields***
+**`upstream` object fields**
 
 <table>
 <thead>
@@ -308,25 +312,17 @@ upstream:
 <tbody>
 <tr>
   <td><code>name</code></td>
-  <td>) as the separator of multiple fields. For the purposes of this integration, always use the format: `outbound\</td>
-  <td><port>\</td>
-</tr>
-<tr>
-  <td>\</td>
-  <td><hostname>`.</td>
-  <td><code>name</code> is not a free-form identifier. It is the identifier for the external host as defined by the proxy configuration. In the case of stand-alone <code>Envoy</code> configurations, it maps to the name of a <a href="https://www.envoyproxy.io/docs/envoy/v1.19.0/api-v3/config/cluster/v3/cluster.proto#config-cluster-v3-cluster">Cluster</a>, also known as <code>upstream</code> in other proxies. <strong>Note:</strong> the value of this field, because the Service Mesh and 3scale Istio adapter control plane configure the name according to a format using a vertical bar (\</td>
-</tr>
-<tr>
+  <td><code>name</code> is not a free-form identifier. It is the identifier for the external host as defined by the proxy configuration. In the case of stand-alone <code>Envoy</code> configurations, it maps to the name of a <a href="https://www.envoyproxy.io/docs/envoy/v1.19.0/api-v3/config/cluster/v3/cluster.proto#config-cluster-v3-cluster">Cluster</a>, also known as <code>upstream</code> in other proxies. <strong>Note:</strong> the value of this field, because the Service Mesh and 3scale Istio adapter control plane configure the name according to a format using a vertical bar (|) as the separator of multiple fields. For the purposes of this integration, always use the format: <code>outbound|&lt;port&gt;||&lt;hostname&gt;</code>.</td>
   <td>Yes</td>
+</tr>
+<tr>
   <td><code>url</code></td>
   <td>The complete URL to access the described service. Unless implied by the scheme, you must include the TCP port.</td>
+  <td>Yes</td>
 </tr>
 <tr>
-  <td>Yes</td>
   <td><code>Timeout</code></td>
   <td>Timeout in milliseconds so that connections to this service that take more than the amount of time to respond will be considered errors. Default is 1000 seconds.</td>
-</tr>
-<tr>
   <td>Optional</td>
 </tr>
 </tbody>
@@ -350,7 +346,7 @@ spec:
 # ...
 ```
 
-*`backend`** object fields***
+**`backend` object fields**
 
 <table>
 <thead>
@@ -404,7 +400,7 @@ spec:
 
 Each element in the `services` array represents a 3scale service.
 
-*`services`** object fields***
+**`services` object fields**
 
 <table>
 <thead>
@@ -422,25 +418,22 @@ Each element in the `services` array represents a 3scale service.
 </tr>
 <tr>
   <td><code>token</code></td>
-  <td>This <code>token</code> can be found in the proxy configuration for your service in System or you can retrieve the it from System with following <code>curl</code> command:<br><br>`curl \https://<system_host>/admin/api/services/<service_id>/proxy/configs/production/latest.json?access_token=<access_token>" \</td>
-  <td>jq '.proxy_config.content.backend_authentication_value`</td>
+  <td>This <code>token</code> can be found in the proxy configuration for your service in System or you can retrieve the it from System with following <code>curl</code> command:<br><br><code>curl \https://&lt;system_host&gt;/admin/api/services/&lt;service_id&gt;/proxy/configs/production/latest.json?access_token=&lt;access_token&gt;" | jq '.proxy_config.content.backend_authentication_value</code></td>
+  <td>Optional</td>
 </tr>
 <tr>
-  <td>Optional</td>
   <td><code>authorities</code></td>
   <td>An array of strings, each one representing the <em>Authority</em> of a <em>URL</em> to match. These strings accept glob patterns supporting the asterisk (<em>*</em>), plus sign (<em>+</em>), and question mark (<em>?</em>) matchers.</td>
+  <td>Yes</td>
 </tr>
 <tr>
-  <td>Yes</td>
   <td><code>credentials</code></td>
   <td>An object defining which kind of credentials to look for and where.</td>
+  <td>Yes</td>
 </tr>
 <tr>
-  <td>Yes</td>
   <td><code>mapping_rules</code></td>
   <td>An array of objects representing mapping rules and 3scale methods to hit.</td>
-</tr>
-<tr>
   <td>Optional</td>
 </tr>
 </tbody>
@@ -468,7 +461,7 @@ spec:
 # ...
 ```
 
-*`credentials`** object fields***
+**`credentials` object fields**
 
 <table>
 <thead>
@@ -537,7 +530,7 @@ A `source` object exists as part of an array of sources within any of the `crede
 
 All `source`-type objects have at least the following two fields:
 
-*`source`**-type object fields***
+**`source`-type object fields**
 
 <table>
 <thead>
@@ -589,6 +582,9 @@ There are a few different `operations` categories:
 
 All operations are specified by the name identifiers as strings.
 
+**Additional resources**
+{._additional-resources}
+
 - Available [operations](https://github.com/3scale/threescale-wasm-auth/blob/main/docs/operations.md)
 
 ### The 3scale WebAssembly module mapping_rules object {#ossm-threescale-webassembly-module-mapping-rules-object_ossm-threescale-webassembly-module}
@@ -609,7 +605,7 @@ The `mapping_rule` object fields specify the following information:
 - A pattern to match the path against.
 - The 3scale methods to report along with the amount to report. The order in which you specify the fields determines the evaluation order.
 
-*`mapping_rule`** object fields***
+**`mapping_rule` object fields**
 
 <table>
 <thead>
@@ -627,7 +623,7 @@ The `mapping_rule` object fields specify the following information:
 </tr>
 <tr>
   <td><code>pattern</code></td>
-  <td>The pattern to match the HTTP request's URI path component. This pattern follows the same syntax as documented by 3scale. It allows wildcards (use of the asterisk (*) character) using any sequence of characters between braces such as <code>{{ this }}</code>.</td>
+  <td>The pattern to match the HTTP request's URI path component. This pattern follows the same syntax as documented by 3scale. It allows wildcards (use of the asterisk (*) character) using any sequence of characters between braces such as <code>{this}</code>.</td>
   <td>Yes</td>
 </tr>
 <tr>

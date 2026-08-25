@@ -30,7 +30,7 @@ You can create a persistent volume claim to dynamically provision and bind stora
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, click **Storage** -> **Persistent Volume Claims**.
+1. In the OpenShift Container Platform web console, click **Storage** → **Persistent Volume Claims**.
 2. In the persistent volume claims overview, click **Create Persistent Volume Claim**.
 3. Define the required options on the page that is displayed.
 
@@ -133,7 +133,8 @@ You can define a KMS key to encrypt container-persistent volumes on AWS if you h
    EOF
    ```
 
-## Additional resources {#additional-resources_persistent-storage-aws}
+**Additional resources**
+{._additional-resources}
 
 - [Amazon EC2 documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html)
 - [AWS EBS CSI driver](https://github.com/openshift/aws-ebs-csi-driver)

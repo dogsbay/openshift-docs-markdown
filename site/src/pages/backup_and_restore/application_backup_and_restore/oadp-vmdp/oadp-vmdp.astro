@@ -30,12 +30,13 @@ const headings = [{"depth":1,"slug":"oadp-vmdp","text":"OADP virtual machine dat
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-vmdp/oadp-vmdp";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
-const title = "{{ oadp_short }} virtual machine data protection";
+const title = "OADP virtual machine data protection";
 const description = "Use OpenShift API for Data Protection virtual machine data protection (VMDP) to back up and restore user data from within VMs on OpenShift Virtualization…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
@@ -88,12 +89,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -101,7 +103,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="oadp-vmdp" class="group scroll-mt-20">OADP virtual machine data protection<a href="#oadp-vmdp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Use OpenShift API for Data Protection virtual machine data protection (VMDP) to back up and restore user data from within VMs on OpenShift Virtualization. This helps you to protect files and directories without relying on cluster administrators.</p>
+      <p class="_abstract">Use OpenShift API for Data Protection virtual machine data protection (VMDP) to back up and restore user data from within VMs on OpenShift Virtualization. This helps you to protect files and directories without relying on cluster administrators.</p>
       <h2 id="oadp-vmdp-overview_oadp-vmdp" class="group scroll-mt-20">About OADP virtual machine data protection<a href="#oadp-vmdp-overview_oadp-vmdp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">You can independently back up and restore your own data from within a virtual machine (VM) by using the OADP VM data protection (VMDP) command-line tool. This approach helps you secure specific files and directories in your encrypted repository without requiring cluster administrator privileges.</p>
       <h3 id="_what_problem_is_vmdp_solving" class="group scroll-mt-20">What problem is VMDP solving<a href="#_what_problem_is_vmdp_solving" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>

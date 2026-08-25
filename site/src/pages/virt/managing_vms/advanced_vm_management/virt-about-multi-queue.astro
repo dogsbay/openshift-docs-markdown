@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"virt-about-multi-queue","text":"About multi
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-about-multi-queue";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-about-multi-queue" class="group scroll-mt-20">About multi-queue functionality<a href="#virt-about-multi-queue" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Use multi-queue functionality to scale network throughput and performance on virtual machines (VMs) with multiple vCPUs.</p>
+      <p class="_abstract">Use multi-queue functionality to scale network throughput and performance on virtual machines (VMs) with multiple vCPUs.</p>
       <p>By default, the <code>queueCount</code> value, which is derived from the domain XML, is determined by the number of vCPUs allocated to a VM. Network performance does not scale as the number of vCPUs increases. Additionally, because <code>virtio-net</code> has only one transmit and receive queue, guests cannot send or receive packs in parallel.</p>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>

@@ -21,7 +21,8 @@ const headings = [{"depth":1,"slug":"enabling-multi-networking-for-advanced-use-
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/multiple_networks/secondary_networks/about-chaining";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="enabling-multi-networking-for-advanced-use-cases-with-cni-plugin-chaining" class="group scroll-mt-20">Enabling multi-networking for advanced use cases with CNI plugin chaining<a href="#enabling-multi-networking-for-advanced-use-cases-with-cni-plugin-chaining" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can use Container Network Interface (CNI) plugin chaining to enable advanced multi-networking use cases for your pods.</p>
+      <p class="_abstract">You can use Container Network Interface (CNI) plugin chaining to enable advanced multi-networking use cases for your pods.</p>
       <h2 id="cnf-about-cni-chaining_enabling-multi-networking-for-advanced-use-cases-with-cni-plugin-chaining" class="group scroll-mt-20">About CNI chaining<a href="#cnf-about-cni-chaining_enabling-multi-networking-for-advanced-use-cases-with-cni-plugin-chaining" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">CNI plugin chaining allows pods to use multiple network interfaces. This enables advanced configurations such as traffic isolation and prioritized routing through granular traffic policies.</p>
       <p>By using CNI plugin chaining, different types of traffic can be isolated to meet performance, security, and compliance requirements, providing greater flexibility in network design and traffic management.</p>

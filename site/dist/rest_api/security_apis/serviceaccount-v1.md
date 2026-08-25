@@ -72,7 +72,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{{ name }}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -89,21 +89,21 @@ The following API endpoints are available:
 - `/api/v1/watch/serviceaccounts`
 
   - `GET`: watch individual changes to a list of ServiceAccount. deprecated: use the 'watch' parameter with a list operation instead.
-- `/api/v1/namespaces/{{ namespace }}/serviceaccounts`
+- `/api/v1/namespaces/{namespace}/serviceaccounts`
 
   - `DELETE`: delete collection of ServiceAccount
   - `GET`: list or watch objects of kind ServiceAccount
   - `POST`: create a ServiceAccount
-- `/api/v1/watch/namespaces/{{ namespace }}/serviceaccounts`
+- `/api/v1/watch/namespaces/{namespace}/serviceaccounts`
 
   - `GET`: watch individual changes to a list of ServiceAccount. deprecated: use the 'watch' parameter with a list operation instead.
-- `/api/v1/namespaces/{{ namespace }}/serviceaccounts/{{ name }}`
+- `/api/v1/namespaces/{namespace}/serviceaccounts/{name}`
 
   - `DELETE`: delete a ServiceAccount
   - `GET`: read the specified ServiceAccount
   - `PATCH`: partially update the specified ServiceAccount
   - `PUT`: replace the specified ServiceAccount
-- `/api/v1/watch/namespaces/{{ namespace }}/serviceaccounts/{{ name }}`
+- `/api/v1/watch/namespaces/{namespace}/serviceaccounts/{name}`
 
   - `GET`: watch changes to an object of kind ServiceAccount. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
 
@@ -145,7 +145,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{{ namespace }}/serviceaccounts {#_apiv1namespaces_namespace_serviceaccounts}
+### /api/v1/namespaces/{namespace}/serviceaccounts {#_apiv1namespaces_namespace_serviceaccounts}
 
 HTTP method
 :   ```
@@ -219,7 +219,7 @@ Description
 | 202 - Accepted | [`ServiceAccount`](/openshift-docs-markdown/rest_api/security_apis/serviceaccount-v1#serviceaccount-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/namespaces/{{ namespace }}/serviceaccounts {#_apiv1watchnamespaces_namespace_serviceaccounts}
+### /api/v1/watch/namespaces/{namespace}/serviceaccounts {#_apiv1watchnamespaces_namespace_serviceaccounts}
 
 HTTP method
 :   ```
@@ -238,7 +238,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{{ namespace }}/serviceaccounts/{{ name }} {#_apiv1namespaces_namespace_serviceaccounts_name}
+### /api/v1/namespaces/{namespace}/serviceaccounts/{name} {#_apiv1namespaces_namespace_serviceaccounts_name}
 
 **Global path parameters**
 
@@ -343,7 +343,7 @@ Description
 | 201 - Created | [`ServiceAccount`](/openshift-docs-markdown/rest_api/security_apis/serviceaccount-v1#serviceaccount-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/namespaces/{{ namespace }}/serviceaccounts/{{ name }} {#_apiv1watchnamespaces_namespace_serviceaccounts_name}
+### /api/v1/watch/namespaces/{namespace}/serviceaccounts/{name} {#_apiv1watchnamespaces_namespace_serviceaccounts_name}
 
 **Global path parameters**
 

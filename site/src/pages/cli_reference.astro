@@ -20,7 +20,8 @@ const headings = [{"depth":1,"slug":"cli-tools-overview","text":"OpenShift Conta
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/cli_reference";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -39,7 +40,7 @@ const pageCategory = null;
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# OpenShift Container Platform CLI tools overview {#cli-tools-overview}\n\nOpenShift Container Platform offers a set of command-line interface (CLI) tools that enable users to perform various administration and development operations from the terminal. These tools expose simple commands to manage the applications, as well as interact with each component of the system.\n\nFor example, you can use the CLI to complete the following operations:\n\n- Manage clusters\n- Build, deploy, and manage applications\n- Manage deployment processes\n- Create and maintain Operator catalogs\n\n## List of CLI tools {#cli-tools-list_cli-tools-overview}\n\nManage your OpenShift Container Platform cluster, applications, and Operators from the terminal by using primary command-line interface (CLI) tools.\n\nThe following list details these primary CLI tools:\n\n- OpenShift CLI (`oc`): This is the most commonly used CLI tool by OpenShift Container Platform users.\n\nCluster administrators and developers can use it to perform end-to-end operations across OpenShift Container Platform from the terminal, including working directly with project source code using command scripts.\n\n- Kubernetes CLI (`kubectl`): OpenShift Container Platform is conformant with Cloud Native Computing Foundation (CNCF) Kubernetes and fully supports `kubectl` as a client. The OpenShift CLI (`oc`) is a superset of `kubectl`, where both CLI tools are included in the OpenShift Container Platform clients download. You can use the standard `kubectl` commands against OpenShift Container Platform clusters without any compatibility issues.\n- Helm CLI (`helm`): Helm is a package manager for Kubernetes. The `helm` CLI provides commands to install, upgrade, and manage Helm charts on a cluster.\n- opm CLI: The `opm` CLI tool helps Operator developers and cluster administrators create and maintain catalogs of Operators.\n- Knative CLI: The Knative (`kn`) CLI tool provides commands to interact with OpenShift Serverless components, such as Knative Serving and Eventing.\n- Pipelines CLI (tkn): OpenShift Pipelines is a continuous integration and delivery (CI/CD) solution in OpenShift Container Platform, which internally uses Tekton. The `tkn` CLI tool provides commands to interact with OpenShift Pipelines.\n\n- [OpenShift Container Platform CLI (`oc`)](/openshift-docs-markdown/cli_reference/openshift_cli/getting-started-cli#cli-getting-started)\n- [Helm CLI (`helm`)](/openshift-docs-markdown/applications/working_with_helm_charts/installing-helm#installing-helm)\n- [`opm` CLI](/openshift-docs-markdown/cli_reference/opm/cli-opm-install#cli-opm-install)\n- [Knative CLI (`kn`)](/openshift-docs-markdown/cli_reference/kn-cli-tools#kn-cli-tools)\n- [OpenShift Pipelines CLI (`tkn`)](/openshift-docs-markdown/cli_reference/tkn_cli/installing-tkn#installing-tkn)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cli_reference.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# OpenShift Container Platform CLI tools overview {#cli-tools-overview}\n\nOpenShift Container Platform offers a set of command-line interface (CLI) tools that enable users to perform various administration and development operations from the terminal. These tools expose simple commands to manage the applications, as well as interact with each component of the system.\n\nFor example, you can use the CLI to complete the following operations:\n\n- Manage clusters\n- Build, deploy, and manage applications\n- Manage deployment processes\n- Create and maintain Operator catalogs\n\n## List of CLI tools {#cli-tools-list_cli-tools-overview}\n\nManage your OpenShift Container Platform cluster, applications, and Operators from the terminal by using primary command-line interface (CLI) tools.\n\nThe following list details these primary CLI tools:\n\n- OpenShift CLI (`oc`): This is the most commonly used CLI tool by OpenShift Container Platform users. Cluster administrators and developers can use it to perform end-to-end operations across OpenShift Container Platform from the terminal, including working directly with project source code using command scripts.\n- Kubernetes CLI (`kubectl`): OpenShift Container Platform is conformant with Cloud Native Computing Foundation (CNCF) Kubernetes and fully supports `kubectl` as a client. The OpenShift CLI (`oc`) is a superset of `kubectl`, where both CLI tools are included in the OpenShift Container Platform clients download. You can use the standard `kubectl` commands against OpenShift Container Platform clusters without any compatibility issues.\n- Helm CLI (`helm`): Helm is a package manager for Kubernetes. The `helm` CLI provides commands to install, upgrade, and manage Helm charts on a cluster.\n- opm CLI: The `opm` CLI tool helps Operator developers and cluster administrators create and maintain catalogs of Operators.\n- Knative CLI: The Knative (`kn`) CLI tool provides commands to interact with OpenShift Serverless components, such as Knative Serving and Eventing.\n- Pipelines CLI (tkn): OpenShift Pipelines is a continuous integration and delivery (CI/CD) solution in OpenShift Container Platform, which internally uses Tekton. The `tkn` CLI tool provides commands to interact with OpenShift Pipelines.\n\n**Additional resources**\n{._additional-resources}\n\n- [OpenShift Container Platform CLI (`oc`)](/openshift-docs-markdown/cli_reference/openshift_cli/getting-started-cli#cli-getting-started)\n- [Helm CLI (`helm`)](/openshift-docs-markdown/applications/working_with_helm_charts/installing-helm#installing-helm)\n- [`opm` CLI](/openshift-docs-markdown/cli_reference/opm/cli-opm-install#cli-opm-install)\n- [Knative CLI (`kn`)](/openshift-docs-markdown/cli_reference/kn-cli-tools#kn-cli-tools)\n- [OpenShift Pipelines CLI (`tkn`)](/openshift-docs-markdown/cli_reference/tkn_cli/installing-tkn#installing-tkn)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cli_reference.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,12 +79,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -91,7 +93,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="cli-tools-overview" class="group scroll-mt-20">OpenShift Container Platform CLI tools overview<a href="#cli-tools-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>OpenShift Container Platform offers a set of command-line interface (CLI) tools that enable users to perform various administration and development operations from the terminal. These tools expose simple commands to manage the applications, as well as interact with each component of the system.</p>
+      <p class="_abstract">OpenShift Container Platform offers a set of command-line interface (CLI) tools that enable users to perform various administration and development operations from the terminal. These tools expose simple commands to manage the applications, as well as interact with each component of the system.</p>
       <p>For example, you can use the CLI to complete the following operations:</p>
       <ul>
       <li>Manage clusters</li>
@@ -102,9 +104,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <h2 id="cli-tools-list_cli-tools-overview" class="group scroll-mt-20">List of CLI tools<a href="#cli-tools-list_cli-tools-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">Manage your OpenShift Container Platform cluster, applications, and Operators from the terminal by using primary command-line interface (CLI) tools.</p>
       <p>The following list details these primary CLI tools:</p>
-      <ul><li>OpenShift CLI (<code>oc</code>): This is the most commonly used CLI tool by OpenShift Container Platform users.</li></ul>
-      <p>Cluster administrators and developers can use it to perform end-to-end operations across OpenShift Container Platform from the terminal, including working directly with project source code using command scripts.</p>
       <ul>
+      <li>OpenShift CLI (<code>oc</code>): This is the most commonly used CLI tool by OpenShift Container Platform users. Cluster administrators and developers can use it to perform end-to-end operations across OpenShift Container Platform from the terminal, including working directly with project source code using command scripts.</li>
       <li>Kubernetes CLI (<code>kubectl</code>): OpenShift Container Platform is conformant with Cloud Native Computing Foundation (CNCF) Kubernetes and fully supports <code>kubectl</code> as a client. The OpenShift CLI (<code>oc</code>) is a superset of <code>kubectl</code>, where both CLI tools are included in the OpenShift Container Platform clients download. You can use the standard <code>kubectl</code> commands against OpenShift Container Platform clusters without any compatibility issues.</li>
       <li>Helm CLI (<code>helm</code>): Helm is a package manager for Kubernetes. The <code>helm</code> CLI provides commands to install, upgrade, and manage Helm charts on a cluster.</li>
       <li>opm CLI: The <code>opm</code> CLI tool helps Operator developers and cluster administrators create and maintain catalogs of Operators.</li>

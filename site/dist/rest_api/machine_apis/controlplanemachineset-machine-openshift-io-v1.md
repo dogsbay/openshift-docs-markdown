@@ -1,5 +1,5 @@
 ---
-title: ControlPlaneMachineSet []
+title: ControlPlaneMachineSet [machine.openshift.io/v1]
 ---
 
 # ControlPlaneMachineSet \[machine.openshift.io/v1\] {#controlplanemachineset-machine-openshift-io-v1}
@@ -541,10 +541,10 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `annotations` | `object (string)` | annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations |
-| `generateName` | `string` | generateName is an optional prefix, used by the server, to generate a unique name ONLY IF the Name field has not been provided. If this field is used, the name returned to the client will be different than the name passed. This value will also be combined with a unique suffix. The provided value has the same validation rules as the Name field, and may be truncated by the length of the suffix required to make the value unique on the server. If this field is specified and the generated name exists, the server will NOT return a 409 - instead, it will either return 201 Created or 500 with Reason ServerTimeout indicating a unique name could not be found in the time allotted, and the client should retry (optionally after the time indicated in the Retry-After header). Applied only if Name is not specified. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#idempotency |
+| `generateName` | `string` | generateName is an optional prefix, used by the server, to generate a unique name ONLY IF the Name field has not been provided. If this field is used, the name returned to the client will be different than the name passed. This value will also be combined with a unique suffix. The provided value has the same validation rules as the Name field, and may be truncated by the length of the suffix required to make the value unique on the server.<br>If this field is specified and the generated name exists, the server will NOT return a 409 - instead, it will either return 201 Created or 500 with Reason ServerTimeout indicating a unique name could not be found in the time allotted, and the client should retry (optionally after the time indicated in the Retry-After header).<br>Applied only if Name is not specified. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#idempotency |
 | `labels` | `object (string)` | Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels |
 | `name` | `string` | name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names |
-| `namespace` | `string` | namespace defines the space within each name must be unique. An empty namespace is equivalent to the "default" namespace, but "default" is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty. Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces |
+| `namespace` | `string` | namespace defines the space within each name must be unique. An empty namespace is equivalent to the "default" namespace, but "default" is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty.<br>Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces |
 | `ownerReferences` | `array` | List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller. |
 | `ownerReferences[]` | `object` | OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field. |
 
@@ -677,7 +677,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
 | `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
@@ -691,23 +691,23 @@ The following API endpoints are available:
 - `/apis/machine.openshift.io/v1/controlplanemachinesets`
 
   - `GET`: list objects of kind ControlPlaneMachineSet
-- `/apis/machine.openshift.io/v1/namespaces/{{ namespace }}/controlplanemachinesets`
+- `/apis/machine.openshift.io/v1/namespaces/{namespace}/controlplanemachinesets`
 
   - `DELETE`: delete collection of ControlPlaneMachineSet
   - `GET`: list objects of kind ControlPlaneMachineSet
   - `POST`: create a ControlPlaneMachineSet
-- `/apis/machine.openshift.io/v1/namespaces/{{ namespace }}/controlplanemachinesets/{{ name }}`
+- `/apis/machine.openshift.io/v1/namespaces/{namespace}/controlplanemachinesets/{name}`
 
   - `DELETE`: delete a ControlPlaneMachineSet
   - `GET`: read the specified ControlPlaneMachineSet
   - `PATCH`: partially update the specified ControlPlaneMachineSet
   - `PUT`: replace the specified ControlPlaneMachineSet
-- `/apis/machine.openshift.io/v1/namespaces/{{ namespace }}/controlplanemachinesets/{{ name }}/scale`
+- `/apis/machine.openshift.io/v1/namespaces/{namespace}/controlplanemachinesets/{name}/scale`
 
   - `GET`: read scale of the specified ControlPlaneMachineSet
   - `PATCH`: partially update scale of the specified ControlPlaneMachineSet
   - `PUT`: replace scale of the specified ControlPlaneMachineSet
-- `/apis/machine.openshift.io/v1/namespaces/{{ namespace }}/controlplanemachinesets/{{ name }}/status`
+- `/apis/machine.openshift.io/v1/namespaces/{namespace}/controlplanemachinesets/{name}/status`
 
   - `GET`: read status of the specified ControlPlaneMachineSet
   - `PATCH`: partially update status of the specified ControlPlaneMachineSet
@@ -732,7 +732,7 @@ Description
 | 200 - OK | [`ControlPlaneMachineSetList`](/openshift-docs-markdown/rest_api/objects/index#io-openshift-machine-v1-ControlPlaneMachineSetList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machine.openshift.io/v1/namespaces/{{ namespace }}/controlplanemachinesets {#_apismachineopenshiftiov1namespaces_namespace_controlplanemachinesets}
+### /apis/machine.openshift.io/v1/namespaces/{namespace}/controlplanemachinesets {#_apismachineopenshiftiov1namespaces_namespace_controlplanemachinesets}
 
 HTTP method
 :   ```
@@ -800,7 +800,7 @@ Description
 | 202 - Accepted | [`ControlPlaneMachineSet`](/openshift-docs-markdown/rest_api/machine_apis/controlplanemachineset-machine-openshift-io-v1#controlplanemachineset-machine-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machine.openshift.io/v1/namespaces/{{ namespace }}/controlplanemachinesets/{{ name }} {#_apismachineopenshiftiov1namespaces_namespace_controlplanemachinesets_name}
+### /apis/machine.openshift.io/v1/namespaces/{namespace}/controlplanemachinesets/{name} {#_apismachineopenshiftiov1namespaces_namespace_controlplanemachinesets_name}
 
 **Global path parameters**
 
@@ -904,7 +904,7 @@ Description
 | 201 - Created | [`ControlPlaneMachineSet`](/openshift-docs-markdown/rest_api/machine_apis/controlplanemachineset-machine-openshift-io-v1#controlplanemachineset-machine-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machine.openshift.io/v1/namespaces/{{ namespace }}/controlplanemachinesets/{{ name }}/scale {#_apismachineopenshiftiov1namespaces_namespace_controlplanemachinesets_name_scale}
+### /apis/machine.openshift.io/v1/namespaces/{namespace}/controlplanemachinesets/{name}/scale {#_apismachineopenshiftiov1namespaces_namespace_controlplanemachinesets_name_scale}
 
 **Global path parameters**
 
@@ -984,7 +984,7 @@ Description
 | 201 - Created | [`Scale`](/openshift-docs-markdown/rest_api/autoscale_apis/scale-autoscaling-v1#scale-autoscaling-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machine.openshift.io/v1/namespaces/{{ namespace }}/controlplanemachinesets/{{ name }}/status {#_apismachineopenshiftiov1namespaces_namespace_controlplanemachinesets_name_status}
+### /apis/machine.openshift.io/v1/namespaces/{namespace}/controlplanemachinesets/{name}/status {#_apismachineopenshiftiov1namespaces_namespace_controlplanemachinesets_name_status}
 
 **Global path parameters**
 

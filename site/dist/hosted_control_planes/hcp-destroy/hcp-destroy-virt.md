@@ -1,5 +1,5 @@
 ---
-title: Destroying a hosted cluster on {{ VirtProductName }}
+title: Destroying a hosted cluster on OpenShift Virtualization
 ---
 
 # Destroying a hosted cluster on OpenShift Virtualization {#hcp-destroy-virt}

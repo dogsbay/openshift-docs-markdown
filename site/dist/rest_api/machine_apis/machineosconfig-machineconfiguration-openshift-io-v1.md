@@ -1,5 +1,5 @@
 ---
-title: MachineOSConfig []
+title: MachineOSConfig [machineconfiguration.openshift.io/v1]
 ---
 
 # MachineOSConfig \[machineconfiguration.openshift.io/v1\] {#machineosconfig-machineconfiguration-openshift-io-v1}
@@ -94,7 +94,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `containerfileArch` | `string` | containerfileArch describes the architecture this containerfile is to be built for. This arch is optional. If the user does not specify an architecture, it is assumed that the content can be applied to all architectures, or in a single arch cluster: the only architecture. |
-| `content` | `string` | content is an embedded Containerfile/Dockerfile that defines the contents to be built into your image. See https://github.com/containers/common/blob/main/docs/Containerfile.5.md for the spec reference. for example, this would add the tree package to your hosts:   FROM configs AS final   RUN rpm-ostree install tree && \\     ostree container commit This is a required field and can have a maximum length of ***4096*** characters. |
+| `content` | `string` | content is an embedded Containerfile/Dockerfile that defines the contents to be built into your image. See https://github.com/containers/common/blob/main/docs/Containerfile.5.md for the spec reference. for example, this would add the tree package to your hosts: FROM configs AS final RUN rpm-ostree install tree && \\ ostree container commit This is a required field and can have a maximum length of **4096** characters. |
 
 ### .spec.imageBuilder {#_specimagebuilder}
 
@@ -194,7 +194,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
 | `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
@@ -232,13 +232,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of MachineOSConfig
   - `GET`: list objects of kind MachineOSConfig
   - `POST`: create a MachineOSConfig
-- `/apis/machineconfiguration.openshift.io/v1/machineosconfigs/{{ name }}`
+- `/apis/machineconfiguration.openshift.io/v1/machineosconfigs/{name}`
 
   - `DELETE`: delete a MachineOSConfig
   - `GET`: read the specified MachineOSConfig
   - `PATCH`: partially update the specified MachineOSConfig
   - `PUT`: replace the specified MachineOSConfig
-- `/apis/machineconfiguration.openshift.io/v1/machineosconfigs/{{ name }}/status`
+- `/apis/machineconfiguration.openshift.io/v1/machineosconfigs/{name}/status`
 
   - `GET`: read status of the specified MachineOSConfig
   - `PATCH`: partially update status of the specified MachineOSConfig
@@ -312,7 +312,7 @@ Description
 | 202 - Accepted | [`MachineOSConfig`](/openshift-docs-markdown/rest_api/machine_apis/machineosconfig-machineconfiguration-openshift-io-v1#machineosconfig-machineconfiguration-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machineconfiguration.openshift.io/v1/machineosconfigs/{{ name }} {#_apismachineconfigurationopenshiftiov1machineosconfigs_name}
+### /apis/machineconfiguration.openshift.io/v1/machineosconfigs/{name} {#_apismachineconfigurationopenshiftiov1machineosconfigs_name}
 
 **Global path parameters**
 
@@ -416,7 +416,7 @@ Description
 | 201 - Created | [`MachineOSConfig`](/openshift-docs-markdown/rest_api/machine_apis/machineosconfig-machineconfiguration-openshift-io-v1#machineosconfig-machineconfiguration-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machineconfiguration.openshift.io/v1/machineosconfigs/{{ name }}/status {#_apismachineconfigurationopenshiftiov1machineosconfigs_name_status}
+### /apis/machineconfiguration.openshift.io/v1/machineosconfigs/{name}/status {#_apismachineconfigurationopenshiftiov1machineosconfigs_name_status}
 
 **Global path parameters**
 

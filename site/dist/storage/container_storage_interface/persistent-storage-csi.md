@@ -4,7 +4,7 @@ title: Configuring CSI volumes
 
 # Configuring CSI volumes {#persistent-storage-csi}
 
-\[role="\_abstract"\] Container Storage Interface (CSI) is a standard specification enabling storage vendors to develop plugins that work across container orchestration systems. OpenShift Container Platform uses CSI drivers to provision and manage persistent storage, replacing in-tree storage plugins.
+Container Storage Interface (CSI) is a standard specification enabling storage vendors to develop plugins that work across container orchestration systems. OpenShift Container Platform uses CSI drivers to provision and manage persistent storage, replacing in-tree storage plugins.
 
 ## CSI architecture {#persistent-storage-csi-architecture_persistent-storage-csi}
 
@@ -26,6 +26,7 @@ The following diagram provides a high-level overview about the components runnin
 It is possible to run multiple CSI drivers for different storage back ends. Each driver needs its own external controllers deployment and daemon set with the driver and CSI registrar.
 
 **Additional resources**
+{._additional-resources}
 
 - [CSI spec](https://github.com/container-storage-interface/spec)
 
@@ -70,105 +71,162 @@ To create CSI-provisioned persistent volumes that mount to these supported stora
 > [!IMPORTANT]
 > The AWS EFS CSI driver is not installed by default, and must be installed manually. For instructions about installing the AWS EFS CSI driver, see "Setting up the AWS Elastic File Service CSI Driver Operator".
 
-The following table describes the CSI drivers that are installed with OpenShift Container Platform,
-
-supported by OpenShift Container Platform, and which CSI features they support, such as volume snapshots and resize.
+The following table describes the CSI drivers that are installed with OpenShift Container Platform, supported by OpenShift Container Platform, and which CSI features they support, such as volume snapshots and resize.
 
 > [!IMPORTANT]
 > If your CSI driver is not listed in the following table, you must follow the installation instructions provided by your CSI storage vendor to use their supported CSI features.
 
 For a list of third-party-certified CSI drivers, see the "Red Hat ecosystem portal".
 
-***Supported CSI drivers and features in OpenShift Container Platform***
+**Supported CSI drivers and features in OpenShift Container Platform**
 
 <table>
 <thead>
 <tr>
   <th>CSI driver</th>
   <th>CSI volume snapshots</th>
-  <th>CSI volume group snapshots ^[1]^</th>
+  <th>CSI volume group snapshots <sup>[1]</sup></th>
   <th>CSI cloning</th>
   <th>CSI resize</th>
   <th>Inline ephemeral volumes</th>
   <th>User namespaces</th>
-  <th>AWS EBS</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+  <td>AWS EBS</td>
   <td>✅</td>
+  <td></td>
+  <td></td>
   <td>✅</td>
+  <td></td>
   <td>✅</td>
+</tr>
+<tr>
   <td>AWS EFS</td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
   <td>Google Compute Platform (GCP) persistent disk (PD)</td>
   <td>✅</td>
-  <td>✅^[2]^</td>
+  <td></td>
+  <td>✅<sup>[2]</sup></td>
+  <td>✅</td>
+  <td></td>
   <td>✅</td>
 </tr>
 <tr>
-  <td>✅</td>
   <td>GCP Filestore</td>
   <td>✅</td>
+  <td></td>
+  <td></td>
   <td>✅</td>
-  <td>IBM Power(R) Virtual Server Block</td>
-  <td>✅</td>
-  <td>✅</td>
-  <td>IBM Cloud(R) Block</td>
-  <td>✅^[3]^</td>
+  <td></td>
+  <td></td>
 </tr>
 <tr>
-  <td>✅^[3]^</td>
+  <td>IBM Power(R) Virtual Server Block</td>
+  <td></td>
+  <td></td>
+  <td></td>
   <td>✅</td>
+  <td></td>
+  <td>✅</td>
+</tr>
+<tr>
+  <td>IBM Cloud(R) Block</td>
+  <td>✅<sup>[3]</sup></td>
+  <td></td>
+  <td></td>
+  <td>✅<sup>[3]</sup></td>
+  <td></td>
+  <td>✅</td>
+</tr>
+<tr>
   <td>LVM Storage</td>
   <td>✅</td>
+  <td></td>
   <td>✅</td>
   <td>✅</td>
+  <td></td>
   <td>✅</td>
-  <td>Microsoft Azure Disk</td>
 </tr>
 <tr>
+  <td>Microsoft Azure Disk</td>
+  <td>✅</td>
+  <td></td>
   <td>✅</td>
   <td>✅</td>
+  <td></td>
   <td>✅</td>
-  <td>✅</td>
+</tr>
+<tr>
   <td>Microsoft Azure Stack Hub</td>
   <td>✅</td>
+  <td></td>
   <td>✅</td>
+  <td>✅</td>
+  <td></td>
   <td>✅</td>
 </tr>
 <tr>
-  <td>✅</td>
   <td>Microsoft Azure File</td>
   <td>✅</td>
+  <td></td>
   <td>✅</td>
   <td>✅</td>
   <td>✅</td>
+  <td></td>
+</tr>
+<tr>
   <td>OpenStack Cinder</td>
+  <td>✅</td>
+  <td></td>
+  <td>✅</td>
+  <td>✅</td>
+  <td></td>
   <td>✅</td>
 </tr>
 <tr>
-  <td>✅</td>
-  <td>✅</td>
-  <td>✅</td>
   <td>OpenShift Data Foundation</td>
   <td>✅</td>
   <td>✅</td>
   <td>✅</td>
   <td>✅</td>
+  <td></td>
+  <td>✅ <sup>[4]</sup></td>
 </tr>
 <tr>
-  <td>✅ ^[4]^</td>
   <td>OpenStack Manila</td>
   <td>✅</td>
+  <td></td>
+  <td></td>
   <td>✅</td>
-  <td>CIFS/SMB</td>
-  <td>✅</td>
-  <td>VMware vSphere</td>
-  <td>✅^[5]^</td>
+  <td></td>
+  <td></td>
 </tr>
 <tr>
-  <td>✅^[6]^</td>
-  <td>✅^[7]^</td>
+  <td>CIFS/SMB</td>
+  <td></td>
+  <td></td>
+  <td>✅</td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>VMware vSphere</td>
+  <td>✅<sup>[5]</sup></td>
+  <td></td>
+  <td></td>
+  <td>✅<sup>[6]</sup></td>
+  <td></td>
+  <td>✅<sup>[7]</sup></td>
 </tr>
 </tbody>
 </table>
@@ -205,6 +263,7 @@ For a list of third-party-certified CSI drivers, see the "Red Hat ecosystem port
 - File persistent volumes (PVs), such as vSAN file service, do not support user namespaces.
 
 **Additional resources**
+{._additional-resources}
 
 - [Setting up the AWS EFS CSI Driver Operator](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-aws-efs#persistent-storage-efs-csi-driver-operator-setup_persistent-storage-csi-aws-efs)
 - [Red Hat ecosystem portal](https://catalog.redhat.com/)

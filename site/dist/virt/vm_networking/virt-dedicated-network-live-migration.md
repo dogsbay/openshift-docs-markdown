@@ -28,7 +28,7 @@ To configure a dedicated secondary network for live migration, you must first cr
    kind: NetworkAttachmentDefinition
    metadata:
      name: my-secondary-network
-     namespace: {{ CNVNamespace }}
+     namespace: openshift-cnv
    spec:
      config: '{
        "cniVersion": "0.3.1",
@@ -50,7 +50,7 @@ To configure a dedicated secondary network for live migration, you must first cr
 2. Open the `HyperConverged` CR in your default editor by running the following command:
 
    ```terminal
-   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+   $ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv
    ```
 3. Add the name of the `NetworkAttachmentDefinition` object to the `spec.liveMigrationConfig` stanza of the `HyperConverged` CR.
 
@@ -61,7 +61,7 @@ To configure a dedicated secondary network for live migration, you must first cr
    kind: HyperConverged
    metadata:
      name: kubevirt-hyperconverged
-     namespace: {{ CNVNamespace }}
+     namespace: openshift-cnv
    spec:
      liveMigrationConfig:
        completionTimeoutPerGiB: 800
@@ -94,12 +94,13 @@ You can select a dedicated network for live migration by using the OpenShift Con
 
 **Procedure**
 
-1. Go to **Virtualization -> Settings** in the OpenShift Container Platform web console.
+1. Go to **Virtualization → Settings** in the OpenShift Container Platform web console.
 2. On the **Cluster** tab, click **General settiings**.
 3. Click **Live Migration**.
 4. Select the network from the **Live migration network** list.
 
-## Additional resources {#additional-resources_virt-dedicated-network-live-migration}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring live migration limits and timeouts](/openshift-docs-markdown/virt/live_migration/virt-configuring-live-migration#virt-configuring-live-migration)
 - [Connecting a VM to a Linux bridge network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-connecting-vm-to-linux-bridge)

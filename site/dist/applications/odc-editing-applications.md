@@ -38,7 +38,9 @@ Ensure that you have created an application using  the **From Git**, **Container
 
 **Procedure**
 
-1. After you have created an application and it is displayed in the **Topology** view, right-click the application to see the edit options available. **Figure 1. Edit application**
+1. After you have created an application and it is displayed in the **Topology** view, right-click the application to see the edit options available.
+
+   **Figure 1. Edit application**
 
    ![odc_edit_app](/openshift-docs-markdown/_assets/images/odc_edit_app.png)
 2. Click **Edit *application-name*** to see the **Add** workflow you used to create the application. The form is pre-populated with the values you had added while creating the application.
@@ -46,6 +48,8 @@ Ensure that you have created an application using  the **From Git**, **Container
 
    > [!NOTE]
    > You cannot edit the **Name** field in the **General** section, the CI/CD pipelines, or the **Create a route to the application** field in the **Advanced Options** section.
-4. Click **Save** to restart the build and deploy a new image. **Figure 2. Edit and redeploy application**
+4. Click **Save** to restart the build and deploy a new image.
+
+   **Figure 2. Edit and redeploy application**
 
    ![odc_edit_redeploy](/openshift-docs-markdown/_assets/images/odc_edit_redeploy.png)

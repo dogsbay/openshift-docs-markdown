@@ -12,6 +12,7 @@ A disconnected cluster, also known as a restricted cluster, does not have an act
 
 For information on how to convert your cluster, see the "Converting a connected cluster to a disconnected cluster" procedure in the Disconnected environments section.
 
-## Additional resources {#additional-resources_converting-to-disconnected}
+**Additional resources**
+{._additional-resources}
 
 - [Converting a connected cluster to a disconnected cluster](/openshift-docs-markdown/disconnected/connected-to-disconnected#converting-to-disconnected)

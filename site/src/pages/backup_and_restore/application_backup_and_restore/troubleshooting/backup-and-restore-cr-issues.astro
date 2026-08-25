@@ -21,7 +21,8 @@ const headings = [{"depth":1,"slug":"backup-and-restore-cr-issues","text":"Backu
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/backup-and-restore-cr-issues";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="backup-and-restore-cr-issues" class="group scroll-mt-20">Backup and Restore CR issues<a href="#backup-and-restore-cr-issues" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Resolve common issues with <code>Backup</code> and <code>Restore</code> custom resources (CRs), such as volume retrieval failures, and backups remaining in progress or partially failed states. This helps you ensure successful backup and restore operations in OADP.</p>
+      <p class="_abstract">Resolve common issues with <code>Backup</code> and <code>Restore</code> custom resources (CRs), such as volume retrieval failures, and backups remaining in progress or partially failed states. This helps you ensure successful backup and restore operations in OADP.</p>
       <h2 id="troubleshooting-backup-cr-cannot-retrieve-volume-issue_backup-and-restore-cr-issues" class="group scroll-mt-20">Troubleshooting issue where backup CR cannot retrieve volume<a href="#troubleshooting-backup-cr-cannot-retrieve-volume-issue_backup-and-restore-cr-issues" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">Resolve the <code>InvalidVolume.NotFound</code> error that occurs when the persistent volume (PV) and snapshot locations are in different regions. This helps you ensure the <code>Backup</code> CR can successfully retrieve volumes.</p>
       <p>If the PV and the snapshot locations are in different regions, the <code>Backup</code> custom resource (CR) displays the following error message:</p>

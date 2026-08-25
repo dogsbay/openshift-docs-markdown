@@ -1,5 +1,5 @@
 ---
-title: ClusterVersion []
+title: ClusterVersion [config.openshift.io/v1]
 ---
 
 # ClusterVersion \[config.openshift.io/v1\] {#clusterversion-config-openshift-io-v1}
@@ -42,10 +42,10 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `capabilities` | `object` | capabilities configures the installation of optional, core cluster components.  A null value here is identical to an empty object; see the child properties for default semantics. |
+| `capabilities` | `object` | capabilities configures the installation of optional, core cluster components. A null value here is identical to an empty object; see the child properties for default semantics. |
 | `channel` | `string` | channel is an identifier for explicitly requesting a non-default set of updates to be applied to this cluster. The default channel will contain stable updates that are appropriate for production clusters. |
 | `clusterID` | `string` | clusterID uniquely identifies this cluster. This is expected to be an RFC4122 UUID value (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx in hexadecimal values). This is a required field. |
-| `desiredUpdate` | `object` | desiredUpdate is an optional field that indicates the desired value of the cluster version. Setting this value will trigger an upgrade (if the current version does not match the desired version). The set of recommended update values is listed as part of available updates in status, and setting values outside that range may cause the upgrade to fail. Some of the fields are inter-related with restrictions and meanings described here. 1. image is specified, version is specified, architecture is specified. API validation error. 2. image is specified, version is specified, architecture is not specified. The version extracted from the referenced image must match the specified version. 3. image is specified, version is not specified, architecture is specified. API validation error. 4. image is specified, version is not specified, architecture is not specified. image is used. 5. image is not specified, version is specified, architecture is specified. version and desired architecture are used to select an image. 6. image is not specified, version is specified, architecture is not specified. version and current architecture are used to select an image. 7. image is not specified, version is not specified, architecture is specified. API validation error. 8. image is not specified, version is not specified, architecture is not specified. API validation error. If an upgrade fails the operator will halt and report status about the failing component. Setting the desired update value back to the previous version will cause a rollback to be attempted if the previous version is within the current minor version. Not all rollbacks will succeed, and some may unrecoverably break the cluster. |
+| `desiredUpdate` | `object` | desiredUpdate is an optional field that indicates the desired value of the cluster version. Setting this value will trigger an upgrade (if the current version does not match the desired version). The set of recommended update values is listed as part of available updates in status, and setting values outside that range may cause the upgrade to fail.<br>Some of the fields are inter-related with restrictions and meanings described here. 1. image is specified, version is specified, architecture is specified. API validation error. 2. image is specified, version is specified, architecture is not specified. The version extracted from the referenced image must match the specified version. 3. image is specified, version is not specified, architecture is specified. API validation error. 4. image is specified, version is not specified, architecture is not specified. image is used. 5. image is not specified, version is specified, architecture is specified. version and desired architecture are used to select an image. 6. image is not specified, version is specified, architecture is not specified. version and current architecture are used to select an image. 7. image is not specified, version is not specified, architecture is specified. API validation error. 8. image is not specified, version is not specified, architecture is not specified. API validation error.<br>If an upgrade fails the operator will halt and report status about the failing component. Setting the desired update value back to the previous version will cause a rollback to be attempted if the previous version is within the current minor version. Not all rollbacks will succeed, and some may unrecoverably break the cluster. |
 | `overrides` | `array` | overrides is list of overides for components that are managed by cluster version operator. Marking a component unmanaged will prevent the operator from creating or updating the object. |
 | `overrides[]` | `object` | ComponentOverride allows overriding cluster version operator’s behavior for a component. |
 | `upstream` | `string` | upstream may be used to specify the preferred update server. By default it will use the appropriate update server for the cluster and region. |
@@ -62,8 +62,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `additionalEnabledCapabilities` | `array (string)` | additionalEnabledCapabilities extends the set of managed capabilities beyond the baseline defined in baselineCapabilitySet.  The default is an empty set. |
-| `baselineCapabilitySet` | `string` | baselineCapabilitySet selects an initial set of optional capabilities to enable, which can be extended via additionalEnabledCapabilities.  If unset, the cluster will choose a default, and the default may change over time. The current default is vCurrent. |
+| `additionalEnabledCapabilities` | `array (string)` | additionalEnabledCapabilities extends the set of managed capabilities beyond the baseline defined in baselineCapabilitySet. The default is an empty set. |
+| `baselineCapabilitySet` | `string` | baselineCapabilitySet selects an initial set of optional capabilities to enable, which can be extended via additionalEnabledCapabilities. If unset, the cluster will choose a default, and the default may change over time. The current default is vCurrent. |
 
 ### .spec.desiredUpdate {#_specdesiredupdate}
 
@@ -91,7 +91,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `architecture` | `string` | architecture is an optional field that indicates the desired value of the cluster architecture. In this context cluster architecture means either a single architecture or a multi architecture. architecture can only be set to Multi thereby only allowing updates from single to multi architecture. If architecture is set, image cannot be set and version must be set. Valid values are 'Multi' and empty. |
-| `force` | `boolean` | force allows an administrator to update to an image that has failed verification or upgradeable checks that are designed to keep your cluster safe. Only use this if: \* you are testing unsigned release images in short-lived test clusters or \* you are working around a known bug in the cluster-version   operator and you have verified the authenticity of the provided   image yourself. The provided image will run with full administrative access to the cluster. Do not use this flag with images that come from unknown or potentially malicious sources. |
+| `force` | `boolean` | force allows an administrator to update to an image that has failed verification or upgradeable checks that are designed to keep your cluster safe. Only use this if: \* you are testing unsigned release images in short-lived test clusters or \* you are working around a known bug in the cluster-version operator and you have verified the authenticity of the provided image yourself. The provided image will run with full administrative access to the cluster. Do not use this flag with images that come from unknown or potentially malicious sources. |
 | `image` | `string` | image is a container image location that contains the update. image should be used when the desired version does not exist in availableUpdates or history. When image is set, architecture cannot be specified. If both version and image are set, the version extracted from the referenced image must match the specified version. |
 | `version` | `string` | version is a semantic version identifying the update version. version is required if architecture is specified. If both version and image are set, the version extracted from the referenced image must match the specified version. |
 
@@ -237,7 +237,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
 | `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
@@ -295,7 +295,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `matchingRules` | `array` | matchingRules is a slice of conditions for deciding which clusters match the risk and which do not. The slice is ordered by decreasing precedence. The cluster-version operator will walk the slice in order, and stop after the first it can successfully evaluate. If no condition can be successfully evaluated, the update will not be recommended. |
-| `matchingRules[]` | `object` | ClusterCondition is a union of typed cluster conditions.  The 'type' property determines which of the type-specific properties are relevant. When evaluated on a cluster, the condition may match, not match, or fail to evaluate. |
+| `matchingRules[]` | `object` | ClusterCondition is a union of typed cluster conditions. The 'type' property determines which of the type-specific properties are relevant. When evaluated on a cluster, the condition may match, not match, or fail to evaluate. |
 | `message` | `string` | message provides additional information about the risk of updating, in the event that matchingRules match the cluster state. This is only to be consumed by humans. It may contain Line Feed characters (U+000A), which should be rendered as new lines. |
 | `name` | `string` | name is the CamelCase reason for not recommending a conditional update, in the event that matchingRules match the cluster state. |
 | `url` | `string` | url contains information about this risk. |
@@ -373,7 +373,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `lastTransitionTime` | `string` | lastTransitionTime is the time of the last update to the current status property. |
-| `message` | `string` | message provides additional information about the current condition. This is only to be consumed by humans.  It may contain Line Feed characters (U+000A), which should be rendered as new lines. |
+| `message` | `string` | message provides additional information about the current condition. This is only to be consumed by humans. It may contain Line Feed characters (U+000A), which should be rendered as new lines. |
 | `reason` | `string` | reason is the CamelCase reason for the condition’s current status. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type specifies the aspect reported by this condition. |
@@ -445,13 +445,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of ClusterVersion
   - `GET`: list objects of kind ClusterVersion
   - `POST`: create a ClusterVersion
-- `/apis/config.openshift.io/v1/clusterversions/{{ name }}`
+- `/apis/config.openshift.io/v1/clusterversions/{name}`
 
   - `DELETE`: delete a ClusterVersion
   - `GET`: read the specified ClusterVersion
   - `PATCH`: partially update the specified ClusterVersion
   - `PUT`: replace the specified ClusterVersion
-- `/apis/config.openshift.io/v1/clusterversions/{{ name }}/status`
+- `/apis/config.openshift.io/v1/clusterversions/{name}/status`
 
   - `GET`: read status of the specified ClusterVersion
   - `PATCH`: partially update status of the specified ClusterVersion
@@ -525,7 +525,7 @@ Description
 | 202 - Accepted | [`ClusterVersion`](/openshift-docs-markdown/rest_api/config_apis/clusterversion-config-openshift-io-v1#clusterversion-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/clusterversions/{{ name }} {#_apisconfigopenshiftiov1clusterversions_name}
+### /apis/config.openshift.io/v1/clusterversions/{name} {#_apisconfigopenshiftiov1clusterversions_name}
 
 **Global path parameters**
 
@@ -629,7 +629,7 @@ Description
 | 201 - Created | [`ClusterVersion`](/openshift-docs-markdown/rest_api/config_apis/clusterversion-config-openshift-io-v1#clusterversion-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/clusterversions/{{ name }}/status {#_apisconfigopenshiftiov1clusterversions_name_status}
+### /apis/config.openshift.io/v1/clusterversions/{name}/status {#_apisconfigopenshiftiov1clusterversions_name_status}
 
 **Global path parameters**
 

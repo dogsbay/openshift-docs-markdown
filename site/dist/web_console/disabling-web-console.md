@@ -8,9 +8,7 @@ You can disable the OpenShift Container Platform web console.
 
 ## Prerequisites {#_prerequisites}
 
-- Deploy an OpenShift Container Platform
-
-cluster.
+- Deploy an OpenShift Container Platform cluster.
 
 ## Disabling the web console {#web-console-disable_disabling-web-console}
 

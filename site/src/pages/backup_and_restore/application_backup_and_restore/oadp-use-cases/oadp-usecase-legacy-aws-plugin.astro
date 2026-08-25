@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"oadp-using-legacy-aws-plugin","text":"Using
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-use-cases/oadp-usecase-legacy-aws-plugin";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="oadp-using-legacy-aws-plugin" class="group scroll-mt-20">Using the legacy-aws Velero plugin<a href="#oadp-using-legacy-aws-plugin" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>If you are using an AWS S3-compatible backup storage location, you might get a <code>SignatureDoesNotMatch</code> error while backing up your application. This error occurs because some backup storage locations still use the older versions of the S3 APIs, which are incompatible with the newer AWS SDK for Go V2. To resolve this issue, you can use the <code>legacy-aws</code> Velero plugin in the <code>DataProtectionApplication</code> custom resource (CR). The <code>legacy-aws</code> Velero plugin uses the older AWS SDK for Go V1, which is compatible with the legacy S3 APIs, ensuring successful backups.</p>
+      <p class="_abstract">If you are using an AWS S3-compatible backup storage location, you might get a <code>SignatureDoesNotMatch</code> error while backing up your application. This error occurs because some backup storage locations still use the older versions of the S3 APIs, which are incompatible with the newer AWS SDK for Go V2. To resolve this issue, you can use the <code>legacy-aws</code> Velero plugin in the <code>DataProtectionApplication</code> custom resource (CR). The <code>legacy-aws</code> Velero plugin uses the older AWS SDK for Go V1, which is compatible with the legacy S3 APIs, ensuring successful backups.</p>
       <h2 id="oadp-using-legacy-aws-plugin_oadp-using-legacy-aws-plugin" class="group scroll-mt-20">Using the legacy-aws Velero plugin in the DataProtectionApplication CR<a href="#oadp-using-legacy-aws-plugin_oadp-using-legacy-aws-plugin" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">In the following use case, you configure the <code>DataProtectionApplication</code> CR with the <code>legacy-aws</code> Velero plugin and then back up an application.</p>
       <Alert variant="note" class="my-4">

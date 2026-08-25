@@ -26,10 +26,10 @@ Update channels control only release selection and do not impact the version of 
 
 OpenShift Container Platform 4.22 offers the following update channels:
 
-- `stable-{{ product_version }}`
+- `stable-4.22`
 - `eus-4.y` (only offered for EUS versions and meant to facilitate updates between EUS versions)
-- `fast-{{ product_version }}`
-- `candidate-{{ product_version }}`
+- `fast-4.22`
+- `candidate-4.22`
 
 If you do not want the Cluster Version Operator to fetch available updates from the update recommendation service, you can use the `oc adm upgrade channel` command in the OpenShift CLI to configure an empty channel. This configuration can be helpful if, for example, a cluster has restricted network access and there is no local, reachable update recommendation service.
 
@@ -42,11 +42,11 @@ OpenShift Container Platform offers several update channels for you to choose fr
 
 ### fast-4.22 channel {#fast-version-channel_understanding-update-channels-releases}
 
-The `fast-{{ product_version }}` channel is updated with new versions of OpenShift Container Platform 4.22 as soon as Red Hat declares the version as a general availability (GA) release. As such, these releases are fully supported and purposed to be used in production environments.
+The `fast-4.22` channel is updated with new versions of OpenShift Container Platform 4.22 as soon as Red Hat declares the version as a general availability (GA) release. As such, these releases are fully supported and purposed to be used in production environments.
 
 ### stable-4.22 channel {#stable-version-channel_understanding-update-channels-releases}
 
-While the `fast-{{ product_version }}` channel contains releases as soon as their errata are published, releases are added to the `stable-{{ product_version }}` channel after a delay. During this delay, data is collected from multiple sources and analyzed for indications of product regressions. Once a significant number of data points have been collected, these releases are added to the stable channel.
+While the `fast-4.22` channel contains releases as soon as their errata are published, releases are added to the `stable-4.22` channel after a delay. During this delay, data is collected from multiple sources and analyzed for indications of product regressions. Once a significant number of data points have been collected, these releases are added to the stable channel.
 
 > [!NOTE]
 > Since the time required to obtain a significant number of data points varies based on many factors, Service LeveL Objective (SLO) is not offered for the delay duration between fast and stable channels. For more information, please see "Choosing the correct channel for your cluster"
@@ -62,7 +62,7 @@ In addition to the stable channel, all even-numbered minor versions of OpenShift
 
 ### candidate-4.22 channel {#candidate-version-channel_understanding-update-channels-releases}
 
-The `candidate-{{ product_version }}` channel offers unsupported early access to releases as soon as they are built. Releases present only in candidate channels may not contain the full feature set of eventual GA releases or features may be removed prior to GA. Additionally, these releases have not been subject to full Red Hat Quality Assurance and may not offer update paths to later GA releases. Given these caveats, the candidate channel is only suitable for testing purposes where destroying and recreating a cluster is acceptable.
+The `candidate-4.22` channel offers unsupported early access to releases as soon as they are built. Releases present only in candidate channels may not contain the full feature set of eventual GA releases or features may be removed prior to GA. Additionally, these releases have not been subject to full Red Hat Quality Assurance and may not offer update paths to later GA releases. Given these caveats, the candidate channel is only suitable for testing purposes where destroying and recreating a cluster is acceptable.
 
 ## Restricted network clusters {#restricted-network-clusters_understanding-update-channels-releases}
 
@@ -107,7 +107,7 @@ First, select the minor version you want for your cluster update. Selecting a ch
 > [!NOTE]
 > Due to the complexity involved in planning updates between versions many minors apart, channels that assist in planning updates beyond a single Control Plane Only update are not offered.
 
-Second, you should choose your desired rollout strategy. You may choose to update as soon as Red Hat declares a release GA by selecting from fast channels or you may want to wait for Red Hat to promote releases to the stable channel. Update recommendations offered in the `fast-{{ product_version }}` and `stable-{{ product_version }}` are both fully supported and benefit equally from ongoing data analysis. The promotion delay before promoting a release to the stable channel represents the only difference between the two channels. Updates to the latest z-streams are generally promoted to the stable channel within a week or two, however the delay when initially rolling out updates to the latest minor is much longer, generally 45-90 days. Please consider the promotion delay when choosing your desired channel, as waiting for promotion to the stable channel may affect your scheduling plans.
+Second, you should choose your desired rollout strategy. You may choose to update as soon as Red Hat declares a release GA by selecting from fast channels or you may want to wait for Red Hat to promote releases to the stable channel. Update recommendations offered in the `fast-4.22` and `stable-4.22` are both fully supported and benefit equally from ongoing data analysis. The promotion delay before promoting a release to the stable channel represents the only difference between the two channels. Updates to the latest z-streams are generally promoted to the stable channel within a week or two, however the delay when initially rolling out updates to the latest minor is much longer, generally 45-90 days. Please consider the promotion delay when choosing your desired channel, as waiting for promotion to the stable channel may affect your scheduling plans.
 
 Additionally, there are several factors which may lead an organization to move clusters to the fast channel either permanently or temporarily including the following:
 
@@ -129,7 +129,7 @@ The web console will display an alert if you switch to a channel that does not i
 
 Changing your channel might impact the supportability of your cluster. The following conditions might apply:
 
-- Your cluster is still supported if you change from the `stable-{{ product_version }}` channel to the `fast-{{ product_version }}` channel.
-- You can switch to the `candidate-{{ product_version }}` channel at any time, but some releases for this channel might be unsupported.
-- You can switch from the `candidate-{{ product_version }}` channel to the `fast-{{ product_version }}` channel if your current release is a general availability release.
-- You can always switch from the `fast-{{ product_version }}` channel to the `stable-{{ product_version }}` channel. There is a possible delay of up to a day for the release to be promoted to `stable-{{ product_version }}` if the current release was recently promoted.
+- Your cluster is still supported if you change from the `stable-4.22` channel to the `fast-4.22` channel.
+- You can switch to the `candidate-4.22` channel at any time, but some releases for this channel might be unsupported.
+- You can switch from the `candidate-4.22` channel to the `fast-4.22` channel if your current release is a general availability release.
+- You can always switch from the `fast-4.22` channel to the `stable-4.22` channel. There is a possible delay of up to a day for the release to be promoted to `stable-4.22` if the current release was recently promoted.

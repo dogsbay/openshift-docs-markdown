@@ -18,7 +18,7 @@ As a cluster administrator, you can install the MetalLB Operator by using the Op
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, navigate to **Ecosystem** -> **Software Catalog**.
+1. In the OpenShift Container Platform web console, navigate to **Ecosystem** → **Software Catalog**.
 2. Type `metallb` in the **Filter by keyword** box to find the MetalLB Operator.
 
    You can also filter options by **Infrastructure Features**. For example, select **Disconnected** if you want to see Operators that work in disconnected environments, also known as restricted network environments.
@@ -32,12 +32,12 @@ As a cluster administrator, you can install the MetalLB Operator by using the Op
 
 1. To confirm that the installation is successful:
 
-   1. Navigate to the **Ecosystem** -> **Installed Operators** page.
+   1. Navigate to the **Ecosystem** → **Installed Operators** page.
    2. Check that the Operator is installed in the `metallb-system` namespace and that its status is `Succeeded`.
 2. If the Operator is not installed successfully, check the status of the Operator and review the logs:
 
-   1. Navigate to the **Ecosystem** -> **Installed Operators** page and inspect the `Status` column for any errors or failures.
-   2. Navigate to the **Workloads** -> **Pods** page and check the logs in any pods in the `metallb-system` project that are reporting issues.
+   1. Navigate to the **Ecosystem** → **Installed Operators** page and inspect the `Status` column for any errors or failures.
+   2. Navigate to the **Workloads** → **Pods** page and check the logs in any pods in the `metallb-system` project that are reporting issues.
 
 ## Installing from the software catalog using the CLI {#nw-metallb-installing-operator-cli_metallb-operator-install}
 
@@ -145,7 +145,7 @@ The verification steps assume the MetalLB Operator is installed in the `metallb-
 
    ```terminal
    NAME            CSV                                                 APPROVAL    APPROVED
-   install-wzg94   metallb-operator.{{ product_version }}.0-nnnnnnnnnnnn   Automatic   true
+   install-wzg94   metallb-operator.4.22.0-nnnnnnnnnnnn   Automatic   true
    ```
 
 ## Starting MetalLB on your cluster {#nw-metallb-operator-initial-config_metallb-operator-install}
@@ -388,7 +388,8 @@ To manage compute resources on nodes running MetalLB in OpenShift Container Plat
   $ oc describe pod <pod_name>
   ```
 
-## Additional resources {#additional-resources_metallb-operator-install}
+**Additional resources**
+{._additional-resources}
 
 - [Placing pods on specific nodes using node selectors](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-node-selectors#nodes-scheduler-node-selectors)
 - [Controlling pod placement using node taints](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations-about)

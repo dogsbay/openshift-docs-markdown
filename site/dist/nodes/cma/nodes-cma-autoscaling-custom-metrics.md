@@ -13,7 +13,7 @@ You can access the metrics and run queries by using the OpenShift Container Plat
 **Procedure**
 
 1. Select the **Administrator** perspective in the OpenShift Container Platform web console.
-2. Select **Observe** -> **Metrics**.
+2. Select **Observe** → **Metrics**.
 3. To create a custom query, add your PromQL query to the **Expression** field.
 4. To add multiple queries, select **Add Query**.
 

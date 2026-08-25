@@ -29,7 +29,7 @@ You can install the Compliance Operator through the OpenShift Container Platform
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, navigate to **Ecosystem** -> **Software Catalog**.
+1. In the OpenShift Container Platform web console, navigate to **Ecosystem** → **Software Catalog**.
 2. Search for the Compliance Operator, then click **Install**.
 3. Keep the default selection of **Installation mode** and **namespace** to ensure that the Operator will be installed to the `openshift-compliance` namespace.
 4. Click **Install**.
@@ -38,13 +38,13 @@ You can install the Compliance Operator through the OpenShift Container Platform
 
 To confirm that the installation is successful:
 
-1. Navigate to the **Ecosystem** -> **Installed Operators** page.
+1. Navigate to the **Ecosystem** → **Installed Operators** page.
 2. Check that the Compliance Operator is installed in the `openshift-compliance` namespace and its status is `Succeeded`.
 
 If the Operator is not installed successfully:
 
-1. Navigate to the **Ecosystem** -> **Installed Operators** page and inspect the `Status` column for any errors or failures.
-2. Navigate to the **Workloads** -> **Pods** page and check the logs in any pods in the `openshift-compliance` project that are reporting issues.
+1. Navigate to the **Ecosystem** → **Installed Operators** page and inspect the `Status` column for any errors or failures.
+2. Navigate to the **Workloads** → **Pods** page and check the logs in any pods in the `openshift-compliance` project that are reporting issues.
 
 ## Installing the Compliance Operator using the CLI {#installing-compliance-operator-cli_compliance-operator-installation}
 
@@ -314,7 +314,8 @@ Install the Compliance Operator on hosted control planes by creating a `Subscrip
    $ oc get deploy -n openshift-compliance
    ```
 
-## Additional resources {#additional-resources_compliance-operator-installation}
+**Additional resources**
+{._additional-resources}
 
 - [Compliance Operator reports incorrect results on Managed Services](https://access.redhat.com/solutions/6983418)
 - [Persistent storage overview](/openshift-docs-markdown/storage/understanding-persistent-storage#persistent-storage-overview_understanding-persistent-storage)

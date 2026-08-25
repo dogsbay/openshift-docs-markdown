@@ -224,10 +224,12 @@ You can create a certificate for the Ingress Controller and then replace bootstr
    After the certificate is in `Ready` status, the Ingress Controller on your cluster can start using the generated certificate secret.
 
 **Additional resources**
+{._additional-resources}
 
 - [Red Hat Knowledgebase solution](https://access.redhat.com/solutions/4542531)
 
-## Additional resources {#additional-resources_cert-manager-creating-certificate}
+**Additional resources**
+{._additional-resources}
 
 - [Supported issuer types](/openshift-docs-markdown/security/cert_manager_operator/index#cert-manager-issuer-types_cert-manager-operator-about)
 - [Configuring an ACME issuer](/openshift-docs-markdown/security/cert_manager_operator/cert-manager-operator-issuer-acme#cert-manager-operator-issuer-acme)

@@ -20,7 +20,7 @@ You can delete a network policy in a namespace.
 
 - Your cluster uses a network plugin that supports `NetworkPolicy` objects, such as the OVN-Kubernetes network plugin, with `mode: NetworkPolicy` set.
 - You installed the OpenShift CLI (`oc`).
-- You logged in to the cluster with a user with `{{ role }}` privileges.
+- You logged in to the cluster with a user with `admin` privileges.
 - You are working in the namespace where the network policy exists.
 
 **Procedure**
@@ -28,7 +28,7 @@ You can delete a network policy in a namespace.
 - To delete a network policy object, enter the following command. Successful output lists the name of the policy object and the `deleted` status.
 
   ```terminal
-  $ oc delete {{ name }}policy <policy_name> -n <namespace>
+  $ oc delete networkpolicy <policy_name> -n <namespace>
   ```
 
   where:

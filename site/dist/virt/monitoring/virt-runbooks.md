@@ -1,8 +1,8 @@
 ---
-title: "{{ VirtProductName }} runbooks"
+title: OpenShift Virtualization runbooks
 ---
 
-# {{ VirtProductName }} runbooks {#virt-runbooks}
+# OpenShift Virtualization runbooks {#virt-runbooks}
 
 To diagnose and resolve OpenShift Virtualization alerts, you can use the OpenShift Virtualization Operator runbooks. These guides help ensure you can effectively troubleshoot cluster issues and restore system health.
 

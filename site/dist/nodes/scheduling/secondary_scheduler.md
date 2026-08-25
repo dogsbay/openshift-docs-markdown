@@ -21,4 +21,7 @@ You can optionally configure high availability for the secondary scheduler to en
 
 The Secondary Scheduler Operator publishes secondary scheduler metrics to Prometheus by default, enabling monitoring and observability of scheduler performance.
 
+**Additional resources**
+{._additional-resources}
+
 - [Kubernetes scheduling framework](https://kubernetes.io/docs/concepts/scheduling-eviction/scheduling-framework/)

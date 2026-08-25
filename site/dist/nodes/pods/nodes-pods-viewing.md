@@ -113,7 +113,7 @@ You can view resource logs by using the OpenShift Container Platform web console
 
 **Procedure**
 
-1. In the OpenShift Container Platform console, navigate to **Workloads** -> **Pods** or navigate to the pod through the resource you want to investigate.
+1. In the OpenShift Container Platform console, navigate to **Workloads** → **Pods** or navigate to the pod through the resource you want to investigate.
 
    > [!NOTE]
    > Some resources, such as builds, do not have pods to query directly. In such instances, you can locate the **Logs** link on the **Details** page for the resource.
@@ -165,6 +165,7 @@ You can view resource logs by using the command-line interface (CLI). By viewing
   $ oc logs deployment/ruby
   ```
 
-## Additional resources {#additional-resources_nodes-pods-viewing}
+**Additional resources**
+{._additional-resources}
 
 - [oc describe](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-describe)

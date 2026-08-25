@@ -61,10 +61,10 @@ To ensure that your applications receive only authenticated and authorized traff
                env: "dev"
    ```
 
+   -
 
-With this configuration, only `HTTPRoute` resources in namespaces that have the `env: "dev"` label can attach to these listeners.
-
-1. Apply the `Gateway` CR by running the following command:
+   With this configuration, only `HTTPRoute` resources in namespaces that have the `env: "dev"` label can attach to these listeners.
+2. Apply the `Gateway` CR by running the following command:
 
    ```terminal
    $ oc apply -f <gateway_cr>.yaml
@@ -103,7 +103,7 @@ To resolve or prevent routing conflicts, ensure that your listeners adhere to th
 - Distinct hostnames: A gateway can have distinct listeners that use the exact same protocol and port, provided their hostnames are different.
 - Specificity precedence: If one listener uses a wildcard domain (for example, `+++*+++.<example_domain.tld>`) and another listener uses a more specific endpoint for that exact same domain (for example, `<www.example_domain.tld>`), the more specific entry takes precedence. 
 
-  This specificity rule also applies to multiple wildcard domains. For example, `+++**+++.<example_domain.tld>` takes precedence over `+++**+++.<tld>`. This ensures that traffic intended for a specific subdomain is accurately routed to its dedicated listener, even if a broader wildcard listener exists.
+  This specificity rule also applies to multiple wildcard domains. For example, `+++*+++.<example_domain.tld>` takes precedence over `+++*+++.<tld>`. This ensures that traffic intended for a specific subdomain is accurately routed to its dedicated listener, even if a broader wildcard listener exists.
 
   > [!NOTE]
   > In the Gateway API, wildcards match one or more complete DNS labels. For example, `+++*+++.<example.com>` matches `<www.example.com>` and `<sub.domain.example.com>`, but does not match the root domain `<example.com>`.
@@ -123,7 +123,7 @@ When a listener is not routing traffic as expected, you can review its `status` 
    - `<gateway_cr>`: Specify the name of your gateway.
    - `<namespace>`: Specify the namespace where the gateway resides.
 
-     For details on how to interpret the output and resolve common errors, see [#!gateway-listener-troubleshooting-reference_controlling-incoming-traffic-gateway-listeners](#gateway-listener-troubleshooting-reference_controlling-incoming-traffic-gateway-listeners).
+     For details on how to interpret the output and resolve common errors, see [gateway-listener-troubleshooting-reference_controlling-incoming-traffic-gateway-listeners](#gateway-listener-troubleshooting-reference_controlling-incoming-traffic-gateway-listeners).
 
 ### Gateway listener troubleshooting reference {#gateway-listener-troubleshooting-reference_controlling-incoming-traffic-gateway-listeners}
 
@@ -141,7 +141,8 @@ The following table describes common listener conditions and how to resolve them
 | `Accepted` | Indicates that the gateway has accepted the listener’s configuration. This is usually an early step in the listener’s lifecycle. |
 | `Invalid` | Means the listener’s configuration itself contains errors or is malformed, preventing it from being processed. An invalid status indicates errors in your YAML configuration. Check your configuration for typos, incorrect syntax, or missing required fields. |
 
-## Additional resources {#additional-resources_controlling-incoming-traffic-gateway-listeners}
+**Additional resources**
+{._additional-resources}
 
 - [Gateway API documentation: Protocol-specific distinctiveness rules](https://gateway-api.sigs.k8s.io/concepts/api-overview/#distinctiveness)
 - [Gateway API documentation: Hostnames](https://gateway-api.sigs.k8s.io/concepts/hostnames/)

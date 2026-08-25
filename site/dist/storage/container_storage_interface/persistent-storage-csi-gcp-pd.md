@@ -26,6 +26,7 @@ GCP PD driver
 > OpenShift Container Platform provides automatic migration for the GCE Persistent Disk in-tree volume plugin to its equivalent CSI driver. For more information, see "CSI automatic migration".
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage)
 - [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
@@ -59,7 +60,7 @@ To reduce permissions, grant the `iam.serviceAccountUser` role to the control pl
    ```
 
    - `GOOGLE_PROJECT_ID`: The unique ID of your Google Cloud project.
-   - `SERVICE_ACCOUNT_EMAIL`: The email address of the "Member" (the person or service account) who is being granted the new permissions. To find the service account, on WIF clusters, there is a default service account on GCP for the CSI driver based on the cluster name, for example: `${{ CLUSTER_NAME }}-openshift-gcp-pd-csi-*`.
+   - `SERVICE_ACCOUNT_EMAIL`: The email address of the "Member" (the person or service account) who is being granted the new permissions. To find the service account, on WIF clusters, there is a default service account on GCP for the CSI driver based on the cluster name, for example: `${CLUSTER_NAME}-openshift-gcp-pd-csi-*`.
    - `MASTER_NODE_SA`: The email address of the service account used by your cluster’s master node.
    - `WORKER_NODE_SA`: The email address of the service account used by your cluster’s worker nodes.
 2. Remove project-level `iam.serviceAccountUser` role from the binding created by the installation program by running the following Bash commands:
@@ -68,7 +69,7 @@ To reduce permissions, grant the `iam.serviceAccountUser` role to the control pl
    gcloud projects remove-iam-policy-binding "${GOOGLE_PROJECT_ID}" --member="serviceAccount:${SERVICE_ACCOUNT_EMAIL}" --role="roles/iam.serviceAccountUser" --condition=None
    ```
 
-   - `SERVICE_ACCOUNT_EMAIL`: The email address of the account losing the permission. For example, `my-app-sa@my-project.iam.gserviceaccount.com`. To find the service account, on WIF clusters, there is a default service account on GCP for the CSI driver based on the cluster name, for example: `${{ CLUSTER_NAME }}-openshift-gcp-pd-csi-*`.
+   - `SERVICE_ACCOUNT_EMAIL`: The email address of the account losing the permission. For example, `my-app-sa@my-project.iam.gserviceaccount.com`. To find the service account, on WIF clusters, there is a default service account on GCP for the CSI driver based on the cluster name, for example: `${CLUSTER_NAME}-openshift-gcp-pd-csi-*`.
    - `GOOGLE_PROJECT_ID`: The unique ID of the Google Cloud project where this is occurring. For example, `prod-data-789`.
 
 ## GCP PD CSI driver storage class parameters {#persistent-storage-csi-gcp-pd-storage-class-ref_persistent-storage-csi-gcp-pd}
@@ -83,11 +84,12 @@ The GCP PD CSI driver uses the `csi.storage.k8s.io/fstype` parameter key to supp
 
 | Parameter | Values | Default | Description |
 | --- | --- | --- | --- |
-| `type` | `pd-ssd`, `pd-standard`, `pd-balanced`, or `hyperdisk-balanced` | `pd-standard` | Allows you to choose between standard PVs or solid-state-drive PVs. The driver does not validate the value, thus all the possible values are accepted. For `hyperdisk-balanced`, be sure to check the limitations under "C3 and N4 instance type limitations". |
+| `type` | `pd-ssd`, `pd-standard`, `pd-balanced`, or `hyperdisk-balanced` | `pd-standard` | Allows you to choose between standard PVs or solid-state-drive PVs.<br>The driver does not validate the value, thus all the possible values are accepted.<br>For `hyperdisk-balanced`, be sure to check the limitations under "C3 and N4 instance type limitations". |
 | `replication-type` | `none` or `regional-pd` | `none` | Allows you to choose between zonal or regional PVs. |
 | `disk-encryption-kms-key` | Fully qualified resource identifier for the key to use to encrypt new disks. | Empty string | Uses customer-managed encryption keys (CMEK) to encrypt new disks. |
 
 **Additional resources**
+{._additional-resources}
 
 - [C3 and N4 instance type limitations](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-gcp-pd#persistent-storage-csi-gcp-hyperdisk-limitations_persistent-storage-csi-gcp-pd)
 
@@ -115,6 +117,7 @@ The GCP PD CSI driver support for the C3 instance type for bare metal and N4 mac
 - For more limitations, see Google Cloud documentation "Limitations for Hyperdisk".
 
 **Additional resources**
+{._additional-resources}
 
 - [Setting up hyperdisk-balanced disk](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-gcp-pd#persistent-storage-csi-gcp-hyperdisk-storage-pools-procedure_persistent-storage-csi-gcp-pd)
 - [OCPBUGS-39258](https://issues.redhat.com/browse/OCPBUGS-39258)
@@ -135,6 +138,7 @@ Hyperdisk Balanced High Availability volumes are useful for:
 To set up Hyperdisk Balanced High Availability disks, see "Setting up hyperdisk-balanced disks".
 
 **Additional resources**
+{._additional-resources}
 
 - [Setting up hyperdisk-balanced disk](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-gcp-pd#persistent-storage-csi-gcp-hyperdisk-storage-pools-procedure_persistent-storage-csi-gcp-pd)
 
@@ -351,6 +355,7 @@ To provision high-performance hyperdisk-balanced storage volumes, configure a st
       ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Create a Hyperdisk Storage Pool](https://cloud.google.com/compute/docs/disks/create-storage-pools#create-pool)
 - [Installing a cluster on GCP with customizations](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#installing-gcp-customizations)
@@ -449,6 +454,7 @@ For more information about CMEK and Cloud KMS resources, see Google Cloud docume
    Your CMEK-protected PV is now ready to use with your OpenShift Container Platform cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Using customer-managed encryption keys (CMEK)](https://cloud.google.com/kubernetes-engine/docs/how-to/using-cmek)
 - [Retrieving a resource’s ID](https://cloud.google.com/kms/docs/resource-hierarchy#retrieve_resource_id)
@@ -482,6 +488,7 @@ This features supports the following storage types:
   For information about installing with IBM Cloud with user-managed encryption, see "User-managed encryption for IBM Cloud" and "Installing on IBM Cloud".
 
 **Additional resources**
+{._additional-resources}
 
 - [Additional Google Cloud configuration parameters](/openshift-docs-markdown/installing/installing_gcp/installation-config-parameters-gcp#installation-configuration-parameters-additional-gcp_installation-config-parameters-gcp)
 
@@ -497,9 +504,11 @@ For Google Cloud Platform (GCP) persistent disk (PD) storage  CSI, there is a no
 For more information, see, "Volume snapshots CRD: VolumeSnapshotClass".
 
 **Additional resources**
+{._additional-resources}
 
 - [Volume snapshots CRD: VolumeSnapshotClass](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-snapshots#volume-snapshot-crds)
 
-## Additional resources {#resources-for-gcp_persistent-storage-csi-gcp-pd}
+**Additional resources**
+{._additional-resources}
 
 - [Persistent storage using GCE Persistent Disk](/openshift-docs-markdown/storage/persistent_storage/persistent-storage-gce#persistent-storage-using-gce)

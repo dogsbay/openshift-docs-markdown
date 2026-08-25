@@ -65,6 +65,7 @@ For scheduled hardware maintenance, you need to consider how to move your applic
   > When moving CNF applications, you might need to verify ahead of time that there are enough additional worker nodes in the cluster due to anti-affinity and pod disruption budget.
 
 **Additional resources**
+{._additional-resources}
 
 - [Working with nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working_nodes-nodes-working)
 
@@ -86,6 +87,7 @@ If you do not have disk redundancy configured on your node through hardware or s
 For more information, see "OpenShift Container Platform storage overview" in *Storage*.
 
 **Additional resources**
+{._additional-resources}
 
 - [OpenShift Container Platform storage overview](/openshift-docs-markdown/storage/index#storage-overview_storage-overview)
 

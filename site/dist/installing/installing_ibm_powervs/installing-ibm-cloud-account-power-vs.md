@@ -1,5 +1,5 @@
 ---
-title: Configuring an {{ ibm_cloud_title }} account
+title: Configuring an IBM Cloud account
 ---
 
 # Configuring an IBM Cloud account {#installing-ibm-cloud-account-power-vs}
@@ -54,6 +54,7 @@ The installation program creates the following nodes:
 - Three compute nodes
 
 **Additional resources**
+{._additional-resources}
 
 - [Quotas and service limits](https://cloud.ibm.com/docs/vpc?topic=vpc-quotas)
 - [Creating an IBM Power Virtual Server](https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-creating-power-virtual-server)
@@ -172,6 +173,7 @@ In IBM Cloud(R) IAM, access policies can be attached to different subjects:
 > For more information, see "Access groups" and "Users and service IDs".
 
 **Additional resources**
+{._additional-resources}
 
 - [IBM Cloud(R) IAM overview](https://cloud.ibm.com/docs/account?topic=account-iamoverview)
 - [Access groups (IBM Cloud(R) documentation)](https://cloud.ibm.com/docs/account?topic=account-groups)
@@ -191,6 +193,9 @@ You must create a user API key or a service ID API key for your IBM Cloud(R) acc
 - Create an API key, depending on how you defined your IAM access policies.
 
   For example, if you assigned your access policies to a user, you must create a user API key. If you assigned your access policies to a service ID, you must create a service ID API key. If your access policies are assigned to an access group, you can use either API key type. For more information on IBM Cloud(R) API keys, see "User API key", "Service ID API key", and "Understanding API keys".
+
+**Additional resources**
+{._additional-resources}
 
 - [User API key (IBM Cloud(R) documentation)](https://cloud.ibm.com/docs/account?topic=account-userapikey)
 - [Service ID API key (IBM Cloud(R) documentation)](https://cloud.ibm.com/docs/account?topic=account-serviceidapikeys)
@@ -261,6 +266,7 @@ IBM Cloud(R) supports the following regions:
 - `ca-tor`
 - `jp-tok`
 
-## Additional resources {#additional-resources_installing-ibm-cloud-account-power-vs}
+**Additional resources**
+{._additional-resources}
 
 - [Creating an IBM Power(R) Virtual Server workspace](/openshift-docs-markdown/installing/installing_ibm_powervs/creating-ibm-power-vs-workspace#creating-ibm-power-vs-workspace)

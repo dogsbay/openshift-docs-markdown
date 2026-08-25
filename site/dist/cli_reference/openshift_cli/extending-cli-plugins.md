@@ -44,6 +44,9 @@ This procedure creates a simple Bash plugin that prints a message to the termina
 
    After you install this plugin for the OpenShift CLI (`oc`), you can invoke it by using the `oc foo` command.
 
+**Additional resources**
+{._additional-resources}
+
 - [Sample plugin repository](https://github.com/kubernetes/sample-cli-plugin)
 - [CLI runtime repository](https://github.com/kubernetes/cli-runtime/)
 

@@ -38,6 +38,7 @@ spec:
 `spec.config.gangScheduling.byWorkload.admission`
 :   If the `policy` value is set to `ByWorkload`, you must configure job admission settings. The possible values for the `admission` spec are `Parallel`, `Sequential`, or empty (`""`). When the `admission` value is set to `Parallel`, pods from any job can be admitted at any time. This can cause a deadlock, where jobs are in contention for cluster capacity. When a deadlock occurs, the successful scheduling of pods from another job can prevent the scheduling of pods from the current job. When the `admission` value is set to `Sequential`, only pods from the currently processing job are admitted. After all of the pods from the current job have been admitted and are ready, Red Hat build of Kueue processes the next job. Sequential processing can slow down admission when the cluster has sufficient capacity for multiple jobs, but provides a higher likelihood that all of the pods for a job are scheduled together successfully. When the `admission` value is empty or set to `""`, the Red Hat build of Kueue Operator determines job admission settings. Currently, the `admission` value is set to `Parallel` by default.
 
-## Additional resources {#additional-resources_gangscheduling}
+**Additional resources**
+{._additional-resources}
 
 - [Creating a Kueue custom resource](/openshift-docs-markdown/ai_workloads/kueue/install-kueue#create-kueue-cr_install-kueue)

@@ -16,11 +16,12 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 
-const headings = [{"depth":1,"slug":"configuring-alert-notifications","text":"Configuring alert notifications"},{"depth":2,"slug":"sending-notifications-to-external-systems_configuring-alert-notifications","text":"Sending notifications to external systems"},{"depth":2,"slug":"additional-resources_configuring-alert-notifications","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"configuring-alert-notifications","text":"Configuring alert notifications"},{"depth":2,"slug":"sending-notifications-to-external-systems_configuring-alert-notifications","text":"Sending notifications to external systems"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/post_installation_configuration/configuring-alert-notifications";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -39,7 +40,7 @@ const pageCategory = ["post_installation_configuration"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring alert notifications {#configuring-alert-notifications}\n\nYou can configure alert notifications to send firing alerts from your cluster to external systems, helping ensure that administrators are notified of conditions that require attention.\n\nIn OpenShift Container Platform, an alert is fired when the conditions defined in an alerting rule are true. An alert provides a notification that a set of circumstances are apparent within a cluster. Firing alerts can be viewed in the Alerting UI in the OpenShift Container Platform web console by default. After an installation, you can configure OpenShift Container Platform to send alert notifications to external systems.\n\n## Sending notifications to external systems {#sending-notifications-to-external-systems_configuring-alert-notifications}\n\nYou can configure alert receivers to notify the appropriate teams or external systems when alerts fire. You can also use the watchdog alert to detect communication failures between Alertmanager and a notification provider.\n\nIn OpenShift Container Platform 4.22\n\n, firing alerts can be viewed in the Alerting UI. Alerts are not configured by default to be sent to any notification systems. You can configure OpenShift Container Platform to send alerts to the following receiver types:\n\n- PagerDuty\n- Webhook\n- Email\n- Slack\n- Microsoft Teams\n\nRouting alerts to receivers enables you to send timely notifications to the appropriate teams when failures occur. For example, critical alerts require immediate attention and are typically paged to an individual or a critical response team. Alerts that provide non-critical warning notifications might instead be routed to a ticketing system for non-immediate review.\n\n***Checking that alerting is operational by using the watchdog alert***\n\nOpenShift Container Platform monitoring includes a watchdog alert that fires continuously. Alertmanager repeatedly sends watchdog alert notifications to configured notification providers. The provider is usually configured to notify an administrator when it stops receiving the watchdog alert. This mechanism helps you quickly identify any communication issues between Alertmanager and the notification provider.\n\n## Additional resources {#additional-resources_configuring-alert-notifications}\n\n- [About OpenShift Container Platform monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/about_monitoring/about-ocp-monitoring)\n- [Configuring alerts and notifications for core platform monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_core_platform_monitoring/configuring-alerts-and-notifications)\n- [Configuring alerts and notifications for user workload monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/configuring-alerts-and-notifications-uwm)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/configuring-alert-notifications.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring alert notifications {#configuring-alert-notifications}\n\nYou can configure alert notifications to send firing alerts from your cluster to external systems, helping ensure that administrators are notified of conditions that require attention.\n\nIn OpenShift Container Platform, an alert is fired when the conditions defined in an alerting rule are true. An alert provides a notification that a set of circumstances are apparent within a cluster. Firing alerts can be viewed in the Alerting UI in the OpenShift Container Platform web console by default. After an installation, you can configure OpenShift Container Platform to send alert notifications to external systems.\n\n## Sending notifications to external systems {#sending-notifications-to-external-systems_configuring-alert-notifications}\n\nYou can configure alert receivers to notify the appropriate teams or external systems when alerts fire. You can also use the watchdog alert to detect communication failures between Alertmanager and a notification provider.\n\nIn OpenShift Container Platform 4.22 , firing alerts can be viewed in the Alerting UI. Alerts are not configured by default to be sent to any notification systems. You can configure OpenShift Container Platform to send alerts to the following receiver types:\n\n- PagerDuty\n- Webhook\n- Email\n- Slack\n- Microsoft Teams\n\nRouting alerts to receivers enables you to send timely notifications to the appropriate teams when failures occur. For example, critical alerts require immediate attention and are typically paged to an individual or a critical response team. Alerts that provide non-critical warning notifications might instead be routed to a ticketing system for non-immediate review.\n\n**Checking that alerting is operational by using the watchdog alert**\n\nOpenShift Container Platform monitoring includes a watchdog alert that fires continuously. Alertmanager repeatedly sends watchdog alert notifications to configured notification providers. The provider is usually configured to notify an administrator when it stops receiving the watchdog alert. This mechanism helps you quickly identify any communication issues between Alertmanager and the notification provider.\n\n**Additional resources**\n{._additional-resources}\n\n- [About OpenShift Container Platform monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/about_monitoring/about-ocp-monitoring)\n- [Configuring alerts and notifications for core platform monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_core_platform_monitoring/configuring-alerts-and-notifications)\n- [Configuring alerts and notifications for user workload monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/configuring-alerts-and-notifications-uwm)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/configuring-alert-notifications.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,12 +79,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -91,12 +93,11 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="configuring-alert-notifications" class="group scroll-mt-20">Configuring alert notifications<a href="#configuring-alert-notifications" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can configure alert notifications to send firing alerts from your cluster to external systems, helping ensure that administrators are notified of conditions that require attention.</p>
+      <p class="_abstract">You can configure alert notifications to send firing alerts from your cluster to external systems, helping ensure that administrators are notified of conditions that require attention.</p>
       <p>In OpenShift Container Platform, an alert is fired when the conditions defined in an alerting rule are true. An alert provides a notification that a set of circumstances are apparent within a cluster. Firing alerts can be viewed in the Alerting UI in the OpenShift Container Platform web console by default. After an installation, you can configure OpenShift Container Platform to send alert notifications to external systems.</p>
       <h2 id="sending-notifications-to-external-systems_configuring-alert-notifications" class="group scroll-mt-20">Sending notifications to external systems<a href="#sending-notifications-to-external-systems_configuring-alert-notifications" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">You can configure alert receivers to notify the appropriate teams or external systems when alerts fire. You can also use the watchdog alert to detect communication failures between Alertmanager and a notification provider.</p>
-      <p>In OpenShift Container Platform 4.22</p>
-      <p>, firing alerts can be viewed in the Alerting UI. Alerts are not configured by default to be sent to any notification systems. You can configure OpenShift Container Platform to send alerts to the following receiver types:</p>
+      <p>In OpenShift Container Platform 4.22 , firing alerts can be viewed in the Alerting UI. Alerts are not configured by default to be sent to any notification systems. You can configure OpenShift Container Platform to send alerts to the following receiver types:</p>
       <ul>
       <li>PagerDuty</li>
       <li>Webhook</li>
@@ -105,14 +106,16 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>Microsoft Teams</li>
       </ul>
       <p>Routing alerts to receivers enables you to send timely notifications to the appropriate teams when failures occur. For example, critical alerts require immediate attention and are typically paged to an individual or a critical response team. Alerts that provide non-critical warning notifications might instead be routed to a ticketing system for non-immediate review.</p>
-      <p><em></em><em><strong>Checking that alerting is operational by using the watchdog alert</strong></em><em></em></p>
+      <p><strong>Checking that alerting is operational by using the watchdog alert</strong></p>
       <p>OpenShift Container Platform monitoring includes a watchdog alert that fires continuously. Alertmanager repeatedly sends watchdog alert notifications to configured notification providers. The provider is usually configured to notify an administrator when it stops receiving the watchdog alert. This mechanism helps you quickly identify any communication issues between Alertmanager and the notification provider.</p>
-      <h2 id="additional-resources_configuring-alert-notifications" class="group scroll-mt-20">Additional resources<a href="#additional-resources_configuring-alert-notifications" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul>
       <li><a href="https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/about_monitoring/about-ocp-monitoring">About OpenShift Container Platform monitoring</a></li>
       <li><a href="https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_core_platform_monitoring/configuring-alerts-and-notifications">Configuring alerts and notifications for core platform monitoring</a></li>
       <li><a href="https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/configuring-alerts-and-notifications-uwm">Configuring alerts and notifications for user workload monitoring</a></li>
       </ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

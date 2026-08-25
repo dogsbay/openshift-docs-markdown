@@ -1,5 +1,5 @@
 ---
-title: Creating a cluster with multi-architecture compute machines on bare metal, {{ ibm_power_title }}, or {{ ibm_z_title }}
+title: Creating a cluster with multi-architecture compute machines on bare metal, IBM Power, or IBM Z
 ---
 
 # Creating a cluster with multi-architecture compute machines on bare metal, IBM Power, or IBM Z {#creating-multi-arch-compute-nodes-bare-metal}
@@ -186,6 +186,7 @@ To scale your OpenShift Container Platform bare metal cluster, you can create mo
 2. Use the PXE or iPXE infrastructure to create the required compute machines for your cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [How does one set up a serial terminal and/or console in Red Hat Enterprise Linux? (Red Hat Knowledgebase article)](https://access.redhat.com/articles/7212)
 - [`IMAGE_GZIP` option in iPXE (iPXE documentation)](https://ipxe.org/buildcfg/image_gzip)
@@ -248,7 +249,8 @@ To allow newly added machines to join your OpenShift Container Platform cluster,
      where:
 
      `<csr_name>`
-     :   Specifies the name of a CSR from the list of current CSRs. \*   To approve all pending CSRs, run the following command:
+     :   Specifies the name of a CSR from the list of current CSRs.
+   - To approve all pending CSRs, run the following command:
 
      ```terminal
      $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs --no-run-if-empty oc adm certificate approve
@@ -279,7 +281,8 @@ To allow newly added machines to join your OpenShift Container Platform cluster,
      where:
 
      `<csr_name>`
-     :   Specifies the name of a CSR from the list of current CSRs. \*   To approve all pending CSRs, run the following command:
+     :   Specifies the name of a CSR from the list of current CSRs.
+   - To approve all pending CSRs, run the following command:
 
      ```terminal
      $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs oc adm certificate approve
@@ -302,7 +305,8 @@ To allow newly added machines to join your OpenShift Container Platform cluster,
    > [!NOTE]
    > You might need to wait a few minutes after approval of the server CSRs for the machines to change to the `Ready` status.
 
-## Additional resources {#additional-resources_creating-multi-arch-compute-nodes-bare-metal}
+**Additional resources**
+{._additional-resources}
 
 - [Installing a user provisioned cluster on bare metal](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#installing-bare-metal)
 - [Installing a cluster on IBM Power(R)](/openshift-docs-markdown/installing/installing_ibm_power/preparing-to-install-on-ibm-power#preparing-to-install-on-ibm-power)

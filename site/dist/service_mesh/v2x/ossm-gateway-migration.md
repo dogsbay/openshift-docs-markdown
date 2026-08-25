@@ -143,7 +143,8 @@ This procedure explains how to migrate with zero downtime from gateways defined 
    > - When the old ingress gateway `Service` object is disabled it is not deleted. You may save this `Service` object to a file and manage it alongside the new gateway injection resources.
    > - The `/spec/gateways/ingress/enabled` path is available if you explicitly set it for the `ServiceMeshControlPlane` resource. If you are using the default value, you must patch the `/spec/gateways/enabled` path for both ingress and egress gateways.
 
-## Additional resources {#additional-resources_gateway-migration}
+**Additional resources**
+{._additional-resources}
 
 - [Enabling gateway injection](/openshift-docs-markdown/service_mesh/v2x/ossm-traffic-manage#ossm-automatic-gateway-injection_traffic-management)
 - [Deploying automatic gateway injection](/openshift-docs-markdown/service_mesh/v2x/ossm-traffic-manage#ossm-deploying-automatic-gateway-injection_traffic-management)

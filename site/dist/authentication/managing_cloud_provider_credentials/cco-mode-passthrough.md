@@ -155,7 +155,7 @@ The process for rotating cloud credentials depends on the mode that the CCO is c
 
 **Procedure**
 
-1. In the **Administrator** perspective of the web console, navigate to **Workloads** -> **Secrets**.
+1. In the **Administrator** perspective of the web console, navigate to **Workloads** → **Secrets**.
 2. In the table on the **Secrets** page, find the root secret for your cloud provider.
 
 <table>
@@ -188,11 +188,11 @@ The process for rotating cloud credentials depends on the mode that the CCO is c
 </tr>
 </tbody>
 </table>
-1.  Click the Options menu ![](kebab.png 'Options menu') in the same row as the secret and select **Edit Secret**.
-1.  Record the contents of the **Value** field or fields. You can use this information to verify that the value is different after updating the credentials.
-1.  Update the text in the **Value** field or fields with the new authentication information for your cloud provider, and then click **Save**.
 
-1. If you are updating the credentials for a vSphere cluster that does not have the vSphere CSI Driver Operator enabled, you must force a rollout of the Kubernetes controller manager to apply the updated credentials.
+1. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") in the same row as the secret and select **Edit Secret**.
+2. Record the contents of the **Value** field or fields. You can use this information to verify that the value is different after updating the credentials.
+3. Update the text in the **Value** field or fields with the new authentication information for your cloud provider, and then click **Save**.
+4. If you are updating the credentials for a vSphere cluster that does not have the vSphere CSI Driver Operator enabled, you must force a rollout of the Kubernetes controller manager to apply the updated credentials.
 
    > [!NOTE]
    > If the vSphere CSI Driver Operator is enabled, this step is not required.
@@ -213,10 +213,11 @@ The process for rotating cloud credentials depends on the mode that the CCO is c
 
 **Verification**
 
-1. In the **Administrator** perspective of the web console, navigate to **Workloads** -> **Secrets**.
+1. In the **Administrator** perspective of the web console, navigate to **Workloads** → **Secrets**.
 2. Verify that the contents of the **Value** field or fields have changed.
 
 **Additional resources**
+{._additional-resources}
 
 - [vSphere CSI Driver Operator](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-vsphere)
 
@@ -230,7 +231,8 @@ After installation, reduce the permissions on your credential to only those defi
 
 To locate the `CredentialsRequest` CRs that are required for AWS, Azure, or Google Cloud and learn how to change the permissions the CCO uses, see the *Manually creating long-term credentials* topic for your platform.
 
-## Additional resources {#additional-resources_cco-mode-passthrough}
+**Additional resources**
+{._additional-resources}
 
 - [Manually creating long-term credentials for AWS](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#manually-create-iam_installing-aws-customizations)
 - [Manually creating long-term credentials for Azure](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#manually-create-iam_installing-azure-customizations)

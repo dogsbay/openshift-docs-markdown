@@ -271,6 +271,7 @@ If the security posture of your organization does not allow clusters to use an o
         4. Repeat this process for each control plane machine.
 
 **Additional resources**
+{._additional-resources}
 
 - [Updating the control plane configuration](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-feat-config-update_cpmso-managing-machines)
 
@@ -297,6 +298,7 @@ If the security posture of your organization does not allow clusters to use an o
    where `<cluster_name>` is the name of the cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring the Ingress Controller endpoint publishing scope to Internal](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/nw-configuring-ingress-controller-endpoint-publishing-strategy#nw-ingresscontroller-change-internal_nw-configuring-ingress-controller-endpoint-publishing-strategy)
 

@@ -82,114 +82,115 @@ Back up the Red Hat 3scale API Management operator resources, including the `Se
 
 1. Back up your 3scale operator CRs, such as `operatorgroup`, `namespaces`, and `subscriptions`, by creating a YAML file with the following configuration:
 
-```yaml
-apiVersion: velero.io/v1
-kind: Backup
-metadata:
-  name: operator-install-backup
-  namespace: openshift-adp
-spec:
-  csiSnapshotTimeout: 10m0s
-  defaultVolumesToFsBackup: false
-  includedNamespaces:
-  - threescale
-  includedResources:
-  - operatorgroups
-  - subscriptions
-  - namespaces
-  itemOperationTimeout: 1h0m0s
-  snapshotMoveData: false
-  ttl: 720h0m0s
-```
+   ```yaml
+   apiVersion: velero.io/v1
+   kind: Backup
+   metadata:
+     name: operator-install-backup
+     namespace: openshift-adp
+   spec:
+     csiSnapshotTimeout: 10m0s
+     defaultVolumesToFsBackup: false
+     includedNamespaces:
+     - threescale
+     includedResources:
+     - operatorgroups
+     - subscriptions
+     - namespaces
+     itemOperationTimeout: 1h0m0s
+     snapshotMoveData: false
+     ttl: 720h0m0s
+   ```
 
-where: `operator-install-backup`:: Specifies the value of the `metadata.name` parameter in the backup. This is the same value used in the `metadata.backupName` parameter used when restoring the 3scale operator. `threescale`:: Specifies the namespace where the 3scale operator is installed.
+   where:
 
-> [!NOTE]
-> You can also back up and restore `ReplicationControllers`, `Deployment`, and `Pod` objects to ensure that all manually set environments are backed up and restored. This does not affect the flow of restoration.
+   `operator-install-backup`
+   :   Specifies the value of the `metadata.name` parameter in the backup. This is the same value used in the `metadata.backupName` parameter used when restoring the 3scale operator.
 
-1. Create a backup CR by running the following command:
+   `threescale`
+   :   Specifies the namespace where the 3scale operator is installed.
+
+   > [!NOTE]
+   > You can also back up and restore `ReplicationControllers`, `Deployment`, and `Pod` objects to ensure that all manually set environments are backed up and restored. This does not affect the flow of restoration.
+2. Create a backup CR by running the following command:
 
    ```terminal
    $ oc create -f backup.yaml
    ```
 
-```terminal {title="Example output"}
-backup.velero.io/operator-install-backup created
-```
+   ```terminal {title="Example output"}
+   backup.velero.io/operator-install-backup created
+   ```
+3. Back up the `Secret` CR by creating a YAML file with the following configuration:
 
-1. Back up the `Secret` CR by creating a YAML file with the following configuration:
+   ```yaml
+   apiVersion: velero.io/v1
+   kind: Backup
+   metadata:
+     name: operator-resources-secrets
+     namespace: openshift-adp
+   spec:
+     csiSnapshotTimeout: 10m0s
+     defaultVolumesToFsBackup: false
+     includedNamespaces:
+     - threescale
+     includedResources:
+     - secrets
+     itemOperationTimeout: 1h0m0s
+     labelSelector:
+       matchLabels:
+         app: 3scale-api-management
+     snapshotMoveData: false
+     snapshotVolumes: false
+     ttl: 720h0m0s
+   ```
 
-```yaml
-apiVersion: velero.io/v1
-kind: Backup
-metadata:
-  name: operator-resources-secrets
-  namespace: openshift-adp
-spec:
-  csiSnapshotTimeout: 10m0s
-  defaultVolumesToFsBackup: false
-  includedNamespaces:
-  - threescale
-  includedResources:
-  - secrets
-  itemOperationTimeout: 1h0m0s
-  labelSelector:
-    matchLabels:
-      app: 3scale-api-management
-  snapshotMoveData: false
-  snapshotVolumes: false
-  ttl: 720h0m0s
-```
-
-`name`
-:   Specifies the value of the `metadata.name` parameter in the backup. Use this value in the `metadata.backupName` parameter when restoring the `Secret`.
-
-1. Create the `Secret` backup CR by running the following command:
+   `name`
+   :   Specifies the value of the `metadata.name` parameter in the backup. Use this value in the `metadata.backupName` parameter when restoring the `Secret`.
+4. Create the `Secret` backup CR by running the following command:
 
    ```terminal
    $ oc create -f backup-secret.yaml
    ```
 
-```terminal {title="Example output"}
-backup.velero.io/operator-resources-secrets created
-```
+   ```terminal {title="Example output"}
+   backup.velero.io/operator-resources-secrets created
+   ```
+5. Back up the APIManager CR by creating a YAML file with the following configuration:
 
-1. Back up the APIManager CR by creating a YAML file with the following configuration:
+   ```yaml
+   apiVersion: velero.io/v1
+   kind: Backup
+   metadata:
+     name: operator-resources-apim
+     namespace: openshift-adp
+   spec:
+     csiSnapshotTimeout: 10m0s
+     defaultVolumesToFsBackup: false
+     includedNamespaces:
+     - threescale
+     includedResources:
+     - apimanagers
+     itemOperationTimeout: 1h0m0s
+     snapshotMoveData: false
+     snapshotVolumes: false
+     storageLocation: ts-dpa-1
+     ttl: 720h0m0s
+     volumeSnapshotLocations:
+     - ts-dpa-1
+   ```
 
-```yaml
-apiVersion: velero.io/v1
-kind: Backup
-metadata:
-  name: operator-resources-apim
-  namespace: openshift-adp
-spec:
-  csiSnapshotTimeout: 10m0s
-  defaultVolumesToFsBackup: false
-  includedNamespaces:
-  - threescale
-  includedResources:
-  - apimanagers
-  itemOperationTimeout: 1h0m0s
-  snapshotMoveData: false
-  snapshotVolumes: false
-  storageLocation: ts-dpa-1
-  ttl: 720h0m0s
-  volumeSnapshotLocations:
-  - ts-dpa-1
-```
-
-`name`
-:   Specifies the value of the `metadata.name` parameter in the backup. Use this value in the `metadata.backupName` parameter when restoring the APIManager.
-
-1. Create the APIManager CR by running the following command:
+   `name`
+   :   Specifies the value of the `metadata.name` parameter in the backup. Use this value in the `metadata.backupName` parameter when restoring the APIManager.
+6. Create the APIManager CR by running the following command:
 
    ```terminal
    $ oc create -f backup-apimanager.yaml
    ```
 
-```terminal {title="Example output"}
-backup.velero.io/operator-resources-apim created
-```
+   ```terminal {title="Example output"}
+   backup.velero.io/operator-resources-apim created
+   ```
 
 ## Backing up a MySQL database {#backing-up-the-mysql-database_backing-up-3scale-api-management-by-using-oadp}
 
@@ -203,28 +204,27 @@ Back up a MySQL database by creating a persistent volume claim (PVC) to store th
 
 1. Create a YAML file with the following configuration for adding an additional PVC:
 
-```yaml
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: example-claim
-  namespace: threescale
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
-  storageClassName: gp3-csi
-  volumeMode: Filesystem
-```
-
-1. Create the additional PVC by running the following command:
+   ```yaml
+   kind: PersistentVolumeClaim
+   apiVersion: v1
+   metadata:
+     name: example-claim
+     namespace: threescale
+   spec:
+     accessModes:
+       - ReadWriteOnce
+     resources:
+       requests:
+         storage: 1Gi
+     storageClassName: gp3-csi
+     volumeMode: Filesystem
+   ```
+2. Create the additional PVC by running the following command:
 
    ```terminal
    $ oc create -f ts_pvc.yml
    ```
-2. Attach the PVC to the system database pod by editing the `system-mysql` deployment to use the MySQL dump:
+3. Attach the PVC to the system database pod by editing the `system-mysql` deployment to use the MySQL dump:
 
    ```terminal
    $ oc edit deployment system-mysql -n threescale
@@ -251,58 +251,66 @@ spec:
 
    `claimName`
    :   Specifies the PVC that contains the dumped data.
-3. Create a YAML file with following configuration to back up the MySQL database:
+4. Create a YAML file with following configuration to back up the MySQL database:
 
-```yaml
-apiVersion: velero.io/v1
-kind: Backup
-metadata:
-  name: mysql-backup
-  namespace: openshift-adp
-spec:
-  csiSnapshotTimeout: 10m0s
-  defaultVolumesToFsBackup: true
-  hooks:
-    resources:
-    - name: dumpdb
-      pre:
-      - exec:
-          command:
-          - /bin/sh
-          - -c
-          - mysqldump -u $MYSQL_USER --password=$MYSQL_PASSWORD system --no-tablespaces
-            > /var/lib/mysqldump/data/dump.sql
-          container: system-mysql
-          onError: Fail
-          timeout: 5m
-  includedNamespaces:
-  - threescale
-  includedResources:
-  - deployment
-  - pods
-  - replicationControllers
-  - persistentvolumeclaims
-  - persistentvolumes
-  itemOperationTimeout: 1h0m0s
-  labelSelector:
-    matchLabels:
-      app: 3scale-api-management
-      threescale_component_element: mysql
-  snapshotMoveData: false
-  ttl: 720h0m0s
-```
+   ```yaml
+   apiVersion: velero.io/v1
+   kind: Backup
+   metadata:
+     name: mysql-backup
+     namespace: openshift-adp
+   spec:
+     csiSnapshotTimeout: 10m0s
+     defaultVolumesToFsBackup: true
+     hooks:
+       resources:
+       - name: dumpdb
+         pre:
+         - exec:
+             command:
+             - /bin/sh
+             - -c
+             - mysqldump -u $MYSQL_USER --password=$MYSQL_PASSWORD system --no-tablespaces
+               > /var/lib/mysqldump/data/dump.sql
+             container: system-mysql
+             onError: Fail
+             timeout: 5m
+     includedNamespaces:
+     - threescale
+     includedResources:
+     - deployment
+     - pods
+     - replicationControllers
+     - persistentvolumeclaims
+     - persistentvolumes
+     itemOperationTimeout: 1h0m0s
+     labelSelector:
+       matchLabels:
+         app: 3scale-api-management
+         threescale_component_element: mysql
+     snapshotMoveData: false
+     ttl: 720h0m0s
+   ```
 
-where: `mysql-backup`:: Specifies the value of the `metadata.name` parameter in the backup. Use this value in the `metadata.backupName` parameter when restoring the MySQL database. `/var/lib/mysqldump/data/dump.sql`:: Specifies the directory where the data is backed up. `includedResources`:: Specifies the resources to back up.
+   where:
 
-1. Back up the MySQL database by running the following command:
+   `mysql-backup`
+   :   Specifies the value of the `metadata.name` parameter in the backup. Use this value in the `metadata.backupName` parameter when restoring the MySQL database.
+
+   `/var/lib/mysqldump/data/dump.sql`
+   :   Specifies the directory where the data is backed up.
+
+   `includedResources`
+   :   Specifies the resources to back up.
+5. Back up the MySQL database by running the following command:
 
    ```terminal
    $ oc create -f mysql.yaml
    ```
 
-```terminal {title="Example output"}
-backup.velero.io/mysql-backup created
-```
+   ```terminal {title="Example output"}
+   backup.velero.io/mysql-backup created
+   ```
 
 **Verification**
 
@@ -312,18 +320,18 @@ backup.velero.io/mysql-backup created
   $ oc get backups.velero.io mysql-backup -o yaml
   ```
 
-```terminal {title="Example output"}
-status:
-completionTimestamp: "2025-04-17T13:25:19Z"
-errors: 1
-expiration: "2025-05-17T13:25:16Z"
-formatVersion: 1.1.0
-hookStatus: {}
-phase: Completed
-progress: {}
-startTimestamp: "2025-04-17T13:25:16Z"
-version: 1
-```
+  ```terminal {title="Example output"}
+  status:
+  completionTimestamp: "2025-04-17T13:25:19Z"
+  errors: 1
+  expiration: "2025-05-17T13:25:16Z"
+  formatVersion: 1.1.0
+  hookStatus: {}
+  phase: Completed
+  progress: {}
+  startTimestamp: "2025-04-17T13:25:16Z"
+  version: 1
+  ```
 
 ## Backing up the back-end Redis database {#backing-up-the-backend-redis-database_backing-up-3scale-api-management-by-using-oadp}
 
@@ -354,46 +362,45 @@ Back up the back-end Redis database by configuring Velero annotations and creati
    ```
 2. Create a YAML file with the following configuration to back up the Redis database:
 
-```yaml
-apiVersion: velero.io/v1
-kind: Backup
-metadata:
-  name: redis-backup
-  namespace: openshift-adp
-spec:
-  csiSnapshotTimeout: 10m0s
-  defaultVolumesToFsBackup: true
-  includedNamespaces:
-  - threescale
-  includedResources:
-  - deployment
-  - pods
-  - replicationcontrollers
-  - persistentvolumes
-  - persistentvolumeclaims
-  itemOperationTimeout: 1h0m0s
-  labelSelector:
-    matchLabels:
-      app: 3scale-api-management
-      threescale_component: backend
-      threescale_component_element: redis
-  snapshotMoveData: false
-  snapshotVolumes: false
-  ttl: 720h0m0s
-```
+   ```yaml
+   apiVersion: velero.io/v1
+   kind: Backup
+   metadata:
+     name: redis-backup
+     namespace: openshift-adp
+   spec:
+     csiSnapshotTimeout: 10m0s
+     defaultVolumesToFsBackup: true
+     includedNamespaces:
+     - threescale
+     includedResources:
+     - deployment
+     - pods
+     - replicationcontrollers
+     - persistentvolumes
+     - persistentvolumeclaims
+     itemOperationTimeout: 1h0m0s
+     labelSelector:
+       matchLabels:
+         app: 3scale-api-management
+         threescale_component: backend
+         threescale_component_element: redis
+     snapshotMoveData: false
+     snapshotVolumes: false
+     ttl: 720h0m0s
+   ```
 
-`name`
-:   Specifies the value of the `metadata.name` parameter in the backup. Use this value in the `metadata.backupName` parameter when restoring the Redis database.
-
-1. Back up the Redis database by running the following command:
+   `name`
+   :   Specifies the value of the `metadata.name` parameter in the backup. Use this value in the `metadata.backupName` parameter when restoring the Redis database.
+3. Back up the Redis database by running the following command:
 
    ```terminal
    $ oc create -f redis-backup.yaml
    ```
 
-```terminal {title="Example output"}
-backup.velero.io/redis-backup created
-```
+   ```terminal {title="Example output"}
+   backup.velero.io/redis-backup created
+   ```
 
 **Verification**
 
@@ -403,20 +410,21 @@ backup.velero.io/redis-backup created
   $ oc get backups.velero.io redis-backup -o yaml
   ```
 
-```terminal {title="Example output"}
-status:
-completionTimestamp: "2025-04-17T13:25:19Z"
-errors: 1
-expiration: "2025-05-17T13:25:16Z"
-formatVersion: 1.1.0
-hookStatus: {}
-phase: Completed
-progress: {}
-startTimestamp: "2025-04-17T13:25:16Z"
-version: 1
-```
+  ```terminal {title="Example output"}
+  status:
+  completionTimestamp: "2025-04-17T13:25:19Z"
+  errors: 1
+  expiration: "2025-05-17T13:25:16Z"
+  formatVersion: 1.1.0
+  hookStatus: {}
+  phase: Completed
+  progress: {}
+  startTimestamp: "2025-04-17T13:25:16Z"
+  version: 1
+  ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing 3scale API Management on OpenShift](https://docs.redhat.com/en/documentation/red_hat_3scale_api_management/2.15/html/installing_red_hat_3scale_api_management/install-threescale-on-openshift-guide)
 - [Red Hat 3scale API Management](https://docs.redhat.com/en/documentation/red_hat_3scale_api_management)

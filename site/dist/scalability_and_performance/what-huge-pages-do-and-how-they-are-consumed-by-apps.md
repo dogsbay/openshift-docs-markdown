@@ -74,7 +74,7 @@ You can inject the resource allocation as environment variables, a volume plugin
 
 **Procedure**
 
-1. Create a `{{ file_name }}` file that is similar to the following example:
+1. Create a `hugepages-volume-pod.yaml` file that is similar to the following example:
 
    ```yaml
    apiVersion: v1
@@ -132,10 +132,10 @@ You can inject the resource allocation as environment variables, a volume plugin
 
    `spec.volumes.name.items.path`
    :   Specifies what resource to read and use from `requests.hugepages-1Gi` and expose the value as the file `/etc/podinfo/hugepages_1G_request`.
-2. Create the pod from the `{{ file_name }}` file by entering the following command:
+2. Create the pod from the `hugepages-volume-pod.yaml` file by entering the following command:
 
    ```terminal
-   $ oc create -f {{ file_name }}
+   $ oc create -f hugepages-volume-pod.yaml
    ```
 
 **Verification**
@@ -162,6 +162,7 @@ You can inject the resource allocation as environment variables, a volume plugin
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Allowing containers to consume Downward API objects](/openshift-docs-markdown/nodes/containers/nodes-containers-downward-api#nodes-containers-downward-api)
 

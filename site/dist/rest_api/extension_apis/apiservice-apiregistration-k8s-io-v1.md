@@ -1,5 +1,5 @@
 ---
-title: APIService []
+title: APIService [apiregistration.k8s.io/v1]
 ---
 
 # APIService \[apiregistration.k8s.io/v1\] {#apiservice-apiregistration-k8s-io-v1}
@@ -40,11 +40,11 @@ Required
 | --- | --- | --- |
 | `caBundle` | `string` | CABundle is a PEM encoded CA bundle which will be used to validate an API server’s serving certificate. If unspecified, system trust roots on the apiserver are used. |
 | `group` | `string` | Group is the API group name this server hosts |
-| `groupPriorityMinimum` | `integer` | GroupPriorityMinimum is the priority this group should have at least. Higher priority means that the group is preferred by clients over lower priority ones. Note that other versions of this group might specify even higher GroupPriorityMinimum values such that the whole group gets a higher priority. The primary sort is based on GroupPriorityMinimum, ordered highest number to lowest (20 before 10). The secondary sort is based on the alphabetical comparison of the name of the object.  (v1.bar before v1.foo) We’d recommend something like: \*.k8s.io (except extensions) at 18000 and PaaSes (OpenShift, Deis) are recommended to be in the 2000s |
-| `insecureSkipTLSVerify` | `boolean` | InsecureSkipTLSVerify disables TLS certificate verification when communicating with this server. This is strongly discouraged.  You should use the CABundle instead. |
+| `groupPriorityMinimum` | `integer` | GroupPriorityMinimum is the priority this group should have at least. Higher priority means that the group is preferred by clients over lower priority ones. Note that other versions of this group might specify even higher GroupPriorityMinimum values such that the whole group gets a higher priority. The primary sort is based on GroupPriorityMinimum, ordered highest number to lowest (20 before 10). The secondary sort is based on the alphabetical comparison of the name of the object. (v1.bar before v1.foo) We’d recommend something like: \*.k8s.io (except extensions) at 18000 and PaaSes (OpenShift, Deis) are recommended to be in the 2000s |
+| `insecureSkipTLSVerify` | `boolean` | InsecureSkipTLSVerify disables TLS certificate verification when communicating with this server. This is strongly discouraged. You should use the CABundle instead. |
 | `service` | `object` | ServiceReference holds a reference to Service.legacy.k8s.io |
-| `version` | `string` | Version is the API version this server hosts.  For example, "v1" |
-| `versionPriority` | `integer` | VersionPriority controls the ordering of this API version inside of its group.  Must be greater than zero. The primary sort is based on VersionPriority, ordered highest to lowest (20 before 10). Since it’s inside of a group, the number can be small, probably in the 10s. In case of equal version priorities, the version string will be used to compute the order inside a group. If the version string is "kube-like", it will sort above non "kube-like" version strings, which are ordered lexicographically. "Kube-like" versions start with a "v", then are followed by a number (the major version), then optionally the string "alpha" or "beta" and another number (the minor version). These are sorted first by GA > beta > alpha (where GA is a version with no suffix such as beta or alpha), and then by comparing major version, then minor version. An example sorted list of versions: v10, v2, v1, v11beta2, v10beta3, v3beta1, v12alpha1, v11alpha2, foo1, foo10. |
+| `version` | `string` | Version is the API version this server hosts. For example, "v1" |
+| `versionPriority` | `integer` | VersionPriority controls the ordering of this API version inside of its group. Must be greater than zero. The primary sort is based on VersionPriority, ordered highest to lowest (20 before 10). Since it’s inside of a group, the number can be small, probably in the 10s. In case of equal version priorities, the version string will be used to compute the order inside a group. If the version string is "kube-like", it will sort above non "kube-like" version strings, which are ordered lexicographically. "Kube-like" versions start with a "v", then are followed by a number (the major version), then optionally the string "alpha" or "beta" and another number (the minor version). These are sorted first by GA > beta > alpha (where GA is a version with no suffix such as beta or alpha), and then by comparing major version, then minor version. An example sorted list of versions: v10, v2, v1, v11beta2, v10beta3, v3beta1, v12alpha1, v11alpha2, foo1, foo10. |
 
 ### .spec.service {#_specservice}
 
@@ -121,16 +121,16 @@ The following API endpoints are available:
 - `/apis/apiregistration.k8s.io/v1/watch/apiservices`
 
   - `GET`: watch individual changes to a list of APIService. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/apiregistration.k8s.io/v1/apiservices/{{ name }}`
+- `/apis/apiregistration.k8s.io/v1/apiservices/{name}`
 
   - `DELETE`: delete an APIService
   - `GET`: read the specified APIService
   - `PATCH`: partially update the specified APIService
   - `PUT`: replace the specified APIService
-- `/apis/apiregistration.k8s.io/v1/watch/apiservices/{{ name }}`
+- `/apis/apiregistration.k8s.io/v1/watch/apiservices/{name}`
 
   - `GET`: watch changes to an object of kind APIService. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
-- `/apis/apiregistration.k8s.io/v1/apiservices/{{ name }}/status`
+- `/apis/apiregistration.k8s.io/v1/apiservices/{name}/status`
 
   - `GET`: read status of the specified APIService
   - `PATCH`: partially update status of the specified APIService
@@ -229,7 +229,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apiregistration.k8s.io/v1/apiservices/{{ name }} {#_apisapiregistrationk8siov1apiservices_name}
+### /apis/apiregistration.k8s.io/v1/apiservices/{name} {#_apisapiregistrationk8siov1apiservices_name}
 
 **Global path parameters**
 
@@ -334,7 +334,7 @@ Description
 | 201 - Created | [`APIService`](/openshift-docs-markdown/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apiregistration.k8s.io/v1/watch/apiservices/{{ name }} {#_apisapiregistrationk8siov1watchapiservices_name}
+### /apis/apiregistration.k8s.io/v1/watch/apiservices/{name} {#_apisapiregistrationk8siov1watchapiservices_name}
 
 **Global path parameters**
 
@@ -359,7 +359,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apiregistration.k8s.io/v1/apiservices/{{ name }}/status {#_apisapiregistrationk8siov1apiservices_name_status}
+### /apis/apiregistration.k8s.io/v1/apiservices/{name}/status {#_apisapiregistrationk8siov1apiservices_name_status}
 
 **Global path parameters**
 

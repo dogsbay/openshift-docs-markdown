@@ -27,12 +27,13 @@ const headings = [{"depth":1,"slug":"oadp-vmfr","text":"OADP virtual machine fil
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-vmfr/oadp-vmfr";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
-const title = "{{ oadp_short }} virtual machine file restore";
+const title = "OADP virtual machine file restore";
 const description = "Recover individual files from virtual machine backups without restoring the entire VM. Browse, compare, and download files from multiple backups…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
@@ -85,12 +86,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -98,7 +100,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="oadp-vmfr" class="group scroll-mt-20">OADP virtual machine file restore<a href="#oadp-vmfr" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Recover individual files from virtual machine backups without restoring the entire VM. Browse, compare, and download files from multiple backups simultaneously through a web browser or SSH-based tools.</p>
+      <p class="_abstract">Recover individual files from virtual machine backups without restoring the entire VM. Browse, compare, and download files from multiple backups simultaneously through a web browser or SSH-based tools.</p>
       <h2 id="oadp-vmfr-overview_oadp-vmfr" class="group scroll-mt-20">What problem is OADP VMFR solving<a href="#oadp-vmfr-overview_oadp-vmfr" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">Recover individual files from virtual machine (VM) backups without restoring the entire VM. Browse multiple backups simultaneously and retrieve only the files you need through standard tools such as a web browser or <code>rsync</code>.</p>
       <p>Current VM backup recovery workflows require you to restore an entire virtual machine to access a single file. This uses substantial cluster resources and time. The virtual machine file restore (VMFR) feature addresses this problem by providing a Kubernetes-native mechanism for file-level recovery from VM backups created by OADP.</p>

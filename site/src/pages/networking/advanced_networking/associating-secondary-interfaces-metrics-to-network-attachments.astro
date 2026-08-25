@@ -21,7 +21,8 @@ const headings = [{"depth":1,"slug":"associating-secondary-interfaces-metrics-to
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/advanced_networking/associating-secondary-interfaces-metrics-to-network-attachments";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="associating-secondary-interfaces-metrics-to-network-attachments" class="group scroll-mt-20">Associating secondary interfaces metrics to network attachments<a href="#associating-secondary-interfaces-metrics-to-network-attachments" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>To gain better visibility into cluster traffic, you can associate secondary interface metrics with specific network attachments. By using the <code>pod_network_info</code> metric to label interfaces based on their <code>NetworkAttachmentDefinition</code> resource, you can more easily monitor performance and troubleshoot connectivity issues across your network.</p>
+      <p class="_abstract">To gain better visibility into cluster traffic, you can associate secondary interface metrics with specific network attachments. By using the <code>pod_network_info</code> metric to label interfaces based on their <code>NetworkAttachmentDefinition</code> resource, you can more easily monitor performance and troubleshoot connectivity issues across your network.</p>
       <h2 id="cnf-associating-secondary-interfaces-metrics-to-network-attachments_secondary-interfaces-metrics" class="group scroll-mt-20">Extending secondary network metrics for monitoring<a href="#cnf-associating-secondary-interfaces-metrics-to-network-attachments_secondary-interfaces-metrics" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">To monitor and manage network traffic effectively, you can extend secondary network metrics with identifying information. By using the <code>pod_network_name_info</code> metric to label interfaces based on their <code>NetworkAttachmentDefinition</code> resource, you can classify interface types to enable precise metric aggregation and alerting.</p>
       <p>Secondary devices, or interfaces, are used for different purposes. Metrics from secondary network interfaces need to be classified to allow for effective aggregation and monitoring.</p>

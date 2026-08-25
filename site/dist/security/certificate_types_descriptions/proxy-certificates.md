@@ -28,6 +28,7 @@ data:
 ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring the cluster-wide proxy](/openshift-docs-markdown/networking/configuring_network_settings/enable-cluster-wide-proxy#enable-cluster-wide-proxy)
 
@@ -72,6 +73,7 @@ Complete proxy support means connecting to the specified proxy and trusting any 
 If you use the RHCOS trust bundle, place CA certificates in `/etc/pki/ca-trust/source/anchors`.
 
 **Additional resources**
+{._additional-resources}
 
 - [Using shared system certificates](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html/securing_networks/using-shared-system-certificates)
 

@@ -77,6 +77,7 @@ where:
 :   Specifies the provider spec configuration for the cluster. The format and values of this section are provider-specific. For more information, see the sample provider specification for your cloud provider.
 
 **Additional resources**
+{._additional-resources}
 
 - [Getting started with control plane machine sets](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-getting-started)
 - [Updating the control plane configuration](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-feat-config-update_cpmso-managing-machines)
@@ -121,6 +122,7 @@ Customize the prefix of control plane machine names to distinguish machines acro
 - If you changed only the value of the `machineNamePrefix` parameter, clusters that use the default `RollingUpdate` update strategy are not automatically updated. To propagate this change, you must replace your control plane machines manually, regardless of the update strategy for the cluster. For more information, see "Replacing a control plane machine".
 
 **Additional resources**
+{._additional-resources}
 
 - [Replacing a control plane machine](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-feat-replace_cpmso-managing-machines)
 
@@ -131,6 +133,7 @@ Configure the provider-specific sections of your control plane machine set manif
 The `<platform_provider_spec>` and `<platform_failure_domains>` sections of the control plane machine set manifests are provider specific. For provider-specific configuration options for your cluster, see the documentation for your cloud provider.
 
 **Additional resources**
+{._additional-resources}
 
 - [Control plane configuration options for Amazon Web Services](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso_provider_configurations/cpmso-config-options-aws#cpmso-config-options-aws)
 - [Control plane configuration options for Google Cloud](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso_provider_configurations/cpmso-config-options-gcp#cpmso-config-options-gcp)

@@ -1,5 +1,5 @@
 ---
-title: InstallPlan []
+title: InstallPlan [operators.coreos.com/v1alpha1]
 ---
 
 # InstallPlan \[operators.coreos.com/v1alpha1\] {#installplan-operators-coreos-com-v1alpha1}
@@ -24,7 +24,7 @@ Required
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | InstallPlanSpec defines a set of Application resources to be installed |
-| `status` | `object` | InstallPlanStatus represents the information about the status of steps required to complete installation. Status may trail the actual state of a system. |
+| `status` | `object` | InstallPlanStatus represents the information about the status of steps required to complete installation.<br>Status may trail the actual state of a system. |
 
 ### .spec {#_spec}
 
@@ -93,7 +93,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{{ name }}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -149,7 +149,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{{ name }}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -282,18 +282,18 @@ The following API endpoints are available:
 - `/apis/operators.coreos.com/v1alpha1/installplans`
 
   - `GET`: list objects of kind InstallPlan
-- `/apis/operators.coreos.com/v1alpha1/namespaces/{{ namespace }}/installplans`
+- `/apis/operators.coreos.com/v1alpha1/namespaces/{namespace}/installplans`
 
   - `DELETE`: delete collection of InstallPlan
   - `GET`: list objects of kind InstallPlan
   - `POST`: create an InstallPlan
-- `/apis/operators.coreos.com/v1alpha1/namespaces/{{ namespace }}/installplans/{{ name }}`
+- `/apis/operators.coreos.com/v1alpha1/namespaces/{namespace}/installplans/{name}`
 
   - `DELETE`: delete an InstallPlan
   - `GET`: read the specified InstallPlan
   - `PATCH`: partially update the specified InstallPlan
   - `PUT`: replace the specified InstallPlan
-- `/apis/operators.coreos.com/v1alpha1/namespaces/{{ namespace }}/installplans/{{ name }}/status`
+- `/apis/operators.coreos.com/v1alpha1/namespaces/{namespace}/installplans/{name}/status`
 
   - `GET`: read status of the specified InstallPlan
   - `PATCH`: partially update status of the specified InstallPlan
@@ -318,7 +318,7 @@ Description
 | 200 - OK | [`InstallPlanList`](/openshift-docs-markdown/rest_api/objects/index#com-coreos-operators-v1alpha1-InstallPlanList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operators.coreos.com/v1alpha1/namespaces/{{ namespace }}/installplans {#_apisoperatorscoreoscomv1alpha1namespaces_namespace_installplans}
+### /apis/operators.coreos.com/v1alpha1/namespaces/{namespace}/installplans {#_apisoperatorscoreoscomv1alpha1namespaces_namespace_installplans}
 
 HTTP method
 :   ```
@@ -386,7 +386,7 @@ Description
 | 202 - Accepted | [`InstallPlan`](/openshift-docs-markdown/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operators.coreos.com/v1alpha1/namespaces/{{ namespace }}/installplans/{{ name }} {#_apisoperatorscoreoscomv1alpha1namespaces_namespace_installplans_name}
+### /apis/operators.coreos.com/v1alpha1/namespaces/{namespace}/installplans/{name} {#_apisoperatorscoreoscomv1alpha1namespaces_namespace_installplans_name}
 
 **Global path parameters**
 
@@ -490,7 +490,7 @@ Description
 | 201 - Created | [`InstallPlan`](/openshift-docs-markdown/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operators.coreos.com/v1alpha1/namespaces/{{ namespace }}/installplans/{{ name }}/status {#_apisoperatorscoreoscomv1alpha1namespaces_namespace_installplans_name_status}
+### /apis/operators.coreos.com/v1alpha1/namespaces/{namespace}/installplans/{name}/status {#_apisoperatorscoreoscomv1alpha1namespaces_namespace_installplans_name_status}
 
 **Global path parameters**
 

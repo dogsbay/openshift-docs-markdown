@@ -34,9 +34,9 @@ You can access OpenShift Cluster Manager with your configured OpenShift account.
 
 On the top right of the cluster page, there are some actions that a user can perform on the entire cluster:
 
-- ***Open console*** launches a web console so that the cluster owner can issue commands to the cluster.
-- ***Actions*** drop-down menu allows the cluster owner to rename the display name of the cluster, change the amount of load balancers and persistent storage on the cluster, if applicable, manually set the node count, and delete the cluster.
-- ***Refresh*** icon forces a refresh of the cluster.
+- **Open console** launches a web console so that the cluster owner can issue commands to the cluster.
+- **Actions** drop-down menu allows the cluster owner to rename the display name of the cluster, change the amount of load balancers and persistent storage on the cluster, if applicable, manually set the node count, and delete the cluster.
+- **Refresh** icon forces a refresh of the cluster.
 
 ## Cluster tabs {#ocm-cluster-tabs-ocp}
 
@@ -53,41 +53,41 @@ Selecting an active, installed cluster shows tabs associated with that cluster. 
 
 ### Overview tab {#ocm-overview-tab_ocm-overview-ocp}
 
-The ***Overview*** tab provides information about how the cluster was configured:
+The **Overview** tab provides information about how the cluster was configured:
 
-- ***Cluster ID*** is the unique identification for the created cluster. This ID can be used when issuing commands to the cluster from the command line.
-- ***Domain prefix*** is the prefix that is used throughout the cluster. The default value is the cluster’s name.
-- ***Type*** shows the type of cluster, for example Red Hat OpenShift Service on AWS (classic architecture), Red Hat OpenShift Service on AWS, or OpenShift Dedicated.
-- ***Control plane type*** is the architecture type of the cluster. The field only displays if the cluster uses a hosted control plane architecture.
-- ***Region*** is the server region.
-- ***Version*** is the OpenShift version that is installed on the cluster. If there is an update available, you can update from this field.
-- ***Created at*** shows the date and time that the cluster was created.
-- ***Owner*** identifies who created the cluster and has owner rights.
-- ***Delete Protection: <status>*** shows whether or not the cluster’s delete protection is enabled.
-- ***Total vCPU*** shows the total available virtual CPU for this cluster.
-- ***Total memory*** shows the total available memory for this cluster.
-- ***Infrastructure AWS account*** displays the AWS account that is responsible for cluster creation and maintenance.
-- ***Nodes*** shows the actual and desired nodes on the cluster. These numbers might not match due to cluster scaling.
-- ***Network*** field shows the address and prefixes for network connectivity.
-- ***OIDC configuration*** field shows the Open ID Connect configuration for the cluster.
-- ***Resource usage*** section of the tab displays the resources in use with a graph.
-- ***Advisor recommendations*** section gives insight in relation to security, performance, availability, and stability. This section requires the use of remote health functionality. See *Using Red Hat Lightspeed to identify issues with the cluster* in the *Additional resources* section.
+- **Cluster ID** is the unique identification for the created cluster. This ID can be used when issuing commands to the cluster from the command line.
+- **Domain prefix** is the prefix that is used throughout the cluster. The default value is the cluster’s name.
+- **Type** shows the type of cluster, for example Red Hat OpenShift Service on AWS (classic architecture), Red Hat OpenShift Service on AWS, or OpenShift Dedicated.
+- **Control plane type** is the architecture type of the cluster. The field only displays if the cluster uses a hosted control plane architecture.
+- **Region** is the server region.
+- **Version** is the OpenShift version that is installed on the cluster. If there is an update available, you can update from this field.
+- **Created at** shows the date and time that the cluster was created.
+- **Owner** identifies who created the cluster and has owner rights.
+- **Delete Protection: <status>** shows whether or not the cluster’s delete protection is enabled.
+- **Total vCPU** shows the total available virtual CPU for this cluster.
+- **Total memory** shows the total available memory for this cluster.
+- **Infrastructure AWS account** displays the AWS account that is responsible for cluster creation and maintenance.
+- **Nodes** shows the actual and desired nodes on the cluster. These numbers might not match due to cluster scaling.
+- **Network** field shows the address and prefixes for network connectivity.
+- **OIDC configuration** field shows the Open ID Connect configuration for the cluster.
+- **Resource usage** section of the tab displays the resources in use with a graph.
+- **Advisor recommendations** section gives insight in relation to security, performance, availability, and stability. This section requires the use of remote health functionality. See *Using Red Hat Lightspeed to identify issues with the cluster* in the *Additional resources* section.
 
 ### Access control tab {#ocm-accesscontrol-tab_ocm-overview-ocp}
 
-The ***Access control*** tab allows the cluster owner to set up an identity provider, grant elevated permissions, and grant roles to other users.
+The **Access control** tab allows the cluster owner to set up an identity provider, grant elevated permissions, and grant roles to other users.
 
 ### Add-ons tab {#ocm-addons-tab_ocm-overview-ocp}
 
 ### Red Hat Lightspeed Advisor tab {#ocm-insightsadvisor-tab_ocm-overview-ocp}
 
-The ***Red Hat Lightspeed Advisor*** tab uses the Remote Health functionality of the OpenShift Container Platform to identify and mitigate risks to security, performance, availability, and stability. See [Using Red Hat Lightspeed to identify issues with your cluster](https://docs.openshift.com/container-platform/latest/support/getting-support.html) in the OpenShift Container Platform documentation.
+The **Red Hat Lightspeed Advisor** tab uses the Remote Health functionality of the OpenShift Container Platform to identify and mitigate risks to security, performance, availability, and stability. See [Using Red Hat Lightspeed to identify issues with your cluster](https://docs.openshift.com/container-platform/latest/support/getting-support.html) in the OpenShift Container Platform documentation.
 
 ### Machine pools tab {#ocm-machinepools-tab_ocm-overview-ocp}
 
-The ***Machine pools*** tab allows the cluster owner to create new machine pools if there is enough available quota, or edit an existing machine pool.
+The **Machine pools** tab allows the cluster owner to create new machine pools if there is enough available quota, or edit an existing machine pool.
 
-Selecting the ![title=Other options](/openshift-docs-markdown/_assets/images/kebab.png) > ***Edit*** option opens the "Edit machine pool" dialog. In this dialog, you can change the node count per availability zone, edit node labels and taints, and view any associated AWS security groups.
+Selecting the ![title=Other options](/openshift-docs-markdown/_assets/images/kebab.png) > **Edit** option opens the "Edit machine pool" dialog. In this dialog, you can change the node count per availability zone, edit node labels and taints, and view any associated AWS security groups.
 
 ### Support tab {#ocm-support-tab_ocm-overview-ocp}
 
@@ -97,10 +97,10 @@ Also from this tab, you can open a support case to request technical support for
 
 ### Settings tab {#ocm-settings-tab_ocm-overview-ocp}
 
-The ***Settings*** tab provides a few options for the cluster owner:
+The **Settings** tab provides a few options for the cluster owner:
 
-- ***Update strategy*** allows you to determine if the cluster automatically updates on a certain day of the week at a specified time or if all updates are scheduled manually.
-- ***Update status*** shows the current version and if there are any updates available.
+- **Update strategy** allows you to determine if the cluster automatically updates on a certain day of the week at a specified time or if all updates are scheduled manually.
+- **Update status** shows the current version and if there are any updates available.
 
 ## Additional resources {#ocm-additional-resources-ocp}
 

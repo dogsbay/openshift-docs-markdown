@@ -27,7 +27,10 @@ By default, OpenShift Container Platform supports CSI inline ephemeral volumes w
 - Support is only available for CSI drivers. In-tree and FlexVolumes are not supported.
 - Community or storage vendors provide other CSI drivers that support these volumes. Follow the installation instructions provided by the CSI driver provider.
 
-CSI drivers might not have implemented the inline volume functionality, including `Ephemeral` capacity. For details, see the CSI driver documentation. **Additional resources**
+CSI drivers might not have implemented the inline volume functionality, including `Ephemeral` capacity. For details, see the CSI driver documentation.
+
+**Additional resources**
+{._additional-resources}
 
 - [Builds for Red Hat OpenShift 1.1](https://docs.redhat.com/en/documentation/builds_for_red_hat_openshift/1.1)
 
@@ -61,10 +64,11 @@ When a CSI driver has the `csi-ephemeral-volume-profile` label, pods using the C
 
 **Pod security profile enforcement**
 
-| Pod security profile | Driver label: restricted | Driver label: baseline | Driver label: privileged | Restricted |
-| --- | --- | --- | --- | --- |
-| Allowed | Denied | Denied | Baseline | Allowed |
-| Allowed | Denied | Privileged | Allowed | Allowed |
+| Pod security profile | Driver label: restricted | Driver label: baseline | Driver label: privileged |
+| --- | :---: | :---: | :---: |
+| Restricted | Allowed | Denied | Denied |
+| Baseline | Allowed | Allowed | Denied |
+| Privileged | Allowed | Allowed | Allowed |
 
 ### Pod security profile warning {#security-profile-warning_ephemeral-storage-csi-inline}
 
@@ -72,10 +76,11 @@ The CSI Volume Admission plugin can warn you if the CSI driver’s effective pro
 
 **Pod security profile warning**
 
-| Pod security profile | Driver label: restricted | Driver label: baseline | Driver label: privileged | Restricted |
-| --- | --- | --- | --- | --- |
-| No warning | Warning | Warning | Baseline | No warning |
-| No warning | Warning | Privileged | No warning | No warning |
+| Pod security profile | Driver label: restricted | Driver label: baseline | Driver label: privileged |
+| --- | :---: | :---: | :---: |
+| Restricted | No warning | Warning | Warning |
+| Baseline | No warning | No warning | Warning |
+| Privileged | No warning | No warning | No warning |
 
 ### Pod security profile audit {#security-profile-audit_ephemeral-storage-csi-inline}
 
@@ -83,10 +88,11 @@ The CSI Volume Admission plugin can apply audit annotations to the pod if the CS
 
 **Pod security profile audit**
 
-| Pod security profile | Driver label: restricted | Driver label: baseline | Driver label: privileged | Restricted |
-| --- | --- | --- | --- | --- |
-| No audit | Audit | Audit | Baseline | No audit |
-| No audit | Audit | Privileged | No audit | No audit |
+| Pod security profile | Driver label: restricted | Driver label: baseline | Driver label: privileged |
+| --- | :---: | :---: | :---: |
+| Restricted | No audit | Audit | Audit |
+| Baseline | No audit | No audit | Audit |
+| Privileged | No audit | No audit | No audit |
 
 ### Default behavior for the CSI Volume Admission plugin {#admission-plugin-default-behavior_ephemeral-storage-csi-inline}
 
@@ -135,6 +141,7 @@ To provision temporary storage that automatically follows your pod’s lifecycle
    $ oc create -f my-csi-app.yaml
    ```
 
-## Additional resources {#additional-resources_ephemeral-storage-csi-inline}
+**Additional resources**
+{._additional-resources}
 
 - [Pod Security Standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/)

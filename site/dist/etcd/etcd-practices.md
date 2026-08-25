@@ -62,6 +62,7 @@ In a healthy cluster, the round-trip time between members should be less than 50
 To support a low-latency, high-availability network, especially during the leader election process, an arbiter site should be located where it provides an RTT latency of less than 10 ms. The arbiter component of a network maintains consistency and availability in a distributed system.
 
 **Additional resources**
+{._additional-resources}
 
 - [Setting tuning parameters for etcd](/openshift-docs-markdown/etcd/etcd-performance#etcd-tuning-parameters_etcd-performance)
 
@@ -107,6 +108,7 @@ The `histogram_quantile(0.99, rate(etcd_network_peer_round_trip_time_seconds_buc
 - Confirm that the report indicates that the disk is fast enough to host etcd.
 
 **Additional resources**
+{._additional-resources}
 
 - [How to use `fio` to check etcd disk performance in OpenShift Container Platform](https://access.redhat.com/solutions/4885641)
 - [etcd performance troubleshooting guide for OpenShift Container Platform](https://access.redhat.com/articles/6271341)

@@ -77,6 +77,7 @@ The core components of the cert-manager Operator for Red Hat OpenShift are as fo
 - CA injector: You can use the `spec.cainjectorConfig` field to configure the CA injector pod.
 
 **Additional resources**
+{._additional-resources}
 
 - [Deleting a TLS secret automatically upon Certificate removal](/openshift-docs-markdown/security/cert_manager_operator/cert-manager-customizing-api-fields#cert-manager-override-flag-controller_cert-manager-customizing-api-fields)
 
@@ -84,7 +85,7 @@ The core components of the cert-manager Operator for Red Hat OpenShift are as fo
 
 You can configure common fields in the `spec.controllerConfig`, `spec.webhookConfig`, and `spec.cainjectorConfig` sections in the `CertManager` CR to customize the cert-manager components.
 
-***Common configurable fields in the CertManager CR for the cert-manager components***
+**Common configurable fields in the CertManager CR for the cert-manager components**
 
 <table>
 <thead>
@@ -124,6 +125,7 @@ You can configure common fields in the `spec.controllerConfig`, `spec.webhookCon
 </table>
 
 **Additional resources**
+{._additional-resources}
 
 - [High Availability](https://cert-manager.io/docs/installation/best-practice/#high-availability)
 
@@ -133,7 +135,7 @@ You can configure the overridable arguments for the cert-manager components in t
 
 The following table describes the overridable arguments for the cert-manager components:
 
-***Overridable arguments for the cert-manager components***
+**Overridable arguments for the cert-manager components**
 
 <table>
 <thead>
@@ -145,9 +147,9 @@ The following table describes the overridable arguments for the cert-manager com
 </thead>
 <tbody>
 <tr>
-  <td><code>--dns01-recursive-nameservers=<server_address></code></td>
+  <td><code>--dns01-recursive-nameservers=&lt;server_address&gt;</code></td>
   <td>Controller</td>
-  <td>Provide a comma-separated list of nameservers to query for the DNS-01 self check. The nameservers can be specified either as <code><host>:<port></code>, for example, <code>1.1.1.1:53</code>, or use DNS over HTTPS (DoH), for example, <code>\https://1.1.1.1/dns-query</code>.<br><br><dl><dt>Note</dt><dd>DNS over HTTPS (DoH) is supported starting only from cert-manager Operator for Red Hat OpenShift version 1.13.0 and later.</dd></dl></td>
+  <td>Provide a comma-separated list of nameservers to query for the DNS-01 self check. The nameservers can be specified either as <code>&lt;host&gt;:&lt;port&gt;</code>, for example, <code>1.1.1.1:53</code>, or use DNS over HTTPS (DoH), for example, <code>\https://1.1.1.1/dns-query</code>.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>DNS over HTTPS (DoH) is supported starting only from cert-manager Operator for Red Hat OpenShift version 1.13.0 and later.</dd></dl></td>
 </tr>
 <tr>
   <td><code>--dns01-recursive-nameservers-only</code></td>
@@ -155,12 +157,12 @@ The following table describes the overridable arguments for the cert-manager com
   <td>Specify to only use recursive nameservers instead of checking the authoritative nameservers associated with that domain.</td>
 </tr>
 <tr>
-  <td><code>--acme-http01-solver-nameservers=<host>:<port></code></td>
+  <td><code>--acme-http01-solver-nameservers=&lt;host&gt;:&lt;port&gt;</code></td>
   <td>Controller</td>
-  <td>Provide a comma-separated list of <code><host>:<port></code> nameservers to query for the Automated Certificate Management Environment (ACME) HTTP01 self check. For example, <code>--acme-http01-solver-nameservers=1.1.1.1:53</code>.</td>
+  <td>Provide a comma-separated list of <code>&lt;host&gt;:&lt;port&gt;</code> nameservers to query for the Automated Certificate Management Environment (ACME) HTTP01 self check. For example, <code>--acme-http01-solver-nameservers=1.1.1.1:53</code>.</td>
 </tr>
 <tr>
-  <td><code>--metrics-listen-address=<host>:<port></code></td>
+  <td><code>--metrics-listen-address=&lt;host&gt;:&lt;port&gt;</code></td>
   <td>Controller</td>
   <td>Specify the host and port for the metrics endpoint. The default value is <code>--metrics-listen-address=0.0.0.0:9402</code>.</td>
 </tr>
@@ -220,7 +222,7 @@ The following table describes the overridable arguments for the cert-manager com
   <td>The maximum number of ACME challenges that can run concurrently. The default value is <code>60</code>.</td>
 </tr>
 <tr>
-  <td><code>--v=<verbosity_level></code></td>
+  <td><code>--v=&lt;verbosity_level&gt;</code></td>
   <td>Controller, Webhook, CA injector</td>
   <td>Specify the log level verbosity to determine the verbosity of log messages.</td>
 </tr>
@@ -350,6 +352,7 @@ You can override the supported environment variables for the cert-manager Operat
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Explanation of fields in the CertManager custom resource](/openshift-docs-markdown/security/cert_manager_operator/cert-manager-customizing-api-fields#cert-manager-explanation-of-certmanager-cr-fields_cert-manager-customizing-api-fields)
 
@@ -456,6 +459,7 @@ You can override the supported arguments for the cert-manager Operator for Red H
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Explanation of fields in the CertManager custom resource](/openshift-docs-markdown/security/cert_manager_operator/cert-manager-customizing-api-fields#cert-manager-explanation-of-certmanager-cr-fields_cert-manager-customizing-api-fields)
 
@@ -693,6 +697,7 @@ To ensure stable resource allocation and operation, configure CPU and memory lim
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Explanation of fields in the CertManager custom resource](/openshift-docs-markdown/security/cert_manager_operator/cert-manager-customizing-api-fields#cert-manager-explanation-of-certmanager-cr-fields_cert-manager-customizing-api-fields)
 
@@ -783,6 +788,7 @@ You can configure the pod scheduling from the cert-manager Operator for Red Hat 
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Explanation of fields in the CertManager custom resource](/openshift-docs-markdown/security/cert_manager_operator/cert-manager-customizing-api-fields#cert-manager-explanation-of-certmanager-cr-fields_cert-manager-customizing-api-fields)
 
@@ -908,6 +914,7 @@ After configuring the cluster TLS security profile adherence, you can verify tha
    > When the cluster TLS security profile is set to `Modern` (TLS 1.3), the cipher suite flags are automatically omitted.
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding feature gates](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features-about_nodes-cluster-enabling)
 - [Understanding TLS security profiles](/openshift-docs-markdown/security/tls-security-profiles#tls-profiles-understanding_tls-security-profiles)

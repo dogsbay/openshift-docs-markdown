@@ -1,5 +1,5 @@
 ---
-title: Managing distributed workloads with the {{ lws_operator }}
+title: Managing distributed workloads with the Leader Worker Set Operator
 ---
 
 # Managing distributed workloads with the Leader Worker Set Operator {#lws-managing}
@@ -22,7 +22,7 @@ You can install the Leader Worker Set Operator through the OpenShift Container P
 2. Verify that the cert-manager Operator for Red Hat OpenShift is installed.
 3. Install the Leader Worker Set Operator.
 
-   1. Navigate to **Ecosystem** -> **Software Catalog**.
+   1. Navigate to **Ecosystem** → **Software Catalog**.
    2. Enter **Leader Worker Set Operator** into the filter box.
    3. Select the **Leader Worker Set Operator** and click **Install**.
    4. On the **Install Operator** page:
@@ -37,7 +37,7 @@ You can install the Leader Worker Set Operator through the OpenShift Container P
       5. Click **Install**.
 4. Create the custom resource (CR) for the Leader Worker Set Operator:
 
-   1. Navigate to **Installed Operators** -> **Leader Worker Set Operator**.
+   1. Navigate to **Installed Operators** → **Leader Worker Set Operator**.
    2. Under **Provided APIs**, click **Create instance** in the **LeaderWorkerSetOperator** pane.
    3. Click **Create**.
 
@@ -171,6 +171,7 @@ You can use the Leader Worker Set Operator to deploy a leader worker set to assi
    - `my-lws-0` is the worker stateful set for the first group.
    - `my-lws-1` is the worker stateful set for the second group.
 
-## Additional resources {#lws-managing_additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [LeaderWorkerSet API (Kubernetes)](https://lws.sigs.k8s.io/docs/reference/leaderworkerset.v1/)

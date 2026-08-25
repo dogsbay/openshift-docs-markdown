@@ -1,5 +1,5 @@
 ---
-title: SelfSubjectReview []
+title: SelfSubjectReview [authentication.k8s.io/v1]
 ---
 
 # SelfSubjectReview \[authentication.k8s.io/v1\] {#selfsubjectreview-authentication-k8s-io-v1}

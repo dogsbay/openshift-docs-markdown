@@ -58,7 +58,8 @@ By default, the installation process installs several Windows-specific services 
 | containerd container runtime | Manages the complete container lifecycle. |
 | CSI Proxy | Enables CSI drivers to perform storage operations on the node, which allows containerized CSI drivers to run on Windows nodes. |
 
-## Additional resources {#additional-resources_understanding-windows-container-workloads}
+**Additional resources**
+{._additional-resources}
 
 - [Pod Security Policies (Kubernetes Documentation)](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)
 - [Configuring hybrid networking with OVN-Kubernetes](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/configuring-hybrid-networking#configuring-hybrid-ovnkubernetes_configuring-hybrid-networking)

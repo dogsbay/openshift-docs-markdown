@@ -66,6 +66,7 @@ Using these features, the plugin identifies relevant configuration differences b
 
 For further information about configuring a reference configuration, see "Creating a reference configuration".
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Telco RAN DU reference design specification for OpenShift Container Platform](/openshift-docs-markdown/scalability_and_performance/telco-ran-du-rds#telco-ran-du-ref-design-specs)

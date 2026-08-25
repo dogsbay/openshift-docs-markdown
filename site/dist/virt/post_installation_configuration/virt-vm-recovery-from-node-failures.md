@@ -102,7 +102,9 @@ You can configure the Node Health Check Operator to monitor node status and trig
    - `spec.escalatingRemediations` defines escalating remediation strategies. If the initial remediation does not resolve the issue within the specified timeout, the next remediation strategy runs.
    - `spec.selector` defines the nodes to monitor. This example monitors all worker nodes.
    - `spec.unhealthyConditions` defines the parameters to identify an unhealthy node.
-   - `spec.unhealthyConditions.duration` defines the duration that a condition must persist before remediation starts. Set lower values for faster recovery. The following table shows recommended values: **Recommended `unhealthyConditions` duration values**
+   - `spec.unhealthyConditions.duration` defines the duration that a condition must persist before remediation starts. Set lower values for faster recovery. The following table shows recommended values:
+
+     **Recommended `unhealthyConditions` duration values**
 
      | Environment | Recommended duration |
      | --- | --- |
@@ -123,12 +125,12 @@ You can configure the Node Health Check Operator to monitor node status and trig
   $ oc get nodehealthcheck nodehealthcheck-sample
   ```
 
-> [!TIP]
-> If remediation does not trigger as expected, verify that the remediation Operator runs correctly, and check the `NodeHealthCheck` CR events for errors:
->
-> ```terminal
-> $ oc describe nodehealthcheck nodehealthcheck-sample
-> ```
+  > [!TIP]
+  > If remediation does not trigger as expected, verify that the remediation Operator runs correctly, and check the `NodeHealthCheck` CR events for errors:
+  >
+  > ```terminal
+  > $ oc describe nodehealthcheck nodehealthcheck-sample
+  > ```
 
 ## Node remediation strategies for OpenShift Virtualization {#virt-about-node-remediation-strategies_virt-vm-recovery-from-node-failures}
 
@@ -223,7 +225,8 @@ $ oc adm top nodes
 >   maxPods: 250
 > ```
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Configure eviction and run strategies](/openshift-docs-markdown/virt/nodes/virt-eviction-strategies#virt-eviction-strategies)
 - [Run strategies](/openshift-docs-markdown/virt/nodes/virt-eviction-strategies#virt-runstrategies-vms_virt-eviction-strategies)

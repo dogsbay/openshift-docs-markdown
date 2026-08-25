@@ -19,16 +19,17 @@ import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"virt-running-cluster-checkups","text":"OpenShift Virtualization cluster checkup framework"},{"depth":2,"slug":"additional-resources_running-cluster-checkups","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"virt-running-cluster-checkups","text":"OpenShift Virtualization cluster checkup framework"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/monitoring/virt-running-cluster-checkups";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
-const title = "{{ VirtProductName }} cluster checkup framework";
+const title = "OpenShift Virtualization cluster checkup framework";
 const description = "A checkup is an automated test workload that you can use to verify if a specific cluster functionality works as expected. The cluster checkup framework…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
@@ -42,7 +43,7 @@ const pageCategory = ["virt","virt/monitoring"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# OpenShift Virtualization cluster checkup framework {#virt-running-cluster-checkups}\n\nA *checkup* is an automated test workload that you can use to verify if a specific cluster functionality works as expected. The cluster checkup framework uses native Kubernetes resources to configure and run the checkup.\n\n> [!IMPORTANT]\n> The OpenShift Virtualization cluster checkup framework is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\nAs a developer or cluster administrator, you can use predefined checkups to improve cluster maintainability, troubleshoot unexpected behavior, minimize errors, and save time. You can review the results of the checkup and share them with experts for further analysis. Vendors can write and publish checkups for features or services that they offer and verify that their customer environments are configured correctly.\n\nRunning a predefined checkup in an existing namespace involves setting up a service account for the checkup, creating the `Role` and `RoleBinding` objects for the service account, enabling permissions for the checkup, and creating the input config map and the checkup job. You can run a checkup multiple times.\n\n> [!IMPORTANT]\n> You must always:\n>\n> - Verify that the checkup image is from a trustworthy source before applying it.\n> - Review the checkup permissions before creating the `Role` and `RoleBinding` objects.\n\n## Additional resources {#additional-resources_running-cluster-checkups}\n\n- [Connecting a virtual machine to a Linux bridge network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-connecting-vm-to-linux-bridge)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/monitoring/virt-running-cluster-checkups.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# OpenShift Virtualization cluster checkup framework {#virt-running-cluster-checkups}\n\nA *checkup* is an automated test workload that you can use to verify if a specific cluster functionality works as expected. The cluster checkup framework uses native Kubernetes resources to configure and run the checkup.\n\n> [!IMPORTANT]\n> The OpenShift Virtualization cluster checkup framework is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\nAs a developer or cluster administrator, you can use predefined checkups to improve cluster maintainability, troubleshoot unexpected behavior, minimize errors, and save time. You can review the results of the checkup and share them with experts for further analysis. Vendors can write and publish checkups for features or services that they offer and verify that their customer environments are configured correctly.\n\nRunning a predefined checkup in an existing namespace involves setting up a service account for the checkup, creating the `Role` and `RoleBinding` objects for the service account, enabling permissions for the checkup, and creating the input config map and the checkup job. You can run a checkup multiple times.\n\n> [!IMPORTANT]\n> You must always:\n>\n> - Verify that the checkup image is from a trustworthy source before applying it.\n> - Review the checkup permissions before creating the `Role` and `RoleBinding` objects.\n\n**Additional resources**\n{._additional-resources}\n\n- [Connecting a virtual machine to a Linux bridge network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-connecting-vm-to-linux-bridge)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/monitoring/virt-running-cluster-checkups.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -81,12 +82,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -94,7 +96,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-running-cluster-checkups" class="group scroll-mt-20">OpenShift Virtualization cluster checkup framework<a href="#virt-running-cluster-checkups" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>A <em>checkup</em> is an automated test workload that you can use to verify if a specific cluster functionality works as expected. The cluster checkup framework uses native Kubernetes resources to configure and run the checkup.</p>
+      <p class="_abstract">A <em>checkup</em> is an automated test workload that you can use to verify if a specific cluster functionality works as expected. The cluster checkup framework uses native Kubernetes resources to configure and run the checkup.</p>
       <Alert variant="info" class="my-4">
         <AlertTitle>Important</AlertTitle>
         <AlertDescription>
@@ -114,8 +116,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           </ul>
         </AlertDescription>
       </Alert>
-      <h2 id="additional-resources_running-cluster-checkups" class="group scroll-mt-20">Additional resources<a href="#additional-resources_running-cluster-checkups" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul><li><a href="/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-connecting-vm-to-linux-bridge">Connecting a virtual machine to a Linux bridge network</a></li></ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

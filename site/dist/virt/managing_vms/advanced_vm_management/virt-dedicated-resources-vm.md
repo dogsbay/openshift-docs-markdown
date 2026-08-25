@@ -23,7 +23,7 @@ You can enable dedicated resources for a virtual machine in the **Details** tab.
 
 **Procedure**
 
-1. In the OpenShift Container Platform console, click **Virtualization** -> **VirtualMachines** from the side menu.
+1. In the OpenShift Container Platform console, click **Virtualization** → **VirtualMachines** from the side menu.
 2. Select a virtual machine to open the **VirtualMachine details** page.
 3. On the **Configuration -> Scheduling** tab, click the edit icon beside **Dedicated Resources**.
 4. Select **Schedule this workload with dedicated resources (guaranteed policy)**.

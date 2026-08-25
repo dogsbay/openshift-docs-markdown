@@ -20,16 +20,17 @@ import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
 import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"installing-gcp-three-node","text":"Installing a three-node cluster on Google Cloud"},{"depth":2,"slug":"installation-three-node-cluster_installing-gcp-three-node","text":"Configuring a three-node cluster"},{"depth":2,"slug":"additional-resources_installing-gcp-three-node","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"installing-gcp-three-node","text":"Installing a three-node cluster on Google Cloud"},{"depth":2,"slug":"installation-three-node-cluster_installing-gcp-three-node","text":"Configuring a three-node cluster"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/installing/installing_gcp/installing-gcp-three-node";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
-const title = "Installing a three-node cluster on {{ gcp_short }}";
+const title = "Installing a three-node cluster on Google Cloud";
 const description = "In OpenShift Container Platform version 4.22, you can install a three-node cluster on Google Cloud. A three-node cluster consists of three control plane…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
@@ -43,7 +44,7 @@ const pageCategory = ["installing","installing/installing_gcp"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a three-node cluster on Google Cloud {#installing-gcp-three-node}\n\nIn OpenShift Container Platform version 4.22, you can install a three-node cluster on Google Cloud. A three-node cluster consists of three control plane machines, which also act as compute machines. This type of cluster provides a smaller, more resource efficient cluster, for cluster administrators and developers to use for testing, development, and production.\n\nYou can install a three-node cluster by using either installer-provisioned or user-provisioned infrastructure.\n\n## Configuring a three-node cluster {#installation-three-node-cluster_installing-gcp-three-node}\n\nTo configure a three-node cluster, set the number of worker nodes to `0` in the `install-config.yaml` file before you deploy the cluster.\n\nSetting the number of worker nodes to `0` ensures that the control plane machines are schedulable. This allows application workloads to be scheduled to run from the control plane nodes.\n\n> [!NOTE]\n> Because application workloads run from control plane nodes, additional subscriptions are required, as the control plane nodes are considered to be compute nodes.\n\n**Prerequisites**\n\n- You have an existing `install-config.yaml` file.\n\n**Procedure**\n\n1. Set the number of compute replicas to `0` in your `install-config.yaml` file, as shown in the following `compute` stanza:\n\n   ```yaml {title=\"Example install-config.yaml file for a three-node cluster\"}\n   apiVersion: v1\n   baseDomain: example.com\n   compute:\n   - name: worker\n     platform: {}\n     replicas: 0\n   # ...\n   ```\n2. If you are deploying a cluster with user-provisioned infrastructure:\n\n   - After you create the Kubernetes manifest files, make sure that the `spec.mastersSchedulable` parameter is set to `true` in `cluster-scheduler-02-config.yml` file. You can locate this file in `<installation_directory>/manifests`.\n\n   For more information, see \"Creating the Kubernetes manifest and Ignition config files\" in \"Installing a cluster on user-provisioned infrastructure in Google Cloud by using Infrastructure Manager templates\".\n\n   - Do not create additional worker nodes.\n\n     ```yaml {title=\"Example cluster-scheduler-02-config.yml file for a three-node cluster\"}\n     apiVersion: config.openshift.io/v1\n     kind: Scheduler\n     metadata:\n       creationTimestamp: null\n       name: cluster\n     spec:\n       mastersSchedulable: true\n       policy:\n         name: \"\"\n     status: {}\n     ```\n\n## Additional resources {#additional-resources_installing-gcp-three-node}\n\n- [Installing a cluster on Google Cloud with customizations](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#installing-gcp-customizations)\n- [Installing a cluster on user-provisioned infrastructure in Google Cloud by using Infrastructure Manager templates](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-user-infra#installing-gcp-user-infra)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_gcp/installing-gcp-three-node.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a three-node cluster on Google Cloud {#installing-gcp-three-node}\n\nIn OpenShift Container Platform version 4.22, you can install a three-node cluster on Google Cloud. A three-node cluster consists of three control plane machines, which also act as compute machines. This type of cluster provides a smaller, more resource efficient cluster, for cluster administrators and developers to use for testing, development, and production.\n\nYou can install a three-node cluster by using either installer-provisioned or user-provisioned infrastructure.\n\n## Configuring a three-node cluster {#installation-three-node-cluster_installing-gcp-three-node}\n\nTo configure a three-node cluster, set the number of worker nodes to `0` in the `install-config.yaml` file before you deploy the cluster.\n\nSetting the number of worker nodes to `0` ensures that the control plane machines are schedulable. This allows application workloads to be scheduled to run from the control plane nodes.\n\n> [!NOTE]\n> Because application workloads run from control plane nodes, additional subscriptions are required, as the control plane nodes are considered to be compute nodes.\n\n**Prerequisites**\n\n- You have an existing `install-config.yaml` file.\n\n**Procedure**\n\n1. Set the number of compute replicas to `0` in your `install-config.yaml` file, as shown in the following `compute` stanza:\n\n.Example `install-config.yaml` file for a three-node cluster\n\n```yaml\napiVersion: v1\nbaseDomain: example.com\ncompute:\n- name: worker\n  platform: {}\n  replicas: 0\n# ...\n```\n\n1. If you are deploying a cluster with user-provisioned infrastructure:\n\n   - After you create the Kubernetes manifest files, make sure that the `spec.mastersSchedulable` parameter is set to `true` in `cluster-scheduler-02-config.yml` file. You can locate this file in `<installation_directory>/manifests`. For more information, see \"Creating the Kubernetes manifest and Ignition config files\" in \"Installing a cluster on user-provisioned infrastructure in Google Cloud by using Infrastructure Manager templates\".\n   - Do not create additional worker nodes.\n\n.Example `cluster-scheduler-02-config.yml` file for a three-node cluster\n\n```yaml\napiVersion: config.openshift.io/v1\nkind: Scheduler\nmetadata:\n  creationTimestamp: null\n  name: cluster\nspec:\n  mastersSchedulable: true\n  policy:\n    name: \"\"\nstatus: {}\n```\n\n**Additional resources**\n{._additional-resources}\n\n- [Installing a cluster on Google Cloud with customizations](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#installing-gcp-customizations)\n- [Installing a cluster on user-provisioned infrastructure in Google Cloud by using Infrastructure Manager templates](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-user-infra#installing-gcp-user-infra)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_gcp/installing-gcp-three-node.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="installing-gcp-three-node" class="group scroll-mt-20">Installing a three-node cluster on Google Cloud<a href="#installing-gcp-three-node" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>In OpenShift Container Platform version 4.22, you can install a three-node cluster on Google Cloud. A three-node cluster consists of three control plane machines, which also act as compute machines. This type of cluster provides a smaller, more resource efficient cluster, for cluster administrators and developers to use for testing, development, and production.</p>
+      <p class="_abstract">In OpenShift Container Platform version 4.22, you can install a three-node cluster on Google Cloud. A three-node cluster consists of three control plane machines, which also act as compute machines. This type of cluster provides a smaller, more resource efficient cluster, for cluster administrators and developers to use for testing, development, and production.</p>
       <p>You can install a three-node cluster by using either installer-provisioned or user-provisioned infrastructure.</p>
       <h2 id="installation-three-node-cluster_installing-gcp-three-node" class="group scroll-mt-20">Configuring a three-node cluster<a href="#installation-three-node-cluster_installing-gcp-three-node" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">To configure a three-node cluster, set the number of worker nodes to <code>0</code> in the <code>install-config.yaml</code> file before you deploy the cluster.</p>
@@ -109,28 +111,27 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p><strong>Prerequisites</strong></p>
       <ul><li>You have an existing <code>install-config.yaml</code> file.</li></ul>
       <p><strong>Procedure</strong></p>
+      <ol><li>Set the number of compute replicas to <code>0</code> in your <code>install-config.yaml</code> file, as shown in the following <code>compute</code> stanza:</li></ol>
+      <p>.Example <code>install-config.yaml</code> file for a three-node cluster</p>
+      <CodeBlock code={"apiVersion: v1\nbaseDomain: example.com\ncompute:\n- name: worker\n  platform: {}\n  replicas: 0\n# ..."} lang="yaml" />
       <ol>
       <li>
-      Set the number of compute replicas to <code>0</code> in your <code>install-config.yaml</code> file, as shown in the following <code>compute</code> stanza:
-      <CodeBlock code={"apiVersion: v1\nbaseDomain: example.com\ncompute:\n- name: worker\n  platform: {}\n  replicas: 0\n# ..."} lang="yaml" title="Example install-config.yaml file for a three-node cluster" />
-      </li>
-      <li>
       If you are deploying a cluster with user-provisioned infrastructure:
-      <ul><li>After you create the Kubernetes manifest files, make sure that the <code>spec.mastersSchedulable</code> parameter is set to <code>true</code> in <code>cluster-scheduler-02-config.yml</code> file. You can locate this file in <code>&lt;installation_directory&gt;/manifests</code>.</li></ul>
-      <p>For more information, see "Creating the Kubernetes manifest and Ignition config files" in "Installing a cluster on user-provisioned infrastructure in Google Cloud by using Infrastructure Manager templates".</p>
       <ul>
-      <li>
-      Do not create additional worker nodes.
-      <CodeBlock code={"apiVersion: config.openshift.io/v1\nkind: Scheduler\nmetadata:\n  creationTimestamp: null\n  name: cluster\nspec:\n  mastersSchedulable: true\n  policy:\n    name: \"\"\nstatus: {}"} lang="yaml" title="Example cluster-scheduler-02-config.yml file for a three-node cluster" />
-      </li>
+      <li>After you create the Kubernetes manifest files, make sure that the <code>spec.mastersSchedulable</code> parameter is set to <code>true</code> in <code>cluster-scheduler-02-config.yml</code> file. You can locate this file in <code>&lt;installation_directory&gt;/manifests</code>. For more information, see "Creating the Kubernetes manifest and Ignition config files" in "Installing a cluster on user-provisioned infrastructure in Google Cloud by using Infrastructure Manager templates".</li>
+      <li>Do not create additional worker nodes.</li>
       </ul>
       </li>
       </ol>
-      <h2 id="additional-resources_installing-gcp-three-node" class="group scroll-mt-20">Additional resources<a href="#additional-resources_installing-gcp-three-node" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>.Example <code>cluster-scheduler-02-config.yml</code> file for a three-node cluster</p>
+      <CodeBlock code={"apiVersion: config.openshift.io/v1\nkind: Scheduler\nmetadata:\n  creationTimestamp: null\n  name: cluster\nspec:\n  mastersSchedulable: true\n  policy:\n    name: \"\"\nstatus: {}"} lang="yaml" />
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul>
       <li><a href="/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#installing-gcp-customizations">Installing a cluster on Google Cloud with customizations</a></li>
       <li><a href="/openshift-docs-markdown/installing/installing_gcp/installing-gcp-user-infra#installing-gcp-user-infra">Installing a cluster on user-provisioned infrastructure in Google Cloud by using Infrastructure Manager templates</a></li>
       </ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

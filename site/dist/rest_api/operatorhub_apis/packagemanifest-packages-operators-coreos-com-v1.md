@@ -1,5 +1,5 @@
 ---
-title: PackageManifest []
+title: PackageManifest [packages.operators.coreos.com/v1]
 ---
 
 # PackageManifest \[packages.operators.coreos.com/v1\] {#packagemanifest-packages-operators-coreos-com-v1}
@@ -320,13 +320,13 @@ The following API endpoints are available:
 - `/apis/packages.operators.coreos.com/v1/packagemanifests`
 
   - `GET`: list objects of kind PackageManifest
-- `/apis/packages.operators.coreos.com/v1/namespaces/{{ namespace }}/packagemanifests`
+- `/apis/packages.operators.coreos.com/v1/namespaces/{namespace}/packagemanifests`
 
   - `GET`: list objects of kind PackageManifest
-- `/apis/packages.operators.coreos.com/v1/namespaces/{{ namespace }}/packagemanifests/{{ name }}`
+- `/apis/packages.operators.coreos.com/v1/namespaces/{namespace}/packagemanifests/{name}`
 
   - `GET`: read the specified PackageManifest
-- `/apis/packages.operators.coreos.com/v1/namespaces/{{ namespace }}/packagemanifests/{{ name }}/icon`
+- `/apis/packages.operators.coreos.com/v1/namespaces/{namespace}/packagemanifests/{name}/icon`
 
   - `GET`: connect GET requests to icon of PackageManifest
 
@@ -348,7 +348,7 @@ Description
 | --- | --- |
 | 200 - OK | [`PackageManifestList`](/openshift-docs-markdown/rest_api/objects/index#com-github-operator-framework-operator-lifecycle-manager-pkg-package-server-apis-operators-v1-PackageManifestList) schema |
 
-### /apis/packages.operators.coreos.com/v1/namespaces/{{ namespace }}/packagemanifests {#_apispackagesoperatorscoreoscomv1namespaces_namespace_packagemanifests}
+### /apis/packages.operators.coreos.com/v1/namespaces/{namespace}/packagemanifests {#_apispackagesoperatorscoreoscomv1namespaces_namespace_packagemanifests}
 
 HTTP method
 :   ```
@@ -366,7 +366,7 @@ Description
 | --- | --- |
 | 200 - OK | [`PackageManifestList`](/openshift-docs-markdown/rest_api/objects/index#com-github-operator-framework-operator-lifecycle-manager-pkg-package-server-apis-operators-v1-PackageManifestList) schema |
 
-### /apis/packages.operators.coreos.com/v1/namespaces/{{ namespace }}/packagemanifests/{{ name }} {#_apispackagesoperatorscoreoscomv1namespaces_namespace_packagemanifests_name}
+### /apis/packages.operators.coreos.com/v1/namespaces/{namespace}/packagemanifests/{name} {#_apispackagesoperatorscoreoscomv1namespaces_namespace_packagemanifests_name}
 
 **Global path parameters**
 
@@ -390,7 +390,7 @@ Description
 | --- | --- |
 | 200 - OK | [`PackageManifest`](/openshift-docs-markdown/rest_api/operatorhub_apis/packagemanifest-packages-operators-coreos-com-v1#packagemanifest-packages-operators-coreos-com-v1) schema |
 
-### /apis/packages.operators.coreos.com/v1/namespaces/{{ namespace }}/packagemanifests/{{ name }}/icon {#_apispackagesoperatorscoreoscomv1namespaces_namespace_packagemanifests_name_icon}
+### /apis/packages.operators.coreos.com/v1/namespaces/{namespace}/packagemanifests/{name}/icon {#_apispackagesoperatorscoreoscomv1namespaces_namespace_packagemanifests_name_icon}
 
 **Global path parameters**
 

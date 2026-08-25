@@ -19,11 +19,12 @@ import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"fio-overview","text":"File Integrity Operator overview"},{"depth":2,"slug":"fio-overview_additional-resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"fio-overview","text":"File Integrity Operator overview"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/file_integrity_operator/fio-overview";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -42,7 +43,7 @@ const pageCategory = ["security","security/file_integrity_operator"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# File Integrity Operator overview {#fio-overview}\n\nThe File Integrity Operator continually runs file integrity checks on the cluster nodes. It deploys a DaemonSet that initializes and runs privileged Advanced Intrusion Detection Environment (AIDE) containers on each node, providing a log of files that have been modified since the initial run of the DaemonSet pods.\n\n> [!NOTE]\n> File Integrity Operator is not supported on HCP clusters.\n\n## Additional resources {#fio-overview_additional-resources}\n\n- [File Integrity Operator release notes](/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-release-notes#file-integrity-operator-release-notes)\n- [File Integrity Operator support](/openshift-docs-markdown/security/file_integrity_operator/fio-support#fio-support)\n- [Installing the File Integrity Operator](/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-installation#installing-file-integrity-operator)\n- [Updating the File Integrity Operator](/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-updating#file-integrity-operator-updating)\n- [Understanding the File Integrity Operator](/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-understanding#understanding-file-integrity-operator)\n- [Configuring the Custom File Integrity Operator](/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-configuring#configuring-file-integrity-operator)\n- [Performing advanced Custom File Integrity Operator tasks](/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-advanced-usage#file-integrity-operator-advanced-usage)\n- [Troubleshooting the File Integrity Operator](/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-troubleshooting#troubleshooting-file-integrity-operator)\n- [Uninstalling the File Integrity Operator](/openshift-docs-markdown/security/file_integrity_operator/fio-uninstalling#fio-uninstalling)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/file_integrity_operator/fio-overview.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# File Integrity Operator overview {#fio-overview}\n\nThe File Integrity Operator continually runs file integrity checks on the cluster nodes. It deploys a DaemonSet that initializes and runs privileged Advanced Intrusion Detection Environment (AIDE) containers on each node, providing a log of files that have been modified since the initial run of the DaemonSet pods.\n\n> [!NOTE]\n> File Integrity Operator is not supported on HCP clusters.\n\n**Additional resources**\n{._additional-resources}\n\n- [File Integrity Operator release notes](/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-release-notes#file-integrity-operator-release-notes)\n- [File Integrity Operator support](/openshift-docs-markdown/security/file_integrity_operator/fio-support#fio-support)\n- [Installing the File Integrity Operator](/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-installation#installing-file-integrity-operator)\n- [Updating the File Integrity Operator](/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-updating#file-integrity-operator-updating)\n- [Understanding the File Integrity Operator](/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-understanding#understanding-file-integrity-operator)\n- [Configuring the Custom File Integrity Operator](/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-configuring#configuring-file-integrity-operator)\n- [Performing advanced Custom File Integrity Operator tasks](/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-advanced-usage#file-integrity-operator-advanced-usage)\n- [Troubleshooting the File Integrity Operator](/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-troubleshooting#troubleshooting-file-integrity-operator)\n- [Uninstalling the File Integrity Operator](/openshift-docs-markdown/security/file_integrity_operator/fio-uninstalling#fio-uninstalling)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/file_integrity_operator/fio-overview.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -81,12 +82,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -94,14 +96,15 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="fio-overview" class="group scroll-mt-20">File Integrity Operator overview<a href="#fio-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>The File Integrity Operator continually runs file integrity checks on the cluster nodes. It deploys a DaemonSet that initializes and runs privileged Advanced Intrusion Detection Environment (AIDE) containers on each node, providing a log of files that have been modified since the initial run of the DaemonSet pods.</p>
+      <p class="_abstract">The File Integrity Operator continually runs file integrity checks on the cluster nodes. It deploys a DaemonSet that initializes and runs privileged Advanced Intrusion Detection Environment (AIDE) containers on each node, providing a log of files that have been modified since the initial run of the DaemonSet pods.</p>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
         <AlertDescription>
           <p>File Integrity Operator is not supported on HCP clusters.</p>
         </AlertDescription>
       </Alert>
-      <h2 id="fio-overview_additional-resources" class="group scroll-mt-20">Additional resources<a href="#fio-overview_additional-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul>
       <li><a href="/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-release-notes#file-integrity-operator-release-notes">File Integrity Operator release notes</a></li>
       <li><a href="/openshift-docs-markdown/security/file_integrity_operator/fio-support#fio-support">File Integrity Operator support</a></li>
@@ -113,6 +116,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li><a href="/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-troubleshooting#troubleshooting-file-integrity-operator">Troubleshooting the File Integrity Operator</a></li>
       <li><a href="/openshift-docs-markdown/security/file_integrity_operator/fio-uninstalling#fio-uninstalling">Uninstalling the File Integrity Operator</a></li>
       </ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

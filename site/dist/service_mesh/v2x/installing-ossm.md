@@ -73,7 +73,7 @@ Deprecated additional Operators include:
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console as a user with the `cluster-admin` role.
-2. In the OpenShift Container Platform web console, click **Ecosystem** -> **Software Catalog**.
+2. In the OpenShift Container Platform web console, click **Ecosystem** → **Software Catalog**.
 3. Type the name of the Operator into the filter box and select the Red Hat version of the Operator. Community versions of the Operators are not supported.
 4. Click **Install**.
 5. On the **Install Operator** page for each Operator, accept  the default settings.
@@ -93,7 +93,7 @@ Deprecated additional Operators include:
 
 **Verification**
 
-- After all you have installed all four Operators, click **Ecosystem** -> **Installed Operators** to verify that your Operators are installed.
+- After all you have installed all four Operators, click **Ecosystem** → **Installed Operators** to verify that your Operators are installed.
 
 ## Configuring the Service Mesh Operator to run on infrastructure nodes {#ossm-config-operator-infrastructure-node_installing-ossm}
 

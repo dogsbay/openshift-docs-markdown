@@ -47,6 +47,9 @@ Velero uses the following algorithm to assign priorities to API versions, with `
 2. Preferred version of the source\_ cluster
 3. Common non-preferred supported version with the highest Kubernetes version priority
 
+**Additional resources**
+{._additional-resources}
+
 - [Enable API Group Versions Feature](https://velero.io/docs/v1.9/enable-api-group-versions-feature/)
 
 ## Using Enable API Group Versions {#oadp-using-enable-api-group-versions_oadp-different-kubernetes-api-versions}
@@ -70,5 +73,8 @@ Configure the `EnableAPIGroupVersions` feature flag to back up all Kubernetes AP
         featureFlags:
         - EnableAPIGroupVersions
   ```
+
+**Additional resources**
+{._additional-resources}
 
 - [Enable API Group Versions Feature](https://velero.io/docs/v1.9/enable-api-group-versions-feature/)

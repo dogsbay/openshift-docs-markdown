@@ -1,5 +1,5 @@
 ---
-title: Build []
+title: Build [config.openshift.io/v1]
 ---
 
 # Build \[config.openshift.io/v1\] {#build-config-openshift-io-v1}
@@ -40,7 +40,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `additionalTrustedCA` | `object` | additionalTrustedCA is a reference to a ConfigMap containing additional CAs that should be trusted for image pushes and pulls during builds. The namespace for this config map is openshift-config. DEPRECATED: Additional CAs for image pull and push should be set on image.config.openshift.io/cluster instead. |
+| `additionalTrustedCA` | `object` | additionalTrustedCA is a reference to a ConfigMap containing additional CAs that should be trusted for image pushes and pulls during builds. The namespace for this config map is openshift-config.<br>DEPRECATED: Additional CAs for image pull and push should be set on image.config.openshift.io/cluster instead. |
 | `buildDefaults` | `object` | buildDefaults controls the default information for Builds |
 | `buildOverrides` | `object` | buildOverrides controls override settings for builds |
 
@@ -75,10 +75,10 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `defaultProxy` | `object` | defaultProxy contains the default proxy settings for all build operations, including image pull/push and source download. Values can be overrode by setting the `HTTP_PROXY`, `HTTPS_PROXY`, and `NO_PROXY` environment variables in the build config’s strategy. |
+| `defaultProxy` | `object` | defaultProxy contains the default proxy settings for all build operations, including image pull/push and source download.<br>Values can be overrode by setting the `HTTP_PROXY`, `HTTPS_PROXY`, and `NO_PROXY` environment variables in the build config’s strategy. |
 | `env` | `array` | env is a set of default environment variables that will be applied to the build if the specified variables do not exist on the build |
 | `env[]` | `object` | EnvVar represents an environment variable present in a Container. |
-| `gitProxy` | `object` | gitProxy contains the proxy settings for git operations only. If set, this will override any Proxy settings for all git commands, such as git clone. Values that are not set here will be inherited from DefaultProxy. |
+| `gitProxy` | `object` | gitProxy contains the proxy settings for git operations only. If set, this will override any Proxy settings for all git commands, such as git clone.<br>Values that are not set here will be inherited from DefaultProxy. |
 | `imageLabels` | `array` | imageLabels is a list of docker labels that are applied to the resulting image. User can override a default label by providing a label with the same name in their Build/BuildConfig. |
 | `imageLabels[]` | `object` |  |
 | `resources` | `object` | resources defines resource requirements to execute the build. |
@@ -97,11 +97,11 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `httpProxy` | `string` | httpProxy is the URL of the proxy for HTTP requests.  Empty means unset and will not result in an env var. |
-| `httpsProxy` | `string` | httpsProxy is the URL of the proxy for HTTPS requests.  Empty means unset and will not result in an env var. |
+| `httpProxy` | `string` | httpProxy is the URL of the proxy for HTTP requests. Empty means unset and will not result in an env var. |
+| `httpsProxy` | `string` | httpsProxy is the URL of the proxy for HTTPS requests. Empty means unset and will not result in an env var. |
 | `noProxy` | `string` | noProxy is a comma-separated list of hostnames and/or CIDRs and/or IPs for which the proxy should not be used. Empty means unset and will not result in an env var. |
 | `readinessEndpoints` | `array (string)` | readinessEndpoints is a list of endpoints used to verify readiness of the proxy. |
-| `trustedCA` | `object` | trustedCA is a reference to a ConfigMap containing a CA certificate bundle. The trustedCA field should only be consumed by a proxy validator. The validator is responsible for reading the certificate bundle from the required key "ca-bundle.crt", merging it with the system default trust bundle, and writing the merged trust bundle to a ConfigMap named "trusted-ca-bundle" in the "openshift-config-managed" namespace. Clients that expect to make proxy connections must use the trusted-ca-bundle for all HTTPS requests to the proxy, and may use the trusted-ca-bundle for non-proxy HTTPS requests as well. The namespace for the ConfigMap referenced by trustedCA is "openshift-config". Here is an example ConfigMap (in yaml): apiVersion: v1 kind: ConfigMap metadata:  name: user-ca-bundle  namespace: openshift-config  data:    ca-bundle.crt: \\ |
+| `trustedCA` | `object` | trustedCA is a reference to a ConfigMap containing a CA certificate bundle. The trustedCA field should only be consumed by a proxy validator. The validator is responsible for reading the certificate bundle from the required key "ca-bundle.crt", merging it with the system default trust bundle, and writing the merged trust bundle to a ConfigMap named "trusted-ca-bundle" in the "openshift-config-managed" namespace. Clients that expect to make proxy connections must use the trusted-ca-bundle for all HTTPS requests to the proxy, and may use the trusted-ca-bundle for non-proxy HTTPS requests as well.<br>The namespace for the ConfigMap referenced by trustedCA is "openshift-config". Here is an example ConfigMap (in yaml):<br>apiVersion: v1 kind: ConfigMap metadata: name: user-ca-bundle namespace: openshift-config data: ca-bundle.crt: \| -----BEGIN CERTIFICATE----- Custom CA certificate bundle. -----END CERTIFICATE----- |
 
 ### .spec.buildDefaults.defaultProxy.trustedCA {#_specbuilddefaultsdefaultproxytrustedca}
 
@@ -226,7 +226,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `key` | `string` | The key within the env file. An invalid key will prevent the pod from starting. The keys defined within a source may consist of any printable ASCII characters except '='. During Alpha stage of the EnvFiles feature gate, the key size is limited to 128 characters. |
-| `optional` | `boolean` | Specify whether the file or its key must be defined. If the file or key does not exist, then the env var is not published. If optional is set to true and the specified key does not exist, the environment variable will not be set in the Pod’s containers. If optional is set to false and the specified key does not exist, an error will be returned during Pod creation. |
+| `optional` | `boolean` | Specify whether the file or its key must be defined. If the file or key does not exist, then the env var is not published. If optional is set to true and the specified key does not exist, the environment variable will not be set in the Pod’s containers.<br>If optional is set to false and the specified key does not exist, an error will be returned during Pod creation. |
 | `path` | `string` | The path within the volume from which to select the file. Must be relative and may not contain the '..' path or start with '..'. |
 | `volumeName` | `string` | The name of the volume mount containing the env file. |
 
@@ -264,7 +264,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
+| `key` | `string` | The key of the secret to select from. Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
@@ -282,11 +282,11 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `httpProxy` | `string` | httpProxy is the URL of the proxy for HTTP requests.  Empty means unset and will not result in an env var. |
-| `httpsProxy` | `string` | httpsProxy is the URL of the proxy for HTTPS requests.  Empty means unset and will not result in an env var. |
+| `httpProxy` | `string` | httpProxy is the URL of the proxy for HTTP requests. Empty means unset and will not result in an env var. |
+| `httpsProxy` | `string` | httpsProxy is the URL of the proxy for HTTPS requests. Empty means unset and will not result in an env var. |
 | `noProxy` | `string` | noProxy is a comma-separated list of hostnames and/or CIDRs and/or IPs for which the proxy should not be used. Empty means unset and will not result in an env var. |
 | `readinessEndpoints` | `array (string)` | readinessEndpoints is a list of endpoints used to verify readiness of the proxy. |
-| `trustedCA` | `object` | trustedCA is a reference to a ConfigMap containing a CA certificate bundle. The trustedCA field should only be consumed by a proxy validator. The validator is responsible for reading the certificate bundle from the required key "ca-bundle.crt", merging it with the system default trust bundle, and writing the merged trust bundle to a ConfigMap named "trusted-ca-bundle" in the "openshift-config-managed" namespace. Clients that expect to make proxy connections must use the trusted-ca-bundle for all HTTPS requests to the proxy, and may use the trusted-ca-bundle for non-proxy HTTPS requests as well. The namespace for the ConfigMap referenced by trustedCA is "openshift-config". Here is an example ConfigMap (in yaml): apiVersion: v1 kind: ConfigMap metadata:  name: user-ca-bundle  namespace: openshift-config  data:    ca-bundle.crt: \\ |
+| `trustedCA` | `object` | trustedCA is a reference to a ConfigMap containing a CA certificate bundle. The trustedCA field should only be consumed by a proxy validator. The validator is responsible for reading the certificate bundle from the required key "ca-bundle.crt", merging it with the system default trust bundle, and writing the merged trust bundle to a ConfigMap named "trusted-ca-bundle" in the "openshift-config-managed" namespace. Clients that expect to make proxy connections must use the trusted-ca-bundle for all HTTPS requests to the proxy, and may use the trusted-ca-bundle for non-proxy HTTPS requests as well.<br>The namespace for the ConfigMap referenced by trustedCA is "openshift-config". Here is an example ConfigMap (in yaml):<br>apiVersion: v1 kind: ConfigMap metadata: name: user-ca-bundle namespace: openshift-config data: ca-bundle.crt: \| -----BEGIN CERTIFICATE----- Custom CA certificate bundle. -----END CERTIFICATE----- |
 
 ### .spec.buildDefaults.gitProxy.trustedCA {#_specbuilddefaultsgitproxytrustedca}
 
@@ -345,7 +345,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. |
+| `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.<br>This field depends on the DynamicResourceAllocation feature gate.<br>This field is immutable. It can only be set for containers. |
 | `claims[]` | `object` | ResourceClaim references one entry in PodSpec.ResourceClaims. |
 | `limits` | `integer-or-string` | Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
 | `requests` | `integer-or-string` | Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
@@ -462,13 +462,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of Build
   - `GET`: list objects of kind Build
   - `POST`: create a Build
-- `/apis/config.openshift.io/v1/builds/{{ name }}`
+- `/apis/config.openshift.io/v1/builds/{name}`
 
   - `DELETE`: delete a Build
   - `GET`: read the specified Build
   - `PATCH`: partially update the specified Build
   - `PUT`: replace the specified Build
-- `/apis/config.openshift.io/v1/builds/{{ name }}/status`
+- `/apis/config.openshift.io/v1/builds/{name}/status`
 
   - `GET`: read status of the specified Build
   - `PATCH`: partially update status of the specified Build
@@ -542,7 +542,7 @@ Description
 | 202 - Accepted | [`Build`](/openshift-docs-markdown/rest_api/config_apis/build-config-openshift-io-v1#build-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/builds/{{ name }} {#_apisconfigopenshiftiov1builds_name}
+### /apis/config.openshift.io/v1/builds/{name} {#_apisconfigopenshiftiov1builds_name}
 
 **Global path parameters**
 
@@ -646,7 +646,7 @@ Description
 | 201 - Created | [`Build`](/openshift-docs-markdown/rest_api/config_apis/build-config-openshift-io-v1#build-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/builds/{{ name }}/status {#_apisconfigopenshiftiov1builds_name_status}
+### /apis/config.openshift.io/v1/builds/{name}/status {#_apisconfigopenshiftiov1builds_name_status}
 
 **Global path parameters**
 

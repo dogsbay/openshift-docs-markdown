@@ -1,5 +1,5 @@
 ---
-title: Recovering an unhealthy etcd cluster for {{ hcp }}
+title: Recovering an unhealthy etcd cluster for hosted control planes
 ---
 
 # Recovering an unhealthy etcd cluster for hosted control planes {#hcp-recovering-etcd-cluster}

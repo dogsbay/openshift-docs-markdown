@@ -1,5 +1,5 @@
 ---
-title: Preparing your cluster for {{ VirtProductName }}
+title: Preparing your cluster for OpenShift Virtualization
 ---
 
 # Preparing your cluster for OpenShift Virtualization {#preparing-cluster-for-virt}
@@ -12,9 +12,8 @@ OpenShift Virtualization supports bare-metal servers, ARM64-based systems, and I
 
 Compatible platforms
 :   - On-premise bare-metal servers. For more information, see "Planning a bare-metal cluster for OpenShift Virtualization" in the Additional resources section.
-
-- Bare-metal clusters installed on ARM64-based (`arm64`, also known as `aarch64`) systems.
-- IBM Z(R) or IBM(R) LinuxONE (s390x architecture) systems where an OpenShift Container Platform cluster is installed in logical partitions (LPARs). For more information, see "Preparing to install on IBM Z and IBM LinuxONE" in the Additional resources section.
+    - Bare-metal clusters installed on ARM64-based (`arm64`, also known as `aarch64`) systems.
+    - IBM Z(R) or IBM(R) LinuxONE (s390x architecture) systems where an OpenShift Container Platform cluster is installed in logical partitions (LPARs). For more information, see "Preparing to install on IBM Z and IBM LinuxONE" in the Additional resources section.
 
 ## Cloud platforms {#virt-cloud-platforms_preparing-cluster-for-virt}
 
@@ -125,13 +124,11 @@ Currently unavailable features
 Functionality differences
 :   The following features are available for use on s390x architecture but function differently or require procedural changes:
 
-```
-* When deleting a virtual machine by using the web console, the **grace period** option is ignored. For more information, see "Deleting a virtual machine by using the web console" in the Additional resources section.
-* When configuring the default CPU model, the `spec.defaultCPUModel` value is `"gen15b"` for an IBM Z cluster. For more information, see "Configuring the default CPU model" in the Additional resources section.
-* When configuring a downward metrics device, if you use a VM preference, the `spec.preference.name` value must be set to `rhel.9.s390x` or another available preference with the format `*.s390x`. For more information, see "Configuring a downward metrics device" in the Additional resources section.
-* When creating virtual machines from instance types, you are not allowed to set `spec.domain.memory.maxGuest` because memory hot plugging is not supported on IBM Z(R). For more information, see "Creating virtual machines from instance types" in the Additional resources section.
-* Prometheus queries for VM guests could have inconsistent outcome in comparison to `x86`.
-```
+    - When deleting a virtual machine by using the web console, the **grace period** option is ignored. For more information, see "Deleting a virtual machine by using the web console" in the Additional resources section.
+    - When configuring the default CPU model, the `spec.defaultCPUModel` value is `"gen15b"` for an IBM Z cluster. For more information, see "Configuring the default CPU model" in the Additional resources section.
+    - When configuring a downward metrics device, if you use a VM preference, the `spec.preference.name` value must be set to `rhel.9.s390x` or another available preference with the format `*.s390x`. For more information, see "Configuring a downward metrics device" in the Additional resources section.
+    - When creating virtual machines from instance types, you are not allowed to set `spec.domain.memory.maxGuest` because memory hot plugging is not supported on IBM Z(R). For more information, see "Creating virtual machines from instance types" in the Additional resources section.
+    - Prometheus queries for VM guests could have inconsistent outcome in comparison to `x86`.
 
 ## Important considerations for any platform {#virt-important-considerations_preparing-cluster-for-virt}
 
@@ -159,7 +156,8 @@ OpenShift Container Platform
 OpenShift Virtualization
 :   See "OpenShift Virtualization supported limits" in the Additional resources section.
 
-## Additional resources {#additional-resources_preparing-cluster-for-virt}
+**Additional resources**
+{._additional-resources}
 
 - [About installation methods for OpenShift Virtualization](/openshift-docs-markdown/virt/install/installing-virt#virt-about-installation-methods_installing-virt)
 - [Hardware, software, and operational requirements](/openshift-docs-markdown/virt/install/virt-requirements#virt-requirements)

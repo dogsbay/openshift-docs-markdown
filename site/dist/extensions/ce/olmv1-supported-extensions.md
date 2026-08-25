@@ -32,6 +32,7 @@ If an extension relies on only the `OperatorConditions` API to manage updates, t
 As a workaround, you can pin your extension to a specific version. When you want to update your extension, consult the extension’s documentation to find out when it is safe to pin the extension to a new version.
 
 **Additional resources**
+{._additional-resources}
 
 - [Bundle format](/openshift-docs-markdown/operators/understanding/olm-packaging-format#olm-bundle-format_olm-packaging-format)
 - [Operator conditions](/openshift-docs-markdown/operators/understanding/olm/olm-operatorconditions#olm-operatorconditions)
@@ -48,6 +49,7 @@ The OpenShift Service CA Operator automatically manages webhook certificates. Wh
 - Configures webhook services with proper TLS settings.
 
 **Additional resources**
+{._additional-resources}
 
 - [Types of webhook admission plugins](/openshift-docs-markdown/architecture/admission-plug-ins#admission-webhook-types_admission-plug-ins)
 - [Service CA certificates](/openshift-docs-markdown/security/certificate_types_descriptions/service-ca-certificates#add-service-certificate_service-ca-certificates)

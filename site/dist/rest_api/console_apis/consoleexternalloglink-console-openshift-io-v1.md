@@ -1,5 +1,5 @@
 ---
-title: ConsoleExternalLogLink []
+title: ConsoleExternalLogLink [console.openshift.io/v1]
 ---
 
 # ConsoleExternalLogLink \[console.openshift.io/v1\] {#consoleexternalloglink-console-openshift-io-v1}
@@ -42,7 +42,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `hrefTemplate` | `string` | hrefTemplate is an absolute secure URL (must use https) for the log link including variables to be replaced. Variables are specified in the URL with the format ${{ variableName }}, for instance, ${{ containerName }} and will be replaced with the corresponding values from the resource. Resource is a pod. Supported variables are: - ${{ resourceName }} - name of the resource which containes the logs - ${{ resourceUID }} - UID of the resource which contains the logs               - e.g. `11111111-2222-3333-4444-555555555555` - ${{ containerName }} - name of the resource’s container that contains the logs - ${{ resourceNamespace }} - namespace of the resource that contains the logs - ${{ resourceNamespaceUID }} - namespace UID of the resource that contains the logs - ${{ podLabels }} - JSON representation of labels matching the pod with the logs             - e.g. `{"key1":"value1","key2":"value2"}` e.g., https://example.com/logs?resourceName=${{ resourceName }}&containerName=${{ containerName }}&resourceNamespace=${{ resourceNamespace }}&podLabels=${{ podLabels }} |
+| `hrefTemplate` | `string` | hrefTemplate is an absolute secure URL (must use https) for the log link including variables to be replaced. Variables are specified in the URL with the format ${variableName}, for instance, ${containerName} and will be replaced with the corresponding values from the resource. Resource is a pod. Supported variables are: - ${resourceName} - name of the resource which containes the logs - ${resourceUID} - UID of the resource which contains the logs - e.g. `11111111-2222-3333-4444-555555555555` - ${containerName} - name of the resource’s container that contains the logs - ${resourceNamespace} - namespace of the resource that contains the logs - ${resourceNamespaceUID} - namespace UID of the resource that contains the logs - ${podLabels} - JSON representation of labels matching the pod with the logs - e.g. `{"key1":"value1","key2":"value2"}`<br>e.g., https://example.com/logs?resourceName=${resourceName}&containerName=${containerName}&resourceNamespace=${resourceNamespace}&podLabels=$ |
 | `namespaceFilter` | `string` | namespaceFilter is a regular expression used to restrict a log link to a matching set of namespaces (e.g., `^openshift-`). The string is converted into a regular expression using the JavaScript RegExp constructor. If not specified, links will be displayed for all the namespaces. |
 | `text` | `string` | text is the display text for the link |
 
@@ -55,13 +55,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of ConsoleExternalLogLink
   - `GET`: list objects of kind ConsoleExternalLogLink
   - `POST`: create a ConsoleExternalLogLink
-- `/apis/console.openshift.io/v1/consoleexternalloglinks/{{ name }}`
+- `/apis/console.openshift.io/v1/consoleexternalloglinks/{name}`
 
   - `DELETE`: delete a ConsoleExternalLogLink
   - `GET`: read the specified ConsoleExternalLogLink
   - `PATCH`: partially update the specified ConsoleExternalLogLink
   - `PUT`: replace the specified ConsoleExternalLogLink
-- `/apis/console.openshift.io/v1/consoleexternalloglinks/{{ name }}/status`
+- `/apis/console.openshift.io/v1/consoleexternalloglinks/{name}/status`
 
   - `GET`: read status of the specified ConsoleExternalLogLink
   - `PATCH`: partially update status of the specified ConsoleExternalLogLink
@@ -135,7 +135,7 @@ Description
 | 202 - Accepted | [`ConsoleExternalLogLink`](/openshift-docs-markdown/rest_api/console_apis/consoleexternalloglink-console-openshift-io-v1#consoleexternalloglink-console-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/console.openshift.io/v1/consoleexternalloglinks/{{ name }} {#_apisconsoleopenshiftiov1consoleexternalloglinks_name}
+### /apis/console.openshift.io/v1/consoleexternalloglinks/{name} {#_apisconsoleopenshiftiov1consoleexternalloglinks_name}
 
 **Global path parameters**
 
@@ -239,7 +239,7 @@ Description
 | 201 - Created | [`ConsoleExternalLogLink`](/openshift-docs-markdown/rest_api/console_apis/consoleexternalloglink-console-openshift-io-v1#consoleexternalloglink-console-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/console.openshift.io/v1/consoleexternalloglinks/{{ name }}/status {#_apisconsoleopenshiftiov1consoleexternalloglinks_name_status}
+### /apis/console.openshift.io/v1/consoleexternalloglinks/{name}/status {#_apisconsoleopenshiftiov1consoleexternalloglinks_name_status}
 
 **Global path parameters**
 

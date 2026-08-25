@@ -167,7 +167,8 @@ spec:
 # ...
 ```
 
-## Additional resources {#additional-resources_virt-specifying-nodes-for-vms}
+**Additional resources**
+{._additional-resources}
 
 - [Specifying nodes for virtualization components](/openshift-docs-markdown/virt/post_installation_configuration/virt-node-placement-virt-components#virt-node-placement-virt-components)
 - [Placing pods on specific nodes using node selectors](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-node-selectors#nodes-scheduler-node-selectors)

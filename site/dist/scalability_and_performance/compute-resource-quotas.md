@@ -22,7 +22,7 @@ The following tables describe the set of compute resources and object types that
 > [!NOTE]
 > A pod is in a terminal state if `status.phase` is `Failed` or `Succeeded`.
 
-***Compute resources managed by quota***
+**Compute resources managed by quota**
 
 <table>
 <thead>
@@ -42,7 +42,7 @@ The following tables describe the set of compute resources and object types that
 </tr>
 <tr>
   <td><code>ephemeral-storage</code></td>
-  <td>The sum of local ephemeral storage requests across all pods in a non-terminal state cannot exceed this value. <code>ephemeral-storage</code> and<code>requests.ephemeral-storage</code> are the same value and can be used interchangeably. This resource is available only if you enabled the ephemeral storage technology preview. This feature is disabled by default.</td>
+  <td>The sum of local ephemeral storage requests across all pods in a non-terminal state cannot exceed this value. <code>ephemeral-storage</code> and <code>requests.ephemeral-storage</code> are the same value and can be used interchangeably. This resource is available only if you enabled the ephemeral storage technology preview. This feature is disabled by default.</td>
 </tr>
 <tr>
   <td><code>requests.cpu</code></td>
@@ -54,7 +54,7 @@ The following tables describe the set of compute resources and object types that
 </tr>
 <tr>
   <td><code>requests.ephemeral-storage</code></td>
-  <td>The sum of ephemeral storage requests across all pods in a non-terminal state cannot exceed this value. <code>ephemeral-storage</code> and<code>requests.ephemeral-storage</code> are the same value and can be used interchangeably. This resource is available only if you enabled the ephemeral storage technology preview. This feature is disabled by default.</td>
+  <td>The sum of ephemeral storage requests across all pods in a non-terminal state cannot exceed this value. <code>ephemeral-storage</code> and <code>requests.ephemeral-storage</code> are the same value and can be used interchangeably. This resource is available only if you enabled the ephemeral storage technology preview. This feature is disabled by default.</td>
 </tr>
 <tr>
   <td><code>limits.cpu</code></td>
@@ -71,7 +71,7 @@ The following tables describe the set of compute resources and object types that
 </tbody>
 </table>
 
-***Storage resources managed by quota***
+**Storage resources managed by quota**
 
 <table>
 <thead>
@@ -90,17 +90,17 @@ The following tables describe the set of compute resources and object types that
   <td>The total number of persistent volume claims that can exist in the project.</td>
 </tr>
 <tr>
-  <td><code><storage-class-name>.storageclass.storage.k8s.io/requests.storage</code></td>
+  <td><code>&lt;storage-class-name&gt;.storageclass.storage.k8s.io/requests.storage</code></td>
   <td>The sum of storage requests across all persistent volume claims in any state that have a matching storage class, cannot exceed this value.</td>
 </tr>
 <tr>
-  <td><code><storage-class-name>.storageclass.storage.k8s.io/persistentvolumeclaims</code></td>
+  <td><code>&lt;storage-class-name&gt;.storageclass.storage.k8s.io/persistentvolumeclaims</code></td>
   <td>The total number of persistent volume claims with a matching storage class that can exist in the project.</td>
 </tr>
 </tbody>
 </table>
 
-***Object counts managed by quota***
+**Object counts managed by quota**
 
 <table>
 <thead>
@@ -212,15 +212,14 @@ To manage the consumption of extended resources, such as `nvidia.com/gpu`, defin
    $ oc describe quota gpu-quota -n nvidia
    ```
 
-```terminal {title="Example output"}
-Name:                    gpu-quota
-Namespace:               nvidia
-Resource                 Used  Hard
---------                 ----  ----
-requests.nvidia.com/gpu  0     1
-```
-
-1. Run a pod that asks for a single GPU with the following command:
+   ```terminal {title="Example output"}
+   Name:                    gpu-quota
+   Namespace:               nvidia
+   Resource                 Used  Hard
+   --------                 ----  ----
+   requests.nvidia.com/gpu  0     1
+   ```
+5. Run a pod that asks for a single GPU with the following command:
 
    ```terminal
    $ oc create pod gpu-pod.yaml
@@ -252,7 +251,7 @@ requests.nvidia.com/gpu  0     1
          limits:
            nvidia.com/gpu: 1
    ```
-2. Verify that the pod is running with the following command:
+6. Verify that the pod is running with the following command:
 
    ```terminal
    $ oc get pods
@@ -262,7 +261,7 @@ requests.nvidia.com/gpu  0     1
    NAME              READY     STATUS      RESTARTS   AGE
    gpu-pod-s46h7     1/1       Running     0          1m
    ```
-3. Verify that the quota `Used` counter is correct by running the following command:
+7. Verify that the quota `Used` counter is correct by running the following command:
 
    ```terminal
    $ oc describe quota gpu-quota -n nvidia
@@ -275,7 +274,7 @@ requests.nvidia.com/gpu  0     1
    --------                 ----  ----
    requests.nvidia.com/gpu  1     1
    ```
-4. Using the following command, attempt to create a second GPU pod in the `nvidia` namespace. This is technically available on the node because it has 2 GPUs:
+8. Using the following command, attempt to create a second GPU pod in the `nvidia` namespace. This is technically available on the node because it has 2 GPUs:
 
    ```terminal
    $ oc create -f gpu-pod.yaml
@@ -301,7 +300,7 @@ To restrict the set of resources that a quota applies to, add associated scopes.
 <tbody>
 <tr>
   <td><code>Terminating</code></td>
-  <td>Match pods where <code>spec.activeDeadlineSeconds >= 0</code>.</td>
+  <td>Match pods where <code>spec.activeDeadlineSeconds &gt;= 0</code>.</td>
 </tr>
 <tr>
   <td><code>NotTerminating</code></td>
@@ -379,7 +378,8 @@ spec:
       - high-priority
 ```
 
-## Additional resources {#additional-resources_using-quotas-and-limit-ranges}
+**Additional resources**
+{._additional-resources}
 
 - [Resources managed by quotas](/openshift-docs-markdown/applications/quotas/quotas-setting-per-project#quotas-setting-per-project_quotas-setting-per-project)
 - [Resource requests and overcommitment](/openshift-docs-markdown/nodes/clusters/nodes-cluster-overcommit#nodes-cluster-overcommit-resource-requests_nodes-cluster-overcommit)
@@ -785,7 +785,8 @@ The example in the procedure shows how the quota system intercepts every operati
 `configuration.matchContains`
 :   Specifies the name of the resource tracked by quota associated with the group or resource to limit by default.
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Resources managed by quotas](/openshift-docs-markdown/applications/quotas/quotas-setting-per-project#quotas-resources-managed_quotas-setting-per-project)
 - [Working with projects](/openshift-docs-markdown/applications/projects/working-with-projects#working-with-projects-create-project_working-with-projects-create-project)
@@ -897,7 +898,7 @@ spec:
       min:
         cpu: "1"
         memory: "1Gi"
-## ...
+# ...
 ```
 
 where:
@@ -939,7 +940,7 @@ The following list shows resources that a container can consume:
 
 The following table shows the supported constraints for a container. If specified, the constraints must hold true for each container.
 
-***Supported constraints***
+**Supported constraints**
 
 <table>
 <thead>
@@ -951,15 +952,15 @@ The following table shows the supported constraints for a container. If specifie
 <tbody>
 <tr>
   <td><code>Min</code></td>
-  <td><code>Min[<resource>]</code> less than or equal to <code>container.resources.requests[<resource>]</code> (required) less than or equal to <code>container/resources.limits[<resource>]</code> (optional)<br><br>If the configuration defines a <code>min</code> CPU, the request value must be greater than the CPU value. If you do not set a <code>min</code> value or you set <code>min</code> to <code>0</code>, the result is no limit and the pod can consume more of the resource than the <code>max</code> value.</td>
+  <td><code>Min[&lt;resource&gt;]</code> less than or equal to <code>container.resources.requests[&lt;resource&gt;]</code> (required) less than or equal to <code>container/resources.limits[&lt;resource&gt;]</code> (optional)<br><br>If the configuration defines a <code>min</code> CPU, the request value must be greater than the CPU value. If you do not set a <code>min</code> value or you set <code>min</code> to <code>0</code>, the result is no limit and the pod can consume more of the resource than the <code>max</code> value.</td>
 </tr>
 <tr>
   <td><code>Max</code></td>
-  <td><code>container.resources.limits[<resource>]</code> (required) less than or equal to <code>Max[<resource>]</code><br><br>If the configuration defines a <code>max</code> CPU, you do not need to define a CPU request value. However, you must set a limit that satisfies the maximum CPU constraint that is specified in the limit range.</td>
+  <td><code>container.resources.limits[&lt;resource&gt;]</code> (required) less than or equal to <code>Max[&lt;resource&gt;]</code><br><br>If the configuration defines a <code>max</code> CPU, you do not need to define a CPU request value. However, you must set a limit that satisfies the maximum CPU constraint that is specified in the limit range.</td>
 </tr>
 <tr>
   <td><code>MaxLimitRequestRatio</code></td>
-  <td><code>MaxLimitRequestRatio[<resource>]</code> less than or equal to (<code>container.resources.limits[<resource>]</code> / <code>container.resources.requests[<resource>]</code>)<br><br>If the limit range defines a <code>maxLimitRequestRatio</code> constraint, any new containers must have both a <code>request</code> and a <code>limit</code> value. Additionally, OpenShift Container Platform calculates a limit-to-request ratio by dividing the <code>limit</code> by the <code>request</code>. The result should be an integer greater than 1.<br><br>For example, if a container has <code>cpu: 500</code> in the <code>limit</code> value, and <code>cpu: 100</code> in the <code>request</code> value, the limit-to-request ratio for <code>cpu</code> is <code>5</code>. This ratio must be less than or equal to the <code>maxLimitRequestRatio</code>.</td>
+  <td><code>MaxLimitRequestRatio[&lt;resource&gt;]</code> less than or equal to (<code>container.resources.limits[&lt;resource&gt;]</code> / <code>container.resources.requests[&lt;resource&gt;]</code>)<br><br>If the limit range defines a <code>maxLimitRequestRatio</code> constraint, any new containers must have both a <code>request</code> and a <code>limit</code> value. Additionally, OpenShift Container Platform calculates a limit-to-request ratio by dividing the <code>limit</code> by the <code>request</code>. The result should be an integer greater than 1.<br><br>For example, if a container has <code>cpu: 500</code> in the <code>limit</code> value, and <code>cpu: 100</code> in the <code>request</code> value, the limit-to-request ratio for <code>cpu</code> is <code>5</code>. This ratio must be less than or equal to the <code>maxLimitRequestRatio</code>.</td>
 </tr>
 </tbody>
 </table>
@@ -990,15 +991,15 @@ The following table shows the supported constraints for a pod. Across all pods, 
 <tbody>
 <tr>
   <td><code>Min</code></td>
-  <td><code>Min[<resource>]</code> less than or equal to <code>container.resources.requests[<resource>]</code> (required) less than or equal to <code>container.resources.limits[<resource>]</code>. If you do not set a <code>min</code> value or you set <code>min</code> to <code>0</code>, the result is no limit and the pod can consume more of the resource than the <code>max</code> value.</td>
+  <td><code>Min[&lt;resource&gt;]</code> less than or equal to <code>container.resources.requests[&lt;resource&gt;]</code> (required) less than or equal to <code>container.resources.limits[&lt;resource&gt;]</code>. If you do not set a <code>min</code> value or you set <code>min</code> to <code>0</code>, the result is no limit and the pod can consume more of the resource than the <code>max</code> value.</td>
 </tr>
 <tr>
   <td><code>Max</code></td>
-  <td><code>container.resources.limits[<resource>]</code> (required) less than or equal to <code>Max[<resource>]</code>.</td>
+  <td><code>container.resources.limits[&lt;resource&gt;]</code> (required) less than or equal to <code>Max[&lt;resource&gt;]</code>.</td>
 </tr>
 <tr>
   <td><code>MaxLimitRequestRatio</code></td>
-  <td><code>MaxLimitRequestRatio[<resource>]</code> less than or equal to (<code>container.resources.limits[<resource>]</code> / <code>container.resources.requests[<resource>]</code>).</td>
+  <td><code>MaxLimitRequestRatio[&lt;resource&gt;]</code> less than or equal to (<code>container.resources.limits[&lt;resource&gt;]</code> / <code>container.resources.requests[&lt;resource&gt;]</code>).</td>
 </tr>
 </tbody>
 </table>
@@ -1014,7 +1015,7 @@ An image can consume the following resources:
 
 The following table shows the supported constraints for an image. If specified, the constraints must hold true for each image.
 
-***Image limits***
+**Image limits**
 
 <table>
 <thead>
@@ -1026,7 +1027,7 @@ The following table shows the supported constraints for an image. If specified, 
 <tbody>
 <tr>
   <td><code>Max</code></td>
-  <td><code>image.dockerimagemetadata.size</code> less than or equal to <code>Max[<resource>]</code></td>
+  <td><code>image.dockerimagemetadata.size</code> less than or equal to <code>Max[&lt;resource&gt;]</code></td>
 </tr>
 </tbody>
 </table>
@@ -1080,7 +1081,7 @@ A `PersistentVolumeClaim` resource can consume storage resources.
 
 The following table shows the supported constraints for a persistent volume claim. If specified, the constraints must hold true for each persistent volume claim.
 
-*`PersistentVolumeClaim`** resource limits***
+**`PersistentVolumeClaim` resource limits**
 
 <table>
 <thead>
@@ -1134,7 +1135,8 @@ where:
 `limits.max.storage`
 :   Specifies the maximum amount of storage that can be requested in a persistent volume claim.
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Managing images streams](/openshift-docs-markdown/openshift_images/image-streams-manage#images-imagestream-use_image-streams-managing)
 - [Restrict resource consumption with limit ranges](/openshift-docs-markdown/nodes/clusters/nodes-cluster-limit-ranges#nodes-cluster-limit-stream-limits_nodes-cluster-limit-stream-limits)
@@ -1190,6 +1192,7 @@ You can view any limit ranges that are defined in a project by navigating in the
   $ oc delete limits <limit_name>
   ```
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Resource quotas per projects](/openshift-docs-markdown/applications/quotas/quotas-setting-per-project#quotas-setting-per-project_quotas-setting-per-project)

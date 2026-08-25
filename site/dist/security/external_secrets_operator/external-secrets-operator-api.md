@@ -22,13 +22,13 @@ The `applicationConfig` object customizes the runtime behavior and deployment co
 
 | Field | Type | Description | Default | Validation |
 | --- | --- | --- | --- | --- |
-| `logLevel` | *integer* | `logLevel` supports a range of values as defined in the [kubernetes logging guidelines](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-instrumentation/logging.md#what-method-to-use). | 1 | The maximum range value is 5 The minimum range value is 1 Optional |
-| `operatingNamespace` | *string* | `operatingNamespace` restricts the `external-secrets` operand operations to the provided namespace. Enabling this field disables `ClusterSecretStore` and `ClusterExternalSecret`. |  | The maximum length is 63 The minimum length is 1 Optional |
+| `logLevel` | *integer* | `logLevel` supports a range of values as defined in the [kubernetes logging guidelines](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-instrumentation/logging.md#what-method-to-use). | 1 | The maximum range value is 5<br>The minimum range value is 1<br>Optional |
+| `operatingNamespace` | *string* | `operatingNamespace` restricts the `external-secrets` operand operations to the provided namespace. Enabling this field disables `ClusterSecretStore` and `ClusterExternalSecret`. |  | The maximum length is 63<br>The minimum length is 1<br>Optional |
 | `webhookConfig` | *object* | `webhookConfig` configures webhook specifics of the `external-secrets` operand. |  |  |
 | `resources` | [*ResourceRequirements*](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#resourcerequirements-v1-core) | `resources` defines the resource requirements. You cannot change the value of this field after setting it initially. For more information, see [https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |  | Optional |
 | `affinity` | [*Affinity*](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#affinity-v1-core) | `affinity` sets the scheduling affinity rules. For more information, see [https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/) |  | Optional |
-| `tolerations` | [*Toleration*](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#toleration-v1-core) *array* | `tolerations` sets the pod tolerations. For more information, see [https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) |  | The maximum number of items is 50 The minimum number of items is 0 Optional |
-| `nodeSelector` | *object (keys:string, values:string)* | `nodeSelector` defines the scheduling criteria by using node labels. For more information, see [https://kubernetes.io/docs/concepts/configuration/assign-pod-node/](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/) |  | The maximum number of properties is 50 The minimum number of properties is 0 Optional |
+| `tolerations` | [*Toleration*](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#toleration-v1-core) *array* | `tolerations` sets the pod tolerations. For more information, see [https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) |  | The maximum number of items is 50<br>The minimum number of items is 0<br>Optional |
+| `nodeSelector` | *object (keys:string, values:string)* | `nodeSelector` defines the scheduling criteria by using node labels. For more information, see [https://kubernetes.io/docs/concepts/configuration/assign-pod-node/](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/) |  | The maximum number of properties is 50<br>The minimum number of properties is 0<br>Optional |
 | `proxy` | *object (keys:string, values:string)* | `proxy` sets the proxy configurations available in operand containers managed by the Operator as environment variables. |  | Optional |
 
 ## bitwardenSecretManagerProvider {#eso-bitwarden-secret_external-secrets-operator-api}
@@ -37,7 +37,7 @@ To enable the Bitwarden secrets manager provider and set up the additional servi
 
 | Field | Type | Description | Default | Validation |
 | --- | --- | --- | --- | --- |
-| `mode` | *string* | `mode` field enables the `bitwardenSecretManagerProvider` provider state, which can be set to `Enabled` or `Disabled`. If set to `Enabled`, the Operator ensures the plugin is deployed and synchronized. If set to `Disabled`, the Bitwarden provider plugin reconciliation is disabled. The plugin and resources remain in their current state, and are not managed by the Operator. | `Disabled` | enum: \[Enabled Disabled\] Optional |
+| `mode` | *string* | `mode` field enables the `bitwardenSecretManagerProvider` provider state, which can be set to `Enabled` or `Disabled`. If set to `Enabled`, the Operator ensures the plugin is deployed and synchronized. If set to `Disabled`, the Bitwarden provider plugin reconciliation is disabled. The plugin and resources remain in their current state, and are not managed by the Operator. | `Disabled` | enum: \[Enabled Disabled\]<br>Optional |
 | `secretRef` | *SecretReference* | `SecretRef` specifies the Kubernetes secret that contains the TLS key pair for the Bitwarden server. If this reference is not provided and the `certManagerConfig` field is configured, the issuer defined in `certManagerConfig` generates the required certificate. The secret must use `tls.crt` for certificate, `tls.key` for the private key, and `ca.crt` for CA certificate. |  | Optional |
 
 ## certManagerConfig {#eso-cert-manager-config_external-secrets-operator-api}
@@ -268,7 +268,7 @@ The `controllerConfig` specifies the configurations used by the controller when 
   <td><em>ComponentConfig array</em></td>
   <td><code>componentConfigs</code> allows specifying deployment-level configuration overrides for individual <code>external-secrets</code> components. This field enables fine-grained control over deployment settings for each component independently. Each component can have only one configuration entry.</td>
   <td></td>
-  <td>The maximum number of items is 4.</td>
+  <td>The maximum number of items is 4.<br><br>The minimum number of items is 0.</td>
 </tr>
 <tr>
   <td><code>trustedCABundle</code> <strong>ConfigMapKeyReference</strong></td>
@@ -398,7 +398,7 @@ The `externalSecretsManagerStatus` field shows the most recently observed status
 | Field | Type | Description | Default | Validation |
 | --- | --- | --- | --- | --- |
 | `controllerStatuses` | *array* | `controllerStatuses` holds the observed conditions of the controllers used by the Operator. |  |  |
-| `lastTransitionTime` | [*Time*](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#time-v1-meta) | `lastTransitionTime` records the most recent time the status of the condition changed. |  | Format: date-time Type: string |
+| `lastTransitionTime` | [*Time*](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.32/#time-v1-meta) | `lastTransitionTime` records the most recent time the status of the condition changed. |  | Format: date-time<br>Type: string |
 
 ## Feature {#eso-feature_external-secrets-operator-api}
 
@@ -425,7 +425,7 @@ The `Feature` field configures an optional capability that is applied by the `ex
 <tr>
   <td><code>mode</code></td>
   <td><strong>mode</strong><br><br><em>string</em></td>
-  <td><code>mode</code> mode controls whether the feature is active. When set to <code>Enabled</code>, the Operator applies the configuration associated with the named feature to the relevant managed deployments. For <code>UnsafeAllowGenericTargets</code>, this passes the <code>--unsafe-allow-generic-targets</code> flag to the <code>external-secrets</code> core controller, allowing <code>ExternalSecret</code> resources to target Kubernetes resources other than <code>Secrets</code>. For example, ConfigMaps or custom resources.<br><br><dl><dt>Warning</dt><dd>Generic targets require additional RBAC permissions on the affected operand; enabling this feature without the appropriate permissions will cause reconciliation failures.</dd></dl></td>
+  <td><code>mode</code> mode controls whether the feature is active. When set to <code>Enabled</code>, the Operator applies the configuration associated with the named feature to the relevant managed deployments. For <code>UnsafeAllowGenericTargets</code>, this passes the <code>--unsafe-allow-generic-targets</code> flag to the <code>external-secrets</code> core controller, allowing <code>ExternalSecret</code> resources to target Kubernetes resources other than <code>Secrets</code>. For example, ConfigMaps or custom resources.<br><br><dl class="db-admonition db-admonition-warning"><dt>Warning</dt><dd>Generic targets require additional RBAC permissions on the affected operand; enabling this feature without the appropriate permissions will cause reconciliation failures.</dd></dl></td>
   <td>Disabled</td>
   <td>Enum:[<code>Enabled</code> <code>Disabled</code>]</td>
 </tr>
@@ -446,13 +446,13 @@ The `globalConfig` field defines the baseline behavior and deployment parameters
 
 | Field | Type | Description | Default | Validation |
 | --- | --- | --- | --- | --- |
-| `logLevel` | *integer* | `logLevel` supports a range of values as defined in the [kubernetes logging guidelines](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-instrumentation/logging.md#what-method-to-use). | 1 | The maximum range value is 5 The minimum range value is 1 |
+| `logLevel` | *integer* | `logLevel` supports a range of values as defined in the [kubernetes logging guidelines](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-instrumentation/logging.md#what-method-to-use). | 1 | The maximum range value is 5<br>The minimum range value is 1 |
 | `resources` | [*ResourceRequirements*](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#resourcerequirements-v1-core) | `resources` defines the resource requirements. You cannot change the value of this field after setting it initially. For more information, see [https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |  |  |
 | `affinity` | [*Affinity*](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#affinity-v1-core) | `affinity` sets the scheduling affinity rules. For more information, see [https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/) |  |  |
-| `tolerations` | [*Toleration*](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#toleration-v1-core) *array* | `tolerations` sets the pod tolerations. For more information, see [https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) |  | The maximum number of items is 50 The minimum number of items is 0 |
-| `nodeSelector` | *object (keys:string, values:string)* | `nodeSelector` defines the scheduling criteria by using the node labels. For more information, see [https://kubernetes.io/docs/concepts/configuration/assign-pod-node/](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/) |  | The maximum number of properties is 50 The minimum number of properties is 0 |
+| `tolerations` | [*Toleration*](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#toleration-v1-core) *array* | `tolerations` sets the pod tolerations. For more information, see [https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) |  | The maximum number of items is 50<br>The minimum number of items is 0 |
+| `nodeSelector` | *object (keys:string, values:string)* | `nodeSelector` defines the scheduling criteria by using the node labels. For more information, see [https://kubernetes.io/docs/concepts/configuration/assign-pod-node/](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/) |  | The maximum number of properties is 50<br>The minimum number of properties is 0 |
 | `proxy` | *object* | `proxy` sets the proxy configurations available in the operand containers managed by the Operator as environment variables. |  |  |
-| `labels` | *object (keys:string, values:string)* | `labels` applies to all resources created by the Operator. This field can have a maximum of 20 entries |  | The maximum number of properties is 20 The minimum number of properties is 0 |
+| `labels` | *object (keys:string, values:string)* | `labels` applies to all resources created by the Operator. This field can have a maximum of 20 entries |  | The maximum number of properties is 20<br>The minimum number of properties is 0 |
 
 ## managementState {#eso-management-state_external-secrets-operator-api}
 
@@ -517,9 +517,9 @@ The `ObjectReference` object acts as a pointer to a specific Kubernetes resource
 
 | Field | Type | Description | Default | Validation |
 | --- | --- | --- | --- | --- |
-| `name` | *string* | `name` specifies the name of the resource being referred to. |  | The maximum length is 253 characters. The minimum length is 1 character. Required |
-| `kind` | *string* | `kind` specifies the kind of the resource being referred to. |  | The maximum length is 253 characters. The minimum length is 1 character. Optional |
-| `group` | *string* | `group` specifies the group of the resource being referred to. |  | The maximum length is 253 characters. The minimum length is 1 character. Optional |
+| `name` | *string* | `name` specifies the name of the resource being referred to. |  | The maximum length is 253 characters.<br>The minimum length is 1 character.<br>Required |
+| `kind` | *string* | `kind` specifies the kind of the resource being referred to. |  | The maximum length is 253 characters.<br>The minimum length is 1 character.<br>Optional |
+| `group` | *string* | `group` specifies the group of the resource being referred to. |  | The maximum length is 253 characters.<br>The minimum length is 1 character.<br>Optional |
 
 ## pluginsConfig {#eso-plugiins-config_external-secrets-operator-api}
 
@@ -535,10 +535,10 @@ The `proxyConfig` object defines the network proxy settings that the Operator in
 
 | Field | Type | Description | Default | Validation |
 | --- | --- | --- | --- | --- |
-| `httpProxy` | *string* | The `httpProxy` field contains the URL of the proxy for HTTP requests. This field can have a maximum of 2048 characters. |  | The maximum length is 2048 characters. The minimum length is 0 characters. |
-| `httpsProxy` | *string* | The `httpsProxy` field contains the URL of the proxy for HTTPS requests. This field can have a maximum of 2048 characters. |  | The maximum length is 2048 characters. The minimum length is 0 characters. |
-| `noProxy` | *string* | The `noProxy` field is a comma-separated list of hostnames, classless inter-domain routings (CIDRs), and IP addresses or a combination of the three for which the proxy should not be used. This field can have a maximum of 4096 characters. |  | The maximum length is 4096 characters. The minimum length is 0 characters. |
-| `networkPolicyProvisioning` **ManagementState** | *string* | The `networkPolicyProvisioning` field defines the management strategy for the proxy egress rule. When set to `Managed`, the Operator automatically provisions and maintains a `NetworkPolicy` allowing traffic to the configured proxy. If no proxy is configured, a `NetworkPolicy` is not created regardless of this setting. | Managed | Enum:\[`Managed` `Unmanaged`\] |
+| `httpProxy` | *string* | The `httpProxy` field contains the URL of the proxy for HTTP requests. This field can have a maximum of 2048 characters. |  | The maximum length is 2048 characters.<br>The minimum length is 0 characters. |
+| `httpsProxy` | *string* | The `httpsProxy` field contains the URL of the proxy for HTTPS requests. This field can have a maximum of 2048 characters. |  | The maximum length is 2048 characters.<br>The minimum length is 0 characters. |
+| `noProxy` | *string* | The `noProxy` field is a comma-separated list of hostnames, classless inter-domain routings (CIDRs), and IP addresses or a combination of the three for which the proxy should not be used. This field can have a maximum of 4096 characters. |  | The maximum length is 4096 characters.<br>The minimum length is 0 characters. |
+| `networkPolicyProvisioning`<br>**ManagementState** | *string* | The `networkPolicyProvisioning` field defines the management strategy for the proxy egress rule. When set to `Managed`, the Operator automatically provisions and maintains a `NetworkPolicy` allowing traffic to the configured proxy. If no proxy is configured, a `NetworkPolicy` is not created regardless of this setting. | Managed | Enum:\[`Managed` `Unmanaged`\] |
 
 ## secretReference {#eso-secret-reference_external-secrets-operator-api}
 
@@ -546,7 +546,7 @@ The `secretReference` field refers to a secret with the given name in the same n
 
 | Field | Type | Description | Default | Validation |
 | --- | --- | --- | --- | --- |
-| `name` | *string* | `name` specifies the name of the secret resource being referred to. |  | The maximum length is 253. The minimum length is 1. |
+| `name` | *string* | `name` specifies the name of the secret resource being referred to. |  | The maximum length is 253.<br>The minimum length is 1. |
 
 ## webhookConfig {#eso-web-hook-config_external-secrets-operator-api}
 

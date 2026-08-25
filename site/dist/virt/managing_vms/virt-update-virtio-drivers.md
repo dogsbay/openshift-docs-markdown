@@ -44,7 +44,7 @@ You can update the VirtIO drivers on a Windows virtual machine (VM) by using the
 **Procedure**
 
 1. In the Windows Guest operating system, click the **Windows** key and select **Settings**.
-2. Navigate to **Windows Update** -> **Advanced Options** -> **Optional Updates**.
+2. Navigate to **Windows Update** → **Advanced Options** → **Optional Updates**.
 3. Install all updates from **Red Hat, Inc.**.
 4. Reboot the VM.
 
@@ -58,7 +58,8 @@ You can update the VirtIO drivers on a Windows virtual machine (VM) by using the
 > [!TIP]
 > To view the individual driver versions included in the `virtio-win` container disk, open the `release-drivers-versions.txt` file at the root of the `virtio-win` CD drive.
 
-## Additional resources {#additional-resources_virt-update-virtio-drivers}
+**Additional resources**
+{._additional-resources}
 
 - [Allow signed updates from an intranet Microsoft update service location](https://learn.microsoft.com/en-us/windows/deployment/update/waas-wu-settings#allow-signed-updates-from-an-intranet-microsoft-update-service-location)
 - [Do not include drivers with Windows Updates](https://learn.microsoft.com/en-us/windows/deployment/update/waas-wu-settings#do-not-include-drivers-with-windows-updates)

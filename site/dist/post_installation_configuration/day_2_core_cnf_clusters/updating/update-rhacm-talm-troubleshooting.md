@@ -1,8 +1,8 @@
 ---
-title: Troubleshoot cluster updates with {{ cgu_operator }}
+title: Troubleshoot cluster updates with TALM
 ---
 
-# Troubleshoot cluster updates with {{ cgu_operator }} {#core-cluster-upgrades-troubleshooting}
+# Troubleshoot cluster updates with TALM {#core-cluster-upgrades-troubleshooting}
 
 If a cluster update gets stuck, fails, or results in degraded cluster Operators, use the following diagnostic procedures to identify the root cause and take corrective action.
 
@@ -364,7 +364,8 @@ If you cannot resolve the update issue, collect diagnostic information and conta
    $ oc get cgu <cgu_name> -n <namespace> -o yaml > cgu-status.yaml
    ```
 
-## Additional resources {#additional-resources_core-cluster-upgrades-troubleshooting}
+**Additional resources**
+{._additional-resources}
 
 - [Perform health checks before a cluster update with TALM](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-health-checks#core-cluster-upgrades-health-checks)
 - [Using the Topology Aware Lifecycle Manager for cluster updates](/openshift-docs-markdown/edge_computing/cnf-talm-for-cluster-upgrades#cnf-talm-for-cluster-updates)

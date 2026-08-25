@@ -35,9 +35,9 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `maxUnavailable` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | An eviction is allowed if at most "maxUnavailable" pods selected by "selector" are unavailable after the eviction, i.e. even in absence of the evicted pod. For example, one can prevent all voluntary evictions by specifying 0. This is a mutually exclusive setting with "minAvailable". |
-| `minAvailable` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | An eviction is allowed if at least "minAvailable" pods selected by "selector" will still be available after the eviction, i.e. even in the absence of the evicted pod.  So for example you can prevent all voluntary evictions by specifying "100%". |
+| `minAvailable` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | An eviction is allowed if at least "minAvailable" pods selected by "selector" will still be available after the eviction, i.e. even in the absence of the evicted pod. So for example you can prevent all voluntary evictions by specifying "100%". |
 | `selector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | Label query over pods whose evictions are managed by the disruption budget. A null selector will match no pods, while an empty ({}) selector will select all pods within the namespace. |
-| `unhealthyPodEvictionPolicy` | `string` | UnhealthyPodEvictionPolicy defines the criteria for when unhealthy pods should be considered for eviction. Current implementation considers healthy pods, as pods that have status.conditions item with type="Ready",status="True". Valid policies are IfHealthyBudget and AlwaysAllow. If no policy is specified, the default behavior will be used, which corresponds to the IfHealthyBudget policy. IfHealthyBudget policy means that running pods (status.phase="Running"), but not yet healthy can be evicted only if the guarded application is not disrupted (status.currentHealthy is at least equal to status.desiredHealthy). Healthy pods will be subject to the PDB for eviction. AlwaysAllow policy means that all running pods (status.phase="Running"), but not yet healthy are considered disrupted and can be evicted regardless of whether the criteria in a PDB is met. This means perspective running pods of a disrupted application might not get a chance to become healthy. Healthy pods will be subject to the PDB for eviction. Additional policies may be added in the future. Clients making eviction decisions should disallow eviction of unhealthy pods if they encounter an unrecognized policy in this field. Possible enum values:  - `"AlwaysAllow"` policy means that all running pods (status.phase="Running"), but not yet healthy are considered disrupted and can be evicted regardless of whether the criteria in a PDB is met. This means perspective running pods of a disrupted application might not get a chance to become healthy. Healthy pods will be subject to the PDB for eviction.  - `"IfHealthyBudget"` policy means that running pods (status.phase="Running"), but not yet healthy can be evicted only if the guarded application is not disrupted (status.currentHealthy is at least equal to status.desiredHealthy). Healthy pods will be subject to the PDB for eviction. |
+| `unhealthyPodEvictionPolicy` | `string` | UnhealthyPodEvictionPolicy defines the criteria for when unhealthy pods should be considered for eviction. Current implementation considers healthy pods, as pods that have status.conditions item with type="Ready",status="True".<br>Valid policies are IfHealthyBudget and AlwaysAllow. If no policy is specified, the default behavior will be used, which corresponds to the IfHealthyBudget policy.<br>IfHealthyBudget policy means that running pods (status.phase="Running"), but not yet healthy can be evicted only if the guarded application is not disrupted (status.currentHealthy is at least equal to status.desiredHealthy). Healthy pods will be subject to the PDB for eviction.<br>AlwaysAllow policy means that all running pods (status.phase="Running"), but not yet healthy are considered disrupted and can be evicted regardless of whether the criteria in a PDB is met. This means perspective running pods of a disrupted application might not get a chance to become healthy. Healthy pods will be subject to the PDB for eviction.<br>Additional policies may be added in the future. Clients making eviction decisions should disallow eviction of unhealthy pods if they encounter an unrecognized policy in this field.<br>Possible enum values: - `"AlwaysAllow"` policy means that all running pods (status.phase="Running"), but not yet healthy are considered disrupted and can be evicted regardless of whether the criteria in a PDB is met. This means perspective running pods of a disrupted application might not get a chance to become healthy. Healthy pods will be subject to the PDB for eviction. - `"IfHealthyBudget"` policy means that running pods (status.phase="Running"), but not yet healthy can be evicted only if the guarded application is not disrupted (status.currentHealthy is at least equal to status.desiredHealthy). Healthy pods will be subject to the PDB for eviction. |
 
 ### .status {#_status}
 
@@ -57,7 +57,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `conditions` | [`array (Condition)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Condition) | Conditions contain conditions for PDB. The disruption controller sets the DisruptionAllowed condition. The following are known values for the reason field (additional reasons could be added in the future): - SyncFailed: The controller encountered an error and wasn’t able to compute               the number of allowed disruptions. Therefore no disruptions are               allowed and the status of the condition will be False. - InsufficientPods: The number of pods are either at or below the number                     required by the PodDisruptionBudget. No disruptions are                     allowed and the status of the condition will be False. - SufficientPods: There are more pods than required by the PodDisruptionBudget.                   The condition will be True, and the number of allowed                   disruptions are provided by the disruptionsAllowed property. |
+| `conditions` | [`array (Condition)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Condition) | Conditions contain conditions for PDB. The disruption controller sets the DisruptionAllowed condition. The following are known values for the reason field (additional reasons could be added in the future): - SyncFailed: The controller encountered an error and wasn’t able to compute the number of allowed disruptions. Therefore no disruptions are allowed and the status of the condition will be False. - InsufficientPods: The number of pods are either at or below the number required by the PodDisruptionBudget. No disruptions are allowed and the status of the condition will be False. - SufficientPods: There are more pods than required by the PodDisruptionBudget. The condition will be True, and the number of allowed disruptions are provided by the disruptionsAllowed property. |
 | `currentHealthy` | `integer` | current number of healthy pods |
 | `desiredHealthy` | `integer` | minimum desired number of healthy pods |
 | `disruptedPods` | [`object (Time)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | DisruptedPods contains information about pods whose eviction was processed by the API server eviction subresource handler but has not yet been observed by the PodDisruptionBudget controller. A pod will be in this map from the time when the API server processed the eviction request to the time when the pod is seen by PDB controller as having been marked for deletion (or after a timeout). The key in the map is the name of the pod and the value is the time when the API server processed the eviction request. If the deletion didn’t occur and a pod is still there it will be removed from the list automatically by PodDisruptionBudget controller after some time. If everything goes smooth this map should be empty for the most of the time. Large number of entries in the map may indicate problems with pod deletions. |
@@ -75,24 +75,24 @@ The following API endpoints are available:
 - `/apis/policy/v1/watch/poddisruptionbudgets`
 
   - `GET`: watch individual changes to a list of PodDisruptionBudget. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/policy/v1/namespaces/{{ namespace }}/poddisruptionbudgets`
+- `/apis/policy/v1/namespaces/{namespace}/poddisruptionbudgets`
 
   - `DELETE`: delete collection of PodDisruptionBudget
   - `GET`: list or watch objects of kind PodDisruptionBudget
   - `POST`: create a PodDisruptionBudget
-- `/apis/policy/v1/watch/namespaces/{{ namespace }}/poddisruptionbudgets`
+- `/apis/policy/v1/watch/namespaces/{namespace}/poddisruptionbudgets`
 
   - `GET`: watch individual changes to a list of PodDisruptionBudget. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/policy/v1/namespaces/{{ namespace }}/poddisruptionbudgets/{{ name }}`
+- `/apis/policy/v1/namespaces/{namespace}/poddisruptionbudgets/{name}`
 
   - `DELETE`: delete a PodDisruptionBudget
   - `GET`: read the specified PodDisruptionBudget
   - `PATCH`: partially update the specified PodDisruptionBudget
   - `PUT`: replace the specified PodDisruptionBudget
-- `/apis/policy/v1/watch/namespaces/{{ namespace }}/poddisruptionbudgets/{{ name }}`
+- `/apis/policy/v1/watch/namespaces/{namespace}/poddisruptionbudgets/{name}`
 
   - `GET`: watch changes to an object of kind PodDisruptionBudget. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
-- `/apis/policy/v1/namespaces/{{ namespace }}/poddisruptionbudgets/{{ name }}/status`
+- `/apis/policy/v1/namespaces/{namespace}/poddisruptionbudgets/{name}/status`
 
   - `GET`: read status of the specified PodDisruptionBudget
   - `PATCH`: partially update status of the specified PodDisruptionBudget
@@ -136,7 +136,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/policy/v1/namespaces/{{ namespace }}/poddisruptionbudgets {#_apispolicyv1namespaces_namespace_poddisruptionbudgets}
+### /apis/policy/v1/namespaces/{namespace}/poddisruptionbudgets {#_apispolicyv1namespaces_namespace_poddisruptionbudgets}
 
 HTTP method
 :   ```
@@ -210,7 +210,7 @@ Description
 | 202 - Accepted | [`PodDisruptionBudget`](/openshift-docs-markdown/rest_api/policy_apis/poddisruptionbudget-policy-v1#poddisruptionbudget-policy-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/policy/v1/watch/namespaces/{{ namespace }}/poddisruptionbudgets {#_apispolicyv1watchnamespaces_namespace_poddisruptionbudgets}
+### /apis/policy/v1/watch/namespaces/{namespace}/poddisruptionbudgets {#_apispolicyv1watchnamespaces_namespace_poddisruptionbudgets}
 
 HTTP method
 :   ```
@@ -229,7 +229,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/policy/v1/namespaces/{{ namespace }}/poddisruptionbudgets/{{ name }} {#_apispolicyv1namespaces_namespace_poddisruptionbudgets_name}
+### /apis/policy/v1/namespaces/{namespace}/poddisruptionbudgets/{name} {#_apispolicyv1namespaces_namespace_poddisruptionbudgets_name}
 
 **Global path parameters**
 
@@ -334,7 +334,7 @@ Description
 | 201 - Created | [`PodDisruptionBudget`](/openshift-docs-markdown/rest_api/policy_apis/poddisruptionbudget-policy-v1#poddisruptionbudget-policy-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/policy/v1/watch/namespaces/{{ namespace }}/poddisruptionbudgets/{{ name }} {#_apispolicyv1watchnamespaces_namespace_poddisruptionbudgets_name}
+### /apis/policy/v1/watch/namespaces/{namespace}/poddisruptionbudgets/{name} {#_apispolicyv1watchnamespaces_namespace_poddisruptionbudgets_name}
 
 **Global path parameters**
 
@@ -359,7 +359,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/policy/v1/namespaces/{{ namespace }}/poddisruptionbudgets/{{ name }}/status {#_apispolicyv1namespaces_namespace_poddisruptionbudgets_name_status}
+### /apis/policy/v1/namespaces/{namespace}/poddisruptionbudgets/{name}/status {#_apispolicyv1namespaces_namespace_poddisruptionbudgets_name_status}
 
 **Global path parameters**
 

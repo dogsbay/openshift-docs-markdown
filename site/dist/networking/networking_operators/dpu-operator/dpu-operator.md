@@ -139,7 +139,7 @@ As a cluster administrator, you can install the DPU Operator by using the web co
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, click **Ecosystem** -> **Software Catalog**.
+1. In the OpenShift Container Platform web console, click **Ecosystem** → **Software Catalog**.
 2. Select **DPU Operator** from the list of available Operators, and then click **Install**.
 3. On the **Install Operator** page, under **Installed Namespace**, the **Operator recommended Namespace** option is preselected by default. No action is required.
 
@@ -147,7 +147,7 @@ As a cluster administrator, you can install the DPU Operator by using the web co
 
 **Verification**
 
-1. Navigate to the **Ecosystem** -> **Installed Operators** page.
+1. Navigate to the **Ecosystem** → **Installed Operators** page.
 2. Ensure that the **openshift-dpu-operator** project lists **DPU Operator** with a **Status** of **InstallSucceeded**.
 
    > [!NOTE]
@@ -156,7 +156,7 @@ As a cluster administrator, you can install the DPU Operator by using the web co
 **Troubleshooting**
 
 - Inspect the **Operator Subscriptions** and **Install Plans** tabs for any failure or errors under **Status**.
-- Navigate to the **Workloads** -> **Pods** page and check the logs for pods in the `openshift-dpu-operator` project.
+- Navigate to the **Workloads** → **Pods** page and check the logs for pods in the `openshift-dpu-operator` project.
 - Check the namespace of the YAML file. If the annotation is missing, you can add the annotation `workload.openshift.io/allowed=management` to the Operator namespace with the following command:
 
   ```terminal
@@ -473,5 +473,6 @@ To uninstall the DPU Operator, you must first delete any running DPU workloads. 
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Deleting Operators from a cluster](/openshift-docs-markdown/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-a-cluster)

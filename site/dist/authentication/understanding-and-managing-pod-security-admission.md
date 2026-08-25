@@ -23,7 +23,7 @@ You can also configure the pod security admission settings at the namespace leve
 
 You can configure the following pod security admission modes for a namespace:
 
-***Pod security admission modes***
+**Pod security admission modes**
 
 <table>
 <thead>
@@ -56,7 +56,7 @@ You can configure the following pod security admission modes for a namespace:
 
 You can set each of the pod security admission modes to one of the following profiles:
 
-***Pod security admission profiles***
+**Pod security admission profiles**
 
 <table>
 <thead>
@@ -165,9 +165,7 @@ If an Operator is installed in a user-created `openshift-*` namespace, synchroni
 To customize which namespaces have their pod security admission labels automatically updated, you can enable or disable synchronization for most namespaces.
 
 > [!IMPORTANT]
-> You cannot enable pod security admission synchronization on some
->
-> system-created namespaces. For more information, see *Pod security admission synchronization namespace exclusions*.
+> You cannot enable pod security admission synchronization on some system-created namespaces. For more information, see *Pod security admission synchronization namespace exclusions*.
 
 **Procedure**
 
@@ -192,6 +190,7 @@ To customize which namespaces have their pod security admission labels automatic
   > Use the `--overwrite` flag to overwrite the value if this label is already set on the namespace.
 
 **Additional resources**
+{._additional-resources}
 
 - [Pod security admission synchronization namespace exclusions](/openshift-docs-markdown/authentication/understanding-and-managing-pod-security-admission#security-context-constraints-psa-sync-exclusions_understanding-and-managing-pod-security-admission)
 
@@ -260,7 +259,8 @@ The `PodSecurityViolation` alert does not provide details on which workloads are
    1 test-namespace my-pod
    ```
 
-## Additional resources {#additional-resources_managing-pod-security-admission}
+**Additional resources**
+{._additional-resources}
 
 - [Pod Security Admission (Kubernetes documentation)](https://kubernetes.io/docs/concepts/security/pod-security-admission)
 - [Pod Security Standards (Kubernetes documentation)](https://kubernetes.io/docs/concepts/security/pod-security-standards/)

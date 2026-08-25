@@ -1,5 +1,5 @@
 ---
-title: Destroying a hosted cluster on {{ aws_short }}
+title: Destroying a hosted cluster on AWS
 ---
 
 # Destroying a hosted cluster on AWS {#hcp-destroy-aws}

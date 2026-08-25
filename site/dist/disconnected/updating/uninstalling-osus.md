@@ -20,7 +20,7 @@ You can use the OpenShift Container Platform web console to delete an OpenShift 
 
 **Procedure**
 
-1. In the web console, click **Ecosystem** -> **Installed Operators**.
+1. In the web console, click **Ecosystem** → **Installed Operators**.
 2. Choose **OpenShift Update Service** from the list of installed Operators.
 3. Click the **Update Service** tab.
 4. From the list of installed OpenShift Update Service applications, select the application to be deleted and then click **Delete UpdateService**.
@@ -66,7 +66,7 @@ You can use the OpenShift Container Platform web console to uninstall the OpenSh
 
 **Procedure**
 
-1. In the web console, click **Ecosystem** -> **Installed Operators**.
+1. In the web console, click **Ecosystem** → **Installed Operators**.
 2. Select **OpenShift Update Service** from the list of installed Operators and click **Uninstall Operator**.
 3. From the **Uninstall Operator?** confirmation dialog, click **Uninstall** to confirm the uninstallation.
 

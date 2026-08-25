@@ -1,5 +1,5 @@
 ---
-title: Project []
+title: Project [config.openshift.io/v1]
 ---
 
 # Project \[config.openshift.io/v1\] {#project-config-openshift-io-v1}
@@ -75,13 +75,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of Project
   - `GET`: list objects of kind Project
   - `POST`: create a Project
-- `/apis/config.openshift.io/v1/projects/{{ name }}`
+- `/apis/config.openshift.io/v1/projects/{name}`
 
   - `DELETE`: delete a Project
   - `GET`: read the specified Project
   - `PATCH`: partially update the specified Project
   - `PUT`: replace the specified Project
-- `/apis/config.openshift.io/v1/projects/{{ name }}/status`
+- `/apis/config.openshift.io/v1/projects/{name}/status`
 
   - `GET`: read status of the specified Project
   - `PATCH`: partially update status of the specified Project
@@ -155,7 +155,7 @@ Description
 | 202 - Accepted | [`Project`](/openshift-docs-markdown/rest_api/config_apis/project-config-openshift-io-v1#project-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/projects/{{ name }} {#_apisconfigopenshiftiov1projects_name}
+### /apis/config.openshift.io/v1/projects/{name} {#_apisconfigopenshiftiov1projects_name}
 
 **Global path parameters**
 
@@ -259,7 +259,7 @@ Description
 | 201 - Created | [`Project`](/openshift-docs-markdown/rest_api/config_apis/project-config-openshift-io-v1#project-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/projects/{{ name }}/status {#_apisconfigopenshiftiov1projects_name_status}
+### /apis/config.openshift.io/v1/projects/{name}/status {#_apisconfigopenshiftiov1projects_name_status}
 
 **Global path parameters**
 

@@ -1,8 +1,8 @@
 ---
-title: Securing routes with the {{ cert_manager_operator }}
+title: Securing routes with the cert-manager Operator for Red Hat OpenShift
 ---
 
-# Securing routes with the {{ cert_manager_operator }} {#cert-manager-securing-routes}
+# Securing routes with the cert-manager Operator for Red Hat OpenShift {#cert-manager-securing-routes}
 
 In the OpenShift Container Platform, the route API is extended to provide a configurable option to reference TLS certificates via secrets. With externally managed certificates enabled, you can minimize errors from manual intervention, streamline the certificate management process, and enable the OpenShift Container Platform router to promptly serve the referenced certificate.
 
@@ -186,7 +186,8 @@ To encrypt traffic between external clients and your applications, configure cer
 
 The certificate from the referenced secret secures the route. The `cert-manager` component issues the certificate and automatically manages the certificate lifecycle.
 
-## Additional resources {#additional-resources_cert-manager-securing-routes}
+**Additional resources**
+{._additional-resources}
 
 - [Creating a route with externally managed certificate](/openshift-docs-markdown/networking/ingress_load_balancing/routes/nw-configuring-routes#nw-ingress-route-secret-load-external-cert_secured-routes)
 - [Configuring an ACME issuer](/openshift-docs-markdown/security/cert_manager_operator/cert-manager-operator-issuer-acme#cert-manager-operator-issuer-acme)

@@ -1,5 +1,5 @@
 ---
-title: "{{ lws_operator }} overview"
+title: Leader Worker Set Operator overview
 ---
 
 # Leader Worker Set Operator overview {#lws-about}
@@ -25,6 +25,9 @@ In the `LeaderWorkerSet` configuration, you define the size of the groups and th
 
 Monitoring for the Leader Worker Set Operator is provided by default with OpenShift Container Platform through Prometheus.
 
+**Additional resources**
+{._additional-resources}
+
 - [LeaderWorkerSet project](https://lws.sigs.k8s.io/)
 
 ### LeaderWorkerSet architecture {#lws-arch_lws-about}
@@ -41,6 +44,7 @@ The `LeaderWorkerSet` API uses a leader stateful set to manage the deployment an
 
 Each leader-worker group contains a leader pod and a worker stateful set. The worker stateful set is owned by the leader pod and manages the set of worker pods associated with that leader pod. The specified size defines the total number of pods in each leader-worker group, with the leader pod included in that number.
 
-## Additional resources {#lws-about_additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [LeaderWorkerSet documentation (Kubernetes)](https://lws.sigs.k8s.io/docs/overview/)

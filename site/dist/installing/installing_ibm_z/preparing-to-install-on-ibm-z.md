@@ -46,7 +46,8 @@ User-provisioned infrastructure requires you to provision and manage all resourc
 - **Installing a cluster in an LPAR on IBM Z(R) and IBM(R) LinuxONE**: You can install OpenShift Container Platform in a logical partition (LPAR) on IBM Z(R) or IBM(R) LinuxONE infrastructure that you provision.
 - **Installing a cluster in an LPAR on IBM Z(R) and IBM(R) LinuxONE in a disconnected environment**: You can install OpenShift Container Platform in an LPAR on IBM Z(R) or IBM(R) LinuxONE infrastructure that you provision in a restricted or disconnected network by using an internal mirror of the installation release content. You can use this method to install a cluster that does not require an active internet connection to obtain the software components. You can also use this installation method to ensure that your clusters only use container images that satisfy your organizational controls on external content.
 
-## Additional resources {#additional-resources_preparing-to-install-on-ibm-z}
+**Additional resources**
+{._additional-resources}
 
 - [Assisted Installer](https://access.redhat.com/documentation/en-us/assisted_installer_for_openshift_container_platform)
 - [Preparing to install with the Agent-based Installer](/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#preparing-to-install-with-agent-based-installer)

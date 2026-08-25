@@ -154,7 +154,8 @@ Subdomains (e.g.: "\*.domain.com") are supported. However this ability does not 
 
 Transport Layer Security (TLS) is supported. This means that, if the Gateway contains a `tls` section, the OpenShift Route will be configured to support TLS.
 
-#### Additional resources {#additional-resources_ossm-vs-istio-v2x}
+**Additional resources**
+{._additional-resources}
 
 - [Automatic route creation](/openshift-docs-markdown/service_mesh/v2x/ossm-traffic-manage#ossm-auto-route_traffic-management)
 

@@ -98,7 +98,8 @@ You can optionally create a default cluster-wide node selector. The default node
 
       You can now move infrastructure resources to the new infrastructure nodes and remove any workloads that you do not want, or that do not belong, on the new infrastructure node. See the list of workloads supported for use on infrastructure nodes in "OpenShift Container Platform infrastructure components".
 
-## Additional resources {#additional-resources_creating-infrastructure-nodes}
+**Additional resources**
+{._additional-resources}
 
 - [Moving resources to infrastructure machine sets](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#moving-resources-to-infrastructure-machinesets)
 - [Creating infrastructure machine sets](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#creating-infrastructure-machinesets)

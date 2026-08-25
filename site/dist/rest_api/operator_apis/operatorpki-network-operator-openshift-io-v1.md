@@ -1,5 +1,5 @@
 ---
-title: OperatorPKI []
+title: OperatorPKI [network.operator.openshift.io/v1]
 ---
 
 # OperatorPKI \[network.operator.openshift.io/v1\] {#operatorpki-network-operator-openshift-io-v1}
@@ -93,12 +93,12 @@ The following API endpoints are available:
 - `/apis/network.operator.openshift.io/v1/operatorpkis`
 
   - `GET`: list objects of kind OperatorPKI
-- `/apis/network.operator.openshift.io/v1/namespaces/{{ namespace }}/operatorpkis`
+- `/apis/network.operator.openshift.io/v1/namespaces/{namespace}/operatorpkis`
 
   - `DELETE`: delete collection of OperatorPKI
   - `GET`: list objects of kind OperatorPKI
   - `POST`: create an OperatorPKI
-- `/apis/network.operator.openshift.io/v1/namespaces/{{ namespace }}/operatorpkis/{{ name }}`
+- `/apis/network.operator.openshift.io/v1/namespaces/{namespace}/operatorpkis/{name}`
 
   - `DELETE`: delete an OperatorPKI
   - `GET`: read the specified OperatorPKI
@@ -124,7 +124,7 @@ Description
 | 200 - OK | [`OperatorPKIList`](/openshift-docs-markdown/rest_api/objects/index#io-openshift-operator-network-v1-OperatorPKIList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/network.operator.openshift.io/v1/namespaces/{{ namespace }}/operatorpkis {#_apisnetworkoperatoropenshiftiov1namespaces_namespace_operatorpkis}
+### /apis/network.operator.openshift.io/v1/namespaces/{namespace}/operatorpkis {#_apisnetworkoperatoropenshiftiov1namespaces_namespace_operatorpkis}
 
 HTTP method
 :   ```
@@ -192,7 +192,7 @@ Description
 | 202 - Accepted | [`OperatorPKI`](/openshift-docs-markdown/rest_api/operator_apis/operatorpki-network-operator-openshift-io-v1#operatorpki-network-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/network.operator.openshift.io/v1/namespaces/{{ namespace }}/operatorpkis/{{ name }} {#_apisnetworkoperatoropenshiftiov1namespaces_namespace_operatorpkis_name}
+### /apis/network.operator.openshift.io/v1/namespaces/{namespace}/operatorpkis/{name} {#_apisnetworkoperatoropenshiftiov1namespaces_namespace_operatorpkis_name}
 
 **Global path parameters**
 

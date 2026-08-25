@@ -66,12 +66,13 @@ This procedure creates a new project called `user-getting-started`. You will use
   $ oc new-project user-getting-started
   ```
 
-```terminal {title="Example output"}
-Now using project "user-getting-started" on server "https://openshift.example.com:6443".
-...
-```
+  ```terminal {title="Example output"}
+  Now using project "user-getting-started" on server "https://openshift.example.com:6443".
+  ...
+  ```
 
 **Additional resources**
+{._additional-resources}
 
 - [oc new-project](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-new-project)
 
@@ -103,6 +104,7 @@ As a requirement of the application, you must assign the `view` role to the `def
   > If you are using a different project, replace `user-getting-started` with the name of your project.
 
 **Additional resources**
+{._additional-resources}
 
 - [RBAC overview](/openshift-docs-markdown/authentication/using-rbac#authorization-overview_using-rbac)
 - [oc adm policy add-role-to-user](/openshift-docs-markdown/cli_reference/openshift_cli/administrator-cli-commands#oc-adm-policy-add-role-to-user)
@@ -144,6 +146,7 @@ The following procedure deploys `parksmap`, which is the front-end component of 
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [oc new-app](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-new-app)
 
@@ -182,6 +185,7 @@ Optionally, you can define security, such as TLS, for the route.
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [oc create route edge](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-create-route-edge)
 - [oc get](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-get)
@@ -245,6 +249,7 @@ You can view the pods in your cluster and to determine the health of those pods 
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [oc describe](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-describe)
 - [oc get](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-get)
@@ -301,6 +306,7 @@ The following procedure scales the `parksmap` deployment to use two instances.
   > ```
 
 **Additional resources**
+{._additional-resources}
 
 - [oc scale](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-scale)
 
@@ -366,6 +372,7 @@ To expose the back-end service so that it is accessible externally, create a rou
    The application code expects the `nationalparks` route to be labeled with `type=parksmap-backend`.
 
 **Additional resources**
+{._additional-resources}
 
 - [oc label](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-label)
 
@@ -441,6 +448,7 @@ The following procedure creates the `nationalparks-mongodb-parameters` secret an
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding secrets](/openshift-docs-markdown/nodes/pods/nodes-pods-secrets#nodes-pods-secrets-about_nodes-pods-secrets)
 - [oc create secret generic](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-create-secret-generic)
@@ -482,6 +490,7 @@ After you have deployed the `mongodb-nationalparks` database application, load t
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [oc exec](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-exec)
 
@@ -514,7 +523,9 @@ After you have deployed the necessary applications and loaded data into the data
    ```text {title="Example application URL"}
    https://parksmap-user-getting-started.apps.cluster.example.com
    ```
-4. Paste this application URL into your web browser. Your browser should display a map of the national parks across the world. **Figure 1. National parks across the world**
+4. Paste this application URL into your web browser. Your browser should display a map of the national parks across the world.
+
+   **Figure 1. National parks across the world**
 
    ![Map of the national parks across the world](/openshift-docs-markdown/_assets/images/getting-started-map-national-parks.png)
 

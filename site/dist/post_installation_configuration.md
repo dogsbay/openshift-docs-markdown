@@ -51,7 +51,8 @@ The following lists details these configurations:
   - Install an Operator from the software catalog.
 - Configuring alert notifications: By default, firing alerts are displayed on the Alerting UI of the web console. You can also configure OpenShift Container Platform to send alert notifications to external systems.
 
-## Additional resources {#additional-resources_post-installation-configuration-overview}
+**Additional resources**
+{._additional-resources}
 
 - [Configure operating system features](/openshift-docs-markdown/machine_configuration/index#machine-config-overview)
 - [Configure cluster features](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#post-install-cluster-tasks)

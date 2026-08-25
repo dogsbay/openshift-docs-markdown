@@ -42,7 +42,8 @@ Secondary network
     - Allows a flexible approach to network topology.
     - Guest operating system must be configured with appropriate security because the VM is exposed directly to the secondary network. If a VM is compromised, an intruder could gain access to the secondary network.
 
-## Additional resources {#additional-resources_virt-accessing-vm-ssh}
+**Additional resources**
+{._additional-resources}
 
 - [OpenShift Virtualization Tuning & Scaling Guide](https://access.redhat.com/articles/6994974)
 - [Connecting a virtual machine to a Linux bridge network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-connecting-vm-to-linux-bridge)

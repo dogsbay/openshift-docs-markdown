@@ -1,5 +1,5 @@
 ---
-title: User []
+title: User [user.openshift.io/v1]
 ---
 
 # User \[user.openshift.io/v1\] {#user-user-openshift-io-v1}
@@ -40,13 +40,13 @@ The following API endpoints are available:
 - `/apis/user.openshift.io/v1/watch/users`
 
   - `GET`: watch individual changes to a list of User. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/user.openshift.io/v1/users/{{ name }}`
+- `/apis/user.openshift.io/v1/users/{name}`
 
   - `DELETE`: delete an User
   - `GET`: read the specified User
   - `PATCH`: partially update the specified User
   - `PUT`: replace the specified User
-- `/apis/user.openshift.io/v1/watch/users/{{ name }}`
+- `/apis/user.openshift.io/v1/watch/users/{name}`
 
   - `GET`: watch changes to an object of kind User. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
 
@@ -143,7 +143,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/user.openshift.io/v1/users/{{ name }} {#_apisuseropenshiftiov1users_name}
+### /apis/user.openshift.io/v1/users/{name} {#_apisuseropenshiftiov1users_name}
 
 **Global path parameters**
 
@@ -248,7 +248,7 @@ Description
 | 201 - Created | [`User`](/openshift-docs-markdown/rest_api/user_and_group_apis/user-user-openshift-io-v1#user-user-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/user.openshift.io/v1/watch/users/{{ name }} {#_apisuseropenshiftiov1watchusers_name}
+### /apis/user.openshift.io/v1/watch/users/{name} {#_apisuseropenshiftiov1watchusers_name}
 
 **Global path parameters**
 

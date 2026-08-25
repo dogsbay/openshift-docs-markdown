@@ -52,6 +52,7 @@ By default, the OpenShift Container Platform monitoring stack does not scrape me
   The status of the pods such as `prometheus-operator`, `prometheus-user-workload`, and `thanos-ruler-user-workload` must be `Running`.
 
 **Additional resources**
+{._additional-resources}
 
 - [Setting up metrics collection for user-defined projects](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/configuring-metrics-uwm#setting-up-metrics-collection-for-user-defined-projects_configuring-metrics-uwm)
 
@@ -220,7 +221,7 @@ The External Secrets Operator for Red Hat OpenShift exposes metrics by default o
 
 **Verification**
 
-1. In the OpenShift Container Platform web console, navigate to **Observe** -> **Targets**.
+1. In the OpenShift Container Platform web console, navigate to **Observe** → **Targets**.
 2. In the Label filter field, enter the following labels to filter the metrics targets for each operand:
 
    ```terminal
@@ -229,6 +230,7 @@ The External Secrets Operator for Red Hat OpenShift exposes metrics by default o
 3. Confirm that the **Status** column shows `Up` for the `external-secrets-operator`.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configurable monitoring components](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/preparing-to-configure-the-monitoring-stack-uwm#configurable-monitoring-components_preparing-to-configure-the-monitoring-stack-uwm)
 
@@ -244,7 +246,7 @@ As a cluster administrator, or as a user with view access to all namespaces, you
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, navigate to **Observe** -> **Metrics**.
+1. In the OpenShift Container Platform web console, navigate to **Observe** → **Metrics**.
 2. In the query field, enter the following PromQL expressions to query the External Secrets Operator for Red Hat OpenShift metric:
 
    ```promql
@@ -252,6 +254,7 @@ As a cluster administrator, or as a user with view access to all namespaces, you
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Accessing metrics](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/accessing_metrics/index)
 
@@ -349,7 +352,7 @@ The External Secrets Operator for Red Hat OpenShift operands exposes metrics by 
 
 **Verification**
 
-1. In the OpenShift Container Platform web console, navigate to **Observe** -> **Targets**.
+1. In the OpenShift Container Platform web console, navigate to **Observe** → **Targets**.
 2. In the Label filter field, enter the following labels to filter the metrics targets for each operand:
 
    ```terminal
@@ -366,6 +369,7 @@ The External Secrets Operator for Red Hat OpenShift operands exposes metrics by 
 3. Confirm that the **Status** column shows `Up` for the `external-secrets`, `external-secrets-cert-controller` and `external-secrets-webhook`.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring user workload monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/preparing-to-configure-the-monitoring-stack-uwm)
 
@@ -381,7 +385,7 @@ As a cluster administrator, or as a user with view access to all namespaces, you
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, navigate to **Observe** -> **Metrics**.
+1. In the OpenShift Container Platform web console, navigate to **Observe** → **Metrics**.
 2. In the query field, enter the following PromQL expressions to query the External Secrets Operator for Red Hat OpenShift operands metric for each operand:
 
    ```promql
@@ -397,5 +401,6 @@ As a cluster administrator, or as a user with view access to all namespaces, you
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Accessing metrics](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/accessing_metrics/index)

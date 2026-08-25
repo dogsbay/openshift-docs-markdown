@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"securing-exposing-registry","text":"Exposin
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/registry/securing-exposing-registry";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="securing-exposing-registry" class="group scroll-mt-20">Exposing the registry<a href="#securing-exposing-registry" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>By default, the OpenShift image registry is secured during cluster installation so that it serves traffic through the Transport Layer Security (TLS) protocol. Unlike previous versions of OpenShift Container Platform, the registry is not exposed outside of the cluster at the time of installation.</p>
+      <p class="_abstract">By default, the OpenShift image registry is secured during cluster installation so that it serves traffic through the Transport Layer Security (TLS) protocol. Unlike previous versions of OpenShift Container Platform, the registry is not exposed outside of the cluster at the time of installation.</p>
       <h2 id="registry-exposing-default-registry-manually_securing-exposing-registry" class="group scroll-mt-20">Exposing a default registry manually<a href="#registry-exposing-default-registry-manually_securing-exposing-registry" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">Instead of logging in to the default OpenShift image registry from within the cluster, you can gain external access to the OpenShift image registry by exposing the registry with a route. With this external access, you can log in to the registry from outside the cluster by using the route address. You can then tag and push images to an existing project by using the route host.</p>
       <p><strong>Prerequisites</strong></p>

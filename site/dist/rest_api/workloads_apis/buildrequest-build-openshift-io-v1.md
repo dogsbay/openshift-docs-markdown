@@ -1,5 +1,5 @@
 ---
-title: BuildRequest []
+title: BuildRequest [build.openshift.io/v1]
 ---
 
 # BuildRequest \[build.openshift.io/v1\] {#buildrequest-build-openshift-io-v1}
@@ -58,7 +58,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `buildArgs` | [`array (EnvVar)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | Args contains any build arguments that are to be passed to Docker.  See https://docs.docker.com/engine/reference/builder/#/arg for more details |
+| `buildArgs` | [`array (EnvVar)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | Args contains any build arguments that are to be passed to Docker. See https://docs.docker.com/engine/reference/builder/#/arg for more details |
 | `noCache` | `boolean` | noCache overrides the docker-strategy noCache option in the build config |
 
 ### .revision {#_revision}
@@ -508,14 +508,14 @@ Type
 
 The following API endpoints are available:
 
-- `/apis/build.openshift.io/v1/namespaces/{{ namespace }}/builds/{{ name }}/clone`
+- `/apis/build.openshift.io/v1/namespaces/{namespace}/builds/{name}/clone`
 
   - `POST`: create clone of a Build
-- `/apis/build.openshift.io/v1/namespaces/{{ namespace }}/buildconfigs/{{ name }}/instantiate`
+- `/apis/build.openshift.io/v1/namespaces/{namespace}/buildconfigs/{name}/instantiate`
 
   - `POST`: create instantiate of a BuildConfig
 
-### /apis/build.openshift.io/v1/namespaces/{{ namespace }}/builds/{{ name }}/clone {#_apisbuildopenshiftiov1namespaces_namespace_builds_name_clone}
+### /apis/build.openshift.io/v1/namespaces/{namespace}/builds/{name}/clone {#_apisbuildopenshiftiov1namespaces_namespace_builds_name_clone}
 
 **Global path parameters**
 
@@ -555,7 +555,7 @@ Description
 | 202 - Accepted | [`BuildRequest`](/openshift-docs-markdown/rest_api/workloads_apis/buildrequest-build-openshift-io-v1#buildrequest-build-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/build.openshift.io/v1/namespaces/{{ namespace }}/buildconfigs/{{ name }}/instantiate {#_apisbuildopenshiftiov1namespaces_namespace_buildconfigs_name_instantiate}
+### /apis/build.openshift.io/v1/namespaces/{namespace}/buildconfigs/{name}/instantiate {#_apisbuildopenshiftiov1namespaces_namespace_buildconfigs_name_instantiate}
 
 **Global path parameters**
 

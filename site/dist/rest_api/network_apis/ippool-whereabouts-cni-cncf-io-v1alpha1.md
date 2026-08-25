@@ -1,5 +1,5 @@
 ---
-title: IPPool []
+title: IPPool [whereabouts.cni.cncf.io/v1alpha1]
 ---
 
 # IPPool \[whereabouts.cni.cncf.io/v1alpha1\] {#ippool-whereabouts-cni-cncf-io-v1alpha1}
@@ -78,12 +78,12 @@ The following API endpoints are available:
 - `/apis/whereabouts.cni.cncf.io/v1alpha1/ippools`
 
   - `GET`: list objects of kind IPPool
-- `/apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/ippools`
+- `/apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{namespace}/ippools`
 
   - `DELETE`: delete collection of IPPool
   - `GET`: list objects of kind IPPool
   - `POST`: create an IPPool
-- `/apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/ippools/{{ name }}`
+- `/apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{namespace}/ippools/{name}`
 
   - `DELETE`: delete an IPPool
   - `GET`: read the specified IPPool
@@ -109,7 +109,7 @@ Description
 | 200 - OK | [`IPPoolList`](/openshift-docs-markdown/rest_api/objects/index#io-cncf-cni-whereabouts-v1alpha1-IPPoolList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/ippools {#_apiswhereaboutscnicncfiov1alpha1namespaces_namespace_ippools}
+### /apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{namespace}/ippools {#_apiswhereaboutscnicncfiov1alpha1namespaces_namespace_ippools}
 
 HTTP method
 :   ```
@@ -177,7 +177,7 @@ Description
 | 202 - Accepted | [`IPPool`](/openshift-docs-markdown/rest_api/network_apis/ippool-whereabouts-cni-cncf-io-v1alpha1#ippool-whereabouts-cni-cncf-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/ippools/{{ name }} {#_apiswhereaboutscnicncfiov1alpha1namespaces_namespace_ippools_name}
+### /apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{namespace}/ippools/{name} {#_apiswhereaboutscnicncfiov1alpha1namespaces_namespace_ippools_name}
 
 **Global path parameters**
 

@@ -12,7 +12,7 @@ You can install the External DNS Operator by using the OpenShift Container Platf
 
 **Procedure**
 
-1. Click **Ecosystem** -> **Software Catalog** in the OpenShift Container Platform web console.
+1. Click **Ecosystem** → **Software Catalog** in the OpenShift Container Platform web console.
 2. Click **External DNS Operator**. You can use the **Filter by keyword** text box or the filter list to search for External DNS Operator from the list of Operators.
 3. Select the `external-dns-operator` namespace.
 4. On the **External DNS Operator** page, click **Install**.

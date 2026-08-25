@@ -87,7 +87,7 @@ As a cluster administrator, you can install the NFD Operator by using the OpenSh
      ```
 - **Method 2:** Install the NFD Operator by using the web console:
 
-  1. In the OpenShift Container Platform web console, click **Ecosystem** -> **Software Catalog**.
+  1. In the OpenShift Container Platform web console, click **Ecosystem** → **Software Catalog**.
   2. Choose **Node Feature Discovery** from the list of available Operators, and then click **Install**.
   3. On the **Install Operator** page, select **A specific namespace on the cluster**, and then click **Install**. You do not need to create a namespace because it is created for you.
 
@@ -103,7 +103,7 @@ As a cluster administrator, you can install the NFD Operator by using the OpenSh
   NAME                                      READY   STATUS    RESTARTS   AGE
   nfd-controller-manager-7f86ccfb58-vgr4x   2/2     Running   0          10m
   ```
-- To verify a web console installation, navigate to the **Ecosystem** -> **Installed Operators** page and ensure that **Node Feature Discovery** is listed in the **openshift-nfd** project with a **Status** of `InstallSucceeded`.
+- To verify a web console installation, navigate to the **Ecosystem** → **Installed Operators** page and ensure that **Node Feature Discovery** is listed in the **openshift-nfd** project with a **Status** of `InstallSucceeded`.
 
   > [!NOTE]
   > During installation an Operator might display a **Failed** status. If the installation later succeeds with an `InstallSucceeded` message, you can ignore the **Failed** message.
@@ -112,8 +112,8 @@ As a cluster administrator, you can install the NFD Operator by using the OpenSh
 
 If the Operator does not appear as installed, troubleshoot further:
 
-1. Navigate to the **Ecosystem** -> **Installed Operators** page and inspect the **Operator Subscriptions** and **Install Plans** tabs for any failure or errors under **Status**.
-2. Navigate to the **Workloads** -> **Pods** page and check the logs for pods in the `openshift-nfd` project.
+1. Navigate to the **Ecosystem** → **Installed Operators** page and inspect the **Operator Subscriptions** and **Install Plans** tabs for any failure or errors under **Status**.
+2. Navigate to the **Workloads** → **Pods** page and check the logs for pods in the `openshift-nfd` project.
 
 ## NFD Operator overview {#nfd-using-operator-overview_psap-node-feature-discovery-operator}
 
@@ -154,7 +154,7 @@ The following example shows the use of `-rhel9` to acquire the correct image.
      instance: "" # instance is empty by default
      topologyupdater: false # False by default
      operand:
-       image: registry.redhat.io/openshift4/ose-node-feature-discovery-rhel9:v{{ product_version }}
+       image: registry.redhat.io/openshift4/ose-node-feature-discovery-rhel9:v4.22
        imagePullPolicy: Always
      workerConfig:
        configData: |
@@ -418,7 +418,7 @@ Create a `NodeFeatureDiscovery` CR by using the OpenShift Container Platform web
 
 **Procedure**
 
-1. Navigate to the **Ecosystem** -> **Installed Operators** page.
+1. Navigate to the **Ecosystem** → **Installed Operators** page.
 2. In the **Node Feature Discovery** section, under **Provided APIs**, click **Create instance**.
 3. Edit the values of the `NodeFeatureDiscovery` CR.
 4. Click **Create**.
@@ -800,7 +800,7 @@ $ podman run gcr.io/k8s-staging-nfd/node-feature-discovery:master nfd-topology-u
 :   Print version and exit.
 
 `-watch-namespace`
-:   Specifies the namespace to ensure that resource hardware topology examination only happens for the pods running in the specified namespace. Pods that are not running in the specified namespace are not considered during resource accounting. This is particularly useful for testing and debugging purposes. A `**` value means that all of the pods across all namespaces are considered during the accounting process. Default: `**`.
+:   Specifies the namespace to ensure that resource hardware topology examination only happens for the pods running in the specified namespace. Pods that are not running in the specified namespace are not considered during resource accounting. This is particularly useful for testing and debugging purposes. A `*` value means that all of the pods across all namespaces are considered during the accounting process. Default: `*`.
 
     ```terminal {title="Example"}
     $ nfd-topology-updater -watch-namespace=rte

@@ -21,7 +21,8 @@ const headings = [{"depth":1,"slug":"virt-managing-data-volume-annotations","tex
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/storage/virt-managing-data-volume-annotations";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-managing-data-volume-annotations" class="group scroll-mt-20">Managing data volume annotations<a href="#virt-managing-data-volume-annotations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Data volume (DV) annotations allow you to manage pod behavior. You can add one or more annotations to a data volume, which then propagates to the created importer pods.</p>
+      <p class="_abstract">Data volume (DV) annotations allow you to manage pod behavior. You can add one or more annotations to a data volume, which then propagates to the created importer pods.</p>
       <h2 id="virt-dv-annotations_virt-managing-data-volume-annotations" class="group scroll-mt-20">Example: Data volume annotations<a href="#virt-dv-annotations_virt-managing-data-volume-annotations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">You can configure data volume (DV) annotations to control which network the importer pod uses. The <code>v1.multus-cni.io/default-network: bridge-network</code> annotation causes the pod to use the Multus network named <code>bridge-network</code> as its default network.</p>
       <p>If you want the importer pod to use both the default network from the cluster and the secondary Multus network, use the <code>k8s.v1.cni.cncf.io/networks: &lt;network_name&gt;</code> annotation.</p>

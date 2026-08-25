@@ -1,5 +1,5 @@
 ---
-title: "{{ external_secrets_operator }} release notes"
+title: External Secrets Operator for Red Hat OpenShift release notes
 ---
 
 # External Secrets Operator for Red Hat OpenShift release notes {#external-secrets-operator-release-notes}

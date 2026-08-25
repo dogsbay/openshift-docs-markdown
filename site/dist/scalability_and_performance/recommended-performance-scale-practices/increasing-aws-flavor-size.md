@@ -12,6 +12,7 @@ If the control plane machines in an Amazon Web Services (AWS) cluster require mo
 > If you are uncertain about the state of the `ControlPlaneMachineSet` CR in your cluster, you can verify the CR status.
 
 **Additional resources**
+{._additional-resources}
 
 - [Verify the CR status](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-checking-status_cpmso-getting-started)
 
@@ -55,6 +56,7 @@ If you need more resources for your control plane machines, you can change the A
    - For clusters that are configured to use the `OnDelete` update strategy, you must replace your control plane machines manually.
 
 **Additional resources**
+{._additional-resources}
 
 - [Managing control plane machines with control plane machine sets](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-managing-machines)
 
@@ -74,13 +76,14 @@ You can change the Amazon Web Services (AWS) instance type that your control pla
 
    1. For the selected control plane machine, back up the etcd data by creating an etcd snapshot. For more information, see "Backing up etcd".
    2. In the AWS console, stop the control plane machine instance.
-   3. Select the stopped instance, and click **Actions** -> **Instance Settings** -> **Change instance type**.
+   3. Select the stopped instance, and click **Actions** → **Instance Settings** → **Change instance type**.
    4. Change the instance to a larger type, ensuring that the type is the same base as the previous selection, and apply changes. For example, you can change `m6i.xlarge` to `m6i.2xlarge` or `m6i.4xlarge`.
    5. Start the instance.
    6. If your OpenShift Container Platform cluster has a corresponding `Machine` object for the instance, update the instance type of the object to match the instance type set in the AWS console.
 3. Repeat this process for each control plane machine.
 
 **Additional resources**
+{._additional-resources}
 
 - [Backing up etcd](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backing-up-etcd)
 - [AWS documentation about changing the instance type](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-resize.html)

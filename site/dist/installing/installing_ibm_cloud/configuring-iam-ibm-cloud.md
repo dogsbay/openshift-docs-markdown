@@ -1,5 +1,5 @@
 ---
-title: Configuring IAM for {{ ibm_cloud_title }}
+title: Configuring IAM for IBM Cloud
 ---
 
 # Configuring IAM for IBM Cloud {#configuring-iam-ibm-cloud}
@@ -14,13 +14,14 @@ Storing an administrator-level credential secret in the cluster `kube-system` pr
 
 Using manual mode allows each cluster component to have only the permissions it requires, without storing an administrator-level credential in the cluster. You can also use this mode if your environment does not have connectivity to the cloud provider public IAM endpoint. However, you must manually reconcile permissions with new release images for every upgrade. You must also manually supply credentials for every component that requests them.
 
-<a name="additional-resources_configuring-iam-ibm-cloud-about-cco"></a>**Additional resources**
+**Additional resources**
+{._additional-resources}
 
 - [About the Cloud Credential Operator](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator)
 
 ## Configuring the Cloud Credential Operator utility {#cco-ccoctl-configuring_configuring-iam-ibm-cloud}
 
-{.\_abstract} To create and manage cloud credentials from outside of the cluster when the Cloud Credential Operator (CCO) is operating in manual mode, extract and prepare the CCO utility (`ccoctl`) binary.
+To create and manage cloud credentials from outside of the cluster when the Cloud Credential Operator (CCO) is operating in manual mode, extract and prepare the CCO utility (`ccoctl`) binary.
 
 > [!NOTE]
 > The `ccoctl` utility is a Linux binary that must run in a Linux environment.
@@ -94,11 +95,13 @@ Using manual mode allows each cluster component to have only the permissions it 
   Use "ccoctl [command] --help" for more information about a command.
   ```
 
-<a name="additional-resources_configuring-iam-ibm-cloud-refreshing-ids"></a>**Additional resources**
+**Additional resources**
+{._additional-resources}
 
 - [Rotating API keys for IBM Cloud(R)](/openshift-docs-markdown/post_installation_configuration/changing-cloud-credentials-configuration#refreshing-service-ids-ibm-cloud_changing-cloud-credentials-configuration)
 
-## Additional resources {#additional-resources_configuring-iam-ibm-cloud}
+**Additional resources**
+{._additional-resources}
 
 - [Installing a cluster on IBM Cloud(R) with customizations](/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-customizations#installing-ibm-cloud-customizations)
 - [Preparing to update a cluster with manually maintained credentials](/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#preparing-manual-creds-update)

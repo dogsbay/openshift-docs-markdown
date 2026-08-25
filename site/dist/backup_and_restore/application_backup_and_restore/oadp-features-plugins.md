@@ -36,7 +36,7 @@ Review the default Velero plugins provided by OpenShift API for Data Protection 
 
 OADP also provides plugins for OpenShift Container Platform resource backups, OpenShift Virtualization resource backups, and Container Storage Interface (CSI) snapshots.
 
-***OADP plugins***
+**OADP plugins**
 
 <table>
 <thead>
@@ -48,53 +48,50 @@ OADP also provides plugins for OpenShift Container Platform resource backups, Op
 </thead>
 <tbody>
 <tr>
-  <td>.2+</td>
-  <td><code>aws</code></td>
+  <td rowspan="2"><code>aws</code></td>
   <td>Backs up and restores Kubernetes objects.</td>
+  <td>AWS S3</td>
 </tr>
 <tr>
-  <td>AWS S3</td>
   <td>Backs up and restores volumes with snapshots.</td>
   <td>AWS EBS</td>
 </tr>
 <tr>
-  <td>.2+</td>
-  <td><code>azure</code></td>
+  <td rowspan="2"><code>azure</code></td>
   <td>Backs up and restores Kubernetes objects.</td>
+  <td>Microsoft Azure Blob storage</td>
 </tr>
 <tr>
-  <td>Microsoft Azure Blob storage</td>
   <td>Backs up and restores volumes with snapshots.</td>
   <td>Microsoft Azure Managed Disks</td>
 </tr>
 <tr>
-  <td>.2+</td>
-  <td><code>gcp</code></td>
+  <td rowspan="2"><code>gcp</code></td>
   <td>Backs up and restores Kubernetes objects.</td>
+  <td>Google Cloud Storage</td>
 </tr>
 <tr>
-  <td>Google Cloud Storage</td>
   <td>Backs up and restores volumes with snapshots.</td>
   <td>Google Compute Engine Disks</td>
 </tr>
 <tr>
   <td><code>openshift</code></td>
-  <td>Backs up and restores OpenShift Container Platform resources. ^[1]^</td>
+  <td>Backs up and restores OpenShift Container Platform resources. <sup>[1]</sup></td>
   <td>Object store</td>
 </tr>
 <tr>
   <td><code>kubevirt</code></td>
-  <td>Backs up and restores OpenShift Virtualization resources. ^[2]^</td>
+  <td>Backs up and restores OpenShift Virtualization resources. <sup>[2]</sup></td>
   <td>Object store</td>
 </tr>
 <tr>
   <td><code>csi</code></td>
-  <td>Backs up and restores volumes with CSI snapshots. ^[3]^</td>
+  <td>Backs up and restores volumes with CSI snapshots. <sup>[3]</sup></td>
   <td>Cloud storage that supports CSI snapshots</td>
 </tr>
 <tr>
   <td><code>hypershift</code></td>
-  <td>Backs up and restores HyperShift hosted cluster resources. ^[4]^</td>
+  <td>Backs up and restores HyperShift hosted cluster resources. <sup>[4]</sup></td>
   <td>Object store</td>
 </tr>
 </tbody>
@@ -107,6 +104,9 @@ OADP also provides plugins for OpenShift Container Platform resource backups, Op
    - OADP 1.1 or later uses `snapshot.storage.k8s.io/v1`
    - OADP 1.0 uses `snapshot.storage.k8s.io/v1beta1`
 4. Do not add the `hypershift` plugin in the `DataProtectionApplication` custom resource if the cluster is not a HyperShift hosted cluster.
+
+**Additional resources**
+{._additional-resources}
 
 - [Custom plugins](https://velero.io/docs/v1.16/custom-plugins/)
 
@@ -262,5 +262,8 @@ The `openshift-adp-controller-manager` pod fails with a crash loop segmentation 
 - If you do not define both `velero` and `cloudstorage`, the `openshift-adp-controller-manager` fails.
 
 See *OADP-1054* for more information.
+
+**Additional resources**
+{._additional-resources}
 
 - [OADP-1054](https://issues.redhat.com/browse/OADP-1054)

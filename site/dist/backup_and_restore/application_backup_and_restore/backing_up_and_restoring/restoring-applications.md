@@ -277,5 +277,6 @@ The workaround for this behavior is a two-step restore process:
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Triggering updates on image stream changes](/openshift-docs-markdown/openshift_images/triggering-updates-on-imagestream-changes#triggering-updates-on-imagestream-changes)

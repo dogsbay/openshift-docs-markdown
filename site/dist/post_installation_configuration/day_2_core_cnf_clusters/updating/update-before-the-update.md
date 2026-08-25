@@ -305,6 +305,7 @@ Follow these steps to create a single etcd backup by creating and applying a cus
      ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Backing up etcd](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd)
 

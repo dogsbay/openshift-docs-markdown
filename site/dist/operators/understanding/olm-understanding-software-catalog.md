@@ -67,7 +67,8 @@ spec:
 1. `disableAllDefaultSources` is an override that controls availability of all default catalogs that are configured by default during an OpenShift Container Platform installation.
 2. Disable default catalogs individually by changing the `disabled` parameter value per source.
 
-## Additional resources {#olm-understanding-software-catalog-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Catalog source](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-catalogsource_olm-understanding-olm)
 - [Operator installation and upgrade workflow in OLM](/openshift-docs-markdown/operators/understanding/olm/olm-workflow#olm-upgrades_olm-workflow)

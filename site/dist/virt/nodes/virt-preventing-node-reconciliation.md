@@ -26,6 +26,7 @@ If you want the `node-labeller` to skip a node, annotate that node by using the 
 
   Reconciliation resumes on the next cycle after the node annotation is removed or set to false.
 
-## Additional resources {#additional-resources_virt-preventing-node-reconciliation}
+**Additional resources**
+{._additional-resources}
 
 - [Managing node labeling for obsolete CPU models](/openshift-docs-markdown/virt/nodes/virt-managing-node-labeling-obsolete-cpu-models#virt-managing-node-labeling-obsolete-cpu-models)

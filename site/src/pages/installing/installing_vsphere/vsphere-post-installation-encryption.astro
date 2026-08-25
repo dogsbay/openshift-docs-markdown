@@ -19,11 +19,12 @@ import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"vsphere-post-installation-encryption","text":"Enabling encryption on a vSphere cluster"},{"depth":2,"slug":"encrypting-virtual-machines_vsphere-post-installation-encryption","text":"Encrypting virtual machines"},{"depth":2,"slug":"additional-resources_enabling-encryption-installation","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"vsphere-post-installation-encryption","text":"Enabling encryption on a vSphere cluster"},{"depth":2,"slug":"encrypting-virtual-machines_vsphere-post-installation-encryption","text":"Encrypting virtual machines"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/installing/installing_vsphere/vsphere-post-installation-encryption";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -42,7 +43,7 @@ const pageCategory = ["installing","installing/installing_vsphere"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Enabling encryption on a vSphere cluster {#vsphere-post-installation-encryption}\n\nYou can encrypt your virtual machines after installing OpenShift Container Platform 4.22 on vSphere by draining and shutting down your nodes one at a time. While each virtual machine is shutdown, you can enable encryption in the vCenter web interface.\n\n## Encrypting virtual machines {#encrypting-virtual-machines_vsphere-post-installation-encryption}\n\nYou can encrypt your virtual machines with the following process. You can drain your virtual machines, power them down and encrypt them using the vCenter interface. Finally, you can create a storage class to use the encrypted storage.\n\n**Prerequisites**\n\n- You have configured a Standard key provider in vSphere. For more information, see [Adding a KMS to vCenter Server](https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vsan.doc/GUID-AC06B3C3-901F-402E-B25F-1EE7809D1264.html).\n\n  > [!IMPORTANT]\n  > The Native key provider in vCenter is not supported. For more information, see [vSphere Native Key Provider Overview](https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.security.doc/GUID-54B9FBA2-FDB1-400B-A6AE-81BF3AC9DF97.html).\n- You have enabled host encryption mode on all of the ESXi hosts that are hosting the cluster. For more information, see [Enabling host encryption mode](https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.security.doc/GUID-A9E1F016-51B3-472F-B8DE-803F6BDB70BC.html).\n- You have a vSphere account which has all cryptographic privileges enabled. For more information, see [Cryptographic Operations Privileges](https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.security.doc/GUID-660CCB35-847F-46B3-81CA-10DDDB9D7AA9.html).\n\n**Procedure**\n\n1. Drain and cordon one of your nodes. For detailed instructions on node management, see \"Working with Nodes\".\n2. Shutdown the virtual machine associated with that node in the vCenter interface.\n3. Right-click the virtual machine in the vCenter interface and select **VM Policies** -> **Edit VM Storage Policies**.\n4. Select an encrypted storage policy and select **OK**.\n5. Start the encrypted virtual machine in the vCenter interface.\n6. Repeat steps 1-5 for all nodes that you want to encrypt.\n7. Configure a storage class that uses the encrypted storage policy. For more information about configuring an encrypted storage class, see \"VMware vSphere CSI Driver Operator\".\n\n## Additional resources {#additional-resources_enabling-encryption-installation}\n\n- [Evacuating pods on nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working-evacuating_nodes-nodes-working)\n- [vSphere persistent disks encryption](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-vsphere#vsphere-pv-encryption)\n- [Requirements for encrypting virtual machines](/openshift-docs-markdown/installing/installing_vsphere/upi/upi-vsphere-installation-reqs#installation-vsphere-encrypted-vms_upi-vsphere-installation-reqs)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_vsphere/vsphere-post-installation-encryption.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Enabling encryption on a vSphere cluster {#vsphere-post-installation-encryption}\n\nYou can encrypt your virtual machines after installing OpenShift Container Platform 4.22 on vSphere by draining and shutting down your nodes one at a time. While each virtual machine is shutdown, you can enable encryption in the vCenter web interface.\n\n## Encrypting virtual machines {#encrypting-virtual-machines_vsphere-post-installation-encryption}\n\nYou can encrypt your virtual machines with the following process. You can drain your virtual machines, power them down and encrypt them using the vCenter interface. Finally, you can create a storage class to use the encrypted storage.\n\n**Prerequisites**\n\n- You have configured a Standard key provider in vSphere. For more information, see [Adding a KMS to vCenter Server](https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vsan.doc/GUID-AC06B3C3-901F-402E-B25F-1EE7809D1264.html).\n\n  > [!IMPORTANT]\n  > The Native key provider in vCenter is not supported. For more information, see [vSphere Native Key Provider Overview](https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.security.doc/GUID-54B9FBA2-FDB1-400B-A6AE-81BF3AC9DF97.html).\n- You have enabled host encryption mode on all of the ESXi hosts that are hosting the cluster. For more information, see [Enabling host encryption mode](https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.security.doc/GUID-A9E1F016-51B3-472F-B8DE-803F6BDB70BC.html).\n- You have a vSphere account which has all cryptographic privileges enabled. For more information, see [Cryptographic Operations Privileges](https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.security.doc/GUID-660CCB35-847F-46B3-81CA-10DDDB9D7AA9.html).\n\n**Procedure**\n\n1. Drain and cordon one of your nodes. For detailed instructions on node management, see \"Working with Nodes\".\n2. Shutdown the virtual machine associated with that node in the vCenter interface.\n3. Right-click the virtual machine in the vCenter interface and select **VM Policies** → **Edit VM Storage Policies**.\n4. Select an encrypted storage policy and select **OK**.\n5. Start the encrypted virtual machine in the vCenter interface.\n6. Repeat steps 1-5 for all nodes that you want to encrypt.\n7. Configure a storage class that uses the encrypted storage policy. For more information about configuring an encrypted storage class, see \"VMware vSphere CSI Driver Operator\".\n\n**Additional resources**\n{._additional-resources}\n\n- [Evacuating pods on nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working-evacuating_nodes-nodes-working)\n- [vSphere persistent disks encryption](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-vsphere#vsphere-pv-encryption)\n- [Requirements for encrypting virtual machines](/openshift-docs-markdown/installing/installing_vsphere/upi/upi-vsphere-installation-reqs#installation-vsphere-encrypted-vms_upi-vsphere-installation-reqs)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_vsphere/vsphere-post-installation-encryption.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -81,12 +82,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -94,7 +96,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="vsphere-post-installation-encryption" class="group scroll-mt-20">Enabling encryption on a vSphere cluster<a href="#vsphere-post-installation-encryption" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can encrypt your virtual machines after installing OpenShift Container Platform 4.22 on vSphere by draining and shutting down your nodes one at a time. While each virtual machine is shutdown, you can enable encryption in the vCenter web interface.</p>
+      <p class="_abstract">You can encrypt your virtual machines after installing OpenShift Container Platform 4.22 on vSphere by draining and shutting down your nodes one at a time. While each virtual machine is shutdown, you can enable encryption in the vCenter web interface.</p>
       <h2 id="encrypting-virtual-machines_vsphere-post-installation-encryption" class="group scroll-mt-20">Encrypting virtual machines<a href="#encrypting-virtual-machines_vsphere-post-installation-encryption" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">You can encrypt your virtual machines with the following process. You can drain your virtual machines, power them down and encrypt them using the vCenter interface. Finally, you can create a storage class to use the encrypted storage.</p>
       <p><strong>Prerequisites</strong></p>
@@ -115,18 +117,20 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <ol>
       <li>Drain and cordon one of your nodes. For detailed instructions on node management, see "Working with Nodes".</li>
       <li>Shutdown the virtual machine associated with that node in the vCenter interface.</li>
-      <li>Right-click the virtual machine in the vCenter interface and select <strong>VM Policies</strong> -&gt; <strong>Edit VM Storage Policies</strong>.</li>
+      <li>Right-click the virtual machine in the vCenter interface and select <strong>VM Policies</strong> → <strong>Edit VM Storage Policies</strong>.</li>
       <li>Select an encrypted storage policy and select <strong>OK</strong>.</li>
       <li>Start the encrypted virtual machine in the vCenter interface.</li>
       <li>Repeat steps 1-5 for all nodes that you want to encrypt.</li>
       <li>Configure a storage class that uses the encrypted storage policy. For more information about configuring an encrypted storage class, see "VMware vSphere CSI Driver Operator".</li>
       </ol>
-      <h2 id="additional-resources_enabling-encryption-installation" class="group scroll-mt-20">Additional resources<a href="#additional-resources_enabling-encryption-installation" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul>
       <li><a href="/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working-evacuating_nodes-nodes-working">Evacuating pods on nodes</a></li>
       <li><a href="/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-vsphere#vsphere-pv-encryption">vSphere persistent disks encryption</a></li>
       <li><a href="/openshift-docs-markdown/installing/installing_vsphere/upi/upi-vsphere-installation-reqs#installation-vsphere-encrypted-vms_upi-vsphere-installation-reqs">Requirements for encrypting virtual machines</a></li>
       </ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

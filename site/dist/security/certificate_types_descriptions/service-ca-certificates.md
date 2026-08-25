@@ -58,7 +58,8 @@ Services that use service CA certificates include:
 
 This is not a comprehensive list.
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Manually rotate the service CA certificate](/openshift-docs-markdown/security/certificates/service-serving-certificate#manually-rotate-service-ca_service-serving-certificate)
 - [Securing service traffic using service serving certificate secrets](/openshift-docs-markdown/security/certificates/service-serving-certificate#add-service-serving)

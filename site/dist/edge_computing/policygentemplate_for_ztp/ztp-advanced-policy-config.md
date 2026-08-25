@@ -4,10 +4,10 @@ title: Advanced managed cluster configuration with PolicyGenTemplate resources
 
 # Advanced managed cluster configuration with PolicyGenTemplate resources {#ztp-advanced-policy-config}
 
-You can use `{{ policy_gen_cr }}` CRs to deploy custom functionality in your managed clusters.
+You can use `PolicyGenTemplate` CRs to deploy custom functionality in your managed clusters.
 
 > [!IMPORTANT]
-> Using RHACM and `{{ policy_gen_cr }}` CRs is the recommended approach for managing policies and deploying them to managed clusters. This replaces the use of `PolicyGenTemplate` CRs for this purpose. For more information about `{{ policy_gen_cr }}` resources, see the RHACM [Policy Generator](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.17/html/governance/policy-deployment#integrate-policy-generator) documentation.
+> Using RHACM and `PolicyGenTemplate` CRs is the recommended approach for managing policies and deploying them to managed clusters. This replaces the use of `PolicyGenTemplate` CRs for this purpose. For more information about `PolicyGenTemplate` resources, see the RHACM [Policy Generator](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.17/html/governance/policy-deployment#integrate-policy-generator) documentation.
 
 > [!IMPORTANT]
 > Using `PolicyGenTemplate` CRs to manage and deploy policies to managed clusters will be deprecated in an upcoming OpenShift Container Platform release. Equivalent and improved functionality is available using Red Hat Advanced Cluster Management (RHACM) and `PolicyGenerator` CRs.
@@ -15,6 +15,7 @@ You can use `{{ policy_gen_cr }}` CRs to deploy custom functionality in your man
 > For more information about `PolicyGenerator` resources, see the RHACM [Integrating Policy Generator](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.17/html-single/governance/index#integrate-policy-generator) documentation.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring managed cluster policies by using PolicyGenerator resources](/openshift-docs-markdown/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-configuring-managed-clusters-policygenerator)
 - [Comparing RHACM PolicyGenerator and PolicyGenTemplate resource patching](/openshift-docs-markdown/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-comparing-pgt-and-rhacm-pg-patching-strategies_ztp-configuring-managed-clusters-policygenerator)
@@ -37,9 +38,9 @@ Create extra manifests for the cluster installation
 
 ## Using PolicyGenTemplate CRs to override source CRs content {#ztp-using-pgt-to-update-source-crs_ztp-advanced-policy-config}
 
-`{{ policy_gen_cr }}` custom resources (CRs) allow you to overlay additional configuration details on top of the base source CRs provided with the GitOps plugin in the `ztp-site-generate` container. You can think of `{{ policy_gen_cr }}` CRs as a logical merge or patch to the base CR. Use `{{ policy_gen_cr }}` CRs to update a single field of the base CR, or overlay the entire contents of the base CR. You can update values and insert fields that are not in the base CR.
+`PolicyGenTemplate` custom resources (CRs) allow you to overlay additional configuration details on top of the base source CRs provided with the GitOps plugin in the `ztp-site-generate` container. You can think of `PolicyGenTemplate` CRs as a logical merge or patch to the base CR. Use `PolicyGenTemplate` CRs to update a single field of the base CR, or overlay the entire contents of the base CR. You can update values and insert fields that are not in the base CR.
 
-The following example procedure describes how to update fields in the generated `PerformanceProfile` CR for the reference configuration based on the `{{ policy_gen_cr }}` CR in the `{{ policy_prefix }}group-du-sno-ranGen.yaml` file. Use the procedure as a basis for modifying other parts of the `{{ policy_gen_cr }}` based on your requirements.
+The following example procedure describes how to update fields in the generated `PerformanceProfile` CR for the reference configuration based on the `PolicyGenTemplate` CR in the `truegroup-du-sno-ranGen.yaml` file. Use the procedure as a basis for modifying other parts of the `PolicyGenTemplate` based on your requirements.
 
 **Prerequisites**
 
@@ -47,7 +48,7 @@ The following example procedure describes how to update fields in the generated 
 
 **Procedure**
 
-1. Review the baseline source CR for existing content. You can review the source CRs listed in the reference `{{ policy_gen_cr }}` CRs by extracting them from the GitOps Zero Touch Provisioning (ZTP) container.
+1. Review the baseline source CR for existing content. You can review the source CRs listed in the reference `PolicyGenTemplate` CRs by extracting them from the GitOps Zero Touch Provisioning (ZTP) container.
 
    1. Create an `/out` folder:
 
@@ -57,7 +58,7 @@ The following example procedure describes how to update fields in the generated 
    2. Extract the source CRs:
 
       ```terminal
-      $ podman run --log-driver=none --rm registry.redhat.io/openshift4/ztp-site-generate-rhel8:v{{ product_version }}.1 extract /home/ztp --tar | tar x -C ./out
+      $ podman run --log-driver=none --rm registry.redhat.io/openshift4/ztp-site-generate-rhel8:v4.22.1 extract /home/ztp --tar | tar x -C ./out
       ```
 2. Review the baseline `PerformanceProfile` CR in `./out/source-crs/PerformanceProfile.yaml`:
 
@@ -94,18 +95,31 @@ The following example procedure describes how to update fields in the generated 
    ```
 
    > [!NOTE]
-   > Any fields in the source CR which contain `$...` are removed from the generated CR if they are not provided in the `{{ policy_gen_cr }}` CR.
-3. Update the `{{ policy_gen_cr }}` entry for `PerformanceProfile` in the `{{ policy_prefix }}group-du-sno-ranGen.yaml` reference file. The following example `{{ policy_gen_cr }}` CR stanza supplies appropriate CPU specifications, sets the `hugepages` configuration, and adds a new field that sets `globallyDisableIrqLoadBalancing` to false.
+   > Any fields in the source CR which contain `$...` are removed from the generated CR if they are not provided in the `PolicyGenTemplate` CR.
+3. Update the `PolicyGenTemplate` entry for `PerformanceProfile` in the `truegroup-du-sno-ranGen.yaml` reference file. The following example `PolicyGenTemplate` CR stanza supplies appropriate CPU specifications, sets the `hugepages` configuration, and adds a new field that sets `globallyDisableIrqLoadBalancing` to false.
 
    ```yaml
 
+   - fileName: PerformanceProfile.yaml
+     policyName: "config-policy"
+     metadata:
+       name: openshift-node-performance-profile
+     spec:
+       cpu:
+         # These must be tailored for the specific hardware platform
+         isolated: "2-19,22-39"
+         reserved: "0-1,20-21"
+       hugepages:
+         defaultHugepagesSize: 1G
+         pages:
+           - size: 1G
+             count: 10
+       globallyDisableIrqLoadBalancing: false
+
    ```
+4. Commit the `PolicyGenTemplate` change in Git, and then push to the Git repository being monitored by the GitOps ZTP argo CD application.
 
-{%- if policy-gen-cr == "PolicyGenTemplate" %} {% include "./snippets/pgt-using-ztp-to-update-source-crs.yaml" %} {% endif %} {% if policy-gen-cr == "PolicyGenerator" %} {% include "./snippets/pg-using-ztp-to-update-source-crs.yaml" %} {%- endif %} \`\`\`
-
-1. Commit the `{{ policy_gen_cr }}` change in Git, and then push to the Git repository being monitored by the GitOps ZTP argo CD application.
-
-   The GitOps ZTP application generates an RHACM policy that contains the generated `PerformanceProfile` CR. The contents of that CR are derived by merging the `metadata` and `spec` contents from the `PerformanceProfile` entry in the `{{ policy_gen_cr }}` onto the source CR. The resulting CR has the following content:
+   The GitOps ZTP application generates an RHACM policy that contains the generated `PerformanceProfile` CR. The contents of that CR are derived by merging the `metadata` and `spec` contents from the `PerformanceProfile` entry in the `PolicyGenTemplate` onto the source CR. The resulting CR has the following content:
 
    ```yaml
    apiVersion: performance.openshift.io/v2
@@ -137,19 +151,19 @@ The following example procedure describes how to update fields in the generated 
            enabled: true
    ```
 
-> [!NOTE]
-> In the `/source-crs` folder that you extract from the `ztp-site-generate` container,  the `$` syntax is not used for template substitution as implied by the syntax. Rather, if the `policyGen` tool sees the `$` prefix for a string and you do not specify a value for that field in the related `{{ policy_gen_cr }}` CR, the field is omitted from the output CR entirely.
->
-> An exception to this is the `$mcp` variable in `/source-crs` YAML files that is substituted with the specified value for `mcp` from the `{{ policy_gen_cr }}` CR. For example, in `example/{{ path_prefix }}/{{ policy_prefix }}group-du-standard-ranGen.yaml`, the value for `mcp` is `worker`:
->
-> ```yaml
-> spec:
->   bindingRules:
->     group-du-standard: ""
->   mcp: "worker"
-> ```
->
-> The `policyGen` tool replace instances of `$mcp` with `worker` in the output CRs.
+   > [!NOTE]
+   > In the `/source-crs` folder that you extract from the `ztp-site-generate` container,  the `$` syntax is not used for template substitution as implied by the syntax. Rather, if the `policyGen` tool sees the `$` prefix for a string and you do not specify a value for that field in the related `PolicyGenTemplate` CR, the field is omitted from the output CR entirely.
+   >
+   > An exception to this is the `$mcp` variable in `/source-crs` YAML files that is substituted with the specified value for `mcp` from the `PolicyGenTemplate` CR. For example, in `example/policygentemplates/truegroup-du-standard-ranGen.yaml`, the value for `mcp` is `worker`:
+   >
+   > ```yaml
+   > spec:
+   >   bindingRules:
+   >     group-du-standard: ""
+   >   mcp: "worker"
+   > ```
+   >
+   > The `policyGen` tool replace instances of `$mcp` with `worker` in the output CRs.
 
 ## Adding custom content to the GitOps ZTP pipeline {#ztp-adding-new-content-to-gitops-ztp_ztp-advanced-policy-config}
 
@@ -157,96 +171,94 @@ Perform the following procedure to add new content to the GitOps ZTP pipeline.
 
 **Procedure**
 
-1. Create a subdirectory named `source-crs` in the directory that contains the `kustomization.yaml` file for the `{{ policy_gen_cr }}` custom resource (CR).
+1. Create a subdirectory named `source-crs` in the directory that contains the `kustomization.yaml` file for the `PolicyGenTemplate` custom resource (CR).
 2. Add your user-provided CRs to the `source-crs` subdirectory, as shown in the following example:
 
-```terminal
-example
-└── policygentemplates
-    ├── dev.yaml
-    ├── kustomization.yaml
-    ├── mec-edge-sno1.yaml
-    ├── sno.yaml
-    └── source-crs
-        ├── PaoCatalogSource.yaml
-        ├── PaoSubscription.yaml
-        ├── custom-crs
-        |   ├── apiserver-config.yaml
-        |   └── disable-nic-lldp.yaml
-        └── elasticsearch
-            ├── ElasticsearchNS.yaml
-            └── ElasticsearchOperatorGroup.yaml
-```
+   ```terminal
+   example
+   └── policygentemplates
+       ├── dev.yaml
+       ├── kustomization.yaml
+       ├── mec-edge-sno1.yaml
+       ├── sno.yaml
+       └── source-crs
+           ├── PaoCatalogSource.yaml
+           ├── PaoSubscription.yaml
+           ├── custom-crs
+           |   ├── apiserver-config.yaml
+           |   └── disable-nic-lldp.yaml
+           └── elasticsearch
+               ├── ElasticsearchNS.yaml
+               └── ElasticsearchOperatorGroup.yaml
+   ```
 
-The `source-crs` subdirectory must be in the same directory as the `kustomization.yaml` file.
+   The `source-crs` subdirectory must be in the same directory as the `kustomization.yaml` file.
+3. Update the required `PolicyGenTemplate` CRs to include references to the content you added in the `source-crs/custom-crs` and `source-crs/elasticsearch` directories. For example:
 
-1. Update the required `{{ policy_gen_cr }}` CRs to include references to the content you added in the `source-crs/custom-crs` and `source-crs/elasticsearch` directories. For example:
+   ```yaml
+   apiVersion: ran.openshift.io/v1
+   kind: PolicyGenTemplate
+   metadata:
+     name: "group-dev"
+     namespace: "ztp-clusters"
+   spec:
+     bindingRules:
+       dev: "true"
+     mcp: "master"
+     sourceFiles:
+       # These policies/CRs come from the internal container Image
+       #Cluster Logging
+       - fileName: ClusterLogNS.yaml
+         remediationAction: inform
+         policyName: "group-dev-cluster-log-ns"
+       - fileName: ClusterLogOperGroup.yaml
+         remediationAction: inform
+         policyName: "group-dev-cluster-log-operator-group"
+       - fileName: ClusterLogSubscription.yaml
+         remediationAction: inform
+         policyName: "group-dev-cluster-log-sub"
+       #Local Storage Operator
+       - fileName: StorageNS.yaml
+         remediationAction: inform
+         policyName: "group-dev-lso-ns"
+       - fileName: StorageOperGroup.yaml
+         remediationAction: inform
+         policyName: "group-dev-lso-operator-group"
+       - fileName: StorageSubscription.yaml
+         remediationAction: inform
+         policyName: "group-dev-lso-sub"
+       #These are custom local policies that come from the source-crs directory in the git repo
+       # Performance Addon Operator
+       - fileName: PaoSubscriptionNS.yaml
+         remediationAction: inform
+         policyName: "group-dev-pao-ns"
+       - fileName: PaoSubscriptionCatalogSource.yaml
+         remediationAction: inform
+         policyName: "group-dev-pao-cat-source"
+         spec:
+           image: <container_image_url>
+       - fileName: PaoSubscription.yaml
+         remediationAction: inform
+         policyName: "group-dev-pao-sub"
+       #Elasticsearch Operator
+       - fileName: elasticsearch/ElasticsearchNS.yaml
+         remediationAction: inform
+         policyName: "group-dev-elasticsearch-ns"
+       - fileName: elasticsearch/ElasticsearchOperatorGroup.yaml
+         remediationAction: inform
+         policyName: "group-dev-elasticsearch-operator-group"
+       #Custom Resources
+       - fileName: custom-crs/apiserver-config.yaml
+         remediationAction: inform
+         policyName: "group-dev-apiserver-config"
+       - fileName: custom-crs/disable-nic-lldp.yaml
+         remediationAction: inform
+         policyName: "group-dev-disable-nic-lldp"
+   ```
 
-```yaml
-apiVersion: ran.openshift.io/v1
-kind: PolicyGenTemplate
-metadata:
-  name: "group-dev"
-  namespace: "ztp-clusters"
-spec:
-  bindingRules:
-    dev: "true"
-  mcp: "master"
-  sourceFiles:
-    # These policies/CRs come from the internal container Image
-    #Cluster Logging
-    - fileName: ClusterLogNS.yaml
-      remediationAction: inform
-      policyName: "group-dev-cluster-log-ns"
-    - fileName: ClusterLogOperGroup.yaml
-      remediationAction: inform
-      policyName: "group-dev-cluster-log-operator-group"
-    - fileName: ClusterLogSubscription.yaml
-      remediationAction: inform
-      policyName: "group-dev-cluster-log-sub"
-    #Local Storage Operator
-    - fileName: StorageNS.yaml
-      remediationAction: inform
-      policyName: "group-dev-lso-ns"
-    - fileName: StorageOperGroup.yaml
-      remediationAction: inform
-      policyName: "group-dev-lso-operator-group"
-    - fileName: StorageSubscription.yaml
-      remediationAction: inform
-      policyName: "group-dev-lso-sub"
-    #These are custom local policies that come from the source-crs directory in the git repo
-    # Performance Addon Operator
-    - fileName: PaoSubscriptionNS.yaml
-      remediationAction: inform
-      policyName: "group-dev-pao-ns"
-    - fileName: PaoSubscriptionCatalogSource.yaml
-      remediationAction: inform
-      policyName: "group-dev-pao-cat-source"
-      spec:
-        image: <container_image_url>
-    - fileName: PaoSubscription.yaml
-      remediationAction: inform
-      policyName: "group-dev-pao-sub"
-    #Elasticsearch Operator
-    - fileName: elasticsearch/ElasticsearchNS.yaml
-      remediationAction: inform
-      policyName: "group-dev-elasticsearch-ns"
-    - fileName: elasticsearch/ElasticsearchOperatorGroup.yaml
-      remediationAction: inform
-      policyName: "group-dev-elasticsearch-operator-group"
-    #Custom Resources
-    - fileName: custom-crs/apiserver-config.yaml
-      remediationAction: inform
-      policyName: "group-dev-apiserver-config"
-    - fileName: custom-crs/disable-nic-lldp.yaml
-      remediationAction: inform
-      policyName: "group-dev-disable-nic-lldp"
-```
-
-Set `fileName` to include the relative path to the file from the `/source-crs` parent directory.
-
-1. Commit the `{{ policy_gen_cr }}` change in Git, and then push to the Git repository that is monitored by the GitOps ZTP Argo CD policies application.
-2. Update the `ClusterGroupUpgrade` CR to include the changed `{{ policy_gen_cr }}` and save it as `cgu-test.yaml`. The following example shows a generated `cgu-test.yaml` file.
+   Set `fileName` to include the relative path to the file from the `/source-crs` parent directory.
+4. Commit the `PolicyGenTemplate` change in Git, and then push to the Git repository that is monitored by the GitOps ZTP Argo CD policies application.
+5. Update the `ClusterGroupUpgrade` CR to include the changed `PolicyGenTemplate` and save it as `cgu-test.yaml`. The following example shows a generated `cgu-test.yaml` file.
 
    ```yaml
    apiVersion: ran.openshift.io/v1alpha1
@@ -264,7 +276,7 @@ Set `fileName` to include the relative path to the file from the `/source-crs` p
        maxConcurrency: 2
        timeout: 240
    ```
-3. Apply the updated `ClusterGroupUpgrade` CR by running the following command:
+6. Apply the updated `ClusterGroupUpgrade` CR by running the following command:
 
    ```terminal
    $ oc apply -f cgu-test.yaml
@@ -290,7 +302,7 @@ Set `fileName` to include the relative path to the file from the `/source-crs` p
 
 Use Red Hat Advanced Cluster Management (RHACM) installed on a hub cluster to monitor and report on whether your managed clusters are compliant with applied policies. RHACM uses policy templates to apply predefined policy controllers and policies. Policy controllers are Kubernetes custom resource definition (CRD) instances.
 
-You can override the default policy evaluation intervals with `{{ policy_gen_cr }}` custom resources (CRs). You configure duration settings that define how long a `ConfigurationPolicy` CR can be in a state of policy compliance or non-compliance before RHACM re-evaluates the applied cluster policies.
+You can override the default policy evaluation intervals with `PolicyGenTemplate` custom resources (CRs). You configure duration settings that define how long a `ConfigurationPolicy` CR can be in a state of policy compliance or non-compliance before RHACM re-evaluates the applied cluster policies.
 
 The GitOps Zero Touch Provisioning (ZTP) policy generator generates `ConfigurationPolicy` CR policies with pre-defined policy evaluation intervals. The default value for the `noncompliant` state is 10 seconds. The default value for the `compliant` state is 10 minutes. To disable the evaluation interval, set the value to `never`.
 
@@ -302,31 +314,33 @@ The GitOps Zero Touch Provisioning (ZTP) policy generator generates `Configurati
 
 **Procedure**
 
-1. To configure the evaluation interval for all policies in a `{{ policy_gen_cr }}` CR, set appropriate `compliant` and `noncompliant` values for the `evaluationInterval` field. For example:
+1. To configure the evaluation interval for all policies in a `PolicyGenTemplate` CR, set appropriate `compliant` and `noncompliant` values for the `evaluationInterval` field. For example:
 
    ```yaml
 
+   spec:
+     evaluationInterval:
+       compliant: 30m
+       noncompliant: 20s
+
    ```
 
-{%- if policy-gen-cr == "PolicyGenTemplate" %} spec: evaluationInterval: compliant: 30m noncompliant: 20s {% endif %} {% if policy-gen-cr == "PolicyGenerator" %} policyDefaults: evaluationInterval: compliant: 30m noncompliant: 45s {%- endif %} \`\`\`
-
-```
-:::note
-
-You can also set `compliant` and `noncompliant` fields to `never` to stop evaluating the policy after it reaches particular compliance state.
-
-:::
-```
-
-1. To configure the evaluation interval for an individual policy object in a `{{ policy_gen_cr }}` CR, add the `evaluationInterval` field and set appropriate values. For example:
+   > [!NOTE]
+   > You can also set `compliant` and `noncompliant` fields to `never` to stop evaluating the policy after it reaches particular compliance state.
+2. To configure the evaluation interval for an individual policy object in a `PolicyGenTemplate` CR, add the `evaluationInterval` field and set appropriate values. For example:
 
    ```yaml
 
+   spec:
+     sourceFiles:
+       - fileName: SriovSubscription.yaml
+         policyName: "sriov-sub-policy"
+         evaluationInterval:
+           compliant: never
+           noncompliant: 10s
+
    ```
-
-{%- if policy-gen-cr == "PolicyGenTemplate" %} spec: sourceFiles: - fileName: SriovSubscription.yaml policyName: "sriov-sub-policy" evaluationInterval: compliant: never noncompliant: 10s {% endif %} {% if policy-gen-cr == "PolicyGenerator" %} policies: - name: "sriov-sub-policy" manifests: - path: "SriovSubscription.yaml" evaluationInterval: compliant: never noncompliant: 10s {%- endif %} \`\`\`
-
-1. Commit the `{{ policy_gen_cr }}` CRs files in the Git repository and push your changes.
+3. Commit the `PolicyGenTemplate` CRs files in the Git repository and push your changes.
 
 **Verification**
 
@@ -364,54 +378,54 @@ Create a validator inform policy that signals when the GitOps Zero Touch Provisi
 
 **Procedure**
 
-1. Create a standalone `{{ policy_gen_cr }}` custom resource (CR) that contains the source file `validatorCRs/informDuValidator.yaml`. You only need one standalone `{{ policy_gen_cr }}` CR for each cluster type. For example, this CR applies a validator inform policy for single-node OpenShift clusters:
+1. Create a standalone `PolicyGenTemplate` custom resource (CR) that contains the source file `validatorCRs/informDuValidator.yaml`. You only need one standalone `PolicyGenTemplate` CR for each cluster type. For example, this CR applies a validator inform policy for single-node OpenShift clusters:
 
-Example single-node cluster validator inform policy CR (group-du-sno-validator-ranGen.yaml):
+   Example single-node cluster validator inform policy CR (group-du-sno-validator-ranGen.yaml):
 
-```yaml
-apiVersion: ran.openshift.io/v1
-kind: PolicyGenTemplate
-metadata:
-  name: "group-du-sno-validator"
-  namespace: "ztp-group"
-spec:
-  bindingRules:
-    group-du-sno: ""
-  bindingExcludedRules:
-    ztp-done: ""
-  mcp: "master"
-  sourceFiles:
-    - fileName: validatorCRs/informDuValidator.yaml
-      remediationAction: inform
-      policyName: "du-policy"
-```
+   ```yaml
+   apiVersion: ran.openshift.io/v1
+   kind: PolicyGenTemplate
+   metadata:
+     name: "group-du-sno-validator"
+     namespace: "ztp-group"
+   spec:
+     bindingRules:
+       group-du-sno: ""
+     bindingExcludedRules:
+       ztp-done: ""
+     mcp: "master"
+     sourceFiles:
+       - fileName: validatorCRs/informDuValidator.yaml
+         remediationAction: inform
+         policyName: "du-policy"
+   ```
 
-where:
+   where:
 
-`metadata.name`
-:   Specifies the name of the `{{ policy_gen_crs }}` object. This name is also used as part of the names for the `placementBinding`, `placementRule`, and `policy` that are created in the requested `namespace`.
+   `metadata.name`
+   :   Specifies the name of the `{policy_gen_crs}` object. This name is also used as part of the names for the `placementBinding`, `placementRule`, and `policy` that are created in the requested `namespace`.
 
-`metadata.namespace`
-:   Specifies the namespace. This value should match the `namespace` used in the group `policy-gen-crs`.
+   `metadata.namespace`
+   :   Specifies the namespace. This value should match the `namespace` used in the group `policy-gen-crs`.
 
-`spec.bindingRules`
-:   Specifies the binding rules. The `group-du-*` label defined in `bindingRules` must exist in the `ClusterInstance` files.
+   `spec.bindingRules`
+   :   Specifies the binding rules. The `group-du-*` label defined in `bindingRules` must exist in the `ClusterInstance` files.
 
-`spec.bindingExcludedRules`
-:   Specifies the binding excluded rules. The label defined in `bindingExcludedRules` must be `ztp-done:`. The `ztp-done` label is used in coordination with the Topology Aware Lifecycle Manager.
+   `spec.bindingExcludedRules`
+   :   Specifies the binding excluded rules. The label defined in `bindingExcludedRules` must be `ztp-done:`. The `ztp-done` label is used in coordination with the Topology Aware Lifecycle Manager.
 
-`spec.mcp`
-:   Specifies the `MachineConfigPool` object that is used in the source file `validatorCRs/informDuValidator.yaml`. It should be `master` for single node and three-node cluster deployments and `worker` for standard cluster deployments.
+   `spec.mcp`
+   :   Specifies the `MachineConfigPool` object that is used in the source file `validatorCRs/informDuValidator.yaml`. It should be `master` for single node and three-node cluster deployments and `worker` for standard cluster deployments.
 
-`spec.sourceFiles.remediationAction`
-:   Specifies the remediation action. Optional. The default value is `inform`.
+   `spec.sourceFiles.remediationAction`
+   :   Specifies the remediation action. Optional. The default value is `inform`.
 
-`spec.sourceFiles.policyName`
-:   Specifies the name for the generated RHACM policy. The generated validator policy for the single node example is `group-du-sno-validator-du-policy`.
-
-1. Commit the `{{ policy_gen_cr }}` CR file in your Git repository and push the changes.
+   `spec.sourceFiles.policyName`
+   :   Specifies the name for the generated RHACM policy. The generated validator policy for the single node example is `group-du-sno-validator-du-policy`.
+2. Commit the `PolicyGenTemplate` CR file in your Git repository and push the changes.
 
 **Additional resources**
+{._additional-resources}
 
 - [Upgrading GitOps ZTP](/openshift-docs-markdown/edge_computing/ztp-updating-gitops#ztp-updating-gitops)
 
@@ -429,9 +443,9 @@ Workloads can be classified as critical or non-critical, with critical workloads
 
 The default configuration is for a low latency, performance mode.
 
-`{{ policy_gen_cr }}` custom resources (CRs) allow you to overlay additional configuration details onto the base source CRs provided with the GitOps plugin in the `ztp-site-generate` container.
+`PolicyGenTemplate` custom resources (CRs) allow you to overlay additional configuration details onto the base source CRs provided with the GitOps plugin in the `ztp-site-generate` container.
 
-Configure the power states by updating the `workloadHints` fields in the generated `PerformanceProfile` CR for the reference configuration, based on the `{{ policy_gen_cr }}` CR in the `{{ policy_prefix }}group-du-sno-ranGen.yaml`.
+Configure the power states by updating the `workloadHints` fields in the generated `PerformanceProfile` CR for the reference configuration, based on the `PolicyGenTemplate` CR in the `truegroup-du-sno-ranGen.yaml`.
 
 The following common prerequisites apply to configuring all three power states:
 
@@ -439,12 +453,13 @@ The following common prerequisites apply to configuring all three power states:
 - You have followed the procedure described in "Preparing the GitOps ZTP site configuration repository".
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring node power consumption and realtime processing with workload hints](/openshift-docs-markdown/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#configuring-workload-hints_cnf-tuning-low-latency-nodes-with-perf-profile)
 
 ### Configuring performance mode using PolicyGenTemplate CRs {#ztp-using-pgt-to-configure-performance-mode_ztp-advanced-policy-config}
 
-Follow this example to set performance mode by updating the `workloadHints` fields in the generated `PerformanceProfile` CR for the reference configuration, based on the `{{ policy_gen_cr }}` CR in the `{{ policy_prefix }}group-du-sno-ranGen.yaml`.
+Follow this example to set performance mode by updating the `workloadHints` fields in the generated `PerformanceProfile` CR for the reference configuration, based on the `PolicyGenTemplate` CR in the `truegroup-du-sno-ranGen.yaml`.
 
 Performance mode provides low latency at a relatively high power consumption.
 
@@ -454,19 +469,27 @@ Performance mode provides low latency at a relatively high power consumption.
 
 **Procedure**
 
-1. Update the `{{ policy_gen_cr }}` entry for `PerformanceProfile` in the `{{ policy_prefix }}group-du-sno-ranGen.yaml` reference file in `{{ argocd_folder }}/` as follows to set performance mode.
+1. Update the `PolicyGenTemplate` entry for `PerformanceProfile` in the `truegroup-du-sno-ranGen.yaml` reference file in `out/argocd/example/policygentemplates//` as follows to set performance mode.
 
    ```yaml
 
+   - fileName: PerformanceProfile.yaml
+     policyName: "config-policy"
+     metadata:
+     # ...
+     spec:
+       # ...
+       workloadHints:
+            realTime: true
+            highPowerConsumption: false
+            perPodPowerManagement: false
+
    ```
-
-{%- if policy-gen-cr == "PolicyGenTemplate" %} {% include "./snippets/pgt-ztp-using-pgt-to-configure-performance-mode.yaml" %} {% endif %} {% if policy-gen-cr == "PolicyGenerator" %} {% include "./snippets/pg-ztp-using-pg-to-configure-performance-mode.yaml" %} {%- endif %} \`\`\`
-
-1. Commit the `{{ policy_gen_cr }}` change in Git, and then push to the Git repository being monitored by the GitOps ZTP Argo CD application.
+2. Commit the `PolicyGenTemplate` change in Git, and then push to the Git repository being monitored by the GitOps ZTP Argo CD application.
 
 ### Configuring high-performance mode using PolicyGenTemplate CRs {#ztp-using-pgt-to-configure-high-performance-mode_ztp-advanced-policy-config}
 
-Follow this example to set high performance mode by updating the `workloadHints` fields in the generated `PerformanceProfile` CR for the reference configuration, based on the `{{ policy_gen_cr }}` CR in the `{{ policy_prefix }}group-du-sno-ranGen.yaml`.
+Follow this example to set high performance mode by updating the `workloadHints` fields in the generated `PerformanceProfile` CR for the reference configuration, based on the `PolicyGenTemplate` CR in the `truegroup-du-sno-ranGen.yaml`.
 
 High performance mode provides ultra low latency at the highest power consumption.
 
@@ -476,21 +499,29 @@ High performance mode provides ultra low latency at the highest power consumptio
 
 **Procedure**
 
-1. Update the `{{ policy_gen_cr }}` entry for `PerformanceProfile` in the `{{ policy_prefix }}group-du-sno-ranGen.yaml` reference file in `{{ argocd_folder }}` as follows to set high-performance mode.
+1. Update the `PolicyGenTemplate` entry for `PerformanceProfile` in the `truegroup-du-sno-ranGen.yaml` reference file in `out/argocd/example/policygentemplates/` as follows to set high-performance mode.
 
    ```yaml
 
+   - fileName: PerformanceProfile.yaml
+     policyName: "config-policy"
+     metadata:
+     #  ...
+     spec:
+     #  ...
+       workloadHints:
+            realTime: true
+            highPowerConsumption: true
+            perPodPowerManagement: false
+
    ```
-
-{%- if policy-gen-cr == "PolicyGenTemplate" %} {% include "./snippets/pgt-ztp-using-pgt-to-configure-high-performance-mode.yaml" %} {% endif %} {% if policy-gen-cr == "PolicyGenerator" %} {% include "./snippets/pg-ztp-using-pg-to-configure-high-performance-mode.yaml" %} {%- endif %} \`\`\`
-
-1. Commit the `{{ policy_gen_cr }}` change in Git, and then push to the Git repository being monitored by the GitOps ZTP Argo CD application.
+2. Commit the `PolicyGenTemplate` change in Git, and then push to the Git repository being monitored by the GitOps ZTP Argo CD application.
 
 - [Configuring host firmware for low latency and high performance](/openshift-docs-markdown/edge_computing/ztp-reference-cluster-configuration-for-vdu#ztp-du-configuring-host-firmware-requirements_sno-configure-for-vdu)
 
 ### Configuring power saving mode using PolicyGenTemplate CRs {#ztp-using-pgt-to-configure-power-saving-mode_ztp-advanced-policy-config}
 
-Follow this example to set power saving mode by updating the `workloadHints` fields in the generated `PerformanceProfile` CR for the reference configuration, based on the `{{ policy_gen_cr }}` CR in the `{{ policy_prefix }}group-du-sno-ranGen.yaml`.
+Follow this example to set power saving mode by updating the `workloadHints` fields in the generated `PerformanceProfile` CR for the reference configuration, based on the `PolicyGenTemplate` CR in the `truegroup-du-sno-ranGen.yaml`.
 
 The power saving mode balances reduced power consumption with increased latency.
 
@@ -500,28 +531,27 @@ The power saving mode balances reduced power consumption with increased latency.
 
 **Procedure**
 
-1. Update the `{{ policy_gen_cr }}` entry for `PerformanceProfile` in the `{{ policy_prefix }}group-du-sno-ranGen.yaml` reference file in `{{ argocd_folder }}` as follows to configure power saving mode. It is recommended to configure the CPU governor for the power saving mode through the additional kernel arguments object.
+1. Update the `PolicyGenTemplate` entry for `PerformanceProfile` in the `truegroup-du-sno-ranGen.yaml` reference file in `out/argocd/example/policygentemplates/` as follows to configure power saving mode. It is recommended to configure the CPU governor for the power saving mode through the additional kernel arguments object.
 
-```yaml
-- fileName: PerformanceProfile.yaml
-  policyName: "config-policy"
-  metadata:
-  # ...
-  spec:
-    # ...
-    workloadHints:
-      realTime: true
-      highPowerConsumption: false
-      perPodPowerManagement: true
-    # ...
-    additionalKernelArgs:
-      - # ...
-      - "cpufreq.default_governor=schedutil"
-```
+   ```yaml
+   - fileName: PerformanceProfile.yaml
+     policyName: "config-policy"
+     metadata:
+     # ...
+     spec:
+       # ...
+       workloadHints:
+         realTime: true
+         highPowerConsumption: false
+         perPodPowerManagement: true
+       # ...
+       additionalKernelArgs:
+         - # ...
+         - "cpufreq.default_governor=schedutil"
+   ```
 
-The `schedutil` governor is recommended, however, other governors that can be used include `ondemand` and `powersave`.
-
-1. Commit the `{{ policy_gen_cr }}` change in Git, and then push to the Git repository being monitored by the GitOps ZTP Argo CD application.
+   The `schedutil` governor is recommended, however, other governors that can be used include `ondemand` and `powersave`.
+2. Commit the `PolicyGenTemplate` change in Git, and then push to the Git repository being monitored by the GitOps ZTP Argo CD application.
 
 **Verification**
 
@@ -551,6 +581,7 @@ The `schedutil` governor is recommended, however, other governors that can be us
    For power saving mode, verify that the output includes `intel_pstate=passive`.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring power saving for nodes that run colocated high and low priority workloads](/openshift-docs-markdown/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#cnf-configuring-power-saving-for-nodes_cnf-tuning-low-latency-nodes-with-perf-profile)
 - [Configuring host firmware for low latency and high performance](/openshift-docs-markdown/edge_computing/ztp-reference-cluster-configuration-for-vdu#ztp-du-configuring-host-firmware-requirements_sno-configure-for-vdu)
@@ -562,7 +593,7 @@ Limiting the maximum CPU frequency is recommended to achieve maximum power savin
 
 Enabling C-states on the non-critical workload CPUs without restricting the maximum CPU frequency negates much of the power savings by boosting the frequency of the critical CPUs.
 
-Maximize power savings by updating the `sysfs` plugin fields, setting an appropriate value for `max_perf_pct` in the `TunedPerformancePatch` CR for the reference configuration. This example based on the `{{ policy_prefix }}group-du-sno-ranGen.yaml` describes the procedure to follow to restrict the maximum CPU frequency.
+Maximize power savings by updating the `sysfs` plugin fields, setting an appropriate value for `max_perf_pct` in the `TunedPerformancePatch` CR for the reference configuration. This example based on the `truegroup-du-sno-ranGen.yaml` describes the procedure to follow to restrict the maximum CPU frequency.
 
 **Prerequisites**
 
@@ -570,31 +601,25 @@ Maximize power savings by updating the `sysfs` plugin fields, setting an appropr
 
 **Procedure**
 
-1. Update the `{{ policy_gen_cr }}` entry for `TunedPerformancePatch` in the `{{ policy_prefix }}group-du-sno-ranGen.yaml` reference file in `{{ argocd_folder }}`. To maximize power savings, add `max_perf_pct` as shown in the following example:
+1. Update the `PolicyGenTemplate` entry for `TunedPerformancePatch` in the `truegroup-du-sno-ranGen.yaml` reference file in `out/argocd/example/policygentemplates/`. To maximize power savings, add `max_perf_pct` as shown in the following example:
 
-```yaml
-- fileName: TunedPerformancePatch.yaml
-  policyName: "config-policy"
-  spec:
-    profile:
-      - name: performance-patch
-        data: |
-          # ...
-          [sysfs]
-          /sys/devices/system/cpu/intel_pstate/max_perf_pct=<x>
-```
+   ```yaml
+   - fileName: TunedPerformancePatch.yaml
+     policyName: "config-policy"
+     spec:
+       profile:
+         - name: performance-patch
+           data: |
+             # ...
+             [sysfs]
+             /sys/devices/system/cpu/intel_pstate/max_perf_pct=<x>
+   ```
 
-The `max_perf_pct` controls the maximum frequency the `cpufreq` driver is allowed to set as a percentage of the maximum supported CPU frequency. This value applies to all CPUs. You can check the maximum supported frequency in `/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq`. As a starting point, you can use a percentage that caps all CPUs at the `All Cores Turbo` frequency. The `All Cores Turbo` frequency is the frequency that all cores will run at when the cores are all fully occupied.
+   The `max_perf_pct` controls the maximum frequency the `cpufreq` driver is allowed to set as a percentage of the maximum supported CPU frequency. This value applies to all CPUs. You can check the maximum supported frequency in `/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq`. As a starting point, you can use a percentage that caps all CPUs at the `All Cores Turbo` frequency. The `All Cores Turbo` frequency is the frequency that all cores will run at when the cores are all fully occupied.
 
-```
-:::note
-
-To maximize power savings, set a lower value. Setting a lower value for `max_perf_pct` limits the maximum CPU frequency, thereby reducing power consumption, but also potentially impacting performance. Experiment with different values and monitor the system’s performance and power consumption to find the optimal setting for your use-case.
-
-:::
-```
-
-1. Commit the `{{ policy_gen_cr }}` change in Git, and then push to the Git repository being monitored by the GitOps ZTP Argo CD application.
+   > [!NOTE]
+   > To maximize power savings, set a lower value. Setting a lower value for `max_perf_pct` limits the maximum CPU frequency, thereby reducing power consumption, but also potentially impacting performance. Experiment with different values and monitor the system’s performance and power consumption to find the optimal setting for your use-case.
+2. Commit the `PolicyGenTemplate` change in Git, and then push to the Git repository being monitored by the GitOps ZTP Argo CD application.
 
 ## Configuring LVM Storage using PolicyGenTemplate CRs {#ztp-provisioning-lvm-storage_ztp-advanced-policy-config}
 
@@ -613,60 +638,56 @@ You can configure Logical Volume Manager (LVM) Storage for managed clusters that
 
 **Procedure**
 
-1. To configure LVM Storage for new managed clusters, add the following YAML to `{{ rangen_yaml_path }}` in the `{{ policy_prefix }}common-ranGen.yaml` file:
+1. To configure LVM Storage for new managed clusters, add the following YAML to `spec.sourceFiles` in the `truecommon-ranGen.yaml` file:
 
-```yaml
-- fileName: StorageLVMOSubscriptionNS.yaml
-  policyName: subscription-policies
-- fileName: StorageLVMOSubscriptionOperGroup.yaml
-  policyName: subscription-policies
-- fileName: StorageLVMOSubscription.yaml
-  spec:
-    name: lvms-operator
-    channel: stable-{{ product_version }}
-  policyName: subscription-policies
-```
+   ```yaml
+   - fileName: StorageLVMOSubscriptionNS.yaml
+     policyName: subscription-policies
+   - fileName: StorageLVMOSubscriptionOperGroup.yaml
+     policyName: subscription-policies
+   - fileName: StorageLVMOSubscription.yaml
+     spec:
+       name: lvms-operator
+       channel: stable-4.22
+     policyName: subscription-policies
+   ```
 
-````
-:::note
+   > [!NOTE]
+   > The Storage LVMO subscription is deprecated. In future releases of OpenShift Container Platform, the storage LVMO subscription will not be available. Instead, you must use the Storage LVMS subscription.
+   >
+   > In OpenShift Container Platform 4.22, you can use the Storage LVMS subscription instead of the LVMO subscription. The LVMS subscription does not require manual overrides in the `truecommon-ranGen.yaml` file. Add the following YAML to `spec.sourceFiles` in the `truecommon-ranGen.yaml` file to use the Storage LVMS subscription:
+   >
+   > ```yaml
+   >
+   > - fileName: StorageLVMSubscriptionNS.yaml
+   >   policyName: subscription-policies
+   > - fileName: StorageLVMSubscriptionOperGroup.yaml
+   >   policyName: subscription-policies
+   > - fileName: StorageLVMSubscription.yaml
+   >   policyName: subscription-policies
+   >
+   >
+   > ```
+2. Add the `LVMCluster` CR to `spec.sourceFiles` in your specific group or individual site configuration file. For example, in the `truegroup-du-sno-ranGen.yaml` file, add the following:
 
-The Storage LVMO subscription is deprecated. In future releases of OpenShift Container Platform, the storage LVMO subscription will not be available. Instead, you must use the Storage LVMS subscription.
+   ```yaml
+   - fileName: StorageLVMCluster.yaml
+     policyName: "lvms-config"
+     spec:
+       storage:
+         deviceClasses:
+         - name: vg1
+           thinPoolConfig:
+             name: thin-pool-1
+             sizePercent: 90
+             overprovisionRatio: 10
+   ```
 
-In OpenShift Container Platform 4.22, you can use the Storage LVMS subscription instead of the LVMO subscription. The LVMS subscription does not require manual overrides in the `{{ policy_prefix }}common-ranGen.yaml` file. Add the following YAML to `{{ rangen_yaml_path }}` in the `{{ policy_prefix }}common-ranGen.yaml` file to use the Storage LVMS subscription:
+   This example configuration creates a volume group (`vg1`) with all the available devices, except the disk where OpenShift Container Platform is installed. A thin-pool logical volume is also created.
+3. Merge any other required changes and files with your custom site repository.
+4. Commit the `PolicyGenTemplate` changes in Git, and then push the changes to your site configuration repository to deploy LVM Storage to new sites using GitOps ZTP.
 
-```yaml
-````
-
-{%- if policy-gen-cr == "PolicyGenTemplate" %} {% include "./snippets/pgt-ztp-provisioning-lvm-storage-sub.yaml" %} {% endif %} {% if policy-gen-cr == "PolicyGenerator" %} {% include "./snippets/pg-ztp-provisioning-lvm-storage-sub.yaml" %} {%- endif %} \`\`\`
-
-```
-:::
-```
-
-1. Add the `LVMCluster` CR to `{{ rangen_yaml_path }}` in your specific group or individual site configuration file. For example, in the `{{ policy_prefix }}group-du-sno-ranGen.yaml` file, add the following:
-
-```yaml
-- fileName: StorageLVMCluster.yaml
-  policyName: "lvms-config"
-  spec:
-    storage:
-      deviceClasses:
-      - name: vg1
-        thinPoolConfig:
-          name: thin-pool-1
-          sizePercent: 90
-          overprovisionRatio: 10
-```
-
-```
-This example configuration creates a volume group (`vg1`) with all the available devices, except the disk where OpenShift Container Platform is installed.
-A thin-pool logical volume is also created.
-```
-
-1. Merge any other required changes and files with your custom site repository.
-2. Commit the `{{ policy_gen_cr }}` changes in Git, and then push the changes to your site configuration repository to deploy LVM Storage to new sites using GitOps ZTP.
-
-## Configuring PTP events with PolicyGenTemplate CRs {#ztp-advanced-policy-config-ptp_ztp-advanced-policy-config}
+## Configuring PTP events with PolicyGenTemplate CRs {#ztp-advanced-policy-config-ptp_ztp-advanced-policy-config ._additional-resources}
 
 You can use the GitOps ZTP pipeline to configure PTP events that use HTTP transport.
 
@@ -682,68 +703,69 @@ You can configure PTP events that use HTTP transport on managed clusters that yo
 
 **Procedure**
 
-1. Apply the following `{{ policy_gen_cr }}` changes to `{{ policy_prefix }}group-du-3node-ranGen.yaml`, `{{ policy_prefix }}group-du-sno-ranGen.yaml`, or `{{ policy_prefix }}group-du-standard-ranGen.yaml` files according to your requirements:
+1. Apply the following `PolicyGenTemplate` changes to `truegroup-du-3node-ranGen.yaml`, `truegroup-du-sno-ranGen.yaml`, or `truegroup-du-standard-ranGen.yaml` files according to your requirements:
 
-   1. In `{{ rangen_yaml_path }}`, add the `PtpOperatorConfig` CR file that configures the transport host:
+   1. In `spec.sourceFiles`, add the `PtpOperatorConfig` CR file that configures the transport host:
 
       ```yaml
 
+      - fileName: PtpOperatorConfigForEvent.yaml
+        policyName: "config-policy"
+        spec:
+          daemonNodeSelector: {}
+          ptpEventConfig:
+            enableEventPublisher: true
+            transportHost: http://ptp-event-publisher-service-NODE_NAME.openshift-ptp.svc.cluster.local:9043
+
       ```
 
-{%- if policy-gen-cr == "PolicyGenTemplate" %} {% include "./snippets/pgt-ztp-configuring-ptp-fast-events.yaml" %} {% endif %} {% if policy-gen-cr == "PolicyGenerator" %} {% include "./snippets/pg-ztp-configuring-ptp-fast-events.yaml" %} {%- endif %} \`\`\`
+      > [!NOTE]
+      > In OpenShift Container Platform 4.13 or later, you do not need to set the `transportHost` field in the `PtpOperatorConfig` resource when you use HTTP transport with PTP events.
+   2. Configure the `linuxptp` and `phc2sys` for the PTP clock type and interface. For example, add the following YAML into `spec.sourceFiles`:
 
-```
-    :::note
+      ```yaml
+      - fileName: PtpConfigSlave.yaml
+        policyName: "config-policy"
+        metadata:
+          name: "du-ptp-slave"
+        spec:
+          profile:
+          - name: "slave"
+            interface: "ens5f1"
+            ptp4lOpts: "-2 -s --summary_interval -4"
+            phc2sysOpts: "-a -r -m -n 24 -N 8 -R 16"
+          ptpClockThreshold:
+            holdOverTimeout: 30 # seconds
+            maxOffsetThreshold: 100  # nano seconds
+            minOffsetThreshold: -100
+      ```
 
-    In OpenShift Container Platform 4.13 or later, you do not need to set the `transportHost` field in the `PtpOperatorConfig` resource when you use HTTP transport with PTP events.
+      where:
 
-    :::
+      `fileName`
+      :   Specifies `PtpConfigMaster.yaml` or `PtpConfigSlave.yaml` depending on your requirements. For configurations based on `truegroup-du-sno-ranGen.yaml` or `truegroup-du-3node-ranGen.yaml`, use `PtpConfigSlave.yaml`.
 
-1.  Configure the `linuxptp` and `phc2sys` for the PTP clock type and interface. For example, add the following YAML into `{{ rangen_yaml_path }}`:
-```
+      `spec.profile.interface`
+      :   Specifies the device specific interface name.
 
-```yaml
-- fileName: PtpConfigSlave.yaml
-  policyName: "config-policy"
-  metadata:
-    name: "du-ptp-slave"
-  spec:
-    profile:
-    - name: "slave"
-      interface: "ens5f1"
-      ptp4lOpts: "-2 -s --summary_interval -4"
-      phc2sysOpts: "-a -r -m -n 24 -N 8 -R 16"
-    ptpClockThreshold:
-      holdOverTimeout: 30 # seconds
-      maxOffsetThreshold: 100  # nano seconds
-      minOffsetThreshold: -100
-```
+      `spec.profile.ptp4lOpts`
+      :   Specifies the ptp4l options. You must append the `--summary_interval -4` value to `ptp4lOpts` in `.spec.sourceFiles.spec.profile` to enable PTP fast events.
 
-where:
+      `spec.profile.phc2sysOpts`
+      :   Specifies the required `phc2sysOpts` values. `-m` prints messages to `stdout`. The `linuxptp-daemon` `DaemonSet` parses the logs and generates Prometheus metrics.
 
-`fileName`
-:   Specifies `PtpConfigMaster.yaml` or `PtpConfigSlave.yaml` depending on your requirements. For configurations based on `{{ policy_prefix }}group-du-sno-ranGen.yaml` or `{{ policy_prefix }}group-du-3node-ranGen.yaml`, use `PtpConfigSlave.yaml`.
-
-`spec.profile.interface`
-:   Specifies the device specific interface name.
-
-`spec.profile.ptp4lOpts`
-:   Specifies the ptp4l options. You must append the `--summary_interval -4` value to `ptp4lOpts` in `.spec.sourceFiles.spec.profile` to enable PTP fast events.
-
-`spec.profile.phc2sysOpts`
-:   Specifies the required `phc2sysOpts` values. `-m` prints messages to `stdout`. The `linuxptp-daemon` `DaemonSet` parses the logs and generates Prometheus metrics.
-
-`spec.ptpClockThreshold`
-:   Specifies the PTP clock threshold settings. Optional. If the `ptpClockThreshold` stanza is not present, default values are used for the `ptpClockThreshold` fields. The stanza shows default `ptpClockThreshold` values. The `ptpClockThreshold` values configure how long after the PTP master clock is disconnected before PTP events are triggered. `holdOverTimeout` is the time value in seconds before the PTP clock event state changes to `FREERUN` when the PTP master clock is disconnected. The `maxOffsetThreshold` and `minOffsetThreshold` settings configure offset values in nanoseconds that compare against the values for `CLOCK_REALTIME` (`phc2sys`) or master offset (`ptp4l`). When the `ptp4l` or `phc2sys` offset value is outside this range, the PTP clock state is set to `FREERUN`. When the offset value is within this range, the PTP clock state is set to `LOCKED`.
-
-1. Merge any other required changes and files with your custom site repository.
-2. Push the changes to your site configuration repository to deploy PTP fast events to new sites using GitOps ZTP.
+      `spec.ptpClockThreshold`
+      :   Specifies the PTP clock threshold settings. Optional. If the `ptpClockThreshold` stanza is not present, default values are used for the `ptpClockThreshold` fields. The stanza shows default `ptpClockThreshold` values. The `ptpClockThreshold` values configure how long after the PTP master clock is disconnected before PTP events are triggered. `holdOverTimeout` is the time value in seconds before the PTP clock event state changes to `FREERUN` when the PTP master clock is disconnected. The `maxOffsetThreshold` and `minOffsetThreshold` settings configure offset values in nanoseconds that compare against the values for `CLOCK_REALTIME` (`phc2sys`) or master offset (`ptp4l`). When the `ptp4l` or `phc2sys` offset value is outside this range, the PTP clock state is set to `FREERUN`. When the offset value is within this range, the PTP clock state is set to `LOCKED`.
+2. Merge any other required changes and files with your custom site repository.
+3. Push the changes to your site configuration repository to deploy PTP fast events to new sites using GitOps ZTP.
 
 **Additional resources**
+{._additional-resources}
 
 - [Using PolicyGenTemplate CRs to override source CRs content](/openshift-docs-markdown/edge_computing/policygentemplate_for_ztp/ztp-advanced-policy-config#ztp-using-pgt-to-update-source-crs_ztp-advanced-policy-config)
 
 **Additional resources**
+{._additional-resources}
 
 - [OpenShift image registry overview](/openshift-docs-markdown/registry/index#registry-overview)
 
@@ -753,12 +775,13 @@ OpenShift Container Platform manages image caching using a local registry. In ed
 
 Long download times are unavoidable during initial deployment. Over time, there is a risk that CRI-O will erase the `/var/lib/containers/storage` directory in the case of an unexpected shutdown. To address long image download times, you can create a local image registry on remote managed clusters using GitOps Zero Touch Provisioning (ZTP). This is useful in Edge computing scenarios where clusters are deployed at the far edge of the network.
 
-Before you can set up the local image registry with GitOps ZTP, you need to configure disk partitioning in the `ClusterInstance` CR that you use to install the remote managed cluster. After installation, you configure the local image registry using a `{{ policy_gen_cr }}` CR. Then, the GitOps ZTP pipeline creates Persistent Volume (PV) and Persistent Volume Claim (PVC) CRs and patches the `imageregistry` configuration.
+Before you can set up the local image registry with GitOps ZTP, you need to configure disk partitioning in the `ClusterInstance` CR that you use to install the remote managed cluster. After installation, you configure the local image registry using a `PolicyGenTemplate` CR. Then, the GitOps ZTP pipeline creates Persistent Volume (PV) and Persistent Volume Claim (PVC) CRs and patches the `imageregistry` configuration.
 
 > [!NOTE]
 > The local image registry can only be used for user application images and cannot be used for the OpenShift Container Platform or Operator Lifecycle Manager operator images.
 
 **Additional resources**
+{._additional-resources}
 
 - [OpenShift Container Platform registry overview](/openshift-docs-markdown/registry/index#registry-overview)
 
@@ -950,7 +973,7 @@ Configure disk partitioning for a managed cluster using a `ClusterInstance` CR a
 
 ### Configuring the image registry using PolicyGenTemplate CRs {#ztp-configuring-pgt-image-registry_ztp-advanced-policy-config}
 
-Use `{{ policy_gen_cr }}` (PGT) CRs to apply the CRs required to configure the image registry and patch the `imageregistry` configuration.
+Use `PolicyGenTemplate` (PGT) CRs to apply the CRs required to configure the image registry and patch the `imageregistry` configuration.
 
 **Prerequisites**
 
@@ -961,7 +984,7 @@ Use `{{ policy_gen_cr }}` (PGT) CRs to apply the CRs required to configure the i
 
 **Procedure**
 
-1. Configure the storage class, persistent volume claim, persistent volume, and image registry configuration in the appropriate `{{ policy_gen_cr }}` CR. For example, to configure an individual site, add the following YAML to the file `{{ policy_prefix }}example-sno-site.yaml`:
+1. Configure the storage class, persistent volume claim, persistent volume, and image registry configuration in the appropriate `PolicyGenTemplate` CR. For example, to configure an individual site, add the following YAML to the file `trueexample-sno-site.yaml`:
 
    ```yaml
    sourceFiles:
@@ -1016,7 +1039,7 @@ Use `{{ policy_gen_cr }}` (PGT) CRs to apply the CRs required to configure the i
 
    > [!IMPORTANT]
    > Do not set `complianceType: mustonlyhave` for the `- fileName: ImageRegistryConfig.yaml` configuration. This can cause the registry pod deployment to fail.
-2. Commit the `{{ policy_gen_cr }}` change in Git, and then push to the Git repository being monitored by the GitOps ZTP ArgoCD application.
+2. Commit the `PolicyGenTemplate` change in Git, and then push to the Git repository being monitored by the GitOps ZTP ArgoCD application.
 
 **Verification**
 
@@ -1108,5 +1131,6 @@ Use the following steps to troubleshoot errors with the local image registry on 
      The `/var/imageregistry` mount point indicates that the disk is correctly partitioned.
 
 **Additional resources**
+{._additional-resources}
 
 - [Accessing the registry](/openshift-docs-markdown/registry/accessing-the-registry#accessing-the-registry)

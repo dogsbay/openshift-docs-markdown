@@ -289,26 +289,26 @@ Write your quick start content in markdown using these tags. The markdown is con
 
 | Tag | Description |
 | --- | --- |
-| ’b',\` | Defines bold text. |
-| ’img',\` | Embeds an image. |
-| ’i',\` | Defines italic text. |
-| ’strike',\` | Defines strike-through text. |
-| ’s',\` | Defines smaller text |
-| ’del',\` | Defines smaller text. |
-| ’em',\` | Defines emphasized text. |
-| ’strong',\` | Defines important text. |
-| ’a',\` | Defines an anchor tag. |
-| ’p',\` | Defines paragraph text. |
-| ’h1',\` | Defines a level 1 heading. |
-| ’h2',\` | Defines a level 2 heading. |
-| ’h3',\` | Defines a level 3 heading. |
-| ’h4',\` | Defines a level 4 heading. |
-| ’ul',\` | Defines an unordered list. |
-| ’ol',\` | Defines an ordered list. |
-| ’li',\` | Defines a list item. |
-| ’code',\` | Defines a text as code. |
-| ’pre',\` | Defines a block of preformatted text. |
-| ’button',\` | Defines a button in text. |
+| `'b',` | Defines bold text. |
+| `'img',` | Embeds an image. |
+| `'i',` | Defines italic text. |
+| `'strike',` | Defines strike-through text. |
+| `'s',` | Defines smaller text |
+| `'del',` | Defines smaller text. |
+| `'em',` | Defines emphasized text. |
+| `'strong',` | Defines important text. |
+| `'a',` | Defines an anchor tag. |
+| `'p',` | Defines paragraph text. |
+| `'h1',` | Defines a level 1 heading. |
+| `'h2',` | Defines a level 2 heading. |
+| `'h3',` | Defines a level 3 heading. |
+| `'h4',` | Defines a level 4 heading. |
+| `'ul',` | Defines an unordered list. |
+| `'ol',` | Defines an ordered list. |
+| `'li',` | Defines a list item. |
+| `'code',` | Defines a text as code. |
+| `'pre',` | Defines a block of preformatted text. |
+| `'button',` | Defines a button in text. |
 
 ### Quick start highlighting markdown reference {#quick-start-highlighting-reference_creating-quick-start-tutorials}
 
@@ -386,21 +386,15 @@ Embed executable and copyable CLI code snippets in a quick start using this mark
 
 #### Syntax for multi-line code snippets {#quick-starts-syntax-for-multi-line-code-snippets_creating-quick-start-tutorials}
 
+````
 ```
-
-```
-
 multi line code block
-
-```{{
+```{{copy}}
 
 ```
-
 multi line code block
-
-```{{
-
-```
+```{{execute}}
+````
 
 ## Quick start content guidelines {#quick-start-content-guidelines_creating-quick-start-tutorials}
 
@@ -559,7 +553,8 @@ Format UI elements by using these guidelines:
 - If a parameter or option is a variable value, use an italic monospaced font.
 - Use a bold, monospaced font for the parameter and a monospaced font for the option.
 
-## Additional resources {#quick-start-tutorials-additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [PatternFly’s brand voice and tone guidelines](https://www.patternfly.org/ux-writing/brand-voice-and-tone)
 - [PatternFly’s UX writing style guide](https://www.patternfly.org/ux-writing/about)

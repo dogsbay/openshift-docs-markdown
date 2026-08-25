@@ -21,7 +21,8 @@ const headings = [{"depth":1,"slug":"ovn-k-banp","text":"OVN-Kubernetes Baseline
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/network_security/AdminNetworkPolicy/ovn-k-banp";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="ovn-k-banp" class="group scroll-mt-20">OVN-Kubernetes BaselineAdminNetworkPolicy<a href="#ovn-k-banp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>To set cluster-wide network rules that namespace owners can override with a <code>NetworkPolicy</code> object, you can configure a <code>BaselineAdminNetworkPolicy</code> (BANP) custom resource in OpenShift Container Platform.</p>
+      <p class="_abstract">To set cluster-wide network rules that namespace owners can override with a <code>NetworkPolicy</code> object, you can configure a <code>BaselineAdminNetworkPolicy</code> (BANP) custom resource in OpenShift Container Platform.</p>
       <h2 id="BaselineAdminNetworkPolicy_ovn-k-banp" class="group scroll-mt-20">BaselineAdminNetworkPolicy<a href="#BaselineAdminNetworkPolicy_ovn-k-banp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">To enforce <code>Allow</code> or <code>Deny</code> rules for selected namespaces in OpenShift Container Platform, you can create a single cluster-scoped <code>BaselineAdminNetworkPolicy</code> custom resource (CR) named <code>default</code> with ingress and egress subject rules.</p>
       <p>The <code>BaselineAdminNetworkPolicy</code> (BANP) CR is a cluster singleton object that can be used as a guardrail policy in case a passed traffic policy does not match any <code>NetworkPolicy</code> objects in the cluster. A BANP can also be used as a default security model that provides guardrails that intra-cluster traffic is blocked by default and a user will need to use <code>NetworkPolicy</code> objects to allow known traffic. You must use <code>default</code> as the name when creating a BANP resource.</p>

@@ -1,5 +1,5 @@
 ---
-title: Deploying {{ hcp }} on OpenStack
+title: Deploying hosted control planes on OpenStack
 ---
 
 # Deploying hosted control planes on OpenStack {#hcp-deploy-openstack}

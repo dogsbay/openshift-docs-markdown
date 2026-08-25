@@ -158,6 +158,7 @@ The Performance Profile Creator (PPC) tool requires `must-gather` data. As a clu
      > Compressed output is required if you are running the Performance Profile Creator wrapper script.
 
 **Additional resources**
+{._additional-resources}
 
 - [Gathering data about your cluster](/openshift-docs-markdown/support/gathering-cluster-data#nodes-nodes-managing)
 
@@ -208,7 +209,7 @@ For more information about the PPC arguments, see the section "Performance Profi
 3. Optional: Display help for the PPC tool by running the following command:
 
    ```terminal
-   $ podman run --rm --entrypoint performance-profile-creator registry.redhat.io/openshift4/ose-cluster-node-tuning-rhel9-operator:v{{ product_version }} -h
+   $ podman run --rm --entrypoint performance-profile-creator registry.redhat.io/openshift4/ose-cluster-node-tuning-rhel9-operator:v4.22 -h
    ```
 
    The following output shows the available flags and commands for the PPC tool:
@@ -246,7 +247,7 @@ For more information about the PPC arguments, see the section "Performance Profi
 4. To display information about the cluster, run the PPC tool with the `info` command by running the following command:
 
    ```terminal
-   $ podman run --entrypoint performance-profile-creator -v <path_to_must_gather>:/must-gather:z registry.redhat.io/openshift4/ose-cluster-node-tuning-rhel9-operator:v{{ product_version }} info --must-gather-dir-path /must-gather
+   $ podman run --entrypoint performance-profile-creator -v <path_to_must_gather>:/must-gather:z registry.redhat.io/openshift4/ose-cluster-node-tuning-rhel9-operator:v4.22 info --must-gather-dir-path /must-gather
    ```
 
    - `--entrypoint performance-profile-creator` defines the performance profile creator as a new entry point to `podman`.
@@ -281,7 +282,7 @@ For more information about the PPC arguments, see the section "Performance Profi
 5. Create a performance profile by running the following command. The example uses sample PPC arguments and values:
 
    ```terminal
-   $ podman run --entrypoint performance-profile-creator -v <path_to_must_gather>:/must-gather:z registry.redhat.io/openshift4/ose-cluster-node-tuning-rhel9-operator:v{{ product_version }} --mcp-name=worker-cnf --reserved-cpu-count=2 --rt-kernel=true --split-reserved-cpus-across-numa=false --must-gather-dir-path /must-gather --power-consumption-mode=ultra-low-latency > my-performance-profile.yaml
+   $ podman run --entrypoint performance-profile-creator -v <path_to_must_gather>:/must-gather:z registry.redhat.io/openshift4/ose-cluster-node-tuning-rhel9-operator:v4.22 --mcp-name=worker-cnf --reserved-cpu-count=2 --rt-kernel=true --split-reserved-cpus-across-numa=false --must-gather-dir-path /must-gather --power-consumption-mode=ultra-low-latency > my-performance-profile.yaml
    ```
 
    - `-v <path_to_must_gather>` specifies the path to either of the following components:
@@ -385,29 +386,29 @@ For more information about the Performance Profile Creator arguments, see the se
 
    readonly CONTAINER_RUNTIME=${CONTAINER_RUNTIME:-podman}
    readonly CURRENT_SCRIPT=$(basename "$0")
-   readonly CMD="${{ CONTAINER_RUNTIME }} run --entrypoint performance-profile-creator"
-   readonly IMG_EXISTS_CMD="${{ CONTAINER_RUNTIME }} image exists"
-   readonly IMG_PULL_CMD="${{ CONTAINER_RUNTIME }} image pull"
+   readonly CMD="${CONTAINER_RUNTIME} run --entrypoint performance-profile-creator"
+   readonly IMG_EXISTS_CMD="${CONTAINER_RUNTIME} image exists"
+   readonly IMG_PULL_CMD="${CONTAINER_RUNTIME} image pull"
    readonly MUST_GATHER_VOL="/must-gather"
 
-   NTO_IMG="registry.redhat.io/openshift4/ose-cluster-node-tuning-rhel9-operator:v{{ product_version }}"
+   NTO_IMG="registry.redhat.io/openshift4/ose-cluster-node-tuning-rhel9-operator:v4.22"
    MG_TARBALL=""
    DATA_DIR=""
 
    usage() {
      print "Wrapper usage:"
-     print "  ${{ CURRENT_SCRIPT }} [-h] [-p image][-t path] -- [performance-profile-creator flags]"
+     print "  ${CURRENT_SCRIPT} [-h] [-p image][-t path] -- [performance-profile-creator flags]"
      print ""
      print "Options:"
-     print "   -h                 help for ${{ CURRENT_SCRIPT }}"
+     print "   -h                 help for ${CURRENT_SCRIPT}"
      print "   -p                 Node Tuning Operator image"
      print "   -t                 path to a must-gather tarball"
 
-     ${{ IMG_EXISTS_CMD }} "${{ NTO_IMG }}" && ${{ CMD }} "${{ NTO_IMG }}" -h
+     ${IMG_EXISTS_CMD} "${NTO_IMG}" && ${CMD} "${NTO_IMG}" -h
    }
 
    function cleanup {
-     [ -d "${{ DATA_DIR }}" ] && rm -rf "${{ DATA_DIR }}"
+     [ -d "${DATA_DIR}" ] && rm -rf "${DATA_DIR}"
    }
    trap cleanup EXIT
 
@@ -422,34 +423,34 @@ For more information about the Performance Profile Creator arguments, see the se
    }
 
    check_requirements() {
-     ${{ IMG_EXISTS_CMD }} "${{ NTO_IMG }}" || ${{ IMG_PULL_CMD }} "${{ NTO_IMG }}" || \
+     ${IMG_EXISTS_CMD} "${NTO_IMG}" || ${IMG_PULL_CMD} "${NTO_IMG}" || \
          exit_error "Node Tuning Operator image not found"
 
-     [ -n "${{ MG_TARBALL }}" ] || exit_error "Must-gather tarball file path is mandatory"
-     [ -f "${{ MG_TARBALL }}" ] || exit_error "Must-gather tarball file not found"
+     [ -n "${MG_TARBALL}" ] || exit_error "Must-gather tarball file path is mandatory"
+     [ -f "${MG_TARBALL}" ] || exit_error "Must-gather tarball file not found"
 
-     DATA_DIR=$(mktemp -d -t "${{ CURRENT_SCRIPT }}XXXX") || exit_error "Cannot create the data directory"
-     tar -zxf "${{ MG_TARBALL }}" --directory "${{ DATA_DIR }}" || exit_error "Cannot decompress the must-gather tarball"
-     chmod a+rx "${{ DATA_DIR }}"
+     DATA_DIR=$(mktemp -d -t "${CURRENT_SCRIPT}XXXX") || exit_error "Cannot create the data directory"
+     tar -zxf "${MG_TARBALL}" --directory "${DATA_DIR}" || exit_error "Cannot decompress the must-gather tarball"
+     chmod a+rx "${DATA_DIR}"
 
      return 0
    }
 
    main() {
      while getopts ':hp:t:' OPT; do
-       case "${{ OPT }}" in
+       case "${OPT}" in
          h)
            usage
            exit 0
            ;;
          p)
-           NTO_IMG="${{ OPTARG }}"
+           NTO_IMG="${OPTARG}"
            ;;
          t)
-           MG_TARBALL="${{ OPTARG }}"
+           MG_TARBALL="${OPTARG}"
            ;;
          ?)
-           exit_error "invalid argument: ${{ OPTARG }}"
+           exit_error "invalid argument: ${OPTARG}"
            ;;
        esac
      done
@@ -457,7 +458,7 @@ For more information about the Performance Profile Creator arguments, see the se
 
      check_requirements || exit 1
 
-     ${{ CMD }} -v "${{ DATA_DIR }}:${{ MUST_GATHER_VOL }}:z" "${{ NTO_IMG }}" "$@" --must-gather-dir-path "${{ MUST_GATHER_VOL }}"
+     ${CMD} -v "${DATA_DIR}:${MUST_GATHER_VOL}:z" "${NTO_IMG}" "$@" --must-gather-dir-path "${MUST_GATHER_VOL}"
      echo "" 1>&2
    }
 
@@ -523,7 +524,7 @@ For more information about the Performance Profile Creator arguments, see the se
    ```
 
    > [!NOTE]
-   > You can optionally set a path for the Node Tuning Operator image using the `-p` option. If you do not set a path, the wrapper script uses the default image: `registry.redhat.io/openshift4/ose-cluster-node-tuning-rhel9-operator:v{{ product_version }}`.
+   > You can optionally set a path for the Node Tuning Operator image using the `-p` option. If you do not set a path, the wrapper script uses the default image: `registry.redhat.io/openshift4/ose-cluster-node-tuning-rhel9-operator:v4.22`.
 6. To display information about the cluster, run the PPC tool with the `info` command by running the following command:
 
    ```terminal
@@ -617,11 +618,11 @@ To customize the generation of performance profiles, review the arguments for th
 | Argument | Description |
 | --- | --- |
 | `mcp-name` | Name for MCP; for example, `worker-cnf` corresponding to the target machines. |
-| `must-gather-dir-path` | The path of the must gather directory. This argument is only required if you run the PPC tool by using Podman. If you use the PPC with the wrapper script, do not use this argument. Instead, specify the directory path to the `must-gather` tarball by using the `-t` option for the wrapper script. |
+| `must-gather-dir-path` | The path of the must gather directory.<br>This argument is only required if you run the PPC tool by using Podman. If you use the PPC with the wrapper script, do not use this argument. Instead, specify the directory path to the `must-gather` tarball by using the `-t` option for the wrapper script. |
 | `reserved-cpu-count` | Number of reserved CPUs. Use a natural number greater than zero. |
-| `rt-kernel` | Enables real-time kernel. Possible values: `true` or `false`. |
+| `rt-kernel` | Enables real-time kernel.<br>Possible values: `true` or `false`. |
 
-***Optional Performance Profile Creator arguments***
+**Optional Performance Profile Creator arguments**
 
 <table>
 <thead>
@@ -633,7 +634,7 @@ To customize the generation of performance profiles, review the arguments for th
 <tbody>
 <tr>
   <td><code>disable-ht</code></td>
-  <td>Disable Hyper-Threading.<br><br>Possible values: <code>true</code> or <code>false</code>.<br><br>Default: <code>false</code>.<br><br><dl><dt>Warning</dt><dd>If this argument is set to <code>true</code> you should not disable Hyper-Threading in the BIOS. Disabling Hyper-Threading is accomplished with a kernel command-line argument.</dd></dl></td>
+  <td>Disable Hyper-Threading.<br><br>Possible values: <code>true</code> or <code>false</code>.<br><br>Default: <code>false</code>.<br><br><dl class="db-admonition db-admonition-warning"><dt>Warning</dt><dd>If this argument is set to <code>true</code> you should not disable Hyper-Threading in the BIOS. Disabling Hyper-Threading is accomplished with a kernel command-line argument.</dd></dl></td>
 </tr>
 <tr>
   <td>enable-hardware-tuning</td>
@@ -645,7 +646,7 @@ To customize the generation of performance profiles, review the arguments for th
 </tr>
 <tr>
   <td><code>offlined-cpu-count</code></td>
-  <td>Number of offlined CPUs.<br><br><dl><dt>Note</dt><dd>Use a natural number greater than zero. If not enough logical processors are offlined, then error messages are logged. The messages are:<pre>Error: failed to compute the reserved and isolated CPUs: please ensure that reserved-cpu-count plus offlined-cpu-count should be in the range [0,1]</pre><pre>Error: failed to compute the reserved and isolated CPUs: please specify the offlined CPU count in the range [0,1]</pre></dd></dl></td>
+  <td>Number of offlined CPUs.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>Use a natural number greater than zero. If not enough logical processors are offlined, then error messages are logged. The messages are:<pre>Error: failed to compute the reserved and isolated CPUs: please ensure that reserved-cpu-count plus offlined-cpu-count should be in the range [0,1]</pre><pre>Error: failed to compute the reserved and isolated CPUs: please specify the offlined CPU count in the range [0,1]</pre></dd></dl></td>
 </tr>
 <tr>
   <td><code>power-consumption-mode</code></td>
@@ -657,11 +658,11 @@ To customize the generation of performance profiles, review the arguments for th
 </tr>
 <tr>
   <td><code>profile-name</code></td>
-  <td>Name of the performance profile to create.</td>
+  <td>Name of the performance profile to create.<br><br>Default: <code>performance</code>.</td>
 </tr>
 <tr>
   <td><code>split-reserved-cpus-across-numa</code></td>
-  <td>Split the reserved CPUs across NUMA nodes.</td>
+  <td>Split the reserved CPUs across NUMA nodes.<br><br>Possible values: <code>true</code> or <code>false</code>.<br><br>Default: <code>false</code>.</td>
 </tr>
 <tr>
   <td><code>topology-manager-policy</code></td>
@@ -669,12 +670,12 @@ To customize the generation of performance profiles, review the arguments for th
 </tr>
 <tr>
   <td><code>user-level-networking</code></td>
-  <td>Run with user level networking (DPDK) enabled.</td>
+  <td>Run with user level networking (DPDK) enabled.<br><br>Possible values: <code>true</code> or <code>false</code>.<br><br>Default: <code>false</code>.</td>
 </tr>
 </tbody>
 </table>
 
-## Reference performance profiles {#cnf-create-performance-profiles-reference}
+## Reference performance profiles {#cnf-create-performance-profiles-reference ._additional-resources}
 
 Use the following reference performance profiles as the basis to develop your own custom profiles.
 
@@ -723,7 +724,49 @@ Insert values that are appropriate for your configuration for the `CPU_ISOLATED`
 You can use a pre-configured design performance profile that configures node-level performance settings for OpenShift Container Platform clusters on commodity hardware to host telco RAN DU workloads.
 
 ```yaml {title="Telco RAN DU reference design performance profile"}
-{% include "./snippets/ztp_PerformanceProfile.yaml" %}
+apiVersion: performance.openshift.io/v2
+kind: PerformanceProfile
+metadata:
+  # if you change this name make sure the 'include' line in TunedPerformancePatch.yaml
+  # matches this name: include=openshift-node-performance-${PerformanceProfile.metadata.name}
+  # Also in file 'validatorCRs/informDuValidator.yaml':
+  # name: 50-performance-${PerformanceProfile.metadata.name}
+  name: openshift-node-performance-profile
+  annotations:
+    ran.openshift.io/reference-configuration: "ran-du.redhat.com"
+spec:
+  additionalKernelArgs:
+    - "rcupdate.rcu_normal_after_boot=0"
+    - "efi=runtime"
+    - "vfio_pci.enable_sriov=1"
+    - "vfio_pci.disable_idle_d3=1"
+    - "module_blacklist=irdma"
+  cpu:
+    isolated: $isolated
+    reserved: $reserved
+  hugepages:
+    defaultHugepagesSize: $defaultHugepagesSize
+    pages:
+      - size: $size
+        count: $count
+        node: $node
+  machineConfigPoolSelector:
+    pools.operator.machineconfiguration.openshift.io/$mcp: ""
+  nodeSelector:
+    node-role.kubernetes.io/$mcp: ''
+  numa:
+    topologyPolicy: "restricted"
+  # To use the standard (non-realtime) kernel, set enabled to false
+  realTimeKernel:
+    enabled: true
+  workloadHints:
+    # WorkloadHints defines the set of upper level flags for different type of workloads.
+    # See https://github.com/openshift/cluster-node-tuning-operator/blob/master/docs/performanceprofile/performance_profile.md#workloadhints
+    # for detailed descriptions of each item.
+    # The configuration below is set for a low latency, performance mode.
+    realTime: true
+    highPowerConsumption: false
+    perPodPowerManagement: false
 ```
 
 ### Telco core reference design performance profile {#cnf-telco-core-reference-design-performance-profile-template_cnf-tuning-low-latency-nodes-with-perf-profile}
@@ -731,7 +774,50 @@ You can use a pre-configured design performance profile that configures node-lev
 You can use a pre-configured design performance profile that configures node-level performance settings for OpenShift Container Platform clusters on commodity hardware to host telco core workloads.
 
 ```yaml {title="Telco core reference design performance profile"}
-{% include "./snippets/telco-core_PerformanceProfile.yaml" %}
+# required
+# count: 1
+apiVersion: performance.openshift.io/v2
+kind: PerformanceProfile
+metadata:
+  name: $name
+  annotations:
+    # Some pods want the kernel stack to ignore IPv6 router Advertisement.
+    kubeletconfig.experimental: |
+      {"allowedUnsafeSysctls":["net.ipv6.conf.all.accept_ra"]}
+spec:
+  cpu:
+    # node0 CPUs: 0-17,36-53
+    # node1 CPUs: 18-34,54-71
+    # siblings: (0,36), (1,37)...
+    # we want to reserve the first Core of each NUMA socket
+    #
+    # no CPU left behind! all-cpus == isolated + reserved
+    isolated: $isolated # eg 1-17,19-35,37-53,55-71
+    reserved: $reserved # eg 0,18,36,54
+  # Guaranteed QoS pods will disable IRQ balancing for cores allocated to the pod.
+  # default value of globallyDisableIrqLoadBalancing is false
+  globallyDisableIrqLoadBalancing: false
+  hugepages:
+    defaultHugepagesSize: 1G
+    pages:
+      # 32GB per numa node
+      - count: $count # eg 64
+        size: 1G
+  #machineConfigPoolSelector: {}
+  #  pools.operator.machineconfiguration.openshift.io/worker: ''
+  nodeSelector: {}
+  #node-role.kubernetes.io/worker: ""
+  workloadHints:
+    realTime: false
+    highPowerConsumption: false
+    perPodPowerManagement: true
+  realTimeKernel:
+    enabled: false
+  numa:
+    # All guaranteed QoS containers get resources from a single NUMA node
+    topologyPolicy: "single-numa-node"
+  net:
+    userLevelNetworking: false
 ```
 
 ## Supported performance profile API versions {#nto_supported_api_versions_cnf-tuning-low-latency-nodes-with-perf-profile}
@@ -756,7 +842,7 @@ You can create a performance profile appropriate for the hardware and topology o
 
 The following table describes the possible values set for the `power-consumption-mode` flag associated with the PPC tool and the workload hint that is applied.
 
-***Impact of combinations of power consumption and real-time settings on latency***
+**Impact of combinations of power consumption and real-time settings on latency**
 
 <table>
 <thead>
@@ -819,6 +905,7 @@ The following configuration is commonly used in a telco RAN DU deployment:
 For more information how combinations of power consumption and real-time settings impact latency, see "Understanding workload hints".
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding workload hints](https://access.redhat.com/articles/7081587)
 
@@ -839,7 +926,7 @@ You can enable power savings for a node that has low priority workloads that are
 
    ```terminal
    $ podman run --entrypoint performance-profile-creator -v \
-   /must-gather:/must-gather:z registry.redhat.io/openshift4/ose-cluster-node-tuning-rhel9-operator:v{{ product_version }} \
+   /must-gather:/must-gather:z registry.redhat.io/openshift4/ose-cluster-node-tuning-rhel9-operator:v4.22 \
    --mcp-name=worker-cnf --reserved-cpu-count=20 --rt-kernel=true \
    --split-reserved-cpus-across-numa=false --topology-manager-policy=single-numa-node \
    --must-gather-dir-path /must-gather --power-consumption-mode=low-latency \
@@ -895,6 +982,7 @@ You can enable power savings for a node that has low priority workloads that are
    :   Specifies the `max_perf_pct` that controls the maximum frequency that the `cpufreq` driver is allowed to set as a percentage of the maximum supported cpu frequency. This value applies to all CPUs. You can check the maximum supported frequency in `/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq`. As a starting point, you can use a percentage that caps all CPUs at the `All Cores Turbo` frequency. The `All Cores Turbo` frequency is the frequency that all cores will run at when the cores are all fully occupied.
 
 **Additional resources**
+{._additional-resources}
 
 - [About the Performance Profile Creator](/openshift-docs-markdown/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#cnf-about-the-profile-creator-tool_cnf-tuning-low-latency-nodes-with-perf-profile)
 - [Disabling power saving mode for high priority pods](/openshift-docs-markdown/scalability_and_performance/cnf-provisioning-low-latency-workloads#cnf-configuring-high-priority-workload-pods_cnf-provisioning-low-latency)
@@ -1140,6 +1228,7 @@ $ find /proc/irq -name effective_affinity -printf "%p: " -exec cat {} \;
 Some drivers use `managed_irqs`, whose affinity is managed internally by the kernel and userspace cannot change the affinity. In some cases, these IRQs might be assigned to isolated CPUs. For more information about `managed_irqs`, see "Affinity of managed interrupts cannot be changed even if they target isolated CPU".
 
 **Additional resources**
+{._additional-resources}
 
 - [Affinity of managed interrupts cannot be changed even if they target isolated CPU](https://access.redhat.com/solutions/4819541)
 
@@ -1339,7 +1428,7 @@ The following example, shows you how to define sizes `1G` and `2M`. The Node Tun
   # ...
   ```
 
-## Reducing NIC queues using the Node Tuning Operator {#cnf-reducing-nic-queues-with-nto}
+## Reducing NIC queues using the Node Tuning Operator {#cnf-reducing-nic-queues-with-nto ._additional-resources}
 
 The Node Tuning Operator facilitates reducing NIC queues for enhanced performance. Adjustments are made using the performance profile, allowing customization of queues for different network devices.
 
@@ -1572,117 +1661,122 @@ Example 1
     - `Combined`: Specifies the combined channel that shows the total count of reserved CPUs for *all* supported devices is 2. This matches what is configured in the performance profile.
 
 Example 2
-:   Example 2 demonstrates that the net queue count is set to the reserved CPU count (2) for *all* supported network devices with a specific `vendorID`. The relevant section from the performance profile is:
+:   Example 2 demonstrates that the net queue count is set to the reserved CPU count (2) for *all* supported network devices with a specific `vendorID`.
 
-````
-```yaml
-apiVersion: performance.openshift.io/v2
-metadata:
-  name: performance
-spec:
-  kind: PerformanceProfile
-  spec:
-    cpu:
-      reserved: 0-1
-      isolated: 2-8
-    net:
-      userLevelNetworking: true
-      devices:
-      - vendorID = 0x1af4
-# ...
-```
-The following command displays the status of the queues associated with a device:
+    The relevant section from the performance profile is:
 
-:::note
+    ```yaml
+    apiVersion: performance.openshift.io/v2
+    metadata:
+      name: performance
+    spec:
+      kind: PerformanceProfile
+      spec:
+        cpu:
+          reserved: 0-1
+          isolated: 2-8
+        net:
+          userLevelNetworking: true
+          devices:
+          - vendorID = 0x1af4
+    # ...
+    ```
 
-Run this command on the node where the performance profile was applied.
+    The following command displays the status of the queues associated with a device:
 
-:::
+    > [!NOTE]
+    > Run this command on the node where the performance profile was applied.
 
-```terminal
-$ ethtool -l <device>
-```
-The following command verifies the queue status after the profile is applied:
-```terminal
-$ ethtool -l ens4
-```
-```terminal title="Example output"
-Channel parameters for ens4:
-Pre-set maximums:
-RX:         0
-TX:         0
-Other:      0
-Combined:   4
-Current hardware settings:
-RX:         0
-TX:         0
-Other:      0
-Combined:   2
-```
-````
+    ```terminal
+    $ ethtool -l <device>
+    ```
 
-- `Combined`: Specifies that the total count of reserved CPUs for all supported devices with `vendorID=0x1af4` is 2. For example, if there is another network device `ens2` with `vendorID=0x1af4` it will also have total net queues of 2. This matches what is configured in the performance profile.
+    The following command verifies the queue status after the profile is applied:
+
+    ```terminal
+    $ ethtool -l ens4
+    ```
+
+    ```terminal {title="Example output"}
+    Channel parameters for ens4:
+    Pre-set maximums:
+    RX:         0
+    TX:         0
+    Other:      0
+    Combined:   4
+    Current hardware settings:
+    RX:         0
+    TX:         0
+    Other:      0
+    Combined:   2
+    ```
+
+    - `Combined`: Specifies that the total count of reserved CPUs for all supported devices with `vendorID=0x1af4` is 2. For example, if there is another network device `ens2` with `vendorID=0x1af4` it will also have total net queues of 2. This matches what is configured in the performance profile.
 
 Example 3
 :   Example 3 shows that the net queue count is set to the reserved CPU count (2) for *all* supported network devices that match any of the defined device identifiers. The command `udevadm info` provides a detailed report on a device. In this example the devices are:
 
-````
-```terminal
-# udevadm info -p /sys/class/net/ens4
-...
-E: ID_MODEL_ID=0x1000
-E: ID_VENDOR_ID=0x1af4
-E: INTERFACE=ens4
-...
-```
-```terminal
-# udevadm info -p /sys/class/net/eth0
-...
-E: ID_MODEL_ID=0x1002
-E: ID_VENDOR_ID=0x1001
-E: INTERFACE=eth0
-...
-```
-Set the net queues to 2 for a device with `interfaceName` equal to `eth0` and any devices that have a `vendorID=0x1af4` with the following performance profile:
-```terminal
-apiVersion: performance.openshift.io/v2
-metadata:
-  name: performance
-spec:
-  kind: PerformanceProfile
+    ```terminal
+    # udevadm info -p /sys/class/net/ens4
+    ...
+    E: ID_MODEL_ID=0x1000
+    E: ID_VENDOR_ID=0x1af4
+    E: INTERFACE=ens4
+    ...
+    ```
+
+    ```terminal
+    # udevadm info -p /sys/class/net/eth0
+    ...
+    E: ID_MODEL_ID=0x1002
+    E: ID_VENDOR_ID=0x1001
+    E: INTERFACE=eth0
+    ...
+    ```
+
+    Set the net queues to 2 for a device with `interfaceName` equal to `eth0` and any devices that have a `vendorID=0x1af4` with the following performance profile:
+
+    ```terminal
+    apiVersion: performance.openshift.io/v2
+    metadata:
+      name: performance
     spec:
-      cpu:
-        reserved: 0-1  #total = 2
-        isolated: 2-8
-      net:
-        userLevelNetworking: true
-        devices:
-        - interfaceName = eth0
-        - vendorID = 0x1af4
-# ...
-```
-The following command verifies the queue status after the profile is applied:
-```terminal
-$ ethtool -l ens4
-```
-```terminal title="Example output"
-Channel parameters for ens4:
-Pre-set maximums:
-RX:         0
-TX:         0
-Other:      0
-Combined:   4
-Current hardware settings:
-RX:         0
-TX:         0
-Other:      0
-Combined:   2
-```
-````
+      kind: PerformanceProfile
+        spec:
+          cpu:
+            reserved: 0-1  #total = 2
+            isolated: 2-8
+          net:
+            userLevelNetworking: true
+            devices:
+            - interfaceName = eth0
+            - vendorID = 0x1af4
+    # ...
+    ```
 
-- `Combined`: Specifies that the total count of reserved CPUs for all supported devices with `vendorID=0x1af4` is set to 2.
+    The following command verifies the queue status after the profile is applied:
 
-  For example, if there is another network device `ens2` with `vendorID=0x1af4`, it will also have the total net queues set to 2. Similarly, a device with `interfaceName` equal to `eth0` will have total net queues set to 2.
+    ```terminal
+    $ ethtool -l ens4
+    ```
+
+    ```terminal {title="Example output"}
+    Channel parameters for ens4:
+    Pre-set maximums:
+    RX:         0
+    TX:         0
+    Other:      0
+    Combined:   4
+    Current hardware settings:
+    RX:         0
+    TX:         0
+    Other:      0
+    Combined:   2
+    ```
+
+    - `Combined`: Specifies that the total count of reserved CPUs for all supported devices with `vendorID=0x1af4` is set to 2.
+
+    For example, if there is another network device `ens2` with `vendorID=0x1af4`, it will also have the total net queues set to 2. Similarly, a device with `interfaceName` equal to `eth0` will have total net queues set to 2.
 
 ### Logging associated with adjusting NIC queues {#logging-associated-with-adjusting-nic-queues_cnf-tuning-low-latency-nodes-with-perf-profile}
 

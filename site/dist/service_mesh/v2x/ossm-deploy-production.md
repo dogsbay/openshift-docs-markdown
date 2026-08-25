@@ -29,7 +29,7 @@ You cannot change the `metadata.name` field of an existing `ServiceMeshControlPl
       metadata:
         name: basic
       spec:
-        version: v{{ MaistraVersion }}
+        version: v2.6
         tracing:
           sampling: 100
           type: Jaeger
@@ -58,6 +58,7 @@ You cannot change the `metadata.name` field of an existing `ServiceMeshControlPl
    $ oc get smcp basic -o yaml
    ```
 
-## Additional resources {#additional-resources_ossm-production}
+**Additional resources**
+{._additional-resources}
 
 - For more information about tuning Service Mesh for performance, see [Performance and scalability](/openshift-docs-markdown/service_mesh/v2x/ossm-performance-scalability#ossm-performance-scalability).

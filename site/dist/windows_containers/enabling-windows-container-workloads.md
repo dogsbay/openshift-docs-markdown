@@ -41,7 +41,7 @@ You can use the OpenShift Container Platform web console to install the Windows 
 
 **Procedure**
 
-1. From the **Administrator** perspective in the OpenShift Container Platform web console, navigate to the **Ecosystem** -> **Software Catalog** page.
+1. From the **Administrator** perspective in the OpenShift Container Platform web console, navigate to the **Ecosystem** → **Software Catalog** page.
 2. Use the **Filter by keyword** box to search for `Windows Machine Config Operator` in the catalog. Click the **Windows Machine Config Operator** tile.
 3. Review the information about the Operator and click **Install**.
 4. On the **Install Operator** page:
@@ -191,19 +191,19 @@ This secret is required to allow the WMCO to communicate with the Windows virtua
 - You installed the Windows Machine Config Operator (WMCO) using Operator Lifecycle Manager (OLM).
 - You created a PEM-encoded file containing a private key by using a strong algorithm, such as ECDSA.
 
-If you created the key pair on a Red Hat Enterprise Linux (RHEL) system, before you can use the public key on a Windows system, make sure the public key is saved using ASCII encoding. For example, the following PowerShell command copies a public key, encoding it for the ASCII character set:
+  If you created the key pair on a Red Hat Enterprise Linux (RHEL) system, before you can use the public key on a Windows system, make sure the public key is saved using ASCII encoding. For example, the following PowerShell command copies a public key, encoding it for the ASCII character set:
 
-```terminal
-C:\> echo "ssh-rsa <ssh_pub_key>" | Out-File <ssh_key_path> -Encoding ascii
-```
+  ```terminal
+  C:\> echo "ssh-rsa <ssh_pub_key>" | Out-File <ssh_key_path> -Encoding ascii
+  ```
 
-where:
+  where:
 
-`<ssh_pub_key>`
-:   Specifies the SSH public key used to access the cluster.
+  `<ssh_pub_key>`
+  :   Specifies the SSH public key used to access the cluster.
 
-`<ssh_key_path>`
-:   Specifies the path to the SSH public key.
+  `<ssh_key_path>`
+  :   Specifies the path to the SSH public key.
 
 **Procedure**
 
@@ -303,8 +303,7 @@ When using an IDMS or ITMS object to mirror container images on Windows nodes, t
 
 - Mirroring on Windows nodes works on the registry level, rather than on the image level used by Linux nodes. As such, Windows images mirrored by using IDMS or ITMS objects have specific naming requirements.
 
-The final portion of the namespace and the image name of the mirror image must match the image being mirrored. For example, when mirroring the `mcr.microsoft.com/oss/kubernetes/pause:3.9` image, the mirror must be in the `$mirrorRegistry/<organization>/oss/kubernetes/pause:3.9` format, where `$org` can be any organization name or namespace or excluded entirely. Some valid values are `$mirrorRegistry/oss/kubernetes/pause:3.9`, `$mirrorRegistry/custom/oss/kubernetes/pause:3.9`, and `$mirrorRegistry/x/y/z/oss/kubernetes/pause:3.9`.
-
+  The final portion of the namespace and the image name of the mirror image must match the image being mirrored. For example, when mirroring the `mcr.microsoft.com/oss/kubernetes/pause:3.9` image, the mirror must be in the `$mirrorRegistry/<organization>/oss/kubernetes/pause:3.9` format, where `$org` can be any organization name or namespace or excluded entirely. Some valid values are `$mirrorRegistry/oss/kubernetes/pause:3.9`, `$mirrorRegistry/custom/oss/kubernetes/pause:3.9`, and `$mirrorRegistry/x/y/z/oss/kubernetes/pause:3.9`.
 - A Windows node takes the ITMS object and uses it to configure registry-wide mirrors. In the following example, configuring `quay.io/remote-org/image` to mirror to `quay.io/my-org/image` results in the Windows node using that mirror for all images from `quay.io/remote-org`. As such, `quay.io/remote-org/image:tag` uses the `quay.io/my-org/image:tag` image, as expected, but another container using `quay.io/remote-org/different-image:tag` would also try to use the `quay.io/remote-org/different-image:tag` mirror. This can cause unintended behavior if it is not accounted for.
 
   For this reason, specify container images using a digest by an IDMS object instead of an ITMS object. Using a digest can prevent the wrong container image from being used, by ensuring that the image the container specifies and the image being pulled have the same digest.
@@ -454,8 +453,7 @@ You can create postinstallation mirror configuration custom resources (CR) to re
       ```terminal
       sh-4.2# chroot /host
       ```
-
-      1. Check that the WMCO generated a `hosts.toml` file for each registry on each Windows instance. For the previous example IDMS object, there should be three files in the following file structure:
+   4. Check that the WMCO generated a `hosts.toml` file for each registry on each Windows instance. For the previous example IDMS object, there should be three files in the following file structure:
 
       ```terminal
       $ tree $config_path
@@ -495,7 +493,7 @@ You can create postinstallation mirror configuration custom resources (CR) to re
       [host."https://docker-mirror.internal"]
        capabilities = ["pull", "resolve"] # resolve tags
       ```
-   4. Pull an image to the node from the source and check if it is resolved by the mirror.
+   5. Pull an image to the node from the source and check if it is resolved by the mirror.
 
       ```terminal
       sh-4.2# podman pull --log-level=debug registry.access.redhat.com/ubi9/ubi-minimal@sha256:5cf...
@@ -596,7 +594,8 @@ The following procedure demonstrates how to perform a graceful restart of a node
    <node1> Ready   worker   6d22h   v1.18.3+b0068a8
    ```
 
-## Additional resources {#additional-resources_enabling-windows-container-workloads}
+**Additional resources**
+{._additional-resources}
 
 - [Windows Machine Config Operator prerequisites](/openshift-docs-markdown/windows_containers/wmco_rn/windows-containers-release-notes-prereqs#windows-containers-release-notes-prereqs)
 - [Configuring hybrid networking](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/configuring-hybrid-networking#configuring-hybrid-ovnkubernetes)

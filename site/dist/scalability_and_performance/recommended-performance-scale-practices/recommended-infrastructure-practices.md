@@ -29,7 +29,7 @@ In general, three infrastructure nodes are recommended per cluster.
 
 ## Scaling the Cluster Monitoring Operator {#scaling-cluster-monitoring-operator_recommended-infrastructure-practices}
 
-OpenShift Container Platform exposes metrics that the Cluster Monitoring Operator (CMO) collects and stores in the Prometheus-based monitoring stack. As an administrator, you can view dashboards for system resources, containers, and components metrics in the OpenShift Container Platform web console by navigating to **Observe** -> **Dashboards**.
+OpenShift Container Platform exposes metrics that the Cluster Monitoring Operator (CMO) collects and stores in the Prometheus-based monitoring stack. As an administrator, you can view dashboards for system resources, containers, and components metrics in the OpenShift Container Platform web console by navigating to **Observe** → **Dashboards**.
 
 ### Prometheus database storage requirements {#prometheus-database-storage-requirements_recommended-infrastructure-practices}
 
@@ -109,7 +109,8 @@ You can increase the storage capacity for the Prometheus component in the cluste
    $ oc create -f cluster-monitoring-config.yaml
    ```
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Infrastructure Nodes in OpenShift 4](https://access.redhat.com/solutions/5034771)
 - [OpenShift Container Platform cluster maximums](/openshift-docs-markdown/scalability_and_performance/planning-your-environment-according-to-object-maximums#planning-your-environment-according-to-object-maximums)

@@ -17,6 +17,7 @@ Before beginning to prepare PXE assets, you must complete prerequisite tasks.
 - You reviewed details about the OpenShift Container Platform installation and update processes. For more information, see "Installation and update".
 
 **Additional resources**
+{._additional-resources}
 
 - [Installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)
 
@@ -196,37 +197,29 @@ Create the preferred configuration inputs used to create the PXE files.
                next-hop-address: 192.168.111.2
                next-hop-interface: eno1
                table-id: 254
+   EOF
    ```
 
-{% if iscsi_boot %} minimalISO: true {% endif %} EOF \`\`\`
+   where:
 
-```
-where:
+   `rendezvousIP`
+   :   Specifies the IP address used to determine which node performs the bootstrapping process as well as running the `assisted-service` component. You must provide the rendezvous IP address when you do not specify at least one host’s IP address in the `networkConfig` parameter. If this address is not provided, one IP address is selected from the provided hosts' `networkConfig`.
 
-`rendezvousIP`
-:   Specifies the IP address used to determine which node performs the bootstrapping process as well as running the `assisted-service` component.
-    You must provide the rendezvous IP address when you do not specify at least one host’s IP address in the `networkConfig` parameter. If this address is not provided, one IP address is selected from the provided hosts' `networkConfig`.
+   `hosts`
+   :   Specifies host configuration. The number of hosts defined must not exceed the total number of hosts defined in the `install-config.yaml` file, which is the sum of the values of the `compute.replicas` and `controlPlane.replicas` parameters. This configuration is optional.
 
-`hosts`
-:   Specifies host configuration. The number of hosts defined must not exceed the total number of hosts defined in the `install-config.yaml` file, which is the sum of the values of the `compute.replicas` and `controlPlane.replicas` parameters. This configuration is optional.
+   `hosts.hostname`
+   :   Specifies a value that overrides the hostname obtained from either the Dynamic Host Configuration Protocol (DHCP) or a reverse DNS lookup. Each host must have a unique hostname supplied by one of these methods. This configuration is optional.
 
-`hosts.hostname`
-:   Specifies a value that overrides the hostname obtained from either the Dynamic Host Configuration Protocol (DHCP) or a reverse DNS lookup. Each host must have a unique hostname supplied by one of these methods. This configuration is optional.
+   `hosts.rootDeviceHints`
+   :   Specifies a configuration that enables provisioning of the Red Hat Enterprise Linux CoreOS (RHCOS) image to a particular device. The installation program examines the devices in the order it discovers them, and compares the discovered values with the hint values. It uses the first discovered device that matches the hint value.
 
-`hosts.rootDeviceHints`
-:   Specifies a configuration that enables provisioning of the Red&#160;Hat Enterprise Linux CoreOS (RHCOS) image to a particular device. The installation program examines the devices in the order it discovers them, and compares the discovered values with the hint values. It uses the first discovered device that matches the hint value.
+       > [!NOTE]
+       > This parameter is mandatory for FCP multipath configurations on IBM Z.
 
-    :::note
-
-    This parameter is mandatory for FCP multipath configurations on IBM Z.
-
-    :::
-
-`hosts.networkConfig`
-:   Specifies the network interface configuration of a host in NMState format. This configuration is optional.
-```
-
-1. Optional: To create an iPXE script, add the `bootArtifactsBaseURL` to the `agent-config.yaml` file:
+   `hosts.networkConfig`
+   :   Specifies the network interface configuration of a host in NMState format. This configuration is optional.
+6. Optional: To create an iPXE script, add the `bootArtifactsBaseURL` to the `agent-config.yaml` file:
 
    ```yaml
    apiVersion: v1beta1
@@ -240,6 +233,7 @@ where:
    Where `<asset_server_URL>` is the URL of the server you will upload the PXE assets to.
 
 **Additional resources**
+{._additional-resources}
 
 - [Deploying with dual-stack networking](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#modifying-install-config-for-dual-stack-network_ipi-install-installation-workflow)
 - [Configuring the install-config yaml file](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#configuring-the-install-config-file_ipi-install-installation-workflow)
@@ -305,8 +299,8 @@ The following table lists the network devices that are supported on each hypervi
 
 | Network device | z/VM | KVM | LPAR Classic | LPAR Dynamic Partition Manager (DPM) |
 | --- | --- | --- | --- | --- |
-| Virtual Switch | Supported [^1]^ | Not applicable [^2]^ | Not applicable | Not applicable |
-| Direct attached Open Systems Adapter (OSA) | Supported | Not required [^3]^ | Supported | Not required |
+| Virtual Switch | Supported <sup>\[1\]</sup> | Not applicable <sup>\[2\]</sup> | Not applicable | Not applicable |
+| Direct attached Open Systems Adapter (OSA) | Supported | Not required <sup>\[3\]</sup> | Supported | Not required |
 | RDMA over Converged Ethernet (RoCE) | Not required | Not required | Not required | Not required |
 | HiperSockets | Supported | Not required | Supported | Not required |
 
@@ -359,7 +353,7 @@ You can specify a static IP address on IBM Z machines that use Logical Partition
   >
   > For VLAN configurations:
   >
-  > - Define both the ***base interface*** and the ***tagged VLAN interface*** separately.
+  > - Define both the **base interface** and the **tagged VLAN interface** separately.
   > - The `vlan=` parameter links the tagged interface (for example, `encbdf0.300`) to the underlying physical interface (`encbdf0`).
   >
   > For bonded interfaces:
@@ -431,6 +425,7 @@ Only use this procedure for IBM Z(R) clusters with z/VM.
    For more information, see [IPL](https://www.ibm.com/docs/en/zvm/latest?topic=commands-ipl) (IBM Documentation).
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing a cluster with z/VM on IBM Z and IBM LinuxONE](/openshift-docs-markdown/installing/installing_ibm_z/upi/installing-ibm-z#installing-ibm-z)
 
@@ -513,6 +508,7 @@ Only use this procedure for IBM Z(R) clusters with RHEL KVM.
    > - Currently, only PXE boot is supported to enable FIPS mode on IBM Z(R).
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing a cluster with RHEL KVM on IBM Z and IBM LinuxONE](/openshift-docs-markdown/installing/installing_ibm_z/upi/installing-ibm-z-kvm#installing-ibm-z-kvm)
 
@@ -577,15 +573,11 @@ Use this procedure only for IBM Z(R) clusters running in an LPAR.
 5. Repeat the procedure for all other machines in the cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing a cluster in an LPAR on IBM Z and IBM LinuxONE](/openshift-docs-markdown/installing/installing_ibm_z/upi/installing-ibm-z-lpar#installing-ibm-z-lpar)
 
-## Additional resources {#additional-resources_prepare-pxe-assets-agent}
+**Additional resources**
+{._additional-resources}
 
 - [Installing an OpenShift Container Platform cluster with the Agent-based Installer](/openshift-docs-markdown/installing/installing_with_agent_based_installer/installing-with-agent-based-installer#installing-with-agent-based-installer)
-
-[^1]: 1
-
-[^2]: 2
-
-[^3]: 3

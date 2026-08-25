@@ -23,7 +23,7 @@ The eBPF agent monitors other network namespaces in addition to the host network
 
 **Procedure**
 
-1. In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1. In the web console, navigate to **Ecosystem** → **Installed Operators**.
 2. Under the **Provided APIs** heading for the **NetObserv Operator**, select **Flow Collector**.
 3. Select **cluster** and then select the **YAML** tab.
 4. Configure the `FlowCollector` custom resource. A sample configuration is as follows:
@@ -45,6 +45,7 @@ The eBPF agent monitors other network namespaces in addition to the host network
    - The `spec.agent.ebpf.privileged` field value must be set to `true` to enable SR-IOV monitoring.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring an SR-IOV network device](/openshift-docs-markdown/networking/hardware_networks/configuring-sriov-device#cnf-creating-an-additional-sriov-network-with-vrf-plug-in_configuring-sriov-device)
 
@@ -108,7 +109,7 @@ Network flows coming from VMs that are connected to the default internal pod net
 
    `mac`
    :   Specifies the MAC address used for the secondary network.
-2. In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+2. In the web console, navigate to **Ecosystem** → **Installed Operators**.
 3. Under the **Provided APIs** heading for the **NetObserv Operator**, select **Flow Collector**.
 4. Select **cluster** and then select the **YAML** tab.
 5. Configure `FlowCollector` based on the information you found from the additional network investigation:

@@ -1,5 +1,5 @@
 ---
-title: Configuring {{ ibm_title }} Secure Execution virtual machines on {{ ibm_z_title }} and {{ ibm_linuxone_title }}
+title: Configuring IBM Secure Execution virtual machines on IBM Z and IBM LinuxONE
 ---
 
 # Configuring IBM Secure Execution virtual machines on IBM Z and IBM LinuxONE {#virt-configuring-ibm-secure-execution-vms-ibm-z}
@@ -114,7 +114,7 @@ You can launch an IBM(R) Secure Execution VM on IBM Z(R) and IBM(R) LinuxONE by 
 
 **Procedure**
 
-1. Navigate to **Virtualization** -> **Catalog** in the web console.
+1. Navigate to **Virtualization** → **Catalog** in the web console.
 2. Click the **Customize VirtualMachine** button.
 3. Click the **YAML** tab, and include the `launchSecurity: {}` parameter in the YAML.
 
@@ -423,6 +423,7 @@ You can create a bootable and encrypted IBM Secure Execution VM image for Red H
 
        The value of this attribute is 1 for Linux instances that detect their environment as consistent with that of a secure host. For other instances, the value is 0.
 
-## Additional resources {#additional-resources_virt-configuring-ibm-secure-execution-vms-ibm-z}
+**Additional resources**
+{._additional-resources}
 
 - [What is IBM Secure Execution?](https://www.ibm.com/docs/en/linux-on-systems?topic=execution-introduction)

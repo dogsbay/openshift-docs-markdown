@@ -50,7 +50,8 @@ To trust a custom certificate authority for egress connections in OpenShift Cont
         --patch='{"spec":{"trustedCA":{"name":"custom-ca"}}}'
    ```
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Replacing the default ingress certificate](/openshift-docs-markdown/security/certificates/replacing-default-ingress-certificate#replacing-default-ingress_replacing-default-ingress)
 - [Enabling the cluster-wide proxy](/openshift-docs-markdown/networking/configuring_network_settings/enable-cluster-wide-proxy#nw-proxy-configure-object_config-cluster-wide-proxy)

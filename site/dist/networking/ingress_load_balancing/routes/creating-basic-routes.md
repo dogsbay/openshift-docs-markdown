@@ -86,13 +86,44 @@ The following table shows example routes and their accessibility:
 
 **Route availability**
 
-| Route | When compared to | Accessible .2+ |
-| --- | --- | --- |
-| *www.example.com/test* | *www.example.com/test* | Yes |
-| *www.example.com* | No .2+ | *www.example.com/test* and *www.example.com* |
-| *www.example.com/test* | Yes | *www.example.com* |
-| Yes .2+ | *www.example.com* | *www.example.com/text* |
-| Yes (Matched by the host, not the route) | *www.example.com* | Yes |
+<table>
+<thead>
+<tr>
+  <th>Route</th>
+  <th>When compared to</th>
+  <th>Accessible</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td rowspan="2"><em>www.example.com/test</em></td>
+  <td><em>www.example.com/test</em></td>
+  <td>Yes</td>
+</tr>
+<tr>
+  <td><em>www.example.com</em></td>
+  <td>No</td>
+</tr>
+<tr>
+  <td rowspan="2"><em>www.example.com/test</em> and <em>www.example.com</em></td>
+  <td><em>www.example.com/test</em></td>
+  <td>Yes</td>
+</tr>
+<tr>
+  <td><em>www.example.com</em></td>
+  <td>Yes</td>
+</tr>
+<tr>
+  <td rowspan="2"><em>www.example.com</em></td>
+  <td><em>www.example.com/text</em></td>
+  <td>Yes (Matched by the host, not the route)</td>
+</tr>
+<tr>
+  <td><em>www.example.com</em></td>
+  <td>Yes</td>
+</tr>
+</tbody>
+</table>
 
 ```yaml {title="Example of an unsecured route with a path"}
 apiVersion: route.openshift.io/v1
@@ -271,7 +302,7 @@ To integrate ecosystem components that require Ingress resources, configure an I
 
    `destination-ca-certificate-secret`
    :   Specifies the `route.openshift.io/destination-ca-certificate-secret` annotation. The annotation can be used on an Ingress object to define a route with a custom destination certificate (CA). The annotation references a kubernetes secret, `secret-ca-cert` that will be inserted into the generated route.
-2. If you specify the `passthrough` value in the `route.openshift.io/termination` annotation, set `path` to ’'`and`pathType`to`ImplementationSpecific\` in the spec:
+2. If you specify the `passthrough` value in the `route.openshift.io/termination` annotation, set `path` to `''` and `pathType` to `ImplementationSpecific` in the spec:
 
    ```yaml
    apiVersion: networking.k8s.io/v1

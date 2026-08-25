@@ -118,16 +118,7 @@ You can deploy compute machines on Elastic Fabric Adapter (EFA) instances within
 
 EFA instances do not require placement groups, and you can use placement groups for purposes other than configuring an EFA. The following example uses an EFA and placement group together to demonstrate a configuration that can improve network performance for machines within the specified placement group.
 
-tag:method-machine-template[]\[\] To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file. Then, configure a machine set YAML file to reference the machine template when it deploys machines. end:method-machine-template[]\[\]
-
-tag:method-compute-machine-set[]\[\] To deploy compute machines with your configuration, configure the appropriate values in a machine set YAML file to use when it deploys machines. end:method-compute-machine-set[]\[\]
-
-tag:method-machine-template-and-machine-set[]\[\] To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file and a machine set YAML file that references the machine template when it deploys machines. end:method-machine-template-and-machine-set[]\[\]
-
-tag:method-control-plane-machine-set[]\[\] To deploy control machines with your configuration, configure the appropriate values in your control plane machine set YAML file.
-
-- For clusters that use the default `RollingUpdate` update strategy, the control plane machine set propagates changes to your control plane configuration automatically.
-- For clusters that use the `OnDelete` update strategy, you must replace your control plane machines manually. end:method-control-plane-machine-set[]\[\]
+To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file. Then, configure a machine set YAML file to reference the machine template when it deploys machines.
 
 ```yaml {title="Sample EFA instance and placement group configuration"}
 apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
@@ -161,6 +152,7 @@ where:
 > Ensure that the rules and limitations for the type of placement group that you create are compatible with your intended use case. For more information, see "Placement groups for your Amazon EC2 instances".
 
 **Additional resources**
+{._additional-resources}
 
 - [Elastic Fabric Adapter (AWS documentation)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html)
 - [Placement groups for your Amazon EC2 instances (AWS documentation)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html#limitations-placement-groups)
@@ -170,16 +162,7 @@ where:
 
 You can restrict the version of the Amazon EC2 Instance Metadata Service (IMDS) that machines on Amazon Web Services (AWS) clusters use. Machines can require the use of IMDSv2, or allow the use of IMDSv1 in addition to IMDSv2.
 
-tag:method-machine-template[]\[\] To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file. Then, configure a machine set YAML file to reference the machine template when it deploys machines. end:method-machine-template[]\[\]
-
-tag:method-compute-machine-set[]\[\] To deploy compute machines with your configuration, configure the appropriate values in a machine set YAML file to use when it deploys machines. end:method-compute-machine-set[]\[\]
-
-tag:method-machine-template-and-machine-set[]\[\] To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file and a machine set YAML file that references the machine template when it deploys machines. end:method-machine-template-and-machine-set[]\[\]
-
-tag:method-control-plane-machine-set[]\[\] To deploy control machines with your configuration, configure the appropriate values in your control plane machine set YAML file.
-
-- For clusters that use the default `RollingUpdate` update strategy, the control plane machine set propagates changes to your control plane configuration automatically.
-- For clusters that use the `OnDelete` update strategy, you must replace your control plane machines manually. end:method-control-plane-machine-set[]\[\]
+To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file. Then, configure a machine set YAML file to reference the machine template when it deploys machines.
 
 > [!IMPORTANT]
 > Before creating machines that require IMDSv2, ensure that any workloads that interact with the IMDS support IMDSv2.
@@ -216,6 +199,7 @@ where:
 Requiring the use of IMDSv2 might cause timeouts. For more information, including mitigation strategies, see "Instance metadata access considerations".
 
 **Additional resources**
+{._additional-resources}
 
 - [IMDSv2 (AWS documentation)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html)
 - [Instance metadata access considerations (AWS documentation)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html#imds-considerations)
@@ -228,16 +212,7 @@ Dedicated Instances run in a virtual private cloud (VPC) on hardware that is ded
 
 OpenShift Container Platform supports instances with public or dedicated tenancy.
 
-tag:method-machine-template[]\[\] To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file. Then, configure a machine set YAML file to reference the machine template when it deploys machines. end:method-machine-template[]\[\]
-
-tag:method-compute-machine-set[]\[\] To deploy compute machines with your configuration, configure the appropriate values in a machine set YAML file to use when it deploys machines. end:method-compute-machine-set[]\[\]
-
-tag:method-machine-template-and-machine-set[]\[\] To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file and a machine set YAML file that references the machine template when it deploys machines. end:method-machine-template-and-machine-set[]\[\]
-
-tag:method-control-plane-machine-set[]\[\] To deploy control machines with your configuration, configure the appropriate values in your control plane machine set YAML file.
-
-- For clusters that use the default `RollingUpdate` update strategy, the control plane machine set propagates changes to your control plane configuration automatically.
-- For clusters that use the `OnDelete` update strategy, you must replace your control plane machines manually. end:method-control-plane-machine-set[]\[\]
+To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file. Then, configure a machine set YAML file to reference the machine template when it deploys machines.
 
 ```yaml {title="Sample Dedicated Instances configuration"}
 apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
@@ -261,16 +236,7 @@ You can configure a machine template to place machines on Amazon Web Services (A
 >
 > For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
 
-tag:method-machine-template[]\[\] To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file. Then, configure a machine set YAML file to reference the machine template when it deploys machines. end:method-machine-template[]\[\]
-
-tag:method-compute-machine-set[]\[\] To deploy compute machines with your configuration, configure the appropriate values in a machine set YAML file to use when it deploys machines. end:method-compute-machine-set[]\[\]
-
-tag:method-machine-template-and-machine-set[]\[\] To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file and a machine set YAML file that references the machine template when it deploys machines. end:method-machine-template-and-machine-set[]\[\]
-
-tag:method-control-plane-machine-set[]\[\] To deploy control machines with your configuration, configure the appropriate values in your control plane machine set YAML file.
-
-- For clusters that use the default `RollingUpdate` update strategy, the control plane machine set propagates changes to your control plane configuration automatically.
-- For clusters that use the `OnDelete` update strategy, you must replace your control plane machines manually. end:method-control-plane-machine-set[]\[\]
+To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file. Then, configure a machine set YAML file to reference the machine template when it deploys machines.
 
 **Procedure**
 
@@ -305,16 +271,7 @@ You can configure a machine template to place machines on a specific Amazon Web 
 >
 > For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
 
-tag:method-machine-template[]\[\] To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file. Then, configure a machine set YAML file to reference the machine template when it deploys machines. end:method-machine-template[]\[\]
-
-tag:method-compute-machine-set[]\[\] To deploy compute machines with your configuration, configure the appropriate values in a machine set YAML file to use when it deploys machines. end:method-compute-machine-set[]\[\]
-
-tag:method-machine-template-and-machine-set[]\[\] To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file and a machine set YAML file that references the machine template when it deploys machines. end:method-machine-template-and-machine-set[]\[\]
-
-tag:method-control-plane-machine-set[]\[\] To deploy control machines with your configuration, configure the appropriate values in your control plane machine set YAML file.
-
-- For clusters that use the default `RollingUpdate` update strategy, the control plane machine set propagates changes to your control plane configuration automatically.
-- For clusters that use the `OnDelete` update strategy, you must replace your control plane machines manually. end:method-control-plane-machine-set[]\[\]
+To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file. Then, configure a machine set YAML file to reference the machine template when it deploys machines.
 
 **Procedure**
 
@@ -342,16 +299,7 @@ tag:method-control-plane-machine-set[]\[\] To deploy control machines with your 
 
 You can deploy machines as non-guaranteed Spot Instances on Amazon Web Services (AWS). Spot Instances use spare AWS EC2 capacity and are less expensive than On-Demand Instances. You can use Spot Instances for workloads that can tolerate interruptions, such as batch or stateless, horizontally scalable workloads.
 
-tag:method-machine-template[]\[\] To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file. Then, configure a machine set YAML file to reference the machine template when it deploys machines. end:method-machine-template[]\[\]
-
-tag:method-compute-machine-set[]\[\] To deploy compute machines with your configuration, configure the appropriate values in a machine set YAML file to use when it deploys machines. end:method-compute-machine-set[]\[\]
-
-tag:method-machine-template-and-machine-set[]\[\] To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file and a machine set YAML file that references the machine template when it deploys machines. end:method-machine-template-and-machine-set[]\[\]
-
-tag:method-control-plane-machine-set[]\[\] To deploy control machines with your configuration, configure the appropriate values in your control plane machine set YAML file.
-
-- For clusters that use the default `RollingUpdate` update strategy, the control plane machine set propagates changes to your control plane configuration automatically.
-- For clusters that use the `OnDelete` update strategy, you must replace your control plane machines manually. end:method-control-plane-machine-set[]\[\]
+To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file. Then, configure a machine set YAML file to reference the machine template when it deploys machines.
 
 > [!IMPORTANT]
 > AWS EC2 can reclaim the capacity for a Spot Instance at any time.
@@ -393,16 +341,7 @@ When AWS terminates an instance, a termination handler running on the Spot Insta
 
 You can improve performance for high traffic services by increasing the throughput of gp3 storage volumes in an AWS cluster. You can configure the storage throughput for the root volume, non root volumes, or both.
 
-tag:method-machine-template[]\[\] To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file. Then, configure a machine set YAML file to reference the machine template when it deploys machines. end:method-machine-template[]\[\]
-
-tag:method-compute-machine-set[]\[\] To deploy compute machines with your configuration, configure the appropriate values in a machine set YAML file to use when it deploys machines. end:method-compute-machine-set[]\[\]
-
-tag:method-machine-template-and-machine-set[]\[\] To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file and a machine set YAML file that references the machine template when it deploys machines. end:method-machine-template-and-machine-set[]\[\]
-
-tag:method-control-plane-machine-set[]\[\] To deploy control machines with your configuration, configure the appropriate values in your control plane machine set YAML file.
-
-- For clusters that use the default `RollingUpdate` update strategy, the control plane machine set propagates changes to your control plane configuration automatically.
-- For clusters that use the `OnDelete` update strategy, you must replace your control plane machines manually. end:method-control-plane-machine-set[]\[\]
+To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file. Then, configure a machine set YAML file to reference the machine template when it deploys machines.
 
 **Prerequisites**
 
@@ -433,30 +372,11 @@ tag:method-control-plane-machine-set[]\[\] To deploy control machines with your 
 
 ### Capacity Reservation configuration options {#machine-feature-agnostic-capacity-reservation_cluster-api-config-options-aws}
 
-OpenShift Container Platform version 4.22 and later supports
+OpenShift Container Platform version 4.22 and later supports Capacity Reservations on Amazon Web Services clusters, including On-Demand Capacity Reservations and Capacity Blocks for ML.
 
-Capacity Reservations on Amazon Web Services clusters, including On-Demand Capacity Reservations and Capacity Blocks for ML.
+You can deploy machines on any available resources that match the parameters of a capacity request that you define. These parameters specify the instance type, region, and number of instances that you want to reserve. If your Capacity Reservation can accommodate the capacity request, the deployment succeeds.
 
-You can deploy machines on any available resources that match the parameters of a capacity request that you define. These parameters specify the
-
-instance type,
-
-region, and number of instances that you want to reserve. If your
-
-Capacity Reservation
-
-can accommodate the capacity request, the deployment succeeds.
-
-tag:method-machine-template[]\[\] To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file. Then, configure a machine set YAML file to reference the machine template when it deploys machines. end:method-machine-template[]\[\]
-
-tag:method-compute-machine-set[]\[\] To deploy compute machines with your configuration, configure the appropriate values in a machine set YAML file to use when it deploys machines. end:method-compute-machine-set[]\[\]
-
-tag:method-machine-template-and-machine-set[]\[\] To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file and a machine set YAML file that references the machine template when it deploys machines. end:method-machine-template-and-machine-set[]\[\]
-
-tag:method-control-plane-machine-set[]\[\] To deploy control machines with your configuration, configure the appropriate values in your control plane machine set YAML file.
-
-- For clusters that use the default `RollingUpdate` update strategy, the control plane machine set propagates changes to your control plane configuration automatically.
-- For clusters that use the `OnDelete` update strategy, you must replace your control plane machines manually. end:method-control-plane-machine-set[]\[\]
+To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file. Then, configure a machine set YAML file to reference the machine template when it deploys machines.
 
 ```yaml {title="Sample Capacity Reservation configuration"}
 apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
@@ -474,11 +394,7 @@ spec:
 where:
 
 `spec.template.spec.capacityReservationId`
-:   Specifies the ID of the
-
-    Capacity Block for ML or On-Demand Capacity Reservation
-
-    that you want to deploy machines on.
+:   Specifies the ID of the Capacity Block for ML or On-Demand Capacity Reservation that you want to deploy machines on.
 
 `spec.template.spec.capacityReservationPreference`
 :   Specifies your preferred capacity reservation behavior. The following values are valid:
@@ -504,11 +420,10 @@ where:
 `Spot`
 :   Use this market type with Spot Instances. This option is not compatible with Capacity Reservations.
 
-    For more information, including limitations and suggested use cases for this offering, see
-
-    On-Demand Capacity Reservations and Capacity Blocks for ML (AWS documentation).
+    For more information, including limitations and suggested use cases for this offering, see On-Demand Capacity Reservations and Capacity Blocks for ML (AWS documentation).
 
 **Additional resources**
+{._additional-resources}
 
 - [On-Demand Capacity Reservations and Capacity Blocks for ML (AWS documentation)](https://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/capacity-reservation-overview.html)
 
@@ -523,16 +438,7 @@ For more information about supported instance types, see the following pages in 
 - NVIDIA GPU Operator Community support matrix
 - NVIDIA AI Enterprise support matrix
 
-tag:method-machine-template[]\[\] To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file. Then, configure a machine set YAML file to reference the machine template when it deploys machines. end:method-machine-template[]\[\]
-
-tag:method-compute-machine-set[]\[\] To deploy compute machines with your configuration, configure the appropriate values in a machine set YAML file to use when it deploys machines. end:method-compute-machine-set[]\[\]
-
-tag:method-machine-template-and-machine-set[]\[\] To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file and a machine set YAML file that references the machine template when it deploys machines. end:method-machine-template-and-machine-set[]\[\]
-
-tag:method-control-plane-machine-set[]\[\] To deploy control machines with your configuration, configure the appropriate values in your control plane machine set YAML file.
-
-- For clusters that use the default `RollingUpdate` update strategy, the control plane machine set propagates changes to your control plane configuration automatically.
-- For clusters that use the `OnDelete` update strategy, you must replace your control plane machines manually. end:method-control-plane-machine-set[]\[\]
+To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file and a machine set YAML file that references the machine template when it deploys machines.
 
 ```yaml {title="Sample GPU-enabled machine template configuration"}
 apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
@@ -585,6 +491,7 @@ where:
 :   Specifies a template label that matches the machine set name.
 
 **Additional resources**
+{._additional-resources}
 
 - [AWS G4dn instance type](https://aws.amazon.com/ec2/instance-types/#Accelerated_Computing)
 - [NVIDIA GPU Operator Community support matrix (NVIDIA documentation)](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/platform-support.html)

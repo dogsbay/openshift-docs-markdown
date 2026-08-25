@@ -1,5 +1,5 @@
 ---
-title: Network []
+title: Network [operator.openshift.io/v1]
 ---
 
 # Network \[operator.openshift.io/v1\] {#network-operator-openshift-io-v1}
@@ -47,11 +47,11 @@ Type
 | `disableNetworkDiagnostics` | `boolean` | disableNetworkDiagnostics specifies whether or not PodNetworkConnectivityCheck CRs from a test pod to every node, apiserver and LB should be disabled or not. If unset, this property defaults to 'false' and network diagnostics is enabled. Setting this to 'true' would reduce the additional load of the pods performing the checks. |
 | `exportNetworkFlows` | `object` | exportNetworkFlows enables and configures the export of network flow metadata from the pod network by using protocols NetFlow, SFlow or IPFIX. Currently only supported on OVN-Kubernetes plugin. If unset, flows will not be exported to any collector. |
 | `kubeProxyConfig` | `object` | kubeProxyConfig lets us configure desired proxy configuration, if deployKubeProxy is true. If not specified, sensible defaults will be chosen by OpenShift directly. |
-| `logLevel` | `string` | logLevel is an intent based logging for an overall component.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands. Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
+| `logLevel` | `string` | logLevel is an intent based logging for an overall component. It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `managementState` | `string` | managementState indicates whether and how the operator should manage the component |
 | `migration` | `object` | migration enables and configures cluster network migration, for network changes that cannot be made instantly. |
-| `observedConfig` | \`\` | observedConfig holds a sparse config that controller has observed from the cluster state.  It exists in spec because it is an input to the level for the operator |
-| `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves. Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
+| `observedConfig` | \`\` | observedConfig holds a sparse config that controller has observed from the cluster state. It exists in spec because it is an input to the level for the operator |
+| `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself. It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `serviceNetwork` | `array (string)` | serviceNetwork is the ip address pool to use for Service IPs Currently, all existing network providers only support a single value here, but this is an array to allow for growth. |
 | `unsupportedConfigOverrides` | \`\` | unsupportedConfigOverrides overrides the final configuration that was computed by the operator. Red Hat does not support the use of this field. Misuse of this field could lead to unexpected behavior or conflict with other configuration options. Seek guidance from the Red Hat support before using this field. Use of this property blocks cluster upgrades, it must be removed before upgrading your cluster. |
 | `useMultiNetworkPolicy` | `boolean` | useMultiNetworkPolicy enables a controller which allows for MultiNetworkPolicy objects to be used on additional networks as created by Multus CNI. MultiNetworkPolicy are similar to NetworkPolicy objects, but NetworkPolicy objects only apply to the primary interface. With MultiNetworkPolicy, you can control the traffic that a pod can receive over the secondary interfaces. If unset, this property defaults to 'false' and MultiNetworkPolicy objects are ignored. If 'disableMultiNetwork' is 'true' then the value of this field is ignored. |
@@ -218,7 +218,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `providers` | `array (string)` | providers is a set of enabled components that provide additional routing capabilities. Entries on this list must be unique. The  only valid value is currrently "FRR" which provides FRR routing capabilities through the deployment of FRR. |
+| `providers` | `array (string)` | providers is a set of enabled components that provide additional routing capabilities. Entries on this list must be unique. The only valid value is currrently "FRR" which provides FRR routing capabilities through the deployment of FRR. |
 
 ### .spec.clusterNetwork {#_specclusternetwork}
 
@@ -475,7 +475,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `destination` | `string` | destination is the location for policy log messages. Regardless of this config, persistent logs will always be dumped to the host at /var/log/ovn/ however Additionally syslog output may be configured as follows. Valid values are: - "libc" -> to use the libc syslog() function of the host node’s journdald process - "udp:host:port" -> for sending syslog over UDP - "unix:file" -> for using the UNIX domain socket directly - "null" -> to discard all messages logged to syslog The default is "null" |
+| `destination` | `string` | destination is the location for policy log messages. Regardless of this config, persistent logs will always be dumped to the host at /var/log/ovn/ however Additionally syslog output may be configured as follows. Valid values are: - "libc" → to use the libc syslog() function of the host node’s journdald process - "udp:host:port" → for sending syslog over UDP - "unix:file" → for using the UNIX domain socket directly - "null" → to discard all messages logged to syslog The default is "null" |
 | `maxFileSize` | `integer` | maxFilesSize is the max size an ACL_audit log file is allowed to reach before rotation occurs Units are in MB and the Default is 50MB |
 | `maxLogFiles` | `integer` | maxLogFiles specifies the maximum number of ACL_audit log files that can be present. |
 | `rateLimit` | `integer` | rateLimit is the approximate maximum number of messages to generate per-second per-node. If unset the default of 20 msg/sec is used. |
@@ -692,7 +692,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` |  |
 | `reason` | `string` |  |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
@@ -742,13 +742,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of Network
   - `GET`: list objects of kind Network
   - `POST`: create a Network
-- `/apis/operator.openshift.io/v1/networks/{{ name }}`
+- `/apis/operator.openshift.io/v1/networks/{name}`
 
   - `DELETE`: delete a Network
   - `GET`: read the specified Network
   - `PATCH`: partially update the specified Network
   - `PUT`: replace the specified Network
-- `/apis/operator.openshift.io/v1/networks/{{ name }}/status`
+- `/apis/operator.openshift.io/v1/networks/{name}/status`
 
   - `GET`: read status of the specified Network
   - `PATCH`: partially update status of the specified Network
@@ -822,7 +822,7 @@ Description
 | 202 - Accepted | [`Network`](/openshift-docs-markdown/rest_api/operator_apis/network-operator-openshift-io-v1#network-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operator.openshift.io/v1/networks/{{ name }} {#_apisoperatoropenshiftiov1networks_name}
+### /apis/operator.openshift.io/v1/networks/{name} {#_apisoperatoropenshiftiov1networks_name}
 
 **Global path parameters**
 
@@ -926,7 +926,7 @@ Description
 | 201 - Created | [`Network`](/openshift-docs-markdown/rest_api/operator_apis/network-operator-openshift-io-v1#network-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operator.openshift.io/v1/networks/{{ name }}/status {#_apisoperatoropenshiftiov1networks_name_status}
+### /apis/operator.openshift.io/v1/networks/{name}/status {#_apisoperatoropenshiftiov1networks_name_status}
 
 **Global path parameters**
 

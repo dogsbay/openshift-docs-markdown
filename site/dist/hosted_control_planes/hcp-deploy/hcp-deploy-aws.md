@@ -1,5 +1,5 @@
 ---
-title: Deploying {{ hcp }} on {{ aws_short }}
+title: Deploying hosted control planes on AWS
 ---
 
 # Deploying hosted control planes on AWS {#hcp-deploy-aws}
@@ -34,6 +34,7 @@ To ensure successful deployment of hosted control planes on Amazon Web Services 
 > - Do not create a hosted cluster in the namespace of a multicluster engine Operator managed cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring Ansible Automation Platform jobs to run on hosted clusters](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#ansible-config-hosted-cluster)
 - [Advanced configuration](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#advanced-config-engine)
@@ -374,7 +375,9 @@ In order to provision hosted control planes on the Amazon Web Services (AWS) wit
 **Procedure**
 
 1. Create an AWS credential secret for the HyperShift Operator and name it `hypershift-operator-private-link-credentials`. The secret must reside in the managed cluster namespace that is the namespace of the managed cluster being used as the management cluster. If you used `local-cluster`, create the secret in the `local-cluster` namespace.
-2. See the following table to confirm that the secret contains the required fields: **Required fields for the AWS secret**
+2. See the following table to confirm that the secret contains the required fields:
+
+   **Required fields for the AWS secret**
 
    | Field name | Description | Optional or required |
    | --- | --- | --- |
@@ -448,7 +451,9 @@ You can provision hosted control planes with external DNS or service-level DNS.
 **Procedure**
 
 1. Create an Amazon Web Services (AWS) credential secret for the HyperShift Operator and name it `hypershift-operator-external-dns-credentials` in the `local-cluster` namespace.
-2. Verify that the secret has the required fields. For your reference, the required fields are detailed in the following table. **Required fields for the AWS secret**
+2. Verify that the secret has the required fields. For your reference, the required fields are detailed in the following table.
+
+   **Required fields for the AWS secret**
 
    | Field name | Description | Optional or required |
    | --- | --- | --- |
@@ -533,7 +538,9 @@ You can create the public DNS hosted zone to use as the external DNS domain filt
 
    You can configure service-level DNS indirection for public services only. You cannot set `hostname` for private services because they use the `hypershift.local` private zone.
 
-   The following table shows when it is valid to set `hostname` for a service and endpoint combinations: **Service and endpoint combinations to set `hostname`**
+   The following table shows when it is valid to set `hostname` for a service and endpoint combinations:
+
+   **Service and endpoint combinations to set `hostname`**
 
    | Service | Public | PublicAndPrivate | Private |
    | --- | --- | --- | --- |
@@ -697,6 +704,7 @@ For compatible combinations of node pools and hosted clusters, see the following
 | ARM64 | ARM64 or AMD64 |
 
 **Additional resources**
+{._additional-resources}
 
 - [Disabling the automatic import of hosted clusters into multicluster engine Operator](/openshift-docs-markdown/hosted_control_planes/hcp-import#hcp-import-disable_hcp-import)
 - [Running hosted clusters on an ARM64 architecture](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-aws#hcp-enable-arm-amd_hcp-deploy-aws)
@@ -804,6 +812,7 @@ To create a hosted cluster on Amazon Web Services (AWS), you can use the hosted 
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring a custom API server certificate in a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-certificates#hcp-custom-cert_hcp-certificates)
 
@@ -1133,6 +1142,7 @@ If you do not use a multi-architecture release image, the compute nodes in the n
   :   Specifies the Amazon Resource Name (ARN), for example, `arn:aws:iam::820196288204:role/myrole`.
 
 **Additional resources**
+{._additional-resources}
 
 - [Extracting the release image digest](/openshift-docs-markdown/hosted_control_planes/hcp-disconnected/hcp-deploy-dc-bm#hcp-dc-extract_hcp-deploy-dc-bm)
 - [Create an OpenShift Container Platform Cluster: AWS (ARM)](https://console.redhat.com/openshift/install/aws/arm)
@@ -1178,6 +1188,7 @@ The valid values for the `arch` field are as follows:
   :   Specifies the architecture type, such as `arm64` or `amd64`. If you do not specify a value for the `--arch` flag, the `amd64` value is used by default.
 
 **Additional resources**
+{._additional-resources}
 
 - [Multi-architecture nightly images](https://multi.ocp.releases.ci.openshift.org/)
 
@@ -1242,6 +1253,7 @@ For private clusters on AWS, all communication with the hosted cluster occurs ov
 - `*.apps.<hosted_cluster_name>.hypershift.local`
 
 **Additional resources**
+{._additional-resources}
 
 - [Enabling AWS PrivateLink for hosted control planes](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-aws#hcp-aws-enable-private-link_hcp-deploy-aws)
 - [Creating an AWS IAM role and STS credentials](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-aws#hcp-aws-create-role-sts-creds_hcp-deploy-aws)

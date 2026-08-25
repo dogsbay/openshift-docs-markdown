@@ -11,6 +11,7 @@ The `opm` CLI is an Operator Framework tool for creating and maintaining Operato
 A catalog contains a database of pointers to Operator manifest content that can be queried through an included API that is served when the container image is run. On OpenShift Container Platform, Operator Lifecycle Manager (OLM) can reference the image in a catalog source, defined by a `CatalogSource` object, which polls the image at regular intervals to enable frequent updates to installed Operators on the cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - See [Operator Framework packaging format](/openshift-docs-markdown/operators/understanding/olm-packaging-format#olm-bundle-format_olm-packaging-format) for more information about the bundle format.
 
@@ -71,6 +72,7 @@ You can install the `opm` CLI tool on your Linux, macOS, or Windows workstation.
   $ opm version
   ```
 
-## Additional resources {#opm-addtl-resources}
+**Additional resources**
+{._additional-resources}
 
 - See [Managing custom catalogs](/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-managing-custom-catalogs) for `opm` procedures including creating, updating, and pruning catalogs.

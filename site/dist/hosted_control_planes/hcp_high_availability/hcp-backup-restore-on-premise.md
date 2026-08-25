@@ -28,8 +28,8 @@ Fix failures by taking a snapshot of etcd on a hosted cluster.
   - For production environments, it is strongly recommended to configure all services with fixed hostnames. By having fixed hostnames, you can ensure full service continuity and DNS consistency during the restore process on a different management cluster.
   - When you restore a hosted cluster to a different management cluster, all services in the hosted cluster must be configured with a fixed hostname in its `servicePublishingStrategy` property. This requirement applies to all platforms. Restoring a hosted cluster to a different management cluster is a Technology Preview feature. Restoring a hosted cluster to its original management cluster is supported.
 
-> [!IMPORTANT]
-> After you back up the hosted cluster, you must back up workloads in the data cluster and then delete the original hosted cluster so that the restore process can begin.
+  > [!IMPORTANT]
+  > After you back up the hosted cluster, you must back up workloads in the data cluster and then delete the original hosted cluster so that the restore process can begin.
 
 **Procedure**
 
@@ -108,6 +108,7 @@ Fix failures by taking a snapshot of etcd on a hosted cluster.
            ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring Amazon Web Services](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-aws#migration-configuring-aws-s3_installing-oadp-aws)
 
@@ -146,7 +147,7 @@ Fix failures by restoring a snapshot of etcd on a hosted cluster.
    2. Create a pod that allows access to etcd data:
 
       ```yaml
-      $ cat << EOF | oc apply -n ${{ CONTROL_PLANE_NAMESPACE }} -f -
+      $ cat << EOF | oc apply -n ${CONTROL_PLANE_NAMESPACE} -f -
       apiVersion: apps/v1
       kind: Deployment
       metadata:

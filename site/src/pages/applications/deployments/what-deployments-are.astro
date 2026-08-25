@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"what-deployments-are","text":"Understanding
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/applications/deployments/what-deployments-are";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="what-deployments-are" class="group scroll-mt-20">Understanding deployments<a href="#what-deployments-are" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can use <code>Deployment</code> and <code>DeploymentConfig</code> objects in OpenShift Container Platform to describe the desired state of an application and to manage pods through replica sets or replication controllers. Use <code>Deployment</code> objects unless you need a feature that only <code>DeploymentConfig</code> objects provide.</p>
+      <p class="_abstract">You can use <code>Deployment</code> and <code>DeploymentConfig</code> objects in OpenShift Container Platform to describe the desired state of an application and to manage pods through replica sets or replication controllers. Use <code>Deployment</code> objects unless you need a feature that only <code>DeploymentConfig</code> objects provide.</p>
       <p>The <code>Deployment</code> and <code>DeploymentConfig</code> API objects provide two similar but different methods for fine-grained management over common user applications. They are composed of the following separate API objects:</p>
       <ul>
       <li>A <code>Deployment</code> or <code>DeploymentConfig</code> object, either of which describes the desired state of a particular component of the application as a pod template.</li>

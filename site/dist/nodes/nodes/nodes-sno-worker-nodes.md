@@ -1,8 +1,8 @@
 ---
-title: Adding worker nodes to {{ sno }} clusters
+title: Adding worker nodes to single-node OpenShift clusters
 ---
 
-# Adding worker nodes to {{ sno }} clusters {#nodes-sno-worker-nodes}
+# Adding worker nodes to single-node OpenShift clusters {#nodes-sno-worker-nodes}
 
 You can add worker nodes to single-node OpenShift clusters in case you need additional capacity in your cluster.
 
@@ -26,7 +26,9 @@ You can review the following information to understand the requirements that you
 To install a single-node OpenShift worker node, you must address the following requirements:
 
 - **Administration host:** You must have a computer to prepare the ISO and to monitor the installation.
-- **Production-grade server:** Installing single-node OpenShift worker nodes requires a server with sufficient resources to run OpenShift Container Platform services and a production workload. **Minimum resource requirements**
+- **Production-grade server:** Installing single-node OpenShift worker nodes requires a server with sufficient resources to run OpenShift Container Platform services and a production workload.
+
+  **Minimum resource requirements**
 
   | Profile | vCPU | Memory | Storage |
   | --- | --- | --- | --- |
@@ -38,7 +40,9 @@ To install a single-node OpenShift worker node, you must address the following r
   > (threads per core × cores) × sockets = vCPUs
 
   The server must have a Baseboard Management Controller (BMC) when booting with virtual media.
-- **Networking:** The worker node server must have access to the internet or access to a local registry if it is not connected to a routable network. The worker node server must have a DHCP reservation or a static IP address and be able to access the single-node OpenShift cluster Kubernetes API, ingress route, and cluster node domain names. You must configure the DNS to resolve the IP address to each of the following fully qualified domain names (FQDN) for the single-node OpenShift cluster: **Required DNS records**
+- **Networking:** The worker node server must have access to the internet or access to a local registry if it is not connected to a routable network. The worker node server must have a DHCP reservation or a static IP address and be able to access the single-node OpenShift cluster Kubernetes API, ingress route, and cluster node domain names. You must configure the DNS to resolve the IP address to each of the following fully qualified domain names (FQDN) for the single-node OpenShift cluster:
+
+  **Required DNS records**
 
   | Usage | FQDN | Description |
   | --- | --- | --- |
@@ -344,7 +348,7 @@ You can add worker nodes to clusters by writing command-line commands against th
       }
     }
     ```
-11. When the previous command shows that the host is ready, start the installation using the [/v2/infra-envs/{{ infra_env_id }}/hosts/{{ host_id }}/actions/install](https://api.openshift.com/?urls.primaryName=assisted-service%20service#/installer/v2InstallHost) API by running the following command:
+11. When the previous command shows that the host is ready, start the installation using the [/v2/infra-envs/{infra_env_id}/hosts/{host_id}/actions/install](https://api.openshift.com/?urls.primaryName=assisted-service%20service#/installer/v2InstallHost) API by running the following command:
 
     ```terminal
     $ curl -X POST -s "$API_URL/api/assisted-install/v2/infra-envs/$INFRA_ENV_ID/hosts/$HOST_ID/actions/install"  -H "Authorization: Bearer ${JWT_TOKEN}"
@@ -439,7 +443,7 @@ You can add a worker node to a single-node OpenShift cluster manually by booting
    $ OCP_VERSION=<ocp_version>
    ```
 
-   Replace `<ocp_version>` with the current version, for example, `latest-{{ product_version }}`
+   Replace `<ocp_version>` with the current version, for example, `latest-4.22`
 2. Set the host architecture:
 
    ```terminal
@@ -662,7 +666,8 @@ To allow newly added machines to join your OpenShift Container Platform cluster,
      where:
 
      `<csr_name>`
-     :   Specifies the name of a CSR from the list of current CSRs. \*   To approve all pending CSRs, run the following command:
+     :   Specifies the name of a CSR from the list of current CSRs.
+   - To approve all pending CSRs, run the following command:
 
      ```terminal
      $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs --no-run-if-empty oc adm certificate approve
@@ -693,7 +698,8 @@ To allow newly added machines to join your OpenShift Container Platform cluster,
      where:
 
      `<csr_name>`
-     :   Specifies the name of a CSR from the list of current CSRs. \*   To approve all pending CSRs, run the following command:
+     :   Specifies the name of a CSR from the list of current CSRs.
+   - To approve all pending CSRs, run the following command:
 
      ```terminal
      $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs oc adm certificate approve
@@ -716,7 +722,8 @@ To allow newly added machines to join your OpenShift Container Platform cluster,
    > [!NOTE]
    > You might need to wait a few minutes after approval of the server CSRs for the machines to change to the `Ready` status.
 
-<a name="additional-resources_add-workers"></a>**Additional resources**
+**Additional resources**
+{._additional-resources}
 
 - [Minimum resource requirements for cluster installation](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-restricted-networks-bare-metal#installation-minimum-resource-requirements_installing-restricted-networks-bare-metal)
 - [Recommended practices for scaling the cluster](/openshift-docs-markdown/scalability_and_performance/recommended-performance-scale-practices/recommended-control-plane-practices#recommended-scale-practices_cluster-scaling)

@@ -48,6 +48,7 @@ Any node that runs any other container, pod, or component is a worker node that 
 For information about infrastructure nodes and which components can run on infrastructure nodes, see the "Red Hat OpenShift control plane and infrastructure nodes" section in the OpenShift sizing and subscription guide for enterprise Kubernetes document.
 
 **Additional resources**
+{._additional-resources}
 
 - [OpenShift sizing and subscription guide for enterprise Kubernetes](https://www.redhat.com/en/resources/openshift-subscription-sizing-guide)
 
@@ -57,19 +58,11 @@ The sample YAML defines a compute machine set that runs in the `us-east-1a` Amaz
 
 `node-role.kubernetes.io/infra: ""`.
 
-The sample YAML specifies a taint to prevent user workloads from being scheduled on
-
-`infra`
-
-nodes.
+The sample YAML specifies a taint to prevent user workloads from being scheduled on `infra` nodes.
 
 After adding the `NoSchedule` taint on the infrastructure node, existing DNS pods running on that node are marked as `misscheduled`. You must either delete or [add toleration on `misscheduled` DNS pods](https://access.redhat.com/solutions/6592171).
 
-In this sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and
-
-`<infra>`
-
-is the node label to add.
+In this sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and `<infra>` is the node label to add.
 
 ```yaml
 apiVersion: machine.openshift.io/v1beta1
@@ -77,64 +70,25 @@ kind: MachineSet
 metadata:
   labels:
     machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not (infra or edge) %}
-  name: <infrastructure_id>-<role>-<zone>
-{% endif %}
-{% if infra %}
   name: <infrastructure_id>-infra-<zone>
-{% endif %}
-{% if edge %}
-  name: <infrastructure_id>-edge-<zone>
-{%- endif %}
   namespace: openshift-machine-api
 spec:
   replicas: 1
   selector:
     matchLabels:
       machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if edge %}
-      machine.openshift.io/cluster-api-machineset: <infrastructure_id>-edge-<zone>
-{% endif %}
-{% if not (infra or edge) %}
-      machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<zone>
-{% endif %}
-{% if infra %}
       machine.openshift.io/cluster-api-machineset: <infrastructure_id>-infra-<zone>
-{%- endif %}
   template:
     metadata:
       labels:
         machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not (infra or edge) %}
-        machine.openshift.io/cluster-api-machine-role: <role>
-        machine.openshift.io/cluster-api-machine-type: <role>
-        machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<zone>
-{% endif %}
-{% if infra %}
         machine.openshift.io/cluster-api-machine-role: infra
         machine.openshift.io/cluster-api-machine-type: infra
         machine.openshift.io/cluster-api-machineset: <infrastructure_id>-infra-<zone>
-{% endif %}
-{% if edge %}
-        machine.openshift.io/cluster-api-machine-role: edge
-        machine.openshift.io/cluster-api-machine-type: edge
-        machine.openshift.io/cluster-api-machineset: <infrastructure_id>-edge-<zone>
-{%- endif %}
     spec:
       metadata:
         labels:
-{%- if not (infra or edge) %}
-          node-role.kubernetes.io/<role>: ""
-{% endif %}
-{% if infra %}
           node-role.kubernetes.io/infra: ""
-{% endif %}
-{% if edge %}
-          machine.openshift.io/parent-zone-name: <value_of_ParentZoneName>
-          machine.openshift.io/zone-group: <value_of_GroupName>
-          machine.openshift.io/zone-type: <value_of_ZoneType>
-          node-role.kubernetes.io/edge: ""
-{%- endif %}
       providerSpec:
         value:
           ami:
@@ -165,16 +119,10 @@ spec:
                   values:
                     - <infrastructure_id>-lb
           subnet:
-{%- if not edge %}
             filters:
               - name: tag:Name
                 values:
                   - <infrastructure_id>-subnet-private-<zone>
-                    {% endif %}
-                    {% if edge %}
-              id: <value_of_PublicSubnetIds>
-          publicIp: true
-{%- endif %}
           tags:
             - name: kubernetes.io/cluster/<infrastructure_id>
               value: owned
@@ -182,16 +130,9 @@ spec:
               value: <custom_tag_value>
           userDataSecret:
             name: worker-user-data
-{%- if infra or edge %}
       taints:
-{%- if infra %}
         - key: node-role.kubernetes.io/infra
-          {% endif %}
-          {% if edge %}
-        - key: node-role.kubernetes.io/edge
-          {%- endif %}
           effect: NoSchedule
-{%- endif %}
 ```
 
 where:
@@ -236,6 +177,7 @@ where:
 Machine sets running on AWS support non-guaranteed Spot Instances. You can save on costs by using Spot Instances at a lower price compared to On-Demand Instances on AWS. For more information, see "Machine sets that deploy machines as Spot Instances".
 
 **Additional resources**
+{._additional-resources}
 
 - [Machine sets that deploy machines as Spot Instances](/openshift-docs-markdown/machine_management/creating_machinesets/creating-machineset-aws#machineset-non-guaranteed-instance_creating-machineset-aws)
 
@@ -243,15 +185,9 @@ Machine sets running on AWS support non-guaranteed Spot Instances. You can save 
 
 You can define a machine set YAML to provision nodes by specifying parameters such as `vmSize` and `image`. You can use this to automate and scale infrastructure consistently, to ensure compute nodes meet specific workload requirements within the cluster.
 
-The sample YAML defines a compute machine set that runs in the `1` Microsoft Azure zone in a region and creates nodes that are labeled with
+The sample YAML defines a compute machine set that runs in the `1` Microsoft Azure zone in a region and creates nodes that are labeled with `node-role.kubernetes.io/infra: ""`. The YAML specifies a taint to prevent user workloads from being scheduled on infra nodes. After adding the `NoSchedule` taint on the infrastructure node, existing DNS pods running on that node are marked as `misscheduled`. You must either delete or link:https://access.redhat.com/solutions/6592171\[add toleration on `misscheduled` DNS pods.
 
-`node-role.kubernetes.io/infra: ""`. The YAML specifies a taint to prevent user workloads from being scheduled on infra nodes. After adding the `NoSchedule` taint on the infrastructure node, existing DNS pods running on that node are marked as `misscheduled`. You must either delete or link:https://access.redhat.com/solutions/6592171\[add toleration on `misscheduled` DNS pods.
-
-In the sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and
-
-`infra`
-
-is the node label to add.
+In the sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and `infra` is the node label to add.
 
 ```yaml
 apiVersion: machine.openshift.io/v1beta1
@@ -259,54 +195,30 @@ kind: MachineSet
 metadata:
   labels:
     machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not infra %}
-    machine.openshift.io/cluster-api-machine-role: <role>
-    machine.openshift.io/cluster-api-machine-type: <role>
-  name: <infrastructure_id>-<role>-<region>
-{% endif %}
-{% if infra %}
     machine.openshift.io/cluster-api-machine-role: infra
     machine.openshift.io/cluster-api-machine-type: infra
   name: <infrastructure_id>-infra-<region>
-{%- endif %}
   namespace: openshift-machine-api
 spec:
   replicas: 1
   selector:
     matchLabels:
       machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not infra %}
-      machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<region>
-{% endif %}
-{% if infra %}
       machine.openshift.io/cluster-api-machineset: <infrastructure_id>-infra-<region>
-{%- endif %}
   template:
     metadata:
       creationTimestamp: null
       labels:
         machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not infra %}
-        machine.openshift.io/cluster-api-machine-role: <role>
-        machine.openshift.io/cluster-api-machine-type: <role>
-        machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<region>
-{% endif %}
-{% if infra %}
         machine.openshift.io/cluster-api-machine-role: infra
         machine.openshift.io/cluster-api-machine-type: infra
         machine.openshift.io/cluster-api-machineset: <infrastructure_id>-infra-<region>
-{%- endif %}
     spec:
       metadata:
         creationTimestamp: null
         labels:
           machine.openshift.io/cluster-api-machineset: <machineset_name>
-{%- if not infra %}
-          node-role.kubernetes.io/<role>: ""
-{% endif %}
-{% if infra %}
           node-role.kubernetes.io/infra: ""
-{%- endif %}
       providerSpec:
         value:
           apiVersion: machine.openshift.io/v1beta1
@@ -346,11 +258,9 @@ spec:
           vmSize: Standard_D4s_v3
           vnet: <infrastructure_id>-vnet
           zone: "1"
-{%- if infra %}
       taints:
       - key: node-role.kubernetes.io/infra
         effect: NoSchedule
-{%- endif %}
 ```
 
 where:
@@ -398,6 +308,7 @@ where:
 > The value of the `spec.template.spec.providerSpec.value.zone` parameter specifies the zone within your region to place machines on. Ensure that your region supports the zone that you specify. If your region supports availability zones, you must specify the zone. Specifying the zone avoids volume node affinity failure when a pod requires a persistent volume attachment. To do this, you can create a compute machine set for each zone in the same region.
 
 **Additional resources**
+{._additional-resources}
 
 - [Machine sets that deploy machines as Spot VMs](/openshift-docs-markdown/machine_management/creating_machinesets/creating-machineset-azure#machineset-non-guaranteed-instance_creating-machineset-azure)
 - [Using the Azure Marketplace offering](/openshift-docs-markdown/machine_management/creating_machinesets/creating-machineset-azure#installation-azure-marketplace-subscribe_creating-machineset-azure)
@@ -406,15 +317,9 @@ where:
 
 You can create a machine set on Microsoft Azure Stack Hub. By defining a YAML configuration with specific cluster IDs and provider details, you can automate the provisioning of specialized nodes.
 
-The Microsoft Azure sample YAML defines a compute machine set that runs in the `1` Azure zone in a region and creates nodes that are labeled with
+The Microsoft Azure sample YAML defines a compute machine set that runs in the `1` Azure zone in a region and creates nodes that are labeled with `node-role.kubernetes.io/infra: ""`. The sample YAML specifies a taint to prevent user workloads from being scheduled on infra nodes. After adding the `NoSchedule` taint on the infrastructure node, existing DNS pods running on that node are marked as `misscheduled`. You must either delete or [add toleration on `misscheduled` DNS pods](https://access.redhat.com/solutions/6592171).
 
-`node-role.kubernetes.io/infra: ""`. The sample YAML specifies a taint to prevent user workloads from being scheduled on infra nodes. After adding the `NoSchedule` taint on the infrastructure node, existing DNS pods running on that node are marked as `misscheduled`. You must either delete or [add toleration on `misscheduled` DNS pods](https://access.redhat.com/solutions/6592171).
-
-In the sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and
-
-`<infra>`
-
-is the node label to add.
+In the sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and `<infra>` is the node label to add.
 
 ```yaml
 apiVersion: machine.openshift.io/v1beta1
@@ -422,56 +327,32 @@ kind: MachineSet
 metadata:
   labels:
     machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not infra %}
-    machine.openshift.io/cluster-api-machine-role: <role>
-    machine.openshift.io/cluster-api-machine-type: <role>
-  name: <infrastructure_id>-<role>-<region>
-{% endif %}
-{% if infra %}
     machine.openshift.io/cluster-api-machine-role: <infra>
     machine.openshift.io/cluster-api-machine-type: <infra>
   name: <infrastructure_id>-infra-<region>
-{%- endif %}
   namespace: openshift-machine-api
 spec:
   replicas: 1
   selector:
     matchLabels:
       machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not infra %}
-      machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<region>
-{% endif %}
-{% if infra %}
       machine.openshift.io/cluster-api-machineset: <infrastructure_id>-infra-<region>
-{%- endif %}
   template:
     metadata:
       creationTimestamp: null
       labels:
         machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not infra %}
-        machine.openshift.io/cluster-api-machine-role: <role>
-        machine.openshift.io/cluster-api-machine-type: <role>
-        machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<region>
-{% endif %}
-{% if infra %}
         machine.openshift.io/cluster-api-machine-role: <infra>
         machine.openshift.io/cluster-api-machine-type: <infra>
         machine.openshift.io/cluster-api-machineset: <infrastructure_id>-infra-<region>
-{%- endif %}
     spec:
       metadata:
         creationTimestamp: null
         labels:
-{%- if not infra %}
-          node-role.kubernetes.io/<role>: ""
-{% endif %}
-{% if infra %}
           node-role.kubernetes.io/infra: ""
       taints:
       - key: node-role.kubernetes.io/infra
         effect: NoSchedule
-{%- endif %}
       providerSpec:
         value:
           apiVersion: machine.openshift.io/v1beta1
@@ -487,12 +368,7 @@ spec:
             version: ""
           internalLoadBalancer: ""
           kind: AzureMachineProviderSpec
-{%- if not infra %}
           location: <region>
-{% endif %}
-{% if infra %}
-          location: <region>
-{%- endif %}
           managedIdentity: <infrastructure_id>-identity
           metadata:
             creationTimestamp: null
@@ -513,12 +389,7 @@ spec:
             name: worker-user-data
           vmSize: Standard_DS4_v2
           vnet: <infrastructure_id>-vnet
-{%- if not infra %}
           zone: "1"
-{% endif %}
-{% if infra %}
-          zone: "1"
-{%- endif %}
 ```
 
 where:
@@ -569,15 +440,9 @@ where:
 
 ## Sample YAML for a compute machine set custom resource on IBM Cloud {#machineset-yaml-ibm-cloud_creating-infrastructure-machinesets}
 
-You can use the sample YAML file to automate the provisioning of compute or infrastructure nodes within a specific Virtual Private Cloud (VPC). The sample YAML defines a compute machine set that runs in a specified IBM Cloud(R) zone in a region and creates nodes that are labeled with
+You can use the sample YAML file to automate the provisioning of compute or infrastructure nodes within a specific Virtual Private Cloud (VPC). The sample YAML defines a compute machine set that runs in a specified IBM Cloud(R) zone in a region and creates nodes that are labeled with `node-role.kubernetes.io/infra: ""`.
 
-`node-role.kubernetes.io/infra: ""`.
-
-In the sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and
-
-`<infra>`
-
-is the node label to add.
+In the sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and `<infra>` is the node label to add.
 
 ```yaml
 apiVersion: machine.openshift.io/v1beta1
@@ -585,51 +450,27 @@ kind: MachineSet
 metadata:
   labels:
     machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not infra %}
-    machine.openshift.io/cluster-api-machine-role: <role>
-    machine.openshift.io/cluster-api-machine-type: <role>
-  name: <infrastructure_id>-<role>-<region>
-{% endif %}
-{% if infra %}
     machine.openshift.io/cluster-api-machine-role: <infra>
     machine.openshift.io/cluster-api-machine-type: <infra>
   name: <infrastructure_id>-<infra>-<region>
-{%- endif %}
   namespace: openshift-machine-api
 spec:
   replicas: 1
   selector:
     matchLabels:
       machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not infra %}
-      machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<region>
-{% endif %}
-{% if infra %}
       machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<infra>-<region>
-{%- endif %}
   template:
     metadata:
       labels:
         machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not infra %}
-        machine.openshift.io/cluster-api-machine-role: <role>
-        machine.openshift.io/cluster-api-machine-type: <role>
-        machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<region>
-{% endif %}
-{% if infra %}
         machine.openshift.io/cluster-api-machine-role: <infra>
         machine.openshift.io/cluster-api-machine-type: <infra>
         machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<infra>-<region>
-{%- endif %}
     spec:
       metadata:
         labels:
-{%- if not infra %}
-          node-role.kubernetes.io/<role>: ""
-{% endif %}
-{% if infra %}
           node-role.kubernetes.io/infra: ""
-{%- endif %}
       providerSpec:
         value:
           apiVersion: ibmcloudproviderconfig.openshift.io/v1beta1
@@ -649,11 +490,9 @@ spec:
               name: <role>-user-data
           vpc: <vpc_name>
           zone: <zone>
-{%- if infra %}
         taints:
         - key: node-role.kubernetes.io/infra
           effect: NoSchedule
-{%- endif %}
 ```
 
 where:
@@ -702,15 +541,7 @@ where:
 
 The sample YAML defines a compute machine set for Google Cloud, enabling the automated provisioning of nodes within a specific VPC. When you apply this configuration by using the OpenShift Container Platform CLI, you can ensure consistent scaling, scheduling, and infrastructure ID labeling for compute resources in your cluster.
 
-The sample YAML defines a compute machine set that runs in Google Cloud and creates nodes that are labeled with
-
-`node-role.kubernetes.io/infra: ""`,
-
-where
-
-`infra`
-
-is the node label to add.
+The sample YAML defines a compute machine set that runs in Google Cloud and creates nodes that are labeled with `node-role.kubernetes.io/infra: ""`, where `infra` is the node label to add.
 
 ### Values obtained by using the  OpenShift CLI {#cpmso-yaml-provider-spec-gcp-oc_creating-infrastructure-machinesets}
 
@@ -751,24 +582,13 @@ spec:
       creationTimestamp: null
       labels:
         machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not infra %}
-        machine.openshift.io/cluster-api-machine-role: <role>
-        machine.openshift.io/cluster-api-machine-type: <role>
-{% endif %}
-{% if infra %}
         machine.openshift.io/cluster-api-machine-role: <infra>
         machine.openshift.io/cluster-api-machine-type: <infra>
-{%- endif %}
         machine.openshift.io/cluster-api-machineset: <infrastructure_id>-w-a
     spec:
       metadata:
         labels:
-{%- if not infra %}
-          node-role.kubernetes.io/<role>: ""
-{% endif %}
-{% if infra %}
           node-role.kubernetes.io/infra: ""
-{%- endif %}
       providerSpec:
         value:
           apiVersion: machine.openshift.io/v1beta1
@@ -804,11 +624,9 @@ spec:
           userDataSecret:
             name: worker-user-data
           zone: us-central1-a
-{%- if infra %}
       taints:
       - key: node-role.kubernetes.io/infra
         effect: NoSchedule
-{%- endif %}
 ```
 
 where:
@@ -844,6 +662,7 @@ where:
 Machine sets running on Google Cloud support non-guaranteed preemptible VM instances. You can save on costs by using preemptible VM instances at a lower price compared to normal instances on Google Cloud. You can configure preemptible VM instances by adding `preemptible` to the `MachineSet` YAML file.
 
 **Additional resources**
+{._additional-resources}
 
 - [Machine sets that deploy machines as preemptible VM instances](/openshift-docs-markdown/machine_management/creating_machinesets/creating-machineset-gcp#machineset-non-guaranteed-instance_legacy-preempt)
 
@@ -853,15 +672,9 @@ You can use a YAML file to automate node provisioning and ensure workloads are s
 
 The sample YAML shows how to define a Nutanix compute MachineSet for your cluster. It explains how to configure roles, labels, sizing, networking, and boot settings so new nodes are created consistently.
 
-The sample YAML defines a Nutanix compute machine set that creates nodes that are labeled with
+The sample YAML defines a Nutanix compute machine set that creates nodes that are labeled with `node-role.kubernetes.io/infra: ""`.
 
-`node-role.kubernetes.io/infra: ""`.
-
-In the sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and
-
-`<infra>`
-
-is the node label to add.
+In the sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and `<infra>` is the node label to add.
 
 ### Values obtained by using the OpenShift CLI {#machineset-yaml-nutanix-oc_creating-infrastructure-machinesets}
 
@@ -880,13 +693,64 @@ Infrastructure ID
     metadata:
       labels:
         machine.openshift.io/cluster-api-cluster: <infrastructure_id>
+        machine.openshift.io/cluster-api-machine-role: <infra>
+        machine.openshift.io/cluster-api-machine-type: <infra>
+      name: <infrastructure_id>-<infra>-<zone>
+      namespace: openshift-machine-api
+      annotations:
+        machine.openshift.io/memoryMb: "16384"
+        machine.openshift.io/vCPU: "4"
+    spec:
+      replicas: 3
+      selector:
+        matchLabels:
+          machine.openshift.io/cluster-api-cluster: <infrastructure_id>
+          machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<infra>-<zone>
+      template:
+        metadata:
+          labels:
+            machine.openshift.io/cluster-api-cluster: <infrastructure_id>
+            machine.openshift.io/cluster-api-machine-role: <infra>
+            machine.openshift.io/cluster-api-machine-type: <infra>
+            machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<infra>-<zone>
+        spec:
+          metadata:
+            labels:
+              node-role.kubernetes.io/infra: ""
+          providerSpec:
+            value:
+              apiVersion: machine.openshift.io/v1
+              bootType: ""
+              categories:
+              - key: <category_name>
+                value: <category_value>
+              cluster:
+                type: uuid
+                uuid: <cluster_uuid>
+              credentialsSecret:
+                name: nutanix-credentials
+              image:
+                name: <infrastructure_id>-rhcos
+                type: name
+              kind: NutanixMachineProviderConfig
+              memorySize: 16Gi
+              project:
+                type: name
+                name: <project_name>
+              subnets:
+              - type: uuid
+                uuid: <subnet_uuid>
+              systemDiskSize: 120Gi
+              userDataSecret:
+                name: <user_data_secret>
+              vcpuSockets: 4
+              vcpusPerSocket: 1
+          taints:
+          - key: node-role.kubernetes.io/infra
+            effect: NoSchedule
     ```
 
-{%- if not infra %} machine.openshift.io/cluster-api-machine-role: <role> machine.openshift.io/cluster-api-machine-type: <role> name: <infrastructure_id>-<role>-<zone> {% endif %} {% if infra %} machine.openshift.io/cluster-api-machine-role: <infra> machine.openshift.io/cluster-api-machine-type: <infra> name: <infrastructure_id>-<infra>-<zone> {%- endif %} namespace: openshift-machine-api annotations: machine.openshift.io/memoryMb: "16384" machine.openshift.io/vCPU: "4" spec: replicas: 3 selector: matchLabels: machine.openshift.io/cluster-api-cluster: <infrastructure_id> {%- if not infra %} machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<zone> {% endif %} {% if infra %} machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<infra>-<zone> {%- endif %} template: metadata: labels: machine.openshift.io/cluster-api-cluster: <infrastructure_id> {%- if not infra %} machine.openshift.io/cluster-api-machine-role: <role> machine.openshift.io/cluster-api-machine-type: <role> machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<zone> {% endif %} {% if infra %} machine.openshift.io/cluster-api-machine-role: <infra> machine.openshift.io/cluster-api-machine-type: <infra> machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<infra>-<zone> {%- endif %} spec: metadata: labels: {%- if not infra %} node-role.kubernetes.io/<role>: "" {% endif %} {% if infra %} node-role.kubernetes.io/infra: "" {%- endif %} providerSpec: value: apiVersion: machine.openshift.io/v1 bootType: "" categories: - key: <category_name> value: <category_value> cluster: type: uuid uuid: <cluster_uuid> credentialsSecret: name: nutanix-credentials image: name: <infrastructure_id>-rhcos type: name kind: NutanixMachineProviderConfig memorySize: 16Gi project: type: name name: <project_name> subnets: - type: uuid uuid: <subnet_uuid> systemDiskSize: 120Gi userDataSecret: name: <user_data_secret> vcpuSockets: 4 vcpusPerSocket: 1 {%- if infra %} taints: - key: node-role.kubernetes.io/infra effect: NoSchedule {%- endif %} \`\`\`
-
-```
-where:
-```
+    where:
 
 `<infrastructure_id>`
 :   Specifies the infrastructure ID that is based on the cluster ID that you set when you provisioned the cluster.
@@ -946,15 +810,9 @@ taints
 
 To enable the Machine API to automate the scaling and management of compute nodes, define a `MachineSet` resource with Red Hat OpenStack Platform (RHOSP) parameters, for example, image and network IDs.
 
-The sample YAML defines a compute machine set that runs on Red Hat OpenStack Platform (RHOSP) and creates nodes that are labeled with
+The sample YAML defines a compute machine set that runs on Red Hat OpenStack Platform (RHOSP) and creates nodes that are labeled with `node-role.kubernetes.io/infra: ""`. It specifies a taint to prevent user workloads from being scheduled on infra nodes. After adding the `NoSchedule` taint on the infrastructure node, existing DNS pods running on that node are marked as `misscheduled`. You must either delete or [add toleration on `misscheduled` DNS pods](https://access.redhat.com/solutions/6592171).
 
-`node-role.kubernetes.io/infra: ""`. It specifies a taint to prevent user workloads from being scheduled on infra nodes. After adding the `NoSchedule` taint on the infrastructure node, existing DNS pods running on that node are marked as `misscheduled`. You must either delete or [add toleration on `misscheduled` DNS pods](https://access.redhat.com/solutions/6592171).
-
-In the sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and
-
-`<infra>`
-
-is the node label to add.
+In the sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and `<infra>` is the node label to add.
 
 ```yaml
 apiVersion: machine.openshift.io/v1beta1
@@ -962,39 +820,20 @@ kind: MachineSet
 metadata:
   labels:
     machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not infra %}
-    machine.openshift.io/cluster-api-machine-role: <role>
-    machine.openshift.io/cluster-api-machine-type: <role>
-  name: <infrastructure_id>-<role>
-{% endif %}
-{% if infra %}
     machine.openshift.io/cluster-api-machine-role: infra
     machine.openshift.io/cluster-api-machine-type: infra
   name: <infrastructure_id>-infra
-{%- endif %}
   namespace: openshift-machine-api
 spec:
   replicas: <number_of_replicas>
   selector:
     matchLabels:
       machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not infra %}
-      machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>
-{% endif %}
-{% if infra %}
       machine.openshift.io/cluster-api-machineset: <infrastructure_id>-infra
-{%- endif %}
   template:
     metadata:
       labels:
         machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not infra %}
-        machine.openshift.io/cluster-api-machine-role: <role>
-        machine.openshift.io/cluster-api-machine-type: <role>
-        machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>
-    spec:
-{% endif %}
-{% if infra %}
         machine.openshift.io/cluster-api-machine-role: infra
         machine.openshift.io/cluster-api-machine-type: infra
         machine.openshift.io/cluster-api-machineset: <infrastructure_id>-infra
@@ -1006,7 +845,6 @@ spec:
       taints:
       - key: node-role.kubernetes.io/infra
         effect: NoSchedule
-{%- endif %}
       providerSpec:
         value:
           apiVersion: machine.openshift.io/v1alpha1
@@ -1015,36 +853,16 @@ spec:
             name: openstack-cloud-credentials
             namespace: openshift-machine-api
           flavor: <nova_flavor>
-{%- if infra %}
           image: <glance_image_name_or_location>
-{% endif %}
-{% if not infra %}
-          image: <glance_image_name_or_location>
-{% endif %}
-{% if not infra %}
           serverGroupID: <optional_UUID_of_server_group>
-{% endif %}
-{% if infra %}
-          serverGroupID: <optional_UUID_of_server_group>
-{%- endif %}
           kind: OpenstackProviderSpec
-{%- if not infra %}
           networks:
-{% endif %}
-{% if infra %}
-          networks:
-{%- endif %}
           - filter: {}
             subnets:
             - filter:
                 name: <subnet_name>
                 tags: openshiftClusterID=<infrastructure_id>
-{%- if not infra %}
           primarySubnet: <rhosp_subnet_UUID>
-{% endif %}
-{% if infra %}
-          primarySubnet: <rhosp_subnet_UUID>
-{%- endif %}
           securityGroups:
           - filter: {}
             name: <infrastructure_id>-worker
@@ -1090,15 +908,9 @@ where:
 
 To enable the Machine API to automate node provisioning on VMware vSphere infrastructure, define a `MachineSet` resource with parameters that are specific to vSphere, for example data center, resource pool, and template.
 
-The sample YAML file defines a compute machine set that runs on vSphere and creates nodes that are labeled with
+The sample YAML file defines a compute machine set that runs on vSphere and creates nodes that are labeled with `node-role.kubernetes.io/infra: ""`.
 
-`node-role.kubernetes.io/infra: ""`.
-
-In this sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and
-
-`infra`
-
-is the node label to add.
+In this sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and `infra` is the node label to add.
 
 ```yaml
 apiVersion: machine.openshift.io/v1beta1
@@ -1107,49 +919,27 @@ metadata:
   creationTimestamp: null
   labels:
     machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not infra %}
-  name: <infrastructure_id>-<role>
-{% endif %}
-{% if infra %}
   name: <infrastructure_id>-infra
-{%- endif %}
   namespace: openshift-machine-api
 spec:
   replicas: 1
   selector:
     matchLabels:
       machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not infra %}
-      machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>
-{% endif %}
-{% if infra %}
       machine.openshift.io/cluster-api-machineset: <infrastructure_id>-infra
-{%- endif %}
   template:
     metadata:
       creationTimestamp: null
       labels:
         machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not infra %}
-        machine.openshift.io/cluster-api-machine-role: <role>
-        machine.openshift.io/cluster-api-machine-type: <role>
-        machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>
-{% endif %}
-{% if infra %}
         machine.openshift.io/cluster-api-machine-role: infra
         machine.openshift.io/cluster-api-machine-type: infra
         machine.openshift.io/cluster-api-machineset: <infrastructure_id>-infra
-{%- endif %}
     spec:
       metadata:
         creationTimestamp: null
         labels:
-{%- if not infra %}
-          node-role.kubernetes.io/<role>: ""
-{% endif %}
-{% if infra %}
           node-role.kubernetes.io/infra: ""
-{%- endif %}
       providerSpec:
         value:
           apiVersion: machine.openshift.io/v1beta1
@@ -1179,11 +969,9 @@ spec:
             folder: <vcenter_vm_folder_path>
             resourcepool: <vsphere_resource_pool>
             server: <vcenter_server_ip>
-{%- if infra %}
       taints:
       - key: node-role.kubernetes.io/infra
         effect: NoSchedule
-{%- endif %}
 ```
 
 where
@@ -1235,6 +1023,7 @@ where
     > After adding the `NoSchedule` taint on the infrastructure node, existing DNS pods running on that node are marked as `misscheduled`. You must either delete or [add toleration on `misscheduled` DNS pods](https://access.redhat.com/solutions/6592171).
 
 **Additional resources**
+{._additional-resources}
 
 - [Manually updating the boot image](/openshift-docs-markdown/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)
 
@@ -1338,13 +1127,17 @@ To dynamically manage machine compute resources, you can create your own compute
 
   ```terminal
 
+  NAME                                DESIRED   CURRENT   READY   AVAILABLE   AGE
+  agl030519-vplxk-infra-us-east-1a    1         1         1       1           11m
+  agl030519-vplxk-worker-us-east-1a   1         1         1       1           55m
+  agl030519-vplxk-worker-us-east-1b   1         1         1       1           55m
+  agl030519-vplxk-worker-us-east-1c   1         1         1       1           55m
+  agl030519-vplxk-worker-us-east-1d   0         0                             55m
+  agl030519-vplxk-worker-us-east-1e   0         0                             55m
+  agl030519-vplxk-worker-us-east-1f   0         0                             55m
   ```
 
-{%- if win or post_aws_zones %} NAME                                       DESIRED   CURRENT   READY   AVAILABLE   AGE {%- if win %} agl030519-vplxk-windows-worker-us-east-1a  1         1         1       1           11m {% endif %} {% if post_aws_zones %} agl030519-vplxk-edge-us-east-1-nyc-1a      1         1         1       1           11m {%- endif %} agl030519-vplxk-worker-us-east-1a          1         1         1       1           55m agl030519-vplxk-worker-us-east-1b          1         1         1       1           55m agl030519-vplxk-worker-us-east-1c          1         1         1       1           55m agl030519-vplxk-worker-us-east-1d          0         0                             55m agl030519-vplxk-worker-us-east-1e          0         0                             55m agl030519-vplxk-worker-us-east-1f          0         0                             55m {% endif %} {% if not (win or post_aws_zones) %} NAME                                DESIRED   CURRENT   READY   AVAILABLE   AGE agl030519-vplxk-infra-us-east-1a    1         1         1       1           11m agl030519-vplxk-worker-us-east-1a   1         1         1       1           55m agl030519-vplxk-worker-us-east-1b   1         1         1       1           55m agl030519-vplxk-worker-us-east-1c   1         1         1       1           55m agl030519-vplxk-worker-us-east-1d   0         0                             55m agl030519-vplxk-worker-us-east-1e   0         0                             55m agl030519-vplxk-worker-us-east-1f   0         0                             55m {%- endif %} \`\`\`
-
-```
-When the new compute machine set is available, the `DESIRED` and `CURRENT` values match. If the compute machine set is not available, wait a few minutes and run the command again.
-```
+  When the new compute machine set is available, the `DESIRED` and `CURRENT` values match. If the compute machine set is not available, wait a few minutes and run the command again.
 
 ## Creating an infrastructure node {#creating-an-infra-node_creating-infrastructure-machinesets}
 
@@ -1399,6 +1192,7 @@ You can optionally create a default cluster-wide node selector. The default node
       You can now move infrastructure resources to the new infrastructure nodes and remove any workloads that you do not want, or that do not belong, on the new infrastructure node. See the list of workloads supported for use on infrastructure nodes in "OpenShift Container Platform infrastructure components".
 
 **Additional resources**
+{._additional-resources}
 
 - [OpenShift Container Platform infrastructure components](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#infrastructure-components_creating-infrastructure-machinesets)
 - [Moving resources to infrastructure machine sets](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#moving-resources-to-infrastructure-machinesets_creating-infrastructure-machinesets)
@@ -1518,6 +1312,7 @@ You can create a machine configuration pool for infrastructure machines to apply
    In this example, the role of the node was changes from `worker` to `infra`.
 
 **Additional resources**
+{._additional-resources}
 
 - [Node configuration management with machine config pools](/openshift-docs-markdown/architecture/control-plane#architecture-machine-config-pools_control-plane)
 
@@ -1625,6 +1420,7 @@ Nodes with the `infra` role applied are not counted toward the total number of s
 4. Remove any workloads that you do not want, or that do not belong, on the new infrastructure node. See the list of workloads supported for use on infrastructure nodes in "OpenShift Container Platform infrastructure components".
 
 **Additional resources**
+{._additional-resources}
 
 - [OpenShift Container Platform infrastructure components](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#infrastructure-components_creating-infrastructure-machinesets)
 - [Controlling pod placement using the scheduler](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-about#nodes-scheduler-about)
@@ -2283,10 +2079,12 @@ ip-10-0-67-453.us-west-2.compute.internal   Ready    infra                  55m 
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Moving monitoring components to different nodes](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_core_platform_monitoring/configuring-performance-and-scalability#moving-monitoring-components-to-different-nodes_configuring-performance-and-scalability)
 
-## Additional resources {#additional-resources_creating-infrastructure-machinesets}
+**Additional resources**
+{._additional-resources}
 
 - [OpenShift sizing and subscription guide for enterprise Kubernetes](https://www.redhat.com/en/resources/openshift-subscription-sizing-guide)
 - [Create an infrastructure machine set](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#machineset-creating_creating-infrastructure-machinesets)

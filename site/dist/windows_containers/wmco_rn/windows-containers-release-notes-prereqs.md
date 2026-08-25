@@ -26,7 +26,7 @@ The following table lists the [Windows Server versions](https://docs.microsoft.c
 <tbody>
 <tr>
   <td>Amazon Web Services (AWS)</td>
-  <td><ul><li>Windows Server 2025, OS Build <a href="https://support.microsoft.com/en-us/topic/may-12-2026-kb5087539-os-build-26100-32860-fe3fd635-23fc-41bd-b7a7-00e57c1c4f91">10.0.26100</a> or later</li><li>Windows Server 2022, OS Build <a href="https://support.microsoft.com/en-us/topic/april-25-2022-kb5012637-os-build-20348-681-preview-2233d69c-d4a5-4be9-8c24-04a450861a8d">20348.681</a> or later ^[1]^</li><li>Windows Server 2019, version 1809</li></ul></td>
+  <td><ul><li>Windows Server 2025, OS Build <a href="https://support.microsoft.com/en-us/topic/may-12-2026-kb5087539-os-build-26100-32860-fe3fd635-23fc-41bd-b7a7-00e57c1c4f91">10.0.26100</a> or later</li><li>Windows Server 2022, OS Build <a href="https://support.microsoft.com/en-us/topic/april-25-2022-kb5012637-os-build-20348-681-preview-2233d69c-d4a5-4be9-8c24-04a450861a8d">20348.681</a> or later <sup>[1]</sup></li><li>Windows Server 2019, version 1809</li></ul></td>
 </tr>
 <tr>
   <td>Microsoft Azure</td>
@@ -53,7 +53,7 @@ The following table lists the [Windows Server versions](https://docs.microsoft.c
 
 1. For disconnected clusters, the Windows AMI must have the EC2LaunchV2 agent version 2.0.2107 or later installed. For more information, see "Install the latest version of EC2Launch v2 (AWS documentation)".
 
-## Supported networking {#_supported_networking}
+## Supported networking {#_supported_networking .small}
 
 Hybrid networking with OVN-Kubernetes is the only supported networking configuration. See the additional resources below for more information on this functionality. The following tables outline the type of networking configuration and Windows Server versions to use based on your platform. You must specify the network configuration when you install the cluster.
 
@@ -72,7 +72,7 @@ Hybrid networking with OVN-Kubernetes is the only supported networking configura
 | Nutanix | Hybrid networking with OVN-Kubernetes |
 | Bare metal or provider agnostic | Hybrid networking with OVN-Kubernetes |
 
-***Hybrid OVN-Kubernetes Windows Server support***
+**Hybrid OVN-Kubernetes Windows Server support**
 
 <table>
 <thead>
@@ -94,5 +94,6 @@ Hybrid networking with OVN-Kubernetes is the only supported networking configura
 </table>
 
 **Additional resources**
+{._additional-resources}
 
 - [Hybrid networking](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/configuring-hybrid-networking#configuring-hybrid-networking)

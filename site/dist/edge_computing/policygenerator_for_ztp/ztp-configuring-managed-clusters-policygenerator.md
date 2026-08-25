@@ -4,9 +4,9 @@ title: Configuring managed cluster policies by using PolicyGenerator resources
 
 # Configuring managed cluster policies by using PolicyGenerator resources {#ztp-configuring-managed-clusters-policygenerator}
 
-You can customize how Red Hat Advanced Cluster Management (RHACM) uses `{{ policy_gen_cr }}` CRs to generate `Policy` CRs that configure the managed clusters that you provision.
+You can customize how Red Hat Advanced Cluster Management (RHACM) uses `PolicyGenerator` CRs to generate `Policy` CRs that configure the managed clusters that you provision.
 
-Using RHACM and `{{ policy_gen_cr }}` CRs is the recommended approach for managing policies and deploying them to managed clusters. This replaces the use of `PolicyGenTemplate` CRs for this purpose. For more information about `{{ policy_gen_cr }}` resources, see the RHACM [Policy Generator](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.17/html/governance/policy-deployment#integrate-policy-generator) documentation.
+Using RHACM and `PolicyGenerator` CRs is the recommended approach for managing policies and deploying them to managed clusters. This replaces the use of `PolicyGenTemplate` CRs for this purpose. For more information about `PolicyGenerator` resources, see the RHACM [Policy Generator](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.17/html/governance/policy-deployment#integrate-policy-generator) documentation.
 
 ## Comparing RHACM PolicyGenerator and PolicyGenTemplate resource patching {#ztp-comparing-pgt-and-rhacm-pg-patching-strategies_ztp-configuring-managed-clusters-policygenerator}
 
@@ -35,9 +35,9 @@ The `PolicyGenerator` API is a part of the [Open Cluster Management](https://ope
 
 ## About the PolicyGenerator CRD {#ztp-the-policygentemplate_ztp-configuring-managed-clusters-policygenerator}
 
-The `{{ policy_gen_cr }}` custom resource definition (CRD) tells the `PolicyGen` policy generator what custom resources (CRs) to include in the cluster configuration, how to combine the CRs into the generated policies, and what items in those CRs need to be updated with overlay content.
+The `PolicyGenerator` custom resource definition (CRD) tells the `PolicyGen` policy generator what custom resources (CRs) to include in the cluster configuration, how to combine the CRs into the generated policies, and what items in those CRs need to be updated with overlay content.
 
-The following example shows a `{{ policy_gen_cr }}` CR (`{{ policy_prefix }}common-du-ranGen.yaml`) extracted from the `ztp-site-generate` reference container. The `{{ policy_prefix }}common-du-ranGen.yaml` file defines two Red Hat Advanced Cluster Management (RHACM) policies. The policies manage a collection of configuration CRs, one for each unique value of `policyName` in the CR. `{{ policy_prefix }}common-du-ranGen.yaml` creates a single placement binding and a placement rule to bind the policies to clusters based on the labels listed in the `{{ binding_field }}` section.
+The following example shows a `PolicyGenerator` CR (`acm-common-du-ranGen.yaml`) extracted from the `ztp-site-generate` reference container. The `acm-common-du-ranGen.yaml` file defines two Red Hat Advanced Cluster Management (RHACM) policies. The policies manage a collection of configuration CRs, one for each unique value of `policyName` in the CR. `acm-common-du-ranGen.yaml` creates a single placement binding and a placement rule to bind the policies to clusters based on the labels listed in the `policyDefaults.placement.labelSelector` section.
 
 **Example PolicyGenerator CR - acm-common-ranGen.yaml**
 
@@ -124,15 +124,163 @@ where:
 `manifests`
 :   Files listed under `policies.manifests` create the Operator policies for installed clusters.
 
-A `{{ policy_gen_cr }}` CR can be constructed with any number of included CRs. Apply the following example CR in the hub cluster to generate a policy containing a single CR:
+A `PolicyGenerator` CR can be constructed with any number of included CRs. Apply the following example CR in the hub cluster to generate a policy containing a single CR:
 
 ```yaml
-{%- if policy-gen-cr == "PolicyGenTemplate" %}
-{% include "./snippets/ztp-the-policygentemplate-single.yaml" %}
-{% endif %}
-{% if policy-gen-cr == "PolicyGenerator" %}
-{% include "./snippets/ztp-the-policygenerator-single.yaml" %}
-{%- endif %}
+
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+  name: group-du-sno
+placementBindingDefaults:
+  name: group-du-sno-placement-binding
+policyDefaults:
+  namespace: ztp-group
+  placement:
+    labelSelector:
+      matchExpressions:
+        - key: group-du-sno
+          operator: Exists
+  remediationAction: inform
+  severity: low
+  namespaceSelector:
+    exclude:
+      - kube-*
+    include:
+      - '*'
+  evaluationInterval:
+    compliant: 10m
+    noncompliant: 10s
+policies:
+  - name: group-du-sno-config-policy
+    policyAnnotations:
+      ran.openshift.io/ztp-deploy-wave: '10'
+    manifests:
+      - path: source-crs/PtpConfigSlave-MCP-master.yaml
+        patches:
+          - metadata: null
+            name: du-ptp-slave
+            namespace: openshift-ptp
+            annotations:
+              ran.openshift.io/ztp-deploy-wave: '10'
+            spec:
+              profile:
+                - name: slave
+                  interface: $interface
+                  ptp4lOpts: '-2 -s'
+                  phc2sysOpts: '-a -r -n 24'
+                  ptpSchedulingPolicy: SCHED_FIFO
+                  ptpSchedulingPriority: 10
+                  ptpSettings:
+                    logReduce: 'true'
+                  ptp4lConf: |
+                    [global]
+                    #
+                    # Default Data Set
+                    #
+                    twoStepFlag 1
+                    slaveOnly 1
+                    priority1 128
+                    priority2 128
+                    domainNumber 24
+                    #utc_offset 37
+                    clockClass 255
+                    clockAccuracy 0xFE
+                    offsetScaledLogVariance 0xFFFF
+                    free_running 0
+                    freq_est_interval 1
+                    dscp_event 0
+                    dscp_general 0
+                    dataset_comparison G.8275.x
+                    G.8275.defaultDS.localPriority 128
+                    #
+                    # Port Data Set
+                    #
+                    logAnnounceInterval -3
+                    logSyncInterval -4
+                    logMinDelayReqInterval -4
+                    logMinPdelayReqInterval -4
+                    announceReceiptTimeout 3
+                    syncReceiptTimeout 0
+                    delayAsymmetry 0
+                    fault_reset_interval -4
+                    neighborPropDelayThresh 20000000
+                    masterOnly 0
+                    G.8275.portDS.localPriority 128
+                    #
+                    # Run time options
+                    #
+                    assume_two_step 0
+                    logging_level 6
+                    path_trace_enabled 0
+                    follow_up_info 0
+                    hybrid_e2e 0
+                    inhibit_multicast_service 0
+                    net_sync_monitor 0
+                    tc_spanning_tree 0
+                    tx_timestamp_timeout 50
+                    unicast_listen 0
+                    unicast_master_table 0
+                    unicast_req_duration 3600
+                    use_syslog 1
+                    verbose 0
+                    summary_interval 0
+                    kernel_leap 1
+                    check_fup_sync 0
+                    clock_class_threshold 7
+                    #
+                    # Servo Options
+                    #
+                    pi_proportional_const 0.0
+                    pi_integral_const 0.0
+                    pi_proportional_scale 0.0
+                    pi_proportional_exponent -0.3
+                    pi_proportional_norm_max 0.7
+                    pi_integral_scale 0.0
+                    pi_integral_exponent 0.4
+                    pi_integral_norm_max 0.3
+                    step_threshold 2.0
+                    first_step_threshold 0.00002
+                    max_frequency 900000000
+                    clock_servo pi
+                    sanity_freq_limit 200000000
+                    ntpshm_segment 0
+                    #
+                    # Transport options
+                    #
+                    transportSpecific 0x0
+                    ptp_dst_mac 01:1B:19:00:00:00
+                    p2p_dst_mac 01:80:C2:00:00:0E
+                    udp_ttl 1
+                    udp6_scope 0x0E
+                    uds_address /var/run/ptp4l
+                    #
+                    # Default interface options
+                    #
+                    clock_type OC
+                    network_transport L2
+                    delay_mechanism E2E
+                    time_stamping hardware
+                    tsproc_mode filter
+                    delay_filter moving_median
+                    delay_filter_length 10
+                    egressLatency 0
+                    ingressLatency 0
+                    boundary_clock_jbod 0
+                    #
+                    # Clock description
+                    #
+                    productDescription ;;
+                    revisionData ;;
+                    manufacturerIdentity 00:00:00
+                    userDescription ;
+                    timeSource 0xA0
+              recommend:
+                - profile: slave
+                  priority: 4
+                  match:
+                    - nodeLabel: node-role.kubernetes.io/master
+
 ```
 
 Using the source file `PtpConfigSlave.yaml` as an example, the file defines a `PtpConfig` CR. The generated policy for the `PtpConfigSlave` example is named `group-du-sno-config-policy`. The `PtpConfig` CR defined in the generated `group-du-sno-config-policy` is named `du-ptp-slave`. The `spec` defined in `PtpConfigSlave.yaml` is placed under `du-ptp-slave` along with the other `spec` items defined under the source file.
@@ -140,27 +288,66 @@ Using the source file `PtpConfigSlave.yaml` as an example, the file defines a `P
 The following example shows the `group-du-sno-config-policy` CR:
 
 ```yaml
-{%- if policy-gen-cr == "PolicyGenTemplate" %}
-{% include "./snippets/pgt-group-du-sno-config-policy.yaml" %}
-{% endif %}
-{% if policy-gen-cr == "PolicyGenerator" %}
-{% include "./snippets/pg-group-du-sno-config-policy.yaml" %}
-{%- endif %}
+
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+    name: du-upgrade
+placementBindingDefaults:
+    name: du-upgrade-placement-binding
+policyDefaults:
+    namespace: ztp-group-du-sno
+    placement:
+        labelSelector:
+            matchExpressions:
+                - key: group-du-sno
+                  operator: Exists
+    remediationAction: inform
+    severity: low
+    namespaceSelector:
+        exclude:
+            - kube-*
+        include:
+            - '*'
+    evaluationInterval:
+        compliant: 10m
+        noncompliant: 10s
+policies:
+    - name: du-upgrade-operator-catsrc-policy
+      policyAnnotations:
+        ran.openshift.io/ztp-deploy-wave: "1"
+      manifests:
+        - path: source-crs/DefaultCatsrc.yaml
+          patches:
+            - metadata:
+                name: redhat-operators
+              spec:
+                displayName: Red Hat Operators Catalog
+                image: registry.example.com:5000/olm/redhat-operators:v4.14
+                updateStrategy:
+                    registryPoll:
+                        interval: 1h
+              status:
+                connectionState:
+                    lastObservedState: READY
+
 ```
 
 ## Recommendations when customizing PolicyGenerator CRs {#ztp-pgt-config-best-practices_ztp-configuring-managed-clusters-policygenerator}
 
-Consider the following best practices when customizing site configuration `{{ policy_gen_cr }}` custom resources (CRs):
+Consider the following best practices when customizing site configuration `PolicyGenerator` custom resources (CRs):
 
-- Use as few policies as are necessary. Using fewer policies requires less resources. Each additional policy creates increased CPU load for the hub cluster and the deployed managed cluster. CRs are combined into policies based on the `policyName` field in the `{{ policy_gen_cr }}` CR. CRs in the same `{{ policy_gen_cr }}` which have the same value for `policyName` are managed under a single policy.
+- Use as few policies as are necessary. Using fewer policies requires less resources. Each additional policy creates increased CPU load for the hub cluster and the deployed managed cluster. CRs are combined into policies based on the `policyName` field in the `PolicyGenerator` CR. CRs in the same `PolicyGenerator` which have the same value for `policyName` are managed under a single policy.
 - In disconnected environments, use a single catalog source for all Operators by configuring the registry as a single index containing all Operators. Each additional `CatalogSource` CR on the managed clusters increases CPU usage.
 - Reduce the overall time taken until the cluster is ready to deploy applications by including `MachineConfig` CRs as extra manifests in the installation. To do this, package `MachineConfig` CRs in a `ConfigMap` CR. Reference the `ConfigMap` CRs in the `extraManifestsRefs` field in the `ClusterInstance` CR.
-- `{{ policy_gen_cr }}` CRs should override the channel field to explicitly identify the desired version. This ensures that changes in the source CR during upgrades does not update the generated subscription.
+- `PolicyGenerator` CRs should override the channel field to explicitly identify the desired version. This ensures that changes in the source CR during upgrades does not update the generated subscription.
 - The default setting for `policyDefaults.consolidateManifests` is `true`. This is the recommended setting for DU profile. Setting it to `false` might impact large scale deployments.
 - The default setting for `policyDefaults.orderPolicies` is `false`. This is the recommended setting for DU profile.
-  After the cluster installation is complete and a cluster becomes `Ready`, TALM creates a `ClusterGroupUpgrade` CR corresponding to this cluster. The `ClusterGroupUpgrade` CR contains a list of ordered policies defined by the `ran.openshift.io/ztp-deploy-wave` annotation. If you use the `{{ policy_gen_cr }}` CR to change the order of the policies, conflicts might occur and the configuration might not be applied.
+  After the cluster installation is complete and a cluster becomes `Ready`, TALM creates a `ClusterGroupUpgrade` CR corresponding to this cluster. The `ClusterGroupUpgrade` CR contains a list of ordered policies defined by the `ran.openshift.io/ztp-deploy-wave` annotation. If you use the `PolicyGenerator` CR to change the order of the policies, conflicts might occur and the configuration might not be applied.
 
 **Additional resources**
+{._additional-resources}
 
 - For recommendations about scaling clusters with RHACM, see [Performance and scalability](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.6/html/install/installing#performance-and-scalability).
 
@@ -171,32 +358,33 @@ Consider the following best practices when customizing site configuration `{{ po
 
 ## PolicyGenerator CRs for RAN deployments {#ztp-policygentemplates-for-ran_ztp-configuring-managed-clusters-policygenerator}
 
-Use `{{ policy_gen_cr }}` custom resources (CRs) to customize the configuration applied to the cluster by using the GitOps Zero Touch Provisioning (ZTP) pipeline. The `{{ policy_gen_cr }}` CR allows you to generate one or more policies to manage the set of configuration CRs on your fleet of clusters. The `{{ policy_gen_cr }}` CR identifies the set of managed CRs, bundles them into policies, builds the policy wrapping around those CRs, and associates the policies with clusters by using label binding rules.
+Use `PolicyGenerator` custom resources (CRs) to customize the configuration applied to the cluster by using the GitOps Zero Touch Provisioning (ZTP) pipeline. The `PolicyGenerator` CR allows you to generate one or more policies to manage the set of configuration CRs on your fleet of clusters. The `PolicyGenerator` CR identifies the set of managed CRs, bundles them into policies, builds the policy wrapping around those CRs, and associates the policies with clusters by using label binding rules.
 
-The reference configuration, obtained from the GitOps ZTP container, is designed to provide a set of critical features and node tuning settings that ensure the cluster can support the stringent performance and resource utilization constraints typical of RAN (Radio Access Network) Distributed Unit (DU) applications. Changes or omissions from the baseline configuration can affect feature availability, performance, and resource utilization. Use the reference `{{ policy_gen_cr }}` CRs as the basis to create a hierarchy of configuration files tailored to your specific site requirements.
+The reference configuration, obtained from the GitOps ZTP container, is designed to provide a set of critical features and node tuning settings that ensure the cluster can support the stringent performance and resource utilization constraints typical of RAN (Radio Access Network) Distributed Unit (DU) applications. Changes or omissions from the baseline configuration can affect feature availability, performance, and resource utilization. Use the reference `PolicyGenerator` CRs as the basis to create a hierarchy of configuration files tailored to your specific site requirements.
 
-The baseline `{{ policy_gen_cr }}` CRs that are defined for RAN DU cluster configuration can be extracted from the GitOps ZTP `ztp-site-generate` container. See "Preparing the GitOps ZTP site configuration repository" for further details.
+The baseline `PolicyGenerator` CRs that are defined for RAN DU cluster configuration can be extracted from the GitOps ZTP `ztp-site-generate` container. See "Preparing the GitOps ZTP site configuration repository" for further details.
 
-The `{{ policy_gen_cr }}` CRs can be found in the `./{{ argocd_folder }}` folder. The reference architecture has common, group, and site-specific configuration CRs. Each `{{ policy_gen_cr }}` CR refers to other CRs that can be found in the `./out/source-crs` folder.
+The `PolicyGenerator` CRs can be found in the `./out/argocd/example/acmpolicygenerator/` folder. The reference architecture has common, group, and site-specific configuration CRs. Each `PolicyGenerator` CR refers to other CRs that can be found in the `./out/source-crs` folder.
 
-The `{{ policy_gen_cr }}` CRs relevant to RAN cluster configuration are described below. Variants are provided for the group `{{ policy_gen_cr }}` CRs to account for differences in single-node, three-node compact, and standard cluster configurations. Similarly, site-specific configuration variants are provided for single-node clusters and multi-node (compact or standard) clusters. Use the group and site-specific configuration variants that are relevant for your deployment.
+The `PolicyGenerator` CRs relevant to RAN cluster configuration are described below. Variants are provided for the group `PolicyGenerator` CRs to account for differences in single-node, three-node compact, and standard cluster configurations. Similarly, site-specific configuration variants are provided for single-node clusters and multi-node (compact or standard) clusters. Use the group and site-specific configuration variants that are relevant for your deployment.
 
 **PolicyGenerator CRs for RAN deployments**
 
 | PolicyGenerator CR | Description |
 | --- | --- |
-| `{{ policy_prefix }}example-multinode-site.yaml` | Contains a set of CRs that get applied to multi-node clusters. These CRs configure SR-IOV features typical for RAN installations. |
-| `{{ policy_prefix }}example-sno-site.yaml` | Contains a set of CRs that get applied to single-node OpenShift clusters. These CRs configure SR-IOV features typical for RAN installations. |
-| `{{ policy_prefix }}common-mno-ranGen.yaml` | Contains a set of common RAN policy configuration that get applied to multi-node clusters. |
-| `{{ policy_prefix }}common-ranGen.yaml` | Contains a set of common RAN CRs that get applied to all clusters. These CRs subscribe to a set of operators providing cluster features typical for RAN as well as baseline cluster tuning. |
-| `{{ policy_prefix }}group-du-3node-ranGen.yaml` | Contains the RAN policies for three-node clusters only. |
-| `{{ policy_prefix }}group-du-sno-ranGen.yaml` | Contains the RAN policies for single-node clusters only. |
-| `{{ policy_prefix }}group-du-standard-ranGen.yaml` | Contains the RAN policies for standard three control-plane clusters. |
-| `{{ policy_prefix }}group-du-3node-validator-ranGen.yaml` | `{{ policy_gen_cr }}` CR used to generate the various policies required for three-node clusters. |
-| `{{ policy_prefix }}group-du-standard-validator-ranGen.yaml` | `{{ policy_gen_cr }}` CR used to generate the various policies required for standard clusters. |
-| `{{ policy_prefix }}group-du-sno-validator-ranGen.yaml` | `{{ policy_gen_cr }}` CR used to generate the various policies required for single-node OpenShift clusters. |
+| `acm-example-multinode-site.yaml` | Contains a set of CRs that get applied to multi-node clusters. These CRs configure SR-IOV features typical for RAN installations. |
+| `acm-example-sno-site.yaml` | Contains a set of CRs that get applied to single-node OpenShift clusters. These CRs configure SR-IOV features typical for RAN installations. |
+| `acm-common-mno-ranGen.yaml` | Contains a set of common RAN policy configuration that get applied to multi-node clusters. |
+| `acm-common-ranGen.yaml` | Contains a set of common RAN CRs that get applied to all clusters. These CRs subscribe to a set of operators providing cluster features typical for RAN as well as baseline cluster tuning. |
+| `acm-group-du-3node-ranGen.yaml` | Contains the RAN policies for three-node clusters only. |
+| `acm-group-du-sno-ranGen.yaml` | Contains the RAN policies for single-node clusters only. |
+| `acm-group-du-standard-ranGen.yaml` | Contains the RAN policies for standard three control-plane clusters. |
+| `acm-group-du-3node-validator-ranGen.yaml` | `PolicyGenerator` CR used to generate the various policies required for three-node clusters. |
+| `acm-group-du-standard-validator-ranGen.yaml` | `PolicyGenerator` CR used to generate the various policies required for standard clusters. |
+| `acm-group-du-sno-validator-ranGen.yaml` | `PolicyGenerator` CR used to generate the various policies required for single-node OpenShift clusters. |
 
 **Additional resources**
+{._additional-resources}
 
 - [Preparing the GitOps ZTP site configuration repository](/openshift-docs-markdown/edge_computing/ztp-preparing-the-hub-cluster#ztp-preparing-the-ztp-git-repository_ztp-preparing-the-hub-cluster)
 
@@ -213,44 +401,45 @@ Use the following procedure to customize the policies that get applied to the ma
 
 **Procedure**
 
-1. Create a `{{ policy_gen_cr }}` CR for site-specific configuration CRs.
+1. Create a `PolicyGenerator` CR for site-specific configuration CRs.
 
-   1. Choose the appropriate example for your CR from the `{{ argocd_folder }}` folder, for example, `{{ policy_prefix }}example-sno-site.yaml` or `{{ policy_prefix }}example-multinode-site.yaml`.
-   2. Change the `{{ binding_field }}` field in the example file to match the site-specific label included in the `ClusterInstance` CR. In the example `ClusterInstance` file, the site-specific label is `sites: example-sno`.
+   1. Choose the appropriate example for your CR from the `out/argocd/example/acmpolicygenerator/` folder, for example, `acm-example-sno-site.yaml` or `acm-example-multinode-site.yaml`.
+   2. Change the `policyDefaults.placement.labelSelector` field in the example file to match the site-specific label included in the `ClusterInstance` CR. In the example `ClusterInstance` file, the site-specific label is `sites: example-sno`.
 
       > [!NOTE]
-      > Ensure that the labels defined in your `{{ policy_gen_cr }}` `{{ binding_field }}` field correspond to the labels that are defined in the related managed clusters `ClusterInstance` CR.
+      > Ensure that the labels defined in your `PolicyGenerator` `policyDefaults.placement.labelSelector` field correspond to the labels that are defined in the related managed clusters `ClusterInstance` CR.
    3. Change the content in the example file to match the desired configuration.
-2. Optional: Create a `{{ policy_gen_cr }}` CR for any common configuration CRs that apply to the entire fleet of clusters.
+2. Optional: Create a `PolicyGenerator` CR for any common configuration CRs that apply to the entire fleet of clusters.
 
-   1. Select the appropriate example for your CR from the `{{ argocd_folder }}` folder, for example, `{{ policy_prefix }}common-ranGen.yaml`.
+   1. Select the appropriate example for your CR from the `out/argocd/example/acmpolicygenerator/` folder, for example, `acm-common-ranGen.yaml`.
    2. Change the content in the example file to match the required configuration.
-3. Optional: Create a `{{ policy_gen_cr }}` CR for any group configuration CRs that apply to the certain groups of clusters in the fleet.
+3. Optional: Create a `PolicyGenerator` CR for any group configuration CRs that apply to the certain groups of clusters in the fleet.
 
    Ensure that the content of the overlaid spec files matches your required end state. As a reference, the `out/source-crs` directory contains the full list of source-crs available to be included and overlaid by your PolicyGenerator templates.
 
    > [!NOTE]
    > Depending on the specific requirements of your clusters, you might need more than a single group policy per cluster type, especially considering that the example group policies each have a single `PerformancePolicy.yaml` file that can only be shared across a set of clusters if those clusters consist of identical hardware configurations.
 
-   1. Select the appropriate example for your CR from the `{{ argocd_folder }}` folder, for example, `{{ policy_prefix }}group-du-sno-ranGen.yaml`.
+   1. Select the appropriate example for your CR from the `out/argocd/example/acmpolicygenerator/` folder, for example, `acm-group-du-sno-ranGen.yaml`.
    2. Change the content in the example file to match the required configuration.
-4. Optional. Create a validator inform policy `{{ policy_gen_cr }}` CR to signal when the GitOps ZTP installation and configuration of the deployed cluster is complete. For more information, see "Creating a validator inform policy".
-5. Define all the policy namespaces in a YAML file similar to the example `{{ argocd_folder }}/ns.yaml` file.
+4. Optional. Create a validator inform policy `PolicyGenerator` CR to signal when the GitOps ZTP installation and configuration of the deployed cluster is complete. For more information, see "Creating a validator inform policy".
+5. Define all the policy namespaces in a YAML file similar to the example `out/argocd/example/acmpolicygenerator//ns.yaml` file.
 
    > [!IMPORTANT]
-   > Do not include the `Namespace` CR in the same file with the `{{ policy_gen_cr }}` CR.
-6. Add the `{{ policy_gen_cr }}` CRs and `Namespace` CR to the `kustomization.yaml` file in the generators section, similar to the example shown in `{{ argocd_folder }}kustomization.yaml`.
-7. Commit the `{{ policy_gen_cr }}` CRs, `Namespace` CR, and associated `kustomization.yaml` file in your Git repository and push the changes.
+   > Do not include the `Namespace` CR in the same file with the `PolicyGenerator` CR.
+6. Add the `PolicyGenerator` CRs and `Namespace` CR to the `kustomization.yaml` file in the generators section, similar to the example shown in `out/argocd/example/acmpolicygenerator/kustomization.yaml`.
+7. Commit the `PolicyGenerator` CRs, `Namespace` CR, and associated `kustomization.yaml` file in your Git repository and push the changes.
 
-   The ArgoCD pipeline detects the changes and begins the managed cluster deployment. You can push the changes to the `ClusterInstance` CR and the `{{ policy_gen_cr }}` CR simultaneously.
+   The ArgoCD pipeline detects the changes and begins the managed cluster deployment. You can push the changes to the `ClusterInstance` CR and the `PolicyGenerator` CR simultaneously.
 
 **Additional resources**
+{._additional-resources}
 
 - [Signalling GitOps ZTP cluster deployment completion with validator inform policies](/openshift-docs-markdown/edge_computing/policygenerator_for_ztp/ztp-advanced-policygenerator-config#ztp-creating-a-validator-inform-policy_ztp-advanced-policy-config)
 
 ## Monitoring managed cluster policy deployment progress {#ztp-monitoring-policy-deployment-progress_ztp-configuring-managed-clusters-policygenerator}
 
-The ArgoCD pipeline uses `{{ policy_gen_cr }}` CRs in Git to generate the RHACM policies and then sync them to the hub cluster. You can monitor the progress of the managed cluster policy synchronization after the assisted service installs OpenShift Container Platform on the managed cluster.
+The ArgoCD pipeline uses `PolicyGenerator` CRs in Git to generate the RHACM policies and then sync them to the hub cluster. You can monitor the progress of the managed cluster policy synchronization after the assisted service installs OpenShift Container Platform on the managed cluster.
 
 **Prerequisites**
 
@@ -303,13 +492,13 @@ The ArgoCD pipeline uses `{{ policy_gen_cr }}` CRs in Git to generate the RHACM 
       ```
    2. To check policy status from the RHACM web console, perform the following actions:
 
-      1. Click **Governance** -> **Find policies**.
+      1. Click **Governance** → **Find policies**.
       2. Click on a cluster policy to check its status.
 
-> [!NOTE]
-> When all of the cluster policies become compliant, GitOps ZTP installation and configuration for the cluster is complete. The `ztp-done` label is added to the cluster.
->
-> In the reference configuration, the final policy that becomes compliant is the one defined in the `*-du-validator-policy` policy. This policy, when compliant on a cluster, ensures that all cluster configuration, Operator installation, and Operator configuration is complete.
+      > [!NOTE]
+      > When all of the cluster policies become compliant, GitOps ZTP installation and configuration for the cluster is complete. The `ztp-done` label is added to the cluster.
+      >
+      > In the reference configuration, the final policy that becomes compliant is the one defined in the `*-du-validator-policy` policy. This policy, when compliant on a cluster, ensures that all cluster configuration, Operator installation, and Operator configuration is complete.
 
 ## Coordinating reboots for configuration changes {#ztp-coordinating-reboots-for-config-changes_ztp-configuring-managed-clusters-policygenerator}
 
@@ -394,12 +583,13 @@ Instead of rebooting nodes after each individual change, you can apply all confi
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Customizing a managed cluster with PolicyGenerator CRs](/openshift-docs-markdown/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-customizing-a-managed-site-using-pgt_ztp-configuring-managed-clusters-policygenerator)
 
 ## Validating the generation of configuration policy CRs {#ztp-validating-the-generation-of-configuration-policy-crs_ztp-configuring-managed-clusters-policygenerator}
 
-`Policy` custom resources (CRs) are generated in the same namespace as the `{{ policy_gen_cr }}` from which they are created. The same troubleshooting flow applies to all policy CRs generated from a `{{ policy_gen_cr }}` regardless of whether they are `ztp-common`, `ztp-group`, or `ztp-site` based, as shown using the following commands:
+`Policy` custom resources (CRs) are generated in the same namespace as the `PolicyGenerator` from which they are created. The same troubleshooting flow applies to all policy CRs generated from a `PolicyGenerator` regardless of whether they are `ztp-common`, `ztp-group`, or `ztp-site` based, as shown using the following commands:
 
 ```terminal
 $ export NS=<namespace>
@@ -459,16 +649,16 @@ If the policies failed synchronization, use the following troubleshooting steps.
    ztp-site.example-sno-config-policy           inform               Compliant          13d
    ```
 
-   RHACM copies all applicable policies into the cluster namespace. The copied policy names have the format: `<{{ policy_gen_cr }}.Namespace>.<{{ policy_gen_cr }}.Name>-<policyName>`.
-5. Check the placement rule for any policies not copied to the cluster namespace. The `matchSelector` in the `{{ placement_rule_cr }}` for those policies should match labels on the `ManagedCluster` object:
+   RHACM copies all applicable policies into the cluster namespace. The copied policy names have the format: `<PolicyGenerator.Namespace>.<PolicyGenerator.Name>-<policyName>`.
+5. Check the placement rule for any policies not copied to the cluster namespace. The `matchSelector` in the `Placement` for those policies should match labels on the `ManagedCluster` object:
 
    ```terminal
-   $ oc get {{ placement_rule_cr }} -n $NS
+   $ oc get Placement -n $NS
    ```
-6. Note the `{{ placement_rule_cr }}` name appropriate for the missing policy, common, group, or site, using the following command:
+6. Note the `Placement` name appropriate for the missing policy, common, group, or site, using the following command:
 
    ```terminal
-   $ oc get {{ placement_rule_cr }} -n $NS <placement_rule_name> -o yaml
+   $ oc get Placement -n $NS <placement_rule_name> -o yaml
    ```
 
    - The status-decisions should include your cluster name.
@@ -512,12 +702,13 @@ You can restart policy reconciliation when unexpected compliance issues occur, f
    $ oc delete clustergroupupgrades -n ztp-install $CLUSTER
    ```
 
-> [!NOTE]
-> When the `ClusterGroupUpgrade` CR completes with status `UpgradeCompleted` and the managed cluster has the label `ztp-done` applied, you can make additional configuration changes by using `{{ policy_gen_cr }}`. Deleting the existing `ClusterGroupUpgrade` CR will not make the TALM generate a new CR.
->
-> At this point, GitOps ZTP has completed its interaction with the cluster and any further interactions should be treated as an update and a new `ClusterGroupUpgrade` CR created for remediation of the policies.
+   > [!NOTE]
+   > When the `ClusterGroupUpgrade` CR completes with status `UpgradeCompleted` and the managed cluster has the label `ztp-done` applied, you can make additional configuration changes by using `PolicyGenerator`. Deleting the existing `ClusterGroupUpgrade` CR will not make the TALM generate a new CR.
+   >
+   > At this point, GitOps ZTP has completed its interaction with the cluster and any further interactions should be treated as an update and a new `ClusterGroupUpgrade` CR created for remediation of the policies.
 
 **Additional resources**
+{._additional-resources}
 
 - For information about using Topology Aware Lifecycle Manager (TALM) to construct your own `ClusterGroupUpgrade` CR, see [About the ClusterGroupUpgrade CR](/openshift-docs-markdown/edge_computing/cnf-talm-for-cluster-upgrades#talo-about-cgu-crs_cnf-topology-aware-lifecycle-manager).
 
@@ -525,7 +716,7 @@ You can restart policy reconciliation when unexpected compliance issues occur, f
 
 You can remove content from a custom resource (CR) that is deployed in a managed cluster through a policy.
 
-By default, all `Policy` CRs created from a `{{ policy_gen_cr }}` CR have the `complianceType` field set to `musthave`. A `musthave` policy without the removed content is still compliant because the CR on the managed cluster has all the specified content. With this configuration, when you remove content from a CR, TALM removes the content from the policy but the content is not removed from the CR on the managed cluster.
+By default, all `Policy` CRs created from a `PolicyGenerator` CR have the `complianceType` field set to `musthave`. A `musthave` policy without the removed content is still compliant because the CR on the managed cluster has all the specified content. With this configuration, when you remove content from a CR, TALM removes the content from the policy but the content is not removed from the CR on the managed cluster.
 
 With the `complianceType` field to `mustonlyhave`, the policy ensures that the CR on the cluster is an exact match of what is specified in the policy.
 
@@ -540,29 +731,35 @@ With the `complianceType` field to `mustonlyhave`, the policy ensures that the C
 
 1. Remove the content that you no longer need from the affected CRs. In this example, the `disableDrain: false` line was removed from the `SriovOperatorConfig` CR.
 
-```yaml {title="Example CR"}
-apiVersion: sriovnetwork.openshift.io/v1
-kind: SriovOperatorConfig
-metadata:
-  name: default
-  namespace: openshift-sriov-network-operator
-spec:
-  configDaemonNodeSelector:
-    "node-role.kubernetes.io/$mcp": ""
-  disableDrain: true
-  enableInjector: true
-  enableOperatorWebhook: true
-```
-
-1. Change the `complianceType` of the affected policies to `mustonlyhave` in the `{{ policy_prefix }}group-du-sno-ranGen.yaml` file.
+   ```yaml {title="Example CR"}
+   apiVersion: sriovnetwork.openshift.io/v1
+   kind: SriovOperatorConfig
+   metadata:
+     name: default
+     namespace: openshift-sriov-network-operator
+   spec:
+     configDaemonNodeSelector:
+       "node-role.kubernetes.io/$mcp": ""
+     disableDrain: true
+     enableInjector: true
+     enableOperatorWebhook: true
+   ```
+2. Change the `complianceType` of the affected policies to `mustonlyhave` in the `acm-group-du-sno-ranGen.yaml` file.
 
    ```yaml {title="Example YAML"}
 
+   # ...
+   policyDefaults:
+     complianceType: "mustonlyhave"
+   # ...
+   policies:
+     - name: config-policy
+       policyAnnotations:
+         ran.openshift.io/ztp-deploy-wave: ""
+       manifests:
+         - path: source-crs/SriovOperatorConfig.yaml
    ```
-
-{%- if policy-gen-cr == "PolicyGenTemplate" %} - fileName: SriovOperatorConfig.yaml policyName: "config-policy" complianceType: mustonlyhave {% endif %} {% if policy-gen-cr == "PolicyGenerator" %} # ... policyDefaults: complianceType: "mustonlyhave" # ... policies: - name: config-policy policyAnnotations: ran.openshift.io/ztp-deploy-wave: "" manifests: - path: source-crs/SriovOperatorConfig.yaml {%- endif %} \`\`\`
-
-1. Create a `ClusterGroupUpdates` CR and specify the clusters that must receive the CR changes::
+3. Create a `ClusterGroupUpdates` CR and specify the clusters that must receive the CR changes::
 
    ```yaml {title="Example ClusterGroupUpdates CR"}
    apiVersion: ran.openshift.io/v1alpha1
@@ -582,12 +779,12 @@ spec:
        timeout: 240
      batchTimeoutAction:
    ```
-2. Create the `ClusterGroupUpgrade` CR by running the following command:
+4. Create the `ClusterGroupUpgrade` CR by running the following command:
 
    ```terminal
    $ oc create -f cgu-remove.yaml
    ```
-3. When you are ready to apply the changes, for example, during an appropriate maintenance window, change the value of the `spec.enable` field to `true` by running the following command:
+5. When you are ready to apply the changes, for example, during an appropriate maintenance window, change the value of the `spec.enable` field to `true` by running the following command:
 
    ```terminal
    $ oc --namespace=default patch clustergroupupgrade.ran.openshift.io/cgu-remove \
@@ -635,9 +832,8 @@ GitOps ZTP done
     The validator inform policy ensures the configuration of the cluster is fully applied and Operators have completed their initialization. The policy validates the following:
 
     - The target `MachineConfigPool` contains the expected entries and has finished updating. All nodes are available and not degraded.
-
-- The SR-IOV Operator has completed initialization as indicated by at least one `SriovNetworkNodeState` with `syncStatus: Succeeded`.
-- The PTP Operator daemon set exists.
+    - The SR-IOV Operator has completed initialization as indicated by at least one `SriovNetworkNodeState` with `syncStatus: Succeeded`.
+    - The PTP Operator daemon set exists.
 
 ## Configuring an OpenAPI schema for patching list fields by using the PolicyGenerator CR {#ztp-configuring-open-api-schema-for-patching_ztp-configuring-managed-clusters-policygenerator}
 

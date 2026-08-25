@@ -4,7 +4,9 @@ title: Configure eviction and run strategies
 
 # Configure eviction and run strategies {#virt-eviction-strategies}
 
-You can configure eviction strategies for virtual machines (VMs) or for the cluster. The default eviction strategy is `LiveMigrate`, which ensures that a virtual machine instance (VMI) is not interrupted if the node is placed into maintenance or drained. **Cluster eviction strategies**
+You can configure eviction strategies for virtual machines (VMs) or for the cluster. The default eviction strategy is `LiveMigrate`, which ensures that a virtual machine instance (VMI) is not interrupted if the node is placed into maintenance or drained.
+
+**Cluster eviction strategies**
 
 | Eviction strategy | Description | Interrupts workflow | Blocks upgrades |
 | --- | --- | --- | --- |
@@ -71,7 +73,7 @@ You can configure an eviction strategy for a cluster by using the command line.
 1. Edit the `hyperconverged` resource by running the following command:
 
    ```terminal
-   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+   $ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv
    ```
 2. Set the cluster eviction strategy as shown in the following example:
 
@@ -185,7 +187,8 @@ If a node fails and machine health checks are not deployed on your cluster, virt
 
 - After all resources are terminated on the unhealthy node, a new virtual machine instance (VMI) is automatically created on a healthy node for each relocated VM. To confirm that the VMI was created, view all VMIs by using the OpenShift CLI (`oc`).
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Live migration policies](/openshift-docs-markdown/virt/live_migration/virt-configuring-live-migration#virt-live-migration-policies_virt-configuring-live-migration)
 - [About listing all the nodes in a cluster](/openshift-docs-markdown/nodes/nodes/nodes-nodes-viewing#nodes-nodes-viewing-listing_nodes-nodes-viewing)

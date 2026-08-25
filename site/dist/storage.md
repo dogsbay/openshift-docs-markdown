@@ -85,12 +85,12 @@ Nested mount points
             claimName: "web"
     ```
 
-1. Nested mount point
+    1. Nested mount point
 
-   Do *not* use nested mount points because OpenShift Container Platform does not guarantee the order in which mount points are created. Such usage is prone to race conditions and undefined behavior.
+    Do *not* use nested mount points because OpenShift Container Platform does not guarantee the order in which mount points are created. Such usage is prone to race conditions and undefined behavior.
 
-   NFS
-   :   A Network File System (NFS) that allows remote hosts to mount file systems over a network and interact with those file systems as though they are mounted locally. This enables system administrators to consolidate resources onto centralized servers on the network.
+NFS
+:   A Network File System (NFS) that allows remote hosts to mount file systems over a network and interact with those file systems as though they are mounted locally. This enables system administrators to consolidate resources onto centralized servers on the network.
 
 OpenShift Data Foundation
 :   A provider of agnostic persistent storage for OpenShift Container Platform supporting file, block, and object storage, either in-house or in hybrid clouds
@@ -123,9 +123,7 @@ Static provisioning
 :   A cluster administrator creates a number of PVs. PVs contain the details of storage. PVs exist in the Kubernetes API and are available for consumption.
 
 Storage
-:   OpenShift Container Platform supports many types of storage, both for on-premise and cloud providers. You can manage container storage for persistent and non-persistent data in
-
-    an OpenShift Container Platform cluster.
+:   OpenShift Container Platform supports many types of storage, both for on-premise and cloud providers. You can manage container storage for persistent and non-persistent data in an OpenShift Container Platform cluster.
 
 Storage class
 :   A storage class provides a way for administrators to describe the classes of storage they offer. Different classes might map to quality of service levels, backup policies, arbitrary policies determined by the cluster administrators.

@@ -1,5 +1,5 @@
 ---
-title: Deploying {{ hcp }} on {{ VirtProductName }}
+title: Deploying hosted control planes on OpenShift Virtualization
 ---
 
 # Deploying hosted control planes on OpenShift Virtualization {#hcp-deploy-virt}
@@ -18,6 +18,7 @@ The hosted control planes feature is enabled by default.
 You can use the hosted control plane command-line interface, `hcp`, to create an OpenShift Container Platform hosted cluster. The hosted cluster is automatically imported as a managed cluster. If you want to disable this automatic import feature, see "Disabling the automatic import of hosted clusters into multicluster engine Operator".
 
 **Additional resources**
+{._additional-resources}
 
 - [Disabling the automatic import of hosted clusters into multicluster engine Operator](/openshift-docs-markdown/hosted_control_planes/hcp-import#hcp-import-disable_hcp-import)
 
@@ -61,6 +62,7 @@ To create an OpenShift Container Platform cluster on OpenShift Virtualization, y
 - Do not create a hosted cluster in the namespace of a multicluster engine Operator managed cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing OpenShift Virtualization using the web console](/openshift-docs-markdown/virt/install/installing-virt#installing-virt-web)
 - [Postinstallation storage configuration](/openshift-docs-markdown/post_installation_configuration/post-install-storage-configuration#post-install-storage-configuration)
@@ -201,6 +203,7 @@ Before you can create a hosted cluster on the KubeVirt platform, you must have t
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing the MetalLB Operator](/openshift-docs-markdown/networking/networking_operators/metallb-operator/metallb-operator-install#metallb-operator-install_metallb-operator-install)
 
@@ -287,6 +290,7 @@ To create a hosted cluster on OpenShift Virtualization, you can use the hosted c
   Replace `<4.x.0>` with the supported OpenShift Container Platform version that you want to use.
 
 **Additional resources**
+{._additional-resources}
 
 - [Labeling management cluster nodes](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-labels-taints_hcp-distribute-workloads)
 - [Configuring a custom API server certificate in a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-certificates#hcp-custom-cert_hcp-certificates)
@@ -333,6 +337,7 @@ By default, the HyperShift Operator hosts both the control plane pods of the hos
   After you enter the command, the control plane pods are hosted on the management cluster that the HyperShift Operator runs on, and the KubeVirt VMs are hosted on a separate infrastructure cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Labeling management cluster nodes](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-labels-taints_hcp-distribute-workloads)
 - [Configuring a custom API server certificate in a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-certificates#hcp-custom-cert_hcp-certificates)
@@ -371,6 +376,7 @@ If you prefer to work in the OpenShift Container Platform console instead of the
 3. To view the node pool status, scroll to the **NodePool** section. The process to install the nodes takes about 10 minutes. You can also click **Nodes** to confirm whether the nodes joined the hosted cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Labeling management cluster nodes](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-labels-taints_hcp-distribute-workloads)
 - [Configuring a custom API server certificate in a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-certificates#hcp-custom-cert_hcp-certificates)
@@ -911,6 +917,7 @@ You can manually scale a node pool for a hosted cluster on OpenShift Virtualizat
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Scaling up and down workloads in a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-machine-config#scale-up-down-autoscaler-hcp_hcp-machine-config)
 
@@ -1026,6 +1033,7 @@ You can create node pools for a hosted cluster by specifying a name, number of r
    Replace `<4.x.0>` with the supported OpenShift Container Platform version that you want to use.
 
 **Additional resources**
+{._additional-resources}
 
 - [Scaling down the data plane to zero](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.15/html/hosted_control_planes/troubleshooting-hosted-control-planes#scale-down-data-plane_hcp-troubleshooting)
 

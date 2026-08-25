@@ -23,7 +23,8 @@ const headings = [{"depth":1,"slug":"network-observability-operator-default","te
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/network_observability_operator/network-observability-operator";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -81,12 +82,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -94,7 +96,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="network-observability-operator-default" class="group scroll-mt-20">Network Observability Operator<a href="#network-observability-operator-default" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Network Observability Operator provides network flow monitoring, visualization, and analysis capabilities for OpenShift Container Platform clusters.</p>
+      <p class="_abstract">Network Observability Operator provides network flow monitoring, visualization, and analysis capabilities for OpenShift Container Platform clusters.</p>
       <h2 id="network-observability-operator-stub_network-observability-operator" class="group scroll-mt-20">Network Observability Operator features<a href="#network-observability-operator-stub_network-observability-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">With the Network Observability Operator, you can monitor ingress, egress, and internal network traffic flows between pods, services, and nodes in your cluster.</p>
       <p>Use this network flow data to troubleshoot connectivity issues, analyze traffic patterns, detect security threats, and optimize overall network performance.</p>

@@ -28,6 +28,7 @@ If you want to keep update recommendations separate in different environments, y
 The following sections describe how to install an OSUS instance and configure it to provide update recommendations to a cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [About the OpenShift Update Service](/openshift-docs-markdown/updating/understanding_updates/intro-to-updates#update-service-about_understanding-openshift-updates)
 - [Understanding update channels and releases](/openshift-docs-markdown/updating/understanding_updates/understanding-update-channels-release#understanding-update-channels-releases)
@@ -70,6 +71,7 @@ If your release images are contained in a registry whose HTTPS X.509 certificate
    > If a registry has the port, such as `registry-with-port.example.com:5000`, `:` should be replaced with `..`.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring additional trust stores for image registry access](/openshift-docs-markdown/registry/configuring-registry-operator#images-configuration-cas_configuring-registry-operator)
 
@@ -161,6 +163,7 @@ Use this procedure when you need a separate registry to store images than the re
    This triggers the automatic cleanup process across your nodes.
 
 **Additional resources**
+{._additional-resources}
 
 - [Transferring cluster ownership](https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html-single/managing_clusters/index#transferring-cluster-ownership_downloading-and-updating-pull-secrets)
 
@@ -177,7 +180,7 @@ You can use the web console to install the OpenShift Update Service Operator.
 
 **Procedure**
 
-1. In the web console, click **Ecosystem** -> **Software Catalog**.
+1. In the web console, click **Ecosystem** → **Software Catalog**.
 
    > [!NOTE]
    > Enter `Update Service` into the **Filter by keyword...** field to find the Operator faster.
@@ -192,7 +195,7 @@ You can use the web console to install the OpenShift Update Service Operator.
       - The **Automatic** strategy allows Operator Lifecycle Manager (OLM) to automatically update the Operator when a new version is available.
       - The **Manual** strategy requires a cluster administrator to approve the Operator update.
    6. Click **Install**.
-3. Go to **Ecosystem** -> **Installed Operators** and verify that the OpenShift Update Service Operator is installed.
+3. Go to **Ecosystem** → **Installed Operators** and verify that the OpenShift Update Service Operator is installed.
 4. Ensure that **OpenShift Update Service** is listed in the correct namespace with a **Status** of **Succeeded**.
 
 ### Installing the OpenShift Update Service Operator by using the CLI {#update-service-install-cli_updating-disconnected-cluster-osus}
@@ -301,6 +304,7 @@ You can use the OpenShift CLI (`oc`) to install the OpenShift Update Service Ope
    If the OpenShift Update Service Operator is listed, the installation was successful. The version number might be different from shown.
 
 **Additional resources**
+{._additional-resources}
 
 - [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)
 - [Installing Operators in your namespace](/openshift-docs-markdown/operators/user/olm-installing-operators-in-namespace#olm-installing-operators-in-namespace)
@@ -357,7 +361,7 @@ You can use the OpenShift Container Platform web console to create an OpenShift 
 
 **Procedure**
 
-1. In the web console, click **Ecosystem** -> **Installed Operators**.
+1. In the web console, click **Ecosystem** → **Installed Operators**.
 2. Choose **OpenShift Update Service** from the list of installed Operators.
 3. Click the **Update Service** tab.
 4. Click **Create UpdateService**.
@@ -429,7 +433,7 @@ You can use the OpenShift CLI (`oc`) to create an OpenShift Update Service appli
       ```
 
       You might need to poll until the command succeeds.
-   2. Retrieve a graph from the policy engine. Be sure to specify a valid version for `channel`. For example, if running in OpenShift Container Platform 4.22, use `stable-{{ product_version }}`:
+   2. Retrieve a graph from the policy engine. Be sure to specify a valid version for `channel`. For example, if running in OpenShift Container Platform 4.22, use `stable-4.22`:
 
       ```terminal
       $ while sleep 10; do HTTP_CODE="$(curl --header Accept:application/json --output /dev/stderr --write-out "%{http_code}" "${POLICY_ENGINE_GRAPH_URI}?channel=stable-4.6")"; if test "${HTTP_CODE}" -eq 200; then break; fi; echo "${HTTP_CODE}"; done
@@ -483,6 +487,7 @@ After the OpenShift Update Service Operator has been installed and the OpenShift
    > For more information about configuring the CA to trust the update server, see "Configuring the cluster-wide proxy".
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring the cluster-wide proxy](/openshift-docs-markdown/networking/configuring_network_settings/enable-cluster-wide-proxy#enable-cluster-wide-proxy)
 
@@ -509,10 +514,12 @@ Before you proceed to update your cluster, verify that the local OSUS instance i
      After you configure your cluster to use the installed OpenShift Update Service and local mirror registry, you can proceed to update your cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)
 
-## Additional resources {#additional-resources_updating-disconnected-cluster-osus}
+**Additional resources**
+{._additional-resources}
 
 - [Mirroring OpenShift Container Platform images](/openshift-docs-markdown/disconnected/updating/mirroring-image-repository#mirroring-ocp-image-repository)
 - [Updating a cluster using the web console](/openshift-docs-markdown/updating/updating_a_cluster/updating-cluster-web-console#updating-cluster-web-console)

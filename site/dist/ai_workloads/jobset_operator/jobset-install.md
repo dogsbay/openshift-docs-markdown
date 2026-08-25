@@ -1,5 +1,5 @@
 ---
-title: Installing the {{ js_operator }}
+title: Installing the JobSet Operator
 ---
 
 # Installing the JobSet Operator {#js-install}
@@ -22,8 +22,8 @@ Install the JobSet Operator on OpenShift Container Platform using the web consol
 2. Verify that the cert-manager Operator for Red Hat OpenShift is installed.
 3. Install the JobSet Operator.
 
-   1. Navigate to **Ecosystem** -> **Software Catalog**.
-   2. Search for and select the `openshift-operators` project.
+   1. Navigate to **Ecosystem** → **Software Catalog**.
+   2. Search for and select the **`openshift-operators`** project.
    3. Enter **JobSet Operator** into the filter box.
    4. Select the **JobSet Operator** and click **Install**.
    5. On the **Install Operator** page:
@@ -38,7 +38,7 @@ Install the JobSet Operator on OpenShift Container Platform using the web consol
       5. Click **Install**.
 4. Create the custom resource (CR) for the JobSet Operator:
 
-   1. Navigate to **Installed Operators** -> **JobSet Operator**.
+   1. Navigate to **Installed Operators** → **JobSet Operator**.
    2. Under **Provided APIs**, click **Create instance** in the **JobSetOperator** pane.
    3. Set the name to **cluster**.
    4. Set the **managementState** to **Managed**.

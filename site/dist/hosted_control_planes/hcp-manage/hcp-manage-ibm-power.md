@@ -1,5 +1,5 @@
 ---
-title: Managing {{ hcp }} on {{ ibm_power_title }}
+title: Managing hosted control planes on IBM Power
 ---
 
 # Managing hosted control planes on IBM Power {#hcp-manage-ibm-power}
@@ -188,6 +188,7 @@ The `NodePool` object is created when you create a hosted cluster. By scaling th
    - `MESSAGE`
 
 **Additional resources**
+{._additional-resources}
 
 - [Initial Operator configuration](/openshift-docs-markdown/installing/installing_ibm_power/installing-ibm-power#installation-operators-config)
 - [Scaling down the data plane to zero](/openshift-docs-markdown/hosted_control_planes/hcp-troubleshooting#scale-down-data-plane_hcp-troubleshooting)

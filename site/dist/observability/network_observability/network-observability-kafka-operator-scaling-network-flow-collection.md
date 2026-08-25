@@ -120,7 +120,8 @@ This reference applies to compression configured in both `spec.kafka.compression
 > [!NOTE]
 > The compression ratios and CPU cost estimates are approximate values derived from upstream benchmarks, not from Network Observability-specific measurements. Actual results vary depending on flow record characteristics and batch sizes.
 
-## Additional resources {#additional-resources_network-observability-kafka-operator-scaling-network-flow-collection}
+**Additional resources**
+{._additional-resources}
 
 - [Red Hat AMQ Streams documentation](https://access.redhat.com/documentation/en-us/red_hat_amq_streams)
 - [Configuring the FlowCollector resource with Kafka](/openshift-docs-markdown/observability/network_observability/configuring-operator#network-observability-flowcollector-kafka-config_network_observability)

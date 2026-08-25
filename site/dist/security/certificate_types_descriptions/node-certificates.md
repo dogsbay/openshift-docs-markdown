@@ -26,6 +26,7 @@ The old CA certificate is removed after 365 days. Nodes are not rebooted when a 
   $ oc annotate -n openshift-kube-apiserver-operator secret kube-apiserver-to-kubelet-signer auth.openshift.io/certificate-not-after-
   ```
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Working with nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working)

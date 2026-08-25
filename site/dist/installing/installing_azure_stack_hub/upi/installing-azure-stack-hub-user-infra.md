@@ -35,6 +35,7 @@ Before you install OpenShift Container Platform, you must configure an Azure pro
 > All Azure Stack Hub resources that are available through public endpoints are subject to resource name restrictions, and you cannot create resources that use certain terms. For a list of terms that Azure Stack Hub restricts, see "Resolve reserved resource name errors".
 
 **Additional resources**
+{._additional-resources}
 
 - [Resolve reserved resource name errors (Azure documentation)](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-reserved-resource-name)
 
@@ -44,55 +45,57 @@ The OpenShift Container Platform cluster uses a number of Microsoft Azure Stack 
 
 The following table summarizes the Azure Stack Hub components whose limits can impact your ability to install and run OpenShift Container Platform clusters.
 
-|vCPU
-
-|56 |A default cluster requires 56 vCPUs, so you must increase the account limit.
-
-By default, each cluster creates the following instances:
-
-- One bootstrap machine, which is removed after installation
-- Three control plane machines
-- Three compute machines
-
-Because the bootstrap, control plane, and worker machines use `Standard_DS4_v2` virtual machines, which use 8 vCPUs, a default cluster requires 56 vCPUs. The bootstrap node VM is used only during installation.
-
-To deploy more worker nodes, enable autoscaling, deploy large workloads, or use a different instance type, you must further increase the vCPU limit for your account to ensure that your cluster can deploy the machines that you require.
-
-|VNet | 1 | Each default cluster requires one Virtual Network (VNet), which contains two subnets.
-
-|Network interfaces |7 |Each default cluster requires seven network interfaces. If you create more machines or your deployed workloads create load balancers, your cluster uses more network interfaces.
-
-|Network security groups |2 | Each cluster creates network security groups for each subnet in the VNet. The default cluster creates network security groups for the control plane and for the compute node subnets:
-
-`controlplane`
-:   Allows the control plane machines to be reached on port 6443 from anywhere
-
-`node`
-:   Allows worker nodes to be reached from the internet on ports 80 and 443
-
-|Network load balancers | 3 |Each cluster creates the following [load balancers](https://docs.microsoft.com/en-us/azure/load-balancer/load-balancer-overview):
-
-`default`
-:   Public IP address that load balances requests to ports 80 and 443 across worker machines
-
-`internal`
-:   Private IP address that load balances requests to ports 6443 and 22623 across control plane machines
-
-`external`
-:   Public IP address that load balances requests to port 6443 across control plane machines
-
-If your applications create more Kubernetes `LoadBalancer` service objects, your cluster uses more load balancers.
-
-|Public IP addresses
-
-|2 |The public load balancer uses a public IP address. The bootstrap machine also uses a public IP address so that you can SSH into the machine to troubleshoot issues during installation. The IP address for the bootstrap node is used only during installation.
-
-|Private IP addresses |7 |The internal load balancer, each of the three control plane machines, and each of the three worker machines each use a private IP address.
-
 <table>
+<thead>
+<tr>
+  <th>Component</th>
+  <th>Number of components required by default</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>vCPU</td>
+  <td>56</td>
+  <td>A default cluster requires 56 vCPUs, so you must increase the account limit.<br><br>By default, each cluster creates the following instances:<br><br><ul><li>One bootstrap machine, which is removed after installation</li><li>Three control plane machines</li><li>Three compute machines</li></ul>Because the bootstrap, control plane, and worker machines use <code>Standard_DS4_v2</code> virtual machines, which use 8 vCPUs, a default cluster requires 56 vCPUs. The bootstrap node VM is used only during installation.<br><br>To deploy more worker nodes, enable autoscaling, deploy large workloads, or use a different instance type, you must further increase the vCPU limit for your account to ensure that your cluster can deploy the machines that you require.</td>
+</tr>
+<tr>
+  <td>VNet</td>
+  <td>1</td>
+  <td>Each default cluster requires one Virtual Network (VNet), which contains two subnets.</td>
+</tr>
+<tr>
+  <td>Network interfaces</td>
+  <td>7</td>
+  <td>Each default cluster requires seven network interfaces. If you create more machines or your deployed workloads create load balancers, your cluster uses more network interfaces.</td>
+</tr>
+<tr>
+  <td>Network security groups</td>
+  <td>2</td>
+  <td>Each cluster creates network security groups for each subnet in the VNet. The default cluster creates network security groups for the control plane and for the compute node subnets:<br><br><dl><dt><code>controlplane</code></dt><dd>Allows the control plane machines to be reached on port 6443 from anywhere</dd><dt><code>node</code></dt><dd>Allows worker nodes to be reached from the internet on ports 80 and 443</dd></dl></td>
+</tr>
+<tr>
+  <td>Network load balancers</td>
+  <td>3</td>
+  <td>Each cluster creates the following <a href="https://docs.microsoft.com/en-us/azure/load-balancer/load-balancer-overview">load balancers</a>:<br><br><dl><dt><code>default</code></dt><dd>Public IP address that load balances requests to ports 80 and 443 across worker machines</dd><dt><code>internal</code></dt><dd>Private IP address that load balances requests to ports 6443 and 22623 across control plane machines</dd><dt><code>external</code></dt><dd>Public IP address that load balances requests to port 6443 across control plane machines</dd></dl>If your applications create more Kubernetes <code>LoadBalancer</code> service objects, your cluster uses more load balancers.</td>
+</tr>
+<tr>
+  <td>Public IP addresses</td>
+  <td>2</td>
+  <td>The public load balancer uses a public IP address. The bootstrap machine also uses a public IP address so that you can SSH into the machine to troubleshoot issues during installation. The IP address for the bootstrap node is used only during installation.</td>
+</tr>
+<tr>
+  <td>Private IP addresses</td>
+  <td>7</td>
+  <td>The internal load balancer, each of the three control plane machines, and each of the three worker machines each use a private IP address.</td>
+</tr>
+</tbody>
 </table>
 
+To increase an account limit, file a support request on the Azure portal. For more information, see [Request a quota limit increase for Azure Deployment Environments resources](https://learn.microsoft.com/en-us/azure/deployment-environments/how-to-request-quota-increase).
+
 **Additional resources**
+{._additional-resources}
 
 - [Optimizing storage](/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 
@@ -101,6 +104,7 @@ If your applications create more Kubernetes `LoadBalancer` service objects, your
 To successfully install OpenShift Container Platform on Azure Stack Hub, you must create DNS records in an Azure Stack Hub DNS zone. The DNS zone must be authoritative for the domain. To delegate a registrar’s DNS zone to Azure Stack Hub, see "Azure Stack Hub datacenter DNS integration".
 
 **Additional resources**
+{._additional-resources}
 
 - [Azure Stack Hub datacenter DNS integration (Microsoft documentation)](https://docs.microsoft.com/en-us/azure-stack/operator/azure-stack-integrate-dns?view=azs-2102)
 - [Example for creating DNS zones](/openshift-docs-markdown/installing/installing_azure_stack_hub/upi/installing-azure-stack-hub-user-infra#installation-azure-create-dns-zones_installing-azure-stack-hub-user-infra)
@@ -125,7 +129,6 @@ To enable OpenShift Container Platform to create Azure resources, you must creat
 
 - Install or update the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-yum?view=azure-cli-latest).
 - Your Azure account has the required roles for the subscription that you use.
-- If you want to use a custom role, you have created a [custom role](https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles) with the required permissions listed in the *Required Azure permissions for user-provisioned infrastructure* section.
 
 **Procedure**
 
@@ -166,30 +169,70 @@ To enable OpenShift Container Platform to create Azure resources, you must creat
       ```terminal {title="Example output"}
       [
         {
+          "cloudName": AzureStackCloud",
+          "id": "9bab1460-96d5-40b3-a78e-17b15e978a80",
+          "isDefault": true,
+          "name": "Subscription Name",
+          "state": "Enabled",
+          "tenantId": "6057c7e9-b3ae-489d-a54e-de3f6bf6a8ee",
+          "user": {
+            "name": "you@example.com",
+            "type": "user"
+          }
+        }
+      ]
+      ```
+   2. View your active account details and confirm that the `tenantId` value matches the subscription you want to use:
+
+      ```terminal
+      $ az account show
       ```
 
-{%- if not ash %} "cloudName": "AzureCloud", {% endif %} {% if ash %} "cloudName": AzureStackCloud", {%- endif %} "id": "9bab1460-96d5-40b3-a78e-17b15e978a80", "isDefault": true, "name": "Subscription Name", "state": "Enabled", "tenantId": "6057c7e9-b3ae-489d-a54e-de3f6bf6a8ee", "user": { "name": "you@example.com", "type": "user" } } \] ``    1.  View your active account details and confirm that the `tenantId` value matches     the subscription you want to use:        ``terminal $ az account show `       `terminal title="Example output" { {%- if not ash %} "environmentName": "AzureCloud", {% endif %} {% if ash %} "environmentName": AzureStackCloud", {%- endif %} "id": "9bab1460-96d5-40b3-a78e-17b15e978a80", "isDefault": true, "name": "Subscription Name", "state": "Enabled", "tenantId": "6057c7e9-b3ae-489d-a54e-de3f6bf6a8ee", "user": { "name": "you@example.com", "type": "user" } } \`\`\`
+      ```terminal {title="Example output"}
+      {
+        "environmentName": AzureStackCloud",
+        "id": "9bab1460-96d5-40b3-a78e-17b15e978a80",
+        "isDefault": true,
+        "name": "Subscription Name",
+        "state": "Enabled",
+        "tenantId": "6057c7e9-b3ae-489d-a54e-de3f6bf6a8ee",
+        "user": {
+          "name": "you@example.com",
+          "type": "user"
+        }
+      }
+      ```
 
-````
-    Ensure that the value of the `tenantId` parameter is the correct subscription ID.
-1.  If you are not using the right subscription, change the active subscription:
-    ```terminal
-    $ az account set -s <subscription_id>
-    ```
+      Ensure that the value of the `tenantId` parameter is the correct subscription ID.
+   3. If you are not using the right subscription, change the active subscription:
 
-    For `<subscription_id>`, specify the subscription ID.
-1.  Verify the subscription ID update:
-    ```terminal
-    $ az account show
-    ```
-    ```terminal title="Example output"
-    {
-````
+      ```terminal
+      $ az account set -s <subscription_id>
+      ```
 
-{%- if not ash %} "environmentName": "AzureCloud", {% endif %} {% if ash %} "environmentName": AzureStackCloud", {%- endif %} "id": "33212d16-bdf6-45cb-b038-f6565b61edda", "isDefault": true, "name": "Subscription Name", "state": "Enabled", "tenantId": "8049c7e9-c3de-762d-a54e-dc3f6be6a7ee", "user": { "name": "you@example.com", "type": "user" } } \`\`\`
+      For `<subscription_id>`, specify the subscription ID.
+   4. Verify the subscription ID update:
 
-1. Record the `tenantId` and `id` parameter values from the output. You need these values during the OpenShift Container Platform installation.
-2. Create the service principal for your account:
+      ```terminal
+      $ az account show
+      ```
+
+      ```terminal {title="Example output"}
+      {
+        "environmentName": AzureStackCloud",
+        "id": "33212d16-bdf6-45cb-b038-f6565b61edda",
+        "isDefault": true,
+        "name": "Subscription Name",
+        "state": "Enabled",
+        "tenantId": "8049c7e9-c3de-762d-a54e-dc3f6be6a7ee",
+        "user": {
+          "name": "you@example.com",
+          "type": "user"
+        }
+      }
+      ```
+6. Record the `tenantId` and `id` parameter values from the output. You need these values during the OpenShift Container Platform installation.
+7. Create the service principal for your account:
 
    ```terminal
    $ az ad sp create-for-rbac --role Contributor --name <service_principal> \
@@ -220,9 +263,10 @@ To enable OpenShift Container Platform to create Azure resources, you must creat
      "tenantId": "8049c7e9-c3de-762d-a54e-dc3f6be6a7ee"
    }
    ```
-3. Record the values of the `appId` and `password` parameters from the previous output. You need these values during OpenShift Container Platform installation.
+8. Record the values of the `appId` and `password` parameters from the previous output. You need these values during OpenShift Container Platform installation.
 
 **Additional resources**
+{._additional-resources}
 
 - [About the Cloud Credential Operator](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator-modes)
 
@@ -251,15 +295,10 @@ Installing the cluster requires that you manually create the installation config
    > You must create a directory. Some installation assets, such as bootstrap X.509 certificates have short expiration intervals, so you must not reuse an installation directory. If you want to reuse individual files from another cluster installation, you can copy them into your directory. However, the file names for the installation assets might change between releases. Use caution when copying installation files from an earlier OpenShift Container Platform version.
 2. Customize the provided sample `install-config.yaml` file template and save the file in the `<installation_directory>`.
 
-   ```
-   :::note
+   > [!NOTE]
+   > You must name this configuration file `install-config.yaml`.
 
-   You must name this configuration file `install-config.yaml`.
-
-   :::
-
-       Make the following modifications for Azure Stack Hub:
-   ```
+   Make the following modifications for Azure Stack Hub:
 
    1. Set the `replicas` parameter to `0` for the `compute` pool:
 
@@ -304,6 +343,7 @@ Installing the cluster requires that you manually create the installation config
    > Back up the `install-config.yaml` file now, because the installation process consumes the file in the next step.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installation configuration parameters for Azure Stack Hub](/openshift-docs-markdown/installing/installing_azure_stack_hub/installation-config-parameters-ash#installation-config-parameters-ash)
 
@@ -353,9 +393,7 @@ platform:
     outboundType: Loadbalancer
     cloudName: AzureStackCloud
 pullSecret: '{"auths": ...}'
-{%- if not openshift_origin %}
 fips: false
-{%- endif %}
 additionalTrustBundle: |
     -----BEGIN CERTIFICATE-----
     <MY_TRUSTED_CA_CERT>
@@ -442,46 +480,42 @@ Production environments can deny direct access to the internet and instead have 
    proxy:
      httpProxy: http://<username>:<pswd>@<ip>:<port>
      httpsProxy: https://<username>:<pswd>@<ip>:<port>
+     noProxy: example.com
+   additionalTrustBundle: |
+       -----BEGIN CERTIFICATE-----
+       <MY_TRUSTED_CA_CERT>
+       -----END CERTIFICATE-----
+   additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle>
+   # ...
    ```
 
-{%- if not aws %} noProxy: example.com {% endif %} {% if aws %} noProxy: ec2.<aws_region>.amazonaws.com,elasticloadbalancing.<aws_region>.amazonaws.com,s3.<aws_region>.amazonaws.com {%- endif %} additionalTrustBundle: | -----BEGIN CERTIFICATE----- <MY_TRUSTED_CA_CERT> -----END CERTIFICATE----- additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle> # ... \`\`\`
+   where:
 
-````
-where:
+   `proxy.httpProxy`
+   :   Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be `http`.
 
-`proxy.httpProxy`
-:   Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be `http`.
+   `proxy.httpsProxy`
+   :   Specifies a proxy URL to use for creating HTTPS connections outside the cluster.
 
-`proxy.httpsProxy`
-:   Specifies a proxy URL to use for creating HTTPS connections outside the cluster.
+   `proxy.noProxy`
+   :   Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with `.` to match subdomains only. For example, `.y.com` matches `x.y.com`, but not `y.com`. Use `*` to bypass the proxy for all destinations.
 
-`proxy.noProxy`
-:   Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with `.` to match subdomains only. For example, `.y.com` matches `x.y.com`, but not `y.com`. Use `*` to bypass the proxy for all destinations.
+   `additionalTrustBundle`
+   :   If you specify this value, the installation program generates a config map named `user-ca-bundle` in the `openshift-config` namespace to hold the additional CA certificates. If you specify `additionalTrustBundle` and at least one proxy setting, the `Proxy` object references the `user-ca-bundle` config map in the `trustedCA` field. The Cluster Network Operator then creates a `trusted-ca-bundle` config map that merges the contents specified for the `trustedCA` parameter with the RHCOS trust bundle. You must set the `additionalTrustBundle` field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.
 
-`additionalTrustBundle`
-:   If you specify this value, the installation program generates a config map named `user-ca-bundle` in the `openshift-config` namespace to hold the additional CA certificates. If you specify `additionalTrustBundle` and at least one proxy setting, the `Proxy` object references the `user-ca-bundle` config map in the `trustedCA` field. The Cluster Network Operator then creates a `trusted-ca-bundle` config map that merges the contents specified for the `trustedCA` parameter with the RHCOS trust bundle. You must set the `additionalTrustBundle` field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.
+   `additionalTrustBundlePolicy`
+   :   Specifies the policy that determines the configuration of the `Proxy` object to reference the `user-ca-bundle` config map in the `trustedCA` field. The allowed values are `Proxyonly` and `Always`. Use `Proxyonly` to reference the `user-ca-bundle` config map only when you configure an `http/https` proxy. Use `Always` to always reference the `user-ca-bundle` config map. The default value is `Proxyonly`. Optional parameter.
 
-`additionalTrustBundlePolicy`
-:   Specifies the policy that determines the configuration of the `Proxy` object to reference the `user-ca-bundle` config map in the `trustedCA` field. The allowed values are `Proxyonly` and `Always`. Use `Proxyonly` to reference the `user-ca-bundle` config map only when you configure an `http/https` proxy. Use `Always` to always reference the `user-ca-bundle` config map. The default value is `Proxyonly`. Optional parameter.
+   > [!NOTE]
+   > The installation program does not support the proxy `readinessEndpoints` field.
 
-:::note
-
-The installation program does not support the proxy `readinessEndpoints` field.
-
-:::
-
-:::note
-
-If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
-
-```terminal
-$ ./openshift-install wait-for install-complete --log-level debug
-```
-
-:::
-````
-
-1. Save the file and reference it when installing OpenShift Container Platform.
+   > [!NOTE]
+   > If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
+   >
+   > ```terminal
+   > $ ./openshift-install wait-for install-complete --log-level debug
+   > ```
+2. Save the file and reference it when installing OpenShift Container Platform.
 
    The installation program creates a cluster-wide proxy named `cluster` that uses the proxy settings in the `install-config.yaml` file. If you do not give proxy settings, the installation program still creates a `cluster` `Proxy` object, but it has a nil `spec`.
 
@@ -518,8 +552,7 @@ To deploy Azure infrastructure with the provided ARM templates, you must export 
 
    where:
 
-   `<azure_region>`
-   :   The region to deploy the cluster into. This is the value of the `.platform.azure.region` attribute from the `install-config.yaml` file.
+   `<azure_region>`:: The region to deploy the cluster into. This is the value of the `.platform.azure.region` attribute from the `install-config.yaml` file.
 
    ```terminal
    $ export SSH_KEY=<ssh_key>
@@ -533,8 +566,7 @@ To deploy Azure infrastructure with the provided ARM templates, you must export 
 
    where:
 
-   `<base_domain>`
-   :   The base domain to deploy the cluster to. The base domain corresponds to the DNS zone that you created for your cluster. This is the value of the `.baseDomain` attribute from the `install-config.yaml` file.
+   `<base_domain>`:: The base domain to deploy the cluster to. The base domain corresponds to the DNS zone that you created for your cluster. This is the value of the `.baseDomain` attribute from the `install-config.yaml` file.
 
    ```terminal
    $ export BASE_DOMAIN_RESOURCE_GROUP=<base_domain_resource_group>
@@ -542,8 +574,7 @@ To deploy Azure infrastructure with the provided ARM templates, you must export 
 
    where:
 
-   `<base_domain_resource_group>`
-   :   The resource group where the DNS zone exists. This is the value of the `.platform.azure.baseDomainResourceGroupName` attribute from the `install-config.yaml` file.
+   `<base_domain_resource_group>`:: The resource group where the DNS zone exists. This is the value of the `.platform.azure.baseDomainResourceGroupName` attribute from the `install-config.yaml` file.
 
    For example:
 
@@ -643,17 +674,15 @@ The installation program converts the installation configuration into Kubernetes
      baseDomain: example.openshift.com
      privateZone:
        id: mycluster-100419-private-zone
+     publicZone:
+       id: example.openshift.com
+   status: {}
    ```
 
-{%- if not user_infra_vpc %} publicZone: id: example.openshift.com {%- endif %} status: {} \`\`\`
+   `spec.privateZone`: Remove this section completely.
 
-```
-`spec.privateZone`: Remove this section completely.
-
-If you do so, you must add ingress DNS records manually in a later step.
-```
-
-1. Optional: If your Azure Stack Hub environment uses an internal certificate authority (CA), you must update the `.spec.trustedCA.name` field in the `<installation_directory>/manifests/cluster-proxy-01-config.yaml` file to use `user-ca-bundle`:
+   If you do so, you must add ingress DNS records manually in a later step.
+7. Optional: If your Azure Stack Hub environment uses an internal certificate authority (CA), you must update the `.spec.trustedCA.name` field in the `<installation_directory>/manifests/cluster-proxy-01-config.yaml` file to use `user-ca-bundle`:
 
    ```yaml
    ...
@@ -664,7 +693,7 @@ If you do so, you must add ingress DNS records manually in a later step.
    ```
 
    Later, you must update your bootstrap ignition to include the CA.
-2. When you configure Azure on user-provisioned infrastructure, you must export some common variables defined in the manifest files to use later in the Azure Resource Manager (ARM) templates:
+8. When you configure Azure on user-provisioned infrastructure, you must export some common variables defined in the manifest files to use later in the Azure Resource Manager (ARM) templates:
 
    1. Export the infrastructure ID by using the following command:
 
@@ -686,7 +715,7 @@ If you do so, you must add ingress DNS records manually in a later step.
 
       `<resource_group>`
       :   Specifies the [resource group](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/overview#resource-groups) that contains all resources in this Azure deployment. The resource group name is also based on the `INFRA_ID`, in the form of `<cluster_name>-<random_string>-rg`. This is the value of the `.status.platformStatus.azure.resourceGroupName` attribute from the `manifests/cluster-infrastructure-02-config.yml` file.
-3. Manually create your cloud credentials.
+9. Manually create your cloud credentials.
 
    1. From the directory that contains the installation program, obtain details of the OpenShift Container Platform release image that your `openshift-install` binary is built to use:
 
@@ -772,31 +801,30 @@ If you do so, you must add ingress DNS records manually in a later step.
       data:
         disabled: "true"
       ```
-4. To create the Ignition configuration files, run the following command from the directory that contains the installation program:
+10. To create the Ignition configuration files, run the following command from the directory that contains the installation program:
 
-   ```terminal
-   $ ./openshift-install create ignition-configs --dir <installation_directory>
-   ```
+    ```terminal
+    $ ./openshift-install create ignition-configs --dir <installation_directory>
+    ```
 
-   where:
+    where:
 
-   `<installation_directory>`
-   :   Specifies the same installation directory. The installation program creates Ignition config files for the bootstrap, control plane, and compute nodes in the installation directory. The program also creates the `kubeadmin-password` and `kubeconfig` files in the `./<installation_directory>/auth` directory:
+    `<installation_directory>`
+    :   Specifies the same installation directory. The installation program creates Ignition config files for the bootstrap, control plane, and compute nodes in the installation directory. The program also creates the `kubeadmin-password` and `kubeconfig` files in the `./<installation_directory>/auth` directory:
 
-   ```
-   .
-   ├── auth
-   │   ├── kubeadmin-password
-   │   └── kubeconfig
-   ├── bootstrap.ign
-   ├── master.ign
-   ├── metadata.json
-   └── worker.ign
-   ```
-
-   :::
+    ```
+    .
+    ├── auth
+    │   ├── kubeadmin-password
+    │   └── kubeconfig
+    ├── bootstrap.ign
+    ├── master.ign
+    ├── metadata.json
+    └── worker.ign
+    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Manually manage cloud credentials](/openshift-docs-markdown/installing/installing_azure_stack_hub/ipi/installing-azure-stack-hub-default#manually-create-iam_installing-azure-stack-hub-default)
 
@@ -832,32 +860,30 @@ Because `/var` must be in place before a fresh installation of Red Hat Enterpri
    $ openshift-install create manifests --dir $HOME/clusterconfig
    ```
 
-```terminal {title="Example output"}
-? SSH Public Key ...
-INFO Credentials loaded from the "myprofile" profile in file "/home/myuser/.aws/credentials"
-INFO Consuming Install Config from target directory
-INFO Manifests created in: $HOME/clusterconfig/manifests and $HOME/clusterconfig/openshift
-```
-
-1. Optional: Confirm that the installation program created manifests in the `clusterconfig/openshift` directory:
+   ```terminal {title="Example output"}
+   ? SSH Public Key ...
+   INFO Credentials loaded from the "myprofile" profile in file "/home/myuser/.aws/credentials"
+   INFO Consuming Install Config from target directory
+   INFO Manifests created in: $HOME/clusterconfig/manifests and $HOME/clusterconfig/openshift
+   ```
+3. Optional: Confirm that the installation program created manifests in the `clusterconfig/openshift` directory:
 
    ```terminal
    $ ls $HOME/clusterconfig/openshift/
    ```
 
-```terminal {title="Example output"}
-99_kubeadmin-password-secret.yaml
-99_openshift-cluster-api_master-machines-0.yaml
-99_openshift-cluster-api_master-machines-1.yaml
-99_openshift-cluster-api_master-machines-2.yaml
-...
-```
-
-1. Create a Butane config that configures the additional partition. For example, name the file `$HOME/clusterconfig/98-var-partition.bu`, change the disk device name to the name of the storage device on the `worker` systems, and set the storage size as appropriate. This example places the `/var` directory on a separate partition:
+   ```terminal {title="Example output"}
+   99_kubeadmin-password-secret.yaml
+   99_openshift-cluster-api_master-machines-0.yaml
+   99_openshift-cluster-api_master-machines-1.yaml
+   99_openshift-cluster-api_master-machines-2.yaml
+   ...
+   ```
+4. Create a Butane config that configures the additional partition. For example, name the file `$HOME/clusterconfig/98-var-partition.bu`, change the disk device name to the name of the storage device on the `worker` systems, and set the storage size as appropriate. This example places the `/var` directory on a separate partition:
 
    ```yaml
    variant: openshift
-   version: {{ product_version }}.0
+   version: 4.22.0
    metadata:
      labels:
        machineconfiguration.openshift.io/role: worker
@@ -894,12 +920,12 @@ INFO Manifests created in: $HOME/clusterconfig/manifests and $HOME/clusterconfig
 
    > [!NOTE]
    > When creating a separate `/var` partition, you cannot use different instance types for worker nodes, if the different instance types do not have the same device name.
-2. Create a manifest from the Butane config and save it to the `clusterconfig/openshift` directory. For example, run the following command:
+5. Create a manifest from the Butane config and save it to the `clusterconfig/openshift` directory. For example, run the following command:
 
    ```terminal
    $ butane $HOME/clusterconfig/98-var-partition.bu -o $HOME/clusterconfig/openshift/98-var-partition.yaml
    ```
-3. Run `openshift-install` again to create Ignition configs from a set of files in the `manifest` and `openshift` subdirectories:
+6. Run `openshift-install` again to create Ignition configs from a set of files in the `manifest` and `openshift` subdirectories:
 
    ```terminal
    $ openshift-install create ignition-configs --dir $HOME/clusterconfig
@@ -920,15 +946,14 @@ For more information, see "Azure resource groups".
 
 **Procedure**
 
-````
-*   Create the resource group in a supported Azure region:
+- Create the resource group in a supported Azure region:
 
 ```terminal
 $ az group create --name ${RESOURCE_GROUP} --location ${AZURE_REGION}
 ```
-````
 
 **Additional resources**
+{._additional-resources}
 
 - [Azure resource groups (Azure documentation)](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/overview#resource-groups)
 
@@ -959,11 +984,9 @@ The Azure client does not support deployments based on files existing locally. Y
    ```
 3. Export the URL of the RHCOS VHD to an environment variable:
 
-   ````
    ```terminal
    $ export COMPRESSED_VHD_URL=$(openshift-install coreos print-stream-json | jq -r '.architectures.x86_64.artifacts.azurestack.formats."vhd.gz".disk.location')
    ```
-   ````
 
    > [!IMPORTANT]
    > The RHCOS images might not change with every release of OpenShift Container Platform. You must specify an image with the highest version that is less than or equal to the OpenShift Container Platform version that you install. Use the image version that matches your OpenShift Container Platform version if it is available.
@@ -1007,18 +1030,16 @@ For this example, [Azure Stack Hub’s datacenter DNS integration](https://docs.
 
 **Procedure**
 
-````
-*   Create the new DNS zone in the resource group exported in the
-`BASE_DOMAIN_RESOURCE_GROUP` environment variable:
+- Create the new DNS zone in the resource group exported in the `BASE_DOMAIN_RESOURCE_GROUP` environment variable:
 
-    ```terminal
-    $ az network dns zone create -g ${BASE_DOMAIN_RESOURCE_GROUP} -n ${CLUSTER_NAME}.${BASE_DOMAIN}
-    ```
+```terminal
+$ az network dns zone create -g ${BASE_DOMAIN_RESOURCE_GROUP} -n ${CLUSTER_NAME}.${BASE_DOMAIN}
+```
 
-    You can skip this step if you are using a DNS zone that already exists.
-````
+You can skip this step if you are using a DNS zone that already exists.
 
 **Additional resources**
+{._additional-resources}
 
 - [Example for creating DNS zones](/openshift-docs-markdown/installing/installing_azure_stack_hub/upi/installing-azure-stack-hub-user-infra#installation-azure-create-dns-zones_installing-azure-stack-hub-user-infra)
 
@@ -1046,101 +1067,9 @@ To provide network connectivity for your cluster on Microsoft Azure Stack Hub, y
 
 Use the `01_vnet.json` Azure Resource Manager (ARM) template to deploy the virtual network (VNet) for your OpenShift Container Platform cluster.
 
-<details>
-<summary>`01_vnet.json` ARM template</summary>
-
-````json
-{%- if not ash %}
+:::details{title="`01_vnet.json` ARM template"}
 ```json
-{
-  "$schema" : "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-  "contentVersion" : "1.0.0.0",
-  "parameters" : {
-    "baseName" : {
-      "type" : "string",
-      "minLength" : 1,
-      "metadata" : {
-        "description" : "Base name to be used in resource names (usually the cluster's Infra ID)"
-      }
-    }
-  },
-  "variables" : {
-    "location" : "[resourceGroup().location]",
-    "virtualNetworkName" : "[concat(parameters('baseName'), '-vnet')]",
-    "addressPrefix" : "10.0.0.0/16",
-    "masterSubnetName" : "[concat(parameters('baseName'), '-master-subnet')]",
-    "masterSubnetPrefix" : "10.0.0.0/24",
-    "nodeSubnetName" : "[concat(parameters('baseName'), '-worker-subnet')]",
-    "nodeSubnetPrefix" : "10.0.1.0/24",
-    "clusterNsgName" : "[concat(parameters('baseName'), '-nsg')]"
-  },
-  "resources" : [
-    {
-      "apiVersion" : "2018-12-01",
-      "type" : "Microsoft.Network/virtualNetworks",
-      "name" : "[variables('virtualNetworkName')]",
-      "location" : "[variables('location')]",
-      "dependsOn" : [
-        "[concat('Microsoft.Network/networkSecurityGroups/', variables('clusterNsgName'))]"
-      ],
-      "properties" : {
-        "addressSpace" : {
-          "addressPrefixes" : [
-            "[variables('addressPrefix')]"
-          ]
-        },
-        "subnets" : [
-          {
-            "name" : "[variables('masterSubnetName')]",
-            "properties" : {
-              "addressPrefix" : "[variables('masterSubnetPrefix')]",
-              "serviceEndpoints": [],
-              "networkSecurityGroup" : {
-                "id" : "[resourceId('Microsoft.Network/networkSecurityGroups', variables('clusterNsgName'))]"
-              }
-            }
-          },
-          {
-            "name" : "[variables('nodeSubnetName')]",
-            "properties" : {
-              "addressPrefix" : "[variables('nodeSubnetPrefix')]",
-              "serviceEndpoints": [],
-              "networkSecurityGroup" : {
-                "id" : "[resourceId('Microsoft.Network/networkSecurityGroups', variables('clusterNsgName'))]"
-              }
-            }
-          }
-        ]
-      }
-    },
-    {
-      "type" : "Microsoft.Network/networkSecurityGroups",
-      "name" : "[variables('clusterNsgName')]",
-      "apiVersion" : "2018-10-01",
-      "location" : "[variables('location')]",
-      "properties" : {
-        "securityRules" : [
-          {
-            "name" : "apiserver_in",
-            "properties" : {
-              "protocol" : "Tcp",
-              "sourcePortRange" : "*",
-              "destinationPortRange" : "6443",
-              "sourceAddressPrefix" : "*",
-              "destinationAddressPrefix" : "*",
-              "access" : "Allow",
-              "priority" : 101,
-              "direction" : "Inbound"
-            }
-          }
-        ]
-      }
-    }
-  ]
-}
-````
 
-```json
 {
   "$schema" : "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion" : "1.0.0.0",
@@ -1241,219 +1170,57 @@ Use the `01_vnet.json` Azure Resource Manager (ARM) template to deploy the virtu
   ]
 }
 ```
+:::
 
-````
-</details>
+## Deploying the RHCOS cluster image for the Azure Stack Hub infrastructure {#installation-azure-user-infra-deploying-rhcos_installing-azure-stack-hub-user-infra}
 
-## Deploying the RHCOS cluster image for the Azure Stack Hub infrastructure {id="installation-azure-user-infra-deploying-rhcos_installing-azure-stack-hub-user-infra"}
-
-To provision cluster nodes on Microsoft Azure Stack Hub, you must use a valid Red&#160;Hat Enterprise Linux CoreOS (RHCOS) image for Microsoft Azure Stack Hub for your
-OpenShift Container Platform nodes. {._abstract}
+To provision cluster nodes on Microsoft Azure Stack Hub, you must use a valid Red Hat Enterprise Linux CoreOS (RHCOS) image for Microsoft Azure Stack Hub for your OpenShift Container Platform nodes.
 
 **Prerequisites**
 
-*   Store the RHCOS virtual hard disk (VHD) cluster image in an Azure storage container.
-*   Store the bootstrap Ignition config file in an Azure storage container.
+- Store the RHCOS virtual hard disk (VHD) cluster image in an Azure storage container.
+- Store the bootstrap Ignition config file in an Azure storage container.
 
 **Procedure**
 
-1.  Copy the template from the **ARM template for image storage** section of
-this topic and save it as `02_storage.json` in your cluster’s installation directory. This template
-describes the image storage that your cluster requires.
-1.  Export the RHCOS VHD blob URL as a variable:
-    ```terminal
-    $ export VHD_BLOB_URL=`az storage blob url --account-name ${CLUSTER_NAME}sa --account-key ${ACCOUNT_KEY} -c vhd -n "rhcos.vhd" -o tsv`
-    ```
-1.  Deploy the cluster image:
-    ```terminal
-    $ az deployment group create -g ${RESOURCE_GROUP} \
-      --template-file "<installation_directory>/02_storage.json" \
-      --parameters vhdBlobURL="${VHD_BLOB_URL}" \
-      --parameters baseName="${INFRA_ID}" \
-      --parameters storageAccount="${CLUSTER_NAME}sa" \
-      --parameters architecture="<architecture>"
-    ```
+1. Copy the template from the **ARM template for image storage** section of this topic and save it as `02_storage.json` in your cluster’s installation directory. This template describes the image storage that your cluster requires.
+2. Export the RHCOS VHD blob URL as a variable:
 
-    where:
+   ```terminal
+   $ export VHD_BLOB_URL=`az storage blob url --account-name ${CLUSTER_NAME}sa --account-key ${ACCOUNT_KEY} -c vhd -n "rhcos.vhd" -o tsv`
+   ```
+3. Deploy the cluster image:
 
-    `vhdBlobURL`
-    :   Specifies the blob URL of the RHCOS VHD to be used to create master and worker machines.
+   ```terminal
+   $ az deployment group create -g ${RESOURCE_GROUP} \
+     --template-file "<installation_directory>/02_storage.json" \
+     --parameters vhdBlobURL="${VHD_BLOB_URL}" \
+     --parameters baseName="${INFRA_ID}" \
+     --parameters storageAccount="${CLUSTER_NAME}sa" \
+     --parameters architecture="<architecture>"
+   ```
 
-    `baseName`
-    :   Specifies the base name to be used in resource names; this is usually the cluster’s infrastructure ID.
+   where:
 
-    `storageAccount`
-    :   Specifies the name of your Azure storage account.
+   `vhdBlobURL`
+   :   Specifies the blob URL of the RHCOS VHD to be used to create master and worker machines.
 
-    `architecture`
-    :   Specifies the system architecture. Valid values are `x64` (default) or `Arm64`.
+   `baseName`
+   :   Specifies the base name to be used in resource names; this is usually the cluster’s infrastructure ID.
 
-### ARM template for image storage {id="installation-arm-image-storage_installing-azure-stack-hub-user-infra"}
+   `storageAccount`
+   :   Specifies the name of your Azure storage account.
 
-Use the `02_storage.json` Azure Resource Manager (ARM) template to deploy stored Red&#160;Hat Enterprise Linux CoreOS (RHCOS) image resources for your OpenShift Container Platform cluster. {._abstract}
+   `architecture`
+   :   Specifies the system architecture. Valid values are `x64` (default) or `Arm64`.
 
-<details>
-<summary>`02_storage.json` ARM template</summary>
+### ARM template for image storage {#installation-arm-image-storage_installing-azure-stack-hub-user-infra}
 
+Use the `02_storage.json` Azure Resource Manager (ARM) template to deploy stored Red Hat Enterprise Linux CoreOS (RHCOS) image resources for your OpenShift Container Platform cluster.
+
+:::details{title="`02_storage.json` ARM template"}
 ```json
-{%- if not ash %}
-```json
-{
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "architecture": {
-      "type": "string",
-      "metadata": {
-        "description": "The architecture of the Virtual Machines"
-      },
-      "defaultValue": "x64",
-      "allowedValues": [
-        "Arm64",
-        "x64"
-      ]
-    },
-    "baseName": {
-      "type": "string",
-      "minLength": 1,
-      "metadata": {
-        "description": "Base name to be used in resource names (usually the cluster's Infra ID)"
-      }
-    },
-    "storageAccount": {
-      "type": "string",
-      "metadata": {
-        "description": "The Storage Account name"
-      }
-    },
-    "vhdBlobURL": {
-      "type": "string",
-      "metadata": {
-        "description": "URL pointing to the blob where the VHD to be used to create master and worker machines is located"
-      }
-    }
-  },
-  "variables": {
-    "location": "[resourceGroup().location]",
-    "galleryName": "[concat('gallery_', replace(parameters('baseName'), '-', '_'))]",
-    "imageName": "[parameters('baseName')]",
-    "imageNameGen2": "[concat(parameters('baseName'), '-gen2')]",
-    "imageRelease": "1.0.0"
-  },
-  "resources": [
-    {
-      "apiVersion": "2021-10-01",
-      "type": "Microsoft.Compute/galleries",
-      "name": "[variables('galleryName')]",
-      "location": "[variables('location')]",
-      "resources": [
-        {
-          "apiVersion": "2021-10-01",
-          "type": "images",
-          "name": "[variables('imageName')]",
-          "location": "[variables('location')]",
-          "dependsOn": [
-            "[variables('galleryName')]"
-          ],
-          "properties": {
-            "architecture": "[parameters('architecture')]",
-            "hyperVGeneration": "V1",
-            "identifier": {
-              "offer": "rhcos",
-              "publisher": "RedHat",
-              "sku": "basic"
-            },
-            "osState": "Generalized",
-            "osType": "Linux"
-          },
-          "resources": [
-            {
-              "apiVersion": "2022-03-03",
-              "type": "versions",
-              "name": "[variables('imageRelease')]",
-              "location": "[variables('location')]",
-              "dependsOn": [
-                "[variables('imageName')]"
-              ],
-              "properties": {
-                "publishingProfile": {
-                  "storageAccountType": "Standard_LRS",
-                  "targetRegions": [
-                    {
-                      "name": "[variables('location')]",
-                      "regionalReplicaCount": "1"
-                    }
-                  ]
-                },
-                "storageProfile": {
-                  "osDiskImage": {
-                    "source": {
-                      "storageAccountId": "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccount'))]",
-                      "uri": "[parameters('vhdBlobURL')]"
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        },
-        {
-          "apiVersion": "2021-10-01",
-          "type": "images",
-          "name": "[variables('imageNameGen2')]",
-          "location": "[variables('location')]",
-          "dependsOn": [
-            "[variables('galleryName')]"
-          ],
-          "properties": {
-            "architecture": "[parameters('architecture')]",
-            "hyperVGeneration": "V2",
-            "identifier": {
-              "offer": "rhcos-gen2",
-              "publisher": "RedHat-gen2",
-              "sku": "gen2"
-            },
-            "osState": "Generalized",
-            "osType": "Linux"
-          },
-          "resources": [
-            {
-              "apiVersion": "2022-03-03",
-              "type": "versions",
-              "name": "[variables('imageRelease')]",
-              "location": "[variables('location')]",
-              "dependsOn": [
-                "[variables('imageNameGen2')]"
-              ],
-              "properties": {
-                "publishingProfile": {
-                  "storageAccountType": "Standard_LRS",
-                  "targetRegions": [
-                    {
-                      "name": "[variables('location')]",
-                      "regionalReplicaCount": "1"
-                    }
-                  ]
-                },
-                "storageProfile": {
-                  "osDiskImage": {
-                    "source": {
-                      "storageAccountId": "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccount'))]",
-                      "uri": "[parameters('vhdBlobURL')]"
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
-      ]
-    }
-  ]
-}
-````
 
-```json
 {
   "$schema" : "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion" : "1.0.0.0",
@@ -1496,28 +1263,22 @@ Use the `02_storage.json` Azure Resource Manager (ARM) template to deploy stored
   ]
 }
 ```
+:::
 
-````
-</details>
+## Networking requirements for user-provisioned infrastructure {#installation-network-user-infra_installing-azure-stack-hub-user-infra}
 
-## Networking requirements for user-provisioned infrastructure {id="installation-network-user-infra_installing-azure-stack-hub-user-infra"}
+You must configure networking for all the Red Hat Enterprise Linux CoreOS (RHCOS) machines in `initramfs` during boot, so that they can fetch their Ignition config files.
 
-You must configure networking for all the Red&#160;Hat Enterprise Linux CoreOS (RHCOS) machines in `initramfs` during boot, so that they can fetch their Ignition config files. {._abstract}
-
-### Network connectivity requirements {id="installation-network-connectivity-user-infra_installing-azure-stack-hub-user-infra"}
+### Network connectivity requirements {#installation-network-connectivity-user-infra_installing-azure-stack-hub-user-infra}
 
 You must configure the network connectivity between machines to allow OpenShift Container Platform cluster components to communicate. Each machine must be able to resolve the hostnames of all other machines in the cluster.
 
 This section provides details about the ports that are required.
 
-:::important
+> [!IMPORTANT]
+> In connected OpenShift Container Platform environments, all nodes are required to have internet access to pull images for platform containers and provide telemetry data to Red Hat.
 
-In connected OpenShift Container Platform environments, all nodes are required to have internet access to pull images
-for platform containers and provide telemetry data to Red Hat.
-
-:::
-
-***Ports used for all-machine to all-machine communications***
+**Ports used for all-machine to all-machine communications**
 
 <table>
 <thead>
@@ -1531,56 +1292,60 @@ for platform containers and provide telemetry data to Red Hat.
 <tr>
   <td>ICMP</td>
   <td>N/A</td>
-  <td>Network reachability tests<br><br>.4+</td>
+  <td>Network reachability tests</td>
 </tr>
 <tr>
-  <td>TCP</td>
+  <td rowspan="4">TCP</td>
   <td><code>1936</code></td>
   <td>Metrics</td>
 </tr>
 <tr>
   <td><code>9000</code>-<code>9999</code></td>
-  <td>Host level services, including the node exporter on ports <code>9100</code>-<code>9101</code> andthe Cluster Version Operator on port <code>9099</code>.</td>
+  <td>Host level services, including the node exporter on ports <code>9100</code>-<code>9101</code> and the Cluster Version Operator on port <code>9099</code>.</td>
+</tr>
+<tr>
   <td><code>10250</code>-<code>10259</code></td>
-</tr>
-<tr>
   <td>The default ports that Kubernetes reserves</td>
-  <td><code>22623</code></td>
-  <td>The port handles traffic from the Machine Config Server and directs the traffic to the control plane machines..6+</td>
 </tr>
 <tr>
-  <td>UDP</td>
+  <td><code>22623</code></td>
+  <td>The port handles traffic from the Machine Config Server and directs the traffic to the control plane machines.</td>
+</tr>
+<tr>
+  <td rowspan="5">UDP</td>
   <td><code>6081</code></td>
   <td>Geneve</td>
 </tr>
 <tr>
   <td><code>9000</code>-<code>9999</code></td>
   <td>Host level services, including the node exporter on ports <code>9100</code>-<code>9101</code>.</td>
-  <td><code>500</code></td>
 </tr>
 <tr>
+  <td><code>500</code></td>
   <td>IPsec IKE packets</td>
+</tr>
+<tr>
   <td><code>4500</code></td>
   <td>IPsec NAT-T packets</td>
 </tr>
 <tr>
   <td><code>123</code></td>
   <td>Network Time Protocol (NTP) on UDP port <code>123</code>. If an external NTP time server is configured, you must open UDP port <code>123</code>.</td>
-  <td>TCP/UDP</td>
 </tr>
 <tr>
+  <td>TCP/UDP</td>
   <td><code>30000</code>-<code>32767</code></td>
   <td>Kubernetes node port</td>
-  <td>ESP</td>
 </tr>
 <tr>
+  <td>ESP</td>
   <td>N/A</td>
   <td>IPsec Encapsulating Security Payload (ESP)</td>
 </tr>
 </tbody>
 </table>
 
-***Ports used for all-machine to control plane communications***
+**Ports used for all-machine to control plane communications**
 
 <table>
 <thead>
@@ -1599,7 +1364,7 @@ for platform containers and provide telemetry data to Red Hat.
 </tbody>
 </table>
 
-***Ports used for control plane machine to control plane machine communications***
+**Ports used for control plane machine to control plane machine communications**
 
 <table>
 <thead>
@@ -1618,338 +1383,76 @@ for platform containers and provide telemetry data to Red Hat.
 </tbody>
 </table>
 
-## Creating networking and load balancing components in Azure Stack Hub {id="installation-creating-azure-dns_installing-azure-stack-hub-user-infra"}
+## Creating networking and load balancing components in Azure Stack Hub {#installation-creating-azure-dns_installing-azure-stack-hub-user-infra}
 
-To enable cluster communication on Microsoft Azure Stack Hub, you must deploy networking and load balancing components by using the Azure Resource Manager (ARM) template. {._abstract}
+To enable cluster communication on Microsoft Azure Stack Hub, you must deploy networking and load balancing components by using the Azure Resource Manager (ARM) template.
 
 Load balancing requires the following DNS records:
 
-*   An `api` DNS record for the API public load balancer in the DNS zone.
-*   An `api-int` DNS record for the API internal load balancer in the DNS zone.
+- An `api` DNS record for the API public load balancer in the DNS zone.
+- An `api-int` DNS record for the API internal load balancer in the DNS zone.
 
-:::note
-
-If you do not use the provided ARM template to create your Azure Stack Hub infrastructure,
-you must review the provided information and manually create the infrastructure.
-If your cluster does not initialize correctly, you might have to contact Red Hat
-support with your installation logs.
-
-:::
+> [!NOTE]
+> If you do not use the provided ARM template to create your Azure Stack Hub infrastructure, you must review the provided information and manually create the infrastructure. If your cluster does not initialize correctly, you might have to contact Red Hat support with your installation logs.
 
 **Prerequisites**
 
-*   Create and configure a VNet and associated subnets in Azure Stack Hub.
+- Create and configure a VNet and associated subnets in Azure Stack Hub.
 
 **Procedure**
 
-1.  Copy the template from the **ARM template for the network and load balancers**
-section of this topic and save it as `03_infra.json` in your cluster’s installation directory. This
-template describes the networking and load balancing objects that your cluster
-requires.
-1.  Create the deployment by using the `az` CLI:
+1. Copy the template from the **ARM template for the network and load balancers** section of this topic and save it as `03_infra.json` in your cluster’s installation directory. This template describes the networking and load balancing objects that your cluster requires.
+2. Create the deployment by using the `az` CLI:
 
-        ```terminal
-        $ az deployment group create -g ${RESOURCE_GROUP} \
-          --template-file "<installation_directory>/03_infra.json" \
-          --parameters baseName="${INFRA_ID}"
-        ```
-    The `baseName` specifies the base name to be used in resource names; this is usually the cluster’s infrastructure ID.
+   ```terminal
+   $ az deployment group create -g ${RESOURCE_GROUP} \
+     --template-file "<installation_directory>/03_infra.json" \
+     --parameters baseName="${INFRA_ID}"
+   ```
 
-1.  Create an `api` DNS record and an `api-int` DNS record. When creating the API DNS records, the `${{ BASE_DOMAIN_RESOURCE_GROUP }}` variable must point to the resource group where the DNS zone exists.
+   The `baseName` specifies the base name to be used in resource names; this is usually the cluster’s infrastructure ID.
+3. Create an `api` DNS record and an `api-int` DNS record. When creating the API DNS records, the `${BASE_DOMAIN_RESOURCE_GROUP}` variable must point to the resource group where the DNS zone exists.
 
-    1.  Export the following variable:
-        ```terminal
-        $ export PUBLIC_IP=`az network public-ip list -g ${RESOURCE_GROUP} --query "[?name=='${INFRA_ID}-master-pip'] | [0].ipAddress" -o tsv`
-        ```
-    1.  Export the following variable:
-        ```terminal
-        $ export PRIVATE_IP=`az network lb frontend-ip show -g "$RESOURCE_GROUP" --lb-name "${INFRA_ID}-internal" -n internal-lb-ip --query "privateIpAddress" -o tsv`
-        ```
+   1. Export the following variable:
 
+      ```terminal
+      $ export PUBLIC_IP=`az network public-ip list -g ${RESOURCE_GROUP} --query "[?name=='${INFRA_ID}-master-pip'] | [0].ipAddress" -o tsv`
+      ```
+   2. Export the following variable:
 
-    1.  Create the `api` DNS record in a new DNS zone:
+      ```terminal
+      $ export PRIVATE_IP=`az network lb frontend-ip show -g "$RESOURCE_GROUP" --lb-name "${INFRA_ID}-internal" -n internal-lb-ip --query "privateIpAddress" -o tsv`
+      ```
+   3. Create the `api` DNS record in a new DNS zone:
 
-        ```terminal
-        $ az network dns record-set a add-record -g ${BASE_DOMAIN_RESOURCE_GROUP} -z ${CLUSTER_NAME}.${BASE_DOMAIN} -n api -a ${PUBLIC_IP} --ttl 60
-        ```
+      ```terminal
+      $ az network dns record-set a add-record -g ${BASE_DOMAIN_RESOURCE_GROUP} -z ${CLUSTER_NAME}.${BASE_DOMAIN} -n api -a ${PUBLIC_IP} --ttl 60
+      ```
 
-        If you are adding the cluster to an existing DNS zone, you can create the `api` DNS record in it instead:
+      If you are adding the cluster to an existing DNS zone, you can create the `api` DNS record in it instead:
 
-        ```terminal
-        $ az network dns record-set a add-record -g ${BASE_DOMAIN_RESOURCE_GROUP} -z ${BASE_DOMAIN} -n api.${CLUSTER_NAME} -a ${PUBLIC_IP} --ttl 60
-        ```
+      ```terminal
+      $ az network dns record-set a add-record -g ${BASE_DOMAIN_RESOURCE_GROUP} -z ${BASE_DOMAIN} -n api.${CLUSTER_NAME} -a ${PUBLIC_IP} --ttl 60
+      ```
+   4. Create the `api-int` DNS record in a new DNS zone:
 
-    1.  Create the `api-int` DNS record in a new DNS zone:
-        ```terminal
-        $ az network dns record-set a add-record -g ${BASE_DOMAIN_RESOURCE_GROUP} -z "${CLUSTER_NAME}.${BASE_DOMAIN}" -n api-int -a ${PRIVATE_IP} --ttl 60
-        ```
+      ```terminal
+      $ az network dns record-set a add-record -g ${BASE_DOMAIN_RESOURCE_GROUP} -z "${CLUSTER_NAME}.${BASE_DOMAIN}" -n api-int -a ${PRIVATE_IP} --ttl 60
+      ```
 
-        If you are adding the cluster to an existing DNS zone, you can create the `api-int` DNS
-        record in it instead:
-        ```terminal
-        $ az network dns record-set a add-record -g ${BASE_DOMAIN_RESOURCE_GROUP} -z ${BASE_DOMAIN} -n api-int.${CLUSTER_NAME} -a ${PRIVATE_IP} --ttl 60
-        ```
+      If you are adding the cluster to an existing DNS zone, you can create the `api-int` DNS record in it instead:
 
-### ARM template for the network and load balancers {id="installation-arm-dns_installing-azure-stack-hub-user-infra"}
+      ```terminal
+      $ az network dns record-set a add-record -g ${BASE_DOMAIN_RESOURCE_GROUP} -z ${BASE_DOMAIN} -n api-int.${CLUSTER_NAME} -a ${PRIVATE_IP} --ttl 60
+      ```
 
-Use the `03_infra.json` Azure Resource Manager (ARM) template to deploy networking objects and load balancers for your OpenShift Container Platform cluster. {._abstract}
+### ARM template for the network and load balancers {#installation-arm-dns_installing-azure-stack-hub-user-infra}
 
-<details>
-<summary>`03_infra.json` ARM template</summary>
+Use the `03_infra.json` Azure Resource Manager (ARM) template to deploy networking objects and load balancers for your OpenShift Container Platform cluster.
 
+:::details{title="`03_infra.json` ARM template"}
 ```json
-{%- if not ash %}
-```json
-{
-  "$schema" : "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-  "contentVersion" : "1.0.0.0",
-  "parameters" : {
-    "baseName" : {
-      "type" : "string",
-      "minLength" : 1,
-      "metadata" : {
-        "description" : "Base name to be used in resource names (usually the cluster's Infra ID)"
-      }
-    },
-    "vnetBaseName": {
-      "type": "string",
-      "defaultValue": "",
-      "metadata" : {
-        "description" : "The specific customer vnet's base name (optional)"
-      }
-    },
-    "privateDNSZoneName" : {
-      "type" : "string",
-      "metadata" : {
-        "description" : "Name of the private DNS zone"
-      }
-    }
-  },
-  "variables" : {
-    "location" : "[resourceGroup().location]",
-    "virtualNetworkName" : "[concat(if(not(empty(parameters('vnetBaseName'))), parameters('vnetBaseName'), parameters('baseName')), '-vnet')]",
-    "virtualNetworkID" : "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
-    "masterSubnetName" : "[concat(if(not(empty(parameters('vnetBaseName'))), parameters('vnetBaseName'), parameters('baseName')), '-master-subnet')]",
-    "masterSubnetRef" : "[concat(variables('virtualNetworkID'), '/subnets/', variables('masterSubnetName'))]",
-    "masterPublicIpAddressName" : "[concat(parameters('baseName'), '-master-pip')]",
-    "masterPublicIpAddressID" : "[resourceId('Microsoft.Network/publicIPAddresses', variables('masterPublicIpAddressName'))]",
-    "masterLoadBalancerName" : "[parameters('baseName')]",
-    "masterLoadBalancerID" : "[resourceId('Microsoft.Network/loadBalancers', variables('masterLoadBalancerName'))]",
-    "internalLoadBalancerName" : "[concat(parameters('baseName'), '-internal-lb')]",
-    "internalLoadBalancerID" : "[resourceId('Microsoft.Network/loadBalancers', variables('internalLoadBalancerName'))]",
-    "skuName": "Standard"
-  },
-  "resources" : [
-    {
-      "apiVersion" : "2018-12-01",
-      "type" : "Microsoft.Network/publicIPAddresses",
-      "name" : "[variables('masterPublicIpAddressName')]",
-      "location" : "[variables('location')]",
-      "sku": {
-        "name": "[variables('skuName')]"
-      },
-      "properties" : {
-        "publicIPAllocationMethod" : "Static",
-        "dnsSettings" : {
-          "domainNameLabel" : "[variables('masterPublicIpAddressName')]"
-        }
-      }
-    },
-    {
-      "apiVersion" : "2018-12-01",
-      "type" : "Microsoft.Network/loadBalancers",
-      "name" : "[variables('masterLoadBalancerName')]",
-      "location" : "[variables('location')]",
-      "sku": {
-        "name": "[variables('skuName')]"
-      },
-      "dependsOn" : [
-        "[concat('Microsoft.Network/publicIPAddresses/', variables('masterPublicIpAddressName'))]"
-      ],
-      "properties" : {
-        "frontendIPConfigurations" : [
-          {
-            "name" : "public-lb-ip-v4",
-            "properties" : {
-              "publicIPAddress" : {
-                "id" : "[variables('masterPublicIpAddressID')]"
-              }
-            }
-          }
-        ],
-        "backendAddressPools" : [
-          {
-            "name" : "[variables('masterLoadBalancerName')]"
-          }
-        ],
-        "loadBalancingRules" : [
-          {
-            "name" : "api-internal",
-            "properties" : {
-              "frontendIPConfiguration" : {
-                "id" :"[concat(variables('masterLoadBalancerID'), '/frontendIPConfigurations/public-lb-ip-v4')]"
-              },
-              "backendAddressPool" : {
-                "id" : "[concat(variables('masterLoadBalancerID'), '/backendAddressPools/', variables('masterLoadBalancerName'))]"
-              },
-              "protocol" : "Tcp",
-              "loadDistribution" : "Default",
-              "idleTimeoutInMinutes" : 30,
-              "frontendPort" : 6443,
-              "backendPort" : 6443,
-              "probe" : {
-                "id" : "[concat(variables('masterLoadBalancerID'), '/probes/api-internal-probe')]"
-              }
-            }
-          }
-        ],
-        "probes" : [
-          {
-            "name" : "api-internal-probe",
-            "properties" : {
-              "protocol" : "Https",
-              "port" : 6443,
-              "requestPath": "/readyz",
-              "intervalInSeconds" : 10,
-              "numberOfProbes" : 3
-            }
-          }
-        ]
-      }
-    },
-    {
-      "apiVersion" : "2018-12-01",
-      "type" : "Microsoft.Network/loadBalancers",
-      "name" : "[variables('internalLoadBalancerName')]",
-      "location" : "[variables('location')]",
-      "sku": {
-        "name": "[variables('skuName')]"
-      },
-      "properties" : {
-        "frontendIPConfigurations" : [
-          {
-            "name" : "internal-lb-ip",
-            "properties" : {
-              "privateIPAllocationMethod" : "Dynamic",
-              "subnet" : {
-                "id" : "[variables('masterSubnetRef')]"
-              },
-              "privateIPAddressVersion" : "IPv4"
-            }
-          }
-        ],
-        "backendAddressPools" : [
-          {
-            "name" : "internal-lb-backend"
-          }
-        ],
-        "loadBalancingRules" : [
-          {
-            "name" : "api-internal",
-            "properties" : {
-              "frontendIPConfiguration" : {
-                "id" : "[concat(variables('internalLoadBalancerID'), '/frontendIPConfigurations/internal-lb-ip')]"
-              },
-              "frontendPort" : 6443,
-              "backendPort" : 6443,
-              "enableFloatingIP" : false,
-              "idleTimeoutInMinutes" : 30,
-              "protocol" : "Tcp",
-              "enableTcpReset" : false,
-              "loadDistribution" : "Default",
-              "backendAddressPool" : {
-                "id" : "[concat(variables('internalLoadBalancerID'), '/backendAddressPools/internal-lb-backend')]"
-              },
-              "probe" : {
-                "id" : "[concat(variables('internalLoadBalancerID'), '/probes/api-internal-probe')]"
-              }
-            }
-          },
-          {
-            "name" : "sint",
-            "properties" : {
-              "frontendIPConfiguration" : {
-                "id" : "[concat(variables('internalLoadBalancerID'), '/frontendIPConfigurations/internal-lb-ip')]"
-              },
-              "frontendPort" : 22623,
-              "backendPort" : 22623,
-              "enableFloatingIP" : false,
-              "idleTimeoutInMinutes" : 30,
-              "protocol" : "Tcp",
-              "enableTcpReset" : false,
-              "loadDistribution" : "Default",
-              "backendAddressPool" : {
-                "id" : "[concat(variables('internalLoadBalancerID'), '/backendAddressPools/internal-lb-backend')]"
-              },
-              "probe" : {
-                "id" : "[concat(variables('internalLoadBalancerID'), '/probes/sint-probe')]"
-              }
-            }
-          }
-        ],
-        "probes" : [
-          {
-            "name" : "api-internal-probe",
-            "properties" : {
-              "protocol" : "Https",
-              "port" : 6443,
-              "requestPath": "/readyz",
-              "intervalInSeconds" : 10,
-              "numberOfProbes" : 3
-            }
-          },
-          {
-            "name" : "sint-probe",
-            "properties" : {
-              "protocol" : "Https",
-              "port" : 22623,
-              "requestPath": "/healthz",
-              "intervalInSeconds" : 10,
-              "numberOfProbes" : 3
-            }
-          }
-        ]
-      }
-    },
-    {
-      "apiVersion": "2018-09-01",
-      "type": "Microsoft.Network/privateDnsZones/A",
-      "name": "[concat(parameters('privateDNSZoneName'), '/api')]",
-      "location" : "[variables('location')]",
-      "dependsOn" : [
-        "[concat('Microsoft.Network/loadBalancers/', variables('internalLoadBalancerName'))]"
-      ],
-      "properties": {
-        "ttl": 60,
-        "aRecords": [
-          {
-            "ipv4Address": "[reference(variables('internalLoadBalancerName')).frontendIPConfigurations[0].properties.privateIPAddress]"
-          }
-        ]
-      }
-    },
-    {
-      "apiVersion": "2018-09-01",
-      "type": "Microsoft.Network/privateDnsZones/A",
-      "name": "[concat(parameters('privateDNSZoneName'), '/api-int')]",
-      "location" : "[variables('location')]",
-      "dependsOn" : [
-        "[concat('Microsoft.Network/loadBalancers/', variables('internalLoadBalancerName'))]"
-      ],
-      "properties": {
-        "ttl": 60,
-        "aRecords": [
-          {
-            "ipv4Address": "[reference(variables('internalLoadBalancerName')).frontendIPConfigurations[0].properties.privateIPAddress]"
-          }
-        ]
-      }
-    }
-  ]
-}
-````
 
-```json
 {
   "$schema" : "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion" : "1.0.0.0",
@@ -2209,274 +1712,75 @@ Use the `03_infra.json` Azure Resource Manager (ARM) template to deploy networki
   ]
 }
 ```
-
-````
-</details>
-
-## Creating the bootstrap machine in Azure Stack Hub {id="installation-creating-azure-bootstrap_installing-azure-stack-hub-user-infra"}
-
-To initialize your OpenShift Container Platform cluster on Microsoft Azure Stack Hub, you must deploy the bootstrap machine by using the `04_bootstrap.json` ARM template. {._abstract}
-
-:::note
-
-If you do not use the provided ARM template to create your bootstrap machine,
-you must review the provided information and manually create the infrastructure.
-If your cluster does not initialize correctly, you might have to contact Red Hat
-support with your installation logs.
-
 :::
+
+## Creating the bootstrap machine in Azure Stack Hub {#installation-creating-azure-bootstrap_installing-azure-stack-hub-user-infra}
+
+To initialize your OpenShift Container Platform cluster on Microsoft Azure Stack Hub, you must deploy the bootstrap machine by using the `04_bootstrap.json` ARM template.
+
+> [!NOTE]
+> If you do not use the provided ARM template to create your bootstrap machine, you must review the provided information and manually create the infrastructure. If your cluster does not initialize correctly, you might have to contact Red Hat support with your installation logs.
 
 **Prerequisites**
 
-*   Create and configure networking and load balancers in Azure Stack Hub.
+- Create and configure networking and load balancers in Azure Stack Hub.
 
 **Procedure**
 
-1.  Copy the template from the **ARM template for the bootstrap machine** section of
-this topic and save it as `04_bootstrap.json` in your cluster’s installation directory. This template
-describes the bootstrap machine that your cluster requires.
-1.  Export the bootstrap URL variable:
-    ```terminal
-    $ bootstrap_url_expiry=`date -u -d "10 hours" '+%Y-%m-%dT%H:%MZ'`
-    ```
-    ```terminal
-    $ export BOOTSTRAP_URL=`az storage blob generate-sas -c 'files' -n 'bootstrap.ign' --https-only --full-uri --permissions r --expiry $bootstrap_url_expiry --account-name ${CLUSTER_NAME}sa --account-key ${ACCOUNT_KEY} -o tsv`
-    ```
-1.  Export the bootstrap ignition variable:
+1. Copy the template from the **ARM template for the bootstrap machine** section of this topic and save it as `04_bootstrap.json` in your cluster’s installation directory. This template describes the bootstrap machine that your cluster requires.
+2. Export the bootstrap URL variable:
 
-    1.  If your environment uses a public certificate authority (CA), run this command:
-        ```terminal
-        $ export BOOTSTRAP_IGNITION=`jq -rcnM --arg v "3.2.0" --arg url ${BOOTSTRAP_URL} '{ignition:{version:$v,config:{replace:{source:$url}}}}' | base64 | tr -d '\n'`
-        ```
-    1.  If your environment uses an internal CA, you must add your PEM encoded bundle to the bootstrap ignition stub so that your bootstrap virtual machine can pull the bootstrap ignition from the storage account. Run the following commands, which assume your CA is in a file called `CA.pem`:
-        ```terminal
-        $ export CA="data:text/plain;charset=utf-8;base64,$(cat CA.pem |base64 |tr -d '\n')"
-        ```
-        ```terminal
-        $ export BOOTSTRAP_IGNITION=`jq -rcnM --arg v "3.2.0" --arg url "$BOOTSTRAP_URL" --arg cert "$CA" '{ignition:{version:$v,security:{tls:{certificateAuthorities:[{source:$cert}]}},config:{replace:{source:$url}}}}' | base64 | tr -d '\n'`
-        ```
+   ```terminal
+   $ bootstrap_url_expiry=`date -u -d "10 hours" '+%Y-%m-%dT%H:%MZ'`
+   ```
 
-1.  Create the deployment by using the `az` CLI:
+   ```terminal
+   $ export BOOTSTRAP_URL=`az storage blob generate-sas -c 'files' -n 'bootstrap.ign' --https-only --full-uri --permissions r --expiry $bootstrap_url_expiry --account-name ${CLUSTER_NAME}sa --account-key ${ACCOUNT_KEY} -o tsv`
+   ```
+3. Export the bootstrap ignition variable:
 
-        ```terminal
-        $ az deployment group create --verbose -g ${RESOURCE_GROUP} \
-          --template-file "<installation_directory>/04_bootstrap.json" \
-          --parameters bootstrapIgnition="${BOOTSTRAP_IGNITION}" \
-          --parameters baseName="${INFRA_ID}" \
-          --parameters diagnosticsStorageAccountName="${CLUSTER_NAME}sa"
-        ```
-    where:
+   1. If your environment uses a public certificate authority (CA), run this command:
 
-`bootstrapIgnition`
-:   Specifies the bootstrap Ignition content for the bootstrap cluster.
+      ```terminal
+      $ export BOOTSTRAP_IGNITION=`jq -rcnM --arg v "3.2.0" --arg url ${BOOTSTRAP_URL} '{ignition:{version:$v,config:{replace:{source:$url}}}}' | base64 | tr -d '\n'`
+      ```
+   2. If your environment uses an internal CA, you must add your PEM encoded bundle to the bootstrap ignition stub so that your bootstrap virtual machine can pull the bootstrap ignition from the storage account. Run the following commands, which assume your CA is in a file called `CA.pem`:
 
-`baseName`
-:   Specifies the base name to be used in resource names; this is usually the cluster’s infrastructure ID.
+      ```terminal
+      $ export CA="data:text/plain;charset=utf-8;base64,$(cat CA.pem |base64 |tr -d '\n')"
+      ```
 
-`diagnosticsStorageAccountName`
-:   Specifies the name of the storage account for your cluster.
+      ```terminal
+      $ export BOOTSTRAP_IGNITION=`jq -rcnM --arg v "3.2.0" --arg url "$BOOTSTRAP_URL" --arg cert "$CA" '{ignition:{version:$v,security:{tls:{certificateAuthorities:[{source:$cert}]}},config:{replace:{source:$url}}}}' | base64 | tr -d '\n'`
+      ```
+4. Create the deployment by using the `az` CLI:
 
-### ARM template for the bootstrap machine {id="installation-arm-bootstrap_installing-azure-stack-hub-user-infra"}
+   ```terminal
+   $ az deployment group create --verbose -g ${RESOURCE_GROUP} \
+     --template-file "<installation_directory>/04_bootstrap.json" \
+     --parameters bootstrapIgnition="${BOOTSTRAP_IGNITION}" \
+     --parameters baseName="${INFRA_ID}" \
+     --parameters diagnosticsStorageAccountName="${CLUSTER_NAME}sa"
+   ```
 
-Use the `04_bootstrap.json` Azure Resource Manager (ARM) template to deploy the bootstrap machine for your OpenShift Container Platform cluster. {._abstract}
+   where:
 
-<details>
-<summary>`04_bootstrap.json` ARM template</summary>
+   `bootstrapIgnition`
+   :   Specifies the bootstrap Ignition content for the bootstrap cluster.
 
+   `baseName`
+   :   Specifies the base name to be used in resource names; this is usually the cluster’s infrastructure ID.
+
+   `diagnosticsStorageAccountName`
+   :   Specifies the name of the storage account for your cluster.
+
+### ARM template for the bootstrap machine {#installation-arm-bootstrap_installing-azure-stack-hub-user-infra}
+
+Use the `04_bootstrap.json` Azure Resource Manager (ARM) template to deploy the bootstrap machine for your OpenShift Container Platform cluster.
+
+:::details{title="`04_bootstrap.json` ARM template"}
 ```json
-{%- if not ash %}
-```json
-{
-  "$schema" : "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-  "contentVersion" : "1.0.0.0",
-  "parameters" : {
-    "baseName" : {
-      "type" : "string",
-      "minLength" : 1,
-      "metadata" : {
-        "description" : "Base name to be used in resource names (usually the cluster's Infra ID)"
-      }
-    },
-    "vnetBaseName": {
-      "type": "string",
-      "defaultValue": "",
-      "metadata" : {
-        "description" : "The specific customer vnet's base name (optional)"
-      }
-    },
-    "bootstrapIgnition" : {
-      "type" : "string",
-      "minLength" : 1,
-      "metadata" : {
-        "description" : "Bootstrap ignition content for the bootstrap cluster"
-      }
-    },
-    "sshKeyData" : {
-      "type" : "securestring",
-      "defaultValue" : "Unused",
-      "metadata" : {
-        "description" : "Unused"
-      }
-    },
-    "bootstrapVMSize" : {
-      "type" : "string",
-      "defaultValue" : "Standard_D4s_v3",
-      "metadata" : {
-        "description" : "The size of the Bootstrap Virtual Machine"
-      }
-    },
-    "hyperVGen": {
-      "type": "string",
-      "metadata": {
-        "description": "VM generation image to use"
-      },
-      "defaultValue": "V2",
-      "allowedValues": [
-        "V1",
-        "V2"
-      ]
-    }
-  },
-  "variables" : {
-    "location" : "[resourceGroup().location]",
-    "virtualNetworkName" : "[concat(if(not(empty(parameters('vnetBaseName'))), parameters('vnetBaseName'), parameters('baseName')), '-vnet')]",
-    "virtualNetworkID" : "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
-    "masterSubnetName" : "[concat(if(not(empty(parameters('vnetBaseName'))), parameters('vnetBaseName'), parameters('baseName')), '-master-subnet')]",
-    "masterSubnetRef" : "[concat(variables('virtualNetworkID'), '/subnets/', variables('masterSubnetName'))]",
-    "masterLoadBalancerName" : "[parameters('baseName')]",
-    "internalLoadBalancerName" : "[concat(parameters('baseName'), '-internal-lb')]",
-    "sshKeyPath" : "/home/core/.ssh/authorized_keys",
-    "identityName" : "[concat(parameters('baseName'), '-identity')]",
-    "vmName" : "[concat(parameters('baseName'), '-bootstrap')]",
-    "nicName" : "[concat(variables('vmName'), '-nic')]",
-    "galleryName": "[concat('gallery_', replace(parameters('baseName'), '-', '_'))]",
-    "imageName" : "[concat(parameters('baseName'), if(equals(parameters('hyperVGen'), 'V2'), '-gen2', ''))]",
-    "clusterNsgName" : "[concat(if(not(empty(parameters('vnetBaseName'))), parameters('vnetBaseName'), parameters('baseName')), '-nsg')]",
-    "sshPublicIpAddressName" : "[concat(variables('vmName'), '-ssh-pip')]"
-  },
-  "resources" : [
-    {
-      "apiVersion" : "2018-12-01",
-      "type" : "Microsoft.Network/publicIPAddresses",
-      "name" : "[variables('sshPublicIpAddressName')]",
-      "location" : "[variables('location')]",
-      "sku": {
-        "name": "Standard"
-      },
-      "properties" : {
-        "publicIPAllocationMethod" : "Static",
-        "dnsSettings" : {
-          "domainNameLabel" : "[variables('sshPublicIpAddressName')]"
-        }
-      }
-    },
-    {
-      "apiVersion" : "2018-06-01",
-      "type" : "Microsoft.Network/networkInterfaces",
-      "name" : "[variables('nicName')]",
-      "location" : "[variables('location')]",
-      "dependsOn" : [
-        "[resourceId('Microsoft.Network/publicIPAddresses', variables('sshPublicIpAddressName'))]"
-      ],
-      "properties" : {
-        "ipConfigurations" : [
-          {
-            "name" : "pipConfig",
-            "properties" : {
-              "privateIPAllocationMethod" : "Dynamic",
-              "publicIPAddress": {
-                "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('sshPublicIpAddressName'))]"
-              },
-              "subnet" : {
-                "id" : "[variables('masterSubnetRef')]"
-              },
-              "loadBalancerBackendAddressPools" : [
-                {
-                  "id" : "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('masterLoadBalancerName'), '/backendAddressPools/', variables('masterLoadBalancerName'))]"
-                },
-                {
-                  "id" : "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('internalLoadBalancerName'), '/backendAddressPools/internal-lb-backend')]"
-                }
-              ]
-            }
-          }
-        ]
-      }
-    },
-    {
-      "apiVersion" : "2018-06-01",
-      "type" : "Microsoft.Compute/virtualMachines",
-      "name" : "[variables('vmName')]",
-      "location" : "[variables('location')]",
-      "identity" : {
-        "type" : "userAssigned",
-        "userAssignedIdentities" : {
-          "[resourceID('Microsoft.ManagedIdentity/userAssignedIdentities/', variables('identityName'))]" : {}
-        }
-      },
-      "dependsOn" : [
-        "[concat('Microsoft.Network/networkInterfaces/', variables('nicName'))]"
-      ],
-      "properties" : {
-        "hardwareProfile" : {
-          "vmSize" : "[parameters('bootstrapVMSize')]"
-        },
-        "osProfile" : {
-          "computerName" : "[variables('vmName')]",
-          "adminUsername" : "core",
-          "adminPassword" : "NotActuallyApplied!",
-          "customData" : "[parameters('bootstrapIgnition')]",
-          "linuxConfiguration" : {
-            "disablePasswordAuthentication" : false
-          }
-        },
-        "storageProfile" : {
-          "imageReference": {
-            "id": "[resourceId('Microsoft.Compute/galleries/images', variables('galleryName'), variables('imageName'))]"
-          },
-          "osDisk" : {
-            "name": "[concat(variables('vmName'),'_OSDisk')]",
-            "osType" : "Linux",
-            "createOption" : "FromImage",
-            "managedDisk": {
-              "storageAccountType": "Premium_LRS"
-            },
-            "diskSizeGB" : 100
-          }
-        },
-        "networkProfile" : {
-          "networkInterfaces" : [
-            {
-              "id" : "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "apiVersion" : "2018-06-01",
-      "type": "Microsoft.Network/networkSecurityGroups/securityRules",
-      "name" : "[concat(variables('clusterNsgName'), '/bootstrap_ssh_in')]",
-      "location" : "[variables('location')]",
-      "dependsOn" : [
-        "[resourceId('Microsoft.Compute/virtualMachines', variables('vmName'))]"
-      ],
-      "properties": {
-        "protocol" : "Tcp",
-        "sourcePortRange" : "*",
-        "destinationPortRange" : "22",
-        "sourceAddressPrefix" : "*",
-        "destinationAddressPrefix" : "*",
-        "access" : "Allow",
-        "priority" : 100,
-        "direction" : "Inbound"
-      }
-    }
-  ]
-}
-````
 
-```json
 {
   "$schema" : "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion" : "1.0.0.0",
@@ -2679,249 +1983,54 @@ Use the `04_bootstrap.json` Azure Resource Manager (ARM) template to deploy the 
   ]
 }
 ```
+:::
 
-````
-</details>
+## Creating the control plane machines in Azure Stack Hub {#installation-creating-azure-control-plane_installing-azure-stack-hub-user-infra}
 
-## Creating the control plane machines in Azure Stack Hub {id="installation-creating-azure-control-plane_installing-azure-stack-hub-user-infra"}
-
-To form the control plane for your cluster on Microsoft Azure Stack Hub, you must deploy control plane machines by using the Azure
-Resource Manager (ARM) template. {._abstract}
+To form the control plane for your cluster on Microsoft Azure Stack Hub, you must deploy control plane machines by using the Azure Resource Manager (ARM) template.
 
 If you do not use the provided ARM template to create your control plane machines, you must review the provided information and manually create the infrastructure. If your cluster does not initialize correctly, consider contacting Red Hat support with your installation logs.
 
 **Prerequisites**
 
-*   Create the bootstrap machine.
+- Create the bootstrap machine.
 
 **Procedure**
 
-1.  Copy the template from the **ARM template for control plane machines**
-section of this topic and save it as `05_masters.json` in your cluster’s installation directory.
-This template describes the control plane machines that your cluster requires.
-1.  Export the following variable needed by the control plane machine deployment:
-    ```terminal
-    $ export MASTER_IGNITION=`cat <installation_directory>/master.ign | base64 | tr -d '\n'`
-    ```
-1.  Create the deployment by using the `az` CLI:
+1. Copy the template from the **ARM template for control plane machines** section of this topic and save it as `05_masters.json` in your cluster’s installation directory. This template describes the control plane machines that your cluster requires.
+2. Export the following variable needed by the control plane machine deployment:
 
-        ```terminal
-        $ az deployment group create -g ${RESOURCE_GROUP} \
-          --template-file "<installation_directory>/05_masters.json" \
-          --parameters masterIgnition="${MASTER_IGNITION}" \
-          --parameters baseName="${INFRA_ID}" \
-          --parameters diagnosticsStorageAccountName="${CLUSTER_NAME}sa"
-        ```
-    where:
+   ```terminal
+   $ export MASTER_IGNITION=`cat <installation_directory>/master.ign | base64 | tr -d '\n'`
+   ```
+3. Create the deployment by using the `az` CLI:
 
-`masterIgnition`
-:   Specifies the Ignition content for the control plane nodes (also known as the master nodes).
+   ```terminal
+   $ az deployment group create -g ${RESOURCE_GROUP} \
+     --template-file "<installation_directory>/05_masters.json" \
+     --parameters masterIgnition="${MASTER_IGNITION}" \
+     --parameters baseName="${INFRA_ID}" \
+     --parameters diagnosticsStorageAccountName="${CLUSTER_NAME}sa"
+   ```
 
-`baseName`
-:   Specifies the base name to be used in resource names; this is usually the cluster’s infrastructure ID.
+   where:
 
-`diagnosticsStorageAccountName`
-:   Specifies the name of the storage account for your cluster.
+   `masterIgnition`
+   :   Specifies the Ignition content for the control plane nodes (also known as the master nodes).
 
-### ARM template for control plane machines {id="installation-arm-control-plane_installing-azure-stack-hub-user-infra"}
+   `baseName`
+   :   Specifies the base name to be used in resource names; this is usually the cluster’s infrastructure ID.
 
-Use the `05_masters.json` Azure Resource Manager (ARM) template to deploy the control plane machines for your OpenShift Container Platform cluster. {._abstract}
+   `diagnosticsStorageAccountName`
+   :   Specifies the name of the storage account for your cluster.
 
-<details>
-<summary>`05_masters.json` ARM template</summary>
+### ARM template for control plane machines {#installation-arm-control-plane_installing-azure-stack-hub-user-infra}
 
+Use the `05_masters.json` Azure Resource Manager (ARM) template to deploy the control plane machines for your OpenShift Container Platform cluster.
+
+:::details{title="`05_masters.json` ARM template"}
 ```json
-{%- if not ash %}
-```json
-{
-  "$schema" : "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-  "contentVersion" : "1.0.0.0",
-  "parameters" : {
-    "baseName" : {
-      "type" : "string",
-      "minLength" : 1,
-      "metadata" : {
-        "description" : "Base name to be used in resource names (usually the cluster's Infra ID)"
-      }
-    },
-    "vnetBaseName": {
-      "type": "string",
-      "defaultValue": "",
-      "metadata" : {
-        "description" : "The specific customer vnet's base name (optional)"
-      }
-    },
-    "masterIgnition" : {
-      "type" : "string",
-      "metadata" : {
-        "description" : "Ignition content for the master nodes"
-      }
-    },
-    "numberOfMasters" : {
-      "type" : "int",
-      "defaultValue" : 3,
-      "minValue" : 2,
-      "maxValue" : 30,
-      "metadata" : {
-        "description" : "Number of OpenShift masters to deploy"
-      }
-    },
-    "sshKeyData" : {
-      "type" : "securestring",
-      "defaultValue" : "Unused",
-      "metadata" : {
-        "description" : "Unused"
-      }
-    },
-    "privateDNSZoneName" : {
-      "type" : "string",
-      "defaultValue" : "",
-      "metadata" : {
-        "description" : "unused"
-      }
-    },
-    "masterVMSize" : {
-      "type" : "string",
-      "defaultValue" : "Standard_D8s_v3",
-      "metadata" : {
-        "description" : "The size of the Master Virtual Machines"
-      }
-    },
-    "diskSizeGB" : {
-      "type" : "int",
-      "defaultValue" : 1024,
-      "metadata" : {
-        "description" : "Size of the Master VM OS disk, in GB"
-      }
-    },
-    "hyperVGen": {
-      "type": "string",
-      "metadata": {
-        "description": "VM generation image to use"
-      },
-      "defaultValue": "V2",
-      "allowedValues": [
-        "V1",
-        "V2"
-      ]
-    }
-  },
-  "variables" : {
-    "location" : "[resourceGroup().location]",
-    "virtualNetworkName" : "[concat(if(not(empty(parameters('vnetBaseName'))), parameters('vnetBaseName'), parameters('baseName')), '-vnet')]",
-    "virtualNetworkID" : "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
-    "masterSubnetName" : "[concat(if(not(empty(parameters('vnetBaseName'))), parameters('vnetBaseName'), parameters('baseName')), '-master-subnet')]",
-    "masterSubnetRef" : "[concat(variables('virtualNetworkID'), '/subnets/', variables('masterSubnetName'))]",
-    "masterLoadBalancerName" : "[parameters('baseName')]",
-    "internalLoadBalancerName" : "[concat(parameters('baseName'), '-internal-lb')]",
-    "sshKeyPath" : "/home/core/.ssh/authorized_keys",
-    "identityName" : "[concat(parameters('baseName'), '-identity')]",
-    "galleryName": "[concat('gallery_', replace(parameters('baseName'), '-', '_'))]",
-    "imageName" : "[concat(parameters('baseName'), if(equals(parameters('hyperVGen'), 'V2'), '-gen2', ''))]",
-    "copy" : [
-      {
-        "name" : "vmNames",
-        "count" :  "[parameters('numberOfMasters')]",
-        "input" : "[concat(parameters('baseName'), '-master-', copyIndex('vmNames'))]"
-      }
-    ]
-  },
-  "resources" : [
-    {
-      "apiVersion" : "2018-06-01",
-      "type" : "Microsoft.Network/networkInterfaces",
-      "copy" : {
-        "name" : "nicCopy",
-        "count" : "[length(variables('vmNames'))]"
-      },
-      "name" : "[concat(variables('vmNames')[copyIndex()], '-nic')]",
-      "location" : "[variables('location')]",
-      "properties" : {
-        "ipConfigurations" : [
-          {
-            "name" : "pipConfig",
-            "properties" : {
-              "privateIPAllocationMethod" : "Dynamic",
-              "subnet" : {
-                "id" : "[variables('masterSubnetRef')]"
-              },
-              "loadBalancerBackendAddressPools" : [
-                {
-                  "id" : "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('masterLoadBalancerName'), '/backendAddressPools/', variables('masterLoadBalancerName'))]"
-                },
-                {
-                  "id" : "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('internalLoadBalancerName'), '/backendAddressPools/internal-lb-backend')]"
-                }
-              ]
-            }
-          }
-        ]
-      }
-    },
-    {
-      "apiVersion" : "2018-06-01",
-      "type" : "Microsoft.Compute/virtualMachines",
-      "copy" : {
-        "name" : "vmCopy",
-        "count" : "[length(variables('vmNames'))]"
-      },
-      "name" : "[variables('vmNames')[copyIndex()]]",
-      "location" : "[variables('location')]",
-      "identity" : {
-        "type" : "userAssigned",
-        "userAssignedIdentities" : {
-          "[resourceID('Microsoft.ManagedIdentity/userAssignedIdentities/', variables('identityName'))]" : {}
-        }
-      },
-      "dependsOn" : [
-        "[concat('Microsoft.Network/networkInterfaces/', concat(variables('vmNames')[copyIndex()], '-nic'))]"
-      ],
-      "properties" : {
-        "hardwareProfile" : {
-          "vmSize" : "[parameters('masterVMSize')]"
-        },
-        "osProfile" : {
-          "computerName" : "[variables('vmNames')[copyIndex()]]",
-          "adminUsername" : "core",
-          "adminPassword" : "NotActuallyApplied!",
-          "customData" : "[parameters('masterIgnition')]",
-          "linuxConfiguration" : {
-            "disablePasswordAuthentication" : false
-          }
-        },
-        "storageProfile" : {
-          "imageReference": {
-            "id": "[resourceId('Microsoft.Compute/galleries/images', variables('galleryName'), variables('imageName'))]"
-          },
-          "osDisk" : {
-            "name": "[concat(variables('vmNames')[copyIndex()], '_OSDisk')]",
-            "osType" : "Linux",
-            "createOption" : "FromImage",
-            "caching": "ReadOnly",
-            "writeAcceleratorEnabled": false,
-            "managedDisk": {
-              "storageAccountType": "Premium_LRS"
-            },
-            "diskSizeGB" : "[parameters('diskSizeGB')]"
-          }
-        },
-        "networkProfile" : {
-          "networkInterfaces" : [
-            {
-              "id" : "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('vmNames')[copyIndex()], '-nic'))]",
-              "properties": {
-                "primary": false
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
-}
-````
 
-```json
 {
   "$schema" : "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion" : "1.0.0.0",
@@ -3107,298 +2216,115 @@ Use the `05_masters.json` Azure Resource Manager (ARM) template to deploy the co
   ]
 }
 ```
+:::
 
-````
-</details>
+## Wait for bootstrap completion and remove bootstrap resources in Azure Stack Hub {#installation-azure-user-infra-wait-for-bootstrap_installing-azure-stack-hub-user-infra}
 
-## Wait for bootstrap completion and remove bootstrap resources in Azure Stack Hub {id="installation-azure-user-infra-wait-for-bootstrap_installing-azure-stack-hub-user-infra"}
-
-To complete cluster initialization on Microsoft Azure Stack Hub, you can wait for the bootstrap process to finish and then delete bootstrap resources. {._abstract}
+To complete cluster initialization on Microsoft Azure Stack Hub, you can wait for the bootstrap process to finish and then delete bootstrap resources.
 
 **Prerequisites**
 
-*   Create the control plane machines.
+- Create the control plane machines.
 
 **Procedure**
 
-1.  Change to the directory that contains the installation program and run the
-following command:
-    ```terminal
-    $ ./openshift-install wait-for bootstrap-complete --dir <installation_directory> \
-        --log-level info
-    ```
+1. Change to the directory that contains the installation program and run the following command:
 
-    where:
+   ```terminal
+   $ ./openshift-install wait-for bootstrap-complete --dir <installation_directory> \
+       --log-level info
+   ```
 
-    `<installation_directory>`
-    :   Specifies the path to the directory that you stored the installation files in.
+   where:
 
-    `--log-level info`
-    :   Specifies the installation details. Specify `warn`, `debug`, or `error` instead of `info` to view different installation details.
-    If the command exits without a `FATAL` warning, your production control plane
-    has initialized.
+   `<installation_directory>`
+   :   Specifies the path to the directory that you stored the installation files in.
 
-1.  Delete the bootstrap resources:
-    ```terminal
-    $ az network nsg rule delete -g ${RESOURCE_GROUP} --nsg-name ${INFRA_ID}-nsg --name bootstrap_ssh_in
-    ```
-    ```terminal
-    $ az vm stop -g ${RESOURCE_GROUP} --name ${INFRA_ID}-bootstrap
-    ```
-    ```terminal
-    $ az vm deallocate -g ${RESOURCE_GROUP} --name ${INFRA_ID}-bootstrap
-    ```
-    ```terminal
-    $ az vm delete -g ${RESOURCE_GROUP} --name ${INFRA_ID}-bootstrap --yes
-    ```
-    ```terminal
-    $ az disk delete -g ${RESOURCE_GROUP} --name ${INFRA_ID}-bootstrap_OSDisk --no-wait --yes
-    ```
-    ```terminal
-    $ az network nic delete -g ${RESOURCE_GROUP} --name ${INFRA_ID}-bootstrap-nic --no-wait
-    ```
-    ```terminal
-    $ az storage blob delete --account-key ${ACCOUNT_KEY} --account-name ${CLUSTER_NAME}sa --container-name files --name bootstrap.ign
-    ```
-    ```terminal
-    $ az network public-ip delete -g ${RESOURCE_GROUP} --name ${INFRA_ID}-bootstrap-ssh-pip
-    ```
+   `--log-level info`
+   :   Specifies the installation details. Specify `warn`, `debug`, or `error` instead of `info` to view different installation details. If the command exits without a `FATAL` warning, your production control plane has initialized.
+2. Delete the bootstrap resources:
 
-    :::note
+   ```terminal
+   $ az network nsg rule delete -g ${RESOURCE_GROUP} --nsg-name ${INFRA_ID}-nsg --name bootstrap_ssh_in
+   ```
 
-    If you do not delete the bootstrap server, installation may not succeed due to API traffic being routed to the bootstrap server.
+   ```terminal
+   $ az vm stop -g ${RESOURCE_GROUP} --name ${INFRA_ID}-bootstrap
+   ```
 
-    :::
+   ```terminal
+   $ az vm deallocate -g ${RESOURCE_GROUP} --name ${INFRA_ID}-bootstrap
+   ```
 
-## Creating additional worker machines in Azure Stack Hub {id="installation-creating-azure-worker_installing-azure-stack-hub-user-infra"}
+   ```terminal
+   $ az vm delete -g ${RESOURCE_GROUP} --name ${INFRA_ID}-bootstrap --yes
+   ```
 
-To add compute capacity on Microsoft Azure Stack Hub, you can create worker machines in Microsoft Azure Stack Hub for your cluster to use by launching individual instances discretely or by automated processes outside the cluster, such as auto scaling groups. {._abstract}
+   ```terminal
+   $ az disk delete -g ${RESOURCE_GROUP} --name ${INFRA_ID}-bootstrap_OSDisk --no-wait --yes
+   ```
 
-You can also take advantage of
-the built-in cluster scaling mechanisms and the machine API in OpenShift Container Platform.
+   ```terminal
+   $ az network nic delete -g ${RESOURCE_GROUP} --name ${INFRA_ID}-bootstrap-nic --no-wait
+   ```
 
-In this example, you manually launch one instance by using the Azure Resource
-Manager (ARM) template. Additional instances can be launched by including
-additional resources of type `06_workers.json` in the file.
+   ```terminal
+   $ az storage blob delete --account-key ${ACCOUNT_KEY} --account-name ${CLUSTER_NAME}sa --container-name files --name bootstrap.ign
+   ```
+
+   ```terminal
+   $ az network public-ip delete -g ${RESOURCE_GROUP} --name ${INFRA_ID}-bootstrap-ssh-pip
+   ```
+
+   > [!NOTE]
+   > If you do not delete the bootstrap server, installation may not succeed due to API traffic being routed to the bootstrap server.
+
+## Creating additional worker machines in Azure Stack Hub {#installation-creating-azure-worker_installing-azure-stack-hub-user-infra}
+
+To add compute capacity on Microsoft Azure Stack Hub, you can create worker machines in Microsoft Azure Stack Hub for your cluster to use by launching individual instances discretely or by automated processes outside the cluster, such as auto scaling groups.
+
+You can also take advantage of the built-in cluster scaling mechanisms and the machine API in OpenShift Container Platform.
+
+In this example, you manually launch one instance by using the Azure Resource Manager (ARM) template. Additional instances can be launched by including additional resources of type `06_workers.json` in the file.
 
 If you do not use the provided ARM template to create your control plane machines, you must review the provided information and manually create the infrastructure. If your cluster does not initialize correctly, consider contacting Red Hat support with your installation logs.
 
 **Procedure**
 
-1.  Copy the template from the **ARM template for worker machines**
-section of this topic and save it as `06_workers.json` in your cluster’s installation directory. This
-template describes the worker machines that your cluster requires.
-1.  Export the following variable needed by the worker machine deployment:
-    ```terminal
-    $ export WORKER_IGNITION=`cat <installation_directory>/worker.ign | base64 | tr -d '\n'`
-    ```
-1.  Create the deployment by using the `az` CLI:
+1. Copy the template from the **ARM template for worker machines** section of this topic and save it as `06_workers.json` in your cluster’s installation directory. This template describes the worker machines that your cluster requires.
+2. Export the following variable needed by the worker machine deployment:
 
-        ```terminal
-        $ az deployment group create -g ${RESOURCE_GROUP} \
-          --template-file "<installation_directory>/06_workers.json" \
-          --parameters workerIgnition="${WORKER_IGNITION}" \
-          --parameters baseName="${INFRA_ID}" \
-          --parameters diagnosticsStorageAccountName="${CLUSTER_NAME}sa"
-        ```
-    where:
+   ```terminal
+   $ export WORKER_IGNITION=`cat <installation_directory>/worker.ign | base64 | tr -d '\n'`
+   ```
+3. Create the deployment by using the `az` CLI:
 
-`workerIgnition`
-:   Specifies the Ignition content for the worker nodes.
+   ```terminal
+   $ az deployment group create -g ${RESOURCE_GROUP} \
+     --template-file "<installation_directory>/06_workers.json" \
+     --parameters workerIgnition="${WORKER_IGNITION}" \
+     --parameters baseName="${INFRA_ID}" \
+     --parameters diagnosticsStorageAccountName="${CLUSTER_NAME}sa"
+   ```
 
-`baseName`
-:   Specifies the base name to be used in resource names; this is usually the cluster’s infrastructure ID.
+   where:
 
-`diagnosticsStorageAccountName`
-:   Specifies the name of the storage account for your cluster.
+   `workerIgnition`
+   :   Specifies the Ignition content for the worker nodes.
 
-### ARM template for worker machines {id="installation-arm-worker_installing-azure-stack-hub-user-infra"}
+   `baseName`
+   :   Specifies the base name to be used in resource names; this is usually the cluster’s infrastructure ID.
 
-Use the `06_workers.json` Azure Resource Manager (ARM) template to deploy worker machines for your OpenShift Container Platform cluster. {._abstract}
+   `diagnosticsStorageAccountName`
+   :   Specifies the name of the storage account for your cluster.
 
-<details>
-<summary>`06_workers.json` ARM template</summary>
+### ARM template for worker machines {#installation-arm-worker_installing-azure-stack-hub-user-infra}
 
+Use the `06_workers.json` Azure Resource Manager (ARM) template to deploy worker machines for your OpenShift Container Platform cluster.
+
+:::details{title="`06_workers.json` ARM template"}
 ```json
-{%- if not ash %}
-```json
-{
-  "$schema" : "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-  "contentVersion" : "1.0.0.0",
-  "parameters" : {
-    "baseName" : {
-      "type" : "string",
-      "minLength" : 1,
-      "metadata" : {
-        "description" : "Base name to be used in resource names (usually the cluster's Infra ID)"
-      }
-    },
-    "vnetBaseName": {
-      "type": "string",
-      "defaultValue": "",
-      "metadata" : {
-        "description" : "The specific customer vnet's base name (optional)"
-      }
-    },
-    "workerIgnition" : {
-      "type" : "string",
-      "metadata" : {
-        "description" : "Ignition content for the worker nodes"
-      }
-    },
-    "numberOfNodes" : {
-      "type" : "int",
-      "defaultValue" : 3,
-      "minValue" : 2,
-      "maxValue" : 30,
-      "metadata" : {
-        "description" : "Number of OpenShift compute nodes to deploy"
-      }
-    },
-    "sshKeyData" : {
-      "type" : "securestring",
-      "defaultValue" : "Unused",
-      "metadata" : {
-        "description" : "Unused"
-      }
-    },
-    "nodeVMSize" : {
-      "type" : "string",
-      "defaultValue" : "Standard_D4s_v3",
-      "metadata" : {
-        "description" : "The size of the each Node Virtual Machine"
-      }
-    },
-    "hyperVGen": {
-      "type": "string",
-      "metadata": {
-        "description": "VM generation image to use"
-      },
-      "defaultValue": "V2",
-      "allowedValues": [
-        "V1",
-        "V2"
-      ]
-    }
-  },
-  "variables" : {
-    "location" : "[resourceGroup().location]",
-    "virtualNetworkName" : "[concat(if(not(empty(parameters('vnetBaseName'))), parameters('vnetBaseName'), parameters('baseName')), '-vnet')]",
-    "virtualNetworkID" : "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
-    "nodeSubnetName" : "[concat(if(not(empty(parameters('vnetBaseName'))), parameters('vnetBaseName'), parameters('baseName')), '-worker-subnet')]",
-    "nodeSubnetRef" : "[concat(variables('virtualNetworkID'), '/subnets/', variables('nodeSubnetName'))]",
-    "infraLoadBalancerName" : "[parameters('baseName')]",
-    "sshKeyPath" : "/home/capi/.ssh/authorized_keys",
-    "identityName" : "[concat(parameters('baseName'), '-identity')]",
-    "galleryName": "[concat('gallery_', replace(parameters('baseName'), '-', '_'))]",
-    "imageName" : "[concat(parameters('baseName'), if(equals(parameters('hyperVGen'), 'V2'), '-gen2', ''))]",
-    "copy" : [
-      {
-        "name" : "vmNames",
-        "count" :  "[parameters('numberOfNodes')]",
-        "input" : "[concat(parameters('baseName'), '-worker-', variables('location'), '-', copyIndex('vmNames', 1))]"
-      }
-    ]
-  },
-  "resources" : [
-    {
-      "apiVersion" : "2019-05-01",
-      "name" : "[concat('node', copyIndex())]",
-      "type" : "Microsoft.Resources/deployments",
-      "copy" : {
-        "name" : "nodeCopy",
-        "count" : "[length(variables('vmNames'))]"
-      },
-      "properties" : {
-        "mode" : "Incremental",
-        "template" : {
-          "$schema" : "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-          "contentVersion" : "1.0.0.0",
-          "resources" : [
-            {
-              "apiVersion" : "2018-06-01",
-              "type" : "Microsoft.Network/networkInterfaces",
-              "name" : "[concat(variables('vmNames')[copyIndex()], '-nic')]",
-              "location" : "[variables('location')]",
-              "properties" : {
-                "ipConfigurations" : [
-                  {
-                    "name" : "pipConfig",
-                    "properties" : {
-                      "privateIPAllocationMethod" : "Dynamic",
-                      "subnet" : {
-                        "id" : "[variables('nodeSubnetRef')]"
-                      }
-                    }
-                  }
-                ]
-              }
-            },
-            {
-              "apiVersion" : "2018-06-01",
-              "type" : "Microsoft.Compute/virtualMachines",
-              "name" : "[variables('vmNames')[copyIndex()]]",
-              "location" : "[variables('location')]",
-              "tags" : {
-                "kubernetes.io-cluster-ffranzupi": "owned"
-              },
-              "identity" : {
-                "type" : "userAssigned",
-                "userAssignedIdentities" : {
-                  "[resourceID('Microsoft.ManagedIdentity/userAssignedIdentities/', variables('identityName'))]" : {}
-                }
-              },
-              "dependsOn" : [
-                "[concat('Microsoft.Network/networkInterfaces/', concat(variables('vmNames')[copyIndex()], '-nic'))]"
-              ],
-              "properties" : {
-                "hardwareProfile" : {
-                  "vmSize" : "[parameters('nodeVMSize')]"
-                },
-                "osProfile" : {
-                  "computerName" : "[variables('vmNames')[copyIndex()]]",
-                  "adminUsername" : "capi",
-                  "adminPassword" : "NotActuallyApplied!",
-                  "customData" : "[parameters('workerIgnition')]",
-                  "linuxConfiguration" : {
-                    "disablePasswordAuthentication" : false
-                  }
-                },
-                "storageProfile" : {
-                  "imageReference": {
-                    "id": "[resourceId('Microsoft.Compute/galleries/images', variables('galleryName'), variables('imageName'))]"
-                  },
-                  "osDisk" : {
-                    "name": "[concat(variables('vmNames')[copyIndex()],'_OSDisk')]",
-                    "osType" : "Linux",
-                    "createOption" : "FromImage",
-                    "managedDisk": {
-                      "storageAccountType": "Premium_LRS"
-                    },
-                    "diskSizeGB": 128
-                  }
-                },
-                "networkProfile" : {
-                  "networkInterfaces" : [
-                    {
-                      "id" : "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('vmNames')[copyIndex()], '-nic'))]",
-                      "properties": {
-                        "primary": true
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
-}
-````
 
-```json
 {
   "$schema" : "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion" : "1.0.0.0",
@@ -3577,211 +2503,207 @@ Use the `06_workers.json` Azure Resource Manager (ARM) template to deploy worker
   ]
 }
 ```
+:::
 
-````
-</details>
+## Logging in to the cluster by using the CLI {#cli-logging-in-kubeadmin_installing-azure-stack-hub-user-infra}
 
-## Logging in to the cluster by using the CLI {id="cli-logging-in-kubeadmin_installing-azure-stack-hub-user-infra"}
-
-To log in to your cluster as the default system user, export the `kubeconfig` file. This configuration enables the CLI to authenticate and connect to the specific API server created during OpenShift Container Platform installation. {._abstract}
+To log in to your cluster as the default system user, export the `kubeconfig` file. This configuration enables the CLI to authenticate and connect to the specific API server created during OpenShift Container Platform installation.
 
 The `kubeconfig` file is specific to a cluster and OpenShift Container Platform generates it during installation.
 
 **Prerequisites**
-*   You deployed an OpenShift Container Platform cluster.
 
-*   You installed the OpenShift CLI (`oc`).
+- You deployed an OpenShift Container Platform cluster.
+- You installed the OpenShift CLI (`oc`).
 
 **Procedure**
 
-1.  Export the `kubeadmin` credentials by running the following command:
-    ```terminal
-    $ export KUBECONFIG=<installation_directory>/auth/kubeconfig
-    ```
+1. Export the `kubeadmin` credentials by running the following command:
 
-    where:
+   ```terminal
+   $ export KUBECONFIG=<installation_directory>/auth/kubeconfig
+   ```
 
-    `<installation_directory>`
-    :   Specifies the path to the directory that stores the installation files.
+   where:
 
-1.  Verify you can run `oc` commands successfully using the exported configuration by running the following command:
-    ```terminal
-    $ oc whoami
-    ```
-    ```terminal title="Example output"
-    system:admin
-    ```
+   `<installation_directory>`
+   :   Specifies the path to the directory that stores the installation files.
+2. Verify you can run `oc` commands successfully using the exported configuration by running the following command:
+
+   ```terminal
+   $ oc whoami
+   ```
+
+   ```terminal {title="Example output"}
+   system:admin
+   ```
 
 **Next steps**
 
-*   "Customize your cluster"
-*   "Remote health reporting"
+- "Customize your cluster"
+- "Remote health reporting"
 
-## Approving the certificate signing requests for your machines {id="installation-approve-csrs_installing-azure-stack-hub-user-infra"}
+## Approving the certificate signing requests for your machines {#installation-approve-csrs_installing-azure-stack-hub-user-infra}
 
-To allow newly added machines to join your OpenShift Container Platform cluster, confirm that the cluster approves pending certificate signing requests (CSRs), or approve them yourself. Approve client requests first, then server requests. {._abstract}
-
-**Prerequisites**
-
-*   You added machines to your cluster.
-
-**Procedure**
-
-1.  Confirm that the cluster recognizes the machines:
-    ```terminal
-    $ oc get nodes
-    ```
-    ```terminal title="Example output"
-    NAME      STATUS    ROLES   AGE  VERSION
-    master-0  Ready     master  63m  v1.35.4
-    master-1  Ready     master  63m  v1.35.4
-    master-2  Ready     master  64m  v1.35.4
-    ```
-
-    The output lists all of the machines that you created.
-
-    :::note
-
-    The preceding output might not include the compute nodes until you approve some CSRs.
-
-    :::
-
-1.  Review the pending CSRs and ensure that you see the client requests with the `Pending` or `Approved` status for each machine that you added to the cluster:
-    ```terminal
-    $ oc get csr
-    ```
-    ```terminal title="Example output"
-    NAME        AGE     REQUESTOR                                                                   CONDITION
-    csr-8b2br   15m     system:serviceaccount:openshift-machine-config-operator:node-bootstrapper   Pending
-    csr-8vnps   15m     system:serviceaccount:openshift-machine-config-operator:node-bootstrapper   Pending
-    ...
-    ```
-
-    In this example, two machines are joining the cluster. You might see more approved CSRs in the list.
-
-1.  If the CSRs were not approved, after all of the pending CSRs for the machines you added are in `Pending` status, approve the CSRs for your cluster machines:
-
-    :::note
-
-    You must approve your CSRs within an hour of adding the machines to the cluster. If you do not approve them within an hour, the certificates rotate, and more than two certificates are present for each node. You must approve all of these certificates. After you approve the client CSR, the kubelet creates a secondary CSR for the serving certificate, which requires manual approval. The `machine-approver` then automatically approves later serving certificate renewal requests if the kubelet requests a new certificate with the same parameters.
-
-    :::
-
-    :::note
-
-    For clusters running on platforms that are not machine API enabled, such as bare metal and other user-provisioned infrastructure, you must implement a method of automatically approving the kubelet serving certificate requests (CSRs). If you do not approve a request, the `oc exec`, `oc rsh`, and `oc logs` commands cannot succeed, because the API server requires a serving certificate when it connects to the kubelet. Any operation that contacts the kubelet endpoint requires this certificate approval to be in place. The method must watch for new CSRs, confirm that the `node-bootstrapper` service account in the `system:node` or `system:admin` groups submitted the CSR, and confirm the identity of the node.
-
-    :::
-
-    *   To approve them individually, run the following command for each valid CSR:
-        ```terminal
-        $ oc adm certificate approve <csr_name>
-        ```
-
-        where:
-
-        `<csr_name>`
-        :   Specifies the name of a CSR from the list of current CSRs.
-        *   To approve all pending CSRs, run the following command:
-        ```terminal
-        $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs --no-run-if-empty oc adm certificate approve
-        ```
-
-        :::note
-
-        Some Operators might not become available until you approve some CSRs. Each node submits two CSRs, so you might need to run the command to approve CSRs many times.
-
-        :::
-
-1.  After you approve your client requests, review the server requests for each machine that you added to the cluster:
-    ```terminal
-    $ oc get csr
-    ```
-    ```terminal title="Example output"
-    NAME        AGE     REQUESTOR                                                                   CONDITION
-    csr-bfd72   5m26s   system:node:ip-10-0-50-126.us-east-2.compute.internal                       Pending
-    csr-c57lv   5m26s   system:node:ip-10-0-95-157.us-east-2.compute.internal                       Pending
-    ...
-    ```
-1.  If the remaining CSRs are not approved, and are in the `Pending` status, approve the CSRs for your cluster machines:
-    *   To approve them individually, run the following command for each valid CSR:
-        ```terminal
-        $ oc adm certificate approve <csr_name>
-        ```
-
-        where:
-
-        `<csr_name>`
-        :   Specifies the name of a CSR from the list of current CSRs.
-        *   To approve all pending CSRs, run the following command:
-        ```terminal
-        $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs oc adm certificate approve
-        ```
-1.  After you approve all client and server CSRs, the machines have the `Ready` status. Verify this by running the following command:
-    ```terminal
-    $ oc get nodes
-    ```
-
-    ```terminal title="Example output"
-    NAME      STATUS    ROLES   AGE  VERSION
-    master-0  Ready     master  73m  v1.35.4
-    master-1  Ready     master  73m  v1.35.4
-    master-2  Ready     master  74m  v1.35.4
-    worker-0  Ready     worker  11m  v1.35.4
-    worker-1  Ready     worker  11m  v1.35.4
-    ```
-
-    :::note
-
-    You might need to wait a few minutes after approval of the server CSRs for the machines to change to the `Ready` status.
-
-    :::
-
-## Adding the Ingress DNS records {id="installation-azure-create-ingress-dns-records_installing-azure-stack-hub-user-infra"}
-
-If you removed the DNS Zone configuration when creating Kubernetes manifests and generating Ignition configs, you must manually create DNS records that point at the Ingress load balancer. You can create either a wildcard `*.apps.{{ baseDomain }}.` or specific records. {._abstract}
-
-You can use A, CNAME, and other
-records per your requirements.
+To allow newly added machines to join your OpenShift Container Platform cluster, confirm that the cluster approves pending certificate signing requests (CSRs), or approve them yourself. Approve client requests first, then server requests.
 
 **Prerequisites**
 
-*   You deployed an OpenShift Container Platform cluster on Microsoft Azure Stack Hub by using infrastructure that you provisioned.
-*   Install the OpenShift CLI (`oc`).
-*   Install or update the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-yum?view=azure-cli-latest).
+- You added machines to your cluster.
 
 **Procedure**
 
-1.  Confirm the Ingress router has created a load balancer and populated the
-`EXTERNAL-IP` field:
-    ```terminal
-    $ oc -n openshift-ingress get service router-default
-    ```
-    ```terminal title="Example output"
-    NAME             TYPE           CLUSTER-IP      EXTERNAL-IP     PORT(S)                      AGE
-    router-default   LoadBalancer   172.30.20.10   35.130.120.110   80:32288/TCP,443:31215/TCP   20
-    ```
-1.  Export the Ingress router IP as a variable:
-    ```terminal
-    $ export PUBLIC_IP_ROUTER=`oc -n openshift-ingress get service router-default --no-headers | awk '{print $4}'`
-    ```
+1. Confirm that the cluster recognizes the machines:
 
-1.  Add a `*.apps` record to the DNS zone.
-    1.  If you are adding this cluster to a new DNS zone, run:
-        ```terminal
-        $ az network dns record-set a add-record -g ${BASE_DOMAIN_RESOURCE_GROUP} -z ${CLUSTER_NAME}.${BASE_DOMAIN} -n *.apps -a ${PUBLIC_IP_ROUTER} --ttl 300
-        ```
-    1.  If you are adding this cluster to an already existing DNS zone, run:
-        ```terminal
-        $ az network dns record-set a add-record -g ${BASE_DOMAIN_RESOURCE_GROUP} -z ${BASE_DOMAIN} -n *.apps.${CLUSTER_NAME} -a ${PUBLIC_IP_ROUTER} --ttl 300
-        ```
+   ```terminal
+   $ oc get nodes
+   ```
 
-If you prefer to add explicit domains instead of using a wildcard, you can
-create entries for each of the cluster’s current routes:
+   ```terminal {title="Example output"}
+   NAME      STATUS    ROLES   AGE  VERSION
+   master-0  Ready     master  63m  v1.35.4
+   master-1  Ready     master  63m  v1.35.4
+   master-2  Ready     master  64m  v1.35.4
+   ```
+
+   The output lists all of the machines that you created.
+
+   > [!NOTE]
+   > The preceding output might not include the compute nodes until you approve some CSRs.
+2. Review the pending CSRs and ensure that you see the client requests with the `Pending` or `Approved` status for each machine that you added to the cluster:
+
+   ```terminal
+   $ oc get csr
+   ```
+
+   ```terminal {title="Example output"}
+   NAME        AGE     REQUESTOR                                                                   CONDITION
+   csr-8b2br   15m     system:serviceaccount:openshift-machine-config-operator:node-bootstrapper   Pending
+   csr-8vnps   15m     system:serviceaccount:openshift-machine-config-operator:node-bootstrapper   Pending
+   ...
+   ```
+
+   In this example, two machines are joining the cluster. You might see more approved CSRs in the list.
+3. If the CSRs were not approved, after all of the pending CSRs for the machines you added are in `Pending` status, approve the CSRs for your cluster machines:
+
+   > [!NOTE]
+   > You must approve your CSRs within an hour of adding the machines to the cluster. If you do not approve them within an hour, the certificates rotate, and more than two certificates are present for each node. You must approve all of these certificates. After you approve the client CSR, the kubelet creates a secondary CSR for the serving certificate, which requires manual approval. The `machine-approver` then automatically approves later serving certificate renewal requests if the kubelet requests a new certificate with the same parameters.
+
+   > [!NOTE]
+   > For clusters running on platforms that are not machine API enabled, such as bare metal and other user-provisioned infrastructure, you must implement a method of automatically approving the kubelet serving certificate requests (CSRs). If you do not approve a request, the `oc exec`, `oc rsh`, and `oc logs` commands cannot succeed, because the API server requires a serving certificate when it connects to the kubelet. Any operation that contacts the kubelet endpoint requires this certificate approval to be in place. The method must watch for new CSRs, confirm that the `node-bootstrapper` service account in the `system:node` or `system:admin` groups submitted the CSR, and confirm the identity of the node.
+
+   - To approve them individually, run the following command for each valid CSR:
+
+     ```terminal
+     $ oc adm certificate approve <csr_name>
+     ```
+
+     where:
+
+     `<csr_name>`
+     :   Specifies the name of a CSR from the list of current CSRs.
+   - To approve all pending CSRs, run the following command:
+
+     ```terminal
+     $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs --no-run-if-empty oc adm certificate approve
+     ```
+
+     > [!NOTE]
+     > Some Operators might not become available until you approve some CSRs. Each node submits two CSRs, so you might need to run the command to approve CSRs many times.
+4. After you approve your client requests, review the server requests for each machine that you added to the cluster:
+
+   ```terminal
+   $ oc get csr
+   ```
+
+   ```terminal {title="Example output"}
+   NAME        AGE     REQUESTOR                                                                   CONDITION
+   csr-bfd72   5m26s   system:node:ip-10-0-50-126.us-east-2.compute.internal                       Pending
+   csr-c57lv   5m26s   system:node:ip-10-0-95-157.us-east-2.compute.internal                       Pending
+   ...
+   ```
+5. If the remaining CSRs are not approved, and are in the `Pending` status, approve the CSRs for your cluster machines:
+
+   - To approve them individually, run the following command for each valid CSR:
+
+     ```terminal
+     $ oc adm certificate approve <csr_name>
+     ```
+
+     where:
+
+     `<csr_name>`
+     :   Specifies the name of a CSR from the list of current CSRs.
+   - To approve all pending CSRs, run the following command:
+
+     ```terminal
+     $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs oc adm certificate approve
+     ```
+6. After you approve all client and server CSRs, the machines have the `Ready` status. Verify this by running the following command:
+
+   ```terminal
+   $ oc get nodes
+   ```
+
+   ```terminal {title="Example output"}
+   NAME      STATUS    ROLES   AGE  VERSION
+   master-0  Ready     master  73m  v1.35.4
+   master-1  Ready     master  73m  v1.35.4
+   master-2  Ready     master  74m  v1.35.4
+   worker-0  Ready     worker  11m  v1.35.4
+   worker-1  Ready     worker  11m  v1.35.4
+   ```
+
+   > [!NOTE]
+   > You might need to wait a few minutes after approval of the server CSRs for the machines to change to the `Ready` status.
+
+## Adding the Ingress DNS records {#installation-azure-create-ingress-dns-records_installing-azure-stack-hub-user-infra}
+
+If you removed the DNS Zone configuration when creating Kubernetes manifests and generating Ignition configs, you must manually create DNS records that point at the Ingress load balancer. You can create either a wildcard `*.apps.{baseDomain}.` or specific records.
+
+You can use A, CNAME, and other records per your requirements.
+
+**Prerequisites**
+
+- You deployed an OpenShift Container Platform cluster on Microsoft Azure Stack Hub by using infrastructure that you provisioned.
+- Install the OpenShift CLI (`oc`).
+- Install or update the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-yum?view=azure-cli-latest).
+
+**Procedure**
+
+1. Confirm the Ingress router has created a load balancer and populated the `EXTERNAL-IP` field:
+
+   ```terminal
+   $ oc -n openshift-ingress get service router-default
+   ```
+
+   ```terminal {title="Example output"}
+   NAME             TYPE           CLUSTER-IP      EXTERNAL-IP     PORT(S)                      AGE
+   router-default   LoadBalancer   172.30.20.10   35.130.120.110   80:32288/TCP,443:31215/TCP   20
+   ```
+2. Export the Ingress router IP as a variable:
+
+   ```terminal
+   $ export PUBLIC_IP_ROUTER=`oc -n openshift-ingress get service router-default --no-headers | awk '{print $4}'`
+   ```
+3. Add a `*.apps` record to the DNS zone.
+
+   1. If you are adding this cluster to a new DNS zone, run:
+
+      ```terminal
+      $ az network dns record-set a add-record -g ${BASE_DOMAIN_RESOURCE_GROUP} -z ${CLUSTER_NAME}.${BASE_DOMAIN} -n *.apps -a ${PUBLIC_IP_ROUTER} --ttl 300
+      ```
+   2. If you are adding this cluster to an already existing DNS zone, run:
+
+      ```terminal
+      $ az network dns record-set a add-record -g ${BASE_DOMAIN_RESOURCE_GROUP} -z ${BASE_DOMAIN} -n *.apps.${CLUSTER_NAME} -a ${PUBLIC_IP_ROUTER} --ttl 300
+      ```
+
+If you prefer to add explicit domains instead of using a wildcard, you can create entries for each of the cluster’s current routes:
 
 ```terminal
 $ oc get --all-namespaces -o jsonpath='{range .items[*]}{range .status.ingress[*]}{.host}{"\n"}{end}{end}' routes
-````
+```
 
 .Example output
 
@@ -3821,9 +2743,11 @@ After you start the OpenShift Container Platform installation on Microsoft Azure
   > - It is recommended that you use Ignition config files within 12 hours after they are generated because the 24-hour certificate rotates from 16 to 22 hours after the cluster is installed. By using the Ignition config files within 12 hours, you can avoid installation failure if the certificate update runs during installation.
 
 **Additional resources**
+{._additional-resources}
 
 - [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
 
-## Additional resources {#additional-resources_installing-azure-stack-hub-user-infra}
+**Additional resources**
+{._additional-resources}
 
 - [Azure Resource Manager templates overview (Azure documentation)](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/overview)

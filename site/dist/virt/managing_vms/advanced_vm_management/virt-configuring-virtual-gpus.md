@@ -264,7 +264,7 @@ As an administrator, you can create mediated devices and expose them to the clus
 2. Open the `HyperConverged` CR in your default editor by running the following command:
 
    ```terminal
-   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+   $ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv
    ```
 3. Create and expose the mediated devices by updating the configuration:
 
@@ -277,7 +277,7 @@ As an administrator, you can create mediated devices and expose them to the clus
       kind: HyperConverged
       metadata:
         name: kubevirt-hyperconverged
-        namespace: {{ CNVNamespace }}
+        namespace: openshift-cnv
       spec:
         permittedHostDevices:
           mediatedDevices:
@@ -327,7 +327,7 @@ As a cluster administrator you can remove mediated devices from the cluster so t
 1. Edit the `HyperConverged` CR in your default editor by running the following command:
 
    ```terminal
-   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+   $ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv
    ```
 2. Remove the device information from the `spec.permittedHostDevices` stanza of the `HyperConverged` CR. For example:
 
@@ -336,7 +336,7 @@ As a cluster administrator you can remove mediated devices from the cluster so t
    kind: HyperConverged
    metadata:
      name: kubevirt-hyperconverged
-     namespace: {{ CNVNamespace }}
+     namespace: openshift-cnv
    spec:
      permittedHostDevices:
        mediatedDevices:
@@ -398,12 +398,12 @@ You can assign virtual GPUs to virtual machines by using the OpenShift Container
 
 - The vGPU is configured as a mediated device in your cluster.
 
-  - To view the devices that are connected to your cluster, click **Compute** -> **Hardware Devices** from the side menu.
+  - To view the devices that are connected to your cluster, click **Compute** → **Hardware Devices** from the side menu.
 - The VM is stopped.
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, click **Virtualization** -> **VirtualMachines** from the side menu.
+1. In the OpenShift Container Platform web console, click **Virtualization** → **VirtualMachines** from the side menu.
 2. Select the VM that you want to assign the device to.
 3. On the **Details** tab, click **GPU devices**.
 4. Click **Add GPU device**.
@@ -415,7 +415,8 @@ You can assign virtual GPUs to virtual machines by using the OpenShift Container
 
 - To confirm that the devices were added to the VM, click the **YAML** tab and review the `VirtualMachine` configuration. Mediated devices are added to the `spec.domain.devices` stanza.
 
-## Additional resources {#additional-resources_virt-configuring-virtual-gpus}
+**Additional resources**
+{._additional-resources}
 
 - [Enabling Intel VT-X and AMD-V Virtualization Hardware Extensions in BIOS](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/virtualization_deployment_and_administration_guide/sect-troubleshooting-enabling_intel_vt_x_and_amd_v_virtualization_hardware_extensions_in_bios)
 - [MIG Support in OpenShift Container Platform](https://docs.nvidia.com/datacenter/cloud-native/openshift/latest/mig-ocp.html#)

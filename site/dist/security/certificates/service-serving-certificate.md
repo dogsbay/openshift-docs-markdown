@@ -77,6 +77,7 @@ The generated certificate is only valid for the internal service DNS name `<serv
 3. After the cluster generates a secret for your service, your `Pod` spec can mount it, and the pod will run after it becomes available.
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating a re-encrypt route with a custom certificate](/openshift-docs-markdown/networking/ingress_load_balancing/routes/securing-routes#nw-ingress-creating-a-reencrypt-route-with-a-custom-certificate_secured-routes)
 

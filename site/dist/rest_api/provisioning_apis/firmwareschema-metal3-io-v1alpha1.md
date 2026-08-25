@@ -1,5 +1,5 @@
 ---
-title: FirmwareSchema []
+title: FirmwareSchema [metal3.io/v1alpha1]
 ---
 
 # FirmwareSchema \[metal3.io/v1alpha1\] {#firmwareschema-metal3-io-v1alpha1}
@@ -79,12 +79,12 @@ The following API endpoints are available:
 - `/apis/metal3.io/v1alpha1/firmwareschemas`
 
   - `GET`: list objects of kind FirmwareSchema
-- `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/firmwareschemas`
+- `/apis/metal3.io/v1alpha1/namespaces/{namespace}/firmwareschemas`
 
   - `DELETE`: delete collection of FirmwareSchema
   - `GET`: list objects of kind FirmwareSchema
   - `POST`: create a FirmwareSchema
-- `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/firmwareschemas/{{ name }}`
+- `/apis/metal3.io/v1alpha1/namespaces/{namespace}/firmwareschemas/{name}`
 
   - `DELETE`: delete a FirmwareSchema
   - `GET`: read the specified FirmwareSchema
@@ -110,7 +110,7 @@ Description
 | 200 - OK | [`FirmwareSchemaList`](/openshift-docs-markdown/rest_api/objects/index#io-metal3-v1alpha1-FirmwareSchemaList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/firmwareschemas {#_apismetal3iov1alpha1namespaces_namespace_firmwareschemas}
+### /apis/metal3.io/v1alpha1/namespaces/{namespace}/firmwareschemas {#_apismetal3iov1alpha1namespaces_namespace_firmwareschemas}
 
 HTTP method
 :   ```
@@ -178,7 +178,7 @@ Description
 | 202 - Accepted | [`FirmwareSchema`](/openshift-docs-markdown/rest_api/provisioning_apis/firmwareschema-metal3-io-v1alpha1#firmwareschema-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/firmwareschemas/{{ name }} {#_apismetal3iov1alpha1namespaces_namespace_firmwareschemas_name}
+### /apis/metal3.io/v1alpha1/namespaces/{namespace}/firmwareschemas/{name} {#_apismetal3iov1alpha1namespaces_namespace_firmwareschemas_name}
 
 **Global path parameters**
 

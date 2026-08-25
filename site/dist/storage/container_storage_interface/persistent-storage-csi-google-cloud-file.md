@@ -1,8 +1,8 @@
 ---
-title: "{{ gcp_first }} Filestore CSI Driver Operator"
+title: Google Cloud Filestore CSI Driver Operator
 ---
 
-# {{ gcp_first }} Filestore CSI Driver Operator {#persistent-storage-csi-google-cloud-file}
+# Google Cloud Filestore CSI Driver Operator {#persistent-storage-csi-google-cloud-file}
 
 The Google Cloud Platform (GCP) Filestore Container Storage Interface (CSI) Driver Operator provisions and manages GCP Filestore Storage in OpenShift Container Platform with dynamic volume provisioning, eliminating the need to pre-provision storage.
 
@@ -17,7 +17,10 @@ To create CSI-provisioned PVs that mount to Google Cloud Filestore Storage asset
 - The *Google Cloud Filestore CSI Driver Operator* does not provide a storage class by default, but you can create one if needed (for more information, see "Creating a storage class for GCP Filestore storage"). The Google Cloud Filestore CSI Driver Operator supports dynamic volume provisioning by allowing storage volumes to be created on-demand, eliminating the need for cluster administrators to pre-provision storage.
 - The *Google Cloud Filestore CSI driver* enables you to create and mount Google Cloud Filestore PVs.
 
-OpenShift Container Platform Google Cloud Filestore supports Workload Identity. This allows users to access Google Cloud resources using federated identities instead of a service account key. GCP Workload Identity must be enabled globally during installation, and then configured for the Google Cloud Filestore CSI Driver Operator. **Additional resources**
+OpenShift Container Platform Google Cloud Filestore supports Workload Identity. This allows users to access Google Cloud resources using federated identities instead of a service account key. GCP Workload Identity must be enabled globally during installation, and then configured for the Google Cloud Filestore CSI Driver Operator.
+
+**Additional resources**
+{._additional-resources}
 
 - [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage)
 - [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
@@ -133,7 +136,8 @@ You now have the following parameters that you need to install the Google Cloud 
 - Provider ID - from Step 2
 - Service account email - from Step 3.c
 
-<a name="installing-the-gcp-filestore-csi-driver-operator"></a>**Additional resources**
+**Additional resources**
+{._additional-resources}
 
 - [Creating Google Cloud resources with the Cloud Credential Operator utility](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#cco-ccoctl-creating-at-once_installing-gcp-customizations)
 
@@ -160,7 +164,7 @@ Since the Google Compute Platform (Google Cloud) Filestore Container Storage Int
    You can also do this using Google Cloud web console.
 3. Install the Google Cloud Filestore CSI Operator:
 
-   1. Click **Ecosystem** -> **Software Catalog**.
+   1. Click **Ecosystem** → **Software Catalog**.
    2. Locate the Google Cloud Filestore CSI Operator by typing **Google Cloud Filestore** in the filter box.
    3. Click the **Google Cloud Filestore CSI Driver Operator** button.
    4. On the **Google Cloud Filestore CSI Driver Operator** page, click **Install**.
@@ -199,7 +203,8 @@ Since the Google Compute Platform (Google Cloud) Filestore Container Storage Int
       - GCPFilestoreDriverNodeServiceControllerAvailable
       - GCPFilestoreDriverControllerServiceControllerAvailable
 
-<a name="installing-the-gcp-filestore-csi-driver-operator"></a>**Additional resources**
+**Additional resources**
+{._additional-resources}
 
 - [Enabling an API in your Google Cloud](https://cloud.google.com/endpoints/docs/openapi/enable-api)
 - [Enabling an API using the Google Cloud web console](https://support.google.com/googleapi/answer/6158841?hl=en)
@@ -297,7 +302,7 @@ By default, a Filestore instance grants root level read/write access to all clie
    - `SquashMode`: Either `NO_ROOT_SQUASH`, which allows root access on the exported directory; or ROOT_SQUASH, which does not allow root access. The default is `NO_ROOT_SQUASH`.
    - `AnonUid`: An integer representing the anonymous user ID with a default value of 65534. `AnonUid` can only be set with `squashMode` set to `ROOT_SQUASH`; Otherwise, an error occurs.
    - `AnonGid`: An integer representing the anonymous group ID with a default value of 65534. `AnonGid` can only be set with
-   - `ipRanges`: List of either an IPv4 addresses in the format {{ octet1 }}.{{ octet2 }}.{{ octet3 }}.{{ octet4 }}, or CIDR ranges in the format {{ octet1 }}.{{ octet2 }}.{{ octet3 }}.{{ octet4 }}/{mask size}, which can mount the file share. Overlapping IP ranges are not allowed, both within and across NfsExportOptions, otherwise, an error is returned. The limit is 64 IP ranges or addresses for each `FileShareConfig` among all NFS export options.
+   - `ipRanges`: List of either an IPv4 addresses in the format {octet1}.{octet2}.{octet3}.{octet4}, or CIDR ranges in the format {octet1}.{octet2}.{octet3}.{octet4}/{mask size}, which can mount the file share. Overlapping IP ranges are not allowed, both within and across NfsExportOptions, otherwise, an error is returned. The limit is 64 IP ranges or addresses for each `FileShareConfig` among all NFS export options.
 
 ## Destroying clusters and GCP Filestore {#persistent-storage-csi-google-cloud-file-delete-instances_persistent-storage-csi-google-cloud-file}
 
@@ -310,12 +315,13 @@ Therefore, Red Hat recommends that you verify that all cluster-owned Filestore r
 **Procedure**
 
 1. Access your Google Cloud account using the GUI or CLI.
-2. Search for any resources with the `kubernetes-io-cluster-${{ CLUSTER_ID }}=owned` label.
+2. Search for any resources with the `kubernetes-io-cluster-${CLUSTER_ID}=owned` label.
 
    Since the cluster ID is unique to the deleted cluster, there should not be any remaining resources with that cluster ID.
 3. In the unlikely case there are some remaining resources, delete them.
 
-## Additional resources {#additional-resources_persistent-storage-csi-google-cloud-file}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
 - [CCO-based workflow for OLM-managed Operators with Google Cloud Workload Identity](/openshift-docs-markdown/operators/operator_sdk/token_auth/osdk-cco-gcp)

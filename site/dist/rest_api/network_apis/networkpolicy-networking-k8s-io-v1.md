@@ -1,5 +1,5 @@
 ---
-title: NetworkPolicy []
+title: NetworkPolicy [networking.k8s.io/v1]
 ---
 
 # NetworkPolicy \[networking.k8s.io/v1\] {#networkpolicy-networking-k8s-io-v1}
@@ -91,7 +91,7 @@ Type
 | --- | --- | --- |
 | `endPort` | `integer` | endPort indicates that the range of ports from port to endPort if set, inclusive, should be allowed by the policy. This field cannot be defined if the port field is not defined or if the port field is defined as a named (string) port. The endPort must be equal or greater than port. |
 | `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | port represents the port on the given protocol. This can either be a numerical or named port on a pod. If this field is not provided, this matches all port names and numbers. If present, only traffic on the specified protocol AND port will be matched. |
-| `protocol` | `string` | protocol represents the protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP. Possible enum values:  - `"SCTP"` is the SCTP protocol.  - `"TCP"` is the TCP protocol.  - `"UDP"` is the UDP protocol. |
+| `protocol` | `string` | protocol represents the protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.<br>Possible enum values: - `"SCTP"` is the SCTP protocol. - `"TCP"` is the TCP protocol. - `"UDP"` is the UDP protocol. |
 
 ### .spec.egress\[\].to {#_specegressto}
 
@@ -116,8 +116,8 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `ipBlock` | `object` | IPBlock describes a particular CIDR (Ex. "192.168.1.0/24","2001:db8::/64") that is allowed to the pods matched by a NetworkPolicySpec’s podSelector. The except entry describes CIDRs that should not be included within this rule. |
-| `namespaceSelector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | namespaceSelector selects namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces. If podSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the namespaces selected by namespaceSelector. Otherwise it selects all pods in the namespaces selected by namespaceSelector. |
-| `podSelector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | podSelector is a label selector which selects pods. This field follows standard label selector semantics; if present but empty, it selects all pods. If namespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the pods matching podSelector in the policy’s own namespace. |
+| `namespaceSelector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | namespaceSelector selects namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces.<br>If podSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the namespaces selected by namespaceSelector. Otherwise it selects all pods in the namespaces selected by namespaceSelector. |
+| `podSelector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | podSelector is a label selector which selects pods. This field follows standard label selector semantics; if present but empty, it selects all pods.<br>If namespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the pods matching podSelector in the policy’s own namespace. |
 
 ### .spec.egress\[\].to\[\].ipBlock {#_specegresstoipblock}
 
@@ -187,8 +187,8 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `ipBlock` | `object` | IPBlock describes a particular CIDR (Ex. "192.168.1.0/24","2001:db8::/64") that is allowed to the pods matched by a NetworkPolicySpec’s podSelector. The except entry describes CIDRs that should not be included within this rule. |
-| `namespaceSelector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | namespaceSelector selects namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces. If podSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the namespaces selected by namespaceSelector. Otherwise it selects all pods in the namespaces selected by namespaceSelector. |
-| `podSelector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | podSelector is a label selector which selects pods. This field follows standard label selector semantics; if present but empty, it selects all pods. If namespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the pods matching podSelector in the policy’s own namespace. |
+| `namespaceSelector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | namespaceSelector selects namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces.<br>If podSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the namespaces selected by namespaceSelector. Otherwise it selects all pods in the namespaces selected by namespaceSelector. |
+| `podSelector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | podSelector is a label selector which selects pods. This field follows standard label selector semantics; if present but empty, it selects all pods.<br>If namespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the pods matching podSelector in the policy’s own namespace. |
 
 ### .spec.ingress\[\].from\[\].ipBlock {#_specingressfromipblock}
 
@@ -232,7 +232,7 @@ Type
 | --- | --- | --- |
 | `endPort` | `integer` | endPort indicates that the range of ports from port to endPort if set, inclusive, should be allowed by the policy. This field cannot be defined if the port field is not defined or if the port field is defined as a named (string) port. The endPort must be equal or greater than port. |
 | `port` | [`IntOrString`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | port represents the port on the given protocol. This can either be a numerical or named port on a pod. If this field is not provided, this matches all port names and numbers. If present, only traffic on the specified protocol AND port will be matched. |
-| `protocol` | `string` | protocol represents the protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP. Possible enum values:  - `"SCTP"` is the SCTP protocol.  - `"TCP"` is the TCP protocol.  - `"UDP"` is the UDP protocol. |
+| `protocol` | `string` | protocol represents the protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.<br>Possible enum values: - `"SCTP"` is the SCTP protocol. - `"TCP"` is the TCP protocol. - `"UDP"` is the UDP protocol. |
 
 ## API endpoints {#_api_endpoints}
 
@@ -244,21 +244,21 @@ The following API endpoints are available:
 - `/apis/networking.k8s.io/v1/watch/networkpolicies`
 
   - `GET`: watch individual changes to a list of NetworkPolicy. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/networking.k8s.io/v1/namespaces/{{ namespace }}/networkpolicies`
+- `/apis/networking.k8s.io/v1/namespaces/{namespace}/networkpolicies`
 
   - `DELETE`: delete collection of NetworkPolicy
   - `GET`: list or watch objects of kind NetworkPolicy
   - `POST`: create a NetworkPolicy
-- `/apis/networking.k8s.io/v1/watch/namespaces/{{ namespace }}/networkpolicies`
+- `/apis/networking.k8s.io/v1/watch/namespaces/{namespace}/networkpolicies`
 
   - `GET`: watch individual changes to a list of NetworkPolicy. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/networking.k8s.io/v1/namespaces/{{ namespace }}/networkpolicies/{{ name }}`
+- `/apis/networking.k8s.io/v1/namespaces/{namespace}/networkpolicies/{name}`
 
   - `DELETE`: delete a NetworkPolicy
   - `GET`: read the specified NetworkPolicy
   - `PATCH`: partially update the specified NetworkPolicy
   - `PUT`: replace the specified NetworkPolicy
-- `/apis/networking.k8s.io/v1/watch/namespaces/{{ namespace }}/networkpolicies/{{ name }}`
+- `/apis/networking.k8s.io/v1/watch/namespaces/{namespace}/networkpolicies/{name}`
 
   - `GET`: watch changes to an object of kind NetworkPolicy. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
 
@@ -300,7 +300,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/networking.k8s.io/v1/namespaces/{{ namespace }}/networkpolicies {#_apisnetworkingk8siov1namespaces_namespace_networkpolicies}
+### /apis/networking.k8s.io/v1/namespaces/{namespace}/networkpolicies {#_apisnetworkingk8siov1namespaces_namespace_networkpolicies}
 
 HTTP method
 :   ```
@@ -374,7 +374,7 @@ Description
 | 202 - Accepted | [`NetworkPolicy`](/openshift-docs-markdown/rest_api/network_apis/networkpolicy-networking-k8s-io-v1#networkpolicy-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/networking.k8s.io/v1/watch/namespaces/{{ namespace }}/networkpolicies {#_apisnetworkingk8siov1watchnamespaces_namespace_networkpolicies}
+### /apis/networking.k8s.io/v1/watch/namespaces/{namespace}/networkpolicies {#_apisnetworkingk8siov1watchnamespaces_namespace_networkpolicies}
 
 HTTP method
 :   ```
@@ -393,7 +393,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/networking.k8s.io/v1/namespaces/{{ namespace }}/networkpolicies/{{ name }} {#_apisnetworkingk8siov1namespaces_namespace_networkpolicies_name}
+### /apis/networking.k8s.io/v1/namespaces/{namespace}/networkpolicies/{name} {#_apisnetworkingk8siov1namespaces_namespace_networkpolicies_name}
 
 **Global path parameters**
 
@@ -498,7 +498,7 @@ Description
 | 201 - Created | [`NetworkPolicy`](/openshift-docs-markdown/rest_api/network_apis/networkpolicy-networking-k8s-io-v1#networkpolicy-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/networking.k8s.io/v1/watch/namespaces/{{ namespace }}/networkpolicies/{{ name }} {#_apisnetworkingk8siov1watchnamespaces_namespace_networkpolicies_name}
+### /apis/networking.k8s.io/v1/watch/namespaces/{namespace}/networkpolicies/{name} {#_apisnetworkingk8siov1watchnamespaces_namespace_networkpolicies_name}
 
 **Global path parameters**
 

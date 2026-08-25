@@ -60,6 +60,7 @@ service DevicePlugin {
 - More specific details regarding deployment steps can be found with each device plugin implementation.
 
 **Additional resources**
+{._additional-resources}
 
 - [Nvidia GPU device plugin for COS-based operating system](https://github.com/GoogleCloudPlatform/Container-engine-accelerators/tree/master/cmd/nvidia_gpu)
 - [Nvidia official GPU device plugin](https://github.com/NVIDIA/k8s-device-plugin)

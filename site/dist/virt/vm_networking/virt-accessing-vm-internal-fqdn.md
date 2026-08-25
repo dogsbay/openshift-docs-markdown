@@ -120,6 +120,7 @@ You can connect to a virtual machine (VM) by using its internal fully qualified 
 
    In the preceding example, the DNS entry for `myvm.mysubdomain.default.svc.cluster.local` points to `10.244.0.57`, which is the cluster IP address that is currently assigned to the VM.
 
-## Additional resources {#additional-resources_virt-accessing-vm-internal-fqdn}
+**Additional resources**
+{._additional-resources}
 
 - [Exposing a VM by using a service](/openshift-docs-markdown/virt/vm_networking/virt-exposing-vm-with-service#virt-exposing-vm-with-service)

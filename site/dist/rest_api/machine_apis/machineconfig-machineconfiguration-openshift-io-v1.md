@@ -1,5 +1,5 @@
 ---
-title: MachineConfig []
+title: MachineConfig [machineconfiguration.openshift.io/v1]
 ---
 
 # MachineConfig \[machineconfiguration.openshift.io/v1\] {#machineconfig-machineconfiguration-openshift-io-v1}
@@ -52,7 +52,7 @@ The following API endpoints are available:
   - `DELETE`: delete collection of MachineConfig
   - `GET`: list objects of kind MachineConfig
   - `POST`: create a MachineConfig
-- `/apis/machineconfiguration.openshift.io/v1/machineconfigs/{{ name }}`
+- `/apis/machineconfiguration.openshift.io/v1/machineconfigs/{name}`
 
   - `DELETE`: delete a MachineConfig
   - `GET`: read the specified MachineConfig
@@ -127,7 +127,7 @@ Description
 | 202 - Accepted | [`MachineConfig`](/openshift-docs-markdown/rest_api/machine_apis/machineconfig-machineconfiguration-openshift-io-v1#machineconfig-machineconfiguration-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machineconfiguration.openshift.io/v1/machineconfigs/{{ name }} {#_apismachineconfigurationopenshiftiov1machineconfigs_name}
+### /apis/machineconfiguration.openshift.io/v1/machineconfigs/{name} {#_apismachineconfigurationopenshiftiov1machineconfigs_name}
 
 **Global path parameters**
 

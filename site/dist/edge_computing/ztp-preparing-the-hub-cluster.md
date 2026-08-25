@@ -1,8 +1,8 @@
 ---
-title: Preparing the hub cluster for {{ ztp }}
+title: Preparing the hub cluster for GitOps ZTP
 ---
 
-# Preparing the hub cluster for {{ ztp }} {#ztp-preparing-the-hub-cluster}
+# Preparing the hub cluster for GitOps ZTP {#ztp-preparing-the-hub-cluster}
 
 To use RHACM in a disconnected environment, create a mirror registry that mirrors the OpenShift Container Platform release images and Operator Lifecycle Manager (OLM) catalog that contains the required Operator images. OLM manages, installs, and upgrades Operators and their dependencies in the cluster. You can also use a disconnected mirror host to serve the RHCOS ISO and RootFS disk images that are used to provision the bare-metal hosts.
 
@@ -57,7 +57,7 @@ Use the following representative configuration and network specifications to dev
 > [!IMPORTANT]
 > The following guidelines are based on internal lab benchmark testing only and do not represent complete bare-metal host specifications.
 
-***Representative three-node hub cluster machine specifications***
+**Representative three-node hub cluster machine specifications**
 
 <table>
 <thead>
@@ -98,6 +98,7 @@ Use the following representative configuration and network specifications to dev
 | Network bandwidth limit | 20 Mbps |
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating and managing single-node OpenShift clusters with RHACM](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.7/html/install/installing#single-node)
 
@@ -120,6 +121,7 @@ Use Red Hat Advanced Cluster Management (RHACM), Red Hat OpenShift GitOps, and
 - Install GitOps and TALM in the hub cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing OpenShift GitOps](https://docs.openshift.com/gitops/latest/installing_gitops/installing-openshift-gitops.html#installing-openshift-gitops)
 - [Installing TALM](/openshift-docs-markdown/edge_computing/cnf-talm-for-cluster-upgrades#installing-topology-aware-lifecycle-manager-using-cli_cnf-topology-aware-lifecycle-manager)
@@ -158,21 +160,21 @@ Before you begin installing clusters in the disconnected environment with Red H
       where:
 
       `<iso_image_name>`
-      :   ISO image name, for example, `rhcos-{{ product_version }}.1-x86_64-live.x86_64.iso`
+      :   ISO image name, for example, `rhcos-4.22.1-x86_64-live.x86_64.iso`
 
       `<rootfs_image_name>`
-      :   RootFS image name, for example, `rhcos-{{ product_version }}.1-x86_64-live-rootfs.x86_64.img`
+      :   RootFS image name, for example, `rhcos-4.22.1-x86_64-live-rootfs.x86_64.img`
 
       `<ocp_version>`
-      :   OpenShift Container Platform version, for example, `{{ product_version }}.1`
+      :   OpenShift Container Platform version, for example, `4.22.1`
    2. Download the required images:
 
       ```terminal
-      $ sudo wget https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/{{ product_version }}/${{ OCP_VERSION }}/${{ ISO_IMAGE_NAME }} -O /var/www/html/${{ ISO_IMAGE_NAME }}
+      $ sudo wget https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.22/${OCP_VERSION}/${ISO_IMAGE_NAME} -O /var/www/html/${ISO_IMAGE_NAME}
       ```
 
       ```terminal
-      $ sudo wget https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/{{ product_version }}/${{ OCP_VERSION }}/${{ ROOTFS_IMAGE_NAME }} -O /var/www/html/${{ ROOTFS_IMAGE_NAME }}
+      $ sudo wget https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.22/${OCP_VERSION}/${ROOTFS_IMAGE_NAME} -O /var/www/html/${ROOTFS_IMAGE_NAME}
       ```
 
 **Verification**
@@ -186,11 +188,12 @@ Before you begin installing clusters in the disconnected environment with Red H
   Example output:
 
   ```terminal
-  Saving to: rhcos-{{ product_version }}.1-x86_64-live.x86_64.iso
-  rhcos-{{ product_version }}.1-x86_64-live.x86_64.iso-  11%[====>    ]  10.01M  4.71MB/s
+  Saving to: rhcos-4.22.1-x86_64-live.x86_64.iso
+  rhcos-4.22.1-x86_64-live.x86_64.iso-  11%[====>    ]  10.01M  4.71MB/s
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating a mirror registry](/openshift-docs-markdown/disconnected/installing-mirroring-creating-registry#installing-mirroring-creating-registry)
 - [Mirroring images for a disconnected installation](/openshift-docs-markdown/disconnected/installing-mirroring-installation-images#installing-mirroring-installation-images)
@@ -224,7 +227,7 @@ Red Hat Advanced Cluster Management (RHACM) uses the assisted service to deploy
    # ...
      osImages:
        - cpuArchitecture: x86_64
-         openshiftVersion: "{{ product_version }}"
+         openshiftVersion: "4.22"
          rootFSUrl: https://<host>/<path>/rhcos-live-rootfs.x86_64.img
          url: https://<host>/<path>/rhcos-live.x86_64.iso
    ```
@@ -345,6 +348,7 @@ You can configure the hub cluster to use a disconnected mirror registry for a di
    > A valid NTP server is required during cluster installation. Ensure that a suitable NTP server is available and can be reached from the installed clusters through the disconnected network.
 
 **Additional resources**
+{._additional-resources}
 
 - [Mirroring the OpenShift Container Platform repository](/openshift-docs-markdown/disconnected/installing-mirroring-installation-images#installation-mirror-repository_installing-mirroring-installation-images)
 
@@ -535,7 +539,7 @@ Before you can use the GitOps Zero Touch Provisioning (ZTP) pipeline, you need t
 2. Export the `argocd` directory from the `ztp-site-generate` container image using the following commands:
 
    ```terminal
-   $ podman pull registry.redhat.io/openshift4/ztp-site-generate-rhel8:v{{ product_version }}
+   $ podman pull registry.redhat.io/openshift4/ztp-site-generate-rhel8:v4.22
    ```
 
    ```terminal
@@ -543,7 +547,7 @@ Before you can use the GitOps Zero Touch Provisioning (ZTP) pipeline, you need t
    ```
 
    ```terminal
-   $ podman run --log-driver=none --rm registry.redhat.io/openshift4/ztp-site-generate-rhel8:v{{ product_version }} extract /home/ztp --tar | tar x -C ./out
+   $ podman run --log-driver=none --rm registry.redhat.io/openshift4/ztp-site-generate-rhel8:v4.22 extract /home/ztp --tar | tar x -C ./out
    ```
 3. Check that the `out` directory contains the following subdirectories:
 
@@ -612,6 +616,7 @@ Before you can use the GitOps Zero Touch Provisioning (ZTP) pipeline, you need t
 > For more information about `PolicyGenerator` resources, see the RHACM [Integrating Policy Generator](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.17/html-single/governance/index#integrate-policy-generator) documentation.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring managed cluster policies by using PolicyGenerator resources](/openshift-docs-markdown/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-configuring-managed-clusters-policygenerator)
 - [Comparing RHACM PolicyGenerator and PolicyGenTemplate resource patching](/openshift-docs-markdown/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-comparing-pgt-and-rhacm-pg-patching-strategies_ztp-configuring-managed-clusters-policygenerator)
@@ -799,16 +804,60 @@ You can use GitOps ZTP to configure a set of policies to back up `BareMetalHost`
              name: set-bmh-backup-label
            spec:
              object-templates-raw: |
+               {{- /* Set cluster-activation label on all BMH resources */ -}}
+               {{- $infra_label := "infraenvs.agent-install.openshift.io" }}
+               {{- range $bmh := (lookup "metal3.io/v1alpha1" "BareMetalHost" "" "" $infra_label).items }}
+                   - complianceType: musthave
+                     objectDefinition:
+                       kind: BareMetalHost
+                       apiVersion: metal3.io/v1alpha1
+                       metadata:
+                         name: {{ $bmh.metadata.name }}
+                         namespace: {{ $bmh.metadata.namespace }}
+                         labels:
+                           cluster.open-cluster-management.io/backup: cluster-activation
+               {{- end }}
+             remediationAction: enforce
+             severity: high
+   ---
+   apiVersion: cluster.open-cluster-management.io/v1beta1
+   kind: Placement
+   metadata:
+     name: bmh-cluster-activation-label-pr
+   spec:
+     predicates:
+       - requiredClusterSelector:
+           labelSelector:
+             matchExpressions:
+               - key: name
+                 operator: In
+                 values:
+                   - local-cluster
+   ---
+   apiVersion: policy.open-cluster-management.io/v1
+   kind: PlacementBinding
+   metadata:
+     name: bmh-cluster-activation-label-binding
+   placementRef:
+     name: bmh-cluster-activation-label-pr
+     apiGroup: cluster.open-cluster-management.io
+     kind: Placement
+   subjects:
+     - name: bmh-cluster-activation-label
+       apiGroup: policy.open-cluster-management.io
+       kind: Policy
+   ---
+   apiVersion: cluster.open-cluster-management.io/v1beta2
+   kind: ManagedClusterSetBinding
+   metadata:
+     name: default
+     namespace: default
+   spec:
+     clusterSet: default
    ```
 
-{{- /* Set cluster-activation label on all BMH resources */ -}} {{- $infra_label := "infraenvs.agent-install.openshift.io" }} {{- range $bmh := (lookup "metal3.io/v1alpha1" "BareMetalHost" "" "" $infra_label).items }} - complianceType: musthave objectDefinition: kind: BareMetalHost apiVersion: metal3.io/v1alpha1 metadata: name: {{ $bmh.metadata.name }} namespace: {{ $bmh.metadata.namespace }} labels: cluster.open-cluster-management.io/backup: cluster-activation {{- end }} remediationAction: enforce severity: high --- apiVersion: cluster.open-cluster-management.io/v1beta1 kind: Placement metadata: name: bmh-cluster-activation-label-pr spec: predicates: - requiredClusterSelector: labelSelector: matchExpressions: - key: name operator: In values: - local-cluster --- apiVersion: policy.open-cluster-management.io/v1 kind: PlacementBinding metadata: name: bmh-cluster-activation-label-binding placementRef: name: bmh-cluster-activation-label-pr apiGroup: cluster.open-cluster-management.io kind: Placement subjects: - name: bmh-cluster-activation-label apiGroup: policy.open-cluster-management.io kind: Policy --- apiVersion: cluster.open-cluster-management.io/v1beta2 kind: ManagedClusterSetBinding metadata: name: default namespace: default spec: clusterSet: default \`\`\`
-
-```
-If you apply the `cluster.open-cluster-management.io/backup: cluster-activation` label to `BareMetalHost` resources, the RHACM cluster backs up those resources.
-You can restore the `BareMetalHost` resources if the active cluster becomes unavailable, when restoring the hub activation resources.
-```
-
-1. Apply the policy by running the following command:
+   If you apply the `cluster.open-cluster-management.io/backup: cluster-activation` label to `BareMetalHost` resources, the RHACM cluster backs up those resources. You can restore the `BareMetalHost` resources if the active cluster becomes unavailable, when restoring the hub activation resources.
+2. Apply the policy by running the following command:
 
    ```terminal
    $ oc apply -f BareMetalHostBackupPolicy.yaml
@@ -877,6 +926,7 @@ You can now use Red Hat Advanced Cluster Management to restore a managed cluste
 > - Restores the status for `BareMetalHost` resources.
 
 **Additional resources**
+{._additional-resources}
 
 - [Restoring managed cluster activation data](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/business_continuity/business-cont-overview#managed-cluster-activation-data)
 - [Active-passive configuration](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/business_continuity/business-cont-overview#active-passive-config)

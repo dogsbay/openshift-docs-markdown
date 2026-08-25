@@ -43,18 +43,13 @@ Users with the `admin` role have the traditional Jenkins administrative user per
 
 The default OpenShift Container Platform `admin`, `edit`, and `view` roles and the Jenkins permissions those roles are assigned in the Jenkins instance are configurable.
 
-When running Jenkins in an OpenShift Container Platform
-
-pod, the login plugin looks for a config map named `openshift-jenkins-login-plugin-config` in the namespace that Jenkins is running in.
+When running Jenkins in an OpenShift Container Platform pod, the login plugin looks for a config map named `openshift-jenkins-login-plugin-config` in the namespace that Jenkins is running in.
 
 If this plugin finds and can read in that config map, you can define the role to Jenkins Permission mappings. Specifically:
 
 - The login plugin treats the key and value pairs in the config map as Jenkins permission to OpenShift Container Platform role mappings.
 - The key is the Jenkins permission group short ID and the Jenkins permission short ID, with those two separated by a hyphen character.
-- If you want to add the `Overall Jenkins Administer` permission to an OpenShift Container Platform
-
-role, the key should be `Overall-Administer`.
-
+- If you want to add the `Overall Jenkins Administer` permission to an OpenShift Container Platform role, the key should be `Overall-Administer`.
 - To get a sense of which permission groups and permissions IDs are available, go to the matrix authorization page in the Jenkins console and IDs for the groups and individual permissions in the table they provide.
 - The value of the key and value pair is the list of OpenShift Container Platform roles the permission should apply to, with each role separated by a comma.
 - If you want to add the `Overall Jenkins Administer` permission to both the default `admin` and `edit` roles, as well as a new Jenkins role you have created, the value for the key `Overall-Administer` would be `admin,edit,jenkins`.
@@ -110,12 +105,12 @@ The Jenkins server can be configured with the following environment variables:
 <tr>
   <td><code>JAVA_MAX_HEAP_PARAM</code>, <code>CONTAINER_HEAP_PERCENT</code>, <code>JENKINS_MAX_HEAP_UPPER_BOUND_MB</code></td>
   <td>These values control the maximum heap size of the Jenkins JVM. If <code>JAVA_MAX_HEAP_PARAM</code> is set, its value takes precedence. Otherwise, the maximum heap size is dynamically calculated as <code>CONTAINER_HEAP_PERCENT</code> of the container memory limit, optionally capped at <code>JENKINS_MAX_HEAP_UPPER_BOUND_MB</code> MiB. By default, the maximum heap size of the Jenkins JVM is set to 50% of the container memory limit with no cap.</td>
-  <td><code>JAVA_MAX_HEAP_PARAM</code> example setting: <code>-Xmx512m</code></td>
+  <td><code>JAVA_MAX_HEAP_PARAM</code> example setting: <code>-Xmx512m</code><br><br><code>CONTAINER_HEAP_PERCENT</code> default: <code>0.5</code>, or 50%<br><br><code>JENKINS_MAX_HEAP_UPPER_BOUND_MB</code> example setting: <code>512 MiB</code></td>
 </tr>
 <tr>
   <td><code>JAVA_INITIAL_HEAP_PARAM</code>, <code>CONTAINER_INITIAL_PERCENT</code></td>
   <td>These values control the initial heap size of the Jenkins JVM. If <code>JAVA_INITIAL_HEAP_PARAM</code> is set, its value takes precedence. Otherwise, the initial heap size is dynamically calculated as <code>CONTAINER_INITIAL_PERCENT</code> of the dynamically calculated maximum heap size. By default, the JVM sets the initial heap size.</td>
-  <td><code>JAVA_INITIAL_HEAP_PARAM</code> example setting: <code>-Xms32m</code></td>
+  <td><code>JAVA_INITIAL_HEAP_PARAM</code> example setting: <code>-Xms32m</code><br><br><code>CONTAINER_INITIAL_PERCENT</code> example setting: <code>0.1</code>, or 10%</td>
 </tr>
 <tr>
   <td><code>CONTAINER_CORE_LIMIT</code></td>
@@ -170,12 +165,12 @@ The Jenkins server can be configured with the following environment variables:
 <tr>
   <td><code>AGENT_BASE_IMAGE</code></td>
   <td>Setting this value overrides the image used for the <code>jnlp</code> container in the sample Kubernetes plugin pod templates provided with this image. Otherwise, the image from the <code>jenkins-agent-base-rhel8:latest</code> image stream tag in the <code>openshift</code> namespace is used.</td>
-  <td>Default:</td>
+  <td>Default: <code>image-registry.openshift-image-registry.svc:5000/openshift/jenkins-agent-base-rhel8:latest</code></td>
 </tr>
 <tr>
   <td><code>JAVA_BUILDER_IMAGE</code></td>
   <td>Setting this value overrides the image used for the <code>java-builder</code> container in the <code>java-builder</code> sample Kubernetes plugin pod templates provided with this image. Otherwise, the image from the <code>java:latest</code> image stream tag in the <code>openshift</code> namespace is used.</td>
-  <td>Default:</td>
+  <td>Default: <code>image-registry.openshift-image-registry.svc:5000/openshift/java:latest</code></td>
 </tr>
 <tr>
   <td><code>JAVA_FIPS_OPTIONS</code></td>
@@ -298,9 +293,7 @@ To use the Kubernetes plugin, OpenShift Container Platform provides an OpenShift
 >
 > For more information, see the "Important changes to OpenShift Jenkins images" link in the following "Additional resources" section.
 
-The Maven and Node.js agent images are automatically configured as Kubernetes pod template images within the OpenShift Container Platform Jenkins image configuration for the Kubernetes plugin. That configuration includes labels for each image that you can apply to any of your Jenkins jobs under their `Restrict where this project can be run` setting. If the label is applied, jobs run under an OpenShift Container Platform
-
-pod running the respective agent image.
+The Maven and Node.js agent images are automatically configured as Kubernetes pod template images within the OpenShift Container Platform Jenkins image configuration for the Kubernetes plugin. That configuration includes labels for each image that you can apply to any of your Jenkins jobs under their `Restrict where this project can be run` setting. If the label is applied, jobs run under an OpenShift Container Platform pod running the respective agent image.
 
 > [!IMPORTANT]
 > In OpenShift Container Platform 4.10 and later, the recommended pattern for running Jenkins agents using the Kubernetes plugin is to use pod templates with both `jnlp` and `sidecar` containers. The `jnlp` container uses the OpenShift Container Platform Jenkins Base agent image to facilitate launching a separate pod for your build. The `sidecar` container image has the tools needed to build in a particular language within the separate pod that was launched. Many container images from the Red Hat Container Catalog are referenced in the sample image streams in the `openshift` namespace. The OpenShift Container Platform Jenkins image has a pod template named `java-build` with sidecar containers that demonstrate this approach. This pod template uses the latest Java version provided by the `java` image stream in the `openshift` namespace.
@@ -661,7 +654,8 @@ It is recommended to specify memory request and limit values on agent containers
 
 You can increase the amount of memory available to Jenkins by overriding the `MEMORY_LIMIT` parameter when instantiating the Jenkins Ephemeral or Jenkins Persistent template.
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - See [Base image options](/openshift-docs-markdown/architecture/understanding-development#base-image-options) for more information about the [Red Hat Universal Base Images](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_atomic_host/7/html-single/getting_started_with_containers/index#using_red_hat_base_container_images_standard_and_minimal) (UBI).
 - [Important changes to OpenShift Jenkins images](/openshift-docs-markdown/cicd/jenkins/important-changes-to-openshift-jenkins-images#important-changes-to-openshift-jenkins-images)

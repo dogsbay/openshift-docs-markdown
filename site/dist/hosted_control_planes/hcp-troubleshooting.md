@@ -1,5 +1,5 @@
 ---
-title: Troubleshooting {{ hcp }}
+title: Troubleshooting hosted control planes
 ---
 
 # Troubleshooting hosted control planes {#hcp-troubleshooting}
@@ -51,6 +51,7 @@ Although the output does not contain any secret objects from the cluster, it can
   - If you want to save the results of the command to a compressed file, specify the `--dest-dir=NAME` parameter and replace `NAME` with the name of the directory where you want to save the results.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing the hosted control planes command-line interface](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-cli#hcp-cli)
 
@@ -133,6 +134,7 @@ When you need to troubleshoot an issue in a disconnected environment, you can ga
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Install on disconnected networks](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#install-on-disconnected-networks)
 
@@ -181,6 +183,7 @@ If a hosted control plane is not coming fully online because the hosted control 
 - If the ignition configuration was applied but the VM is still not registering as a node, see "Identifying the problem: Access the VM console logs" to learn how to access the VM console logs during startup.
 
 **Additional resources**
+{._additional-resources}
 
 - [Identifying the problem: Access the VM console logs](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.11/html/clusters/cluster_mce_overview#identifying-vm-console-logs)
 
@@ -261,6 +264,7 @@ If a hosted control plane is not coming fully online because the virtual machine
 - To access the VM console logs, complete the steps in "How to get serial console logs for VMs part of OpenShift Virtualization Hosted Control Plane clusters".
 
 **Additional resources**
+{._additional-resources}
 
 - [How to get serial console logs for VMs part of OpenShift Virtualization Hosted Control Plane clusters (Red Hat Knowledgebase)](https://access.redhat.com/solutions/7037705)
 
@@ -343,6 +347,7 @@ To unbind the non-bare-metal nodes with late binding, complete the following ste
 3. Reboot manually with the Discovery ISO.
 
 **Additional resources**
+{._additional-resources}
 
 - [Removing a cluster from management](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#remove-managed-cluster)
 
@@ -378,6 +383,7 @@ When you scale up a hosted cluster with nodes that were provisioned by using Ass
    > To use hosted control planes, you must have multicluster engine Operator installed, either as a standalone Operator or as part of Red Hat Advanced Cluster Management. Because the Operator has a close association with Red Hat Advanced Cluster Management, the documentation for the Operator is published within that product’s documentation. Even if you do not use Red Hat Advanced Cluster Management, the parts of its documentation that cover multicluster engine Operator are relevant to hosted control planes.
 
 **Additional resources**
+{._additional-resources}
 
 - [Add the pull secret to the namespace](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.16/html-single/clusters/index#on-prem-creating-your-cluster-with-the-cli-pull-secret)
 
@@ -761,5 +767,6 @@ If the status of the `DataPlaneConnectionAvailable` condition is `True`, the con
 4. In the control plane, review the `Konnectivity` server deployment.
 
 **Additional resources**
+{._additional-resources}
 
 - [Connectivity monitoring for hosted control planes](/openshift-docs-markdown/hosted_control_planes/hcp-observability#hcp-connectivity-metrics_hcp-observability)

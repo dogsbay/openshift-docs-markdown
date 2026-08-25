@@ -38,6 +38,7 @@ If you did not originally set the requested certificates, you can determine the 
   For more information about determining how and when to renew your proxy certificates, see "Proxy certificates" in *Security and compliance*.
 
 **Additional resources**
+{._additional-resources}
 
 - [Proxy certificates](/openshift-docs-markdown/security/certificate_types_descriptions/proxy-certificates#proxy-certificates)
 
@@ -48,6 +49,7 @@ The API server is accessible by clients that are external to the cluster at `api
 For more information, see "User-provided certificates for the API server" in *Security and compliance*
 
 **Additional resources**
+{._additional-resources}
 
 - [User-provisioned certificates for the API server](/openshift-docs-markdown/security/certificate_types_descriptions/user-provided-certificates-for-api-server#cert-types-user-provided-certificates-for-the-api-server)
 
@@ -66,6 +68,7 @@ You only need to check cluster-managed certificates if you detect an issue in th
 - Ingress certificates
 
 **Additional resources**
+{._additional-resources}
 
 - [Service CA certificates](/openshift-docs-markdown/security/certificate_types_descriptions/service-ca-certificates#cert-types-service-ca-certificates_cert-types-service-ca-certificates)
 - [Node certificates](/openshift-docs-markdown/security/certificate_types_descriptions/node-certificates#cert-types-node-certificates_cert-types-node-certificates)
@@ -92,6 +95,7 @@ The etcd certificates are used for encrypted communication between etcd member p
 For more information about updating etcd certificates, see [Checking etcd certificate expiry in OpenShift 4](https://access.redhat.com/solutions/7000968). For more information about etcd certificates, see "etcd certificates" in *Security and compliance*.
 
 **Additional resources**
+{._additional-resources}
 
 - [etcd certificates](/openshift-docs-markdown/security/certificate_types_descriptions/etcd-certificates#cert-types-etcd-certificates_cert-types-etcd-certificates)
 
@@ -104,6 +108,7 @@ After the cluster is installed, the cluster automatically renews the node certif
 For more information, see "Node certificates" in *Security and compliance*.
 
 **Additional resources**
+{._additional-resources}
 
 - [Node certificates](/openshift-docs-markdown/security/certificate_types_descriptions/node-certificates#cert-types-node-certificates_cert-types-node-certificates)
 
@@ -114,5 +119,6 @@ The `service-ca` is an Operator that creates a self-signed certificate authority
 For more information, see "Service CA certificates" in *Security and compliance*.
 
 **Additional resources**
+{._additional-resources}
 
 - [Service CA certificates](/openshift-docs-markdown/security/certificate_types_descriptions/service-ca-certificates#cert-types-service-ca-certificates_cert-types-service-ca-certificates)

@@ -23,12 +23,13 @@ const headings = [{"depth":1,"slug":"windows-container-overview","text":"Red Ha
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/windows_containers";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
-const title = "{{ productwinc }} overview";
+const title = "Red&#160;Hat OpenShift support for Windows Containers overview";
 const description = "You can use Red Hat OpenShift support for Windows Containers to run Windows compute nodes in an OpenShift Container Platform cluster by using the Red Hat…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
@@ -81,12 +82,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -94,7 +96,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="windows-container-overview" class="group scroll-mt-20">Red Hat OpenShift support for Windows Containers overview<a href="#windows-container-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can use Red Hat OpenShift support for Windows Containers to run Windows compute nodes in an OpenShift Container Platform cluster by using the Red Hat Windows Machine Config Operator (WMCO) to install and manage Windows nodes.</p>
+      <p class="_abstract">You can use Red Hat OpenShift support for Windows Containers to run Windows compute nodes in an OpenShift Container Platform cluster by using the Red Hat Windows Machine Config Operator (WMCO) to install and manage Windows nodes.</p>
       <h2 id="managing-windows-container-workloads_windows-container-overview" class="group scroll-mt-20">Managing Windows container workloads<a href="#managing-windows-container-workloads_windows-container-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">With a Red Hat subscription, you can get support for running Windows workloads in OpenShift Container Platform.</p>
       <p>Windows instances deployed by the WMCO are configured with the containerd container runtime. For more information, see the <a href="/openshift-docs-markdown/windows_containers/wmco_rn/windows-containers-release-notes#windows-containers-release-notes">release notes</a>.</p>

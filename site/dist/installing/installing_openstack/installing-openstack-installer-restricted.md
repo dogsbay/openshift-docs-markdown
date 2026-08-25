@@ -26,6 +26,7 @@ You can complete the following configurations after you install a cluster on Red
 - If you did not configure RHOSP to accept application traffic over floating IP addresses, configure RHOSP access with floating IP addresses.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)
 - [Selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing)
@@ -111,6 +112,7 @@ Each machine requires:
 > Compute machines host the applications that you run on OpenShift Container Platform; aim to run as many as you can.
 
 **Additional resources**
+{._additional-resources}
 
 - [huge pages](https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/16.1/html/configuring_the_compute_service_for_instance_creation/assembly_configuring-compute-nodes-for-performance_compute-performance#proc_configuring-huge-pages-on-compute-nodes_compute-performance)
 - [Configuring Compute nodes for performance](https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/16.1/html-single/configuring_the_compute_service_for_instance_creation/configuring-compute-nodes-for-performance#configuring-compute-nodes-for-performance)
@@ -128,11 +130,7 @@ The bootstrap machine requires:
 
 ## Internet access for OpenShift Container Platform {#cluster-entitlements_installing-openstack-installer-restricted}
 
-In OpenShift Container Platform 4.22, you require access to the internet to
-
-obtain the images that are necessary to install
-
-your cluster.
+In OpenShift Container Platform 4.22, you require access to the internet to obtain the images that are necessary to install your cluster.
 
 You must have internet access to perform the following actions:
 
@@ -297,11 +295,7 @@ For a complete list of configuration parameters, see the "OpenStack Cloud Contro
 
 ## Creating the RHCOS image for restricted network installations {#installation-creating-image-restricted_installing-openstack-installer-restricted}
 
-Download the Red Hat Enterprise Linux CoreOS (RHCOS) image to install OpenShift Container Platform on a restricted network
-
-Red Hat OpenStack Platform (RHOSP)
-
-environment.
+Download the Red Hat Enterprise Linux CoreOS (RHCOS) image to install OpenShift Container Platform on a restricted network Red Hat OpenStack Platform (RHOSP) environment.
 
 **Prerequisites**
 
@@ -339,9 +333,7 @@ environment.
 
 ## Creating the installation configuration file {#installation-initializing_installing-openstack-installer-restricted}
 
-You can customize the OpenShift Container Platform cluster you install on
-
-Red Hat OpenStack Platform (RHOSP).
+You can customize the OpenShift Container Platform cluster you install on Red Hat OpenStack Platform (RHOSP).
 
 **Prerequisites**
 
@@ -425,6 +417,7 @@ Red Hat OpenStack Platform (RHOSP).
    > The `install-config.yaml` file is consumed during the installation process. If you want to reuse the file, you must back it up now.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installation configuration parameters for RHOSP](/openshift-docs-markdown/installing/installing_openstack/installation-config-parameters-openstack#installation-config-parameters-openstack)
 
@@ -452,46 +445,42 @@ Production environments can deny direct access to the internet and instead have 
    proxy:
      httpProxy: http://<username>:<pswd>@<ip>:<port>
      httpsProxy: https://<username>:<pswd>@<ip>:<port>
+     noProxy: example.com
+   additionalTrustBundle: |
+       -----BEGIN CERTIFICATE-----
+       <MY_TRUSTED_CA_CERT>
+       -----END CERTIFICATE-----
+   additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle>
+   # ...
    ```
 
-{%- if not aws %} noProxy: example.com {% endif %} {% if aws %} noProxy: ec2.<aws_region>.amazonaws.com,elasticloadbalancing.<aws_region>.amazonaws.com,s3.<aws_region>.amazonaws.com {%- endif %} additionalTrustBundle: | -----BEGIN CERTIFICATE----- <MY_TRUSTED_CA_CERT> -----END CERTIFICATE----- additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle> # ... \`\`\`
+   where:
 
-````
-where:
+   `proxy.httpProxy`
+   :   Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be `http`.
 
-`proxy.httpProxy`
-:   Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be `http`.
+   `proxy.httpsProxy`
+   :   Specifies a proxy URL to use for creating HTTPS connections outside the cluster.
 
-`proxy.httpsProxy`
-:   Specifies a proxy URL to use for creating HTTPS connections outside the cluster.
+   `proxy.noProxy`
+   :   Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with `.` to match subdomains only. For example, `.y.com` matches `x.y.com`, but not `y.com`. Use `*` to bypass the proxy for all destinations.
 
-`proxy.noProxy`
-:   Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with `.` to match subdomains only. For example, `.y.com` matches `x.y.com`, but not `y.com`. Use `*` to bypass the proxy for all destinations.
+   `additionalTrustBundle`
+   :   If you specify this value, the installation program generates a config map named `user-ca-bundle` in the `openshift-config` namespace to hold the additional CA certificates. If you specify `additionalTrustBundle` and at least one proxy setting, the `Proxy` object references the `user-ca-bundle` config map in the `trustedCA` field. The Cluster Network Operator then creates a `trusted-ca-bundle` config map that merges the contents specified for the `trustedCA` parameter with the RHCOS trust bundle. You must set the `additionalTrustBundle` field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.
 
-`additionalTrustBundle`
-:   If you specify this value, the installation program generates a config map named `user-ca-bundle` in the `openshift-config` namespace to hold the additional CA certificates. If you specify `additionalTrustBundle` and at least one proxy setting, the `Proxy` object references the `user-ca-bundle` config map in the `trustedCA` field. The Cluster Network Operator then creates a `trusted-ca-bundle` config map that merges the contents specified for the `trustedCA` parameter with the RHCOS trust bundle. You must set the `additionalTrustBundle` field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.
+   `additionalTrustBundlePolicy`
+   :   Specifies the policy that determines the configuration of the `Proxy` object to reference the `user-ca-bundle` config map in the `trustedCA` field. The allowed values are `Proxyonly` and `Always`. Use `Proxyonly` to reference the `user-ca-bundle` config map only when you configure an `http/https` proxy. Use `Always` to always reference the `user-ca-bundle` config map. The default value is `Proxyonly`. Optional parameter.
 
-`additionalTrustBundlePolicy`
-:   Specifies the policy that determines the configuration of the `Proxy` object to reference the `user-ca-bundle` config map in the `trustedCA` field. The allowed values are `Proxyonly` and `Always`. Use `Proxyonly` to reference the `user-ca-bundle` config map only when you configure an `http/https` proxy. Use `Always` to always reference the `user-ca-bundle` config map. The default value is `Proxyonly`. Optional parameter.
+   > [!NOTE]
+   > The installation program does not support the proxy `readinessEndpoints` field.
 
-:::note
-
-The installation program does not support the proxy `readinessEndpoints` field.
-
-:::
-
-:::note
-
-If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
-
-```terminal
-$ ./openshift-install wait-for install-complete --log-level debug
-```
-
-:::
-````
-
-1. Save the file and reference it when installing OpenShift Container Platform.
+   > [!NOTE]
+   > If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
+   >
+   > ```terminal
+   > $ ./openshift-install wait-for install-complete --log-level debug
+   > ```
+2. Save the file and reference it when installing OpenShift Container Platform.
 
    The installation program creates a cluster-wide proxy named `cluster` that uses the proxy settings in the `install-config.yaml` file. If you do not give proxy settings, the installation program still creates a `cluster` `Proxy` object, but it has a nil `spec`.
 
@@ -536,9 +525,7 @@ platform:
     externalNetwork: external
     computeFlavor: m1.xlarge
     apiFloatingIP: 128.0.0.1
-{%- if not openshift_origin %}
 fips: false
-{%- endif %}
 pullSecret: '{"auths": ...}'
 sshKey: ssh-ed25519 AAAA...
 additionalTrustBundle: |
@@ -636,9 +623,7 @@ You can configure OpenShift Container Platform API and application access by usi
 
 ### Enabling access with floating IP addresses {#installation-osp-accessing-api-floating_installing-openstack-installer-restricted}
 
-Create floating IP (FIP) addresses for external access to the OpenShift Container Platform
-
-API and cluster applications.
+Create floating IP (FIP) addresses for external access to the OpenShift Container Platform API and cluster applications.
 
 **Procedure**
 
@@ -670,23 +655,15 @@ API and cluster applications.
    > - `application_floating_ip integrated-oauth-server-openshift-authentication.apps.<cluster_name>.<base_domain>`
    >
    > The cluster domain names in the `/etc/hosts` file grant access to the web console and the monitoring interface of your cluster locally. You can also use the `kubectl` or `oc`. You can access the user applications by using the additional entries pointing to the <application_floating_ip>. This action makes the API and applications accessible to only you, which is not suitable for production deployment, but does allow installation for development and testing.
-4. Add the FIPs to the
-
-   `install-config.yaml`
-
-   file as the values of the following
-
-   parameters:
+4. Add the FIPs to the `install-config.yaml` file as the values of the following parameters:
 
    - `platform.openstack.ingressFloatingIP`
    - `platform.openstack.apiFloatingIP`
 
-     If you use these values, you must also enter an external network as the value of the
+     If you use these values, you must also enter an external network as the value of the `platform.openstack.externalNetwork` parameter in the `install-config.yaml` file.
 
-     `platform.openstack.externalNetwork` parameter in the `install-config.yaml` file.
-
-> [!TIP]
-> You can make OpenShift Container Platform resources available outside of the cluster by assigning a floating IP address and updating your firewall configuration.
+     > [!TIP]
+     > You can make OpenShift Container Platform resources available outside of the cluster by assigning a floating IP address and updating your firewall configuration.
 
 ### Completing installation without floating IP addresses {#installation-osp-accessing-api-no-floating_installing-openstack-installer-restricted}
 
@@ -694,38 +671,22 @@ You can install OpenShift Container Platform on Red Hat OpenStack Platform (RHO
 
 **Procedure**
 
-1. In the
+1. In the `install-config.yaml` file, do not define the following parameters:
 
-`install-config.yaml`
+   - `platform.openstack.ingressFloatingIP`
+   - `platform.openstack.apiFloatingIP`
+2. If you cannot provide an external network, you can also leave `platform.openstack.externalNetwork` blank. If you do not provide a value for `platform.openstack.externalNetwork`, a router is not created for you, and, without additional action, the installer will fail to retrieve an image from Glance. You must configure external connectivity on your own.
+3. If you run the installer from a system that cannot reach the cluster API due to a lack of floating IP addresses or name resolution, installation fails. To prevent installation failure in these cases, you can use a proxy network or run the installer from a system that is on the same network as your machines.
 
-file, do not define the following
-
-parameters:
-
-```
-*   `platform.openstack.ingressFloatingIP`
-*   `platform.openstack.apiFloatingIP`
-```
-
-1. If you cannot provide an external network, you can also leave `platform.openstack.externalNetwork` blank. If you do not provide a value for `platform.openstack.externalNetwork`, a router is not created for you, and, without additional action, the installer will fail to retrieve an image from Glance. You must configure external connectivity on your own.
-2. If you run the installer
-
-from a system that cannot reach the cluster API due to a lack of floating IP addresses or name resolution, installation fails. To prevent installation failure in these cases, you can use a proxy network or run the installer from a system that is on the same network as your machines.
-
-````
-:::note
-
-You can enable name resolution by creating DNS records for the API and Ingress ports. For example:
-
-```dns
-api.<cluster_name>.<base_domain>.  IN  A  <api_port_IP>
-*.apps.<cluster_name>.<base_domain>. IN  A <ingress_port_IP>
-```
-
-If you do not control the DNS server, you can add the record to your `/etc/hosts` file. This action makes the API accessible to only you, which is not suitable for production deployment but does allow installation for development and testing.
-
-:::
-````
+   > [!NOTE]
+   > You can enable name resolution by creating DNS records for the API and Ingress ports. For example:
+   >
+   > ```dns
+   > api.<cluster_name>.<base_domain>.  IN  A  <api_port_IP>
+   > *.apps.<cluster_name>.<base_domain>. IN  A <ingress_port_IP>
+   > ```
+   >
+   > If you do not control the DNS server, you can add the record to your `/etc/hosts` file. This action makes the API accessible to only you, which is not suitable for production deployment but does allow installation for development and testing.
 
 ## Deploying the cluster {#installation-launching-installer_installing-openstack-installer-restricted}
 
@@ -741,19 +702,15 @@ To deploy your OpenShift Container Platform cluster, you can initialize installa
 
 **Procedure**
 
-````
-*   In the directory that contains the installation program, initialize the cluster deployment by running the following command:
+- In the directory that contains the installation program, initialize the cluster deployment by running the following command:
 
 ```terminal
 $ ./openshift-install create cluster --dir <installation_directory> \
     --log-level=info
 ```
-    *   For `<installation_directory>`, specify the
-    location of your customized `./install-config.yaml` file.
 
-    *   To view different installation details, specify `warn`, `debug`, or
-    `error` instead of `info`.
-````
+- For `<installation_directory>`, specify the location of your customized `./install-config.yaml` file.
+- To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
 
 **Verification**
 
@@ -853,6 +810,7 @@ The `kubeconfig` file is specific to a cluster and OpenShift Container Platform 
 - "Remote health reporting"
 
 **Additional resources**
+{._additional-resources}
 
 - [Accessing the web console](/openshift-docs-markdown/web_console/web-console#web-console)
 
@@ -870,7 +828,7 @@ To use only trusted or locally available Operator catalogs, disable the default 
   ```
 
   > [!TIP]
-  > Or, you can use the web console to manage catalog sources. From the **Administration** -> **Cluster Settings** -> **Configuration** -> **OperatorHub** page, click the **Sources** tab, where you can create, update, delete, disable, and enable individual sources.
+  > Or, you can use the web console to manage catalog sources. From the **Administration** → **Cluster Settings** → **Configuration** → **OperatorHub** page, click the **Sources** tab, where you can create, update, delete, disable, and enable individual sources.
 
 ## Telemetry access for OpenShift Container Platform {#cluster-telemetry_installing-openstack-installer-restricted}
 
@@ -879,5 +837,6 @@ To provide metrics about cluster health and the success of updates, the Telemetr
 After you confirm that your [OpenShift Cluster Manager](https://console.redhat.com/openshift) inventory is correct, either maintained automatically by Telemetry or manually by using OpenShift Cluster Manager,use subscription watch to track your OpenShift Container Platform subscriptions at the account or multi-cluster level. For more information about subscription watch, see "Data Gathered and Used by Red Hat’s subscription services" in the *Additional resources* section.
 
 **Additional resources**
+{._additional-resources}
 
 - [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)

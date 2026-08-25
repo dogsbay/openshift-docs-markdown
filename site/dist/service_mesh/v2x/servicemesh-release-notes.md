@@ -559,9 +559,9 @@ This release of Red Hat OpenShift Service Mesh updates the Red Hat OpenShift S
 ### Fixed issues {#ossm-fixed-issues-2-5-2_ossm-release-notes}
 
 - [OSSM-6331](https://issues.redhat.com/browse/OSSM-6331) Previously, the `smcp.general.logging.componentLevels` spec accepted invalid `LogLevel` values, and the `ServiceMeshControlPlane` resource was still created. Now, the terminal shows an error message if an invalid value is used, and the control plane is not created.
-- [OSSM-6290](https://issues.redhat.com/browse/OSSM-6290) Previously, the ***Project*** filter drop-down of the ***Istio Config*** list page did not work correctly. All `istio config` items were displayed from all namespaces even if you selected a specific project from the drop-down menu. Now, only the `istio config` items that belong to the selected project in the filter drop-down are displayed.
+- [OSSM-6290](https://issues.redhat.com/browse/OSSM-6290) Previously, the **Project** filter drop-down of the **Istio Config** list page did not work correctly. All `istio config` items were displayed from all namespaces even if you selected a specific project from the drop-down menu. Now, only the `istio config` items that belong to the selected project in the filter drop-down are displayed.
 - [OSSM-6298](https://issues.redhat.com/browse/OSSM-6298) Previously, when you clicked an item reference within the OpenShift Service Mesh Console (OSSMC) plugin, the console sometimes performed multiple redirects before opening the desired page. As a result, navigating back to the previous page that was open in the console caused your web browser to open the wrong page. Now, these redirects do not occur, and clicking **Back** in a web browser opens the correct page.
-- [OSSM-6299](https://issues.redhat.com/browse/OSSM-6299) Previously, in OpenShift Container Platform 4.15, when you clicked the ***Node graph*** menu option of any node menu within the traffic graph, the node graph was not displayed. Instead, the page refreshed with the same traffic graph. Now, clicking the ***Node graph*** menu option correctly displays the node graph.
+- [OSSM-6299](https://issues.redhat.com/browse/OSSM-6299) Previously, in OpenShift Container Platform 4.15, when you clicked the **Node graph** menu option of any node menu within the traffic graph, the node graph was not displayed. Instead, the page refreshed with the same traffic graph. Now, clicking the **Node graph** menu option correctly displays the node graph.
 - [OSSM-6267](https://issues.redhat.com/browse/OSSM-6267) Previously, configuring a data source in Red Hat OpenShift Service Mesh 2.5 Grafana caused a data query authentication error, and users could not view data in the Istio service and workload dashboards. Now, upgrading an existing 2.5 SMCP to version 2.5.2 or later resolves the Grafana error.
 
 ## Red Hat OpenShift Service Mesh version 2.4.8 {#ossm-release-2-4-8_ossm-release-notes}
@@ -1550,7 +1550,7 @@ If you want to disable the automatic creation and management of `NetworkPolicies
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, click **Ecosystem** -> **Installed Operators**.
+1. In the OpenShift Container Platform web console, click **Ecosystem** → **Installed Operators**.
 2. Select the project where you installed the Service Mesh control plane, for example `istio-system`, from the Project menu.
 3. Click the Red Hat OpenShift Service Mesh Operator. In the **Istio Service Mesh Control Plane** column, click the name of your `ServiceMeshControlPlane`, for example `basic-install`.
 4. On the **Create ServiceMeshControlPlane Details** page, click `YAML` to modify your configuration.
@@ -1823,7 +1823,7 @@ Istio supports the following normalization schemes on the request paths before e
 </tr>
 <tr>
   <td><code>BASE</code></td>
-  <td>This is currently the option used in the <strong>default</strong> installation of Istio. This applies the https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto#envoy-v3-api-field-extensions-filters-network-http-connection-manager-v3-httpconnectionmanager-normalize-path[<code>normalize_path</code>] option on Envoy proxies, which follows https://tools.ietf.org/html/rfc3986[RFC 3986] with extra normalization to convert backslashes to forward slashes.</td>
+  <td>This is currently the option used in the <strong>default</strong> installation of Istio. This applies the <a href="https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto#envoy-v3-api-field-extensions-filters-network-http-connection-manager-v3-httpconnectionmanager-normalize-path"><code>normalize_path</code></a> option on Envoy proxies, which follows <a href="https://tools.ietf.org/html/rfc3986">RFC 3986</a> with extra normalization to convert backslashes to forward slashes.</td>
   <td><code>/a/../b</code> is normalized to <code>/b</code>. <code>\da</code> is normalized to <code>/da</code>.</td>
   <td>This setting is vulnerable to CVE-2021-31920.</td>
 </tr>
@@ -1835,7 +1835,7 @@ Istio supports the following normalization schemes on the request paths before e
 </tr>
 <tr>
   <td><code>DECODE_AND_MERGE_SLASHES</code></td>
-  <td>The strictest setting when you allow all traffic by default. This setting is recommended, with the caveat that you must thoroughly test your authorization policies routes. https://tools.ietf.org/html/rfc3986#section-2.1[Percent-encoded] slash and backslash characters (<code>%2F</code>, <code>%2f</code>, <code>%5C</code> and <code>%5c</code>) are decoded to <code>/</code> or <code>\</code>, before the <code>MERGE_SLASHES</code> normalization.</td>
+  <td>The strictest setting when you allow all traffic by default. This setting is recommended, with the caveat that you must thoroughly test your authorization policies routes. <a href="https://tools.ietf.org/html/rfc3986#section-2.1">Percent-encoded</a> slash and backslash characters (<code>%2F</code>, <code>%2f</code>, <code>%5C</code> and <code>%5c</code>) are decoded to <code>/</code> or <code>\</code>, before the <code>MERGE_SLASHES</code> normalization.</td>
   <td><code>/a%2fb</code> is normalized to <code>/a/b</code>.</td>
   <td>Update to this setting to mitigate CVE-2021-31920. This setting is more secure, but also has the potential to break applications. Test your applications before deploying to production.</td>
 </tr>
@@ -1871,19 +1871,19 @@ Ensuring Envoy normalizes request paths to match your backend services' expectat
   <td><code>BASE</code>, <code>MERGE_SLASHES</code> or <code>DECODE_AND_MERGE_SLASHES</code></td>
 </tr>
 <tr>
-  <td>Normalizes request paths based on https://tools.ietf.org/html/rfc3986[RFC 3986] and does not merge slashes.</td>
+  <td>Normalizes request paths based on <a href="https://tools.ietf.org/html/rfc3986">RFC 3986</a> and does not merge slashes.</td>
   <td><code>BASE</code></td>
 </tr>
 <tr>
-  <td>Normalizes request paths based on https://tools.ietf.org/html/rfc3986[RFC 3986] and merges slashes, but does not decode https://tools.ietf.org/html/rfc3986#section-2.1[percent-encoded] slashes.</td>
+  <td>Normalizes request paths based on <a href="https://tools.ietf.org/html/rfc3986">RFC 3986</a> and merges slashes, but does not decode <a href="https://tools.ietf.org/html/rfc3986#section-2.1">percent-encoded</a> slashes.</td>
   <td><code>MERGE_SLASHES</code></td>
 </tr>
 <tr>
-  <td>Normalizes request paths based on https://tools.ietf.org/html/rfc3986[RFC 3986], decodes https://tools.ietf.org/html/rfc3986#section-2.1[percent-encoded] slashes, and merges slashes.</td>
+  <td>Normalizes request paths based on <a href="https://tools.ietf.org/html/rfc3986">RFC 3986</a>, decodes <a href="https://tools.ietf.org/html/rfc3986#section-2.1">percent-encoded</a> slashes, and merges slashes.</td>
   <td><code>DECODE_AND_MERGE_SLASHES</code></td>
 </tr>
 <tr>
-  <td>Processes request paths in a way that is incompatible with https://tools.ietf.org/html/rfc3986[RFC 3986].</td>
+  <td>Processes request paths in a way that is incompatible with <a href="https://tools.ietf.org/html/rfc3986">RFC 3986</a>.</td>
   <td><code>NONE</code></td>
 </tr>
 </tbody>
@@ -2204,9 +2204,9 @@ oc label namespace istio-system istio-discovery=enabled
 
 These are the known issues in Kiali:
 
-- [OSSM-6299](https://issues.redhat.com/browse/OSSM-6299) In OpenShift Container Platform 4.15, when you click the ***Node graph*** menu option of any node menu within the traffic graph, the node graph is not displayed. Instead, the page is refreshed with the same traffic graph. Currently, no workaround exists for this issue.
+- [OSSM-6299](https://issues.redhat.com/browse/OSSM-6299) In OpenShift Container Platform 4.15, when you click the **Node graph** menu option of any node menu within the traffic graph, the node graph is not displayed. Instead, the page is refreshed with the same traffic graph. Currently, no workaround exists for this issue.
 - [OSSM-6298](https://issues.redhat.com/browse/OSSM-6298) When you click an item reference within the OpenShift Service Mesh Console (OSSMC) plugin, such as a workload link related to a specific service, the console sometimes performs multiple redirections before opening the desired page. If you click **Back** in a web browser, a different page of the console opens instead of the previous page. As a workaround, click **Back** twice to navigate to the previous page.
-- [OSSM-6290](https://issues.redhat.com/browse/OSSM-6290) For OpenShift Container Platform 4.15, the ***Project*** filter of the ***Istio Config*** list page does not work correctly. All `istio` items are displayed even if you select a specific project from the dropdown. Currently, no workaround exists for this issue.
+- [OSSM-6290](https://issues.redhat.com/browse/OSSM-6290) For OpenShift Container Platform 4.15, the **Project** filter of the **Istio Config** list page does not work correctly. All `istio` items are displayed even if you select a specific project from the dropdown. Currently, no workaround exists for this issue.
 - [KIALI-2206](https://issues.jboss.org/browse/KIALI-2206) When you are accessing the Kiali console for the first time, and there is no cached browser data for Kiali, the “View in Grafana” link on the Metrics tab of the Kiali Service Details page redirects to the wrong location. The only way you would encounter this issue is if you are accessing Kiali for the first time.
 - [KIALI-507](https://github.com/kiali/kiali/issues/507) Kiali does not support Internet Explorer 11. This is because the underlying frameworks do not support Internet Explorer. To access the Kiali console, use one of the two most recent versions of the Chrome, Edge, Firefox or Safari browser.
 
@@ -2221,11 +2221,11 @@ The following issues have been resolved in previous releases:
 
   - Previously, an unstable Prometheus image was included in the Service Mesh control plane (SMCP) v2.5, and users were not able to access the Prometheus dashboard. Now, in the Service Mesh operator 2.5.1, the Prometheus image has been updated.
   - Previously, in the Service Mesh control plane (SMCP), a Grafana data source was not able to set Basic authentication password automatically and users were not able to view metrics from Prometheus in Grafana mesh dashboards. Now, a Grafana data source password is configured under the `secureJsonData` field. Metrics are displayed correctly in dashboards.
-- [OSSM-6148](https://issues.redhat.com/browse/OSSM-6148) Previously, the OpenShift Service Mesh Console (OSSMC) plugin did not respond when the user clicked any option in the menu of any node on the ***Traffic Graph*** page. Now, the plugin responds to the selected option in the menu by redirecting to the corresponding details page.
+- [OSSM-6148](https://issues.redhat.com/browse/OSSM-6148) Previously, the OpenShift Service Mesh Console (OSSMC) plugin did not respond when the user clicked any option in the menu of any node on the **Traffic Graph** page. Now, the plugin responds to the selected option in the menu by redirecting to the corresponding details page.
 - [OSSM-6099](https://issues.redhat.com/browse/OSSM-6099) Previously, the OpenShift Service Mesh Console (OSSMC) plugin failed to load correctly in an IPv6 cluster. Now, the OSSMC plugin configuration has been modified to ensure proper loading in an IPv6 cluster.
 - [OSSM-5960](https://issues.redhat.com/browse/OSSM-5960) Previously, the OpenShift Service Mesh Console (OSSMC) plugin did not display notification messages such as backend errors or Istio validations. Now, these notifications are displayed correctly at the top of the plugin page.
-- [OSSM-5959](https://issues.redhat.com/browse/OSSM-5959) Previously, the OpenShift Service Mesh Console (OSSMC) plugin did not display TLS and Istio certification information in the ***Overview*** page. Now, this information is displayed correctly.
-- [OSSM-5902](https://issues.redhat.com/browse/OSSM-5902) Previously, the OpenShift Service Mesh Console (OSSMC) plugin redirected to a "Not Found Page" error when the user clicked the ***Istio config*** health symbol on the ***Overview*** page. Now, the plugin redirects to the correct ***Istio config*** details page.
+- [OSSM-5959](https://issues.redhat.com/browse/OSSM-5959) Previously, the OpenShift Service Mesh Console (OSSMC) plugin did not display TLS and Istio certification information in the **Overview** page. Now, this information is displayed correctly.
+- [OSSM-5902](https://issues.redhat.com/browse/OSSM-5902) Previously, the OpenShift Service Mesh Console (OSSMC) plugin redirected to a "Not Found Page" error when the user clicked the **Istio config** health symbol on the **Overview** page. Now, the plugin redirects to the correct **Istio config** details page.
 - [OSSM-5541](https://issues.redhat.com/browse/OSSM-5541) Previously, an Istio operator pod might keep waiting for the leader lease in some restart conditions. Now, the leader election implementation has been enhanced to avoid this issue.
 - [OSSM-1397](https://issues.redhat.com/browse/OSSM-1397) Previously, if you removed the `maistra.io/member-of` label from a namespace, the Service Mesh Operator did not automatically reapply the label to the namespace. As a result, sidecar injection did not work in the namespace.
 

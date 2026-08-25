@@ -1,8 +1,8 @@
 ---
-title: Installing the {{ zero_trust_full }}
+title: Installing the Zero Trust Workload Identity Manager
 ---
 
-# Installing the {{ zero_trust_full }} {#zero-trust-manager-install}
+# Installing the Zero Trust Workload Identity Manager {#zero-trust-manager-install}
 
 Install Zero Trust Workload Identity Manager to help ensure secure communication between your workloads. You can install the Zero Trust Workload Identity Manager by using either the web console or CLI.
 
@@ -26,7 +26,7 @@ Use the Software Catalog in the OpenShift Container Platform web console to inst
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console.
-2. Go to **Ecosystem** -> **Software Catalog**.
+2. Go to **Ecosystem** → **Software Catalog**.
 3. Search for **Zero Trust Workload Identity Manager**.
 4. On the **Install Operator** page:
 
@@ -45,7 +45,7 @@ Use the Software Catalog in the OpenShift Container Platform web console to inst
 
 **Verification**
 
-1. Navigate to **Ecosystem** -> **Installed Operators**.
+1. Navigate to **Ecosystem** → **Installed Operators**.
 
    1. Verify that **Zero Trust Workload Identity Manager** is listed with a **Status** of **Succeeded** in the `zero-trust-workload-identity-manager` namespace.
    2. Verify that Zero Trust Workload Identity Manager controller manager deployment is ready and available by running the following command:

@@ -1,5 +1,5 @@
 ---
-title: "{{ coo_full }} overview"
+title: Cluster Observability Operator overview
 ---
 
 # Cluster Observability Operator overview {#cluster-observability-operator-overview}

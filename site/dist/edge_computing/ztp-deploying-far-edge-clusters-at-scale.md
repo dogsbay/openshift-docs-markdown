@@ -83,8 +83,8 @@ The following recommended structuring of policies combines configuration CRs to 
 
 | Policy category | Description |
 | --- | --- |
-| Common | A policy that exists in the common category is applied to all clusters in the fleet. Use common `{{ policy_gen_cr }}` CRs to apply common installation settings across all cluster types. |
-| Groups | A policy that exists in the groups category is applied to a group of clusters in the fleet. Use group `{{ policy_gen_cr }}` CRs to manage specific aspects of single-node, three-node, and standard cluster installations. Cluster groups can also follow geographic region, hardware variant, etc. |
+| Common | A policy that exists in the common category is applied to all clusters in the fleet. Use common `PolicyGenerator` CRs to apply common installation settings across all cluster types. |
+| Groups | A policy that exists in the groups category is applied to a group of clusters in the fleet. Use group `PolicyGenerator` CRs to manage specific aspects of single-node, three-node, and standard cluster installations. Cluster groups can also follow geographic region, hardware variant, etc. |
 | Sites | A policy that exists in the sites category is applied to a specific cluster site. Any cluster can have its own specific policies maintained. |
 
 > [!IMPORTANT]
@@ -93,6 +93,7 @@ The following recommended structuring of policies combines configuration CRs to 
 > For more information about `PolicyGenerator` resources, see the RHACM [Integrating Policy Generator](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.17/html-single/governance/index#integrate-policy-generator) documentation.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring managed cluster policies by using PolicyGenerator resources](/openshift-docs-markdown/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-configuring-managed-clusters-policygenerator)
 - [Comparing RHACM PolicyGenerator and PolicyGenTemplate resource patching](/openshift-docs-markdown/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-comparing-pgt-and-rhacm-pg-patching-strategies_ztp-configuring-managed-clusters-policygenerator)

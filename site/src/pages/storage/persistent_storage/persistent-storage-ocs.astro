@@ -23,7 +23,8 @@ const headings = [{"depth":1,"slug":"red-hat-openshift-data-foundation","text":"
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/storage/persistent_storage/persistent-storage-ocs";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -42,7 +43,7 @@ const pageCategory = ["storage","storage/persistent_storage"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Red Hat OpenShift Data Foundation {#red-hat-openshift-data-foundation}\n\nYou can deploy Red Hat OpenShift Data Foundation in your OpenShift Container Platform cluster as software-defined storage for containers.\n\nRed Hat OpenShift Data Foundation is a provider of agnostic persistent storage for OpenShift Container Platform supporting file, block, and object storage, either in-house or in hybrid clouds. As a Red Hat storage solution, Red Hat OpenShift Data Foundation is completely integrated with OpenShift Container Platform for deployment, management, and monitoring. For more information, see Red Hat OpenShift Data Foundation documentation.\n\n> [!IMPORTANT]\n> OpenShift Data Foundation on top of Red Hat Hyperconverged Infrastructure (RHHI) for Virtualization, which uses hyperconverged nodes that host virtual machines installed with OpenShift Container Platform, is not a supported configuration. For more information about supported platforms, see the Red Hat OpenShift Data Foundation Supportability and Interoperability Guide.\n\n**Additional resources**\n\n- [Red Hat OpenShift Data Foundation documentation](https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation)\n- [Red Hat OpenShift Data Foundation Supportability and Interoperability Guide](https://access.redhat.com/articles/4731161)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/storage/persistent_storage/persistent-storage-ocs.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Red Hat OpenShift Data Foundation {#red-hat-openshift-data-foundation}\n\nYou can deploy Red Hat OpenShift Data Foundation in your OpenShift Container Platform cluster as software-defined storage for containers.\n\nRed Hat OpenShift Data Foundation is a provider of agnostic persistent storage for OpenShift Container Platform supporting file, block, and object storage, either in-house or in hybrid clouds. As a Red Hat storage solution, Red Hat OpenShift Data Foundation is completely integrated with OpenShift Container Platform for deployment, management, and monitoring. For more information, see Red Hat OpenShift Data Foundation documentation.\n\n> [!IMPORTANT]\n> OpenShift Data Foundation on top of Red Hat Hyperconverged Infrastructure (RHHI) for Virtualization, which uses hyperconverged nodes that host virtual machines installed with OpenShift Container Platform, is not a supported configuration. For more information about supported platforms, see the Red Hat OpenShift Data Foundation Supportability and Interoperability Guide.\n\n**Additional resources**\n{._additional-resources}\n\n- [Red Hat OpenShift Data Foundation documentation](https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation)\n- [Red Hat OpenShift Data Foundation Supportability and Interoperability Guide](https://access.redhat.com/articles/4731161)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/storage/persistent_storage/persistent-storage-ocs.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -81,12 +82,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -94,7 +96,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="red-hat-openshift-data-foundation" class="group scroll-mt-20">Red Hat OpenShift Data Foundation<a href="#red-hat-openshift-data-foundation" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can deploy Red Hat OpenShift Data Foundation in your OpenShift Container Platform cluster as software-defined storage for containers.</p>
+      <p class="_abstract">You can deploy Red Hat OpenShift Data Foundation in your OpenShift Container Platform cluster as software-defined storage for containers.</p>
       <p>Red Hat OpenShift Data Foundation is a provider of agnostic persistent storage for OpenShift Container Platform supporting file, block, and object storage, either in-house or in hybrid clouds. As a Red Hat storage solution, Red Hat OpenShift Data Foundation is completely integrated with OpenShift Container Platform for deployment, management, and monitoring. For more information, see Red Hat OpenShift Data Foundation documentation.</p>
       <Alert variant="info" class="my-4">
         <AlertTitle>Important</AlertTitle>
@@ -102,11 +104,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           <p>OpenShift Data Foundation on top of Red Hat Hyperconverged Infrastructure (RHHI) for Virtualization, which uses hyperconverged nodes that host virtual machines installed with OpenShift Container Platform, is not a supported configuration. For more information about supported platforms, see the Red Hat OpenShift Data Foundation Supportability and Interoperability Guide.</p>
         </AlertDescription>
       </Alert>
-      <p><strong>Additional resources</strong></p>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul>
       <li><a href="https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation">Red Hat OpenShift Data Foundation documentation</a></li>
       <li><a href="https://access.redhat.com/articles/4731161">Red Hat OpenShift Data Foundation Supportability and Interoperability Guide</a></li>
       </ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

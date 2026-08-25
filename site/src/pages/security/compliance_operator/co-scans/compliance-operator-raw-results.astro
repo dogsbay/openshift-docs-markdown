@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"compliance-operator-raw-results","text":"Re
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/compliance_operator/co-scans/compliance-operator-raw-results";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="compliance-operator-raw-results" class="group scroll-mt-20">Retrieving Compliance Operator raw results<a href="#compliance-operator-raw-results" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>When proving compliance for your OpenShift Container Platform cluster, you might need to provide the scan results for auditing purposes.</p>
+      <p class="_abstract">When proving compliance for your OpenShift Container Platform cluster, you might need to provide the scan results for auditing purposes.</p>
       <h2 id="compliance-results_compliance-raw-results" class="group scroll-mt-20">Obtaining Compliance Operator raw results from a persistent volume<a href="#compliance-results_compliance-raw-results" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">You can view the results of Compliance Operator scans for auditing purposes. The Operator stores the raw results in a persistent volume in Asset Reporting Format (ARF).</p>
       <p><strong>Procedure</strong></p>

@@ -12,7 +12,7 @@ You can add a public SSH key to a virtual machine (VM) and connect to the VM by 
 You can add public SSH keys to Red Hat Enterprise Linux (RHEL) 9 VMs at runtime or at first boot to VMs with guest operating systems that can be configured by using a cloud-init data source.
 
 > [!TIP]
-> You can copy the `virtctl ssh` command in the web console by selecting **Copy SSH command** from the options ![](kebab.png "Options menu") menu beside a VM on the **VirtualMachines** page.
+> You can copy the `virtctl ssh` command in the web console by selecting **Copy SSH command** from the options ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") menu beside a VM on the **VirtualMachines** page.
 >
 > Alternatively, right-click the VM in the tree view and select **Copy SSH command** from the menu to copy the `virtctl ssh` command.
 
@@ -76,7 +76,7 @@ Optional: You can add a key to a project. Afterwards, this key is added automati
 
 **Procedure**
 
-1. Navigate to **Virtualization** -> **Catalog** in the web console.
+1. Navigate to **Virtualization** → **Catalog** in the web console.
 2. Click a template tile.
 
    The guest operating system must support configuration from a cloud-init data source.
@@ -108,7 +108,7 @@ You can add a statically managed SSH key when you create a virtual machine (VM) 
 
 **Procedure**
 
-1. In the web console, navigate to **Virtualization** -> **Catalog**.
+1. In the web console, navigate to **Virtualization** → **Catalog**.
 
    The **InstanceTypes** tab opens by default.
 
@@ -131,16 +131,16 @@ You can add a statically managed SSH key when you create a virtual machine (VM) 
 
      Immediately after you install the environment or when the environment is disconnected, the list of volumes to boot from is empty. In that case, three operating system logos are displayed: Windows, RHEL, and Linux. You can add a new volume that meets your requirements by clicking the **Add volume** button.
 
-     1. If you have not already added a public SSH key to your project, click the edit icon beside **Authorized SSH key** in the **VirtualMachine details** section.
-     2. Select one of the following options:
+   1. If you have not already added a public SSH key to your project, click the edit icon beside **Authorized SSH key** in the **VirtualMachine details** section.
+   2. Select one of the following options:
 
-        - **Use existing**: Select a secret from the secrets list.
-        - **Add new**: Follow these steps:
+      - **Use existing**: Select a secret from the secrets list.
+      - **Add new**: Follow these steps:
 
-          1. Browse to the public SSH key file or paste the file in the key field.
-          2. Enter the secret name.
-          3. Optional: Select **Automatically apply this key to any new VirtualMachine you create in this project**.
-     3. Click **Save**.
+        1. Browse to the public SSH key file or paste the file in the key field.
+        2. Enter the secret name.
+        3. Optional: Select **Automatically apply this key to any new VirtualMachine you create in this project**.
+   3. Click **Save**.
 4. Optional: If you are creating a Windows VM, you can mount a Windows driver disk:
 
    1. Click the **Customize VirtualMachine** button.
@@ -288,7 +288,7 @@ The key is added to the VM by the QEMU guest agent, which is installed with RHEL
 
 **Procedure**
 
-1. Navigate to **Virtualization** -> **Catalog** in the web console.
+1. Navigate to **Virtualization** → **Catalog** in the web console.
 2. Click the **Red Hat Enterprise Linux 9 VM** tile.
 3. Click **Customize VirtualMachine**.
 4. Click **Next**.
@@ -324,7 +324,7 @@ The key is added to the VM by the QEMU guest agent, which is installed with RHEL
 
 **Procedure**
 
-1. In the web console, navigate to **Virtualization** -> **Catalog**.
+1. In the web console, navigate to **Virtualization** → **Catalog**.
 
    The **InstanceTypes** tab opens by default.
 
@@ -348,16 +348,16 @@ The key is added to the VM by the QEMU guest agent, which is installed with RHEL
      Immediately after you install the environment or when the environment is disconnected, the list of volumes to boot from is empty. In that case, three operating system logos are displayed: Windows, RHEL, and Linux. You can add a new volume that meets your requirements by clicking the **Add volume** button.
 4. Click the **Red Hat Enterprise Linux 9 VM** tile.
 
-   ```
-   1.  If you have not already added a public SSH key to your project, click the edit icon beside **Authorized SSH key** in the **VirtualMachine details** section.
-   1.  Select one of the following options:
-       *   **Use existing**: Select a secret from the secrets list.
-       *   **Add new**: Follow these steps:
-           1.  Browse to the public SSH key file or paste the file in the key field.
-           1.  Enter the secret name.
-           1.  Optional: Select **Automatically apply this key to any new VirtualMachine you create in this project**.
-   1.  Click **Save**.
-   ```
+   1. If you have not already added a public SSH key to your project, click the edit icon beside **Authorized SSH key** in the **VirtualMachine details** section.
+   2. Select one of the following options:
+
+      - **Use existing**: Select a secret from the secrets list.
+      - **Add new**: Follow these steps:
+
+        1. Browse to the public SSH key file or paste the file in the key field.
+        2. Enter the secret name.
+        3. Optional: Select **Automatically apply this key to any new VirtualMachine you create in this project**.
+   3. Click **Save**.
 5. Set **Dynamic SSH key injection** in the **VirtualMachine details** section to on.
 6. Optional: If you are creating a Windows VM, you can mount a Windows driver disk:
 
@@ -383,7 +383,7 @@ The key is added to the VM by the QEMU guest agent, which is installed with Red�
 
 **Procedure**
 
-1. Navigate to **Virtualization** -> **VirtualMachines** in the web console.
+1. Navigate to **Virtualization** → **VirtualMachines** in the web console.
 2. Select a VM to open the **VirtualMachine details** page.
 3. On the **Configuration** tab, click **Scripts**.
 4. If you have not already added a public SSH key to your project, click the edit icon beside **Authorized SSH key** and select one of the following options:

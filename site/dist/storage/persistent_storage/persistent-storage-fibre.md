@@ -15,6 +15,7 @@ The Kubernetes persistent volume framework allows administrators to provision a 
 > High availability of storage in the infrastructure is left to the underlying storage provider.
 
 **Additional resources**
+{._additional-resources}
 
 - [Using Fibre Channel devices](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/managing_storage_devices/using-fibre-channel-devices_managing-storage-devices)
 

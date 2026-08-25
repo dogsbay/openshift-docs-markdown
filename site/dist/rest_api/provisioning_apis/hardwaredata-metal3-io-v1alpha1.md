@@ -1,5 +1,5 @@
 ---
-title: HardwareData []
+title: HardwareData [metal3.io/v1alpha1]
 ---
 
 # HardwareData \[metal3.io/v1alpha1\] {#hardwaredata-metal3-io-v1alpha1}
@@ -127,7 +127,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `ip` | `string` | The IP address of the interface. This will be an IPv4 or IPv6 address if one is present.  If both IPv4 and IPv6 addresses are present in a dual-stack environment, two nics will be output, one with each IP. |
+| `ip` | `string` | The IP address of the interface. This will be an IPv4 or IPv6 address if one is present. If both IPv4 and IPv6 addresses are present in a dual-stack environment, two nics will be output, one with each IP. |
 | `lldp` | `object` | LLDP data for this interface |
 | `mac` | `string` | The device MAC address |
 | `model` | `string` | The vendor and product IDs of the NIC, e.g. "0x8086 0x1572" |
@@ -238,12 +238,12 @@ The following API endpoints are available:
 - `/apis/metal3.io/v1alpha1/hardwaredata`
 
   - `GET`: list objects of kind HardwareData
-- `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hardwaredata`
+- `/apis/metal3.io/v1alpha1/namespaces/{namespace}/hardwaredata`
 
   - `DELETE`: delete collection of HardwareData
   - `GET`: list objects of kind HardwareData
   - `POST`: create a HardwareData
-- `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hardwaredata/{{ name }}`
+- `/apis/metal3.io/v1alpha1/namespaces/{namespace}/hardwaredata/{name}`
 
   - `DELETE`: delete a HardwareData
   - `GET`: read the specified HardwareData
@@ -269,7 +269,7 @@ Description
 | 200 - OK | [`HardwareDataList`](/openshift-docs-markdown/rest_api/objects/index#io-metal3-v1alpha1-HardwareDataList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hardwaredata {#_apismetal3iov1alpha1namespaces_namespace_hardwaredata}
+### /apis/metal3.io/v1alpha1/namespaces/{namespace}/hardwaredata {#_apismetal3iov1alpha1namespaces_namespace_hardwaredata}
 
 HTTP method
 :   ```
@@ -337,7 +337,7 @@ Description
 | 202 - Accepted | [`HardwareData`](/openshift-docs-markdown/rest_api/provisioning_apis/hardwaredata-metal3-io-v1alpha1#hardwaredata-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hardwaredata/{{ name }} {#_apismetal3iov1alpha1namespaces_namespace_hardwaredata_name}
+### /apis/metal3.io/v1alpha1/namespaces/{namespace}/hardwaredata/{name} {#_apismetal3iov1alpha1namespaces_namespace_hardwaredata_name}
 
 **Global path parameters**
 

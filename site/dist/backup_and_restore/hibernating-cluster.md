@@ -30,6 +30,7 @@ When hibernating a cluster, you must hibernate all cluster nodes. Suspending onl
 After resuming, it can take up to 45 minutes for the cluster to become ready.
 
 **Additional resources**
+{._additional-resources}
 
 - [Enabling OpenShift 4 Clusters to Stop and Resume Cluster VMs (Red Hat Blog)](https://www.redhat.com/en/blog/enabling-openshift-4-clusters-to-stop-and-resume-cluster-vms)
 
@@ -107,6 +108,7 @@ Hibernate your cluster by verifying node and Operator health, then stopping the 
    > If you use a bastion virtual machine, do not shut down this virtual machine.
 
 **Additional resources**
+{._additional-resources}
 
 - [Backing up etcd](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd)
 - [Restoring to an earlier cluster state](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state#dr-restoring-cluster-state)

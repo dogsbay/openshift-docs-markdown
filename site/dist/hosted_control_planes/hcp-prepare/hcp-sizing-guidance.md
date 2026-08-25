@@ -1,5 +1,5 @@
 ---
-title: Sizing guidance for {{ hcp }}
+title: Sizing guidance for hosted control planes
 ---
 
 # Sizing guidance for hosted control planes {#hcp-sizing-guidance}
@@ -20,6 +20,7 @@ See the following highly available hosted control planes requirements, which wer
 - Minimum memory: approximately 19 GiB
 
 **Additional resources**
+{._additional-resources}
 
 - [Overriding resource utilization measurements](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-override-resource-util#hcp-override-resource-util)
 - [Distributing hosted cluster workloads](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-distribute-workloads)
@@ -31,6 +32,7 @@ The `maxPods` setting for each node affects how many hosted clusters can fit in 
 For bare-metal nodes, the default `maxPods` setting of 250 is likely to be a limiting factor because roughly three hosted control planes fit for each node given the pod requirements, even if the machine has plenty of resources to spare. Setting the `maxPods` value to 500 by configuring the `KubeletConfig` value allows for greater hosted control plane density, which can help you take advantage of additional compute resources.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring the maximum number of pods per node](/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing-max-pods#nodes-nodes-managing-max-pods-proc_nodes-nodes-managing-max-pods)
 
@@ -126,5 +128,6 @@ Sharing infrastructure can be beneficial in constrained environments, such as in
 Before you share infrastructure, ensure that your infrastructure has enough resources to support hosted control planes. On the OpenShift Container Platform management cluster, nothing else can be deployed except hosted control planes. Ensure that the management cluster has enough CPU, memory, storage, and network resources to handle the combined load of the hosted clusters. Workload must not be demanding, and it must fall within a low queries-per-second (QPS) profile. For more information about resources and workload, see "Sizing guidance for hosted control planes".
 
 **Additional resources**
+{._additional-resources}
 
 - [Sizing guidance for hosted control planes](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-sizing-guidance#hcp-sizing-guidance)

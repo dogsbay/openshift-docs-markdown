@@ -73,8 +73,7 @@ Custom resource definition (CRD)
 `NodeNetworkConfigurationPolicy`
 :   A CRD introduced by the nmstate project, describing the requested network configuration on nodes. You update the node network configuration, including adding and removing interfaces, by applying a `NodeNetworkConfigurationPolicy` manifest to the cluster.
 
-\[id="virt-nw-overview-manage-overlay-nw_virt-networking-overview"\]
-= Manage overlay networks
+## Manage overlay networks {#virt-nw-overview-manage-overlay-nw_virt-networking-overview}
 
 To ensure your virtual machines (VMs) connect reliably by using the standard OpenShift Container Platform networking model, configure the default pod network for cluster-wide connectivity.
 
@@ -101,8 +100,7 @@ Configure external ingress by exposing a VM as a service
 Add a VM to a Service Mesh
 :   OpenShift Virtualization is integrated with Red Hat OpenShift Service Mesh. You can monitor, visualize, and control traffic between pods and virtual machines on the default pod network with IPv4.
 
-\[id="virt-nw-overview-connect-vm-to-physical-nw_virt-networking-overview"\]
-= Connect to the provider’s physical network
+## Connect to the provider’s physical network {#virt-nw-overview-connect-vm-to-physical-nw_virt-networking-overview}
 
 To give virtual machines (VMs) access to the internet or other physical devices, you configure the node network, define the secondary network, and attach the VM to the secondary network.
 
@@ -161,8 +159,7 @@ A comparison of features available when using the Linux bridge CNI compared to t
 | Network policies | No | Yes |
 | MAC spoof filtering | Yes | Yes (Always on) |
 
-\[id="virt-nw-overview-manage-vm-nw-config_virt-networking-overview"\]
-= Manage VM network interface configuration
+## Manage VM network interface configuration {#virt-nw-overview-manage-vm-nw-config_virt-networking-overview}
 
 Manage virtual machine (VM) network configuration to scale connectivity without incurring application downtime, troubleshoot network latency, define and automate management of MAC address pools, configure IP addresses, and isolate live migration traffic.
 
@@ -187,8 +184,7 @@ Manage MAC address pools for VM network interfaces
 Configure a dedicated network for live migration
 :   You can configure a dedicated Multus network for live migration. A dedicated network minimizes the effects of network saturation on tenant workloads during live migration.
 
-\[id="virt-nw-overview-vm-ssh-config_virt-networking-overview"\]
-= Configure VM SSH access
+## Configure VM SSH access {#virt-nw-overview-vm-ssh-config_virt-networking-overview}
 
 You can use SSH to securely access your virtual machines (VMs) from the command line.
 
@@ -208,7 +204,8 @@ Service
 Secondary network
 :   You configure a secondary network, attach a VM to the secondary network interface, and connect to its allocated IP address.
 
-## Additional resources {#additional-resources_virt-networking-overview}
+**Additional resources**
+{._additional-resources}
 
 - [Connect a virtual machine to the default pod network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-default-pod-network#virt-connecting-vm-to-default-pod-network)
 - [Connect a virtual machine to a custom primary overlay network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-primary-udn#virt-connecting-vm-to-primary-udn)

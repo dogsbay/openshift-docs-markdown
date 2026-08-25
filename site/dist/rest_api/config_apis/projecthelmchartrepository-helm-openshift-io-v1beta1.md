@@ -1,5 +1,5 @@
 ---
-title: ProjectHelmChartRepository []
+title: ProjectHelmChartRepository [helm.openshift.io/v1beta1]
 ---
 
 # ProjectHelmChartRepository \[helm.openshift.io/v1beta1\] {#projecthelmchartrepository-helm-openshift-io-v1beta1}
@@ -156,7 +156,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
 | `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
@@ -170,18 +170,18 @@ The following API endpoints are available:
 - `/apis/helm.openshift.io/v1beta1/projecthelmchartrepositories`
 
   - `GET`: list objects of kind ProjectHelmChartRepository
-- `/apis/helm.openshift.io/v1beta1/namespaces/{{ namespace }}/projecthelmchartrepositories`
+- `/apis/helm.openshift.io/v1beta1/namespaces/{namespace}/projecthelmchartrepositories`
 
   - `DELETE`: delete collection of ProjectHelmChartRepository
   - `GET`: list objects of kind ProjectHelmChartRepository
   - `POST`: create a ProjectHelmChartRepository
-- `/apis/helm.openshift.io/v1beta1/namespaces/{{ namespace }}/projecthelmchartrepositories/{{ name }}`
+- `/apis/helm.openshift.io/v1beta1/namespaces/{namespace}/projecthelmchartrepositories/{name}`
 
   - `DELETE`: delete a ProjectHelmChartRepository
   - `GET`: read the specified ProjectHelmChartRepository
   - `PATCH`: partially update the specified ProjectHelmChartRepository
   - `PUT`: replace the specified ProjectHelmChartRepository
-- `/apis/helm.openshift.io/v1beta1/namespaces/{{ namespace }}/projecthelmchartrepositories/{{ name }}/status`
+- `/apis/helm.openshift.io/v1beta1/namespaces/{namespace}/projecthelmchartrepositories/{name}/status`
 
   - `GET`: read status of the specified ProjectHelmChartRepository
   - `PATCH`: partially update status of the specified ProjectHelmChartRepository
@@ -206,7 +206,7 @@ Description
 | 200 - OK | [`ProjectHelmChartRepositoryList`](/openshift-docs-markdown/rest_api/objects/index#io-openshift-helm-v1beta1-ProjectHelmChartRepositoryList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/helm.openshift.io/v1beta1/namespaces/{{ namespace }}/projecthelmchartrepositories {#_apishelmopenshiftiov1beta1namespaces_namespace_projecthelmchartrepositories}
+### /apis/helm.openshift.io/v1beta1/namespaces/{namespace}/projecthelmchartrepositories {#_apishelmopenshiftiov1beta1namespaces_namespace_projecthelmchartrepositories}
 
 HTTP method
 :   ```
@@ -274,7 +274,7 @@ Description
 | 202 - Accepted | [`ProjectHelmChartRepository`](/openshift-docs-markdown/rest_api/config_apis/projecthelmchartrepository-helm-openshift-io-v1beta1#projecthelmchartrepository-helm-openshift-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/helm.openshift.io/v1beta1/namespaces/{{ namespace }}/projecthelmchartrepositories/{{ name }} {#_apishelmopenshiftiov1beta1namespaces_namespace_projecthelmchartrepositories_name}
+### /apis/helm.openshift.io/v1beta1/namespaces/{namespace}/projecthelmchartrepositories/{name} {#_apishelmopenshiftiov1beta1namespaces_namespace_projecthelmchartrepositories_name}
 
 **Global path parameters**
 
@@ -378,7 +378,7 @@ Description
 | 201 - Created | [`ProjectHelmChartRepository`](/openshift-docs-markdown/rest_api/config_apis/projecthelmchartrepository-helm-openshift-io-v1beta1#projecthelmchartrepository-helm-openshift-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/helm.openshift.io/v1beta1/namespaces/{{ namespace }}/projecthelmchartrepositories/{{ name }}/status {#_apishelmopenshiftiov1beta1namespaces_namespace_projecthelmchartrepositories_name_status}
+### /apis/helm.openshift.io/v1beta1/namespaces/{namespace}/projecthelmchartrepositories/{name}/status {#_apishelmopenshiftiov1beta1namespaces_namespace_projecthelmchartrepositories_name_status}
 
 **Global path parameters**
 

@@ -23,7 +23,8 @@ const headings = [{"depth":1,"slug":"cert-types-bootstrap-certificates","text":"
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/certificate_types_descriptions/bootstrap-certificates";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -42,7 +43,7 @@ const pageCategory = ["security","security/certificate_types_descriptions"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Bootstrap certificates {#cert-types-bootstrap-certificates}\n\nYou should understand how bootstrap certificates enable kubelet transport layer security (TLS) bootstrapping when nodes join a cluster, including how the certificates are issued and rotated and how the certificates are managed.\n\n## Purpose {#bootstrap-certificates-purpose_cert-types-bootstrap-certificates}\n\nThe kubelet, in OpenShift Container Platform 4 and later, uses the bootstrap certificate located in `/etc/kubernetes/kubeconfig` to initially bootstrap. This is followed by the bootstrap initialization process and the authorization of the kubelet to create a certificate signing request (CSR).\n\nIn that process, the kubelet generates a CSR while communicating over the bootstrap channel. The controller manager signs the CSR, resulting in a certificate that the kubelet manages. For more information, see \"Bootstrap initialization\" and \"Authorize kubelet to create a CSR\" in the *Additional resources* section.\n\n## Management {#bootstrap-certificates-management_cert-types-bootstrap-certificates}\n\nThese certificates are managed by the system and not the user.\n\n## Expiration {#bootstrap-certificates-expiration_cert-types-bootstrap-certificates}\n\nThis bootstrap certificate is valid for 10 years.\n\nThe kubelet-managed certificate is valid for one year and rotates automatically at around the 80 percent mark of that one year.\n\n> [!NOTE]\n> OpenShift Lifecycle Manager (OLM) does not update the bootstrap certificate.\n\n## Customization {#bootstrap-certificates-customization_cert-types-bootstrap-certificates}\n\nYou cannot customize the bootstrap certificates.\n\n**Additional resources**\n\n- [Bootstrap initialization](https://kubernetes.io/docs/reference/access-authn-authz/kubelet-tls-bootstrapping/#bootstrap-initialization)\n- [Authorize kubelet to create a CSR](https://kubernetes.io/docs/reference/access-authn-authz/kubelet-tls-bootstrapping/#authorize-kubelet-to-create-csr)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/certificate_types_descriptions/bootstrap-certificates.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Bootstrap certificates {#cert-types-bootstrap-certificates}\n\nYou should understand how bootstrap certificates enable kubelet transport layer security (TLS) bootstrapping when nodes join a cluster, including how the certificates are issued and rotated and how the certificates are managed.\n\n## Purpose {#bootstrap-certificates-purpose_cert-types-bootstrap-certificates}\n\nThe kubelet, in OpenShift Container Platform 4 and later, uses the bootstrap certificate located in `/etc/kubernetes/kubeconfig` to initially bootstrap. This is followed by the bootstrap initialization process and the authorization of the kubelet to create a certificate signing request (CSR).\n\nIn that process, the kubelet generates a CSR while communicating over the bootstrap channel. The controller manager signs the CSR, resulting in a certificate that the kubelet manages. For more information, see \"Bootstrap initialization\" and \"Authorize kubelet to create a CSR\" in the *Additional resources* section.\n\n## Management {#bootstrap-certificates-management_cert-types-bootstrap-certificates}\n\nThese certificates are managed by the system and not the user.\n\n## Expiration {#bootstrap-certificates-expiration_cert-types-bootstrap-certificates}\n\nThis bootstrap certificate is valid for 10 years.\n\nThe kubelet-managed certificate is valid for one year and rotates automatically at around the 80 percent mark of that one year.\n\n> [!NOTE]\n> OpenShift Lifecycle Manager (OLM) does not update the bootstrap certificate.\n\n## Customization {#bootstrap-certificates-customization_cert-types-bootstrap-certificates}\n\nYou cannot customize the bootstrap certificates.\n\n**Additional resources**\n{._additional-resources}\n\n- [Bootstrap initialization](https://kubernetes.io/docs/reference/access-authn-authz/kubelet-tls-bootstrapping/#bootstrap-initialization)\n- [Authorize kubelet to create a CSR](https://kubernetes.io/docs/reference/access-authn-authz/kubelet-tls-bootstrapping/#authorize-kubelet-to-create-csr)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/certificate_types_descriptions/bootstrap-certificates.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -81,12 +82,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -94,7 +96,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="cert-types-bootstrap-certificates" class="group scroll-mt-20">Bootstrap certificates<a href="#cert-types-bootstrap-certificates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You should understand how bootstrap certificates enable kubelet transport layer security (TLS) bootstrapping when nodes join a cluster, including how the certificates are issued and rotated and how the certificates are managed.</p>
+      <p class="_abstract">You should understand how bootstrap certificates enable kubelet transport layer security (TLS) bootstrapping when nodes join a cluster, including how the certificates are issued and rotated and how the certificates are managed.</p>
       <h2 id="bootstrap-certificates-purpose_cert-types-bootstrap-certificates" class="group scroll-mt-20">Purpose<a href="#bootstrap-certificates-purpose_cert-types-bootstrap-certificates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p>The kubelet, in OpenShift Container Platform 4 and later, uses the bootstrap certificate located in <code>/etc/kubernetes/kubeconfig</code> to initially bootstrap. This is followed by the bootstrap initialization process and the authorization of the kubelet to create a certificate signing request (CSR).</p>
       <p>In that process, the kubelet generates a CSR while communicating over the bootstrap channel. The controller manager signs the CSR, resulting in a certificate that the kubelet manages. For more information, see "Bootstrap initialization" and "Authorize kubelet to create a CSR" in the <em>Additional resources</em> section.</p>
@@ -111,11 +113,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </Alert>
       <h2 id="bootstrap-certificates-customization_cert-types-bootstrap-certificates" class="group scroll-mt-20">Customization<a href="#bootstrap-certificates-customization_cert-types-bootstrap-certificates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p>You cannot customize the bootstrap certificates.</p>
-      <p><strong>Additional resources</strong></p>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul>
       <li><a href="https://kubernetes.io/docs/reference/access-authn-authz/kubelet-tls-bootstrapping/#bootstrap-initialization">Bootstrap initialization</a></li>
       <li><a href="https://kubernetes.io/docs/reference/access-authn-authz/kubelet-tls-bootstrapping/#authorize-kubelet-to-create-csr">Authorize kubelet to create a CSR</a></li>
       </ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

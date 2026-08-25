@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"compliance-operator-checkresult-custom-meta
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/compliance_operator/co-scans/compliance-operator-checkresult-custom-metadata";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="compliance-operator-checkresult-custom-metadata" class="group scroll-mt-20">Propagating custom metadata to ComplianceCheckResult objects<a href="#compliance-operator-checkresult-custom-metadata" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Starting in Compliance Operator 1.9.0, add labels and annotations to <code>Rule</code> and <code>CustomRule</code> objects so matching metadata is displayed on <code>ComplianceCheckResult</code> objects after a scan. Downstream tools, dashboards, and ticketing workflows can use this metadata without maintaining a separate mapping.</p>
+      <p class="_abstract">Starting in Compliance Operator 1.9.0, add labels and annotations to <code>Rule</code> and <code>CustomRule</code> objects so matching metadata is displayed on <code>ComplianceCheckResult</code> objects after a scan. Downstream tools, dashboards, and ticketing workflows can use this metadata without maintaining a separate mapping.</p>
       <h2 id="compliance-operator-checkresult-custom-metadata-overview_compliance-operator-checkresult-metadata" class="group scroll-mt-20">Understanding custom metadata on rules and check results<a href="#compliance-operator-checkresult-custom-metadata-overview_compliance-operator-checkresult-metadata" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">When the Compliance Operator creates or updates a <code>ComplianceCheckResult</code> object for a check that Open Security Content Automation Protocol (OpenSCAP) evaluates, it copies custom labels and annotations from the corresponding <code>Rule</code> object in the same namespace.</p>
       <p>For checks that the Common Expression Language (CEL) scanner evaluates from a <code>CustomRule</code>, the Operator copies custom metadata from that <code>CustomRule</code> instead.</p>

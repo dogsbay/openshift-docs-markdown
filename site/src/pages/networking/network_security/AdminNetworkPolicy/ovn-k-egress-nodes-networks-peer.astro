@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"ovn-k-egress-nodes-networks-peer","text":"E
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/network_security/AdminNetworkPolicy/ovn-k-egress-nodes-networks-peer";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="ovn-k-egress-nodes-networks-peer" class="group scroll-mt-20">Egress nodes and networks peer for AdminNetworkPolicy<a href="#ovn-k-egress-nodes-networks-peer" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>To control northbound egress from pods to cluster nodes, the API, or external CIDR ranges in OpenShift Container Platform, you can use <code>nodes</code> and <code>networks</code> peers in <code>AdminNetworkPolicy</code> and <code>BaselineAdminNetworkPolicy</code> egress rules.</p>
+      <p class="_abstract">To control northbound egress from pods to cluster nodes, the API, or external CIDR ranges in OpenShift Container Platform, you can use <code>nodes</code> and <code>networks</code> peers in <code>AdminNetworkPolicy</code> and <code>BaselineAdminNetworkPolicy</code> egress rules.</p>
       <h2 id="nw-anp-egress_ovn-k-egress-nodes-networks-peer" class="group scroll-mt-20">Northbound traffic controls for AdminNetworkPolicy and BaselineAdminNetworkPolicy<a href="#nw-anp-egress_ovn-k-egress-nodes-networks-peer" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">You can use <code>AdminNetworkPolicy</code> and <code>BaselineAdminNetworkPolicy</code> resources in OpenShift Container Platform to control your northbound traffic leaving the cluster or traffic leaving the node to other nodes in the cluster.</p>
       <p><code>AdminNetworkPolicy and BaselineAdminNetworkPolicy</code> resources support the following egress traffic control scenarios in OpenShift Container Platform:</p>

@@ -34,11 +34,9 @@ $ oc set volume <object_selection> <operation> <mandatory_parameters> <options>
 Object selection
 :   Specify one of the following for the `object_selection` parameter in the `oc set volume` command:
 
-<a name="vol-object-selection_nodes-containers-volumes"></a>
+    <a name="vol-object-selection_nodes-containers-volumes"></a>
 
-```
-***Object Selection***
-```
+    **Object Selection**
 
 <table>
 <thead>
@@ -54,43 +52,43 @@ Object selection
   <td>Example</td>
 </tr>
 <tr>
-  <td><code>_<object_type><em> </em><name>_</code></td>
+  <td><code>_&lt;object_type&gt;<em> </em>&lt;name&gt;_</code></td>
 </tr>
 <tr>
-  <td>Selects <code><em><name></em></code> of type <code>_<object_type>_</code>.</td>
+  <td>Selects <code><em>&lt;name&gt;</em></code> of type <code>_&lt;object_type&gt;_</code>.</td>
 </tr>
 <tr>
   <td><code>deploymentConfig registry</code></td>
 </tr>
 <tr>
-  <td><code>_<object_type><em>/</em><name>_</code></td>
+  <td><code>_&lt;object_type&gt;<em>/</em>&lt;name&gt;_</code></td>
 </tr>
 <tr>
-  <td>Selects <code><em><name></em></code> of type <code>_<object_type>_</code>.</td>
+  <td>Selects <code><em>&lt;name&gt;</em></code> of type <code>_&lt;object_type&gt;_</code>.</td>
 </tr>
 <tr>
   <td><code>deploymentConfig/registry</code></td>
 </tr>
 <tr>
-  <td><code>_<object_type>_</code><code>--selector=_<object_label_selector>_</code></td>
+  <td><code>_&lt;object_type&gt;_</code> <code>--selector=_&lt;object_label_selector&gt;_</code></td>
 </tr>
 <tr>
-  <td>Selects resources of type <code>_<object_type>_</code> that matched the given labelselector.</td>
+  <td>Selects resources of type <code>_&lt;object_type&gt;_</code> that matched the given label selector.</td>
 </tr>
 <tr>
-  <td><code>deploymentConfig</code><code>--selector="name=registry"</code></td>
+  <td><code>deploymentConfig</code> <code>--selector="name=registry"</code></td>
 </tr>
 <tr>
-  <td><code>_<object_type>_ --all</code></td>
+  <td><code>_&lt;object_type&gt;_ --all</code></td>
 </tr>
 <tr>
-  <td>Selects all resources of type <code>_<object_type>_</code>.</td>
+  <td>Selects all resources of type <code>_&lt;object_type&gt;_</code>.</td>
 </tr>
 <tr>
   <td><code>deploymentConfig --all</code></td>
 </tr>
 <tr>
-  <td><code>-f</code> or<code>--filename=_<file_name>_</code></td>
+  <td><code>-f</code> or <code>--filename=_&lt;file_name&gt;_</code></td>
 </tr>
 <tr>
   <td>File name, directory, or URL to file to use to edit the resource.</td>
@@ -148,7 +146,7 @@ List volume supported options:
   <td><code>-c, --containers</code></td>
 </tr>
 <tr>
-  <td>Select containers by name. It can also take wildcard <code>'*'</code> that matches anycharacter.</td>
+  <td>Select containers by name. It can also take wildcard <code>'*'</code> that matches any character.</td>
 </tr>
 <tr>
   <td><code>'*'</code></td>
@@ -179,7 +177,7 @@ You can add a volume, a volume mount, or both to pod templates by running the fo
 $ oc set volume <object_type>/<name> --add [options]
 ```
 
-***Supported Options for Adding Volumes***
+**Supported Options for Adding Volumes**
 
 <table>
 <thead>
@@ -207,7 +205,7 @@ $ oc set volume <object_type>/<name> --add [options]
   <td><code>-t, --type</code></td>
 </tr>
 <tr>
-  <td>Name of the volume source. Supported values: <code>emptyDir</code>, <code>hostPath</code>, <code>secret</code>,<code>configmap</code>, <code>persistentVolumeClaim</code> or <code>projected</code>.</td>
+  <td>Name of the volume source. Supported values: <code>emptyDir</code>, <code>hostPath</code>, <code>secret</code>, <code>configmap</code>, <code>persistentVolumeClaim</code> or <code>projected</code>.</td>
 </tr>
 <tr>
   <td><code>emptyDir</code></td>
@@ -216,7 +214,7 @@ $ oc set volume <object_type>/<name> --add [options]
   <td><code>-c, --containers</code></td>
 </tr>
 <tr>
-  <td>Select containers by name. It can also take wildcard <code>'*'</code> that matches anycharacter.</td>
+  <td>Select containers by name. It can also take wildcard <code>'*'</code> that matches any character.</td>
 </tr>
 <tr>
   <td><code>'*'</code></td>
@@ -261,7 +259,7 @@ $ oc set volume <object_type>/<name> --add [options]
   <td><code>--claim-name</code></td>
 </tr>
 <tr>
-  <td>Name of the persistent volume claim. Mandatory parameter for<code>--type=persistentVolumeClaim</code>.</td>
+  <td>Name of the persistent volume claim. Mandatory parameter for <code>--type=persistentVolumeClaim</code>.</td>
 </tr>
 <tr>
   <td></td>
@@ -270,7 +268,7 @@ $ oc set volume <object_type>/<name> --add [options]
   <td><code>--source</code></td>
 </tr>
 <tr>
-  <td>Details of volume source as a JSON string. Recommended if the desired volumesource is not supported by <code>--type</code>.</td>
+  <td>Details of volume source as a JSON string. Recommended if the desired volume source is not supported by <code>--type</code>.</td>
 </tr>
 <tr>
   <td></td>
@@ -279,7 +277,7 @@ $ oc set volume <object_type>/<name> --add [options]
   <td><code>-o, --output</code></td>
 </tr>
 <tr>
-  <td>Display the modified objects instead of updating them on the server. Supportedvalues: <code>json</code>, <code>yaml</code>.</td>
+  <td>Display the modified objects instead of updating them on the server. Supported values: <code>json</code>, <code>yaml</code>.</td>
 </tr>
 <tr>
   <td></td>
@@ -306,40 +304,41 @@ For example:
 
   > [!TIP]
   > You can alternatively apply the following YAML to add the volume:
-
-  ```yaml
-  kind: DeploymentConfig
-  apiVersion: apps.openshift.io/v1
-  metadata:
-    name: registry
-    namespace: registry
-  spec:
-    replicas: 3
-    selector:
-      app: httpd
-    template:
-      metadata:
-        labels:
-          app: httpd
-      spec:
-        volumes:
-          - name: volume-pppsw
-            emptyDir: {}
-        containers:
-          - name: httpd
-            image: >-
-              image-registry.openshift-image-registry.svc:5000/openshift/httpd:latest
-            ports:
-              - containerPort: 8080
-                protocol: TCP
-  ```
-
-  where:
-
-  `spec.template.spec.volumes`
-  :   Specifies the volume source **emptyDir**.
-
-  - To add volume **v1** with secret **secret1** for replication controller **r1** and mount inside the containers at ***/data***:
+  >
+  > :::details{title="Sample deployment config with an added volume"}
+  > ```yaml
+  > kind: DeploymentConfig
+  > apiVersion: apps.openshift.io/v1
+  > metadata:
+  >   name: registry
+  >   namespace: registry
+  > spec:
+  >   replicas: 3
+  >   selector:
+  >     app: httpd
+  >   template:
+  >     metadata:
+  >       labels:
+  >         app: httpd
+  >     spec:
+  >       volumes:
+  >         - name: volume-pppsw
+  >           emptyDir: {}
+  >       containers:
+  >         - name: httpd
+  >           image: >-
+  >             image-registry.openshift-image-registry.svc:5000/openshift/httpd:latest
+  >           ports:
+  >             - containerPort: 8080
+  >               protocol: TCP
+  > ```
+  >
+  > where:
+  >
+  > `spec.template.spec.volumes`
+  > :   Specifies the volume source **emptyDir**.
+  > :::
+- To add volume **v1** with secret **secret1** for replication controller **r1** and mount inside the containers at ***/data***:
 
   ```terminal
   $ oc set volume rc/r1 --add --name=v1 --type=secret --secret-name='secret1' --mount-path=/data
@@ -347,109 +346,111 @@ For example:
 
   > [!TIP]
   > You can alternatively apply the following YAML to add the volume:
+  >
+  > :::details{title="Sample replication controller with added volume and secret"}
+  > ```yaml
+  > kind: ReplicationController
+  > apiVersion: v1
+  > metadata:
+  >   name: example-1
+  >   namespace: example
+  > spec:
+  >   replicas: 0
+  >   selector:
+  >     app: httpd
+  >     deployment: example-1
+  >     deploymentconfig: example
+  >   template:
+  >     metadata:
+  >       creationTimestamp: null
+  >       labels:
+  >         app: httpd
+  >         deployment: example-1
+  >         deploymentconfig: example
+  >     spec:
+  >       volumes:
+  >         - name: v1
+  >           secret:
+  >             secretName: secret1
+  >             defaultMode: 420
+  >       containers:
+  >         - name: httpd
+  >           image: >-
+  >             image-registry.openshift-image-registry.svc:5000/openshift/httpd:latest
+  >           volumeMounts:
+  >             - name: v1
+  >               mountPath: /data
+  > ```
+  >
+  > where:
+  >
+  > `spec.template.spec.volumes`
+  > :   Specifies the volume and secret.
+  >
+  > `spec.template.spec.containers.volumeMounts`
+  > :   Specifies the container mount path.
+  > :::
+- To add existing persistent volume **v1** with claim name **pvc1** to deployment configuration ***dc.json*** on disk, mount the volume on container **c1** at ***/data***, and update the `DeploymentConfig` object on the server:
 
-  ```yaml
-  kind: ReplicationController
-  apiVersion: v1
-  metadata:
-    name: example-1
-    namespace: example
-  spec:
-    replicas: 0
-    selector:
-      app: httpd
-      deployment: example-1
-      deploymentconfig: example
-    template:
-      metadata:
-        creationTimestamp: null
-        labels:
-          app: httpd
-          deployment: example-1
-          deploymentconfig: example
-      spec:
-        volumes:
-          - name: v1
-            secret:
-              secretName: secret1
-              defaultMode: 420
-        containers:
-          - name: httpd
-            image: >-
-              image-registry.openshift-image-registry.svc:5000/openshift/httpd:latest
-            volumeMounts:
-              - name: v1
-                mountPath: /data
+  ```terminal
+  $ oc set volume -f dc.json --add --name=v1 --type=persistentVolumeClaim \
+    --claim-name=pvc1 --mount-path=/data --containers=c1
   ```
 
-  where:
+  > [!TIP]
+  > You can alternatively apply the following YAML to add the volume:
+  >
+  > :::details{title="Sample deployment config with persistent volume added"}
+  > ```yaml
+  > kind: DeploymentConfig
+  > apiVersion: apps.openshift.io/v1
+  > metadata:
+  >   name: example
+  >   namespace: example
+  > spec:
+  >   replicas: 3
+  >   selector:
+  >     app: httpd
+  >   template:
+  >     metadata:
+  >       labels:
+  >         app: httpd
+  >     spec:
+  >       volumes:
+  >         - name: volume-pppsw
+  >           emptyDir: {}
+  >         - name: v1
+  >           persistentVolumeClaim:
+  >             claimName: pvc1
+  >       containers:
+  >         - name: httpd
+  >           image: >-
+  >             image-registry.openshift-image-registry.svc:5000/openshift/httpd:latest
+  >           ports:
+  >             - containerPort: 8080
+  >               protocol: TCP
+  >           volumeMounts:
+  >             - name: v1
+  >               mountPath: /data
+  > ```
+  >
+  > where:
+  >
+  > `spec.template.spec.volumes.name.v1`
+  > :   Specifies the persistent volume claim named `pvc1`.
+  >
+  > `spec.template.spec.containers.volumeMounts`
+  > :   Specifies the container mount path.
+  > :::
+- To add a volume **v1** based on Git repository **$$https://github.com/namespace1/project1$$** with revision **5125c45f9f563** for all replication controllers:
 
-`spec.template.spec.volumes`
-:   Specifies the volume and secret.
-
-`spec.template.spec.containers.volumeMounts`
-:   Specifies the container mount path.
-
-    - To add existing persistent volume **v1** with claim name **pvc1** to deployment configuration ***dc.json*** on disk, mount the volume on container **c1** at ***/data***, and update the `DeploymentConfig` object on the server:
-
-    ```terminal
-    $ oc set volume -f dc.json --add --name=v1 --type=persistentVolumeClaim \
-      --claim-name=pvc1 --mount-path=/data --containers=c1
-    ```
-
-    > [!TIP]
-    > You can alternatively apply the following YAML to add the volume:
-
-    ```yaml
-    kind: DeploymentConfig
-    apiVersion: apps.openshift.io/v1
-    metadata:
-      name: example
-      namespace: example
-    spec:
-      replicas: 3
-      selector:
-        app: httpd
-      template:
-        metadata:
-          labels:
-            app: httpd
-        spec:
-          volumes:
-            - name: volume-pppsw
-              emptyDir: {}
-            - name: v1
-              persistentVolumeClaim:
-                claimName: pvc1
-          containers:
-            - name: httpd
-              image: >-
-                image-registry.openshift-image-registry.svc:5000/openshift/httpd:latest
-              ports:
-                - containerPort: 8080
-                  protocol: TCP
-              volumeMounts:
-                - name: v1
-                  mountPath: /data
-    ```
-
-    where:
-
-`spec.template.spec.volumes.name.v1`
-:   Specifies the persistent volume claim named `pvc1`.
-
-`spec.template.spec.containers.volumeMounts`
-:   Specifies the container mount path.
-
-    - To add a volume **v1** based on Git repository **$$https://github.com/namespace1/project1$$** with revision **5125c45f9f563** for all replication controllers:
-
-    ```terminal
-    $ oc set volume rc --all --add --name=v1 \
-      --source='{"gitRepo": {
-                    "repository": "https://github.com/namespace1/project1",
-                    "revision": "5125c45f9f563"
-                }}'
-    ```
+  ```terminal
+  $ oc set volume rc --all --add --name=v1 \
+    --source='{"gitRepo": {
+                  "repository": "https://github.com/namespace1/project1",
+                  "revision": "5125c45f9f563"
+              }}'
+  ```
 
 ## About updating volumes and volume mounts in a pod {#nodes-containers-volumes-updating_nodes-containers-volumes}
 
@@ -471,43 +472,47 @@ For example:
 
   > [!TIP]
   > You can alternatively apply the following YAML to replace the volume:
-
-  ```yaml
-  kind: ReplicationController
-  apiVersion: v1
-  metadata:
-    name: example-1
-    namespace: example
-  spec:
-    replicas: 0
-    selector:
-      app: httpd
-      deployment: example-1
-      deploymentconfig: example
-    template:
-      metadata:
-        labels:
-          app: httpd
-          deployment: example-1
-          deploymentconfig: example
-      spec:
-        volumes:
-          - name: v1
-            persistentVolumeClaim:
-              claimName: pvc1
-        containers:
-          - name: httpd
-            image: >-
-              image-registry.openshift-image-registry.svc:5000/openshift/httpd:latest
-            ports:
-              - containerPort: 8080
-                protocol: TCP
-            volumeMounts:
-              - name: v1
-                mountPath: /data
-  ```
-
-  The `spec.template.spec.volumes` stanza sets the persistent volume claim to `pvc1`.
+  >
+  > :::details{title="Sample replication controller with persistent volume claim named `pvc1`"}
+  > ```yaml
+  > kind: ReplicationController
+  > apiVersion: v1
+  > metadata:
+  >   name: example-1
+  >   namespace: example
+  > spec:
+  >   replicas: 0
+  >   selector:
+  >     app: httpd
+  >     deployment: example-1
+  >     deploymentconfig: example
+  >   template:
+  >     metadata:
+  >       labels:
+  >         app: httpd
+  >         deployment: example-1
+  >         deploymentconfig: example
+  >     spec:
+  >       volumes:
+  >         - name: v1
+  >           persistentVolumeClaim:
+  >             claimName: pvc1
+  >       containers:
+  >         - name: httpd
+  >           image: >-
+  >             image-registry.openshift-image-registry.svc:5000/openshift/httpd:latest
+  >           ports:
+  >             - containerPort: 8080
+  >               protocol: TCP
+  >           volumeMounts:
+  >             - name: v1
+  >               mountPath: /data
+  > ```
+  >
+  > -
+  >
+  > The `spec.template.spec.volumes` stanza sets the persistent volume claim to `pvc1`.
+  > :::
 - To change the `DeploymentConfig` object **d1** mount point to ***/opt*** for volume **v1**:
 
   ```terminal
@@ -516,44 +521,48 @@ For example:
 
   > [!TIP]
   > You can alternatively apply the following YAML to change the mount point:
-
-  ```yaml
-  kind: DeploymentConfig
-  apiVersion: apps.openshift.io/v1
-  metadata:
-    name: example
-    namespace: example
-  spec:
-    replicas: 3
-    selector:
-      app: httpd
-    template:
-      metadata:
-        labels:
-          app: httpd
-      spec:
-        volumes:
-          - name: volume-pppsw
-            emptyDir: {}
-          - name: v2
-            persistentVolumeClaim:
-              claimName: pvc1
-          - name: v1
-            persistentVolumeClaim:
-              claimName: pvc1
-        containers:
-          - name: httpd
-            image: >-
-              image-registry.openshift-image-registry.svc:5000/openshift/httpd:latest
-            ports:
-              - containerPort: 8080
-                protocol: TCP
-            volumeMounts:
-              - name: v1
-                mountPath: /opt
-  ```
-
-  The `spec.template.spec.containers.volumeMounts` stanza sets the mount point to `/opt`.
+  >
+  > :::details{title="Sample deployment config with mount point set to `opt`."}
+  > ```yaml
+  > kind: DeploymentConfig
+  > apiVersion: apps.openshift.io/v1
+  > metadata:
+  >   name: example
+  >   namespace: example
+  > spec:
+  >   replicas: 3
+  >   selector:
+  >     app: httpd
+  >   template:
+  >     metadata:
+  >       labels:
+  >         app: httpd
+  >     spec:
+  >       volumes:
+  >         - name: volume-pppsw
+  >           emptyDir: {}
+  >         - name: v2
+  >           persistentVolumeClaim:
+  >             claimName: pvc1
+  >         - name: v1
+  >           persistentVolumeClaim:
+  >             claimName: pvc1
+  >       containers:
+  >         - name: httpd
+  >           image: >-
+  >             image-registry.openshift-image-registry.svc:5000/openshift/httpd:latest
+  >           ports:
+  >             - containerPort: 8080
+  >               protocol: TCP
+  >           volumeMounts:
+  >             - name: v1
+  >               mountPath: /opt
+  > ```
+  >
+  > -
+  >
+  > The `spec.template.spec.containers.volumeMounts` stanza sets the mount point to `/opt`.
+  > :::
 
 ## About removing volumes and volume mounts from a pod {#nodes-containers-volumes-removing_nodes-containers-volumes}
 
@@ -565,7 +574,7 @@ You can remove a volume from a pod template by running the following command:
 $ oc set volume <object_type>/<name> --remove [options]
 ```
 
-***Supported options for removing volumes***
+**Supported options for removing volumes**
 
 <table>
 <thead>

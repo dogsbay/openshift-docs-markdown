@@ -105,7 +105,7 @@ Begin to set up your environment for cluster installation by preparing the provi
     $ vim pull-secret.txt
     ```
 
-    In a web browser, navigate to [Install OpenShift on Bare Metal with installer-provisioned infrastructure](https://console.redhat.com/openshift/install/metal/installer-provisioned). Click ***Copy pull secret***. Paste the contents into the `pull-secret.txt` file and save the contents in the `kni` user’s home directory.
+    In a web browser, navigate to [Install OpenShift on Bare Metal with installer-provisioned infrastructure](https://console.redhat.com/openshift/install/metal/installer-provisioned). Click **Copy pull secret**. Paste the contents into the `pull-secret.txt` file and save the contents in the `kni` user’s home directory.
 
 ## Checking NTP server synchronization {#checking-ntp-sync_ipi-install-installation-workflow}
 
@@ -149,6 +149,7 @@ For disconnected clusters, you must configure the NTP servers on the control pla
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Network Time Protocol (NTP)](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-prerequisites#network-requirements-ntp_ipi-install-prerequisites)
 - [Optional: Configuring NTP for disconnected clusters](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#configuring-ntp-for-disconnected-clusters_ipi-install-installation-workflow)
@@ -368,6 +369,7 @@ If the wrong IP address is provided because a node has multiple IP addresses on 
 - If the `baremetal-runtimecfg` tool does not set a node IP for the Kubelet service, Kubelet chooses an IP address associated with the default route.
 
 **Additional resources**
+{._additional-resources}
 
 - [Optional: Overriding the default node IP selection logic](/openshift-docs-markdown/support/troubleshooting/troubleshooting-network-issues#overriding-default-node-ip-selection-logic_troubleshooting-network-issues)
 
@@ -543,6 +545,7 @@ After you install Red Hat Enterprise Linux CoreOS (RHCOS) and the system reboot
 - Scaling compute nodes to apply the manifest object that includes a customized `br-ex` bridge to each compute node that exists in your cluster. For more information, see "Expanding the cluster".
 
 **Additional resources**
+{._additional-resources}
 
 - [Converting to a dual-stack cluster network](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/converting-to-dual-stack#nw-dual-stack-convert_converting-to-dual-stack)
 - [Expanding the cluster](/openshift-docs-markdown/installing/installing_bare_metal/bare-metal-expanding-the-cluster#bare-metal-expanding-the-cluster)
@@ -732,6 +735,7 @@ In this procedure, the cluster spans two subnets:
       If the ping is successful, it means the remote compute nodes in the second subnet can reach the control plane in the first subnet. If you do not receive a response, review the network configurations and repeat the procedure for the node.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring host network interfaces](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#modifying-install-config-for-dual-stack-network_ipi-install-installation-workflow)
 
@@ -744,7 +748,7 @@ Use the `stable-4.x` version of the installation program and your selected archi
 - Retrieve the installation program by running one of the following commands:
 
   ```terminal
-  $ export VERSION=stable-{{ product_version }}
+  $ export VERSION=stable-4.22
   ```
 
   ```terminal
@@ -914,15 +918,15 @@ Red Hat supports the following services for a user-managed load balancer:
 
 You can choose whether you want to configure one or all of these services for a user-managed load balancer. Configuring only the Ingress Controller service is a common configuration option. To better understand each service, view the following diagrams:
 
-**Figure 1. Example network workflow that shows an Ingress Controller operating in an OpenShift Container Platform environment**
+**Figure 2. Example network workflow that shows an Ingress Controller operating in an OpenShift Container Platform environment**
 
 ![An image that shows an example network workflow of an Ingress Controller operating in an OpenShift Container Platform environment.](/openshift-docs-markdown/_assets/images/external-load-balancer-default.png)
 
-**Figure 2. Example network workflow that shows an OpenShift API operating in an OpenShift Container Platform environment**
+**Figure 3. Example network workflow that shows an OpenShift API operating in an OpenShift Container Platform environment**
 
 ![An image that shows an example network workflow of an OpenShift API operating in an OpenShift Container Platform environment.](/openshift-docs-markdown/_assets/images/external-load-balancer-openshift-api.png)
 
-**Figure 3. Example network workflow that shows an OpenShift `MachineConfig` API operating in an OpenShift Container Platform environment**
+**Figure 4. Example network workflow that shows an OpenShift `MachineConfig` API operating in an OpenShift Container Platform environment**
 
 ![An image that shows an example network workflow of an OpenShift \`MachineConfig\` API operating in an OpenShift Container Platform environment.](/openshift-docs-markdown/_assets/images/external-load-balancer-machine-config-api.png)
 
@@ -1206,22 +1210,26 @@ Interval: 10
    ```yaml
    # ...
    platform:
+     bare-metal:
+       loadBalancer:
+         type: <loadBalancer_type>
+       apiVIPs:
+       - <api_ip>
+       ingressVIPs:
+       - <ingress_ip>
+   # ...
    ```
 
-{%- if bare_metal %} bare-metal: {% endif %} {% if openstack %} openstack: {% endif %} {% if nutanix %} nutanix: {% endif %} {% if vsphere %} vsphere: {%- endif %} loadBalancer: type: <loadBalancer_type> apiVIPs: - <api_ip> ingressVIPs: - <ingress_ip> # ... \`\`\`
+   where:
 
-```
-where:
+   `<loadBalancer_type>`
+   :   Specifies the load balancer type. Set to `UserManaged` to specify a user-managed load balancer for your cluster. The parameter defaults to `OpenShiftManagedDefault`, which denotes the default internal load balancer. For services defined in an `openshift-kni-infra` namespace, a user-managed load balancer can deploy the `coredns` service to pods in your cluster but ignores `keepalived` and `haproxy` services.
 
-`<loadBalancer_type>`
-:   Specifies the load balancer type. Set to `UserManaged` to specify a user-managed load balancer for your cluster. The parameter defaults to `OpenShiftManagedDefault`, which denotes the default internal load balancer. For services defined in an `openshift-kni-infra` namespace, a user-managed load balancer can deploy the `coredns` service to pods in your cluster but ignores `keepalived` and `haproxy` services.
+   `<api_ip>`
+   :   Specifies the user-managed load balancer’s public IP address for the Kubernetes API. Mandatory parameter.
 
-`<api_ip>`
-:   Specifies the user-managed load balancer’s public IP address for the Kubernetes API. Mandatory parameter.
-
-`<ingress_ip>`
-:   Specifies the user-managed load balancer’s public IP address for ingress traffic. Mandatory parameter.
-```
+   `<ingress_ip>`
+   :   Specifies the user-managed load balancer’s public IP address for ingress traffic. Mandatory parameter.
 
 **Verification**
 
@@ -1421,6 +1429,7 @@ To retain high availability (HA) while reducing infrastructure costs for your cl
 2. Save the modified `install-config.yaml` file.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing a cluster](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installing-a-cluster#ipi-install-installing-a-cluster)
 - [Understanding feature gates](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features-about_nodes-cluster-enabling-features)
@@ -1583,7 +1592,7 @@ The `install-config.yaml` file requires some additional details. Most of the inf
 
 Some parameters, such as the cluster domain name, are required in the `install-config.yaml` file when installing a cluster on bare metal. Others, such as the provisioning network CIDR, are optional.
 
-***Required parameters***
+**Required parameters**
 
 <table>
 <thead>
@@ -1602,7 +1611,7 @@ Some parameters, such as the cluster domain name, are required in the `install-c
 <tr>
   <td><code>bootMode</code></td>
   <td><code>UEFI</code></td>
-  <td>The boot mode for a node. Options are <code>legacy</code>, <code>UEFI</code>, and <code>UEFISecureBoot</code>. If <code>bootMode</code> is not set, Ironic sets it while inspecting the node.<br><br><dl><dt>Note</dt><dd>For hardware that implements <code>BootMode</code> read-only, such as HP or Cisco, do not leave this parameter blank. You must manually set the system to UEFI mode before installation and explicitly set this parameter to UEFI.</dd></dl></td>
+  <td>The boot mode for a node. Options are <code>legacy</code>, <code>UEFI</code>, and <code>UEFISecureBoot</code>. If <code>bootMode</code> is not set, Ironic sets it while inspecting the node.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>For hardware that implements <code>BootMode</code> read-only, such as HP or Cisco, do not leave this parameter blank. You must manually set the system to UEFI mode before installation and explicitly set this parameter to UEFI.</dd></dl></td>
 </tr>
 <tr>
   <td><pre>platform:&#10;  baremetal:&#10;    bootstrapExternalStaticDNS</pre></td>
@@ -1660,27 +1669,32 @@ Some parameters, such as the cluster domain name, are required in the `install-c
   <td>Replicas sets the number of control plane nodes included as part of the OpenShift Container Platform cluster.</td>
 </tr>
 <tr>
-  <td>The name of the network interface on nodes connected to the provisioning network. For OpenShift Container Platform 4.9 and later releases, use the <code>bootMACAddress</code> parameter to enable Ironic to identify the IP address of the NIC instead of using the <code>provisioningNetworkInterface</code> parameter to identify the name of the NIC.</td>
   <td><code>provisioningNetworkInterface</code></td>
+  <td></td>
+  <td>The name of the network interface on nodes connected to the provisioning network. For OpenShift Container Platform 4.9 and later releases, use the <code>bootMACAddress</code> parameter to enable Ironic to identify the IP address of the NIC instead of using the <code>provisioningNetworkInterface</code> parameter to identify the name of the NIC.</td>
+</tr>
+<tr>
   <td><code>defaultMachinePlatform</code></td>
-</tr>
-<tr>
+  <td></td>
   <td>The default configuration used for machine pools without a platform configuration.</td>
-  <td><code>apiVIPs</code></td>
-  <td>(Optional) The virtual IP address for Kubernetes API communication.<br><br>You must either provide this setting in the <code>install-config.yaml</code> file as a reserved IP from the <code>MachineNetwork</code> parameter or preconfigured in the DNS so that the default name resolves correctly. Use the virtual IP address and not the FQDN when adding a value to the <code>apiVIPs</code> configuration setting in the <code>install-config.yaml</code> file. For dual-stack networking, the primary IP address can be either an IPv4 network or an IPv6 network. If not set, the installation program uses <code>api.<cluster_name>.<base_domain></code> to derive the IP address from the DNS.<br><br><dl><dt>Note</dt><dd>Before OpenShift Container Platform 4.12, the cluster installation program only accepted an IPv4 address or an IPv6 address for the <code>apiVIP</code> parameter. From OpenShift Container Platform 4.12 or later, the <code>apiVIP</code> parameter is deprecated. Instead, use a list format for the <code>apiVIPs</code> parameter to specify an IPv4 address, an IPv6 address or both IP address formats.</dd></dl></td>
 </tr>
 <tr>
+  <td><code>apiVIPs</code></td>
+  <td>(Optional) The virtual IP address for Kubernetes API communication.<br><br>You must either provide this setting in the <code>install-config.yaml</code> file as a reserved IP from the <code>MachineNetwork</code> parameter or preconfigured in the DNS so that the default name resolves correctly. Use the virtual IP address and not the FQDN when adding a value to the <code>apiVIPs</code> configuration setting in the <code>install-config.yaml</code> file. For dual-stack networking, the primary IP address can be either an IPv4 network or an IPv6 network. If not set, the installation program uses <code>api.&lt;cluster_name&gt;.&lt;base_domain&gt;</code> to derive the IP address from the DNS.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>Before OpenShift Container Platform 4.12, the cluster installation program only accepted an IPv4 address or an IPv6 address for the <code>apiVIP</code> parameter. From OpenShift Container Platform 4.12 or later, the <code>apiVIP</code> parameter is deprecated. Instead, use a list format for the <code>apiVIPs</code> parameter to specify an IPv4 address, an IPv6 address or both IP address formats.</dd></dl></td>
   <td><code>bmcCACert</code></td>
+</tr>
+<tr>
+  <td></td>
   <td><code>redfish</code> and <code>redfish-virtualmedia</code> need this parameter to manage BMC addresses when using self-signed certificates with <code>disableCertificateVerification</code> set to <code>False</code>.</td>
   <td><code>ingressVIPs</code></td>
 </tr>
 <tr>
-  <td>(Optional) The virtual IP address for ingress traffic.<br><br>You must either provide this setting in the <code>install-config.yaml</code> file as a reserved IP from the <code>MachineNetwork</code> parameter or preconfigured in the DNS so that the default name resolves correctly. Use the virtual IP address and not the FQDN when adding a value to the <code>ingressVIPs</code> configuration setting in the <code>install-config.yaml</code> file. For dual-stack networking, the primary IP address can be either an IPv4 network or an IPv6 network. If not set, the installation program uses <code>test.apps.<cluster_name>.<base_domain></code> to derive the IP address from the DNS.<br><br><dl><dt>Note</dt><dd>Before OpenShift Container Platform 4.12, the cluster installation program only accepted an IPv4 address or an IPv6 address for the <code>ingressVIP</code> parameter. In OpenShift Container Platform 4.12 and later, the <code>ingressVIP</code> parameter is deprecated. Instead, use a list format for the <code>ingressVIPs</code> parameter to specify an IPv4 addresses, an IPv6 addresses or both IP address formats.</dd></dl></td>
+  <td>(Optional) The virtual IP address for ingress traffic.<br><br>You must either provide this setting in the <code>install-config.yaml</code> file as a reserved IP from the <code>MachineNetwork</code> parameter or preconfigured in the DNS so that the default name resolves correctly. Use the virtual IP address and not the FQDN when adding a value to the <code>ingressVIPs</code> configuration setting in the <code>install-config.yaml</code> file. For dual-stack networking, the primary IP address can be either an IPv4 network or an IPv6 network. If not set, the installation program uses <code>test.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;</code> to derive the IP address from the DNS.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>Before OpenShift Container Platform 4.12, the cluster installation program only accepted an IPv4 address or an IPv6 address for the <code>ingressVIP</code> parameter. In OpenShift Container Platform 4.12 and later, the <code>ingressVIP</code> parameter is deprecated. Instead, use a list format for the <code>ingressVIPs</code> parameter to specify an IPv4 addresses, an IPv6 addresses or both IP address formats.</dd></dl></td>
 </tr>
 </tbody>
 </table>
 
-***Optional Parameters***
+**Optional Parameters**
 
 <table>
 <thead>
@@ -1739,12 +1753,12 @@ Some parameters, such as the cluster domain name, are required in the `install-c
 <tr>
   <td><code>bootstrapOSImage</code></td>
   <td></td>
-  <td>A URL to override the default operating system image for the bootstrap node. The URL must contain a SHA-256 hash of the image. For example:</td>
+  <td>A URL to override the default operating system image for the bootstrap node. The URL must contain a SHA-256 hash of the image. For example: <code>https://mirror.openshift.com/rhcos-&lt;version&gt;-qemu.qcow2.gz?sha256=&lt;uncompressed_sha256&gt;</code>.</td>
 </tr>
 <tr>
   <td><code>provisioningNetwork</code></td>
   <td></td>
-  <td>The <code>provisioningNetwork</code> parameter determines whether the cluster uses the provisioning network. If it does, the parameter also determines if the cluster manages the network.</td>
+  <td>The <code>provisioningNetwork</code> parameter determines whether the cluster uses the provisioning network. If it does, the parameter also determines if the cluster manages the network.<br><br><code>Disabled</code>: Set this parameter to <code>Disabled</code> to disable the requirement for a provisioning network. When set to <code>Disabled</code>, you must only use virtual media based provisioning, or install the cluster by using the Assisted Installer. If <code>Disabled</code> and using power management, BMCs must be accessible from the bare metal network. If <code>Disabled</code>, you must provide two IP addresses on the bare metal network for the provisioning services to use.<br><br><code>Managed</code>: Set this parameter to <code>Managed</code>, which is the default, to fully manage the provisioning network, including DHCP, TFTP, and so on.<br><br><code>Unmanaged</code>: Set this parameter to <code>Unmanaged</code> to enable the provisioning network but take care of manual configuration of DHCP. Virtual media provisioning is recommended but PXE is still available if required.</td>
 </tr>
 <tr>
   <td><code>httpProxy</code></td>
@@ -1768,7 +1782,7 @@ Some parameters, such as the cluster domain name, are required in the `install-c
 
 The `hosts` parameter is a list of separate bare metal assets used to build the cluster.
 
-***Hosts***
+**Hosts**
 
 <table>
 <thead>
@@ -1822,7 +1836,7 @@ The `hosts` parameter is a list of separate bare metal assets used to build the 
 <tr>
   <td><code>bootMACAddress</code></td>
   <td></td>
-  <td>The MAC address of the NIC that the host uses for the provisioning network. Ironic retrieves the IP address by using the <code>bootMACAddress</code> parameter. Then, it binds to the host.<br><br><dl><dt>Note</dt><dd>You must provide a valid MAC address from the host if you disabled the provisioning network.</dd></dl></td>
+  <td>The MAC address of the NIC that the host uses for the provisioning network. Ironic retrieves the IP address by using the <code>bootMACAddress</code> parameter. Then, it binds to the host.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>You must provide a valid MAC address from the host if you disabled the provisioning network.</dd></dl></td>
 </tr>
 <tr>
   <td><code>networkConfig</code></td>
@@ -1927,6 +1941,7 @@ platform:
 ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding virtualized control planes](/openshift-docs-markdown/vcp/vcp-overview#vcp-overview)
 - [Editing a BareMetalHost resource](/openshift-docs-markdown/installing/installing_bare_metal/bare-metal-postinstallation-configuration#bmo-editing-a-baremetalhost-resource_bare-metal-postinstallation-configuration)
@@ -2016,15 +2031,15 @@ The `address` configuration setting for each `bmc` entry is a URL for connecting
 <tbody>
 <tr>
   <td>iDRAC virtual media</td>
-  <td><code>idrac-virtualmedia://<out_of_band_ip>/redfish/v1/Systems/System.Embedded.1</code></td>
+  <td><code>idrac-virtualmedia://&lt;out_of_band_ip&gt;/redfish/v1/Systems/System.Embedded.1</code></td>
 </tr>
 <tr>
   <td>Redfish network boot</td>
-  <td><code>redfish://<out_of_band_ip>/redfish/v1/Systems/System.Embedded.1</code></td>
+  <td><code>redfish://&lt;out_of_band_ip&gt;/redfish/v1/Systems/System.Embedded.1</code></td>
 </tr>
 <tr>
   <td>IPMI</td>
-  <td><code>ipmi://<out_of_band_ip></code></td>
+  <td><code>ipmi://&lt;out_of_band_ip&gt;</code></td>
 </tr>
 </tbody>
 </table>
@@ -2058,7 +2073,7 @@ platform:
 It is recommended to have a certificate of authority for the out-of-band management addresses. For OpenShift Container Platform 4.16 and earlier, you must include `disableCertificateVerification: True` in the `bmc` configuration if using self-signed certificates. For OpenShift Container Platform 4.17 and later, you can include `disableCertificateVerification: False` when used in conjunction with the `bmcCACert` configuration setting.
 
 > [!NOTE]
-> Ensure the OpenShift Container Platform cluster nodes have **AutoAttach** enabled through the iDRAC console. The menu path is: **Configuration** -> **Virtual Media** -> **Attach Mode** -> **AutoAttach**.
+> Ensure the OpenShift Container Platform cluster nodes have **AutoAttach** enabled through the iDRAC console. The menu path is: **Configuration** → **Virtual Media** → **Attach Mode** → **AutoAttach**.
 
 The following example demonstrates a Redfish configuration by using the `disableCertificateVerification: True` configuration parameter within the `install-config.yaml` file.
 
@@ -2171,9 +2186,9 @@ platform:
 ```
 
 > [!NOTE]
-> There is a known issue on Dell iDRAC 9 with firmware version `04.40.00.00` and all releases up to including the `5.xx` series for installer-provisioned installations on bare metal deployments. The virtual console plugin defaults to eHTML5, an enhanced version of HTML5, which causes problems with the **InsertVirtualMedia** workflow. Set the plugin to use HTML5 to avoid this issue. The menu path is **Configuration** -> **Virtual console** -> **Plug-in Type** -> **HTML5** .
+> There is a known issue on Dell iDRAC 9 with firmware version `04.40.00.00` and all releases up to including the `5.xx` series for installer-provisioned installations on bare metal deployments. The virtual console plugin defaults to eHTML5, an enhanced version of HTML5, which causes problems with the **InsertVirtualMedia** workflow. Set the plugin to use HTML5 to avoid this issue. The menu path is **Configuration** → **Virtual console** → **Plug-in Type** → **HTML5** .
 >
-> Ensure the OpenShift Container Platform cluster nodes have **AutoAttach** enabled through the iDRAC console. The menu path is: **Configuration** -> **Virtual Media** -> **Attach Mode** -> **AutoAttach** .
+> Ensure the OpenShift Container Platform cluster nodes have **AutoAttach** enabled through the iDRAC console. The menu path is: **Configuration** → **Virtual Media** → **Attach Mode** → **AutoAttach** .
 
 ### BMC addressing for HPE iLO {#bmc-addressing-for-hpe-ilo_ipi-install-installation-workflow}
 
@@ -2191,15 +2206,15 @@ The `address` field for each `bmc` entry is a URL for connecting to the OpenShif
 <tbody>
 <tr>
   <td>Redfish virtual media</td>
-  <td><code>redfish-virtualmedia://<out_of_band_ip>/redfish/v1/Systems/1</code></td>
+  <td><code>redfish-virtualmedia://&lt;out_of_band_ip&gt;/redfish/v1/Systems/1</code></td>
 </tr>
 <tr>
   <td>Redfish network boot</td>
-  <td><code>redfish://<out_of_band_ip>/redfish/v1/Systems/1</code></td>
+  <td><code>redfish://&lt;out_of_band_ip&gt;/redfish/v1/Systems/1</code></td>
 </tr>
 <tr>
   <td>IPMI</td>
-  <td><code>ipmi://<out_of_band_ip></code></td>
+  <td><code>ipmi://&lt;out_of_band_ip&gt;</code></td>
 </tr>
 </tbody>
 </table>
@@ -2377,7 +2392,7 @@ For Cisco UCS C-Series and X-Series servers, Red Hat supports Cisco Integrated M
 <tbody>
 <tr>
   <td>Redfish virtual media</td>
-  <td><code>redfish-virtualmedia://<server_kvm_ip>/redfish/v1/Systems/<serial_number></code></td>
+  <td><code>redfish-virtualmedia://&lt;server_kvm_ip&gt;/redfish/v1/Systems/&lt;serial_number&gt;</code></td>
 </tr>
 </tbody>
 </table>
@@ -2427,7 +2442,7 @@ The `rootDeviceHints` parameter enables the installer to provision the Red Hat 
 <tbody>
 <tr>
   <td><code>deviceName</code></td>
-  <td>A string containing a Linux device name such as <code>/dev/vda</code> or <code>/dev/disk/by-path/</code>.<dl><dt>Note</dt><dd>It is recommended to use the <code>/dev/disk/by-path/<device_path></code> link to the storage location.</dd></dl><br><br>The hint must match the actual value exactly.</td>
+  <td>A string containing a Linux device name such as <code>/dev/vda</code> or <code>/dev/disk/by-path/</code>.<dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>It is recommended to use the <code>/dev/disk/by-path/&lt;device_path&gt;</code> link to the storage location.</dd></dl><br><br>The hint must match the actual value exactly.</td>
 </tr>
 <tr>
   <td><code>hctl</code></td>
@@ -2940,25 +2955,26 @@ OpenShift Virtualization only supports the following bond modes:
    `hosts.networkconfig.interfaces.min-tx-rate`
    :   Specifies the value for the `min-tx-rate` parameter. Sets a minimum transmission rate, in Mbps, for the VF. This sample value sets a rate of 100 Mbps. \*   This value must be less than or equal to the maximum transmission rate. \*   Intel NICs do not support the `min-tx-rate` parameter. For more information, see [**BZ#1772847**](https://bugzilla.redhat.com/show_bug.cgi?id=1772847).
 
-`hosts.networkconfig.interfaces.max-tx-rate`
-:   Specifies the value for the `max-tx-rate` parameter. Sets a maximum transmission rate, in Mbps, for the VF. This sample value sets a rate of 200 Mbps.
+   `hosts.networkconfig.interfaces.max-tx-rate`
+   :   Specifies the value for the `max-tx-rate` parameter. Sets a maximum transmission rate, in Mbps, for the VF. This sample value sets a rate of 200 Mbps.
 
-`hosts.networkconfig.interfaces.link-aggregation.mode`
-:   Specifies the needed bond mode.
+   `hosts.networkconfig.interfaces.link-aggregation.mode`
+   :   Specifies the needed bond mode.
 
-`hosts.networkconfig.interfaces.link-aggregation.options.primary`
-:   Specifies the preferred port of the bonding interface. The bond uses the primary device as the first device of the bonding interfaces. The bond does not abandon the primary device interface unless it fails. This setting is particularly useful when one NIC in the bonding interface is faster and, therefore, able to handle a bigger load. This setting is only valid when the bonding interface is in active-backup mode (mode 1).
+   `hosts.networkconfig.interfaces.link-aggregation.options.primary`
+   :   Specifies the preferred port of the bonding interface. The bond uses the primary device as the first device of the bonding interfaces. The bond does not abandon the primary device interface unless it fails. This setting is particularly useful when one NIC in the bonding interface is faster and, therefore, able to handle a bigger load. This setting is only valid when the bonding interface is in active-backup mode (mode 1).
 
-`hosts.networkconfig.interfaces.ipv4.address.ip`
-:   Specifies the static IP address for the bond interface. This is the node IP address.
+   `hosts.networkconfig.interfaces.ipv4.address.ip`
+   :   Specifies the static IP address for the bond interface. This is the node IP address.
 
-`hosts.networkconfig.routes.config.next-hop-interface`
-:   Specifies the value for the `routes.config.next-hop-interface` parameter. Sets `bond0` as the gateway for the default route.
+   `hosts.networkconfig.routes.config.next-hop-interface`
+   :   Specifies the value for the `routes.config.next-hop-interface` parameter. Sets `bond0` as the gateway for the default route.
 
-    > [!IMPORTANT]
-    > After deploying the cluster, you cannot change the `networkConfig` configuration setting of the `install-config.yaml` file to make changes to the host network interface. Use the Kubernetes NMState Operator to make changes to the host network interface after deployment.
+   > [!IMPORTANT]
+   > After deploying the cluster, you cannot change the `networkConfig` configuration setting of the `install-config.yaml` file to make changes to the host network interface. Use the Kubernetes NMState Operator to make changes to the host network interface after deployment.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring network bonding](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/configuring_and_managing_networking/configuring-network-bonding_configuring-and-managing-networking)
 
@@ -3055,7 +3071,7 @@ You can configure NTP servers on control plane nodes and set compute nodes as NT
 
 OpenShift Container Platform installs the `chrony` Network Time Protocol (NTP) service on the cluster nodes.
 
-**Figure 1. Configuring NTP for disconnected clusters**
+**Figure 5. Configuring NTP for disconnected clusters**
 
 ![Configuring NTP for disconnected clusters](/openshift-docs-markdown/_assets/images/152_OpenShift_Config_NTP_0421.png)
 
@@ -3075,7 +3091,7 @@ OpenShift Container Platform nodes must agree on a date and time to run properly
 
    ```yaml
    variant: openshift
-   version: {{ product_version }}.0
+   version: 4.22.0
    metadata:
      name: 99-master-chrony-conf-override
      labels:
@@ -3134,7 +3150,7 @@ OpenShift Container Platform nodes must agree on a date and time to run properly
 
    ```yaml
    variant: openshift
-   version: {{ product_version }}.0
+   version: 4.22.0
    metadata:
      name: 99-worker-chrony-conf-override
      labels:
@@ -3318,7 +3334,8 @@ You can configures the BIOS during the installation process.
    > Red Hat supports three BIOS configurations. Only servers with BMC type `irmc` are supported. Other types of servers are currently not supported.
 4. Create the cluster.
 
-<a name="additional-resources_bare_metal_config"></a>**Additional resources**
+**Additional resources**
+{._additional-resources}
 
 - [Configuration using the Bare Metal Operator](/openshift-docs-markdown/installing/installing_bare_metal/bare-metal-postinstallation-configuration#bmo-config-using-bare-metal-operator_bare-metal-postinstallation-configuration)
 
@@ -3413,7 +3430,8 @@ Use the ignition config to configure storage on nodes. The following `MachineSet
    $ cp ~/<MachineConfig_manifest> ~/clusterconfigs/openshift
    ```
 
-<a name="additional-resources_raid_config"></a>**Additional resources**
+**Additional resources**
+{._additional-resources}
 
 - [Configuration using the Bare Metal Operator](/openshift-docs-markdown/installing/installing_bare_metal/bare-metal-postinstallation-configuration#bmo-config-using-bare-metal-operator_bare-metal-postinstallation-configuration)
 - [Partition naming scheme](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/managing_storage_devices/index#partition-naming-scheme_disk-partitions)
@@ -3432,7 +3450,8 @@ A local, or mirrored, copy of the registry requires the following:
 > - Creating a disconnected registry on a registry node is optional. If you need to create a disconnected registry on a registry node, you must complete all of the following sub-sections.
 > - If you have already prepared a mirror registry for a disconnected installation by mirroring images, you can skip directly to "Modify the install-config.yaml file to use the disconnected registry" section. For more information about preparing a mirror registry for a disconnected installation by mirroring images see, "Mirroring images for a disconnected installation".
 
-<a name="additional-resources_raid_config"></a>**Additional resources**
+**Additional resources**
+{._additional-resources}
 
 - [Mirroring images for a disconnected installation](/openshift-docs-markdown/disconnected/installing-mirroring-installation-images#prerequisites_installing-mirroring-installation-images)
 

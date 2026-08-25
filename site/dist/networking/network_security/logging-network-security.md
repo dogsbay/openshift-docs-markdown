@@ -32,204 +32,7 @@ spec:
 
 The following table describes the configuration fields for audit logging.
 
-# Cluster Network Operator configuration {#nw-operator-cr_logging-network-security}
-
-To manage cluster networking, configure the Cluster Network Operator (CNO) `Network` custom resource (CR) named `cluster` so the cluster uses the correct IP ranges and network plugin settings for reliable pod and service connectivity. Some settings and fields are inherited at the time of install or by the `default.Network.type` plugin, OVN-Kubernetes.
-
-The CNO configuration inherits the following fields during cluster installation from the `Network` API in the `Network.config.openshift.io` API group:
-
-`clusterNetwork`
-:   IP address pools from which pod IP addresses are allocated.
-
-`serviceNetwork`
-:   IP address pool for services.
-
-`defaultNetwork.type`
-:   Cluster network plugin. `OVNKubernetes` is the only supported plugin during installation.
-
-You can specify the cluster network plugin configuration for your cluster by setting the fields for the `defaultNetwork` object in the CNO object named `cluster`.
-
-## Cluster Network Operator configuration object {#nw-operator-cr-cno-object_logging-network-security}
-
-The fields for the Cluster Network Operator (CNO) are described in the following table:
-
-***Cluster Network Operator configuration object***
-
-<table>
-<thead>
-<tr>
-  <th>Field</th>
-  <th>Type</th>
-  <th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td><code>metadata.name</code></td>
-  <td><code>string</code></td>
-  <td>The name of the CNO object. This name is always <code>cluster</code>.</td>
-</tr>
-<tr>
-  <td><code>spec.clusterNetwork</code></td>
-  <td><code>array</code></td>
-  <td>A list specifying the blocks of IP addresses from which pod IP addresses are allocated and the subnet prefix length assigned to each individual node in the cluster. If you use dual-stack networking, specify IPv4 and IPv6 address families. For example:<br><br><pre>spec:&#10;  clusterNetwork:&#10;  - cidr: 10.128.0.0/19&#10;    hostPrefix: 23&#10;  - cidr: fd01::/48&#10;    hostPrefix: 64</pre><br><br>If you install a cluster on AWS with dual-stack networking, the order of addresses must match the dual-stack configuration you selected. For example, if you specified the <code>DualStackIPv4Primary</code>, list the IPv4 address first.</td>
-</tr>
-<tr>
-  <td><code>spec.serviceNetwork</code></td>
-  <td><code>array</code></td>
-  <td>A block of IP addresses for services. If you use dual-stack networking, specify IPv4 and IPv6 address families. For example:<br><br><pre>spec:&#10;  serviceNetwork:&#10;  - 172.30.0.0/14&#10;  - fd02::/112</pre><br><br>If you install a cluster on AWS with dual-stack networking, the order of addresses must match the dual-stack configuration you selected. For example, if you specified the <code>DualStackIPv4Primary</code>, list the IPv4 address first.<br><br>This value is ready-only and inherited from the <code>Network.config.openshift.io</code> object named <code>cluster</code> during cluster installation.You can customize this field only in the <code>install-config.yaml</code> file before you create the manifests. The value is read-only in the manifest file.</td>
-</tr>
-<tr>
-  <td><code>spec.defaultNetwork</code></td>
-  <td><code>object</code></td>
-  <td>Configures the network plugin for the cluster network.</td>
-</tr>
-<tr>
-  <td><code>spec.additionalRoutingCapabilities.providers</code></td>
-  <td><code>array</code></td>
-  <td>This setting enables a dynamic routing provider. The FRR routing capability provider is required for the route advertisement feature. The only supported value is <code>FRR</code>.<br><br>--<ul><li><code>FRR</code>: The FRR routing provider</li></ul>--<br><br><pre>spec:&#10;  additionalRoutingCapabilities:&#10;    providers:&#10;    - FRR</pre></td>
-</tr>
-</tbody>
-</table>
-
-> [!IMPORTANT]
-> For a cluster that needs to deploy objects across multiple networks, ensure that you specify the same value for the `clusterNetwork.hostPrefix` parameter for each network type that is defined in the `install-config.yaml` file. Setting a different value for each `clusterNetwork.hostPrefix` parameter can impact the OVN-Kubernetes network plugin, where the plugin cannot effectively route object traffic among different nodes.
-
-## defaultNetwork object configuration {#nw-operator-cr-defaultnetwork_logging-network-security}
-
-The values for the `defaultNetwork` object are defined in the following table:
-
-*`defaultNetwork`** object***
-
-<table>
-<thead>
-<tr>
-  <th>Field</th>
-  <th>Type</th>
-  <th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td><code>type</code></td>
-  <td><code>string</code></td>
-  <td><code>OVNKubernetes</code>. The Red Hat OpenShift Networking network plugin is selected during installation. This value cannot be changed after cluster installation.<dl><dt>Note</dt><dd>OpenShift Container Platform uses the OVN-Kubernetes network plugin by default.</dd></dl></td>
-</tr>
-<tr>
-  <td><code>ovnKubernetesConfig</code></td>
-  <td><code>object</code></td>
-  <td>This object is only valid for the OVN-Kubernetes network plugin.</td>
-</tr>
-</tbody>
-</table>
-
-## Configuration for the OVN-Kubernetes network plugin {#nw-operator-configuration-parameters-for-ovn-sdn_logging-network-security}
-
-The following table describes the configuration fields for the OVN-Kubernetes network plugin:
-
-*`ovnKubernetesConfig`** object***
-
-<table>
-<thead>
-<tr>
-  <th>Field</th>
-  <th>Type</th>
-  <th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td><code>mtu</code></td>
-  <td><code>integer</code></td>
-  <td>The maximum transmission unit (MTU) for the Geneve (Generic Network Virtualization Encapsulation) overlay network. This is detected automatically based on the MTU of the primary network interface. You do not normally need to override the detected MTU.<br><br>If the auto-detected value is not what you expect it to be, confirm that the MTU on the primary network interface on your nodes is correct. You cannot use this option to change the MTU value of the primary network interface on the nodes.<br><br>If your cluster requires different MTU values for different nodes, you must set this value to <code>100</code> less than the lowest MTU value in your cluster. For example, if some nodes in your cluster have an MTU of <code>9001</code>, and some have an MTU of <code>1500</code>, you must set this value to <code>1400</code>.The maximum transmission unit (MTU) for the Geneve (Generic Network Virtualization Encapsulation) overlay network. This value is normally configured automatically.</td>
-</tr>
-<tr>
-  <td><code>genevePort</code></td>
-  <td><code>integer</code></td>
-  <td>The port to use for all Geneve packets. The default value is <code>6081</code>. This value cannot be changed after cluster installation.The UDP port for the Geneve overlay network.</td>
-</tr>
-<tr>
-  <td><code>ipsecConfig</code></td>
-  <td><code>object</code></td>
-  <td>Specify a configuration object for customizing the IPsec configuration.An object describing the IPsec mode for the cluster.</td>
-</tr>
-<tr>
-  <td><code>ipv4</code></td>
-  <td><code>object</code></td>
-  <td>Specifies a configuration object for IPv4 settings.</td>
-</tr>
-<tr>
-  <td><code>ipv6</code></td>
-  <td><code>object</code></td>
-  <td>Specifies a configuration object for IPv6 settings.</td>
-</tr>
-<tr>
-  <td><code>policyAuditConfig</code></td>
-  <td><code>object</code></td>
-  <td>Specify a configuration object for customizing network policy audit logging. If unset, the defaults audit log settings are used.</td>
-</tr>
-<tr>
-  <td><code>routeAdvertisements</code></td>
-  <td><code>string</code></td>
-  <td>Specifies whether to advertise cluster network routes. The default value is <code>Disabled</code>.--<ul><li><code>Enabled</code>: Import routes to the cluster network and advertise cluster network routes as configured in <code>RouteAdvertisements</code> objects.</li><li><code>Disabled</code>: Do not import routes to the cluster network or advertise cluster network routes.</li></ul>--</td>
-</tr>
-<tr>
-  <td><code>gatewayConfig</code></td>
-  <td><code>object</code></td>
-  <td>Optional: Specify a configuration object for customizing how egress traffic is sent to the node gateway. Valid values are <code>Shared</code> and <code>Local</code>. The default value is <code>Shared</code>. In the default setting, the Open vSwitch (OVS) outputs traffic directly to the node IP interface. If you are using hardware offloading, Red Hat recommends to use the default <code>Shared</code> gateway mode to bypass the host routing plane. In the <code>Local</code> setting, it traverses the host network; consequently, it gets applied to the routing table of the host.<br><br><dl><dt>Note</dt><dd>While migrating egress traffic, you can expect some disruption to workloads and service traffic until the Cluster Network Operator (CNO) successfully rolls out the changes.</dd></dl></td>
-</tr>
-</tbody>
-</table>
-
-*`ovnKubernetesConfig.ipv4`** object***
-
-<table>
-<thead>
-<tr>
-  <th>Field</th>
-  <th>Type</th>
-  <th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td><code>internalTransitSwitchSubnet</code></td>
-  <td>string</td>
-  <td>If your existing network infrastructure overlaps with the <code>100.88.0.0/16</code> IPv4 subnet, you can specify a different IP address range for internal use by OVN-Kubernetes. The subnet for the distributed transit switch that enables east-west traffic. This subnet cannot overlap with any other subnets used by OVN-Kubernetes or on the host itself. It must be large enough to accommodate one IP address per node in your cluster.<br><br>The default value is <code>100.88.0.0/16</code>.</td>
-</tr>
-<tr>
-  <td><code>internalJoinSubnet</code></td>
-  <td>string</td>
-  <td>If your existing network infrastructure overlaps with the <code>100.64.0.0/16</code> IPv4 subnet, you can specify a different IP address range for internal use by OVN-Kubernetes. You must ensure that the IP address range does not overlap with any other subnet used by your OpenShift Container Platform installation. The IP address range must be larger than the maximum number of nodes that can be added to the cluster. For example, if the <code>clusterNetwork.cidr</code> value is <code>10.128.0.0/14</code> and the <code>clusterNetwork.hostPrefix</code> value is <code>/23</code>, then the maximum number of nodes is <code>2^(23-14)=512</code>.<br><br>The default value is <code>100.64.0.0/16</code>.</td>
-</tr>
-</tbody>
-</table>
-
-*`ovnKubernetesConfig.ipv6`** object***
-
-<table>
-<thead>
-<tr>
-  <th>Field</th>
-  <th>Type</th>
-  <th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td><code>internalTransitSwitchSubnet</code></td>
-  <td>string</td>
-  <td>If your existing network infrastructure overlaps with the <code>fd97::/64</code> IPv6 subnet, you can specify a different IP address range for internal use by OVN-Kubernetes. The subnet for the distributed transit switch that enables east-west traffic. This subnet cannot overlap with any other subnets used by OVN-Kubernetes or on the host itself. It must be large enough to accommodate one IP address per node in your cluster.<br><br>The default value is <code>fd97::/64</code>.</td>
-</tr>
-<tr>
-  <td><code>internalJoinSubnet</code></td>
-  <td>string</td>
-  <td>If your existing network infrastructure overlaps with the <code>fd98::/64</code> IPv6 subnet, you can specify a different IP address range for internal use by OVN-Kubernetes. You must ensure that the IP address range does not overlap with any other subnet used by your OpenShift Container Platform installation. The IP address range must be larger than the maximum number of nodes that can be added to the cluster.<br><br>The default value is <code>fd98::/64</code>.</td>
-</tr>
-</tbody>
-</table>
-
-*`policyAuditConfig`** object***
+**`policyAuditConfig` object**
 
 <table>
 <thead>
@@ -258,7 +61,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>destination</code></td>
   <td>string</td>
-  <td>One of the following additional audit log targets:<br><br><code>libc</code>:: The libc <code>syslog()</code> function of the journald process on the host.<code>udp:<host>:<port></code>:: A syslog server. Replace <code><host>:<port></code> with the host and port of the syslog server.<code>unix:<file></code>:: A Unix Domain Socket file specified by <code><file></code>.<code>null</code>:: Do not send the audit logs to any additional target.</td>
+  <td>One of the following additional audit log targets:<br><br><dl><dt><code>libc</code></dt><dd>The libc <code>syslog()</code> function of the journald process on the host.</dd><dt><code>udp:&lt;host&gt;:&lt;port&gt;</code></dt><dd>A syslog server. Replace <code>&lt;host&gt;:&lt;port&gt;</code> with the host and port of the syslog server.</dd><dt><code>unix:&lt;file&gt;</code></dt><dd>A Unix Domain Socket file specified by <code>&lt;file&gt;</code>.</dd><dt><code>null</code></dt><dd>Do not send the audit logs to any additional target.</dd></dl></td>
 </tr>
 <tr>
   <td><code>syslogFacility</code></td>
@@ -267,115 +70,6 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 </tr>
 </tbody>
 </table>
-
-<a name="gatewayConfig-object_logging-network-security"></a>
-
-*`gatewayConfig`** object***
-
-<table>
-<thead>
-<tr>
-  <th>Field</th>
-  <th>Type</th>
-  <th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td><code>routingViaHost</code></td>
-  <td><code>boolean</code></td>
-  <td>Set this field to <code>true</code> to send egress traffic from pods to the host networking stack.For highly-specialized installations and applications that rely on manually configured routes in the kernel routing table, you might want to route egress traffic to the host networking stack.By default, egress traffic is processed in OVN to exit the cluster and is not affected by specialized routes in the kernel routing table.The default value is <code>false</code>.<br><br>This field has an interaction with the Open vSwitch hardware offloading feature.If you set this field to <code>true</code>, you do not receive the performance benefits of the offloading because egress traffic is processed by the host networking stack.</td>
-</tr>
-<tr>
-  <td><code>ipForwarding</code></td>
-  <td><code>object</code></td>
-  <td>You can control IP forwarding for all traffic on OVN-Kubernetes managed interfaces by using the <code>ipForwarding</code> specification in the <code>Network</code> resource. Specify <code>Restricted</code> to only allow IP forwarding for Kubernetes related traffic. Specify <code>Global</code> to allow forwarding of all IP traffic. For new installations, the default is <code>Restricted</code>. For updates to OpenShift Container Platform 4.14 or later, the default is <code>Global</code>.<dl><dt>Note</dt><dd>The default value of <code>Restricted</code> sets the IP forwarding to drop.</dd></dl></td>
-</tr>
-<tr>
-  <td><code>ipv4</code></td>
-  <td><code>object</code></td>
-  <td>Optional: Specify an object to configure the internal OVN-Kubernetes masquerade address for host to service traffic for IPv4 addresses.</td>
-</tr>
-<tr>
-  <td><code>ipv6</code></td>
-  <td><code>object</code></td>
-  <td>Optional: Specify an object to configure the internal OVN-Kubernetes masquerade address for host to service traffic for IPv6 addresses.</td>
-</tr>
-</tbody>
-</table>
-
-<a name="gatewayconfig-ipv4-object_logging-network-security"></a>
-
-*`gatewayConfig.ipv4`** object***
-
-<table>
-<thead>
-<tr>
-  <th>Field</th>
-  <th>Type</th>
-  <th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td><code>internalMasqueradeSubnet</code></td>
-  <td><code>string</code></td>
-  <td>The masquerade IPv4 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses as well as the shared gateway bridge interface. The default value is <code>169.254.169.0/29</code>.<dl><dt>Important</dt><dd>For OpenShift Container Platform 4.17 and later versions, clusters use <code>169.254.0.0/17</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</dd></dl></td>
-</tr>
-</tbody>
-</table>
-
-<a name="gatewayconfig-ipv6-object_logging-network-security"></a>
-
-*`gatewayConfig.ipv6`** object***
-
-<table>
-<thead>
-<tr>
-  <th>Field</th>
-  <th>Type</th>
-  <th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td><code>internalMasqueradeSubnet</code></td>
-  <td><code>string</code></td>
-  <td>The masquerade IPv6 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses as well as the shared gateway bridge interface. The default value is <code>fd69::/125</code>.<dl><dt>Important</dt><dd>For OpenShift Container Platform 4.17 and later versions, clusters use <code>fd69::/112</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</dd></dl></td>
-</tr>
-</tbody>
-</table>
-
-<a name="nw-operator-cr-ipsec_logging-network-security"></a>
-
-*`ipsecConfig`** object***
-
-<table>
-<thead>
-<tr>
-  <th>Field</th>
-  <th>Type</th>
-  <th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td><code>mode</code></td>
-  <td><code>string</code></td>
-  <td>Specifies the behavior of the IPsec implementation. Must be one of the following values:<br><br>--<ul><li><code>Disabled</code>: IPsec is not enabled on cluster nodes.</li><li><code>External</code>: IPsec is enabled for network traffic with external hosts.</li><li><code>Full</code>: IPsec is enabled for pod traffic and network traffic with external hosts.</li></ul>--</td>
-</tr>
-</tbody>
-</table>
-
-```yaml {title="Example OVN-Kubernetes configuration with IPSec enabled"}
-defaultNetwork:
-  type: OVNKubernetes
-  ovnKubernetesConfig:
-    mtu: 1400
-    genevePort: 6081
-    ipsecConfig:
-      mode: Full
-```
 
 ## Audit logging {#nw-networkpolicy-audit-concept_logging-network-security}
 
@@ -453,7 +147,7 @@ Where:
 
 The following table describes namespace annotation values:
 
-***Audit logging namespace annotation for `k8s.ovn.org/acl-logging`***
+**Audit logging namespace annotation for `k8s.ovn.org/acl-logging`**
 
 <table>
 <thead>
@@ -479,6 +173,7 @@ The following table describes namespace annotation values:
 </table>
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding network policy APIs](/openshift-docs-markdown/networking/network_security/network-policy-apis#network-policy-apis)
 
@@ -562,49 +257,40 @@ The following is a direction index for the examples log entries that follow:
 <tbody>
 <tr>
   <td>Ingress</td>
-  <td>Rule0:: Allow from tenant <code>product-development</code> and <code>customer</code> to tenant <code>backend-storage</code>; Ingress0: <code>Allow</code>Rule1:: Pass from <code>product-security</code>to tenant <code>backend-storage</code>; Ingress1: <code>Pass</code>Rule2::	Deny ingress from all pods; Ingress2: <code>Deny</code></td>
+  <td><dl><dt>Rule0</dt><dd>Allow from tenant <code>product-development</code> and <code>customer</code> to tenant <code>backend-storage</code>; Ingress0: <code>Allow</code></dd><dt>Rule1</dt><dd>Pass from <code>product-security</code>to tenant <code>backend-storage</code>; Ingress1: <code>Pass</code></dd><dt>Rule2</dt><dd>Deny ingress from all pods; Ingress2: <code>Deny</code></dd></dl></td>
 </tr>
 <tr>
   <td>Egress</td>
-  <td>Rule0:: Allow to <code>product-development</code>; Egress0: <code>Allow</code>Rule1:: Pass to <code>product-security</code>; Egress1: <code>Pass</code>Rule2:: Deny egress to all other pods; Egress2: <code>Deny</code></td>
+  <td><dl><dt>Rule0</dt><dd>Allow to <code>product-development</code>; Egress0: <code>Allow</code></dd><dt>Rule1</dt><dd>Pass to <code>product-security</code>; Egress1: <code>Pass</code></dd><dt>Rule2</dt><dd>Deny egress to all other pods; Egress2: <code>Deny</code></dd></dl></td>
 </tr>
 </tbody>
 </table>
 
-<details>
-<summary>Example ACL log entry for `Allow` action of the `AdminNetworkPolicy` named `anp-tenant-log` with `Ingress:0` and `Egress:0`</summary>
-
+:::details{title="Example ACL log entry for `Allow` action of the `AdminNetworkPolicy` named `anp-tenant-log` with `Ingress:0` and `Egress:0`"}
 ```text
 2024-06-10T16:27:45.194Z|00052|acl_log(ovn_pinctrl0)|INFO|name="ANP:anp-tenant-log:Ingress:0", verdict=allow, severity=alert, direction=to-lport: tcp,vlan_tci=0x0000,dl_src=0a:58:0a:80:02:1a,dl_dst=0a:58:0a:80:02:19,nw_src=10.128.2.26,nw_dst=10.128.2.25,nw_tos=0,nw_ecn=0,nw_ttl=64,nw_frag=no,tp_src=57814,tp_dst=8080,tcp_flags=syn
 2024-06-10T16:28:23.130Z|00059|acl_log(ovn_pinctrl0)|INFO|name="ANP:anp-tenant-log:Ingress:0", verdict=allow, severity=alert, direction=to-lport: tcp,vlan_tci=0x0000,dl_src=0a:58:0a:80:02:18,dl_dst=0a:58:0a:80:02:19,nw_src=10.128.2.24,nw_dst=10.128.2.25,nw_tos=0,nw_ecn=0,nw_ttl=64,nw_frag=no,tp_src=38620,tp_dst=8080,tcp_flags=ack
 2024-06-10T16:28:38.293Z|00069|acl_log(ovn_pinctrl0)|INFO|name="ANP:anp-tenant-log:Egress:0", verdict=allow, severity=alert, direction=from-lport: tcp,vlan_tci=0x0000,dl_src=0a:58:0a:80:02:19,dl_dst=0a:58:0a:80:02:1a,nw_src=10.128.2.25,nw_dst=10.128.2.26,nw_tos=0,nw_ecn=0,nw_ttl=64,nw_frag=no,tp_src=47566,tp_dst=8080,tcp_flags=fin|ack=0,nw_ecn=0,nw_ttl=64,nw_frag=no,tp_src=55704,tp_dst=8080,tcp_flags=ack
 ```
+:::
 
-</details>
-
-<details>
-<summary>Example ACL log entry for `Pass` action of the `AdminNetworkPolicy` named `anp-tenant-log` with `Ingress:1` and `Egress:1`</summary>
-
+:::details{title="Example ACL log entry for `Pass` action of the `AdminNetworkPolicy` named `anp-tenant-log` with `Ingress:1` and `Egress:1`"}
 ```text
 2024-06-10T16:33:12.019Z|00075|acl_log(ovn_pinctrl0)|INFO|name="ANP:anp-tenant-log:Ingress:1", verdict=pass, severity=warning, direction=to-lport: tcp,vlan_tci=0x0000,dl_src=0a:58:0a:80:02:1b,dl_dst=0a:58:0a:80:02:19,nw_src=10.128.2.27,nw_dst=10.128.2.25,nw_tos=0,nw_ecn=0,nw_ttl=64,nw_frag=no,tp_src=37394,tp_dst=8080,tcp_flags=ack
 2024-06-10T16:35:04.209Z|00081|acl_log(ovn_pinctrl0)|INFO|name="ANP:anp-tenant-log:Egress:1", verdict=pass, severity=warning, direction=from-lport: tcp,vlan_tci=0x0000,dl_src=0a:58:0a:80:02:19,dl_dst=0a:58:0a:80:02:1b,nw_src=10.128.2.25,nw_dst=10.128.2.27,nw_tos=0,nw_ecn=0,nw_ttl=64,nw_frag=no,tp_src=34018,tp_dst=8080,tcp_flags=ack
 ```
+:::
 
-</details>
-
-<details>
-<summary>Example ACL log entry for `Deny` action of the `AdminNetworkPolicy` named `anp-tenant-log` with `Egress:2` and `Ingress2`</summary>
-
+:::details{title="Example ACL log entry for `Deny` action of the `AdminNetworkPolicy` named `anp-tenant-log` with `Egress:2` and `Ingress2`"}
 ```text
 2024-06-10T16:43:05.287Z|00087|acl_log(ovn_pinctrl0)|INFO|name="ANP:anp-tenant-log:Egress:2", verdict=drop, severity=alert, direction=from-lport: tcp,vlan_tci=0x0000,dl_src=0a:58:0a:80:02:19,dl_dst=0a:58:0a:80:02:18,nw_src=10.128.2.25,nw_dst=10.128.2.24,nw_tos=0,nw_ecn=0,nw_ttl=64,nw_frag=no,tp_src=51598,tp_dst=8080,tcp_flags=syn
 2024-06-10T16:44:43.591Z|00090|acl_log(ovn_pinctrl0)|INFO|name="ANP:anp-tenant-log:Ingress:2", verdict=drop, severity=alert, direction=to-lport: tcp,vlan_tci=0x0000,dl_src=0a:58:0a:80:02:1c,dl_dst=0a:58:0a:80:02:19,nw_src=10.128.2.28,nw_dst=10.128.2.25,nw_tos=0,nw_ecn=0,nw_ttl=64,nw_frag=no,tp_src=33774,tp_dst=8080,tcp_flags=syn
 ```
-
-</details>
+:::
 
 The following table describes ANP annotation:
 
-***Audit logging AdminNetworkPolicy annotation***
+**Audit logging AdminNetworkPolicy annotation**
 
 <table>
 <thead>
@@ -616,7 +302,7 @@ The following table describes ANP annotation:
 <tbody>
 <tr>
   <td><code>k8s.ovn.org/acl-logging</code></td>
-  <td>You must specify at least one of <code>Allow</code>, <code>Deny</code>, or <code>Pass</code> to enable audit logging for a namespace.<br><br><code>Deny</code>:: Optional: Specify <code>alert</code>, <code>warning</code>, <code>notice</code>, <code>info</code>, or <code>debug</code>.<code>Allow</code>:: Optional: Specify <code>alert</code>, <code>warning</code>, <code>notice</code>, <code>info</code>, or <code>debug</code>.<code>Pass</code>:: Optional: Specify <code>alert</code>, <code>warning</code>, <code>notice</code>, <code>info</code>, or <code>debug</code>.</td>
+  <td>You must specify at least one of <code>Allow</code>, <code>Deny</code>, or <code>Pass</code> to enable audit logging for a namespace.<br><br><dl><dt><code>Deny</code></dt><dd>Optional: Specify <code>alert</code>, <code>warning</code>, <code>notice</code>, <code>info</code>, or <code>debug</code>.</dd><dt><code>Allow</code></dt><dd>Optional: Specify <code>alert</code>, <code>warning</code>, <code>notice</code>, <code>info</code>, or <code>debug</code>.</dd><dt><code>Pass</code></dt><dd>Optional: Specify <code>alert</code>, <code>warning</code>, <code>notice</code>, <code>info</code>, or <code>debug</code>.</dd></dl></td>
 </tr>
 </tbody>
 </table>
@@ -625,9 +311,7 @@ The following table describes ANP annotation:
 
 You can enable audit logging for `BaselineAdminNetworkPolicy` custom resources in OpenShift Container Platform by annotating each policy with the `k8s.ovn.org/acl-logging` key.
 
-<details>
-<summary>Example of annotation for `BaselineAdminNetworkPolicy` CR</summary>
-
+:::details{title="Example of annotation for `BaselineAdminNetworkPolicy` CR"}
 ```yaml
 apiVersion: policy.networking.k8s.io/v1alpha1
 kind: BaselineAdminNetworkPolicy
@@ -657,8 +341,7 @@ spec:
     to:
     - namespaces: {} # Use the empty selector with caution because it also selects OpenShift namespaces as well.
 ```
-
-</details>
+:::
 
 In the example, an event in which any of the namespaces with the label `tenant: dns` accesses the namespaces with the label `tenant: workloads`, a log is generated.
 
@@ -674,18 +357,16 @@ The following is a direction index for the examples log entries that follow:
 <tbody>
 <tr>
   <td>Ingress</td>
-  <td>Rule0:: Allow from tenant <code>dns</code> to tenant <code>workloads</code>; Ingress0: <code>Allow</code>Rule1:: Deny to tenant <code>workloads</code> from all pods; Ingress1: <code>Deny</code></td>
+  <td><dl><dt>Rule0</dt><dd>Allow from tenant <code>dns</code> to tenant <code>workloads</code>; Ingress0: <code>Allow</code></dd><dt>Rule1</dt><dd>Deny to tenant <code>workloads</code> from all pods; Ingress1: <code>Deny</code></dd></dl></td>
 </tr>
 <tr>
   <td>Egress</td>
-  <td>Rule0:: Deny to all pods; Egress0: <code>Deny</code></td>
+  <td><dl><dt>Rule0</dt><dd>Deny to all pods; Egress0: <code>Deny</code></dd></dl></td>
 </tr>
 </tbody>
 </table>
 
-<details>
-<summary>Example ACL allow log entry for `Allow` action of `default` BANP with `Ingress:0`</summary>
-
+:::details{title="Example ACL allow log entry for `Allow` action of `default` BANP with `Ingress:0`"}
 ```text
 2024-06-10T18:11:58.263Z|00022|acl_log(ovn_pinctrl0)|INFO|name="BANP:default:Ingress:0", verdict=allow, severity=alert, direction=to-lport: tcp,vlan_tci=0x0000,dl_src=0a:58:0a:82:02:57,dl_dst=0a:58:0a:82:02:56,nw_src=10.130.2.87,nw_dst=10.130.2.86,nw_tos=0,nw_ecn=0,nw_ttl=64,nw_frag=no,tp_src=60510,tp_dst=8080,tcp_flags=syn
 2024-06-10T18:11:58.264Z|00023|acl_log(ovn_pinctrl0)|INFO|name="BANP:default:Ingress:0", verdict=allow, severity=alert, direction=to-lport: tcp,vlan_tci=0x0000,dl_src=0a:58:0a:82:02:57,dl_dst=0a:58:0a:82:02:56,nw_src=10.130.2.87,nw_dst=10.130.2.86,nw_tos=0,nw_ecn=0,nw_ttl=64,nw_frag=no,tp_src=60510,tp_dst=8080,tcp_flags=psh|ack
@@ -694,12 +375,9 @@ The following is a direction index for the examples log entries that follow:
 2024-06-10T18:11:58.264Z|00026|acl_log(ovn_pinctrl0)|INFO|name="BANP:default:Ingress:0", verdict=allow, severity=alert, direction=to-lport: tcp,vlan_tci=0x0000,dl_src=0a:58:0a:82:02:57,dl_dst=0a:58:0a:82:02:56,nw_src=10.130.2.87,nw_dst=10.130.2.86,nw_tos=0,nw_ecn=0,nw_ttl=64,nw_frag=no,tp_src=60510,tp_dst=8080,tcp_flags=fin|ack
 2024-06-10T18:11:58.264Z|00027|acl_log(ovn_pinctrl0)|INFO|name="BANP:default:Ingress:0", verdict=allow, severity=alert, direction=to-lport: tcp,vlan_tci=0x0000,dl_src=0a:58:0a:82:02:57,dl_dst=0a:58:0a:82:02:56,nw_src=10.130.2.87,nw_dst=10.130.2.86,nw_tos=0,nw_ecn=0,nw_ttl=64,nw_frag=no,tp_src=60510,tp_dst=8080,tcp_flags=ack
 ```
+:::
 
-</details>
-
-<details>
-<summary>Example ACL allow log entry for `Allow` action of `default` BANP with `Egress:0` and `Ingress:1`</summary>
-
+:::details{title="Example ACL allow log entry for `Allow` action of `default` BANP with `Egress:0` and `Ingress:1`"}
 ```text
 2024-06-10T18:09:57.774Z|00016|acl_log(ovn_pinctrl0)|INFO|name="BANP:default:Egress:0", verdict=drop, severity=alert, direction=from-lport: tcp,vlan_tci=0x0000,dl_src=0a:58:0a:82:02:56,dl_dst=0a:58:0a:82:02:57,nw_src=10.130.2.86,nw_dst=10.130.2.87,nw_tos=0,nw_ecn=0,nw_ttl=64,nw_frag=no,tp_src=45614,tp_dst=8080,tcp_flags=syn
 2024-06-10T18:09:58.809Z|00017|acl_log(ovn_pinctrl0)|INFO|name="BANP:default:Egress:0", verdict=drop, severity=alert, direction=from-lport: tcp,vlan_tci=0x0000,dl_src=0a:58:0a:82:02:56,dl_dst=0a:58:0a:82:02:57,nw_src=10.130.2.86,nw_dst=10.130.2.87,nw_tos=0,nw_ecn=0,nw_ttl=64,nw_frag=no,tp_src=45614,tp_dst=8080,tcp_flags=syn
@@ -708,12 +386,11 @@ The following is a direction index for the examples log entries that follow:
 2024-06-10T18:10:26.457Z|00020|acl_log(ovn_pinctrl0)|INFO|name="BANP:default:Ingress:1", verdict=drop, severity=alert, direction=to-lport: tcp,vlan_tci=0x0000,dl_src=0a:58:0a:82:02:58,dl_dst=0a:58:0a:82:02:56,nw_src=10.130.2.88,nw_dst=10.130.2.86,nw_tos=0,nw_ecn=0,nw_ttl=64,nw_frag=no,tp_src=40630,tp_dst=8080,tcp_flags=syn
 2024-06-10T18:10:28.505Z|00021|acl_log(ovn_pinctrl0)|INFO|name="BANP:default:Ingress:1", verdict=drop, severity=alert, direction=to-lport: tcp,vlan_tci=0x0000,dl_src=0a:58:0a:82:02:58,dl_dst=0a:58:0a:82:02:56,nw_src=10.130.2.88,nw_dst=10.130.2.86,nw_tos=0,nw_ecn=0,nw_ttl=64,nw_frag=no,tp_src=40630,tp_dst=8080,tcp_flags=syn
 ```
-
-</details>
+:::
 
 The following table describes BANP annotation:
 
-***Audit logging BaselineAdminNetworkPolicy annotation***
+**Audit logging BaselineAdminNetworkPolicy annotation**
 
 <table>
 <thead>
@@ -725,7 +402,7 @@ The following table describes BANP annotation:
 <tbody>
 <tr>
   <td><code>k8s.ovn.org/acl-logging</code></td>
-  <td>You must specify at least one of <code>Allow</code> or <code>Deny</code> to enable audit logging for a namespace.<br><br><code>Deny</code>:: Optional: Specify <code>alert</code>, <code>warning</code>, <code>notice</code>, <code>info</code>, or <code>debug</code>.<code>Allow</code>:: Optional: Specify <code>alert</code>, <code>warning</code>, <code>notice</code>, <code>info</code>, or <code>debug</code>.</td>
+  <td>You must specify at least one of <code>Allow</code> or <code>Deny</code> to enable audit logging for a namespace.<br><br><dl><dt><code>Deny</code></dt><dd>Optional: Specify <code>alert</code>, <code>warning</code>, <code>notice</code>, <code>info</code>, or <code>debug</code>.</dd><dt><code>Allow</code></dt><dd>Optional: Specify <code>alert</code>, <code>warning</code>, <code>notice</code>, <code>info</code>, or <code>debug</code>.</dd></dl></td>
 </tr>
 </tbody>
 </table>
@@ -1007,7 +684,8 @@ To disable egress firewall and network policy audit logging for a namespace in O
 
   Successful output lists the audit logging name and the `annotated` status.
 
-## Additional resources {#logging-network-security-additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [About network policy](/openshift-docs-markdown/networking/network_security/network_policy/about-network-policy#about-network-policy)
 - [Configuring an egress firewall for a project](/openshift-docs-markdown/networking/network_security/egress_firewall/configuring-egress-firewall-ovn#configuring-egress-firewall-ovn)

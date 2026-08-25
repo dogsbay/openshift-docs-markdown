@@ -135,6 +135,7 @@ For high availability (HA) clusters, a three-node HA cluster requires you to shu
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing a user-provisioned cluster on bare metal](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#installing-bare-metal)
 - [Replacing a bare-metal control plane node](/openshift-docs-markdown/installing/installing_bare_metal/bare-metal-expanding-the-cluster#replacing-a-bare-metal-control-plane-node_bare-metal-expanding)
@@ -163,6 +164,7 @@ It can cause Operator churn when the content in etcd does not match the actual c
 In extreme cases, the cluster can lose track of persistent volumes, delete critical workloads that no longer exist, reimage machines, and rewrite CA bundles with expired certificates.
 
 **Additional resources**
+{._additional-resources}
 
 - [Recovering from expired control plane certificates](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-3-expired-certs#dr-recovering-expired-certs)
 
@@ -289,6 +291,7 @@ $ oc patch etcd cluster -p='{"spec": {"forceRedeploymentReason": "recovery-'"$(d
 ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Recovering a degraded etcd Operator](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-troubleshooting#cpmso-ts-etcd-degraded_cpmso-troubleshooting)
 
@@ -415,5 +418,6 @@ You can test your cluster restore workflow by simulating etcd failure on nonreco
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Restoring to an earlier cluster state](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state#dr-restoring-cluster-state)

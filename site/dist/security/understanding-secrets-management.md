@@ -33,6 +33,7 @@ Securing Red Hat OpenShift GitOps by using External Secrets Operator short-live
 - [Zero trust GitOps: Build a secure, secretless GitOps pipeline](https://developers.redhat.com/articles/2026/03/13/zero-trust-gitops-build-secure-secretless-gitops-pipeline)
 
 **Additional resources**
+{._additional-resources}
 
 - [Secrets Store Container Storage Interface Driver Operator](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-secrets-store#persistent-storage-csi-secrets-store)
 - [External Secrets Operator for Red Hat OpenShift](/openshift-docs-markdown/security/external_secrets_operator/index#external-secrets-operator-about)

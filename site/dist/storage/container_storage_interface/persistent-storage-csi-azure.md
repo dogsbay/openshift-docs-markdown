@@ -24,6 +24,7 @@ Azure Disk CSI driver
 > OpenShift Container Platform provides automatic migration for the Azure Disk in-tree volume plugin to its equivalent CSI driver. For more information, see "CSI automatic migration".
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage)
 - [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
@@ -75,6 +76,7 @@ Both zone-redundant storage (ZRS) and PremiumV2_LRS have some region limitations
    In this example, `sc-prem-zrs` is the new storage class with storage account type.
 
 **Additional resources**
+{._additional-resources}
 
 - [SKU Types](https://learn.microsoft.com/en-us/rest/api/storagerp/srp_sku_types)
 - [ZRS limitations](https://learn.microsoft.com/en-us/azure/virtual-machines/disks-deploy-zrs?tabs=portal#limitations)
@@ -97,6 +99,7 @@ The following Azure disk types support performance plus:
 To see what the increased limits are for IOPS and throughput, consult the columns that begin with **Expanded** in the tables in "Scalability and performance targets for VM disks".
 
 **Additional resources**
+{._additional-resources}
 
 - [Scalability and performance targets for VM disks](https://learn.microsoft.com/en-us/azure/virtual-machines/disks-scalability-targets)
 
@@ -113,6 +116,7 @@ Performance plus for Azure Disk has the following limitations:
 - Can be enabled only on new disks. For a workaround, see "Enabling performance plus by snapshot or cloning".
 
 **Additional resources**
+{._additional-resources}
 
 - [Enabling performance plus by snapshot or cloning](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-azure#persistent-storage-csi-azure-disk-perf-plus-create-new-disk-by-snapshot-clone_persistent-storage-csi-azure)
 
@@ -192,6 +196,7 @@ Normally, performance plus can be enabled only on new disks. For a workaround, y
    - Clone the persistent volume claim (PVC) using a storage class with `enablePerformancePlus` set to "true" to create a new disk clone.
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating a storage class to use performance plus enhanced disks](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-azure#persistent-storage-csi-azure-disk-perf-plus-sc_persistent-storage-csi-azure)
 
@@ -223,6 +228,7 @@ This features supports the following storage types:
   For information about installing with IBM Cloud with user-managed encryption, see "User-managed encryption for IBM Cloud" and "Installing on IBM Cloud".
 
 **Additional resources**
+{._additional-resources}
 
 - [Preparing an Azure Disk Encryption Set](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-preparing-ipi#preparing-disk-encryption-sets_installing-azure-preparing-ipi)
 
@@ -233,6 +239,7 @@ You can create a machine set running on Microsoft Azure that deploys machines wi
 Both the in-tree plugin and CSI driver support using PVCs to enable ultra disks. You can also deploy machines with ultra disks as data disks without creating a PVC.
 
 **Additional resources**
+{._additional-resources}
 
 - [Microsoft Azure ultra disks documentation](https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types#ultra-disks)
 - [Machine sets that deploy machines on ultra disks using in-tree PVCs](/openshift-docs-markdown/storage/persistent_storage/persistent-storage-azure#machineset-azure-ultra-disk_persistent-storage-azure)
@@ -274,24 +281,19 @@ You can deploy machines with ultra disks on Microsoft Azure by editing your mach
              ultraSSDCapability: Enabled
    ```
 
-{%- if mapi %} dataDisks: - nameSuffix: ultrassd lun: 0 diskSizeGB: 4 deletionPolicy: Delete cachingType: None managedDisk: storageAccountType: UltraSSD_LRS userDataSecret: name: <role>-user-data-x5 {%- endif %} \`\`\`
+   where:
 
-```
-where:
+   `spec.template.spec.metadata.labels.disk`
+   :   Specifies a label to use to select a node that is created by this machine set. The example uses `disk.ultrassd` for this value.
 
-`spec.template.spec.metadata.labels.disk`
-:   Specifies a label to use to select a node that is created by this machine set. The example uses `disk.ultrassd` for this value.
-
-`spec.template.spec.providerSpec.value.ultraSSDCapability`
-:   Enables the use of ultra disks.
-```
-
-1. Create a machine set by using the updated configuration by running the following command:
+   `spec.template.spec.providerSpec.value.ultraSSDCapability`
+   :   Enables the use of ultra disks.
+3. Create a machine set by using the updated configuration by running the following command:
 
    ```terminal
    $ oc create -f <machine_set_name>.yaml
    ```
-2. Create a storage class that contains the following YAML definition:
+4. Create a storage class that contains the following YAML definition:
 
    ```yaml
    apiVersion: storage.k8s.io/v1
@@ -325,7 +327,7 @@ where:
 
    `volumeBindingMode`
    :   Optional parameter. Specifies this parameter to wait for the creation of the pod that will use the disk.
-3. Create a persistent volume claim (PVC) to reference the `ultra-disk-sc` storage class that contains the following YAML definition:
+5. Create a persistent volume claim (PVC) to reference the `ultra-disk-sc` storage class that contains the following YAML definition:
 
    ```yaml
    apiVersion: v1
@@ -351,7 +353,7 @@ where:
 
    `spec.resources.requests.storage`
    :   Specifies the size for the storage class. The minimum value is `4Gi`.
-4. Create a pod that contains the following YAML definition:
+6. Create a pod that contains the following YAML definition:
 
    ```yaml
    apiVersion: v1
@@ -449,7 +451,8 @@ StorageAccountType UltraSSD_LRS can be used only when additionalCapabilities.ult
   $ oc -n <stuck_pod_namespace> describe pod <stuck_pod_name>
   ```
 
-## Additional resources {#additional-resources_persistent-storage-csi-azure_persistent-storage-csi-azure}
+**Additional resources**
+{._additional-resources}
 
 - [Persistent storage using Azure Disk](/openshift-docs-markdown/storage/persistent_storage/persistent-storage-azure#persistent-storage-using-azure)
 - [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)

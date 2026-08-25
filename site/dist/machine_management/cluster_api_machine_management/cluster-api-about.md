@@ -14,6 +14,7 @@ You can use the Cluster API to create and manage compute machine sets and comput
 The Cluster API is an upstream project that is integrated into OpenShift Container Platform as a Technology Preview for Amazon Web Services (AWS), Google Cloud, Microsoft Azure, Red Hat OpenStack Platform (RHOSP), VMware vSphere, and bare-metal platforms.
 
 **Additional resources**
+{._additional-resources}
 
 - [Kubernetes Cluster API (Kubernetes documentation)](https://cluster-api.sigs.k8s.io/)
 
@@ -56,6 +57,7 @@ These limitiations are listed as follows:
   For more information and a workaround for this issue, see "Referencing the intended objects when using the CLI" in the troubleshooting content.
 
 **Additional resources**
+{._additional-resources}
 
 - [Enabling features using feature gates](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features-about_nodes-cluster-enabling-features)
 - [Getting started with the Cluster API](/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster-api-getting-started#cluster-api-getting-started)
@@ -72,6 +74,7 @@ The Cluster CAPI Operator is an OpenShift Container Platform Operator that maint
 If a cluster is configured correctly to allow the use of the Cluster API, the Cluster CAPI Operator installs the Cluster API components on the cluster. For more information, see the "Cluster CAPI Operator" entry in the *Cluster Operators reference* content.
 
 **Additional resources**
+{._additional-resources}
 
 - [Cluster CAPI Operator](/openshift-docs-markdown/operators/operator-reference#cluster-capi-operator_operator-reference)
 

@@ -2,7 +2,7 @@
 // Source: observability/distr_tracing/distr-tracing-tempo-architecture.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: About the {{ DTShortName }}\n---\n\n# About the Distributed Tracing Platform {#distr-tracing-tempo-architecture}\n\nThe standalone Red Hat OpenShift Distributed Tracing Platform documentation is available at [https://docs.redhat.com/en/documentation/red_hat_openshift_distributed_tracing_platform/latest](https://docs.redhat.com/en/documentation/red_hat_openshift_distributed_tracing_platform/latest).\n";
+const body = "---\ntitle: About the Distributed Tracing Platform\n---\n\n# About the Distributed Tracing Platform {#distr-tracing-tempo-architecture}\n\nThe standalone Red Hat OpenShift Distributed Tracing Platform documentation is available at [https://docs.redhat.com/en/documentation/red_hat_openshift_distributed_tracing_platform/latest](https://docs.redhat.com/en/documentation/red_hat_openshift_distributed_tracing_platform/latest).\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

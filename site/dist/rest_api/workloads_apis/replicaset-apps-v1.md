@@ -64,7 +64,7 @@ Required
 | `observedGeneration` | `integer` | ObservedGeneration reflects the generation of the most recently observed ReplicaSet. |
 | `readyReplicas` | `integer` | The number of non-terminating pods targeted by this ReplicaSet with a Ready Condition. |
 | `replicas` | `integer` | Replicas is the most recently observed number of non-terminating pods. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset |
-| `terminatingReplicas` | `integer` | The number of terminating pods for this replica set. Terminating pods have a non-null .metadata.deletionTimestamp and have not yet reached the Failed or Succeeded .status.phase. This is a beta field and requires enabling DeploymentReplicaSetTerminatingReplicas feature (enabled by default). |
+| `terminatingReplicas` | `integer` | The number of terminating pods for this replica set. Terminating pods have a non-null .metadata.deletionTimestamp and have not yet reached the Failed or Succeeded .status.phase.<br>This is a beta field and requires enabling DeploymentReplicaSetTerminatingReplicas feature (enabled by default). |
 
 ### .status.conditions {#_statusconditions}
 
@@ -108,24 +108,24 @@ The following API endpoints are available:
 - `/apis/apps/v1/watch/replicasets`
 
   - `GET`: watch individual changes to a list of ReplicaSet. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/apps/v1/namespaces/{{ namespace }}/replicasets`
+- `/apis/apps/v1/namespaces/{namespace}/replicasets`
 
   - `DELETE`: delete collection of ReplicaSet
   - `GET`: list or watch objects of kind ReplicaSet
   - `POST`: create a ReplicaSet
-- `/apis/apps/v1/watch/namespaces/{{ namespace }}/replicasets`
+- `/apis/apps/v1/watch/namespaces/{namespace}/replicasets`
 
   - `GET`: watch individual changes to a list of ReplicaSet. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/apps/v1/namespaces/{{ namespace }}/replicasets/{{ name }}`
+- `/apis/apps/v1/namespaces/{namespace}/replicasets/{name}`
 
   - `DELETE`: delete a ReplicaSet
   - `GET`: read the specified ReplicaSet
   - `PATCH`: partially update the specified ReplicaSet
   - `PUT`: replace the specified ReplicaSet
-- `/apis/apps/v1/watch/namespaces/{{ namespace }}/replicasets/{{ name }}`
+- `/apis/apps/v1/watch/namespaces/{namespace}/replicasets/{name}`
 
   - `GET`: watch changes to an object of kind ReplicaSet. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
-- `/apis/apps/v1/namespaces/{{ namespace }}/replicasets/{{ name }}/status`
+- `/apis/apps/v1/namespaces/{namespace}/replicasets/{name}/status`
 
   - `GET`: read status of the specified ReplicaSet
   - `PATCH`: partially update status of the specified ReplicaSet
@@ -169,7 +169,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/namespaces/{{ namespace }}/replicasets {#_apisappsv1namespaces_namespace_replicasets}
+### /apis/apps/v1/namespaces/{namespace}/replicasets {#_apisappsv1namespaces_namespace_replicasets}
 
 HTTP method
 :   ```
@@ -243,7 +243,7 @@ Description
 | 202 - Accepted | [`ReplicaSet`](/openshift-docs-markdown/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/watch/namespaces/{{ namespace }}/replicasets {#_apisappsv1watchnamespaces_namespace_replicasets}
+### /apis/apps/v1/watch/namespaces/{namespace}/replicasets {#_apisappsv1watchnamespaces_namespace_replicasets}
 
 HTTP method
 :   ```
@@ -262,7 +262,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/namespaces/{{ namespace }}/replicasets/{{ name }} {#_apisappsv1namespaces_namespace_replicasets_name}
+### /apis/apps/v1/namespaces/{namespace}/replicasets/{name} {#_apisappsv1namespaces_namespace_replicasets_name}
 
 **Global path parameters**
 
@@ -367,7 +367,7 @@ Description
 | 201 - Created | [`ReplicaSet`](/openshift-docs-markdown/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/watch/namespaces/{{ namespace }}/replicasets/{{ name }} {#_apisappsv1watchnamespaces_namespace_replicasets_name}
+### /apis/apps/v1/watch/namespaces/{namespace}/replicasets/{name} {#_apisappsv1watchnamespaces_namespace_replicasets_name}
 
 **Global path parameters**
 
@@ -392,7 +392,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/namespaces/{{ namespace }}/replicasets/{{ name }}/status {#_apisappsv1namespaces_namespace_replicasets_name_status}
+### /apis/apps/v1/namespaces/{namespace}/replicasets/{name}/status {#_apisappsv1namespaces_namespace_replicasets_name_status}
 
 **Global path parameters**
 

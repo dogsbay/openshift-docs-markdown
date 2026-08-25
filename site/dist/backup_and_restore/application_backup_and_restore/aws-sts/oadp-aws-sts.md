@@ -242,7 +242,7 @@ Install OpenShift API for Data Protection (OADP) on an AWS STS cluster. AWS Secu
       > The preceding secret is created automatically by CCO.
 2. Install the OADP Operator:
 
-   1. In the OpenShift Container Platform web console, browse to **Ecosystem** -> **Software Catalog**.
+   1. In the OpenShift Container Platform web console, browse to **Ecosystem** → **Software Catalog**.
    2. Search for the **OADP Operator**.
    3. In the **role_ARN** field, paste the role_arn that you created previously and click **Install**.
 3. Create AWS cloud storage using your AWS credentials by entering the following command:
@@ -430,6 +430,7 @@ Install OpenShift API for Data Protection (OADP) on an AWS STS cluster. AWS Secu
 If you want to use two different clusters for backing up and restoring, the two clusters must have the same AWS S3 storage names in both the cloud storage CR and the OADP `DataProtectionApplication` configuration.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing the OADP Operator](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/oadp-installing-operator#oadp-installing-operator-doc)
 - [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)
@@ -559,8 +560,8 @@ Either Data Protection Application (DPA) configuration will work.
     Hello OpenShift!
     ```
 
-> [!NOTE]
-> For troubleshooting tips, see [troubleshooting documentation](https://access.redhat.com/articles/5456281).
+    > [!NOTE]
+    > For troubleshooting tips, see [troubleshooting documentation](https://access.redhat.com/articles/5456281).
 
 ### Cleaning up a cluster after a backup with OADP and AWS STS {#cleanup-a-backup-oadp-aws-sts_oadp-aws-sts-backing-up-applications}
 

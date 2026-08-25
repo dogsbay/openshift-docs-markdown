@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"nodes-containers-copying-files","text":"Cop
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/containers/nodes-containers-copying-files";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="nodes-containers-copying-files" class="group scroll-mt-20">Copying files to or from OpenShift Container Platform containers<a href="#nodes-containers-copying-files" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can use the <code>oc rsync</code> command, or remote sync, to copy local files to or from a remote directory in a OpenShift Container Platform container.</p>
+      <p class="_abstract">You can use the <code>oc rsync</code> command, or remote sync, to copy local files to or from a remote directory in a OpenShift Container Platform container.</p>
       <p>The <code>oc rsync</code> command leverages the local Rsync tool on the client machine and the remote container for tasks such as copying database archives to and from your pods for backup and restore purposes, or copying source code changes into a running pod for development debugging.</p>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>

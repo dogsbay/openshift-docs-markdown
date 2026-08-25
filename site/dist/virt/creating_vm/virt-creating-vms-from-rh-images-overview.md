@@ -47,8 +47,8 @@ You can configure a custom namespace for boot source images in your cluster by u
 
 **Procedure**
 
-1. In the web console, select **Virtualization** -> **Settings**.
-2. On the **Cluster** tab, select **General settings** -> **Templates and images management**.
+1. In the web console, select **Virtualization** → **Settings**.
+2. On the **Cluster** tab, select **General settings** → **Templates and images management**.
 3. Click **Bootable volumes project**.
 4. Select a namespace to use for boot source images.
 
@@ -72,7 +72,7 @@ You can configure a custom namespace for boot source images in your cluster by s
 1. Open the `HyperConverged` CR in your default editor by running the following command:
 
    ```terminal
-   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+   $ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv
    ```
 2. Configure the custom namespace by updating the value of the `spec.commonBootImageNamespace` field.
 
@@ -83,7 +83,7 @@ You can configure a custom namespace for boot source images in your cluster by s
    kind: HyperConverged
    metadata:
      name: kubevirt-hyperconverged
-     namespace: {{ CNVNamespace }}
+     namespace: openshift-cnv
    spec:
      commonBootImageNamespace: <custom_namespace>
    # ...
@@ -95,7 +95,8 @@ You can configure a custom namespace for boot source images in your cluster by s
    :   Specifies the namespace to use for boot source images.
 3. Save your changes and exit the editor.
 
-## Additional resources {#additional-resources_virt-creating-vms-from-rh-images-overview}
+**Additional resources**
+{._additional-resources}
 
 - [Managing Red Hat boot source updates](/openshift-docs-markdown/virt/storage/virt-automatic-bootsource-updates#virt-managing-auto-update-all-system-boot-sources_virt-automatic-bootsource-updates)
 - [Creating a VM from a template by using the web console](/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-from-templates#virt-creating-vms-from-templates)

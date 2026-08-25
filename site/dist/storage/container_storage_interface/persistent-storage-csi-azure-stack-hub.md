@@ -26,7 +26,8 @@ The Container Storage Interface (CSI) enables storage vendors to deliver plugins
 
 CSI Operators give OpenShift Container Platform users storage options, such as volume snapshots, that are not possible with in-tree volume plugins.
 
-## Additional resources {#persistent-storage-csi-azure-stack-hub-add-resources_persistent-storage-csi-azure-stack-hub}
+**Additional resources**
+{._additional-resources}
 
 - [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage)
 - [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)

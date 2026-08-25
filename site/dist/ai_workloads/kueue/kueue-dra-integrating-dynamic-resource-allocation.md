@@ -58,39 +58,36 @@ You can configure Red Hat build of Kueue to manage quota for workloads that exp
 
 1. Use the following command to add a `deviceClassMappings` entry to the Red Hat build of Kueue configuration that maps each `DeviceClass` to a logical resource name for quota:
 
-   \[source,yaml\]
+   ```yaml
+   $ oc patch kueue cluster -n openshift-kueue-operator --type=merge -p '{
+     "spec": {
+       "config": {
+         "resources": {
+           "deviceClassMappings": [{
+             "name": "nvidia.com/gpu",
+             "deviceClassNames": ["gpu.nvidia.com"]
+           }]
+         }
+       }
+     }
+   }'
+   ```
 
-```
-$ oc patch kueue cluster -n openshift-kueue-operator --type=merge -p '{
-  "spec": {
-    "config": {
-      "resources": {
-        "deviceClassMappings": [{
-          "name": "nvidia.com/gpu",
-          "deviceClassNames": ["gpu.nvidia.com"]
-        }]
-      }
-    }
-  }
-}'
-```
+   Replace `"nvidia.com/gpu"` with the resource name used in `ClusterQueue` quotas and `Workload` status.
 
-Replace `"nvidia.com/gpu"` with the resource name used in `ClusterQueue` quotas and `Workload` status.
+   Replace `"gpu.nvidia.com"` with one or more `DeviceClass` names that map to this resource.
 
-Replace `"gpu.nvidia.com"` with one or more `DeviceClass` names that map to this resource.
+   Multiple device classes can map to the same logical resource name. For example, if you have separate device classes for different GPU models but want a single quota pool, as shown in the following example:
 
-Multiple device classes can map to the same logical resource name. For example, if you have separate device classes for different GPU models but want a single quota pool, as shown in the following example:
-
-```yaml
-resources:
-  deviceClassMappings:
-  - name: nvidia.com/gpu
-    deviceClassNames:
-    - gpu-a100.nvidia.com
-    - gpu-h100.nvidia.com
-```
-
-1. Create a file called `rct-queues.yaml` that contains the following content:
+   ```yaml
+   resources:
+     deviceClassMappings:
+     - name: nvidia.com/gpu
+       deviceClassNames:
+       - gpu-a100.nvidia.com
+       - gpu-h100.nvidia.com
+   ```
+2. Create a file called `rct-queues.yaml` that contains the following content:
 
    ```yaml {title="Example quota configuration for a ResourceClaimTemplate object"}
    apiVersion: kueue.x-k8s.io/v1beta2
@@ -124,12 +121,12 @@ resources:
    spec:
      clusterQueue: "cluster-queue"
    ```
-2. Apply the `rct-queues.yaml` file:
+3. Apply the `rct-queues.yaml` file:
 
    ```terminal
    $ oc apply -f rct-queues.yaml
    ```
-3. Create a `ResourceClaimTemplate` object and a workload to verify the configuration. Create a file called `rct-job.yaml` by running the following command:
+4. Create a `ResourceClaimTemplate` object and a workload to verify the configuration. Create a file called `rct-job.yaml` by running the following command:
 
    ```terminal
    $ oc create -f rct-job.yaml
@@ -649,7 +646,8 @@ When counter-based quota is configured, Red Hat build of Kueue charges quota in
    - The `ClusterQueue` has sufficient GPU memory quota for the requested partition size.
    - MIG is enabled on the GPU hardware.
 
-## Additional resources {#additional-resources_kueue-dra-integrating-dynamic-resource-allocation}
+**Additional resources**
+{._additional-resources}
 
 - [Allocating GPUs to pods by using DRA](/openshift-docs-markdown/nodes/pods/nodes-pods-allocate-dra#nodes-pods-allocate-dra)
 - [Configuring quotas](/openshift-docs-markdown/ai_workloads/kueue/configuring-quotas#configuring-quotas)

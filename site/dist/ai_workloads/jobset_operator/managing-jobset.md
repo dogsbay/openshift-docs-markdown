@@ -1,5 +1,5 @@
 ---
-title: Managing workloads with the {{ js_operator }}
+title: Managing workloads with the JobSet Operator
 ---
 
 # Managing workloads with the JobSet Operator {#js-managing}
@@ -391,7 +391,8 @@ You can configure a JobSet to automatically create and manage shared persistent 
   pvc-3       Bound    pvc-0050144d-940c-4c4e-a23a-2a660a5490eb   12Gi       RWO            file-storage   3d
   ```
 
-## Additional resources {#js-managing_additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [JobSet documentation (Kubernetes)](https://jobset.sigs.k8s.io/docs/overview/)
 - [Failure Policy (Kubernetes)](https://jobset.sigs.k8s.io/docs/tasks/failure_policy/)

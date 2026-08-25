@@ -21,10 +21,10 @@ You can set the link state of a primary or secondary virtual machine (VM) networ
 
 **Procedure**
 
-1. Navigate to **Virtualization** -> **VirtualMachines**.
+1. Navigate to **Virtualization** → **VirtualMachines**.
 2. Select a VM to view the **VirtualMachine details** page.
 3. On the **Configuration** tab, click **Network**. A list of network interfaces is displayed.
-4. Click the Options menu ![](kebab.png "Options menu") of the interface that you want to edit.
+4. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") of the interface that you want to edit.
 5. Choose the appropriate option to set the interface link state:
 
    - If the current interface link state is `up`, select **Set link down**.

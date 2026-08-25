@@ -1,5 +1,5 @@
 ---
-title: DataImage []
+title: DataImage [metal3.io/v1alpha1]
 ---
 
 # DataImage \[metal3.io/v1alpha1\] {#dataimage-metal3-io-v1alpha1}
@@ -98,18 +98,18 @@ The following API endpoints are available:
 - `/apis/metal3.io/v1alpha1/dataimages`
 
   - `GET`: list objects of kind DataImage
-- `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/dataimages`
+- `/apis/metal3.io/v1alpha1/namespaces/{namespace}/dataimages`
 
   - `DELETE`: delete collection of DataImage
   - `GET`: list objects of kind DataImage
   - `POST`: create a DataImage
-- `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/dataimages/{{ name }}`
+- `/apis/metal3.io/v1alpha1/namespaces/{namespace}/dataimages/{name}`
 
   - `DELETE`: delete a DataImage
   - `GET`: read the specified DataImage
   - `PATCH`: partially update the specified DataImage
   - `PUT`: replace the specified DataImage
-- `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/dataimages/{{ name }}/status`
+- `/apis/metal3.io/v1alpha1/namespaces/{namespace}/dataimages/{name}/status`
 
   - `GET`: read status of the specified DataImage
   - `PATCH`: partially update status of the specified DataImage
@@ -134,7 +134,7 @@ Description
 | 200 - OK | [`DataImageList`](/openshift-docs-markdown/rest_api/objects/index#io-metal3-v1alpha1-DataImageList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/dataimages {#_apismetal3iov1alpha1namespaces_namespace_dataimages}
+### /apis/metal3.io/v1alpha1/namespaces/{namespace}/dataimages {#_apismetal3iov1alpha1namespaces_namespace_dataimages}
 
 HTTP method
 :   ```
@@ -202,7 +202,7 @@ Description
 | 202 - Accepted | [`DataImage`](/openshift-docs-markdown/rest_api/provisioning_apis/dataimage-metal3-io-v1alpha1#dataimage-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/dataimages/{{ name }} {#_apismetal3iov1alpha1namespaces_namespace_dataimages_name}
+### /apis/metal3.io/v1alpha1/namespaces/{namespace}/dataimages/{name} {#_apismetal3iov1alpha1namespaces_namespace_dataimages_name}
 
 **Global path parameters**
 
@@ -306,7 +306,7 @@ Description
 | 201 - Created | [`DataImage`](/openshift-docs-markdown/rest_api/provisioning_apis/dataimage-metal3-io-v1alpha1#dataimage-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/dataimages/{{ name }}/status {#_apismetal3iov1alpha1namespaces_namespace_dataimages_name_status}
+### /apis/metal3.io/v1alpha1/namespaces/{namespace}/dataimages/{name}/status {#_apismetal3iov1alpha1namespaces_namespace_dataimages_name_status}
 
 **Global path parameters**
 

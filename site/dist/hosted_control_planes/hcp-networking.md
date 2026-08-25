@@ -1,5 +1,5 @@
 ---
-title: Networking for {{ hcp }}
+title: Networking for hosted control planes
 ---
 
 # Networking for hosted control planes {#hcp-networking}
@@ -60,6 +60,7 @@ Physical isolation
 For more information, see "Control plane isolation" and "Distributing hosted cluster workloads".
 
 **Additional resources**
+{._additional-resources}
 
 - [Control plane isolation](/openshift-docs-markdown/hosted_control_planes/hcp-networking#hcp-isolation_hcp-networking)
 - [Distributing hosted cluster workloads](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-distribute-workloads)
@@ -725,6 +726,7 @@ You can configure internal OVN subnets in an existing hosted cluster or configur
       ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Troubleshooting internal subnets for hosted clusters](/openshift-docs-markdown/hosted_control_planes/hcp-troubleshooting#hcp-ts-internal-subnets_hcp-troubleshooting)
 - [Creating a hosted cluster by using the CLI](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-bm#hcp-bm-hc_hcp-deploy-bm)
@@ -788,6 +790,7 @@ If a management cluster uses a proxy configuration and you are configuring a hos
 Specifically, you need to add the CIDR of the secondary network to the `noProxy` section of the proxy configuration for the management cluster. Otherwise, the Kubernetes API server will route some API requests through the proxy. In the hosted cluster configuration, the CIDR of the secondary network is automatically added to the `noProxy` section.
 
 **Additional resources**
+{._additional-resources}
 
 - [Troubleshooting internal subnets for hosted clusters](/openshift-docs-markdown/hosted_control_planes/hcp-troubleshooting#hcp-ts-internal-subnets_hcp-troubleshooting)
 - [Creating a hosted cluster by using the CLI](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-bm#hcp-bm-hc_hcp-deploy-bm)

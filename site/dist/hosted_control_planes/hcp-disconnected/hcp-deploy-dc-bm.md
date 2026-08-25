@@ -1,5 +1,5 @@
 ---
-title: Deploying {{ hcp }} on bare metal in a disconnected environment
+title: Deploying hosted control planes on bare metal in a disconnected environment
 ---
 
 # Deploying hosted control planes on bare metal in a disconnected environment {#hcp-deploy-dc-bm}
@@ -14,7 +14,7 @@ Get familiar with the architecture for a deployment of hosted control planes on 
 
 The following diagram illustrates an example architecture of a disconnected environment:
 
-![Disconnected architecture diagram](/openshift-docs-markdown/_assets/images/../images/489_RHACM_HyperShift_on_bare_metal_1223.png)
+![Disconnected architecture diagram](/openshift-docs-markdown/_assets/images/489_RHACM_HyperShift_on_bare_metal_1223.png)
 
 1. Configure infrastructure services, including the registry certificate deployment with TLS support, web server, and DNS, to ensure that the disconnected deployment works.
 2. Create a config map in the `openshift-config` namespace. In this example, the config map is named `registry-config`. The content of the config map is the Registry CA certificate. The data field of the config map must contain the following key/value:
@@ -70,6 +70,7 @@ The following diagram illustrates an example architecture of a disconnected envi
 10. At this point, you wait for the deployment process to be completed.
 
 **Additional resources**
+{._additional-resources}
 
 - [Adding the registry CA to the management cluster](/openshift-docs-markdown/hosted_control_planes/hcp-disconnected/hcp-deploy-dc-bm#hcp-dc-tls-mgmt_hcp-deploy-dc-bm)
 - [Adding the registry CA to the compute nodes for the hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-disconnected/hcp-deploy-dc-bm#hcp-dc-tls-hosted_hcp-deploy-dc-bm)
@@ -168,7 +169,7 @@ To deploy a small registry by using Podman, complete the following steps.
 
 **Procedure**
 
-1. As a privileged user, access the `${{ HOME }}` directory and create the following script:
+1. As a privileged user, access the `${HOME}` directory and create the following script:
 
    ```bash
    #!/usr/bin/env bash
@@ -296,9 +297,10 @@ An important part of a hosted control planes deployment is the OpenShift Contain
 Next, configure the web server.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing and upgrading multicluster engine operator](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#mce-install-intro)
-- [Manually enabling the hypershift-addon managed cluster add-on for local-cluster](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-enable-disable.html#hcp-enable-manual-addon_hcp-enable-disable)
+- [Manually enabling the hypershift-addon managed cluster add-on for local-cluster](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-enable-disable#hcp-enable-manual-addon_hcp-enable-disable)
 - [Cluster lifecycle with multicluster engine operator overview](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#mce-intro)
 
 ## Configuring the web server for hosted control planes in a disconnected environment {#hcp-dc-web-server_hcp-deploy-dc-bm}
@@ -356,7 +358,7 @@ In the following procedure, the `oc-mirror` tool is used, which is a binary that
 
 **Procedure**
 
-1. Ensure that your `${{ HOME }}/.docker/config.json` file is updated with the registries that you are going to mirror from and with the private registry that you plan to push the images to.
+1. Ensure that your `${HOME}/.docker/config.json` file is updated with the registries that you are going to mirror from and with the private registry that you plan to push the images to.
 2. By using the following example, create an `ImageSetConfiguration` object to use for mirroring. Replace values as needed to match your environment:
 
    ```yaml
@@ -365,14 +367,14 @@ In the following procedure, the `oc-mirror` tool is used, which is a binary that
    mirror:
      platform:
        channels:
-       - name: candidate-{{ product_version }}
+       - name: candidate-4.22
          minVersion: <4.x.y-build>
          maxVersion: <4.x.y-build>
          type: ocp
        kubeVirtContainer: true
        graph: true
      operators:
-     - catalog: registry.redhat.io/redhat/redhat-operator-index:v{{ product_version }}
+     - catalog: registry.redhat.io/redhat/redhat-operator-index:v4.22
        packages:
        - name: lvms-operator
        - name: local-storage-operator
@@ -437,6 +439,7 @@ In the following procedure, the `oc-mirror` tool is used, which is a binary that
 7. Mirror the latest multicluster engine Operator images by following the steps in "Install on disconnected networks".
 
 **Additional resources**
+{._additional-resources}
 
 - [Mirroring an image set in a partially disconnected environment](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#oc-mirror-workflows-partially-disconnected-v2_about-installing-oc-mirror-v2)
 - [Mirroring an image set in a fully disconnected environment](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#oc-mirror-workflows-fully-disconnected-v2_about-installing-oc-mirror-v2)
@@ -495,6 +498,7 @@ The catalog sources initiate actions in the `openshift-marketplace` Operator, su
 Deploy the multicluster engine Operator by completing the steps in "Deploying multicluster engine Operator for a disconnected installation of hosted control planes".
 
 **Additional resources**
+{._additional-resources}
 
 - [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)
 
@@ -1121,6 +1125,7 @@ A *bare-metal host* is an `openshift-machine-api` object that encompasses physic
    The agents represent nodes that are available for installation. To assign the nodes to a hosted cluster, scale up the node pool.
 
 **Additional resources**
+{._additional-resources}
 
 - [Provisioning new hosts in a user-provisioned cluster by using the BMO](/openshift-docs-markdown/installing/installing_bare_metal/upi/scaling-a-user-provisioned-cluster-with-the-bare-metal-operator#upi-provisioning-new-hosts-in-a-upi-cluster_scaling-a-user-provisioned-cluster-with-the-bare-metal-operator)
 - [Understanding secrets](/openshift-docs-markdown/nodes/pods/nodes-pods-secrets#nodes-pods-secrets-about_nodes-pods-secrets)
@@ -1162,6 +1167,7 @@ After you create bare-metal hosts, agents are added to your namespace. The agent
    In your output, `<4.x.y>` is replaced with the supported OpenShift Container Platform version that you are using.
 4. Wait until the nodes join the cluster. During the process, the agents provide updates on their stage and status.
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Enabling the central infrastructure management service](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#enable-cim)

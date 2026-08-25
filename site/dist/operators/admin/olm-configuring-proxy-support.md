@@ -7,15 +7,14 @@ title: Configuring proxy support in Operator Lifecycle Manager
 If a global proxy is configured on your OpenShift Container Platform cluster, Operator Lifecycle Manager (OLM) automatically configures Operators that it manages with the cluster-wide proxy. However, you can also configure installed Operators to override the global proxy or inject a custom CA certificate.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring the cluster-wide proxy](/openshift-docs-markdown/networking/configuring_network_settings/enable-cluster-wide-proxy#enable-cluster-wide-proxy)
 - [Configuring a custom PKI (custom CA certificate)](/openshift-docs-markdown/networking/configuring_network_settings/configuring-a-custom-pki#configuring-a-custom-pki)
 
 ## Overriding proxy settings of an Operator {#olm-overriding-proxy-settings_olm-configuring-proxy-support}
 
-If a cluster-wide egress proxy is configured, Operators running with Operator Lifecycle Manager (OLM) inherit the cluster-wide proxy settings on their deployments. Cluster administrators
-
-can also override these proxy settings by configuring the subscription of an Operator.
+If a cluster-wide egress proxy is configured, Operators running with Operator Lifecycle Manager (OLM) inherit the cluster-wide proxy settings on their deployments. Cluster administrators can also override these proxy settings by configuring the subscription of an Operator.
 
 > [!IMPORTANT]
 > Operators must handle setting environment variables for proxy settings in the pods for any managed Operands.
@@ -146,10 +145,11 @@ adds a custom CA certificate to a cluster using a config map, the Cluster Networ
    5. `tls-ca-bundle.pem` is required as the config map path.
    6. Create a `trusted-ca` volume mount.
 
-      > [!NOTE]
-      > Deployments of an Operator can fail to validate the authority and display a `x509 certificate signed by unknown authority` error. This error can occur even after injecting a custom CA when using the subscription of an Operator. In this case, you can set the `mountPath` as `/etc/ssl/certs` for trusted-ca by using the subscription of an Operator.
+   > [!NOTE]
+   > Deployments of an Operator can fail to validate the authority and display a `x509 certificate signed by unknown authority` error. This error can occur even after injecting a custom CA when using the subscription of an Operator. In this case, you can set the `mountPath` as `/etc/ssl/certs` for trusted-ca by using the subscription of an Operator.
 
-## Additional resources {#additional-resources_olm-configuring-proxy-support}
+**Additional resources**
+{._additional-resources}
 
 - [Proxy certificates](/openshift-docs-markdown/security/certificate_types_descriptions/proxy-certificates#proxy-certificates)
 - [Replacing the default ingress certificate](/openshift-docs-markdown/security/certificates/replacing-default-ingress-certificate#replacing-default-ingress)

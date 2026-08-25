@@ -93,6 +93,7 @@ There is a separate etcd signer for the OpenShift Container Platform metrics sys
 - Use the `etcd-metric-signer` parameter instead of the `etcd-signer`
 - Use `etcd-metrics-ca-bundle` bundle instead ofthe  `etcd-ca-bundle`
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Restoring to an earlier cluster state](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state#dr-restoring-cluster-state)

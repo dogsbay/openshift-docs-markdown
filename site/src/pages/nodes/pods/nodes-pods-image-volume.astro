@@ -21,7 +21,8 @@ const headings = [{"depth":1,"slug":"nodes-pods-image-volume","text":"Mounting O
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/pods/nodes-pods-image-volume";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="nodes-pods-image-volume" class="group scroll-mt-20">Mounting OCI images and artifacts into a pod<a href="#nodes-pods-image-volume" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can mount an Open Container Initiative (OCI)-compliant container image or artifact directly into a pod, making the OCI object accessible to the containers without the need to include them in the base image, which allows you to host the data in OCI-compliant registries.</p>
+      <p class="_abstract">You can mount an Open Container Initiative (OCI)-compliant container image or artifact directly into a pod, making the OCI object accessible to the containers without the need to include them in the base image, which allows you to host the data in OCI-compliant registries.</p>
       <h2 id="nodes-pods-image-volume-about_nodes-pods-node-selectors" class="group scroll-mt-20">Understanding image volumes<a href="#nodes-pods-image-volume-about_nodes-pods-node-selectors" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">You can you use an <em>image volume</em> to mount an Open Container Initiative (OCI)-compliant container image or artifact directly into a pod as a native volume source, making the OCI object accessible to the containers without the need to include them in the base image. </p>
       <p>OCI objects enable users to store and distribute arbitrary files and metadata through OCI-compliant container registries.</p>

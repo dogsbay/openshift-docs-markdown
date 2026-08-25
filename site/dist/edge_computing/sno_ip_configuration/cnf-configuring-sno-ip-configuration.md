@@ -1,8 +1,8 @@
 ---
-title: Perform {{ sno }} network reconfiguration
+title: Perform single-node OpenShift network reconfiguration
 ---
 
-# Perform {{ sno }} network reconfiguration {#cnf-configuring-sno-ip-configuration}
+# Perform single-node OpenShift network reconfiguration {#cnf-configuring-sno-ip-configuration}
 
 You can perform a network reconfiguration on a single-node OpenShift cluster by editing the `IPConfig` custom resource (CR) and transitioning through the configuration stages.
 

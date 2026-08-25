@@ -23,6 +23,7 @@ Persistent volumes are not bound to a single project or namespace; they can be s
 You can provision VMware vSphere volumes dynamically or statically. However, dynamically provisioning VMware vSphere volumes is the recommended method.
 
 **Additional resources**
+{._additional-resources}
 
 - [VMware vSphere](https://www.vmware.com/au/products/vsphere.html)
 - [Installing a cluster on vSphere](/openshift-docs-markdown/installing/installing_vsphere/upi/installing-vsphere#installing-vsphere)

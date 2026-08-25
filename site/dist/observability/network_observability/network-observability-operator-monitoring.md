@@ -10,7 +10,7 @@ Use the OpenShift Container Platform web console to monitor alerts related to th
 
 View the Network Observability Operator health dashboards in the OpenShift Container Platform web console to monitor the health status, resource usage, and internal statistics of the operator and its components.
 
-Metrics are located in the **Observe** -> **Dashboards** page in the OpenShift Container Platform web console. You can view metrics about the health of the Network Observability Operator in the following categories:
+Metrics are located in the **Observe** → **Dashboards** page in the OpenShift Container Platform web console. You can view metrics about the health of the Network Observability Operator in the following categories:
 
 - **Flows per second**
 - **Sampling**
@@ -53,7 +53,7 @@ Disable specific health alerts, such as `NetObservLokiError` or `NetObservNoFlow
 
 **Procedure**
 
-1. In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1. In the web console, navigate to **Ecosystem** → **Installed Operators**.
 2. Under the **Provided APIs** heading for the **NetObserv Operator**, select **Flow Collector**.
 3. Select **cluster** then select the **YAML** tab.
 4. Add `spec.processor.metrics.disableAlerts` to disable health alerts, as in the following YAML sample:
@@ -103,11 +103,14 @@ You can create custom alerting rules for the **Netobserv** dashboard metrics to 
        - alert: LokiTenantRateLimit
          annotations:
            message: |-
+             {{ $labels.job }} {{ $labels.route }} is experiencing 429 errors.
+           summary: "At any number of requests are responded with the rate limit error code."
+         expr: sum(irate(loki_request_duration_seconds_count{status_code="429"}[1m])) by (job, namespace, route) / sum(irate(loki_request_duration_seconds_count[1m])) by (job, namespace, route) * 100 > 0
+         for: 10s
+         labels:
+           severity: warning
    ```
-
-{{ $labels.job }} {{ $labels.route }} is experiencing 429 errors. summary: "At any number of requests are responded with the rate limit error code." expr: sum(irate(loki_request_duration_seconds_count{status_code="429"}\[1m\])) by (job, namespace, route) / sum(irate(loki_request_duration_seconds_count\[1m\])) by (job, namespace, route) \* 100 > 0 for: 10s labels: severity: warning \`\`\`
-
-1. Click **Create** to apply the configuration file to the cluster.
+3. Click **Create** to apply the configuration file to the cluster.
 
 ## Using the eBPF agent alert {#network-observability-netobserv-dashboard-ebpf-agent-alerts_network_observability}
 
@@ -120,7 +123,7 @@ An alert, `NetObservAgentFlowsDropped`, is also triggered when the capacity limi
 
 **Procedure**
 
-1. In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1. In the web console, navigate to **Ecosystem** → **Installed Operators**.
 2. Under the **Provided APIs** heading for the **Network Observability Operator**, select **Flow Collector**.
 3. Select **cluster**, and then select the **YAML** tab.
 4. Increase the `spec.agent.ebpf.cacheMaxFlows` value, as shown in the following YAML sample:
@@ -145,5 +148,6 @@ An alert, `NetObservAgentFlowsDropped`, is also triggered when the capacity limi
    :   Specifies the maximum number of flows to cache. If a `NetObservAgentFlowsDropped` alert occurs, increase this value from its current level.
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating alerting rules for user-defined projects](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/managing_alerts/managing-alerts-as-a-developer#creating-alerting-rules-for-user-defined-projects_managing-alerts-as-a-developer)

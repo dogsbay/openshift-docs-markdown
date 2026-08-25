@@ -22,6 +22,9 @@ You can inspect your containers for vulnerabilities and configuration issues at 
 
 Monitoring tools can provide ongoing visibility of your containerized applications.
 
+**Additional resources**
+{._additional-resources}
+
 - [Cucumber](https://cucumber.io/)
 - [JUnit](https://junit.org/)
 - [Red Hat Advanced Cluster Security for Kubernetes](https://www.redhat.com/en/technologies/cloud-computing/openshift/advanced-cluster-security-kubernetes)
@@ -110,7 +113,8 @@ You can build, deploy, and manage serverless applications by using OpenShift Ser
 
 As with other builds, you can use S2I images to build your containers, then serve them using Knative services. View Knative application builds through the **Topology** view of the OpenShift Container Platform web console.
 
-## Additional resources {#additional-resources_security-build}
+**Additional resources**
+{._additional-resources}
 
 - [Understanding image builds](/openshift-docs-markdown/cicd/builds/understanding-image-builds#understanding-image-builds)
 - [Triggering and modifying builds](/openshift-docs-markdown/cicd/builds/triggering-builds-build-hooks#triggering-builds-build-hooks)

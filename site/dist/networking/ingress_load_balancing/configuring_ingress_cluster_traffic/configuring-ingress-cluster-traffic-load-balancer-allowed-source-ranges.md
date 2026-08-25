@@ -88,6 +88,7 @@ If you have already set the annotation `service.beta.kubernetes.io/load-balancer
    `allowedSourceRanges`
    :   The example value `0.0.0.0/0` specifies the allowed source range.
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Introduction to OpenShift updates](/openshift-docs-markdown/updating/understanding_updates/intro-to-updates#understanding-openshift-updates)

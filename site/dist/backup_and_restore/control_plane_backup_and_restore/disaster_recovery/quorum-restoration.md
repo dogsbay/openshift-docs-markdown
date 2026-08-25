@@ -131,7 +131,8 @@ For high availability (HA) clusters, a three-node HA cluster requires you to shu
   $ oc patch etcd cluster -p='{"spec": {"forceRedeploymentReason": "recovery-'"$(date --rfc-3339=ns )"'"}}' --type=merge
   ```
 
-## Additional resources {#additional-resources_dr-quorum-restoration}
+**Additional resources**
+{._additional-resources}
 
 - [Installing a user-provisioned cluster on bare metal](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#installing-bare-metal)
 - [Replacing a bare-metal control plane node](/openshift-docs-markdown/installing/installing_bare_metal/bare-metal-expanding-the-cluster#replacing-a-bare-metal-control-plane-node_bare-metal-expanding)

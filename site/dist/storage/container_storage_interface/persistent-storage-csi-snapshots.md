@@ -88,22 +88,22 @@ During OpenShift Container Platform installation, the CSI Snapshot Controller Op
     If you want to use the images volume snapshot class for dynamic snapshot provisioning, you can either:
 
     - Make the images volume snapshot class the default by changing the `snapshot.storage.kubernetes.io/is-default-class` annotation to `true`. Also, for the normal default volume snapshot class, `csi-gce-pd-vsc`, be sure to change this parameter to `false`.
+    - When creating the snapshot object, be sure to set `volumeSnapshotClassName` to `csi-gce-pd-vsc-images`.
 
-- When creating the snapshot object, be sure to set `volumeSnapshotClassName` to `csi-gce-pd-vsc-images`.
+    For information about creating volume snapshots, see "Dynamically creating a volume snapshot" and "Statically creating a volume snapshot".
 
-  For information about creating volume snapshots, see "Dynamically creating a volume snapshot" and "Statically creating a volume snapshot".
+    ```yaml {title="Example images volume snapshot class YAML file"}
+    apiVersion: snapshot.storage.k8s.io/v1
+    kind: VolumeSnapshotClass
+    metadata:
+      name: csi-gce-pd-vsc-images
+    driver: pd.csi.storage.gke.io
+    parameters:
+      snapshot-type: images
+    ```
 
-  ```yaml {title="Example images volume snapshot class YAML file"}
-  apiVersion: snapshot.storage.k8s.io/v1
-  kind: VolumeSnapshotClass
-  metadata:
-    name: csi-gce-pd-vsc-images
-  driver: pd.csi.storage.gke.io
-  parameters:
-    snapshot-type: images
-  ```
-- `metadata.name:csi-gce-pd-vsc-images`: Specifies the name for the non-default images volume snapshot class.
-- `parameters: snapshot-type: images`: Defines the snapshot as a "golden image" or a bootable template, rather than the standard disk backup.
+    - `metadata.name:csi-gce-pd-vsc-images`: Specifies the name for the non-default images volume snapshot class.
+    - `parameters: snapshot-type: images`: Defines the snapshot as a "golden image" or a bootable template, rather than the standard disk backup.
 
 ## Volume snapshot provisioning {#persistent-storage-csi-snapshots-provision_persistent-storage-csi-snapshots}
 
@@ -511,7 +511,8 @@ For more VMware snapshot performance recommendations, see "Best practices for us
 
   The parameter `global-max-snapshots-per-block-volume` is now set to 10.
 
-## Additional resources {#additional-resources_persistent-storage-csi-snapshots}
+**Additional resources**
+{._additional-resources}
 
 - [Persistent volumes](/openshift-docs-markdown/storage/understanding-persistent-storage#persistent-volumes_understanding-persistent-storage)
 - [Kubernetes CSI Developer Documentation](https://kubernetes-csi.github.io/docs/drivers.html)

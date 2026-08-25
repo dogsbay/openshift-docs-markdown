@@ -122,7 +122,8 @@ You can remove the delete protection option by establishing a validation admissi
    $ oc apply -f disable-vm-delete-protection-binding.yaml
    ```
 
-## Additional resources {#additional-resources_virt-enabling-disabling-vm-delete-protection}
+**Additional resources**
+{._additional-resources}
 
 - [Enabling or disabling virtual machine delete protection by using the web console](/openshift-docs-markdown/virt/managing_vms/virt-enabling-disabling-vm-delete-protection#virt-enabling-disabling-vm-delete-protection-web_virt-enabling-disabling-vm-delete-protection)
 - [Enabling or disabling virtual machine delete protection by using the CLI](/openshift-docs-markdown/virt/managing_vms/virt-enabling-disabling-vm-delete-protection#virt-enabling-disabling-vm-delete-protection-cli_virt-enabling-disabling-vm-delete-protection)

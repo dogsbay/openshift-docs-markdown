@@ -14,7 +14,7 @@ View and modify the `FlowCollector` resource in the OpenShift Container Platform
 
 **Procedure**
 
-1. In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1. In the web console, navigate to **Ecosystem** → **Installed Operators**.
 2. Under the **Provided APIs** heading for the **NetObserv Operator**, select **Flow Collector**.
 3. Select **cluster** then select the **YAML** tab. There, you can modify the `FlowCollector` resource to configure the Network Observability Operator.
 
@@ -84,6 +84,7 @@ where:
 :   Specifies the namespace for the `LokiStack` resource. This value must match the `metadata.namespace` defined in the `LokiStack` custom resource. While this example uses `netobserv-loki`, you can use a different namespace for different components.
 
 **Additional resources**
+{._additional-resources}
 
 - [FlowCollector API reference](/openshift-docs-markdown/observability/network_observability/flowcollector-api#network-observability-flowcollector-api-specifications_network_observability)
 - [Working with conversation tracking](/openshift-docs-markdown/observability/network_observability/observing-network-traffic#network-observability-working-with-conversations_nw-observe-network-traffic)
@@ -296,7 +297,7 @@ You must have a running Kafka instance and create a Kafka topic in that instance
 
 **Procedure**
 
-1. In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1. In the web console, navigate to **Ecosystem** → **Installed Operators**.
 2. Under the **Provided APIs** heading for the Network Observability Operator, select **Flow Collector**.
 3. Select the cluster and then click the **YAML** tab.
 4. Change the `FlowCollector` resource for OpenShift Container Platform Network Observability Operator to use Kafka, as shown in the following sample YAML:
@@ -345,7 +346,7 @@ After configuration, network flows data can be sent to an available output. For 
 
 **Procedure**
 
-1. In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1. In the web console, navigate to **Ecosystem** → **Installed Operators**.
 2. Under the **Provided APIs** heading for the **NetObserv Operator**, select **Flow Collector**.
 3. Select **cluster** and then select the **YAML** tab.
 4. Edit the `FlowCollector` to configure `spec.exporters` as follows:
@@ -415,6 +416,7 @@ After configuration, network flows data can be sent to an available output. For 
    :   Specifies an optional mapping to customize the OpenTelemetry format output. Network Observability flow formats are automatically renamed to an OpenTelemetry-compliant format, but this parameter allows for custom overrides. For example in the YAML sample, `SrcAddr` is the Network Observability input field, and it is being renamed to `source.address` in OpenTelemetry output. You can see both Network Observability and OpenTelemetry formats in the "Network flows format reference".
 
 **Additional resources**
+{._additional-resources}
 
 - [Network flows format reference](/openshift-docs-markdown/observability/network_observability/json-flows-format-reference#network-observability-flows-format_json_reference)
 
@@ -462,8 +464,8 @@ The query language uses the following syntax:
 | Category | Operators |
 | --- | --- |
 | Logical boolean operators (not case-sensitive) | `and`, `or` |
-| Comparison operators | `=` (equals), `!=` (not equals), `=~` (matches regexp), `!~` (not matches regexp), `<` / `\<=` (less than or equal to), `>` / `>=` (greater than or equal to) |
-| Unary operations | `with(field)` (field is present), `without(field)` (field is absent) |
+| Comparison operators | `=` (equals),<br>`!=` (not equals),<br>`=~` (matches regexp),<br>`!~` (not matches regexp),<br>`<` / `\<=` (less than or equal to),<br>`>` / `>=` (greater than or equal to) |
+| Unary operations | `with(field)` (field is present),<br>`without(field)` (field is absent) |
 
 You can configure flowlogs-pipeline filters in the `spec.processor.filters` section of the `FlowCollector` resource. For example:
 
@@ -492,6 +494,7 @@ where:
 :   Specifies an optional sampling interval to limit the number of matching flows stored or exported. For example, a value of `10` means there is a 1 in 10 chance that a flow is kept.
 
 **Additional resources**
+{._additional-resources}
 
 - [Filtering eBPF flow data using multiple rules](/openshift-docs-markdown/observability/network_observability/observing-network-traffic#network-observability-filtering-ebpf-rule_nw-observe-network-traffic)
 
@@ -506,7 +509,7 @@ Exact matches are possible using double-quotes around values. Otherwise, partial
 
 Here is a list of all available filter keys:
 
-***Filter keys***
+**Filter keys**
 
 <table>
 <thead>
@@ -607,8 +610,7 @@ Performance fine-tuning
 :   The following settings can be used to fine-tune performance after the Network Observability has been running for a while:
 
     - **Resource requirements and limits**: Adapt the resource requirements and limits to the load and memory usage you expect on your cluster by using the `spec.agent.ebpf.resources` and `spec.processor.resources` specifications. The default limits of 800MB might be sufficient for most medium-sized clusters.
-
-- **Cache max flows timeout**: Control how often flows are reported by the agents by using the eBPF agent’s `spec.agent.ebpf.cacheMaxFlows` and `spec.agent.ebpf.cacheActiveTimeout` specifications. A larger value results in less traffic being generated by the agents, which correlates with a lower CPU load. However, a larger value leads to a slightly higher memory consumption, and might generate more latency in the flow collection.
+    - **Cache max flows timeout**: Control how often flows are reported by the agents by using the eBPF agent’s `spec.agent.ebpf.cacheMaxFlows` and `spec.agent.ebpf.cacheActiveTimeout` specifications. A larger value results in less traffic being generated by the agents, which correlates with a lower CPU load. However, a larger value leads to a slightly higher memory consumption, and might generate more latency in the flow collection.
 
 ### Resource considerations {#network-observability-resources-table_network_observability}
 
@@ -652,15 +654,45 @@ Since different types of cluster use cases are exemplified in the different test
 
 **Total average resource usage**
 
-| Sampling value | Resources used | Test 1 (25 nodes) | Test 2 (250 nodes) .2+ |
-| --- | --- | --- | --- |
-| **Sampling = 50** | Total NetObserv CPU Usage | 1.35 | 5.39 |
-| Total NetObserv RSS (Memory) Usage | 16 GB | 63 GB .2+ | **Sampling = 1** |
-| Total NetObserv CPU Usage | 1.82 | 11.99 | Total NetObserv RSS (Memory) Usage |
+<table>
+<thead>
+<tr>
+  <th>Sampling value</th>
+  <th>Resources used</th>
+  <th>Test 1 (25 nodes)</th>
+  <th>Test 2 (250 nodes)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td rowspan="2"><strong>Sampling = 50</strong></td>
+  <td>Total NetObserv CPU Usage</td>
+  <td>1.35</td>
+  <td>5.39</td>
+</tr>
+<tr>
+  <td>Total NetObserv RSS (Memory) Usage</td>
+  <td>16 GB</td>
+  <td>63 GB</td>
+</tr>
+<tr>
+  <td rowspan="2"><strong>Sampling = 1</strong></td>
+  <td>Total NetObserv CPU Usage</td>
+  <td>1.82</td>
+  <td>11.99</td>
+</tr>
+<tr>
+  <td>Total NetObserv RSS (Memory) Usage</td>
+  <td>22 GB</td>
+  <td>87 GB</td>
+</tr>
+</tbody>
+</table>
 
 Summary: This table shows average total resource usage of Network Observability, which includes Agents, FLP, Kafka, and Loki with all features enabled. For details about what features are enabled, see the features covered in "Observing the network traffic", which comprises all the features that are enabled for this testing.
 
 **Additional resources**
+{._additional-resources}
 
 - [Observing the network traffic from the traffic flows view](/openshift-docs-markdown/observability/network_observability/observing-network-traffic#network-observability-trafficflow_nw-observe-network-traffic)
 - [Network observability without Loki](/openshift-docs-markdown/observability/network_observability/installing-operators#network-observability-without-loki_network_observability)

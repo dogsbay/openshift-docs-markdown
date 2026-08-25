@@ -81,7 +81,7 @@ $ oc new-app /home/user/code/myapp --strategy=docker
 
 If you use the source build strategy, `new-app` attempts to determine the language builder to use by the presence of certain files in the root or specified context directory of the repository:
 
-***Languages detected by `new-app`***
+**Languages detected by `new-app`**
 
 <table>
 <thead>
@@ -234,7 +234,7 @@ $ oc new-app ruby-helloworld-sample --param-file=helloworld.params
 
 The `new-app` command generates OpenShift Container Platform objects that build, deploy, and run the application that is created. Normally, these objects are created in the current project and assigned names that are derived from the input source repositories or the input images. However, with `new-app` you can modify this behavior.
 
-*`new-app`** output objects***
+**`new-app` output objects**
 
 <table>
 <thead>
@@ -250,7 +250,7 @@ The `new-app` command generates OpenShift Container Platform objects that build,
 </tr>
 <tr>
   <td><code>ImageStreams</code></td>
-  <td>For the <code>BuildConfig</code> object, two image streams are usually created. One represents the input image. With source builds, this is the builder image.</td>
+  <td>For the <code>BuildConfig</code> object, two image streams are usually created. One represents the input image. With source builds, this is the builder image. With <code>Docker</code> builds, this is the <strong>FROM</strong> image. The second one represents the output image. If a container image was specified as input to <code>new-app</code>, then an image stream is created for that image as well.</td>
 </tr>
 <tr>
   <td><code>DeploymentConfig</code></td>

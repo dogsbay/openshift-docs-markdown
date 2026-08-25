@@ -31,5 +31,6 @@ After you know which providers are configured, you can inspect the `openshift-au
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Supported identity providers](/openshift-docs-markdown/authentication/understanding-identity-provider#supported-identity-providers_understanding-identity-provider)

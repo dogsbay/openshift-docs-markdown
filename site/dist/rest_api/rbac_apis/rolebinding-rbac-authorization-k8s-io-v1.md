@@ -1,5 +1,5 @@
 ---
-title: RoleBinding []
+title: RoleBinding [rbac.authorization.k8s.io/v1]
 ---
 
 # RoleBinding \[rbac.authorization.k8s.io/v1\] {#rolebinding-rbac-authorization-k8s-io-v1}
@@ -24,7 +24,7 @@ Required
 | `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. |
 | `roleRef` | `object` | RoleRef contains information that points to the role being used |
 | `subjects` | `array` | Subjects holds references to the objects the role applies to. |
-| `subjects[]` | `object` | Subject contains a reference to the object or user identities a role binding applies to.  This can either hold a direct API object reference, or a value for non-objects such as user and group names. |
+| `subjects[]` | `object` | Subject contains a reference to the object or user identities a role binding applies to. This can either hold a direct API object reference, or a value for non-objects such as user and group names. |
 
 ### .roleRef {#_roleref}
 
@@ -76,7 +76,7 @@ Required
 | `apiGroup` | `string` | APIGroup holds the API group of the referenced subject. Defaults to "" for ServiceAccount subjects. Defaults to "rbac.authorization.k8s.io" for User and Group subjects. |
 | `kind` | `string` | Kind of object being referenced. Values defined by this API group are "User", "Group", and "ServiceAccount". If the Authorizer does not recognized the kind value, the Authorizer should report an error. |
 | `name` | `string` | Name of the object being referenced. |
-| `namespace` | `string` | Namespace of the referenced object.  If the object kind is non-namespace, such as "User" or "Group", and this value is not empty the Authorizer should report an error. |
+| `namespace` | `string` | Namespace of the referenced object. If the object kind is non-namespace, such as "User" or "Group", and this value is not empty the Authorizer should report an error. |
 
 ## API endpoints {#_api_endpoints}
 
@@ -88,21 +88,21 @@ The following API endpoints are available:
 - `/apis/rbac.authorization.k8s.io/v1/watch/rolebindings`
 
   - `GET`: watch individual changes to a list of RoleBinding. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/rbac.authorization.k8s.io/v1/namespaces/{{ namespace }}/rolebindings`
+- `/apis/rbac.authorization.k8s.io/v1/namespaces/{namespace}/rolebindings`
 
   - `DELETE`: delete collection of RoleBinding
   - `GET`: list or watch objects of kind RoleBinding
   - `POST`: create a RoleBinding
-- `/apis/rbac.authorization.k8s.io/v1/watch/namespaces/{{ namespace }}/rolebindings`
+- `/apis/rbac.authorization.k8s.io/v1/watch/namespaces/{namespace}/rolebindings`
 
   - `GET`: watch individual changes to a list of RoleBinding. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/rbac.authorization.k8s.io/v1/namespaces/{{ namespace }}/rolebindings/{{ name }}`
+- `/apis/rbac.authorization.k8s.io/v1/namespaces/{namespace}/rolebindings/{name}`
 
   - `DELETE`: delete a RoleBinding
   - `GET`: read the specified RoleBinding
   - `PATCH`: partially update the specified RoleBinding
   - `PUT`: replace the specified RoleBinding
-- `/apis/rbac.authorization.k8s.io/v1/watch/namespaces/{{ namespace }}/rolebindings/{{ name }}`
+- `/apis/rbac.authorization.k8s.io/v1/watch/namespaces/{namespace}/rolebindings/{name}`
 
   - `GET`: watch changes to an object of kind RoleBinding. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
 
@@ -144,7 +144,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/rbac.authorization.k8s.io/v1/namespaces/{{ namespace }}/rolebindings {#_apisrbacauthorizationk8siov1namespaces_namespace_rolebindings}
+### /apis/rbac.authorization.k8s.io/v1/namespaces/{namespace}/rolebindings {#_apisrbacauthorizationk8siov1namespaces_namespace_rolebindings}
 
 HTTP method
 :   ```
@@ -218,7 +218,7 @@ Description
 | 202 - Accepted | [`RoleBinding`](/openshift-docs-markdown/rest_api/rbac_apis/rolebinding-rbac-authorization-k8s-io-v1#rolebinding-rbac-authorization-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/rbac.authorization.k8s.io/v1/watch/namespaces/{{ namespace }}/rolebindings {#_apisrbacauthorizationk8siov1watchnamespaces_namespace_rolebindings}
+### /apis/rbac.authorization.k8s.io/v1/watch/namespaces/{namespace}/rolebindings {#_apisrbacauthorizationk8siov1watchnamespaces_namespace_rolebindings}
 
 HTTP method
 :   ```
@@ -237,7 +237,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/rbac.authorization.k8s.io/v1/namespaces/{{ namespace }}/rolebindings/{{ name }} {#_apisrbacauthorizationk8siov1namespaces_namespace_rolebindings_name}
+### /apis/rbac.authorization.k8s.io/v1/namespaces/{namespace}/rolebindings/{name} {#_apisrbacauthorizationk8siov1namespaces_namespace_rolebindings_name}
 
 **Global path parameters**
 
@@ -342,7 +342,7 @@ Description
 | 201 - Created | [`RoleBinding`](/openshift-docs-markdown/rest_api/rbac_apis/rolebinding-rbac-authorization-k8s-io-v1#rolebinding-rbac-authorization-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/rbac.authorization.k8s.io/v1/watch/namespaces/{{ namespace }}/rolebindings/{{ name }} {#_apisrbacauthorizationk8siov1watchnamespaces_namespace_rolebindings_name}
+### /apis/rbac.authorization.k8s.io/v1/watch/namespaces/{namespace}/rolebindings/{name} {#_apisrbacauthorizationk8siov1watchnamespaces_namespace_rolebindings_name}
 
 **Global path parameters**
 

@@ -136,7 +136,7 @@ To define granular rules describing ingress or egress network traffic allowed fo
 
 - Your cluster uses a network plugin that supports `NetworkPolicy` objects, such as the OVN-Kubernetes network plugin, with `mode: NetworkPolicy` set.
 - You installed the OpenShift CLI (`oc`).
-- You logged in to the cluster with a user with `{{ role }}` privileges.
+- You logged in to the cluster with a user with `cluster-admin` privileges.
 - You are working in the namespace that the multi-network policy applies to.
 
 **Procedure**
@@ -191,7 +191,10 @@ To define granular rules describing ingress or egress network traffic allowed fo
       # ...
       ```
 
-      where: `<network_name>`:: Specifies the name of a network attachment definition.
+      where:
+
+      `<network_name>`
+      :   Specifies the name of a network attachment definition.
 
       The following example allows ingress traffic to one pod from a particular namespace. This policy allows traffic to pods that have the `pod-a` label from pods running in `namespace-y`.
 
@@ -216,34 +219,42 @@ To define granular rules describing ingress or egress network traffic allowed fo
       # ...
       ```
 
-      where: `<network_name>`:: Specifies the name of a network attachment definition.
+      where:
 
-      The following example configuration restricts traffic to a service. This policy when applied ensures every pod with both labels `app=bookstore` and `role=api` can only be accessed by pods with label `app=bookstore`. In this example the application could be a REST API server, marked with labels `app=bookstore` and `role=api`. This example configuration addresses the following use cases:
+      `<network_name>`
+      :   Specifies the name of a network attachment definition.
+
+      The following example configuration restricts traffic to a service. This policy when applied ensures every pod with both labels `app=bookstore` and `role=api` can only be accessed by pods with label `app=bookstore`. In this example the application could be a REST API server, marked with labels `app=bookstore` and `role=api`.
+
+      This example configuration addresses the following use cases:
 
       - Restricting the traffic to a service to only the other microservices that need to use it.
       - Restricting the connections to a database to only permit the application using it.
 
-      ```yaml
-      apiVersion: k8s.cni.cncf.io/v1beta1
-      kind: MultiNetworkPolicy
-      metadata:
-        name: api-allow
-        annotations:
-          k8s.v1.cni.cncf.io/policy-for:<namespace_name>/<network_name>
-      spec:
-        podSelector:
-          matchLabels:
-            app: bookstore
-            role: api
-        ingress:
-        - from:
-            - podSelector:
-                matchLabels:
-                  app: bookstore
-      # ...
-      ```
+        ```yaml
+        apiVersion: k8s.cni.cncf.io/v1beta1
+        kind: MultiNetworkPolicy
+        metadata:
+          name: api-allow
+          annotations:
+            k8s.v1.cni.cncf.io/policy-for:<namespace_name>/<network_name>
+        spec:
+          podSelector:
+            matchLabels:
+              app: bookstore
+              role: api
+          ingress:
+          - from:
+              - podSelector:
+                  matchLabels:
+                    app: bookstore
+        # ...
+        ```
 
-      where: `<network_name>`:: Specifies the name of a network attachment definition.
+        where:
+
+        `<network_name>`
+        :   Specifies the name of a network attachment definition.
 2. To create the multi-network policy object, enter the following command. Successful output lists the name of the policy object and the `created` status.
 
    ```terminal
@@ -274,7 +285,7 @@ To modify existing policy configurations, you can edit a multi-network policy in
 
 - Your cluster uses a network plugin that supports `NetworkPolicy` objects, such as the OVN-Kubernetes network plugin, with `mode: NetworkPolicy` set.
 - You installed the OpenShift CLI (`oc`).
-- You are logged in to the cluster with a user with `{{ role }}` privileges.
+- You are logged in to the cluster with a user with `cluster-admin` privileges.
 - You are working in the namespace where the multi-network policy exists.
 
 **Procedure**
@@ -282,7 +293,7 @@ To modify existing policy configurations, you can edit a multi-network policy in
 1. Optional: To list the multi-network policy objects in a namespace, enter the following command:
 
    ```terminal
-   $ oc get {{ name }} policy -n <namespace>
+   $ oc get multi-network policy -n <namespace>
    ```
 
    where:
@@ -307,7 +318,7 @@ To modify existing policy configurations, you can edit a multi-network policy in
    2. If you need to update the multi-network policy object directly, enter the following command:
 
       ```terminal
-      $ oc edit {{ name }} policy <policy_name> -n <namespace>
+      $ oc edit multi-network policy <policy_name> -n <namespace>
       ```
 
       where:
@@ -320,7 +331,7 @@ To modify existing policy configurations, you can edit a multi-network policy in
 3. Confirm that the multi-network policy object is updated.
 
    ```terminal
-   $ oc describe {{ name }}policy <policy_name> -n <namespace>
+   $ oc describe multi-networkpolicy <policy_name> -n <namespace>
    ```
 
    where:
@@ -341,7 +352,7 @@ You can examine the multi-network policies in a namespace.
 **Prerequisites**
 
 - You installed the OpenShift CLI (`oc`).
-- You are logged in to the cluster with a user with `{{ role }}` privileges.
+- You are logged in to the cluster with a user with `cluster-admin` privileges.
 - You are working in the namespace where the multi-network policy exists.
 
 **Procedure**
@@ -351,12 +362,12 @@ You can examine the multi-network policies in a namespace.
    1. To view multi-network policy objects defined in a namespace enter the following command:
 
       ```terminal
-      $ oc get {{ name }}policy
+      $ oc get multi-networkpolicy
       ```
    2. Optional: To examine a specific multi-network policy enter the following command:
 
       ```terminal
-      $ oc describe {{ name }}policy <policy_name> -n <namespace>
+      $ oc describe multi-networkpolicy <policy_name> -n <namespace>
       ```
 
       where:
@@ -378,7 +389,7 @@ You can delete a multi-network policy in a namespace.
 
 - Your cluster uses a network plugin that supports `NetworkPolicy` objects, such as the OVN-Kubernetes network plugin, with `mode: NetworkPolicy` set.
 - You installed the OpenShift CLI (`oc`).
-- You logged in to the cluster with a user with `{{ role }}` privileges.
+- You logged in to the cluster with a user with `cluster-admin` privileges.
 - You are working in the namespace where the multi-network policy exists.
 
 **Procedure**
@@ -386,7 +397,7 @@ You can delete a multi-network policy in a namespace.
 - To delete a multi-network policy object, enter the following command. Successful output lists the name of the policy object and the `deleted` status.
 
   ```terminal
-  $ oc delete {{ name }}policy <policy_name> -n <namespace>
+  $ oc delete multi-networkpolicy <policy_name> -n <namespace>
   ```
 
   where:
@@ -410,7 +421,7 @@ The steps in the procedure enforces a strong deny policy by applying a `deny-by-
 
 - Your cluster uses a network plugin that supports `NetworkPolicy` objects, such as the OVN-Kubernetes network plugin, with `mode: NetworkPolicy` set.
 - You installed the OpenShift CLI (`oc`).
-- You logged in to the cluster with a user with `{{ role }}` privileges.
+- You logged in to the cluster with a user with `cluster-admin` privileges.
 - You are working in the namespace that the multi-network policy applies to.
 
 **Procedure**
@@ -470,7 +481,7 @@ Follow this procedure to configure a policy that allows external service from th
 
 - Your cluster uses a network plugin that supports `NetworkPolicy` objects, such as the OVN-Kubernetes network plugin, with `mode: NetworkPolicy` set.
 - You installed the OpenShift CLI (`oc`).
-- You logged in to the cluster with a user with `{{ role }}` privileges.
+- You logged in to the cluster with a user with `cluster-admin` privileges.
 - You are working in the namespace that the multi-network policy applies to.
 
 **Procedure**
@@ -513,7 +524,7 @@ You can configure a policy that allows traffic from all pods in all namespaces t
 
 - Your cluster uses a network plugin that supports `NetworkPolicy` objects, such as the OVN-Kubernetes network plugin, with `mode: NetworkPolicy` set.
 - You installed the OpenShift CLI (`oc`).
-- You logged in to the cluster with a user with `{{ role }}` privileges.
+- You logged in to the cluster with a user with `cluster-admin` privileges.
 - You are working in the namespace that the multi-network policy applies to.
 
 **Procedure**
@@ -615,7 +626,7 @@ This configuration is useful in the following use cases:
 
 - Your cluster uses a network plugin that supports `NetworkPolicy` objects, such as the OVN-Kubernetes network plugin, with `mode: NetworkPolicy` set.
 - You installed the OpenShift CLI (`oc`).
-- You logged in to the cluster with a user with `{{ role }}` privileges.
+- You logged in to the cluster with a user with `cluster-admin` privileges.
 - You are working in the namespace that the multi-network policy applies to.
 
 > [!WARNING]
@@ -735,7 +746,8 @@ This configuration is useful in the following use cases:
    </html>
    ```
 
-## Additional resources {#configuring-multi-network-policy_additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [About network policy](/openshift-docs-markdown/networking/network_security/network_policy/about-network-policy#about-network-policy)
 - [Understanding multiple networks](/openshift-docs-markdown/networking/multiple_networks/understanding-multiple-networks#understanding-multiple-networks)

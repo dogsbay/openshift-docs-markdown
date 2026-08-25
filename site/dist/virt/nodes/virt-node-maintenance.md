@@ -26,7 +26,8 @@ Using a `NodeMaintenance` CR for node maintenance tasks achieves the same result
 > [!NOTE]
 > The `node-maintenance-operator` (NMO) is no longer shipped with OpenShift Virtualization. It is deployed as a standalone Operator from the software catalog in the OpenShift Container Platform web console or by using the OpenShift CLI (`oc`).
 
-## Additional resources {#additional-resources_virt-node-maintenance}
+**Additional resources**
+{._additional-resources}
 
 - [About live migration](/openshift-docs-markdown/virt/live_migration/virt-about-live-migration#virt-about-live-migration)
 - [About node remediation, fencing, and maintenance](https://docs.redhat.com/en/documentation/workload_availability_for_red_hat_openshift/26.2/html-single/remediation_fencing_and_maintenance/index#about-remediation-fencing-maintenance)

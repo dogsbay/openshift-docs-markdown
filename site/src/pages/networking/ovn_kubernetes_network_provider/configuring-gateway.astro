@@ -21,7 +21,8 @@ const headings = [{"depth":1,"slug":"configuring-gateway","text":"Configuring a 
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/configuring-gateway";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="configuring-gateway" class="group scroll-mt-20">Configuring a gateway<a href="#configuring-gateway" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>As a cluster administrator you can configure the <code>gatewayConfig</code> object to manage how external traffic leaves the cluster. You do so by setting the <code>routingViaHost</code> parameter to one of the following values:</p>
+      <p class="_abstract">As a cluster administrator you can configure the <code>gatewayConfig</code> object to manage how external traffic leaves the cluster. You do so by setting the <code>routingViaHost</code> parameter to one of the following values:</p>
       <ul>
       <li><code>true</code> means that egress traffic routes through a specific local gateway on the node that hosts the pod. Egress traffic routes through the host and this traffic applies to the routing table of the host.</li>
       <li><code>false</code> means that egress traffic routes through a dedicated node but a group of nodes share the same gateway. Egress traffic does not route through the host. The Open vSwitch (OVS) outputs traffic directly to the node IP interface.</li>

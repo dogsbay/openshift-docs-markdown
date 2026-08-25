@@ -1,8 +1,8 @@
 ---
-title: "{{ oadp_short }} Self-Service namespace admin use cases"
+title: OADP Self-Service namespace admin use cases
 ---
 
-# {{ oadp_short }} Self-Service namespace admin use cases {#oadp-self-service-namespace-admin-use-cases}
+# OADP Self-Service namespace admin use cases {#oadp-self-service-namespace-admin-use-cases}
 
 Use OADP Self-Service as a namespace administrator to create backup storage locations, perform backup and restore operations, and review operation logs for your authorized namespaces. This helps you to manage data protection independently without cluster admin access.
 
@@ -621,45 +621,44 @@ Create a `NonAdminDownloadRequest` (NADR) custom resource (CR) to access and rev
    $ oc get nadr test-nadr-backup -o yaml
    ```
 
-```yaml {title="Example output"}
-apiVersion: oadp.openshift.io/v1alpha1
-kind: NonAdminDownloadRequest
-metadata:
-  creationTimestamp: "2025-03-06T10:05:22Z"
-  generation: 1
-  name: test-nadr-backup
-  namespace: test-nac-ns
-  resourceVersion: "134866"
-  uid: 520...8d9
-spec:
-  target:
-    kind: BackupLog
-    name: test-nab
-status:
-  conditions:
-  - lastTransitionTime: "202...5:22Z"
-    message: ""
-    reason: Success
-    status: "True"
-    type: Processed
-  phase: Created
-  velero:
-    status:
-      downloadURL: https://...
-      expiration: "202...22Z"
-      phase: Processed
-```
+   ```yaml {title="Example output"}
+   apiVersion: oadp.openshift.io/v1alpha1
+   kind: NonAdminDownloadRequest
+   metadata:
+     creationTimestamp: "2025-03-06T10:05:22Z"
+     generation: 1
+     name: test-nadr-backup
+     namespace: test-nac-ns
+     resourceVersion: "134866"
+     uid: 520...8d9
+   spec:
+     target:
+       kind: BackupLog
+       name: test-nab
+   status:
+     conditions:
+     - lastTransitionTime: "202...5:22Z"
+       message: ""
+       reason: Success
+       status: "True"
+       type: Processed
+     phase: Created
+     velero:
+       status:
+         downloadURL: https://...
+         expiration: "202...22Z"
+         phase: Processed
+   ```
 
-where:
+   where:
 
-`downloadURL`
-:   The `status.downloadURL` field contains the download URL of the NAB logs. You can use the `downloadURL` to download and review the NAB logs.
+   `downloadURL`
+   :   The `status.downloadURL` field contains the download URL of the NAB logs. You can use the `downloadURL` to download and review the NAB logs.
 
-`phase`
-:   The `status.phase` is `Processed`.
-
-1. Download and analyze the backup information by using the `status.downloadURL` URL.
-2. To review NAR CR logs, create a `NonAdminDownloadRequest` CR and specify the NAR CR name as shown in the following example:
+   `phase`
+   :   The `status.phase` is `Processed`.
+3. Download and analyze the backup information by using the `status.downloadURL` URL.
+4. To review NAR CR logs, create a `NonAdminDownloadRequest` CR and specify the NAR CR name as shown in the following example:
 
    ```yaml {title="Example NonAdminDownloadRequest CR"}
    apiVersion: oadp.openshift.io/v1alpha1
@@ -679,47 +678,46 @@ where:
 
    `name`
    :   Specifies the name of the NAR CR.
-3. Verify that the NADR CR is processed by running the following command:
+5. Verify that the NADR CR is processed by running the following command:
 
    ```terminal
    $ oc get nadr test-nadr-restore -o yaml
    ```
 
-```yaml {title="Example output"}
-apiVersion: oadp.openshift.io/v1alpha1
-kind: NonAdminDownloadRequest
-metadata:
-  creationTimestamp: "2025-03-06T11:26:01Z"
-  generation: 1
-  name: test-nadr-restore
-  namespace: test-nac-ns
-  resourceVersion: "157842"
-  uid: f3e...7862f
-spec:
-  target:
-    kind: RestoreLog
-    name: test-nar
-status:
-  conditions:
-  - lastTransitionTime: "202..:01Z"
-    message: ""
-    reason: Success
-    status: "True"
-    type: Processed
-  phase: Created
-  velero:
-    status:
-      downloadURL: https://...
-      expiration: "202..:01Z"
-      phase: Processed
-```
+   ```yaml {title="Example output"}
+   apiVersion: oadp.openshift.io/v1alpha1
+   kind: NonAdminDownloadRequest
+   metadata:
+     creationTimestamp: "2025-03-06T11:26:01Z"
+     generation: 1
+     name: test-nadr-restore
+     namespace: test-nac-ns
+     resourceVersion: "157842"
+     uid: f3e...7862f
+   spec:
+     target:
+       kind: RestoreLog
+       name: test-nar
+   status:
+     conditions:
+     - lastTransitionTime: "202..:01Z"
+       message: ""
+       reason: Success
+       status: "True"
+       type: Processed
+     phase: Created
+     velero:
+       status:
+         downloadURL: https://...
+         expiration: "202..:01Z"
+         phase: Processed
+   ```
 
-where:
+   where:
 
-`downloadURL`
-:   The `status.downloadURL` field contains the download URL of the NAR logs. You can use the `downloadURL` to download and review the NAR logs.
+   `downloadURL`
+   :   The `status.downloadURL` field contains the download URL of the NAR logs. You can use the `downloadURL` to download and review the NAR logs.
 
-`phase`
-:   The `status.phase` is `Processed`.
-
-1. Download and analyze the restore information by using the `status.downloadURL` URL.
+   `phase`
+   :   The `status.phase` is `Processed`.
+6. Download and analyze the restore information by using the `status.downloadURL` URL.

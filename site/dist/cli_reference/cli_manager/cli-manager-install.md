@@ -1,8 +1,8 @@
 ---
-title: Installing the {{ cli_manager }}
+title: Installing the CLI Manager Operator
 ---
 
-# Installing the {{ cli_manager }} {#cli-manager-install}
+# Installing the CLI Manager Operator {#cli-manager-install}
 
 You can simplify the installation and management of CLI plugins in connected and disconnected environments with the CLI Manager Operator. The CLI Manager Operator makes Krew compatible with the `oc` CLI, allowing cluster administrators to manage custom CLI plugin resources.
 
@@ -29,11 +29,11 @@ You can install the CLI Manager Operator to facilitate adding CLI plugins in bot
 1. Log in to the OpenShift Container Platform web console.
 2. Create the required namespace for the CLI Manager Operator:
 
-   1. Navigate to **Administration** -> **Namespaces** and click **Create Namespace**.
+   1. Navigate to **Administration** → **Namespaces** and click **Create Namespace**.
    2. In the **Name** field, enter `openshift-cli-manager-operator` and click **Create**.
 3. Install the CLI Manager Operator:
 
-   1. Navigate to **Ecosystem** -> **Software Catalog**.
+   1. Navigate to **Ecosystem** → **Software Catalog**.
    2. In the filter box, enter **CLI Manager Operator**.
    3. Select the **CLI Manager Operator** and click **Install**.
    4. On the **Install Operator** page, complete the following steps:
@@ -54,7 +54,7 @@ You can install the CLI Manager Operator to facilitate adding CLI plugins in bot
 
 **Verification**
 
-1. Navigate to **Ecosystem** -> **Installed Operators**.
+1. Navigate to **Ecosystem** → **Installed Operators**.
 2. Verify that **CLI Manager Operator** is listed with a **Status** of **Succeeded**.
 
 ## Adding the CLI Manager Operator custom index to Krew {#cli-manager-custom-index_cli-manager-install}
@@ -106,50 +106,49 @@ You can add a CLI plugin to the CLI Manager Operator by creating a new plugin re
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console.
-2. Navigate to **Ecosystem** -> **Installed Operators**.
+2. Navigate to **Ecosystem** → **Installed Operators**.
 3. From the list, select **CLI Manager Operator**.
 4. Select the **CLI Plugin** tab.
 5. Click **Create Plugin**.
 6. In the text box, enter the information for the plugin you are installing. See the following example YAML file.
 
-```yaml {title="Example YAML file to add a plugin"}
-apiVersion: config.openshift.io/v1alpha1
-kind: Plugin
-metadata:
-  name: <plugin_name>
-spec:
-  description: <description_of_plugin>
-  homepage: <plugin_homepage>
-  platforms:
-  - bin:
-    files:
-    - from: <plugin_file_path>
-      to: .
-    image: <plugin_image>
-    imagePullSecret:
-    platform: <platform>
-  shortDescription: <short_description_of_plugin>
-  version: <version>
-```
+   ```yaml {title="Example YAML file to add a plugin"}
+   apiVersion: config.openshift.io/v1alpha1
+   kind: Plugin
+   metadata:
+     name: <plugin_name>
+   spec:
+     description: <description_of_plugin>
+     homepage: <plugin_homepage>
+     platforms:
+     - bin:
+       files:
+       - from: <plugin_file_path>
+         to: .
+       image: <plugin_image>
+       imagePullSecret:
+       platform: <platform>
+     shortDescription: <short_description_of_plugin>
+     version: <version>
+   ```
 
-where:
+   where:
 
-`<plugin_name>`
-:   Specifies the name of the plugin you plan to use in commands.
+   `<plugin_name>`
+   :   Specifies the name of the plugin you plan to use in commands.
 
-`bin`
-:   Specifies the path to the plugin executable.
+   `bin`
+   :   Specifies the path to the plugin executable.
 
-`imagePullSecret`
-:   Optional field if the registry is not public to add a pull secret to access your plugin image.
+   `imagePullSecret`
+   :   Optional field if the registry is not public to add a pull secret to access your plugin image.
 
-`<platform>`
-:   Add the architecture for your system; for example, `linux/amd64`, `darwin/arm64`, `windows/amd64`, or another architecture.
+   `<platform>`
+   :   Add the architecture for your system; for example, `linux/amd64`, `darwin/arm64`, `windows/amd64`, or another architecture.
 
-`<version>`
-:   The version must be in v0.0.0 format.
-
-1. Click **Save**.
+   `<version>`
+   :   The version must be in v0.0.0 format.
+7. Click **Save**.
 
 **Verification**
 

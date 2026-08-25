@@ -1,8 +1,8 @@
 ---
-title: Generating a seed image for the image-based upgrade with the {{ lcao }}
+title: Generating a seed image for the image-based upgrade with the Lifecycle Agent
 ---
 
-# Generating a seed image for the image-based upgrade with the {{ lcao }} {#cnf-image-based-upgrade-generate-seed-image}
+# Generating a seed image for the image-based upgrade with the Lifecycle Agent {#cnf-image-based-upgrade-generate-seed-image}
 
 Use the Lifecycle Agent to generate the seed image with the `SeedGenerator` custom resource (CR).
 
@@ -12,7 +12,7 @@ The seed image targets a set of single-node OpenShift clusters with the same har
 
 The following table lists the components, resources, and configurations that you must and must not include in your seed image:
 
-***Seed image configuration***
+**Seed image configuration**
 
 <table>
 <thead>
@@ -39,11 +39,11 @@ The following table lists the components, resources, and configurations that you
   <td>Yes</td>
 </tr>
 <tr>
-  <td>Disconnected registry configuration ^[2]^</td>
+  <td>Disconnected registry configuration <sup>[2]</sup></td>
   <td>Yes</td>
 </tr>
 <tr>
-  <td>Valid proxy configuration ^[3]^</td>
+  <td>Valid proxy configuration <sup>[3]</sup></td>
   <td>Yes</td>
 </tr>
 <tr>
@@ -89,7 +89,7 @@ The following table lists the components, resources, and configurations that you
 | `SriovFecClusterConfig.yaml` | No |
 | `SriovVrbClusterConfig.yaml` | No |
 
-***Seed image configuration with RAN DU profile for extra manifests***
+**Seed image configuration with RAN DU profile for extra manifests**
 
 <table>
 <thead>
@@ -101,7 +101,7 @@ The following table lists the components, resources, and configurations that you
 <tbody>
 <tr>
   <td><code>ClusterLogForwarder.yaml</code></td>
-  <td>Yes<br><br><dl><dt>Note</dt><dd>The DU profile includes the Cluster Logging Operator, but the profile does not configure or apply any Cluster Logging Operator CRs. To enable log forwarding, include the <code>ClusterLogForwarder.yaml</code> CR as an extra manifest. The extra manifest is applied to the target single-node OpenShift cluster during the image-based upgrade process.</dd></dl></td>
+  <td>Yes<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>The DU profile includes the Cluster Logging Operator, but the profile does not configure or apply any Cluster Logging Operator CRs. To enable log forwarding, include the <code>ClusterLogForwarder.yaml</code> CR as an extra manifest. The extra manifest is applied to the target single-node OpenShift cluster during the image-based upgrade process.</dd></dl></td>
 </tr>
 <tr>
   <td><code>ReduceMonitoringFootprint.yaml</code></td>
@@ -120,7 +120,7 @@ The following table lists the components, resources, and configurations that you
   <td>If the interfaces of the target cluster are common with the seed cluster, you can include them in the seed image. Otherwise, apply it as extra manifests.</td>
 </tr>
 <tr>
-  <td><code>SriovNetwork.yaml</code><code>SriovNetworkNodePolicy.yaml</code></td>
+  <td><code>SriovNetwork.yaml</code> <code>SriovNetworkNodePolicy.yaml</code></td>
   <td>If the configuration, including namespaces, is exactly the same on both the seed and target cluster, you can include them in the seed image. Otherwise, apply them as extra manifests.</td>
 </tr>
 </tbody>
@@ -287,6 +287,7 @@ Use the Lifecycle Agent to generate a seed image from a managed cluster. The Ope
   If you want to generate more seed images, you must provision a new seed cluster with the version that you want to generate a seed image from.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring a shared container partition between ostree stateroots](/openshift-docs-markdown/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-shared-container-partition#cnf-image-based-upgrade-shared-container-partition_shared-container-partition)
 - [Configuring a shared container partition between ostree stateroots when using GitOps ZTP](/openshift-docs-markdown/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-shared-container-partition#ztp-image-based-upgrade-shared-container-partition_shared-container-partition)

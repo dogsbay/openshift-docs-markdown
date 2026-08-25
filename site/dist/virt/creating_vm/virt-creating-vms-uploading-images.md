@@ -23,7 +23,7 @@ You can create a virtual machine (VM) from an uploaded operating system image by
 
 **Procedure**
 
-1. Navigate to **Virtualization** -> **Catalog** in the web console.
+1. Navigate to **Virtualization** → **Catalog** in the web console.
 2. Click a template tile without an available boot source.
 3. Click **Customize VirtualMachine**.
 4. On the **Customize template parameters** page, expand **Storage** and select **Upload (Upload a new file to a PVC)** from the **Disk source** list.
@@ -91,7 +91,7 @@ You can generalize a RHEL VM by using the `virtctl`, `guestfs`, and `virt-syspre
    ```terminal
    $ virt-sysprep -a disk.img
    ```
-7. In the OpenShift Container Platform console, click **Virtualization** -> **Catalog**.
+7. In the OpenShift Container Platform console, click **Virtualization** → **Catalog**.
 8. Click **Add volume**.
 9. In the **Add volume** window:
 
@@ -121,15 +121,15 @@ You can create a Windows virtual machine (VM) by uploading a Windows image to a 
 
 1. Upload the Windows image as a new PVC:
 
-   1. Navigate to **Storage** -> **PersistentVolumeClaims** in the web console.
-   2. Click **Create PersistentVolumeClaim** -> **With Data upload form**.
+   1. Navigate to **Storage** → **PersistentVolumeClaims** in the web console.
+   2. Click **Create PersistentVolumeClaim** → **With Data upload form**.
    3. Browse to the Windows image and select it.
    4. Enter the PVC name, select the storage class and size and then click **Upload**.
 
       The Windows image is uploaded to a PVC.
 2. Configure a new VM by cloning the uploaded PVC:
 
-   1. Navigate to **Virtualization** -> **Catalog**.
+   1. Navigate to **Virtualization** → **Catalog**.
    2. Select a Windows template tile and click **Customize VirtualMachine**.
    3. Select **Clone (clone PVC)** from the **Disk source** list.
    4. Select the PVC project, the Windows image PVC, and the disk size.
@@ -143,7 +143,7 @@ You can create a Windows virtual machine (VM) by uploading a Windows image to a 
    1. Clear **Start this VirtualMachine after creation** so that the VM does not start immediately.
    2. Click **Create VirtualMachine**.
    3. On the **YAML** tab, replace `running:false` with `runStrategy: RerunOnFailure` and click **Save**.
-5. Click the Options menu ![](kebab.png "Options menu") and select **Control** -> **Start**.
+5. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") and select **Control** → **Start**.
 
    The VM boots from the `sysprep` disk containing the `autounattend.xml` answer file.
 
@@ -159,10 +159,10 @@ Before generalizing the VM, you must ensure the `sysprep` tool cannot detect an 
 
 **Procedure**
 
-1. In the OpenShift Container Platform console, click **Virtualization** -> **VirtualMachines**.
+1. In the OpenShift Container Platform console, click **Virtualization** → **VirtualMachines**.
 2. Select a Windows VM to open the **VirtualMachine details** page.
-3. Click **Configuration** -> **Disks**.
-4. Click the Options menu ![](kebab.png "Options menu") beside the `sysprep` disk and select **Detach**.
+3. Click **Configuration** → **Disks**.
+4. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") beside the `sysprep` disk and select **Detach**.
 5. Click **Detach**.
 6. Rename `C:\Windows\Panther\unattend.xml` to avoid detection by the `sysprep` tool.
 7. Start the `sysprep` program by running the following command:
@@ -187,7 +187,7 @@ Specializing a Windows virtual machine (VM) configures the computer-specific inf
 
 **Procedure**
 
-1. In the OpenShift Container Platform console, click **Virtualization** -> **Catalog**.
+1. In the OpenShift Container Platform console, click **Virtualization** → **Catalog**.
 2. Select a Windows template and click **Customize VirtualMachine**.
 3. Select **PVC (clone PVC)** from the **Disk source** list.
 4. Select the PVC project and PVC name of the generalized Windows image.
@@ -241,7 +241,8 @@ You can upload an operating system image by using the `virtctl` command-line too
    $ oc get dvs
    ```
 
-## Additional resources {#additional-resources_virt-creating-vms-uploading-images}
+**Additional resources**
+{._additional-resources}
 
 - [Installing the QEMU guest agent](/openshift-docs-markdown/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent)
 - [Installing VirtIO drivers on Windows VMs](/openshift-docs-markdown/virt/managing_vms/virt-install-virtio-drivers-on-windows-vms#virt-install-virtio-drivers-on-windows-vms)

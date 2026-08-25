@@ -248,7 +248,8 @@ To verify that your cluster-wide proxy configuration is working correctly in Ope
    ```
 7. Look for log entries that show that external requests have been routed through the proxy.
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring the cluster network range](/openshift-docs-markdown/networking/configuring_network_settings/configuring-cluster-network-range#configuring-cluster-network-range)
 - [Understanding the CA Bundle certificate](/openshift-docs-markdown/security/certificates/updating-ca-bundle#ca-bundle-understanding_updating-ca-bundle)

@@ -21,156 +21,114 @@ To help decide whether to use OpenShift Kubernetes Engine or OpenShift Container
 
 You can see the similarities and differences in the following table:
 
-***Product comparison for OpenShift Kubernetes Engine and OpenShift Container Platform***
+**Product comparison for OpenShift Kubernetes Engine and OpenShift Container Platform**
 
 <table>
 <thead>
 <tr>
   <th colspan="2"></th>
+  <th>OpenShift Kubernetes Engine</th>
+  <th>OpenShift Container Platform</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td>OpenShift Kubernetes Engine</td>
-  <td>OpenShift Container Platform</td>
-</tr>
-<tr>
   <th colspan="2">Fully Automated Installers</th>
-</tr>
-<tr>
   <td>Yes</td>
   <td>Yes</td>
 </tr>
 <tr>
   <th colspan="2">Over the Air Smart Upgrades</th>
-</tr>
-<tr>
   <td>Yes</td>
   <td>Yes</td>
 </tr>
 <tr>
   <th colspan="2">Enterprise Secured Kubernetes</th>
-</tr>
-<tr>
   <td>Yes</td>
   <td>Yes</td>
 </tr>
 <tr>
   <th colspan="2">Kubectl and oc automated command line</th>
-</tr>
-<tr>
   <td>Yes</td>
   <td>Yes</td>
 </tr>
 <tr>
   <th colspan="2">Operator Lifecycle Manager (OLM)</th>
-</tr>
-<tr>
   <td>Yes</td>
   <td>Yes</td>
 </tr>
 <tr>
   <th colspan="2">Administrator Web console</th>
-</tr>
-<tr>
   <td>Yes</td>
   <td>Yes</td>
 </tr>
 <tr>
   <th colspan="2">OpenShift Virtualization</th>
-</tr>
-<tr>
   <td>Yes</td>
   <td>Yes</td>
 </tr>
 <tr>
   <th colspan="2">User Workload Monitoring</th>
-</tr>
-<tr>
   <td></td>
   <td>Yes</td>
 </tr>
 <tr>
   <th colspan="2">Cluster Monitoring</th>
-</tr>
-<tr>
   <td>Yes</td>
   <td>Yes</td>
 </tr>
 <tr>
   <th colspan="2">Cost Management SaaS Service</th>
-</tr>
-<tr>
   <td>Yes</td>
   <td>Yes</td>
 </tr>
 <tr>
   <th colspan="2">Platform Logging</th>
-</tr>
-<tr>
   <td></td>
   <td>Yes</td>
 </tr>
 <tr>
   <th colspan="2">Developer Web Console</th>
-</tr>
-<tr>
   <td></td>
   <td>Yes</td>
 </tr>
 <tr>
   <th colspan="2">Developer Application Catalog</th>
-</tr>
-<tr>
   <td></td>
   <td>Yes</td>
 </tr>
 <tr>
   <th colspan="2">Source to Image and Builder Automation (Tekton)</th>
-</tr>
-<tr>
   <td></td>
   <td>Yes</td>
 </tr>
 <tr>
   <th colspan="2">OpenShift Service Mesh (Maistra and Kiali)</th>
-</tr>
-<tr>
   <td></td>
   <td>Yes</td>
 </tr>
 <tr>
   <th colspan="2">Distributed Tracing Platform</th>
-</tr>
-<tr>
   <td></td>
   <td>Yes</td>
 </tr>
 <tr>
   <th colspan="2">OpenShift Serverless (Knative)</th>
-</tr>
-<tr>
   <td></td>
   <td>Yes</td>
 </tr>
 <tr>
   <th colspan="2">OpenShift Pipelines (Jenkins and Tekton)</th>
-</tr>
-<tr>
   <td></td>
   <td>Yes</td>
 </tr>
 <tr>
   <th colspan="2">Embedded Component of IBM Cloud(R) Pak and RHT MW Bundles</th>
-</tr>
-<tr>
   <td></td>
   <td>Yes</td>
 </tr>
 <tr>
   <th colspan="2">OpenShift sandboxed containers</th>
-</tr>
-<tr>
   <td></td>
   <td>Yes</td>
 </tr>
@@ -239,114 +197,661 @@ Developer experience
     - The developer persona in the OpenShift Container Platform web console.
 
 Feature summary
-:   The following table is a summary of the feature availability in OpenShift Kubernetes Engine and OpenShift Container Platform. Where applicable, it includes the name of the Operator that enables a feature. **Features in OpenShift Kubernetes Engine and OpenShift Container Platform**
+:   The following table is a summary of the feature availability in OpenShift Kubernetes Engine and OpenShift Container Platform. Where applicable, it includes the name of the Operator that enables a feature.
 
-    | Feature | OpenShift Kubernetes Engine | OpenShift Container Platform | Operator name |
-    | --- | --- | --- | --- |
-    | Fully Automated Installers (installer-provisioned infrastructure) | Included | Included | N/A |
-    | Customizable Installers (user-provisioned infrastructure) | Included | Included | N/A |
-    | Disconnected Installation | Included | Included | N/A |
-    | Red Hat Enterprise Linux (RHEL) or Red Hat Enterprise Linux CoreOS (RHCOS) entitlement | Included | Included | N/A |
-    | Existing RHEL manual attach to cluster (BYO) | Included | Included | N/A |
-    | CRIO Runtime | Included | Included | N/A |
-    | Over the Air Smart Upgrades and Operating System (RHCOS) Management | Included | Included | N/A |
-    | Enterprise Secured Kubernetes | Included | Included | N/A |
-    | Kubectl and `oc` automated command line | Included | Included | N/A |
-    | Auth Integrations, RBAC, SCC, Multi-Tenancy Admission Controller | Included | Included | N/A |
-    | Operator Lifecycle Manager (OLM) | Included | Included | N/A |
-    | Administrator web console | Included | Included | N/A |
-    | OpenShift Virtualization | Included | Included | OpenShift Virtualization Operator |
-    | Compliance Operator provided by Red Hat | Included | Included | Compliance Operator |
-    | File Integrity Operator | Included | Included | File Integrity Operator |
-    | Gatekeeper Operator | Not Included - Requires separate subscription | Not Included - Requires separate subscription | Gatekeeper Operator |
-    | Klusterlet | Not Included - Requires separate subscription | Not Included - Requires separate subscription | N/A |
-    | Kube Descheduler Operator provided by Red Hat | Included | Included | Kube Descheduler Operator |
-    | Local Storage provided by Red Hat | Included | Included | Local Storage Operator |
-    | Node Feature Discovery provided by Red Hat | Included | Included | Node Feature Discovery Operator |
-    | Performance Profile controller | Included | Included | N/A |
-    | PTP Operator provided by Red Hat | Included | Included | PTP Operator |
-    | Service Telemetry Operator provided by Red Hat | Not Included | Included | Service Telemetry Operator |
-    | SR-IOV Network Operator | Included | Included | SR-IOV Network Operator |
-    | Vertical Pod Autoscaler | Included | Included | Vertical Pod Autoscaler |
-    | Cluster Monitoring (Prometheus) | Included | Included | Cluster Monitoring |
-    | Device Manager (for example, GPU) | Included | Included | N/A |
-    | Log Forwarding | Included | Included | Red Hat OpenShift Logging Operator |
-    | Telemeter and Insights Connected Experience | Included | Included | N/A |
-    | Feature | OpenShift Kubernetes Engine | OpenShift Container Platform | Operator name |
-    | OpenShift Cloud Manager SaaS Service | Included | Included | N/A |
-    | OVS and OVN SDN | Included | Included | N/A |
-    | MetalLB | Included | Included | MetalLB Operator |
-    | HAProxy Ingress Controller | Included | Included | N/A |
-    | Ingress Cluster-wide Firewall | Included | Included | N/A |
-    | Egress Pod and Namespace Granular Control | Included | Included | N/A |
-    | Ingress Non-Standard Ports | Included | Included | N/A |
-    | Multus and Available Multus Plugins | Included | Included | N/A |
-    | Network Policies | Included | Included | N/A |
-    | IPv6 Single and Dual Stack | Included | Included | N/A |
-    | CNI Plugin ISV Compatibility | Included | Included | N/A |
-    | CSI Plugin ISV Compatibility | Included | Included | N/A |
-    | RHT and IBM(R) middleware à la carte purchases (not included in OpenShift Container Platform or OpenShift Kubernetes Engine) | Included | Included | N/A |
-    | ISV or Partner Operator and Container Compatibility (not included in OpenShift Container Platform or OpenShift Kubernetes Engine) | Included | Included | N/A |
-    | Embedded software catalog | Included | Included | N/A |
-    | Embedded Marketplace | Included | Included | N/A |
-    | Quay Compatibility (not included) | Included | Included | N/A |
-    | OpenShift API for Data Protection (OADP) | Included | Included | OADP Operator |
-    | RHEL Software Collections and RHT SSO Common Service (included) | Included | Included | N/A |
-    | Embedded Registry | Included | Included | N/A |
-    | Helm | Included | Included | N/A |
-    | User Workload Monitoring | Not Included | Included | N/A |
-    | Cost Management SaaS Service | Included | Included | Cost Management Metrics Operator |
-    | Platform Logging | Not Included | Included | Red Hat OpenShift Logging Operator |
-    | Developer Web Console | Not Included | Included | N/A |
-    | Developer Application Catalog | Not Included | Included | N/A |
-    | Source to Image and Builder Automation (Tekton) | Not Included | Included | N/A |
-    | OpenShift Service Mesh | Not Included | Included | OpenShift Service Mesh Operator |
-    | Feature | OpenShift Kubernetes Engine | OpenShift Container Platform | Operator name |
-    | OpenShift Serverless | Not Included | Included | OpenShift Serverless Operator |
-    | Web Terminal provided by Red Hat | Not Included | Included | Web Terminal Operator |
-    | Red Hat OpenShift Pipelines | Not Included | Included | OpenShift Pipelines Operator |
-    | Embedded Component of IBM Cloud(R) Pak and RHT MW Bundles | Not Included | Included | N/A |
-    | Red Hat OpenShift GitOps | Not Included | Included | Red Hat OpenShift GitOps Operator |
-    | Red Hat OpenShift Dev Spaces | Not Included | Included | Red Hat OpenShift Dev Spaces |
-    | Red Hat OpenShift Local | Not Included | Included | N/A |
-    | Quay Bridge Operator provided by Red Hat | Not Included | Included | Quay Bridge Operator |
-    | Quay Container Security provided by Red Hat | Not Included | Included | Quay Operator |
-    | Red Hat OpenShift Distributed Tracing Platform (Jaeger) | Not Included | Included | Red Hat OpenShift Distributed Tracing Platform (Jaeger) Operator |
-    | Red Hat OpenShift Kiali | Not Included | Included | Kiali Operator |
-    | Metering provided by Red Hat (deprecated) | Not Included | Included | N/A |
-    | Cost management for OpenShift | Not included | Included | N/A |
-    | JBoss Web Server provided by Red Hat | Not included | Included | JWS Operator |
-    | Red Hat Build of Quarkus | Not included | Included | N/A |
-    | Kourier Ingress Controller | Not included | Included | N/A |
-    | RHT Middleware Bundles Sub Compatibility (not included in OpenShift Container Platform) | Not included | Included | N/A |
-    | IBM Cloud(R)  Pak Sub Compatibility (not included in OpenShift Container Platform) | Not included | Included | N/A |
-    | OpenShift Do (`odo`) | Not included | Included | N/A |
-    | Source to Image and Tekton Builders | Not included | Included | N/A |
-    | OpenShift Serverless FaaS | Not included | Included | N/A |
-    | IDE Integrations | Not included | Included | N/A |
-    | OpenShift sandboxed containers | Not included | Not included | OpenShift sandboxed containers Operator |
-    | Windows Machine Config Operator | Community Windows Machine Config Operator included - no subscription required | Red Hat Windows Machine Config Operator included - Requires separate subscription | Windows Machine Config Operator |
-    | Red Hat Quay | Not Included - Requires separate subscription | Not Included - Requires separate subscription | Quay Operator |
-    | Red Hat Advanced Cluster Management | Not Included - Requires separate subscription | Not Included - Requires separate subscription | Advanced Cluster Management for Kubernetes |
-    | Red Hat Advanced Cluster Security | Not Included - Requires separate subscription | Not Included - Requires separate subscription | N/A |
-    | OpenShift Data Foundation | Not Included - Requires separate subscription | Not Included - Requires separate subscription | OpenShift Data Foundation |
-    | Feature | OpenShift Kubernetes Engine | OpenShift Container Platform | Operator name |
-    | Ansible Automation Platform Resource Operator | Not Included - Requires separate subscription | Not Included - Requires separate subscription | Ansible Automation Platform Resource Operator |
-    | Business Automation provided by Red Hat | Not Included - Requires separate subscription | Not Included - Requires separate subscription | Business Automation Operator |
-    | Data Grid provided by Red Hat | Not Included - Requires separate subscription | Not Included - Requires separate subscription | Data Grid Operator |
-    | Red Hat Integration provided by Red Hat | Not Included - Requires separate subscription | Not Included - Requires separate subscription | Red Hat Integration Operator |
-    | Red Hat Integration - 3Scale provided by Red Hat | Not Included - Requires separate subscription | Not Included - Requires separate subscription | 3scale |
-    | Red Hat Integration - 3Scale APICast gateway provided by Red Hat | Not Included - Requires separate subscription | Not Included - Requires separate subscription | 3scale APIcast |
-    | Red Hat Integration - AMQ Broker | Not Included - Requires separate subscription | Not Included - Requires separate subscription | AMQ Broker |
-    | Red Hat Integration - AMQ Broker LTS | Not Included - Requires separate subscription | Not Included - Requires separate subscription |  |
-    | Red Hat Integration - AMQ Interconnect | Not Included - Requires separate subscription | Not Included - Requires separate subscription | AMQ Interconnect |
-    | Red Hat Integration - AMQ Online | Not Included - Requires separate subscription | Not Included - Requires separate subscription |  |
-    | Red Hat Integration - AMQ Streams | Not Included - Requires separate subscription | Not Included - Requires separate subscription | AMQ Streams |
-    | Red Hat Integration - Camel K | Not Included - Requires separate subscription | Not Included - Requires separate subscription | Camel K |
-    | Red Hat Integration - Fuse Console | Not Included - Requires separate subscription | Not Included - Requires separate subscription | Fuse Console |
-    | Red Hat Integration - Fuse Online | Not Included - Requires separate subscription | Not Included - Requires separate subscription | Fuse Online |
-    | Red Hat Integration - Service Registry Operator | Not Included - Requires separate subscription | Not Included - Requires separate subscription | Service Registry |
-    | API Designer provided by Red Hat | Not Included - Requires separate subscription | Not Included - Requires separate subscription | API Designer |
-    | JBoss EAP provided by Red Hat | Not Included - Requires separate subscription | Not Included - Requires separate subscription | JBoss EAP |
-    | Smart Gateway Operator | Not Included - Requires separate subscription | Not Included - Requires separate subscription | Smart Gateway Operator |
-    | Kubernetes NMState Operator | Included | Included | N/A |
+    **Features in OpenShift Kubernetes Engine and OpenShift Container Platform**
+
+<table>
+<thead>
+<tr>
+  <th>Feature</th>
+  <th>OpenShift Kubernetes Engine</th>
+  <th>OpenShift Container Platform</th>
+  <th>Operator name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Fully Automated Installers (installer-provisioned infrastructure)</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>Customizable Installers (user-provisioned infrastructure)</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>Disconnected Installation</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>Red&#160;Hat Enterprise Linux (RHEL) or Red&#160;Hat Enterprise Linux CoreOS (RHCOS) entitlement</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>Existing RHEL manual attach to cluster (BYO)</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>CRIO Runtime</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>Over the Air Smart Upgrades and Operating System (RHCOS) Management</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>Enterprise Secured Kubernetes</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>Kubectl and <code>oc</code> automated command line</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>Auth Integrations, RBAC, SCC, Multi-Tenancy Admission Controller</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>Operator Lifecycle Manager (OLM)</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>Administrator web console</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>OpenShift Virtualization</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>OpenShift Virtualization Operator</td>
+</tr>
+<tr>
+  <td>Compliance Operator provided by Red Hat</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>Compliance Operator</td>
+</tr>
+<tr>
+  <td>File Integrity Operator</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>File Integrity Operator</td>
+</tr>
+<tr>
+  <td>Gatekeeper Operator</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Gatekeeper Operator</td>
+</tr>
+<tr>
+  <td>Klusterlet</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>Kube Descheduler Operator provided by Red Hat</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>Kube Descheduler Operator</td>
+</tr>
+<tr>
+  <td>Local Storage provided by Red Hat</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>Local Storage Operator</td>
+</tr>
+<tr>
+  <td>Node Feature Discovery provided by Red Hat</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>Node Feature Discovery Operator</td>
+</tr>
+<tr>
+  <td>Performance Profile controller</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>PTP Operator provided by Red Hat</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>PTP Operator</td>
+</tr>
+<tr>
+  <td>Service Telemetry Operator provided by Red Hat</td>
+  <td>Not Included</td>
+  <td>Included</td>
+  <td>Service Telemetry Operator</td>
+</tr>
+<tr>
+  <td>SR-IOV Network Operator</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>SR-IOV Network Operator</td>
+</tr>
+<tr>
+  <td>Vertical Pod Autoscaler</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>Vertical Pod Autoscaler</td>
+</tr>
+<tr>
+  <td>Cluster Monitoring (Prometheus)</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>Cluster Monitoring</td>
+</tr>
+<tr>
+  <td>Device Manager (for example, GPU)</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>Log Forwarding</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>Red Hat OpenShift Logging Operator</td>
+</tr>
+<tr>
+  <td>Telemeter and Insights Connected Experience</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td><strong>Feature</strong></td>
+  <td><strong>OpenShift Kubernetes Engine</strong></td>
+  <td><strong>OpenShift Container Platform</strong></td>
+  <td><strong>Operator name</strong></td>
+</tr>
+<tr>
+  <td>OpenShift Cloud Manager SaaS Service</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>OVS and OVN SDN</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>MetalLB</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>MetalLB Operator</td>
+</tr>
+<tr>
+  <td>HAProxy Ingress Controller</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>Ingress Cluster-wide Firewall</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>Egress Pod and Namespace Granular Control</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>Ingress Non-Standard Ports</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>Multus and Available Multus Plugins</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>Network Policies</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>IPv6 Single and Dual Stack</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>CNI Plugin ISV Compatibility</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>CSI Plugin ISV Compatibility</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>RHT and IBM(R) middleware à la carte purchases (not included in OpenShift Container Platform or OpenShift Kubernetes Engine)</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>ISV or Partner Operator and Container Compatibility (not included in OpenShift Container Platform or OpenShift Kubernetes Engine)</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>Embedded software catalog</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>Embedded Marketplace</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>Quay Compatibility (not included)</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>OpenShift API for Data Protection (OADP)</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>OADP Operator</td>
+</tr>
+<tr>
+  <td>RHEL Software Collections and RHT SSO Common Service (included)</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>Embedded Registry</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>Helm</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>User Workload Monitoring</td>
+  <td>Not Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>Cost Management SaaS Service</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>Cost Management Metrics Operator</td>
+</tr>
+<tr>
+  <td>Platform Logging</td>
+  <td>Not Included</td>
+  <td>Included</td>
+  <td>Red Hat OpenShift Logging Operator</td>
+</tr>
+<tr>
+  <td>Developer Web Console</td>
+  <td>Not Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>Developer Application Catalog</td>
+  <td>Not Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>Source to Image and Builder Automation (Tekton)</td>
+  <td>Not Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>OpenShift Service Mesh</td>
+  <td>Not Included</td>
+  <td>Included</td>
+  <td>OpenShift Service Mesh Operator</td>
+</tr>
+<tr>
+  <td><strong>Feature</strong></td>
+  <td><strong>OpenShift Kubernetes Engine</strong></td>
+  <td><strong>OpenShift Container Platform</strong></td>
+  <td><strong>Operator name</strong></td>
+</tr>
+<tr>
+  <td>OpenShift Serverless</td>
+  <td>Not Included</td>
+  <td>Included</td>
+  <td>OpenShift Serverless Operator</td>
+</tr>
+<tr>
+  <td>Web Terminal provided by Red Hat</td>
+  <td>Not Included</td>
+  <td>Included</td>
+  <td>Web Terminal Operator</td>
+</tr>
+<tr>
+  <td>Red&#160;Hat OpenShift Pipelines</td>
+  <td>Not Included</td>
+  <td>Included</td>
+  <td>OpenShift Pipelines Operator</td>
+</tr>
+<tr>
+  <td>Embedded Component of IBM Cloud(R) Pak and RHT MW Bundles</td>
+  <td>Not Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>Red&#160;Hat OpenShift GitOps</td>
+  <td>Not Included</td>
+  <td>Included</td>
+  <td>Red&#160;Hat OpenShift GitOps Operator</td>
+</tr>
+<tr>
+  <td>Red&#160;Hat OpenShift Dev Spaces</td>
+  <td>Not Included</td>
+  <td>Included</td>
+  <td>Red&#160;Hat OpenShift Dev Spaces</td>
+</tr>
+<tr>
+  <td>Red&#160;Hat OpenShift Local</td>
+  <td>Not Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>Quay Bridge Operator provided by Red Hat</td>
+  <td>Not Included</td>
+  <td>Included</td>
+  <td>Quay Bridge Operator</td>
+</tr>
+<tr>
+  <td>Quay Container Security provided by Red Hat</td>
+  <td>Not Included</td>
+  <td>Included</td>
+  <td>Quay Operator</td>
+</tr>
+<tr>
+  <td>Red&#160;Hat OpenShift Distributed Tracing Platform (Jaeger)</td>
+  <td>Not Included</td>
+  <td>Included</td>
+  <td>Red&#160;Hat OpenShift Distributed Tracing Platform (Jaeger) Operator</td>
+</tr>
+<tr>
+  <td>Red Hat OpenShift Kiali</td>
+  <td>Not Included</td>
+  <td>Included</td>
+  <td>Kiali Operator</td>
+</tr>
+<tr>
+  <td>Metering provided by Red Hat (deprecated)</td>
+  <td>Not Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>Cost management for OpenShift</td>
+  <td>Not included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>JBoss Web Server provided by Red Hat</td>
+  <td>Not included</td>
+  <td>Included</td>
+  <td>JWS Operator</td>
+</tr>
+<tr>
+  <td>Red Hat Build of Quarkus</td>
+  <td>Not included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>Kourier Ingress Controller</td>
+  <td>Not included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>RHT Middleware Bundles Sub Compatibility (not included in OpenShift Container Platform)</td>
+  <td>Not included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>IBM Cloud(R)  Pak Sub Compatibility (not included in OpenShift Container Platform)</td>
+  <td>Not included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>OpenShift Do (<code>odo</code>)</td>
+  <td>Not included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>Source to Image and Tekton Builders</td>
+  <td>Not included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>OpenShift Serverless FaaS</td>
+  <td>Not included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>IDE Integrations</td>
+  <td>Not included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>OpenShift sandboxed containers</td>
+  <td>Not included</td>
+  <td>Not included</td>
+  <td>OpenShift sandboxed containers Operator</td>
+</tr>
+<tr>
+  <td>Windows Machine Config Operator</td>
+  <td>Community Windows Machine Config Operator included - no subscription required</td>
+  <td>Red Hat Windows Machine Config Operator included - Requires separate subscription</td>
+  <td>Windows Machine Config Operator</td>
+</tr>
+<tr>
+  <td>Red&#160;Hat Quay</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Quay Operator</td>
+</tr>
+<tr>
+  <td>Red Hat Advanced Cluster Management</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Advanced Cluster Management for Kubernetes</td>
+</tr>
+<tr>
+  <td>Red Hat Advanced Cluster Security</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>OpenShift Data Foundation</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>OpenShift Data Foundation</td>
+</tr>
+<tr>
+  <td><strong>Feature</strong></td>
+  <td><strong>OpenShift Kubernetes Engine</strong></td>
+  <td><strong>OpenShift Container Platform</strong></td>
+  <td><strong>Operator name</strong></td>
+</tr>
+<tr>
+  <td>Ansible Automation Platform Resource Operator</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Ansible Automation Platform Resource Operator</td>
+</tr>
+<tr>
+  <td>Business Automation provided by Red Hat</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Business Automation Operator</td>
+</tr>
+<tr>
+  <td>Data Grid provided by Red Hat</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Data Grid Operator</td>
+</tr>
+<tr>
+  <td>Red Hat Integration provided by Red Hat</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Red Hat Integration Operator</td>
+</tr>
+<tr>
+  <td>Red Hat Integration - 3Scale provided by Red Hat</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>3scale</td>
+</tr>
+<tr>
+  <td>Red Hat Integration - 3Scale APICast gateway provided by Red Hat</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>3scale APIcast</td>
+</tr>
+<tr>
+  <td>Red Hat Integration - AMQ Broker</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>AMQ Broker</td>
+</tr>
+<tr>
+  <td>Red Hat Integration - AMQ Broker LTS</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td></td>
+</tr>
+<tr>
+  <td>Red Hat Integration - AMQ Interconnect</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>AMQ Interconnect</td>
+</tr>
+<tr>
+  <td>Red Hat Integration - AMQ Online</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td></td>
+</tr>
+<tr>
+  <td>Red Hat Integration - AMQ Streams</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>AMQ Streams</td>
+</tr>
+<tr>
+  <td>Red Hat Integration - Camel K</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Camel K</td>
+</tr>
+<tr>
+  <td>Red Hat Integration - Fuse Console</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Fuse Console</td>
+</tr>
+<tr>
+  <td>Red Hat Integration - Fuse Online</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Fuse Online</td>
+</tr>
+<tr>
+  <td>Red Hat Integration - Service Registry Operator</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Service Registry</td>
+</tr>
+<tr>
+  <td>API Designer provided by Red Hat</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>API Designer</td>
+</tr>
+<tr>
+  <td>JBoss EAP provided by Red Hat</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>JBoss EAP</td>
+</tr>
+<tr>
+  <td>Smart Gateway Operator</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Not Included - Requires separate subscription</td>
+  <td>Smart Gateway Operator</td>
+</tr>
+<tr>
+  <td>Kubernetes NMState Operator</td>
+  <td>Included</td>
+  <td>Included</td>
+  <td>N/A</td>
+</tr>
+</tbody>
+</table>

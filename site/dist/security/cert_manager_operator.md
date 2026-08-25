@@ -1,8 +1,8 @@
 ---
-title: "{{ cert_manager_operator }} overview"
+title: cert-manager Operator for Red Hat OpenShift overview
 ---
 
-# {{ cert_manager_operator }} overview {#cert-manager-operator-about}
+# cert-manager Operator for Red Hat OpenShift overview {#cert-manager-operator-about}
 
 The cert-manager Operator for Red Hat OpenShift is a cluster-wide service that provides application certificate lifecycle management. The cert-manager Operator for Red Hat OpenShift allows you to integrate with external certificate authorities and provides certificate provisioning, renewal, and retirement.
 
@@ -59,7 +59,8 @@ Starting with version 1.14.0, cert-manager Operator for Red Hat OpenShift is des
 
 To enable FIPS mode, you must install cert-manager Operator for Red Hat OpenShift on an OpenShift Container Platform cluster configured to operate in FIPS mode. For more information, see "Do you need extra security for your cluster?"
 
-## Additional resources {#cert-manager-operator-about_additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Cryptographic module validation program](https://csrc.nist.gov/Projects/cryptographic-module-validation-program/validated-modules)
 - [cert-manager project documentation](https://cert-manager.io/docs/)

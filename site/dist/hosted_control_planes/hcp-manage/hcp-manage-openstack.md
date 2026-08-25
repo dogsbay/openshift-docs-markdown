@@ -1,5 +1,5 @@
 ---
-title: Managing {{ hcp }} on {{ rh_openstack }}
+title: Managing hosted control planes on RHOSP
 ---
 
 # Managing hosted control planes on RHOSP {#hcp-manage-openstack}
@@ -431,5 +431,6 @@ The Operator runs in the hosted cluster and requires labeled worker nodes.
 5. After installation, configure SR-IOV workloads in the hosted cluster by using the same process as for a standalone cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing the SR-IOV Network Operator](/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sr-iov-operator_installing-sriov-operator)

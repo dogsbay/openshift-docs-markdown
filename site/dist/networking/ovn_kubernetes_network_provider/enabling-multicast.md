@@ -31,8 +31,8 @@ To enable multicast between pods in a project, you can add the `k8s.ovn.org/mult
 - Run the following command to enable multicast for a project. Replace `<namespace>` with the namespace for the project you want to enable multicast for.
 
   ```terminal
-  $ oc annotate {{ namespace }} <namespace> \
-      {{ annotation }}
+  $ oc annotate namespace <namespace> \
+      k8s.ovn.org/multicast-enabled=true
   ```
 
   > [!TIP]

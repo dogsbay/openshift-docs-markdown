@@ -1,8 +1,8 @@
 ---
-title: About cluster updates with {{ rh_rhacm }} and {{ cgu_operator }}
+title: About cluster updates with RHACM and TALM
 ---
 
-# About cluster updates with {{ rh_rhacm }} and {{ cgu_operator }} {#core-cluster-upgrades-overview}
+# About cluster updates with RHACM and TALM {#core-cluster-upgrades-overview}
 
 You can use Red Hat Advanced Cluster Management (RHACM) and Topology Aware Lifecycle Manager (TALM) to perform z-stream, y-stream, and EUS-to-EUS updates on spoke clusters managed from a hub cluster.
 
@@ -85,6 +85,9 @@ The following list describes use cases for y-stream updates:
 
 Y-stream updates require a planned maintenance window. The control plane update typically completes in 60 to 120 minutes, and worker node updates take an additional 30 to 60 minutes. You can minimize workload disruption by pausing worker nodes and updating the control plane first.
 
+**Additional resources**
+{._additional-resources}
+
 - [EUS-to-EUS updates](#core-cluster-upgrade-scenario-eus_core-cluster-upgrades-overview)
 
 ### EUS-to-EUS updates {#core-cluster-upgrade-scenario-eus_core-cluster-upgrades-overview}
@@ -124,7 +127,8 @@ This can include changes to user policies, security context constraints (SCCs), 
 
 For further policy configuration, see the Red Hat Advanced Cluster Management (RHACM) documentation.
 
-## Additional resources {#additional-resources_core-cluster-upgrades-overview}
+**Additional resources**
+{._additional-resources}
 
 - [Updating an OpenShift Container Platform cluster](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-welcome#update-welcome)
 - [Verifying cluster API versions between update versions](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-api#update-api)

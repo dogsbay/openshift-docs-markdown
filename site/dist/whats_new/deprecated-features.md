@@ -10,26 +10,100 @@ Large changes to the underlying architecture and installation process are applie
 
 **Features Deprecated in 4.22**
 
-| Feature | Justification |
-| --- | --- |
-| Hawkular | Replaced by cluster monitoring. |
-| Cassandra | Replaced by cluster monitoring. |
-| Heapster | Replaced by Prometheus adapter. |
-| Atomic Host | Replaced by Red Hat Enterprise Linux CoreOS (RHCOS). |
-| System containers | Replaced by Red Hat Enterprise Linux CoreOS (RHCOS). |
-| `projectatomic/docker-1.13` additional search registries | CRI-O is the default container runtime for OpenShift Container Platform v4 on Fedora. |
-| `oc adm diagnostics` | Operator-based diagnostics. |
-| `oc adm registry` | Replaced by the Image Registry Operator. |
-| Custom strategy builds using Docker | If you want to continue using custom builds, you should replace your Docker invocations with Podman or Buildah. The custom build strategy will not be removed, but the functionality changed significantly in OpenShift v4. |
-| Cockpit | Improved OpenShift v4 web console. |
-| Stand-alone registry installations | Quay is Red Hat’s container image registry. |
-| DNSmasq | CoreDNS is the default. |
-| External etcd nodes | etcd is always on the cluster in OpenShift v4. |
-| CloudForms OpenShift Provider and Podified CloudForms | Replaced by built-in management tooling. |
-| Volume Provisioning via installer | Replaced by dynamic volumes or, if NFS is required, NFS provisioner. |
-| Blue-green installation method | Ease of upgrade is a core value of OpenShift v4. |
-| OpenShift Service Broker and Service Catalog | The Service Catalog and the OpenShift service brokers are being replaced over the course of several future OpenShift v4 releases. Reference the Operator Framework and Operator Lifecycle Manager (OLM) to continue providing your applications to OpenShift v4 clusters. These new technologies provide many benefits around complete management of the lifecycle of your application. |
-| `oc adm ca` | Certificates are managed by Operators internally. |
-| `oc adm create-api-client-config` .2+.^ | Functions are managed by Operators internally. |
-| `oc adm create-bootstrap-policy-file` | `oc adm policy reconcile-sccs` |
-| Functions are managed by `openshift-apiserver` internally. | Web console |
+<table>
+<thead>
+<tr>
+  <th>Feature</th>
+  <th>Justification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Hawkular</td>
+  <td>Replaced by cluster monitoring.</td>
+</tr>
+<tr>
+  <td>Cassandra</td>
+  <td>Replaced by cluster monitoring.</td>
+</tr>
+<tr>
+  <td>Heapster</td>
+  <td>Replaced by Prometheus adapter.</td>
+</tr>
+<tr>
+  <td>Atomic Host</td>
+  <td>Replaced by Red&#160;Hat Enterprise Linux CoreOS (RHCOS).</td>
+</tr>
+<tr>
+  <td>System containers</td>
+  <td>Replaced by Red&#160;Hat Enterprise Linux CoreOS (RHCOS).</td>
+</tr>
+<tr>
+  <td><code>projectatomic/docker-1.13</code> additional search registries</td>
+  <td>CRI-O is the default container runtime for OpenShift Container Platform v4 on Fedora.</td>
+</tr>
+<tr>
+  <td><code>oc adm diagnostics</code></td>
+  <td>Operator-based diagnostics.</td>
+</tr>
+<tr>
+  <td><code>oc adm registry</code></td>
+  <td>Replaced by the Image Registry Operator.</td>
+</tr>
+<tr>
+  <td>Custom strategy builds using Docker</td>
+  <td>If you want to continue using custom builds, you should replace your Docker invocations with Podman or Buildah. The custom build strategy will not be removed, but the functionality changed significantly in OpenShift v4.</td>
+</tr>
+<tr>
+  <td>Cockpit</td>
+  <td>Improved OpenShift v4 web console.</td>
+</tr>
+<tr>
+  <td>Stand-alone registry installations</td>
+  <td>Quay is Red Hat's container image registry.</td>
+</tr>
+<tr>
+  <td>DNSmasq</td>
+  <td>CoreDNS is the default.</td>
+</tr>
+<tr>
+  <td>External etcd nodes</td>
+  <td>etcd is always on the cluster in OpenShift v4.</td>
+</tr>
+<tr>
+  <td>CloudForms OpenShift Provider and Podified CloudForms</td>
+  <td>Replaced by built-in management tooling.</td>
+</tr>
+<tr>
+  <td>Volume Provisioning via installer</td>
+  <td>Replaced by dynamic volumes or, if NFS is required, NFS provisioner.</td>
+</tr>
+<tr>
+  <td>Blue-green installation method</td>
+  <td>Ease of upgrade is a core value of OpenShift v4.</td>
+</tr>
+<tr>
+  <td>OpenShift Service Broker and Service Catalog</td>
+  <td>The Service Catalog and the OpenShift service brokers are being replaced over the course of several future OpenShift v4 releases. Reference the Operator Framework and Operator Lifecycle Manager (OLM) to continue providing your applications to OpenShift v4 clusters. These new technologies provide many benefits around complete management of the lifecycle of your application.</td>
+</tr>
+<tr>
+  <td><code>oc adm ca</code></td>
+  <td>Certificates are managed by Operators internally.</td>
+</tr>
+<tr>
+  <td><code>oc adm create-api-client-config</code></td>
+  <td rowspan="2">Functions are managed by Operators internally.</td>
+</tr>
+<tr>
+  <td><code>oc adm create-bootstrap-policy-file</code></td>
+</tr>
+<tr>
+  <td><code>oc adm policy reconcile-sccs</code></td>
+  <td>Functions are managed by <code>openshift-apiserver</code> internally.</td>
+</tr>
+<tr>
+  <td>Web console</td>
+  <td>The web console from OpenShift v3 has been replaced by a new web console in OpenShift v4.</td>
+</tr>
+</tbody>
+</table>

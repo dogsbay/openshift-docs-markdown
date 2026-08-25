@@ -88,8 +88,8 @@ Rollbacks revert an application back to a previous revision and can be performed
    $ oc set triggers dc/<name> --auto
    ```
 
-> [!NOTE]
-> Deployment configs also support automatically rolling back to the last successful revision of the configuration in case the latest deployment process fails. In that case, the latest template that failed to deploy stays intact by the system and it is up to users to fix their configurations.
+   > [!NOTE]
+   > Deployment configs also support automatically rolling back to the last successful revision of the configuration in case the latest deployment process fails. In that case, the latest template that failed to deploy stays intact by the system and it is up to users to fix their configurations.
 
 ### Executing commands inside a container {#deployments-exe-cmd-in-container_deployment-operations}
 
@@ -287,6 +287,7 @@ You can also limit resource use by specifying resource limits as part of the dep
       To set deployment resources, choose one of the above options. Otherwise, deploy pod creation fails, citing a failure to satisfy quota.
 
 **Additional resources**
+{._additional-resources}
 
 - For more information about resource limits and requests, see [Understanding managing application memory](/openshift-docs-markdown/nodes/clusters/nodes-cluster-resource-configure#nodes-cluster-resource-configure-about_nodes-cluster-resource-configure).
 
@@ -314,9 +315,9 @@ You can add a secret to your `DeploymentConfig` object so that it can access ima
 **Procedure**
 
 1. Create a new project.
-2. Navigate to **Workloads** -> **Secrets**.
+2. Navigate to **Workloads** → **Secrets**.
 3. Create a secret that contains credentials for accessing a private image repository.
-4. Navigate to **Workloads** -> **DeploymentConfigs**.
+4. Navigate to **Workloads** → **DeploymentConfigs**.
 5. Create a `DeploymentConfig` object.
 6. On the `DeploymentConfig` object editor page, set the **Pull Secret** and save your changes.
 

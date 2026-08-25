@@ -1,5 +1,5 @@
 ---
-title: Deploying {{ hcp }} on {{ ibm_z_title }} in a disconnected environment
+title: Deploying hosted control planes on IBM Z in a disconnected environment
 ---
 
 # Deploying hosted control planes on IBM Z in a disconnected environment {#disconnected-install-ibmz-hcp}
@@ -27,6 +27,7 @@ You need the following resources:
 - A mirrored image for a disconnected installation. For more information, see "Mirroring images for a disconnected installation using the oc-mirror plugin".
 
 **Additional resources**
+{._additional-resources}
 
 - [Mirror registry for Red Hat OpenShift introduction](/openshift-docs-markdown/disconnected/installing-mirroring-creating-registry#mirror-registry-introduction_installing-mirroring-creating-registry)
 - [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)

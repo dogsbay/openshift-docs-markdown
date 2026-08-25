@@ -81,6 +81,7 @@ You can create a custom role for the Container Storage Interface (CSI) driver, t
 To remove a third-party CSI driver, see "Removing a third-party vSphere CSI Driver".
 
 **Additional resources**
+{._additional-resources}
 
 - [Removing a third-party vSphere CSI Driver](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-vsphere#persistent-storage-csi-vsphere-install-issues_persistent-storage-csi-vsphere)
 - [Updating hardware on nodes running in vSphere](/openshift-docs-markdown/updating/updating_a_cluster/updating-hardware-on-nodes-running-on-vsphere#updating-hardware-on-nodes-running-on-vsphere)
@@ -101,7 +102,7 @@ To install an OpenShift Container Platform cluster in a vCenter, your vSphere ac
 > [!NOTE]
 > The following tables do not explicitly list the ESXi host object. In the vSphere hierarchy, ESXi hosts are child objects of the cluster. If you apply your custom role to the vSphere vCenter Cluster object with the "Propagate to children" setting enabled, the required privileges automatically propagate down to the ESXi hosts. You do not need to apply permissions directly to individual ESXi host objects.
 
-***Roles and privileges required for installation in vSphere API***
+**Roles and privileges required for installation in vSphere API**
 
 <table>
 <thead>
@@ -144,14 +145,13 @@ To install an OpenShift Container Platform cluster in a vCenter, your vSphere ac
 </tr>
 <tr>
   <td>vSphere vCenter data center</td>
-
   <td><code>VirtualMachine.Inventory.Create</code> and <code>VirtualMachine.Inventory.Delete</code> privileges are optional if your cluster does not use the Machine API. See the "Minimum permissions for the Machine API" table.</td>
   <td><ul><li><code>InventoryService.Tagging.ObjectAttachable</code></li><li><code>Resource.AssignVMToPool</code></li><li><code>VirtualMachine.Config.AddExistingDisk</code></li><li><code>VirtualMachine.Config.AddNewDisk</code></li><li><code>VirtualMachine.Config.AddRemoveDevice</code></li><li><code>VirtualMachine.Config.AdvancedConfig</code></li><li><code>VirtualMachine.Config.Annotation</code></li><li><code>VirtualMachine.Config.CPUCount</code></li><li><code>VirtualMachine.Config.DiskExtend</code></li><li><code>VirtualMachine.Config.DiskLease</code></li><li><code>VirtualMachine.Config.EditDevice</code></li><li><code>VirtualMachine.Config.Memory</code></li><li><code>VirtualMachine.Config.RemoveDisk</code></li><li><code>VirtualMachine.Config.Rename</code></li><li><code>VirtualMachine.Config.ResetGuestInfo</code></li><li><code>VirtualMachine.Config.Resource</code></li><li><code>VirtualMachine.Config.Settings</code></li><li><code>VirtualMachine.Config.UpgradeVirtualHardware</code></li><li><code>VirtualMachine.Interact.GuestControl</code></li><li><code>VirtualMachine.Interact.PowerOff</code></li><li><code>VirtualMachine.Interact.PowerOn</code></li><li><code>VirtualMachine.Interact.Reset</code></li><li><code>VirtualMachine.Inventory.Create</code></li><li><code>VirtualMachine.Inventory.CreateFromExisting</code></li><li><code>VirtualMachine.Inventory.Delete</code></li><li><code>VirtualMachine.Provisioning.Clone</code></li><li><code>VirtualMachine.Provisioning.DeployTemplate</code></li><li><code>VirtualMachine.Provisioning.MarkAsTemplate</code></li><li><code>Folder.Create</code></li><li><code>Folder.Delete</code></li></ul></td>
 </tr>
 </tbody>
 </table>
 
-***Roles and privileges required for installation in vCenter graphical user interface (GUI)***
+**Roles and privileges required for installation in vCenter graphical user interface (GUI)**
 
 <table>
 <thead>
@@ -194,7 +194,6 @@ To install an OpenShift Container Platform cluster in a vCenter, your vSphere ac
 </tr>
 <tr>
   <td>vSphere vCenter data center</td>
-
   <td><code>VirtualMachine.Inventory.Create</code> and <code>VirtualMachine.Inventory.Delete</code> privileges are optional if your cluster does not use the Machine API.</td>
   <td><ul><li><code>"vSphere Tagging"."Assign or Unassign vSphere Tag on Object"</code></li><li><code>Resource."Assign virtual machine to resource pool"</code></li><li><code>VApp.Import</code></li><li><code>"Virtual machine"."Change Configuration"."Add existing disk"</code></li><li><code>"Virtual machine"."Change Configuration"."Add new disk"</code></li><li><code>"Virtual machine"."Change Configuration"."Add or remove device"</code></li><li><code>"Virtual machine"."Change Configuration"."Advanced configuration"</code></li><li><code>"Virtual machine"."Change Configuration"."Set annotation"</code></li><li><code>"Virtual machine"."Change Configuration"."Change CPU count"</code></li><li><code>"Virtual machine"."Change Configuration"."Extend virtual disk"</code></li><li><code>"Virtual machine"."Change Configuration"."Acquire disk lease"</code></li><li><code>"Virtual machine"."Change Configuration"."Modify device settings"</code></li><li><code>"Virtual machine"."Change Configuration"."Change Memory"</code></li><li><code>"Virtual machine"."Change Configuration"."Remove disk"</code></li><li><code>"Virtual machine"."Change Configuration".Rename</code></li><li><code>"Virtual machine"."Change Configuration"."Reset guest information"</code></li><li><code>"Virtual machine"."Change Configuration"."Change resource"</code></li><li><code>"Virtual machine"."Change Configuration"."Change Settings"</code></li><li><code>"Virtual machine"."Change Configuration"."Upgrade virtual machine compatibility"</code></li><li><code>"Virtual machine".Interaction."Guest operating system management by VIX API"</code></li><li><code>"Virtual machine".Interaction."Power off"</code></li><li><code>"Virtual machine".Interaction."Power on"</code></li><li><code>"Virtual machine".Interaction.Reset</code></li><li><code>"Virtual machine"."Edit Inventory"."Create new"</code></li><li><code>"Virtual machine"."Edit Inventory"."Create from existing"</code></li><li><code>"Virtual machine"."Edit Inventory"."Remove"</code></li><li><code>"Virtual machine".Provisioning."Clone virtual machine"</code></li><li><code>"Virtual machine".Provisioning."Deploy template"</code></li><li><code>"Virtual machine".Provisioning."Mark as template"</code></li><li><code>Folder."Create folder"</code></li><li><code>Folder."Delete folder"</code></li></ul></td>
 </tr>
@@ -203,7 +202,7 @@ To install an OpenShift Container Platform cluster in a vCenter, your vSphere ac
 
 Additionally, the user requires some `ReadOnly` permissions, and some of the roles require permission to propagate the permissions to child objects. These settings vary depending on whether or not you install the cluster into an existing folder.
 
-***Required permissions and propagation settings***
+**Required permissions and propagation settings**
 
 <table>
 <thead>
@@ -225,46 +224,40 @@ Additionally, the user requires some `ReadOnly` permissions, and some of the rol
   <td>vSphere vCenter data center</td>
   <td>Existing folder</td>
   <td>False</td>
-  <td><code>ReadOnly</code> permission<br><br>.2+</td>
+  <td><code>ReadOnly</code> permission</td>
 </tr>
 <tr>
-
-</tr>
-<tr>
-
   <td>vSphere vCenter Cluster</td>
-</tr>
-<tr>
   <td>Always</td>
   <td>True</td>
   <td>Listed required privileges</td>
-  <td>vSphere vCenter Datastore</td>
 </tr>
 <tr>
+  <td>vSphere vCenter Datastore</td>
   <td>Always</td>
   <td>False</td>
   <td>Listed required privileges</td>
-  <td>vSphere Switch</td>
 </tr>
 <tr>
+  <td>vSphere Switch</td>
   <td>Always</td>
   <td>False</td>
   <td><code>ReadOnly</code> permission</td>
-  <td>vSphere Port Group</td>
 </tr>
 <tr>
+  <td>vSphere Port Group</td>
   <td>Always</td>
   <td>False</td>
   <td>Listed required privileges</td>
-  <td>vSphere vCenter Virtual Machine Folder</td>
 </tr>
 <tr>
+  <td>vSphere vCenter Virtual Machine Folder</td>
   <td>Existing folder</td>
   <td>True</td>
   <td>Listed required privileges</td>
-  <td>vSphere vCenter Resource Pool</td>
 </tr>
 <tr>
+  <td>vSphere vCenter Resource Pool</td>
   <td>Existing resource pool</td>
   <td>True</td>
   <td>Listed required privileges</td>
@@ -292,7 +285,7 @@ The following tables specify how the required vCenter account privileges provide
 
 <a name="post-installation-vsphere-minimum-permissions_upi-vsphere-installation-reqs"></a>
 
-***Minimum permissions for postinstallation management of components***
+**Minimum permissions for postinstallation management of components**
 
 <table>
 <thead>
@@ -335,7 +328,6 @@ The following tables specify how the required vCenter account privileges provide
 </tr>
 <tr>
   <td>vSphere vCenter data center</td>
-
   <td><code>VirtualMachine.Inventory.Create</code> and <code>VirtualMachine.Inventory.Delete</code> privileges are optional if your cluster does not use the Machine API. If your cluster does use the Machine API and you want to set the minimum set of permissions for the API, see the "Minimum permissions for the Machine API" table.</td>
   <td><ul><li><code>Resource.AssignVMToPool</code></li><li><code>VirtualMachine.Config.AddExistingDisk</code></li><li><code>VirtualMachine.Config.AddRemoveDevice</code></li><li><code>VirtualMachine.Interact.PowerOff</code></li><li><code>VirtualMachine.Interact.PowerOn</code></li><li><code>VirtualMachine.Provisioning.DeployTemplate</code></li></ul></td>
 </tr>
@@ -344,7 +336,7 @@ The following tables specify how the required vCenter account privileges provide
 
 <a name="installation-vsphere-minimum-permissions-storage_upi-vsphere-installation-reqs"></a>
 
-***Minimum permissions for the storage components***
+**Minimum permissions for the storage components**
 
 <table>
 <thead>
@@ -387,7 +379,6 @@ The following tables specify how the required vCenter account privileges provide
 </tr>
 <tr>
   <td>vSphere vCenter data center</td>
-
   <td><code>VirtualMachine.Inventory.Create</code> and <code>VirtualMachine.Inventory.Delete</code> privileges are optional if your cluster does not use the Machine API. If your cluster does use the Machine API and you want to set the minimum set of permissions for the API, see the "Minimum permissions for the Machine API" table.</td>
   <td><ul><li><code>VirtualMachine.Config.AddExistingDisk</code></li><li><code>VirtualMachine.Config.AddRemoveDevice</code></li></ul></td>
 </tr>
@@ -396,7 +387,7 @@ The following tables specify how the required vCenter account privileges provide
 
 <a name="post-installation-vsphere-minimum-machine-api_upi-vsphere-installation-reqs"></a>
 
-***Minimum permissions for the Machine API***
+**Minimum permissions for the Machine API**
 
 <table>
 <thead>
@@ -439,7 +430,6 @@ The following tables specify how the required vCenter account privileges provide
 </tr>
 <tr>
   <td>vSphere vCenter data center</td>
-
   <td><code>VirtualMachine.Inventory.Create</code> and <code>VirtualMachine.Inventory.Delete</code> privileges are optional if your cluster does not use the Machine API.</td>
   <td><ul><li><code>Resource.AssignVMToPool</code></li><li><code>VirtualMachine.Interact.PowerOff</code></li><li><code>VirtualMachine.Interact.PowerOn</code></li><li><code>VirtualMachine.Provisioning.DeployTemplate</code></li></ul></td>
 </tr>
@@ -502,7 +492,7 @@ Additionally, you must create the following networking resources before you inst
 
 You must create DNS records for two static IP addresses in the appropriate DNS server for the vCenter instance that hosts your OpenShift Container Platform cluster. In each record, `<cluster_name>` is the cluster name and `<base_domain>` is the cluster base domain that you specify when you install the cluster. A complete DNS record takes the form: `<component>.<cluster_name>.<base_domain>.`.
 
-***Required DNS records***
+**Required DNS records**
 
 <table>
 <thead>
@@ -515,18 +505,19 @@ You must create DNS records for two static IP addresses in the appropriate DNS s
 <tbody>
 <tr>
   <td>API VIP</td>
-  <td><code>api.<cluster_name>.<base_domain>.</code></td>
+  <td><code>api.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
   <td>This DNS A/AAAA or CNAME (Canonical Name) record must point to the load balancer for the control plane machines. This record must be resolvable by both clients external to the cluster and from all the nodes within the cluster.</td>
 </tr>
 <tr>
   <td>Ingress VIP</td>
-  <td><code>*.apps.<cluster_name>.<base_domain>.</code></td>
+  <td><code>*.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
   <td>A wildcard DNS A/AAAA or CNAME record that points to the load balancer that targets the machines that run the Ingress router pods, which are the worker nodes by default. This record must be resolvable by both clients external to the cluster and from all the nodes within the cluster.</td>
 </tr>
 </tbody>
 </table>
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating a compute machine set on vSphere](/openshift-docs-markdown/machine_management/creating_machinesets/creating-machineset-vsphere#creating-machineset-vsphere_creating-machineset-vsphere)
 
@@ -552,15 +543,13 @@ The smallest OpenShift Container Platform clusters require the following hosts:
 
 The bootstrap and control plane machines must use Red Hat Enterprise Linux CoreOS (RHCOS) as the operating system. However, the compute machines can use Red Hat Enterprise Linux CoreOS (RHCOS), Red Hat Enterprise Linux (RHEL) 8.6 and later.
 
-RHCOS is based on Red Hat Enterprise Linux (RHEL) 9.8 and inherits all of its hardware certifications and requirements.
-
-See [Red Hat Enterprise Linux technology capabilities and limits](https://access.redhat.com/articles/rhel-limits).
+RHCOS is based on Red Hat Enterprise Linux (RHEL) 9.8 and inherits all of its hardware certifications and requirements. See [Red Hat Enterprise Linux technology capabilities and limits](https://access.redhat.com/articles/rhel-limits).
 
 ### Minimum resource requirements for cluster installation {#installation-minimum-resource-requirements_upi-vsphere-installation-reqs}
 
 To ensure that your OpenShift Container Platform cluster runs as expected, each cluster machine must meet minimum CPU, memory, and storage requirements.
 
-***Minimum resource requirements***
+**Minimum resource requirements**
 
 <table>
 <thead>
@@ -569,44 +558,34 @@ To ensure that your OpenShift Container Platform cluster runs as expected, each 
   <th>Operating system</th>
   <th>vCPU</th>
   <th>Virtual RAM</th>
-
   <th>Storage</th>
+  <th>Input/Output Per Second (IOPS)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td>Input/Output Per Second (IOPS)</td>
   <td>Bootstrap</td>
   <td>RHCOS</td>
-
   <td>4</td>
   <td>16 GB</td>
   <td>100 GB</td>
   <td>300</td>
 </tr>
 <tr>
-
   <td>Control plane</td>
   <td>RHCOS</td>
-
   <td>4</td>
   <td>16 GB</td>
   <td>100 GB</td>
+  <td>300</td>
 </tr>
 <tr>
-  <td>300</td>
-
   <td>Compute</td>
-
   <td>RHCOS</td>
   <td>2</td>
   <td>8 GB</td>
   <td>100 GB</td>
   <td>300</td>
-
-</tr>
-<tr>
-
 </tr>
 </tbody>
 </table>
@@ -637,6 +616,7 @@ If an instance type for your platform meets the minimum requirements for cluster
 > For more information, see the Red Hat Knowledgebase article [Memory Ballooning and OpenShift](https://access.redhat.com/articles/7074533).
 
 **Additional resources**
+{._additional-resources}
 
 - [Optimizing storage](/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 
@@ -654,6 +634,7 @@ You can encrypt your virtual machines prior to installing OpenShift Container Pl
 When you deploy the OVF template in the section titled "Installing RHCOS and starting the OpenShift Container Platform bootstrap process", select the option to "Encrypt this virtual machine" when you are selecting storage for the OVF template. After completing cluster installation, create a storage class that uses the encryption storage policy you used to encrypt the virtual machines.
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating an encrypted storage class](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-vsphere#vsphere-pv-encryption)
 
@@ -693,7 +674,7 @@ This section provides details about the ports that are required.
 > [!IMPORTANT]
 > In connected OpenShift Container Platform environments, all nodes are required to have internet access to pull images for platform containers and provide telemetry data to Red Hat.
 
-***Ports used for all-machine to all-machine communications***
+**Ports used for all-machine to all-machine communications**
 
 <table>
 <thead>
@@ -707,56 +688,60 @@ This section provides details about the ports that are required.
 <tr>
   <td>ICMP</td>
   <td>N/A</td>
-  <td>Network reachability tests<br><br>.4+</td>
+  <td>Network reachability tests</td>
 </tr>
 <tr>
-  <td>TCP</td>
+  <td rowspan="4">TCP</td>
   <td><code>1936</code></td>
   <td>Metrics</td>
 </tr>
 <tr>
   <td><code>9000</code>-<code>9999</code></td>
-  <td>Host level services, including the node exporter on ports <code>9100</code>-<code>9101</code> andthe Cluster Version Operator on port <code>9099</code>.</td>
+  <td>Host level services, including the node exporter on ports <code>9100</code>-<code>9101</code> and the Cluster Version Operator on port <code>9099</code>.</td>
+</tr>
+<tr>
   <td><code>10250</code>-<code>10259</code></td>
-</tr>
-<tr>
   <td>The default ports that Kubernetes reserves</td>
-  <td><code>22623</code></td>
-  <td>The port handles traffic from the Machine Config Server and directs the traffic to the control plane machines..6+</td>
 </tr>
 <tr>
-  <td>UDP</td>
+  <td><code>22623</code></td>
+  <td>The port handles traffic from the Machine Config Server and directs the traffic to the control plane machines.</td>
+</tr>
+<tr>
+  <td rowspan="5">UDP</td>
   <td><code>6081</code></td>
   <td>Geneve</td>
 </tr>
 <tr>
   <td><code>9000</code>-<code>9999</code></td>
   <td>Host level services, including the node exporter on ports <code>9100</code>-<code>9101</code>.</td>
-  <td><code>500</code></td>
 </tr>
 <tr>
+  <td><code>500</code></td>
   <td>IPsec IKE packets</td>
+</tr>
+<tr>
   <td><code>4500</code></td>
   <td>IPsec NAT-T packets</td>
 </tr>
 <tr>
   <td><code>123</code></td>
   <td>Network Time Protocol (NTP) on UDP port <code>123</code>. If an external NTP time server is configured, you must open UDP port <code>123</code>.</td>
-  <td>TCP/UDP</td>
 </tr>
 <tr>
+  <td>TCP/UDP</td>
   <td><code>30000</code>-<code>32767</code></td>
   <td>Kubernetes node port</td>
-  <td>ESP</td>
 </tr>
 <tr>
+  <td>ESP</td>
   <td>N/A</td>
   <td>IPsec Encapsulating Security Payload (ESP)</td>
 </tr>
 </tbody>
 </table>
 
-***Ports used for all-machine to control plane communications***
+**Ports used for all-machine to control plane communications**
 
 <table>
 <thead>
@@ -775,7 +760,7 @@ This section provides details about the ports that are required.
 </tbody>
 </table>
 
-***Ports used for control plane machine to control plane machine communications***
+**Ports used for control plane machine to control plane machine communications**
 
 <table>
 <thead>
@@ -801,6 +786,7 @@ OpenShift Container Platform clusters are configured to use a public Network Tim
 If a DHCP server provides NTP server information, the chrony time service on the Red Hat Enterprise Linux CoreOS (RHCOS) machines read the information and can sync the clock with the NTP servers.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring chrony time service](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-chrony_installing-customizing)
 
@@ -824,7 +810,7 @@ DNS A/AAAA or CNAME records are used for name resolution and PTR records are use
 
 The following DNS records are required for a user-provisioned OpenShift Container Platform cluster and they must be in place before installation. In each record, `<cluster_name>` is the cluster name and `<base_domain>` is the base domain that you specify in the `install-config.yaml` file. A complete DNS record takes the form: `<component>.<cluster_name>.<base_domain>.`.
 
-***Required DNS records***
+**Required DNS records**
 
 <table>
 <thead>
@@ -836,34 +822,33 @@ The following DNS records are required for a user-provisioned OpenShift Containe
 </thead>
 <tbody>
 <tr>
-  <td>.2+a</td>
-  <td>Kubernetes API</td>
-  <td><code>api.<cluster_name>.<base_domain>.</code></td>
+  <td rowspan="2">Kubernetes API</td>
+  <td><code>api.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
+  <td>A DNS A/AAAA or CNAME record, and a DNS PTR record, to identify the API load balancer. These records must be resolvable by both clients external to the cluster and from all the nodes within the cluster.</td>
 </tr>
 <tr>
-  <td>A DNS A/AAAA or CNAME record, and a DNS PTR record, to identify the API load balancer. These records must be resolvable by both clients external to the cluster and from all the nodes within the cluster.</td>
-  <td><code>api-int.<cluster_name>.<base_domain>.</code></td>
-  <td>A DNS A/AAAA or CNAME record, and a DNS PTR record, to internally identify the API load balancer. These records must be resolvable from all the nodes within the cluster.<dl><dt>Important</dt><dd>The API server must be able to resolve the worker nodes by the hostnamesthat are recorded in Kubernetes. If the API server cannot resolve the nodenames, then proxied API calls can fail, and you cannot retrieve logs from pods.</dd></dl></td>
+  <td><code>api-int.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
+  <td>A DNS A/AAAA or CNAME record, and a DNS PTR record, to internally identify the API load balancer. These records must be resolvable from all the nodes within the cluster.<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>The API server must be able to resolve the worker nodes by the hostnames that are recorded in Kubernetes. If the API server cannot resolve the node names, then proxied API calls can fail, and you cannot retrieve logs from pods.</dd></dl></td>
 </tr>
 <tr>
   <td>Routes</td>
-  <td><code>*.apps.<cluster_name>.<base_domain>.</code></td>
-  <td>A wildcard DNS A/AAAA or CNAME record that refers to the application ingress load balancer. The application ingress load balancer targets the machines that run the Ingress Controller pods.ifeval::["upi-vsphere-installation-reqs" == "installing-two-node-fencing"]By default, the Ingress Controller pods run on compute nodes. In cluster topologies without dedicated compute nodes, such as two-node or three-node clusters, the control plane nodes also carry the worker label, so the Ingress pods are scheduled on the control plane nodes.ifeval::["upi-vsphere-installation-reqs" != "installing-two-node-fencing"]The Ingress Controller pods run on the compute machines by default.These records must be resolvable by both clients external to the cluster and from all the nodes within the cluster.<br><br>For example, <code>console-openshift-console.apps.<cluster_name>.<base_domain></code> is used as a wildcard route to the OpenShift Container Platform console.</td>
+  <td><code>*.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
+  <td>A wildcard DNS A/AAAA or CNAME record that refers to the application ingress load balancer. The application ingress load balancer targets the machines that run the Ingress Controller pods.   The Ingress Controller pods run on the compute machines by default.  These records must be resolvable by both clients external to the cluster and from all the nodes within the cluster.<br><br>For example, <code>console-openshift-console.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;</code> is used as a wildcard route to the OpenShift Container Platform console.</td>
 </tr>
 <tr>
   <td>Bootstrap machine</td>
-  <td><code>bootstrap.<cluster_name>.<base_domain>.</code></td>
-  <td>A DNS A/AAAA or CNAME record, and a DNS PTR record, to identify the bootstrapmachine. These records must be resolvable by the nodes within the cluster.</td>
+  <td><code>bootstrap.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
+  <td>A DNS A/AAAA or CNAME record, and a DNS PTR record, to identify the bootstrap machine. These records must be resolvable by the nodes within the cluster.</td>
 </tr>
 <tr>
   <td>Control plane machines</td>
-  <td><code><control_plane><n>.<cluster_name>.<base_domain>.</code></td>
-  <td>DNS A/AAAA or CNAME records and DNS PTR records to identify each machinefor the control plane nodes. These records must be resolvable by the nodes within the cluster.<br><br>ifeval::["upi-vsphere-installation-reqs" != "installing-two-node-fencing"]</td>
+  <td><code>&lt;control_plane&gt;&lt;n&gt;.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
+  <td>DNS A/AAAA or CNAME records and DNS PTR records to identify each machine for the control plane nodes. These records must be resolvable by the nodes within the cluster.</td>
 </tr>
 <tr>
   <td>Compute machines</td>
-  <td><code><compute><n>.<cluster_name>.<base_domain>.</code></td>
-  <td>DNS A/AAAA or CNAME records and DNS PTR records to identify each machinefor the worker nodes. These records must be resolvable by the nodes within the cluster.</td>
+  <td><code>&lt;compute&gt;&lt;n&gt;.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
+  <td>DNS A/AAAA or CNAME records and DNS PTR records to identify each machine for the worker nodes. These records must be resolvable by the nodes within the cluster.</td>
 </tr>
 </tbody>
 </table>
@@ -915,12 +900,10 @@ bootstrap.ocp4.example.com.	IN	A	192.168.1.96
 control-plane0.ocp4.example.com.	IN	A	192.168.1.97
 control-plane1.ocp4.example.com.	IN	A	192.168.1.98
 ;
-{%- if context != "installing-two-node-fencing" %}
 control-plane2.ocp4.example.com.	IN	A	192.168.1.99
 ;
 compute0.ocp4.example.com.	IN	A	192.168.1.11
 compute1.ocp4.example.com.	IN	A	192.168.1.7
-{%- endif %}
 ;
 ;EOF
 ```
@@ -965,12 +948,10 @@ $TTL 1W
 97.1.168.192.in-addr.arpa.	IN	PTR	control-plane0.ocp4.example.com.
 98.1.168.192.in-addr.arpa.	IN	PTR	control-plane1.ocp4.example.com.
 ;
-{%- if context != "installing-two-node-fencing" %}
 99.1.168.192.in-addr.arpa.	IN	PTR	control-plane2.ocp4.example.com.
 ;
 11.1.168.192.in-addr.arpa.	IN	PTR	compute0.ocp4.example.com.
 7.1.168.192.in-addr.arpa.	IN	PTR	compute1.ocp4.example.com.
-{%- endif %}
 ;
 ;EOF
 ```
@@ -1009,13 +990,13 @@ The load balancing infrastructure must meet the following requirements:
   - Layer 4 load balancing only. This can be referred to as Raw TCP or SSL Passthrough mode.
   - A stateless load balancing algorithm. The options vary based on the load balancer implementation.
 
-> [!IMPORTANT]
-> Do not configure session persistence for an API load balancer. Configuring session persistence for a Kubernetes API server might cause performance issues from excess application traffic for your OpenShift Container Platform cluster and the Kubernetes API that runs inside the cluster.
+  > [!IMPORTANT]
+  > Do not configure session persistence for an API load balancer. Configuring session persistence for a Kubernetes API server might cause performance issues from excess application traffic for your OpenShift Container Platform cluster and the Kubernetes API that runs inside the cluster.
 
 Configure the following ports on both the front and back of the API load balancers:
 
 | Port | Back-end machines (pool members) | Internal | External | Description |
-| --- | --- | --- | --- | --- |
+| --- | --- | :---: | :---: | --- |
 | `6443` | Bootstrap and control plane. You remove the bootstrap machine from the load balancer after the bootstrap machine initializes the cluster control plane. You must configure the `/readyz` endpoint for the API server health check probe. | X | X | Kubernetes API server |
 | `22623` | Bootstrap and control plane. You remove the bootstrap machine from the load balancer after the bootstrap machine initializes the cluster control plane. | X |  | Machine config server |
 
@@ -1027,15 +1008,15 @@ Configure the following ports on both the front and back of the API load balance
   - Layer 4 load balancing only. This can be referred to as Raw TCP or SSL Passthrough mode.
   - A connection-based or session-based persistence is recommended, based on the options available and types of applications that will be hosted on the platform.
 
-> [!TIP]
-> If the true IP address of the client can be seen by the application Ingress load balancer, enabling source IP-based session persistence can improve performance for applications that use end-to-end TLS encryption.
+  > [!TIP]
+  > If the true IP address of the client can be seen by the application Ingress load balancer, enabling source IP-based session persistence can improve performance for applications that use end-to-end TLS encryption.
 
 Configure the following ports on both the front and back of the load balancers:
 
 **Application Ingress load balancer**
 
 | Port | Back-end machines (pool members) | Internal | External | Description |
-| --- | --- | --- | --- | --- |
+| --- | --- | :---: | :---: | --- |
 | `443` | The machines that run the Ingress Controller pods, compute, or worker, by default. | X | X | HTTPS traffic |
 | `80` | The machines that run the Ingress Controller pods, compute, or worker, by default. | X | X | HTTP traffic |
 

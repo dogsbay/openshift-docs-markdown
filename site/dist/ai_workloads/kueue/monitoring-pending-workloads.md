@@ -15,6 +15,7 @@ You can regulate inbound requests and high request volumes, and provide user per
 Red Hat build of Kueue uses Kubernetes API Priority and Fairness (APF) To help manage pending workloads. APF is a flow control mechanism that allows you to define API-level policies to regulate inbound requests to the API server. It protects the API server from being overwhelmed by unexpectedly high request volume, while protecting critical traffic from the throttling effect on best-effort workloads.
 
 **Additional resources**
+{._additional-resources}
 
 - [API Priority and Fairness](https://kubernetes.io/docs/concepts/cluster-administration/flow-control/)
 
@@ -28,6 +29,7 @@ You need to provide permissions to the users that require access to the specific
 - If the user needs access to the pending workloads from the `LocalQueue` resource, a `RoleBinding` schema needs to be created referencing the ClusterRole `kueue-batch-user-role`.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring role-based permissions](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/ai_workloads/red-hat-build-of-kueue#rbac-permissions)
 

@@ -33,6 +33,7 @@ The requirements are as follows:
   - If you use RHOSO, see "NFV performance considerations (Red Hat OpenStack Services on OpenShift (RHOSO) documentation)".
 
 **Additional resources**
+{._additional-resources}
 
 - [About Single Root I/O Virtualization (SR-IOV) hardware networks](/openshift-docs-markdown/networking/hardware_networks/about-sriov#about-sriov)
 - [Planning an SR-IOV deployment (Red Hat OpenStack Platform (RHOSP) documentation)](https://docs.redhat.com/en/documentation/red_hat_openstack_platform/17.1/html/configuring_network_functions_virtualization/plan-sriov-deploy_rhosp-nfv)
@@ -56,6 +57,7 @@ The requirements are as follows:
   - Configure your OVS-DPDK deployment. For more information, see"Creating the data plane for SR-IOV and DPDK environments (Red Hat OpenStack Services on OpenShift (RHOSO) documentation)".
 
 **Additional resources**
+{._additional-resources}
 
 - [Planning your OVS-DPDK deployment (Red Hat OpenStack Platform (RHOSP) documentation)](https://docs.redhat.com/en/documentation/red_hat_openstack_platform/17.1/html/configuring_network_functions_virtualization/plan-ovs-dpdk-deploy_rhosp-nfv)
 - [Creating a flavor and deploying an instance for OVS-DPDK](https://docs.redhat.com/en/documentation/red_hat_openstack_platform/17.1/html/configuring_network_functions_virtualization/config-dpdk-deploy_rhosp-nfv#create-flavor-deploy-instance-ovsdpdk_cfgdpdk-nfv)
@@ -105,6 +107,7 @@ You must configure your RHOSP platform before you install a cluster that uses SR
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Planning an SR-IOV deployment](https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/16.1/html-single/network_functions_virtualization_planning_and_configuration_guide/index#assembly_sriov_parameters)
 

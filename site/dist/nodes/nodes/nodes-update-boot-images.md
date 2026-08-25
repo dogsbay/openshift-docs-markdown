@@ -65,8 +65,8 @@ How the cluster behaves after disabling or re-enabling the feature, depends upon
   - The boot image version used by the machine sets is updated to the current OpenShift Container Platform version, if different.
   - When you scale up nodes, the new nodes use the current OpenShift Container Platform version in the cluster.
 
-> [!NOTE]
-> Because a boot image is used only when a node is scaled up, this feature has no effect on existing nodes.
+  > [!NOTE]
+  > Because a boot image is used only when a node is scaled up, this feature has no effect on existing nodes.
 
 To view the current Red Hat Enterprise Linux CoreOS (RHCOS) boot image version used in your cluster, you can view the `/sysroot/.coreos-aleph-version.json` file on that node.
 
@@ -430,7 +430,8 @@ When boot image management is enabled, the MCO automatically enables boot image 
       `<version>`
       :   Specifies the boot image version.
 
-## Additional resources {#additional-resources_nodes-update-boot-images}
+**Additional resources**
+{._additional-resources}
 
 - [Disabling boot image management](/openshift-docs-markdown/machine_configuration/mco-update-boot-images#mco-update-boot-images-disable_machine-configs-configure)
 - [Enabling boot image management](/openshift-docs-markdown/machine_configuration/mco-update-boot-images#mco-update-boot-images-configuring_machine-configs-configure)

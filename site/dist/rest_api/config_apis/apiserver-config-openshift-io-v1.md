@@ -1,5 +1,5 @@
 ---
-title: APIServer []
+title: APIServer [config.openshift.io/v1]
 ---
 
 # APIServer \[config.openshift.io/v1\] {#apiserver-config-openshift-io-v1}
@@ -44,7 +44,7 @@ Type
 | `clientCA` | `object` | clientCA references a ConfigMap containing a certificate bundle for the signers that will be recognized for incoming client certificates in addition to the operator managed signers. If this is empty, then only operator managed signers are valid. You usually only have to set this if you have your own PKI you wish to honor client certificates from. The ConfigMap must exist in the openshift-config namespace and contain the following required fields: - ConfigMap.Data\["ca-bundle.crt"\] - CA bundle. |
 | `encryption` | `object` | encryption allows the configuration of encryption of resources at the datastore layer. |
 | `servingCerts` | `object` | servingCert is the TLS cert info for serving secure traffic. If not specified, operator managed certificates will be used for serving secure traffic. |
-| `tlsSecurityProfile` | `object` | tlsSecurityProfile specifies settings for TLS connections for externally exposed servers. When omitted, this means no opinion and the platform is left to choose a reasonable default, which is subject to change over time. The current default is the Intermediate profile. |
+| `tlsSecurityProfile` | `object` | tlsSecurityProfile specifies settings for TLS connections for externally exposed servers.<br>When omitted, this means no opinion and the platform is left to choose a reasonable default, which is subject to change over time. The current default is the Intermediate profile. |
 
 ### .spec.audit {#_specaudit}
 
@@ -60,7 +60,7 @@ Type
 | --- | --- | --- |
 | `customRules` | `array` | customRules specify profiles per group. These profile take precedence over the top-level profile field if they apply. They are evaluation from top to bottom and the first one that matches, applies. |
 | `customRules[]` | `object` | AuditCustomRule describes a custom rule for an audit profile that takes precedence over the top-level profile. |
-| `profile` | `string` | profile specifies the name of the desired top-level audit profile to be applied to all requests sent to any of the OpenShift-provided API servers in the cluster (kube-apiserver, openshift-apiserver and oauth-apiserver), with the exception of those requests that match one or more of the customRules. The following profiles are provided: - Default: default policy which means MetaData level logging with the exception of events   (not logged at all), oauthaccesstokens and oauthauthorizetokens (both logged at RequestBody   level). - WriteRequestBodies: like 'Default', but logs request and response HTTP payloads for write requests (create, update, patch). - AllRequestBodies: like 'WriteRequestBodies', but also logs request and response HTTP payloads for read requests (get, list). - None: no requests are logged at all, not even oauthaccesstokens and oauthauthorizetokens. Warning: It is not recommended to disable audit logging by using the `None` profile unless you are fully aware of the risks of not logging data that can be beneficial when troubleshooting issues. If you disable audit logging and a support situation arises, you might need to enable audit logging and reproduce the issue in order to troubleshoot properly. If unset, the 'Default' profile is used as the default. |
+| `profile` | `string` | profile specifies the name of the desired top-level audit profile to be applied to all requests sent to any of the OpenShift-provided API servers in the cluster (kube-apiserver, openshift-apiserver and oauth-apiserver), with the exception of those requests that match one or more of the customRules.<br>The following profiles are provided: - Default: default policy which means MetaData level logging with the exception of events (not logged at all), oauthaccesstokens and oauthauthorizetokens (both logged at RequestBody level). - WriteRequestBodies: like 'Default', but logs request and response HTTP payloads for write requests (create, update, patch). - AllRequestBodies: like 'WriteRequestBodies', but also logs request and response HTTP payloads for read requests (get, list). - None: no requests are logged at all, not even oauthaccesstokens and oauthauthorizetokens.<br>Warning: It is not recommended to disable audit logging by using the `None` profile unless you are fully aware of the risks of not logging data that can be beneficial when troubleshooting issues. If you disable audit logging and a support situation arises, you might need to enable audit logging and reproduce the issue in order to troubleshoot properly.<br>If unset, the 'Default' profile is used as the default. |
 
 ### .spec.audit.customRules {#_specauditcustomrules}
 
@@ -89,7 +89,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `group` | `string` | group is a name of group a request user must be member of in order to this profile to apply. |
-| `profile` | `string` | profile specifies the name of the desired audit policy configuration to be deployed to all OpenShift-provided API servers in the cluster. The following profiles are provided: - Default: the existing default policy. - WriteRequestBodies: like 'Default', but logs request and response HTTP payloads for write requests (create, update, patch). - AllRequestBodies: like 'WriteRequestBodies', but also logs request and response HTTP payloads for read requests (get, list). - None: no requests are logged at all, not even oauthaccesstokens and oauthauthorizetokens. If unset, the 'Default' profile is used as the default. |
+| `profile` | `string` | profile specifies the name of the desired audit policy configuration to be deployed to all OpenShift-provided API servers in the cluster.<br>The following profiles are provided: - Default: the existing default policy. - WriteRequestBodies: like 'Default', but logs request and response HTTP payloads for write requests (create, update, patch). - AllRequestBodies: like 'WriteRequestBodies', but also logs request and response HTTP payloads for read requests (get, list). - None: no requests are logged at all, not even oauthaccesstokens and oauthauthorizetokens.<br>If unset, the 'Default' profile is used as the default. |
 
 ### .spec.clientCA {#_specclientca}
 
@@ -122,7 +122,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `type` | `string` | type defines what encryption type should be used to encrypt resources at the datastore layer. When this field is unset (i.e. when it is set to the empty string), identity is implied. The behavior of unset can and will change over time.  Even if encryption is enabled by default, the meaning of unset may change to a different encryption type based on changes in best practices. When encryption is enabled, all sensitive resources shipped with the platform are encrypted. This list of sensitive resources can and will change over time.  The current authoritative list is:   1. secrets   2. configmaps   3. routes.route.openshift.io   4. oauthaccesstokens.oauth.openshift.io   5. oauthauthorizetokens.oauth.openshift.io |
+| `type` | `string` | type defines what encryption type should be used to encrypt resources at the datastore layer. When this field is unset (i.e. when it is set to the empty string), identity is implied. The behavior of unset can and will change over time. Even if encryption is enabled by default, the meaning of unset may change to a different encryption type based on changes in best practices.<br>When encryption is enabled, all sensitive resources shipped with the platform are encrypted. This list of sensitive resources can and will change over time. The current authoritative list is:<br> 1. secrets 2. configmaps 3. routes.route.openshift.io 4. oauthaccesstokens.oauth.openshift.io 5. oauthauthorizetokens.oauth.openshift.io |
 
 ### .spec.servingCerts {#_specservingcerts}
 
@@ -198,11 +198,11 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `custom` | \`\` | custom is a user-defined TLS security profile. Be extremely careful using a custom profile as invalid configurations can be catastrophic. An example custom profile looks like this:   minTLSVersion: VersionTLS11   ciphers:     - ECDHE-ECDSA-CHACHA20-POLY1305     - ECDHE-RSA-CHACHA20-POLY1305     - ECDHE-RSA-AES128-GCM-SHA256     - ECDHE-ECDSA-AES128-GCM-SHA256 |
-| `intermediate` | \`\` | intermediate is a TLS profile for use when you do not need compatibility with legacy clients and want to remain highly secure while being compatible with most clients currently in use. This profile is equivalent to a Custom profile specified as:   minTLSVersion: VersionTLS12   ciphers:     - TLS_AES_128_GCM_SHA256     - TLS_AES_256_GCM_SHA384     - TLS_CHACHA20_POLY1305_SHA256     - ECDHE-ECDSA-AES128-GCM-SHA256     - ECDHE-RSA-AES128-GCM-SHA256     - ECDHE-ECDSA-AES256-GCM-SHA384     - ECDHE-RSA-AES256-GCM-SHA384     - ECDHE-ECDSA-CHACHA20-POLY1305     - ECDHE-RSA-CHACHA20-POLY1305 |
-| `modern` | \`\` | modern is a TLS security profile for use with clients that support TLS 1.3 and do not need backward compatibility for older clients. This profile is equivalent to a Custom profile specified as:   minTLSVersion: VersionTLS13   ciphers:     - TLS_AES_128_GCM_SHA256     - TLS_AES_256_GCM_SHA384     - TLS_CHACHA20_POLY1305_SHA256 |
-| `old` | \`\` | old is a TLS profile for use when services need to be accessed by very old clients or libraries and should be used only as a last resort. This profile is equivalent to a Custom profile specified as:   minTLSVersion: VersionTLS10   ciphers:     - TLS_AES_128_GCM_SHA256     - TLS_AES_256_GCM_SHA384     - TLS_CHACHA20_POLY1305_SHA256     - ECDHE-ECDSA-AES128-GCM-SHA256     - ECDHE-RSA-AES128-GCM-SHA256     - ECDHE-ECDSA-AES256-GCM-SHA384     - ECDHE-RSA-AES256-GCM-SHA384     - ECDHE-ECDSA-CHACHA20-POLY1305     - ECDHE-RSA-CHACHA20-POLY1305     - ECDHE-ECDSA-AES128-SHA256     - ECDHE-RSA-AES128-SHA256     - ECDHE-ECDSA-AES128-SHA     - ECDHE-RSA-AES128-SHA     - ECDHE-ECDSA-AES256-SHA     - ECDHE-RSA-AES256-SHA     - AES128-GCM-SHA256     - AES256-GCM-SHA384     - AES128-SHA256     - AES128-SHA     - AES256-SHA     - DES-CBC3-SHA |
-| `type` | `string` | type is one of Old, Intermediate, Modern or Custom. Custom provides the ability to specify individual TLS security profile parameters. The profiles are based on version 5.7 of the Mozilla Server Side TLS configuration guidelines. The cipher lists consist of the configuration’s "ciphersuites" followed by the Go-specific "ciphers" from the guidelines. See: https://ssl-config.mozilla.org/guidelines/5.7.json The profiles are intent based, so they may change over time as new ciphers are developed and existing ciphers are found to be insecure. Depending on precisely which ciphers are available to a process, the list may be reduced. |
+| `custom` | \`\` | custom is a user-defined TLS security profile. Be extremely careful using a custom profile as invalid configurations can be catastrophic. An example custom profile looks like this:<br> minTLSVersion: VersionTLS11 ciphers: - ECDHE-ECDSA-CHACHA20-POLY1305 - ECDHE-RSA-CHACHA20-POLY1305 - ECDHE-RSA-AES128-GCM-SHA256 - ECDHE-ECDSA-AES128-GCM-SHA256 |
+| `intermediate` | \`\` | intermediate is a TLS profile for use when you do not need compatibility with legacy clients and want to remain highly secure while being compatible with most clients currently in use.<br>This profile is equivalent to a Custom profile specified as: minTLSVersion: VersionTLS12 ciphers: - TLS_AES_128_GCM_SHA256 - TLS_AES_256_GCM_SHA384 - TLS_CHACHA20_POLY1305_SHA256 - ECDHE-ECDSA-AES128-GCM-SHA256 - ECDHE-RSA-AES128-GCM-SHA256 - ECDHE-ECDSA-AES256-GCM-SHA384 - ECDHE-RSA-AES256-GCM-SHA384 - ECDHE-ECDSA-CHACHA20-POLY1305 - ECDHE-RSA-CHACHA20-POLY1305 |
+| `modern` | \`\` | modern is a TLS security profile for use with clients that support TLS 1.3 and do not need backward compatibility for older clients.<br>This profile is equivalent to a Custom profile specified as: minTLSVersion: VersionTLS13 ciphers: - TLS_AES_128_GCM_SHA256 - TLS_AES_256_GCM_SHA384 - TLS_CHACHA20_POLY1305_SHA256 |
+| `old` | \`\` | old is a TLS profile for use when services need to be accessed by very old clients or libraries and should be used only as a last resort.<br>This profile is equivalent to a Custom profile specified as: minTLSVersion: VersionTLS10 ciphers: - TLS_AES_128_GCM_SHA256 - TLS_AES_256_GCM_SHA384 - TLS_CHACHA20_POLY1305_SHA256 - ECDHE-ECDSA-AES128-GCM-SHA256 - ECDHE-RSA-AES128-GCM-SHA256 - ECDHE-ECDSA-AES256-GCM-SHA384 - ECDHE-RSA-AES256-GCM-SHA384 - ECDHE-ECDSA-CHACHA20-POLY1305 - ECDHE-RSA-CHACHA20-POLY1305 - ECDHE-ECDSA-AES128-SHA256 - ECDHE-RSA-AES128-SHA256 - ECDHE-ECDSA-AES128-SHA - ECDHE-RSA-AES128-SHA - ECDHE-ECDSA-AES256-SHA - ECDHE-RSA-AES256-SHA - AES128-GCM-SHA256 - AES256-GCM-SHA384 - AES128-SHA256 - AES128-SHA - AES256-SHA - DES-CBC3-SHA |
+| `type` | `string` | type is one of Old, Intermediate, Modern or Custom. Custom provides the ability to specify individual TLS security profile parameters.<br>The profiles are based on version 5.7 of the Mozilla Server Side TLS configuration guidelines. The cipher lists consist of the configuration’s "ciphersuites" followed by the Go-specific "ciphers" from the guidelines. See: https://ssl-config.mozilla.org/guidelines/5.7.json<br>The profiles are intent based, so they may change over time as new ciphers are developed and existing ciphers are found to be insecure. Depending on precisely which ciphers are available to a process, the list may be reduced. |
 
 ### .status {#_status}
 
@@ -223,13 +223,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of APIServer
   - `GET`: list objects of kind APIServer
   - `POST`: create an APIServer
-- `/apis/config.openshift.io/v1/apiservers/{{ name }}`
+- `/apis/config.openshift.io/v1/apiservers/{name}`
 
   - `DELETE`: delete an APIServer
   - `GET`: read the specified APIServer
   - `PATCH`: partially update the specified APIServer
   - `PUT`: replace the specified APIServer
-- `/apis/config.openshift.io/v1/apiservers/{{ name }}/status`
+- `/apis/config.openshift.io/v1/apiservers/{name}/status`
 
   - `GET`: read status of the specified APIServer
   - `PATCH`: partially update status of the specified APIServer
@@ -303,7 +303,7 @@ Description
 | 202 - Accepted | [`APIServer`](/openshift-docs-markdown/rest_api/config_apis/apiserver-config-openshift-io-v1#apiserver-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/apiservers/{{ name }} {#_apisconfigopenshiftiov1apiservers_name}
+### /apis/config.openshift.io/v1/apiservers/{name} {#_apisconfigopenshiftiov1apiservers_name}
 
 **Global path parameters**
 
@@ -407,7 +407,7 @@ Description
 | 201 - Created | [`APIServer`](/openshift-docs-markdown/rest_api/config_apis/apiserver-config-openshift-io-v1#apiserver-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/apiservers/{{ name }}/status {#_apisconfigopenshiftiov1apiservers_name_status}
+### /apis/config.openshift.io/v1/apiservers/{name}/status {#_apisconfigopenshiftiov1apiservers_name_status}
 
 **Global path parameters**
 

@@ -19,6 +19,7 @@ For more information about CSI inline volumes, see "CSI inline ephemeral volumes
 Familiarity with persistent storage and configuring CSI volumes is recommended when working with a CSI driver. For more information, see "Understanding persistent storage" and "Configuring CSI volumes".
 
 **Additional resources**
+{._additional-resources}
 
 - [CSI inline ephemeral volumes](/openshift-docs-markdown/storage/container_storage_interface/ephemeral-storage-csi-inline#ephemeral-storage-csi-inline)
 - [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage)
@@ -64,7 +65,7 @@ To enable OpenShift Container Platform to mount secrets from external secret man
 1. Install the Secrets Store CSI Driver Operator:
 
    1. Log in to the web console.
-   2. Click **Ecosystem** -> **Software Catalog**.
+   2. Click **Ecosystem** → **Software Catalog**.
    3. Locate the Secrets Store CSI Driver Operator by typing "Secrets Store CSI" in the filter box.
    4. Click the **Secrets Store CSI Driver Operator** button.
    5. On the **Secrets Store CSI Driver Operator** page, click **Install**.
@@ -77,7 +78,7 @@ To enable OpenShift Container Platform to mount secrets from external secret man
       After the installation finishes, the Secrets Store CSI Driver Operator is listed in the **Installed Operators** section of the web console.
 2. Create the `ClusterCSIDriver` instance for the driver (`secrets-store.csi.k8s.io`):
 
-   1. Click **Administration** -> **CustomResourceDefinitions** -> **ClusterCSIDriver**.
+   1. Click **Administration** → **CustomResourceDefinitions** → **ClusterCSIDriver**.
    2. On the **Instances** tab, click **Create ClusterCSIDriver**.
 
       Use the following YAML file:
@@ -249,33 +250,51 @@ You can use the Secrets Store CSI Driver Operator to mount secrets from AWS Secr
         providerSpec:
           apiVersion: cloudcredential.openshift.io/v1
           kind: AWSProviderSpec
+          statementEntries:
+          - action:
+            - "secretsmanager:GetSecretValue"
+            - "secretsmanager:DescribeSecret"
+            effect: Allow
+            resource: "arn:*:secretsmanager:*:*:secret:testSecret-??????"
+        secretRef:
+          name: aws-creds
+          namespace: my-namespace
+        serviceAccountNames:
+        - <service_account_name>
+      ```
+   3. Retrieve the OpenID Connect (OIDC) provider by running the following command:
+
+      ```terminal
+      $ oc get --raw=/.well-known/openid-configuration | jq -r '.issuer'
       ```
 
-{%- if aws_secrets_manager %} statementEntries: - action: - "secretsmanager:GetSecretValue" - "secretsmanager:DescribeSecret" effect: Allow resource: "arn:*:secretsmanager:*:*:secret:testSecret-??????" {% endif %} {% if aws_systems_manager_parameter_store %} statementEntries: - action: - "ssm:GetParameter" - "ssm:GetParameters" effect: Allow resource: "arn:*:ssm:*:*:parameter/testParameter\*" {%- endif %} secretRef: name: aws-creds namespace: my-namespace serviceAccountNames: - <service_account_name> `    1.  Retrieve the OpenID Connect (OIDC) provider by running the following command:        `terminal $ oc get --raw=/.well-known/openid-configuration | jq -r '.issuer' `       `terminal title="Example output" https://<oidc_provider_name> \`\`\`
+      ```terminal {title="Example output"}
+      https://<oidc_provider_name>
+      ```
 
-````
-    Copy the OIDC provider name `<oidc_provider_name>` from the output to use in the next step.
-1.  Use the `ccoctl` tool to process the credentials request by running the following command:
-    ```terminal
-    $ ccoctl aws create-iam-roles \
-        --name my-role --region=<aws_region> \
-        --credentials-requests-dir=<aws_creds_dir_name> \
-        --identity-provider-arn arn:aws:iam::<aws_account_id>:oidc-provider/<oidc_provider_name> --output-dir=<output_dir_name>
-    ```
-    ```terminal title="Example output"
-    2023/05/15 18:10:34 Role arn:aws:iam::<aws_account_id>:role/my-role-my-namespace-aws-creds created
-    2023/05/15 18:10:34 Saved credentials configuration to: credrequests-ccoctl-output/manifests/my-namespace-aws-creds-credentials.yaml
-    2023/05/15 18:10:35 Updated Role policy for Role my-role-my-namespace-aws-creds
-    ```
+      Copy the OIDC provider name `<oidc_provider_name>` from the output to use in the next step.
+   4. Use the `ccoctl` tool to process the credentials request by running the following command:
 
-    Copy the `<aws_role_arn>` from the output to use in the next step. For example, `arn:aws:iam::<aws_account_id>:role/my-role-my-namespace-aws-creds`.
-1.  Bind the service account with the role ARN by running the following command:
-    ```terminal
-    $ oc annotate -n my-namespace sa/aws-provider eks.amazonaws.com/role-arn="<aws_role_arn>"
-    ```
-````
+      ```terminal
+      $ ccoctl aws create-iam-roles \
+          --name my-role --region=<aws_region> \
+          --credentials-requests-dir=<aws_creds_dir_name> \
+          --identity-provider-arn arn:aws:iam::<aws_account_id>:oidc-provider/<oidc_provider_name> --output-dir=<output_dir_name>
+      ```
 
-1. Create a secret provider class to define your secrets store provider:
+      ```terminal {title="Example output"}
+      2023/05/15 18:10:34 Role arn:aws:iam::<aws_account_id>:role/my-role-my-namespace-aws-creds created
+      2023/05/15 18:10:34 Saved credentials configuration to: credrequests-ccoctl-output/manifests/my-namespace-aws-creds-credentials.yaml
+      2023/05/15 18:10:35 Updated Role policy for Role my-role-my-namespace-aws-creds
+      ```
+
+      Copy the `<aws_role_arn>` from the output to use in the next step. For example, `arn:aws:iam::<aws_account_id>:role/my-role-my-namespace-aws-creds`.
+   5. Bind the service account with the role ARN by running the following command:
+
+      ```terminal
+      $ oc annotate -n my-namespace sa/aws-provider eks.amazonaws.com/role-arn="<aws_role_arn>"
+      ```
+3. Create a secret provider class to define your secrets store provider:
 
    1. Create a YAML file that defines the `SecretProviderClass` object:
 
@@ -288,32 +307,30 @@ You can use the Secrets Store CSI Driver Operator to mount secrets from AWS Secr
       spec:
         provider: aws
         parameters:
+          objects: |
+            - objectName: "testSecret"
+              objectType: "secretsmanager"
       ```
 
-{%- if aws_secrets_manager %} objects: | - objectName: "testSecret" objectType: "secretsmanager" {% endif %} {% if aws_systems_manager_parameter_store %} objects: | - objectName: "testParameter" objectType: "ssmparameter" {%- endif %} \`\`\`
+      where:
 
-````
-    where:
+      `metadata.name`
+      :   Specifies the name for the secret provider class.
 
-    `metadata.name`
-    :   Specifies the name for the secret provider class.
+      `metadata.namespace`
+      :   Specifies the namespace for the secret provider class.
 
-    `metadata.namespace`
-    :   Specifies the namespace for the secret provider class.
+      `spec.provider`
+      :   Specifies the provider as `aws`.
 
-    `spec.provider`
-    :   Specifies the provider as `aws`.
+      `spec.parameters`
+      :   Specifies the provider-specific configuration parameters.
+   2. Create the `SecretProviderClass` object by running the following command:
 
-    `spec.parameters`
-    :   Specifies the provider-specific configuration parameters.
-
-1.  Create the `SecretProviderClass` object by running the following command:
-    ```terminal
-    $ oc create -f secret-provider-class-aws.yaml
-    ```
-````
-
-1. Create a deployment to use this secret provider class:
+      ```terminal
+      $ oc create -f secret-provider-class-aws.yaml
+      ```
+4. Create a deployment to use this secret provider class:
 
    1. Create a YAML file that defines the `Deployment` object:
 
@@ -381,9 +398,18 @@ You can use the Secrets Store CSI Driver Operator to mount secrets from AWS Secr
 
      ```terminal {title="Example output"}
 
+     testSecret
+
+     ```
+  2. View a secret in the pod mount by running the following command:
+
+     ```terminal
+     $ oc exec my-aws-deployment-<hash> -n my-namespace -- cat /mnt/secrets-store/testSecret
      ```
 
-{%- if aws_secrets_manager %} testSecret {% endif %} {% if aws_systems_manager_parameter_store %} testParameter {%- endif %} `    1.  View a secret in the pod mount by running the following command:        `terminal $ oc exec my-aws-deployment-<hash> -n my-namespace -- cat /mnt/secrets-store/testSecret `       `terminal title="Example output" <secret_value> \`\`\`
+     ```terminal {title="Example output"}
+     <secret_value>
+     ```
 
 ### Mounting secrets from AWS Systems Manager Parameter Store {#secrets-store-aws_nodes-pods-secrets-store-parameter-store}
 
@@ -530,33 +556,51 @@ You can use the Secrets Store CSI Driver Operator to mount secrets from AWS Syst
         providerSpec:
           apiVersion: cloudcredential.openshift.io/v1
           kind: AWSProviderSpec
+          statementEntries:
+          - action:
+            - "ssm:GetParameter"
+            - "ssm:GetParameters"
+            effect: Allow
+            resource: "arn:*:ssm:*:*:parameter/testParameter*"
+        secretRef:
+          name: aws-creds
+          namespace: my-namespace
+        serviceAccountNames:
+        - <service_account_name>
+      ```
+   3. Retrieve the OpenID Connect (OIDC) provider by running the following command:
+
+      ```terminal
+      $ oc get --raw=/.well-known/openid-configuration | jq -r '.issuer'
       ```
 
-{%- if aws_secrets_manager %} statementEntries: - action: - "secretsmanager:GetSecretValue" - "secretsmanager:DescribeSecret" effect: Allow resource: "arn:*:secretsmanager:*:*:secret:testSecret-??????" {% endif %} {% if aws_systems_manager_parameter_store %} statementEntries: - action: - "ssm:GetParameter" - "ssm:GetParameters" effect: Allow resource: "arn:*:ssm:*:*:parameter/testParameter\*" {%- endif %} secretRef: name: aws-creds namespace: my-namespace serviceAccountNames: - <service_account_name> `    1.  Retrieve the OpenID Connect (OIDC) provider by running the following command:        `terminal $ oc get --raw=/.well-known/openid-configuration | jq -r '.issuer' `       `terminal title="Example output" https://<oidc_provider_name> \`\`\`
+      ```terminal {title="Example output"}
+      https://<oidc_provider_name>
+      ```
 
-````
-    Copy the OIDC provider name `<oidc_provider_name>` from the output to use in the next step.
-1.  Use the `ccoctl` tool to process the credentials request by running the following command:
-    ```terminal
-    $ ccoctl aws create-iam-roles \
-        --name my-role --region=<aws_region> \
-        --credentials-requests-dir=<aws_creds_dir_name> \
-        --identity-provider-arn arn:aws:iam::<aws_account_id>:oidc-provider/<oidc_provider_name> --output-dir=<output_dir_name>
-    ```
-    ```terminal title="Example output"
-    2023/05/15 18:10:34 Role arn:aws:iam::<aws_account_id>:role/my-role-my-namespace-aws-creds created
-    2023/05/15 18:10:34 Saved credentials configuration to: credrequests-ccoctl-output/manifests/my-namespace-aws-creds-credentials.yaml
-    2023/05/15 18:10:35 Updated Role policy for Role my-role-my-namespace-aws-creds
-    ```
+      Copy the OIDC provider name `<oidc_provider_name>` from the output to use in the next step.
+   4. Use the `ccoctl` tool to process the credentials request by running the following command:
 
-    Copy the `<aws_role_arn>` from the output to use in the next step. For example, `arn:aws:iam::<aws_account_id>:role/my-role-my-namespace-aws-creds`.
-1.  Bind the service account with the role ARN by running the following command:
-    ```terminal
-    $ oc annotate -n my-namespace sa/aws-provider eks.amazonaws.com/role-arn="<aws_role_arn>"
-    ```
-````
+      ```terminal
+      $ ccoctl aws create-iam-roles \
+          --name my-role --region=<aws_region> \
+          --credentials-requests-dir=<aws_creds_dir_name> \
+          --identity-provider-arn arn:aws:iam::<aws_account_id>:oidc-provider/<oidc_provider_name> --output-dir=<output_dir_name>
+      ```
 
-1. Create a secret provider class to define your secrets store provider:
+      ```terminal {title="Example output"}
+      2023/05/15 18:10:34 Role arn:aws:iam::<aws_account_id>:role/my-role-my-namespace-aws-creds created
+      2023/05/15 18:10:34 Saved credentials configuration to: credrequests-ccoctl-output/manifests/my-namespace-aws-creds-credentials.yaml
+      2023/05/15 18:10:35 Updated Role policy for Role my-role-my-namespace-aws-creds
+      ```
+
+      Copy the `<aws_role_arn>` from the output to use in the next step. For example, `arn:aws:iam::<aws_account_id>:role/my-role-my-namespace-aws-creds`.
+   5. Bind the service account with the role ARN by running the following command:
+
+      ```terminal
+      $ oc annotate -n my-namespace sa/aws-provider eks.amazonaws.com/role-arn="<aws_role_arn>"
+      ```
+3. Create a secret provider class to define your secrets store provider:
 
    1. Create a YAML file that defines the `SecretProviderClass` object:
 
@@ -569,32 +613,30 @@ You can use the Secrets Store CSI Driver Operator to mount secrets from AWS Syst
       spec:
         provider: aws
         parameters:
+          objects: |
+            - objectName: "testParameter"
+              objectType: "ssmparameter"
       ```
 
-{%- if aws_secrets_manager %} objects: | - objectName: "testSecret" objectType: "secretsmanager" {% endif %} {% if aws_systems_manager_parameter_store %} objects: | - objectName: "testParameter" objectType: "ssmparameter" {%- endif %} \`\`\`
+      where:
 
-````
-    where:
+      `metadata.name`
+      :   Specifies the name for the secret provider class.
 
-    `metadata.name`
-    :   Specifies the name for the secret provider class.
+      `metadata.namespace`
+      :   Specifies the namespace for the secret provider class.
 
-    `metadata.namespace`
-    :   Specifies the namespace for the secret provider class.
+      `spec.provider`
+      :   Specifies the provider as `aws`.
 
-    `spec.provider`
-    :   Specifies the provider as `aws`.
+      `spec.parameters`
+      :   Specifies the provider-specific configuration parameters.
+   2. Create the `SecretProviderClass` object by running the following command:
 
-    `spec.parameters`
-    :   Specifies the provider-specific configuration parameters.
-
-1.  Create the `SecretProviderClass` object by running the following command:
-    ```terminal
-    $ oc create -f secret-provider-class-aws.yaml
-    ```
-````
-
-1. Create a deployment to use this secret provider class:
+      ```terminal
+      $ oc create -f secret-provider-class-aws.yaml
+      ```
+4. Create a deployment to use this secret provider class:
 
    1. Create a YAML file that defines the `Deployment` object:
 
@@ -662,9 +704,17 @@ You can use the Secrets Store CSI Driver Operator to mount secrets from AWS Syst
 
      ```terminal {title="Example output"}
 
+     testParameter
+     ```
+  2. View a secret in the pod mount by running the following command:
+
+     ```terminal
+     $ oc exec my-aws-deployment-<hash> -n my-namespace -- cat /mnt/secrets-store/testSecret
      ```
 
-{%- if aws_secrets_manager %} testSecret {% endif %} {% if aws_systems_manager_parameter_store %} testParameter {%- endif %} `    1.  View a secret in the pod mount by running the following command:        `terminal $ oc exec my-aws-deployment-<hash> -n my-namespace -- cat /mnt/secrets-store/testSecret `       `terminal title="Example output" <secret_value> \`\`\`
+     ```terminal {title="Example output"}
+     <secret_value>
+     ```
 
 ### Mounting secrets from Azure Key Vault {#secrets-store-azure_nodes-pods-secrets-store}
 
@@ -1760,14 +1810,15 @@ To remove the Secrets Store CSI Driver Operator and free cluster resources, unin
    > [!NOTE]
    > Before you can uninstall the Operator, you must remove the CSI driver first.
 
-   1. Click **Ecosystem** -> **Installed Operators**.
+   1. Click **Ecosystem** → **Installed Operators**.
    2. On the **Installed Operators** page, scroll or type "Secrets Store CSI" into the **Search by name** box to find the Operator, and then click it.
    3. On the upper, right of the **Installed Operators** > **Operator details** page, click **Actions** → **Uninstall Operator**.
    4. When prompted on the **Uninstall Operator** window, click the **Uninstall** button to remove the Operator from the namespace. Any applications deployed by the Operator on the cluster need to be cleaned up manually.
 
       After uninstalling, the Secrets Store CSI Driver Operator is no longer listed in the **Installed Operators** section of the web console.
 
-## Additional resources {#additional-resources_nodes-pods-secrets-store}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring the Cloud Credential Operator utility](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations)
 - [Installing Helm](/openshift-docs-markdown/applications/working_with_helm_charts/installing-helm#installing-helm)

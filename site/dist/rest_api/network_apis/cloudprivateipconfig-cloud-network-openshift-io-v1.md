@@ -1,5 +1,5 @@
 ---
-title: CloudPrivateIPConfig []
+title: CloudPrivateIPConfig [cloud.network.openshift.io/v1]
 ---
 
 # CloudPrivateIPConfig \[cloud.network.openshift.io/v1\] {#cloudprivateipconfig-cloud-network-openshift-io-v1}
@@ -89,7 +89,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
 | `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
@@ -105,13 +105,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of CloudPrivateIPConfig
   - `GET`: list objects of kind CloudPrivateIPConfig
   - `POST`: create a CloudPrivateIPConfig
-- `/apis/cloud.network.openshift.io/v1/cloudprivateipconfigs/{{ name }}`
+- `/apis/cloud.network.openshift.io/v1/cloudprivateipconfigs/{name}`
 
   - `DELETE`: delete a CloudPrivateIPConfig
   - `GET`: read the specified CloudPrivateIPConfig
   - `PATCH`: partially update the specified CloudPrivateIPConfig
   - `PUT`: replace the specified CloudPrivateIPConfig
-- `/apis/cloud.network.openshift.io/v1/cloudprivateipconfigs/{{ name }}/status`
+- `/apis/cloud.network.openshift.io/v1/cloudprivateipconfigs/{name}/status`
 
   - `GET`: read status of the specified CloudPrivateIPConfig
   - `PATCH`: partially update status of the specified CloudPrivateIPConfig
@@ -185,7 +185,7 @@ Description
 | 202 - Accepted | [`CloudPrivateIPConfig`](/openshift-docs-markdown/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/cloud.network.openshift.io/v1/cloudprivateipconfigs/{{ name }} {#_apiscloudnetworkopenshiftiov1cloudprivateipconfigs_name}
+### /apis/cloud.network.openshift.io/v1/cloudprivateipconfigs/{name} {#_apiscloudnetworkopenshiftiov1cloudprivateipconfigs_name}
 
 **Global path parameters**
 
@@ -289,7 +289,7 @@ Description
 | 201 - Created | [`CloudPrivateIPConfig`](/openshift-docs-markdown/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/cloud.network.openshift.io/v1/cloudprivateipconfigs/{{ name }}/status {#_apiscloudnetworkopenshiftiov1cloudprivateipconfigs_name_status}
+### /apis/cloud.network.openshift.io/v1/cloudprivateipconfigs/{name}/status {#_apiscloudnetworkopenshiftiov1cloudprivateipconfigs_name_status}
 
 **Global path parameters**
 

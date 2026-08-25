@@ -1,5 +1,5 @@
 ---
-title: Installing a cluster on {{ ibm_cloud_title }} in a disconnected environment
+title: Installing a cluster on IBM Cloud in a disconnected environment
 ---
 
 # Installing a cluster on IBM Cloud in a disconnected environment {#installing-ibm-cloud-restricted}
@@ -26,6 +26,7 @@ Before installing an OpenShift Container Platform cluster on IBM Cloud(R) in a d
 - You configured the `ccoctl` utility before you installed the cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [OpenShift Container Platform installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)
 - [Configuring an IBM Cloud(R) account](/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-account#installing-ibm-cloud-account)
@@ -84,6 +85,7 @@ Clusters in restricted networks have the following additional limitations and re
 - By default, you cannot use the contents of the Developer Catalog because you cannot access the required image stream tags.
 
 **Additional resources**
+{._additional-resources}
 
 - [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)
 - [Additional IBM Cloud configuration parameters](/openshift-docs-markdown/installing/installing_ibm_cloud/installation-config-parameters-ibm-cloud-vpc#installation-configuration-parameters-additional-ibm-cloud_installation-config-parameters-ibm-cloud-vpc)
@@ -173,8 +175,8 @@ A VPC’s default security group is configured to allow all outbound traffic to 
    $ ibmcloud is security-group-rule-add $DEFAULT_SG inbound tcp --remote 0.0.0.0/0 --port-min 443 --port-max 443
    ```
 
-> [!NOTE]
-> Be sure that your endpoint gateways are configured to use this security group.
+   > [!NOTE]
+   > Be sure that your endpoint gateways are configured to use this security group.
 
 ## Generating a key pair for cluster node SSH access {#ssh-agent-using_installing-ibm-cloud-restricted}
 
@@ -262,8 +264,8 @@ You must set the API key you created as a global variable; the installation prog
   $ export IC_API_KEY=<api_key>
   ```
 
-> [!IMPORTANT]
-> You must set the variable name exactly as specified; the installation program expects the variable name to be present during startup.
+  > [!IMPORTANT]
+  > You must set the variable name exactly as specified; the installation program expects the variable name to be present during startup.
 
 ## Downloading the RHCOS cluster image {#installation-ibm-cloud-download-rhcos_installing-ibm-cloud-restricted}
 
@@ -318,9 +320,7 @@ Installing the cluster requires that you manually create the installation config
    > [!NOTE]
    > You must name this configuration file `install-config.yaml`.
 
-   ```
    When customizing the sample template, be sure to provide the information that is required for an installation in a restricted network:
-   ```
 
    1. Update the `pullSecret` value to contain the authentication information for your registry:
 
@@ -426,46 +426,42 @@ Production environments can deny direct access to the internet and instead have 
    proxy:
      httpProxy: http://<username>:<pswd>@<ip>:<port>
      httpsProxy: https://<username>:<pswd>@<ip>:<port>
+     noProxy: example.com
+   additionalTrustBundle: |
+       -----BEGIN CERTIFICATE-----
+       <MY_TRUSTED_CA_CERT>
+       -----END CERTIFICATE-----
+   additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle>
+   # ...
    ```
 
-{%- if not aws %} noProxy: example.com {% endif %} {% if aws %} noProxy: ec2.<aws_region>.amazonaws.com,elasticloadbalancing.<aws_region>.amazonaws.com,s3.<aws_region>.amazonaws.com {%- endif %} additionalTrustBundle: | -----BEGIN CERTIFICATE----- <MY_TRUSTED_CA_CERT> -----END CERTIFICATE----- additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle> # ... \`\`\`
+   where:
 
-````
-where:
+   `proxy.httpProxy`
+   :   Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be `http`.
 
-`proxy.httpProxy`
-:   Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be `http`.
+   `proxy.httpsProxy`
+   :   Specifies a proxy URL to use for creating HTTPS connections outside the cluster.
 
-`proxy.httpsProxy`
-:   Specifies a proxy URL to use for creating HTTPS connections outside the cluster.
+   `proxy.noProxy`
+   :   Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with `.` to match subdomains only. For example, `.y.com` matches `x.y.com`, but not `y.com`. Use `*` to bypass the proxy for all destinations.
 
-`proxy.noProxy`
-:   Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with `.` to match subdomains only. For example, `.y.com` matches `x.y.com`, but not `y.com`. Use `*` to bypass the proxy for all destinations.
+   `additionalTrustBundle`
+   :   If you specify this value, the installation program generates a config map named `user-ca-bundle` in the `openshift-config` namespace to hold the additional CA certificates. If you specify `additionalTrustBundle` and at least one proxy setting, the `Proxy` object references the `user-ca-bundle` config map in the `trustedCA` field. The Cluster Network Operator then creates a `trusted-ca-bundle` config map that merges the contents specified for the `trustedCA` parameter with the RHCOS trust bundle. You must set the `additionalTrustBundle` field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.
 
-`additionalTrustBundle`
-:   If you specify this value, the installation program generates a config map named `user-ca-bundle` in the `openshift-config` namespace to hold the additional CA certificates. If you specify `additionalTrustBundle` and at least one proxy setting, the `Proxy` object references the `user-ca-bundle` config map in the `trustedCA` field. The Cluster Network Operator then creates a `trusted-ca-bundle` config map that merges the contents specified for the `trustedCA` parameter with the RHCOS trust bundle. You must set the `additionalTrustBundle` field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.
+   `additionalTrustBundlePolicy`
+   :   Specifies the policy that determines the configuration of the `Proxy` object to reference the `user-ca-bundle` config map in the `trustedCA` field. The allowed values are `Proxyonly` and `Always`. Use `Proxyonly` to reference the `user-ca-bundle` config map only when you configure an `http/https` proxy. Use `Always` to always reference the `user-ca-bundle` config map. The default value is `Proxyonly`. Optional parameter.
 
-`additionalTrustBundlePolicy`
-:   Specifies the policy that determines the configuration of the `Proxy` object to reference the `user-ca-bundle` config map in the `trustedCA` field. The allowed values are `Proxyonly` and `Always`. Use `Proxyonly` to reference the `user-ca-bundle` config map only when you configure an `http/https` proxy. Use `Always` to always reference the `user-ca-bundle` config map. The default value is `Proxyonly`. Optional parameter.
+   > [!NOTE]
+   > The installation program does not support the proxy `readinessEndpoints` field.
 
-:::note
-
-The installation program does not support the proxy `readinessEndpoints` field.
-
-:::
-
-:::note
-
-If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
-
-```terminal
-$ ./openshift-install wait-for install-complete --log-level debug
-```
-
-:::
-````
-
-1. Save the file and reference it when installing OpenShift Container Platform.
+   > [!NOTE]
+   > If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
+   >
+   > ```terminal
+   > $ ./openshift-install wait-for install-complete --log-level debug
+   > ```
+2. Save the file and reference it when installing OpenShift Container Platform.
 
    The installation program creates a cluster-wide proxy named `cluster` that uses the proxy settings in the `install-config.yaml` file. If you do not give proxy settings, the installation program still creates a `cluster` `Proxy` object, but it has a nil `spec`.
 
@@ -473,6 +469,7 @@ $ ./openshift-install wait-for install-complete --log-level debug
    > Only the `Proxy` object named `cluster` is supported, and you cannot create additional proxies.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installation configuration parameters for IBM Cloud(R)](/openshift-docs-markdown/installing/installing_ibm_cloud/installation-config-parameters-ibm-cloud-vpc#installation-config-parameters-ibm-cloud-vpc)
 
@@ -480,7 +477,7 @@ $ ./openshift-install wait-for install-complete --log-level debug
 
 To ensure that your OpenShift Container Platform cluster runs as expected, each cluster machine must meet minimum CPU, memory, and storage requirements.
 
-***Minimum resource requirements***
+**Minimum resource requirements**
 
 <table>
 <thead>
@@ -489,44 +486,34 @@ To ensure that your OpenShift Container Platform cluster runs as expected, each 
   <th>Operating system</th>
   <th>vCPU</th>
   <th>Virtual RAM</th>
-
   <th>Storage</th>
+  <th>Input/Output Per Second (IOPS)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td>Input/Output Per Second (IOPS)</td>
   <td>Bootstrap</td>
   <td>RHCOS</td>
-
   <td>4</td>
   <td>16 GB</td>
   <td>100 GB</td>
   <td>300</td>
 </tr>
 <tr>
-
   <td>Control plane</td>
   <td>RHCOS</td>
-
   <td>4</td>
   <td>16 GB</td>
   <td>100 GB</td>
+  <td>300</td>
 </tr>
 <tr>
-  <td>300</td>
-
   <td>Compute</td>
   <td>RHCOS</td>
-
   <td>2</td>
   <td>8 GB</td>
   <td>100 GB</td>
   <td>300</td>
-
-</tr>
-<tr>
-
 </tr>
 </tbody>
 </table>
@@ -547,30 +534,25 @@ If an instance type for your platform meets the minimum requirements for cluster
 
 Use these tested IBM Cloud(R) instance types to ensure compatibility when selecting machine types for your OpenShift Container Platform cluster.
 
-<details>
-<summary>Machine series</summary>
-
-```
-* `bx2-8x32`
-* `bx2d-4x16`
-* `bx3d-4x20`
-* `bx3dc-8x40`
-* `cx2-8x16`
-* `cx2d-4x8`
-* `cx3d-8x20`
-* `cx3dc-4x10`
-* `gx2-8x64x1v100`
-* `gx3-16x80x1l4`
-* `gx3d-160x1792x8h100`
-* `mx2-8x64`
-* `mx2d-4x32`
-* `mx3d-4x40`
-* `ox2-8x64`
-* `ux2d-2x56`
-* `vx2d-4x56`
-```
-
-</details>
+:::details{title="Machine series"}
+- `bx2-8x32`
+- `bx2d-4x16`
+- `bx3d-4x20`
+- `bx3dc-8x40`
+- `cx2-8x16`
+- `cx2d-4x8`
+- `cx3d-8x20`
+- `cx3dc-4x10`
+- `gx2-8x64x1v100`
+- `gx3-16x80x1l4`
+- `gx3d-160x1792x8h100`
+- `mx2-8x64`
+- `mx2d-4x32`
+- `mx3d-4x40`
+- `ox2-8x64`
+- `ux2d-2x56`
+- `vx2d-4x56`
+:::
 
 ### Sample customized install-config.yaml file for IBM Cloud {#installation-ibm-cloud-config-yaml_installing-ibm-cloud-restricted}
 
@@ -638,14 +620,8 @@ platform:
       - us-east-example-network-1-compute-us-east-3
         credentialsMode: Manual
         pullSecret: '{"auths":{"<local_registry>": {"auth": "<credentials>","email": "you@example.com"}}}'
-        {%- if not openshift_origin %}
         fips: false
         sshKey: ssh-ed25519 AAAA...
-        {% endif %}
-        {% if openshift_origin %}
-        sshKey: ssh-ed25519 AAAA...
-        {% endif %}
-        {% if not openshift_origin %}
         additionalTrustBundle: |
     -----BEGIN CERTIFICATE-----
     <MY_TRUSTED_CA_CERT>
@@ -657,20 +633,6 @@ imageContentSources:
 - mirrors:
   - <local_registry>/<local_repository_name>/release
   source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
-{% endif %}
-{% if openshift_origin %}
-additionalTrustBundle: |
-  -----BEGIN CERTIFICATE-----
-  <MY_TRUSTED_CA_CERT>
-  -----END CERTIFICATE-----
-imageContentSources:
-- mirrors:
-  - <local_registry>/<local_repository_name>/release
-  source: quay.io/openshift-release-dev/ocp-release
-- mirrors:
-  - <local_registry>/<local_repository_name>/release
-  source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
-{%- endif %}
 ```
 
 where:
@@ -994,25 +956,23 @@ To deploy your OpenShift Container Platform cluster, you can initialize installa
 
 **Procedure**
 
-1. Export the `OPENSHIFT_INSTALL_OS_IMAGE_OVERRIDE` variable to specify the location of the Red Hat Enterprise Linux CoreOS (RHCOS) image by running the following command:
+````
+. Export the `OPENSHIFT_INSTALL_OS_IMAGE_OVERRIDE` variable to specify the location of the Red&#160;Hat Enterprise Linux CoreOS (RHCOS) image by running the following command:
++
+```terminal
+$ export OPENSHIFT_INSTALL_OS_IMAGE_OVERRIDE="<path_to_image>/rhcos-<image_version>-ibmcloud.x86_64.qcow2.gz"
+```
+````
 
-   ```terminal
-   $ export OPENSHIFT_INSTALL_OS_IMAGE_OVERRIDE="<path_to_image>/rhcos-<image_version>-ibmcloud.x86_64.qcow2.gz"
-   ```
-2. In the directory that contains the installation program, initialize the cluster deployment by running the following command:
+1. In the directory that contains the installation program, initialize the cluster deployment by running the following command:
 
-   ```terminal
-   $ ./openshift-install create cluster --dir <installation_directory> \
-       --log-level=info
-   ```
+```terminal
+$ ./openshift-install create cluster --dir <installation_directory> \
+    --log-level=info
+```
 
-   ```
-   *   For `<installation_directory>`, specify the
-   location of your customized `./install-config.yaml` file.
-
-   *   To view different installation details, specify `warn`, `debug`, or
-   `error` instead of `info`.
-   ```
+- For `<installation_directory>`, specify the location of your customized `./install-config.yaml` file.
+- To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
 
 **Verification**
 
@@ -1075,7 +1035,8 @@ The `kubeconfig` file is specific to a cluster and OpenShift Container Platform 
 - "Customize your cluster"
 - "Remote health reporting"
 
-## Additional resources {#additional-resources_installing-ibm-cloud-restricted}
+**Additional resources**
+{._additional-resources}
 
 - [Accessing the web console](/openshift-docs-markdown/web_console/web-console#web-console)
 - [Postinstallation configuration for a disconnected IBM Cloud cluster](/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-restricted-postinstallation-configuration#installing-ibm-cloud-restricted-postinstallation-configuration)

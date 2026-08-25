@@ -22,9 +22,9 @@ You can uninstall the web terminal by removing the Web Terminal Operator and cus
 
 **Procedure**
 
-1. In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1. In the web console, navigate to **Ecosystem** → **Installed Operators**.
 2. Scroll the filter list or type a keyword into the **Filter by name** box to find the Web Terminal Operator.
-3. Click the Options menu ![](kebab.png "Options menu") for the Web Terminal Operator, and then select **Uninstall Operator**.
+3. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") for the Web Terminal Operator, and then select **Uninstall Operator**.
 4. In the **Uninstall Operator** confirmation dialog box, click **Uninstall** to remove the Operator, Operator deployments, and pods from the cluster. The Operator stops running and no longer receives updates.
 
 ## Removing the DevWorkspace Operator {#removing-devworkspace-operator_uninstalling-web-terminal}
@@ -36,10 +36,7 @@ To completely uninstall the web terminal, you must also remove the DevWorkspace 
 
 **Prerequisites**
 
-- You have access to an OpenShift Container Platform
-
-cluster with cluster administrator permissions.
-
+- You have access to an OpenShift Container Platform cluster with cluster administrator permissions.
 - You have installed the `oc` CLI.
 
 **Procedure**
@@ -116,7 +113,7 @@ cluster with cluster administrator permissions.
    ```
 6. Uninstall the DevWorkspace Operator:
 
-   1. In the **Administrator** perspective of the web console, navigate to **Ecosystem** -> **Installed Operators**.
+   1. In the **Administrator** perspective of the web console, navigate to **Ecosystem** → **Installed Operators**.
    2. Scroll the filter list or type a keyword into the **Filter by name** box to find the DevWorkspace Operator.
-   3. Click the Options menu ![](kebab.png "Options menu") for the Operator, and then select **Uninstall Operator**.
+   3. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") for the Operator, and then select **Uninstall Operator**.
    4. In the **Uninstall Operator** confirmation dialog box, click **Uninstall** to remove the Operator, Operator deployments, and pods from the cluster. The Operator stops running and no longer receives updates.

@@ -316,6 +316,7 @@ When scans are finished running, `ComplianceCheckResult` objects are created for
   $ oc compliance view-result ocp4-cis-scheduler-no-bind-address
   ```
 
-## Additional resources {#additional-resources_oc-compliance-plug-in-understanding}
+**Additional resources**
+{._additional-resources}
 
 - [Understanding the Compliance Operator](/openshift-docs-markdown/security/compliance_operator/co-concepts/compliance-operator-understanding#understanding-compliance-operator)

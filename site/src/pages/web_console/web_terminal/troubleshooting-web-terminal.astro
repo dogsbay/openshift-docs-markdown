@@ -21,7 +21,8 @@ const headings = [{"depth":1,"slug":"troubleshooting-web-terminal","text":"Troub
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/web_console/web_terminal/troubleshooting-web-terminal";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -93,7 +95,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
     <article class="docs-prose">
       <h1 id="troubleshooting-web-terminal" class="group scroll-mt-20">Troubleshooting the web terminal<a href="#troubleshooting-web-terminal" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <h2 id="troubleshooting-web-terminal-network-policies" class="group scroll-mt-20">Web terminal and network policies<a href="#troubleshooting-web-terminal-network-policies" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
-      <p>The web terminal might fail to start if the cluster has network policies configured. To start a web terminal instance, the Web Terminal Operator must communicate with the web terminal’s pod to verify it is running, and the OpenShift Container Platform web console needs to send information to automatically log in to the cluster within the terminal. If either step fails, the web terminal fails to start and the terminal panel is in a loading state until a <code>context deadline exceeded error</code> occurs.</p>
+      <p class="_abstract">The web terminal might fail to start if the cluster has network policies configured. To start a web terminal instance, the Web Terminal Operator must communicate with the web terminal’s pod to verify it is running, and the OpenShift Container Platform web console needs to send information to automatically log in to the cluster within the terminal. If either step fails, the web terminal fails to start and the terminal panel is in a loading state until a <code>context deadline exceeded error</code> occurs.</p>
       <p>To avoid this issue, ensure that the network policies for namespaces that are used for terminals allow ingress from the <code>openshift-console</code> and <code>openshift-operators</code> namespaces.</p>
       <p>The following samples show <code>NetworkPolicy</code> objects for allowing ingress from the <code>openshift-console</code> and <code>openshift-operators</code> namespaces.</p>
       <CodeBlock code={"apiVersion: networking.k8s.io/v1\nkind: NetworkPolicy\nmetadata:\n  name: allow-from-openshift-console\nspec:\n  ingress:\n  - from:\n    - namespaceSelector:\n        matchLabels:\n          kubernetes.io/metadata.name: openshift-console\n  podSelector: {}\n  policyTypes:\n  - Ingress"} lang="yaml" title="Allowing ingress from the openshift-console namespace" />

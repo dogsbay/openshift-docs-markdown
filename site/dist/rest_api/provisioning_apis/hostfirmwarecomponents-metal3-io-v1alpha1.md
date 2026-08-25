@@ -1,5 +1,5 @@
 ---
-title: HostFirmwareComponents []
+title: HostFirmwareComponents [metal3.io/v1alpha1]
 ---
 
 # HostFirmwareComponents \[metal3.io/v1alpha1\] {#hostfirmwarecomponents-metal3-io-v1alpha1}
@@ -149,7 +149,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
 | `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
@@ -192,18 +192,18 @@ The following API endpoints are available:
 - `/apis/metal3.io/v1alpha1/hostfirmwarecomponents`
 
   - `GET`: list objects of kind HostFirmwareComponents
-- `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostfirmwarecomponents`
+- `/apis/metal3.io/v1alpha1/namespaces/{namespace}/hostfirmwarecomponents`
 
   - `DELETE`: delete collection of HostFirmwareComponents
   - `GET`: list objects of kind HostFirmwareComponents
   - `POST`: create HostFirmwareComponents
-- `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostfirmwarecomponents/{{ name }}`
+- `/apis/metal3.io/v1alpha1/namespaces/{namespace}/hostfirmwarecomponents/{name}`
 
   - `DELETE`: delete HostFirmwareComponents
   - `GET`: read the specified HostFirmwareComponents
   - `PATCH`: partially update the specified HostFirmwareComponents
   - `PUT`: replace the specified HostFirmwareComponents
-- `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostfirmwarecomponents/{{ name }}/status`
+- `/apis/metal3.io/v1alpha1/namespaces/{namespace}/hostfirmwarecomponents/{name}/status`
 
   - `GET`: read status of the specified HostFirmwareComponents
   - `PATCH`: partially update status of the specified HostFirmwareComponents
@@ -228,7 +228,7 @@ Description
 | 200 - OK | [`HostFirmwareComponentsList`](/openshift-docs-markdown/rest_api/objects/index#io-metal3-v1alpha1-HostFirmwareComponentsList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostfirmwarecomponents {#_apismetal3iov1alpha1namespaces_namespace_hostfirmwarecomponents}
+### /apis/metal3.io/v1alpha1/namespaces/{namespace}/hostfirmwarecomponents {#_apismetal3iov1alpha1namespaces_namespace_hostfirmwarecomponents}
 
 HTTP method
 :   ```
@@ -296,7 +296,7 @@ Description
 | 202 - Accepted | [`HostFirmwareComponents`](/openshift-docs-markdown/rest_api/provisioning_apis/hostfirmwarecomponents-metal3-io-v1alpha1#hostfirmwarecomponents-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostfirmwarecomponents/{{ name }} {#_apismetal3iov1alpha1namespaces_namespace_hostfirmwarecomponents_name}
+### /apis/metal3.io/v1alpha1/namespaces/{namespace}/hostfirmwarecomponents/{name} {#_apismetal3iov1alpha1namespaces_namespace_hostfirmwarecomponents_name}
 
 **Global path parameters**
 
@@ -400,7 +400,7 @@ Description
 | 201 - Created | [`HostFirmwareComponents`](/openshift-docs-markdown/rest_api/provisioning_apis/hostfirmwarecomponents-metal3-io-v1alpha1#hostfirmwarecomponents-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostfirmwarecomponents/{{ name }}/status {#_apismetal3iov1alpha1namespaces_namespace_hostfirmwarecomponents_name_status}
+### /apis/metal3.io/v1alpha1/namespaces/{namespace}/hostfirmwarecomponents/{name}/status {#_apismetal3iov1alpha1namespaces_namespace_hostfirmwarecomponents_name_status}
 
 **Global path parameters**
 

@@ -46,6 +46,7 @@ You can use the oc-mirror OpenShift CLI (`oc`) plugin to mirror images to a mirr
 For more information, see "Mirroring images for a disconnected installation by using the oc-mirror plugin v2".
 
 **Additional resources**
+{._additional-resources}
 
 - [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)
 
@@ -67,6 +68,7 @@ The requirements for a mirror registry are:
 - If you do not have an existing solution for a container image registry, see the "Mirror registry for Red Hat OpenShift" in OpenShift Container Platform subscriptions. The mirror registry for Red Hat OpenShift is a small-scale container registry that you can use to mirror OpenShift Container Platform container images in disconnected installations and updates.
 
 **Additional resources**
+{._additional-resources}
 
 - [Deploying Red Hat Quay for proof-of-concept purposes](https://docs.redhat.com/en/documentation/red_hat_quay/3/html/proof_of_concept_-_deploying_red_hat_quay/index)
 - [Deploying Red Hat Quay by using the Quay Operator](https://access.redhat.com/documentation/en-us/red_hat_quay/3/html/deploying_the_red_hat_quay_operator_on_openshift_container_platform/index)
@@ -179,6 +181,7 @@ To manage your cluster and deploy applications from the command line on macOS, i
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing and using CLI plugins](/openshift-docs-markdown/cli_reference/openshift_cli/extending-cli-plugins#cli-installing-plugins_cli-extend-plugins)
 

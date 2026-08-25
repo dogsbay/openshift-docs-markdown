@@ -1,8 +1,8 @@
 ---
-title: Hardening {{ op_system }}
+title: Hardening RHCOS
 ---
 
-# Hardening {{ op_system }} {#security-hardening}
+# Hardening RHCOS {#security-hardening}
 
 If you are planning to harden RHCOS nodes in OpenShift Container Platform to meet your security needs, you should consider both what to harden and how to go about doing that hardening.
 
@@ -21,6 +21,7 @@ Use this guide to learn how to approach cryptography, evaluate vulnerabilities, 
 With the knowledge of what features you want to harden, you can then decide how to harden them in RHCOS.
 
 **Additional resources**
+{._additional-resources}
 
 - [Red Hat Enterprise Linux 9 Security Hardening guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/security_hardening/index#scanning-container-and-container-images-for-vulnerabilities_scanning-the-system-for-security-compliance-and-vulnerabilities)
 
@@ -55,6 +56,7 @@ After the OpenShift Container Platform cluster is up and running, there are seve
 All of the features noted here are described in the OpenShift Container Platform product documentation.
 
 **Additional resources**
+{._additional-resources}
 
 - [Kubernetes DaemonSet documentation](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/)
 - [OpenShift Security Guide](https://access.redhat.com/articles/5059881)

@@ -15,15 +15,22 @@ Use the `KubeVirtRelieveAndMigrate` profile to enable the descheduler on a virtu
 `KubeVirtRelieveAndMigrate`
 :   The `KubeVirtRelieveAndMigrate` profile evicts pods from high-cost nodes to reduce overall resource expenses and enable workload migration. It also periodically rebalances workloads to help maintain similar spare capacity across nodes, which supports better handling of sudden workload spikes. Nodes can experience the following costs:
 
-    - ***Resource utilization***: Increased resource pressure raises the overhead for running applications.
-    - ***Node maintenance***: A higher number of containers on a node increases resource consumption and maintenance costs. The profile enables the `LowNodeUtilization` strategy with the alpha-level `EvictionsInBackground` feature. By default, the profile uses the `PrometheusCPUMemoryCombinedProfile` utilization metric. This metric combines CPU and memory utilization with pressure stall information (PSI) for both dimensions for comprehensive node load balancing. The profile also exposes the following customization fields:
+    - **Resource utilization**: Increased resource pressure raises the overhead for running applications.
+    - **Node maintenance**: A higher number of containers on a node increases resource consumption and maintenance costs.
+
+    The profile enables the `LowNodeUtilization` strategy with the alpha-level `EvictionsInBackground` feature. By default, the profile uses the `PrometheusCPUMemoryCombinedProfile` utilization metric. This metric combines CPU and memory utilization with pressure stall information (PSI) for both dimensions for comprehensive node load balancing.
+
+    The profile also exposes the following customization fields:
+
     - `devActualUtilizationProfile`: Enables load-aware descheduling. You can configure the following utilization profiles:
 
       - `PrometheusCPUMemoryCombinedProfile` (default): Balances nodes based on CPU utilization, CPU PSI pressure, memory utilization, and memory PSI pressure. This profile is ideal for environments with memory overcommit enabled, as it spreads the load and prevents resource contention.
       - `PrometheusCPUCombined`: Balances nodes based on CPU utilization and CPU PSI pressure only. Use this profile in environments without memory overcommit, where memory allocations are strictly guaranteed and CPU pressure is the primary driver for workload distribution.
     - `devLowNodeUtilizationThresholds`: Sets experimental thresholds for the `LowNodeUtilization` strategy. Do not use this field with `devDeviationThresholds`.
     - `devDeviationThresholds`: Treats nodes with below-average resource usage as underutilized to help redistribute workloads from overutilized nodes. Do not use this field with `devLowNodeUtilizationThresholds`. Supported values are: `Low` (10%:10%), `Medium` (20%:20%), `High` (30%:30%), `AsymmetricLow` (0%:10%), `AsymmetricMedium` (0%:20%), `AsymmetricHigh` (0%:30%).
-    - `devEnableSoftTainter`: Enables the soft-tainting component to dynamically apply or remove soft taints as scheduling hints. Example configuration:
+    - `devEnableSoftTainter`: Enables the soft-tainting component to dynamically apply or remove soft taints as scheduling hints.
+
+    Example configuration:
 
     ```yaml
     apiVersion: operator.openshift.io/v1
@@ -43,7 +50,9 @@ Use the `KubeVirtRelieveAndMigrate` profile to enable the descheduler on a virtu
         devActualUtilizationProfile: PrometheusCPUMemoryCombinedProfile
     ```
 
-    The `KubeVirtRelieveAndMigrate` profile requires PSI metrics to be enabled on all worker nodes. You can enable this by applying the following `MachineConfig` custom resource (CR): Example `MachineConfig` CR:
+    The `KubeVirtRelieveAndMigrate` profile requires PSI metrics to be enabled on all worker nodes. You can enable this by applying the following `MachineConfig` custom resource (CR):
+
+    Example `MachineConfig` CR:
 
     ```yaml
     apiVersion: machineconfiguration.openshift.io/v1
@@ -81,11 +90,11 @@ By default, the descheduler runs in predictive mode, which means that it only si
 1. Log in to the OpenShift Container Platform web console.
 2. Create the required namespace for the Kube Descheduler Operator.
 
-   1. Navigate to **Administration** -> **Namespaces** and click **Create Namespace**.
+   1. Navigate to **Administration** → **Namespaces** and click **Create Namespace**.
    2. Enter `openshift-kube-descheduler-operator` in the **Name** field, enter `openshift.io/cluster-monitoring=true` in the **Labels** field to enable descheduler metrics, and click **Create**.
 3. Install the Kube Descheduler Operator.
 
-   1. Navigate to **Ecosystem** -> **Software Catalog**.
+   1. Navigate to **Ecosystem** → **Software Catalog**.
    2. Type **Kube Descheduler Operator** into the filter box.
    3. Select the **Kube Descheduler Operator** and click **Install**.
    4. On the **Install Operator** page, select **A specific namespace on the cluster**. Select **openshift-kube-descheduler-operator** from the drop-down menu.
@@ -93,7 +102,7 @@ By default, the descheduler runs in predictive mode, which means that it only si
    6. Click **Install**.
 4. Create a descheduler instance.
 
-   1. From the **Ecosystem** -> **Installed Operators** page, click the **Kube Descheduler Operator**.
+   1. From the **Ecosystem** → **Installed Operators** page, click the **Kube Descheduler Operator**.
    2. Select the **Kube Descheduler** tab and click **Create KubeDescheduler**.
    3. Edit the settings as necessary.
 
@@ -167,6 +176,7 @@ After the descheduler is installed and configured, all migratable virtual machin
 
 The VM is now configured according to the descheduler settings.
 
-## Additional resources {#additional-resources_virt-enabling-descheduler-evictions}
+**Additional resources**
+{._additional-resources}
 
 - [Descheduler overview](/openshift-docs-markdown/nodes/scheduling/descheduler/index#nodes-descheduler-about)

@@ -145,7 +145,7 @@ You can use the OpenShift Container Platform web console to configure disk shari
 
 **Procedure**
 
-1. Click **Virtualization** -> **VirtualMachines** in the web console.
+1. Click **Virtualization** → **VirtualMachines** in the web console.
 2. Select a VM to open the **VirtualMachine details** page.
 3. Expand **Storage**.
 4. On the **Disks** tab, click **Add disk**.
@@ -216,7 +216,7 @@ You must enable the PersistentReservation feature gate to allow a LUN-backed blo
 
 **Procedure**
 
-1. Click **Virtualization** -> **Settings** in the web console.
+1. Click **Virtualization** → **Settings** in the web console.
 2. Select **Cluster**.
 3. Expand **SCSI persistent reservation** and set **Enable persistent reservation** to on.
 
@@ -233,11 +233,12 @@ You can enable the `persistentReservation` feature gate by using the command lin
 1. Enable the `persistentReservation` feature gate by running the following command:
 
    ```terminal
-   $ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} --type json -p \
+   $ oc patch hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv --type json -p \
    '[{"op":"replace","path":"/spec/featureGates/persistentReservation", "value": true}]'
    ```
 
-## Additional resources {#additional-resources_virt-configuring-shared-volumes-for-vms}
+**Additional resources**
+{._additional-resources}
 
 - [Persistent reservation helper protocol](https://www.qemu.org/docs/master/interop/pr-helper.html)
 - [Failover Clustering in Windows Server and Azure Stack HCI](https://learn.microsoft.com/en-us/windows-server/failover-clustering/failover-clustering-overview)

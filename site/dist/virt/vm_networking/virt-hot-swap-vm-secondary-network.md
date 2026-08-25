@@ -108,7 +108,8 @@ You can hot swap a virtual machine (VM) secondary network by using the command l
    $ virtctl console vm-fedora
    ```
 
-## Additional resources {#additional-resources_virt-hot-swap-vm-secondary-network}
+**Additional resources**
+{._additional-resources}
 
 - [About live migration](/openshift-docs-markdown/virt/live_migration/virt-about-live-migration#virt-about-live-migration-permissions_virt-about-live-migration)
 - [Connecting a virtual machine to a secondary localnet user-defined network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-secondary-udn#virt-connecting-vm-to-secondary-udn)

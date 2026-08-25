@@ -200,7 +200,8 @@ If you have an existing RHOSP cloud, you can move etcd from that cloud to a dedi
       $ oc wait clusteroperators --timeout=30m --all --for=condition=Progressing=false
       ```
 
-## Additional resources {#additional-resources_deploying-openstack-on-local-disk}
+**Additional resources**
+{._additional-resources}
 
 - [Recommended etcd practices](/openshift-docs-markdown/etcd/etcd-practices#recommended-etcd-practices)
 - [Overview of backup and restore options](/openshift-docs-markdown/backup_and_restore/index#backup-restore-operations-overview)

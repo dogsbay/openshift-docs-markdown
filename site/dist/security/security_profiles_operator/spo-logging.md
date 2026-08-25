@@ -799,7 +799,8 @@ You can disable advanced audit logging and revert all configurations by deleting
    false
    ```
 
-## Additional resources {#additional-resources_spo-audit-logging}
+**Additional resources**
+{._additional-resources}
 
 - [About security profiles](/openshift-docs-markdown/security/security_profiles_operator/spo-understanding#spo-about_spo-understanding)
 - [Installing the Security Profiles Operator](/openshift-docs-markdown/security/security_profiles_operator/spo-enabling#spo-installing_spo-enabling)

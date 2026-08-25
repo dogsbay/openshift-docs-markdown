@@ -30,7 +30,8 @@ Note the following limitations when working with Windows nodes managed by the WM
   - Privileged containers are not supported for Windows containers.
 - Kubernetes has identified several API compatibility issues. For more information, see "API compatibility (Kubernetes documenation)".
 
-## Additional resources {#additional-resources_windows-containers-release-notes-limitations}
+**Additional resources**
+{._additional-resources}
 
 - [Red Hat Lightspeed cost management](https://docs.redhat.com/en/documentation/cost_management_service/1-latest)
 - [Red Hat OpenShift Local](https://developers.redhat.com/products/openshift-local/overview)

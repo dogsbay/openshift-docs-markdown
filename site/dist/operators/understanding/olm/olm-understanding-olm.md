@@ -16,9 +16,7 @@ Operator Lifecycle Manager (OLM) Classic helps users install, update, and manage
 
 OLM runs by default in OpenShift Container Platform 4.22, which aids cluster administrators
 
-in installing, upgrading, and granting access to Operators running on their cluster. The OpenShift Container Platform web console provides management screens for cluster administrators
-
-to install Operators, as well as grant specific projects access to use the catalog of Operators available on the cluster.
+in installing, upgrading, and granting access to Operators running on their cluster. The OpenShift Container Platform web console provides management screens for cluster administrators to install Operators, as well as grant specific projects access to use the catalog of Operators available on the cluster.
 
 For developers, a self-service experience allows provisioning and configuring instances of databases, monitoring, and big data services without having to be subject matter experts, because the Operator has that knowledge baked into it.
 
@@ -26,7 +24,7 @@ For developers, a self-service experience allows provisioning and configuring in
 
 The following custom resource definitions (CRDs) are defined and managed by Operator Lifecycle Manager (OLM) in OpenShift Container Platform. Use these resources to configure catalog sources, subscriptions, install plans, cluster service versions (CSVs), and Operator groups.
 
-***CRDs managed by OLM and Catalog Operators***
+**CRDs managed by OLM and Catalog Operators**
 
 <table>
 <thead>
@@ -83,7 +81,7 @@ A CSV is also a source of technical information required to run the Operator, su
 A *catalog source* represents a store of metadata, typically by referencing an *index image* stored in a container registry. Operator Lifecycle Manager (OLM) queries catalog sources to discover and install Operators and their dependencies. The software catalog in the OpenShift Container Platform web console also displays the Operators provided by catalog sources.
 
 > [!TIP]
-> Cluster administrators can view the full list of Operators provided by an enabled catalog source on a cluster by using the **Administration** -> **Cluster Settings** -> **Configuration** -> **OperatorHub** page in the web console.
+> Cluster administrators can view the full list of Operators provided by an enabled catalog source on a cluster by using the **Administration** → **Cluster Settings** → **Configuration** → **OperatorHub** page in the web console.
 
 The `spec` of a `CatalogSource` object indicates how to construct a pod or how to communicate with a service that serves the Operator Registry gRPC API.
 
@@ -93,10 +91,10 @@ kind: CatalogSource
 metadata:
   generation: 1
   name: example-catalog
-  namespace: {{ global_ns }}
+  namespace: openshift-marketplace
   annotations:
     olm.catalogImageTemplate:
-      "quay.io/example-org/example-catalog:v{{ kube_major_version }}.{{ kube_minor_version }}.{{ kube_patch_version }}"
+      "quay.io/example-org/example-catalog:v{kube_major_version}.{kube_minor_version}.{kube_patch_version}"
 spec:
   displayName: Example Catalog
   image: quay.io/example-org/example-catalog:v1
@@ -118,7 +116,7 @@ spec:
       interval: 30m0s
 status:
   connectionState:
-    address: example-catalog.{{ global_ns }}.svc:50051
+    address: example-catalog.openshift-marketplace.svc:50051
     lastConnect: 2021-08-26T18:14:31Z
     lastObservedState: READY
   latestImageRegistryPoll: 2021-08-26T18:46:25Z
@@ -127,7 +125,7 @@ status:
     port: 50051
     protocol: grpc
     serviceName: example-catalog
-    serviceNamespace: {{ global_ns }}
+    serviceNamespace: openshift-marketplace
 ```
 
 where:
@@ -136,7 +134,7 @@ where:
 :   Specifies the name for the `CatalogSource` object. This value is also used as part of the name for the related pod that is created in the requested namespace.
 
 `metadata.namespace`
-:   Specifies the namespace to create the catalog in. To make the catalog available cluster-wide in all namespaces, set this value to `{{ global_ns }}`. The default Red Hat-provided catalog sources also use the `{{ global_ns }}` namespace. Otherwise, set the value to a specific namespace to make the Operator only available in that namespace.
+:   Specifies the namespace to create the catalog in. To make the catalog available cluster-wide in all namespaces, set this value to `openshift-marketplace`. The default Red Hat-provided catalog sources also use the `openshift-marketplace` namespace. Otherwise, set the value to a specific namespace to make the Operator only available in that namespace.
 
 `metadata.annotations.olm.catalogImageTemplate`
 :   To avoid cluster upgrades potentially leaving Operator installations in an unsupported state or without a continued update path, you can enable automatically changing your Operator catalog’s index image version as part of cluster upgrades. This field is optional.
@@ -202,10 +200,11 @@ spec:
   channel: stable
   name: example-operator
   source: example-catalog
-  sourceNamespace: {{ global_ns }}
+  sourceNamespace: openshift-marketplace
 ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding the software catalog](/openshift-docs-markdown/operators/understanding/olm-understanding-software-catalog#olm-understanding-software-catalog)
 - [Red Hat-provided Operator catalogs](/openshift-docs-markdown/operators/understanding/olm-rh-catalogs#olm-rh-catalogs)
@@ -248,9 +247,7 @@ Provided that you have created and pushed an index image with a tag specifying t
 > [!IMPORTANT]
 > You must ensure that the index image with the updated tag, in whichever registry it is stored in, is accessible by the cluster at the time of the cluster upgrade.
 
-<details>
-<summary>Example catalog source with an image template</summary>
-
+:::details{title="Example catalog source with an image template"}
 ```yaml
 apiVersion: operators.coreos.com/v1alpha1
 kind: CatalogSource
@@ -260,24 +257,21 @@ metadata:
   namespace: openshift-marketplace
   annotations:
     olm.catalogImageTemplate:
-      "quay.io/example-org/example-catalog:v{{ kube_major_version }}.{{ kube_minor_version }}"
+      "quay.io/example-org/example-catalog:v{kube_major_version}.{kube_minor_version}"
 spec:
   displayName: Example Catalog
   image: quay.io/example-org/example-catalog:v1.35
   priority: -400
   publisher: Example Org
 ```
-
-</details>
+:::
 
 > [!NOTE]
 > If the `spec.image` field and the `olm.catalogImageTemplate` annotation are both set, the `spec.image` field is overwritten by the resolved value from the annotation. If the annotation does not resolve to a usable pull spec, the catalog source falls back to the set `spec.image` value.
 >
 > If the `spec.image` field is not set and the annotation does not resolve to a usable pull spec, OLM stops reconciliation of the catalog source and sets it into a human-readable error condition.
 
-For an OpenShift Container Platform 4.22
-
-cluster, which uses Kubernetes 1.35, the `olm.catalogImageTemplate` annotation in the preceding example resolves to the following image reference:
+For an OpenShift Container Platform 4.22 cluster, which uses Kubernetes 1.35, the `olm.catalogImageTemplate` annotation in the preceding example resolves to the following image reference:
 
 ```terminal
 quay.io/example-org/example-catalog:v1.35
@@ -296,6 +290,7 @@ For example, if Catalog A is unhealthy, a subscription referencing Catalog A cou
 As a cluster administrator, if you observe an unhealthy catalog and want to consider the catalog as invalid and resume Operator installations, see the "Removing custom catalogs" or "Disabling the default software catalog sources" sections for information about removing the unhealthy catalog.
 
 **Additional resources**
+{._additional-resources}
 
 - [Removing custom catalogs](/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-removing-catalogs_olm-managing-custom-catalogs)
 - [Disabling the default OperatorHub catalog sources](/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-restricted-networks-operatorhub_olm-managing-custom-catalogs)
@@ -316,7 +311,7 @@ spec:
   channel: stable
   name: example-operator
   source: example-catalog
-  sourceNamespace: {{ global_ns }}
+  sourceNamespace: openshift-marketplace
 ```
 
 This `Subscription` object defines the name and namespace of the Operator, as well as the catalog from which the Operator data can be found. The channel, such as `alpha`, `beta`, or `stable`, helps determine which Operator stream should be installed from the catalog source.
@@ -326,6 +321,7 @@ The names of channels in a subscription can differ between Operators, but the na
 In addition to being easily visible from the OpenShift Container Platform web console, it is possible to identify when there is a newer version of an Operator available by inspecting the status of the related subscription. The value associated with the `currentCSV` field is the newest version that is known to OLM, and `installedCSV` is the version that is installed on the cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Multitenancy and Operator colocation](/openshift-docs-markdown/operators/understanding/olm/olm-colocation#olm-colocation)
 - [Viewing Operator subscription status by using the CLI](/openshift-docs-markdown/operators/admin/olm-status#olm-status-viewing-cli_olm-status)
@@ -343,9 +339,7 @@ The install plan must then be approved according to one of the following approva
 
 After the install plan is approved, OLM creates the specified resources and installs the Operator in the namespace that is specified by the subscription.
 
-<details>
-<summary>Example `InstallPlan` object</summary>
-
+:::details{title="Example `InstallPlan` object"}
 ```yaml
 apiVersion: operators.coreos.com/v1alpha1
 kind: InstallPlan
@@ -425,10 +419,10 @@ status:
       status: Created
       ...
 ```
-
-</details>
+:::
 
 **Additional resources**
+{._additional-resources}
 
 - [Multitenancy and Operator colocation](/openshift-docs-markdown/operators/understanding/olm/olm-colocation#olm-colocation)
 - [Allowing non-cluster administrators to install Operators](/openshift-docs-markdown/operators/admin/olm-creating-policy#olm-creating-policy)
@@ -440,6 +434,7 @@ An Operator group defines multitenant configuration for OLM-installed Operators 
 The set of target namespaces is provided by a comma-delimited string stored in the `olm.targetNamespaces` annotation of a cluster service version (CSV). This annotation is applied to the CSV instances of member Operators and is projected into their deployments.
 
 **Additional resources**
+{._additional-resources}
 
 - [Operator groups](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-operatorgroups#olm-understanding-operatorgroups)
 
@@ -451,5 +446,6 @@ Operator Lifecycle Manager (OLM) infers Operator state from Kubernetes resources
 > By default, the `Spec.Conditions` array is not present in an `OperatorCondition` object until it is either added by a user or as a result of custom Operator logic.
 
 **Additional resources**
+{._additional-resources}
 
 - [Operator conditions](/openshift-docs-markdown/operators/understanding/olm/olm-operatorconditions#olm-operatorconditions)

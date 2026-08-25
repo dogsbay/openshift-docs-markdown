@@ -1,5 +1,5 @@
 ---
-title: Configuring an {{ aws_short }} account
+title: Configuring an AWS account
 ---
 
 # Configuring an AWS account {#installing-aws-account}
@@ -52,7 +52,7 @@ platform:
       url: https://tagging.us-gov-west-1.amazonaws.com
 ```
 
-++ where: ++
+where:
 
 `https://route53.us-gov.amazonaws.com`
 :   Defaults to `https://route53.us-gov.amazonaws.com` for both AWS GovCloud (US) regions.
@@ -82,13 +82,13 @@ The following table summarizes the AWS  components whose limits can impact your 
   <td>Instance Limits</td>
   <td>Varies</td>
   <td>Varies</td>
-  <td>By default, each cluster creates the following instances:<br><br><ul><li>One bootstrap machine, which is removed after installation</li><li>Three control plane nodes</li><li>Three worker nodes</li></ul>These instance type counts are within a new account's default limit. To deploy more worker nodes, enable autoscaling, deploy large workloads, or use a different instance type, review your account limits to ensure that your cluster can deploy the machines that you need.<br><br>In most regions, the worker machines use an <code>m6i.large</code> instanceand the bootstrap and control plane machines use <code>m6i.xlarge</code> instances. In some regions, including all regions that do not support these instance types, <code>m5.large</code> and <code>m5.xlarge</code> instances are used instead.</td>
+  <td>By default, each cluster creates the following instances:<br><br><ul><li>One bootstrap machine, which is removed after installation</li><li>Three control plane nodes</li><li>Three worker nodes</li></ul>These instance type counts are within a new account's default limit. To deploy more worker nodes, enable autoscaling, deploy large workloads, or use a different instance type, review your account limits to ensure that your cluster can deploy the machines that you need.<br><br>In most regions, the worker machines use an <code>m6i.large</code> instance and the bootstrap and control plane machines use <code>m6i.xlarge</code> instances. In some regions, including all regions that do not support these instance types, <code>m5.large</code> and <code>m5.xlarge</code> instances are used instead.</td>
 </tr>
 <tr>
   <td>Elastic IPs (EIPs)</td>
   <td>0 to 1</td>
   <td>5 EIPs per account</td>
-  <td>To provision the cluster in a highly available configuration, the installation program creates a public and private subnet for each availability zone within a region.Each private subnet requires a NAT gateway, and each NAT gateway requires a separate elastic IP.Review the AWS region map to determine how many availability zones are in each region. To take advantage of the default high availability, install the cluster in a region with at least three availability zones. To install a cluster in a region with more than five availability zones, you must increase the EIP limit.<br><br><dl><dt>Important</dt><dd>To use the <code>us-east-1</code> region, you must increase the EIP limit for your account.</dd></dl></td>
+  <td>To provision the cluster in a highly available configuration, the installation program creates a public and private subnet for each availability zone within a region. Each private subnet requires a NAT gateway, and each NAT gateway requires a separate elastic IP. Review the AWS region map to determine how many availability zones are in each region. To take advantage of the default high availability, install the cluster in a region with at least three availability zones. To install a cluster in a region with more than five availability zones, you must increase the EIP limit.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>To use the <code>us-east-1</code> region, you must increase the EIP limit for your account.</dd></dl></td>
 </tr>
 <tr>
   <td>Virtual Private Clouds (VPCs)</td>
@@ -100,7 +100,7 @@ The following table summarizes the AWS  components whose limits can impact your 
   <td>Elastic Load Balancing (ELB/NLB)</td>
   <td>3</td>
   <td>20 per region</td>
-  <td>By default, each cluster creates internal and external network load balancers for the masterAPI server and a single Classic Load Balancer for the router. Deploying more Kubernetes <code>Service</code> objects with type <code>LoadBalancer</code> will create additional load balancers.</td>
+  <td>By default, each cluster creates internal and external network load balancers for the master API server and a single Classic Load Balancer for the router. Deploying more Kubernetes <code>Service</code> objects with type <code>LoadBalancer</code> will create additional load balancers.</td>
 </tr>
 <tr>
   <td>NAT Gateways</td>
@@ -112,7 +112,7 @@ The following table summarizes the AWS  components whose limits can impact your 
   <td>Elastic Network Interfaces (ENIs)</td>
   <td>At least 12</td>
   <td>350 per region</td>
-  <td>The default installation creates 21 ENIs and an ENI for each availability zonein your region. For example, the <code>us-east-1</code> region contains six availability zones, so a cluster that is deployed in that zone uses 27 ENIs. Review the AWS region map to determine how many availability zones are in each region.<br><br>Additional ENIs are created for additional machines and ELB load balancers that are created by cluster usage and deployed workloads.</td>
+  <td>The default installation creates 21 ENIs and an ENI for each availability zone in your region. For example, the <code>us-east-1</code> region contains six availability zones, so a cluster that is deployed in that zone uses 27 ENIs. Review the AWS region map to determine how many availability zones are in each region.<br><br>Additional ENIs are created for additional machines and ELB load balancers that are created by cluster usage and deployed workloads.</td>
 </tr>
 <tr>
   <td>VPC Gateway</td>
@@ -142,6 +142,7 @@ The following table summarizes the AWS  components whose limits can impact your 
 </table>
 
 **Additional resources**
+{._additional-resources}
 
 - [Service Limits (AWS documentation)](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)
 - [Regions and Zones (AWS documentation)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html)
@@ -565,6 +566,7 @@ Instead of allowing the installation program to create IAM instance profiles wit
    > To change or update an IAM account after the cluster has been installed, see [RHOCP 4 AWS cloud-credentials access key is expired](https://access.redhat.com/solutions/4284011) (Red Hat Knowledgebase).
 
 **Additional resources**
+{._additional-resources}
 
 - [Deploying the cluster](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installation-launching-installer_installing-aws-customizations)
 
@@ -694,6 +696,7 @@ The following AWS China regions are supported:
 - `cn-northwest-1` (Ningxia)
 
 **Additional resources**
+{._additional-resources}
 
 - [Quickly install a cluster](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-default#installing-aws-default)
 - [Install a cluster with cloud customizations on installer-provisioned infrastructure](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations)

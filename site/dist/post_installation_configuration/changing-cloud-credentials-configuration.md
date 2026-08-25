@@ -21,13 +21,7 @@ Some organizations require the rotation of the service keys that authenticate th
 
 ### Rotating AWS OIDC bound service account signer keys {#rotating-bound-service-keys_key-rotation-aws}
 
-You can rotate the bound service account signer key for an OpenShift Container Platform cluster
-
-on Amazon Web Services (AWS)
-
-that uses the Cloud Credential Operator (CCO) in manual mode with
-
-STS.
+You can rotate the bound service account signer key for an OpenShift Container Platform cluster on Amazon Web Services (AWS) that uses the Cloud Credential Operator (CCO) in manual mode with STS.
 
 To rotate the key, you delete the existing key on your cluster, which causes the Kubernetes API server to create a new key. To reduce authentication failures during this process, you must immediately add the new public key to the existing issuer file. After the cluster is using the new key for authentication, you can remove any remaining keys.
 
@@ -60,72 +54,66 @@ To rotate the key, you delete the existing key on your cluster, which causes the
 
    ```text
 
+   INFRA_ID=$(oc get infrastructures cluster -o jsonpath='{.status.infrastructureName}')
+   CLUSTER_NAME=${INFRA_ID%-*}
+
    ```
 
-{%- if rotate_aws %} INFRA_ID=$(oc get infrastructures cluster -o jsonpath='{.status.infrastructureName}') CLUSTER_NAME=${INFRA_ID%-*} {% endif %} {% if rotate_gcp %} CURRENT_ISSUER=$(oc get authentication cluster -o jsonpath='{.spec.serviceAccountIssuer}') GCP_BUCKET=$(echo ${CURRENT_ISSUER} | cut -d "/" -f4) CLUSTER_NAME=${GCP_BUCKET%-*} {% endif %} {% if rotate_azure %} CURRENT_ISSUER=$(oc get authentication cluster -o jsonpath='{.spec.serviceAccountIssuer}') AZURE_STORAGE_ACCOUNT=$(echo ${CURRENT_ISSUER} | cut -d "/" -f3 | cut -d "." -f1) AZURE_STORAGE_CONTAINER=$(echo ${CURRENT_ISSUER} | cut -d "/" -f4) {%- endif %} \`\`\`
+   where:
 
-```
-where:
+   `CLUSTER_NAME`
+   :   This value should match the name of the cluster that was specified in the `metadata.name` field of the `install-config.yaml` file during installation.
 
-`CLUSTER_NAME`
-:   This value should match the name of the cluster that was specified in the `metadata.name` field of the `install-config.yaml` file during installation.
+   > [!NOTE]
+   > Your cluster might differ from this example, and the resource names might not be derived identically from the cluster name. Ensure that you specify the correct corresponding resource names for your cluster.
 
-:::note
-
-Your cluster might differ from this example, and the resource names might not be derived identically from the cluster name.
-Ensure that you specify the correct corresponding resource names for your cluster.
-
-:::
-```
-
-- For AWS clusters that store the OIDC configuration in a public S3 bucket, configure the following environment variable:
-
-  ```text
-  AWS_BUCKET=$(oc get authentication cluster -o jsonpath={'.spec.serviceAccountIssuer'} | awk -F'://' '{print$2}' |awk -F'.' '{print$1}')
-  ```
-- For AWS clusters that store the OIDC configuration in a private S3 bucket that is accessed by the IAM identity provider through a public CloudFront distribution URL, complete the following steps:
-
-  1. Extract the public CloudFront distribution URL by running the following command:
-
-     ```terminal
-     $ basename $(oc get authentication cluster -o jsonpath={'.spec.serviceAccountIssuer'} )
-     ```
-
-     ```text {title="Example output"}
-     <subdomain>.cloudfront.net
-     ```
-
-     where `<subdomain>` is an alphanumeric string.
-  2. Determine the private S3 bucket name by running the following command:
-
-     ```terminal
-     $ aws cloudfront list-distributions --query "DistributionList.Items[].{DomainName: DomainName, OriginDomainName: Origins.Items[0].DomainName}[?contains(DomainName, '<subdomain>.cloudfront.net')]"
-     ```
-
-     ```text {title="Example output"}
-     [
-         {
-             "DomainName": "<subdomain>.cloudfront.net",
-             "OriginDomainName": "<s3_bucket>.s3.us-east-2.amazonaws.com"
-         }
-     ]
-     ```
-
-     where `<s3_bucket>` is the private S3 bucket name for your cluster.
-  3. Configure the following environment variable:
+   - For AWS clusters that store the OIDC configuration in a public S3 bucket, configure the following environment variable:
 
      ```text
-     AWS_BUCKET=$<s3_bucket>
+     AWS_BUCKET=$(oc get authentication cluster -o jsonpath={'.spec.serviceAccountIssuer'} | awk -F'://' '{print$2}' |awk -F'.' '{print$1}')
      ```
+   - For AWS clusters that store the OIDC configuration in a private S3 bucket that is accessed by the IAM identity provider through a public CloudFront distribution URL, complete the following steps:
 
-     where `<s3_bucket>` is the private S3 bucket name for your cluster.
+     1. Extract the public CloudFront distribution URL by running the following command:
 
-1. Create a temporary directory to use and assign it an environment variable by running the following command:
+        ```terminal
+        $ basename $(oc get authentication cluster -o jsonpath={'.spec.serviceAccountIssuer'} )
+        ```
+
+        ```text {title="Example output"}
+        <subdomain>.cloudfront.net
+        ```
+
+        where `<subdomain>` is an alphanumeric string.
+     2. Determine the private S3 bucket name by running the following command:
+
+        ```terminal
+        $ aws cloudfront list-distributions --query "DistributionList.Items[].{DomainName: DomainName, OriginDomainName: Origins.Items[0].DomainName}[?contains(DomainName, '<subdomain>.cloudfront.net')]"
+        ```
+
+        ```text {title="Example output"}
+        [
+            {
+                "DomainName": "<subdomain>.cloudfront.net",
+                "OriginDomainName": "<s3_bucket>.s3.us-east-2.amazonaws.com"
+            }
+        ]
+        ```
+
+        where `<s3_bucket>` is the private S3 bucket name for your cluster.
+     3. Configure the following environment variable:
+
+        ```text
+        AWS_BUCKET=$<s3_bucket>
+        ```
+
+        where `<s3_bucket>` is the private S3 bucket name for your cluster.
+2. Create a temporary directory to use and assign it an environment variable by running the following command:
 
    ```terminal
    $ TEMPDIR=$(mktemp -d)
    ```
-2. To cause the Kubernetes API server to create a new bound service account signing key, you delete the next bound service account signing key.
+3. To cause the Kubernetes API server to create a new bound service account signing key, you delete the next bound service account signing key.
 
    > [!IMPORTANT]
    > After you complete this step, the Kubernetes API server starts to roll out a new key. To reduce the risk of authentication failures, complete the remaining steps as quickly as possible. The remaining steps might be disruptive to workloads.
@@ -136,7 +124,7 @@ Ensure that you specify the correct corresponding resource names for your cluste
    $ oc delete secrets/next-bound-service-account-signing-key \
      -n openshift-kube-apiserver-operator
    ```
-3. Download the public key from the service account signing key secret that the Kubernetes API server created by running the following command:
+4. Download the public key from the service account signing key secret that the Kubernetes API server created by running the following command:
 
    ```terminal
    $ oc get secret/next-bound-service-account-signing-key \
@@ -144,7 +132,7 @@ Ensure that you specify the correct corresponding resource names for your cluste
      -ojsonpath='{ .data.service-account\.pub }' | base64 \
      -d > ${TEMPDIR}/serviceaccount-signer.public
    ```
-4. Use the public key to create a `keys.json` file by running the following command:
+5. Use the public key to create a `keys.json` file by running the following command:
 
    ```terminal
    $ ccoctl aws create-identity-provider \
@@ -168,26 +156,26 @@ Ensure that you specify the correct corresponding resource names for your cluste
 
    `--region`
    :   Any valid AWS region, such as `us-east-1`. This value does not need to match the region the cluster is in.
-5. Rename the `keys.json` file by running the following command:
+6. Rename the `keys.json` file by running the following command:
 
    ```terminal
    $ cp ${TEMPDIR}/<number>-keys.json ${TEMPDIR}/jwks.new.json
    ```
 
    where `<number>` is a two-digit numerical value that varies depending on your environment.
-6. Download the existing `keys.json` file from the cloud provider by running the following command:
+7. Download the existing `keys.json` file from the cloud provider by running the following command:
 
    ```terminal
    $ aws s3api get-object \
      --bucket ${AWS_BUCKET} \
      --key keys.json ${TEMPDIR}/jwks.current.json
    ```
-7. Combine the two `keys.json` files by running the following command:
+8. Combine the two `keys.json` files by running the following command:
 
    ```terminal
    $ jq -s '{ keys: map(.keys[])}' ${TEMPDIR}/jwks.current.json ${TEMPDIR}/jwks.new.json > ${TEMPDIR}/jwks.combined.json
    ```
-8. To enable authentication for the old and new keys during the rotation, upload the combined `keys.json` file to the cloud provider by running the following command:
+9. To enable authentication for the old and new keys during the rotation, upload the combined `keys.json` file to the cloud provider by running the following command:
 
    ```terminal
    $ aws s3api put-object \
@@ -196,39 +184,7 @@ Ensure that you specify the correct corresponding resource names for your cluste
      --key keys.json \
      --body ${TEMPDIR}/jwks.combined.json
    ```
-9. Wait for the Kubernetes API server to update and use the new key. You can monitor the update progress by running the following command:
-
-   ```terminal
-   $ oc adm wait-for-stable-cluster
-   ```
-
-   This process might take 15 minutes or longer. The following output indicates that the process is complete:
-
-   ```text
-   All clusteroperators are stable
-   ```
-10. To ensure that all pods on the cluster use the new key, you must restart them.
-
-    > [!IMPORTANT]
-    > This step maintains uptime for services that are configured for high availability across multiple nodes, but might cause downtime for any services that are not.
-
-    Restart all of the pods in the cluster by running the following command:
-
-    ```terminal
-    $ oc adm reboot-machine-config-pool mcp/worker mcp/master
-    ```
-11. Monitor the restart and update process by running the following command:
-
-    ```terminal
-    $ oc adm wait-for-node-reboot nodes --all
-    ```
-
-    This process might take 15 minutes or longer. The following output indicates that the process is complete:
-
-    ```text
-    All nodes rebooted
-    ```
-12. Monitor the update progress by running the following command:
+10. Wait for the Kubernetes API server to update and use the new key. You can monitor the update progress by running the following command:
 
     ```terminal
     $ oc adm wait-for-stable-cluster
@@ -239,7 +195,39 @@ Ensure that you specify the correct corresponding resource names for your cluste
     ```text
     All clusteroperators are stable
     ```
-13. Replace the combined `keys.json` file with the updated `keys.json` file on the cloud provider by running the following command:
+11. To ensure that all pods on the cluster use the new key, you must restart them.
+
+    > [!IMPORTANT]
+    > This step maintains uptime for services that are configured for high availability across multiple nodes, but might cause downtime for any services that are not.
+
+    Restart all of the pods in the cluster by running the following command:
+
+    ```terminal
+    $ oc adm reboot-machine-config-pool mcp/worker mcp/master
+    ```
+12. Monitor the restart and update process by running the following command:
+
+    ```terminal
+    $ oc adm wait-for-node-reboot nodes --all
+    ```
+
+    This process might take 15 minutes or longer. The following output indicates that the process is complete:
+
+    ```text
+    All nodes rebooted
+    ```
+13. Monitor the update progress by running the following command:
+
+    ```terminal
+    $ oc adm wait-for-stable-cluster
+    ```
+
+    This process might take 15 minutes or longer. The following output indicates that the process is complete:
+
+    ```text
+    All clusteroperators are stable
+    ```
+14. Replace the combined `keys.json` file with the updated `keys.json` file on the cloud provider by running the following command:
 
     ```terminal
     $ aws s3api put-object \
@@ -251,13 +239,7 @@ Ensure that you specify the correct corresponding resource names for your cluste
 
 ### Rotating Google Cloud OIDC bound service account signer keys {#_rotating_gcp_short_oidc_bound_service_account_signer_keys}
 
-You can rotate the bound service account signer key for an OpenShift Container Platform cluster
-
-on Google Cloud
-
-that uses the Cloud Credential Operator (CCO) in manual mode with
-
-GCP Workload Identity.
+You can rotate the bound service account signer key for an OpenShift Container Platform cluster on Google Cloud that uses the Cloud Credential Operator (CCO) in manual mode with GCP Workload Identity.
 
 To rotate the key, you delete the existing key on your cluster, which causes the Kubernetes API server to create a new key. To reduce authentication failures during this process, you must immediately add the new public key to the existing issuer file. After the cluster is using the new key for authentication, you can remove any remaining keys.
 
@@ -273,7 +255,7 @@ To rotate the key, you delete the existing key on your cluster, which causes the
 - You have access to the OpenShift CLI (`oc`) as a user with the `cluster-admin` role.
 - You have added one of the following authentication options to the Google Cloud account that the `ccoctl` utility uses:
 
-  - The ***IAM Workload Identity Pool Admin*** role
+  - The **IAM Workload Identity Pool Admin** role
   - The following granular permissions:
 
     - `storage.objects.create`
@@ -291,25 +273,20 @@ To rotate the key, you delete the existing key on your cluster, which causes the
 
    ```text
 
+   CURRENT_ISSUER=$(oc get authentication cluster -o jsonpath='{.spec.serviceAccountIssuer}')
+   GCP_BUCKET=$(echo ${CURRENT_ISSUER} | cut -d "/" -f4)
+   CLUSTER_NAME=${GCP_BUCKET%-*}
+
    ```
 
-{%- if rotate_aws %} INFRA_ID=$(oc get infrastructures cluster -o jsonpath='{.status.infrastructureName}') CLUSTER_NAME=${INFRA_ID%-*} {% endif %} {% if rotate_gcp %} CURRENT_ISSUER=$(oc get authentication cluster -o jsonpath='{.spec.serviceAccountIssuer}') GCP_BUCKET=$(echo ${CURRENT_ISSUER} | cut -d "/" -f4) CLUSTER_NAME=${GCP_BUCKET%-*} {% endif %} {% if rotate_azure %} CURRENT_ISSUER=$(oc get authentication cluster -o jsonpath='{.spec.serviceAccountIssuer}') AZURE_STORAGE_ACCOUNT=$(echo ${CURRENT_ISSUER} | cut -d "/" -f3 | cut -d "." -f1) AZURE_STORAGE_CONTAINER=$(echo ${CURRENT_ISSUER} | cut -d "/" -f4) {%- endif %} \`\`\`
-
-```
-:::note
-
-Your cluster might differ from this example, and the resource names might not be derived identically from the cluster name.
-Ensure that you specify the correct corresponding resource names for your cluster.
-
-:::
-```
-
-1. Create a temporary directory to use and assign it an environment variable by running the following command:
+   > [!NOTE]
+   > Your cluster might differ from this example, and the resource names might not be derived identically from the cluster name. Ensure that you specify the correct corresponding resource names for your cluster.
+2. Create a temporary directory to use and assign it an environment variable by running the following command:
 
    ```terminal
    $ TEMPDIR=$(mktemp -d)
    ```
-2. To cause the Kubernetes API server to create a new bound service account signing key, you delete the next bound service account signing key.
+3. To cause the Kubernetes API server to create a new bound service account signing key, you delete the next bound service account signing key.
 
    > [!IMPORTANT]
    > After you complete this step, the Kubernetes API server starts to roll out a new key. To reduce the risk of authentication failures, complete the remaining steps as quickly as possible. The remaining steps might be disruptive to workloads.
@@ -320,7 +297,7 @@ Ensure that you specify the correct corresponding resource names for your cluste
    $ oc delete secrets/next-bound-service-account-signing-key \
      -n openshift-kube-apiserver-operator
    ```
-3. Download the public key from the service account signing key secret that the Kubernetes API server created by running the following command:
+4. Download the public key from the service account signing key secret that the Kubernetes API server created by running the following command:
 
    ```terminal
    $ oc get secret/next-bound-service-account-signing-key \
@@ -328,7 +305,7 @@ Ensure that you specify the correct corresponding resource names for your cluste
      -ojsonpath='{ .data.service-account\.pub }' | base64 \
      -d > ${TEMPDIR}/serviceaccount-signer.public
    ```
-4. Use the public key to create a `keys.json` file by running the following command:
+5. Use the public key to create a `keys.json` file by running the following command:
 
    ```terminal
    $ ccoctl gcp create-workload-identity-provider \
@@ -340,15 +317,24 @@ Ensure that you specify the correct corresponding resource names for your cluste
      --workload-identity-pool fake
    ```
 
-   where: `--dry-run`:: The dry run mode outputs files, including the new `keys.json` file, to the disk without making API calls. `--public-key-file`:: The path to the public key that you downloaded in the previous step. `--name`:: Some parameters do not require real values because the `--dry-run` option does not make any API calls.
-5. Rename the `keys.json` file by running the following command:
+   where:
+
+   `--dry-run`
+   :   The dry run mode outputs files, including the new `keys.json` file, to the disk without making API calls.
+
+   `--public-key-file`
+   :   The path to the public key that you downloaded in the previous step.
+
+   `--name`
+   :   Some parameters do not require real values because the `--dry-run` option does not make any API calls.
+6. Rename the `keys.json` file by running the following command:
 
    ```terminal
    $ cp ${TEMPDIR}/<number>-keys.json ${TEMPDIR}/jwks.new.json
    ```
 
    where `<number>` is a two-digit numerical value that varies depending on your environment.
-6. Download the existing `keys.json` file from the cloud provider by running the following command:
+7. Download the existing `keys.json` file from the cloud provider by running the following command:
 
    - For Google Cloud clusters that store OIDC keys in a public bucket, run the following command:
 
@@ -364,12 +350,12 @@ Ensure that you specify the correct corresponding resource names for your cluste
        --workload-identity-pool ${CLUSTER_NAME} ${CLUSTER_NAME} \
        | jq -r ".oidc.jwksJson" > ${TEMPDIR}/jwks.current.json
      ```
-7. Combine the two `keys.json` files by running the following command:
+8. Combine the two `keys.json` files by running the following command:
 
    ```terminal
    $ jq -s '{ keys: map(.keys[])}' ${TEMPDIR}/jwks.current.json ${TEMPDIR}/jwks.new.json > ${TEMPDIR}/jwks.combined.json
    ```
-8. To enable authentication for the old and new keys during the rotation, upload the combined `keys.json` file to the cloud provider by running the following command:
+9. To enable authentication for the old and new keys during the rotation, upload the combined `keys.json` file to the cloud provider by running the following command:
 
    - For Google Cloud clusters that store OIDC keys in a public bucket, run the following command:
 
@@ -384,39 +370,7 @@ Ensure that you specify the correct corresponding resource names for your cluste
        --workload-identity-pool=${CLUSTER_NAME} \
        --jwk-json-path=${TEMPDIR}/jwks.combined.json
      ```
-9. Wait for the Kubernetes API server to update and use the new key. You can monitor the update progress by running the following command:
-
-   ```terminal
-   $ oc adm wait-for-stable-cluster
-   ```
-
-   This process might take 15 minutes or longer. The following output indicates that the process is complete:
-
-   ```text
-   All clusteroperators are stable
-   ```
-10. To ensure that all pods on the cluster use the new key, you must restart them.
-
-    > [!IMPORTANT]
-    > This step maintains uptime for services that are configured for high availability across multiple nodes, but might cause downtime for any services that are not.
-
-    Restart all of the pods in the cluster by running the following command:
-
-    ```terminal
-    $ oc adm reboot-machine-config-pool mcp/worker mcp/master
-    ```
-11. Monitor the restart and update process by running the following command:
-
-    ```terminal
-    $ oc adm wait-for-node-reboot nodes --all
-    ```
-
-    This process might take 15 minutes or longer. The following output indicates that the process is complete:
-
-    ```text
-    All nodes rebooted
-    ```
-12. Monitor the update progress by running the following command:
+10. Wait for the Kubernetes API server to update and use the new key. You can monitor the update progress by running the following command:
 
     ```terminal
     $ oc adm wait-for-stable-cluster
@@ -427,7 +381,39 @@ Ensure that you specify the correct corresponding resource names for your cluste
     ```text
     All clusteroperators are stable
     ```
-13. Replace the combined `keys.json` file with the updated `keys.json` file on the cloud provider by running the following command:
+11. To ensure that all pods on the cluster use the new key, you must restart them.
+
+    > [!IMPORTANT]
+    > This step maintains uptime for services that are configured for high availability across multiple nodes, but might cause downtime for any services that are not.
+
+    Restart all of the pods in the cluster by running the following command:
+
+    ```terminal
+    $ oc adm reboot-machine-config-pool mcp/worker mcp/master
+    ```
+12. Monitor the restart and update process by running the following command:
+
+    ```terminal
+    $ oc adm wait-for-node-reboot nodes --all
+    ```
+
+    This process might take 15 minutes or longer. The following output indicates that the process is complete:
+
+    ```text
+    All nodes rebooted
+    ```
+13. Monitor the update progress by running the following command:
+
+    ```terminal
+    $ oc adm wait-for-stable-cluster
+    ```
+
+    This process might take 15 minutes or longer. The following output indicates that the process is complete:
+
+    ```text
+    All clusteroperators are stable
+    ```
+14. Replace the combined `keys.json` file with the updated `keys.json` file on the cloud provider by running the following command:
 
     - For Google Cloud clusters that store OIDC keys in a public bucket, run the following command:
 
@@ -445,13 +431,7 @@ Ensure that you specify the correct corresponding resource names for your cluste
 
 ### Rotating Azure OIDC bound service account signer keys {#_rotating_azure_short_oidc_bound_service_account_signer_keys}
 
-You can rotate the bound service account signer key for an OpenShift Container Platform cluster
-
-on Microsoft Azure
-
-that uses the Cloud Credential Operator (CCO) in manual mode with
-
-Microsoft Entra Workload ID.
+You can rotate the bound service account signer key for an OpenShift Container Platform cluster on Microsoft Azure that uses the Cloud Credential Operator (CCO) in manual mode with Microsoft Entra Workload ID.
 
 To rotate the key, you delete the existing key on your cluster, which causes the Kubernetes API server to create a new key. To reduce authentication failures during this process, you must immediately add the new public key to the existing issuer file. After the cluster is using the new key for authentication, you can remove any remaining keys.
 
@@ -485,25 +465,19 @@ To rotate the key, you delete the existing key on your cluster, which causes the
 
    ```text
 
+   CURRENT_ISSUER=$(oc get authentication cluster -o jsonpath='{.spec.serviceAccountIssuer}')
+   AZURE_STORAGE_ACCOUNT=$(echo ${CURRENT_ISSUER} | cut -d "/" -f3 | cut -d "." -f1)
+   AZURE_STORAGE_CONTAINER=$(echo ${CURRENT_ISSUER} | cut -d "/" -f4)
    ```
 
-{%- if rotate_aws %} INFRA_ID=$(oc get infrastructures cluster -o jsonpath='{.status.infrastructureName}') CLUSTER_NAME=${INFRA_ID%-*} {% endif %} {% if rotate_gcp %} CURRENT_ISSUER=$(oc get authentication cluster -o jsonpath='{.spec.serviceAccountIssuer}') GCP_BUCKET=$(echo ${CURRENT_ISSUER} | cut -d "/" -f4) CLUSTER_NAME=${GCP_BUCKET%-*} {% endif %} {% if rotate_azure %} CURRENT_ISSUER=$(oc get authentication cluster -o jsonpath='{.spec.serviceAccountIssuer}') AZURE_STORAGE_ACCOUNT=$(echo ${CURRENT_ISSUER} | cut -d "/" -f3 | cut -d "." -f1) AZURE_STORAGE_CONTAINER=$(echo ${CURRENT_ISSUER} | cut -d "/" -f4) {%- endif %} \`\`\`
-
-```
-:::note
-
-Your cluster might differ from this example, and the resource names might not be derived identically from the cluster name.
-Ensure that you specify the correct corresponding resource names for your cluster.
-
-:::
-```
-
-1. Create a temporary directory to use and assign it an environment variable by running the following command:
+   > [!NOTE]
+   > Your cluster might differ from this example, and the resource names might not be derived identically from the cluster name. Ensure that you specify the correct corresponding resource names for your cluster.
+2. Create a temporary directory to use and assign it an environment variable by running the following command:
 
    ```terminal
    $ TEMPDIR=$(mktemp -d)
    ```
-2. To cause the Kubernetes API server to create a new bound service account signing key, you delete the next bound service account signing key.
+3. To cause the Kubernetes API server to create a new bound service account signing key, you delete the next bound service account signing key.
 
    > [!IMPORTANT]
    > After you complete this step, the Kubernetes API server starts to roll out a new key. To reduce the risk of authentication failures, complete the remaining steps as quickly as possible. The remaining steps might be disruptive to workloads.
@@ -514,7 +488,7 @@ Ensure that you specify the correct corresponding resource names for your cluste
    $ oc delete secrets/next-bound-service-account-signing-key \
      -n openshift-kube-apiserver-operator
    ```
-3. Download the public key from the service account signing key secret that the Kubernetes API server created by running the following command:
+4. Download the public key from the service account signing key secret that the Kubernetes API server created by running the following command:
 
    ```terminal
    $ oc get secret/next-bound-service-account-signing-key \
@@ -522,7 +496,7 @@ Ensure that you specify the correct corresponding resource names for your cluste
      -ojsonpath='{ .data.service-account\.pub }' | base64 \
      -d > ${TEMPDIR}/serviceaccount-signer.public
    ```
-4. Use the public key to create a `keys.json` file by running the following command:
+5. Use the public key to create a `keys.json` file by running the following command:
 
    ```terminal
    $ ccoctl aws create-identity-provider \
@@ -533,17 +507,31 @@ Ensure that you specify the correct corresponding resource names for your cluste
      --region us-east-1
    ```
 
-   where: `ccoctl aws`:: The command does not include a `--dry-run` option. To use the `--dry-run` option, you must specify `aws` for an Azure cluster. `--dry-run`:: The dry run mode outputs files, including the new `keys.json` file, to the disk without making API calls. `--public-key-file`:: The path to the public key that you downloaded in the previous step. `--name`:: Some parameters do not require real values because the `--dry-run` option does not make any API calls. `--region`:: Any valid AWS region, such as `us-east-1`. This value does not need to match the region the cluster is in.
-5. Rename the `keys.json` file by running the following command:
+   where:
+
+   `ccoctl aws`
+   :   The command does not include a `--dry-run` option. To use the `--dry-run` option, you must specify `aws` for an Azure cluster.
+
+   `--dry-run`
+   :   The dry run mode outputs files, including the new `keys.json` file, to the disk without making API calls.
+
+   `--public-key-file`
+   :   The path to the public key that you downloaded in the previous step.
+
+   `--name`
+   :   Some parameters do not require real values because the `--dry-run` option does not make any API calls.
+
+   `--region`
+   :   Any valid AWS region, such as `us-east-1`. This value does not need to match the region the cluster is in.
+6. Rename the `keys.json` file by running the following command:
 
    ```terminal
    $ cp ${TEMPDIR}/<number>-keys.json ${TEMPDIR}/jwks.new.json
    ```
 
    where `<number>` is a two-digit numerical value that varies depending on your environment.
-6. Download the existing `keys.json` file from the cloud provider by running the following command:
+7. Download the existing `keys.json` file from the cloud provider by running the following command:
 
-   ````
    ```terminal
    $ az storage blob download \
      --container-name ${AZURE_STORAGE_CONTAINER} \
@@ -551,15 +539,13 @@ Ensure that you specify the correct corresponding resource names for your cluste
      --name 'openid/v1/jwks' \
      -f ${TEMPDIR}/jwks.current.json
    ```
-   ````
-7. Combine the two `keys.json` files by running the following command:
+8. Combine the two `keys.json` files by running the following command:
 
    ```terminal
    $ jq -s '{ keys: map(.keys[])}' ${TEMPDIR}/jwks.current.json ${TEMPDIR}/jwks.new.json > ${TEMPDIR}/jwks.combined.json
    ```
-8. To enable authentication for the old and new keys during the rotation, upload the combined `keys.json` file to the cloud provider by running the following command:
+9. To enable authentication for the old and new keys during the rotation, upload the combined `keys.json` file to the cloud provider by running the following command:
 
-   ````
    ```terminal
    $ az storage blob upload \
      --overwrite \
@@ -568,40 +554,7 @@ Ensure that you specify the correct corresponding resource names for your cluste
      --name 'openid/v1/jwks' \
      -f ${TEMPDIR}/jwks.combined.json
    ```
-   ````
-9. Wait for the Kubernetes API server to update and use the new key. You can monitor the update progress by running the following command:
-
-   ```terminal
-   $ oc adm wait-for-stable-cluster
-   ```
-
-   This process might take 15 minutes or longer. The following output indicates that the process is complete:
-
-   ```text
-   All clusteroperators are stable
-   ```
-10. To ensure that all pods on the cluster use the new key, you must restart them.
-
-    > [!IMPORTANT]
-    > This step maintains uptime for services that are configured for high availability across multiple nodes, but might cause downtime for any services that are not.
-
-    Restart all of the pods in the cluster by running the following command:
-
-    ```terminal
-    $ oc adm reboot-machine-config-pool mcp/worker mcp/master
-    ```
-11. Monitor the restart and update process by running the following command:
-
-    ```terminal
-    $ oc adm wait-for-node-reboot nodes --all
-    ```
-
-    This process might take 15 minutes or longer. The following output indicates that the process is complete:
-
-    ```text
-    All nodes rebooted
-    ```
-12. Monitor the update progress by running the following command:
+10. Wait for the Kubernetes API server to update and use the new key. You can monitor the update progress by running the following command:
 
     ```terminal
     $ oc adm wait-for-stable-cluster
@@ -612,9 +565,40 @@ Ensure that you specify the correct corresponding resource names for your cluste
     ```text
     All clusteroperators are stable
     ```
-13. Replace the combined `keys.json` file with the updated `keys.json` file on the cloud provider by running the following command:
+11. To ensure that all pods on the cluster use the new key, you must restart them.
 
-    ````
+    > [!IMPORTANT]
+    > This step maintains uptime for services that are configured for high availability across multiple nodes, but might cause downtime for any services that are not.
+
+    Restart all of the pods in the cluster by running the following command:
+
+    ```terminal
+    $ oc adm reboot-machine-config-pool mcp/worker mcp/master
+    ```
+12. Monitor the restart and update process by running the following command:
+
+    ```terminal
+    $ oc adm wait-for-node-reboot nodes --all
+    ```
+
+    This process might take 15 minutes or longer. The following output indicates that the process is complete:
+
+    ```text
+    All nodes rebooted
+    ```
+13. Monitor the update progress by running the following command:
+
+    ```terminal
+    $ oc adm wait-for-stable-cluster
+    ```
+
+    This process might take 15 minutes or longer. The following output indicates that the process is complete:
+
+    ```text
+    All clusteroperators are stable
+    ```
+14. Replace the combined `keys.json` file with the updated `keys.json` file on the cloud provider by running the following command:
+
     ```terminal
     $ az storage blob upload \
       --overwrite \
@@ -623,7 +607,6 @@ Ensure that you specify the correct corresponding resource names for your cluste
       --name 'openid/v1/jwks' \
       -f ${TEMPDIR}/jwks.new.json
     ```
-    ````
 
 ### Rotating IBM Cloud credentials {#refreshing-service-ids-ibm-cloud_changing-cloud-credentials-configuration}
 
@@ -665,6 +648,7 @@ You can rotate API keys for your existing service IDs and update the correspondi
   > If your cluster uses Technology Preview features that are enabled by the `TechPreviewNoUpgrade` feature set, you must include the `--enable-tech-preview` parameter.
 
 **Additional resources**
+{._additional-resources}
 
 - [Amazon Web Services (AWS) with Security Token Service (STS)](/openshift-docs-markdown/post_installation_configuration/changing-cloud-credentials-configuration#rotating-bound-service-keys_key-rotation-aws)
 - [Google Cloud with GCP Workload Identity](/openshift-docs-markdown/post_installation_configuration/changing-cloud-credentials-configuration#rotating-bound-service-keys_key-rotation-gcp)
@@ -692,7 +676,7 @@ The process for rotating cloud credentials depends on the mode that the CCO is c
 
 **Procedure**
 
-1. In the **Administrator** perspective of the web console, navigate to **Workloads** -> **Secrets**.
+1. In the **Administrator** perspective of the web console, navigate to **Workloads** → **Secrets**.
 2. In the table on the **Secrets** page, find the root secret for your cloud provider.
 
 <table>
@@ -725,11 +709,11 @@ The process for rotating cloud credentials depends on the mode that the CCO is c
 </tr>
 </tbody>
 </table>
-1.  Click the Options menu ![](kebab.png 'Options menu') in the same row as the secret and select **Edit Secret**.
-1.  Record the contents of the **Value** field or fields. You can use this information to verify that the value is different after updating the credentials.
-1.  Update the text in the **Value** field or fields with the new authentication information for your cloud provider, and then click **Save**.
 
-1. If you are updating the credentials for a vSphere cluster that does not have the vSphere CSI Driver Operator enabled, you must force a rollout of the Kubernetes controller manager to apply the updated credentials.
+1. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") in the same row as the secret and select **Edit Secret**.
+2. Record the contents of the **Value** field or fields. You can use this information to verify that the value is different after updating the credentials.
+3. Update the text in the **Value** field or fields with the new authentication information for your cloud provider, and then click **Save**.
+4. If you are updating the credentials for a vSphere cluster that does not have the vSphere CSI Driver Operator enabled, you must force a rollout of the Kubernetes controller manager to apply the updated credentials.
 
    > [!NOTE]
    > If the vSphere CSI Driver Operator is enabled, this step is not required.
@@ -747,7 +731,7 @@ The process for rotating cloud credentials depends on the mode that the CCO is c
    ```terminal
    $ oc get co kube-controller-manager
    ```
-2. If the CCO for your cluster is configured to use mint mode, delete each component secret that is referenced by the individual `CredentialsRequest` objects.
+5. If the CCO for your cluster is configured to use mint mode, delete each component secret that is referenced by the individual `CredentialsRequest` objects.
 
    1. Log in to the OpenShift Container Platform CLI as a user with the `cluster-admin` role.
    2. Get the names and namespaces of all referenced component secrets:
@@ -777,7 +761,7 @@ The process for rotating cloud credentials depends on the mode that the CCO is c
    3. Delete each of the referenced component secrets:
 
       ```terminal
-      $ oc delete secret <secret_name> \//<1>
+      $ oc delete secret <secret_name> \ (1)
         -n <secret_namespace> (2)
       ```
 
@@ -799,13 +783,14 @@ The process for rotating cloud credentials depends on the mode that the CCO is c
 
 **Verification**
 
-1. In the **Administrator** perspective of the web console, navigate to **Workloads** -> **Secrets**.
+1. In the **Administrator** perspective of the web console, navigate to **Workloads** → **Secrets**.
 2. Verify that the contents of the **Value** field or fields have changed.
 
 **Additional resources**
+{._additional-resources}
 
 - [The Cloud Credential Operator in mint mode](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/cco-mode-mint#cco-mode-mint)
-- [The Cloud Credential Operator in passthrough mode](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/cco-mode-passthrough.html#cco-mode-passthrough)
+- [The Cloud Credential Operator in passthrough mode](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/cco-mode-passthrough#cco-mode-passthrough)
 - [vSphere CSI Driver Operator](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-vsphere#persistent-storage-csi-vsphere)
 - [Cloud Credential Operator (CCO)](/openshift-docs-markdown/operators/operator-reference#cloud-credential-operator_cluster-operators-ref)
 
@@ -830,16 +815,17 @@ After installing an OpenShift Container Platform cluster with the CCO in mint mo
 
 **Procedure**
 
-1. In the **Administrator** perspective of the web console, navigate to **Workloads** -> **Secrets**.
+1. In the **Administrator** perspective of the web console, navigate to **Workloads** → **Secrets**.
 2. In the table on the **Secrets** page, find the root secret for your cloud provider.
 
    | Platform | Secret name |
    | --- | --- |
    | AWS | `aws-creds` |
    | Google Cloud | `gcp-credentials` |
-3. Click the Options menu ![](kebab.png "Options menu") in the same row as the secret and select **Delete Secret**.
+3. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") in the same row as the secret and select **Delete Secret**.
 
 **Additional resources**
+{._additional-resources}
 
 - [The Cloud Credential Operator in mint mode](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/cco-mode-mint#cco-mode-mint)
 - [Cloud Credential Operator (CCO)](/openshift-docs-markdown/operators/operator-reference#cloud-credential-operator_cluster-operators-ref)
@@ -850,7 +836,7 @@ After installing an OpenShift Container Platform cluster on Microsoft Azure or A
 
 ### Configuring the Cloud Credential Operator utility {#cco-ccoctl-configuring_changing-cloud-credentials-configuration}
 
-{.\_abstract} To configure an existing cluster to create and manage cloud credentials from outside of the cluster, extract and prepare the Cloud Credential Operator utility (`ccoctl`) binary.
+To configure an existing cluster to create and manage cloud credentials from outside of the cluster, extract and prepare the Cloud Credential Operator utility (`ccoctl`) binary.
 
 > [!NOTE]
 > The `ccoctl` utility is a Linux binary that must run in a Linux environment.
@@ -1338,6 +1324,7 @@ Enable AWS Security Token Service (STS) on an existing OpenShift Container Platf
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Microsoft Entra Workload ID](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds-azure_cco-short-term-creds)
 - [Configuring an Azure cluster to use short-term credentials](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-with-short-term-creds_installing-azure-customizations)
@@ -1419,7 +1406,8 @@ You can verify that a cluster uses short-term security credentials for individua
   pod-identity-webhook-548f977b4c-859lz        1/1     Running   1          70m
   ```
 
-## Additional resources {#additional-resources_changing-cloud-credentials-configuration}
+**Additional resources**
+{._additional-resources}
 
 - [About the Cloud Credential Operator](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator)
 - [Determining the Cloud Credential Operator mode](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#cco-determine-mode_about-cloud-credential-operator)

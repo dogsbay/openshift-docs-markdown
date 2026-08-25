@@ -21,6 +21,7 @@ The following configurations are required:
 - If the host on which you are booting the agent ISO image also has an installed disk, it might be necessary to specify the iSCSI disk name in the `rootDeviceHints` parameter to ensure that it is chosen as the boot disk for the final Red Hat Enterprise Linux CoreOS (RHCOS) image. You can also use a diskless environment for iSCSI booting, in which case you do not need to set the `rootDeviceHints` parameter.
 
 **Additional resources**
+{._additional-resources}
 
 - [DHCP](/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#agent-install-networking-DHCP_preparing-to-install-with-agent-based-installer)
 - [About root device hints](/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#root-device-hints_preparing-to-install-with-agent-based-installer)
@@ -35,6 +36,7 @@ Before beginning your cluster installation, you must complete prerequisite tasks
 - You configured your firewall to allow TCP traffic on port `8090` from all hosts to the rendezvous host so that hosts can reach the Assisted Service API during discovery and bootstrap. For more information, see "Port requirements for the rendezvous host".
 
 **Additional resources**
+{._additional-resources}
 
 - [Installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)
 - [Selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing)
@@ -217,41 +219,35 @@ Create the preferred configuration inputs used to create the agent image.
                next-hop-address: 192.168.111.2
                next-hop-interface: eno1
                table-id: 254
+   minimalISO: true
+   EOF
    ```
 
-{% if iscsi_boot %} minimalISO: true {% endif %} EOF \`\`\`
+   where:
 
-```
-where:
+   `rendezvousIP`
+   :   Specifies the IP address used to determine which node performs the bootstrapping process as well as running the `assisted-service` component. You must provide the rendezvous IP address when you do not specify at least one host’s IP address in the `networkConfig` parameter. If this address is not provided, one IP address is selected from the provided hosts' `networkConfig`.
 
-`rendezvousIP`
-:   Specifies the IP address used to determine which node performs the bootstrapping process as well as running the `assisted-service` component.
-    You must provide the rendezvous IP address when you do not specify at least one host’s IP address in the `networkConfig` parameter. If this address is not provided, one IP address is selected from the provided hosts' `networkConfig`.
+   `hosts`
+   :   Specifies host configuration. The number of hosts defined must not exceed the total number of hosts defined in the `install-config.yaml` file, which is the sum of the values of the `compute.replicas` and `controlPlane.replicas` parameters. This configuration is optional.
 
-`hosts`
-:   Specifies host configuration. The number of hosts defined must not exceed the total number of hosts defined in the `install-config.yaml` file, which is the sum of the values of the `compute.replicas` and `controlPlane.replicas` parameters. This configuration is optional.
+   `hosts.hostname`
+   :   Specifies a value that overrides the hostname obtained from either the Dynamic Host Configuration Protocol (DHCP) or a reverse DNS lookup. Each host must have a unique hostname supplied by one of these methods. This configuration is optional.
 
-`hosts.hostname`
-:   Specifies a value that overrides the hostname obtained from either the Dynamic Host Configuration Protocol (DHCP) or a reverse DNS lookup. Each host must have a unique hostname supplied by one of these methods. This configuration is optional.
+   `hosts.rootDeviceHints`
+   :   Specifies a configuration that enables provisioning of the Red Hat Enterprise Linux CoreOS (RHCOS) image to a particular device. The installation program examines the devices in the order it discovers them, and compares the discovered values with the hint values. It uses the first discovered device that matches the hint value.
 
-`hosts.rootDeviceHints`
-:   Specifies a configuration that enables provisioning of the Red&#160;Hat Enterprise Linux CoreOS (RHCOS) image to a particular device. The installation program examines the devices in the order it discovers them, and compares the discovered values with the hint values. It uses the first discovered device that matches the hint value.
+       > [!NOTE]
+       > This parameter is mandatory for FCP multipath configurations on IBM Z.
 
-    :::note
+   `hosts.networkConfig`
+   :   Specifies the network interface configuration of a host in NMState format. This configuration is optional.
 
-    This parameter is mandatory for FCP multipath configurations on IBM Z.
-
-    :::
-
-`hosts.networkConfig`
-:   Specifies the network interface configuration of a host in NMState format. This configuration is optional.
-
-`minimalISO`
-:   Specifies whether to generate an ISO image without the rootfs image file, instead providing details about where to pull the rootfs file from.
-    You must set this parameter to `true` to enable iSCSI booting.
-```
+   `minimalISO`
+   :   Specifies whether to generate an ISO image without the rootfs image file, instead providing details about where to pull the rootfs file from. You must set this parameter to `true` to enable iSCSI booting.
 
 **Additional resources**
+{._additional-resources}
 
 - [Deploying with dual-stack networking](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#modifying-install-config-for-dual-stack-network_ipi-install-installation-workflow)
 - [Configuring the install-config yaml file](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#configuring-the-install-config-file_ipi-install-installation-workflow)

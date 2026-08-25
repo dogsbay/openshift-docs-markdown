@@ -23,6 +23,7 @@ Control plane certificates are managed by the system and rotated automatically.
 
 If control plane certificates expire, see "Recovering from expired control plane certificates".
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Recovering from expired control plane certificates](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-3-expired-certs#dr-recovering-expired-certs)

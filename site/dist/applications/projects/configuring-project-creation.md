@@ -58,7 +58,7 @@ To create your own custom project template:
 
    - Using the web console, complete the following tasks:
 
-     1. Navigate to the **Administration** -> **Cluster Settings** page.
+     1. Navigate to the **Administration** → **Cluster Settings** page.
      2. Click **Configuration** to view all configuration resources.
      3. Find the entry for **Project** and click **Edit YAML**.
    - Using the CLI, complete the following tasks:
@@ -180,7 +180,7 @@ Cluster administrators can customize this message. Consider updating the message
 
    - By using the web console, complete the following steps:
 
-     1. Navigate to the **Administration** -> **Cluster Settings** page.
+     1. Navigate to the **Administration** → **Cluster Settings** page.
      2. Click **Configuration** to view all configuration resources.
      3. Find the entry for **Project** and click **Edit YAML**.
    - By using the CLI, complete the following steps:

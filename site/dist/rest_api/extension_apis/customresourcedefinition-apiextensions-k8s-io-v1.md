@@ -1,5 +1,5 @@
 ---
-title: CustomResourceDefinition []
+title: CustomResourceDefinition [apiextensions.k8s.io/v1]
 ---
 
 # CustomResourceDefinition \[apiextensions.k8s.io/v1\] {#customresourcedefinition-apiextensions-k8s-io-v1}
@@ -66,7 +66,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `strategy` | `string` | strategy specifies how custom resources are converted between versions. Allowed values are: - `"None"`: The converter only change the apiVersion and would not touch any other field in the custom resource. - `"Webhook"`: API Server will call to an external webhook to do the conversion. Additional information   is needed for this option. This requires spec.preserveUnknownFields to be false, and spec.conversion.webhook to be set. |
+| `strategy` | `string` | strategy specifies how custom resources are converted between versions. Allowed values are: - `"None"`: The converter only change the apiVersion and would not touch any other field in the custom resource. - `"Webhook"`: API Server will call to an external webhook to do the conversion. Additional information is needed for this option. This requires spec.preserveUnknownFields to be false, and spec.conversion.webhook to be set. |
 | `webhook` | `object` | WebhookConversion describes how to call a conversion webhook |
 
 ### .spec.conversion.webhook {#_specconversionwebhook}
@@ -101,7 +101,7 @@ Type
 | --- | --- | --- |
 | `caBundle` | `string` | caBundle is a PEM encoded CA bundle which will be used to validate the webhook’s server certificate. If unspecified, system trust roots on the apiserver are used. |
 | `service` | `object` | ServiceReference holds a reference to Service.legacy.k8s.io |
-| `url` | `string` | url gives the location of the webhook, in standard URL form (`scheme://host:port/path`). Exactly one of `url` or `service` must be specified. The `host` should not refer to a service running in the cluster; use the `service` field instead. The host might be resolved via external DNS in some apiservers (e.g., `kube-apiserver` cannot resolve in-cluster DNS as that would be a layering violation). `host` may also be an IP address. Please note that using `localhost` or `127.0.0.1` as a `host` is risky unless you take great care to run this webhook on all hosts which run an apiserver which might need to make calls to this webhook. Such installs are likely to be non-portable, i.e., not easy to turn up in a new cluster. The scheme must be "https"; the URL must begin with "https://". A path is optional, and if present may be any string permissible in a URL. You may use the path to pass an arbitrary string to the webhook, for example, a cluster identifier. Attempting to use a user or basic auth e.g. "user:password@" is not allowed. Fragments ("#...") and query parameters ("?...") are not allowed, either. |
+| `url` | `string` | url gives the location of the webhook, in standard URL form (`scheme://host:port/path`). Exactly one of `url` or `service` must be specified.<br>The `host` should not refer to a service running in the cluster; use the `service` field instead. The host might be resolved via external DNS in some apiservers (e.g., `kube-apiserver` cannot resolve in-cluster DNS as that would be a layering violation). `host` may also be an IP address.<br>Please note that using `localhost` or `127.0.0.1` as a `host` is risky unless you take great care to run this webhook on all hosts which run an apiserver which might need to make calls to this webhook. Such installs are likely to be non-portable, i.e., not easy to turn up in a new cluster.<br>The scheme must be "https"; the URL must begin with "https://".<br>A path is optional, and if present may be any string permissible in a URL. You may use the path to pass an arbitrary string to the webhook, for example, a cluster identifier.<br>Attempting to use a user or basic auth e.g. "user:password@" is not allowed. Fragments ("#...") and query parameters ("?...") are not allowed, either. |
 
 ### .spec.conversion.webhook.clientConfig.service {#_specconversionwebhookclientconfigservice}
 
@@ -392,16 +392,16 @@ The following API endpoints are available:
 - `/apis/apiextensions.k8s.io/v1/watch/customresourcedefinitions`
 
   - `GET`: watch individual changes to a list of CustomResourceDefinition. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/apiextensions.k8s.io/v1/customresourcedefinitions/{{ name }}`
+- `/apis/apiextensions.k8s.io/v1/customresourcedefinitions/{name}`
 
   - `DELETE`: delete a CustomResourceDefinition
   - `GET`: read the specified CustomResourceDefinition
   - `PATCH`: partially update the specified CustomResourceDefinition
   - `PUT`: replace the specified CustomResourceDefinition
-- `/apis/apiextensions.k8s.io/v1/watch/customresourcedefinitions/{{ name }}`
+- `/apis/apiextensions.k8s.io/v1/watch/customresourcedefinitions/{name}`
 
   - `GET`: watch changes to an object of kind CustomResourceDefinition. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
-- `/apis/apiextensions.k8s.io/v1/customresourcedefinitions/{{ name }}/status`
+- `/apis/apiextensions.k8s.io/v1/customresourcedefinitions/{name}/status`
 
   - `GET`: read status of the specified CustomResourceDefinition
   - `PATCH`: partially update status of the specified CustomResourceDefinition
@@ -500,7 +500,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apiextensions.k8s.io/v1/customresourcedefinitions/{{ name }} {#_apisapiextensionsk8siov1customresourcedefinitions_name}
+### /apis/apiextensions.k8s.io/v1/customresourcedefinitions/{name} {#_apisapiextensionsk8siov1customresourcedefinitions_name}
 
 **Global path parameters**
 
@@ -605,7 +605,7 @@ Description
 | 201 - Created | [`CustomResourceDefinition`](/openshift-docs-markdown/rest_api/extension_apis/customresourcedefinition-apiextensions-k8s-io-v1#customresourcedefinition-apiextensions-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apiextensions.k8s.io/v1/watch/customresourcedefinitions/{{ name }} {#_apisapiextensionsk8siov1watchcustomresourcedefinitions_name}
+### /apis/apiextensions.k8s.io/v1/watch/customresourcedefinitions/{name} {#_apisapiextensionsk8siov1watchcustomresourcedefinitions_name}
 
 **Global path parameters**
 
@@ -630,7 +630,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apiextensions.k8s.io/v1/customresourcedefinitions/{{ name }}/status {#_apisapiextensionsk8siov1customresourcedefinitions_name_status}
+### /apis/apiextensions.k8s.io/v1/customresourcedefinitions/{name}/status {#_apisapiextensionsk8siov1customresourcedefinitions_name_status}
 
 **Global path parameters**
 

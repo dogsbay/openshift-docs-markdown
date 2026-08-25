@@ -17,7 +17,8 @@ For information about configuring your cloud provider to use manual mode, see th
 > [!NOTE]
 > An AWS, global Azure, or Google Cloud cluster that uses manual mode can be configured to use short-term credentials for different components. For more information, see "Manual mode with short-term credentials for components".
 
-## Additional resources {#additional-resources_cco-mode-manual}
+**Additional resources**
+{._additional-resources}
 
 - [Manually creating long-term credentials for AWS](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#manually-create-iam_installing-aws-customizations)
 - [Manually creating long-term credentials for Azure](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#manually-create-iam_installing-azure-customizations)

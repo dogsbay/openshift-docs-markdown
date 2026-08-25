@@ -60,7 +60,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `rollingUpdate` | `object` | Spec to control the desired behavior of rolling update. |
-| `type` | `string` | Type of deployment. Can be "Recreate" or "RollingUpdate". Default is RollingUpdate. Possible enum values:  - `"Recreate"` Kill all existing pods before creating new ones.  - `"RollingUpdate"` Replace the old ReplicaSets by new one using rolling update i.e gradually scale down the old ReplicaSets and scale up the new one. |
+| `type` | `string` | Type of deployment. Can be "Recreate" or "RollingUpdate". Default is RollingUpdate.<br>Possible enum values: - `"Recreate"` Kill all existing pods before creating new ones. - `"RollingUpdate"` Replace the old ReplicaSets by new one using rolling update i.e gradually scale down the old ReplicaSets and scale up the new one. |
 
 ### .spec.strategy.rollingUpdate {#_specstrategyrollingupdate}
 
@@ -96,7 +96,7 @@ Type
 | `observedGeneration` | `integer` | The generation observed by the deployment controller. |
 | `readyReplicas` | `integer` | Total number of non-terminating pods targeted by this Deployment with a Ready Condition. |
 | `replicas` | `integer` | Total number of non-terminating pods targeted by this deployment (their labels match the selector). |
-| `terminatingReplicas` | `integer` | Total number of terminating pods targeted by this deployment. Terminating pods have a non-null .metadata.deletionTimestamp and have not yet reached the Failed or Succeeded .status.phase. This is a beta field and requires enabling DeploymentReplicaSetTerminatingReplicas feature (enabled by default). |
+| `terminatingReplicas` | `integer` | Total number of terminating pods targeted by this deployment. Terminating pods have a non-null .metadata.deletionTimestamp and have not yet reached the Failed or Succeeded .status.phase.<br>This is a beta field and requires enabling DeploymentReplicaSetTerminatingReplicas feature (enabled by default). |
 | `unavailableReplicas` | `integer` | Total number of unavailable pods targeted by this deployment. This is the total number of pods that are still required for the deployment to have 100% available capacity. They may either be pods that are running but not yet available or pods that still have not been created. |
 | `updatedReplicas` | `integer` | Total number of non-terminating pods targeted by this deployment that have the desired template spec. |
 
@@ -143,24 +143,24 @@ The following API endpoints are available:
 - `/apis/apps/v1/watch/deployments`
 
   - `GET`: watch individual changes to a list of Deployment. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/apps/v1/namespaces/{{ namespace }}/deployments`
+- `/apis/apps/v1/namespaces/{namespace}/deployments`
 
   - `DELETE`: delete collection of Deployment
   - `GET`: list or watch objects of kind Deployment
   - `POST`: create a Deployment
-- `/apis/apps/v1/watch/namespaces/{{ namespace }}/deployments`
+- `/apis/apps/v1/watch/namespaces/{namespace}/deployments`
 
   - `GET`: watch individual changes to a list of Deployment. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/apps/v1/namespaces/{{ namespace }}/deployments/{{ name }}`
+- `/apis/apps/v1/namespaces/{namespace}/deployments/{name}`
 
   - `DELETE`: delete a Deployment
   - `GET`: read the specified Deployment
   - `PATCH`: partially update the specified Deployment
   - `PUT`: replace the specified Deployment
-- `/apis/apps/v1/watch/namespaces/{{ namespace }}/deployments/{{ name }}`
+- `/apis/apps/v1/watch/namespaces/{namespace}/deployments/{name}`
 
   - `GET`: watch changes to an object of kind Deployment. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
-- `/apis/apps/v1/namespaces/{{ namespace }}/deployments/{{ name }}/status`
+- `/apis/apps/v1/namespaces/{namespace}/deployments/{name}/status`
 
   - `GET`: read status of the specified Deployment
   - `PATCH`: partially update status of the specified Deployment
@@ -204,7 +204,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/namespaces/{{ namespace }}/deployments {#_apisappsv1namespaces_namespace_deployments}
+### /apis/apps/v1/namespaces/{namespace}/deployments {#_apisappsv1namespaces_namespace_deployments}
 
 HTTP method
 :   ```
@@ -278,7 +278,7 @@ Description
 | 202 - Accepted | [`Deployment`](/openshift-docs-markdown/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/watch/namespaces/{{ namespace }}/deployments {#_apisappsv1watchnamespaces_namespace_deployments}
+### /apis/apps/v1/watch/namespaces/{namespace}/deployments {#_apisappsv1watchnamespaces_namespace_deployments}
 
 HTTP method
 :   ```
@@ -297,7 +297,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/namespaces/{{ namespace }}/deployments/{{ name }} {#_apisappsv1namespaces_namespace_deployments_name}
+### /apis/apps/v1/namespaces/{namespace}/deployments/{name} {#_apisappsv1namespaces_namespace_deployments_name}
 
 **Global path parameters**
 
@@ -402,7 +402,7 @@ Description
 | 201 - Created | [`Deployment`](/openshift-docs-markdown/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/watch/namespaces/{{ namespace }}/deployments/{{ name }} {#_apisappsv1watchnamespaces_namespace_deployments_name}
+### /apis/apps/v1/watch/namespaces/{namespace}/deployments/{name} {#_apisappsv1watchnamespaces_namespace_deployments_name}
 
 **Global path parameters**
 
@@ -427,7 +427,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/namespaces/{{ namespace }}/deployments/{{ name }}/status {#_apisappsv1namespaces_namespace_deployments_name_status}
+### /apis/apps/v1/namespaces/{namespace}/deployments/{name}/status {#_apisappsv1namespaces_namespace_deployments_name_status}
 
 **Global path parameters**
 

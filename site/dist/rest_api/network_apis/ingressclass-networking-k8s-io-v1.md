@@ -1,5 +1,5 @@
 ---
-title: IngressClass []
+title: IngressClass [networking.k8s.io/v1]
 ---
 
 # IngressClass \[networking.k8s.io/v1\] {#ingressclass-networking-k8s-io-v1}
@@ -70,13 +70,13 @@ The following API endpoints are available:
 - `/apis/networking.k8s.io/v1/watch/ingressclasses`
 
   - `GET`: watch individual changes to a list of IngressClass. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/networking.k8s.io/v1/ingressclasses/{{ name }}`
+- `/apis/networking.k8s.io/v1/ingressclasses/{name}`
 
   - `DELETE`: delete an IngressClass
   - `GET`: read the specified IngressClass
   - `PATCH`: partially update the specified IngressClass
   - `PUT`: replace the specified IngressClass
-- `/apis/networking.k8s.io/v1/watch/ingressclasses/{{ name }}`
+- `/apis/networking.k8s.io/v1/watch/ingressclasses/{name}`
 
   - `GET`: watch changes to an object of kind IngressClass. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
 
@@ -173,7 +173,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/networking.k8s.io/v1/ingressclasses/{{ name }} {#_apisnetworkingk8siov1ingressclasses_name}
+### /apis/networking.k8s.io/v1/ingressclasses/{name} {#_apisnetworkingk8siov1ingressclasses_name}
 
 **Global path parameters**
 
@@ -278,7 +278,7 @@ Description
 | 201 - Created | [`IngressClass`](/openshift-docs-markdown/rest_api/network_apis/ingressclass-networking-k8s-io-v1#ingressclass-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/networking.k8s.io/v1/watch/ingressclasses/{{ name }} {#_apisnetworkingk8siov1watchingressclasses_name}
+### /apis/networking.k8s.io/v1/watch/ingressclasses/{name} {#_apisnetworkingk8siov1watchingressclasses_name}
 
 **Global path parameters**
 

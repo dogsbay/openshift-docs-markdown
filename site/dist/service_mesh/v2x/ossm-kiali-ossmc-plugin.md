@@ -107,7 +107,7 @@ You can uninstall the OpenShift Service Mesh Console (OSSMC) plugin by using the
 
 **Procedure**
 
-1. Navigate to **Installed Operators** -> **Operator details**.
+1. Navigate to **Installed Operators** → **Operator details**.
 2. Select the **OpenShift Service Mesh Console** tab.
 3. Click **Delete OSSMConsole** from the options menu.
 
@@ -131,6 +131,7 @@ You can uninstall the OpenShift Service Mesh Console (OSSMC) plugin by using the
    for r in $(oc get ossmconsoles --ignore-not-found=true --all-namespaces -o custom-columns=NS:.metadata.namespace,N:.metadata.name --no-headers | sed 's/  */:/g'); do oc delete ossmconsoles -n $(echo $r|cut -d: -f1) $(echo $r|cut -d: -f2); done
    ```
 
-## Additional resources {#additional-resources_ossm-kiali-ossmc-plugin}
+**Additional resources**
+{._additional-resources}
 
 - [.spec.kiali.serviceNamespace](https://kiali.io/docs/configuration/ossmconsoles.kiali.io/#.spec.kiali.serviceNamespace)

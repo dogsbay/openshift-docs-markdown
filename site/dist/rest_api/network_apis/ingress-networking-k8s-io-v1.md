@@ -1,5 +1,5 @@
 ---
-title: Ingress []
+title: Ingress [networking.k8s.io/v1]
 ---
 
 # Ingress \[networking.k8s.io/v1\] {#ingress-networking-k8s-io-v1}
@@ -35,7 +35,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `defaultBackend` | `object` | IngressBackend describes all endpoints for a given service and port. |
-| `ingressClassName` | `string` | ingressClassName is the name of an IngressClass cluster resource. Ingress controller implementations use this field to know whether they should be serving this Ingress resource, by a transitive connection (controller -> IngressClass -> Ingress resource). Although the `kubernetes.io/ingress.class` annotation (simple constant name) was never formally defined, it was widely supported by Ingress controllers to create a direct binding between Ingress controller and Ingress resources. Newly created Ingress resources should prefer using the field. However, even though the annotation is officially deprecated, for backwards compatibility reasons, ingress controllers should still honor that annotation if present. |
+| `ingressClassName` | `string` | ingressClassName is the name of an IngressClass cluster resource. Ingress controller implementations use this field to know whether they should be serving this Ingress resource, by a transitive connection (controller → IngressClass → Ingress resource). Although the `kubernetes.io/ingress.class` annotation (simple constant name) was never formally defined, it was widely supported by Ingress controllers to create a direct binding between Ingress controller and Ingress resources. Newly created Ingress resources should prefer using the field. However, even though the annotation is officially deprecated, for backwards compatibility reasons, ingress controllers should still honor that annotation if present. |
 | `rules` | `array` | rules is a list of host rules used to configure the Ingress. If unspecified, or no rule matches, all traffic is sent to the default backend. |
 | `rules[]` | `object` | IngressRule represents the rules mapping the paths under a specified host to the related backend services. Incoming requests are first evaluated for a host match, then routed to the backend associated with the matching IngressRuleValue. |
 | `tls` | `array` | tls represents the TLS configuration. Currently the Ingress only supports a single TLS port, 443. If multiple members of this list specify different hosts, they will be multiplexed on the same port according to the hostname specified through the SNI TLS extension, if the ingress controller fulfilling the ingress supports SNI. |
@@ -111,13 +111,13 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `host` | `string` | host is the fully qualified domain name of a network host, as defined by RFC 3986. Note the following deviations from the "host" part of the URI as defined in RFC 3986: 1. IPs are not allowed. Currently an IngressRuleValue can only apply to    the IP in the Spec of the parent Ingress. 2. The `:` delimiter is not respected because ports are not allowed. 	  Currently the port of an Ingress is implicitly :80 for http and 	  :443 for https. Both these may change in the future. Incoming requests are matched against the host before the IngressRuleValue. If the host is unspecified, the Ingress routes all traffic based on the specified IngressRuleValue. host can be "precise" which is a domain name without the terminating dot of a network host (e.g. "foo.bar.com") or "wildcard", which is a domain name prefixed with a single wildcard label (e.g. "**.foo.com"). The wildcard character '**' must appear by itself as the first DNS label and matches only a single label. You cannot have a wildcard label by itself (e.g. Host == "\*"). Requests will be matched against the Host field in the following way: 1. If host is precise, the request matches this rule if the http host header is equal to Host. 2. If host is a wildcard, then the request matches this rule if the http host header is to equal to the suffix (removing the first label) of the wildcard rule. |
-| `http` | `object` | HTTPIngressRuleValue is a list of http selectors pointing to backends. In the example: http://<host>/<path>?<searchpart> -> backend where where parts of the url correspond to RFC 3986, this resource will be used to match against everything after the last '/' and before the first '?' or '#'. |
+| `host` | `string` | host is the fully qualified domain name of a network host, as defined by RFC 3986. Note the following deviations from the "host" part of the URI as defined in RFC 3986: 1. IPs are not allowed. Currently an IngressRuleValue can only apply to the IP in the Spec of the parent Ingress. 2. The `:` delimiter is not respected because ports are not allowed. Currently the port of an Ingress is implicitly :80 for http and :443 for https. Both these may change in the future. Incoming requests are matched against the host before the IngressRuleValue. If the host is unspecified, the Ingress routes all traffic based on the specified IngressRuleValue.<br>host can be "precise" which is a domain name without the terminating dot of a network host (e.g. "foo.bar.com") or "wildcard", which is a domain name prefixed with a single wildcard label (e.g. "**.foo.com"). The wildcard character '**' must appear by itself as the first DNS label and matches only a single label. You cannot have a wildcard label by itself (e.g. Host == "\*"). Requests will be matched against the Host field in the following way: 1. If host is precise, the request matches this rule if the http host header is equal to Host. 2. If host is a wildcard, then the request matches this rule if the http host header is to equal to the suffix (removing the first label) of the wildcard rule. |
+| `http` | `object` | HTTPIngressRuleValue is a list of http selectors pointing to backends. In the example: http://<host>/<path>?<searchpart> → backend where where parts of the url correspond to RFC 3986, this resource will be used to match against everything after the last '/' and before the first '?' or '#'. |
 
 ### .spec.rules\[\].http {#_specruleshttp}
 
 Description
-:   HTTPIngressRuleValue is a list of http selectors pointing to backends. In the example: http://<host>/<path>?<searchpart> -> backend where where parts of the url correspond to RFC 3986, this resource will be used to match against everything after the last '/' and before the first '?' or '#'.
+:   HTTPIngressRuleValue is a list of http selectors pointing to backends. In the example: http://<host>/<path>?<searchpart> → backend where where parts of the url correspond to RFC 3986, this resource will be used to match against everything after the last '/' and before the first '?' or '#'.
 
 Type
 :   ```
@@ -160,7 +160,7 @@ Required
 | --- | --- | --- |
 | `backend` | `object` | IngressBackend describes all endpoints for a given service and port. |
 | `path` | `string` | path is matched against the path of an incoming request. Currently it can contain characters disallowed from the conventional "path" part of a URL as defined by RFC 3986. Paths must begin with a '/' and must be present when using PathType with value "Exact" or "Prefix". |
-| `pathType` | `string` | pathType determines the interpretation of the path matching. PathType can be one of the following values: \* Exact: Matches the URL path exactly. \* Prefix: Matches based on a URL path prefix split by '/'. Matching is   done on a path element by element basis. A path element refers is the   list of labels in the path split by the '/' separator. A request is a   match for path p if every p is an element-wise prefix of p of the   request path. Note that if the last element of the path is a substring   of the last element in request path, it is not a match (e.g. /foo/bar   matches /foo/bar/baz, but does not match /foo/barbaz). \* ImplementationSpecific: Interpretation of the Path matching is up to   the IngressClass. Implementations can treat this as a separate PathType   or treat it identically to Prefix or Exact path types. Implementations are required to support all path types. Possible enum values:  - `"Exact"` matches the URL path exactly and with case sensitivity.  - `"ImplementationSpecific"` matching is up to the IngressClass. Implementations can treat this as a separate PathType or treat it identically to Prefix or Exact path types.  - `"Prefix"` matches based on a URL path prefix split by '/'. Matching is case sensitive and done on a path element by element basis. A path element refers to the list of labels in the path split by the '/' separator. A request is a match for path p if every p is an element-wise prefix of p of the request path. Note that if the last element of the path is a substring of the last element in request path, it is not a match (e.g. /foo/bar matches /foo/bar/baz, but does not match /foo/barbaz). If multiple matching paths exist in an Ingress spec, the longest matching path is given priority. Examples: - /foo/bar does not match requests to /foo/barbaz - /foo/bar matches request to /foo/bar and /foo/bar/baz - /foo and /foo/ both match requests to /foo and /foo/. If both paths are present in an Ingress spec, the longest matching path (/foo/) is given priority. |
+| `pathType` | `string` | pathType determines the interpretation of the path matching. PathType can be one of the following values: \* Exact: Matches the URL path exactly. \* Prefix: Matches based on a URL path prefix split by '/'. Matching is done on a path element by element basis. A path element refers is the list of labels in the path split by the '/' separator. A request is a match for path p if every p is an element-wise prefix of p of the request path. Note that if the last element of the path is a substring of the last element in request path, it is not a match (e.g. /foo/bar matches /foo/bar/baz, but does not match /foo/barbaz). \* ImplementationSpecific: Interpretation of the Path matching is up to the IngressClass. Implementations can treat this as a separate PathType or treat it identically to Prefix or Exact path types. Implementations are required to support all path types.<br>Possible enum values: - `"Exact"` matches the URL path exactly and with case sensitivity. - `"ImplementationSpecific"` matching is up to the IngressClass. Implementations can treat this as a separate PathType or treat it identically to Prefix or Exact path types. - `"Prefix"` matches based on a URL path prefix split by '/'. Matching is case sensitive and done on a path element by element basis. A path element refers to the list of labels in the path split by the '/' separator. A request is a match for path p if every p is an element-wise prefix of p of the request path. Note that if the last element of the path is a substring of the last element in request path, it is not a match (e.g. /foo/bar matches /foo/bar/baz, but does not match /foo/barbaz). If multiple matching paths exist in an Ingress spec, the longest matching path is given priority. Examples: - /foo/bar does not match requests to /foo/barbaz - /foo/bar matches request to /foo/bar and /foo/bar/baz - /foo and /foo/ both match requests to /foo and /foo/. If both paths are present in an Ingress spec, the longest matching path (/foo/) is given priority. |
 
 ### .spec.rules\[\].http.paths\[\].backend {#_specruleshttppathsbackend}
 
@@ -317,9 +317,9 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `error` | `string` | error is to record the problem with the service port The format of the error shall comply with the following rules: - built-in error values shall be specified in this file and those shall use   CamelCase names - cloud provider specific error values must have names that comply with the   format foo.example.com/CamelCase. |
+| `error` | `string` | error is to record the problem with the service port The format of the error shall comply with the following rules: - built-in error values shall be specified in this file and those shall use CamelCase names - cloud provider specific error values must have names that comply with the format foo.example.com/CamelCase. |
 | `port` | `integer` | port is the port number of the ingress port. |
-| `protocol` | `string` | protocol is the protocol of the ingress port. The supported values are: "TCP", "UDP", "SCTP" Possible enum values:  - `"SCTP"` is the SCTP protocol.  - `"TCP"` is the TCP protocol.  - `"UDP"` is the UDP protocol. |
+| `protocol` | `string` | protocol is the protocol of the ingress port. The supported values are: "TCP", "UDP", "SCTP"<br>Possible enum values: - `"SCTP"` is the SCTP protocol. - `"TCP"` is the TCP protocol. - `"UDP"` is the UDP protocol. |
 
 ## API endpoints {#_api_endpoints}
 
@@ -331,24 +331,24 @@ The following API endpoints are available:
 - `/apis/networking.k8s.io/v1/watch/ingresses`
 
   - `GET`: watch individual changes to a list of Ingress. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/networking.k8s.io/v1/namespaces/{{ namespace }}/ingresses`
+- `/apis/networking.k8s.io/v1/namespaces/{namespace}/ingresses`
 
   - `DELETE`: delete collection of Ingress
   - `GET`: list or watch objects of kind Ingress
   - `POST`: create an Ingress
-- `/apis/networking.k8s.io/v1/watch/namespaces/{{ namespace }}/ingresses`
+- `/apis/networking.k8s.io/v1/watch/namespaces/{namespace}/ingresses`
 
   - `GET`: watch individual changes to a list of Ingress. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/networking.k8s.io/v1/namespaces/{{ namespace }}/ingresses/{{ name }}`
+- `/apis/networking.k8s.io/v1/namespaces/{namespace}/ingresses/{name}`
 
   - `DELETE`: delete an Ingress
   - `GET`: read the specified Ingress
   - `PATCH`: partially update the specified Ingress
   - `PUT`: replace the specified Ingress
-- `/apis/networking.k8s.io/v1/watch/namespaces/{{ namespace }}/ingresses/{{ name }}`
+- `/apis/networking.k8s.io/v1/watch/namespaces/{namespace}/ingresses/{name}`
 
   - `GET`: watch changes to an object of kind Ingress. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
-- `/apis/networking.k8s.io/v1/namespaces/{{ namespace }}/ingresses/{{ name }}/status`
+- `/apis/networking.k8s.io/v1/namespaces/{namespace}/ingresses/{name}/status`
 
   - `GET`: read status of the specified Ingress
   - `PATCH`: partially update status of the specified Ingress
@@ -392,7 +392,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/networking.k8s.io/v1/namespaces/{{ namespace }}/ingresses {#_apisnetworkingk8siov1namespaces_namespace_ingresses}
+### /apis/networking.k8s.io/v1/namespaces/{namespace}/ingresses {#_apisnetworkingk8siov1namespaces_namespace_ingresses}
 
 HTTP method
 :   ```
@@ -466,7 +466,7 @@ Description
 | 202 - Accepted | [`Ingress`](/openshift-docs-markdown/rest_api/network_apis/ingress-networking-k8s-io-v1#ingress-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/networking.k8s.io/v1/watch/namespaces/{{ namespace }}/ingresses {#_apisnetworkingk8siov1watchnamespaces_namespace_ingresses}
+### /apis/networking.k8s.io/v1/watch/namespaces/{namespace}/ingresses {#_apisnetworkingk8siov1watchnamespaces_namespace_ingresses}
 
 HTTP method
 :   ```
@@ -485,7 +485,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/networking.k8s.io/v1/namespaces/{{ namespace }}/ingresses/{{ name }} {#_apisnetworkingk8siov1namespaces_namespace_ingresses_name}
+### /apis/networking.k8s.io/v1/namespaces/{namespace}/ingresses/{name} {#_apisnetworkingk8siov1namespaces_namespace_ingresses_name}
 
 **Global path parameters**
 
@@ -590,7 +590,7 @@ Description
 | 201 - Created | [`Ingress`](/openshift-docs-markdown/rest_api/network_apis/ingress-networking-k8s-io-v1#ingress-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/networking.k8s.io/v1/watch/namespaces/{{ namespace }}/ingresses/{{ name }} {#_apisnetworkingk8siov1watchnamespaces_namespace_ingresses_name}
+### /apis/networking.k8s.io/v1/watch/namespaces/{namespace}/ingresses/{name} {#_apisnetworkingk8siov1watchnamespaces_namespace_ingresses_name}
 
 **Global path parameters**
 
@@ -615,7 +615,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/networking.k8s.io/v1/namespaces/{{ namespace }}/ingresses/{{ name }}/status {#_apisnetworkingk8siov1namespaces_namespace_ingresses_name_status}
+### /apis/networking.k8s.io/v1/namespaces/{namespace}/ingresses/{name}/status {#_apisnetworkingk8siov1namespaces_namespace_ingresses_name_status}
 
 **Global path parameters**
 

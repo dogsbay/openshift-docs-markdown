@@ -215,14 +215,20 @@ To dynamically manage machine compute resources, you can create your own compute
 
   ```terminal
 
+  NAME                                       DESIRED   CURRENT   READY   AVAILABLE   AGE
+  agl030519-vplxk-windows-worker-us-east-1a  1         1         1       1           11m
+  agl030519-vplxk-worker-us-east-1a          1         1         1       1           55m
+  agl030519-vplxk-worker-us-east-1b          1         1         1       1           55m
+  agl030519-vplxk-worker-us-east-1c          1         1         1       1           55m
+  agl030519-vplxk-worker-us-east-1d          0         0                             55m
+  agl030519-vplxk-worker-us-east-1e          0         0                             55m
+  agl030519-vplxk-worker-us-east-1f          0         0                             55m
+
   ```
 
-{%- if win or post_aws_zones %} NAME                                       DESIRED   CURRENT   READY   AVAILABLE   AGE {%- if win %} agl030519-vplxk-windows-worker-us-east-1a  1         1         1       1           11m {% endif %} {% if post_aws_zones %} agl030519-vplxk-edge-us-east-1-nyc-1a      1         1         1       1           11m {%- endif %} agl030519-vplxk-worker-us-east-1a          1         1         1       1           55m agl030519-vplxk-worker-us-east-1b          1         1         1       1           55m agl030519-vplxk-worker-us-east-1c          1         1         1       1           55m agl030519-vplxk-worker-us-east-1d          0         0                             55m agl030519-vplxk-worker-us-east-1e          0         0                             55m agl030519-vplxk-worker-us-east-1f          0         0                             55m {% endif %} {% if not (win or post_aws_zones) %} NAME                                DESIRED   CURRENT   READY   AVAILABLE   AGE agl030519-vplxk-infra-us-east-1a    1         1         1       1           11m agl030519-vplxk-worker-us-east-1a   1         1         1       1           55m agl030519-vplxk-worker-us-east-1b   1         1         1       1           55m agl030519-vplxk-worker-us-east-1c   1         1         1       1           55m agl030519-vplxk-worker-us-east-1d   0         0                             55m agl030519-vplxk-worker-us-east-1e   0         0                             55m agl030519-vplxk-worker-us-east-1f   0         0                             55m {%- endif %} \`\`\`
+  When the new compute machine set is available, the `DESIRED` and `CURRENT` values match. If the compute machine set is not available, wait a few minutes and run the command again.
 
-```
-When the new compute machine set is available, the `DESIRED` and `CURRENT` values match. If the compute machine set is not available, wait a few minutes and run the command again.
-```
-
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Overview of machine management](/openshift-docs-markdown/machine_management/index#overview-of-machine-management)

@@ -423,6 +423,7 @@ The example in the following procedure creates a resource claim to schedule a po
 
    For more information on configuring pod resource requests, see ["Dynamic Resource Allocation"](https://kubernetes.io/docs/concepts/scheduling-eviction/dynamic-resource-allocation/) (Kubernetes documentation).
 
-## Additional resources {#additional-resources_nodes-pods-allocate-dra}
+**Additional resources**
+{._additional-resources}
 
 - [Enabling features using feature gates](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)

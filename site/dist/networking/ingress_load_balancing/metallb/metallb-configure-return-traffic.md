@@ -307,6 +307,7 @@ The example in the procedure associates a VRF routing table with MetalLB and an 
 3. Optional: If you assigned the `LoadBalancer` service ingress IP address as the source IP address for egress traffic, verify this configuration by using tools such as `tcpdump` to analyze packets received at the external client.
 
 **Additional resources**
+{._additional-resources}
 
 - [About virtual routing and forwarding](/openshift-docs-markdown/networking/multiple_networks/about-virtual-routing-and-forwarding#cnf-about-virtual-routing-and-forwarding_about-virtual-routing-and-forwarding)
 - [Exposing a service through a network VRF](/openshift-docs-markdown/networking/ingress_load_balancing/metallb/metallb-configure-bgp-peers#nw-metallb-bgp-peer-vrf_configure-metallb-bgp-peers)

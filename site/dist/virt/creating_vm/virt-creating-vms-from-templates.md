@@ -37,8 +37,8 @@ You can choose between two views in the web console to create the VM:
 
 1. From the OpenShift Container Platform web console, choose your view:
 
-   - For a virtualization-focused view, select **Administrator** -> **Virtualization** -> **Catalog**.
-   - For a general view, navigate to **Virtualization** -> **Catalog**.
+   - For a virtualization-focused view, select **Administrator** → **Virtualization** → **Catalog**.
+   - For a general view, navigate to **Virtualization** → **Catalog**.
 2. Click the **Template catalog** tab.
 3. Click the **Boot source available** checkbox to filter templates with boot sources. The catalog displays the default templates.
 4. Heterogeneous clusters only: To filter the search results to show templates associated with a particular architecture, click **Architecture Type** .
@@ -68,7 +68,7 @@ You can customize an existing virtual machine (VM) template before you start the
 
 **Procedure**
 
-1. Navigate to **Virtualization** -> **Templates** in the web console.
+1. Navigate to **Virtualization** → **Templates** in the web console.
 2. From the list of VM templates, click the template marked as deprecated.
 3. Click **Edit** next to the pencil icon beside **Labels**.
 4. Remove the following two labels:
@@ -88,7 +88,7 @@ You can create a virtual machine template by editing a YAML file example in the 
 
 **Procedure**
 
-1. In the web console, click **Virtualization** -> **Templates** in the side menu.
+1. In the web console, click **Virtualization** → **Templates** in the side menu.
 2. Optional: Use the **Project** drop-down menu to change the project associated with the new template. All templates are saved to the `openshift` project by default.
 3. Click **Create Template**.
 4. Specify the template parameters by editing the YAML file.
@@ -103,12 +103,13 @@ You can enable dedicated resources for a virtual machine (VM) template in the Op
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, click **Virtualization** -> **Templates** in the side menu.
+1. In the OpenShift Container Platform web console, click **Virtualization** → **Templates** in the side menu.
 2. Select the template that you want to edit to open the **Template details** page.
 3. On the **Scheduling** tab, click the edit icon beside **Dedicated Resources**.
 4. Select **Schedule this workload with dedicated resources (guaranteed policy)**.
 5. Click **Save**.
 
-## Additional resources {#additional-resources_virt-creating-vms-from-templates}
+**Additional resources**
+{._additional-resources}
 
 - [Managing automatic boot source updates](/openshift-docs-markdown/virt/storage/virt-automatic-bootsource-updates#virt-automatic-bootsource-updates)

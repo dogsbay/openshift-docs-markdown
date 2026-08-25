@@ -83,7 +83,8 @@ Enterprise SaaS delivery
 
 For additional recommended solutions tailored to various use cases, see "Explore Solution Patterns" in the *Additional resources* section.
 
-## Additional resources {#additional-resources_ocp-overview}
+**Additional resources**
+{._additional-resources}
 
 - [Preparing to install on a single node](/openshift-docs-markdown/installing/installing_sno/install-sno-preparing-to-install-sno#preparing-to-install-sno)
 - [OpenShift Virtualization - Reference Implementation Guide (Red Hat Knowledgebase)](https://access.redhat.com/articles/7067871)

@@ -4,9 +4,7 @@ title: Backing up workloads on OADP with OpenShift Container Platform
 
 # Backing up workloads on OADP with OpenShift Container Platform {#oadp-rosa-backing-up-and-cleaning-example}
 
-To back up and restore workloads on ROSA,
-
-you can use OADP. You can create a backup of a workload, restore it from the backup, and verify the restoration. You can also clean up the OADP Operator, backup storage, and AWS resources when they are no longer needed.
+To back up and restore workloads on ROSA, you can use OADP. You can create a backup of a workload, restore it from the backup, and verify the restoration. You can also clean up the OADP Operator, backup storage, and AWS resources when they are no longer needed.
 
 ## Example: Performing a backup with OADP and OpenShift Container Platform {#performing-a-backup-oadp-rosa-sts_oadp-rosa-backing-up-and-cleaning-example}
 

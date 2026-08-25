@@ -1,5 +1,5 @@
 ---
-title: Managing {{ hcp }} on bare metal
+title: Managing hosted control planes on bare metal
 ---
 
 # Managing hosted control planes on bare metal {#hcp-manage-bm}
@@ -295,6 +295,7 @@ If needed, you can disable node auto-scaling.
   The command removes `"spec.autoScaling"` from the YAML file, adds `"spec.replicas"`, and sets `"spec.replicas"` to the integer value that you specify.
 
 **Additional resources**
+{._additional-resources}
 
 - [Scaling down the data plane to zero](/openshift-docs-markdown/hosted_control_planes/hcp-troubleshooting#scale-down-data-plane_hcp-troubleshooting)
 - [Scaling up and down workloads in a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-machine-config#scale-up-down-autoscaler-hcp_hcp-machine-config)
@@ -465,6 +466,7 @@ To set up a load balancer and wildcard DNS record for the `*.apps` domain, perfo
       Replace `<4.x.y>` with the supported OpenShift Container Platform version that you want to use, for example, `4.22.0-multi`.
 
 **Additional resources**
+{._additional-resources}
 
 - [About MetalLB and the MetalLB Operator](/openshift-docs-markdown/networking/networking_operators/metallb-operator/about-metallb#about-metallb_about-metallb)
 
@@ -526,5 +528,6 @@ To disable machine health checks for the managed cluster nodes, modify the `Node
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Deploying machine health checks](/openshift-docs-markdown/machine_management/deploying-machine-health-checks#deploying-machine-health-checks)

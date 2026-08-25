@@ -1,5 +1,5 @@
 ---
-title: Configuring an {{ ibm_cloud_title }} account
+title: Configuring an IBM Cloud account
 ---
 
 # Configuring an IBM Cloud account {#installing-ibm-cloud-account}
@@ -70,6 +70,9 @@ If you plan to exceed the resources stated in the table, you must increase your 
 ### Block storage volumes {#_block_storage_volumes}
 
 For each VPC machine, a block storage device is attached for its boot volume. The default cluster configuration creates seven VPC machines, resulting in seven block storage volumes. Additional Kubernetes persistent volume claims (PVCs) of the IBM Cloud(R) storage class create additional block storage volumes. The default quota of VPC block storage volumes is 300 per region. To have more than 300 volumes, you must increase this quota.
+
+**Additional resources**
+{._additional-resources}
 
 - [Quotas and service limits (IBM Cloud(R) documentation)](https://cloud.ibm.com/docs/vpc?topic=vpc-quotas)
 - [Supported profiles (IBM Cloud(R) documentation)](https://cloud.ibm.com/docs/vpc?topic=vpc-profiles)
@@ -142,6 +145,7 @@ You must create a domain zone in CIS in the same account as your cluster. You mu
 4. Configure the name servers for your domains or subdomains at the domain’s registrar or DNS provider. For more information, see the IBM Cloud(R) documentation for "Configuring name servers".
 
 **Additional resources**
+{._additional-resources}
 
 - [IBM Cloud(R) CLI (IBM Cloud(R) documentation)](https://www.ibm.com/cloud/cli)
 - [IBM(R) DNS documentation](https://cloud.ibm.com/docs/dns?topic=dns-getting-started)
@@ -201,6 +205,7 @@ You configure DNS resolution by creating a DNS services instance for the cluster
 > You do not have to manage permitted networks or configure an "A" DNS resource record. As required, the installation program configures these resources automatically.
 
 **Additional resources**
+{._additional-resources}
 
 - [IBM Cloud(R) CLI (IBM Cloud(R) documentation)](https://www.ibm.com/cloud/cli)
 - [IBM(R) DNS documentation](https://cloud.ibm.com/docs/dns?topic=dns-getting-started)
@@ -263,6 +268,9 @@ You must create a user API key or a service ID API key for your IBM Cloud(R) acc
 
   For example, if you assigned your access policies to a user, you must create a user API key. If you assigned your access policies to a service ID, you must create a service ID API key. If your access policies are assigned to an access group, you can use either API key type. For more information on IBM Cloud(R) API keys, see "User API key", "Service ID API key", and "Understanding API keys".
 
+**Additional resources**
+{._additional-resources}
+
 - [User API key (IBM Cloud(R) documentation)](https://cloud.ibm.com/docs/account?topic=account-userapikey)
 - [Service ID API key (IBM Cloud(R) documentation)](https://cloud.ibm.com/docs/account?topic=account-serviceidapikeys)
 - [Understanding API keys (IBM Cloud(R) documentation)](https://cloud.ibm.com/docs/account?topic=account-manapikey&interface=ui)
@@ -287,6 +295,7 @@ You can deploy an OpenShift Container Platform cluster to the following regions:
 > [!NOTE]
 > Deploying your cluster in the `eu-es` (Madrid, Spain) region is not supported for OpenShift Container Platform 4.14.6 and earlier versions.
 
-## Additional resources {#additional-resources_installing-ibm-cloud-account}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring IAM for IBM Cloud(R)](/openshift-docs-markdown/installing/installing_ibm_cloud/configuring-iam-ibm-cloud#configuring-iam-ibm-cloud)

@@ -74,7 +74,7 @@ You can create a virtual machine (VM) by cloning a persistent volume claim (PVC)
 
 **Procedure**
 
-1. Navigate to **Virtualization** -> **Catalog** in the web console.
+1. Navigate to **Virtualization** → **Catalog** in the web console.
 2. Click a template tile without an available boot source.
 3. Click **Customize VirtualMachine**.
 4. On the **Customize template parameters** page, expand **Storage** and select **PVC (clone PVC)** from the **Disk source** list.
@@ -274,7 +274,8 @@ You can create a virtual machine (VM) that clones the persistent volume claim (P
    $ oc create -f <vm_manifest_file>.yaml
    ```
 
-## Additional resources {#additional-resources_virt-creating-vms-by-cloning-pvcs}
+**Additional resources**
+{._additional-resources}
 
 - [Setting a default cloning strategy using a storage profile](/openshift-docs-markdown/virt/storage/virt-configuring-storage-profile#virt-customizing-storage-profile-default-cloning-strategy_virt-configuring-storage-profile)
 - [Installing the QEMU guest agent](/openshift-docs-markdown/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent)

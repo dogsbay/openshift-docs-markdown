@@ -16,11 +16,12 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 
-const headings = [{"depth":1,"slug":"windows-containers-release-notes-limitations","text":"Windows Machine Config Operator known limitations"},{"depth":2,"slug":"additional-resources_windows-containers-release-notes-limitations","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"windows-containers-release-notes-limitations","text":"Windows Machine Config Operator known limitations"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/windows_containers/wmco_rn/windows-containers-release-notes-limitations";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -39,7 +40,7 @@ const pageCategory = ["windows_containers","windows_containers/wmco_rn"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Windows Machine Config Operator known limitations {#windows-containers-release-notes-limitations}\n\nNote the following limitations when working with Windows nodes managed by the WMCO (Windows nodes):\n\n- The following OpenShift Container Platform features are not supported on Windows nodes:\n\n  - Image builds\n  - OpenShift Pipelines\n  - OpenShift Service Mesh\n  - OpenShift monitoring of user-defined projects\n  - OpenShift Serverless\n  - Vertical Pod Autoscaling\n  - Hosted Control Planes\n- The following Red Hat features are not supported on Windows nodes:\n\n  - [Red Hat Lightspeed cost management](https://docs.redhat.com/en/documentation/cost_management_service/1-latest)\n  - [Red Hat OpenShift Local](https://developers.redhat.com/products/openshift-local/overview)\n- Dual NIC is not supported on WMCO-managed Windows instances.\n- Windows nodes do not support workloads created by using deployment configs. You can use a deployment or other method to deploy workloads.\n- Red Hat OpenShift support for Windows Containers does not support adding Windows nodes to a cluster through a trunk port. The only supported networking configuration for adding Windows nodes is through an access port that carries traffic for the VLAN.\n- Red Hat OpenShift support for Windows Containers does not support any Windows operating system language other than English (United States).\n- Due to a limitation within the Windows operating system, `clusterNetwork` CIDR addresses of class E, such as `240.0.0.0`, are not compatible with Windows nodes.\n- Kubernetes has identified the following node feature limitations. For more information, see \"Compatibility and limitations (Kubernetes documenation)\".\n\n  - Huge pages are not supported for Windows containers.\n  - Privileged containers are not supported for Windows containers.\n- Kubernetes has identified several API compatibility issues. For more information, see \"API compatibility (Kubernetes documenation)\".\n\n## Additional resources {#additional-resources_windows-containers-release-notes-limitations}\n\n- [Red Hat Lightspeed cost management](https://docs.redhat.com/en/documentation/cost_management_service/1-latest)\n- [Red Hat OpenShift Local](https://developers.redhat.com/products/openshift-local/overview)\n- [Compatibility and limitations (Kubernetes documenation)](https://kubernetes.io/docs/concepts/windows/intro/#limitations)\n- [API compatibility (Kubernetes documenation)](https://kubernetes.io/docs/concepts/windows/intro/#api)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/windows_containers/wmco_rn/windows-containers-release-notes-limitations.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Windows Machine Config Operator known limitations {#windows-containers-release-notes-limitations}\n\nNote the following limitations when working with Windows nodes managed by the WMCO (Windows nodes):\n\n- The following OpenShift Container Platform features are not supported on Windows nodes:\n\n  - Image builds\n  - OpenShift Pipelines\n  - OpenShift Service Mesh\n  - OpenShift monitoring of user-defined projects\n  - OpenShift Serverless\n  - Vertical Pod Autoscaling\n  - Hosted Control Planes\n- The following Red Hat features are not supported on Windows nodes:\n\n  - [Red Hat Lightspeed cost management](https://docs.redhat.com/en/documentation/cost_management_service/1-latest)\n  - [Red Hat OpenShift Local](https://developers.redhat.com/products/openshift-local/overview)\n- Dual NIC is not supported on WMCO-managed Windows instances.\n- Windows nodes do not support workloads created by using deployment configs. You can use a deployment or other method to deploy workloads.\n- Red Hat OpenShift support for Windows Containers does not support adding Windows nodes to a cluster through a trunk port. The only supported networking configuration for adding Windows nodes is through an access port that carries traffic for the VLAN.\n- Red Hat OpenShift support for Windows Containers does not support any Windows operating system language other than English (United States).\n- Due to a limitation within the Windows operating system, `clusterNetwork` CIDR addresses of class E, such as `240.0.0.0`, are not compatible with Windows nodes.\n- Kubernetes has identified the following node feature limitations. For more information, see \"Compatibility and limitations (Kubernetes documenation)\".\n\n  - Huge pages are not supported for Windows containers.\n  - Privileged containers are not supported for Windows containers.\n- Kubernetes has identified several API compatibility issues. For more information, see \"API compatibility (Kubernetes documenation)\".\n\n**Additional resources**\n{._additional-resources}\n\n- [Red Hat Lightspeed cost management](https://docs.redhat.com/en/documentation/cost_management_service/1-latest)\n- [Red Hat OpenShift Local](https://developers.redhat.com/products/openshift-local/overview)\n- [Compatibility and limitations (Kubernetes documenation)](https://kubernetes.io/docs/concepts/windows/intro/#limitations)\n- [API compatibility (Kubernetes documenation)](https://kubernetes.io/docs/concepts/windows/intro/#api)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/windows_containers/wmco_rn/windows-containers-release-notes-limitations.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,12 +79,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -126,13 +128,15 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </li>
       <li>Kubernetes has identified several API compatibility issues. For more information, see "API compatibility (Kubernetes documenation)".</li>
       </ul>
-      <h2 id="additional-resources_windows-containers-release-notes-limitations" class="group scroll-mt-20">Additional resources<a href="#additional-resources_windows-containers-release-notes-limitations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul>
       <li><a href="https://docs.redhat.com/en/documentation/cost_management_service/1-latest">Red Hat Lightspeed cost management</a></li>
       <li><a href="https://developers.redhat.com/products/openshift-local/overview">Red Hat OpenShift Local</a></li>
       <li><a href="https://kubernetes.io/docs/concepts/windows/intro/#limitations">Compatibility and limitations (Kubernetes documenation)</a></li>
       <li><a href="https://kubernetes.io/docs/concepts/windows/intro/#api">API compatibility (Kubernetes documenation)</a></li>
       </ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

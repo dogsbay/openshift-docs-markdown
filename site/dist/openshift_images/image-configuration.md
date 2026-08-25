@@ -19,7 +19,7 @@ You can configure certain parameters that handle images cluster-wide in the `spe
 > - `ScheduledImageImportMinimumIntervalSeconds`
 > - `InternalRegistryHostname`
 
-***Image controller configuration parameters***
+**Image controller configuration parameters**
 
 <table>
 <thead>
@@ -51,26 +51,18 @@ You can configure certain parameters that handle images cluster-wide in the `spe
 </tr>
 <tr>
   <td><code>imageStreamImportMode</code></td>
-  <td>Controls the import mode behavior of image streams.<br><br>You must enable the <code>TechPreviewNoUpgrade</code> feature set in the <code>FeatureGate</code> custom resource (CR) to enable the <code>imageStreamImportMode</code> feature.For more information about feature gates, see "Understanding feature gates".<br><br>You can set the <code>imageStreamImportMode</code> field to either of the following values:<br><br><ul><li><code>Legacy</code>: Indicates that the legacy behavior must be used. The legacy behavior discards the manifest list and imports a single sub-manifest. In this case, the platform is chosen in the following order of priority:</li></ul><ol><li>Tag annotations: Determining the platform by using the platform-specific annotations in the image tags.</li><li>Control plane architecture or the operating system: Selecting the platform based on the architecture or the operating system of the control plane.</li><li><code>linux/amd64</code>: If no platform is selected by the preceeding methods, the <code>linux/amd64</code> platform is selected.</li><li>The first manifest in the list is selected.</li></ol><ul><li><code>PreserveOriginal</code>: Indicates that the original manifest is preserved. The manifest list and its sub-manifests are imported.</li></ul>If you specify a value for this field, the value is applied to the newly created image stream tags that do not already have this value manually set.<br><br>If you do not configure this field, the behavior is decided based on the payload type advertised by the <code>ClusterVersion</code> status. In this case, the platform is chosen as follows:<br><br><ul><li>The single architecture payload implies that the <code>Legacy</code> mode is applicable.</li><li>The multi payload implies that the <code>PreserveOriginal</code> mode is applicable.</li></ul>For information about importing manifest lists, see "Working with manifest lists".<br><br>
+  <td>Controls the import mode behavior of image streams.<br><br>You must enable the <code>TechPreviewNoUpgrade</code> feature set in the <code>FeatureGate</code> custom resource (CR) to enable the <code>imageStreamImportMode</code> feature. For more information about feature gates, see "Understanding feature gates".<br><br>You can set the <code>imageStreamImportMode</code> field to either of the following values:<br><br><ul><li><code>Legacy</code>: Indicates that the legacy behavior must be used. The legacy behavior discards the manifest list and imports a single sub-manifest. In this case, the platform is chosen in the following order of priority:</li></ul><ol><li>Tag annotations: Determining the platform by using the platform-specific annotations in the image tags.</li><li>Control plane architecture or the operating system: Selecting the platform based on the architecture or the operating system of the control plane.</li><li><code>linux/amd64</code>: If no platform is selected by the preceeding methods, the <code>linux/amd64</code> platform is selected.</li><li>The first manifest in the list is selected.</li></ol><ul><li><code>PreserveOriginal</code>: Indicates that the original manifest is preserved. The manifest list and its sub-manifests are imported.</li></ul>If you specify a value for this field, the value is applied to the newly created image stream tags that do not already have this value manually set.<br><br>If you do not configure this field, the behavior is decided based on the payload type advertised by the <code>ClusterVersion</code> status. In this case, the platform is chosen as follows:<br><br><ul><li>The single architecture payload implies that the <code>Legacy</code> mode is applicable.</li><li>The multi payload implies that the <code>PreserveOriginal</code> mode is applicable.</li></ul>For information about importing manifest lists, see "Working with manifest lists".<br><br>
+<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd><code>imageStreamImportMode</code> is a Technology Preview feature only. Technology Preview features are not supported with Red&#160;Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process. For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl></td>
+</tr>
+</tbody>
+</table>
 
-> [!IMPORTANT]
-> `imageStreamImportMode` is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
->
-> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
->
-> :::</td>
->
-> </tr>
-> </tbody>
-> </table>
->
->
-> > [!WARNING]
-> > When you define the `allowedRegistries` parameter, all registries, including `registry.redhat.io`, `quay.io`, and the default OpenShift image registry, are blocked unless explicitly listed. You must add all of the registries that your payload images require to the `allowedRegistries` list. For example, list `registry.redhat.io`, `quay.io`, and the `internalRegistryHostname` registries. For disconnected clusters, you must also add your mirror registries. Otherwise, you risk pod failure.
+> [!WARNING]
+> When you define the `allowedRegistries` parameter, all registries, including `registry.redhat.io`, `quay.io`, and the default OpenShift image registry, are blocked unless explicitly listed. You must add all of the registries that your payload images require to the `allowedRegistries` list. For example, list `registry.redhat.io`, `quay.io`, and the `internalRegistryHostname` registries. For disconnected clusters, you must also add your mirror registries. Otherwise, you risk pod failure.
 
 The `status` field of the `image.config.openshift.io/cluster` resource holds observed values from the cluster.
 
-***Image controller status field parameters***
+**Image controller status field parameters**
 
 <table>
 <thead>
@@ -788,19 +780,16 @@ Note the following actions and how they affect node drain behavior:
 - If you modify an ITMS, IDMS, or ICSP CR object, the MCO drains and reboots the node.
 
   > [!IMPORTANT]
+  > - When the MCO detects any of the following changes, it applies the update without draining or rebooting the node:
   >
-- When the MCO detects any of the following changes, it applies the update without draining or rebooting the node:
-
-  - Changes to the SSH key in the `spec.config.passwd.users.sshAuthorizedKeys` parameter of a machine config.
-  - Changes to the global pull secret or pull secret in the `openshift-config` namespace.
-  - Automatic rotation of the `/etc/kubernetes/kubelet-ca.crt` certificate authority (CA) by the Kubernetes API Server Operator.
-- When the MCO detects changes to the `/etc/containers/registries.conf` file, such as editing an `ImageDigestMirrorSet`, `ImageTagMirrorSet`, or `ImageContentSourcePolicy` object, it drains the corresponding nodes, applies the changes, and uncordons the nodes. The node drain does not happen for the following changes:
-
-  - The addition of a registry with the `pull-from-mirror = "digest-only"` parameter set for each mirror.
-  - The addition of a mirror with the `pull-from-mirror = "digest-only"` parameter set in a registry.
-  - The addition of items to the `unqualified-search-registries` list.
-
-  :::
+  >   - Changes to the SSH key in the `spec.config.passwd.users.sshAuthorizedKeys` parameter of a machine config.
+  >   - Changes to the global pull secret or pull secret in the `openshift-config` namespace.
+  >   - Automatic rotation of the `/etc/kubernetes/kubelet-ca.crt` certificate authority (CA) by the Kubernetes API Server Operator.
+  > - When the MCO detects changes to the `/etc/containers/registries.conf` file, such as editing an `ImageDigestMirrorSet`, `ImageTagMirrorSet`, or `ImageContentSourcePolicy` object, it drains the corresponding nodes, applies the changes, and uncordons the nodes. The node drain does not happen for the following changes:
+  >
+  >   - The addition of a registry with the `pull-from-mirror = "digest-only"` parameter set for each mirror.
+  >   - The addition of a mirror with the `pull-from-mirror = "digest-only"` parameter set in a registry.
+  >   - The addition of items to the `unqualified-search-registries` list.
 
 For new clusters, you can use IDMS, ITMS, and ICSP CRs objects as needed. However, using IDMS and ITMS is recommended.
 
@@ -1357,7 +1346,8 @@ For more information about `ImageDigestMirrorSet` or `ImageTagMirrorSet` objects
    :   Specifies the name of the `ImageDigestMirrorSet` YAML.
 3. Remove the ICSP objects after the IDMS objects are rolled out.
 
-## Additional resources {#additional-resources_image-configuration}
+**Additional resources**
+{._additional-resources}
 
 - [Working with manifest lists](/openshift-docs-markdown/openshift_images/image-streams-manage#images-imagestream-import-import-mode_image-streams-managing)
 - [Understanding feature gates](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features-about_nodes-cluster-enabling)

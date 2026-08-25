@@ -19,7 +19,7 @@ You can create a virtual machine (VM) by importing an image from a web page by u
 
 **Procedure**
 
-1. Navigate to **Virtualization** -> **Catalog** in the web console.
+1. Navigate to **Virtualization** → **Catalog** in the web console.
 2. Click a template tile without an available boot source.
 3. Click **Customize VirtualMachine**.
 4. On the **Customize template parameters** page, expand **Storage** and select **URL (creates PVC)** from the **Disk source** list.
@@ -132,6 +132,7 @@ When the VM is created, the data volume with the image is imported into persiste
    Successfully connected to vm-rhel-9 console. The escape sequence is ^]
    ```
 
-## Additional resources {#additional-resources_virt-creating-vms-from-web-images}
+**Additional resources**
+{._additional-resources}
 
 - [Installing the QEMU guest agent](/openshift-docs-markdown/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent)

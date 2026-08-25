@@ -81,21 +81,21 @@ The following API endpoints are available:
 - `/api/v1/watch/limitranges`
 
   - `GET`: watch individual changes to a list of LimitRange. deprecated: use the 'watch' parameter with a list operation instead.
-- `/api/v1/namespaces/{{ namespace }}/limitranges`
+- `/api/v1/namespaces/{namespace}/limitranges`
 
   - `DELETE`: delete collection of LimitRange
   - `GET`: list or watch objects of kind LimitRange
   - `POST`: create a LimitRange
-- `/api/v1/watch/namespaces/{{ namespace }}/limitranges`
+- `/api/v1/watch/namespaces/{namespace}/limitranges`
 
   - `GET`: watch individual changes to a list of LimitRange. deprecated: use the 'watch' parameter with a list operation instead.
-- `/api/v1/namespaces/{{ namespace }}/limitranges/{{ name }}`
+- `/api/v1/namespaces/{namespace}/limitranges/{name}`
 
   - `DELETE`: delete a LimitRange
   - `GET`: read the specified LimitRange
   - `PATCH`: partially update the specified LimitRange
   - `PUT`: replace the specified LimitRange
-- `/api/v1/watch/namespaces/{{ namespace }}/limitranges/{{ name }}`
+- `/api/v1/watch/namespaces/{namespace}/limitranges/{name}`
 
   - `GET`: watch changes to an object of kind LimitRange. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
 
@@ -137,7 +137,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{{ namespace }}/limitranges {#_apiv1namespaces_namespace_limitranges}
+### /api/v1/namespaces/{namespace}/limitranges {#_apiv1namespaces_namespace_limitranges}
 
 HTTP method
 :   ```
@@ -211,7 +211,7 @@ Description
 | 202 - Accepted | [`LimitRange`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/limitrange-v1#limitrange-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/namespaces/{{ namespace }}/limitranges {#_apiv1watchnamespaces_namespace_limitranges}
+### /api/v1/watch/namespaces/{namespace}/limitranges {#_apiv1watchnamespaces_namespace_limitranges}
 
 HTTP method
 :   ```
@@ -230,7 +230,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{{ namespace }}/limitranges/{{ name }} {#_apiv1namespaces_namespace_limitranges_name}
+### /api/v1/namespaces/{namespace}/limitranges/{name} {#_apiv1namespaces_namespace_limitranges_name}
 
 **Global path parameters**
 
@@ -335,7 +335,7 @@ Description
 | 201 - Created | [`LimitRange`](/openshift-docs-markdown/rest_api/schedule_and_quota_apis/limitrange-v1#limitrange-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/namespaces/{{ namespace }}/limitranges/{{ name }} {#_apiv1watchnamespaces_namespace_limitranges_name}
+### /api/v1/watch/namespaces/{namespace}/limitranges/{name} {#_apiv1watchnamespaces_namespace_limitranges_name}
 
 **Global path parameters**
 

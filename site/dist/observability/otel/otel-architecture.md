@@ -1,5 +1,5 @@
 ---
-title: About {{ OTELName }}
+title: About Red&#160;Hat build of OpenTelemetry
 ---
 
 # About Red Hat build of OpenTelemetry {#otel-architecture}

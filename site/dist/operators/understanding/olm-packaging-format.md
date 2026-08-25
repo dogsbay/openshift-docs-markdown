@@ -143,6 +143,7 @@ dependencies:
 ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Operator Lifecycle Manager dependency resolution](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-dependency-resolution#olm-understanding-dependency-resolution)
 
@@ -192,6 +193,7 @@ Extensibility
 > Many of the `opm` subcommands and flags for working with the SQLite database format, such as `opm index prune`, do not work with the file-based catalog format.
 
 **Additional resources**
+{._additional-resources}
 
 - [Managing custom catalogs](/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-managing-custom-catalogs-fb)
 - [Mirroring images for a disconnected installation using the oc-mirror plugin](/openshift-docs-markdown/disconnected/installing-mirroring-disconnected#installing-mirroring-disconnected)
@@ -264,9 +266,7 @@ _Meta: {
 
 The `olm.package` schema specifies package-level metadata for Operators in file-based catalogs, including name, default channel, and icon. Use this schema reference when you build or validate Operator package definitions for Operator Lifecycle Manager (OLM).
 
-<details>
-<summary>`olm.package` schema</summary>
-
+:::details{title="`olm.package` schema"}
 ```go
 #Package: {
   schema: "olm.package"
@@ -287,8 +287,7 @@ The `olm.package` schema specifies package-level metadata for Operators in file-
   }
 }
 ```
-
-</details>
+:::
 
 #### olm.channel schema {#olm-channel-schema_olm-packaging-format}
 
@@ -298,9 +297,7 @@ If a bundle entry represents an edge in multiple `olm.channel` blobs, it can onl
 
 It is valid for an entry’s `replaces` value to reference another bundle name that cannot be found in this catalog or another catalog. However, all other channel invariants must hold true, such as a channel not having multiple heads.
 
-<details>
-<summary>`olm.channel` schema</summary>
-
+:::details{title="`olm.channel` schema"}
 ```go
 #Channel: {
   schema: "olm.channel"
@@ -328,8 +325,7 @@ It is valid for an entry’s `replaces` value to reference another bundle name t
   skipRange?: string & !=""
 }
 ```
-
-</details>
+:::
 
 > [!WARNING]
 > When using the `skipRange` field, the skipped Operator versions are pruned from the update graph and are longer installable by users with the `spec.startingCSV` property of `Subscription` objects.
@@ -337,6 +333,7 @@ It is valid for an entry’s `replaces` value to reference another bundle name t
 > You can update an Operator incrementally while keeping previously installed versions available to users for future installation by using both the `skipRange` and `replaces` field. Ensure that the `replaces` field points to the immediate previous version of the Operator version in question.
 
 **Additional resources**
+{._additional-resources}
 
 - [CUE language specification](https://cuelang.org/docs/references/spec/)
 
@@ -344,9 +341,7 @@ It is valid for an entry’s `replaces` value to reference another bundle name t
 
 The `olm.bundle` schema defines the structure of bundle entries stored in an Operator catalog index. It specifies required fields such as package name, bundle name, image reference, and optional properties and related images.
 
-<details>
-<summary>`olm.bundle` schema</summary>
-
+:::details{title="`olm.bundle` schema"}
 ```go
 #Bundle: {
   schema: "olm.bundle"
@@ -374,8 +369,7 @@ The `olm.bundle` schema defines the structure of bundle entries stored in an Ope
   name?: string & !=""
 }
 ```
-
-</details>
+:::
 
 #### olm.deprecations schema {#olm-deprecations-schema_olm-packaging-format}
 
@@ -435,6 +429,7 @@ my-catalog
 ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Updating or filtering a file-based catalog image](/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-filtering-fbc_olm-managing-custom-catalogs)
 
@@ -565,6 +560,7 @@ Catalog metadata should be stored in source control and treated as the source of
 > For more information about creating file-based catalogs by using the `opm` CLI, see "Creating a file-based catalog image".
 
 **Additional resources**
+{._additional-resources}
 
 - [Managing custom catalogs](/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-creating-fb-catalog-image_olm-managing-custom-catalogs)
 - [CLI tools](/openshift-docs-markdown/cli_reference/opm/cli-opm-ref#cli-opm-ref)

@@ -23,7 +23,8 @@ const headings = [{"depth":1,"slug":"about-two-node-arbiter-installation","text"
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/installing/installing_two_node_cluster/about-two-node-arbiter-installation";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -42,7 +43,7 @@ const pageCategory = ["installing","installing/installing_two_node_cluster"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Two-Node with Arbiter {#about-two-node-arbiter-installation}\n\nAn OpenShift Container Platform cluster with two control plane nodes and one local arbiter node is a compact, cost-effective OpenShift Container Platform topology.\n\nThe arbiter node stores the full etcd data, maintaining an etcd quorum and preventing split brain. The arbiter node does not run the additional control plane components `kube-apiserver` and `kube-controller-manager`, nor does it run workloads.\n\nTo install a cluster with two control plane nodes and one local arbiter node, assign an arbiter role to at least one of the nodes and set the control plane node count for the cluster to 2. Although OpenShift Container Platform does not currently impose a limit on the number of arbiter nodes, the typical deployment includes only one to minimize the use of hardware resources.\n\nAfter installation, you can add additional worker nodes to a cluster with two control plane nodes and one local arbiter node but it cannot be converted to a standard multi-node cluster.\n\n> [!NOTE]\n> Do not add more than two worker nodes to the OpenShift Container Platform cluster. For a cluster with an arbiter, the same networking requirements as a regular cluster for connectivity between machines apply.\n\n**Additional resources**\n\n- [Network connectivity requirements](/openshift-docs-markdown/installing/installing_platform_agnostic/installing-platform-agnostic#installation-network-connectivity-user-infra_installing-platform-agnostic)\n- [Configuring a local arbiter node with installer-provisioned infrastructure](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#ipi-install-config-local-arbiter-node_ipi-install-installation-workflow)\n- [About a local arbiter node](/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#installing-ocp-agent-local-arbiter-node_preparing-to-install-with-agent-based-installer)\n- [Configuring a local arbiter node with user-provisioned infrastructure](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#upi-install-config-local-arbiter-node_installing-bare-metal)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_two_node_cluster/about-two-node-arbiter-installation.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Two-Node with Arbiter {#about-two-node-arbiter-installation}\n\nAn OpenShift Container Platform cluster with two control plane nodes and one local arbiter node is a compact, cost-effective OpenShift Container Platform topology.\n\nThe arbiter node stores the full etcd data, maintaining an etcd quorum and preventing split brain. The arbiter node does not run the additional control plane components `kube-apiserver` and `kube-controller-manager`, nor does it run workloads.\n\nTo install a cluster with two control plane nodes and one local arbiter node, assign an arbiter role to at least one of the nodes and set the control plane node count for the cluster to 2. Although OpenShift Container Platform does not currently impose a limit on the number of arbiter nodes, the typical deployment includes only one to minimize the use of hardware resources.\n\nAfter installation, you can add additional worker nodes to a cluster with two control plane nodes and one local arbiter node but it cannot be converted to a standard multi-node cluster.\n\n> [!NOTE]\n> Do not add more than two worker nodes to the OpenShift Container Platform cluster. For a cluster with an arbiter, the same networking requirements as a regular cluster for connectivity between machines apply.\n\n**Additional resources**\n{._additional-resources}\n\n- [Network connectivity requirements](/openshift-docs-markdown/installing/installing_platform_agnostic/installing-platform-agnostic#installation-network-connectivity-user-infra_installing-platform-agnostic)\n- [Configuring a local arbiter node with installer-provisioned infrastructure](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#ipi-install-config-local-arbiter-node_ipi-install-installation-workflow)\n- [About a local arbiter node](/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#installing-ocp-agent-local-arbiter-node_preparing-to-install-with-agent-based-installer)\n- [Configuring a local arbiter node with user-provisioned infrastructure](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#upi-install-config-local-arbiter-node_installing-bare-metal)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_two_node_cluster/about-two-node-arbiter-installation.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -81,12 +82,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -94,7 +96,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="about-two-node-arbiter-installation" class="group scroll-mt-20">Two-Node with Arbiter<a href="#about-two-node-arbiter-installation" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>An OpenShift Container Platform cluster with two control plane nodes and one local arbiter node is a compact, cost-effective OpenShift Container Platform topology.</p>
+      <p class="_abstract">An OpenShift Container Platform cluster with two control plane nodes and one local arbiter node is a compact, cost-effective OpenShift Container Platform topology.</p>
       <p>The arbiter node stores the full etcd data, maintaining an etcd quorum and preventing split brain. The arbiter node does not run the additional control plane components <code>kube-apiserver</code> and <code>kube-controller-manager</code>, nor does it run workloads.</p>
       <p>To install a cluster with two control plane nodes and one local arbiter node, assign an arbiter role to at least one of the nodes and set the control plane node count for the cluster to 2. Although OpenShift Container Platform does not currently impose a limit on the number of arbiter nodes, the typical deployment includes only one to minimize the use of hardware resources.</p>
       <p>After installation, you can add additional worker nodes to a cluster with two control plane nodes and one local arbiter node but it cannot be converted to a standard multi-node cluster.</p>
@@ -104,13 +106,15 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           <p>Do not add more than two worker nodes to the OpenShift Container Platform cluster. For a cluster with an arbiter, the same networking requirements as a regular cluster for connectivity between machines apply.</p>
         </AlertDescription>
       </Alert>
-      <p><strong>Additional resources</strong></p>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul>
       <li><a href="/openshift-docs-markdown/installing/installing_platform_agnostic/installing-platform-agnostic#installation-network-connectivity-user-infra_installing-platform-agnostic">Network connectivity requirements</a></li>
       <li><a href="/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#ipi-install-config-local-arbiter-node_ipi-install-installation-workflow">Configuring a local arbiter node with installer-provisioned infrastructure</a></li>
       <li><a href="/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#installing-ocp-agent-local-arbiter-node_preparing-to-install-with-agent-based-installer">About a local arbiter node</a></li>
       <li><a href="/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#upi-install-config-local-arbiter-node_installing-bare-metal">Configuring a local arbiter node with user-provisioned infrastructure</a></li>
       </ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -49,6 +49,7 @@ Volume group snapshots have the following limitations:
 - Volume group snapshots need to be supported by the Container Storage Interface (CSI) driver. OpenShift Data Foundation supports volume group snapshots.
 
 **Additional resources**
+{._additional-resources}
 
 - [Quiesce and Unquiesce Hooks](https://github.com/kubernetes/community/blob/master/wg-data-protection/data-protection-workflows-white-paper.md#quiesce-and-unquiesce-hooks)
 
@@ -251,7 +252,8 @@ Restore volumes from a volume group snapshot by creating new persistent volume c
    A new PVC with the name you specified in the first step is displayed.
 4. Repeat the procedure as needed until all volumes are created from all the snapshots that are part of a volume group snapshot.
 
-## Additional resources {#additional-resources_persistent-storage-csi-group-snapshots}
+**Additional resources**
+{._additional-resources}
 
 - [Understanding persistent volumes](/openshift-docs-markdown/storage/understanding-persistent-storage#persistent-volumes_understanding-persistent-storage)
 - [Enabling features using feature gates](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)

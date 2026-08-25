@@ -20,9 +20,7 @@ If you use a firewall, you must configure it to allow the sites that your cluste
 
 ## Internet access for OpenShift Container Platform {#cluster-entitlements_installing-azure-preparing-ipi}
 
-In OpenShift Container Platform 4.22, you require access to the internet to install
-
-your cluster.
+In OpenShift Container Platform 4.22, you require access to the internet to install your cluster.
 
 You must have internet access to perform the following actions:
 
@@ -133,14 +131,8 @@ the host you are using for installation.
    ```
 6. Download your installation [pull secret from Red Hat OpenShift Cluster Manager](https://console.redhat.com/openshift/install/pull-secret). This pull secret allows you to authenticate with the services that are provided by the included authorities, including Quay.io, which serves the container images for OpenShift Container Platform components.
 
-   ```
-   :::tip
-
-   Alternatively, you can retrieve the installation program from the [Red&#160;Hat Customer Portal](https://access.redhat.com/downloads/content/290/), where you can specify a version of the installation program to download.
-   However, you must have an active subscription to access this page.
-
-   :::
-   ```
+   > [!TIP]
+   > Alternatively, you can retrieve the installation program from the [Red Hat Customer Portal](https://access.redhat.com/downloads/content/290/), where you can specify a version of the installation program to download. However, you must have an active subscription to access this page.
 
 ## Installing the OpenShift CLI on Linux {#cli-installing-cli-linux_installing-azure-preparing-ipi}
 
@@ -251,6 +243,7 @@ To provide metrics about cluster health and the success of updates, the Telemetr
 After you confirm that your [OpenShift Cluster Manager](https://console.redhat.com/openshift) inventory is correct, either maintained automatically by Telemetry or manually by using OpenShift Cluster Manager,use subscription watch to track your OpenShift Container Platform subscriptions at the account or multi-cluster level. For more information about subscription watch, see "Data Gathered and Used by Red Hat’s subscription services" in the *Additional resources* section.
 
 **Additional resources**
+{._additional-resources}
 
 - [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
 
@@ -304,12 +297,12 @@ The OpenShift Container Platform installation program can use an existing Disk E
      All Operators should show `AVAILABLE=True`, `PROGRESSING=False`, and `DEGRADED=False`.
   8. Repeat the above steps on all the nodes that run `encryptionAtHost`.
 
-> [!NOTE]
-> If you want to enable encryption for your host during cluster installation, specify the following parameters in the `install-config.yaml` file:
->
-> - `compute.platform.azure.encryptionAtHost`
-> - `controlPlane.platform.azure.encryptionAtHost`
-> - `platform.azure.defaultMachinePlatform.encryptionAtHost`
+  > [!NOTE]
+  > If you want to enable encryption for your host during cluster installation, specify the following parameters in the `install-config.yaml` file:
+  >
+  > - `compute.platform.azure.encryptionAtHost`
+  > - `controlPlane.platform.azure.encryptionAtHost`
+  > - `platform.azure.defaultMachinePlatform.encryptionAtHost`
 
 ## Preparing an Azure Disk Encryption Set {#preparing-disk-encryption-sets_installing-azure-preparing-ipi}
 
@@ -431,6 +424,7 @@ To use an existing Disk Encryption Set with a user-managed key in OpenShift Cont
     :   Specifies an Azure role with read permissions to the disk encryption set. You can use the `Owner` role or a custom role with the necessary permissions.
 
 **Additional resources**
+{._additional-resources}
 
 - [Install a cluster with customizations on installer-provisioned infrastructure](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-customizations)
 - [Install a cluster into an existing VNet on installer-provisioned infrastructure](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-vnet#installing-azure-vnet)

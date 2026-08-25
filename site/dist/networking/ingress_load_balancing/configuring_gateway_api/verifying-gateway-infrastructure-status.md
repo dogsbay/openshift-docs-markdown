@@ -16,7 +16,7 @@ To verify that your gateway infrastructure is functioning correctly, complete th
 
 To verify that your `GatewayClass` custom resource (CR) is valid and ready to provision gateways, review its `status` conditions. A healthy `GatewayClass` CR reports a status of `True` for core conditions like `Accepted` and `SupportedVersion`.
 
-`GatewayClass`** CR status conditions**
+**`GatewayClass` CR status conditions**
 
 | Condition | Status | Description and common reasons |
 | --- | --- | --- |
@@ -54,7 +54,7 @@ To verify that your gateway is configured in the data plane and ready to route t
 | `DNSReady` | `True` | DNS records for all listeners are functioning correctly. |
 | `DNSReady` | `False` | One or more listeners have DNS provisioning issues. |
 
-***Listener-level status conditions***
+**Listener-level status conditions**
 
 <table>
 <thead>
@@ -118,7 +118,7 @@ To verify that your gateway is configured in the data plane and ready to route t
 <tr>
   <td><code>DNSReady</code></td>
   <td><code>Unknown</code></td>
-  <td>The DNS status cannot be determined or is unmanaged.<br><br><dl><dt>Note</dt><dd>Listeners without a configured hostname will not have DNS conditions added to their <code>status</code>.</dd></dl></td>
+  <td>The DNS status cannot be determined or is unmanaged.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>Listeners without a configured hostname will not have DNS conditions added to their <code>status</code>.</dd></dl></td>
 </tr>
 </tbody>
 </table>
@@ -225,6 +225,7 @@ To quickly check the health of your gateway infrastructure, query specific `stat
 
     - `<gateway_name>`: Specify the name of your gateway.
 
-## Additional resources {#verifying-gateway-infrastructure-status-additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Installing a cluster on Google Cloud with customizations](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#installation-gcp-provisioning-dns-records_installing-gcp-customizations)

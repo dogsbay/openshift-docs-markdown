@@ -12,10 +12,7 @@ After the Web Terminal Operator is installed, you can access the web terminal. A
 
 **Prerequisites**
 
-- You have access to an OpenShift Container Platform
-
-cluster and are logged into the web console.
-
+- You have access to an OpenShift Container Platform cluster and are logged into the web console.
 - The Web Terminal Operator is installed on your cluster.
 
 **Procedure**

@@ -29,6 +29,7 @@ Each method deploys a cluster with the following characteristics:
 - Administrators can control what updates are applied and when.
 
 **Additional resources**
+{._additional-resources}
 
 - [Assisted Installer](https://access.redhat.com/documentation/en-us/assisted_installer_for_openshift_container_platform)
 - [Agent-based Installer](https://console.redhat.com/openshift/install/metal/agent-based)
@@ -62,20 +63,23 @@ Review the platform support matrix to choose the installation method that meets 
 
 **Supported platforms**
 
-| Platform | Installer-provisioned infrastructure [^1]^ | User-provisioned infrastructure [^2]^ | Agent-based Installer | Assisted Installer | Amazon Web Services (AWS) |
-| --- | --- | --- | --- | --- | --- |
-| X | X |  |  | Bare metal | X |
-| X | X | X | External |  |  |
-| X | X | Google Cloud | X | X |  |
-|  | IBM Cloud(R) Classic | X |  |  |  |
-| IBM Cloud(R) Virtual Private Cloud (VPC) | X |  |  |  | IBM Power(R) |
-|  | X | X | X | IBM Z(R) or IBM(R) LinuxONE |  |
-| X | X | X | Microsoft Azure | X | X |
-|  |  | Microsoft Azure Stack Hub | X | X |  |
-|  | None |  |  | X | X |
-| Nutanix | X |  |  | X | Oracle Cloud Infrastructure (OCI) |
-|  |  | X | X | Red Hat OpenStack Platform (RHOSP) [^3]^ | X |
-| X |  |  | VMware vSphere | X | X |
+| Platform | Installer-provisioned infrastructure <sup>\[1\]</sup> | User-provisioned infrastructure <sup>\[2\]</sup> | Agent-based Installer | Assisted Installer |
+| --- | --- | --- | --- | --- |
+| Amazon Web Services (AWS) | X | X |  |  |
+| Bare metal | X | X | X | X |
+| External |  |  | X | X |
+| Google Cloud | X | X |  |  |
+| IBM Cloud(R) Classic | X |  |  |  |
+| IBM Cloud(R) Virtual Private Cloud (VPC) | X |  |  |  |
+| IBM Power(R) |  | X | X | X |
+| IBM Z(R) or IBM(R) LinuxONE |  | X | X | X |
+| Microsoft Azure | X | X |  |  |
+| Microsoft Azure Stack Hub | X | X |  |  |
+| None |  |  | X | X |
+| Nutanix | X |  |  | X |
+| Oracle Cloud Infrastructure (OCI) |  |  | X | X |
+| Red Hat OpenStack Platform (RHOSP) <sup>\[3\]</sup> | X | X |  |  |
+| VMware vSphere | X | X | X | X |
 
 The following list describes three different deployment pathways and their prerequisites:
 
@@ -92,6 +96,7 @@ The following list describes three different deployment pathways and their prere
 - For Red Hat OpenStack Platform (RHOSP): The latest OpenShift Container Platform release supports both the latest RHOSP long-life release and intermediate release. For complete RHOSP release compatibility, see "OpenShift Container Platform on RHOSP support matrix". See "OpenShift Container Platform 4.x Tested Integrations" for details about integration testing for different platforms.
 
 **Additional resources**
+{._additional-resources}
 
 - [OpenShift Container Platform on RHOSP support matrix](https://access.redhat.com/articles/4679401)
 - [OpenShift Container Platform 4.x Tested Integrations](https://access.redhat.com/articles/4128421)
@@ -159,6 +164,7 @@ The installation process with user-provisioned infrastructure
     If your cluster uses user-provisioned infrastructure, you have the option of adding RHEL compute machines to your cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Recommended etcd practices](/openshift-docs-markdown/etcd/etcd-practices#recommended-etcd-practices)
 - [Control plane node sizing](/openshift-docs-markdown/scalability_and_performance/recommended-performance-scale-practices/recommended-control-plane-practices#master-node-sizing_recommended-control-plane-practices)
@@ -170,7 +176,7 @@ When a cluster is provisioned, each machine in the cluster requires information 
 
 The temporary bootstrap machine boots by using an Ignition config file that describes how to create the cluster. The bootstrap machine creates the control plane machines that make up the control plane. The control plane machines then create the compute machines, which are also known as worker machines. The following figure illustrates this process:
 
-**Figure 1. Creating the bootstrap, control plane, and compute machines**
+**Figure 2. Creating the bootstrap, control plane, and compute machines**
 
 ![Creating bootstrap](/openshift-docs-markdown/_assets/images/create-nodes.png)
 
@@ -199,6 +205,7 @@ Bootstrapping a cluster involves the following steps:
 The result of this bootstrapping process is a running OpenShift Container Platform cluster. The cluster then downloads and configures remaining components needed for the day-to-day operations, including the creation of compute machines in supported environments.
 
 **Additional resources**
+{._additional-resources}
 
 - [Cluster Type](https://console.redhat.com/openshift/create)
 - [Assisted Installer](https://access.redhat.com/documentation/en-us/assisted_installer_for_openshift_container_platform)
@@ -245,7 +252,7 @@ While this can be helpful in non-production clusters or during debugging, Operat
 
 An Operator can be set to an unmanaged state using the following methods:
 
-- ***Individual Operator configuration***
+- **Individual Operator configuration**
 
   Individual Operators have a `managementState` parameter in their configuration. This can be accessed in different ways, depending on the Operator. For example, the Red Hat OpenShift Logging Operator accomplishes this by modifying a custom resource (CR) that it manages, while the Cluster Samples Operator uses a cluster-wide configuration resource.
 
@@ -253,7 +260,7 @@ An Operator can be set to an unmanaged state using the following methods:
 
   > [!WARNING]
   > Changing individual Operators to the `Unmanaged` state renders that particular component and functionality unsupported. Reported issues must be reproduced in `Managed` state for support to proceed.
-- ***Cluster Version Operator (CVO) overrides***
+- **Cluster Version Operator (CVO) overrides**
 
   The `spec.overrides` parameter can be added to the CVO’s configuration to allow administrators to provide a list of overrides to the CVO’s behavior for a component. Setting the `spec.overrides[].unmanaged` parameter to `true` for a component blocks cluster upgrades and alerts the administrator after a CVO override has been set:
 
@@ -264,12 +271,7 @@ An Operator can be set to an unmanaged state using the following methods:
   > [!WARNING]
   > Setting a CVO override puts the entire cluster in an unsupported state. Reported issues must be reproduced after removing any overrides for support to proceed.
 
-## Additional resources {#additional-resources_architecture-installation}
+**Additional resources**
+{._additional-resources}
 
 - [Selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing)
-
-[^1]: 1
-
-[^2]: 2
-
-[^3]: 3

@@ -1,5 +1,5 @@
 ---
-title: "{{ productwinc }} overview"
+title: Red&#160;Hat OpenShift support for Windows Containers overview
 ---
 
 # Red Hat OpenShift support for Windows Containers overview {#windows-container-overview}

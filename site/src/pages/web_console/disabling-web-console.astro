@@ -21,7 +21,8 @@ const headings = [{"depth":1,"slug":"disabling-web-console","text":"Disabling th
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/web_console/disabling-web-console";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -40,7 +41,7 @@ const pageCategory = ["web_console"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Disabling the web console in OpenShift Container Platform {#disabling-web-console}\n\nYou can disable the OpenShift Container Platform web console.\n\n## Prerequisites {#_prerequisites}\n\n- Deploy an OpenShift Container Platform\n\ncluster.\n\n## Disabling the web console {#web-console-disable_disabling-web-console}\n\nYou can disable the web console by editing the `consoles.operator.openshift.io` resource.\n\n**Procedure**\n\n- Edit the `consoles.operator.openshift.io` resource:\n\n  ```terminal\n  $ oc edit consoles.operator.openshift.io cluster\n  ```\n\n  The following example displays the parameters from this resource that you can modify:\n\n  ```yaml\n  apiVersion: operator.openshift.io/v1\n  kind: Console\n  metadata:\n    name: cluster\n  spec:\n    managementState: Removed\n  ```\n\n  where:\n\n  `spec.managementState.Removed`\n  :   Set the `managementState` parameter value to `Removed` to disable the web console. The other valid values for this parameter are `Managed`, which enables the console under the cluster’s control, and `Unmanaged`, which means that you are taking control of web console management.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/web_console/disabling-web-console.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Disabling the web console in OpenShift Container Platform {#disabling-web-console}\n\nYou can disable the OpenShift Container Platform web console.\n\n## Prerequisites {#_prerequisites}\n\n- Deploy an OpenShift Container Platform cluster.\n\n## Disabling the web console {#web-console-disable_disabling-web-console}\n\nYou can disable the web console by editing the `consoles.operator.openshift.io` resource.\n\n**Procedure**\n\n- Edit the `consoles.operator.openshift.io` resource:\n\n  ```terminal\n  $ oc edit consoles.operator.openshift.io cluster\n  ```\n\n  The following example displays the parameters from this resource that you can modify:\n\n  ```yaml\n  apiVersion: operator.openshift.io/v1\n  kind: Console\n  metadata:\n    name: cluster\n  spec:\n    managementState: Removed\n  ```\n\n  where:\n\n  `spec.managementState.Removed`\n  :   Set the `managementState` parameter value to `Removed` to disable the web console. The other valid values for this parameter are `Managed`, which enables the console under the cluster’s control, and `Unmanaged`, which means that you are taking control of web console management.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/web_console/disabling-web-console.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,10 +94,9 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="disabling-web-console" class="group scroll-mt-20">Disabling the web console in OpenShift Container Platform<a href="#disabling-web-console" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can disable the OpenShift Container Platform web console.</p>
+      <p class="_abstract">You can disable the OpenShift Container Platform web console.</p>
       <h2 id="_prerequisites" class="group scroll-mt-20">Prerequisites<a href="#_prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
-      <ul><li>Deploy an OpenShift Container Platform</li></ul>
-      <p>cluster.</p>
+      <ul><li>Deploy an OpenShift Container Platform cluster.</li></ul>
       <h2 id="web-console-disable_disabling-web-console" class="group scroll-mt-20">Disabling the web console<a href="#web-console-disable_disabling-web-console" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">You can disable the web console by editing the <code>consoles.operator.openshift.io</code> resource.</p>
       <p><strong>Procedure</strong></p>

@@ -1,5 +1,5 @@
 ---
-title: CSINode []
+title: CSINode [storage.k8s.io/v1]
 ---
 
 # CSINode \[storage.k8s.io/v1\] {#csinode-storage-k8s-io-v1}
@@ -99,13 +99,13 @@ The following API endpoints are available:
 - `/apis/storage.k8s.io/v1/watch/csinodes`
 
   - `GET`: watch individual changes to a list of CSINode. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/storage.k8s.io/v1/csinodes/{{ name }}`
+- `/apis/storage.k8s.io/v1/csinodes/{name}`
 
   - `DELETE`: delete a CSINode
   - `GET`: read the specified CSINode
   - `PATCH`: partially update the specified CSINode
   - `PUT`: replace the specified CSINode
-- `/apis/storage.k8s.io/v1/watch/csinodes/{{ name }}`
+- `/apis/storage.k8s.io/v1/watch/csinodes/{name}`
 
   - `GET`: watch changes to an object of kind CSINode. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
 
@@ -202,7 +202,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/storage.k8s.io/v1/csinodes/{{ name }} {#_apisstoragek8siov1csinodes_name}
+### /apis/storage.k8s.io/v1/csinodes/{name} {#_apisstoragek8siov1csinodes_name}
 
 **Global path parameters**
 
@@ -307,7 +307,7 @@ Description
 | 201 - Created | [`CSINode`](/openshift-docs-markdown/rest_api/storage_apis/csinode-storage-k8s-io-v1#csinode-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/storage.k8s.io/v1/watch/csinodes/{{ name }} {#_apisstoragek8siov1watchcsinodes_name}
+### /apis/storage.k8s.io/v1/watch/csinodes/{name} {#_apisstoragek8siov1watchcsinodes_name}
 
 **Global path parameters**
 

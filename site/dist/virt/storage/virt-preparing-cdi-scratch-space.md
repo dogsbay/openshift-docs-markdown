@@ -48,7 +48,7 @@ You can define the storage class that the Containerized Data Importer (CDI) uses
 1. Edit the `HyperConverged` CR by running the following command:
 
    ```terminal
-   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+   $ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv
    ```
 2. Add the `spec.scratchSpaceStorageClass` field to the CR and set the value to the name of a storage class that exists in the cluster. If you do not specify a storage class, CDI uses the storage class of the persistent volume claim that is being populated.
 
@@ -103,12 +103,13 @@ This matrix shows the supported CDI operations for content types against endpoin
 □
 :   Unsupported operation
 
-$$\*$$
+$$*$$
 :   Requires scratch space
 
-$$\*\*$$
+$$**$$
 :   Requires scratch space if a custom certificate authority is required
 
-## Additional resources {#virt-preparing-cdi-scratch-space-additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Dynamic provisioning](/openshift-docs-markdown/storage/dynamic-provisioning#about_dynamic-provisioning)

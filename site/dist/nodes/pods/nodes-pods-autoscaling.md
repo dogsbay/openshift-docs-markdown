@@ -27,7 +27,7 @@ To use horizontal pod autoscalers, your cluster administrator must have properly
 
 The following metrics are supported by horizontal pod autoscalers:
 
-***Supported metrics***
+**Supported metrics**
 
 <table>
 <thead>
@@ -286,7 +286,9 @@ The following procedure creates an HPA in the web console.
 **Procedure**
 
 1. In the **Topology** view, click the node to reveal the side pane.
-2. From the **Actions** drop-down list, select **Add HorizontalPodAutoscaler** to open the **Add HorizontalPodAutoscaler** form. **Figure 1. Add HorizontalPodAutoscaler**
+2. From the **Actions** drop-down list, select **Add HorizontalPodAutoscaler** to open the **Add HorizontalPodAutoscaler** form.
+
+   **Figure 2. Add HorizontalPodAutoscaler**
 
    ![Add HorizontalPodAutoscaler form](/openshift-docs-markdown/_assets/images/node-add-hpa-action.png)
 3. From the **Add HorizontalPodAutoscaler** form, define the name, minimum and maximum pod limits, the CPU and memory usage, and click **Save**.
@@ -1045,7 +1047,8 @@ Events:                <none>
     ScalingLimited    False     DesiredWithinRange  the desired replica count is within the acceptable range
   ```
 
-## Additional resources {#additional-resources_nodes-pods-autoscaling}
+**Additional resources**
+{._additional-resources}
 
 - [Automatically scaling pods based on custom metrics](/openshift-docs-markdown/nodes/cma/nodes-cma-autoscaling-custom#nodes-cma-autoscaling-custom)
 - [Understanding deployments](/openshift-docs-markdown/applications/deployments/what-deployments-are#what-deployments-are)

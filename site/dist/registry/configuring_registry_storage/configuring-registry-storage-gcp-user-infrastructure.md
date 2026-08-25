@@ -1,8 +1,8 @@
 ---
-title: Configuring the registry for {{ gcp_short }} user-provisioned infrastructure
+title: Configuring the registry for Google Cloud user-provisioned infrastructure
 ---
 
-# Configuring the registry for {{ gcp_short }} user-provisioned infrastructure {#configuring-registry-storage-gcp-user-infrastructure}
+# Configuring the registry for Google Cloud user-provisioned infrastructure {#configuring-registry-storage-gcp-user-infrastructure}
 
 Save your container images to a durable storage location by configuring the built-in image registry to use dedicated Google Cloud storage. This setup provides persistent scalable storage for your registry, separate from ephemeral cluster storage.
 
@@ -36,8 +36,8 @@ If the Registry Operator cannot create a Google Cloud bucket, you must set up th
 
   - `REGISTRY_STORAGE_GCS_KEYFILE`
 
-> [!WARNING]
-> You can secure your registry images that use a Google Cloud Storage bucket by setting [public access prevention](https://cloud.google.com/storage/docs/using-public-access-prevention).
+  > [!WARNING]
+  > You can secure your registry images that use a Google Cloud Storage bucket by setting [public access prevention](https://cloud.google.com/storage/docs/using-public-access-prevention).
 
 **Procedure**
 
@@ -75,19 +75,19 @@ The following parameters configure are available to configure your Google Cloud 
 <tbody>
 <tr>
   <td><code>bucket</code></td>
-  <td>Bucket is the bucket name in which you want to store the registry's data.It is optional and is generated if not provided.</td>
+  <td>Bucket is the bucket name in which you want to store the registry's data. It is optional and is generated if not provided.</td>
 </tr>
 <tr>
   <td><code>region</code></td>
-  <td>Region is the GCS location in which your bucket exists. It is optional and isset based on the installed GCS Region.</td>
+  <td>Region is the GCS location in which your bucket exists. It is optional and is set based on the installed GCS Region.</td>
 </tr>
 <tr>
   <td><code>projectID</code></td>
-  <td>ProjectID is the Project ID of the Google Cloud project that this bucket should beassociated with. It is optional.</td>
+  <td>ProjectID is the Project ID of the Google Cloud project that this bucket should be associated with. It is optional.</td>
 </tr>
 <tr>
   <td><code>keyID</code></td>
-  <td>KeyID is the KMS key ID to use for encryption. It is optional becausebuckets are encrypted by default on Google Cloud. This allows for the use of a customencryption key.</td>
+  <td>KeyID is the KMS key ID to use for encryption. It is optional because buckets are encrypted by default on Google Cloud. This allows for the use of a custom encryption key.</td>
 </tr>
 </tbody>
 </table>

@@ -20,7 +20,8 @@ const headings = [{"depth":1,"slug":"virt-self-validation-checkups","text":"Self
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/post_installation_configuration/virt-self-validation-checkups";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -39,7 +40,7 @@ const pageCategory = ["virt","virt/post_installation_configuration"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Self validation checkup {#virt-self-validation-checkups}\n\nA self validation checkup runs conformance tests on critical subsystems to verify that the environment is fully functional and self-sustained before you deploy production workloads.\n\n## Run a self validation checkup in the web console {#virt-run-self-validation-checkup-web-console_virt-self-validation-checkups}\n\nRunning a self validation checkup streamlines the process of running functional tests, which enables you to validate the stability, health, and compliance of an OpenShift Virtualization installation before deploying workloads.\n\n**Prerequisites**\n\n- You have cluster administrator permissions.\n- You have access to an OpenShift Container Platform cluster where OpenShift Virtualization is installed.\n- You are logged in to the OpenShift Container Platform web console.\n\n**Procedure**\n\n1. In the OpenShift Container Platform web console, go to **Virtualization** -> **Checkups**.\n2. Go to the **Self validation** tab.\n3. Click **Run checkup**.\n4. Configure settings for the test that you want to run.\n5. Optional: You can enable a dry run test by clicking **Advanced settings** and then toggling the **Dry run** button.\n6. Click **Run**. The **Self validation checkup details** page is displayed.\n\n   You can observe the self validation checkup running in real time. The test can take several hours to complete.\n7. After the test is complete, you can view high-level results in the **Self validation checkup details** page, including the names of any failing tests.\n8. Optional: You can download detailed results as a ZIP file by clicking **Download results** in the **Self validation checkup details** page.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/post_installation_configuration/virt-self-validation-checkups.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Self validation checkup {#virt-self-validation-checkups}\n\nA self validation checkup runs conformance tests on critical subsystems to verify that the environment is fully functional and self-sustained before you deploy production workloads.\n\n## Run a self validation checkup in the web console {#virt-run-self-validation-checkup-web-console_virt-self-validation-checkups}\n\nRunning a self validation checkup streamlines the process of running functional tests, which enables you to validate the stability, health, and compliance of an OpenShift Virtualization installation before deploying workloads.\n\n**Prerequisites**\n\n- You have cluster administrator permissions.\n- You have access to an OpenShift Container Platform cluster where OpenShift Virtualization is installed.\n- You are logged in to the OpenShift Container Platform web console.\n\n**Procedure**\n\n1. In the OpenShift Container Platform web console, go to **Virtualization** → **Checkups**.\n2. Go to the **Self validation** tab.\n3. Click **Run checkup**.\n4. Configure settings for the test that you want to run.\n5. Optional: You can enable a dry run test by clicking **Advanced settings** and then toggling the **Dry run** button.\n6. Click **Run**. The **Self validation checkup details** page is displayed.\n\n   You can observe the self validation checkup running in real time. The test can take several hours to complete.\n7. After the test is complete, you can view high-level results in the **Self validation checkup details** page, including the names of any failing tests.\n8. Optional: You can download detailed results as a ZIP file by clicking **Download results** in the **Self validation checkup details** page.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/post_installation_configuration/virt-self-validation-checkups.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,12 +79,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -91,7 +93,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-self-validation-checkups" class="group scroll-mt-20">Self validation checkup<a href="#virt-self-validation-checkups" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>A self validation checkup runs conformance tests on critical subsystems to verify that the environment is fully functional and self-sustained before you deploy production workloads.</p>
+      <p class="_abstract">A self validation checkup runs conformance tests on critical subsystems to verify that the environment is fully functional and self-sustained before you deploy production workloads.</p>
       <h2 id="virt-run-self-validation-checkup-web-console_virt-self-validation-checkups" class="group scroll-mt-20">Run a self validation checkup in the web console<a href="#virt-run-self-validation-checkup-web-console_virt-self-validation-checkups" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">Running a self validation checkup streamlines the process of running functional tests, which enables you to validate the stability, health, and compliance of an OpenShift Virtualization installation before deploying workloads.</p>
       <p><strong>Prerequisites</strong></p>
@@ -102,7 +104,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </ul>
       <p><strong>Procedure</strong></p>
       <ol>
-      <li>In the OpenShift Container Platform web console, go to <strong>Virtualization</strong> -&gt; <strong>Checkups</strong>.</li>
+      <li>In the OpenShift Container Platform web console, go to <strong>Virtualization</strong> → <strong>Checkups</strong>.</li>
       <li>Go to the <strong>Self validation</strong> tab.</li>
       <li>Click <strong>Run checkup</strong>.</li>
       <li>Configure settings for the test that you want to run.</li>

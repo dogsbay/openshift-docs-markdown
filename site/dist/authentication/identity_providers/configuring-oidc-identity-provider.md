@@ -199,6 +199,7 @@ spec:
 7. The list of claims to use to synchronize groups from the OpenID Connect provider to OpenShift Container Platform upon user login. The first non-empty claim is used.
 
 **Additional resources**
+{._additional-resources}
 
 - See [Identity provider parameters](/openshift-docs-markdown/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider) for information on parameters, such as `mappingMethod`, that are common to all identity providers.
 
@@ -226,7 +227,7 @@ Apply the identity provider custom resource (CR) to your cluster so users can au
 
    As long as the `kubeadmin` user has been removed, the `oc login` command provides instructions on how to access a web page where you can retrieve the token.
 
-   You can also access this page from the web console by navigating to **(?) Help** -> **Command Line Tools** -> **Copy Login Command**.
+   You can also access this page from the web console by navigating to **(?) Help** → **Command Line Tools** → **Copy Login Command**.
 3. Log in to the cluster, passing in the token to authenticate, by running the following command:
 
    ```terminal
@@ -257,7 +258,7 @@ Configure your identity provider (IDP) through the web console instead of the CL
 
 **Procedure**
 
-1. Navigate to **Administration** -> **Cluster Settings**.
+1. Navigate to **Administration** → **Cluster Settings**.
 2. Under the **Configuration** tab, click **OAuth**.
 3. Under the **Identity Providers** section, select your identity provider from the **Add** drop-down menu.
 

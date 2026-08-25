@@ -1,5 +1,5 @@
 ---
-title: Role []
+title: Role [rbac.authorization.k8s.io/v1]
 ---
 
 # Role \[rbac.authorization.k8s.io/v1\] {#role-rbac-authorization-k8s-io-v1}
@@ -47,9 +47,9 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `apiGroups` | `array (string)` | APIGroups is the name of the APIGroup that contains the resources.  If multiple API groups are specified, any action requested against one of the enumerated resources in any API group will be allowed. "" represents the core API group and "\*" represents all API groups. |
-| `nonResourceURLs` | `array (string)` | NonResourceURLs is a set of partial urls that a user should have access to.  \*s are allowed, but only as the full, final step in the path Since non-resource URLs are not namespaced, this field is only applicable for ClusterRoles referenced from a ClusterRoleBinding. Rules can either apply to API resources (such as "pods" or "secrets") or non-resource URL paths (such as "/api"),  but not both. |
-| `resourceNames` | `array (string)` | ResourceNames is an optional white list of names that the rule applies to.  An empty set means that everything is allowed. |
+| `apiGroups` | `array (string)` | APIGroups is the name of the APIGroup that contains the resources. If multiple API groups are specified, any action requested against one of the enumerated resources in any API group will be allowed. "" represents the core API group and "\*" represents all API groups. |
+| `nonResourceURLs` | `array (string)` | NonResourceURLs is a set of partial urls that a user should have access to. \*s are allowed, but only as the full, final step in the path Since non-resource URLs are not namespaced, this field is only applicable for ClusterRoles referenced from a ClusterRoleBinding. Rules can either apply to API resources (such as "pods" or "secrets") or non-resource URL paths (such as "/api"), but not both. |
+| `resourceNames` | `array (string)` | ResourceNames is an optional white list of names that the rule applies to. An empty set means that everything is allowed. |
 | `resources` | `array (string)` | Resources is a list of resources this rule applies to. '\*' represents all resources. |
 | `verbs` | `array (string)` | Verbs is a list of Verbs that apply to ALL the ResourceKinds contained in this rule. '\*' represents all verbs. |
 
@@ -63,21 +63,21 @@ The following API endpoints are available:
 - `/apis/rbac.authorization.k8s.io/v1/watch/roles`
 
   - `GET`: watch individual changes to a list of Role. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/rbac.authorization.k8s.io/v1/namespaces/{{ namespace }}/roles`
+- `/apis/rbac.authorization.k8s.io/v1/namespaces/{namespace}/roles`
 
   - `DELETE`: delete collection of Role
   - `GET`: list or watch objects of kind Role
   - `POST`: create a Role
-- `/apis/rbac.authorization.k8s.io/v1/watch/namespaces/{{ namespace }}/roles`
+- `/apis/rbac.authorization.k8s.io/v1/watch/namespaces/{namespace}/roles`
 
   - `GET`: watch individual changes to a list of Role. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/rbac.authorization.k8s.io/v1/namespaces/{{ namespace }}/roles/{{ name }}`
+- `/apis/rbac.authorization.k8s.io/v1/namespaces/{namespace}/roles/{name}`
 
   - `DELETE`: delete a Role
   - `GET`: read the specified Role
   - `PATCH`: partially update the specified Role
   - `PUT`: replace the specified Role
-- `/apis/rbac.authorization.k8s.io/v1/watch/namespaces/{{ namespace }}/roles/{{ name }}`
+- `/apis/rbac.authorization.k8s.io/v1/watch/namespaces/{namespace}/roles/{name}`
 
   - `GET`: watch changes to an object of kind Role. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
 
@@ -119,7 +119,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/rbac.authorization.k8s.io/v1/namespaces/{{ namespace }}/roles {#_apisrbacauthorizationk8siov1namespaces_namespace_roles}
+### /apis/rbac.authorization.k8s.io/v1/namespaces/{namespace}/roles {#_apisrbacauthorizationk8siov1namespaces_namespace_roles}
 
 HTTP method
 :   ```
@@ -193,7 +193,7 @@ Description
 | 202 - Accepted | [`Role`](/openshift-docs-markdown/rest_api/rbac_apis/role-rbac-authorization-k8s-io-v1#role-rbac-authorization-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/rbac.authorization.k8s.io/v1/watch/namespaces/{{ namespace }}/roles {#_apisrbacauthorizationk8siov1watchnamespaces_namespace_roles}
+### /apis/rbac.authorization.k8s.io/v1/watch/namespaces/{namespace}/roles {#_apisrbacauthorizationk8siov1watchnamespaces_namespace_roles}
 
 HTTP method
 :   ```
@@ -212,7 +212,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/rbac.authorization.k8s.io/v1/namespaces/{{ namespace }}/roles/{{ name }} {#_apisrbacauthorizationk8siov1namespaces_namespace_roles_name}
+### /apis/rbac.authorization.k8s.io/v1/namespaces/{namespace}/roles/{name} {#_apisrbacauthorizationk8siov1namespaces_namespace_roles_name}
 
 **Global path parameters**
 
@@ -317,7 +317,7 @@ Description
 | 201 - Created | [`Role`](/openshift-docs-markdown/rest_api/rbac_apis/role-rbac-authorization-k8s-io-v1#role-rbac-authorization-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/rbac.authorization.k8s.io/v1/watch/namespaces/{{ namespace }}/roles/{{ name }} {#_apisrbacauthorizationk8siov1watchnamespaces_namespace_roles_name}
+### /apis/rbac.authorization.k8s.io/v1/watch/namespaces/{namespace}/roles/{name} {#_apisrbacauthorizationk8siov1watchnamespaces_namespace_roles_name}
 
 **Global path parameters**
 

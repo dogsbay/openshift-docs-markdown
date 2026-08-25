@@ -382,5 +382,6 @@ Topology Manager would consider this pod. The Topology Manager would consult the
 Topology Manager will use this information to store the best topology for this container. In the case of this pod, CPU Manager and Device Manager will use this stored information at the resource allocation stage.
 
 **Additional resources**
+{._additional-resources}
 
 - [Topology Manager policies](/openshift-docs-markdown/scalability_and_performance/using-cpu-manager#topology-manager-policies_using-cpu-manager-and-topology-manager)

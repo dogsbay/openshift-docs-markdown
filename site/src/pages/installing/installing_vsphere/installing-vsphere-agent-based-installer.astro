@@ -19,11 +19,12 @@ import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"installing-vsphere-agent-based-installer","text":"Installing a cluster on vSphere using the Agent-based Installer"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"installing-vsphere-agent-based-installer","text":"Installing a cluster on vSphere using the Agent-based Installer"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/installing/installing_vsphere/installing-vsphere-agent-based-installer";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -42,7 +43,7 @@ const pageCategory = ["installing","installing/installing_vsphere"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a cluster on vSphere using the Agent-based Installer {#installing-vsphere-agent-based-installer}\n\nThe Agent-based installation method provides the flexibility to boot your on-premise servers in any way that you choose. It combines the ease of use of the Assisted Installation service with the ability to run offline, including in air-gapped environments.\n\nAgent-based installation is a subcommand of the OpenShift Container Platform installer. It generates a bootable ISO image containing all of the information required to deploy an OpenShift Container Platform cluster with an available release image.\n\n> [!IMPORTANT]\n> Your vSphere account must include privileges for reading and creating the resources required to install an OpenShift Container Platform cluster.\n\n## Additional resources {#_additional_resources}\n\n- [Preparing to install with the Agent-based Installer](/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#preparing-to-install-with-agent-based-installer)\n- [vCenter requirements](/openshift-docs-markdown/installing/installing_vsphere/upi/upi-vsphere-installation-reqs#installation-vsphere-installer-infra-requirements_upi-vsphere-installation-reqs)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_vsphere/installing-vsphere-agent-based-installer.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a cluster on vSphere using the Agent-based Installer {#installing-vsphere-agent-based-installer}\n\nThe Agent-based installation method provides the flexibility to boot your on-premise servers in any way that you choose. It combines the ease of use of the Assisted Installation service with the ability to run offline, including in air-gapped environments.\n\nAgent-based installation is a subcommand of the OpenShift Container Platform installer. It generates a bootable ISO image containing all of the information required to deploy an OpenShift Container Platform cluster with an available release image.\n\n> [!IMPORTANT]\n> Your vSphere account must include privileges for reading and creating the resources required to install an OpenShift Container Platform cluster.\n\n**Additional resources**\n{._additional-resources}\n\n- [Preparing to install with the Agent-based Installer](/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#preparing-to-install-with-agent-based-installer)\n- [vCenter requirements](/openshift-docs-markdown/installing/installing_vsphere/upi/upi-vsphere-installation-reqs#installation-vsphere-installer-infra-requirements_upi-vsphere-installation-reqs)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_vsphere/installing-vsphere-agent-based-installer.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -81,12 +82,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -94,7 +96,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="installing-vsphere-agent-based-installer" class="group scroll-mt-20">Installing a cluster on vSphere using the Agent-based Installer<a href="#installing-vsphere-agent-based-installer" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>The Agent-based installation method provides the flexibility to boot your on-premise servers in any way that you choose. It combines the ease of use of the Assisted Installation service with the ability to run offline, including in air-gapped environments.</p>
+      <p class="_abstract">The Agent-based installation method provides the flexibility to boot your on-premise servers in any way that you choose. It combines the ease of use of the Assisted Installation service with the ability to run offline, including in air-gapped environments.</p>
       <p>Agent-based installation is a subcommand of the OpenShift Container Platform installer. It generates a bootable ISO image containing all of the information required to deploy an OpenShift Container Platform cluster with an available release image.</p>
       <Alert variant="info" class="my-4">
         <AlertTitle>Important</AlertTitle>
@@ -102,11 +104,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           <p>Your vSphere account must include privileges for reading and creating the resources required to install an OpenShift Container Platform cluster.</p>
         </AlertDescription>
       </Alert>
-      <h2 id="_additional_resources" class="group scroll-mt-20">Additional resources<a href="#_additional_resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul>
       <li><a href="/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#preparing-to-install-with-agent-based-installer">Preparing to install with the Agent-based Installer</a></li>
       <li><a href="/openshift-docs-markdown/installing/installing_vsphere/upi/upi-vsphere-installation-reqs#installation-vsphere-installer-infra-requirements_upi-vsphere-installation-reqs">vCenter requirements</a></li>
       </ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

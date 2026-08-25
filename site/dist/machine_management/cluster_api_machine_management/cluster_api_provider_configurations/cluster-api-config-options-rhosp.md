@@ -52,6 +52,7 @@ where:
 :   Specifies the image to use.
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating flavors for launching instances](https://docs.redhat.com/en/documentation/red_hat_openstack_platform/17.1/html/configuring_the_compute_service_for_instance_creation/assembly_creating-flavors-for-launching-instances_instance-flavors)
 

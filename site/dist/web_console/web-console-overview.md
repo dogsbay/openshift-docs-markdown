@@ -68,7 +68,7 @@ You can enable the **Developer** perspective with the following steps:
 
 **Procedure**
 
-1. Navigate to the **Cluster Settings** page by clicking  **Administration** -> **Cluster Settings**.
+1. Navigate to the **Cluster Settings** page by clicking  **Administration** → **Cluster Settings**.
 2. Select the **Configuration** tab on the **Cluster Settings** page.
 3. Type `console` in the search to locate the Console Operator resource and select `operator.openshift.io`.
 4. On the **Cluster Details** page, click the **Actions** menu and select **Customize**.
@@ -83,6 +83,7 @@ You can enable the **Developer** perspective with the following steps:
    > It will take some time for the change to reflect in the web console as the console pod restarts.
 
 **Additional resources**
+{._additional-resources}
 
 - [Learn more about Cluster Administrator](/openshift-docs-markdown/welcome/learn_more_about_openshift#learn_more_about_openshift)
 - [Viewing the applications in your project, verifying their deployment status, and interacting with them in the **Topology** view](/openshift-docs-markdown/applications/odc-viewing-application-composition-using-topology-view#odc-viewing-application-composition-using-topology-view)

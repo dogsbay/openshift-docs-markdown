@@ -49,9 +49,7 @@ SPIRE UpstreamAuthority plugins for external certificate authorities
     - Vault UpstreamAuthority plugin: integrates SPIRE Server with the HashiCorp Vault Public Key Infrastructure (PKI) secrets engine.
 
     cert-manager UpstreamAuthority plugin
-
-SPIRE UpstreamAuthority plugins for external certificate authorities
-:   The cert-manager UpstreamAuthority plugin connects SPIRE Server to cert-manager Operator for Red Hat OpenShift for automated intermediate certificate provisioning. SPIRE Server creates a `CertificateRequest` custom resource, then the configured `Issuer` or `ClusterIssuer` signs the request, and then the SPIRE Server uses the signed intermediate certificate to issue workload identities.
+    :   The cert-manager UpstreamAuthority plugin connects SPIRE Server to cert-manager Operator for Red Hat OpenShift for automated intermediate certificate provisioning. SPIRE Server creates a `CertificateRequest` custom resource, then the configured `Issuer` or `ClusterIssuer` signs the request, and then the SPIRE Server uses the signed intermediate certificate to issue workload identities.
 
 Vault UpstreamAuthority plugin
 :   The Vault UpstreamAuthority plugin connects SPIRE Server to the HashiCorp Vault PKI secrets engine for automated intermediate certificate authority (CA) certificate signing. Use this plugin when PKI is centralized in Vault and SPIRE must obtain intermediate signing certificates through Vault policies and authentication.
@@ -77,7 +75,7 @@ Custom SCC `spire-spiffe-csi-driver`
     Zero Trust Workload Identity Manager uses only the existing OpenShift `privileged` SCC. Zero Trust Workload Identity Manager does not create, modify, update, or delete the `privileged` SCC.
 
 Action required after upgrade
-:   Zero Trust Workload Identity Manager does not remove the legacy custom SCC `spire-spiffe-csi-driver`. After you upgrade Zero Trust Workload Identity Manager to 1.1.0 from the ***OpenShift OperatorHub*** catalog, remove it manually once CSI is healthy on the platform SCC.
+:   Zero Trust Workload Identity Manager does not remove the legacy custom SCC `spire-spiffe-csi-driver`. After you upgrade Zero Trust Workload Identity Manager to 1.1.0 from the **OpenShift OperatorHub** catalog, remove it manually once CSI is healthy on the platform SCC.
 
     For more information, see [Manually delete the custom security context constraints](/openshift-docs-markdown/security/zero_trust_workload_identity_manager/zero-trust-manager-configuration#zero-trust-manager-manually-delete-scc_zero-trust-manager-configuration).
 
@@ -169,7 +167,7 @@ SPIRE federation support
 
     - Key capabilities:
     - Configuration of bundle endpoints using `https_spiffe` (TLS) or `https_web` (Web PKI) profiles.
-    - Automatic certificate management via the ACME protocol. For example, `Let’s Encrypt`.
+    - Automatic certificate management via the ACME protocol. For example, `Let's Encrypt`.
     - Automatic OpenShift Container Platform route creation for federation endpoints.
     - Ability to configure relationships with multiple federated trust domains.
 
@@ -179,9 +177,7 @@ SPIRE federation support
   - Ensure proper DNS resolution and network connectivity to federated trust domains.
 
   PostgreSQL database support
-
-:   SPIRE Server now supports PostgreSQL as an external database backend, accommodating production deployments that necessitate enterprise-grade data persistence and high availability.
-
+  :   SPIRE Server now supports PostgreSQL as an external database backend, accommodating production deployments that necessitate enterprise-grade data persistence and high availability.
 - Supported Types: `sqlite3` (default), `postgres`, `mysql`.
 - Customer action required:
 
@@ -189,9 +185,7 @@ SPIRE federation support
   - Creation and configuration of Kubernetes Secrets for database TLS certificates and credentials are required.
 
   Configurable agent socket path and Container Storage Interface (CSI) plugin name
-
-:   The SPIRE Agent socket path and the SPIFFE CSI Driver plugin name are now configurable, providing operational flexibility for environments with specific directory requirements or co-existence with multiple SPIFFE deployments.
-
+  :   The SPIRE Agent socket path and the SPIFFE CSI Driver plugin name are now configurable, providing operational flexibility for environments with specific directory requirements or co-existence with multiple SPIFFE deployments.
 - Key configuration points:
 
   - `SpireAgent.spec.socketPath`
@@ -202,9 +196,7 @@ SPIRE federation support
   - Ensure consistency between `socketPath` in the `SpireAgent` CR and `agentSocketPath` in the `SpiffeCSIDriver` CR.
 
   Workload attestors verification API
-
-:   A new API has been introduced to configure kubelet certificate verification for workload attestation, enhancing security and supporting various OpenShift Container Platform configurations.
-
+  :   A new API has been introduced to configure kubelet certificate verification for workload attestation, enhancing security and supporting various OpenShift Container Platform configurations.
 - Verification types:
 
   - `auto` (default): Verification utilizes OpenShift Container Platform defaults (`/etc/kubernetes/kubelet-ca.crt`).
@@ -212,46 +204,41 @@ SPIRE federation support
   - `skip`: Skips TLS verification (not recommended for production use).
 
   Configurable Certificate Authority and JSON Web Token key types
-
-:   Administrators can now configure the cryptographic key types used for the SPIRE Server Certificate Authority (CA) and JSON Web Token (JWT) signing, ensuring compliance with organizational security policies.
-
+  :   Administrators can now configure the cryptographic key types used for the SPIRE Server Certificate Authority (CA) and JSON Web Token (JWT) signing, ensuring compliance with organizational security policies.
 - Supported Key Types: `rsa-2048` (default), `rsa-4096`, `ec-p256`, `ec-p384`.
 - Customer action required:
 
   - Review organizational security policies to determine required key types.
 
   Custom namespace deployment
-
-:   \*   The Operator and all associated operands can now be deployed within a custom namespace, providing flexibility for organizations with specific namespace governance requirements.
+  :   - The Operator and all associated operands can now be deployed within a custom namespace, providing flexibility for organizations with specific namespace governance requirements.
 
 Proxy-aware Operator and operands
 :   - The Operator and all managed operands are now proxy-aware and automatically inherit cluster-wide proxy settings when configured.
 
 Enhanced Security Context Constraints
 :   - SPIRE Agent and SPIFFE CSI Driver now run with Security Context Constraints (SCC) that prevent root user execution, though privileged container mode remains enabled for necessary host-level operations.
-
-- The Operator and all operand containers are configured with the `ReadOnlyRootFilesystem` set to `true`.
+    - The Operator and all operand containers are configured with the `ReadOnlyRootFilesystem` set to `true`.
 
 Enhanced API validation
 :   Comprehensive Common Expression Language (CEL) validation has been integrated into all Custom Resource Definitions (CRDs) to prevent configuration errors during admission control.
 
-- Key validations:
+    - Key validations:
+    - All Operator CRDs are enforced as singletons (must be named `cluster`).
+    - Immutable Fields: Fields including `trustDomain`, `clusterName`, `bundleConfigMap`, `federation`, `bundleEndpoint` profile, and all `Persistence` settings (`size`, `accessMode`, and `storageClass`) are now immutable after initial creation.
 
-  - All Operator CRDs are enforced as singletons (must be named `cluster`).
-  - Immutable Fields: Fields including `trustDomain`, `clusterName`, `bundleConfigMap`, `federation`, `bundleEndpoint` profile, and all `Persistence` settings (`size`, `accessMode`, and `storageClass`) are now immutable after initial creation.
 - Customer action required:
 
   - Review existing CR configurations to ensure compliance with the new validation rules.
 
   Common configuration consolidation
-
-:   \*   Standard configuration options (`labels`, `resources`, `affinity`, `tolerations`, `nodeSelector`) are now standardized across all operand CRs via a shared `CommonConfig` structure.
+  :   - Standard configuration options (`labels`, `resources`, `affinity`, `tolerations`, `nodeSelector`) are now standardized across all operand CRs via a shared `CommonConfig` structure.
 
 Configuring log level and log format for the operands
 :   This release introduces flexible logging controls to improve observability and debugging across the platform:
 
-- SPIRE Components: Users can now configure the `logLevel` (debug, info, warn, error) and `logFormat` (text, JSON) independently for `SpireServer`, `SpireAgent`, and `SpireOIDCDiscoveryProvider` directly within their CR specifications. The defaults are set to "info" for the `logLevel` and "text" for the `logFormat`.
-- Operator: The Operator’s log verbosity is now configurable via the `OPERATOR_LOG_LEVEL` environment variable using klog’s `textlogger`.
+    - SPIRE Components: Users can now configure the `logLevel` (debug, info, warn, error) and `logFormat` (text, JSON) independently for `SpireServer`, `SpireAgent`, and `SpireOIDCDiscoveryProvider` directly within their CR specifications. The defaults are set to "info" for the `logLevel` and "text" for the `logFormat`.
+    - Operator: The Operator’s log verbosity is now configurable via the `OPERATOR_LOG_LEVEL` environment variable using klog’s `textlogger`.
 
 Refactor for create-only mode
 :   By setting the `CREATE_ONLY_MODE` environment variable, users can prevent the Operator from reconciling updates. This allows for manual resource modification without interference. If this mode is disabled, the Operator resumes enforcing the state and overwrites any manual changes.
@@ -260,13 +247,11 @@ Refactor for create-only mode
 
 Enhanced status reporting
 :   - The main CR now aggregates status information from all operand CRs.
-
-- New status conditions include Upgradeable (indicating a safe upgrade path) and Progressing (detailing deployment progress).
+    - New status conditions include Upgradeable (indicating a safe upgrade path) and Progressing (detailing deployment progress).
 
 Operator metrics
 :   - Operator metrics are now exposed and secured with appropriate RBAC configuration.
-
-- Integration is supported with the OpenShift Container Platform monitoring stack.
+    - Integration is supported with the OpenShift Container Platform monitoring stack.
 
 ### Fixed issues {#zero-trust-manager-1-0-0-bug-fixes_zero-trust-manager-release-notes}
 
@@ -300,10 +285,9 @@ Corrected update rollback for DaemonSets, Deployments, and StatefulSets
 
     ([SPIRE-248](https://issues.redhat.com/browse/SPIRE-248))
 
-- Other bug fixes included:
-
-  - Fixed issues related to continuous reconciliation and unnecessary updates.
-  - Eliminated requeue logic for user input validation errors.
+    - Other bug fixes included:
+    - Fixed issues related to continuous reconciliation and unnecessary updates.
+    - Eliminated requeue logic for user input validation errors.
 
 ## Zero Trust Workload Identity Manager 0.2.0 (General Availability) {#zero-trust-manager-release-notes-0-2-0_zero-trust-manager-release-notes}
 
@@ -320,10 +304,9 @@ The following advisories are available for the Zero Trust Workload Identity Mana
 
 Support for the managed OIDC Discovery Provider Route
 :   - The Operator exposes the `SPIREOIDCDiscoveryProvider` spec through OpenShift Container Platform Routes under the domain `*.apps.<cluster_domain>` for the selected default installation.
-
-- The `managedRoute` and `externalSecretRef` fields have been added to the `spireOidcDiscoveryProvider` spec.
-- The `managedRoute` field is boolean and is set to `true` by default. If set to `false`, the Operator stops managing the route and the existing route will not be deleted automatically. If set back to `true`, the Operator resumes managing the route. If a route does not exist, the Operator creates a new one. If a route already exists, the Operator will override the user configuration if a conflict exists.
-- The `externalSecretRef` references an externally managed Secret that has the TLS certificate for the `oidc-discovery-provider` Route host. When provided, this populates the route’s `.Spec.TLS.ExternalCertificate` field. For more information, see [Creating a route with externally managed certificate](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html-single/ingress_and_load_balancing/index#nw-ingress-route-secret-load-external-cert_secured-routes)
+    - The `managedRoute` and `externalSecretRef` fields have been added to the `spireOidcDiscoveryProvider` spec.
+    - The `managedRoute` field is boolean and is set to `true` by default. If set to `false`, the Operator stops managing the route and the existing route will not be deleted automatically. If set back to `true`, the Operator resumes managing the route. If a route does not exist, the Operator creates a new one. If a route already exists, the Operator will override the user configuration if a conflict exists.
+    - The `externalSecretRef` references an externally managed Secret that has the TLS certificate for the `oidc-discovery-provider` Route host. When provided, this populates the route’s `.Spec.TLS.ExternalCertificate` field. For more information, see [Creating a route with externally managed certificate](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html-single/ingress_and_load_balancing/index#nw-ingress-route-secret-load-external-cert_secured-routes)
 
 Enabling the custom Certificate Authority Time-To-Live for the SPIRE bundle
 :   - The following Time-To-Live (TTL) fields have been added to the `SpireServer` custom resource definition (CRD) API for SPIRE Server certificate management:
@@ -335,9 +318,8 @@ Enabling the custom Certificate Authority Time-To-Live for the SPIRE bundle
 
 Enabling Manual User Configurations
 :   - The Operator controller switches to `create-only` mode once the `ztwim.openshift.io/create-only=true` annotation is present on the Operator’s APIs. This allows resource creation while skipping the updates. A user can update the resources manually to test their configuration. This annotation supports APIs such as `SpireServer`, `SpireAgents`, `SpiffeCSIDriver`, `SpireOIDCDiscoveryProvider`, and `ZeroTrustWorkloadIdentityManager`.
-
-- When the annotation is applied, all derived resources including resources created and managed by the Operator are created but not updated.
-- After the annotation is removed and the pod restarts, the Operator tries to come back to the required state. The annotation is applied only once during start or a restart.
+    - When the annotation is applied, all derived resources including resources created and managed by the Operator are created but not updated.
+    - After the annotation is removed and the pod restarts, the Operator tries to come back to the required state. The annotation is applied only once during start or a restart.
 
 ### Fixed issues {#zero-trust-manager-0-2-0-bug-fixes_zero-trust-manager-release-notes}
 

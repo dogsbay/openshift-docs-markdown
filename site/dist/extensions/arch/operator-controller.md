@@ -41,8 +41,9 @@ spec:
 :   If the extension supports watching a specific namespace, use this field to configure extension behavior. For more information, see "Extension configuration".
 
 **Additional resources**
+{._additional-resources}
 
-- [Operator Lifecycle Manager (OLM) -> Multitenancy and Operator colocation](/openshift-docs-markdown/operators/understanding/olm/olm-colocation#olm-colocation)
+- [Operator Lifecycle Manager (OLM) → Multitenancy and Operator colocation](/openshift-docs-markdown/operators/understanding/olm/olm-colocation#olm-colocation)
 - [Supported extensions](/openshift-docs-markdown/extensions/ce/olmv1-supported-extensions#olmv1-supported-extensions)
 
 ### Example custom resources (CRs) that specify a target version {#olmv1-about-target-versions_operator-controller}

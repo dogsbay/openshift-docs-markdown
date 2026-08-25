@@ -128,7 +128,8 @@ This behavior does not apply to CPU and memory limits. These limits are applied 
 
 For Linux workloads, you can specify huge page resources. Huge pages are a Linux-specific feature where the node kernel allocates blocks of memory that are much larger than the default page size. For example, on a system where the default page size is 4KiB, you could specify a higher limit. For more information on huge pages, see "Huge pages".
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage)
 - [Understanding ephemeral storage](/openshift-docs-markdown/storage/understanding-ephemeral-storage#understanding-ephemeral-storage)

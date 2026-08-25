@@ -16,6 +16,7 @@ This guide describes the following process that is required to enable OLM in dis
 
 After enabling OLM in a disconnected environment, you can continue to use your unrestricted workstation to keep your local OperatorHub sources updated as newer versions of Operators are released.
 
-## Additional resources {#additional-resources_olm-restricted-networks}
+**Additional resources**
+{._additional-resources}
 
 - [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)

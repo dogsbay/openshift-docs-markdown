@@ -39,8 +39,8 @@ You must attach the VirtIO container disk to the Windows VM to install the neces
 
 **Procedure**
 
-1. Navigate to the existing Windows VM, and click **Actions** -> **Stop**.
-2. Go to **VM Details** -> **Configuration** -> **Storage**.
+1. Navigate to the existing Windows VM, and click **Actions** → **Stop**.
+2. Go to **VM Details** → **Configuration** → **Storage**.
 3. Select the **Mount Windows drivers disk** checkbox.
 4. Click **Save**.
 5. Start the VM, and connect to a graphical console.
@@ -117,7 +117,7 @@ You can install the VirtIO drivers while installing Windows on a virtual machine
 **Verification**
 
 1. Open the system disk on the PC. This is typically `C:`.
-2. Navigate to **Program Files** -> **Virtio-Win**.
+2. Navigate to **Program Files** → **Virtio-Win**.
 
 If the **Virtio-Win** directory is present and contains a sub-directory for each driver, the installation was successful.
 

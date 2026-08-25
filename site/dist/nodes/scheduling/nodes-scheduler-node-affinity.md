@@ -495,7 +495,6 @@ To control the placement of an Operator pod, complete the following steps.
 2. If needed, ensure that your nodes are labeled to properly respond to the affinity.
 3. Edit the Operator `Subscription` object to add an affinity:
 
-   ````
    ```yaml
    apiVersion: operators.coreos.com/v1alpha1
    kind: Subscription
@@ -518,12 +517,11 @@ To control the placement of an Operator pod, complete the following steps.
                  - ip-10-0-185-229.ec2.internal
    #...
    ```
-   ````
 
    where:
 
-`spec.config.affinity`
-:   Specifies a `nodeAffinity`.
+   `spec.config.affinity`
+   :   Specifies a `nodeAffinity`.
 
 **Verification**
 
@@ -538,6 +536,7 @@ To control the placement of an Operator pod, complete the following steps.
   custom-metrics-autoscaler-operator-5dcc45d656-bhshg   1/1     Running   0          50s   10.131.0.20   ip-10-0-185-229.ec2.internal   <none>           <none>
   ```
 
-## Additional resources {#nodes-scheduler-node-affinity-addtl-resources_nodes-scheduler-node-affinity}
+**Additional resources**
+{._additional-resources}
 
 - [Understanding how to update labels on nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working-updating_nodes-nodes-working)

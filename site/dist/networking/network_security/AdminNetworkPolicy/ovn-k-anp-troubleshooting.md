@@ -514,7 +514,8 @@ spec:
    ports               : [5e75f289-8273-4f8a-8798-8c10f7318833, de7e1b71-6184-445d-93e7-b20acadf41ea]
    ```
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Tracing Openflow with ovnkube-trace](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/ovn-kubernetes-tracing-using-ovntrace#ovn-kubernetes-tracing-using-ovntrace)
 - [Troubleshooting OVN-Kubernetes](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/ovn-kubernetes-troubleshooting-sources#ovn-kubernetes-troubleshooting-sources)

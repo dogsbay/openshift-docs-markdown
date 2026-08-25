@@ -53,5 +53,6 @@ To re-enable the control plane machine set, you must ensure that the configurati
 For more information, see "Activating the control plane machine set custom resource".
 
 **Additional resources**
+{._additional-resources}
 
 - [Activating the control plane machine set custom resource](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-activating_cpmso-getting-started)

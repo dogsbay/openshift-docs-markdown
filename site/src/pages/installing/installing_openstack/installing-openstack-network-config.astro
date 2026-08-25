@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"installing-openstack-network-config","text"
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/installing/installing_openstack/installing-openstack-network-config";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="installing-openstack-network-config" class="group scroll-mt-20">Configuring network settings after installing OpenStack<a href="#installing-openstack-network-config" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can configure network settings for an OpenShift Container Platform on Red Hat OpenStack Platform (RHOSP) cluster after installation.</p>
+      <p class="_abstract">You can configure network settings for an OpenShift Container Platform on Red Hat OpenStack Platform (RHOSP) cluster after installation.</p>
       <h2 id="installation-osp-configuring-api-floating-ip_installing-openstack-network-config" class="group scroll-mt-20">Configuring application access with floating IP addresses<a href="#installation-osp-configuring-api-floating-ip_installing-openstack-network-config" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">After you install OpenShift Container Platform, configure Red Hat OpenStack Platform (RHOSP) to allow application network traffic by attaching a floating IP address to the ingress port.</p>
       <Alert variant="note" class="my-4">

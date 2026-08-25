@@ -1028,7 +1028,8 @@ where:
 | --- | --- |
 | `-o` | The output format. Supported values are `json` and `yaml`. |
 
-## Additional resources {#additional-resources_oadp-cli-plugin}
+**Additional resources**
+{._additional-resources}
 
 - [Backing up applications](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications)
 - [Velero 1.16 documentation](https://velero.io/docs/v1.16/)

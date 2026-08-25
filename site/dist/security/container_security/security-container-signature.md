@@ -21,73 +21,66 @@ For RHEL8 nodes, the registries are already defined in `/etc/containers/registri
 1. Create a Butane config file, `51-worker-rh-registry-trust.bu`, containing the necessary configuration for the worker nodes.
 
    > [!NOTE]
-   >
+   > The [Butane version](https://coreos.github.io/butane/specs/) you specify in the config file should match the OpenShift Container Platform version and always ends in `0`. For example, `4.22.0`. See "Creating machine configs with Butane" for information about Butane.
 
-The [Butane version](https://coreos.github.io/butane/specs/) you specify in the config file should match the OpenShift Container Platform version and always ends in `0`. For example, `{{ product_version }}.0`. See "Creating machine configs with Butane" for information about Butane.
-
-````
-:::
-
-```yaml
-variant: openshift
-version: {{ product_version }}.0
-metadata:
-  name: 51-worker-rh-registry-trust
-  labels:
-    machineconfiguration.openshift.io/role: worker
-storage:
-  files:
-  - path: /etc/containers/policy.json
-    mode: 0644
-    overwrite: true
-    contents:
-      inline: |
-        {
-          "default": [
-            {
-              "type": "insecureAcceptAnything"
-            }
-          ],
-          "transports": {
-            "docker": {
-              "registry.access.redhat.com": [
-                {
-                  "type": "signedBy",
-                  "keyType": "GPGKeys",
-                  "keyPath": "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release"
-                }
-              ],
-              "registry.redhat.io": [
-                {
-                  "type": "signedBy",
-                  "keyType": "GPGKeys",
-                  "keyPath": "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release"
-                }
-              ]
-            },
-            "docker-daemon": {
-              "": [
-                {
-                  "type": "insecureAcceptAnything"
-                }
-              ]
-            }
-          }
-        }
-```
-````
-
-1. Use Butane to generate a machine config YAML file, `51-worker-rh-registry-trust.yaml`, containing the file to be written to disk on the worker nodes:
+   ```yaml
+   variant: openshift
+   version: 4.22.0
+   metadata:
+     name: 51-worker-rh-registry-trust
+     labels:
+       machineconfiguration.openshift.io/role: worker
+   storage:
+     files:
+     - path: /etc/containers/policy.json
+       mode: 0644
+       overwrite: true
+       contents:
+         inline: |
+           {
+             "default": [
+               {
+                 "type": "insecureAcceptAnything"
+               }
+             ],
+             "transports": {
+               "docker": {
+                 "registry.access.redhat.com": [
+                   {
+                     "type": "signedBy",
+                     "keyType": "GPGKeys",
+                     "keyPath": "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release"
+                   }
+                 ],
+                 "registry.redhat.io": [
+                   {
+                     "type": "signedBy",
+                     "keyType": "GPGKeys",
+                     "keyPath": "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release"
+                   }
+                 ]
+               },
+               "docker-daemon": {
+                 "": [
+                   {
+                     "type": "insecureAcceptAnything"
+                   }
+                 ]
+               }
+             }
+           }
+   ```
+2. Use Butane to generate a machine config YAML file, `51-worker-rh-registry-trust.yaml`, containing the file to be written to disk on the worker nodes:
 
    ```terminal
    $ butane 51-worker-rh-registry-trust.bu -o 51-worker-rh-registry-trust.yaml
    ```
-2. Apply the created machine config:
+3. Apply the created machine config:
 
    ```terminal
    $ oc apply -f 51-worker-rh-registry-trust.yaml
    ```
-3. Check that the worker machine config pool has rolled out with the new machine config:
+4. Check that the worker machine config pool has rolled out with the new machine config:
 
    1. Check that the new machine config was created:
 
@@ -137,7 +130,7 @@ storage:
       ```
 
       When the `UPDATING` field is `True`, the machine config pool is updating with the new machine config. When the field becomes `False`, the worker machine config pool has rolled out to the new machine config.
-4. If your cluster uses any RHEL7 worker nodes, when the worker machine config pool is updated, create YAML files on those nodes in the `/etc/containers/registries.d` directory, which specify the location of the detached signatures for a given registry server. The following example works only for images hosted in `registry.access.redhat.com` and `registry.redhat.io`.
+5. If your cluster uses any RHEL7 worker nodes, when the worker machine config pool is updated, create YAML files on those nodes in the `/etc/containers/registries.d` directory, which specify the location of the detached signatures for a given registry server. The following example works only for images hosted in `registry.access.redhat.com` and `registry.redhat.io`.
 
    1. Start a debug session to each RHEL7 worker node:
 
@@ -476,7 +469,8 @@ Because the signatures on the mirror site are not in a format readily understood
    Signature verified using fingerprint 567E347AD0044ADE55BA8A5F199E2F91FD431D51, digest sha256:e73ab4b33a9c3ff00c9f800a38d69853ca0c4dfa5a88e3df331f66df8f18ec55
    ```
 
-## Additional resources {#additional-resources_security-container-signature}
+**Additional resources**
+{._additional-resources}
 
 - [Quay.io](https://quay.io/)
 - [Red Hat Ecosystem Catalog Container images](https://catalog.redhat.com/software/containers/explore)

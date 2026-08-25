@@ -18,7 +18,8 @@ You can install a cluster on IBM Cloud(R) infrastructure that is provisioned by 
 - Installing a private cluster on an existing VPC: You can install a private cluster on an existing VPC. You can use this method to deploy OpenShift Container Platform on an internal network that is not visible to the internet.
 - Installing a cluster on IBM Cloud in a restricted network: You can install OpenShift Container Platform on IBM Cloud on installer-provisioned infrastructure by using an internal mirror of the installation release content. You can use this method to install a cluster that does not require an active internet connection to obtain the software components.
 
-## Additional resources {#additional-resources_preparing-to-install-on-ibm-cloud}
+**Additional resources**
+{._additional-resources}
 
 - [Installation process](/openshift-docs-markdown/architecture/architecture-installation#installation-process_architecture-installation)
 - [Configuring an IBM Cloud(R) account](/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-account#installing-ibm-cloud-account)

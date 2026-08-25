@@ -56,6 +56,7 @@ The initial version of OLM, which launched with OpenShift Container Platform 4 a
 After running in production clusters for many releases, the next-generation of OLM aims to encompass lifecycles for cluster extensions that are not just Operators.
 
 **Additional resources**
+{._additional-resources}
 
 - [Operator Controller](/openshift-docs-markdown/extensions/arch/operator-controller#operator-controller)
 - [Catalogd](/openshift-docs-markdown/extensions/arch/catalogd#catalogd)

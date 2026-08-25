@@ -1,5 +1,5 @@
 ---
-title: FeatureGate []
+title: FeatureGate [config.openshift.io/v1]
 ---
 
 # FeatureGate \[config.openshift.io/v1\] {#featuregate-config-openshift-io-v1}
@@ -39,8 +39,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `customNoUpgrade` | \`\` | customNoUpgrade allows the enabling or disabling of any feature. Turning this feature set on IS NOT SUPPORTED, CANNOT BE UNDONE, and PREVENTS UPGRADES. Because of its nature, this setting cannot be validated.  If you have any typos or accidentally apply invalid combinations your cluster may fail in an unrecoverable way.  featureSet must equal "CustomNoUpgrade" must be set to use this field. |
-| `featureSet` | `string` | featureSet changes the list of features in the cluster.  The default is empty.  Be very careful adjusting this setting. Turning on or off features may cause irreversible changes in your cluster which cannot be undone. |
+| `customNoUpgrade` | \`\` | customNoUpgrade allows the enabling or disabling of any feature. Turning this feature set on IS NOT SUPPORTED, CANNOT BE UNDONE, and PREVENTS UPGRADES. Because of its nature, this setting cannot be validated. If you have any typos or accidentally apply invalid combinations your cluster may fail in an unrecoverable way. featureSet must equal "CustomNoUpgrade" must be set to use this field. |
+| `featureSet` | `string` | featureSet changes the list of features in the cluster. The default is empty. Be very careful adjusting this setting. Turning on or off features may cause irreversible changes in your cluster which cannot be undone. |
 
 ### .status {#_status}
 
@@ -88,7 +88,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
 | `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
@@ -186,13 +186,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of FeatureGate
   - `GET`: list objects of kind FeatureGate
   - `POST`: create a FeatureGate
-- `/apis/config.openshift.io/v1/featuregates/{{ name }}`
+- `/apis/config.openshift.io/v1/featuregates/{name}`
 
   - `DELETE`: delete a FeatureGate
   - `GET`: read the specified FeatureGate
   - `PATCH`: partially update the specified FeatureGate
   - `PUT`: replace the specified FeatureGate
-- `/apis/config.openshift.io/v1/featuregates/{{ name }}/status`
+- `/apis/config.openshift.io/v1/featuregates/{name}/status`
 
   - `GET`: read status of the specified FeatureGate
   - `PATCH`: partially update status of the specified FeatureGate
@@ -266,7 +266,7 @@ Description
 | 202 - Accepted | [`FeatureGate`](/openshift-docs-markdown/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/featuregates/{{ name }} {#_apisconfigopenshiftiov1featuregates_name}
+### /apis/config.openshift.io/v1/featuregates/{name} {#_apisconfigopenshiftiov1featuregates_name}
 
 **Global path parameters**
 
@@ -370,7 +370,7 @@ Description
 | 201 - Created | [`FeatureGate`](/openshift-docs-markdown/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/featuregates/{{ name }}/status {#_apisconfigopenshiftiov1featuregates_name_status}
+### /apis/config.openshift.io/v1/featuregates/{name}/status {#_apisconfigopenshiftiov1featuregates_name_status}
 
 **Global path parameters**
 

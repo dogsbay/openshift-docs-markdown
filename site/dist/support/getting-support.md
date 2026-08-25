@@ -26,6 +26,9 @@ The Red Hat Knowledgebase helps you get the most from Red Hat products and tec
 
 It includes articles, product documentation, and videos that outline best practices for installing, configuring, and using Red Hat products. You can also search for solutions to known issues. Each solution has a root cause description and steps to fix the problem.
 
+**Additional resources**
+{._additional-resources}
+
 - [Red Hat Knowledgebase](https://access.redhat.com/knowledgebase)
 
 ## Search the Red Hat Knowledgebase {#support-knowledgebase-search_getting-support}
@@ -80,11 +83,11 @@ If you cannot resolve an OpenShift Container Platform issue by using the Red Ha
 
    - To manually obtain your cluster ID using the OpenShift Container Platform web console:
 
-     1. Navigate to **Home** -> **Overview**.
+     1. Navigate to **Home** → **Overview**.
      2. Find the value in the **Cluster ID** field of the **Details** section.
    - Or, open a new support case from the OpenShift Container Platform web console, which automatically fills in your cluster ID.
 
-     1. From the toolbar, navigate to **(?) Help** -> **Open Support Case**.
+     1. From the toolbar, navigate to **(?) Help** → **Open Support Case**.
      2. The **Cluster ID** value automatically fills in.
    - To obtain your cluster ID using the OpenShift CLI (`oc`), run the following command:
 
@@ -131,9 +134,13 @@ To run a self-service review, upload your cluster’s `must-gather` data to the 
 
 The self-service TSR provides a solid baseline for cluster health. If you need additional guidance or a more comprehensive review, contact your Red Hat account team to arrange an assisted review through a Technical Account Manager (TAM) or Red Hat consultant. An assisted review includes human analysis, deeper coverage, and access to checks that are updated more frequently than the self-service version.
 
+**Additional resources**
+{._additional-resources}
+
 - [Technical Supportability Review with AI tool](https://access.redhat.com/support/cases/#/analyze)
 - [Red Hat Technical Supportability Review with AI: Proactive AI-Driven Cluster Assessments for OpenShift Container Platform](https://access.redhat.com/solutions/7141255)
 
-## Additional resources {#getting-support-additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Using Red Hat Lightspeed to identify issues with your cluster](/openshift-docs-markdown/support/remote_health_monitoring/using-insights-to-identify-issues-with-your-cluster#using-insights-to-identify-issues-with-your-cluster)

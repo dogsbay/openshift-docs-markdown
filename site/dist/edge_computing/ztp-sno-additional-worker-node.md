@@ -19,6 +19,7 @@ It is recommended that you first remediate the policies, and then install the wo
 > For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
 
 **Additional resources**
+{._additional-resources}
 
 - [Reference configuration for deploying vDUs on single-node OpenShift](/openshift-docs-markdown/edge_computing/ztp-reference-cluster-configuration-for-vdu#sno-configure-for-vdu)
 - [Adding worker nodes to single-node OpenShift clusters](/openshift-docs-markdown/nodes/nodes/nodes-sno-worker-nodes#nodes-sno-worker-nodes)
@@ -107,92 +108,91 @@ The PTP configuration resources and SR-IOV network node policies use `node-role.
 
 ## Using PolicyGenerator CRs to apply worker node policies to the worker node {#ztp-additional-worker-policies-PolicyGenerator_sno-additional-worker}
 
-You can create policies for the additional worker node by using `{{ policy_gen_cr }}` CRs.
+You can create policies for the additional worker node by using `PolicyGenerator` CRs.
 
 **Procedure**
 
-1. Create the following `{{ policy_gen_cr }}` CR:
+1. Create the following `PolicyGenerator` CR:
 
-```yaml
-apiVersion: policy.open-cluster-management.io/v1
-kind: PolicyGenerator
-metadata:
-    name: example-sno-workers
-placementBindingDefaults:
-    name: example-sno-workers-placement-binding
-policyDefaults:
-    namespace: example-sno
-    placement:
-        labelSelector:
-            matchExpressions:
-                - key: sites
-                  operator: In
-                  values:
-                    - example-sno
-    remediationAction: inform
-    severity: low
-    namespaceSelector:
-        exclude:
-            - kube-*
-        include:
-            - '*'
-    evaluationInterval:
-        compliant: 10m
-        noncompliant: 10s
-policies:
-    - name: example-sno-workers-config-policy
-      policyAnnotations:
-        ran.openshift.io/ztp-deploy-wave: "10"
-      manifests:
-        - path: source-crs/PerformanceProfile-MCP-worker.yaml
-          patches:
-            - metadata:
-                name: openshift-worker-node-performance-profile
-              spec:
-                cpu:
-                    isolated: 4-47
-                    reserved: 0-3
-                hugepages:
-                    defaultHugepagesSize: 1G
-                    pages:
-                        - count: 32
-                          size: 1G
-                realTimeKernel:
-                    enabled: true
-        - path: source-crs/TunedPerformancePatch-MCP-worker.yaml
-          patches:
-            - metadata:
-                name: performance-patch-worker
-              spec:
-                profile:
-                    - data: |
-                      [main]
-                      summary=Configuration changes profile inherited from performance created tuned
-                      include=openshift-node-performance-openshift-worker-node-performance-profile
-                      [bootloader]
-                      cmdline_crash=nohz_full=4-47
-                      [sysctl]
-                      kernel.timer_migration=1
-                      [scheduler]
-                      group.ice-ptp=0:f:10:*:ice-ptp.*
-                      [service]
-                      service.stalld=start,enable
-                      service.chronyd=stop,disable
-                      name: performance-patch-worker
-                recommend:
-                    - profile: performance-patch-worker
-```
+   ```yaml
+   apiVersion: policy.open-cluster-management.io/v1
+   kind: PolicyGenerator
+   metadata:
+       name: example-sno-workers
+   placementBindingDefaults:
+       name: example-sno-workers-placement-binding
+   policyDefaults:
+       namespace: example-sno
+       placement:
+           labelSelector:
+               matchExpressions:
+                   - key: sites
+                     operator: In
+                     values:
+                       - example-sno
+       remediationAction: inform
+       severity: low
+       namespaceSelector:
+           exclude:
+               - kube-*
+           include:
+               - '*'
+       evaluationInterval:
+           compliant: 10m
+           noncompliant: 10s
+   policies:
+       - name: example-sno-workers-config-policy
+         policyAnnotations:
+           ran.openshift.io/ztp-deploy-wave: "10"
+         manifests:
+           - path: source-crs/PerformanceProfile-MCP-worker.yaml
+             patches:
+               - metadata:
+                   name: openshift-worker-node-performance-profile
+                 spec:
+                   cpu:
+                       isolated: 4-47
+                       reserved: 0-3
+                   hugepages:
+                       defaultHugepagesSize: 1G
+                       pages:
+                           - count: 32
+                             size: 1G
+                   realTimeKernel:
+                       enabled: true
+           - path: source-crs/TunedPerformancePatch-MCP-worker.yaml
+             patches:
+               - metadata:
+                   name: performance-patch-worker
+                 spec:
+                   profile:
+                       - data: |
+                         [main]
+                         summary=Configuration changes profile inherited from performance created tuned
+                         include=openshift-node-performance-openshift-worker-node-performance-profile
+                         [bootloader]
+                         cmdline_crash=nohz_full=4-47
+                         [sysctl]
+                         kernel.timer_migration=1
+                         [scheduler]
+                         group.ice-ptp=0:f:10:*:ice-ptp.*
+                         [service]
+                         service.stalld=start,enable
+                         service.chronyd=stop,disable
+                         name: performance-patch-worker
+                   recommend:
+                       - profile: performance-patch-worker
+   ```
 
-- `policyDefaults.placement.labelSelector.matchExpressions` — The policies are applied to all clusters with this label.
-- `spec.cpu.isolated` and `spec.cpu.reserved` in the `PerformanceProfile-MCP-worker.yaml` manifest — These fields must be configured for each specific hardware platform.
-- `cmdline_crash` in the `TunedPerformancePatch-MCP-worker.yaml` manifest — The `nohz_full` CPU set must match the `cpu.isolated` set in the `PerformanceProfile` section.
+   - `policyDefaults.placement.labelSelector.matchExpressions` — The policies are applied to all clusters with this label.
+   - `spec.cpu.isolated` and `spec.cpu.reserved` in the `PerformanceProfile-MCP-worker.yaml` manifest — These fields must be configured for each specific hardware platform.
+   - `cmdline_crash` in the `TunedPerformancePatch-MCP-worker.yaml` manifest — The `nohz_full` CPU set must match the `cpu.isolated` set in the `PerformanceProfile` section.
 
-  You can generate the content of `crio` and `kubelet` configuration files.
-
-1. Add the created policy template to the Git repository monitored by the ArgoCD `policies` application.
-2. Add the policy in the `kustomization.yaml` file.
-3. Commit the changes in Git, and then push to the Git repository being monitored by the GitOps ZTP ArgoCD application.
-4. To remediate the new policies to your spoke cluster, create a TALM custom resource:
+   You can generate the content of `crio` and `kubelet` configuration files.
+2. Add the created policy template to the Git repository monitored by the ArgoCD `policies` application.
+3. Add the policy in the `kustomization.yaml` file.
+4. Commit the changes in Git, and then push to the Git repository being monitored by the GitOps ZTP ArgoCD application.
+5. To remediate the new policies to your spoke cluster, create a TALM custom resource:
 
    ```terminal
    $ cat <<EOF | oc apply -f -
@@ -218,98 +218,97 @@ policies:
 
 ## Using PolicyGenTemplate CRs to apply worker node policies to the worker node {#ztp-additional-worker-policies-PolicyGenTemplate_sno-additional-worker}
 
-You can create policies for the additional worker node by using `{{ policy_gen_cr }}` CRs.
+You can create policies for the additional worker node by using `PolicyGenTemplate` CRs.
 
 **Procedure**
 
-1. Create the following `{{ policy_gen_cr }}` CR:
+1. Create the following `PolicyGenTemplate` CR:
 
-```yaml
-apiVersion: ran.openshift.io/v1
-kind: PolicyGenTemplate
-metadata:
-  name: "example-sno-workers"
-  namespace: "example-sno"
-spec:
-  bindingRules:
-    sites: "example-sno"
-  mcp: "worker"
-  sourceFiles:
-    - fileName: MachineConfigGeneric.yaml
-      policyName: "config-policy"
-      metadata:
-        labels:
-          machineconfiguration.openshift.io/role: worker
-        name: enable-workload-partitioning
-      spec:
-        config:
-          storage:
-            files:
-            - contents:
-                source: data:text/plain;charset=utf-8;base64,W2NyaW8ucnVudGltZS53b3JrbG9hZHMubWFuYWdlbWVudF0KYWN0aXZhdGlvbl9hbm5vdGF0aW9uID0gInRhcmdldC53b3JrbG9hZC5vcGVuc2hpZnQuaW8vbWFuYWdlbWVudCIKYW5ub3RhdGlvbl9wcmVmaXggPSAicmVzb3VyY2VzLndvcmtsb2FkLm9wZW5zaGlmdC5pbyIKcmVzb3VyY2VzID0geyAiY3B1c2hhcmVzIiA9IDAsICJjcHVzZXQiID0gIjAtMyIgfQo=
-              mode: 420
-              overwrite: true
-              path: /etc/crio/crio.conf.d/01-workload-partitioning
-              user:
-                name: root
-            - contents:
-                source: data:text/plain;charset=utf-8;base64,ewogICJtYW5hZ2VtZW50IjogewogICAgImNwdXNldCI6ICIwLTMiCiAgfQp9Cg==
-              mode: 420
-              overwrite: true
-              path: /etc/kubernetes/openshift-workload-pinning
-              user:
-                name: root
-    - fileName: PerformanceProfile.yaml
-      policyName: "config-policy"
-      metadata:
-        name: openshift-worker-node-performance-profile
-      spec:
-        cpu:
-          isolated: "4-47"
-          reserved: "0-3"
-        hugepages:
-          defaultHugepagesSize: 1G
-          pages:
-            - size: 1G
-              count: 32
-        realTimeKernel:
-          enabled: true
-    - fileName: TunedPerformancePatch.yaml
-      policyName: "config-policy"
-      metadata:
-        name: performance-patch-worker
-      spec:
-        profile:
-          - name: performance-patch-worker
-            data: |
-              [main]
-              summary=Configuration changes profile inherited from performance created tuned
-              include=openshift-node-performance-openshift-worker-node-performance-profile
-              [bootloader]
-              cmdline_crash=nohz_full=4-47
-              [sysctl]
-              kernel.timer_migration=1
-              [scheduler]
-              group.ice-ptp=0:f:10:*:ice-ptp.*
-              [service]
-              service.stalld=start,enable
-              service.chronyd=stop,disable
-        recommend:
-        - profile: performance-patch-worker
-```
+   ```yaml
+   apiVersion: ran.openshift.io/v1
+   kind: PolicyGenTemplate
+   metadata:
+     name: "example-sno-workers"
+     namespace: "example-sno"
+   spec:
+     bindingRules:
+       sites: "example-sno"
+     mcp: "worker"
+     sourceFiles:
+       - fileName: MachineConfigGeneric.yaml
+         policyName: "config-policy"
+         metadata:
+           labels:
+             machineconfiguration.openshift.io/role: worker
+           name: enable-workload-partitioning
+         spec:
+           config:
+             storage:
+               files:
+               - contents:
+                   source: data:text/plain;charset=utf-8;base64,W2NyaW8ucnVudGltZS53b3JrbG9hZHMubWFuYWdlbWVudF0KYWN0aXZhdGlvbl9hbm5vdGF0aW9uID0gInRhcmdldC53b3JrbG9hZC5vcGVuc2hpZnQuaW8vbWFuYWdlbWVudCIKYW5ub3RhdGlvbl9wcmVmaXggPSAicmVzb3VyY2VzLndvcmtsb2FkLm9wZW5zaGlmdC5pbyIKcmVzb3VyY2VzID0geyAiY3B1c2hhcmVzIiA9IDAsICJjcHVzZXQiID0gIjAtMyIgfQo=
+                 mode: 420
+                 overwrite: true
+                 path: /etc/crio/crio.conf.d/01-workload-partitioning
+                 user:
+                   name: root
+               - contents:
+                   source: data:text/plain;charset=utf-8;base64,ewogICJtYW5hZ2VtZW50IjogewogICAgImNwdXNldCI6ICIwLTMiCiAgfQp9Cg==
+                 mode: 420
+                 overwrite: true
+                 path: /etc/kubernetes/openshift-workload-pinning
+                 user:
+                   name: root
+       - fileName: PerformanceProfile.yaml
+         policyName: "config-policy"
+         metadata:
+           name: openshift-worker-node-performance-profile
+         spec:
+           cpu:
+             isolated: "4-47"
+             reserved: "0-3"
+           hugepages:
+             defaultHugepagesSize: 1G
+             pages:
+               - size: 1G
+                 count: 32
+           realTimeKernel:
+             enabled: true
+       - fileName: TunedPerformancePatch.yaml
+         policyName: "config-policy"
+         metadata:
+           name: performance-patch-worker
+         spec:
+           profile:
+             - name: performance-patch-worker
+               data: |
+                 [main]
+                 summary=Configuration changes profile inherited from performance created tuned
+                 include=openshift-node-performance-openshift-worker-node-performance-profile
+                 [bootloader]
+                 cmdline_crash=nohz_full=4-47
+                 [sysctl]
+                 kernel.timer_migration=1
+                 [scheduler]
+                 group.ice-ptp=0:f:10:*:ice-ptp.*
+                 [service]
+                 service.stalld=start,enable
+                 service.chronyd=stop,disable
+           recommend:
+           - profile: performance-patch-worker
+   ```
 
-- `spec.bindingRules.sites` — The policies are applied to all clusters with this label.
-- `spec.mcp` — The `MCP` field must be set to `worker`.
-- `MachineConfigGeneric.yaml` in `spec.sourceFiles` — This generic `MachineConfig` CR is used to configure workload partitioning on the worker node.
-- `spec.cpu.isolated` and `spec.cpu.reserved` in the `PerformanceProfile.yaml` manifest — These fields must be configured for each particular hardware platform.
-- `cmdline_crash` in the `TunedPerformancePatch.yaml` manifest — The `nohz_full` CPU set must match the `cpu.isolated` set in the `PerformanceProfile` section.
+   - `spec.bindingRules.sites` — The policies are applied to all clusters with this label.
+   - `spec.mcp` — The `MCP` field must be set to `worker`.
+   - `MachineConfigGeneric.yaml` in `spec.sourceFiles` — This generic `MachineConfig` CR is used to configure workload partitioning on the worker node.
+   - `spec.cpu.isolated` and `spec.cpu.reserved` in the `PerformanceProfile.yaml` manifest — These fields must be configured for each particular hardware platform.
+   - `cmdline_crash` in the `TunedPerformancePatch.yaml` manifest — The `nohz_full` CPU set must match the `cpu.isolated` set in the `PerformanceProfile` section.
 
-  You can generate the content of `crio` and `kubelet` configuration files.
-
-1. Add the created policy template to the Git repository monitored by the ArgoCD `policies` application.
-2. Add the policy in the `kustomization.yaml` file.
-3. Commit the changes in Git, and then push to the Git repository being monitored by the GitOps ZTP ArgoCD application.
-4. To remediate the new policies to your spoke cluster, create a TALM custom resource:
+   You can generate the content of `crio` and `kubelet` configuration files.
+2. Add the created policy template to the Git repository monitored by the ArgoCD `policies` application.
+3. Add the policy in the `kustomization.yaml` file.
+4. Commit the changes in Git, and then push to the Git repository being monitored by the GitOps ZTP ArgoCD application.
+5. To remediate the new policies to your spoke cluster, create a TALM custom resource:
 
    ```terminal
    $ cat <<EOF | oc apply -f -

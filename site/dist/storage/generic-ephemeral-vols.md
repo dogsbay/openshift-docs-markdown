@@ -45,6 +45,7 @@ This triggers volume binding and provisioning in one of two ways:
 In terms of resource ownership, a pod that has generic ephemeral storage is the owner of the PVCs that provide that ephemeral storage. When the pod is deleted, the Kubernetes garbage collector deletes the PVC, which then usually triggers deletion of the volume because the default reclaim policy of storage classes is to delete volumes. You can create quasi-ephemeral local storage by using a storage class with a reclaim policy of retain. The storage outlives the pod, and in this case, you must ensure that volume clean-up happens separately. While these PVCs exist, they can be used like any other PVC. In particular, they can be referenced as data sources in volume cloning or snapshotting. The PVC object also holds the current status of the volume.
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating generic ephemeral volumes](/openshift-docs-markdown/storage/generic-ephemeral-vols#generic-ephemeral-vols-procedure_generic-ephemeral-volumes)
 
@@ -98,12 +99,10 @@ To create ephemeral volumes that are automatically provisioned and deleted with 
                  type: my-app-ephvol
              spec:
                accessModes: [ "ReadWriteOnce" ]
+               storageClassName: "gp2-csi"
+               resources:
+                 requests:
+                   storage: 1Gi
    ```
 
-{%- if not microshift %} storageClassName: "gp2-csi" {% endif %} {% if microshift %} storageClassName: "topolvm-provisioner" {%- endif %} resources: requests: storage: 1Gi
-
-````
-```
-
-Where `spec.volumes.name` is the name of the generic ephemeral volume.
-````
+   Where `spec.volumes.name` is the name of the generic ephemeral volume.

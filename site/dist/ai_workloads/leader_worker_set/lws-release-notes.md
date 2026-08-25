@@ -1,5 +1,5 @@
 ---
-title: "{{ lws_operator }} release notes"
+title: Leader Worker Set Operator release notes
 ---
 
 # Leader Worker Set Operator release notes {#lws-release-notes}

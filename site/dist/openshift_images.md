@@ -16,7 +16,8 @@ You can use the podman or `docker` CLI directly to build images, but OpenShift C
 
 Because applications develop over time, a single image name can actually refer to many different versions of the same image. Each different image is referred to uniquely by its hash, a long hexadecimal number such as `fd44297e2ddb050ec4f...`, which is usually shortened to 12 characters, such as `fd44297e2ddb`.
 
-## Additional resources {#additional-resources-about-images_overview-of-images}
+**Additional resources**
+{._additional-resources}
 
 - [podman](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_atomic_host/7/html-single/managing_containers/#using_podman_to_work_with_containers)
 - [Creating images](/openshift-docs-markdown/openshift_images/create-images#creating-images)
@@ -56,8 +57,8 @@ Image tags are appended to the image name or image stream name by using a colon 
 
 | Context | Syntax Format | Example |
 | --- | --- | --- |
-| ***External Registry*** | `<registry_path>:<tag>` | `registry.access.redhat.com/openshift3/jenkins-2-rhel7:v3.11.59-2` |
-| ***Local Image Stream*** | `<image_stream_name>:<tag>` | `jenkins:latest` |
+| **External Registry** | `<registry_path>:<tag>` | `registry.access.redhat.com/openshift3/jenkins-2-rhel7:v3.11.59-2` |
+| **Local Image Stream** | `<image_stream_name>:<tag>` | `jenkins:latest` |
 
 ## Image IDs {#images-id_overview-of-images}
 
@@ -113,7 +114,8 @@ Using image streams has several significant benefits:
 - You can configure security around who can view and use the images through permissions on the image stream objects.
 - Users that lack permission to read or list images on the cluster level can still retrieve the images tagged in a project using image streams.
 
-## Additional resources {#additional-resources-imagestream-use_overview-of-images}
+**Additional resources**
+{._additional-resources}
 
 - [Open Container Initiative](https://github.com/opencontainers/)
 - [Podman](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_atomic_host/7/html-single/managing_containers/#using_podman_to_work_with_containers)
@@ -139,7 +141,8 @@ For example, importing a new image can cause the value of the tag to change, whi
 
 To manage sample image streams and templates in OpenShift Container Platform, you can use the Cluster Samples Operator. The Cluster Samples Operator creates default samples during initial startup to initiate image streams and templates in the `openshift` namespace.
 
-## Additional resources {#additional-resources_overview-of-images}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring the Cluster Samples Operator](/openshift-docs-markdown/openshift_images/configuring-samples-operator#configuring-samples-operator)
 - [Use the Operator with an alternate registry](/openshift-docs-markdown/openshift_images/samples-operator-alt-registry#samples-operator-alt-registry)

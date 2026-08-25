@@ -18,7 +18,10 @@ CIFS/SMB CSI Driver Operator
 :   After the CIFS/SMB CSI Driver Operator is installed, it does not create a storage class by default to use to create persistent volume claims (PVCs). However, you can manually create the CIFS/SMB `StorageClass` for dynamic provisioning (see "Dynamic provisioning"). The CIFS/SMB CSI Driver Operator supports dynamic volume provisioning by allowing storage volumes to be created on-demand. This eliminates the need for cluster administrators to pre-provision storage.
 
 CIFS/SMB CSI driver
-:   The CIFS/SMB CSI driver enables you to create and mount CIFS/SMB PVs. **Additional resources**
+:   The CIFS/SMB CSI driver enables you to create and mount CIFS/SMB PVs.
+
+**Additional resources**
+{._additional-resources}
 
 - [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage)
 - [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
@@ -59,7 +62,7 @@ Install and configure the CIFS/SMB Container Storage Interface (CSI) Driver Oper
 1. Log in to the web console.
 2. Install the CIFS/SMB CSI Operator:
 
-   1. Click **Ecosystem** -> **Software Catalog**.
+   1. Click **Ecosystem** → **Software Catalog**.
    2. Locate the CIFS/SMB CSI Operator by typing **CIFS/SMB CSI** in the filter box.
    3. Click the **CIFS/SMB CSI Driver Operator** button.
    4. On the **CIFS/SMB CSI Driver Operator** page, click **Install**.
@@ -86,7 +89,7 @@ To use network file shares as persistent volumes (PVs) in your cluster, create a
 
 **Procedure**
 
-1. Click **Administration** -> **CustomResourceDefinitions** -> **ClusterCSIDriver**.
+1. Click **Administration** → **CustomResourceDefinitions** → **ClusterCSIDriver**.
 2. On the **Instances** tab, click **Create ClusterCSIDriver**.
 3. Use the following YAML file:
 
@@ -290,7 +293,7 @@ You can use static provisioning to create a persistent volume (PV) and persisten
    ```
 
    - `metadata.name`: Specifies the name of the PV.
-   - `spec.csi.volumeHandle` format: `{{ smb_server_address }}<mark>{{ sub_dir_name }}</mark>{{ share_name }}`. Ensure that this value is unique for every share in the cluster.
+   - `spec.csi.volumeHandle` format: `{smb_server_address}<mark>{sub_dir_name}</mark>{share_name}`. Ensure that this value is unique for every share in the cluster.
    - `spec.csi.volumeAttributes.source`: The Samba server must be installed somewhere that is reachable from the cluster with `<hostname>` being the hostname for the Samba server and <shares> the path the server is configured to have among the exported shares.
    - `spec.csi.nodeStageSecretRef.name`: Specifies the name of the Secret for the shares.
    - `spec.csi.nodeStageSecretRef.namespace`: Specifies the applicable namespace.

@@ -16,11 +16,12 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 
-const headings = [{"depth":1,"slug":"spo-overview","text":"Security Profiles Operator overview"},{"depth":2,"slug":"spo-overview_additional-resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"spo-overview","text":"Security Profiles Operator overview"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/security_profiles_operator/spo-overview";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -39,7 +40,7 @@ const pageCategory = ["security","security/security_profiles_operator"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Security Profiles Operator overview {#spo-overview}\n\nWith the OpenShift Container Platform Security Profiles Operator (SPO), you can define seccomp and SELinux profiles as custom resources and keep them synchronized across every node in a namespace.\n\nThe SPO distributes seccomp and SELinux profile custom resources to each node and keeps them up to date when profiles change. You can also bind policies to pods and record workloads. See Additional resources for advanced tasks such as enabling the log enricher, configuring webhooks and metrics, or restricting profiles to a single namespace, and for advanced audit logging that correlates cluster users with actions during `oc exec`, `oc rsh`, and `oc debug` sessions.\n\n## Additional resources {#spo-overview_additional-resources}\n\n- [Security Profiles Operator release notes](/openshift-docs-markdown/security/security_profiles_operator/spo-release-notes#spo-release-notes)\n- [Security Profiles Operator support](/openshift-docs-markdown/security/security_profiles_operator/spo-support#spo-support)\n- [Understanding the Security Profiles Operator](/openshift-docs-markdown/security/security_profiles_operator/spo-understanding#spo-understanding)\n- [Enabling the Security Profiles Operator](/openshift-docs-markdown/security/security_profiles_operator/spo-enabling#spo-enabling)\n- [Managing seccomp profiles](/openshift-docs-markdown/security/security_profiles_operator/spo-seccomp#spo-seccomp)\n- [Managing SELinux profiles](/openshift-docs-markdown/security/security_profiles_operator/spo-selinux#spo-selinux)\n- [Advanced Security Profiles Operator tasks](/openshift-docs-markdown/security/security_profiles_operator/spo-advanced#spo-advanced)\n- [Advanced Audit Logging Framework](/openshift-docs-markdown/security/security_profiles_operator/spo-logging#spo-audit-logging)\n- [Troubleshooting the Security Profiles Operator](/openshift-docs-markdown/security/security_profiles_operator/spo-troubleshooting#spo-inspecting-seccomp-profiles_spo-troubleshooting)\n- [Uninstalling the Security Profiles Operator](/openshift-docs-markdown/security/security_profiles_operator/spo-uninstalling#spo-uninstalling)\n- [seccomp](https://kubernetes.io/docs/tutorials/security/seccomp/)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/security_profiles_operator/spo-overview.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Security Profiles Operator overview {#spo-overview}\n\nWith the OpenShift Container Platform Security Profiles Operator (SPO), you can define seccomp and SELinux profiles as custom resources and keep them synchronized across every node in a namespace.\n\nThe SPO distributes seccomp and SELinux profile custom resources to each node and keeps them up to date when profiles change. You can also bind policies to pods and record workloads. See Additional resources for advanced tasks such as enabling the log enricher, configuring webhooks and metrics, or restricting profiles to a single namespace, and for advanced audit logging that correlates cluster users with actions during `oc exec`, `oc rsh`, and `oc debug` sessions.\n\n**Additional resources**\n{._additional-resources}\n\n- [Security Profiles Operator release notes](/openshift-docs-markdown/security/security_profiles_operator/spo-release-notes#spo-release-notes)\n- [Security Profiles Operator support](/openshift-docs-markdown/security/security_profiles_operator/spo-support#spo-support)\n- [Understanding the Security Profiles Operator](/openshift-docs-markdown/security/security_profiles_operator/spo-understanding#spo-understanding)\n- [Enabling the Security Profiles Operator](/openshift-docs-markdown/security/security_profiles_operator/spo-enabling#spo-enabling)\n- [Managing seccomp profiles](/openshift-docs-markdown/security/security_profiles_operator/spo-seccomp#spo-seccomp)\n- [Managing SELinux profiles](/openshift-docs-markdown/security/security_profiles_operator/spo-selinux#spo-selinux)\n- [Advanced Security Profiles Operator tasks](/openshift-docs-markdown/security/security_profiles_operator/spo-advanced#spo-advanced)\n- [Advanced Audit Logging Framework](/openshift-docs-markdown/security/security_profiles_operator/spo-logging#spo-audit-logging)\n- [Troubleshooting the Security Profiles Operator](/openshift-docs-markdown/security/security_profiles_operator/spo-troubleshooting#spo-inspecting-seccomp-profiles_spo-troubleshooting)\n- [Uninstalling the Security Profiles Operator](/openshift-docs-markdown/security/security_profiles_operator/spo-uninstalling#spo-uninstalling)\n- [seccomp](https://kubernetes.io/docs/tutorials/security/seccomp/)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/security_profiles_operator/spo-overview.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,12 +79,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -91,9 +93,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="spo-overview" class="group scroll-mt-20">Security Profiles Operator overview<a href="#spo-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>With the OpenShift Container Platform Security Profiles Operator (SPO), you can define seccomp and SELinux profiles as custom resources and keep them synchronized across every node in a namespace.</p>
+      <p class="_abstract">With the OpenShift Container Platform Security Profiles Operator (SPO), you can define seccomp and SELinux profiles as custom resources and keep them synchronized across every node in a namespace.</p>
       <p>The SPO distributes seccomp and SELinux profile custom resources to each node and keeps them up to date when profiles change. You can also bind policies to pods and record workloads. See Additional resources for advanced tasks such as enabling the log enricher, configuring webhooks and metrics, or restricting profiles to a single namespace, and for advanced audit logging that correlates cluster users with actions during <code>oc exec</code>, <code>oc rsh</code>, and <code>oc debug</code> sessions.</p>
-      <h2 id="spo-overview_additional-resources" class="group scroll-mt-20">Additional resources<a href="#spo-overview_additional-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul>
       <li><a href="/openshift-docs-markdown/security/security_profiles_operator/spo-release-notes#spo-release-notes">Security Profiles Operator release notes</a></li>
       <li><a href="/openshift-docs-markdown/security/security_profiles_operator/spo-support#spo-support">Security Profiles Operator support</a></li>
@@ -107,6 +110,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li><a href="/openshift-docs-markdown/security/security_profiles_operator/spo-uninstalling#spo-uninstalling">Uninstalling the Security Profiles Operator</a></li>
       <li><a href="https://kubernetes.io/docs/tutorials/security/seccomp/">seccomp</a></li>
       </ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

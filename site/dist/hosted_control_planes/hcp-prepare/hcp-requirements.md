@@ -1,8 +1,8 @@
 ---
-title: Requirements for {{ hcp }}
+title: Requirements for hosted control planes
 ---
 
-# Requirements for {{ hcp }} {#hcp-requirements}
+# Requirements for hosted control planes {#hcp-requirements}
 
 Ensure you are familiar with the general requirements to deploy hosted control planes.
 
@@ -143,7 +143,8 @@ For example, if you have an OpenShift Container Platform 4.18 hosted cluster on 
 
 For a list of features in this release that have a Technology Preview status, see the "Technology Preview features status" section of the *Hosted control planes release notes*.
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [OpenShift Operator Life Cycles](https://access.redhat.com/support/policy/updates/openshift_operators)
 - [Shared infrastructure between hosted and standalone control planes](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-sizing-guidance#hcp-shared-infra_hcp-sizing-guidance)
@@ -162,6 +163,7 @@ When running RHEL or Red Hat Enterprise Linux CoreOS (RHCOS) booted in FIPS mod
 After you set up your management cluster in FIPS mode, the hosted cluster creation process runs on that management cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [The multicluster engine for Kubernetes operator 2.17 Support Matrix](https://access.redhat.com/articles/7142379)
 - [Red Hat OpenShift Container Platform Operator Update Information Checker](https://access.redhat.com/labs/ocpouic/?operator=multicluster-engine&&upgrade_path=4.14%20to%204.16)
@@ -180,5 +182,6 @@ The following Classless Inter-Domain Routing (CIDR) subnet ranges are the defaul
 By using one of the default subnet ranges, you can avoid CIDR overlap with the management cluster and avoid connectivity issues. However, you can use other CIDR subnet ranges if they do not overlap with the management cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [CIDR range definitions](/openshift-docs-markdown/networking/networking_overview/cidr-range-definitions#cidr-range-definitions)

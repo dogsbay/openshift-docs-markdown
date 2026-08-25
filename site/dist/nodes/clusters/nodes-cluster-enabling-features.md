@@ -136,32 +136,31 @@ You can enable feature sets for all nodes in the cluster by editing the `install
    > [!WARNING]
    > Enabling the `TechPreviewNoUpgrade` feature set on your cluster cannot be undone and prevents minor version updates. You should not enable this feature set on production clusters.
 
-```yaml {title="Sample install-config.yaml file with an enabled feature set"}
-compute:
-- hyperthreading: Enabled
-  name: worker
-  platform:
-    aws:
-      rootVolume:
-        iops: 2000
-        size: 500
-        type: io1
-      metadataService:
-        authentication: Optional
-      type: c5.4xlarge
-      zones:
-      - us-west-2c
-  replicas: 3
-featureSet: TechPreviewNoUpgrade
-```
-
-1. Save the file and reference it when using the installation program to deploy the cluster.
+   ```yaml {title="Sample install-config.yaml file with an enabled feature set"}
+   compute:
+   - hyperthreading: Enabled
+     name: worker
+     platform:
+       aws:
+         rootVolume:
+           iops: 2000
+           size: 500
+           type: io1
+         metadataService:
+           authentication: Optional
+         type: c5.4xlarge
+         zones:
+         - us-west-2c
+     replicas: 3
+   featureSet: TechPreviewNoUpgrade
+   ```
+2. Save the file and reference it when using the installation program to deploy the cluster.
 
 **Verification**
 
 You can verify that the feature gates are enabled by looking at the `kubelet.conf` file on a node after the nodes return to the ready state.
 
-1. From the **Administrator** perspective in the web console, navigate to **Compute** -> **Nodes**.
+1. From the **Administrator** perspective in the web console, navigate to **Compute** → **Nodes**.
 2. Select a node.
 3. In the **Node details** page, click **Terminal**.
 4. In the terminal window, change your root directory to `/host`:
@@ -194,7 +193,7 @@ You can use the OpenShift Container Platform web console to enable feature sets 
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, switch to the **Administration** -> **Custom Resource Definitions** page.
+1. In the OpenShift Container Platform web console, switch to the **Administration** → **Custom Resource Definitions** page.
 2. On the **Custom Resource Definitions** page, click **FeatureGate**.
 3. On the **Custom Resource Definition Details** page, click the **Instances** tab.
 4. Click the **cluster** feature gate, then click the **YAML** tab.
@@ -229,7 +228,7 @@ You can use the OpenShift Container Platform web console to enable feature sets 
 
 You can verify that the feature gates are enabled by looking at the `kubelet.conf` file on a node after the nodes return to the ready state.
 
-1. From the **Administrator** perspective in the web console, navigate to **Compute** -> **Nodes**.
+1. From the **Administrator** perspective in the web console, navigate to **Compute** → **Nodes**.
 2. Select a node.
 3. In the **Node details** page, click **Terminal**.
 4. In the terminal window, change your root directory to `/host`:
@@ -301,7 +300,7 @@ You can use the OpenShift CLI (`oc`) to enable feature sets for all of the nodes
 
 You can verify that the feature gates are enabled by looking at the `kubelet.conf` file on a node after the nodes return to the ready state.
 
-1. From the **Administrator** perspective in the web console, navigate to **Compute** -> **Nodes**.
+1. From the **Administrator** perspective in the web console, navigate to **Compute** → **Nodes**.
 2. Select a node.
 3. In the **Node details** page, click **Terminal**.
 4. In the terminal window, change your root directory to `/host`:
@@ -328,7 +327,8 @@ You can verify that the feature gates are enabled by looking at the `kubelet.con
    > [!NOTE]
    > The features listed vary depending upon the OpenShift Container Platform version.
 
-## Additional resources {#additional-resources_nodes-cluster-enabling}
+**Additional resources**
+{._additional-resources}
 
 - [Shared Resources CSI Driver and Build CSI Volumes in OpenShift Builds](/openshift-docs-markdown/cicd/builds/running-entitled-builds#builds-running-entitled-builds-with-sharedsecret-objects_running-entitled-builds)
 - [CSI inline ephemeral volumes](/openshift-docs-markdown/storage/container_storage_interface/ephemeral-storage-csi-inline#ephemeral-storage-csi-inline)

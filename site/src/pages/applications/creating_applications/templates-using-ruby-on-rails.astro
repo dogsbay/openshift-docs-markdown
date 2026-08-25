@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"templates-using-ruby-on-rails","text":"Crea
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/applications/creating_applications/templates-using-ruby-on-rails";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="templates-using-ruby-on-rails" class="group scroll-mt-20">Creating applications using Ruby on Rails<a href="#templates-using-ruby-on-rails" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can build and deploy a Ruby on Rails 4 application on OpenShift Container Platform by developing it locally.</p>
+      <p class="_abstract">You can build and deploy a Ruby on Rails 4 application on OpenShift Container Platform by developing it locally.</p>
       <p>Store the source in Git, then deploy the database, frontend, and route services. With this process, you can validate your application locally before deploying it to the cluster as a set of distinct services.</p>
       <Alert variant="warning" class="my-4">
         <AlertTitle>Warning</AlertTitle>

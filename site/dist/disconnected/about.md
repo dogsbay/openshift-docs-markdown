@@ -18,9 +18,9 @@ The following table describes the different terms used to refer to environments 
 
 | Term | Description |
 | --- | --- |
-| Air-gapped network | An environment or network that is completely isolated from an external network. This isolation depends on a physical separation, or an "air gap", between machines on the internal network and any other part of an external network. Air-gapped environments are often used in industries with strict security or regulatory requirements. |
-| Disconnected environment | An environment or network that has some level of isolation from an external network. This isolation could be enabled by physical or logical separation between machines on the internal network and an external network. Regardless of the level of isolation from the external network, a cluster in a disconnected environment does not have access to public services hosted by Red Hat and requires additional setup to maintain full cluster functionality. |
-| Restricted Network | An environment or network with limited connection to an external network. A physical connection may exist between machines on the internal network and an external network, but network traffic is limited by additional configurations, such as with firewalls and proxies. |
+| Air-gapped network | An environment or network that is completely isolated from an external network.<br>This isolation depends on a physical separation, or an "air gap", between machines on the internal network and any other part of an external network. Air-gapped environments are often used in industries with strict security or regulatory requirements. |
+| Disconnected environment | An environment or network that has some level of isolation from an external network.<br>This isolation could be enabled by physical or logical separation between machines on the internal network and an external network. Regardless of the level of isolation from the external network, a cluster in a disconnected environment does not have access to public services hosted by Red Hat and requires additional setup to maintain full cluster functionality. |
+| Restricted Network | An environment or network with limited connection to an external network.<br>A physical connection may exist between machines on the internal network and an external network, but network traffic is limited by additional configurations, such as with firewalls and proxies. |
 
 ## Preferred methods for working with disconnected environments {#preferred-methods_about-disconnected-environments}
 
@@ -34,7 +34,8 @@ Unless your organizational needs require you to choose another option, use the f
 - Install your cluster using the Agent-based Installer. For more information, see "Installing a cluster with customizations".
 - Update your cluster using a local OpenShift Update Service instance. For more information, see "Updating a cluster in a disconnected environment using the OpenShift Update Service".
 
-## Additional resources {#about-additional-resources_about-disconnected-environments}
+**Additional resources**
+{._additional-resources}
 
 - [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)
 - [Installing a cluster with customizations](/openshift-docs-markdown/installing/installing_with_agent_based_installer/installing-with-agent-based-installer#installing-with-agent-based-installer)

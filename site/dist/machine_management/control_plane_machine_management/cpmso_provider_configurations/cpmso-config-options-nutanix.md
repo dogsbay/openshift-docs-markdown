@@ -85,13 +85,7 @@ where:
 :   Specifies a Nutanix Prism Element cluster configuration. In this example, the cluster type is `uuid`, so there is a `uuid` stanza.
 
     > [!NOTE]
-    >
-
-If the cluster uses a failure domain, configure this parameter in the failure domain. If you specify this value in the provider specification when using a failure domain, the Control Plane Machine Set Operator ignores it and uses the value in the failure domain.
-
-```
-:::
-```
+    > If the cluster uses a failure domain, configure this parameter in the failure domain. If you specify this value in the provider specification when using a failure domain, the Control Plane Machine Set Operator ignores it and uses the value in the failure domain.
 
 `spec.template.spec.providerSpec.value.credentialsSecret`
 :   Specifies the secret name for the cluster. Do not change this value.
@@ -117,13 +111,7 @@ If the cluster uses a failure domain, configure this parameter in the failure do
     The CIDR IP address prefix for one of the specified subnets must contain the virtual IP addresses that the OpenShift Container Platform cluster uses. All subnet UUID values must be unique.
 
     > [!NOTE]
-    >
-
-If the cluster uses a failure domain, configure this parameter in the failure domain. If you specify this value in the provider specification when using a failure domain, the Control Plane Machine Set Operator ignores it and uses the value in the failure domain.
-
-```
-:::
-```
+    > If the cluster uses a failure domain, configure this parameter in the failure domain. If you specify this value in the provider specification when using a failure domain, the Control Plane Machine Set Operator ignores it and uses the value in the failure domain.
 
 `spec.template.spec.providerSpec.value.systemDiskSize`
 :   Specifies the VM disk size for the control plane machines.
@@ -170,7 +158,8 @@ The following networking configuration and management practices can help your mu
   To avoid this issue, regularly remove stale DHCP leases.
 - Use automation tools, such as Terraform or Ansible, to isolate the infrastructure for each OpenShift Container Platform cluster.
 
-## Additional resources {#additional-resources_cpmso-config-options-nutanix}
+**Additional resources**
+{._additional-resources}
 
 - [Updating the control plane configuration](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-feat-config-update_cpmso-managing-machines)
 - [Adding failure domains to an existing Nutanix cluster](/openshift-docs-markdown/installing/installing_nutanix/nutanix-failure-domains#nutanix-failure-domains-adding-to-existing-cluster_nutanix-failure-domains)

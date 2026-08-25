@@ -40,10 +40,11 @@ Certain specialized hardware accelerators are designed to work within disconnect
 Red Hat OpenShift Container Platform enables the following hardware accelerators:
 
 - NVIDIA GPU
-- AMD Instinct(R) GPU
-- Intel(R) Gaudi(R)
+- AMD Instinct® GPU
+- Intel® Gaudi®
 
 **Additional resources**
+{._additional-resources}
 
 - [Introduction to Red Hat OpenShift AI](https://docs.redhat.com/en/documentation/red_hat_openshift_ai_self-managed/2-latest/html/introduction_to_red_hat_openshift_ai/index)
 - [ NVIDIA GPU Operator on Red Hat OpenShift Container Platform](https://docs.nvidia.com/datacenter/cloud-native/openshift/latest/index.html)

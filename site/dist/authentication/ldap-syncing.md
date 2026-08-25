@@ -78,18 +78,15 @@ pageSize: 0
 </thead>
 <tbody>
 <tr>
-  <td>.^</td>
   <td><code>base</code></td>
+  <td>Only consider the object specified by the base DN given for the query.</td>
 </tr>
 <tr>
-  <td>Only consider the object specified by the base DN given for the query. .^</td>
   <td><code>one</code></td>
+  <td>Consider all of the objects on the same level in the tree as the base DN for the query.</td>
 </tr>
 <tr>
-  <td>Consider all of the objects on the same level in the tree as the base DN for the query. .^</td>
   <td><code>sub</code></td>
-</tr>
-<tr>
   <td>Consider the entire subtree rooted at the base DN given for the query.</td>
 </tr>
 </tbody>
@@ -104,22 +101,19 @@ pageSize: 0
 </thead>
 <tbody>
 <tr>
-  <td>.^</td>
   <td><code>never</code></td>
+  <td>Never dereference any aliases found in the LDAP tree.</td>
 </tr>
 <tr>
-  <td>Never dereference any aliases found in the LDAP tree. .^</td>
   <td><code>search</code></td>
+  <td>Only dereference aliases found while searching.</td>
 </tr>
 <tr>
-  <td>Only dereference aliases found while searching. .^</td>
   <td><code>base</code></td>
+  <td>Only dereference aliases while finding the base object.</td>
 </tr>
 <tr>
-  <td>Only dereference aliases while finding the base object. .^</td>
   <td><code>always</code></td>
-</tr>
-<tr>
   <td>Always dereference all aliases found in the LDAP tree.</td>
 </tr>
 </tbody>
@@ -626,6 +620,7 @@ Configure a cron job to automatically sync LDAP groups with OpenShift Container 
     ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring an LDAP identity provider](/openshift-docs-markdown/authentication/identity_providers/configuring-ldap-identity-provider#configuring-ldap-identity-provider)
 - [Creating cron jobs](/openshift-docs-markdown/nodes/jobs/nodes-nodes-jobs#nodes-nodes-jobs-creating-cron_nodes-nodes-jobs)
@@ -1433,6 +1428,7 @@ The `AugmentedActiveDirectoryConfig` field holds the necessary configuration opt
 | `groupNameAttributes` | Defines which attributes on an LDAP group entry are interpreted as the name of the group to use for an OpenShift Container Platform group. | string array |
 
 **Additional resources**
+{._additional-resources}
 
 - [LDAP nested membership sync](#ldap-syncing-nesting-about_ldap-syncing-groups)
 - [Configuring an LDAP identity provider](/openshift-docs-markdown/authentication/identity_providers/configuring-ldap-identity-provider#configuring-ldap-identity-provider)

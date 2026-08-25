@@ -72,6 +72,7 @@ You can install a cluster with multi-architecture support to use compute machine
    :   Specifies the control plane node architecture. You can set this field to either `arm64` or `amd64`.
 
 **Additional resources**
+{._additional-resources}
 
 - [Deploying the cluster](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-localzone#installation-launching-installer_installing-aws-localzone)
 - [Scheduling workloads on clusters with multi-architecture compute machines](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/multi-architecture-compute-managing#scheduling-workloads-on-clusters-with-multi-architecture-compute-machines)

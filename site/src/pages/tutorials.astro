@@ -20,7 +20,8 @@ const headings = [{"depth":1,"slug":"tutorials-overview","text":"Tutorials overv
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/tutorials";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -78,12 +79,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -91,7 +93,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="tutorials-overview" class="group scroll-mt-20">Tutorials overview<a href="#tutorials-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>To learn how to use OpenShift Container Platform, review the tutorials and other learning resources that are available.</p>
+      <p class="_abstract">To learn how to use OpenShift Container Platform, review the tutorials and other learning resources that are available.</p>
       <h2 id="tutorial-dev-tutorials_tutorials-overview" class="group scroll-mt-20">Tutorials for developers<a href="#tutorial-dev-tutorials_tutorials-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">You can follow an end-to-end example of deploying an application on OpenShift Container Platform either by using the OpenShift CLI (<code>oc</code>) or the web console.</p>
       <p>Choose one of the following tutorials:</p>

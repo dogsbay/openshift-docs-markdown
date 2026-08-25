@@ -39,6 +39,9 @@ Before the Driver Toolkit’s existence, users would install kernel packages in 
 
 The Driver Toolkit is also used by the Kernel Module Management (KMM), which is currently available as a community Operator in the software catalog. KMM supports out-of-tree and third-party kernel drivers and the support software for the underlying operating system. Users can create modules for KMM to build and deploy a driver container, as well as support software like a device plugin, or metrics. Modules can include a build config to build a driver container-based on the Driver Toolkit, or KMM can deploy a prebuilt driver container.
 
+**Additional resources**
+{._additional-resources}
+
 - [How to use entitled image builds to build DriverContainers with UBI on OpenShift](https://www.redhat.com/en/blog/how-to-use-entitled-image-builds-to-build-drivercontainers-with-ubi-on-openshift)
 
 ## Pulling the Driver Toolkit container image {#pulling-the-driver-toolkit_driver-toolkit}
@@ -47,7 +50,7 @@ You can pull the `driver-toolkit` image from the Red Hat Ecosystem Catalog or ex
 
 The `driver-toolkit` image is available from the [Container images section of the Red Hat Ecosystem Catalog](https://registry.redhat.io/) and in the OpenShift Container Platform release payload. The image corresponding to the most recent minor release of OpenShift Container Platform will be tagged with the version number in the catalog. The image URL for a specific release can be found using the `oc adm` CLI command.
 
-Instructions for pulling the `driver-toolkit` image from `registry.redhat.io` with `podman` or in OpenShift Container Platform can be found on the [Red Hat Ecosystem Catalog](https://catalog.redhat.com/software/containers/openshift4/driver-toolkit-rhel8/604009d6122bd89307e00865?container-tabs=gti). The driver-toolkit image for the latest minor release is tagged with the minor release version on `registry.redhat.io`, for example: `registry.redhat.io/openshift4/driver-toolkit-rhel8:v{{ product_version }}`.
+Instructions for pulling the `driver-toolkit` image from `registry.redhat.io` with `podman` or in OpenShift Container Platform can be found on the [Red Hat Ecosystem Catalog](https://catalog.redhat.com/software/containers/openshift4/driver-toolkit-rhel8/604009d6122bd89307e00865?container-tabs=gti). The driver-toolkit image for the latest minor release is tagged with the minor release version on `registry.redhat.io`, for example: `registry.redhat.io/openshift4/driver-toolkit-rhel8:v4.22`.
 
 **Prerequisites**
 
@@ -61,12 +64,12 @@ Instructions for pulling the `driver-toolkit` image from `registry.redhat.io` wi
    - For an x86 image, the command is as follows:
 
      ```terminal
-     $ oc adm release info quay.io/openshift-release-dev/ocp-release:{{ product_version }}.z-x86_64 --image-for=driver-toolkit
+     $ oc adm release info quay.io/openshift-release-dev/ocp-release:4.22.z-x86_64 --image-for=driver-toolkit
      ```
    - For an ARM image, the command is as follows:
 
      ```terminal
-     $ oc adm release info quay.io/openshift-release-dev/ocp-release:{{ product_version }}.z-aarch64 --image-for=driver-toolkit
+     $ oc adm release info quay.io/openshift-release-dev/ocp-release:4.22.z-aarch64 --image-for=driver-toolkit
      ```
 
    ```terminal {title="Example output"}
@@ -284,6 +287,7 @@ Build and deploy the `simple-kmod` example kernel module by using the Driver Too
       simple_kmod            16384  0
       ```
 
-## Additional resources {#additional-resources_driver-toolkit-id}
+**Additional resources**
+{._additional-resources}
 
 - [Image Registry Operator in OpenShift Container Platform](/openshift-docs-markdown/registry/configuring-registry-operator#registry-removed_configuring-registry-operator)

@@ -23,8 +23,8 @@ Image tags are appended to the image name or image stream name by using a colon 
 
 | Context | Syntax Format | Example |
 | --- | --- | --- |
-| ***External Registry*** | `<registry_path>:<tag>` | `registry.access.redhat.com/openshift3/jenkins-2-rhel7:v3.11.59-2` |
-| ***Local Image Stream*** | `<image_stream_name>:<tag>` | `jenkins:latest` |
+| **External Registry** | `<registry_path>:<tag>` | `registry.access.redhat.com/openshift3/jenkins-2-rhel7:v3.11.59-2` |
+| **Local Image Stream** | `<image_stream_name>:<tag>` | `jenkins:latest` |
 
 ## Image tag conventions {#images-tagging-conventions_tagging-images}
 
@@ -40,12 +40,12 @@ To ensure proper garbage collection, use broader, more generic tags that are des
 
 | Description | Example |
 | --- | --- |
-| ***Major/Minor Version*** (Ideal for mutable pointers) | `myimage:v2.0` |
-| ***Full Revision*** (Often used for tracking, but requires manual pruning) | `myimage:v2.0.1` |
-| ***Architecture*** | `myimage:v2.0-x86_64` |
-| ***Base image*** | `myimage:v1.2-centos7` |
-| ***Latest*** | `myimage:latest` |
-| ***Latest stable*** | `myimage:stable` |
+| **Major/Minor Version** (Ideal for mutable pointers) | `myimage:v2.0` |
+| **Full Revision** (Often used for tracking, but requires manual pruning) | `myimage:v2.0.1` |
+| **Architecture** | `myimage:v2.0-x86_64` |
+| **Base image** | `myimage:v1.2-centos7` |
+| **Latest** | `myimage:latest` |
+| **Latest stable** | `myimage:stable` |
 
 > [!NOTE]
 > If your team requires the use of unique, date-specific, or highly revisioned tags like `v2.0.1-may-2019`, you must periodically inspect old and unsupported images and `istags` and remove them. Otherwise, you can experience increasing resource usage caused by retaining old images.

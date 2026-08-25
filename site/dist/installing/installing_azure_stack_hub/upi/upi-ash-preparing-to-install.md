@@ -14,9 +14,7 @@ Prepare to install an OpenShift Container Platform cluster on Azure Stack Hub by
 
 ## Internet access for OpenShift Container Platform {#cluster-entitlements_upi-ash-preparing-to-install}
 
-In OpenShift Container Platform 4.22, you require access to the internet to install
-
-your cluster.
+In OpenShift Container Platform 4.22, you require access to the internet to install your cluster.
 
 You must have internet access to perform the following actions:
 
@@ -127,14 +125,8 @@ the host you are using for installation.
    ```
 6. Download your installation [pull secret from Red Hat OpenShift Cluster Manager](https://console.redhat.com/openshift/install/pull-secret). This pull secret allows you to authenticate with the services that are provided by the included authorities, including Quay.io, which serves the container images for OpenShift Container Platform components.
 
-   ```
-   :::tip
-
-   Alternatively, you can retrieve the installation program from the [Red&#160;Hat Customer Portal](https://access.redhat.com/downloads/content/290/), where you can specify a version of the installation program to download.
-   However, you must have an active subscription to access this page.
-
-   :::
-   ```
+   > [!TIP]
+   > Alternatively, you can retrieve the installation program from the [Red Hat Customer Portal](https://access.redhat.com/downloads/content/290/), where you can specify a version of the installation program to download. However, you must have an active subscription to access this page.
 
 ## Installing the OpenShift CLI on Linux {#cli-installing-cli-linux_upi-ash-preparing-to-install}
 
@@ -238,6 +230,7 @@ To manage your cluster and deploy applications from the command line on macOS, i
   $ oc <command>
   ```
 
-## Additional resources {#additional-resources_upi-ash-preparing-to-install}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring an Azure Stack Hub account](/openshift-docs-markdown/installing/installing_azure_stack_hub/installing-azure-stack-hub-account#installing-azure-stack-hub-account)

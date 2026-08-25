@@ -12,9 +12,7 @@ The OpenShift Virtualization Operator uses a predefined list of obsolete CPU mod
 
 By default, the following CPU models are eliminated from the list of labels generated for the node:
 
-<details>
-<summary>Obsolete CPU models</summary>
-
+:::details{title="Obsolete CPU models"}
 ```
 "486"
 Conroe
@@ -32,8 +30,7 @@ phenom
 qemu32
 qemu64
 ```
-
-</details>
+:::
 
 This predefined list is not visible in the `HyperConverged` CR. You cannot *remove* CPU models from this list, but you can add to the list by editing the `spec.obsoleteCPUs.cpuModels` field of the `HyperConverged` CR.
 
@@ -50,7 +47,7 @@ You can configure a list of obsolete CPU models by editing the `HyperConverged` 
   kind: HyperConverged
   metadata:
     name: kubevirt-hyperconverged
-    namespace: {{ CNVNamespace }}
+    namespace: openshift-cnv
   spec:
     obsoleteCPUs:
       cpuModels:

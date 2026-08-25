@@ -82,26 +82,25 @@ MCO uses Ignition as the configuration format. OpenShift Container Platform 4.6 
 
 The kinds of components that MCO can change include:
 
-- ***config***: Create Ignition config objects to do things like modify files, systemd services, and other features on OpenShift Container Platform machines, including:
+- **config**: Create Ignition config objects to do things like modify files, systemd services, and other features on OpenShift Container Platform machines, including:
 
-  - ***Configuration files***: Create or overwrite files in the `/var` or `/etc` directory.
-  - ***systemd units***: Create and set the status of a systemd service or add to an existing systemd service by dropping in additional settings.
-  - ***users and groups***: Change SSH keys in the passwd section postinstallation.
+  - **Configuration files**: Create or overwrite files in the `/var` or `/etc` directory.
+  - **systemd units**: Create and set the status of a systemd service or add to an existing systemd service by dropping in additional settings.
+  - **users and groups**: Change SSH keys in the passwd section postinstallation.
 
     > [!IMPORTANT]
     > - Changing SSH keys by using a machine config is supported only for the `core` user.
     > - Adding new users by using a machine config is not supported.
-- ***kernelArguments***: Add arguments to the kernel command line when OpenShift Container Platform nodes boot.
-- ***kernelType***: Optionally identify a non-standard kernel to use instead of the standard kernel. Use `realtime` to use the RT kernel (for RAN). This is only supported on select platforms. Use the `64k-pages` parameter to enable the 64k page size kernel. This setting is exclusive to machines with 64-bit ARM architectures.
-- ***fips***: Enable FIPS mode. FIPS should be set at installation-time setting and not a postinstallation procedure. For more information, see "Using system-wide cryptographic policies".
+- **kernelArguments**: Add arguments to the kernel command line when OpenShift Container Platform nodes boot.
+- **kernelType**: Optionally identify a non-standard kernel to use instead of the standard kernel. Use `realtime` to use the RT kernel (for RAN). This is only supported on select platforms. Use the `64k-pages` parameter to enable the 64k page size kernel. This setting is exclusive to machines with 64-bit ARM architectures.
+- **fips**: Enable FIPS mode. FIPS should be set at installation-time setting and not a postinstallation procedure. For more information, see "Using system-wide cryptographic policies".
 
-> [!IMPORTANT]
-> To enable FIPS mode for your cluster, you must run the installation program from a Red Hat Enterprise Linux (RHEL) computer configured to operate in FIPS mode. For more information about configuring FIPS mode on RHEL, see [Switching RHEL to FIPS mode](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/security_hardening/switching-rhel-to-fips-mode_security-hardening).
->
-> When running Red Hat Enterprise Linux (RHEL) or Red Hat Enterprise Linux CoreOS (RHCOS) booted in FIPS mode, OpenShift Container Platform core components use the RHEL cryptographic libraries that have been submitted to NIST for FIPS 140-2/140-3 Validation on only the x86_64, ppc64le, and s390x architectures.
-
-- ***extensions***: Extend RHCOS features by adding selected pre-packaged software. For this feature, available extensions include usbguard and kernel modules. For more information, see "Protecting systems against intrusive USB devices" in the *Additional resources* section.
-- ***Custom resources (for `ContainerRuntime` and `Kubelet`)***: Outside of machine configs, MCO manages two special custom resources for modifying CRI-O container runtime settings (`ContainerRuntime` CR) and the Kubelet service (`Kubelet` CR).
+  > [!IMPORTANT]
+  > To enable FIPS mode for your cluster, you must run the installation program from a Red Hat Enterprise Linux (RHEL) computer configured to operate in FIPS mode. For more information about configuring FIPS mode on RHEL, see [Switching RHEL to FIPS mode](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/security_hardening/switching-rhel-to-fips-mode_security-hardening).
+  >
+  > When running Red Hat Enterprise Linux (RHEL) or Red Hat Enterprise Linux CoreOS (RHCOS) booted in FIPS mode, OpenShift Container Platform core components use the RHEL cryptographic libraries that have been submitted to NIST for FIPS 140-2/140-3 Validation on only the x86_64, ppc64le, and s390x architectures.
+- **extensions**: Extend RHCOS features by adding selected pre-packaged software. For this feature, available extensions include usbguard and kernel modules. For more information, see "Protecting systems against intrusive USB devices" in the *Additional resources* section.
+- **Custom resources (for `ContainerRuntime` and `Kubelet`)**: Outside of machine configs, MCO manages two special custom resources for modifying CRI-O container runtime settings (`ContainerRuntime` CR) and the Kubelet service (`Kubelet` CR).
 
 The MCO is not the only Operator that can change operating system components on OpenShift Container Platform nodes. Other Operators can modify operating system-level features as well. One example is the Node Tuning Operator, which allows you to do node-level tuning through Tuned daemon profiles.
 
@@ -429,11 +428,10 @@ The node update process consists of the following phases and subphases that are 
     > [!NOTE]
     > Enabling the `TechPreviewNoUpgrade` feature set cannot be undone and prevents minor version updates. These feature sets are not recommended on production clusters.
 
-> [!IMPORTANT]
-> The `AppliedFiles` and `AppliedOSImage` condition is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
->
-> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
-
+    > [!IMPORTANT]
+    > The `AppliedFiles` and `AppliedOSImage` condition is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
+    >
+    > For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
 - **PinnedImageSetsProgressing** The MCO is performing the steps needed to pin and pre-load container images.
 - **PinnedImageSetsDegraded** The pinned image process failed. You can view the reason for the failure by using the `oc describe machineconfignode` command, as described later in this section.
 - **NodeDegraded** The node update failed. You can view the reason for the failure by using the `oc describe machineconfignode` command, as described later in this section.
@@ -451,10 +449,10 @@ The node update process consists of the following phases and subphases that are 
   > [!NOTE]
   > Enabling the `TechPreviewNoUpgrade` feature set cannot be undone and prevents minor version updates. These feature sets are not recommended on production clusters.
 
-> [!IMPORTANT]
-> The `ImagePulledFromRegistry` condition is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
->
-> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
+  > [!IMPORTANT]
+  > The `ImagePulledFromRegistry` condition is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
+  >
+  > For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
 
 As the update moves through these phases, you can query the `MachineConfigNode` custom resource, which reports one of the following conditions for each phase:
 
@@ -503,7 +501,7 @@ The `ci-ln-ds73n5t-72292-9xsm9-worker-b-gw5sd` node is currently being updated t
 
 The `ci-ln-ds73n5t-72292-9xsm9-worker-c-t227w` node has not yet been updated to the new machine config. The previous machine config is shown as the desired and current machine configs.
 
-***Basic machine config node fields***
+**Basic machine config node fields**
 
 <table>
 <thead>
@@ -742,10 +740,10 @@ For more information on the meaning of these fields, see "About checking machine
   > [!NOTE]
   > Enabling the `TechPreviewNoUpgrade` feature set cannot be undone and prevents minor version updates. These feature sets are not recommended on production clusters.
 
-> [!IMPORTANT]
-> The custom layered image output is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
->
-> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
+  > [!IMPORTANT]
+  > The custom layered image output is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
+  >
+  > For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
 
 **Procedure**
 
@@ -953,7 +951,8 @@ You can get information about the listed certificates, including the underyling 
      image-registry.openshift-image-registry.svc:5000
      ```
 
-## Additional resources {#additional-resources_machine-config-overview}
+**Additional resources**
+{._additional-resources}
 
 - [MCCDrainError (Red Hat runbook)](https://github.com/openshift/runbooks/blob/master/alerts/machine-config-operator/MachineConfigControllerDrainError.md)
 - [Ignition Configuration Specification v3.5.0 (Ignition documentation)](https://coreos.github.io/ignition/configuration-v3_5/)

@@ -9,9 +9,7 @@ In OpenShift Container Platform, you can use security context constraints (SCCs)
 Default SCCs are created during installation and when you install some Operators or other components. As a cluster administrator, you can also create your own SCCs by using the OpenShift CLI (`oc`).
 
 > [!IMPORTANT]
-> Do not modify the default SCCs. Customizing the default SCCs can lead to issues when some of the platform pods deploy or OpenShift Container Platform
->
-> is upgraded. Additionally, the default SCC values are reset to the defaults during some cluster upgrades, which discards all customizations to those SCCs.
+> Do not modify the default SCCs. Customizing the default SCCs can lead to issues when some of the platform pods deploy or OpenShift Container Platform is upgraded. Additionally, the default SCC values are reset to the defaults during some cluster upgrades, which discards all customizations to those SCCs.
 >
 > Instead of modifying the default SCCs, create and modify your own SCCs as needed. For detailed steps, see [Creating security context constraints](/openshift-docs-markdown/authentication/managing-security-context-constraints#security-context-constraints-creating_configuring-internal-oauth).
 
@@ -42,13 +40,11 @@ Security context constraints allow an administrator to control:
 The cluster contains several default security context constraints (SCCs) as described in the table below. Additional SCCs might be installed when you install Operators or other components to OpenShift Container Platform.
 
 > [!IMPORTANT]
-> Do not modify the default SCCs. Customizing the default SCCs can lead to issues when some of the platform pods deploy or OpenShift Container Platform
->
-> is upgraded. Additionally, the default SCC values are reset to the defaults during some cluster upgrades, which discards all customizations to those SCCs.
+> Do not modify the default SCCs. Customizing the default SCCs can lead to issues when some of the platform pods deploy or OpenShift Container Platform is upgraded. Additionally, the default SCC values are reset to the defaults during some cluster upgrades, which discards all customizations to those SCCs.
 >
 > Instead of modifying the default SCCs, create and modify your own SCCs as needed. For detailed steps, see *Creating security context constraints*.
 
-***Default security context constraints***
+**Default security context constraints**
 
 <table>
 <thead>
@@ -64,15 +60,15 @@ The cluster contains several default security context constraints (SCCs) as desc
 </tr>
 <tr>
   <td><code>hostaccess</code></td>
-  <td>Allows access to all host namespaces but still requires pods to be run with a UID and SELinux context that are allocated to the namespace.<br><br><dl><dt>Warning</dt><dd>This SCC allows host access to namespaces, file systems, and PIDs. It should only be used by trusted pods. Grant with caution.</dd></dl></td>
+  <td>Allows access to all host namespaces but still requires pods to be run with a UID and SELinux context that are allocated to the namespace.<br><br><dl class="db-admonition db-admonition-warning"><dt>Warning</dt><dd>This SCC allows host access to namespaces, file systems, and PIDs. It should only be used by trusted pods. Grant with caution.</dd></dl></td>
 </tr>
 <tr>
   <td><code>hostmount-anyuid</code></td>
-  <td>Provides all the features of the <code>restricted</code> SCC, but allows host mounts and running as any UID and any GID on the system.<br><br><dl><dt>Warning</dt><dd>This SCC allows host file system access as any UID, including UID 0. Grant with caution.</dd></dl></td>
+  <td>Provides all the features of the <code>restricted</code> SCC, but allows host mounts and running as any UID and any GID on the system.<br><br><dl class="db-admonition db-admonition-warning"><dt>Warning</dt><dd>This SCC allows host file system access as any UID, including UID 0. Grant with caution.</dd></dl></td>
 </tr>
 <tr>
   <td><code>hostnetwork</code></td>
-  <td>Allows using host networking and host ports but still requires pods to be run with a UID and SELinux context that are allocated to the namespace.<br><br><dl><dt>Warning</dt><dd>If additional workloads are run on control plane hosts, use caution when providing access to <code>hostnetwork</code>. A workload that runs <code>hostnetwork</code> on a control plane host is effectively root on the cluster and must be trusted accordingly.</dd></dl></td>
+  <td>Allows using host networking and host ports but still requires pods to be run with a UID and SELinux context that are allocated to the namespace.<br><br><dl class="db-admonition db-admonition-warning"><dt>Warning</dt><dd>If additional workloads are run on control plane hosts, use caution when providing access to <code>hostnetwork</code>. A workload that runs <code>hostnetwork</code> on a control plane host is effectively root on the cluster and must be trusted accordingly.</dd></dl></td>
 </tr>
 <tr>
   <td><code>hostnetwork-v2</code></td>
@@ -84,7 +80,7 @@ The cluster contains several default security context constraints (SCCs) as desc
 </tr>
 <tr>
   <td><code>node-exporter</code></td>
-  <td>Used for the Prometheus node exporter.<br><br><dl><dt>Warning</dt><dd>This SCC allows host file system access as any UID, including UID 0. Grant with caution.</dd></dl></td>
+  <td>Used for the Prometheus node exporter.<br><br><dl class="db-admonition db-admonition-warning"><dt>Warning</dt><dd>This SCC allows host file system access as any UID, including UID 0. Grant with caution.</dd></dl></td>
 </tr>
 <tr>
   <td><code>nonroot</code></td>
@@ -96,7 +92,7 @@ The cluster contains several default security context constraints (SCCs) as desc
 </tr>
 <tr>
   <td><code>privileged</code></td>
-  <td>Allows access to all privileged and host features and the ability to run as any user, any group, any FSGroup, and with any SELinux context.<br><br><dl><dt>Warning</dt><dd>This is the most relaxed SCC and should be used only for cluster administration. Grant with caution.</dd></dl><br><br>The <code>privileged</code> SCC allows:<br><br><ul><li>Users to run privileged pods</li><li>Pods to mount host directories as volumes</li><li>Pods to run as any user</li><li>Pods to run with any MCS label</li><li>Pods to use the host's IPC namespace</li><li>Pods to use the host's PID namespace</li><li>Pods to use any FSGroup</li><li>Pods to use any supplemental group</li><li>Pods to use any seccomp profiles</li><li>Pods to request any capabilities</li></ul><dl><dt>Note</dt><dd>Setting <code>privileged: true</code> in the pod specification does not necessarily select the <code>privileged</code> SCC. The SCC that has <code>allowPrivilegedContainer: true</code> and has the highest prioritization will be chosen if the user has the permissions to use it.</dd></dl></td>
+  <td>Allows access to all privileged and host features and the ability to run as any user, any group, any FSGroup, and with any SELinux context.<br><br><dl class="db-admonition db-admonition-warning"><dt>Warning</dt><dd>This is the most relaxed SCC and should be used only for cluster administration. Grant with caution.</dd></dl><br><br>The <code>privileged</code> SCC allows:<br><br><ul><li>Users to run privileged pods</li><li>Pods to mount host directories as volumes</li><li>Pods to run as any user</li><li>Pods to run with any MCS label</li><li>Pods to use the host's IPC namespace</li><li>Pods to use the host's PID namespace</li><li>Pods to use any FSGroup</li><li>Pods to use any supplemental group</li><li>Pods to use any seccomp profiles</li><li>Pods to request any capabilities</li></ul><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>Setting <code>privileged: true</code> in the pod specification does not necessarily select the <code>privileged</code> SCC. The SCC that has <code>allowPrivilegedContainer: true</code> and has the highest prioritization will be chosen if the user has the permissions to use it.</dd></dl></td>
 </tr>
 <tr>
   <td><code>restricted</code></td>
@@ -108,7 +104,7 @@ The cluster contains several default security context constraints (SCCs) as desc
 </tr>
 <tr>
   <td><code>restricted-v3</code></td>
-  <td>Like the <code>restricted-v2</code> SCC, but with the following differences:<br><br><ul><li><code>UserNamespaceLevel</code> is set to <code>RequirePodLevel</code>, which forces pods to be in a Linux user namespace (<code>hostUsers: false</code>).</li></ul>This is the most restrictive SCC provided by a new installation and will be used by default for authenticated users.<br><br><dl><dt>Note</dt><dd>The <code>restricted-v3</code> SCC is the most restrictive of the SCCs that is included by default with the system. However, you can create a custom SCC that is even more restrictive. For example, you can create an SCC that restricts <code>readOnlyRootFilesystem</code> to <code>true</code>.</dd></dl></td>
+  <td>Like the <code>restricted-v2</code> SCC, but with the following differences:<br><br><ul><li><code>UserNamespaceLevel</code> is set to <code>RequirePodLevel</code>, which forces pods to be in a Linux user namespace (<code>hostUsers: false</code>).</li></ul>This is the most restrictive SCC provided by a new installation and will be used by default for authenticated users.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>The <code>restricted-v3</code> SCC is the most restrictive of the SCCs that is included by default with the system. However, you can create a custom SCC that is even more restrictive. For example, you can create an SCC that restricts <code>readOnlyRootFilesystem</code> to <code>true</code>.</dd></dl></td>
 </tr>
 </tbody>
 </table>
@@ -127,11 +123,11 @@ Security context constraints (SCCs) are composed of settings and strategies that
 <tbody>
 <tr>
   <td>Controlled by a boolean</td>
-  <td>Fields of this type default to the most restrictive value. For example,</td>
+  <td>Fields of this type default to the most restrictive value. For example, <code>AllowPrivilegedContainer</code> is always set to <code>false</code> if unspecified.</td>
 </tr>
 <tr>
   <td>Controlled by an allowable set</td>
-  <td>Fields of this type are checked against the set to ensure their value is</td>
+  <td>Fields of this type are checked against the set to ensure their value is allowed.</td>
 </tr>
 <tr>
   <td>Controlled by a strategy</td>
@@ -390,7 +386,7 @@ volumes:
 where
 
 `allowedCapabilities`
-:   A list of capabilities that a pod can request. An empty list means that none of capabilities can be requested while the special symbol `*****` allows any capabilities.
+:   A list of capabilities that a pod can request. An empty list means that none of capabilities can be requested while the special symbol `***` allows any capabilities.
 
 `defaultAddCapabilities`
 :   A list of additional capabilities that are added to any pod.
@@ -763,6 +759,7 @@ $ oc delete scc <scc_name>
 > [!IMPORTANT]
 > Do not delete default SCCs. If you delete a default SCC, it is regenerated by the Cluster Version Operator.
 
-## Additional resources {#additional-resources_configuring-internal-oauth}
+**Additional resources**
+{._additional-resources}
 
 - [Getting support](/openshift-docs-markdown/support/getting-support#getting-support)

@@ -222,9 +222,7 @@ cluster with the required access and tokens. For instructions, see the previous 
 
 **Procedure**
 
-1. Create an OpenShift Container Platform
-
-   secret from your AWS token file by entering the following commands:
+1. Create an OpenShift Container Platform secret from your AWS token file by entering the following commands:
 
    1. Create the credentials file:
 
@@ -257,7 +255,7 @@ Replace `<aws_region>` with the AWS region to use for the STS endpoint.
    > The preceding secret is created automatically by CCO.
 
    1. Install the OADP Operator:
-3. In the OpenShift Container Platform web console, browse to **Ecosystem** -> **Software Catalog**.
+3. In the OpenShift Container Platform web console, browse to **Ecosystem** → **Software Catalog**.
 4. Search for the **OADP Operator**.
 5. In the **role_ARN** field, paste the role_arn that you created previously and click **Install**.
 
@@ -286,150 +284,145 @@ Replace `<aws_region>` with the AWS region to use for the STS endpoint.
       $ oc get pvc -n <namespace>
       ```
 
-```terminal
-NAME     STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
-applog   Bound    pvc-351791ae-b6ab-4e8b-88a4-30f73caf5ef8   1Gi        RWO            gp3-csi        4d19h
-mysql    Bound    pvc-16b8e009-a20a-4379-accc-bc81fedd0621   1Gi        RWO            gp3-csi        4d19h
-```
+      ```terminal
+      NAME     STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+      applog   Bound    pvc-351791ae-b6ab-4e8b-88a4-30f73caf5ef8   1Gi        RWO            gp3-csi        4d19h
+      mysql    Bound    pvc-16b8e009-a20a-4379-accc-bc81fedd0621   1Gi        RWO            gp3-csi        4d19h
+      ```
+   3. Get the storage class by running the following command:
 
-1. Get the storage class by running the following command:
+      ```terminal
+      $ oc get storageclass
+      ```
+
+      ```terminal
+      NAME                PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+      gp2                 kubernetes.io/aws-ebs   Delete          WaitForFirstConsumer   true                   4d21h
+      gp2-csi             ebs.csi.aws.com         Delete          WaitForFirstConsumer   true                   4d21h
+      gp3                 ebs.csi.aws.com         Delete          WaitForFirstConsumer   true                   4d21h
+      gp3-csi (default)   ebs.csi.aws.com         Delete          WaitForFirstConsumer   true                   4d21h
+      ```
+
+      > [!NOTE]
+      > The following storage classes will work:
+      >
+      > - gp3-csi
+      > - gp2-csi
+      > - gp3
+      > - gp2
+
+      If the application or applications that are being backed up are all using persistent volumes (PVs) with Container Storage Interface (CSI), it is advisable to include the CSI plugin in the OADP DPA configuration.
+   4. Create the `DataProtectionApplication` resource to configure the connection to the storage where the backups and volume snapshots are stored:
+6. If you are using only CSI volumes, deploy a Data Protection Application by entering the following command:
 
    ```terminal
-   $ oc get storageclass
+   $ cat << EOF | oc create -f -
+     apiVersion: oadp.openshift.io/v1alpha1
+     kind: DataProtectionApplication
+     metadata:
+       name: ${CLUSTER_NAME}-dpa
+       namespace: openshift-adp
+     spec:
+       backupImages: true
+       features:
+         dataMover:
+           enable: false
+       backupLocations:
+       - bucket:
+           cloudStorageRef:
+             name: ${CLUSTER_NAME}-oadp
+           credential:
+             key: credentials
+             name: cloud-credentials
+           prefix: velero
+           default: true
+           config:
+             region: ${REGION}
+       configuration:
+         velero:
+           defaultPlugins:
+           - openshift
+           - aws
+           - csi
+         nodeAgent:
+           enable: false
+           uploaderType: kopia
+   EOF
    ```
 
-```terminal
-NAME                PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
-gp2                 kubernetes.io/aws-ebs   Delete          WaitForFirstConsumer   true                   4d21h
-gp2-csi             ebs.csi.aws.com         Delete          WaitForFirstConsumer   true                   4d21h
-gp3                 ebs.csi.aws.com         Delete          WaitForFirstConsumer   true                   4d21h
-gp3-csi (default)   ebs.csi.aws.com         Delete          WaitForFirstConsumer   true                   4d21h
-```
+   where:
 
-> [!NOTE]
-> The following storage classes will work:
->
-> - gp3-csi
-> - gp2-csi
-> - gp3
-> - gp2
+   `backupImages`
+   :   ROSA supports internal image backup. Set this field to `false` if you do not want to use image backup.
 
-If the application or applications that are being backed up are all using persistent volumes (PVs) with Container Storage Interface (CSI), it is advisable to include the CSI plugin in the OADP DPA configuration.
+   `nodeAgent`
+   :   See the important note regarding the `nodeAgent` attribute at the end of this procedure.
 
-1. Create the `DataProtectionApplication` resource to configure the connection to the storage where the backups and volume snapshots are stored:
+   `uploaderType`
+   :   Specifies the type of uploader. The built-in Data Mover uses Kopia as the default uploader mechanism regardless of the value of the `uploaderType` field.
+7. If you are using CSI or non-CSI volumes, deploy a Data Protection Application by entering the following command:
 
-   1. If you are using only CSI volumes, deploy a Data Protection Application by entering the following command:
+   ```terminal
+   $ cat << EOF | oc create -f -
+     apiVersion: oadp.openshift.io/v1alpha1
+     kind: DataProtectionApplication
+     metadata:
+       name: ${CLUSTER_NAME}-dpa
+       namespace: openshift-adp
+     spec:
+       backupImages: true
+       backupLocations:
+       - bucket:
+           cloudStorageRef:
+             name: ${CLUSTER_NAME}-oadp
+           credential:
+             key: credentials
+             name: cloud-credentials
+           prefix: velero
+           default: true
+           config:
+             region: ${REGION}
+       configuration:
+         velero:
+           defaultPlugins:
+           - openshift
+           - aws
+         nodeAgent:
+           enable: false
+           uploaderType: restic
+       snapshotLocations:
+         - velero:
+             config:
+               credentialsFile: /tmp/credentials/openshift-adp/cloud-credentials-credentials
+               enableSharedConfig: "true"
+               profile: default
+               region: ${REGION}
+             provider: aws
+   EOF
+   ```
 
-      ```terminal
-      $ cat << EOF | oc create -f -
-        apiVersion: oadp.openshift.io/v1alpha1
-        kind: DataProtectionApplication
-        metadata:
-          name: ${CLUSTER_NAME}-dpa
-          namespace: openshift-adp
-        spec:
-          backupImages: true
-          features:
-            dataMover:
-              enable: false
-          backupLocations:
-          - bucket:
-              cloudStorageRef:
-                name: ${CLUSTER_NAME}-oadp
-              credential:
-                key: credentials
-                name: cloud-credentials
-              prefix: velero
-              default: true
-              config:
-                region: ${REGION}
-          configuration:
-            velero:
-              defaultPlugins:
-              - openshift
-              - aws
-              - csi
-            nodeAgent:
-              enable: false
-              uploaderType: kopia
-      EOF
-      ```
+   where:
 
-      where:
+   `backupImages`
+   :   ROSA supports internal image backup. Set this field to `false` if you do not want to use image backup.
 
-      `backupImages`
-      :   ROSA supports internal image backup. Set this field to `false` if you do not want to use image backup.
+   `nodeAgent`
+   :   See the important note regarding the `nodeAgent` attribute at the end of this procedure.
 
-      `nodeAgent`
-      :   See the important note regarding the `nodeAgent` attribute at the end of this procedure.
+   `credentialsFile`
+   :   Specifies the mounted location of the bucket credential on the pod.
 
-      `uploaderType`
-      :   Specifies the type of uploader. The built-in Data Mover uses Kopia as the default uploader mechanism regardless of the value of the `uploaderType` field.
-   2. If you are using CSI or non-CSI volumes, deploy a Data Protection Application by entering the following command:
+   `enableSharedConfig`
+   :   Specifies whether the `snapshotLocations` can share or reuse the credential defined for the bucket.
 
-      ```terminal
-      $ cat << EOF | oc create -f -
-        apiVersion: oadp.openshift.io/v1alpha1
-        kind: DataProtectionApplication
-        metadata:
-          name: ${CLUSTER_NAME}-dpa
-          namespace: openshift-adp
-        spec:
-          backupImages: true
-          backupLocations:
-          - bucket:
-              cloudStorageRef:
-                name: ${CLUSTER_NAME}-oadp
-              credential:
-                key: credentials
-                name: cloud-credentials
-              prefix: velero
-              default: true
-              config:
-                region: ${REGION}
-          configuration:
-            velero:
-              defaultPlugins:
-              - openshift
-              - aws
-            nodeAgent:
-              enable: false
-              uploaderType: restic
-          snapshotLocations:
-            - velero:
-                config:
-                  credentialsFile: /tmp/credentials/openshift-adp/cloud-credentials-credentials
-                  enableSharedConfig: "true"
-                  profile: default
-                  region: ${REGION}
-                provider: aws
-      EOF
-      ```
+   `profile`
+   :   Specifies the profile name set in the AWS credentials file.
 
-      where:
-
-      `backupImages`
-      :   ROSA supports internal image backup. Set this field to `false` if you do not want to use image backup.
-
-      `nodeAgent`
-      :   See the important note regarding the `nodeAgent` attribute at the end of this procedure.
-
-      `credentialsFile`
-      :   Specifies the mounted location of the bucket credential on the pod.
-
-      `enableSharedConfig`
-      :   Specifies whether the `snapshotLocations` can share or reuse the credential defined for the bucket.
-
-      `profile`
-      :   Specifies the profile name set in the AWS credentials file.
-
-      `region`
-      :   Specifies your AWS region. This must be the same as the cluster region. You are now ready to back up and restore OpenShift Container Platform applications, as described in *Backing up applications*.
+   `region`
+   :   Specifies your AWS region. This must be the same as the cluster region. You are now ready to back up and restore OpenShift Container Platform applications, as described in *Backing up applications*.
 
 > [!IMPORTANT]
-> The `enable` parameter of `restic` is set to `false` in this configuration, because OADP does not support Restic in ROSA
->
-> environments.
+> The `enable` parameter of `restic` is set to `false` in this configuration, because OADP does not support Restic in ROSA environments.
 
 If you want to use two different clusters for backing up and restoring, the two clusters must have the same AWS S3 storage names in both the cloud storage CR and the OADP `DataProtectionApplication` configuration.
 
@@ -437,9 +430,7 @@ If you want to use two different clusters for backing up and restoring, the two 
 
 Update the OADP Operator subscription to fix an installation error due to incorrect IAM role Amazon Resource Name (ARN).
 
-While installing the OADP Operator on a ROSA Security Token Service (STS)
-
-cluster, if you provide an incorrect IAM role Amazon Resource Name (ARN), the `openshift-adp-controller` pod gives an error. The credential requests that are generated contain the wrong IAM role ARN. To update the credential requests object with the correct IAM role ARN, you can edit the OADP Operator subscription and patch the IAM role ARN with the correct value. By editing the OADP Operator subscription, you do not have to uninstall and reinstall OADP to update the IAM role ARN.
+While installing the OADP Operator on a ROSA Security Token Service (STS) cluster, if you provide an incorrect IAM role Amazon Resource Name (ARN), the `openshift-adp-controller` pod gives an error. The credential requests that are generated contain the wrong IAM role ARN. To update the credential requests object with the correct IAM role ARN, you can edit the OADP Operator subscription and patch the IAM role ARN with the correct value. By editing the OADP Operator subscription, you do not have to uninstall and reinstall OADP to update the IAM role ARN.
 
 **Prerequisites**
 
@@ -563,7 +554,7 @@ cluster, if you provide an incorrect IAM role Amazon Resource Name (ARN), the `o
 7. Verify that the `BackupStorageLocation` CR is in an available state by running the following command:
 
    ```terminal
-   $ oc get {{ oadp_bsl_api }} -n openshift-adp
+   $ oc get backupstoragelocations.velero.io -n openshift-adp
    ```
 
    ```terminal {title="Example BackupStorageLocation"}
@@ -572,6 +563,7 @@ cluster, if you provide an incorrect IAM role Amazon Resource Name (ARN), the `o
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing from the software catalog using the web console](/openshift-docs-markdown/operators/user/olm-installing-operators-in-namespace#olm-installing-from-software-catalog-using-web-console_olm-installing-operators-in-namespace)
 - [Backing up applications](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications)

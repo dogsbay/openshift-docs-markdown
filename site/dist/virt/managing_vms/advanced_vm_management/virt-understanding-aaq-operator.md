@@ -85,7 +85,7 @@ Enable the Application Aware Quota (AAQ) operator to manage resource quotas to e
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, click **Virtualization** -> **Settings**.
+1. In the OpenShift Container Platform web console, click **Virtualization** → **Settings**.
 2. Under **Resource Management**, toggle the **Application Aware Quotas (AAQ)** to On.
 
    The operator deployment begins automatically. The status changes from **Disabled** to **Enabled** after the operator pods are running.
@@ -116,7 +116,7 @@ You can configure the AAQ Operator by specifying the fields of the `spec.applica
 - Update the `HyperConverged` CR by running the following command:
 
   ```terminal
-  $ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} --type merge -p '{
+  $ oc patch hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv --type merge -p '{
     "spec": {
       "applicationAwareConfig": {
         "vmiCalcConfigName": "DedicatedVirtualResources",
@@ -142,7 +142,8 @@ You can configure the AAQ Operator by specifying the fields of the `spec.applica
   `allowApplicationAwareClusterResourceQuota`
   :   If set to `true`, you can create and manage the `ApplicationAwareClusterResourceQuota` object. Setting this attribute to `true` can increase scheduling time.
 
-## Additional resources {#additional-resources_virt-understanding-aaq-operator}
+**Additional resources**
+{._additional-resources}
 
 - [Resource quotas per project](/openshift-docs-markdown/applications/quotas/quotas-setting-per-project#quotas-setting-per-project)
 - [Resource quotas across multiple projects](/openshift-docs-markdown/applications/quotas/quotas-setting-across-multiple-projects#quotas-setting-across-multiple-projects)

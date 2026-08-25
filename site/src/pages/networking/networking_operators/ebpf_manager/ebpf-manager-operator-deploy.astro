@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"bpfman-operator-deploy","text":"Deploying a
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/networking_operators/ebpf_manager/ebpf-manager-operator-deploy";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="bpfman-operator-deploy" class="group scroll-mt-20">Deploying an eBPF program<a href="#bpfman-operator-deploy" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>As a cluster administrator, you can deploy containerized eBPF applications by using the eBPF Manager Operator. This process involves loading an eBPF program through a custom resource and deploying a user-space daemon set that accesses eBPF maps without requiring privileged permissions.</p>
+      <p class="_abstract">As a cluster administrator, you can deploy containerized eBPF applications by using the eBPF Manager Operator. This process involves loading an eBPF program through a custom resource and deploying a user-space daemon set that accesses eBPF maps without requiring privileged permissions.</p>
       <p>As a cluster administrator, you can deploy containerized eBPF applications with the eBPF Manager Operator.</p>
       <p>For the example eBPF program deployed in this procedure, the sample manifest does the following:</p>
       <p>First, it creates basic Kubernetes objects like <code>Namespace</code>, <code>ServiceAccount</code>, and <code>ClusterRoleBinding</code>. It also creates a <code>XdpProgram</code> object, which is a custom resource definition (CRD) that eBPF Manager provides, that loads the eBPF XDP program. Each program type has it’s own CRD, but they are similar in what they do. For more information, see <a href="https://bpfman.io/main/getting-started/example-bpf-k8s/#loading-ebpf-programs-on-kubernetes">Loading eBPF Programs On Kubernetes</a>.</p>

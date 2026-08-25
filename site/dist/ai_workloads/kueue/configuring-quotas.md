@@ -37,12 +37,12 @@ A cluster queue is a cluster-scoped resource, represented by a `ClusterQueue` ob
    metadata:
      name: cluster-queue
    spec:
-     namespaceSelector: {} # (1)
+     namespaceSelector: {} (1)
      resourceGroups:
-     - coveredResources: ["cpu", "memory", "pods", "foo.com/gpu"] # (2)
+     - coveredResources: ["cpu", "memory", "pods", "foo.com/gpu"] (2)
        flavors:
-       - name: "default-flavor" # (3)
-         resources: # (4)
+       - name: "default-flavor" (3)
+         resources: (4)
          - name: "cpu"
            nominalQuota: 9
          - name: "memory"
@@ -184,7 +184,8 @@ A default local queue serves as the local queue for newly created jobs that do n
 1. Create a job in the same namespace as the default local queue.
 2. Observe that the job updates with the `kueue.x-k8s.io/queue-name: default` label.
 
-## Additional resources {#clusterqueues-additional-resources_configuring-quotas}
+**Additional resources**
+{._additional-resources}
 
 - [RBAC permissions](/openshift-docs-markdown/ai_workloads/kueue/rbac-permissions#rbac-permissions)
 - [Kubernetes documentation about cluster queues](https://kueue.sigs.k8s.io/docs/concepts/cluster_queue/)

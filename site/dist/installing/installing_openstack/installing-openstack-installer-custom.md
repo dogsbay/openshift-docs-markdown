@@ -23,6 +23,7 @@ You can complete the following configurations after you install a cluster on RHO
 - If you did not configure RHOSP to accept application traffic over floating IP addresses, configure RHOSP access with floating IP addresses.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)
 - [Selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing)
@@ -97,7 +98,7 @@ The bootstrap machine requires:
 - A flavor with at least 16 GB memory and 4 vCPUs
 - At least 100 GB storage space from the RHOSP quota
 
-### Load balancing requirements for user-provisioned infrastructure {id="installation-load-balancing-user-infra_installing-openstack-installer-custom"} {#load-balancing-requirements-for-user-provisioned-infrastructure-idinstallation-load-balancing-user-infra_installing-openstack-installer-custom ._abstract}
+### Load balancing requirements for user-provisioned infrastructure {#installation-load-balancing-user-infra_installing-openstack-installer-custom}
 
 Before you install OpenShift Container Platform, you can provision your own API and application ingress load balancing infrastructure to use in place of the default, internal load balancing solution. In production scenarios, you can deploy the API and application Ingress load balancers separately so that you can scale the load balancer infrastructure for each in isolation.
 
@@ -111,13 +112,13 @@ The load balancing infrastructure must meet the following requirements:
   - Layer 4 load balancing only. This can be referred to as Raw TCP or SSL Passthrough mode.
   - A stateless load balancing algorithm. The options vary based on the load balancer implementation.
 
-> [!IMPORTANT]
-> Do not configure session persistence for an API load balancer. Configuring session persistence for a Kubernetes API server might cause performance issues from excess application traffic for your OpenShift Container Platform cluster and the Kubernetes API that runs inside the cluster.
+  > [!IMPORTANT]
+  > Do not configure session persistence for an API load balancer. Configuring session persistence for a Kubernetes API server might cause performance issues from excess application traffic for your OpenShift Container Platform cluster and the Kubernetes API that runs inside the cluster.
 
 Configure the following ports on both the front and back of the API load balancers:
 
 | Port | Back-end machines (pool members) | Internal | External | Description |
-| --- | --- | --- | --- | --- |
+| --- | --- | :---: | :---: | --- |
 | `6443` | Bootstrap and control plane. You remove the bootstrap machine from the load balancer after the bootstrap machine initializes the cluster control plane. You must configure the `/readyz` endpoint for the API server health check probe. | X | X | Kubernetes API server |
 | `22623` | Bootstrap and control plane. You remove the bootstrap machine from the load balancer after the bootstrap machine initializes the cluster control plane. | X |  | Machine config server |
 
@@ -129,15 +130,15 @@ Configure the following ports on both the front and back of the API load balance
   - Layer 4 load balancing only. This can be referred to as Raw TCP or SSL Passthrough mode.
   - A connection-based or session-based persistence is recommended, based on the options available and types of applications that will be hosted on the platform.
 
-> [!TIP]
-> If the true IP address of the client can be seen by the application Ingress load balancer, enabling source IP-based session persistence can improve performance for applications that use end-to-end TLS encryption.
+  > [!TIP]
+  > If the true IP address of the client can be seen by the application Ingress load balancer, enabling source IP-based session persistence can improve performance for applications that use end-to-end TLS encryption.
 
 Configure the following ports on both the front and back of the load balancers:
 
 **Application Ingress load balancer**
 
 | Port | Back-end machines (pool members) | Internal | External | Description |
-| --- | --- | --- | --- | --- |
+| --- | --- | :---: | :---: | --- |
 | `443` | The machines that run the Ingress Controller pods, compute, or worker, by default. | X | X | HTTPS traffic |
 | `80` | The machines that run the Ingress Controller pods, compute, or worker, by default. | X | X | HTTP traffic |
 
@@ -230,9 +231,7 @@ where:
 
 ## Internet access for OpenShift Container Platform {#cluster-entitlements_installing-openstack-installer-custom}
 
-In OpenShift Container Platform 4.22, you require access to the internet to install
-
-your cluster.
+In OpenShift Container Platform 4.22, you require access to the internet to install your cluster.
 
 You must have internet access to perform the following actions:
 
@@ -423,18 +422,12 @@ The OpenShift Container Platform installation process requires external network 
   > | `clusterNetwork` | 10.128.0.0/14 |
 
   > [!WARNING]
+  > -
   >
+  > If the installation program finds multiple networks with the same name, it sets one of them at random. To avoid this behavior, create unique names for resources in RHOSP.
 
-
-If the installation program finds multiple networks with the same name, it sets one of them at random. To avoid this behavior, create unique names for resources in RHOSP.
-
-```
-+
-
-:::
-
-If the Neutron trunk service plugin is enabled, a trunk port is created by default. For more information, see [Neutron trunk port](https://wiki.openstack.org/wiki/Neutron/TrunkPort).
-```
+  > [!NOTE]
+  > If the Neutron trunk service plugin is enabled, a trunk port is created by default. For more information, see [Neutron trunk port](https://wiki.openstack.org/wiki/Neutron/TrunkPort).
 
 ## Defining parameters for the installation program {#installation-osp-describing-cloud-parameters_installing-openstack-installer-custom}
 
@@ -591,20 +584,12 @@ the host you are using for installation.
    ```
 6. Download your installation [pull secret from Red Hat OpenShift Cluster Manager](https://console.redhat.com/openshift/install/pull-secret). This pull secret allows you to authenticate with the services that are provided by the included authorities, including Quay.io, which serves the container images for OpenShift Container Platform components.
 
-   ```
-   :::tip
-
-   Alternatively, you can retrieve the installation program from the [Red&#160;Hat Customer Portal](https://access.redhat.com/downloads/content/290/), where you can specify a version of the installation program to download.
-   However, you must have an active subscription to access this page.
-
-   :::
-   ```
+   > [!TIP]
+   > Alternatively, you can retrieve the installation program from the [Red Hat Customer Portal](https://access.redhat.com/downloads/content/290/), where you can specify a version of the installation program to download. However, you must have an active subscription to access this page.
 
 ## Creating the installation configuration file {#installation-initializing_installing-openstack-installer-custom}
 
-You can customize the OpenShift Container Platform cluster you install on
-
-Red Hat OpenStack Platform (RHOSP).
+You can customize the OpenShift Container Platform cluster you install on Red Hat OpenStack Platform (RHOSP).
 
 **Prerequisites**
 
@@ -644,6 +629,7 @@ Red Hat OpenStack Platform (RHOSP).
    > The `install-config.yaml` file is consumed during the installation process. If you want to reuse the file, you must back it up now.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installation configuration parameters for RHOSP](/openshift-docs-markdown/installing/installing_openstack/installation-config-parameters-openstack#installation-config-parameters-openstack)
 
@@ -671,46 +657,42 @@ Production environments can deny direct access to the internet and instead have 
    proxy:
      httpProxy: http://<username>:<pswd>@<ip>:<port>
      httpsProxy: https://<username>:<pswd>@<ip>:<port>
+     noProxy: example.com
+   additionalTrustBundle: |
+       -----BEGIN CERTIFICATE-----
+       <MY_TRUSTED_CA_CERT>
+       -----END CERTIFICATE-----
+   additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle>
+   # ...
    ```
 
-{%- if not aws %} noProxy: example.com {% endif %} {% if aws %} noProxy: ec2.<aws_region>.amazonaws.com,elasticloadbalancing.<aws_region>.amazonaws.com,s3.<aws_region>.amazonaws.com {%- endif %} additionalTrustBundle: | -----BEGIN CERTIFICATE----- <MY_TRUSTED_CA_CERT> -----END CERTIFICATE----- additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle> # ... \`\`\`
+   where:
 
-````
-where:
+   `proxy.httpProxy`
+   :   Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be `http`.
 
-`proxy.httpProxy`
-:   Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be `http`.
+   `proxy.httpsProxy`
+   :   Specifies a proxy URL to use for creating HTTPS connections outside the cluster.
 
-`proxy.httpsProxy`
-:   Specifies a proxy URL to use for creating HTTPS connections outside the cluster.
+   `proxy.noProxy`
+   :   Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with `.` to match subdomains only. For example, `.y.com` matches `x.y.com`, but not `y.com`. Use `*` to bypass the proxy for all destinations.
 
-`proxy.noProxy`
-:   Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with `.` to match subdomains only. For example, `.y.com` matches `x.y.com`, but not `y.com`. Use `*` to bypass the proxy for all destinations.
+   `additionalTrustBundle`
+   :   If you specify this value, the installation program generates a config map named `user-ca-bundle` in the `openshift-config` namespace to hold the additional CA certificates. If you specify `additionalTrustBundle` and at least one proxy setting, the `Proxy` object references the `user-ca-bundle` config map in the `trustedCA` field. The Cluster Network Operator then creates a `trusted-ca-bundle` config map that merges the contents specified for the `trustedCA` parameter with the RHCOS trust bundle. You must set the `additionalTrustBundle` field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.
 
-`additionalTrustBundle`
-:   If you specify this value, the installation program generates a config map named `user-ca-bundle` in the `openshift-config` namespace to hold the additional CA certificates. If you specify `additionalTrustBundle` and at least one proxy setting, the `Proxy` object references the `user-ca-bundle` config map in the `trustedCA` field. The Cluster Network Operator then creates a `trusted-ca-bundle` config map that merges the contents specified for the `trustedCA` parameter with the RHCOS trust bundle. You must set the `additionalTrustBundle` field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.
+   `additionalTrustBundlePolicy`
+   :   Specifies the policy that determines the configuration of the `Proxy` object to reference the `user-ca-bundle` config map in the `trustedCA` field. The allowed values are `Proxyonly` and `Always`. Use `Proxyonly` to reference the `user-ca-bundle` config map only when you configure an `http/https` proxy. Use `Always` to always reference the `user-ca-bundle` config map. The default value is `Proxyonly`. Optional parameter.
 
-`additionalTrustBundlePolicy`
-:   Specifies the policy that determines the configuration of the `Proxy` object to reference the `user-ca-bundle` config map in the `trustedCA` field. The allowed values are `Proxyonly` and `Always`. Use `Proxyonly` to reference the `user-ca-bundle` config map only when you configure an `http/https` proxy. Use `Always` to always reference the `user-ca-bundle` config map. The default value is `Proxyonly`. Optional parameter.
+   > [!NOTE]
+   > The installation program does not support the proxy `readinessEndpoints` field.
 
-:::note
-
-The installation program does not support the proxy `readinessEndpoints` field.
-
-:::
-
-:::note
-
-If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
-
-```terminal
-$ ./openshift-install wait-for install-complete --log-level debug
-```
-
-:::
-````
-
-1. Save the file and reference it when installing OpenShift Container Platform.
+   > [!NOTE]
+   > If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
+   >
+   > ```terminal
+   > $ ./openshift-install wait-for install-complete --log-level debug
+   > ```
+2. Save the file and reference it when installing OpenShift Container Platform.
 
    The installation program creates a cluster-wide proxy named `cluster` that uses the proxy settings in the `install-config.yaml` file. If you do not give proxy settings, the installation program still creates a `cluster` `Proxy` object, but it has a nil `spec`.
 
@@ -743,11 +725,7 @@ Clusters that use custom subnets have the following limitations:
 
 ### Deploying a cluster with bare-metal machines {#installation-osp-deploying-bare-metal-machines_installing-openstack-installer-custom}
 
-If you want your cluster to use bare-metal machines, modify the
-
-`install-config.yaml`
-
-file. Your cluster can have compute machines running on bare metal.
+If you want your cluster to use bare-metal machines, modify the `install-config.yaml` file. Your cluster can have compute machines running on bare metal.
 
 > [!NOTE]
 > Be sure that your `install-config.yaml` file reflects whether the RHOSP network that you use for bare-metal workers supports floating IP addresses or not.
@@ -793,6 +771,8 @@ file. Your cluster can have compute machines running on bare metal.
 
       `platform.openstack.machinesSubnet`
       :   If you want to use a pre-existing network, change this value to the UUID of the RHOSP subnet. Use the updated `install-config.yaml` file to complete the installation process. The compute machines that are created during deployment use the flavor that you added to the file.
+
+      -
 
       > [!NOTE]
       > The installation program may time out while waiting for bare-metal machines to boot.
@@ -910,6 +890,7 @@ You can deploy an OpenShift Container Platform cluster that has its primary netw
      When you deploy the cluster, the installer uses the `install-config.yaml` file to deploy the cluster on the provider network.
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding multiple networks](/openshift-docs-markdown/networking/multiple_networks/understanding-multiple-networks#understanding-multiple-networks)
 
@@ -920,9 +901,7 @@ The example `install-config.yaml` files demonstrate all of the possible Red Hat
 > [!IMPORTANT]
 > This sample file is provided for reference only. You must obtain your `install-config.yaml` file by using the installation program.
 
-<details>
-<summary>Example single stack `install-config.yaml` file</summary>
-
+:::details{title="Example single stack `install-config.yaml` file"}
 ```yaml
 apiVersion: v1
 baseDomain: example.com
@@ -953,18 +932,13 @@ platform:
     externalNetwork: external
     computeFlavor: m1.xlarge
     apiFloatingIP: 128.0.0.1
-{%- if not openshift_origin %}
 fips: false
-{%- endif %}
 pullSecret: '{"auths": ...}'
 sshKey: ssh-ed25519 AAAA...
 ```
+:::
 
-</details>
-
-<details>
-<summary>Example dual stack `install-config.yaml` file</summary>
-
+:::details{title="Example dual stack `install-config.yaml` file"}
 ```yaml
 apiVersion: v1
 baseDomain: example.com
@@ -1016,8 +990,7 @@ fips: false
 pullSecret: '{"auths": ...}'
 sshKey: ssh-ed25519 AAAA...
 ```
-
-</details>
+:::
 
 ### Configuring a cluster with dual-stack networking {#install-osp-dualstack_installing-openstack-installer-custom}
 
@@ -1054,143 +1027,142 @@ Create dual-stack networks and VIPs, then edit the `install-config.yaml` file to
 3. Add the IPv6 subnet to the router to enable router advertisements. If you are using a provider network, you can enable router advertisements by adding the network as an external gateway, which also enables external connectivity.
 4. To configure IPv4 and IPv6 address endpoints for cluster nodes, edit the `install-config.yaml` file. The following is an example of an `install-config.yaml` file:
 
-```yaml {title="Example install-config.yaml"}
-apiVersion: v1
-baseDomain: mydomain.test
-compute:
-- name: worker
-  platform:
-    openstack:
-      type: m1.xlarge
-  replicas: 3
-controlPlane:
-  name: master
-  platform:
-    openstack:
-      type: m1.xlarge
-  replicas: 3
-metadata:
-  name: mycluster
-networking:
-  machineNetwork:
-  - cidr: "192.168.25.0/24"
-  - cidr: "fd2e:6f44:5dd8:c956::/64"
-  clusterNetwork:
-  - cidr: 10.128.0.0/14
-    hostPrefix: 23
-  - cidr: fd01::/48
-    hostPrefix: 64
-  serviceNetwork:
-  - 172.30.0.0/16
-  - fd02::/112
-platform:
-  openstack:
-    ingressVIPs: ['192.168.25.79', 'fd2e:6f44:5dd8:c956:f816:3eff:fef1:1bad']
-    apiVIPs: ['192.168.25.199', 'fd2e:6f44:5dd8:c956:f816:3eff:fe78:cf36']
-    controlPlanePort:
-      fixedIPs:
-      - subnet:
-          name: subnet-v4
-          id: subnet-v4-id
-      - subnet:
-          name: subnet-v6
-          id: subnet-v6-id
-      network:
-        name: dualstack
-        id: network-id
-```
+   ```yaml {title="Example install-config.yaml"}
+   apiVersion: v1
+   baseDomain: mydomain.test
+   compute:
+   - name: worker
+     platform:
+       openstack:
+         type: m1.xlarge
+     replicas: 3
+   controlPlane:
+     name: master
+     platform:
+       openstack:
+         type: m1.xlarge
+     replicas: 3
+   metadata:
+     name: mycluster
+   networking:
+     machineNetwork:
+     - cidr: "192.168.25.0/24"
+     - cidr: "fd2e:6f44:5dd8:c956::/64"
+     clusterNetwork:
+     - cidr: 10.128.0.0/14
+       hostPrefix: 23
+     - cidr: fd01::/48
+       hostPrefix: 64
+     serviceNetwork:
+     - 172.30.0.0/16
+     - fd02::/112
+   platform:
+     openstack:
+       ingressVIPs: ['192.168.25.79', 'fd2e:6f44:5dd8:c956:f816:3eff:fef1:1bad']
+       apiVIPs: ['192.168.25.199', 'fd2e:6f44:5dd8:c956:f816:3eff:fe78:cf36']
+       controlPlanePort:
+         fixedIPs:
+         - subnet:
+             name: subnet-v4
+             id: subnet-v4-id
+         - subnet:
+             name: subnet-v6
+             id: subnet-v6-id
+         network:
+           name: dualstack
+           id: network-id
+   ```
 
-- `networking.machineNetwork`, `networking.clusterNetwork`, and `networking.serviceNetwork` specify IP address ranges for both the IPv4 and IPv6 address families. For RHOSP 17.1 deployments on single-stack IPv6 infrastructure, the OpenShift Container Platform cluster offers IPv4 connectivity internally.
-- `platform.openstack.ingressVIPs` specifies the virtual IP (VIP) address endpoints for the Ingress VIP services to give an interface to the cluster.
-- `platform.openstack.apiVIPs` specifies the virtual IP (VIP) address endpoints for the API VIP services to give an interface to the cluster.
-- `platform.openstack.controlPlanePort` specifies the dual-stack network details that all the nodes across the cluster use.
-- `platform.openstack.controlPlanePort.fixedIPs` specifies the subnets for the control plane port. The CIDR of any subnet specified in this field must match the CIDRs listed on `networking.machineNetwork`.
-- `platform.openstack.controlPlanePort.fixedIPs[].subnet` specifies each subnet. You can specify a value for either `name` or `id`, or both.
-- `platform.openstack.controlPlanePort.network` specifies the network. Specifying the `network` under the `controlPlanePort` field is optional.
+   - `networking.machineNetwork`, `networking.clusterNetwork`, and `networking.serviceNetwork` specify IP address ranges for both the IPv4 and IPv6 address families. For RHOSP 17.1 deployments on single-stack IPv6 infrastructure, the OpenShift Container Platform cluster offers IPv4 connectivity internally.
+   - `platform.openstack.ingressVIPs` specifies the virtual IP (VIP) address endpoints for the Ingress VIP services to give an interface to the cluster.
+   - `platform.openstack.apiVIPs` specifies the virtual IP (VIP) address endpoints for the API VIP services to give an interface to the cluster.
+   - `platform.openstack.controlPlanePort` specifies the dual-stack network details that all the nodes across the cluster use.
+   - `platform.openstack.controlPlanePort.fixedIPs` specifies the subnets for the control plane port. The CIDR of any subnet specified in this field must match the CIDRs listed on `networking.machineNetwork`.
+   - `platform.openstack.controlPlanePort.fixedIPs[].subnet` specifies each subnet. You can specify a value for either `name` or `id`, or both.
+   - `platform.openstack.controlPlanePort.network` specifies the network. Specifying the `network` under the `controlPlanePort` field is optional.
 
-  > [!NOTE]
-  > For RHOSP 17.1 deployments on single-stack IPv6 infrastructure, you can deploy a dual-stack OpenShift Container Platform cluster. In the `install-config.yaml` file, specify both IPv4 and IPv6 address ranges for the cluster and service networks. The OpenShift Container Platform cluster offers IPv4 connectivity internally, even though the underlying RHOSP network only has IPv6 subnets. In the `controlPlanePort.fixedIPs` section, specify both the IPv4 and IPv6 subnets.
+     > [!NOTE]
+     > For RHOSP 17.1 deployments on single-stack IPv6 infrastructure, you can deploy a dual-stack OpenShift Container Platform cluster. In the `install-config.yaml` file, specify both IPv4 and IPv6 address ranges for the cluster and service networks. The OpenShift Container Platform cluster offers IPv4 connectivity internally, even though the underlying RHOSP network only has IPv6 subnets. In the `controlPlanePort.fixedIPs` section, specify both the IPv4 and IPv6 subnets.
 
-  Alternatively, if you want an IPv6 primary dual-stack cluster, edit the `install-config.yaml` file following the example below:
+     Alternatively, if you want an IPv6 primary dual-stack cluster, edit the `install-config.yaml` file following the example below:
 
-```yaml {title="Example install-config.yaml"}
-apiVersion: v1
-baseDomain: mydomain.test
-compute:
-- name: worker
-  platform:
-    openstack:
-      type: m1.xlarge
-  replicas: 3
-controlPlane:
-  name: master
-  platform:
-    openstack:
-      type: m1.xlarge
-  replicas: 3
-metadata:
-  name: mycluster
-networking:
-  machineNetwork:
-  - cidr: "fd2e:6f44:5dd8:c956::/64"
-  - cidr: "192.168.25.0/24"
-  clusterNetwork:
-  - cidr: fd01::/48
-    hostPrefix: 64
-  - cidr: 10.128.0.0/14
-    hostPrefix: 23
-  serviceNetwork:
-  - fd02::/112
-  - 172.30.0.0/16
-platform:
-  openstack:
-    ingressVIPs: ['fd2e:6f44:5dd8:c956:f816:3eff:fef1:1bad', '192.168.25.79']
-    apiVIPs: ['fd2e:6f44:5dd8:c956:f816:3eff:fe78:cf36', '192.168.25.199']
-    controlPlanePort:
-      fixedIPs:
-      - subnet:
-          name: subnet-v6
-          id: subnet-v6-id
-      - subnet:
-          name: subnet-v4
-          id: subnet-v4-id
-      network:
-        name: dualstack
-        id: network-id
-```
+     ```yaml {title="Example install-config.yaml"}
+     apiVersion: v1
+     baseDomain: mydomain.test
+     compute:
+     - name: worker
+       platform:
+         openstack:
+           type: m1.xlarge
+       replicas: 3
+     controlPlane:
+       name: master
+       platform:
+         openstack:
+           type: m1.xlarge
+       replicas: 3
+     metadata:
+       name: mycluster
+     networking:
+       machineNetwork:
+       - cidr: "fd2e:6f44:5dd8:c956::/64"
+       - cidr: "192.168.25.0/24"
+       clusterNetwork:
+       - cidr: fd01::/48
+         hostPrefix: 64
+       - cidr: 10.128.0.0/14
+         hostPrefix: 23
+       serviceNetwork:
+       - fd02::/112
+       - 172.30.0.0/16
+     platform:
+       openstack:
+         ingressVIPs: ['fd2e:6f44:5dd8:c956:f816:3eff:fef1:1bad', '192.168.25.79']
+         apiVIPs: ['fd2e:6f44:5dd8:c956:f816:3eff:fe78:cf36', '192.168.25.199']
+         controlPlanePort:
+           fixedIPs:
+           - subnet:
+               name: subnet-v6
+               id: subnet-v6-id
+           - subnet:
+               name: subnet-v4
+               id: subnet-v4-id
+           network:
+             name: dualstack
+             id: network-id
+     ```
+   - `networking.machineNetwork`, `networking.clusterNetwork`, and `networking.serviceNetwork` specify IP address ranges for both the IPv4 and IPv6 address families. For RHOSP 17.1 deployments on single-stack IPv6 infrastructure, the OpenShift Container Platform cluster offers IPv4 connectivity internally.
+   - `platform.openstack.ingressVIPs` specifies the virtual IP (VIP) address endpoints for the Ingress VIP services to give an interface to the cluster.
+   - `platform.openstack.apiVIPs` specifies the virtual IP (VIP) address endpoints for the API VIP services to give an interface to the cluster.
+   - `platform.openstack.controlPlanePort` specifies the dual-stack network details that all the nodes across the cluster use.
+   - `platform.openstack.controlPlanePort.fixedIPs` specifies the subnets for the control plane port. The CIDR of any subnet specified in this field must match the CIDRs listed on `networking.machineNetwork`.
+   - `platform.openstack.controlPlanePort.fixedIPs[].subnet` specifies each subnet. You can specify a value for either `name` or `id`, or both.
+   - `platform.openstack.controlPlanePort.network` specifies the network. Specifying the `network` under the `controlPlanePort` field is optional.
 
-- `networking.machineNetwork`, `networking.clusterNetwork`, and `networking.serviceNetwork` specify IP address ranges for both the IPv4 and IPv6 address families. For RHOSP 17.1 deployments on single-stack IPv6 infrastructure, the OpenShift Container Platform cluster offers IPv4 connectivity internally.
-- `platform.openstack.ingressVIPs` specifies the virtual IP (VIP) address endpoints for the Ingress VIP services to give an interface to the cluster.
-- `platform.openstack.apiVIPs` specifies the virtual IP (VIP) address endpoints for the API VIP services to give an interface to the cluster.
-- `platform.openstack.controlPlanePort` specifies the dual-stack network details that all the nodes across the cluster use.
-- `platform.openstack.controlPlanePort.fixedIPs` specifies the subnets for the control plane port. The CIDR of any subnet specified in this field must match the CIDRs listed on `networking.machineNetwork`.
-- `platform.openstack.controlPlanePort.fixedIPs[].subnet` specifies each subnet. You can specify a value for either `name` or `id`, or both.
-- `platform.openstack.controlPlanePort.network` specifies the network. Specifying the `network` under the `controlPlanePort` field is optional.
+     > [!NOTE]
+     > When using an installation host in an isolated dual-stack network, the IPv6 address might not be reassigned correctly upon reboot.
+     >
+     > To resolve this problem on Red Hat Enterprise Linux (RHEL) 8, create a file called `/etc/NetworkManager/system-connections/required-rhel8-ipv6.conf` that has the following configuration:
+     >
+     > ```text
+     > [connection]
+     > type=ethernet
+     > [ipv6]
+     > addr-gen-mode=eui64
+     > method=auto
+     > ```
+     >
+     > To resolve this problem on RHEL 9, create a file called `/etc/NetworkManager/conf.d/required-rhel9-ipv6.conf` that has the following configuration:
+     >
+     > ```text
+     > [connection]
+     > ipv6.addr-gen-mode=0
+     > ```
+     >
+     > After you create and edit the file, reboot the installation host.
 
-  > [!NOTE]
-  > When using an installation host in an isolated dual-stack network, the IPv6 address might not be reassigned correctly upon reboot.
-  >
-  > To resolve this problem on Red Hat Enterprise Linux (RHEL) 8, create a file called `/etc/NetworkManager/system-connections/required-rhel8-ipv6.conf` that has the following configuration:
-  >
-  > ```text
-  > [connection]
-  > type=ethernet
-  > [ipv6]
-  > addr-gen-mode=eui64
-  > method=auto
-  > ```
-  >
-  > To resolve this problem on RHEL 9, create a file called `/etc/NetworkManager/conf.d/required-rhel9-ipv6.conf` that has the following configuration:
-  >
-  > ```text
-  > [connection]
-  > ipv6.addr-gen-mode=0
-  > ```
-  >
-  > After you create and edit the file, reboot the installation host.
-
-  > [!NOTE]
-  > The `ip=dhcp,dhcp6` kernel argument, which is set on all of the nodes, results in a single Network Manager connection profile that activates on many interfaces simultaneously. Because of this behavior, any additional network has the same connection enforced with the same UUID. If you need an interface-specific configuration, create a new connection profile for that interface so that the default connection is no longer enforced on it.
+     > [!NOTE]
+     > The `ip=dhcp,dhcp6` kernel argument, which is set on all of the nodes, results in a single Network Manager connection profile that activates on many interfaces simultaneously. Because of this behavior, any additional network has the same connection enforced with the same UUID. If you need an interface-specific configuration, create a new connection profile for that interface so that the default connection is no longer enforced on it.
 
 ### Configuring a cluster with single-stack IPv6 networking {#installation-configuring-shiftstack-single-ipv6_installing-openstack-installer-custom}
 
@@ -1201,16 +1173,18 @@ You can create a single-stack IPv6 cluster on Red Hat OpenStack Platform (RHOSP
 > [!NOTE]
 > For RHOSP 17.1, you can also deploy a dual-stack OpenShift Container Platform cluster on a single-stack IPv6 RHOSP infrastructure. The OpenShift Container Platform cluster offers IPv4 connectivity internally, even when the underlying RHOSP network only has IPv6 subnets.
 
-**❗ IMPORTANT**
-You cannot convert a dual-stack cluster into a single-stack IPv6 cluster.
+> [!IMPORTANT]
+> You cannot convert a dual-stack cluster into a single-stack IPv6 cluster.
 
 **Prerequisites**
 
 - Your RHOSP deployment has an existing network with a DHCPv6-stateful IPv6 subnet to use as the machine network.
 - DNS is configured for the existing IPv6 subnet.
 - The IPv6 subnet is added to a RHOSP router, and the router is configured to send router advertisements (RAs).
-- You added any additional IPv6 subnets that are used in the cluster to an RHOSP router to enable router advertisements. **📌 NOTE**
-  Using an IPv6 SLAAC subnet is not supported because any `dns_nameservers` addresses are not enforced by RHOSP Neutron.
+- You added any additional IPv6 subnets that are used in the cluster to an RHOSP router to enable router advertisements.
+
+  > [!NOTE]
+  > Using an IPv6 SLAAC subnet is not supported because any `dns_nameservers` addresses are not enforced by RHOSP Neutron.
 - You have a mirror registry with an IPv6 interface.
 - The RHOSP network accepts a minimum MTU size of 1442 bytes.
 - You created API and ingress virtual IP addresses (VIPs) as RHOSP ports on the machine network and included those addresses in the `install-config.yaml` file.
@@ -1281,6 +1255,7 @@ You cannot convert a dual-stack cluster into a single-stack IPv6 cluster.
    - `imageContentSources` specifies the mirror details. For more information on configuring a local image registry, see "Creating a mirror registry with mirror registry for Red Hat OpenShift".
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating a mirror registry with mirror registry for Red Hat OpenShift](/openshift-docs-markdown/disconnected/installing-mirroring-creating-registry#installing-mirroring-creating-registry)
 
@@ -1406,9 +1381,7 @@ You can configure OpenShift Container Platform API and application access by usi
 
 ### Enabling access with floating IP addresses {#installation-osp-accessing-api-floating_installing-openstack-installer-custom}
 
-Create floating IP (FIP) addresses for external access to the OpenShift Container Platform
-
-API and cluster applications.
+Create floating IP (FIP) addresses for external access to the OpenShift Container Platform API and cluster applications.
 
 **Procedure**
 
@@ -1440,23 +1413,15 @@ API and cluster applications.
    > - `application_floating_ip integrated-oauth-server-openshift-authentication.apps.<cluster_name>.<base_domain>`
    >
    > The cluster domain names in the `/etc/hosts` file grant access to the web console and the monitoring interface of your cluster locally. You can also use the `kubectl` or `oc`. You can access the user applications by using the additional entries pointing to the <application_floating_ip>. This action makes the API and applications accessible to only you, which is not suitable for production deployment, but does allow installation for development and testing.
-4. Add the FIPs to the
-
-   `install-config.yaml`
-
-   file as the values of the following
-
-   parameters:
+4. Add the FIPs to the `install-config.yaml` file as the values of the following parameters:
 
    - `platform.openstack.ingressFloatingIP`
    - `platform.openstack.apiFloatingIP`
 
-     If you use these values, you must also enter an external network as the value of the
+     If you use these values, you must also enter an external network as the value of the `platform.openstack.externalNetwork` parameter in the `install-config.yaml` file.
 
-     `platform.openstack.externalNetwork` parameter in the `install-config.yaml` file.
-
-> [!TIP]
-> You can make OpenShift Container Platform resources available outside of the cluster by assigning a floating IP address and updating your firewall configuration.
+     > [!TIP]
+     > You can make OpenShift Container Platform resources available outside of the cluster by assigning a floating IP address and updating your firewall configuration.
 
 ### Completing installation without floating IP addresses {#installation-osp-accessing-api-no-floating_installing-openstack-installer-custom}
 
@@ -1464,38 +1429,22 @@ You can install OpenShift Container Platform on Red Hat OpenStack Platform (RHO
 
 **Procedure**
 
-1. In the
+1. In the `install-config.yaml` file, do not define the following parameters:
 
-`install-config.yaml`
+   - `platform.openstack.ingressFloatingIP`
+   - `platform.openstack.apiFloatingIP`
+2. If you cannot provide an external network, you can also leave `platform.openstack.externalNetwork` blank. If you do not provide a value for `platform.openstack.externalNetwork`, a router is not created for you, and, without additional action, the installer will fail to retrieve an image from Glance. You must configure external connectivity on your own.
+3. If you run the installer from a system that cannot reach the cluster API due to a lack of floating IP addresses or name resolution, installation fails. To prevent installation failure in these cases, you can use a proxy network or run the installer from a system that is on the same network as your machines.
 
-file, do not define the following
-
-parameters:
-
-```
-*   `platform.openstack.ingressFloatingIP`
-*   `platform.openstack.apiFloatingIP`
-```
-
-1. If you cannot provide an external network, you can also leave `platform.openstack.externalNetwork` blank. If you do not provide a value for `platform.openstack.externalNetwork`, a router is not created for you, and, without additional action, the installer will fail to retrieve an image from Glance. You must configure external connectivity on your own.
-2. If you run the installer
-
-from a system that cannot reach the cluster API due to a lack of floating IP addresses or name resolution, installation fails. To prevent installation failure in these cases, you can use a proxy network or run the installer from a system that is on the same network as your machines.
-
-````
-:::note
-
-You can enable name resolution by creating DNS records for the API and Ingress ports. For example:
-
-```dns
-api.<cluster_name>.<base_domain>.  IN  A  <api_port_IP>
-*.apps.<cluster_name>.<base_domain>. IN  A <ingress_port_IP>
-```
-
-If you do not control the DNS server, you can add the record to your `/etc/hosts` file. This action makes the API accessible to only you, which is not suitable for production deployment but does allow installation for development and testing.
-
-:::
-````
+   > [!NOTE]
+   > You can enable name resolution by creating DNS records for the API and Ingress ports. For example:
+   >
+   > ```dns
+   > api.<cluster_name>.<base_domain>.  IN  A  <api_port_IP>
+   > *.apps.<cluster_name>.<base_domain>. IN  A <ingress_port_IP>
+   > ```
+   >
+   > If you do not control the DNS server, you can add the record to your `/etc/hosts` file. This action makes the API accessible to only you, which is not suitable for production deployment but does allow installation for development and testing.
 
 ## Deploying the cluster {#installation-launching-installer_installing-openstack-installer-custom}
 
@@ -1511,19 +1460,15 @@ To deploy your OpenShift Container Platform cluster, you can initialize installa
 
 **Procedure**
 
-````
-*   In the directory that contains the installation program, initialize the cluster deployment by running the following command:
+- In the directory that contains the installation program, initialize the cluster deployment by running the following command:
 
 ```terminal
 $ ./openshift-install create cluster --dir <installation_directory> \
     --log-level=info
 ```
-    *   For `<installation_directory>`, specify the
-    location of your customized `./install-config.yaml` file.
 
-    *   To view different installation details, specify `warn`, `debug`, or
-    `error` instead of `info`.
-````
+- For `<installation_directory>`, specify the location of your customized `./install-config.yaml` file.
+- To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
 
 **Verification**
 
@@ -1623,6 +1568,7 @@ The `kubeconfig` file is specific to a cluster and OpenShift Container Platform 
 - "Remote health reporting"
 
 **Additional resources**
+{._additional-resources}
 
 - [Accessing the web console](/openshift-docs-markdown/web_console/web-console#web-console)
 
@@ -1633,10 +1579,12 @@ To provide metrics about cluster health and the success of updates, the Telemetr
 After you confirm that your [OpenShift Cluster Manager](https://console.redhat.com/openshift) inventory is correct, either maintained automatically by Telemetry or manually by using OpenShift Cluster Manager,use subscription watch to track your OpenShift Container Platform subscriptions at the account or multi-cluster level. For more information about subscription watch, see "Data Gathered and Used by Red Hat’s subscription services" in the *Additional resources* section.
 
 **Additional resources**
+{._additional-resources}
 
 - [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
 
-## Additional resources {#additional-resources_installing-openstack-installer-custom}
+**Additional resources**
+{._additional-resources}
 
 - [Postinstallation cluster tasks](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations)
 - [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)

@@ -20,7 +20,7 @@ You can increase the size of a virtual machine (VM) disk by expanding the persis
 1. In the **Administrator** or **Virtualization** perspective, open the **VirtualMachines** page.
 2. Select the running VM to open its **Details** page.
 3. Select the **Configuration** tab and click **Storage**.
-4. Click the options menu ![](kebab.png "Options menu") next to the disk you want to expand. Select the **Edit** option.
+4. Click the options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the disk you want to expand. Select the **Edit** option.
 
    The **Edit disk** dialog opens.
 5. In the **PersistentVolumeClaim size** field, enter the desired size.
@@ -56,9 +56,14 @@ You can increase the size of a virtual machine (VM) disk by expanding the persis
       name: vm-disk-expand
    spec:
      accessModes:
+        - ReadWriteMany
+     resources:
+       requests:
+          storage: 3Gi
+   # ...
    ```
 
-{%- if openshift_dedicated %} - ReadWriteOnce {% endif %} {% if not openshift_dedicated %} - ReadWriteMany {%- endif %} resources: requests: storage: 3Gi # ... \`\`\` \*   `spec.resources.requests.storage` specifies the new disk size.
+   - `spec.resources.requests.storage` specifies the new disk size.
 
 ## Expanding available virtual storage by adding blank data volumes {#virt-expanding-storage-with-data-volumes_virt-expanding-vm-disks}
 
@@ -96,7 +101,8 @@ You can expand the available storage of a virtual machine (VM) by adding blank d
    $ oc create -f <blank-image-datavolume>.yaml
    ```
 
-## Additional resources {#additional-resources_virt-expanding-vm-disks}
+**Additional resources**
+{._additional-resources}
 
 - [Extending a basic volume in Windows](https://docs.microsoft.com/en-us/windows-server/storage/disk-management/extend-a-basic-volume)
 - [Extending an existing file system partition without destroying data in Red Hat Enterprise Linux](https://access.redhat.com/solutions/29095)

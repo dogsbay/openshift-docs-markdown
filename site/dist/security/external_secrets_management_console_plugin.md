@@ -1,8 +1,8 @@
 ---
-title: "{{ external_secrets_console_plugin }}"
+title: External Secrets Management Console Plug-in
 ---
 
-# {{ external_secrets_console_plugin }} {#external-secrets-console-plugin-overview}
+# External Secrets Management Console Plug-in {#external-secrets-console-plugin-overview}
 
 The External Secrets Management Console Plug-in is an Operator that manages the secrets and custom resource definitions (CRDs) for the secrets management Operators. Using External Secrets Management Console Plug-in, you can monitor and delete the custom resources (CRs) of all the installed secrets management Operators.
 

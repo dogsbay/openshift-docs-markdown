@@ -30,35 +30,37 @@ Setting the number of worker nodes to `0` ensures that the control plane machine
 
 1. Set the number of compute replicas to `0` in your `install-config.yaml` file, as shown in the following `compute` stanza:
 
-   ```yaml {title="Example install-config.yaml file for a three-node cluster"}
-   apiVersion: v1
-   baseDomain: example.com
-   compute:
-   - name: worker
-     platform: {}
-     replicas: 0
-   # ...
-   ```
-2. If you are deploying a cluster with user-provisioned infrastructure:
+.Example `install-config.yaml` file for a three-node cluster
 
-   - After you create the Kubernetes manifest files, make sure that the `spec.mastersSchedulable` parameter is set to `true` in `cluster-scheduler-02-config.yml` file. You can locate this file in `<installation_directory>/manifests`.
+```yaml
+apiVersion: v1
+baseDomain: example.com
+compute:
+- name: worker
+  platform: {}
+  replicas: 0
+# ...
+```
 
-   For more information, see "Creating the Kubernetes manifest and Ignition config files" in "Installing a cluster on Azure using ARM templates".
+1. If you are deploying a cluster with user-provisioned infrastructure:
 
+   - After you create the Kubernetes manifest files, make sure that the `spec.mastersSchedulable` parameter is set to `true` in `cluster-scheduler-02-config.yml` file. You can locate this file in `<installation_directory>/manifests`. For more information, see "Creating the Kubernetes manifest and Ignition config files" in "Installing a cluster on Azure using ARM templates".
    - Do not create additional worker nodes.
 
-     ```yaml {title="Example cluster-scheduler-02-config.yml file for a three-node cluster"}
-     apiVersion: config.openshift.io/v1
-     kind: Scheduler
-     metadata:
-       creationTimestamp: null
-       name: cluster
-     spec:
-       mastersSchedulable: true
-       policy:
-         name: ""
-     status: {}
-     ```
+.Example `cluster-scheduler-02-config.yml` file for a three-node cluster
+
+```yaml
+apiVersion: config.openshift.io/v1
+kind: Scheduler
+metadata:
+  creationTimestamp: null
+  name: cluster
+spec:
+  mastersSchedulable: true
+  policy:
+    name: ""
+status: {}
+```
 
 ## Additional resources {#additional-resources_installing-azure-three-node}
 

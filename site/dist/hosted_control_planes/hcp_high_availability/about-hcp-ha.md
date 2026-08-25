@@ -1,5 +1,5 @@
 ---
-title: About high availability for {{ hcp }}
+title: About high availability for hosted control planes
 ---
 
 # About high availability for hosted control planes {#about-hcp-ha}

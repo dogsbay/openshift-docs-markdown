@@ -16,11 +16,12 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 
-const headings = [{"depth":1,"slug":"using-s21-images","text":"Source-to-image"},{"depth":2,"slug":"accessing-s2i-builder-images-in-developer-console_using-s21-images","text":"Accessing S2I builder images in the OpenShift Container Platform Developer Console"},{"depth":2,"slug":"images-s2i-build-process-overview_using-s21-images","text":"Source-to-image build process overview"},{"depth":2,"slug":"additional-resources_using-s21-images","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"using-s21-images","text":"Source-to-image"},{"depth":2,"slug":"accessing-s2i-builder-images-in-developer-console_using-s21-images","text":"Accessing S2I builder images in the OpenShift Container Platform Developer Console"},{"depth":2,"slug":"images-s2i-build-process-overview_using-s21-images","text":"Source-to-image build process overview"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/openshift_images/using_images/using-s21-images";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -39,7 +40,7 @@ const pageCategory = ["openshift_images","openshift_images/using_images"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Source-to-image {#using-s21-images}\n\nTo create containerized applications in OpenShift Container Platform without manually configuring runtime environments, you can use Source-to-Image (S2I) images. S2I images are runtime base images for languages such as Node.js, Python, and Java that you can insert your code into. You can use Red Hat Software Collections images as a foundation for applications that rely on specific runtime environments, and access S2I images through the Cluster Samples Operator.\n\n## Accessing S2I builder images in the OpenShift Container Platform Developer Console {#accessing-s2i-builder-images-in-developer-console_using-s21-images}\n\nYou can access S2I builder images through the Developer Console in the web console. You need these images to build containerized applications from your source code.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console using your login credentials. The default view for the OpenShift Container Platform web console is the **Administrator** perspective.\n2. Use the perspective switcher to switch to the **Developer** perspective.\n3. In the **+Add** view, use the **Project** drop-down list to select an existing project or create a new project.\n4. Click **All services** in the **Developer Catalog** tile.\n5. Click **Builder Images** under **Type** to see the available S2I images.\n\n## Source-to-image build process overview {#images-s2i-build-process-overview_using-s21-images}\n\nSource-to-image (S2I) is a build process in OpenShift Container Platform that injects your source code into a container image. S2I automates the creation of ready-to-run container images from your application source code without manual configuration.\n\nS2I performs the following steps:\n\n1. Runs the `FROM <builder image>` command\n2. Copies the source code to a defined location in the builder image\n3. Runs the assemble script in the builder image\n4. Sets the run script in the builder image as the default command\n\nBuildah then creates the container image.\n\n## Additional resources {#additional-resources_using-s21-images}\n\n- [Red Hat Software Collections container images](https://access.redhat.com/documentation/en-us/red_hat_software_collections/3/html-single/using_red_hat_software_collections_container_images/index)\n- [Introduction to source-to-image for OpenShift with Red Hat build of OpenJDK](https://docs.redhat.com/en/documentation/red_hat_build_of_openjdk/11/html/using_source-to-image_for_openshift_with_red_hat_build_of_openjdk_11/openjdk-overview-s2i-openshift)\n- [Configuring the Cluster Samples Operator](/openshift-docs-markdown/openshift_images/configuring-samples-operator#configuring-samples-operator)\n- [Using build strategies](/openshift-docs-markdown/cicd/builds/build-strategies#builds-strategy-s2i-build_build-strategies)\n- [Troubleshooting the Source-to-Image process](/openshift-docs-markdown/support/troubleshooting/troubleshooting-s2i#troubleshooting-s2i)\n- [Creating images from source code with source-to-image](/openshift-docs-markdown/openshift_images/create-images#images-create-s2i_create-images)\n- [About testing source-to-image images](/openshift-docs-markdown/openshift_images/create-images#images-test-s2i_create-images)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/openshift_images/using_images/using-s21-images.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Source-to-image {#using-s21-images}\n\nTo create containerized applications in OpenShift Container Platform without manually configuring runtime environments, you can use Source-to-Image (S2I) images. S2I images are runtime base images for languages such as Node.js, Python, and Java that you can insert your code into. You can use Red Hat Software Collections images as a foundation for applications that rely on specific runtime environments, and access S2I images through the Cluster Samples Operator.\n\n## Accessing S2I builder images in the OpenShift Container Platform Developer Console {#accessing-s2i-builder-images-in-developer-console_using-s21-images}\n\nYou can access S2I builder images through the Developer Console in the web console. You need these images to build containerized applications from your source code.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console using your login credentials. The default view for the OpenShift Container Platform web console is the **Administrator** perspective.\n2. Use the perspective switcher to switch to the **Developer** perspective.\n3. In the **+Add** view, use the **Project** drop-down list to select an existing project or create a new project.\n4. Click **All services** in the **Developer Catalog** tile.\n5. Click **Builder Images** under **Type** to see the available S2I images.\n\n## Source-to-image build process overview {#images-s2i-build-process-overview_using-s21-images}\n\nSource-to-image (S2I) is a build process in OpenShift Container Platform that injects your source code into a container image. S2I automates the creation of ready-to-run container images from your application source code without manual configuration.\n\nS2I performs the following steps:\n\n1. Runs the `FROM <builder image>` command\n2. Copies the source code to a defined location in the builder image\n3. Runs the assemble script in the builder image\n4. Sets the run script in the builder image as the default command\n\nBuildah then creates the container image.\n\n**Additional resources**\n{._additional-resources}\n\n- [Red Hat Software Collections container images](https://access.redhat.com/documentation/en-us/red_hat_software_collections/3/html-single/using_red_hat_software_collections_container_images/index)\n- [Introduction to source-to-image for OpenShift with Red Hat build of OpenJDK](https://docs.redhat.com/en/documentation/red_hat_build_of_openjdk/11/html/using_source-to-image_for_openshift_with_red_hat_build_of_openjdk_11/openjdk-overview-s2i-openshift)\n- [Configuring the Cluster Samples Operator](/openshift-docs-markdown/openshift_images/configuring-samples-operator#configuring-samples-operator)\n- [Using build strategies](/openshift-docs-markdown/cicd/builds/build-strategies#builds-strategy-s2i-build_build-strategies)\n- [Troubleshooting the Source-to-Image process](/openshift-docs-markdown/support/troubleshooting/troubleshooting-s2i#troubleshooting-s2i)\n- [Creating images from source code with source-to-image](/openshift-docs-markdown/openshift_images/create-images#images-create-s2i_create-images)\n- [About testing source-to-image images](/openshift-docs-markdown/openshift_images/create-images#images-test-s2i_create-images)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/openshift_images/using_images/using-s21-images.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,12 +79,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -91,7 +93,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="using-s21-images" class="group scroll-mt-20">Source-to-image<a href="#using-s21-images" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>To create containerized applications in OpenShift Container Platform without manually configuring runtime environments, you can use Source-to-Image (S2I) images. S2I images are runtime base images for languages such as Node.js, Python, and Java that you can insert your code into. You can use Red Hat Software Collections images as a foundation for applications that rely on specific runtime environments, and access S2I images through the Cluster Samples Operator.</p>
+      <p class="_abstract">To create containerized applications in OpenShift Container Platform without manually configuring runtime environments, you can use Source-to-Image (S2I) images. S2I images are runtime base images for languages such as Node.js, Python, and Java that you can insert your code into. You can use Red Hat Software Collections images as a foundation for applications that rely on specific runtime environments, and access S2I images through the Cluster Samples Operator.</p>
       <h2 id="accessing-s2i-builder-images-in-developer-console_using-s21-images" class="group scroll-mt-20">Accessing S2I builder images in the OpenShift Container Platform Developer Console<a href="#accessing-s2i-builder-images-in-developer-console_using-s21-images" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">You can access S2I builder images through the Developer Console in the web console. You need these images to build containerized applications from your source code.</p>
       <p><strong>Procedure</strong></p>
@@ -112,7 +114,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>Sets the run script in the builder image as the default command</li>
       </ol>
       <p>Buildah then creates the container image.</p>
-      <h2 id="additional-resources_using-s21-images" class="group scroll-mt-20">Additional resources<a href="#additional-resources_using-s21-images" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul>
       <li><a href="https://access.redhat.com/documentation/en-us/red_hat_software_collections/3/html-single/using_red_hat_software_collections_container_images/index">Red Hat Software Collections container images</a></li>
       <li><a href="https://docs.redhat.com/en/documentation/red_hat_build_of_openjdk/11/html/using_source-to-image_for_openshift_with_red_hat_build_of_openjdk_11/openjdk-overview-s2i-openshift">Introduction to source-to-image for OpenShift with Red Hat build of OpenJDK</a></li>
@@ -122,6 +125,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li><a href="/openshift-docs-markdown/openshift_images/create-images#images-create-s2i_create-images">Creating images from source code with source-to-image</a></li>
       <li><a href="/openshift-docs-markdown/openshift_images/create-images#images-test-s2i_create-images">About testing source-to-image images</a></li>
       </ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

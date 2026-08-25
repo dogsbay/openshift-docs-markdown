@@ -1,5 +1,5 @@
 ---
-title: MachineHealthCheck []
+title: MachineHealthCheck [machine.openshift.io/v1beta1]
 ---
 
 # MachineHealthCheck \[machine.openshift.io/v1beta1\] {#machinehealthcheck-machine-openshift-io-v1beta1}
@@ -36,10 +36,10 @@ Type
 | --- | --- | --- |
 | `maxUnhealthy` | `integer-or-string` | Any farther remediation is only allowed if at most "MaxUnhealthy" machines selected by "selector" are not healthy. Expects either a postive integer value or a percentage value. Percentage values must be positive whole numbers and are capped at 100%. Both 0 and 0% are valid and will block all remediation. Defaults to 100% if not set. |
 | `nodeStartupTimeout` | `string` | Machines older than this duration without a node will be considered to have failed and will be remediated. To prevent Machines without Nodes from being removed, disable startup checks by setting this value explicitly to "0". Expects an unsigned duration string of decimal numbers each with optional fraction and a unit suffix, eg "300ms", "1.5h" or "2h45m". Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". |
-| `remediationTemplate` | `object` | remediationTemplate is a reference to a remediation template provided by an infrastructure provider. This field is completely optional, when filled, the MachineHealthCheck controller creates a new object from the template referenced and hands off remediation of the machine to a controller that lives outside of Machine API Operator. |
+| `remediationTemplate` | `object` | remediationTemplate is a reference to a remediation template provided by an infrastructure provider.<br>This field is completely optional, when filled, the MachineHealthCheck controller creates a new object from the template referenced and hands off remediation of the machine to a controller that lives outside of Machine API Operator. |
 | `selector` | `object` | Label selector to match machines whose health will be exercised. Note: An empty selector will match all machines. |
-| `unhealthyConditions` | `array` | unhealthyConditions contains a list of the conditions that determine whether a node is considered unhealthy.  The conditions are combined in a logical OR, i.e. if any of the conditions is met, the node is unhealthy. |
-| `unhealthyConditions[]` | `object` | UnhealthyCondition represents a Node condition type and value with a timeout specified as a duration.  When the named condition has been in the given status for at least the timeout value, a node is considered unhealthy. |
+| `unhealthyConditions` | `array` | unhealthyConditions contains a list of the conditions that determine whether a node is considered unhealthy. The conditions are combined in a logical OR, i.e. if any of the conditions is met, the node is unhealthy. |
+| `unhealthyConditions[]` | `object` | UnhealthyCondition represents a Node condition type and value with a timeout specified as a duration. When the named condition has been in the given status for at least the timeout value, a node is considered unhealthy. |
 
 ### .spec.remediationTemplate {#_specremediationtemplate}
 
@@ -56,7 +56,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{{ name }}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -194,18 +194,18 @@ The following API endpoints are available:
 - `/apis/machine.openshift.io/v1beta1/machinehealthchecks`
 
   - `GET`: list objects of kind MachineHealthCheck
-- `/apis/machine.openshift.io/v1beta1/namespaces/{{ namespace }}/machinehealthchecks`
+- `/apis/machine.openshift.io/v1beta1/namespaces/{namespace}/machinehealthchecks`
 
   - `DELETE`: delete collection of MachineHealthCheck
   - `GET`: list objects of kind MachineHealthCheck
   - `POST`: create a MachineHealthCheck
-- `/apis/machine.openshift.io/v1beta1/namespaces/{{ namespace }}/machinehealthchecks/{{ name }}`
+- `/apis/machine.openshift.io/v1beta1/namespaces/{namespace}/machinehealthchecks/{name}`
 
   - `DELETE`: delete a MachineHealthCheck
   - `GET`: read the specified MachineHealthCheck
   - `PATCH`: partially update the specified MachineHealthCheck
   - `PUT`: replace the specified MachineHealthCheck
-- `/apis/machine.openshift.io/v1beta1/namespaces/{{ namespace }}/machinehealthchecks/{{ name }}/status`
+- `/apis/machine.openshift.io/v1beta1/namespaces/{namespace}/machinehealthchecks/{name}/status`
 
   - `GET`: read status of the specified MachineHealthCheck
   - `PATCH`: partially update status of the specified MachineHealthCheck
@@ -230,7 +230,7 @@ Description
 | 200 - OK | [`MachineHealthCheckList`](/openshift-docs-markdown/rest_api/objects/index#io-openshift-machine-v1beta1-MachineHealthCheckList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machine.openshift.io/v1beta1/namespaces/{{ namespace }}/machinehealthchecks {#_apismachineopenshiftiov1beta1namespaces_namespace_machinehealthchecks}
+### /apis/machine.openshift.io/v1beta1/namespaces/{namespace}/machinehealthchecks {#_apismachineopenshiftiov1beta1namespaces_namespace_machinehealthchecks}
 
 HTTP method
 :   ```
@@ -298,7 +298,7 @@ Description
 | 202 - Accepted | [`MachineHealthCheck`](/openshift-docs-markdown/rest_api/machine_apis/machinehealthcheck-machine-openshift-io-v1beta1#machinehealthcheck-machine-openshift-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machine.openshift.io/v1beta1/namespaces/{{ namespace }}/machinehealthchecks/{{ name }} {#_apismachineopenshiftiov1beta1namespaces_namespace_machinehealthchecks_name}
+### /apis/machine.openshift.io/v1beta1/namespaces/{namespace}/machinehealthchecks/{name} {#_apismachineopenshiftiov1beta1namespaces_namespace_machinehealthchecks_name}
 
 **Global path parameters**
 
@@ -402,7 +402,7 @@ Description
 | 201 - Created | [`MachineHealthCheck`](/openshift-docs-markdown/rest_api/machine_apis/machinehealthcheck-machine-openshift-io-v1beta1#machinehealthcheck-machine-openshift-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machine.openshift.io/v1beta1/namespaces/{{ namespace }}/machinehealthchecks/{{ name }}/status {#_apismachineopenshiftiov1beta1namespaces_namespace_machinehealthchecks_name_status}
+### /apis/machine.openshift.io/v1beta1/namespaces/{namespace}/machinehealthchecks/{name}/status {#_apismachineopenshiftiov1beta1namespaces_namespace_machinehealthchecks_name_status}
 
 **Global path parameters**
 

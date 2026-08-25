@@ -1,5 +1,5 @@
 ---
-title: Specifying nodes for {{ VirtProductName }} components
+title: Specifying nodes for OpenShift Virtualization components
 ---
 
 # Specifying nodes for OpenShift Virtualization components {#virt-node-placement-virt-components}
@@ -51,7 +51,7 @@ You can apply node placement rules to ensure that virtualization components run 
 1. Edit the object in your default editor by running the following command:
 
    ```terminal
-   $ oc edit <resource_type> <resource_name> -n {{ CNVNamespace }}
+   $ oc edit <resource_type> <resource_name> -n openshift-cnv
    ```
 2. Save the file to apply the changes.
 
@@ -74,12 +74,12 @@ apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
   name: hco-operatorhub
-  namespace: {{ CNVNamespace }}
+  namespace: openshift-cnv
 spec:
-  source: {{ CNVSubscriptionSpecSource }}
+  source: redhat-operators
   sourceNamespace: openshift-marketplace
-  name: {{ CNVSubscriptionSpecName }}
-  startingCSV: kubevirt-hyperconverged-operator.v{{ HCOVersion }}
+  name: kubevirt-hyperconverged
+  startingCSV: kubevirt-hyperconverged-operator.v4.22.6
   channel: "stable"
   config:
     nodeSelector:
@@ -95,12 +95,12 @@ apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
   name: hco-operatorhub
-  namespace: {{ CNVNamespace }}
+  namespace: openshift-cnv
 spec:
-  source:  {{ CNVSubscriptionSpecSource }}
+  source:  redhat-operators
   sourceNamespace: openshift-marketplace
-  name: {{ CNVSubscriptionSpecName }}
-  startingCSV: kubevirt-hyperconverged-operator.v{{ HCOVersion }}
+  name: kubevirt-hyperconverged
+  startingCSV: kubevirt-hyperconverged-operator.v4.22.6
   channel: "stable"
   config:
     tolerations:
@@ -123,7 +123,7 @@ apiVersion: hco.kubevirt.io/v1beta1
 kind: HyperConverged
 metadata:
   name: kubevirt-hyperconverged
-  namespace: {{ CNVNamespace }}
+  namespace: openshift-cnv
 spec:
   infra:
     nodePlacement:
@@ -145,7 +145,7 @@ apiVersion: hco.kubevirt.io/v1beta1
 kind: HyperConverged
 metadata:
   name: kubevirt-hyperconverged
-  namespace: {{ CNVNamespace }}
+  namespace: openshift-cnv
 spec:
   infra:
     nodePlacement:
@@ -190,7 +190,7 @@ apiVersion: hco.kubevirt.io/v1beta1
 kind: HyperConverged
 metadata:
   name: kubevirt-hyperconverged
-  namespace: {{ CNVNamespace }}
+  namespace: openshift-cnv
 spec:
   workloads:
     nodePlacement:
@@ -233,7 +233,8 @@ spec:
 
 Workloads are placed on nodes labeled `example.io/example-workloads-key = example-workloads-value`.
 
-## Additional resources {#additional-resources_virt-node-placement-virt-components}
+**Additional resources**
+{._additional-resources}
 
 - [Specifying nodes for virtual machines](/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-specifying-nodes-for-vms#virt-specifying-nodes-for-vms)
 - [Placing pods on specific nodes using node selectors](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-node-selectors#nodes-scheduler-node-selectors)

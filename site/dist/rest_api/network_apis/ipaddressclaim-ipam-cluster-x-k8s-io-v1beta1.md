@@ -1,5 +1,5 @@
 ---
-title: IPAddressClaim []
+title: IPAddressClaim [ipam.cluster.x-k8s.io/v1beta1]
 ---
 
 # IPAddressClaim \[ipam.cluster.x-k8s.io/v1beta1\] {#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1}
@@ -169,7 +169,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
 | `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
@@ -183,18 +183,18 @@ The following API endpoints are available:
 - `/apis/ipam.cluster.x-k8s.io/v1beta1/ipaddressclaims`
 
   - `GET`: list objects of kind IPAddressClaim
-- `/apis/ipam.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/ipaddressclaims`
+- `/apis/ipam.cluster.x-k8s.io/v1beta1/namespaces/{namespace}/ipaddressclaims`
 
   - `DELETE`: delete collection of IPAddressClaim
   - `GET`: list objects of kind IPAddressClaim
   - `POST`: create an IPAddressClaim
-- `/apis/ipam.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/ipaddressclaims/{{ name }}`
+- `/apis/ipam.cluster.x-k8s.io/v1beta1/namespaces/{namespace}/ipaddressclaims/{name}`
 
   - `DELETE`: delete an IPAddressClaim
   - `GET`: read the specified IPAddressClaim
   - `PATCH`: partially update the specified IPAddressClaim
   - `PUT`: replace the specified IPAddressClaim
-- `/apis/ipam.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/ipaddressclaims/{{ name }}/status`
+- `/apis/ipam.cluster.x-k8s.io/v1beta1/namespaces/{namespace}/ipaddressclaims/{name}/status`
 
   - `GET`: read status of the specified IPAddressClaim
   - `PATCH`: partially update status of the specified IPAddressClaim
@@ -219,7 +219,7 @@ Description
 | 200 - OK | [`IPAddressClaimList`](/openshift-docs-markdown/rest_api/objects/index#io-x-k8s-cluster-ipam-v1beta1-IPAddressClaimList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/ipam.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/ipaddressclaims {#_apisipamclusterx-k8siov1beta1namespaces_namespace_ipaddressclaims}
+### /apis/ipam.cluster.x-k8s.io/v1beta1/namespaces/{namespace}/ipaddressclaims {#_apisipamclusterx-k8siov1beta1namespaces_namespace_ipaddressclaims}
 
 HTTP method
 :   ```
@@ -287,7 +287,7 @@ Description
 | 202 - Accepted | [`IPAddressClaim`](/openshift-docs-markdown/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/ipam.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/ipaddressclaims/{{ name }} {#_apisipamclusterx-k8siov1beta1namespaces_namespace_ipaddressclaims_name}
+### /apis/ipam.cluster.x-k8s.io/v1beta1/namespaces/{namespace}/ipaddressclaims/{name} {#_apisipamclusterx-k8siov1beta1namespaces_namespace_ipaddressclaims_name}
 
 **Global path parameters**
 
@@ -391,7 +391,7 @@ Description
 | 201 - Created | [`IPAddressClaim`](/openshift-docs-markdown/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/ipam.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/ipaddressclaims/{{ name }}/status {#_apisipamclusterx-k8siov1beta1namespaces_namespace_ipaddressclaims_name_status}
+### /apis/ipam.cluster.x-k8s.io/v1beta1/namespaces/{namespace}/ipaddressclaims/{name}/status {#_apisipamclusterx-k8siov1beta1namespaces_namespace_ipaddressclaims_name_status}
 
 **Global path parameters**
 

@@ -46,7 +46,7 @@ Required
 | `minReadySeconds` | `integer` | Minimum number of seconds for which a newly created pod should be ready without any of its container crashing for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready) |
 | `ordinals` | `object` | StatefulSetOrdinals describes the policy used for replica ordinal assignment in this StatefulSet. |
 | `persistentVolumeClaimRetentionPolicy` | `object` | StatefulSetPersistentVolumeClaimRetentionPolicy describes the policy used for PVCs created from the StatefulSet VolumeClaimTemplates. |
-| `podManagementPolicy` | `string` | podManagementPolicy controls how pods are created during initial scale up, when replacing pods on nodes, or when scaling down. The default policy is `OrderedReady`, where pods are created in increasing order (pod-0, then pod-1, etc) and the controller will wait until each pod is ready before continuing. When scaling down, the pods are removed in the opposite order. The alternative policy is `Parallel` which will create pods in parallel to match the desired scale without waiting, and on scale down will delete all pods at once. Possible enum values:  - `"OrderedReady"` will create pods in strictly increasing order on scale up and strictly decreasing order on scale down, progressing only when the previous pod is ready or terminated. At most one pod will be changed at any time.  - `"Parallel"` will create and delete pods as soon as the stateful set replica count is changed, and will not wait for pods to be ready or complete termination. |
+| `podManagementPolicy` | `string` | podManagementPolicy controls how pods are created during initial scale up, when replacing pods on nodes, or when scaling down. The default policy is `OrderedReady`, where pods are created in increasing order (pod-0, then pod-1, etc) and the controller will wait until each pod is ready before continuing. When scaling down, the pods are removed in the opposite order. The alternative policy is `Parallel` which will create pods in parallel to match the desired scale without waiting, and on scale down will delete all pods at once.<br>Possible enum values: - `"OrderedReady"` will create pods in strictly increasing order on scale up and strictly decreasing order on scale down, progressing only when the previous pod is ready or terminated. At most one pod will be changed at any time. - `"Parallel"` will create and delete pods as soon as the stateful set replica count is changed, and will not wait for pods to be ready or complete termination. |
 | `replicas` | `integer` | replicas is the desired number of replicas of the given Template. These are replicas in the sense that they are instantiations of the same Template, but individual replicas also have a consistent identity. If unspecified, defaults to 1. |
 | `revisionHistoryLimit` | `integer` | revisionHistoryLimit is the maximum number of revisions that will be maintained in the StatefulSet’s revision history. The revision history consists of all revisions not represented by a currently applied StatefulSetSpec version. The default value is 10. |
 | `selector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | selector is a label query over pods that should match the replica count. It must match the pod template’s labels. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors |
@@ -67,7 +67,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `start` | `integer` | start is the number representing the first replica’s index. It may be used to number replicas from an alternate index (eg: 1-indexed) over the default 0-indexed names, or to orchestrate progressive movement of replicas from one StatefulSet to another. If set, replica indices will be in the range:   \[.spec.ordinals.start, .spec.ordinals.start + .spec.replicas). If unset, defaults to 0. Replica indices will be in the range:   \[0, .spec.replicas). |
+| `start` | `integer` | start is the number representing the first replica’s index. It may be used to number replicas from an alternate index (eg: 1-indexed) over the default 0-indexed names, or to orchestrate progressive movement of replicas from one StatefulSet to another. If set, replica indices will be in the range: \[.spec.ordinals.start, .spec.ordinals.start + .spec.replicas). If unset, defaults to 0. Replica indices will be in the range: \[0, .spec.replicas). |
 
 ### .spec.persistentVolumeClaimRetentionPolicy {#_specpersistentvolumeclaimretentionpolicy}
 
@@ -97,7 +97,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `rollingUpdate` | `object` | RollingUpdateStatefulSetStrategy is used to communicate parameter for RollingUpdateStatefulSetStrategyType. |
-| `type` | `string` | Type indicates the type of the StatefulSetUpdateStrategy. Default is RollingUpdate. Possible enum values:  - `"OnDelete"` triggers the legacy behavior. Version tracking and ordered rolling restarts are disabled. Pods are recreated from the StatefulSetSpec when they are manually deleted. When a scale operation is performed with this strategy,specification version indicated by the StatefulSet’s currentRevision.  - `"RollingUpdate"` indicates that update will be applied to all Pods in the StatefulSet with respect to the StatefulSet ordering constraints. When a scale operation is performed with this strategy, new Pods will be created from the specification version indicated by the StatefulSet’s updateRevision. |
+| `type` | `string` | Type indicates the type of the StatefulSetUpdateStrategy. Default is RollingUpdate.<br>Possible enum values: - `"OnDelete"` triggers the legacy behavior. Version tracking and ordered rolling restarts are disabled. Pods are recreated from the StatefulSetSpec when they are manually deleted. When a scale operation is performed with this strategy,specification version indicated by the StatefulSet’s currentRevision. - `"RollingUpdate"` indicates that update will be applied to all Pods in the StatefulSet with respect to the StatefulSet ordering constraints. When a scale operation is performed with this strategy, new Pods will be created from the specification version indicated by the StatefulSet’s updateRevision. |
 
 ### .spec.updateStrategy.rollingUpdate {#_specupdatestrategyrollingupdate}
 
@@ -183,24 +183,24 @@ The following API endpoints are available:
 - `/apis/apps/v1/watch/statefulsets`
 
   - `GET`: watch individual changes to a list of StatefulSet. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/apps/v1/namespaces/{{ namespace }}/statefulsets`
+- `/apis/apps/v1/namespaces/{namespace}/statefulsets`
 
   - `DELETE`: delete collection of StatefulSet
   - `GET`: list or watch objects of kind StatefulSet
   - `POST`: create a StatefulSet
-- `/apis/apps/v1/watch/namespaces/{{ namespace }}/statefulsets`
+- `/apis/apps/v1/watch/namespaces/{namespace}/statefulsets`
 
   - `GET`: watch individual changes to a list of StatefulSet. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/apps/v1/namespaces/{{ namespace }}/statefulsets/{{ name }}`
+- `/apis/apps/v1/namespaces/{namespace}/statefulsets/{name}`
 
   - `DELETE`: delete a StatefulSet
   - `GET`: read the specified StatefulSet
   - `PATCH`: partially update the specified StatefulSet
   - `PUT`: replace the specified StatefulSet
-- `/apis/apps/v1/watch/namespaces/{{ namespace }}/statefulsets/{{ name }}`
+- `/apis/apps/v1/watch/namespaces/{namespace}/statefulsets/{name}`
 
   - `GET`: watch changes to an object of kind StatefulSet. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
-- `/apis/apps/v1/namespaces/{{ namespace }}/statefulsets/{{ name }}/status`
+- `/apis/apps/v1/namespaces/{namespace}/statefulsets/{name}/status`
 
   - `GET`: read status of the specified StatefulSet
   - `PATCH`: partially update status of the specified StatefulSet
@@ -244,7 +244,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/namespaces/{{ namespace }}/statefulsets {#_apisappsv1namespaces_namespace_statefulsets}
+### /apis/apps/v1/namespaces/{namespace}/statefulsets {#_apisappsv1namespaces_namespace_statefulsets}
 
 HTTP method
 :   ```
@@ -318,7 +318,7 @@ Description
 | 202 - Accepted | [`StatefulSet`](/openshift-docs-markdown/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/watch/namespaces/{{ namespace }}/statefulsets {#_apisappsv1watchnamespaces_namespace_statefulsets}
+### /apis/apps/v1/watch/namespaces/{namespace}/statefulsets {#_apisappsv1watchnamespaces_namespace_statefulsets}
 
 HTTP method
 :   ```
@@ -337,7 +337,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/namespaces/{{ namespace }}/statefulsets/{{ name }} {#_apisappsv1namespaces_namespace_statefulsets_name}
+### /apis/apps/v1/namespaces/{namespace}/statefulsets/{name} {#_apisappsv1namespaces_namespace_statefulsets_name}
 
 **Global path parameters**
 
@@ -442,7 +442,7 @@ Description
 | 201 - Created | [`StatefulSet`](/openshift-docs-markdown/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/watch/namespaces/{{ namespace }}/statefulsets/{{ name }} {#_apisappsv1watchnamespaces_namespace_statefulsets_name}
+### /apis/apps/v1/watch/namespaces/{namespace}/statefulsets/{name} {#_apisappsv1watchnamespaces_namespace_statefulsets_name}
 
 **Global path parameters**
 
@@ -467,7 +467,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/namespaces/{{ namespace }}/statefulsets/{{ name }}/status {#_apisappsv1namespaces_namespace_statefulsets_name_status}
+### /apis/apps/v1/namespaces/{namespace}/statefulsets/{name}/status {#_apisappsv1namespaces_namespace_statefulsets_name_status}
 
 **Global path parameters**
 

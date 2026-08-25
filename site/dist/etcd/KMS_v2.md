@@ -34,6 +34,9 @@ When you enable KMS encryption, OpenShift Container Platform encrypts the follow
 > [!NOTE]
 > Resource types, namespaces, and object names are not encrypted.
 
+**Additional resources**
+{._additional-resources}
+
 - [Using a KMS provider for data encryption](https://kubernetes.io/docs/tasks/administer-cluster/kms-provider/)
 
 ## KMS Technology Preview limitations {#kms-technology-preview-phases_kms-v2-index}
@@ -47,7 +50,8 @@ Review the current limitations of Kubernetes KMS v2 to plan deployments and avoi
 - Only one KMS plugin can run at a time
 - KMS-to-KMS migration requires intermediate migration to `identity` or `aescbc`
 
-## Additional resources {#additional-resources_kms-v2-index}
+**Additional resources**
+{._additional-resources}
 
 - [Enabling features using feature gates](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)
 - [Using a KMS provider for data encryption](https://kubernetes.io/docs/tasks/administer-cluster/kms-provider/)

@@ -1,5 +1,5 @@
 ---
-title: Identity []
+title: Identity [user.openshift.io/v1]
 ---
 
 # Identity \[user.openshift.io/v1\] {#identity-user-openshift-io-v1}
@@ -43,13 +43,13 @@ The following API endpoints are available:
 - `/apis/user.openshift.io/v1/watch/identities`
 
   - `GET`: watch individual changes to a list of Identity. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/user.openshift.io/v1/identities/{{ name }}`
+- `/apis/user.openshift.io/v1/identities/{name}`
 
   - `DELETE`: delete an Identity
   - `GET`: read the specified Identity
   - `PATCH`: partially update the specified Identity
   - `PUT`: replace the specified Identity
-- `/apis/user.openshift.io/v1/watch/identities/{{ name }}`
+- `/apis/user.openshift.io/v1/watch/identities/{name}`
 
   - `GET`: watch changes to an object of kind Identity. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
 
@@ -146,7 +146,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/user.openshift.io/v1/identities/{{ name }} {#_apisuseropenshiftiov1identities_name}
+### /apis/user.openshift.io/v1/identities/{name} {#_apisuseropenshiftiov1identities_name}
 
 **Global path parameters**
 
@@ -251,7 +251,7 @@ Description
 | 201 - Created | [`Identity`](/openshift-docs-markdown/rest_api/user_and_group_apis/identity-user-openshift-io-v1#identity-user-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/user.openshift.io/v1/watch/identities/{{ name }} {#_apisuseropenshiftiov1watchidentities_name}
+### /apis/user.openshift.io/v1/watch/identities/{name} {#_apisuseropenshiftiov1watchidentities_name}
 
 **Global path parameters**
 

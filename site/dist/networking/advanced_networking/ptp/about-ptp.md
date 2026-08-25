@@ -53,6 +53,7 @@ Before enabling PTP, ensure that NTP is disabled for the required nodes. You can
 > Although PTP provides superior accuracy over NTP, you can configure NTP as a backup time source for PTP Grandmaster (T-GM) clocks. In GNSS-to-NTP failover configurations, the system uses GNSS as the primary time source through PTP, but automatically fails over to NTP (`chronyd`) if the GNSS signal is lost or degraded. This provides resilient timekeeping even when the primary GNSS time source is temporarily unavailable. For more information about configuring GNSS-to-NTP failover, see *Configuring GNSS/NTP failover*.
 
 **Additional resources**
+{._additional-resources}
 
 - [Disabling chrony time service](/openshift-docs-markdown/machine_configuration/machine-configs-configure#cnf-disable-chronyd_machine-configs-configure)
 
@@ -97,7 +98,7 @@ OpenShift Container Platform supports receiving precision PTP timing from Global
 > [!IMPORTANT]
 > OpenShift Container Platform supports PTP timing from GNSS sources with Intel E810 Westport Channel NICs only.
 
-**Figure 1. Overview of Synchronization with GNSS and T-GM**
+**Figure 2. Overview of Synchronization with GNSS and T-GM**
 
 ![GNSS and T-GM system architecture](/openshift-docs-markdown/_assets/images/319_OpenShift_PTP_bare-metal_OCP_nodes_1023_PTP.png)
 
@@ -135,17 +136,12 @@ Dual NIC grandmaster clock
 
     Dual NIC grandmaster clocks are a feature of distributed RAN (D-RAN) configurations where the Remote Radio Unit (RRU) and Baseband Unit (BBU) are located at the same radio cell site. D-RAN distributes radio functions across multiple sites, with backhaul connections linking them to the core network.
 
-**Figure 1. Dual NIC grandmaster clock**
+    **Figure 3. Dual NIC grandmaster clock**
 
-```
-![Dual NIC PTP grandmaster clock connected to GNSS timing source and downstream PTP boundary and ordinary clocks](/_assets/images/openshift-ptp-using-dual-nic-ptp.png)
+    ![Dual NIC PTP grandmaster clock connected to GNSS timing source and downstream PTP boundary and ordinary clocks](/openshift-docs-markdown/_assets/images/openshift-ptp-using-dual-nic-ptp.png)
 
-:::note
-
-In a dual-NIC T-GM configuration, a single `ts2phc` program operate on two PTP hardware clocks (PHCs), one for each NIC.
-
-:::
-```
+    > [!NOTE]
+    > In a dual-NIC T-GM configuration, a single `ts2phc` program operate on two PTP hardware clocks (PHCs), one for each NIC.
 
 Dual NIC boundary clock
 :   For 5G telco networks that deliver mid-band spectrum coverage, each virtual distributed unit (vDU) requires connections to 6 radio units (RUs). To make these connections, each vDU host requires 2 NICs configured as boundary clocks.
@@ -194,14 +190,9 @@ OpenShift Container Platform supports cluster hosts with 3 Intel E810 NICs as PT
 
     3-card NIC grandmaster clocks can be used for distributed RAN (D-RAN) configurations where the Radio Unit (RU) is connected directly to the distributed unit (DU) without a front haul switch, for example, if the RU and DU are located in the same radio cell site. D-RAN distributes radio functions across multiple sites, with backhaul connections linking them to the core network.
 
-**Figure 1. 3-card Intel E810 PTP grandmaster clock**
+    **Figure 4. 3-card Intel E810 PTP grandmaster clock**
 
-```
-![3-card PTP grandmaster clock connected to GNSS timing source and downstream PTP boundary and ordinary clocks](/_assets/images/openshift-ptp-3-card-grandmaster.png)
+    ![3-card PTP grandmaster clock connected to GNSS timing source and downstream PTP boundary and ordinary clocks](/openshift-docs-markdown/_assets/images/openshift-ptp-3-card-grandmaster.png)
 
-:::note
-
-In a 3-card T-GM configuration, a single `ts2phc` process reports as 3 `ts2phc` instances in the system.
-
-:::
-```
+    > [!NOTE]
+    > In a 3-card T-GM configuration, a single `ts2phc` process reports as 3 `ts2phc` instances in the system.

@@ -108,5 +108,6 @@ When you create a cloned persistent volume claim (PVC) API object, you trigger t
 The created `Pod` object is now ready to consume, clone, snapshot, or delete your cloned PVC independently of its original `dataSource` PVC.
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding persistent volumes](/openshift-docs-markdown/storage/understanding-persistent-storage#persistent-volumes_understanding-persistent-storage)

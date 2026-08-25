@@ -20,7 +20,8 @@ const headings = [{"depth":1,"slug":"about-hardware-enablement","text":"About sp
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hardware_enablement/about-hardware-enablement";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -78,12 +79,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -91,7 +93,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="about-hardware-enablement" class="group scroll-mt-20">About specialized hardware and driver enablement<a href="#about-hardware-enablement" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>The Driver Toolkit (DTK) is a container image in the OpenShift Container Platform payload that you can use as a base image to build driver containers. The Driver Toolkit image contains the kernel packages and tools commonly required to build or install kernel modules, and the package versions match the kernel version running on the Red Hat Enterprise Linux CoreOS (RHCOS) nodes in the corresponding OpenShift Container Platform release.</p>
+      <p class="_abstract">The Driver Toolkit (DTK) is a container image in the OpenShift Container Platform payload that you can use as a base image to build driver containers. The Driver Toolkit image contains the kernel packages and tools commonly required to build or install kernel modules, and the package versions match the kernel version running on the Red Hat Enterprise Linux CoreOS (RHCOS) nodes in the corresponding OpenShift Container Platform release.</p>
       <p>You can use driver containers to build and deploy out-of-tree kernel modules and drivers on container operating systems such as RHCOS. These kernel modules and drivers are software libraries that run with a high level of privilege in the operating system kernel. They extend the kernel functionalities or provide the hardware-specific code required to control new devices. Examples include hardware devices such as field-programmable gate arrays (FPGA) or graphics processing units (GPU), and software-defined storage solutions, which all require kernel modules on client machines. Driver containers are the first layer of the software stack to enable these technologies on OpenShift Container Platform deployments.</p>
     </article>
   </MarkdownContentStack>

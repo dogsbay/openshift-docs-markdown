@@ -215,6 +215,7 @@ Also, you can optionally use the `procMount` parameter in a pod specification to
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Managing security context constraints](/openshift-docs-markdown/authentication/managing-security-context-constraints#configuring-internal-oauth)
 - [OpenShift CLI administrator command reference](/openshift-docs-markdown/cli_reference/openshift_cli/administrator-cli-commands#cli-administrator-commands)

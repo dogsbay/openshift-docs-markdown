@@ -21,7 +21,8 @@ const headings = [{"depth":1,"slug":"configuring-namespaced-sriov-resources","te
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/hardware_networks/configuring-namespaced-sriov-resources";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="configuring-namespaced-sriov-resources" class="group scroll-mt-20">Configuring namespaced SR-IOV resources<a href="#configuring-namespaced-sriov-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Namespaced SriovNetwork Resources allow application owners to create and manage their own SriovNetwork resources directly within their namespaces, rather than relying on a cluster administrator to do it in a shared operator namespace. This method simplifies permissions, improves security, and provides better separation between applications.</p>
+      <p class="_abstract">Namespaced SriovNetwork Resources allow application owners to create and manage their own SriovNetwork resources directly within their namespaces, rather than relying on a cluster administrator to do it in a shared operator namespace. This method simplifies permissions, improves security, and provides better separation between applications. </p>
       <h2 id="introduction-to-namespaced-sriovnetwork-resources_configuring-namespaced-sriov-resources" class="group scroll-mt-20">An introduction to namespaced SriovNetwork resources<a href="#introduction-to-namespaced-sriovnetwork-resources_configuring-namespaced-sriov-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">SR-IOV networks can be created and managed directly within application namespaces. This capability provides application owners with fine-grained control over network configurations, simplifying their workflow.</p>
       <p>This approach offers several key advantages that enhance the user experience:</p>

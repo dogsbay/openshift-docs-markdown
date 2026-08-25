@@ -1,5 +1,5 @@
 ---
-title: About {{ osc }}
+title: About OpenShift sandboxed containers
 ---
 
 # About OpenShift sandboxed containers {#about-openshift-sandboxed-containers}

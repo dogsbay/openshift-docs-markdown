@@ -33,6 +33,7 @@ you can bypass this default behavior manually by using the following workflow:
 If the Operator has dependencies, the dependencies are automatically installed in the pre-created namespace. As a result, it is then valid for the dependency Operators to have the same update policy and shared install plans. For a detailed procedure, see "Installing global Operators in custom namespaces".
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing global Operators in custom namespaces](/openshift-docs-markdown/operators/admin/olm-adding-operators-to-cluster#olm-installing-global-namespaces_olm-adding-operators-to-a-cluster)
 - [Operators in multitenant clusters](/openshift-docs-markdown/operators/understanding/olm-multitenancy#olm-multitenancy)

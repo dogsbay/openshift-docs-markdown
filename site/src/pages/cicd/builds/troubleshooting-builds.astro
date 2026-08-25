@@ -20,11 +20,12 @@ import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
 import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"troubleshooting-builds_{{ context }}","text":"Troubleshooting builds"},{"depth":2,"slug":"builds-troubleshooting-access-resources_troubleshooting-builds","text":"Resolving denial for access to resources"},{"depth":2,"slug":"builds-troubleshooting-service-certificate-generation_troubleshooting-builds","text":"Service certificate generation failure"}];
+const headings = [{"depth":1,"slug":"troubleshooting-builds_{context}","text":"Troubleshooting builds"},{"depth":2,"slug":"builds-troubleshooting-access-resources_troubleshooting-builds","text":"Resolving denial for access to resources"},{"depth":2,"slug":"builds-troubleshooting-service-certificate-generation_troubleshooting-builds","text":"Service certificate generation failure"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/cicd/builds/troubleshooting-builds";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -43,7 +44,7 @@ const pageCategory = ["cicd","cicd/builds"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Troubleshooting builds {#troubleshooting-builds_{{ context }}}\n\nUse the following to troubleshoot build issues.\n\n## Resolving denial for access to resources {#builds-troubleshooting-access-resources_troubleshooting-builds}\n\nIf your request for access to resources is denied:\n\nIssue\n:   A build fails with:\n\n```terminal\nrequested access to the resource is denied\n```\n\nResolution\n:   You have exceeded one of the image quotas set on your project. Check your current quota and verify the limits applied and storage in use:\n\n```terminal\n$ oc describe quota\n```\n\n## Service certificate generation failure {#builds-troubleshooting-service-certificate-generation_troubleshooting-builds}\n\nIf your request for access to resources is denied:\n\nIssue\n:   If a service certificate generation fails with (service’s `service.beta.openshift.io/serving-cert-generation-error` annotation contains):\n\n```terminal {title=\"Example output\"}\nsecret/ssl-key references serviceUID 62ad25ca-d703-11e6-9d6f-0e9c0057b608, which does not match 77b6dd80-d716-11e6-9d6f-0e9c0057b60\n```\n\nResolution\n:   The service that generated the certificate no longer exists, or has a different `serviceUID`. You must force certificates regeneration by removing the old secret, and clearing the following annotations on the service: `service.beta.openshift.io/serving-cert-generation-error` and `service.beta.openshift.io/serving-cert-generation-error-num`. To clear the annotations, enter the following commands:\n\n    ```terminal\n    $ oc delete secret <secret_name>\n    ```\n\n    ```terminal\n    $ oc annotate service <service_name> service.beta.openshift.io/serving-cert-generation-error-\n    ```\n\n    ```terminal\n    $ oc annotate service <service_name> service.beta.openshift.io/serving-cert-generation-error-num-\n    ```\n\n    > [!NOTE]\n    > The command removing an annotation has a `-` after the annotation name to be removed.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/troubleshooting-builds.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Troubleshooting builds {#troubleshooting-builds_{context}}\n\nUse the following to troubleshoot build issues.\n\n## Resolving denial for access to resources {#builds-troubleshooting-access-resources_troubleshooting-builds}\n\nIf your request for access to resources is denied:\n\nIssue\n:   A build fails with:\n\n```terminal\nrequested access to the resource is denied\n```\n\nResolution\n:   You have exceeded one of the image quotas set on your project. Check your current quota and verify the limits applied and storage in use:\n\n```terminal\n$ oc describe quota\n```\n\n## Service certificate generation failure {#builds-troubleshooting-service-certificate-generation_troubleshooting-builds}\n\nIf your request for access to resources is denied:\n\nIssue\n:   If a service certificate generation fails with (service’s `service.beta.openshift.io/serving-cert-generation-error` annotation contains):\n\n```terminal {title=\"Example output\"}\nsecret/ssl-key references serviceUID 62ad25ca-d703-11e6-9d6f-0e9c0057b608, which does not match 77b6dd80-d716-11e6-9d6f-0e9c0057b60\n```\n\nResolution\n:   The service that generated the certificate no longer exists, or has a different `serviceUID`. You must force certificates regeneration by removing the old secret, and clearing the following annotations on the service: `service.beta.openshift.io/serving-cert-generation-error` and `service.beta.openshift.io/serving-cert-generation-error-num`. To clear the annotations, enter the following commands:\n\n    ```terminal\n    $ oc delete secret <secret_name>\n    ```\n\n    ```terminal\n    $ oc annotate service <service_name> service.beta.openshift.io/serving-cert-generation-error-\n    ```\n\n    ```terminal\n    $ oc annotate service <service_name> service.beta.openshift.io/serving-cert-generation-error-num-\n    ```\n\n    > [!NOTE]\n    > The command removing an annotation has a `-` after the annotation name to be removed.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/troubleshooting-builds.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -82,19 +83,20 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <h1 id="troubleshooting-builds_{{ context }}" class="group scroll-mt-20">Troubleshooting builds<a href="#troubleshooting-builds_{{ context }}" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <h1 id="troubleshooting-builds_{context}" class="group scroll-mt-20">Troubleshooting builds<a href="#troubleshooting-builds_{context}" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p>Use the following to troubleshoot build issues.</p>
       <h2 id="builds-troubleshooting-access-resources_troubleshooting-builds" class="group scroll-mt-20">Resolving denial for access to resources<a href="#builds-troubleshooting-access-resources_troubleshooting-builds" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p>If your request for access to resources is denied:</p>

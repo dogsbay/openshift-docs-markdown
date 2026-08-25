@@ -93,7 +93,7 @@ As a cluster administrator, you can install the Operator by using the CLI.
 
    ```terminal {title="Example output"}
    Name                         Phase
-   {{ product_version }}.0-202301261535          Succeeded
+   4.22.0-202301261535          Succeeded
    ```
 
 ## Installing the PTP Operator by using the web console {#install-ptp-operator-web-console_configuring-ptp}
@@ -107,14 +107,14 @@ As a cluster administrator, you can install the PTP Operator by using the web co
 
 1. Install the PTP Operator using the OpenShift Container Platform web console:
 
-   1. In the OpenShift Container Platform web console, click **Ecosystem** -> **Software Catalog**.
+   1. In the OpenShift Container Platform web console, click **Ecosystem** → **Software Catalog**.
    2. Type `ptp` in the **Filter by keyword** box to find the PTP Operator.
    3. Click the **PTP Operator** tile, and then click **Install**.
    4. On the **Install Operator** page, ensure that **A specific namespace on the cluster** is selected and the **Operator recommended Namespace** `openshift-ptp` is shown. Click **Install**.
    5. Wait for the installation to complete and then click **View installed Operators**.
 2. Optional: Verify that the PTP Operator installed successfully:
 
-   1. Navigate to **Ecosystem** -> **Installed Operators**.
+   1. Navigate to **Ecosystem** → **Installed Operators**.
    2. Ensure that **PTP Operator** is listed in the **openshift-ptp** project with a **Status** of **Succeeded**.
 
       > [!NOTE]
@@ -122,8 +122,8 @@ As a cluster administrator, you can install the PTP Operator by using the web co
 
       If the Operator does not appear as installed, to troubleshoot further:
 
-      - Go to the **Ecosystem** -> **Installed Operators** page and inspect the **Operator Subscriptions** and **Install Plans** tabs for any failure or errors under **Status**.
-      - Go to the **Workloads** -> **Pods** page and check the logs for pods in the `openshift-ptp` project.
+      - Go to the **Ecosystem** → **Installed Operators** page and inspect the **Operator Subscriptions** and **Install Plans** tabs for any failure or errors under **Status**.
+      - Go to the **Workloads** → **Pods** page and check the logs for pods in the `openshift-ptp` project.
 
 ## Discovering PTP-capable network devices in your cluster {#discover-ptp-devices_configuring-ptp}
 
@@ -198,23 +198,231 @@ The `ts2phc` utility allows you to synchronize the system clock with the PTP gra
 >    1. Depending on your requirements, use one of the following T-GM configurations for your deployment. Save the YAML in the `grandmaster-clock-ptp-config.yaml` file:
 >
 >       ```yaml
->
+>       apiVersion: ptp.openshift.io/v1
+>       kind: PtpConfig
+>       metadata:
+>         name: grandmaster
+>         namespace: openshift-ptp
+>         annotations: {}
+>       spec:
+>         profile:
+>           - name: "grandmaster"
+>             ptp4lOpts: "-2 --summary_interval -4"
+>             phc2sysOpts: -r -u 0 -m -N 8 -R 16 -s $iface_master -n 24
+>             ptpSchedulingPolicy: SCHED_FIFO
+>             ptpSchedulingPriority: 10
+>             ptpSettings:
+>               logReduce: "true"
+>             plugins:
+>               e810:
+>                 enableDefaultConfig: false
+>                 settings:
+>                   LocalMaxHoldoverOffSet: 1500
+>                   LocalHoldoverTimeout: 14400
+>                   MaxInSpecOffset: 1500
+>                 pins: $e810_pins
+>                 #  "$iface_master":
+>                 #    "U.FL2": "0 2"
+>                 #    "U.FL1": "0 1"
+>                 #    "SMA2": "0 2"
+>                 #    "SMA1": "0 1"
+>                 ublxCmds:
+>                   - args: #ubxtool -P 29.20 -z CFG-HW-ANT_CFG_VOLTCTRL,1
+>                       - "-P"
+>                       - "29.20"
+>                       - "-z"
+>                       - "CFG-HW-ANT_CFG_VOLTCTRL,1"
+>                     reportOutput: false
+>                   - args: #ubxtool -P 29.20 -e GPS
+>                       - "-P"
+>                       - "29.20"
+>                       - "-e"
+>                       - "GPS"
+>                     reportOutput: false
+>                   - args: #ubxtool -P 29.20 -d Galileo
+>                       - "-P"
+>                       - "29.20"
+>                       - "-d"
+>                       - "Galileo"
+>                     reportOutput: false
+>                   - args: #ubxtool -P 29.20 -d GLONASS
+>                       - "-P"
+>                       - "29.20"
+>                       - "-d"
+>                       - "GLONASS"
+>                     reportOutput: false
+>                   - args: #ubxtool -P 29.20 -d BeiDou
+>                       - "-P"
+>                       - "29.20"
+>                       - "-d"
+>                       - "BeiDou"
+>                     reportOutput: false
+>                   - args: #ubxtool -P 29.20 -d SBAS
+>                       - "-P"
+>                       - "29.20"
+>                       - "-d"
+>                       - "SBAS"
+>                     reportOutput: false
+>                   - args: #ubxtool -P 29.20 -t -w 5 -v 1 -e SURVEYIN,600,50000
+>                       - "-P"
+>                       - "29.20"
+>                       - "-t"
+>                       - "-w"
+>                       - "5"
+>                       - "-v"
+>                       - "1"
+>                       - "-e"
+>                       - "SURVEYIN,600,50000"
+>                     reportOutput: true
+>                   - args: #ubxtool -P 29.20 -p MON-HW
+>                       - "-P"
+>                       - "29.20"
+>                       - "-p"
+>                       - "MON-HW"
+>                     reportOutput: true
+>                   - args: #ubxtool -P 29.20 -p CFG-MSG,1,38,248
+>                       - "-P"
+>                       - "29.20"
+>                       - "-p"
+>                       - "CFG-MSG,1,38,248"
+>                     reportOutput: true
+>             ts2phcOpts: " "
+>             ts2phcConf: |
+>               [nmea]
+>               ts2phc.master 1
+>               [global]
+>               use_syslog  0
+>               verbose 1
+>               logging_level 7
+>               ts2phc.pulsewidth 100000000
+>               #cat /dev/GNSS to find available serial port
+>               #example value of gnss_serialport is /dev/ttyGNSS_1700_0
+>               ts2phc.nmea_serialport $gnss_serialport
+>               [$iface_master]
+>               ts2phc.extts_polarity rising
+>               ts2phc.extts_correction 0
+>             ptp4lConf: |
+>               [$iface_master]
+>               masterOnly 1
+>               [$iface_master_1]
+>               masterOnly 1
+>               [$iface_master_2]
+>               masterOnly 1
+>               [$iface_master_3]
+>               masterOnly 1
+>               [global]
+>               #
+>               # Default Data Set
+>               #
+>               twoStepFlag 1
+>               priority1 128
+>               priority2 128
+>               domainNumber 24
+>               #utc_offset 37
+>               clockClass 6
+>               clockAccuracy 0x27
+>               offsetScaledLogVariance 0xFFFF
+>               free_running 0
+>               freq_est_interval 1
+>               dscp_event 0
+>               dscp_general 0
+>               dataset_comparison G.8275.x
+>               G.8275.defaultDS.localPriority 128
+>               #
+>               # Port Data Set
+>               #
+>               logAnnounceInterval -3
+>               logSyncInterval -4
+>               logMinDelayReqInterval -4
+>               logMinPdelayReqInterval 0
+>               announceReceiptTimeout 3
+>               syncReceiptTimeout 0
+>               delayAsymmetry 0
+>               fault_reset_interval -4
+>               neighborPropDelayThresh 20000000
+>               masterOnly 0
+>               G.8275.portDS.localPriority 128
+>               #
+>               # Run time options
+>               #
+>               assume_two_step 0
+>               logging_level 6
+>               path_trace_enabled 0
+>               follow_up_info 0
+>               hybrid_e2e 0
+>               inhibit_multicast_service 0
+>               net_sync_monitor 0
+>               tc_spanning_tree 0
+>               tx_timestamp_timeout 50
+>               unicast_listen 0
+>               unicast_master_table 0
+>               unicast_req_duration 3600
+>               use_syslog 1
+>               verbose 0
+>               summary_interval -4
+>               kernel_leap 1
+>               check_fup_sync 0
+>               clock_class_threshold 7
+>               #
+>               # Servo Options
+>               #
+>               pi_proportional_const 0.0
+>               pi_integral_const 0.0
+>               pi_proportional_scale 0.0
+>               pi_proportional_exponent -0.3
+>               pi_proportional_norm_max 0.7
+>               pi_integral_scale 0.0
+>               pi_integral_exponent 0.4
+>               pi_integral_norm_max 0.3
+>               step_threshold 2.0
+>               first_step_threshold 0.00002
+>               clock_servo pi
+>               sanity_freq_limit  200000000
+>               ntpshm_segment 0
+>               #
+>               # Transport options
+>               #
+>               transportSpecific 0x0
+>               ptp_dst_mac 01:1B:19:00:00:00
+>               p2p_dst_mac 01:80:C2:00:00:0E
+>               udp_ttl 1
+>               udp6_scope 0x0E
+>               uds_address /var/run/ptp4l
+>               #
+>               # Default interface options
+>               #
+>               clock_type BC
+>               network_transport L2
+>               delay_mechanism E2E
+>               time_stamping hardware
+>               tsproc_mode filter
+>               delay_filter moving_median
+>               delay_filter_length 10
+>               egressLatency 0
+>               ingressLatency 0
+>               boundary_clock_jbod 0
+>               #
+>               # Clock description
+>               #
+>               productDescription ;;
+>               revisionData ;;
+>               manufacturerIdentity 00:00:00
+>               userDescription ;
+>               timeSource 0x20
+>         recommend:
+>           - profile: "grandmaster"
+>             priority: 4
+>             match:
+>               - nodeLabel: "node-role.kubernetes.io/$mcp"
 >       ```
 >
-> {% include "./snippets/ptp_PtpConfigGmWpc.yaml" %} \`\`\`
+>       > [!NOTE]
+>       > For E810 Westport Channel NICs, set the value for `ts2phc.nmea_serialport` to `/dev/gnss0`.
+>    2. Create the CR by running the following command:
 >
-> ````
->     :::note
->
->     For E810 Westport Channel NICs, set the value for `ts2phc.nmea_serialport` to `/dev/gnss0`.
->
->     :::
->
-> 1.  Create the CR by running the following command:
->     ```terminal
->     $ oc create -f grandmaster-clock-ptp-config.yaml
->     ```
-> ````
+>       ```terminal
+>       $ oc create -f grandmaster-clock-ptp-config.yaml
+>       ```
 >
 > **Verification**
 >
@@ -281,23 +489,251 @@ The `ts2phc` utility allows you to synchronize the system clock with the PTP gra
 > >    1. Save the following YAML in the `grandmaster-clock-ptp-config-dual-nics.yaml` file:
 > >
 > >       ```yaml
-> >
+> >       # In this example two cards $iface_nic1 and $iface_nic2 are connected via
+> >       # SMA1 ports by a cable and $iface_nic2 receives 1PPS signals from $iface_nic1
+> >       apiVersion: ptp.openshift.io/v1
+> >       kind: PtpConfig
+> >       metadata:
+> >         name: grandmaster
+> >         namespace: openshift-ptp
+> >         annotations: {}
+> >       spec:
+> >         profile:
+> >           - name: "grandmaster"
+> >             ptp4lOpts: "-2 --summary_interval -4"
+> >             phc2sysOpts: -r -u 0 -m -N 8 -R 16 -s $iface_nic1 -n 24
+> >             ptpSchedulingPolicy: SCHED_FIFO
+> >             ptpSchedulingPriority: 10
+> >             ptpSettings:
+> >               logReduce: "true"
+> >             plugins:
+> >               e810:
+> >                 enableDefaultConfig: false
+> >                 settings:
+> >                   LocalMaxHoldoverOffSet: 1500
+> >                   LocalHoldoverTimeout: 14400
+> >                   MaxInSpecOffset: 1500
+> >                 pins: $e810_pins
+> >                 #  "$iface_nic1":
+> >                 #    "U.FL2": "0 2"
+> >                 #    "U.FL1": "0 1"
+> >                 #    "SMA2": "0 2"
+> >                 #    "SMA1": "2 1"
+> >                 #  "$iface_nic2":
+> >                 #    "U.FL2": "0 2"
+> >                 #    "U.FL1": "0 1"
+> >                 #    "SMA2": "0 2"
+> >                 #    "SMA1": "1 1"
+> >                 ublxCmds:
+> >                   - args: #ubxtool -P 29.20 -z CFG-HW-ANT_CFG_VOLTCTRL,1
+> >                       - "-P"
+> >                       - "29.20"
+> >                       - "-z"
+> >                       - "CFG-HW-ANT_CFG_VOLTCTRL,1"
+> >                     reportOutput: false
+> >                   - args: #ubxtool -P 29.20 -e GPS
+> >                       - "-P"
+> >                       - "29.20"
+> >                       - "-e"
+> >                       - "GPS"
+> >                     reportOutput: false
+> >                   - args: #ubxtool -P 29.20 -d Galileo
+> >                       - "-P"
+> >                       - "29.20"
+> >                       - "-d"
+> >                       - "Galileo"
+> >                     reportOutput: false
+> >                   - args: #ubxtool -P 29.20 -d GLONASS
+> >                       - "-P"
+> >                       - "29.20"
+> >                       - "-d"
+> >                       - "GLONASS"
+> >                     reportOutput: false
+> >                   - args: #ubxtool -P 29.20 -d BeiDou
+> >                       - "-P"
+> >                       - "29.20"
+> >                       - "-d"
+> >                       - "BeiDou"
+> >                     reportOutput: false
+> >                   - args: #ubxtool -P 29.20 -d SBAS
+> >                       - "-P"
+> >                       - "29.20"
+> >                       - "-d"
+> >                       - "SBAS"
+> >                     reportOutput: false
+> >                   - args: #ubxtool -P 29.20 -t -w 5 -v 1 -e SURVEYIN,600,50000
+> >                       - "-P"
+> >                       - "29.20"
+> >                       - "-t"
+> >                       - "-w"
+> >                       - "5"
+> >                       - "-v"
+> >                       - "1"
+> >                       - "-e"
+> >                       - "SURVEYIN,600,50000"
+> >                     reportOutput: true
+> >                   - args: #ubxtool -P 29.20 -p MON-HW
+> >                       - "-P"
+> >                       - "29.20"
+> >                       - "-p"
+> >                       - "MON-HW"
+> >                     reportOutput: true
+> >                   - args: #ubxtool -P 29.20 -p CFG-MSG,1,38,248
+> >                       - "-P"
+> >                       - "29.20"
+> >                       - "-p"
+> >                       - "CFG-MSG,1,38,248"
+> >                     reportOutput: true
+> >             ts2phcOpts: " "
+> >             ts2phcConf: |
+> >               [nmea]
+> >               ts2phc.master 1
+> >               [global]
+> >               use_syslog  0
+> >               verbose 1
+> >               logging_level 7
+> >               ts2phc.pulsewidth 100000000
+> >               #cat /dev/GNSS to find available serial port
+> >               #example value of gnss_serialport is /dev/ttyGNSS_1700_0
+> >               ts2phc.nmea_serialport $gnss_serialport
+> >               [$iface_nic1]
+> >               ts2phc.extts_polarity rising
+> >               ts2phc.extts_correction 0
+> >               [$iface_nic2]
+> >               ts2phc.master 0
+> >               ts2phc.extts_polarity rising
+> >               #this is a measured value in nanoseconds to compensate for SMA cable delay
+> >               ts2phc.extts_correction -10
+> >             ptp4lConf: |
+> >               [$iface_nic1]
+> >               masterOnly 1
+> >               [$iface_nic1_1]
+> >               masterOnly 1
+> >               [$iface_nic1_2]
+> >               masterOnly 1
+> >               [$iface_nic1_3]
+> >               masterOnly 1
+> >               [$iface_nic2]
+> >               masterOnly 1
+> >               [$iface_nic2_1]
+> >               masterOnly 1
+> >               [$iface_nic2_2]
+> >               masterOnly 1
+> >               [$iface_nic2_3]
+> >               masterOnly 1
+> >               [global]
+> >               #
+> >               # Default Data Set
+> >               #
+> >               twoStepFlag 1
+> >               priority1 128
+> >               priority2 128
+> >               domainNumber 24
+> >               #utc_offset 37
+> >               clockClass 6
+> >               clockAccuracy 0x27
+> >               offsetScaledLogVariance 0xFFFF
+> >               free_running 0
+> >               freq_est_interval 1
+> >               dscp_event 0
+> >               dscp_general 0
+> >               dataset_comparison G.8275.x
+> >               G.8275.defaultDS.localPriority 128
+> >               #
+> >               # Port Data Set
+> >               #
+> >               logAnnounceInterval -3
+> >               logSyncInterval -4
+> >               logMinDelayReqInterval -4
+> >               logMinPdelayReqInterval 0
+> >               announceReceiptTimeout 3
+> >               syncReceiptTimeout 0
+> >               delayAsymmetry 0
+> >               fault_reset_interval -4
+> >               neighborPropDelayThresh 20000000
+> >               masterOnly 0
+> >               G.8275.portDS.localPriority 128
+> >               #
+> >               # Run time options
+> >               #
+> >               assume_two_step 0
+> >               logging_level 6
+> >               path_trace_enabled 0
+> >               follow_up_info 0
+> >               hybrid_e2e 0
+> >               inhibit_multicast_service 0
+> >               net_sync_monitor 0
+> >               tc_spanning_tree 0
+> >               tx_timestamp_timeout 50
+> >               unicast_listen 0
+> >               unicast_master_table 0
+> >               unicast_req_duration 3600
+> >               use_syslog 1
+> >               verbose 0
+> >               summary_interval -4
+> >               kernel_leap 1
+> >               check_fup_sync 0
+> >               clock_class_threshold 7
+> >               #
+> >               # Servo Options
+> >               #
+> >               pi_proportional_const 0.0
+> >               pi_integral_const 0.0
+> >               pi_proportional_scale 0.0
+> >               pi_proportional_exponent -0.3
+> >               pi_proportional_norm_max 0.7
+> >               pi_integral_scale 0.0
+> >               pi_integral_exponent 0.4
+> >               pi_integral_norm_max 0.3
+> >               step_threshold 2.0
+> >               first_step_threshold 0.00002
+> >               clock_servo pi
+> >               sanity_freq_limit  200000000
+> >               ntpshm_segment 0
+> >               #
+> >               # Transport options
+> >               #
+> >               transportSpecific 0x0
+> >               ptp_dst_mac 01:1B:19:00:00:00
+> >               p2p_dst_mac 01:80:C2:00:00:0E
+> >               udp_ttl 1
+> >               udp6_scope 0x0E
+> >               uds_address /var/run/ptp4l
+> >               #
+> >               # Default interface options
+> >               #
+> >               clock_type BC
+> >               network_transport L2
+> >               delay_mechanism E2E
+> >               time_stamping hardware
+> >               tsproc_mode filter
+> >               delay_filter moving_median
+> >               delay_filter_length 10
+> >               egressLatency 0
+> >               ingressLatency 0
+> >               boundary_clock_jbod 1
+> >               #
+> >               # Clock description
+> >               #
+> >               productDescription ;;
+> >               revisionData ;;
+> >               manufacturerIdentity 00:00:00
+> >               userDescription ;
+> >               timeSource 0x20
+> >         recommend:
+> >           - profile: "grandmaster"
+> >             priority: 4
+> >             match:
+> >               - nodeLabel: "node-role.kubernetes.io/$mcp"
 > >       ```
 > >
-> > {% include "./snippets/ptp_PtpConfigDualCardGmWpc.yaml" %} \`\`\`
+> >       > [!NOTE]
+> >       > Set the value for `ts2phc.nmea_serialport` to `/dev/gnss0`.
+> >    2. Create the CR by running the following command:
 > >
-> > ````
-> >     :::note
-> >
-> >     Set the value for `ts2phc.nmea_serialport` to `/dev/gnss0`.
-> >
-> >     :::
-> >
-> > 1.  Create the CR by running the following command:
-> >     ```terminal
-> >     $ oc create -f grandmaster-clock-ptp-config-dual-nics.yaml
-> >     ```
-> > ````
+> >       ```terminal
+> >       $ oc create -f grandmaster-clock-ptp-config-dual-nics.yaml
+> >       ```
 > >
 > > **Verification**
 > >
@@ -365,23 +801,282 @@ The `ts2phc` utility allows you to synchronize the system clock with the PTP gra
 > >    1. Save the following YAML in the `three-nic-grandmaster-clock-ptp-config.yaml` file:
 > >
 > >       ```yaml
-> >
+> >       # In this example, the three cards are connected via SMA cables:
+> >       # - $iface_timeTx1 has the GNSS signal input
+> >       # - $iface_timeTx2 SMA1 is connected to $iface_timeTx1 SMA1
+> >       # - $iface_timeTx3 SMA1 is connected to $iface_timeTx1 SMA2
+> >       apiVersion: ptp.openshift.io/v1
+> >       kind: PtpConfig
+> >       metadata:
+> >         name: gm-3card
+> >         namespace: openshift-ptp
+> >         annotations:
+> >           ran.openshift.io/ztp-deploy-wave: "10"
+> >       spec:
+> >         profile:
+> >         - name: grandmaster
+> >           ptp4lOpts: -2 --summary_interval -4
+> >           phc2sysOpts: -r -u 0 -m -N 8 -R 16 -s $iface_timeTx1 -n 24
+> >           ptpSchedulingPolicy: SCHED_FIFO
+> >           ptpSchedulingPriority: 10
+> >           ptpSettings:
+> >             logReduce: "true"
+> >           plugins:
+> >             e810:
+> >               enableDefaultConfig: false
+> >               settings:
+> >                 LocalHoldoverTimeout: 14400
+> >                 LocalMaxHoldoverOffSet: 1500
+> >                 MaxInSpecOffset: 1500
+> >               pins:
+> >                 # Syntax guide:
+> >                 # - The 1st number in each pair must be one of:
+> >                 #    0 - Disabled
+> >                 #    1 - RX
+> >                 #    2 - TX
+> >                 # - The 2nd number in each pair must match the channel number
+> >                 $iface_timeTx1:
+> >                   SMA1: 2 1
+> >                   SMA2: 2 2
+> >                   U.FL1: 0 1
+> >                   U.FL2: 0 2
+> >                 $iface_timeTx2:
+> >                   SMA1: 1 1
+> >                   SMA2: 0 2
+> >                   U.FL1: 0 1
+> >                   U.FL2: 0 2
+> >                 $iface_timeTx3:
+> >                   SMA1: 1 1
+> >                   SMA2: 0 2
+> >                   U.FL1: 0 1
+> >                   U.FL2: 0 2
+> >               ublxCmds:
+> >                 - args: #ubxtool -P 29.20 -z CFG-HW-ANT_CFG_VOLTCTRL,1
+> >                     - "-P"
+> >                     - "29.20"
+> >                     - "-z"
+> >                     - "CFG-HW-ANT_CFG_VOLTCTRL,1"
+> >                   reportOutput: false
+> >                 - args: #ubxtool -P 29.20 -e GPS
+> >                     - "-P"
+> >                     - "29.20"
+> >                     - "-e"
+> >                     - "GPS"
+> >                   reportOutput: false
+> >                 - args: #ubxtool -P 29.20 -d Galileo
+> >                     - "-P"
+> >                     - "29.20"
+> >                     - "-d"
+> >                     - "Galileo"
+> >                   reportOutput: false
+> >                 - args: #ubxtool -P 29.20 -d GLONASS
+> >                     - "-P"
+> >                     - "29.20"
+> >                     - "-d"
+> >                     - "GLONASS"
+> >                   reportOutput: false
+> >                 - args: #ubxtool -P 29.20 -d BeiDou
+> >                     - "-P"
+> >                     - "29.20"
+> >                     - "-d"
+> >                     - "BeiDou"
+> >                   reportOutput: false
+> >                 - args: #ubxtool -P 29.20 -d SBAS
+> >                     - "-P"
+> >                     - "29.20"
+> >                     - "-d"
+> >                     - "SBAS"
+> >                   reportOutput: false
+> >                 - args: #ubxtool -P 29.20 -t -w 5 -v 1 -e SURVEYIN,600,50000
+> >                     - "-P"
+> >                     - "29.20"
+> >                     - "-t"
+> >                     - "-w"
+> >                     - "5"
+> >                     - "-v"
+> >                     - "1"
+> >                     - "-e"
+> >                     - "SURVEYIN,600,50000"
+> >                   reportOutput: true
+> >                 - args: #ubxtool -P 29.20 -p MON-HW
+> >                     - "-P"
+> >                     - "29.20"
+> >                     - "-p"
+> >                     - "MON-HW"
+> >                   reportOutput: true
+> >                 - args: #ubxtool -P 29.20 -p CFG-MSG,1,38,248
+> >                     - "-P"
+> >                     - "29.20"
+> >                     - "-p"
+> >                     - "CFG-MSG,1,38,248"
+> >                   reportOutput: true
+> >           ts2phcOpts: " "
+> >           ts2phcConf: |
+> >             [nmea]
+> >             ts2phc.master 1
+> >             [global]
+> >             use_syslog  0
+> >             verbose 1
+> >             logging_level 7
+> >             ts2phc.pulsewidth 100000000
+> >             #example value of nmea_serialport is /dev/gnss0
+> >             ts2phc.nmea_serialport (?<gnss_serialport>[/\w\s/]+)
+> >             leapfile /usr/share/zoneinfo/leap-seconds.list
+> >             [$iface_timeTx1]
+> >             ts2phc.extts_polarity rising
+> >             ts2phc.extts_correction 0
+> >             [$iface_timeTx2]
+> >             ts2phc.master 0
+> >             ts2phc.extts_polarity rising
+> >             #this is a measured value in nanoseconds to compensate for SMA cable delay
+> >             ts2phc.extts_correction -10
+> >             [$iface_timeTx3]
+> >             ts2phc.master 0
+> >             ts2phc.extts_polarity rising
+> >             #this is a measured value in nanoseconds to compensate for SMA cable delay
+> >             ts2phc.extts_correction -10
+> >           ptp4lConf: |
+> >             [$iface_timeTx1]
+> >             masterOnly 1
+> >             [$iface_timeTx1_1]
+> >             masterOnly 1
+> >             [$iface_timeTx1_2]
+> >             masterOnly 1
+> >             [$iface_timeTx1_3]
+> >             masterOnly 1
+> >             [$iface_timeTx2]
+> >             masterOnly 1
+> >             [$iface_timeTx2_1]
+> >             masterOnly 1
+> >             [$iface_timeTx2_2]
+> >             masterOnly 1
+> >             [$iface_timeTx2_3]
+> >             masterOnly 1
+> >             [$iface_timeTx3]
+> >             masterOnly 1
+> >             [$iface_timeTx3_1]
+> >             masterOnly 1
+> >             [$iface_timeTx3_2]
+> >             masterOnly 1
+> >             [$iface_timeTx3_3]
+> >             masterOnly 1
+> >             [global]
+> >             #
+> >             # Default Data Set
+> >             #
+> >             twoStepFlag 1
+> >             priority1 128
+> >             priority2 128
+> >             domainNumber 24
+> >             #utc_offset 37
+> >             clockClass 6
+> >             clockAccuracy 0x27
+> >             offsetScaledLogVariance 0xFFFF
+> >             free_running 0
+> >             freq_est_interval 1
+> >             dscp_event 0
+> >             dscp_general 0
+> >             dataset_comparison G.8275.x
+> >             G.8275.defaultDS.localPriority 128
+> >             #
+> >             # Port Data Set
+> >             #
+> >             logAnnounceInterval -3
+> >             logSyncInterval -4
+> >             logMinDelayReqInterval -4
+> >             logMinPdelayReqInterval 0
+> >             announceReceiptTimeout 3
+> >             syncReceiptTimeout 0
+> >             delayAsymmetry 0
+> >             fault_reset_interval -4
+> >             neighborPropDelayThresh 20000000
+> >             masterOnly 0
+> >             G.8275.portDS.localPriority 128
+> >             #
+> >             # Run time options
+> >             #
+> >             assume_two_step 0
+> >             logging_level 6
+> >             path_trace_enabled 0
+> >             follow_up_info 0
+> >             hybrid_e2e 0
+> >             inhibit_multicast_service 0
+> >             net_sync_monitor 0
+> >             tc_spanning_tree 0
+> >             tx_timestamp_timeout 50
+> >             unicast_listen 0
+> >             unicast_master_table 0
+> >             unicast_req_duration 3600
+> >             use_syslog 1
+> >             verbose 0
+> >             summary_interval -4
+> >             kernel_leap 1
+> >             check_fup_sync 0
+> >             clock_class_threshold 7
+> >             #
+> >             # Servo Options
+> >             #
+> >             pi_proportional_const 0.0
+> >             pi_integral_const 0.0
+> >             pi_proportional_scale 0.0
+> >             pi_proportional_exponent -0.3
+> >             pi_proportional_norm_max 0.7
+> >             pi_integral_scale 0.0
+> >             pi_integral_exponent 0.4
+> >             pi_integral_norm_max 0.3
+> >             step_threshold 2.0
+> >             first_step_threshold 0.00002
+> >             clock_servo pi
+> >             sanity_freq_limit 200000000
+> >             ntpshm_segment 0
+> >             #
+> >             # Transport options
+> >             #
+> >             transportSpecific 0x0
+> >             ptp_dst_mac 01:1B:19:00:00:00
+> >             p2p_dst_mac 01:80:C2:00:00:0E
+> >             udp_ttl 1
+> >             udp6_scope 0x0E
+> >             uds_address /var/run/ptp4l
+> >             #
+> >             # Default interface options
+> >             #
+> >             clock_type BC
+> >             network_transport L2
+> >             delay_mechanism E2E
+> >             time_stamping hardware
+> >             tsproc_mode filter
+> >             delay_filter moving_median
+> >             delay_filter_length 10
+> >             egressLatency 0
+> >             ingressLatency 0
+> >             boundary_clock_jbod 1
+> >             #
+> >             # Clock description
+> >             #
+> >             productDescription ;;
+> >             revisionData ;;
+> >             manufacturerIdentity 00:00:00
+> >             userDescription ;
+> >             timeSource 0x20
+> >           ptpClockThreshold:
+> >             holdOverTimeout: 5
+> >             maxOffsetThreshold: 1500
+> >             minOffsetThreshold: -1500
+> >         recommend:
+> >         - profile: grandmaster
+> >           priority: 4
+> >           match:
+> >           - nodeLabel: node-role.kubernetes.io/$mcp
 > >       ```
 > >
-> > {% include "./snippets/ptp_PtpConfigThreeCardGmWpc.yaml" %} \`\`\`
+> >       > [!NOTE]
+> >       > Set the value for `ts2phc.nmea_serialport` to `/dev/gnss0`.
+> >    2. Create the CR by running the following command:
 > >
-> > ````
-> >     :::note
-> >
-> >     Set the value for `ts2phc.nmea_serialport` to `/dev/gnss0`.
-> >
-> >     :::
-> >
-> > 1.  Create the CR by running the following command:
-> >     ```terminal
-> >     $ oc create -f three-nic-grandmaster-clock-ptp-config.yaml
-> >     ```
-> > ````
+> >       ```terminal
+> >       $ oc create -f three-nic-grandmaster-clock-ptp-config.yaml
+> >       ```
 > >
 > > **Verification**
 > >
@@ -460,6 +1155,7 @@ Interface naming and the GNR-D MachineConfig
     Onboard NAC ports and Carter Flat ports can appear in the same kernel namespace, which makes Precision Time Protocol (PTP) metrics ambiguous unless interfaces are renamed with distinct prefixes. A common layout applies the MachineConfig manifest `10-rename-gnrd-interfaces-master.yaml` so each card presents a unique interface prefix before you apply a Telecom Grandmaster `PtpConfig` CR.
 
 **Additional resources**
+{._additional-resources}
 
 - [Boundary clocks without holdover on Intel Granite Rapids-D hardware](/openshift-docs-markdown/networking/advanced_networking/ptp/configuring-ptp#nw-ptp-granite-rapids-boundary-clock-overview_configuring-ptp)
 - [Configuring linuxptp services as a boundary clock without holdover on Intel Granite Rapids-D hardware](/openshift-docs-markdown/networking/advanced_networking/ptp/configuring-ptp#ptp-configuring-linuxptp-services-as-boundary-clock-gnrd_configuring-ptp)
@@ -487,25 +1183,296 @@ Use this procedure to configure the `linuxptp` services (`ptp4l`, `phc2sys`, `ts
 1. Create a `PtpConfig` custom resource (CR) that matches your qualified GNR-D Telecom Grandmaster hardware layout:
 
    ```yaml
-
+   # Example Telecom Grandmaster PtpConfig for Intel Granite Rapids-D (GNR-D).
+   #
+   # Note:  This example configuration should be customized to match the desired
+   # configuration For this GNR-D T-GM configuration, we support GNSS incoming to
+   # the onboard connection, and up to 24 Time Transmitter ports including any NAC
+   # ports and any additional Carter Flats ports.
+   apiVersion: ptp.openshift.io/v1
+   kind: PtpConfig
+   metadata:
+     name: gnrd-tgm
+     namespace: openshift-ptp
+     annotations:
+       ran.openshift.io/ztp-deploy-wave: "10"
+   spec:
+     profile:
+       - name: "grandmaster"
+         ptp4lOpts: "-2 --summary_interval -4"
+         phc2sysOpts: -r -u 0 -m -w -N 8 -R 16 -n 24 -s eno8703
+         ptpSchedulingPolicy: SCHED_FIFO
+         ptpSchedulingPriority: 10
+         ptpSettings:
+           logReduce: "true"
+         plugins:
+           e830:
+             devices:
+               - enp108s0f0
+               - enp110s0f0
+           e825:
+             devices:
+               - eno8703
+             settings:
+               LocalMaxHoldoverOffSet: 1500
+               LocalHoldoverTimeout: 14400
+               MaxInSpecOffset: 100
+             ublxCmds:
+               - args: #ubxtool -P 29.25 -z CFG-HW-ANT_CFG_VOLTCTRL,1
+                   - "-P"
+                   - "29.25"
+                   - "-z"
+                   - "CFG-HW-ANT_CFG_VOLTCTRL,1"
+                 reportOutput: false
+               - args: #ubxtool -P 29.25 -e GPS
+                   - "-P"
+                   - "29.25"
+                   - "-e"
+                   - "GPS"
+                 reportOutput: false
+               - args: #ubxtool -P 29.25 -d Galileo
+                   - "-P"
+                   - "29.25"
+                   - "-d"
+                   - "Galileo"
+                 reportOutput: false
+               - args: #ubxtool -P 29.25 -d GLONASS
+                   - "-P"
+                   - "29.25"
+                   - "-d"
+                   - "GLONASS"
+                 reportOutput: false
+               - args: #ubxtool -P 29.25 -d BeiDou
+                   - "-P"
+                   - "29.25"
+                   - "-d"
+                   - "BeiDou"
+                 reportOutput: false
+               - args: #ubxtool -P 29.25 -d SBAS
+                   - "-P"
+                   - "29.25"
+                   - "-d"
+                   - "SBAS"
+                 reportOutput: false
+               - args: #ubxtool -P 29.25 -t -w 5 -v 1 -e SURVEYIN,600,50000
+                   - "-P"
+                   - "29.25"
+                   - "-t"
+                   - "-w"
+                   - "5"
+                   - "-v"
+                   - "1"
+                   - "-e"
+                   - "SURVEYIN,600,50000"
+                 reportOutput: true
+               - args: #ubxtool -P 29.25 -p MON-HW
+                   - "-P"
+                   - "29.25"
+                   - "-p"
+                   - "MON-HW"
+                 reportOutput: true
+               - args: #ubxtool -P 29.25 -p CFG-MSG,1,38,300
+                   - "-P"
+                   - "29.25"
+                   - "-p"
+                   - "CFG-MSG,1,38,248"
+                 reportOutput: true
+         ts2phcOpts: "-m"
+         ts2phcConf: |
+           [nmea]
+           ts2phc.master 1
+           [global]
+           use_syslog  0
+           verbose 1
+           logging_level 7
+           ts2phc.pulsewidth 100000000
+           ts2phc.nmea_serialport /dev/ttyACM0
+           [eno8703]
+           ts2phc.extts_polarity rising
+           ts2phc.extts_correction 0
+           ts2phc.master  0
+           ts2phc.channel 0
+           ts2phc.pin_index 1
+           # This should be one section per Carter Flats (e830) card:
+           [enp108s0f0]
+           ts2phc.extts_polarity rising
+           ts2phc.extts_correction 0
+           ts2phc.master 0
+           ts2phc.channel 0
+           ts2phc.pin_index 1
+           [enp110s0f0]
+           ts2phc.extts_polarity rising
+           ts2phc.extts_correction 0
+           ts2phc.master 0
+           ts2phc.channel 0
+           ts2phc.pin_index 1
+         ptp4lConf: |
+           # All TimeTransmitter ports should be outlined here with 'masterOnly 1'
+           #[eno8303]
+           # ** Host management interface
+           [eno8403]
+           masterOnly 1
+           [eno8503]
+           masterOnly 1
+           [eno8603]
+           masterOnly 1
+           [eno8703]
+           masterOnly 1
+           [eno8803]
+           masterOnly 1
+           [eno8903]
+           masterOnly 1
+           [eno9003]
+           masterOnly 1
+           [enp108s0f0]
+           masterOnly 1
+           [enp108s0f1]
+           masterOnly 1
+           [enp108s0f2]
+           masterOnly 1
+           [enp108s0f3]
+           masterOnly 1
+           [enp108s0f4]
+           masterOnly 1
+           [enp108s0f5]
+           masterOnly 1
+           [enp108s0f6]
+           masterOnly 1
+           [enp108s0f7]
+           masterOnly 1
+           [enp110s0f0]
+           masterOnly 1
+           [enp110s0f1]
+           masterOnly 1
+           [enp110s0f2]
+           masterOnly 1
+           [enp110s0f3]
+           masterOnly 1
+           [enp110s0f4]
+           masterOnly 1
+           [enp110s0f5]
+           masterOnly 1
+           [enp110s0f6]
+           masterOnly 1
+           [enp110s0f7]
+           masterOnly 1
+           [global]
+           #
+           # Default Data Set
+           #
+           twoStepFlag 1
+           priority1 128
+           priority2 128
+           domainNumber 24
+           #utc_offset 37
+           clockClass 6
+           clockAccuracy 0x27
+           offsetScaledLogVariance 0xFFFF
+           free_running 0
+           freq_est_interval 1
+           dscp_event 0
+           dscp_general 0
+           dataset_comparison G.8275.x
+           G.8275.defaultDS.localPriority 128
+           #
+           # Port Data Set
+           #
+           logAnnounceInterval -3
+           logSyncInterval -4
+           logMinDelayReqInterval -4
+           logMinPdelayReqInterval 0
+           announceReceiptTimeout 3
+           syncReceiptTimeout 0
+           delayAsymmetry 0
+           fault_reset_interval 4
+           neighborPropDelayThresh 20000000
+           masterOnly 0
+           G.8275.portDS.localPriority 128
+           #
+           # Run time options
+           #
+           assume_two_step 0
+           logging_level 6
+           path_trace_enabled 0
+           follow_up_info 0
+           hybrid_e2e 0
+           inhibit_multicast_service 0
+           net_sync_monitor 0
+           tc_spanning_tree 0
+           tx_timestamp_timeout 50
+           unicast_listen 0
+           unicast_master_table 0
+           unicast_req_duration 3600
+           use_syslog 1
+           verbose 0
+           summary_interval -4
+           kernel_leap 1
+           check_fup_sync 0
+           #
+           # Servo Options
+           #
+           pi_proportional_const 0.0
+           pi_integral_const 0.0
+           pi_proportional_scale 0.0
+           pi_proportional_exponent -0.3
+           pi_proportional_norm_max 0.7
+           pi_integral_scale 0.0
+           pi_integral_exponent 0.4
+           pi_integral_norm_max 0.3
+           step_threshold 0.0
+           first_step_threshold 0.00002
+           clock_servo pi
+           sanity_freq_limit  200000000
+           ntpshm_segment 0
+           #
+           # Transport options
+           #
+           transportSpecific 0x0
+           ptp_dst_mac 01:1B:19:00:00:00
+           p2p_dst_mac 01:80:C2:00:00:0E
+           udp_ttl 1
+           udp6_scope 0x0E
+           uds_address /var/run/ptp4l
+           #
+           # Default interface options
+           #
+           clock_type BC
+           network_transport L2
+           delay_mechanism E2E
+           time_stamping hardware
+           tsproc_mode filter
+           delay_filter moving_median
+           delay_filter_length 10
+           egressLatency 0
+           ingressLatency 0
+           boundary_clock_jbod 1
+           #
+           # Clock description
+           #
+           productDescription ;;
+           revisionData ;;
+           manufacturerIdentity 00:00:00
+           userDescription ;
+           timeSource 0x20
+     recommend:
+       - match:
+         - nodeLabel: node-role.kubernetes.io/$mcp
+         priority: 4
+         profile: grandmaster
    ```
 
-{% include "./snippets/ptp_PtpConfigGnrdTGM.yaml" %} \`\`\`
+   where:
 
-```
-where:
-*   `eno8703` -- Specifies the example leading NAC interface name used in `phc2sysOpts`, `plugins.e825.devices`, and the primary `ts2phcConf` stanza. Replace this value with the NAC interface name from your qualified GNR-D hardware layout.
-*   `enp108s0f0` and `enp110s0f0` -- Specify the example Carter Flat (E830) interface names listed in `plugins.e830.devices` and used as Carter Flat `ts2phcConf` stanzas. Replace these values with your Carter Flat interface names. Add or remove stanzas and `plugins` entries if you install fewer than two expansion cards.
-*   `enp108s0f1` through `enp108s0f7` and `enp110s0f1` through `enp110s0f7` -- Specify additional example time transmitter interfaces on the two Carter Flat cards as `masterOnly 1` ports in `ptp4lConf`. Align or remove these stanzas to match your port count and naming.
-*   `eno8403`, `eno8503`, `eno8603`, `eno8703`, `eno8803`, `eno8903`, and `eno9003` -- Specify example onboard NAC time transmitter interfaces as `masterOnly 1` ports in `ptp4lConf`. Replace these values with your NAC port names. Remove stanzas you do not use.
-```
-
-1. Customize interface names, the `plugins` device list, `ts2phcConf`, `ptp4lConf`, and the `recommend` stanza in the preceding example to match your qualified hardware layout.
-2. Add or remove Carter Flat interface blocks in `ts2phcConf` and `ptp4lConf` to match the number of expansion cards on your server.
-3. In the `recommend` stanza, replace the `$mcp` placeholder with the machine config pool label for the nodes that run this PTP profile, for example, `worker`.
-4. Save the customized `PtpConfig` CR as `gnrd-grandmaster-clock-ptp-config.yaml`.
-5. Verify that the `plugins` stanza lists the `e830` and `e825` device entries your qualified hardware layout requires.
-6. Apply the `PtpConfig` CR by running the following command:
+   - `eno8703` -- Specifies the example leading NAC interface name used in `phc2sysOpts`, `plugins.e825.devices`, and the primary `ts2phcConf` stanza. Replace this value with the NAC interface name from your qualified GNR-D hardware layout.
+   - `enp108s0f0` and `enp110s0f0` -- Specify the example Carter Flat (E830) interface names listed in `plugins.e830.devices` and used as Carter Flat `ts2phcConf` stanzas. Replace these values with your Carter Flat interface names. Add or remove stanzas and `plugins` entries if you install fewer than two expansion cards.
+   - `enp108s0f1` through `enp108s0f7` and `enp110s0f1` through `enp110s0f7` -- Specify additional example time transmitter interfaces on the two Carter Flat cards as `masterOnly 1` ports in `ptp4lConf`. Align or remove these stanzas to match your port count and naming.
+   - `eno8403`, `eno8503`, `eno8603`, `eno8703`, `eno8803`, `eno8903`, and `eno9003` -- Specify example onboard NAC time transmitter interfaces as `masterOnly 1` ports in `ptp4lConf`. Replace these values with your NAC port names. Remove stanzas you do not use.
+2. Customize interface names, the `plugins` device list, `ts2phcConf`, `ptp4lConf`, and the `recommend` stanza in the preceding example to match your qualified hardware layout.
+3. Add or remove Carter Flat interface blocks in `ts2phcConf` and `ptp4lConf` to match the number of expansion cards on your server.
+4. In the `recommend` stanza, replace the `$mcp` placeholder with the machine config pool label for the nodes that run this PTP profile, for example, `worker`.
+5. Save the customized `PtpConfig` CR as `gnrd-grandmaster-clock-ptp-config.yaml`.
+6. Verify that the `plugins` stanza lists the `e830` and `e825` device entries your qualified hardware layout requires.
+7. Apply the `PtpConfig` CR by running the following command:
 
    ```terminal
    $ oc apply -f gnrd-grandmaster-clock-ptp-config.yaml
@@ -527,6 +1494,7 @@ where:
       ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring the PTP fast event notifications publisher](/openshift-docs-markdown/networking/advanced_networking/ptp/ptp-cloud-events-consumer-dev-reference-v2#cnf-configuring-the-ptp-fast-event-publisher-v2_ptp-consumer)
 - [Boundary clocks without holdover on Intel Granite Rapids-D hardware](/openshift-docs-markdown/networking/advanced_networking/ptp/configuring-ptp#nw-ptp-granite-rapids-boundary-clock-overview_configuring-ptp)
@@ -537,7 +1505,7 @@ where:
 
 The following reference information describes the configuration options for the `PtpConfig` custom resource (CR) that configures the `linuxptp` services (`ptp4l`, `phc2sys`, `ts2phc`) as a grandmaster clock.
 
-***PtpConfig configuration options for PTP Grandmaster clock***
+**PtpConfig configuration options for PTP Grandmaster clock**
 
 <table>
 <thead>
@@ -549,15 +1517,15 @@ The following reference information describes the configuration options for the 
 <tbody>
 <tr>
   <td><code>plugins</code></td>
-  <td>Specify an array of <code>.exec.cmdline</code> options that configure the NIC for grandmaster clock operation. Grandmaster clock configuration requires certain PTP pins to be disabled.</td>
+  <td>Specify an array of <code>.exec.cmdline</code> options that configure the NIC for grandmaster clock operation. Grandmaster clock configuration requires certain PTP pins to be disabled.<br><br>The plugin mechanism allows the PTP Operator to do automated hardware configuration. For the Intel Westport Channel NIC or the Intel Logan Beach NIC, when the <code>enableDefaultConfig</code> field is set to <code>true</code>, the PTP Operator runs a hard-coded script to do the required configuration for the NIC.</td>
 </tr>
 <tr>
   <td><code>ptp4lOpts</code></td>
-  <td>Specify system configuration options for the <code>ptp4l</code> service.</td>
+  <td>Specify system configuration options for the <code>ptp4l</code> service. The options should not include the network interface name <code>-i &lt;interface&gt;</code> and service config file <code>-f /etc/ptp4l.conf</code> because the network interface name and the service config file are automatically appended.</td>
 </tr>
 <tr>
   <td><code>ptp4lConf</code></td>
-  <td>Specify the required configuration to start <code>ptp4l</code> as a grandmaster clock.</td>
+  <td>Specify the required configuration to start <code>ptp4l</code> as a grandmaster clock. For example, the <code>ens2f1</code> interface synchronizes downstream connected devices. For grandmaster clocks, set <code>clockClass</code> to <code>6</code> and set <code>clockAccuracy</code> to <code>0x27</code>. Set <code>timeSource</code> to <code>0x20</code> for when receiving the timing signal from a Global navigation satellite system (GNSS).</td>
 </tr>
 <tr>
   <td><code>tx_timestamp_timeout</code></td>
@@ -565,27 +1533,27 @@ The following reference information describes the configuration options for the 
 </tr>
 <tr>
   <td><code>boundary_clock_jbod</code></td>
-  <td>Specify the JBOD boundary clock time delay value.</td>
+  <td>Specify the JBOD boundary clock time delay value. This value is used to correct the time values that are passed between the network time devices.</td>
 </tr>
 <tr>
   <td><code>phc2sysOpts</code></td>
-  <td>Specify system config options for the <code>phc2sys</code> service.If this field is empty the PTP Operator does not start the <code>phc2sys</code> service.<dl><dt>Note</dt><dd>Ensure that the network interface listed here is configured as grandmaster and is referenced as required in the <code>ts2phcConf</code> and <code>ptp4lConf</code> fields.</dd></dl></td>
+  <td>Specify system config options for the <code>phc2sys</code> service. If this field is empty the PTP Operator does not start the <code>phc2sys</code> service.<dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>Ensure that the network interface listed here is configured as grandmaster and is referenced as required in the <code>ts2phcConf</code> and <code>ptp4lConf</code> fields.</dd></dl></td>
 </tr>
 <tr>
   <td><code>ptpSchedulingPolicy</code></td>
-  <td>Configure the scheduling policy for <code>ptp4l</code> and <code>phc2sys</code> processes.</td>
+  <td>Configure the scheduling policy for <code>ptp4l</code> and <code>phc2sys</code> processes. Default value is <code>SCHED_OTHER</code>. Use <code>SCHED_FIFO</code> on systems that support FIFO scheduling.</td>
 </tr>
 <tr>
   <td><code>ptpSchedulingPriority</code></td>
-  <td>Set an integer value from 1-65 to configure FIFO priority for <code>ptp4l</code> and <code>phc2sys</code> processes when <code>ptpSchedulingPolicy</code> is set to <code>SCHED_FIFO</code>.</td>
+  <td>Set an integer value from 1-65 to configure FIFO priority for <code>ptp4l</code> and <code>phc2sys</code> processes when <code>ptpSchedulingPolicy</code> is set to <code>SCHED_FIFO</code>. The <code>ptpSchedulingPriority</code> field is not used when <code>ptpSchedulingPolicy</code> is set to <code>SCHED_OTHER</code>.</td>
 </tr>
 <tr>
   <td><code>ptpClockThreshold</code></td>
-  <td>Optional.</td>
+  <td>Optional. If <code>ptpClockThreshold</code> stanza is not present, default values are used for <code>ptpClockThreshold</code> fields. Stanza shows default <code>ptpClockThreshold</code> values. <code>ptpClockThreshold</code> values configure how long after the PTP master clock is disconnected before PTP events are triggered. <code>holdOverTimeout</code> is the time value in seconds before the PTP clock event state changes to <code>FREERUN</code> when the PTP master clock is disconnected. The <code>maxOffsetThreshold</code> and <code>minOffsetThreshold</code> settings configure offset values in nanoseconds that compare against the values for <code>CLOCK_REALTIME</code> (<code>phc2sys</code>) or master offset (<code>ptp4l</code>). When the <code>ptp4l</code> or <code>phc2sys</code> offset value is outside this range, the PTP clock state is set to <code>FREERUN</code>. When the offset value is within this range, the PTP clock state is set to <code>LOCKED</code>.</td>
 </tr>
 <tr>
   <td><code>ts2phcConf</code></td>
-  <td>Sets the configuration for the <code>ts2phc</code> command.<br><br><code>leapfile</code> is the default path to the current leap seconds definition file in the PTP Operator container image.<br><br><code>ts2phc.nmea_serialport</code> is the serial port device that is connected to the NMEA GPS clock source.When configured, the GNSS receiver is accessible on <code>/dev/gnss<id></code>.If the host has multiple GNSS receivers, you can find the correct device by enumerating either of the following devices:<br><br><ul><li><code>/sys/class/net/<eth_port>/device/gnss/</code></li><li><code>/sys/class/gnss/gnss<id>/device/</code></li></ul></td>
+  <td>Sets the configuration for the <code>ts2phc</code> command.<br><br><code>leapfile</code> is the default path to the current leap seconds definition file in the PTP Operator container image.<br><br><code>ts2phc.nmea_serialport</code> is the serial port device that is connected to the NMEA GPS clock source. When configured, the GNSS receiver is accessible on <code>/dev/gnss&lt;id&gt;</code>. If the host has multiple GNSS receivers, you can find the correct device by enumerating either of the following devices:<br><br><ul><li><code>/sys/class/net/&lt;eth_port&gt;/device/gnss/</code></li><li><code>/sys/class/gnss/gnss&lt;id&gt;/device/</code></li></ul></td>
 </tr>
 <tr>
   <td><code>ts2phcOpts</code></td>
@@ -601,7 +1569,7 @@ The following reference information describes the configuration options for the 
 </tr>
 <tr>
   <td><code>.recommend.priority</code></td>
-  <td>Specify the <code>priority</code> with an integer value between <code>0</code> and <code>99</code>.</td>
+  <td>Specify the <code>priority</code> with an integer value between <code>0</code> and <code>99</code>. A larger number gets lower priority, so a priority of <code>99</code> is lower than a priority of <code>10</code>. If a node can be matched with multiple profiles according to rules defined in the <code>match</code> field, the profile with the higher priority is applied to that node.</td>
 </tr>
 <tr>
   <td><code>.recommend.match</code></td>
@@ -609,11 +1577,11 @@ The following reference information describes the configuration options for the 
 </tr>
 <tr>
   <td><code>.recommend.match.nodeLabel</code></td>
-  <td>Set <code>nodeLabel</code> with the <code>key</code> of the <code>node.Labels</code> field from the node object by using the <code>oc get nodes --show-labels</code> command.</td>
+  <td>Set <code>nodeLabel</code> with the <code>key</code> of the <code>node.Labels</code> field from the node object by using the <code>oc get nodes --show-labels</code> command. For example, <code>node-role.kubernetes.io/worker</code>.</td>
 </tr>
 <tr>
   <td><code>.recommend.match.nodeName</code></td>
-  <td>Set <code>nodeName</code> with the value of the <code>node.Name</code> field from the node object by using the <code>oc get nodes</code> command.</td>
+  <td>Set <code>nodeName</code> with the value of the <code>node.Name</code> field from the node object by using the <code>oc get nodes</code> command. For example, <code>compute-1.example.com</code>.</td>
 </tr>
 </tbody>
 </table>
@@ -728,7 +1696,7 @@ Before you configure the dual-NIC cluster host, you must connect the two NICs wi
 
 When you configure a dual-NIC T-GM, you need to compensate for the 1PPS signal delay that occurs when you connect the NICs using the SMA1 connection ports. Various factors such as cable length, ambient temperature, and component and manufacturing tolerances can affect the signal delay. To compensate for the delay, you must calculate the specific value that you use to offset the signal delay.
 
-***E810 dual-NIC T-GM PtpConfig CR reference***
+**E810 dual-NIC T-GM PtpConfig CR reference**
 
 <table>
 <thead>
@@ -744,7 +1712,7 @@ When you configure a dual-NIC T-GM, you need to compensate for the 1PPS signal d
 </tr>
 <tr>
   <td><code>spec.profile.ts2phcConf</code></td>
-  <td>Use the <code>ts2phcConf</code> field to configure parameters for NIC one and NIC two.</td>
+  <td>Use the <code>ts2phcConf</code> field to configure parameters for NIC one and NIC two. Set <code>ts2phc.master 0</code> for NIC two. This configures the timing source for NIC two from the 1PPS input, not GNSS. Configure the <code>ts2phc.extts_correction</code> value for NIC two to compensate for the delay that is incurred for the specific SMA cable and cable length that you use. The value that you configure depends on your specific measurements and SMA1 cable length.</td>
 </tr>
 <tr>
   <td><code>spec.profile.ptp4lConf</code></td>
@@ -783,7 +1751,7 @@ Before you configure the 3-card cluster host, you must connect the 3 NICs by usi
 
 When you configure a 3-card T-GM, you need to compensate for the 1PPS signal delay that occurs when you connect the NICs by using the SMA1 connection ports. Various factors such as cable length, ambient temperature, and component and manufacturing tolerances can affect the signal delay. To compensate for the delay, you must calculate the specific value that you use to offset the signal delay.
 
-***3-card E810 T-GM PtpConfig CR reference***
+**3-card E810 T-GM PtpConfig CR reference**
 
 <table>
 <thead>
@@ -799,7 +1767,7 @@ When you configure a 3-card T-GM, you need to compensate for the 1PPS signal del
 </tr>
 <tr>
   <td><code>spec.profile.ts2phcConf</code></td>
-  <td>Use the <code>ts2phcConf</code> field to configure parameters for the NICs.</td>
+  <td>Use the <code>ts2phcConf</code> field to configure parameters for the NICs. Set <code>ts2phc.master 0</code> for NIC 2 and NIC 3. This configures the timing source for NIC 2 and NIC 3 from the 1PPS input, not GNSS. Configure the <code>ts2phc.extts_correction</code> value for NIC 2 and NIC 3 to compensate for the delay that is incurred for the specific SMA cable and cable length that you use. The value that you configure depends on your specific measurements and SMA1 cable length.</td>
 </tr>
 <tr>
   <td><code>spec.profile.ptp4lConf</code></td>
@@ -842,8 +1810,8 @@ The T-GM clock uses the slope value to predict and compensate for time drift, so
 
   The T-GM clock reaches the maximum offset in 60 seconds.
 
-> [!NOTE]
-> The phase offset is converted from picoseconds to nanoseconds. As a result, the calculated phase offset during holdover is expressed in nanoseconds, and the resulting slope is expressed in nanoseconds per second.
+  > [!NOTE]
+  > The phase offset is converted from picoseconds to nanoseconds. As a result, the calculated phase offset during holdover is expressed in nanoseconds, and the resulting slope is expressed in nanoseconds per second.
 
 The following figure illustrates the holdover behavior in a T-GM clock with GNSS as the source:
 
@@ -1583,6 +2551,7 @@ This example describes how to configure unassisted holdover for a multi-card T-B
 - `s0`: Unlocked - holdover limits exceeded or no valid holdover data
 
 **Additional resources**
+{._additional-resources}
 
 - [Grandmaster clock class sync state reference](/openshift-docs-markdown/networking/advanced_networking/ptp/configuring-ptp#nw-ptp-grandmaster-clock-class-reference_configuring-ptp)
 
@@ -2032,6 +3001,7 @@ For more information about `MachineConfig` custom resource, see *Additional reso
   - `s0`: Unlocked - holdover limits exceeded or no valid holdover data
 
 **Additional resources**
+{._additional-resources}
 
 - [Machine Configuration documentation](/openshift-docs-markdown/machine_configuration/index#machine-config-index)
 
@@ -2171,37 +3141,164 @@ You can configure the `linuxptp` services (`ptp4l`, `phc2sys`) as boundary clock
 1. Create the following `PtpConfig` CR, and then save the YAML in the `boundary-clock-ptp-config.yaml` file.
 
    ```yaml {title="Example PTP boundary clock configuration"}
-
+   apiVersion: ptp.openshift.io/v1
+   kind: PtpConfig
+   metadata:
+     name: boundary-clock
+     namespace: openshift-ptp
+     annotations: {}
+   spec:
+     profile:
+       - name: boundary-clock
+         ptp4lOpts: "-2"
+         phc2sysOpts: "-a -r -n 24"
+         ptpSchedulingPolicy: SCHED_FIFO
+         ptpSchedulingPriority: 10
+         ptpSettings:
+           logReduce: "true"
+         ptp4lConf: |
+           # The interface name is hardware-specific
+           [$iface_slave]
+           masterOnly 0
+           [$iface_master_1]
+           masterOnly 1
+           [$iface_master_2]
+           masterOnly 1
+           [$iface_master_3]
+           masterOnly 1
+           [global]
+           #
+           # Default Data Set
+           #
+           twoStepFlag 1
+           slaveOnly 0
+           priority1 128
+           priority2 128
+           domainNumber 24
+           #utc_offset 37
+           clockClass 248
+           clockAccuracy 0xFE
+           offsetScaledLogVariance 0xFFFF
+           free_running 0
+           freq_est_interval 1
+           dscp_event 0
+           dscp_general 0
+           dataset_comparison G.8275.x
+           G.8275.defaultDS.localPriority 128
+           #
+           # Port Data Set
+           #
+           logAnnounceInterval -3
+           logSyncInterval -4
+           logMinDelayReqInterval -4
+           logMinPdelayReqInterval -4
+           announceReceiptTimeout 3
+           syncReceiptTimeout 0
+           delayAsymmetry 0
+           fault_reset_interval -4
+           neighborPropDelayThresh 20000000
+           masterOnly 0
+           G.8275.portDS.localPriority 128
+           #
+           # Run time options
+           #
+           assume_two_step 0
+           logging_level 6
+           path_trace_enabled 0
+           follow_up_info 0
+           hybrid_e2e 0
+           inhibit_multicast_service 0
+           net_sync_monitor 0
+           tc_spanning_tree 0
+           tx_timestamp_timeout 50
+           unicast_listen 0
+           unicast_master_table 0
+           unicast_req_duration 3600
+           use_syslog 1
+           verbose 0
+           summary_interval 0
+           kernel_leap 1
+           check_fup_sync 0
+           clock_class_threshold 135
+           #
+           # Servo Options
+           #
+           pi_proportional_const 0.0
+           pi_integral_const 0.0
+           pi_proportional_scale 0.0
+           pi_proportional_exponent -0.3
+           pi_proportional_norm_max 0.7
+           pi_integral_scale 0.0
+           pi_integral_exponent 0.4
+           pi_integral_norm_max 0.3
+           step_threshold 2.0
+           first_step_threshold 0.00002
+           max_frequency 900000000
+           clock_servo pi
+           sanity_freq_limit 200000000
+           ntpshm_segment 0
+           #
+           # Transport options
+           #
+           transportSpecific 0x0
+           ptp_dst_mac 01:1B:19:00:00:00
+           p2p_dst_mac 01:80:C2:00:00:0E
+           udp_ttl 1
+           udp6_scope 0x0E
+           uds_address /var/run/ptp4l
+           #
+           # Default interface options
+           #
+           clock_type BC
+           network_transport L2
+           delay_mechanism E2E
+           time_stamping hardware
+           tsproc_mode filter
+           delay_filter moving_median
+           delay_filter_length 10
+           egressLatency 0
+           ingressLatency 0
+           boundary_clock_jbod 0
+           #
+           # Clock description
+           #
+           productDescription ;;
+           revisionData ;;
+           manufacturerIdentity 00:00:00
+           userDescription ;
+           timeSource 0xA0
+     recommend:
+       - profile: boundary-clock
+         priority: 4
+         match:
+           - nodeLabel: "node-role.kubernetes.io/$mcp"
    ```
 
-{% include "./snippets/ptp_PtpConfigBoundary.yaml" %} \`\`\` **PTP boundary clock CR configuration options**
+   **PTP boundary clock CR configuration options**
 
-```
-|     |     |
-| --- | --- |
-| CR field | Description |
-| `name` | The name of the `PtpConfig` CR. |
-| `profile` | Specify an array of one or more `profile` objects. |
-| `name` | Specify the name of a profile object which uniquely identifies a profile object. |
-| `ptp4lOpts` | Specify system config options for the `ptp4l` service. The options should not include the network interface name `-i <interface>` and service config file `-f /etc/ptp4l.conf` because the network interface name and the service config file are automatically appended. |
-| `ptp4lConf` | Specify the required configuration to start `ptp4l` as boundary clock. For example, `ens1f0` synchronizes from a grandmaster clock and `ens1f3` synchronizes connected devices. |
-| `<interface_1>` | The interface that receives the synchronization clock. |
-| `<interface_2>` | The interface that sends the synchronization clock. |
-| `tx_timestamp_timeout` | For Intel Columbiaville 800 Series NICs, set `tx_timestamp_timeout` to `50`. |
-| `boundary_clock_jbod` | For Intel Columbiaville 800 Series NICs, ensure `boundary_clock_jbod` is set to `0`. For Intel Fortville X710 Series NICs, ensure `boundary_clock_jbod` is set to `1`. |
-| `phc2sysOpts` | Specify system config options for the `phc2sys` service. If this field is empty, the PTP Operator does not start the `phc2sys` service. |
-| `ptpSchedulingPolicy` | Scheduling policy for ptp4l and phc2sys processes. Default value is `SCHED_OTHER`. Use `SCHED_FIFO` on systems that support FIFO scheduling. |
-| `ptpSchedulingPriority` | Integer value from 1-65 used to set FIFO priority for `ptp4l` and `phc2sys` processes when `ptpSchedulingPolicy` is set to `SCHED_FIFO`. The `ptpSchedulingPriority` field is not used when `ptpSchedulingPolicy` is set to `SCHED_OTHER`. |
-| `ptpClockThreshold` | Optional. If `ptpClockThreshold` is not present, default values are used for the `ptpClockThreshold` fields. `ptpClockThreshold` configures how long after the PTP master clock is disconnected before PTP events are triggered. `holdOverTimeout` is the time value in seconds before the PTP clock event state changes to `FREERUN` when the PTP master clock is disconnected. The `maxOffsetThreshold` and `minOffsetThreshold` settings configure offset values in nanoseconds that compare against the values for `CLOCK_REALTIME` (`phc2sys`) or master offset (`ptp4l`). When the `ptp4l` or `phc2sys` offset value is outside this range, the PTP clock state is set to `FREERUN`. When the offset value is within this range, the PTP clock state is set to `LOCKED`. |
-| `recommend` | Specify an array of one or more `recommend` objects that define rules on how the `profile` should be applied to nodes. |
-| `.recommend.profile` | Specify the `.recommend.profile` object name defined in the `profile` section. |
-| `.recommend.priority` | Specify the `priority` with an integer value between `0` and `99`. A larger number gets lower priority, so a priority of `99` is lower than a priority of `10`. If a node can be matched with multiple profiles according to rules defined in the `match` field, the profile with the higher priority is applied to that node. |
-| `.recommend.match` | Specify `.recommend.match` rules with `nodeLabel` or `nodeName` values. |
-| `.recommend.match.nodeLabel` | Set `nodeLabel` with the `key` of the `node.Labels` field from the node object by using the `oc get nodes --show-labels` command. For example, `node-role.kubernetes.io/worker`. |
-| `.recommend.match.nodeName` | Set `nodeName` with the value of the `node.Name` field from the node object by using the `oc get nodes` command. For example, `compute-1.example.com`. |
-```
-
-1. Create the CR by running the following command:
+   |  |  |
+   | --- | --- |
+   | CR field | Description |
+   | `name` | The name of the `PtpConfig` CR. |
+   | `profile` | Specify an array of one or more `profile` objects. |
+   | `name` | Specify the name of a profile object which uniquely identifies a profile object. |
+   | `ptp4lOpts` | Specify system config options for the `ptp4l` service. The options should not include the network interface name `-i <interface>` and service config file `-f /etc/ptp4l.conf` because the network interface name and the service config file are automatically appended. |
+   | `ptp4lConf` | Specify the required configuration to start `ptp4l` as boundary clock. For example, `ens1f0` synchronizes from a grandmaster clock and `ens1f3` synchronizes connected devices. |
+   | `<interface_1>` | The interface that receives the synchronization clock. |
+   | `<interface_2>` | The interface that sends the synchronization clock. |
+   | `tx_timestamp_timeout` | For Intel Columbiaville 800 Series NICs, set `tx_timestamp_timeout` to `50`. |
+   | `boundary_clock_jbod` | For Intel Columbiaville 800 Series NICs, ensure `boundary_clock_jbod` is set to `0`. For Intel Fortville X710 Series NICs, ensure `boundary_clock_jbod` is set to `1`. |
+   | `phc2sysOpts` | Specify system config options for the `phc2sys` service. If this field is empty, the PTP Operator does not start the `phc2sys` service. |
+   | `ptpSchedulingPolicy` | Scheduling policy for ptp4l and phc2sys processes. Default value is `SCHED_OTHER`. Use `SCHED_FIFO` on systems that support FIFO scheduling. |
+   | `ptpSchedulingPriority` | Integer value from 1-65 used to set FIFO priority for `ptp4l` and `phc2sys` processes when `ptpSchedulingPolicy` is set to `SCHED_FIFO`. The `ptpSchedulingPriority` field is not used when `ptpSchedulingPolicy` is set to `SCHED_OTHER`. |
+   | `ptpClockThreshold` | Optional. If `ptpClockThreshold` is not present, default values are used for the `ptpClockThreshold` fields. `ptpClockThreshold` configures how long after the PTP master clock is disconnected before PTP events are triggered. `holdOverTimeout` is the time value in seconds before the PTP clock event state changes to `FREERUN` when the PTP master clock is disconnected. The `maxOffsetThreshold` and `minOffsetThreshold` settings configure offset values in nanoseconds that compare against the values for `CLOCK_REALTIME` (`phc2sys`) or master offset (`ptp4l`). When the `ptp4l` or `phc2sys` offset value is outside this range, the PTP clock state is set to `FREERUN`. When the offset value is within this range, the PTP clock state is set to `LOCKED`. |
+   | `recommend` | Specify an array of one or more `recommend` objects that define rules on how the `profile` should be applied to nodes. |
+   | `.recommend.profile` | Specify the `.recommend.profile` object name defined in the `profile` section. |
+   | `.recommend.priority` | Specify the `priority` with an integer value between `0` and `99`. A larger number gets lower priority, so a priority of `99` is lower than a priority of `10`. If a node can be matched with multiple profiles according to rules defined in the `match` field, the profile with the higher priority is applied to that node. |
+   | `.recommend.match` | Specify `.recommend.match` rules with `nodeLabel` or `nodeName` values. |
+   | `.recommend.match.nodeLabel` | Set `nodeLabel` with the `key` of the `node.Labels` field from the node object by using the `oc get nodes --show-labels` command. For example, `node-role.kubernetes.io/worker`. |
+   | `.recommend.match.nodeName` | Set `nodeName` with the value of the `node.Name` field from the node object by using the `oc get nodes` command. For example, `compute-1.example.com`. |
+2. Create the CR by running the following command:
 
    ```terminal
    $ oc create -f boundary-clock-ptp-config.yaml
@@ -2241,6 +3338,7 @@ You can configure the `linuxptp` services (`ptp4l`, `phc2sys`) as boundary clock
       ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring FIFO priority scheduling for PTP hardware](/openshift-docs-markdown/networking/advanced_networking/ptp/configuring-ptp#cnf-configuring-fifo-priority-scheduling-for-ptp_configuring-ptp)
 - [Configuring the PTP fast event notifications publisher](/openshift-docs-markdown/networking/advanced_networking/ptp/ptp-cloud-events-consumer-dev-reference-v2#cnf-configuring-the-ptp-fast-event-publisher-v2_ptp-consumer)
@@ -2970,35 +4068,155 @@ You can configure `linuxptp` services (`ptp4l`, `phc2sys`) as ordinary clock by 
 1. Create the following `PtpConfig` CR, and then save the YAML in the `ordinary-clock-ptp-config.yaml` file. <a name="ptp-ordinary-clock"></a>
 
    ```yaml {title="Example PTP ordinary clock configuration"}
-
+   apiVersion: ptp.openshift.io/v1
+   kind: PtpConfig
+   metadata:
+     name: ordinary-clock
+     namespace: openshift-ptp
+     annotations: {}
+   spec:
+     profile:
+       - name: ordinary-clock
+         # The interface name is hardware-specific
+         interface: $interface
+         ptp4lOpts: "-2 -s"
+         phc2sysOpts: "-a -r -n 24"
+         ptpSchedulingPolicy: SCHED_FIFO
+         ptpSchedulingPriority: 10
+         ptpSettings:
+           logReduce: "true"
+         ptp4lConf: |
+           [global]
+           #
+           # Default Data Set
+           #
+           twoStepFlag 1
+           slaveOnly 1
+           priority1 128
+           priority2 128
+           domainNumber 24
+           #utc_offset 37
+           clockClass 255
+           clockAccuracy 0xFE
+           offsetScaledLogVariance 0xFFFF
+           free_running 0
+           freq_est_interval 1
+           dscp_event 0
+           dscp_general 0
+           dataset_comparison G.8275.x
+           G.8275.defaultDS.localPriority 128
+           #
+           # Port Data Set
+           #
+           logAnnounceInterval -3
+           logSyncInterval -4
+           logMinDelayReqInterval -4
+           logMinPdelayReqInterval -4
+           announceReceiptTimeout 3
+           syncReceiptTimeout 0
+           delayAsymmetry 0
+           fault_reset_interval -4
+           neighborPropDelayThresh 20000000
+           masterOnly 0
+           G.8275.portDS.localPriority 128
+           #
+           # Run time options
+           #
+           assume_two_step 0
+           logging_level 6
+           path_trace_enabled 0
+           follow_up_info 0
+           hybrid_e2e 0
+           inhibit_multicast_service 0
+           net_sync_monitor 0
+           tc_spanning_tree 0
+           tx_timestamp_timeout 50
+           unicast_listen 0
+           unicast_master_table 0
+           unicast_req_duration 3600
+           use_syslog 1
+           verbose 0
+           summary_interval 0
+           kernel_leap 1
+           check_fup_sync 0
+           clock_class_threshold 7
+           #
+           # Servo Options
+           #
+           pi_proportional_const 0.0
+           pi_integral_const 0.0
+           pi_proportional_scale 0.0
+           pi_proportional_exponent -0.3
+           pi_proportional_norm_max 0.7
+           pi_integral_scale 0.0
+           pi_integral_exponent 0.4
+           pi_integral_norm_max 0.3
+           step_threshold 2.0
+           first_step_threshold 0.00002
+           max_frequency 900000000
+           clock_servo pi
+           sanity_freq_limit 200000000
+           ntpshm_segment 0
+           #
+           # Transport options
+           #
+           transportSpecific 0x0
+           ptp_dst_mac 01:1B:19:00:00:00
+           p2p_dst_mac 01:80:C2:00:00:0E
+           udp_ttl 1
+           udp6_scope 0x0E
+           uds_address /var/run/ptp4l
+           #
+           # Default interface options
+           #
+           clock_type OC
+           network_transport L2
+           delay_mechanism E2E
+           time_stamping hardware
+           tsproc_mode filter
+           delay_filter moving_median
+           delay_filter_length 10
+           egressLatency 0
+           ingressLatency 0
+           boundary_clock_jbod 0
+           #
+           # Clock description
+           #
+           productDescription ;;
+           revisionData ;;
+           manufacturerIdentity 00:00:00
+           userDescription ;
+           timeSource 0xA0
+     recommend:
+       - profile: ordinary-clock
+         priority: 4
+         match:
+           - nodeLabel: "node-role.kubernetes.io/$mcp"
    ```
 
-{% include "./snippets/ptp_PtpConfigOrdinaryClock.yaml" %} \`\`\` **PTP ordinary clock CR configuration options**
+   **PTP ordinary clock CR configuration options**
 
-```
-|     |     |
-| --- | --- |
-| CR field | Description |
-| `name` | The name of the `PtpConfig` CR. |
-| `profile` | Specify an array of one or more `profile` objects. Each profile must be uniquely named. |
-| `interface` | Specify the network interface to be used by the `ptp4l` service, for example `ens787f1`. |
-| `ptp4lOpts` | Specify system config options for the `ptp4l` service, for example `-2` to select the IEEE 802.3 network transport. The options should not include the network interface name `-i <interface>` and service config file `-f /etc/ptp4l.conf` because the network interface name and the service config file are automatically appended. Append `--summary_interval -4` to use PTP fast events with this interface. |
-| `phc2sysOpts` | Specify system config options for the `phc2sys` service. If this field is empty, the PTP Operator does not start the `phc2sys` service. For Intel Columbiaville 800 Series NICs, set `phc2sysOpts` options to `-a -r -m -n 24 -N 8 -R 16`. `-m` prints messages to `stdout`. The `linuxptp-daemon` `DaemonSet` parses the logs and generates Prometheus metrics. |
-| `ptp4lConf` | Specify a string that contains the configuration to replace the default `/etc/ptp4l.conf` file. To use the default configuration, leave the field empty. |
-| `tx_timestamp_timeout` | For Intel Columbiaville 800 Series NICs, set `tx_timestamp_timeout` to `50`. |
-| `boundary_clock_jbod` | For Intel Columbiaville 800 Series NICs, set `boundary_clock_jbod` to `0`. |
-| `ptpSchedulingPolicy` | Scheduling policy for `ptp4l` and `phc2sys` processes. Default value is `SCHED_OTHER`. Use `SCHED_FIFO` on systems that support FIFO scheduling. |
-| `ptpSchedulingPriority` | Integer value from 1-65 used to set FIFO priority for `ptp4l` and `phc2sys` processes when `ptpSchedulingPolicy` is set to `SCHED_FIFO`. The `ptpSchedulingPriority` field is not used when `ptpSchedulingPolicy` is set to `SCHED_OTHER`. |
-| `ptpClockThreshold` | Optional. If `ptpClockThreshold` is not present, default values are used for the `ptpClockThreshold` fields. `ptpClockThreshold` configures how long after the PTP master clock is disconnected before PTP events are triggered. `holdOverTimeout` is the time value in seconds before the PTP clock event state changes to `FREERUN` when the PTP master clock is disconnected. The `maxOffsetThreshold` and `minOffsetThreshold` settings configure offset values in nanoseconds that compare against the values for `CLOCK_REALTIME` (`phc2sys`) or master offset (`ptp4l`). When the `ptp4l` or `phc2sys` offset value is outside this range, the PTP clock state is set to `FREERUN`. When the offset value is within this range, the PTP clock state is set to `LOCKED`. |
-| `recommend` | Specify an array of one or more `recommend` objects that define rules on how the `profile` should be applied to nodes. |
-| `.recommend.profile` | Specify the `.recommend.profile` object name defined in the `profile` section. |
-| `.recommend.priority` | Set `.recommend.priority` to `0` for ordinary clock. |
-| `.recommend.match` | Specify `.recommend.match` rules with `nodeLabel` or `nodeName` values. |
-| `.recommend.match.nodeLabel` | Set `nodeLabel` with the `key` of the `node.Labels` field from the node object by using the `oc get nodes --show-labels` command. For example, `node-role.kubernetes.io/worker`. |
-| `.recommend.match.nodeName` | Set `nodeName` with the value of the `node.Name` field from the node object by using the `oc get nodes` command. For example, `compute-1.example.com`. |
-```
-
-1. Create the `PtpConfig` CR by running the following command:
+   |  |  |
+   | --- | --- |
+   | CR field | Description |
+   | `name` | The name of the `PtpConfig` CR. |
+   | `profile` | Specify an array of one or more `profile` objects. Each profile must be uniquely named. |
+   | `interface` | Specify the network interface to be used by the `ptp4l` service, for example `ens787f1`. |
+   | `ptp4lOpts` | Specify system config options for the `ptp4l` service, for example `-2` to select the IEEE 802.3 network transport. The options should not include the network interface name `-i <interface>` and service config file `-f /etc/ptp4l.conf` because the network interface name and the service config file are automatically appended. Append `--summary_interval -4` to use PTP fast events with this interface. |
+   | `phc2sysOpts` | Specify system config options for the `phc2sys` service. If this field is empty, the PTP Operator does not start the `phc2sys` service. For Intel Columbiaville 800 Series NICs, set `phc2sysOpts` options to `-a -r -m -n 24 -N 8 -R 16`. `-m` prints messages to `stdout`. The `linuxptp-daemon` `DaemonSet` parses the logs and generates Prometheus metrics. |
+   | `ptp4lConf` | Specify a string that contains the configuration to replace the default `/etc/ptp4l.conf` file. To use the default configuration, leave the field empty. |
+   | `tx_timestamp_timeout` | For Intel Columbiaville 800 Series NICs, set `tx_timestamp_timeout` to `50`. |
+   | `boundary_clock_jbod` | For Intel Columbiaville 800 Series NICs, set `boundary_clock_jbod` to `0`. |
+   | `ptpSchedulingPolicy` | Scheduling policy for `ptp4l` and `phc2sys` processes. Default value is `SCHED_OTHER`. Use `SCHED_FIFO` on systems that support FIFO scheduling. |
+   | `ptpSchedulingPriority` | Integer value from 1-65 used to set FIFO priority for `ptp4l` and `phc2sys` processes when `ptpSchedulingPolicy` is set to `SCHED_FIFO`. The `ptpSchedulingPriority` field is not used when `ptpSchedulingPolicy` is set to `SCHED_OTHER`. |
+   | `ptpClockThreshold` | Optional. If `ptpClockThreshold` is not present, default values are used for the `ptpClockThreshold` fields. `ptpClockThreshold` configures how long after the PTP master clock is disconnected before PTP events are triggered. `holdOverTimeout` is the time value in seconds before the PTP clock event state changes to `FREERUN` when the PTP master clock is disconnected. The `maxOffsetThreshold` and `minOffsetThreshold` settings configure offset values in nanoseconds that compare against the values for `CLOCK_REALTIME` (`phc2sys`) or master offset (`ptp4l`). When the `ptp4l` or `phc2sys` offset value is outside this range, the PTP clock state is set to `FREERUN`. When the offset value is within this range, the PTP clock state is set to `LOCKED`. |
+   | `recommend` | Specify an array of one or more `recommend` objects that define rules on how the `profile` should be applied to nodes. |
+   | `.recommend.profile` | Specify the `.recommend.profile` object name defined in the `profile` section. |
+   | `.recommend.priority` | Set `.recommend.priority` to `0` for ordinary clock. |
+   | `.recommend.match` | Specify `.recommend.match` rules with `nodeLabel` or `nodeName` values. |
+   | `.recommend.match.nodeLabel` | Set `nodeLabel` with the `key` of the `node.Labels` field from the node object by using the `oc get nodes --show-labels` command. For example, `node-role.kubernetes.io/worker`. |
+   | `.recommend.match.nodeName` | Set `nodeName` with the value of the `node.Name` field from the node object by using the `oc get nodes` command. For example, `compute-1.example.com`. |
+2. Create the `PtpConfig` CR by running the following command:
 
    ```terminal
    $ oc create -f ordinary-clock-ptp-config.yaml
@@ -3038,6 +4256,7 @@ You can configure `linuxptp` services (`ptp4l`, `phc2sys`) as ordinary clock by 
       ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring FIFO priority scheduling for PTP hardware](/openshift-docs-markdown/networking/advanced_networking/ptp/configuring-ptp#cnf-configuring-fifo-priority-scheduling-for-ptp_configuring-ptp)
 - [Configuring the PTP fast event notifications publisher](/openshift-docs-markdown/networking/advanced_networking/ptp/ptp-cloud-events-consumer-dev-reference-v2#cnf-configuring-the-ptp-fast-event-publisher-v2_ptp-consumer)
@@ -3153,6 +4372,7 @@ In a dual-port NIC configuration for an ordinary clock, if one port fails, the s
       ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring linuxptp services as ordinary clock](/openshift-docs-markdown/networking/advanced_networking/ptp/configuring-ptp#configuring-linuxptp-services-as-ordinary-clock_configuring-ptp)
 - [Using dual-port NICs to improve redundancy for PTP ordinary clocks](/openshift-docs-markdown/networking/advanced_networking/ptp/about-ptp#ptp-dual-ports-oc_about-ptp)
@@ -3750,11 +4970,11 @@ This procedure configures a T-GM (Telecom Grandmaster) clock that uses an Intel 
 
    The configuration includes the following components:
 
-   - ***PTP4L options:***
+   - **PTP4L options:**
 
      - `-2`: Use PTP version 2
      - `--summary_interval -4`: Log summary every 2^(-4) = 0.0625 seconds
-   - ***PHC2SYS options:***
+   - **PHC2SYS options:**
 
      - `-r`: Synchronize system clock from PTP hardware clock
      - `-u 0`: Update rate multiplier
@@ -3763,22 +4983,22 @@ This procedure configures a T-GM (Telecom Grandmaster) clock that uses an Intel 
      - `-R 16`: Update rate
      - `-s ens7f0`: Source interface (replace with your E810 interface name)
      - `-n 24`: Domain number
-   - ***Failover configuration:***
+   - **Failover configuration:**
 
      - `ts2phcOpts --ts2phc.holdover 14400`: 4-hour holdover before switching to NTP
      - `chronydConf`: NTP server configuration for failover replace `time.nist.gov` with your preferred NTP server
      - `ntpfailover plugin`: Enables automatic GNSS-to-NTP switching with `gnssFailover: true`
-   - ***E810 plugin configuration:***
+   - **E810 plugin configuration:**
 
      - `LocalHoldoverTimeout: 14400`: E810 hardware holdover timeout (4 hours)
      - `pins`: Configuration for 1PPS input on E810 physical pins (U.FL2, SMA1, SMA2, U.FL1)
      - `ublxCmds`: Commands to configure u-blox GNSS receiver (enable GPS, disable other constellations, set survey-in mode)
-   - ***GNSS (ts2phc) configuration:***
+   - **GNSS (ts2phc) configuration:**
 
      - `ts2phc.nmea_serialport /dev/ttyGNSS_1700_0`: GNSS serial port device path (replace with your actual GNSS device)
      - `ts2phc.extts_polarity rising`: 1PPS signal on rising edge
      - `ts2phc.pulsewidth 100000000`: 1PPS pulse width in nanoseconds
-   - ***PTP4L configuration:***
+   - **PTP4L configuration:**
 
      - `masterOnly 1`: Interface acts only as PTP master
      - `clockClass 6`: GPS-synchronized quality level
@@ -3840,7 +5060,7 @@ This procedure configures a T-GM (Telecom Grandmaster) clock that uses an Intel 
 
    - `load profiles` - Profile is being loaded
    - `in applyNodePTPProfiles` - Profile is being applied
-   - No `ptp profile doesn’t exist for node` errors
+   - No `ptp profile doesn't exist for node` errors
 4. Check `chronyd` status to verify NTP is running as the secondary time source by running the following command:
 
    ```terminal
@@ -4218,11 +5438,11 @@ This procedure configures a T-GM (Telecom Grandmaster) clock on single-node Open
 
    The configuration includes the following components:
 
-   - ***PTP4L options***:
+   - **PTP4L options**:
 
      - `-2`: Use PTP version 2
      - `--summary_interval -4`: Log summary every 2^(-4) = 0.0625 seconds
-   - ***PHC2SYS options:***
+   - **PHC2SYS options:**
 
      - `-r`: Synchronize system clock from PTP hardware clock
      - `-u 0`: Update rate multiplier
@@ -4231,22 +5451,22 @@ This procedure configures a T-GM (Telecom Grandmaster) clock on single-node Open
      - `-R 16`: Update rate
      - `-s ens7f0`: Source interface (replace with your E810 interface name)
      - `-n 24`: Domain number
-   - ***Failover configuration:***
+   - **Failover configuration:**
 
      - `ts2phcOpts --ts2phc.holdover 14400`: 4-hour holdover before switching to NTP
      - `chronydConf`: NTP server configuration for failover replace `time.nist.gov` with your preferred NTP server
      - `ntpfailover plugin`: Enables automatic GNSS-to-NTP switching with `gnssFailover: true`.
-   - ***E810 plugin configuration:***
+   - **E810 plugin configuration:**
 
      - `LocalHoldoverTimeout: 14400`: E810 hardware holdover timeout (4 hours)
      - `pins`: Configuration for 1PPS input on E810 physical pins (U.FL2, SMA1, SMA2, U.FL1)
      - `ublxCmds`: Commands to configure u-blox GNSS receiver (enable GPS, disable other constellations, set survey-in mode)
-   - ***GNSS (ts2phc) configuration:***
+   - **GNSS (ts2phc) configuration:**
 
      - `ts2phc.nmea_serialport /dev/ttyGNSS_1700_0`: GNSS serial port device path (replace with your actual GNSS device)
      - `ts2phc.extts_polarity rising`: 1PPS signal on rising edge
      - `ts2phc.pulsewidth 100000000`: 1PPS pulse width in nanoseconds
-   - ***PTP4L configuration:***
+   - **PTP4L configuration:**
 
      - `masterOnly 1`: Interface acts only as PTP master
      - `clockClass 6`: GPS-synchronized quality level
@@ -4319,7 +5539,7 @@ This procedure configures a T-GM (Telecom Grandmaster) clock on single-node Open
 
    - `load profiles` - Profile is being loaded
    - `in applyNodePTPProfiles` - Profile is being applied
-   - No `ptp profile doesn’t exist for node` errors
+   - No `ptp profile doesn't exist for node` errors
 4. Check `chronyd` status to verify NTP is running as the secondary time source by running the following command:
 
    ```terminal
@@ -4577,5 +5797,5 @@ You can use the `oc adm must-gather` command to collect information about your c
 - To collect PTP Operator data with `must-gather`, you must specify the PTP Operator `must-gather` image.
 
   ```terminal
-  $ oc adm must-gather --image=registry.redhat.io/openshift4/ptp-must-gather-rhel9:v{{ product_version }}
+  $ oc adm must-gather --image=registry.redhat.io/openshift4/ptp-must-gather-rhel9:v4.22
   ```

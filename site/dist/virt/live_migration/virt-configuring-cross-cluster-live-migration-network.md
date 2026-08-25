@@ -32,9 +32,6 @@ The following table details the configuration parameters:
   <td>The mandatory, unique identifier assigned to this CNI network attachment definition. It is used by the container runtime to select the correct network configuration and serves as the key for persistent resource state management, such as IP address allocations.</td>
 </tr>
 <tr>
-
-</tr>
-<tr>
   <td><code>type</code></td>
   <td><code>string</code></td>
   <td>The name of the CNI plugin to configure: <code>bridge</code>.</td>
@@ -171,7 +168,7 @@ To configure a dedicated secondary network for live migration, you must first cr
    kind: NetworkAttachmentDefinition
    metadata:
      name: my-secondary-network
-     namespace: {{ CNVNamespace }}
+     namespace: openshift-cnv
    spec:
      config: '{
        "cniVersion": "0.3.1",
@@ -193,7 +190,7 @@ To configure a dedicated secondary network for live migration, you must first cr
 2. Open the `HyperConverged` CR in your default editor by running the following command:
 
    ```terminal
-   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+   $ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv
    ```
 3. Add the name of the `NetworkAttachmentDefinition` object to the `spec.liveMigrationConfig` stanza of the `HyperConverged` CR.
 
@@ -204,7 +201,7 @@ To configure a dedicated secondary network for live migration, you must first cr
    kind: HyperConverged
    metadata:
      name: kubevirt-hyperconverged
-     namespace: {{ CNVNamespace }}
+     namespace: openshift-cnv
    spec:
      liveMigrationConfig:
        completionTimeoutPerGiB: 800

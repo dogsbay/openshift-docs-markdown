@@ -1,8 +1,8 @@
 ---
-title: Configuring the {{ oadp_full }} with {{ ibm_cloud_title }}
+title: Configuring the OpenShift API for Data Protection with IBM Cloud
 ---
 
-# Configuring the {{ oadp_full }} with {{ ibm_cloud_title }} {#installing-oadp-ibm-cloud}
+# Configuring the OpenShift API for Data Protection with IBM Cloud {#installing-oadp-ibm-cloud}
 
 You install the OpenShift API for Data Protection (OADP) Operator on an IBM Cloud cluster to back up and restore applications on the cluster. You configure IBM Cloud Object Storage (COS) to store the backups.
 
@@ -54,17 +54,16 @@ You create an IBM Cloud Object Storage (COS) instance to store the OADP backup d
    $ ibmcloud target
    ```
 
-```yaml {title="Example output"}
-API endpoint:     https://cloud.ibm.com
-Region:
-User:             test-user
-Account:          Test Account (fb6......e95) <-> 2...122
-Resource group:   Default
-```
+   ```yaml {title="Example output"}
+   API endpoint:     https://cloud.ibm.com
+   Region:
+   User:             test-user
+   Account:          Test Account (fb6......e95) <-> 2...122
+   Resource group:   Default
+   ```
 
-In the example output, the resource group is set to `Default`.
-
-1. Set a resource group name by running the following command:
+   In the example output, the resource group is set to `Default`.
+7. Set a resource group name by running the following command:
 
    ```terminal
    $ RESOURCE_GROUP=<resource_group>
@@ -74,7 +73,7 @@ In the example output, the resource group is set to `Default`.
 
    `<resource_group>`
    :   Specifies the resource group name. For example, `"default"`.
-2. Create an IBM Cloud `service-instance` resource  by running the following command:
+8. Create an IBM Cloud `service-instance` resource  by running the following command:
 
    ```terminal
    $ ibmcloud resource service-instance-create \
@@ -114,35 +113,35 @@ In the example output, the resource group is set to `Default`.
 
    `-d premium-global-deployment`
    :   Specifies the deployment name.
-3. Extract the service instance ID by running the following command:
+9. Extract the service instance ID by running the following command:
 
    ```terminal
    $ SERVICE_INSTANCE_ID=$(ibmcloud resource service-instance test-service-instance --output json | jq -r '.[0].id')
    ```
-4. Create a COS bucket by running the following command:
+10. Create a COS bucket by running the following command:
 
-   ```terminal
-   $ ibmcloud cos bucket-create \
-   --bucket $BUCKET \
-   --ibm-service-instance-id $SERVICE_INSTANCE_ID \
-   --region $REGION
-   ```
+    ```terminal
+    $ ibmcloud cos bucket-create \
+    --bucket $BUCKET \
+    --ibm-service-instance-id $SERVICE_INSTANCE_ID \
+    --region $REGION
+    ```
 
-   Variables such as `$BUCKET`, `$SERVICE_INSTANCE_ID`, and `$REGION` are replaced by the values you set previously.
-5. Create `HMAC` credentials by running the following command.
+    Variables such as `$BUCKET`, `$SERVICE_INSTANCE_ID`, and `$REGION` are replaced by the values you set previously.
+11. Create `HMAC` credentials by running the following command.
 
-   ```terminal
-   $ ibmcloud resource service-key-create test-key Writer --instance-name test-service-instance --parameters {\"HMAC\":true}
-   ```
-6. Extract the access key ID and the secret access key from the `HMAC` credentials and save them in the `credentials-velero` file. You can use the `credentials-velero` file to create a `secret` for the backup storage location. Run the following command:
+    ```terminal
+    $ ibmcloud resource service-key-create test-key Writer --instance-name test-service-instance --parameters {\"HMAC\":true}
+    ```
+12. Extract the access key ID and the secret access key from the `HMAC` credentials and save them in the `credentials-velero` file. You can use the `credentials-velero` file to create a `secret` for the backup storage location. Run the following command:
 
-   ```terminal
-   $ cat > credentials-velero << __EOF__
-   [default]
-   aws_access_key_id=$(ibmcloud resource service-key test-key -o json  | jq -r '.[0].credentials.cos_hmac_keys.access_key_id')
-   aws_secret_access_key=$(ibmcloud resource service-key test-key -o json  | jq -r '.[0].credentials.cos_hmac_keys.secret_access_key')
-   __EOF__
-   ```
+    ```terminal
+    $ cat > credentials-velero << __EOF__
+    [default]
+    aws_access_key_id=$(ibmcloud resource service-key test-key -o json  | jq -r '.[0].credentials.cos_hmac_keys.access_key_id')
+    aws_secret_access_key=$(ibmcloud resource service-key test-key -o json  | jq -r '.[0].credentials.cos_hmac_keys.secret_access_key')
+    __EOF__
+    ```
 
 ## Creating a default Secret {#oadp-creating-default-secret_installing-oadp-ibm-cloud}
 
@@ -164,7 +163,7 @@ You create a default `Secret` if your backup and snapshot locations use the same
 2. Create a `Secret` custom resource (CR) with the default name:
 
    ```terminal
-   $ oc create secret generic {{ credentials }} -n openshift-adp --from-file cloud=credentials-velero
+   $ oc create secret generic cloud-credentials -n openshift-adp --from-file cloud=credentials-velero
    ```
 
    The `Secret` is referenced in the `spec.backupLocations.credential` block of the `DataProtectionApplication` CR when you install the Data Protection Application.
@@ -179,7 +178,7 @@ Create separate `Secret` objects when your backup and snapshot locations require
 2. Create a `Secret` for the snapshot location with the default name:
 
    ```terminal
-   $ oc create secret generic {{ credentials }} -n openshift-adp --from-file cloud=credentials-velero
+   $ oc create secret generic cloud-credentials -n openshift-adp --from-file cloud=credentials-velero
    ```
 3. Create a `credentials-velero` file for the backup location in the appropriate format for your object storage.
 4. Create a `Secret` for the backup location with a custom name:
@@ -209,7 +208,10 @@ Create separate `Secret` objects when your backup and snapshot locations require
              prefix: <prefix>
    ```
 
-   where: `custom_secret`:: Specifies the backup location `Secret` with custom name.
+   where:
+
+   `custom_secret`
+   :   Specifies the backup location `Secret` with custom name.
 
 ## Installing the Data Protection Application {#oadp-installing-dpa_installing-oadp-ibm-cloud}
 
@@ -220,14 +222,14 @@ You install the Data Protection Application (DPA) by creating an instance of the
 - You must install the OADP Operator.
 - You must configure object storage as a backup location.
 - If you use snapshots to back up PVs, your cloud provider must support either a native snapshot API or Container Storage Interface (CSI) snapshots.
-- If the backup and snapshot locations use the same credentials, you must create a `Secret` with the default name, `{{ credentials }}`.
+- If the backup and snapshot locations use the same credentials, you must create a `Secret` with the default name, `cloud-credentials`.
 
   > [!NOTE]
   > If you do not want to specify backup or snapshot locations during the installation, you can create a default `Secret` with an empty `credentials-velero` file. If there is no default `Secret`, the installation will fail.
 
 **Procedure**
 
-1. Click **Ecosystem** -> **Installed Operators** and select the OADP Operator.
+1. Click **Ecosystem** → **Installed Operators** and select the OADP Operator.
 2. Under **Provided APIs**, click **Create instance** in the **DataProtectionApplication** box.
 3. Click **YAML View** and update the parameters of the `DataProtectionApplication` manifest:
 
@@ -262,7 +264,22 @@ You install the Data Protection Application (DPA) by creating an instance of the
              name: cloud-credentials
    ```
 
-   where: `provider`:: Specifies that the provider is `aws` when you use IBM Cloud as a backup storage location. `bucket`:: Specifies the IBM Cloud Object Storage (COS) bucket name. `region`:: Specifies the COS region name, for example, `eu-gb`. `s3Url`:: Specifies the S3 URL of the COS bucket. For example, `http://s3.eu-gb.cloud-object-storage.appdomain.cloud`. Here, `eu-gb` is the region name. Replace the region name according to your bucket region. `name`:: Specifies the name of the secret you created by using the access key and the secret access key from the `HMAC` credentials.
+   where:
+
+   `provider`
+   :   Specifies that the provider is `aws` when you use IBM Cloud as a backup storage location.
+
+   `bucket`
+   :   Specifies the IBM Cloud Object Storage (COS) bucket name.
+
+   `region`
+   :   Specifies the COS region name, for example, `eu-gb`.
+
+   `s3Url`
+   :   Specifies the S3 URL of the COS bucket. For example, `http://s3.eu-gb.cloud-object-storage.appdomain.cloud`. Here, `eu-gb` is the region name. Replace the region name according to your bucket region.
+
+   `name`
+   :   Specifies the name of the secret you created by using the access key and the secret access key from the `HMAC` credentials.
 4. Click **Create**.
 
 **Verification**

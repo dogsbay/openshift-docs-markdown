@@ -34,6 +34,7 @@ To allow the update, you must perform one of the following tasks:
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Disabling boot image management](/openshift-docs-markdown/nodes/nodes/nodes-update-boot-images#mco-update-boot-images-disable_nodes-update-boot-images)
 
@@ -67,6 +68,9 @@ To run a self-service review, upload your cluster’s `must-gather` data to the 
 
 The self-service TSR provides a solid baseline for cluster health. If you need additional guidance or a more comprehensive review, contact your Red Hat account team to arrange an assisted review through a Technical Account Manager (TAM) or Red Hat consultant. An assisted review includes human analysis, deeper coverage, and access to checks that are updated more frequently than the self-service version.
 
+**Additional resources**
+{._additional-resources}
+
 - [Technical Supportability Review with AI tool](https://access.redhat.com/support/cases/#/analyze)
 - [Red Hat Technical Supportability Review with AI: Proactive AI-Driven Cluster Assessments for OpenShift Container Platform](https://access.redhat.com/solutions/7141255)
 
@@ -86,6 +90,7 @@ However, if you have a strong reason to update to that version, for example, if 
 - Follow the links provided in the conditional update description, investigate the bug, and determine if it is likely to cause issues for your cluster. If you need help understanding the risk, contact Red Hat Support.
 
 **Additional resources**
+{._additional-resources}
 
 - [Evaluation of update availability](/openshift-docs-markdown/updating/understanding_updates/how-updates-work#update-evaluate-availability_how-updates-work)
 
@@ -105,6 +110,7 @@ etcd restorations might be destructive and destabilizing to a running cluster, u
 There are several factors that affect the viability of an etcd restoration. For more information, see "Backing up etcd data" and "Restoring to an earlier cluster state".
 
 **Additional resources**
+{._additional-resources}
 
 - [Backing up etcd](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd)
 - [Restoring to an earlier cluster state](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state#dr-restoring-cluster-state)
@@ -342,6 +348,7 @@ Starting in OpenShift Container Platform 4.19, the Ingress Operator manages the 
    > For more information on the OpenShift Container Platform implementation and the dead fields issue, see *Gateway API implementation for OpenShift Container Platform*.
 
 **Additional resources**
+{._additional-resources}
 
 - [Gateway API implementation for OpenShift Container Platform](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_gateway_api/understand-gateway-api#gateway-api-implementation-specifics_understand-gateway-api)
 
@@ -367,7 +374,7 @@ Critical alerts must always be addressed as soon as possible, but it is especial
 
 Failing to address critical alerts before beginning an update can cause problematic conditions for the cluster.
 
-In the **Administrator** perspective of the web console, navigate to **Observe** -> **Alerting** to find critical alerts.
+In the **Administrator** perspective of the web console, navigate to **Observe** → **Alerting** to find critical alerts.
 
 ### Ensure that the cluster is in an Upgradeable state {#cluster-upgradeable_updating-cluster-prepare}
 
@@ -407,6 +414,7 @@ When planning a cluster update, check the configuration of the `PodDisruptionBud
 - For workloads that are not highly available, make sure they are either not protected by a `PodDisruptionBudget` or have some alternative mechanism for draining these workloads eventually, such as periodic restart or guaranteed eventual termination.
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding cluster Operator condition types](/openshift-docs-markdown/updating/understanding_updates/intro-to-updates#understanding_clusteroperator_conditiontypes_understanding-openshift-updates)
 

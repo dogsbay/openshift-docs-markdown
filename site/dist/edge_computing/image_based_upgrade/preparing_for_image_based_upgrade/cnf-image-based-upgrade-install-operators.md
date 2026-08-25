@@ -9,6 +9,7 @@ Prepare your clusters for the upgrade by installing the Lifecycle Agent and the 
 To install the OADP Operator with the non-GitOps method, see "Installing the OADP Operator".
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing the OADP Operator](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/oadp-installing-operator#oadp-installing-operator-doc)
 - [About backup and snapshot locations and their secrets](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-ocs#oadp-about-backup-snapshot-locations_installing-oadp-ocs)
@@ -93,7 +94,7 @@ You can use the OpenShift CLI (`oc`) to install the Lifecycle Agent.
 
    ```terminal
    NAME                              DISPLAY                     VERSION               REPLACES                           PHASE
-   lifecycle-agent.v{{ product_version }}.0           Openshift Lifecycle Agent   {{ product_version }}.0                Succeeded
+   lifecycle-agent.v4.22.0           Openshift Lifecycle Agent   4.22.0                Succeeded
    ```
 2. Verify that the Lifecycle Agent is up and running by running the following command:
 
@@ -118,7 +119,7 @@ You can use the OpenShift Container Platform web console to install the Lifecycl
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, navigate to **Ecosystem** -> **Software Catalog**.
+1. In the OpenShift Container Platform web console, navigate to **Ecosystem** → **Software Catalog**.
 2. Search for the **Lifecycle Agent** from the list of available Operators, and then click **Install**.
 3. On the **Install Operator** page, under **A specific namespace on the cluster** select **openshift-lifecycle-agent**.
 4. Click **Install**.
@@ -127,7 +128,7 @@ You can use the OpenShift Container Platform web console to install the Lifecycl
 
 1. To confirm that the installation is successful:
 
-   1. Click **Ecosystem** -> **Installed Operators**.
+   1. Click **Ecosystem** → **Installed Operators**.
    2. Ensure that the Lifecycle Agent is listed in the **openshift-lifecycle-agent** project with a **Status** of **InstallSucceeded**.
 
       > [!NOTE]
@@ -135,8 +136,8 @@ You can use the OpenShift Container Platform web console to install the Lifecycl
 
 If the Operator is not installed successfully:
 
-1. Click **Ecosystem** -> **Installed Operators**, and inspect the **Operator Subscriptions** and **Install Plans** tabs for any failure or errors under **Status**.
-2. Click **Workloads** -> **Pods**, and check the logs for pods in the **openshift-lifecycle-agent** project.
+1. Click **Ecosystem** → **Installed Operators**, and inspect the **Operator Subscriptions** and **Install Plans** tabs for any failure or errors under **Status**.
+2. Click **Workloads** → **Pods**, and check the logs for pods in the **openshift-lifecycle-agent** project.
 
 ## Installing the Lifecycle Agent with GitOps ZTP {#ztp-image-based-upgrade-installing-lcao-with-gitops_install-operators}
 

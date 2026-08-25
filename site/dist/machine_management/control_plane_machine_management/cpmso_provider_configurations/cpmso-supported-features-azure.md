@@ -1,5 +1,5 @@
 ---
-title: Configuring {{ azure_full }} features for control plane machines
+title: Configuring Microsoft Azure features for control plane machines
 ---
 
 # Configuring Microsoft Azure features for control plane machines {#cpmso-supported-features-azure}
@@ -31,6 +31,7 @@ If the security posture of your organization does not allow clusters to use an o
    where `<cluster_name>` is the name of the cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring the Ingress Controller endpoint publishing scope to Internal](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/nw-configuring-ingress-controller-endpoint-publishing-strategy#nw-ingresscontroller-change-internal_nw-configuring-ingress-controller-endpoint-publishing-strategy)
 
@@ -139,9 +140,7 @@ You can enable boot diagnostics on Microsoft Azure machines that your machine se
 
 **Prerequisites**
 
-- Have an existing Azure
-
-cluster.
+- Have an existing Azure cluster.
 
 **Procedure**
 
@@ -193,6 +192,7 @@ cluster.
 You can create a machine set running on Microsoft Azure that deploys machines with ultra disks. Ultra disks are high-performance storage that are intended for use with the most demanding data workloads.
 
 **Additional resources**
+{._additional-resources}
 
 - [Microsoft Azure ultra disks documentation](https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types#ultra-disks)
 
@@ -206,7 +206,7 @@ You can deploy machines with ultra disks on Microsoft Azure by editing your mach
 
 **Procedure**
 
-1. Create a custom secret in the `openshift-machine-api` namespace by using the `{{ machine_role }}` data secret by running the following command:
+1. Create a custom secret in the `openshift-machine-api` namespace by using the `{machine_role}` data secret by running the following command:
 
    ```terminal
    $ oc -n openshift-machine-api \
@@ -217,7 +217,7 @@ You can deploy machines with ultra disks on Microsoft Azure by editing your mach
    where:
 
    `<role>`
-   :   Replace with `{{ machine_role }}`.
+   :   Replace with `{machine_role}`.
 
    `userData.txt`
    :   Specifies `userData.txt` as the name of the new custom secret.
@@ -291,7 +291,7 @@ You can deploy machines with ultra disks on Microsoft Azure by editing your mach
    --template='{{index .data.disableTemplating | base64decode}}' | jq > disableTemplating.txt
    ```
 
-   Replace `<role>` with `{{ machine_role }}`.
+   Replace `<role>` with `{machine_role}`.
 4. Combine the `userData.txt` file and `disableTemplating.txt` file to create a data secret file by running the following command:
 
    ```terminal
@@ -300,7 +300,7 @@ You can deploy machines with ultra disks on Microsoft Azure by editing your mach
    --from-file=disableTemplating=disableTemplating.txt
    ```
 
-   For `<role>-user-data-x5`, specify the name of the secret. Replace `<role>` with `{{ machine_role }}`.
+   For `<role>-user-data-x5`, specify the name of the secret. Replace `<role>` with `{machine_role}`.
 5. Edit your control plane machine set CR by running the following command:
 
    ```terminal
@@ -341,7 +341,7 @@ You can deploy machines with ultra disks on Microsoft Azure by editing your mach
    :   Enables the use of ultra disks. For `dataDisks`, include the entire stanza.
 
    `spec.template.spec.providerSpec.value.userDataSecret.name`
-   :   Specifies the user data secret created earlier. Replace `<role>` with `{{ machine_role }}`.
+   :   Specifies the user data secret created earlier. Replace `<role>` with `{machine_role}`.
 7. Save your changes.
 
    - For clusters that use the default `RollingUpdate` update strategy, the Operator automatically propagates the changes to your control plane configuration.
@@ -427,6 +427,9 @@ An Azure Key Vault, a disk encryption set, and an encryption key are required to
           storageAccountType: Premium_LRS
   ```
 
+**Additional resources**
+{._additional-resources}
+
 - [Customer-managed keys (Azure documentation)](https://docs.microsoft.com/en-us/azure/virtual-machines/disk-encryption#customer-managed-keys)
 
 ## Configuring trusted launch for Azure virtual machines by using machine sets {#machineset-azure-trusted-launch_cpmso-supported-features-azure}
@@ -440,7 +443,7 @@ For example, you can configure these machines to use UEFI security features such
 
 **UEFI feature combination compatibility**
 
-| Secure Boot[^1]^ | vTPM[^2]^ | Valid configuration |
+| Secure Boot<sup>\[1\]</sup> | vTPM<sup>\[2\]</sup> | Valid configuration |
 | --- | --- | --- |
 | Enabled | Enabled | Yes |
 | Enabled | Disabled | Yes |
@@ -463,25 +466,38 @@ For more information about related features and functionality, see the Microsoft
 
    ```yaml {title="Sample valid configuration with UEFI Secure Boot and vTPM enabled"}
 
+   apiVersion: machine.openshift.io/v1
+   kind: ControlPlaneMachineSet
+   # ...
+   spec:
+     template:
+       machines_v1beta1_machine_openshift_io:
+         spec:
+           providerSpec:
+             value:
+               securityProfile:
+                 settings:
+                   securityType: TrustedLaunch
+                   trustedLaunch:
+                     uefiSettings:
+                       secureBoot: Enabled
+                       virtualizedTrustedPlatformModule: Enabled
+   # ...
    ```
 
-{%- if not cpmso %} apiVersion: machine.openshift.io/v1beta1 kind: MachineSet {% endif %} {% if cpmso %} apiVersion: machine.openshift.io/v1 kind: ControlPlaneMachineSet {%- endif %} # ... spec: template: machines_v1beta1_machine_openshift_io: spec: providerSpec: value: securityProfile: settings: securityType: TrustedLaunch trustedLaunch: uefiSettings: secureBoot: Enabled virtualizedTrustedPlatformModule: Enabled # ... \`\`\`
+   where:
 
-```
-where:
+   `spec.template.machines_v1beta1_machine_openshift_io.spec.providerSpec.value.securityProfile.settings.securityType`
+   :   Enables the use of trusted launch for Azure virtual machines. This value is required for all valid configurations.
 
-`spec.template.machines_v1beta1_machine_openshift_io.spec.providerSpec.value.securityProfile.settings.securityType`
-:   Enables the use of trusted launch for Azure virtual machines. This value is required for all valid configurations.
+   `spec.template.machines_v1beta1_machine_openshift_io.spec.providerSpec.value.securityProfile.settings.trustedLaunch.uefiSettings`
+   :   Specifies which UEFI security features to use. This section is required for all valid configurations.
 
-`spec.template.machines_v1beta1_machine_openshift_io.spec.providerSpec.value.securityProfile.settings.trustedLaunch.uefiSettings`
-:   Specifies which UEFI security features to use. This section is required for all valid configurations.
+   `spec.template.machines_v1beta1_machine_openshift_io.spec.providerSpec.value.securityProfile.settings.trustedLaunch.uefiSettings.secureBoot`
+   :   Enables UEFI Secure Boot.
 
-`spec.template.machines_v1beta1_machine_openshift_io.spec.providerSpec.value.securityProfile.settings.trustedLaunch.uefiSettings.secureBoot`
-:   Enables UEFI Secure Boot.
-
-`spec.template.machines_v1beta1_machine_openshift_io.spec.providerSpec.value.securityProfile.settings.trustedLaunch.uefiSettings.virtualizedTrustedPlatformModule`
-:   Enables the use of a vTPM.
-```
+   `spec.template.machines_v1beta1_machine_openshift_io.spec.providerSpec.value.securityProfile.settings.trustedLaunch.uefiSettings.virtualizedTrustedPlatformModule`
+   :   Enables the use of a vTPM.
 
 **Verification**
 
@@ -504,39 +520,62 @@ For more information about related features and functionality, see the Microsoft
 **Procedure**
 
 1. In a text editor, open the YAML file for an existing machine set or create a new one.
-2. Edit the following section under the `providerSpec` field: **Sample configuration**
+2. Edit the following section under the `providerSpec` field:
+
+   **Sample configuration**
 
    ```yaml
 
+   apiVersion: machine.openshift.io/v1
+   kind: ControlPlaneMachineSet
+   # ...
+   spec:
+     template:
+       spec:
+         providerSpec:
+           value:
+             osDisk:
+               # ...
+               managedDisk:
+                 securityProfile:
+                   securityEncryptionType: VMGuestStateOnly
+               # ...
+             securityProfile:
+               settings:
+                   securityType: ConfidentialVM
+                   confidentialVM:
+                     uefiSettings:
+                       secureBoot: Disabled
+                       virtualizedTrustedPlatformModule: Enabled
+             vmSize: Standard_DC16ads_v5
+   # ...
    ```
 
-{%- if not cpmso %} apiVersion: machine.openshift.io/v1beta1 kind: MachineSet {% endif %} {% if cpmso %} apiVersion: machine.openshift.io/v1 kind: ControlPlaneMachineSet {%- endif %} # ... spec: template: spec: providerSpec: value: osDisk: # ... managedDisk: securityProfile: securityEncryptionType: VMGuestStateOnly # ... securityProfile: settings: securityType: ConfidentialVM confidentialVM: uefiSettings: secureBoot: Disabled virtualizedTrustedPlatformModule: Enabled vmSize: Standard_DC16ads_v5 # ... \`\`\` where:
+   where:
 
-```
-`spec.template.spec.providerSpec.value.osDisk.managedDisk.securityProfile`
-:   Specifies security profile settings for the managed disk when using a confidential VM.
+   `spec.template.spec.providerSpec.value.osDisk.managedDisk.securityProfile`
+   :   Specifies security profile settings for the managed disk when using a confidential VM.
 
-`spec.template.spec.providerSpec.value.osDisk.managedDisk.securityProfile.securityEncryptionType`
-:   Enables encryption of the Microsoft Azure VM Guest State (VMGS) blob. This setting requires the use of vTPM.
+   `spec.template.spec.providerSpec.value.osDisk.managedDisk.securityProfile.securityEncryptionType`
+   :   Enables encryption of the Microsoft Azure VM Guest State (VMGS) blob. This setting requires the use of vTPM.
 
-`spec.template.spec.providerSpec.value.securityProfile`
-:   Specifies security profile settings for the confidential VM.
+   `spec.template.spec.providerSpec.value.securityProfile`
+   :   Specifies security profile settings for the confidential VM.
 
-`spec.template.spec.providerSpec.value.securityProfile.settings.securityType`
-:   Enables the use of confidential VMs. This value is required for all valid configurations.
+   `spec.template.spec.providerSpec.value.securityProfile.settings.securityType`
+   :   Enables the use of confidential VMs. This value is required for all valid configurations.
 
-`spec.template.spec.providerSpec.value.securityProfile.settings.confidentialVM.uefiSettings`
-:    Specifies which UEFI security features to use. This section is required for all valid configurations.
+   `spec.template.spec.providerSpec.value.securityProfile.settings.confidentialVM.uefiSettings`
+   :   Specifies which UEFI security features to use. This section is required for all valid configurations.
 
-`spec.template.spec.providerSpec.value.securityProfile.settings.confidentialVM.uefiSettings.secureBoot`
-:   Disables UEFI Secure Boot.
+   `spec.template.spec.providerSpec.value.securityProfile.settings.confidentialVM.uefiSettings.secureBoot`
+   :   Disables UEFI Secure Boot.
 
-`spec.template.spec.providerSpec.value.securityProfile.settings.confidentialVM.uefiSettings.virtualizedTrustedPlatformModule`
-:   Enables the use of a vTPM.
+   `spec.template.spec.providerSpec.value.securityProfile.settings.confidentialVM.uefiSettings.virtualizedTrustedPlatformModule`
+   :   Enables the use of a vTPM.
 
-`spec.template.spec.providerSpec.value.vmSize`
-:   Specifies an instance type that supports confidential VMs.
-```
+   `spec.template.spec.providerSpec.value.vmSize`
+   :   Specifies an instance type that supports confidential VMs.
 
 **Verification**
 
@@ -544,25 +583,13 @@ For more information about related features and functionality, see the Microsoft
 
 ## Configuring Capacity Reservations by using machine sets {#machineset-capacity-reservation_cpmso-supported-features-azure}
 
-You can configure a machine set to deploy machines on any available resources that match the parameters of a capacity request that you define by using
-
-on-demand Capacity Reservation with Capacity Reservation groups on Microsoft Azure clusters.
+You can configure a machine set to deploy machines on any available resources that match the parameters of a capacity request that you define by using on-demand Capacity Reservation with Capacity Reservation groups on Microsoft Azure clusters.
 
 You can configure a machine set to deploy machines on any available resources that match the parameters of a capacity request that you define.
 
-These parameters specify the
+These parameters specify the VM size, region, and number of instances that you want to reserve. If your Azure subscription quota can accommodate the capacity request, the deployment succeeds.
 
-VM size,
-
-region, and number of instances that you want to reserve. If your
-
-Azure subscription quota
-
-can accommodate the capacity request, the deployment succeeds.
-
-For more information, including limitations and suggested use cases for this
-
-Microsoft Azure offering, see [On-demand Capacity Reservation](https://learn.microsoft.com/en-us/azure/virtual-machines/capacity-reservation-overview) in the Azure documentation.
+For more information, including limitations and suggested use cases for this Microsoft Azure offering, see [On-demand Capacity Reservation](https://learn.microsoft.com/en-us/azure/virtual-machines/capacity-reservation-overview) in the Azure documentation.
 
 > [!NOTE]
 > You cannot change an existing Capacity Reservation configuration for a machine set. To use a different Capacity Reservation group, you must replace the machine set and the machines that the previous machine set deployed.
@@ -597,18 +624,28 @@ tag:compute[]\[\] . In a text editor, open an existing machine set custom resour
        spec:
          providerSpec:
            value:
+             capacityReservationGroupID: <capacity_reservation_group>
+   end::compute[]
+   tag::controlplane[]
+   apiVersion: machine.openshift.io/v1
+   kind: ControlPlaneMachineSet
+   # ...
+   spec:
+     template:
+       machines_v1beta1_machine_openshift_io:
+         spec:
+           providerSpec:
+             value:
+               capacityReservationGroupID: <capacity_reservation_group>
+   end::controlplane[]
+   # ...
    ```
 
-{%- if azure %} capacityReservationGroupID: <capacity_reservation_group> {% endif %} {% if aws %} capacityReservationId: <capacity_reservation> marketType: <market_type> {%- endif %} end:compute[]\[\] tag:controlplane[]\[\] apiVersion: machine.openshift.io/v1 kind: ControlPlaneMachineSet # ... spec: template: machines_v1beta1_machine_openshift_io: spec: providerSpec: value: {%- if azure %} capacityReservationGroupID: <capacity_reservation_group> {% endif %} {% if aws %} capacityReservationId: <capacity_reservation> marketType: <market_type> {%- endif %} end:controlplane[]\[\] # ... \`\`\`
+   where:
 
-```
-where:
-
-`<capacity_reservation_group>`
-:   Specifies the ID of the Capacity Reservation group that you want the machine set to deploy machines on.
-```
-
-1. Save your changes and exit the object specification. tag:controlplane[]\[\]
+   `<capacity_reservation_group>`
+   :   Specifies the ID of the Capacity Reservation group that you want the machine set to deploy machines on.
+2. Save your changes and exit the object specification. tag:controlplane[]\[\]
 
    When you save an update to the control plane machine set, the Control Plane Machine Set Operator updates the control plane machines according to your configured update strategy.
 
@@ -640,9 +677,7 @@ where:
 
 ## Accelerated Networking for Microsoft Azure VMs {#machineset-azure-accelerated-networking_cpmso-supported-features-azure}
 
-You can enable Accelerated Networking, which uses single root I/O virtualization (SR-IOV) to provide Microsoft Azure VMs with a more direct path to the switch,
-
-after installation. This enhances network performance.
+You can enable Accelerated Networking, which uses single root I/O virtualization (SR-IOV) to provide Microsoft Azure VMs with a more direct path to the switch, after installation. This enhances network performance.
 
 ### Limitations {#machineset-azure-accelerated-networking-limits_cpmso-supported-features-azure}
 
@@ -686,11 +721,8 @@ You can enable Accelerated Networking on Microsoft Azure by adding `acceleratedN
 
 - On the Microsoft Azure portal, review the **Networking** settings page for a machine provisioned by the machine set, and verify that the `Accelerated networking` field is set to `Enabled`.
 
-## Additional resources {#additional-resources_cpmso-supported-features-azure}
+**Additional resources**
+{._additional-resources}
 
 - [Updating the control plane configuration](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-feat-config-update_cpmso-managing-machines)
 - [Control plane configuration options for Microsoft Azure](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso_provider_configurations/cpmso-config-options-azure#cpmso-config-options-azure)
-
-[^1]: 1
-
-[^2]: 2

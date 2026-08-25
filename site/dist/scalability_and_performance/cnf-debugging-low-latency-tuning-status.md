@@ -194,6 +194,7 @@ Use the `oc adm must-gather` CLI command to collect the following information ab
 4. Attach the compressed file to your support case on the [Red Hat Customer Portal](https://access.redhat.com/).
 
 **Additional resources**
+{._additional-resources}
 
 - [Gathering data about your cluster with the `must-gather` tool](/openshift-docs-markdown/support/gathering-cluster-data#gathering-cluster-data)
 - [Managing nodes with MachineConfig and KubeletConfig CRs](/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing#nodes-nodes-managing)

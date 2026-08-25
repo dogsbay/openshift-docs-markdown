@@ -22,6 +22,7 @@ You must install the OpenShift Container Platform cluster to a Nutanix environme
 You can install an OpenShift Container Platform cluster on Nutanix by using the Agent-based Installer. The Agent-based Installer can be used to install a three-node cluster, which is a smaller, more resource efficient cluster for testing, development, and production.
 
 **Additional resources**
+{._additional-resources}
 
 - [Preparing to install with the Agent-based Installer](/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#preparing-to-install-with-agent-based-installer)
 
@@ -45,7 +46,7 @@ Consider the following when managing this user account:
 - When assigning entities to the role, ensure that the user can access only the Prism Element and subnet that are required to deploy the virtual machines.
 - Ensure that the user is a member of the project to which it needs to assign virtual machines.
 
-***Required permissions for creating a Custom Cloud Native role***
+**Required permissions for creating a Custom Cloud Native role**
 
 <table>
 <thead>
@@ -157,7 +158,7 @@ If you use your own DNS or DHCP server, you must also create records for each no
 
 A complete DNS record takes the form: `<component>.<cluster_name>.<base_domain>.`.
 
-***Required DNS records***
+**Required DNS records**
 
 <table>
 <thead>
@@ -170,16 +171,19 @@ A complete DNS record takes the form: `<component>.<cluster_name>.<base_domain>.
 <tbody>
 <tr>
   <td>API VIP</td>
-  <td><code>api.<cluster_name>.<base_domain>.</code></td>
+  <td><code>api.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
   <td>This DNS A/AAAA or CNAME record must point to the load balancer for the control plane machines. This record must be resolvable by both clients external to the cluster and from all the nodes within the cluster.</td>
 </tr>
 <tr>
   <td>Ingress VIP</td>
-  <td><code>*.apps.<cluster_name>.<base_domain>.</code></td>
+  <td><code>*.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
   <td>A wildcard DNS A/AAAA or CNAME record that points to the load balancer that targets the machines that run the Ingress router pods, which are the worker nodes by default. This record must be resolvable by both clients external to the cluster and from all the nodes within the cluster.</td>
 </tr>
 </tbody>
 </table>
+
+**Additional resources**
+{._additional-resources}
 
 - [Nutanix Cloud Clusters on AWS](https://www.nutanix.com/products/nutanix-cloud-clusters/aws)
 - [Nutanix Cloud Clusters on Microsoft Azure](https://www.nutanix.com/products/nutanix-cloud-clusters/azure)
@@ -190,9 +194,7 @@ A complete DNS record takes the form: `<component>.<cluster_name>.<base_domain>.
 
 ## Configuring the Cloud Credential Operator utility {#cco-ccoctl-configuring_preparing-to-install-on-nutanix}
 
-The Cloud Credential Operator (CCO) manages cloud provider credentials as Kubernetes custom resource definitions (CRDs). To install a cluster on Nutanix, you must set the CCO to `manual` mode as part of the installation process.
-
-{.\_abstract} To create and manage cloud credentials from outside of the cluster when the Cloud Credential Operator (CCO) is operating in manual mode, extract and prepare the CCO utility (`ccoctl`) binary.
+The Cloud Credential Operator (CCO) manages cloud provider credentials as Kubernetes custom resource definitions (CRDs). To install a cluster on Nutanix, you must set the CCO to `manual` mode as part of the installation process. To create and manage cloud credentials from outside of the cluster when the Cloud Credential Operator (CCO) is operating in manual mode, extract and prepare the CCO utility (`ccoctl`) binary.
 
 > [!NOTE]
 > The `ccoctl` utility is a Linux binary that must run in a Linux environment.
@@ -267,5 +269,6 @@ The Cloud Credential Operator (CCO) manages cloud provider credentials as Kubern
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Preparing to update a cluster with manually maintained credentials](/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#preparing-manual-creds-update)

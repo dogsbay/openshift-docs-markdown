@@ -28,7 +28,8 @@ The following advisory is available for the AWS Load Balancer Operator version 1
 
 Notable changes
 :   - This release supports the AWS Load Balancer Controller version 2.8.2.
-    - With this release, the platform tags defined in the `Infrastructure` resource are added to all AWS objects created by the controller.
+
+- With this release, the platform tags defined in the `Infrastructure` resource are added to all AWS objects created by the controller.
 
 ## AWS Load Balancer Operator 1.1.1 {#aws-load-balancer-operator-release-notes-1.1.1_aws-load-balancer-operator-release-notes}
 

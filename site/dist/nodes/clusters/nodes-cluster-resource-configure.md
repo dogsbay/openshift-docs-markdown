@@ -182,8 +182,8 @@ You can configure your container to use the Downward API to dynamically discover
    MEMORY_REQUEST=402653184
    ```
 
-> [!NOTE]
-> The memory limit value can also be read from inside the container by the `/sys/fs/cgroup/memory/memory.limit_in_bytes` file.
+   > [!NOTE]
+   > The memory limit value can also be read from inside the container by the `/sys/fs/cgroup/memory/memory.limit_in_bytes` file.
 
 ## Understanding OOM kill policy {#nodes-cluster-resource-configure-oom_nodes-cluster-resource-configure}
 
@@ -326,5 +326,6 @@ status:
 ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding compute resources and containers](/openshift-docs-markdown/nodes/clusters/nodes-cluster-overcommit#nodes-cluster-overcommit-reserving-memory_nodes-cluster-overcommit)

@@ -1,5 +1,5 @@
 ---
-title: OverlappingRangeIPReservation []
+title: OverlappingRangeIPReservation [whereabouts.cni.cncf.io/v1alpha1]
 ---
 
 # OverlappingRangeIPReservation \[whereabouts.cni.cncf.io/v1alpha1\] {#overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1}
@@ -50,12 +50,12 @@ The following API endpoints are available:
 - `/apis/whereabouts.cni.cncf.io/v1alpha1/overlappingrangeipreservations`
 
   - `GET`: list objects of kind OverlappingRangeIPReservation
-- `/apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/overlappingrangeipreservations`
+- `/apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{namespace}/overlappingrangeipreservations`
 
   - `DELETE`: delete collection of OverlappingRangeIPReservation
   - `GET`: list objects of kind OverlappingRangeIPReservation
   - `POST`: create an OverlappingRangeIPReservation
-- `/apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/overlappingrangeipreservations/{{ name }}`
+- `/apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{namespace}/overlappingrangeipreservations/{name}`
 
   - `DELETE`: delete an OverlappingRangeIPReservation
   - `GET`: read the specified OverlappingRangeIPReservation
@@ -81,7 +81,7 @@ Description
 | 200 - OK | [`OverlappingRangeIPReservationList`](/openshift-docs-markdown/rest_api/objects/index#io-cncf-cni-whereabouts-v1alpha1-OverlappingRangeIPReservationList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/overlappingrangeipreservations {#_apiswhereaboutscnicncfiov1alpha1namespaces_namespace_overlappingrangeipreservations}
+### /apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{namespace}/overlappingrangeipreservations {#_apiswhereaboutscnicncfiov1alpha1namespaces_namespace_overlappingrangeipreservations}
 
 HTTP method
 :   ```
@@ -149,7 +149,7 @@ Description
 | 202 - Accepted | [`OverlappingRangeIPReservation`](/openshift-docs-markdown/rest_api/network_apis/overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1#overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/overlappingrangeipreservations/{{ name }} {#_apiswhereaboutscnicncfiov1alpha1namespaces_namespace_overlappingrangeipreservations_name}
+### /apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{namespace}/overlappingrangeipreservations/{name} {#_apiswhereaboutscnicncfiov1alpha1namespaces_namespace_overlappingrangeipreservations_name}
 
 **Global path parameters**
 

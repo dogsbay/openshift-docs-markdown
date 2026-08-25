@@ -49,7 +49,7 @@ When you install the Red Hat OpenShift Service Mesh Operators, OpenShift automa
 
 You can verify that the Operator pods are available and running by using the OpenShift Container Platform console.
 
-1. Navigate to **Workloads** -> **Pods**.
+1. Navigate to **Workloads** → **Pods**.
 2. Select the `openshift-operators` namespace.
 3. Verify that the following pods exist and have a status of `running`:
 
@@ -142,7 +142,7 @@ When you create the Service Mesh control plane, the Service Mesh Operator uses t
 
 You can verify the Service Mesh control plane installation in the OpenShift Container Platform web console.
 
-1. Navigate to **Ecosystem** -> **Installed Operators**.
+1. Navigate to **Ecosystem** → **Installed Operators**.
 2. Select the `istio-system` namespace.
 3. Select the Red Hat OpenShift Service Mesh Operator.
 
@@ -150,21 +150,21 @@ You can verify the Service Mesh control plane installation in the OpenShift Cont
    2. Click the name of your control plane, for example `basic`.
    3. To view the resources created by the deployment, click the **Resources** tab. You can use the filter to narrow your view, for example, to check that all the **Pods** have a status of `running`.
    4. If the SMCP status indicates any problems, check the `status:` output in the YAML file for more information.
-4. Navigate back to **Ecosystem** -> **Installed Operators**.
+4. Navigate back to **Ecosystem** → **Installed Operators**.
 5. Select the OpenShift Elasticsearch Operator.
 
    1. Click the **Elasticsearch** tab.
    2. Click the name of the deployment, for example `elasticsearch`.
    3. To view the resources created by the deployment, click the **Resources** tab. .
    4. If the `Status` column any problems, check the `status:` output on the **YAML** tab for more information.
-6. Navigate back to **Ecosystem** -> **Installed Operators**.
+6. Navigate back to **Ecosystem** → **Installed Operators**.
 7. Select the Red Hat OpenShift Distributed Tracing Platform (Jaeger) Operator.
 
    1. Click the **Jaeger** tab.
    2. Click the name of your deployment, for example `jaeger`.
    3. To view the resources created by the deployment, click the **Resources** tab.
    4. If the `Status` column indicates any problems, check the `status:` output on the **YAML** tab for more information.
-8. Navigate to **Ecosystem** -> **Installed Operators**.
+8. Navigate to **Ecosystem** → **Installed Operators**.
 9. Select the Kiali Operator.
 
    1. Click the **Istio Service Mesh Control Plane** tab.
@@ -252,7 +252,7 @@ If you know the URL for the Kiali console, you can access it directly.  If you d
 **Procedure for administrators**
 
 1. Log in to the OpenShift Container Platform web console with an administrator role.
-2. Click **Home** -> **Projects**.
+2. Click **Home** → **Projects**.
 3. On the **Projects** page, if necessary, use the filter to find the name of your project.
 4. Click the name of your project, for example, `bookinfo`.
 5. On the **Project details** page, in the **Launcher** section, click the **Kiali** link.
@@ -285,7 +285,7 @@ If you know the URL for the Jaeger console, you can access it directly.  If you 
 **Procedure from OpenShift console**
 
 1. Log in to the OpenShift Container Platform web console as a user with cluster-admin rights. If you use Red Hat OpenShift Dedicated, you must have an account with the `dedicated-admin` role.
-2. Navigate to **Networking** -> **Routes**.
+2. Navigate to **Networking** → **Routes**.
 3. On the **Routes** page, select the Service Mesh control plane project, for example `istio-system`, from the **Namespace** menu.
 
    The **Location** column displays the linked address for each route.
@@ -311,7 +311,7 @@ If you know the URL for the Jaeger console, you can access it directly.  If you 
    $ oc get route -n istio-system jaeger -o jsonpath='{.spec.host}'
    ```
 3. Launch a browser and navigate to `https://<JAEGER_URL>`, where `<JAEGER_URL>` is the route that you discovered in the previous step.
-4. Log in using the same user name and password that you use to access the {{ Product_title }} console.
+4. Log in using the same user name and password that you use to access the {Product_title} console.
 5. If you have added services to the service mesh and have generated traces, you can use the filters and **Find Traces** button to search your trace data.
 
    If you are validating the console installation, there is no trace data to display.
@@ -407,6 +407,9 @@ The Red Hat Knowledgebase helps you get the most from Red Hat products and tec
 
 It includes articles, product documentation, and videos that outline best practices for installing, configuring, and using Red Hat products. You can also search for solutions to known issues. Each solution has a root cause description and steps to fix the problem.
 
+**Additional resources**
+{._additional-resources}
+
 - [Red Hat Knowledgebase](https://access.redhat.com/knowledgebase)
 
 ### Search the Red Hat Knowledgebase {#support-knowledgebase-search_troubleshooting-ossm}
@@ -444,12 +447,12 @@ You can use the `oc adm must-gather` CLI command to collect information about yo
 1. To collect Red Hat OpenShift Service Mesh data with `must-gather`, you must specify the Red Hat OpenShift Service Mesh image.
 
    ```terminal
-   $ oc adm must-gather --image=registry.redhat.io/openshift-service-mesh/istio-must-gather-rhel8:{{ MaistraVersion }}
+   $ oc adm must-gather --image=registry.redhat.io/openshift-service-mesh/istio-must-gather-rhel8:2.6
    ```
 2. To collect Red Hat OpenShift Service Mesh data for a specific Service Mesh control plane namespace with `must-gather`, you must specify the Red Hat OpenShift Service Mesh image and namespace. In this example, after `gather,` replace `<namespace>` with your Service Mesh control plane namespace, such as `istio-system`.
 
    ```terminal
-   $ oc adm must-gather --image=registry.redhat.io/openshift-service-mesh/istio-must-gather-rhel8:{{ MaistraVersion }} gather <namespace>
+   $ oc adm must-gather --image=registry.redhat.io/openshift-service-mesh/istio-must-gather-rhel8:2.6 gather <namespace>
    ```
 
    This creates a local directory that contains the following items:
@@ -494,11 +497,11 @@ If you cannot resolve an OpenShift Container Platform issue by using the Red Ha
 
    - To manually obtain your cluster ID using the OpenShift Container Platform web console:
 
-     1. Navigate to **Home** -> **Overview**.
+     1. Navigate to **Home** → **Overview**.
      2. Find the value in the **Cluster ID** field of the **Details** section.
    - Or, open a new support case from the OpenShift Container Platform web console, which automatically fills in your cluster ID.
 
-     1. From the toolbar, navigate to **(?) Help** -> **Open Support Case**.
+     1. From the toolbar, navigate to **(?) Help** → **Open Support Case**.
      2. The **Cluster ID** value automatically fills in.
    - To obtain your cluster ID using the OpenShift CLI (`oc`), run the following command:
 

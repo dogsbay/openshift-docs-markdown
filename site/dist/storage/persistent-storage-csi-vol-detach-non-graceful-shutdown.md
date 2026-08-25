@@ -4,17 +4,17 @@ title: Detach volumes after non-graceful node shutdown
 
 # Detach volumes after non-graceful node shutdown {#ephemeral-storage-csi-vol-detach-non-graceful-shutdown}
 
-\[role="\_abstract"\] Automatic volume detachment after non-graceful node shutdowns prevents volumes from remaining attached to failed nodes, enabling faster workload recovery by allowing pods to reschedule and reattach volumes on healthy nodes without manual intervention.
+Automatic volume detachment after non-graceful node shutdowns prevents volumes from remaining attached to failed nodes, enabling faster workload recovery by allowing pods to reschedule and reattach volumes on healthy nodes without manual intervention.
 
 ## Overview {#persistent-storage-csi-vol-detach-non-graceful-overview_ephemeral-storage-csi-vol-detach-non-graceful-shutdown}
 
-\[role="\_abstract"\] Non-graceful node shutdowns from hardware failures or system crashes leave volumes attached to failed nodes, blocking pod rescheduling. Applying an out-of-service taint triggers automatic volume detachment from failed nodes, enabling workload recovery without manual volume management.
+Non-graceful node shutdowns from hardware failures or system crashes leave volumes attached to failed nodes, blocking pod rescheduling. Applying an out-of-service taint triggers automatic volume detachment from failed nodes, enabling workload recovery without manual volume management.
 
 A graceful node shutdown occurs when the kubelet’s node shutdown manager detects the upcoming node shutdown action. Non-graceful shutdowns occur when the kubelet does not detect a node shutdown action, which can occur because of system or hardware failures. Also, the kubelet might not detect a node shutdown action when the shutdown command does not trigger the Inhibitor Locks mechanism used by the kubelet on Linux, or because of a user error, for example, if the shutdownGracePeriod and shutdownGracePeriodCriticalPods details are not configured correctly for that node.
 
 ## Adding an out-of-service taint manually for automatic volume detachment {#persistent-storage-csi-vol-detach-non-graceful-shutdown-procedure_ephemeral-storage-csi-vol-detach-non-graceful-shutdown}
 
-\[role="\_abstract"\] After non-graceful shutdowns, to trigger automatic volume detachment and enable pod rescheduling, apply an out-of-service taint to the node. This recovers workloads faster than manually detaching volumes from failed nodes.
+After non-graceful shutdowns, to trigger automatic volume detachment and enable pod rescheduling, apply an out-of-service taint to the node. This recovers workloads faster than manually detaching volumes from failed nodes.
 
 **Prerequisites**
 

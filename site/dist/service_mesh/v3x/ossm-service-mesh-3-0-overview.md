@@ -1,5 +1,5 @@
 ---
-title: "{{ SMProductShortName }} overview"
+title: Service Mesh overview
 ---
 
 # Service Mesh overview {#ossm-openshift-service-mesh-3-0-overview}

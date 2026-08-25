@@ -23,7 +23,8 @@ const headings = [{"depth":1,"slug":"security-compliance","text":"Understanding 
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/container_security/security-compliance";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -42,7 +43,7 @@ const pageCategory = ["security","security/container_security"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Understanding compliance {#security-compliance}\n\nYou should understand the regulatory readiness, or compliance, that is required before any systems can be put into production. That regulatory readiness can be imposed by national standards, industry standards or the organization’s corporate governance framework.\n\n## Understanding compliance and risk management {#security-compliance-nist_security-compliance}\n\nFIPS compliance is one of the most critical components required in highly secure environments to ensure that only supported cryptographic technologies are allowed on nodes.\n\n> [!IMPORTANT]\n> To enable FIPS mode for your cluster, you must run the installation program from a Red Hat Enterprise Linux (RHEL) computer configured to operate in FIPS mode. For more information about configuring FIPS mode on RHEL, see [Switching RHEL to FIPS mode](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/security_hardening/switching-rhel-to-fips-mode_security-hardening).\n>\n> When running Red Hat Enterprise Linux (RHEL) or Red Hat Enterprise Linux CoreOS (RHCOS) booted in FIPS mode, OpenShift Container Platform core components use the RHEL cryptographic libraries that have been submitted to NIST for FIPS 140-2/140-3 Validation on only the x86_64, ppc64le, and s390x architectures.\n\nTo understand Red Hat’s view of OpenShift Container Platform compliance frameworks, refer to the Risk Management and Regulatory Readiness chapter of the OpenShift Security Guide Book.\n\n**Additional resources**\n\n- [Installing a cluster in FIPS mode](/openshift-docs-markdown/installing/overview/installing-fips#installing-fips-mode_installing-fips)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/container_security/security-compliance.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Understanding compliance {#security-compliance}\n\nYou should understand the regulatory readiness, or compliance, that is required before any systems can be put into production. That regulatory readiness can be imposed by national standards, industry standards or the organization’s corporate governance framework.\n\n## Understanding compliance and risk management {#security-compliance-nist_security-compliance}\n\nFIPS compliance is one of the most critical components required in highly secure environments to ensure that only supported cryptographic technologies are allowed on nodes.\n\n> [!IMPORTANT]\n> To enable FIPS mode for your cluster, you must run the installation program from a Red Hat Enterprise Linux (RHEL) computer configured to operate in FIPS mode. For more information about configuring FIPS mode on RHEL, see [Switching RHEL to FIPS mode](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/security_hardening/switching-rhel-to-fips-mode_security-hardening).\n>\n> When running Red Hat Enterprise Linux (RHEL) or Red Hat Enterprise Linux CoreOS (RHCOS) booted in FIPS mode, OpenShift Container Platform core components use the RHEL cryptographic libraries that have been submitted to NIST for FIPS 140-2/140-3 Validation on only the x86_64, ppc64le, and s390x architectures.\n\nTo understand Red Hat’s view of OpenShift Container Platform compliance frameworks, refer to the Risk Management and Regulatory Readiness chapter of the OpenShift Security Guide Book.\n\n**Additional resources**\n{._additional-resources}\n\n- [Installing a cluster in FIPS mode](/openshift-docs-markdown/installing/overview/installing-fips#installing-fips-mode_installing-fips)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/container_security/security-compliance.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -81,12 +82,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -94,7 +96,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="security-compliance" class="group scroll-mt-20">Understanding compliance<a href="#security-compliance" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You should understand the regulatory readiness, or compliance, that is required before any systems can be put into production. That regulatory readiness can be imposed by national standards, industry standards or the organization’s corporate governance framework.</p>
+      <p class="_abstract">You should understand the regulatory readiness, or compliance, that is required before any systems can be put into production. That regulatory readiness can be imposed by national standards, industry standards or the organization’s corporate governance framework.</p>
       <h2 id="security-compliance-nist_security-compliance" class="group scroll-mt-20">Understanding compliance and risk management<a href="#security-compliance-nist_security-compliance" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">FIPS compliance is one of the most critical components required in highly secure environments to ensure that only supported cryptographic technologies are allowed on nodes.</p>
       <Alert variant="info" class="my-4">
@@ -105,8 +107,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
         </AlertDescription>
       </Alert>
       <p>To understand Red Hat’s view of OpenShift Container Platform compliance frameworks, refer to the Risk Management and Regulatory Readiness chapter of the OpenShift Security Guide Book.</p>
-      <p><strong>Additional resources</strong></p>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul><li><a href="/openshift-docs-markdown/installing/overview/installing-fips#installing-fips-mode_installing-fips">Installing a cluster in FIPS mode</a></li></ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

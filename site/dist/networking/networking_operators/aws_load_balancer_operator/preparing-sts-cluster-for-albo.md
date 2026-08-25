@@ -26,9 +26,10 @@ Before you start any Security Token Service (STS) procedures, ensure that you me
 
   `{.spec.serviceAccountIssuer}`
   :   Specifies an OIDC DNS URL. An example URL is `https://rh-oidc.s3.us-east-1.amazonaws.com/28292va7ad7mr9r4he1fb09b14t59t4f`.
-- You logged into the AWS management console, navigated to **IAM** -> **Access management** -> **Identity providers**, and located the OIDC Amazon Resource Name (ARN) information. An OIDC ARN example is `arn:aws:iam::777777777777:oidc-provider/<oidc_dns_url>`.
+- You logged into the AWS management console, navigated to **IAM** → **Access management** → **Identity providers**, and located the OIDC Amazon Resource Name (ARN) information. An OIDC ARN example is `arn:aws:iam::777777777777:oidc-provider/<oidc_dns_url>`.
 
 **Additional resources**
+{._additional-resources}
 
 - [the Cloud Credential Operator utility (`ccoctl`)](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations)
 
@@ -221,6 +222,7 @@ You can create the IAM role by using the following options:
 If your environment does not support the `ccoctl` `command.ws-short` CLI, use the AWS CLI.
 
 **Additional resources**
+{._additional-resources}
 
 - [the Cloud Credential Operator utility (`ccoctl`)](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations)
 
@@ -355,6 +357,7 @@ To enable the AWS Load Balancer Controller to interact with subnets and Virtual 
    `stsIAMRoleARN`
    :   Specifies the ARN role for the AWS Load Balancer Controller. The `CredentialsRequest` object uses this ARN role to provision the AWS credentials. An example of `<albc_role_arn>` is `arn:aws:iam::777777777777:role/albo-controller`.
 
-## Additional resources {#additional-resources-albo-sts-cluster_albo-sts-cluster}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring the Cloud Credential Operator utility](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations)

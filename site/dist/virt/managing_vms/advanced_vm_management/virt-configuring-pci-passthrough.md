@@ -233,13 +233,13 @@ The `MachineConfig` Operator generates the `/etc/modprobe.d/vfio.conf` on the no
 2. Create a Butane config file, `100-worker-vfiopci.bu`, binding the PCI device to the VFIO driver.
 
    > [!NOTE]
-   > The [Butane version](https://coreos.github.io/butane/specs/) you specify in the config file should match the OpenShift Container Platform version and always ends in `0`. For example, `{{ product_version }}.0`. See "Creating machine configs with Butane" for information about Butane.
+   > The [Butane version](https://coreos.github.io/butane/specs/) you specify in the config file should match the OpenShift Container Platform version and always ends in `0`. For example, `4.22.0`. See "Creating machine configs with Butane" for information about Butane.
 
    Example:
 
    ```yaml
    variant: openshift
-   version: {{ product_version }}.0
+   version: 4.22.0
    metadata:
      name: 100-worker-vfiopci
      labels:
@@ -324,7 +324,7 @@ To expose PCI host devices in the cluster, add details about the PCI devices to 
 1. Edit the `HyperConverged` CR in your default editor by running the following command:
 
    ```terminal
-   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+   $ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv
    ```
 2. Add the PCI device information to the `spec.permittedHostDevices.pciHostDevices` array.
 
@@ -335,7 +335,7 @@ To expose PCI host devices in the cluster, add details about the PCI devices to 
    kind: HyperConverged
    metadata:
      name: kubevirt-hyperconverged
-     namespace: {{ CNVNamespace }}
+     namespace: openshift-cnv
    spec:
      permittedHostDevices:
        pciHostDevices:
@@ -365,7 +365,7 @@ To expose PCI host devices in the cluster, add details about the PCI devices to 
      kind: HyperConverged
      metadata:
        name: kubevirt-hyperconverged
-       namespace: {{ CNVNamespace }}
+       namespace: openshift-cnv
      spec:
        permittedHostDevices:
          pciHostDevices:
@@ -430,7 +430,7 @@ To remove a PCI host device from the cluster, delete the information for that de
 1. Edit the `HyperConverged` CR in your default editor by running the following command:
 
    ```terminal
-   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+   $ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv
    ```
 2. Remove the PCI device information from the `spec.permittedHostDevices.pciHostDevices` array by deleting the `pciDeviceSelector`, `resourceName` and `externalResourceProvider` (if applicable), fields for the appropriate device. In this example, the user deletes the `nvidia.com/TU104GL_Tesla_T4`.
 
@@ -441,7 +441,7 @@ To remove a PCI host device from the cluster, delete the information for that de
    kind: HyperConverged
    metadata:
      name: kubevirt-hyperconverged
-     namespace: {{ CNVNamespace }}
+     namespace: openshift-cnv
    spec:
      permittedHostDevices:
        pciHostDevices:
@@ -531,7 +531,8 @@ When a PCI device is available in a cluster, you can assign it to a virtual mach
   $ 02:01.0 3D controller [0302]: NVIDIA Corporation GV100GL [Tesla V100 PCIe 32GB] [10de:1eb8] (rev a1)
   ```
 
-## Additional resources {#additional-resources_configuring-pci-passthrough}
+**Additional resources**
+{._additional-resources}
 
 - [Enabling Intel VT-X and AMD-V Virtualization Hardware Extensions in BIOS](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/virtualization_deployment_and_administration_guide/sect-troubleshooting-enabling_intel_vt_x_and_amd_v_virtualization_hardware_extensions_in_bios)
 - [Managing file permissions](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/assembly_managing-file-permissions_configuring-basic-system-settings)

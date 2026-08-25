@@ -25,7 +25,7 @@ To install the Kernel Module Management (KMM)Operator on OpenShift Container Pla
 1. Log in to the OpenShift Container Platform web console.
 2. Install the Kernel Module Management Operator:
 
-   1. In the OpenShift Container Platform web console, click **Ecosystem** -> **Software Catalog**.
+   1. In the OpenShift Container Platform web console, click **Ecosystem** → **Software Catalog**.
    2. Select **Kernel Module Management Operator** from the list of available Operators, and then click **Install**.
    3. From the **Installed Namespace** list, select the `openshift-kmm` namespace.
    4. Click **Install**.
@@ -34,7 +34,7 @@ To install the Kernel Module Management (KMM)Operator on OpenShift Container Pla
 
 To verify that KMM Operator installed successfully:
 
-1. Navigate to the **Ecosystem** -> **Installed Operators** page.
+1. Navigate to the **Ecosystem** → **Installed Operators** page.
 2. Ensure that **Kernel Module Management Operator** is listed in the **openshift-kmm** project with a **Status** of **InstallSucceeded**.
 
    > [!NOTE]
@@ -44,8 +44,8 @@ To verify that KMM Operator installed successfully:
 
 1. To troubleshoot issues with Operator installation:
 
-   1. Navigate to the **Ecosystem** -> **Installed Operators** page and inspect the **Operator Subscriptions** and **Install Plans** tabs for any failure or errors under **Status**.
-   2. Navigate to the **Workloads** -> **Pods** page and check the logs for pods in the `openshift-kmm` project.
+   1. Navigate to the **Ecosystem** → **Installed Operators** page and inspect the **Operator Subscriptions** and **Install Plans** tabs for any failure or errors under **Status**.
+   2. Navigate to the **Workloads** → **Pods** page and check the logs for pods in the `openshift-kmm` project.
 
 ### Installing the Kernel Module Management Operator by using the CLI {#kmm-install-using-cli_kernel-module-management-operator}
 
@@ -266,7 +266,7 @@ To adapt the Kernel Module Management (KMM) Operator to your OpenShift Container
   > [!NOTE]
   > If you want to configure `KMM Hub`, create the `ConfigMap` using the name `kmm-operator-hub-manager-config` in the KMM Hub controller’s namespace.
 
-  ***Operator configuration parameters***
+  **Operator configuration parameters**
 
 <table>
 <thead>
@@ -286,7 +286,7 @@ To adapt the Kernel Module Management (KMM) Operator to your OpenShift Container
 </tr>
 <tr>
   <td><code>leaderElection.enabled</code></td>
-  <td>Determines whether leader election is used to ensure that only one replica of the KMM Operator is running at any time. For more information, see https://kubernetes.io/docs/concepts/architecture/leases/[Leases]. The default value is <code>true</code>.</td>
+  <td>Determines whether leader election is used to ensure that only one replica of the KMM Operator is running at any time. For more information, see <a href="https://kubernetes.io/docs/concepts/architecture/leases/">Leases</a>. The default value is <code>true</code>.</td>
 </tr>
 <tr>
   <td><code>leaderElection.resourceID</code></td>
@@ -298,7 +298,7 @@ To adapt the Kernel Module Management (KMM) Operator to your OpenShift Container
 </tr>
 <tr>
   <td><code>metrics.disableHTTP2</code></td>
-  <td>If <code>true</code>, disables HTTP/2 for the metrics server as a mitigation for https://access.redhat.com/security/cve/cve-2023-44487[CVE-2023-44487]. The default value is <code>true</code>.</td>
+  <td>If <code>true</code>, disables HTTP/2 for the metrics server as a mitigation for <a href="https://access.redhat.com/security/cve/cve-2023-44487">CVE-2023-44487</a>. The default value is <code>true</code>.</td>
 </tr>
 <tr>
   <td><code>metrics.enableAuthnAuthz</code></td>
@@ -332,6 +332,7 @@ To adapt the Kernel Module Management (KMM) Operator to your OpenShift Container
 </table>
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing the Kernel Module Management Operator](/openshift-docs-markdown/hardware_enablement/kmm-kernel-module-management#kmm-install_kernel-module-management-operator)
 
@@ -361,6 +362,7 @@ The Linux kernel accepts the `firmware_class.path` parameter as a search path fo
 - To define a firmware search path, set `worker.setFirmwareClassPath` to `/var/lib/firmware` in the Operator configuration.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring the Kernel Module Management Operator](/openshift-docs-markdown/hardware_enablement/kmm-kernel-module-management#kmm-configuring-kmmo_kernel-module-management-operator)
 
@@ -479,10 +481,10 @@ The authorization model for that workload depends on the namespace of the `Modul
   - If the `Module` resource is created in the Operator’s namespace (`openshift-kmm` by default), then KMM uses its default, powerful `ServiceAccounts` to run the worker and device plugin pods.
   - If the `Module` resource is created in any other namespace, then KMM runs the pods with the namespace’s `default` `ServiceAccount`. The `Module` resource cannot run a privileged workload unless you manually enable it to use the `privileged` SCC.
 
-> [!IMPORTANT]
-> `openshift-kmm` is a trusted namespace.
->
-> When setting up RBAC permissions, remember that any user or `ServiceAccount` creating a `Module` resource in the `openshift-kmm` namespace results in KMM automatically running privileged workloads on potentially all nodes in the cluster.
+  > [!IMPORTANT]
+  > `openshift-kmm` is a trusted namespace.
+  >
+  > When setting up RBAC permissions, remember that any user or `ServiceAccount` creating a `Module` resource in the `openshift-kmm` namespace results in KMM automatically running privileged workloads on potentially all nodes in the cluster.
 
 To allow any `ServiceAccount` to use the `privileged` SCC and run worker or device plugin pods, you can use the `oc adm policy` command, as in the following example:
 
@@ -495,6 +497,7 @@ $ oc adm policy add-scc-to-user privileged -z "${serviceAccountName}" [ -n "${na
 OpenShift runs a synchronization mechanism that sets the namespace Pod Security level automatically based on the security contexts in use. No action is needed.
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding and managing pod security admission](/openshift-docs-markdown/authentication/understanding-and-managing-pod-security-admission#understanding-and-managing-pod-security-admission)
 
@@ -533,6 +536,7 @@ spec:
 ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Building a linux kernel module](https://fastbitlab.com/building-a-linux-kernel-module/)
 
@@ -678,6 +682,7 @@ where:
 :   Specifies the `imageRepoSecret` parameter. This parameter is used to pull module loader and device plugin images.
 
 **Additional resources**
+{._additional-resources}
 
 - [Replacing the CA Bundle certificate](/openshift-docs-markdown/security/certificates/updating-ca-bundle#ca-bundle-replacing_updating-ca-bundle)
 
@@ -792,6 +797,7 @@ If you are building your image on OpenShift Container Platform, consider using t
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Driver Toolkit](/openshift-docs-markdown/hardware_enablement/psap-driver-toolkit#driver-toolkit)
 
@@ -856,6 +862,7 @@ where:
 Successful build pods are garbage collected immediately, unless the `job.gcDelay` parameter is set in the Operator configuration. Failed build pods are always preserved and must be deleted manually by the administrator for the build to be restarted.
 
 **Additional resources**
+{._additional-resources}
 
 - [Build configuration resources](/openshift-docs-markdown/cicd/builds/build-configuration#build-configuration)
 - [Preflight validation for Kernel Module Management (KMM) Modules](/openshift-docs-markdown/updating/preparing_for_updates/kmm-preflight-validation)
@@ -887,6 +894,7 @@ To build kernel module loader images in OpenShift Container Platform, you can us
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Driver Toolkit](/openshift-docs-markdown/hardware_enablement/psap-driver-toolkit#driver-toolkit)
 
@@ -901,6 +909,9 @@ For more details on using Secure Boot, see "Generating a public and private key 
 - A public private key pair in the correct (DER) format.
 - At least one secure-boot enabled node with the public key enrolled in its MOK database.
 - Either a pre-built driver container image, or the source code and Dockerfile needed to build one in-cluster.
+
+**Additional resources**
+{._additional-resources}
 
 - [Generating a public and private key pair](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/managing_monitoring_and_updating_the_kernel/signing-a-kernel-and-modules-for-secure-boot_managing-monitoring-and-updating-the-kernel#generating-a-public-and-private-key-pair_signing-a-kernel-and-modules-for-secure-boot)
 
@@ -1214,6 +1225,7 @@ After it is signed, you can safely delete the temporary image from the registry.
   :   Specifies that it is used as `imagePullSecrets` in the `DaemonSet` object and to pull and push for the build and sign features.
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating service accounts](/openshift-docs-markdown/authentication/understanding-and-creating-service-accounts#service-accounts-managing_understanding-service-accounts).
 
@@ -1256,40 +1268,41 @@ Toleration values must match the taint that is added to the nodes. A toleration 
   - the `key` parameters are the same;
   - the `effect` parameters are the same.
 
-**Example taint in a node specification**
+  **Example taint in a node specification**
 
-```yaml
-apiVersion: v1
-kind: Node
-metadata:
-  name: <my_node>
-#...
-spec:
-  taints:
-  - effect: NoSchedule
-    key: key1
-    value: value1
-#...
-```
+  ```yaml
+  apiVersion: v1
+  kind: Node
+  metadata:
+    name: <my_node>
+  #...
+  spec:
+    taints:
+    - effect: NoSchedule
+      key: key1
+      value: value1
+  #...
+  ```
 
-**Example toleration in a module specification**
+  **Example toleration in a module specification**
 
-```yaml
-apiVersion: kmm.sigs.x-k8s.io/v1beta1
-kind: Module
-metadata:
-  name: <my_kmod>
-spec:
-  ...
-  tolerations:
-    effect: NoSchedule
-    key: key1
-    operator: Equal
-    tolerationSeconds: 36000
-    value: value1
-```
+  ```yaml
+  apiVersion: kmm.sigs.x-k8s.io/v1beta1
+  kind: Module
+  metadata:
+    name: <my_kmod>
+  spec:
+    ...
+    tolerations:
+      effect: NoSchedule
+      key: key1
+      operator: Equal
+      tolerationSeconds: 36000
+      value: value1
+  ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding taints and tolerations](https://docs.openshift.com/container-platform/4.17/nodes/scheduling/nodes-scheduler-taints-tolerations.html#nodes-scheduler-taints-tolerations-about_nodes-scheduler-taints-tolerations)
 
@@ -1302,6 +1315,7 @@ In hub and spoke setups, spokes are focused, resource-constrained clusters that 
 Building kernel module images and signing the `.ko` files, should run on the hub. The scheduling of the Module Loader and Device Plugin `DaemonSets` can only happen on the spokes.
 
 **Additional resources**
+{._additional-resources}
 
 - [Red Hat Advanced Cluster Management (RHACM)](https://www.redhat.com/en/technologies/management/advanced-cluster-management)
 
@@ -1313,6 +1327,7 @@ KMM-Hub is a hub-cluster edition of Kernel Module Management for OpenShift Conta
 > KMM-Hub cannot be used to load kernel modules on the hub cluster. Install the regular edition of KMM to load kernel modules.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing KMM](https://openshift-kmm.netlify.app/documentation/install/)
 
@@ -1321,6 +1336,7 @@ KMM-Hub is a hub-cluster edition of Kernel Module Management for OpenShift Conta
 To deploy KMM-Hub for multi-cluster kernel module management on OpenShift Container Platform, you can install it with Operator Lifecycle Manager (OLM) or by creating KMM resources manually.
 
 **Additional resources**
+{._additional-resources}
 
 - [KMM Operator bundle](https://catalog.redhat.com/software/containers/kmm/kernel-module-management-hub-operator-bundle/63d84cc33862da54bb19b8c6?architecture=amd64&image=654273ac86f7e537ae452f6ehttps://catalog.redhat.com/software/containers/kmm/kernel-module-management-hub-operator-bundle/63d84cc33862da54bb19b8c6?architecture=amd64&image=654273ac86f7e537ae452f6e)
 
@@ -1578,6 +1594,7 @@ Use this procedure to upgrade the kernel module while running maintenance operat
 Day 1 kernel module loading lets you insert kernel modules during Linux `systemd` initialization on OpenShift Container Platform, before the standard KMM Day 2 loading and a complete initialization of a Linux (RHCOS) server. You can use the Machine Config Operator (MCO) when a module must load earlier than full node initialization.
 
 **Additional resources**
+{._additional-resources}
 
 - [Machine Config Operator](/openshift-docs-markdown/machine_configuration/index#machine-config-index)
 
@@ -1606,9 +1623,10 @@ To load an out-of-tree kernel module during OpenShift Container Platform node bo
 
 Day 1 kernel module loading in OpenShift Container Platform uses Driver Toolkit-based container images shared with Day 2 KMM builds. These images must contain your out-of-tree kernel modules so the Machine Config Operator can pull and load them during node boot.
 
-The out-of-tree kernel module should be located under `/opt/lib/modules/${{ kernelVersion }}`.
+The out-of-tree kernel module should be located under `/opt/lib/modules/${kernelVersion}`.
 
 **Additional resources**
+{._additional-resources}
 
 - [Driver Toolkit](/openshift-docs-markdown/hardware_enablement/psap-driver-toolkit#driver-toolkit)
 
@@ -1691,6 +1709,7 @@ metadata:
 ```
 
 **Additional resources**
+{._additional-resources}
 
 - [About MachineConfigPool](https://www.redhat.com/en/blog/openshift-container-platform-4-how-does-machine-config-pool-work)
 
@@ -1791,6 +1810,7 @@ On OpenShift Container Platform nodes, the set of default lookup paths for firmw
 2. By applying the `MachineConfig` CR, the nodes are automatically rebooted.
 
 **Additional resources**
+{._additional-resources}
 
 - [Machine Config Operator](/openshift-docs-markdown/machine_configuration/index#machine-config-operator_machine-config-overview)
 
@@ -1857,10 +1877,14 @@ Day 0
     - A network driver that is required for the machine to access `machine-config-server` on the bootstrap node to pull the ignition and join the cluster
 
 Day 1
-:   Kmods that are not required for a node to become `Ready` in the cluster but cannot be unloaded when the node is `Ready`. An example of this type of kmod is an out-of-tree (OOT) network driver that replaces an outdated in-tree driver to exploit the full potential of the NIC while `NetworkManager` depends on it. When the node is `Ready`, you cannot unload the driver because of the `NetworkManager` dependency.
+:   Kmods that are not required for a node to become `Ready` in the cluster but cannot be unloaded when the node is `Ready`.
+
+    An example of this type of kmod is an out-of-tree (OOT) network driver that replaces an outdated in-tree driver to exploit the full potential of the NIC while `NetworkManager` depends on it. When the node is `Ready`, you cannot unload the driver because of the `NetworkManager` dependency.
 
 Day 2
-:   Kmods that can be dynamically loaded to the kernel or removed from it without interfering with the cluster infrastructure, for example, connectivity. Examples of these types of kmods include:
+:   Kmods that can be dynamically loaded to the kernel or removed from it without interfering with the cluster infrastructure, for example, connectivity.
+
+    Examples of these types of kmods include:
 
     - GPU operators
     - Secondary network adapters
@@ -1965,6 +1989,7 @@ Events:
 To collect Kernel Module Management debugging data for Red Hat Support on OpenShift Container Platform, you can run the `oc adm must-gather` command with KMM-specific arguments.
 
 **Additional resources**
+{._additional-resources}
 
 - [About the must-gather tool](/openshift-docs-markdown/support/gathering-cluster-data#about-must-gather_gathering-cluster-data)
 

@@ -17,6 +17,7 @@ The Kubernetes persistent volume framework allows administrators to provision a 
 > High availability of storage in the infrastructure is left to the underlying storage provider.
 
 **Additional resources**
+{._additional-resources}
 
 - [CSI automatic migration](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-migration#persistent-storage-csi-migration)
 - [Microsoft Azure Disk](https://azure.microsoft.com/en-us/services/storage/disks)
@@ -27,7 +28,7 @@ You can use storage classes to differentiate and delineate storage levels and us
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, click **Storage** -> **Storage Classes**.
+1. In the OpenShift Container Platform web console, click **Storage** → **Storage Classes**.
 2. In the storage class overview, click **Create Storage Class**.
 3. Define the desired options on the page that appears.
 
@@ -50,6 +51,7 @@ You can use storage classes to differentiate and delineate storage levels and us
 4. Click **Create** to create the storage class.
 
 **Additional resources**
+{._additional-resources}
 
 - [Azure Disk Storage Class](https://kubernetes.io/docs/concepts/storage/storage-classes/#new-azure-disk-storage-class-starting-from-v1-7-2)
 
@@ -63,7 +65,7 @@ You can create a persistent volume claim to dynamically provision and bind stora
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, click **Storage** -> **Persistent Volume Claims**.
+1. In the OpenShift Container Platform web console, click **Storage** → **Persistent Volume Claims**.
 2. In the persistent volume claims overview, click **Create Persistent Volume Claim**.
 3. Define the required options on the page that is displayed.
 
@@ -86,6 +88,7 @@ You can create a machine set running on Microsoft Azure that deploys machines wi
 Both the in-tree plugin and CSI driver support using PVCs to enable ultra disks. You can also deploy machines with ultra disks as data disks without creating a PVC.
 
 **Additional resources**
+{._additional-resources}
 
 - [Microsoft Azure ultra disks documentation](https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types#ultra-disks)
 - [Machine sets that deploy machines on ultra disks using CSI PVCs](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-azure#machineset-azure-ultra-disk_persistent-storage-csi-azure)
@@ -127,24 +130,19 @@ You can deploy machines with ultra disks on Microsoft Azure by editing your mach
              ultraSSDCapability: Enabled
    ```
 
-{%- if mapi %} dataDisks: - nameSuffix: ultrassd lun: 0 diskSizeGB: 4 deletionPolicy: Delete cachingType: None managedDisk: storageAccountType: UltraSSD_LRS userDataSecret: name: <role>-user-data-x5 {%- endif %} \`\`\`
+   where:
 
-```
-where:
+   `spec.template.spec.metadata.labels.disk`
+   :   Specifies a label to use to select a node that is created by this machine set. The example uses `disk.ultrassd` for this value.
 
-`spec.template.spec.metadata.labels.disk`
-:   Specifies a label to use to select a node that is created by this machine set. The example uses `disk.ultrassd` for this value.
-
-`spec.template.spec.providerSpec.value.ultraSSDCapability`
-:   Enables the use of ultra disks.
-```
-
-1. Create a machine set by using the updated configuration by running the following command:
+   `spec.template.spec.providerSpec.value.ultraSSDCapability`
+   :   Enables the use of ultra disks.
+3. Create a machine set by using the updated configuration by running the following command:
 
    ```terminal
    $ oc create -f <machine_set_name>.yaml
    ```
-2. Create a storage class that contains the following YAML definition:
+4. Create a storage class that contains the following YAML definition:
 
    ```yaml
    apiVersion: storage.k8s.io/v1
@@ -178,7 +176,7 @@ where:
 
    `volumeBindingMode`
    :   Optional parameter. Specifies this parameter to wait for the creation of the pod that will use the disk.
-3. Create a persistent volume claim (PVC) to reference the `ultra-disk-sc` storage class that contains the following YAML definition:
+5. Create a persistent volume claim (PVC) to reference the `ultra-disk-sc` storage class that contains the following YAML definition:
 
    ```yaml
    apiVersion: v1
@@ -204,7 +202,7 @@ where:
 
    `spec.resources.requests.storage`
    :   Specifies the size for the storage class. The minimum value is `4Gi`.
-4. Create a pod that contains the following YAML definition:
+6. Create a pod that contains the following YAML definition:
 
    ```yaml
    apiVersion: v1

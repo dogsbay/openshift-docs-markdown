@@ -12,10 +12,7 @@ You can view the cluster and components time series data captured by Telemetry.
 
 **Prerequisites**
 
-- You have installed the OpenShift Container Platform
-
-CLI (`oc`).
-
+- You have installed the OpenShift Container Platform CLI (`oc`).
 - You have access to the cluster as a user with the `cluster-admin` role or the `cluster-monitoring-view` role.
 
 **Procedure**

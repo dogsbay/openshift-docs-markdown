@@ -1,8 +1,8 @@
 ---
-title: "{{ oadp_short }} Self-Service cluster admin use cases"
+title: OADP Self-Service cluster admin use cases
 ---
 
-# {{ oadp_short }} Self-Service cluster admin use cases {#oadp-self-service-cluster-admin-use-cases}
+# OADP Self-Service cluster admin use cases {#oadp-self-service-cluster-admin-use-cases}
 
 Configure and manage OADP Self-Service by enabling the feature, reviewing backup storage location requests, and enforcing policy templates. This helps you provide Self-Service backup capabilities while maintaining administrative control.
 
@@ -171,10 +171,10 @@ Approve `NonAdminBackupStorageLocation` (NABSL) custom resource requests from na
   $ oc get velero.io.backupstoragelocation
   ```
 
-```terminal {title="Example output"}
-NAME                         PHASE       LAST VALIDATED   AGE   DEFAULT
-test-nac-test-bsl-cd...930   Available   62s              62s
-```
+  ```terminal {title="Example output"}
+  NAME                         PHASE       LAST VALIDATED   AGE   DEFAULT
+  test-nac-test-bsl-cd...930   Available   62s              62s
+  ```
 
 ## Rejecting a NonAdminBackupStorageLocation request {#oadp-self-service-rejecting-nabsl_oadp-self-service-cluster-admin-use-cases}
 
@@ -195,16 +195,15 @@ Reject `NonAdminBackupStorageLocation` (NABSL) custom resource (CR) requests fro
    $ oc -n openshift-adp get NonAdminBackupStorageLocationRequests
    ```
 
-```terminal {title="Example output"}
-$ oc get nabslrequest
-NAME                          REQUEST-PHASE   REQUEST-NAMESPACE     REQUEST-NAME               AGE
-non-admin-bsl-test-.....175   Approved        non-admin-bsl-test    incorrect-bucket-nabsl    4m57s
-non-admin-bsl-test-.....196   Approved        non-admin-bsl-test    perfect-nabsl             5m26s
-non-admin-bsl-test-s....e1a   Rejected        non-admin-bsl-test    suspicious-sample         2m56s
-non-admin-bsl-test-.....5e0   Pending         non-admin-bsl-test    waitingapproval-nabsl     4m20s
-```
-
-1. To reject the NABSL CR request, set the `approvalDecision` field to `reject` by running the following command:
+   ```terminal {title="Example output"}
+   $ oc get nabslrequest
+   NAME                          REQUEST-PHASE   REQUEST-NAMESPACE     REQUEST-NAME               AGE
+   non-admin-bsl-test-.....175   Approved        non-admin-bsl-test    incorrect-bucket-nabsl    4m57s
+   non-admin-bsl-test-.....196   Approved        non-admin-bsl-test    perfect-nabsl             5m26s
+   non-admin-bsl-test-s....e1a   Rejected        non-admin-bsl-test    suspicious-sample         2m56s
+   non-admin-bsl-test-.....5e0   Pending         non-admin-bsl-test    waitingapproval-nabsl     4m20s
+   ```
+2. To reject the NABSL CR request, set the `approvalDecision` field to `reject` by running the following command:
 
    ```terminal
    $ oc patch nabslrequest <nabsl_name> -n openshift-adp --type=merge -p '{"spec": {"approvalDecision": "reject"}}'

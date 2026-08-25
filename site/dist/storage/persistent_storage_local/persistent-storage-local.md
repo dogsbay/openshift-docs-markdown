@@ -147,7 +147,7 @@ The LSO is not installed in OpenShift Container Platform by default. Use the fol
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console.
-2. Navigate to **Ecosystem** -> **Software Catalog**.
+2. Navigate to **Ecosystem** → **Software Catalog**.
 3. Type **Local Storage** into the filter box to locate the LSO.
 4. Click **Install**.
 5. On the **Install Operator** page, select **A specific namespace on the cluster**. Select **openshift-local-storage** from the drop-down menu.
@@ -493,7 +493,7 @@ Use the following procedure to automatically discover local devices, and to auto
 
 1. Enable automatic discovery of local devices from the OpenShift Container Platform web console:
 
-   1. Click **Ecosystem** -> **Installed Operators**.
+   1. Click **Ecosystem** → **Installed Operators**.
    2. In the `openshift-local-storage` namespace, click **Local Storage**.
    3. Click the **Local Volume Discovery** tab.
    4. Click **Create Local Volume Discovery** and then select either **Form view** or **YAML view**.
@@ -504,15 +504,15 @@ Use the following procedure to automatically discover local devices, and to auto
 2. Display a continuous list of available devices on a node:
 
    1. Log in to the OpenShift Container Platform web console.
-   2. Click **Compute** -> **Nodes**.
+   2. Click **Compute** → **Nodes**.
    3. Click the node name that you want to open. The "Node Details" page is displayed.
    4. Click the **Disks** tab to display the list of the selected devices.
 
       The device list updates continuously as local disks are added or removed. You can filter the devices by name, status, type, model, capacity, and mode.
 3. Automatically provision local volumes for the discovered devices from the OpenShift Container Platform web console:
 
-   1. Click **Ecosystem** -> **Installed Operators** and select **Local Storage** from the list of Operators.
-   2. Click **Local Volume Set** -> **Create Local Volume Set**.
+   1. Click **Ecosystem** → **Installed Operators** and select **Local Storage** from the list of Operators.
+   2. Click **Local Volume Set** → **Create Local Volume Set**.
    3. Enter a volume set name and a storage class name.
    4. Click **All nodes** or **Select nodes** to apply filters accordingly.
 
@@ -585,23 +585,22 @@ Results are deleted after they are removed from the node. Symlinks must be manua
 
 ## Local Storage Operator symlinks management {#local-storage-symlinks-top-level_persistent-storage-local}
 
-\[role="\_abstract"\] To prevent storage breakage during OpenShift Container Platform upgrades, OpenShift Container Platform provides a mechanism, the `LocalVolumeDeviceLink` Custom Resource Definition, to detect, alert, and remap broken symlinks without manual node-level intervention.
+To prevent storage breakage during OpenShift Container Platform upgrades, OpenShift Container Platform provides a mechanism, the `LocalVolumeDeviceLink` Custom Resource Definition, to detect, alert, and remap broken symlinks without manual node-level intervention.
 
 ### Local Storage Operator symlinks overview {#local-storage-symlinks_persistent-storage-local}
 
-\[role="\_abstract"\] The Local Storage Operator (LSO) traditionally creates persistent volumes (PVs) based on `/dev/disk/by-id/` paths, following the assumption that they are stable. However, Linux kernel updates, firmware updates, or `udev` rule changes can cause these supposedly stable names to change or disappear.
+The Local Storage Operator (LSO) traditionally creates persistent volumes (PVs) based on `/dev/disk/by-id/` paths, following the assumption that they are stable. However, Linux kernel updates, firmware updates, or `udev` rule changes can cause these supposedly stable names to change or disappear.
 
 Administrator options
 :   Administrators have the following notification and correction options to deal with symlink disruptions:
 
     - **Monitoring**: (default) If the current and preferred path do not match, an alert occurs, but no changes occur to the current path.
-
-- **Use existing path**: Alerts are silenced and LSO uses the existing path.
-- **Recreate symlinks**: Symlinks are re-created to point to the new, updated device path.
+    - **Use existing path**: Alerts are silenced and LSO uses the existing path.
+    - **Recreate symlinks**: Symlinks are re-created to point to the new, updated device path.
 
 ### Responding to symlinks alerts for the Local Storage Operator {#local-storage-symlinks-procedure_persistent-storage-local}
 
-\[role="\_abstract"\] To prevent storage breakage during OpenShift Container Platform upgrades, an administrator can elect to detect, alert, and remap broken symlinks without manual node-level intervention.
+To prevent storage breakage during OpenShift Container Platform upgrades, an administrator can elect to detect, alert, and remap broken symlinks without manual node-level intervention.
 
 By default, LSO engages in link monitoring and generates an alert if the current and preferred paths do not match.
 
@@ -621,10 +620,12 @@ If an alert occurs, an administrator can choose to either have LSO:
 2. To view volumes generating alerts:
 
    1. On the left navigation menu, click **Observe** > **Alerting**.
-   2. In the **Alert Name** filter box, search for the required LSO alerts: **Symlink alerts for LSO**
+   2. In the **Alert Name** filter box, search for the required LSO alerts:
+
+      **Symlink alerts for LSO**
 
       | Alert | Description |
-      | --- | --- |
+      | :--- | :--- |
       | lso_no_stable_volume_path | Device does not have a stable path and is being referenced by device name, which can change between reboots |
       | lso_device_link_mismatch | Device has mismatching preferred and current symlink |
       | lso_lv_missing_device_path | LV object has missing devicePath on actual node |
@@ -659,7 +660,7 @@ If an alert occurs, an administrator can choose to either have LSO:
    4. On the **Operator details** page, click the **YAML** tab.
    5. Go to the `localVolumeDeviceLink.status` field and view its nested fields that are shown in the following table for a list of valid symlink targets, current link (`by-id`), and the generated preferred symlink.
 
-      *`localVolumeDeviceLink.status`** nested fields***
+      **`localVolumeDeviceLink.status` nested fields**
 
 <table>
 <thead>
@@ -942,9 +943,9 @@ Safely uninstall the Local Storage Operator (LSO) when local storage persistent 
 2. Uninstall the LSO from the OpenShift Container Platform web console.
 
    1. Log in to the OpenShift Container Platform web console.
-   2. Go to **Ecosystem** -> **Installed Operators**.
+   2. Go to **Ecosystem** → **Installed Operators**.
    3. Type **Local Storage** into the filter box to locate the LSO.
-   4. Click the **Options** menu ![](kebab.png "Options menu") at the end of the LSO.
+   4. Click the **Options** menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") at the end of the LSO.
    5. Click **Uninstall Operator**.
    6. Click **Remove** in the window that appears.
 3. The PVs created by the LSO remain in the cluster until deleted. After these volumes are no longer in use, delete them by running the following command:
@@ -958,7 +959,8 @@ Safely uninstall the Local Storage Operator (LSO) when local storage persistent 
    $ oc delete project openshift-local-storage
    ```
 
-## Additional resources {#additional-resources_persistent-storage-local}
+**Additional resources**
+{._additional-resources}
 
 - [Installing the Local Storage Operator](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-local#local-storage-install-overview_persistent-storage-local)
 - [Enabling Local Storage Operaator Metric](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-local#local-storage-metrics-procedure_persistent-storage-local)

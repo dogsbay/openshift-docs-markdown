@@ -2,7 +2,7 @@
 title: Dynamic plugin reference
 ---
 
-# Dynamic plugin reference {#dynamic-plugins-reference_{{ context }}}
+# Dynamic plugin reference {#dynamic-plugins-reference_{context}}
 
 You can add extensions that allow you to customize your plugin. Those extensions are then loaded to the console at runtime.
 
@@ -16,7 +16,7 @@ You can add extensions that allow you to customize your plugin. Those extensions
 | --- | --- | --- | --- |
 | Name | Value Type | Optional | Description |
 | `contextId` | `string` | no | The context ID helps to narrow the scope of contributed actions to a particular area of the application. Examples include `topology` and `helm`. |
-| `filter` | `CodeRef<(scope: any, action: Action) => boolean>` | no | A function that will filter actions based on some conditions. `scope`: The scope in which actions should be provided for. A hook might be required if you want to remove the `ModifyCount` action from a deployment with a horizontal pod autoscaler (HPA). |
+| `filter` | `CodeRef<(scope: any, action: Action) => boolean>` | no | A function that will filter actions based on some conditions.<br>`scope`: The scope in which actions should be provided for. A hook might be required if you want to remove the `ModifyCount` action from a deployment with a horizontal pod autoscaler (HPA). |
 
 ### `console.action/group` {#_consoleactiongroup}
 
@@ -28,8 +28,8 @@ You can add extensions that allow you to customize your plugin. Those extensions
 | `id` | `string` | no | ID used to identify the action section. |
 | `label` | `string` | yes | The label to display in the UI. Required for submenus. |
 | `submenu` | `boolean` | yes | Whether this group should be displayed as submenu. |
-| `insertBefore` | `string` \\ | `string[]` | yes |
-| Insert this item before the item referenced here. For arrays, the first one found in order is used. | `insertAfter` | `string` \\ | `string[]` |
+| `insertBefore` | `string` \| `string[]` | yes | Insert this item before the item referenced here. For arrays, the first one found in order is used. |
+| `insertAfter` | `string` \| `string[]` | yes | Insert this item after the item referenced here. For arrays, the first one found in order is used. The `insertBefore` value takes precedence. |
 
 ### `console.action/provider` {#_consoleactionprovider}
 
@@ -69,9 +69,9 @@ This extension can be used for plugins to contribute a handler that can filter s
 |  |  |  |  |
 | --- | --- | --- | --- |
 | Name | Value Type | Optional | Description |
-| `catalogId` | `string` \\ | `string[]` | no |
-| The unique identifier for the catalog this provider contributes to. | `type` | `string` | no |
-| Type ID for the catalog item type. | `filter` | `CodeRef<(item: CatalogItem) => boolean>` | no |
+| `catalogId` | `string` \| `string[]` | no | The unique identifier for the catalog this provider contributes to. |
+| `type` | `string` | no | Type ID for the catalog item type. |
+| `filter` | `CodeRef<(item: CatalogItem) => boolean>` | no | Filters items of a specific type. Value is a function that takes `CatalogItem[]` and returns a subset based on the filter criteria. |
 
 ### `console.catalog/item-metadata` {#_consolecatalogitem-metadata}
 
@@ -80,9 +80,9 @@ This extension can be used to contribute a provider that adds extra metadata to 
 |  |  |  |  |
 | --- | --- | --- | --- |
 | Name | Value Type | Optional | Description |
-| `catalogId` | `string` \\ | `string[]` | no |
-| The unique identifier for the catalog this provider contributes to. | `type` | `string` | no |
-| Type ID for the catalog item type. | `provider` | `CodeRef<ExtensionHook<CatalogItemMetadataProviderFunction, CatalogExtensionHookOptions>>` | no |
+| `catalogId` | `string` \| `string[]` | no | The unique identifier for the catalog this provider contributes to. |
+| `type` | `string` | no | Type ID for the catalog item type. |
+| `provider` | `CodeRef<ExtensionHook<CatalogItemMetadataProviderFunction, CatalogExtensionHookOptions>>` | no | A hook which returns a function that will be used to provide metadata to catalog items of a specific type. |
 
 ### `console.catalog/item-provider` {#_consolecatalogitem-provider}
 
@@ -91,11 +91,11 @@ This extension allows plugins to contribute a provider for a catalog item type. 
 |  |  |  |  |
 | --- | --- | --- | --- |
 | Name | Value Type | Optional | Description |
-| `catalogId` | `string` \\ | `string[]` | no |
-| The unique identifier for the catalog this provider contributes to. | `type` | `string` | no |
-| Type ID for the catalog item type. | `title` | `string` | no |
-| Title for the catalog item provider | `provider` | `CodeRef<ExtensionHook<CatalogItem<any>[], CatalogExtensionHookOptions>>` | no |
-| Fetch items and normalize it for the catalog. Value is a react effect hook. | `priority` | `number` | yes |
+| `catalogId` | `string` \| `string[]` | no | The unique identifier for the catalog this provider contributes to. |
+| `type` | `string` | no | Type ID for the catalog item type. |
+| `title` | `string` | no | Title for the catalog item provider |
+| `provider` | `CodeRef<ExtensionHook<CatalogItem<any>[], CatalogExtensionHookOptions>>` | no | Fetch items and normalize it for the catalog. Value is a react effect hook. |
+| `priority` | `number` | yes | Priority for this provider. Defaults to `0`. Higher priority providers may override catalog items provided by other providers. |
 
 ### `console.catalog/item-type` {#_consolecatalogitem-type}
 
@@ -106,10 +106,10 @@ This extension allows plugins to contribute a new type of catalog item. For exam
 | Name | Value Type | Optional | Description |
 | `type` | `string` | no | Type for the catalog item. |
 | `title` | `string` | no | Title for the catalog item. |
-| `catalogDescription` | `string` \\ | `CodeRef<React.ReactNode>` | yes |
-| Description for the type specific catalog. | `typeDescription` | `string` | yes |
-| Description for the catalog item type. | `filters` | `CatalogItemAttribute[]` | yes |
-| Custom filters specific to the catalog item. | `groupings` | `CatalogItemAttribute[]` | yes |
+| `catalogDescription` | `string` \| `CodeRef<React.ReactNode>` | yes | Description for the type specific catalog. |
+| `typeDescription` | `string` | yes | Description for the catalog item type. |
+| `filters` | `CatalogItemAttribute[]` | yes | Custom filters specific to the catalog item. |
+| `groupings` | `CatalogItemAttribute[]` | yes | Custom groupings specific to the catalog item. |
 
 ### `console.catalog/item-type-metadata` {#_consolecatalogitem-type-metadata}
 
@@ -185,9 +185,9 @@ Adds a new dashboard card.
 | --- | --- | --- | --- |
 | Name | Value Type | Optional | Description |
 | `tab` | `string` | no | The ID of the dashboard tab to which the card will be added. |
-| `position` | ’LEFT' \\ | 'RIGHT' \\ | 'MAIN'\` |
-| no | The grid position of the card on the dashboard. | `component` | `CodeRef<React.ComponentType<{}>>` |
-| no | Dashboard card component. | `span` | `OverviewCardSpan` |
+| `position` | `'LEFT' \| 'RIGHT' \| 'MAIN'` | no | The grid position of the card on the dashboard. |
+| `component` | `CodeRef<React.ComponentType<{}>>` | no | Dashboard card component. |
+| `span` | `OverviewCardSpan` | yes | Card’s vertical span in the column. Ignored for small screens; defaults to `12`. |
 
 ### `console.dashboards/custom/overview/detail/item` {#_consoledashboardscustomoverviewdetailitem}
 
@@ -264,10 +264,10 @@ Adds a health subsystem to the status card of Overview dashboard where the sourc
 | Name | Value Type | Optional | Description |
 | `title` | `string` | no | The display name of the subsystem. |
 | `url` | `string` | no | The URL to fetch data from. It will be prefixed with base Kubernetes URL. |
-| `healthHandler` | \`CodeRef<URLHealthHandler<T, K8sResourceCommon \\ | K8sResourceCommon\[\]>>\` | no |
-| Resolve the subsystem’s health. | `additionalResource` | `CodeRef<FirehoseResource>` | yes |
-| Additional resource which will be fetched and passed to `healthHandler`. | `popupComponent` | `CodeRef<React.ComponentType<{ healthResult?: T; healthResultError?: any; k8sResult?: FirehoseResult<R>; }>>` | yes |
-| Loader for popup content. If defined, a health item will be represented as a link which opens popup with given content. | `popupTitle` | `string` | yes |
+| `healthHandler` | `CodeRef<URLHealthHandler<T, K8sResourceCommon \| K8sResourceCommon[]>>` | no | Resolve the subsystem’s health. |
+| `additionalResource` | `CodeRef<FirehoseResource>` | yes | Additional resource which will be fetched and passed to `healthHandler`. |
+| `popupComponent` | `CodeRef<React.ComponentType<{ healthResult?: T; healthResultError?: any; k8sResult?: FirehoseResult<R>; }>>` | yes | Loader for popup content. If defined, a health item will be represented as a link which opens popup with given content. |
+| `popupTitle` | `string` | yes | The title of the popover. |
 
 ### `console.dashboards/overview/inventory/item` {#_consoledashboardsoverviewinventoryitem}
 
@@ -288,7 +288,7 @@ Adds an inventory status group.
 | --- | --- | --- | --- |
 | Name | Value Type | Optional | Description |
 | `id` | `string` | no | The ID of the status group. |
-| `icon` | `CodeRef<React.ReactElement<any, string` \\ | `React.JSXElementConstructor<any>>>` | no |
+| `icon` | `CodeRef<React.ReactElement<any, string` \| `React.JSXElementConstructor<any>>>` | no | React component representing the status group icon. |
 
 ### `console.dashboards/overview/inventory/item/replacement` {#_consoledashboardsoverviewinventoryitemreplacement}
 
@@ -331,8 +331,8 @@ Adds a new dashboard tab, placed after the **Overview** tab.
 | --- | --- | --- | --- |
 | Name | Value Type | Optional | Description |
 | `id` | `string` | no | A unique tab identifier, used as tab link `href` and when adding cards to this tab. |
-| `navSection` | ’home' \\ | 'storage'\` | no |
-| Navigation section to which the tab belongs to. | `title` | `string` | no |
+| `navSection` | `'home' \| 'storage'` | no | Navigation section to which the tab belongs to. |
+| `title` | `string` | no | The title of the tab. |
 
 ### `console.file-upload` {#_consolefile-upload}
 
@@ -374,7 +374,7 @@ Adds a new web console feature flag driven by the presence of a `CustomResourceD
 
 ### `console.global-config` {#_consoleglobal-config}
 
-This extension identifies a resource used to manage the configuration of the cluster. A link to the resource will be added to the **Administration** -> **Cluster Settings** -> **Configuration** page.
+This extension identifies a resource used to manage the configuration of the cluster. A link to the resource will be added to the **Administration** → **Cluster Settings** → **Configuration** page.
 
 |  |  |  |  |
 | --- | --- | --- | --- |
@@ -412,10 +412,10 @@ This extension can be used to contribute a navigation item that points to a spec
 | `section` | `string` | yes | Navigation section to which this item belongs to. If not specified, render this item as a top level link. |
 | `dataAttributes` | `{ [key: string]: string; }` | yes | Adds data attributes to the DOM. |
 | `startsWith` | `string[]` | yes | Mark this item as active when the URL starts with one of these paths. |
-| `insertBefore` | `string` \\ | `string[]` | yes |
-| Insert this item before the item referenced here. For arrays, the first one found in order is used. | `insertAfter` | `string` \\ | `string[]` |
-| yes | Insert this item after the item referenced here. For arrays, the first one found in order is used. `insertBefore` takes precedence. | `namespaced` | `boolean` |
-| yes | If `true`, adds `/ns/active-namespace` to the end. | `prefixNamespaced` | `boolean` |
+| `insertBefore` | `string` \| `string[]` | yes | Insert this item before the item referenced here. For arrays, the first one found in order is used. |
+| `insertAfter` | `string` \| `string[]` | yes | Insert this item after the item referenced here. For arrays, the first one found in order is used. `insertBefore` takes precedence. |
+| `namespaced` | `boolean` | yes | If `true`, adds `/ns/active-namespace` to the end. |
+| `prefixNamespaced` | `boolean` | yes | If `true`, adds `/k8s/ns/active-namespace` to the beginning. |
 
 ### `console.navigation/resource-cluster` {#_consolenavigationresource-cluster}
 
@@ -430,9 +430,9 @@ This extension can be used to contribute a navigation item that points to a clus
 | `section` | `string` | yes | Navigation section to which this item belongs to. If not specified, render this item as a top-level link. |
 | `dataAttributes` | `{ [key: string]: string; }` | yes | Adds data attributes to the DOM. |
 | `startsWith` | `string[]` | yes | Mark this item as active when the URL starts with one of these paths. |
-| `insertBefore` | `string` \\ | `string[]` | yes |
-| Insert this item before the item referenced here. For arrays, the first one found in order is used. | `insertAfter` | `string` \\ | `string[]` |
-| yes | Insert this item after the item referenced here. For arrays, the first one found in order is used. `insertBefore` takes precedence. | `name` | `string` |
+| `insertBefore` | `string` \| `string[]` | yes | Insert this item before the item referenced here. For arrays, the first one found in order is used. |
+| `insertAfter` | `string` \| `string[]` | yes | Insert this item after the item referenced here. For arrays, the first one found in order is used. `insertBefore` takes precedence. |
+| `name` | `string` | yes | Overrides the default name. If not supplied the name of the link will equal the plural value of the model. |
 
 ### `console.navigation/resource-ns` {#_consolenavigationresource-ns}
 
@@ -447,9 +447,9 @@ This extension can be used to contribute a navigation item that points to a name
 | `section` | `string` | yes | Navigation section to which this item belongs to. If not specified, render this item as a top-level link. |
 | `dataAttributes` | `{ [key: string]: string; }` | yes | Adds data attributes to the DOM. |
 | `startsWith` | `string[]` | yes | Mark this item as active when the URL starts with one of these paths. |
-| `insertBefore` | \`string \\ | string\[\]\` | yes |
-| Insert this item before the item referenced here. For arrays, the first one found in order is used. | `insertAfter` | `string` \\ | `string[]` |
-| yes | Insert this item after the item referenced here. For arrays, the first one found in order is used. `insertBefore` takes precedence. | `name` | `string` |
+| `insertBefore` | `string \| string[]` | yes | Insert this item before the item referenced here. For arrays, the first one found in order is used. |
+| `insertAfter` | `string` \| `string[]` | yes | Insert this item after the item referenced here. For arrays, the first one found in order is used. `insertBefore` takes precedence. |
+| `name` | `string` | yes | Overrides the default name. If not supplied the name of the link will equal the plural value of the model. |
 
 ### `console.navigation/section` {#_consolenavigationsection}
 
@@ -461,9 +461,9 @@ This extension can be used to define a new section of navigation items in the na
 | `id` | `string` | no | A unique identifier for this item. |
 | `perspective` | `string` | yes | The perspective ID to which this item belongs to. If not specified, contributes to the default perspective. |
 | `dataAttributes` | `{ [key: string]: string; }` | yes | Adds data attributes to the DOM. |
-| `insertBefore` | `string` \\ | `string[]` | yes |
-| Insert this item before the item referenced here. For arrays, the first one found in order is used. | `insertAfter` | `string` \\ | `string[]` |
-| yes | Insert this item after the item referenced here. For arrays, the first one found in order is used. `insertBefore` takes precedence. | `name` | `string` |
+| `insertBefore` | `string` \| `string[]` | yes | Insert this item before the item referenced here. For arrays, the first one found in order is used. |
+| `insertAfter` | `string` \| `string[]` | yes | Insert this item after the item referenced here. For arrays, the first one found in order is used. `insertBefore` takes precedence. |
+| `name` | `string` | yes | Name of this section. If not supplied, only a separator will be shown above the section. |
 
 ### `console.navigation/separator` {#_consolenavigationseparator}
 
@@ -476,8 +476,8 @@ This extension can be used to add a separator between navigation items in the na
 | `perspective` | `string` | yes | The perspective ID to which this item belongs to. If not specified, contributes to the default perspective. |
 | `section` | `string` | yes | Navigation section to which this item belongs to. If not specified, render this item as a top level link. |
 | `dataAttributes` | `{ [key: string]: string; }` | yes | Adds data attributes to the DOM. |
-| `insertBefore` | `string` \\ | `string[]` | yes |
-| Insert this item before the item referenced here. For arrays, the first one found in order is used. | `insertAfter` | `string` \\ | `string[]` |
+| `insertBefore` | `string` \| `string[]` | yes | Insert this item before the item referenced here. For arrays, the first one found in order is used. |
+| `insertAfter` | `string` \| `string[]` | yes | Insert this item after the item referenced here. For arrays, the first one found in order is used. `insertBefore` takes precedence. |
 
 ### `console.page/resource/details` {#_consolepageresourcedetails}
 
@@ -505,9 +505,9 @@ Adds a new page to the web console router. For more information, see React Route
 | --- | --- | --- | --- |
 | Name | Value Type | Optional | Description |
 | `component` | `CodeRef<React.ComponentType<RouteComponentProps<{}, StaticContext, any>>>` | no | The component to be rendered when the route matches. |
-| `path` | `string` \\ | `string[]` | no |
-| Valid URL path or array of paths that `path-to-regexp@^1.7.0` understands. | `perspective` | `string` | yes |
-| The perspective to which this page belongs to. If not specified, contributes to all perspectives. | `exact` | `boolean` | yes |
+| `path` | `string` \| `string[]` | no | Valid URL path or array of paths that `path-to-regexp@^1.7.0` understands. |
+| `perspective` | `string` | yes | The perspective to which this page belongs to. If not specified, contributes to all perspectives. |
+| `exact` | `boolean` | yes | When true, will only match if the path matches the `location.pathname` exactly. |
 
 ### `console.page/route/standalone` {#_consolepageroutestandalone}
 
@@ -517,8 +517,8 @@ Adds a new standalone page, rendered outside the common page layout, to the web 
 | --- | --- | --- | --- |
 | Name | Value Type | Optional | Description |
 | `component` | `CodeRef<React.ComponentType<RouteComponentProps<{}, StaticContext, any>>>` | no | The component to be rendered when the route matches. |
-| `path` | `string` \\ | `string[]` | no |
-| Valid URL path or array of paths that `path-to-regexp@^1.7.0` understands. | `exact` | `boolean` | yes |
+| `path` | `string` \| `string[]` | no | Valid URL path or array of paths that `path-to-regexp@^1.7.0` understands. |
+| `exact` | `boolean` | yes | When true, will only match if the path matches the `location.pathname` exactly. |
 
 ### `console.perspective` {#_consoleperspective}
 
@@ -665,7 +665,7 @@ Adds a new details item to the default resource summary on the details page.
 </tr>
 <tr>
   <td><code>component</code></td>
-  <td>`CodeRef<React.ComponentType<DetailsItemComponentProps<K8sResourceCommon, any>>>` |yes</td>
+  <td><code>CodeRef&lt;React.ComponentType&lt;DetailsItem ComponentProps&lt;K8sResourceCommon, any>>></code> |yes</td>
   <td>An optional React component that will render the details item value.</td>
   <td><code>sortWeight</code></td>
 </tr>
@@ -736,7 +736,7 @@ This component can be used to register a listener function receiving telemetry e
 |  |  |  |  |
 | --- | --- | --- | --- |
 | Name | Value Type | Optional | Description |
-| `adapt` | \`CodeRef<(element: GraphElement) => AdapterDataType<BuildConfigData> \\ | undefined>\` | no |
+| `adapt` | `CodeRef<(element: GraphElement) => AdapterDataType<BuildConfigData> \| undefined>` | no | Adapter to adapt element to data that can be used by Build component. |
 
 ### `console.topology/adapter/network` {#_consoletopologyadapternetwork}
 
@@ -745,7 +745,7 @@ This component can be used to register a listener function receiving telemetry e
 |  |  |  |  |
 | --- | --- | --- | --- |
 | Name | Value Type | Optional | Description |
-| `adapt` | \`CodeRef<(element: GraphElement) => NetworkAdapterType \\ | undefined>\` | no |
+| `adapt` | `CodeRef<(element: GraphElement) => NetworkAdapterType \| undefined>` | no | Adapter to adapt element to data that can be used by Networking component. |
 
 ### `console.topology/adapter/pod` {#_consoletopologyadapterpod}
 
@@ -754,7 +754,7 @@ This component can be used to register a listener function receiving telemetry e
 |  |  |  |  |
 | --- | --- | --- | --- |
 | Name | Value Type | Optional | Description |
-| `adapt` | \`CodeRef<(element: GraphElement) => AdapterDataType<PodsAdapterDataType> \\ | undefined>\` | no |
+| `adapt` | `CodeRef<(element: GraphElement) => AdapterDataType<PodsAdapterDataType> \| undefined>` | no | Adapter to adapt element to data that can be used by Pod component. |
 
 ### `console.topology/component/factory` {#_consoletopologycomponentfactory}
 
@@ -809,7 +809,7 @@ Topology Decorator Provider Extension
 | --- | --- | --- | --- |
 | Name | Value Type | Optional | Description |
 | `id` | `string` | no | The ID of this alert. Used to save state if the alert should not be shown after dismissed. |
-| `contentProvider` | \`CodeRef<(element: GraphElement) => DetailsResourceAlertContent \\ | null>\` | no |
+| `contentProvider` | `CodeRef<(element: GraphElement) => DetailsResourceAlertContent \| null>` | no | Hook to return the contents of the alert. |
 
 ### `console.topology/details/resource-link` {#_consoletopologydetailsresource-link}
 
@@ -818,8 +818,8 @@ Topology Decorator Provider Extension
 |  |  |  |  |
 | --- | --- | --- | --- |
 | Name | Value Type | Optional | Description |
-| `link` | \`CodeRef<(element: GraphElement) => React.Component \\ | undefined>\` | no |
-| Return the resource link if provided, otherwise undefined. Use the `ResourceIcon` and `ResourceLink` properties for styles. | `priority` | `number` | yes |
+| `link` | `CodeRef<(element: GraphElement) => React.Component \| undefined>` | no | Return the resource link if provided, otherwise undefined. Use the `ResourceIcon` and `ResourceLink` properties for styles. |
+| `priority` | `number` | yes | A higher priority factory will get the first chance to create the link. |
 
 ### `console.topology/details/tab` {#_consoletopologydetailstab}
 
@@ -830,8 +830,8 @@ Topology Decorator Provider Extension
 | Name | Value Type | Optional | Description |
 | `id` | `string` | no | A unique identifier for this details tab. |
 | `label` | `string` | no | The tab label to display in the UI. |
-| `insertBefore` | `string` \\ | `string[]` | yes |
-| Insert this item before the item referenced here. For arrays, the first one found in order is used. | `insertAfter` | `string` \\ | `string[]` |
+| `insertBefore` | `string` \| `string[]` | yes | Insert this item before the item referenced here. For arrays, the first one found in order is used. |
+| `insertAfter` | `string` \| `string[]` | yes | Insert this item after the item referenced here. For arrays, the first one found in order is used. The `insertBefore` value takes precedence. |
 
 ### `console.topology/details/tab-section` {#_consoletopologydetailstab-section}
 
@@ -843,9 +843,9 @@ Topology Decorator Provider Extension
 | `id` | `string` | no | A unique identifier for this details tab section. |
 | `tab` | `string` | no | The parent tab ID that this section should contribute to. |
 | `provider` | `CodeRef<DetailsTabSectionExtensionHook>` | no | A hook that returns a component, or if null or undefined, renders in the topology sidebar. SDK component: `<Section title=\{}>...` padded area |
-| `section` | \`CodeRef<(element: GraphElement, renderNull?: () => null) => React.Component \\ | undefined>\` | no |
-| Deprecated: Fallback if no provider is defined. renderNull is a no-op already. | `insertBefore` | `string` \\ | `string[]` |
-| yes | Insert this item before the item referenced here. For arrays, the first one found in order is used. | `insertAfter` | `string` \\ |
+| `section` | `CodeRef<(element: GraphElement, renderNull?: () => null) => React.Component \| undefined>` | no | Deprecated: Fallback if no provider is defined. renderNull is a no-op already. |
+| `insertBefore` | `string` \| `string[]` | yes | Insert this item before the item referenced here. For arrays, the first one found in order is used. |
+| `insertAfter` | `string` \| `string[]` | yes | Insert this item after the item referenced here. For arrays, the first one found in order is used. The `insertBefore` value takes precedence. |
 
 ### `console.topology/display/filters` {#_consoletopologydisplayfilters}
 
@@ -967,6 +967,9 @@ Deprecated: Use `console.tab/horizontalNav` instead. Adds a new resource tab pag
 | `href` | `string` | yes | The optional `href` for the tab link. If not provided, the first `path` is used. |
 | `exact` | `boolean` | yes | When true, will only match if the path matches the `location.pathname` exactly. |
 
+**Additional resources**
+{._additional-resources}
+
 - [React Router](https://v5.reactrouter.com/)
 - [Primitive type](https://developer.mozilla.org/en-US/docs/Glossary/Primitive)
 - [JavaScript Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#number_type)
@@ -977,7 +980,7 @@ Deprecated: Use `console.tab/horizontalNav` instead. Adds a new resource tab pag
 
 Hook that provides the currently active perspective and a callback for setting the active perspective. It returns a tuple containing the current active perspective and setter callback.
 
-***Example***
+**Example**
 
 ```tsx
 const Component: React.FC = (props) => {
@@ -997,7 +1000,7 @@ const Component: React.FC = (props) => {
 
 Component for displaying a checkmark circle icon.
 
-***Example***
+**Example**
 
 ```tsx
 <GreenCheckCircleIcon title="Healthy" />
@@ -1014,7 +1017,7 @@ Component for displaying a checkmark circle icon.
 
 Component for displaying an exclamation mark circle icon.
 
-***Example***
+**Example**
 
 ```tsx
 <RedExclamationCircleIcon title="Failed" />
@@ -1031,7 +1034,7 @@ Component for displaying an exclamation mark circle icon.
 
 Component for displaying a triangle exclamation icon.
 
-***Example***
+**Example**
 
 ```tsx
 <YellowExclamationTriangleIcon title="Warning" />
@@ -1048,7 +1051,7 @@ Component for displaying a triangle exclamation icon.
 
 Component for displaying a blue info circle icon.
 
-***Example***
+**Example**
 
 ```tsx
 <BlueInfoCircleIcon title="Info" />
@@ -1065,7 +1068,7 @@ Component for displaying a blue info circle icon.
 
 Component for displaying an error status popover.
 
-***Example***
+**Example**
 
 ```tsx
 <ErrorStatus title={errorMsg} />
@@ -1084,7 +1087,7 @@ Component for displaying an error status popover.
 
 Component for displaying an information status popover.
 
-***Example***
+**Example**
 
 ```tsx
 <InfoStatus title={infoMsg} />
@@ -1103,7 +1106,7 @@ Component for displaying an information status popover.
 
 Component for displaying a progressing status popover.
 
-***Example***
+**Example**
 
 ```tsx
 <ProgressStatus title={progressMsg} />
@@ -1122,7 +1125,7 @@ Component for displaying a progressing status popover.
 
 Component for displaying a success status popover.
 
-***Example***
+**Example**
 
 ```tsx
 <SuccessStatus title={successMsg} />
@@ -1165,7 +1168,7 @@ Initially, the hook returns an empty array. After the resolution is complete, th
 
 The hook’s result elements are guaranteed to be referentially stable across re-renders. It returns a tuple containing a list of adapted extension instances with resolved code references, a boolean flag indicating whether the resolution is complete, and a list of errors detected during the resolution.
 
-***Example***
+**Example**
 
 ```ts
 const [navItemExtensions, navItemsResolved] = useResolvedExtensions<NavItem>(isNavItem);
@@ -1181,7 +1184,7 @@ const [navItemExtensions, navItemsResolved] = useResolvedExtensions<NavItem>(isN
 
 A component that creates a Navigation bar for a page. Routing is handled as part of the component. `console.tab/horizontalNav` can be used to add additional content to any horizontal navigation.
 
-***Example***
+**Example**
 
 ```jsx
 const HomePage: React.FC = (props) => {
@@ -1205,7 +1208,7 @@ const HomePage: React.FC = (props) => {
 
 Component for displaying table data within a table row.
 
-***Example***
+**Example**
 
 ```jsx
 const PodRow: React.FC<RowProps<K8sResourceCommon>> = ({ obj, activeColumnIDs }) => {
@@ -1233,7 +1236,7 @@ const PodRow: React.FC<RowProps<K8sResourceCommon>> = ({ obj, activeColumnIDs })
 
 A hook that provides a list of user-selected active TableColumns.
 
-***Example***
+**Example**
 
 ```text
 // See implementation for more details on TableColumn type
@@ -1259,7 +1262,7 @@ A tuple containing the current user selected active columns (a subset of options
 
 Component for generating a page header.
 
-***Example***
+**Example**
 
 ```jsx
 const exampleList: React.FC = () => {
@@ -1282,7 +1285,7 @@ const exampleList: React.FC = () => {
 
 Component for adding a create button for a specific resource kind that automatically generates a link to the create YAML for this resource.
 
-***Example***
+**Example**
 
 ```jsx
 const exampleList: React.FC<MyProps> = () => {
@@ -1305,7 +1308,7 @@ const exampleList: React.FC<MyProps> = () => {
 
 Component for creating a stylized link.
 
-***Example***
+**Example**
 
 ```jsx
 const exampleList: React.FC<MyProps> = () => {
@@ -1330,7 +1333,7 @@ const exampleList: React.FC<MyProps> = () => {
 
 Component for creating button.
 
-***Example***
+**Example**
 
 ```jsx
 const exampleList: React.FC<MyProps> = () => {
@@ -1354,7 +1357,7 @@ const exampleList: React.FC<MyProps> = () => {
 
 Component for creating a dropdown wrapped with permissions check.
 
-***Example***
+**Example**
 
 ```jsx
 const exampleList: React.FC<MyProps> = () => {
@@ -1384,7 +1387,7 @@ const exampleList: React.FC<MyProps> = () => {
 
 Component that creates a link to a specific resource type with an icon badge.
 
-***Example***
+**Example**
 
 ```tsx
   <ResourceLink
@@ -1415,7 +1418,7 @@ Component that creates a link to a specific resource type with an icon badge.
 
 Component that creates an icon badge for a specific resource type.
 
-***Example***
+**Example**
 
 ```tsx
 <ResourceIcon kind="Pod"/>
@@ -1432,7 +1435,7 @@ Component that creates an icon badge for a specific resource type.
 
 Hook that retrieves the k8s model for provided K8sGroupVersionKind from redux. It returns an array with the first item as k8s model and second item as `inFlight` status.
 
-***Example***
+**Example**
 
 ```ts
 const Component: React.FC = () => {
@@ -1450,7 +1453,7 @@ const Component: React.FC = () => {
 
 Hook that retrieves all current k8s models from redux. It returns an array with the first item as the list of k8s model and second item as `inFlight` status.
 
-***Example***
+**Example**
 
 ```ts
 const Component: React.FC = () => {
@@ -1463,7 +1466,7 @@ const Component: React.FC = () => {
 
 Hook that retrieves the k8s resource along with status for loaded and error. It returns an array with first item as resource(s), second item as loaded status and third item as error state if any.
 
-***Example***
+**Example**
 
 ```ts
 const Component: React.FC = () => {
@@ -1484,7 +1487,7 @@ const Component: React.FC = () => {
 
 Hook that retrieves the k8s resources along with their respective status for loaded and error. It returns a map where keys are as provided in initResources and value has three properties data, loaded and error.
 
-***Example***
+**Example**
 
 ```tsx
 const Component: React.FC = () => {
@@ -1609,7 +1612,7 @@ It patches any resource in the cluster, based on provided options. When a client
 
 It deletes resources from the cluster, based on the provided model, resource. The garbage collection works based on `Foreground`|`Background` can be configured with propagationPolicy property in provided model or passed in json. It returns a promise that resolves to the response of kind Status. In case of failure promise gets rejected with HTTP error response.
 
-***Example*** `kind: 'DeleteOptions', apiVersion: 'v1', propagationPolicy`
+**Example** `kind: 'DeleteOptions', apiVersion: 'v1', propagationPolicy`
 
 |  |  |
 | --- | --- |
@@ -1669,7 +1672,7 @@ Provides a group, version, and kind for a k8s model. This returns the group, ver
 
 Component that shows the status in a popup window. Helpful component for building `console.dashboards/overview/health/resource` extensions.
 
-***Example***
+**Example**
 
 ```tsx
   <StatusPopupSection
@@ -1696,7 +1699,7 @@ Component that shows the status in a popup window. Helpful component for buildin
 
 Status element used in status popup; used in `StatusPopupSection`.
 
-***Example***
+**Example**
 
 ```text
 <StatusPopupSection
@@ -2113,7 +2116,7 @@ const PodAnnotationsButton = ({ pod }) => {
 | Parameter Name | Description |
 | `resource` | The resource to edit annotations for an object of K8sResourceCommon type. |
 
-***Returns*** A function which launches a modal for editing a resource’s annotations.
+**Returns** A function which launches a modal for editing a resource’s annotations.
 
 ### `useDeleteModal` {#_usedeletemodal}
 
@@ -2136,7 +2139,7 @@ const DeletePodButton = ({ pod }) => {
 | `btnText` | (optional) The text to display on the delete button. |
 | `deleteAllResources` | (optional) A function to delete all resources of the same kind. |
 
-***Returns*** A function which launches a modal for deleting a resource.
+**Returns** A function which launches a modal for deleting a resource.
 
 ### `useLabelsModel` {#_uselabelsmodel}
 
@@ -2155,7 +2158,7 @@ const PodLabelsButton = ({ pod }) => {
 | Parameter Name | Description |
 | `resource` | The resource to edit labels for, an object of K8sResourceCommon type. |
 
-***Returns*** A function which launches a modal for editing a resource’s labels.
+**Returns** A function which launches a modal for editing a resource’s labels.
 
 ### `useActiveNamespace` {#_useactivenamespace}
 
@@ -2175,7 +2178,7 @@ const Component: React.FC = (props) => {
 }
 ```
 
-***Returns*** A tuple containing the current active namespace and setter callback.
+**Returns** A tuple containing the current active namespace and setter callback.
 
 ### `useUserSettings` {#_useusersettings}
 
@@ -2194,7 +2197,7 @@ const Component: React.FC = (props) => {
 };
 ```
 
-***Returns*** A tuple containing the user setting value, a setter callback, and a loaded boolean.
+**Returns** A tuple containing the user setting value, a setter callback, and a loaded boolean.
 
 ### `useQuickStartContext` {#_usequickstartcontext}
 
@@ -2210,7 +2213,7 @@ const OpenQuickStartButton = ({ quickStartId }) => {
 };
 ```
 
-***Returns*** Quick start context values object.
+**Returns** Quick start context values object.
 
 ### `PerspectiveContext` {#_perspectivecontext}
 
@@ -2415,5 +2418,6 @@ Refer to this list of troubleshooting tips if you run into issues loading your p
   - Evaluate `window.SERVER_FLAGS.consolePlugins` to see the dynamic plugin on the Console front end.
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding service serving certificates](/openshift-docs-markdown/security/certificates/service-serving-certificate#understanding-service-serving_service-serving-certificate)

@@ -21,7 +21,8 @@ const headings = [{"depth":1,"slug":"remove-additional-network","text":"Removing
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/multiple_networks/secondary_networks/removing-additional-network";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="remove-additional-network" class="group scroll-mt-20">Removing an additional network<a href="#remove-additional-network" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>To clean up unused network configurations or free up network resources in OpenShift Container Platform, you can remove an additional network attachment. Delete the <code>NetworkAttachmentDefinition</code> custom resource to remove the secondary network from your cluster.</p>
+      <p class="_abstract">To clean up unused network configurations or free up network resources in OpenShift Container Platform, you can remove an additional network attachment. Delete the <code>NetworkAttachmentDefinition</code> custom resource to remove the secondary network from your cluster.</p>
       <h2 id="nw-multus-delete-network_remove-additional-network" class="group scroll-mt-20">Removing a secondary NetworkAttachmentDefinition custom resource<a href="#nw-multus-delete-network_remove-additional-network" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">To clean up unused network configurations or free up network resources in OpenShift Container Platform, you can remove a secondary <code>NetworkAttachmentDefinition</code> CR. Edit the Cluster Network Operator CR and delete the <code>NetworkAttachmentDefinition</code> CR to remove the secondary network from your cluster.</p>
       <p>When a secondary network is removed from the cluster, it is not removed from any pods that it is attached to.</p>

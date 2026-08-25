@@ -30,7 +30,7 @@ A CPU model configured at the VM level always takes precedence over the cluster-
 1. Open the `HyperConverged` CR by running the following command:
 
    ```terminal
-   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+   $ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv
    ```
 2. Add the `defaultCPUModel` field to the CR and set the value to the name of a CPU model that exists in the cluster:
 
@@ -39,7 +39,7 @@ A CPU model configured at the VM level always takes precedence over the cluster-
    kind: HyperConverged
    metadata:
     name: kubevirt-hyperconverged
-    namespace: {{ CNVNamespace }}
+    namespace: openshift-cnv
    spec:
      defaultCPUModel: "EPYC-IBPB"
    ```

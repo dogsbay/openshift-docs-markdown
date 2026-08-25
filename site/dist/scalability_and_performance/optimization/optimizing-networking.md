@@ -18,7 +18,8 @@ For environments where maximum throughput and CPU efficiency are critical, you c
 - Evaluate OVN-Kubernetes User Defined Networking (UDN) routing techniques, such as border gateway protocol (BGP).
 - Use Geneve-offload capable network adapters. Geneve-offload moves the packet checksum calculation and associated CPU overhead off of the system CPU and onto dedicated hardware on the network adapter. This frees up CPU cycles for use by pods and applications, so that users can use the full bandwidth of their network infrastructure.
 
-## Additional resources {#additional-resources_optimizing-networking}
+**Additional resources**
+{._additional-resources}
 
 - [OVN-Kubernetes](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes)
 
@@ -36,6 +37,7 @@ For a cluster that uses the OVN-Kubernetes plugin, the MTU must be at least `100
 > If your cluster uses the OVN-Kubernetes plugin and the network uses a NIC to send and receive unfragmented jumbo frame packets over the network, you must specify `9000` bytes as the MTU value for the NIC so that pods do not fail.
 
 **Additional resources**
+{._additional-resources}
 
 - [Changing cluster network MTU](/openshift-docs-markdown/networking/advanced_networking/changing-cluster-network-mtu#changing-cluster-network-mtu)
 
@@ -68,7 +70,8 @@ Encrypting and decrypting node hosts uses CPU power so performance is affected b
 
 IPSec encrypts traffic at the IP payload level, before it hits the NIC, protecting fields that would otherwise be used for NIC offloading. This means that some NIC acceleration features might not be usable when IPSec is enabled. This situation leads to decreased throughput and increased CPU usage.
 
-## Additional resources {#optimizing-networking-additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Specifying advanced network configuration](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#modifying-nwoperator-config-startup_installing-aws-customizations)
 - [Cluster Network Operator configuration](/openshift-docs-markdown/networking/networking_operators/cluster-network-operator#nw-operator-cr_cluster-network-operator)

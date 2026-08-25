@@ -145,7 +145,7 @@ You can verify that SCTP is working on a cluster by creating a pod with an appli
       spec:
         containers:
           - name: sctpserver
-            image: {{ image }}
+            image: registry.access.redhat.com/ubi9/ubi
             command: ["/bin/sh", "-c"]
             args:
               ["dnf install -y nc && sleep inf"]
@@ -199,7 +199,7 @@ You can verify that SCTP is working on a cluster by creating a pod with an appli
       spec:
         containers:
           - name: sctpclient
-            image: {{ image }}
+            image: registry.access.redhat.com/ubi9/ubi
             command: ["/bin/sh", "-c"]
             args:
               ["dnf install -y nc && sleep inf"]

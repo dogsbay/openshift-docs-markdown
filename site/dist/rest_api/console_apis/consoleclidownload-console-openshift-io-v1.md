@@ -1,5 +1,5 @@
 ---
-title: ConsoleCLIDownload []
+title: ConsoleCLIDownload [console.openshift.io/v1]
 ---
 
 # ConsoleCLIDownload \[console.openshift.io/v1\] {#consoleclidownload-console-openshift-io-v1}
@@ -84,13 +84,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of ConsoleCLIDownload
   - `GET`: list objects of kind ConsoleCLIDownload
   - `POST`: create a ConsoleCLIDownload
-- `/apis/console.openshift.io/v1/consoleclidownloads/{{ name }}`
+- `/apis/console.openshift.io/v1/consoleclidownloads/{name}`
 
   - `DELETE`: delete a ConsoleCLIDownload
   - `GET`: read the specified ConsoleCLIDownload
   - `PATCH`: partially update the specified ConsoleCLIDownload
   - `PUT`: replace the specified ConsoleCLIDownload
-- `/apis/console.openshift.io/v1/consoleclidownloads/{{ name }}/status`
+- `/apis/console.openshift.io/v1/consoleclidownloads/{name}/status`
 
   - `GET`: read status of the specified ConsoleCLIDownload
   - `PATCH`: partially update status of the specified ConsoleCLIDownload
@@ -164,7 +164,7 @@ Description
 | 202 - Accepted | [`ConsoleCLIDownload`](/openshift-docs-markdown/rest_api/console_apis/consoleclidownload-console-openshift-io-v1#consoleclidownload-console-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/console.openshift.io/v1/consoleclidownloads/{{ name }} {#_apisconsoleopenshiftiov1consoleclidownloads_name}
+### /apis/console.openshift.io/v1/consoleclidownloads/{name} {#_apisconsoleopenshiftiov1consoleclidownloads_name}
 
 **Global path parameters**
 
@@ -268,7 +268,7 @@ Description
 | 201 - Created | [`ConsoleCLIDownload`](/openshift-docs-markdown/rest_api/console_apis/consoleclidownload-console-openshift-io-v1#consoleclidownload-console-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/console.openshift.io/v1/consoleclidownloads/{{ name }}/status {#_apisconsoleopenshiftiov1consoleclidownloads_name_status}
+### /apis/console.openshift.io/v1/consoleclidownloads/{name}/status {#_apisconsoleopenshiftiov1consoleclidownloads_name_status}
 
 **Global path parameters**
 

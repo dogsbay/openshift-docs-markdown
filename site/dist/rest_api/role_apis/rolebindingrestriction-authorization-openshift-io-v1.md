@@ -1,5 +1,5 @@
 ---
-title: RoleBindingRestriction []
+title: RoleBindingRestriction [authorization.openshift.io/v1]
 ---
 
 # RoleBindingRestriction \[authorization.openshift.io/v1\] {#rolebindingrestriction-authorization-openshift-io-v1}
@@ -46,12 +46,12 @@ The following API endpoints are available:
 - `/apis/authorization.openshift.io/v1/rolebindingrestrictions`
 
   - `GET`: list objects of kind RoleBindingRestriction
-- `/apis/authorization.openshift.io/v1/namespaces/{{ namespace }}/rolebindingrestrictions`
+- `/apis/authorization.openshift.io/v1/namespaces/{namespace}/rolebindingrestrictions`
 
   - `DELETE`: delete collection of RoleBindingRestriction
   - `GET`: list objects of kind RoleBindingRestriction
   - `POST`: create a RoleBindingRestriction
-- `/apis/authorization.openshift.io/v1/namespaces/{{ namespace }}/rolebindingrestrictions/{{ name }}`
+- `/apis/authorization.openshift.io/v1/namespaces/{namespace}/rolebindingrestrictions/{name}`
 
   - `DELETE`: delete a RoleBindingRestriction
   - `GET`: read the specified RoleBindingRestriction
@@ -77,7 +77,7 @@ Description
 | 200 - OK | [`RoleBindingRestrictionList`](/openshift-docs-markdown/rest_api/objects/index#io-openshift-authorization-v1-RoleBindingRestrictionList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/authorization.openshift.io/v1/namespaces/{{ namespace }}/rolebindingrestrictions {#_apisauthorizationopenshiftiov1namespaces_namespace_rolebindingrestrictions}
+### /apis/authorization.openshift.io/v1/namespaces/{namespace}/rolebindingrestrictions {#_apisauthorizationopenshiftiov1namespaces_namespace_rolebindingrestrictions}
 
 HTTP method
 :   ```
@@ -145,7 +145,7 @@ Description
 | 202 - Accepted | [`RoleBindingRestriction`](/openshift-docs-markdown/rest_api/role_apis/rolebindingrestriction-authorization-openshift-io-v1#rolebindingrestriction-authorization-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/authorization.openshift.io/v1/namespaces/{{ namespace }}/rolebindingrestrictions/{{ name }} {#_apisauthorizationopenshiftiov1namespaces_namespace_rolebindingrestrictions_name}
+### /apis/authorization.openshift.io/v1/namespaces/{namespace}/rolebindingrestrictions/{name} {#_apisauthorizationopenshiftiov1namespaces_namespace_rolebindingrestrictions_name}
 
 **Global path parameters**
 

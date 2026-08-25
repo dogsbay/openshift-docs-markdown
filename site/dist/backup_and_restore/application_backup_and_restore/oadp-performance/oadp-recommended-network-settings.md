@@ -1,8 +1,8 @@
 ---
-title: "{{ oadp_short }} recommended network settings"
+title: OADP recommended network settings
 ---
 
-# {{ oadp_short }} recommended network settings {#oadp-recommended-network-settings}
+# OADP recommended network settings {#oadp-recommended-network-settings}
 
 Keep a stable network across your OpenShift nodes, AWS Simple Storage Service (S3) storage, and cloud environments. Meeting these recommended network settings helps you ensure successful OpenShift API for Data Protection (OADP) backup and restore operations, even when using remote AWS S3 buckets.
 
@@ -22,7 +22,8 @@ Ensure that your OpenShift Container Platform network performs optimally and mee
 > [!IMPORTANT]
 > Although Red Hat provides support for standard backup and restore failures, it does not provide support for failures caused by network settings that do not meet the recommended thresholds.
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring network settings](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/configuring_network_settings/index)
 - [About installing OADP](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp#about-installing-oadp)

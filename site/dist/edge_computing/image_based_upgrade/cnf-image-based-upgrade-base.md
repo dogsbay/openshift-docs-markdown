@@ -1,8 +1,8 @@
 ---
-title: Performing an image-based upgrade for {{ sno }} clusters with the {{ lcao }}
+title: Performing an image-based upgrade for single-node OpenShift clusters with the Lifecycle Agent
 ---
 
-# Performing an image-based upgrade for {{ sno }} clusters with the {{ lcao }} {#cnf-image-based-upgrade}
+# Performing an image-based upgrade for single-node OpenShift clusters with the Lifecycle Agent {#cnf-image-based-upgrade}
 
 You can use the Lifecycle Agent to do a manual image-based upgrade of a single-node OpenShift cluster.
 
@@ -137,6 +137,7 @@ After you create all the resources that you need during the upgrade, you can mov
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating ConfigMap objects for the image-based upgrade with Lifecycle Agent](/openshift-docs-markdown/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-prep-resources#cnf-image-based-upgrade-prep-resources)
 - [Configuring image registry repository mirroring](/openshift-docs-markdown/openshift_images/image-configuration#images-configuration-registry-mirror-configuring_image-configuration)
@@ -289,6 +290,7 @@ If the upgrade fails or stops, the Lifecycle Agent initiates an automatic rollba
    > The `acm-klusterlet` is specific to RHACM environments only.
 
 **Additional resources**
+{._additional-resources}
 
 - [Moving to the Rollback stage of the image-based upgrade with Lifecycle Agent](/openshift-docs-markdown/edge_computing/image_based_upgrade/cnf-image-based-upgrade-base#cnf-image-based-upgrade-rollback_cnf-non-gitops)
 - [Deleting Operators from a cluster](/openshift-docs-markdown/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-cluster)
@@ -346,6 +348,7 @@ You can manually roll back the changes if you see unresolvable issues after an u
    > If you move to the `Idle` stage after a rollback, the Lifecycle Agent cleans up resources that you can use to troubleshoot a failed upgrade.
 
 **Additional resources**
+{._additional-resources}
 
 - [Recovering from expired control plane certificates](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-3-expired-certs#dr-scenario-3-recovering-expired-certs_dr-recovering-expired-certs)
 

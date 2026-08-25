@@ -4,11 +4,7 @@ title: Customizing the web console in OpenShift Container Platform
 
 # Customizing the web console in OpenShift Container Platform {#customizing-web-console}
 
-You can customize the OpenShift Container Platform
-
-web console to set a custom logo, product name, links, notifications, and command-line downloads.
-
-This is especially helpful if you need to tailor the web console to meet specific corporate or government requirements.
+You can customize the OpenShift Container Platform web console to set a custom logo, product name, links, notifications, and command-line downloads. This is especially helpful if you need to tailor the web console to meet specific corporate or government requirements.
 
 ## Adding a custom logo and product name {#adding-a-custom-logo_customizing-web-console}
 
@@ -85,7 +81,7 @@ You can create a `ConsoleLink` custom resource to add a link to the help menu, u
 
 **Procedure**
 
-1. From **Administration** -> **Custom Resource Definitions**, click **ConsoleLink**.
+1. From **Administration** → **Custom Resource Definitions**, click **ConsoleLink**.
 2. Select the **Instances** tab.
 3. Click **Create Console Link** and edit the file:
 
@@ -317,7 +313,7 @@ If you are connected to a service that helps you browse your logs, but you need 
 
 **Procedure**
 
-1. From **Administration** -> **Custom Resource Definitions**, click **ConsoleExternalLogLink**.
+1. From **Administration** → **Custom Resource Definitions**, click **ConsoleExternalLogLink**.
 2. Select the **Instances** tab.
 3. Click **Create Console External Log Link** and edit the file:
 
@@ -342,7 +338,7 @@ You can create a `ConsoleNotification` custom resource to display a banner at th
 
 **Procedure**
 
-1. From **Administration** -> **Custom Resource Definitions**, click **ConsoleNotification**.
+1. From **Administration** → **Custom Resource Definitions**, click **ConsoleNotification**.
 2. Select the **Instances** tab.
 3. Click **Create Console Notification** and edit the file:
 
@@ -374,7 +370,7 @@ You can configure links for downloading the CLI with custom link text and URLs, 
 
 **Procedure**
 
-1. Navigate to **Administration** -> **Custom Resource Definitions**.
+1. Navigate to **Administration** → **Custom Resource Definitions**.
 2. Select **ConsoleCLIDownload** from the list of Custom Resource Definitions (CRDs).
 3. Click the **YAML** tab, and then make your edits:
 
@@ -407,7 +403,7 @@ You can dynamically add YAML examples to any Kubernetes resources at any time.
 
 **Procedure**
 
-1. From **Administration** -> **Custom Resource Definitions**, click **ConsoleYAMLSample**.
+1. From **Administration** → **Custom Resource Definitions**, click **ConsoleYAMLSample**.
 2. Click **YAML** and edit the file:
 
    ```yaml
@@ -471,7 +467,7 @@ You can customize the visibility of a perspective in the web console by using th
 
 **Procedure**
 
-1. In the **Administrator** perspective, navigate to **Administration** -> **Cluster Settings**.
+1. In the **Administrator** perspective, navigate to **Administration** → **Cluster Settings**.
 2. Select the **Configuration** tab and click the **Console (operator.openshift.io)** resource.
 3. Click the **YAML** tab and make your customization:
 
@@ -546,9 +542,9 @@ You can customize the visibility of a perspective in the web console by using th
 
 **Procedure**
 
-1. In the **Administrator** perspective, navigate to **Administration** -> **Cluster Settings**.
+1. In the **Administrator** perspective, navigate to **Administration** → **Cluster Settings**.
 2. Select the **Configuration** tab and click the **Console (operator.openshift.io)** resource.
-3. Click **Actions** -> **Customize** on the right side of the page.
+3. Click **Actions** → **Customize** on the right side of the page.
 4. In the **General** settings, customize the perspective by selecting one of the following options from the dropdown list:
 
    - **Enabled**: Enables the perspective for all users
@@ -592,7 +588,7 @@ You can customize a developer catalog by editing the YAML content in the YAML vi
 
 **Procedure**
 
-1. In the **Administrator** perspective of the web console, navigate to **Administration** -> **Cluster Settings**.
+1. In the **Administrator** perspective of the web console, navigate to **Administration** → **Cluster Settings**.
 2. Select the **Configuration** tab, click the **Console (operator.openshift.io)** resource and view the **Details** page.
 3. Click the **YAML** tab to open the editor and edit the YAML content as needed.
 
@@ -632,20 +628,20 @@ You can customize a developer catalog by using the form view in the Web Console.
 
 **Procedure**
 
-1. In the **Administrator** perspective, navigate to **Administration** -> **Cluster Settings**.
+1. In the **Administrator** perspective, navigate to **Administration** → **Cluster Settings**.
 2. Select the **Configuration** tab and click the **Console (operator.openshift.io)** resource.
-3. Click **Actions** -> **Customize**.
+3. Click **Actions** → **Customize**.
 4. Enable or disable items in the **Pre-pinned navigation items**, **Add page**, and **Developer Catalog** sections.
 
    **Verification**
 
    After you have customized the developer catalog, your changes are automatically saved in the system and take effect in the browser after a refresh. ![Developer catalog customization options in the form view](/openshift-docs-markdown/_assets/images/odc_customizing_developer_catalog.png)
 
-> [!NOTE]
-> As an administrator, you can define the navigation items that appear by default for all users. You can also reorder the navigation items.
+   > [!NOTE]
+   > As an administrator, you can define the navigation items that appear by default for all users. You can also reorder the navigation items.
 
-> [!TIP]
-> You can use a similar procedure to customize Web UI items such as Quick starts, Cluster roles, and Actions.
+   > [!TIP]
+   > You can use a similar procedure to customize Web UI items such as Quick starts, Cluster roles, and Actions.
 
 #### Example YAML file changes {#con_example-yaml-file-changes_customizing-web-console}
 

@@ -14,9 +14,7 @@ Monitor the consumption of cluster infrastructure resources by using the metrics
 
 Monitor the state of a cluster and any user-defined workloads by using the OpenShift Container Platform metrics query browser. The query browser uses Prometheus Query Language (PromQL) queries to examine metrics visualized on a plot.
 
-As a cluster administrator
-
-or as a user with view permissions for all projects, you can access metrics for all default OpenShift Container Platform and user-defined projects in the Metrics UI.
+As a cluster administrator or as a user with view permissions for all projects, you can access metrics for all default OpenShift Container Platform and user-defined projects in the Metrics UI.
 
 **Prerequisites**
 
@@ -25,16 +23,16 @@ or as a user with view permissions for all projects, you can access metrics for 
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, click **Observe** -> **Metrics**.
+1. In the OpenShift Container Platform web console, click **Observe** → **Metrics**.
 2. To add one or more queries, perform any of the following actions:
 
    | Option | Description |
    | --- | --- |
    | Select an existing query. | From the **Select query** drop-down list, select an existing query. |
-   | Create a custom query. | Add your Prometheus Query Language (PromQL) query to the **Expression** field. As you type a PromQL expression, autocomplete suggestions appear in a drop-down list. These suggestions include functions, metrics, labels, and time tokens. Use the keyboard arrows to select one of these suggested items and then press Enter to add the item to your expression. Move your mouse pointer over a suggested item to view a brief description of that item. |
+   | Create a custom query. | Add your Prometheus Query Language (PromQL) query to the **Expression** field.<br>As you type a PromQL expression, autocomplete suggestions appear in a drop-down list. These suggestions include functions, metrics, labels, and time tokens. Use the keyboard arrows to select one of these suggested items and then press Enter to add the item to your expression. Move your mouse pointer over a suggested item to view a brief description of that item. |
    | Add multiple queries. | Click **Add query**. |
-   | Duplicate an existing query. | Click the options menu ![](kebab.png "Options menu") next to the query, then choose **Duplicate query**. |
-   | Disable a query from being run. | Click the options menu ![](kebab.png "Options menu") next to the query and choose **Disable query**. |
+   | Duplicate an existing query. | Click the options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the query, then choose **Duplicate query**. |
+   | Disable a query from being run. | Click the options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the query and choose **Disable query**. |
 3. To run queries that you created, click **Run queries**. The metrics from the queries are visualized on the plot. If a query is invalid, the UI shows an error message.
 
    > [!NOTE]
@@ -53,7 +51,7 @@ or as a user with view permissions for all projects, you can access metrics for 
 <tbody>
 <tr>
   <td>Hide all metrics from a query.</td>
-  <td>Click the options menu ![](kebab.png 'Options menu') for the query and click <strong>Hide all series</strong>.</td>
+  <td>Click the options menu <img src="/openshift-docs-markdown/_assets/images/kebab.png" alt="" title="Options menu"> for the query and click <strong>Hide all series</strong>.</td>
 </tr>
 <tr>
   <td>Hide a specific metric.</td>
@@ -93,16 +91,16 @@ As a developer, you must specify a project name when querying metrics. You must 
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, click **Observe** -> **Metrics**.
+1. In the OpenShift Container Platform web console, click **Observe** → **Metrics**.
 2. To add one or more queries, perform any of the following actions:
 
    | Option | Description |
    | --- | --- |
    | Select an existing query. | From the **Select query** drop-down list, select an existing query. |
-   | Create a custom query. | Add your Prometheus Query Language (PromQL) query to the **Expression** field. As you type a PromQL expression, autocomplete suggestions appear in a drop-down list. These suggestions include functions, metrics, labels, and time tokens. Use the keyboard arrows to select one of these suggested items and then press Enter to add the item to your expression. Move your mouse pointer over a suggested item to view a brief description of that item. |
+   | Create a custom query. | Add your Prometheus Query Language (PromQL) query to the **Expression** field.<br>As you type a PromQL expression, autocomplete suggestions appear in a drop-down list. These suggestions include functions, metrics, labels, and time tokens. Use the keyboard arrows to select one of these suggested items and then press Enter to add the item to your expression. Move your mouse pointer over a suggested item to view a brief description of that item. |
    | Add multiple queries. | Click **Add query**. |
-   | Duplicate an existing query. | Click the options menu ![](kebab.png "Options menu") next to the query, then choose **Duplicate query**. |
-   | Disable a query from being run. | Click the options menu ![](kebab.png "Options menu") next to the query and choose **Disable query**. |
+   | Duplicate an existing query. | Click the options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the query, then choose **Duplicate query**. |
+   | Disable a query from being run. | Click the options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the query and choose **Disable query**. |
 3. To run queries that you created, click **Run queries**. The metrics from the queries are visualized on the plot. If a query is invalid, the UI shows an error message.
 
    > [!NOTE]
@@ -121,7 +119,7 @@ As a developer, you must specify a project name when querying metrics. You must 
 <tbody>
 <tr>
   <td>Hide all metrics from a query.</td>
-  <td>Click the options menu ![](kebab.png 'Options menu') for the query and click <strong>Hide all series</strong>.</td>
+  <td>Click the options menu <img src="/openshift-docs-markdown/_assets/images/kebab.png" alt="" title="Options menu"> for the query and click <strong>Hide all series</strong>.</td>
 </tr>
 <tr>
   <td>Hide a specific metric.</td>
@@ -309,7 +307,7 @@ The following metrics are exposed by the Application Aware Quota (AAQ) controlle
     kind: ConfigMap
     metadata:
       name: kubevirt-vm-labels-config
-      namespace: {{ CNVNamespace }}
+      namespace: openshift-cnv
     data:
       allowlist: "*"
       ignorelist: ""
@@ -359,7 +357,7 @@ The Node Memory Overcommit dashboard displays physical and virtual memory utiliz
 
 Use this dashboard to monitor memory capacity, detect memory pressure, identify overcommitment risks, and validate that system processes do not exceed their reserved memory.
 
-You can access this dashboard from the web console in **Observe** -> **Dashboards (Perses)**.
+You can access this dashboard from the web console in **Observe** → **Dashboards (Perses)**.
 
 ### Dashboard filters {#_dashboard_filters}
 
@@ -443,7 +441,8 @@ Warning signs
 Critical state
 :   Utilization gauges turn red (above 90%), PSI values exceed 0.5, system reservation is exceeded on any node, or virtual commit ratios per node exceed 200%. These conditions indicate that the cluster is at risk of out-of-memory events and VM eviction.
 
-## Additional resources {#additional-resources_virt-prometheus-queries}
+**Additional resources**
+{._additional-resources}
 
 - [KubeVirt components metrics](https://github.com/kubevirt/monitoring/blob/main/docs/metrics.md)
 - [Adding kernel arguments to nodes](/openshift-docs-markdown/machine_configuration/machine-configs-configure#nodes-nodes-kernel-arguments_machine-configs-configure)

@@ -13,7 +13,7 @@ You can install the web terminal by using the Web Terminal Operator listed in th
 
 ## Procedure {#installing-web-terminal-procedure}
 
-1. In the **Administrator** perspective of the web console, navigate to **Ecosystem** -> **Software Catalog**.
+1. In the **Administrator** perspective of the web console, navigate to **Ecosystem** → **Software Catalog**.
 2. Use the **Filter by keyword** box to search for the Web Terminal Operator in the catalog, and then click the **Web Terminal** tile.
 3. Read the brief description about the Operator on the **Web Terminal**  page, and then click **Install**.
 4. On the **Install Operator** page, retain the default values for all fields.

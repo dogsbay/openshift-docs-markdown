@@ -1,8 +1,8 @@
 ---
-title: Backup using {{ oadp_full }} and {{ odf_first }}
+title: Backup using OpenShift API for Data Protection and Red&#160;Hat OpenShift Data Foundation (ODF)
 ---
 
-# Backup using {{ oadp_full }} and {{ odf_first }}  {#oadp-use-cases-backup}
+# Backup using OpenShift API for Data Protection and Red Hat OpenShift Data Foundation (ODF)  {#oadp-use-cases-backup}
 
 Following is a use case for using OADP and ODF to back up an application.
 

@@ -21,7 +21,8 @@ const headings = [{"depth":1,"slug":"hcp-destroy-openstack","text":"Destroying a
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp-destroy/hcp-destroy-openstack";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="hcp-destroy-openstack" class="group scroll-mt-20">Destroying a hosted control plane on OpenStack<a href="#hcp-destroy-openstack" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You might want to remove a hosted cluster if you are no longer using it, you are trying to reduce resources, or the hosted cluster is experiencing issues that are difficult to resolve.</p>
+      <p class="_abstract">You might want to remove a hosted cluster if you are no longer using it, you are trying to reduce resources, or the hosted cluster is experiencing issues that are difficult to resolve.</p>
       <h2 id="hosted-clusters-openstack-destroy_hcp-destroy-openstack" class="group scroll-mt-20">Destroying a hosted cluster by using the CLI<a href="#hosted-clusters-openstack-destroy_hcp-destroy-openstack" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">You can destroy a hosted cluster and its associated resources on Red Hat OpenStack Platform (RHOSP) by using the <code>hcp</code> CLI tool.</p>
       <p><strong>Prerequisites</strong></p>

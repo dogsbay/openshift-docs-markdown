@@ -850,6 +850,7 @@ Wait for the platform operators to become stable
   oc adm wait-for-stable-cluster --minimum-stable-period 5m
 ```
 
-## Additional resources {#additional-resources_cli-administrator-commands}
+**Additional resources**
+{._additional-resources}
 
 - [OpenShift CLI developer command reference](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#cli-developer-commands)

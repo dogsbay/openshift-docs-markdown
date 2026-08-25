@@ -24,12 +24,13 @@ const headings = [{"depth":1,"slug":"oadp-upgrade-notes-1-6","text":"Upgrading O
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/release-notes/oadp-upgrade-notes-1-6";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
-const title = "Upgrading {{ oadp_short }} 1.5 to 1.6";
+const title = "Upgrading OADP 1.5 to 1.6";
 const description = "Learn how to upgrade your existing OpenShift API for Data Protection 1.5 installation to OADP 1.6." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="oadp-upgrade-notes-1-6" class="group scroll-mt-20">Upgrading OADP 1.5 to 1.6<a href="#oadp-upgrade-notes-1-6" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Learn how to upgrade your existing OpenShift API for Data Protection 1.5 installation to OADP 1.6.</p>
+      <p class="_abstract">Learn how to upgrade your existing OpenShift API for Data Protection 1.5 installation to OADP 1.6.</p>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
         <AlertDescription>

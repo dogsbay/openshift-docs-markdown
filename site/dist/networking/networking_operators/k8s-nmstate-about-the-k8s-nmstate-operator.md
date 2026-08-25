@@ -53,7 +53,7 @@ You can install the Kubernetes NMState Operator by using the web console. After 
 
 **Procedure**
 
-1. Select **Ecosystem** -> **Software Catalog**.
+1. Select **Ecosystem** → **Software Catalog**.
 2. In the search field below **All Items**, enter `nmstate` and click **Enter** to search for the Kubernetes NMState Operator.
 3. Click on the Kubernetes NMState Operator search result.
 4. Click on **Install** to open the **Install Operator** window.
@@ -248,7 +248,7 @@ kubernetes_nmstate_features_applied{name="dhcpv4-custom-hostname"} 1
       > You can only run one query at a time with the developer role.
 2. If you want to view the metrics in the OpenShift Container Platform web console as an administrator, complete the following tasks:
 
-   1. Click **Observe** -> **Metrics**.
+   1. Click **Observe** → **Metrics**.
    2. Enter `kubernetes_nmstate_features_applied` in the **Expression** field.
    3. Click **Add query** and then **Run queries**.
 3. To explore the visualized metrics, do any of the following tasks:
@@ -356,7 +356,8 @@ If you need to reinstall the Kubernetes NMState Operator, see "Installing the Ku
    $ oc delete namespace openshift-nmstate
    ```
 
-## Additional resources {#additional-resources_k8s-nmstate-view-stats_k8s-nmstate-about-the-k8s-nmstate-operator}
+**Additional resources**
+{._additional-resources}
 
 - [`nmstate`](https://nmstate.github.io/)
 - [Creating an interface on nodes](/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#virt-creating-interface-on-nodes_k8s-nmstate-updating-node-network-config)

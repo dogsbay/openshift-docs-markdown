@@ -566,6 +566,7 @@ The SR-IOV Network Operator adds the `SriovNetworkNodePolicy.sriovnetwork.opensh
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding how to update labels on nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working-updating_nodes-nodes-working)
 
@@ -664,9 +665,11 @@ After following the procedure to configure an SR-IOV network device, the followi
   - Confirm that VT-d is enabled in the BIOS for the node.
 
 **Additional resources**
+{._additional-resources}
 
 - [Using CPU Manager](/openshift-docs-markdown/scalability_and_performance/using-cpu-manager#using-cpu-manager)
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring an SR-IOV network attachment](/openshift-docs-markdown/networking/hardware_networks/configuring-sriov-net-attach#configuring-sriov-net-attach)

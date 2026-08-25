@@ -32,6 +32,7 @@ RHCOS is a version of Red Hat Enterprise Linux (RHEL) that is specially configu
 > To further protect RHCOS systems in OpenShift Container Platform clusters, most containers, except those managing or monitoring the host system itself, should run as a non-root user. Dropping the privilege level or creating containers with the least amount of privileges possible is recommended best practice for protecting your own OpenShift Container Platform clusters.
 
 **Additional resources**
+{._additional-resources}
 
 - [Building, running, and managing containers](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/building_running_and_managing_containers/index)
 - [How nodes enforce resource constraints](/openshift-docs-markdown/nodes/nodes/nodes-nodes-resources-configuring#allocate-node-enforcement_nodes-nodes-resources-configuring)
@@ -67,9 +68,7 @@ Container separation on a single host, however, provides a more lightweight, fle
 
 To make your OpenShift Container Platform cluster more secure, you should understand the security enhancements you can make to your cluster.
 
-When you deploy OpenShift Container Platform, you have the choice of an installer-provisioned infrastructure (there are several available platforms) or your own user-provisioned infrastructure. Some low-level security-related configuration, such as enabling FIPS mode or adding kernel modules required at first boot, might benefit from a user-provisioned infrastructure.
-
-Likewise, user-provisioned infrastructure is appropriate for disconnected OpenShift Container Platform deployments.
+When you deploy OpenShift Container Platform, you have the choice of an installer-provisioned infrastructure (there are several available platforms) or your own user-provisioned infrastructure. Some low-level security-related configuration, such as enabling FIPS mode or adding kernel modules required at first boot, might benefit from a user-provisioned infrastructure. Likewise, user-provisioned infrastructure is appropriate for disconnected OpenShift Container Platform deployments.
 
 Remember when it comes to making security enhancements and other configuration changes to OpenShift Container Platform, the goals should include:
 
@@ -87,5 +86,6 @@ In pursuit of those goals, most node changes should be done during installation 
 Besides the Machine Config Operator, there are several other Operators available to configure OpenShift Container Platform infrastructure that are managed by the Cluster Version Operator (CVO). The CVO is able to automate many aspects of OpenShift Container Platform cluster updates.
 
 **Additional resources**
+{._additional-resources}
 
 - [FIPS cryptography](/openshift-docs-markdown/installing/overview/installing-fips#installing-fips)

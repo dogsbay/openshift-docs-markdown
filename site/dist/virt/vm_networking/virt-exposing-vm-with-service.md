@@ -117,7 +117,8 @@ You can create a service and associate it with a virtual machine (VM) by using t
   $ oc get service -n example-namespace
   ```
 
-## Additional resources {#additional-resources_virt-exposing-vm-with-service}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring ingress cluster traffic by using a `NodePort`](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-nodeport#configuring-ingress-cluster-traffic-nodeport)
 - [Configuring ingress cluster traffic by using a load balancer](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-load-balancer#configuring-ingress-cluster-traffic-load-balancer)

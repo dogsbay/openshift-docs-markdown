@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"configuring-pxe-booting","text":"Configurin
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-configuring-pxe-booting";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="configuring-pxe-booting" class="group scroll-mt-20">Configuring PXE booting for virtual machines<a href="#configuring-pxe-booting" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>PXE booting, or network booting, allows a computer to boot and load an operating system or other program without requiring a locally attached storage device. For example, you can use it to choose your desired OS image from a PXE server when deploying a new host.</p>
+      <p class="_abstract">PXE booting, or network booting, allows a computer to boot and load an operating system or other program without requiring a locally attached storage device. For example, you can use it to choose your desired OS image from a PXE server when deploying a new host.</p>
       <h2 id="virt-pxe-booting-with-mac-address_pxe-booting" class="group scroll-mt-20">PXE booting with a specified MAC address<a href="#virt-pxe-booting-with-mac-address_pxe-booting" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">As an administrator, you can boot a client over the network by first creating a <code>NetworkAttachmentDefinition</code> object for your PXE network. Then, reference the network attachment definition in your virtual machine instance configuration file before you start the virtual machine instance.</p>
       <p>You can also specify a MAC address in the virtual machine instance configuration file, if required by the PXE server.</p>

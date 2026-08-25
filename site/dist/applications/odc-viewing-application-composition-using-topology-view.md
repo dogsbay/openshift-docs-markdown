@@ -57,7 +57,9 @@ In the **Topology** view in the **Developer** perspective of the web console, th
   - **Succeeded**(![title="Pod Succeeded"](/openshift-docs-markdown/_assets/images/odc_pod_succeeded.png)): All containers in the pod terminated successfully and will not be restarted.
   - **Terminating**(![title="Pod Terminating"](/openshift-docs-markdown/_assets/images/odc_pod_terminating.png)): When a pod is being deleted, it is shown as **Terminating** by some kubectl commands. **Terminating** status is not one of the pod phases. A pod is granted a graceful termination period, which defaults to 30 seconds.
   - **Unknown**(![title="Pod Unknown"](/openshift-docs-markdown/_assets/images/odc_pod_unknown.png)): The state of the pod could not be obtained. This phase typically occurs due to an error in communicating with the node where the pod should be running.
-- After you create an application and an image is deployed, the status is shown as **Pending**. After the application is built, it is displayed as **Running**. **Figure 1. Application topology**
+- After you create an application and an image is deployed, the status is shown as **Pending**. After the application is built, it is displayed as **Running**.
+
+  **Figure 1. Application topology**
 
   ![odc_application_topology](/openshift-docs-markdown/_assets/images/odc_application_topology.png)
 
@@ -99,13 +101,15 @@ You can add components to a project.
 
 1. Navigate to the **+Add** view.
 2. Click **Add to Project** (![title="Add to Project"](/openshift-docs-markdown/_assets/images/odc_add_to_project.png)) next to left navigation pane or press <kbd>Ctrl+Space</kbd>
-3. Search for the component and click the **Start**/**Create**/**Install** button or click <kbd>Enter</kbd> to add the component to the project and see it in the topology **Graph view**. **Figure 1. Adding component via quick search**
+3. Search for the component and click the **Start**/**Create**/**Install** button or click <kbd>Enter</kbd> to add the component to the project and see it in the topology **Graph view**.
+
+   **Figure 2. Adding component via quick search**
 
    ![odc_quick_search](/openshift-docs-markdown/_assets/images/odc_quick_search.png)
 
 Alternatively, you can also use the available  options in the context menu, such as **Import from Git**, **Container Image**, **Database**, **From Catalog**, **Operator Backed**, **Helm Charts**, **Samples**, or **Upload JAR file**, by right-clicking in the topology **Graph view** to add a component to your project.
 
-**Figure 2. Context menu to add services**
+**Figure 3. Context menu to add services**
 
 ![odc_context_project](/openshift-docs-markdown/_assets/images/odc_context_project.png)
 
@@ -119,7 +123,9 @@ You can use the **+Add** view to add multiple components or services to your pro
 
 **Procedure**
 
-- To add a service to the existing application group, press <kbd>Shift</kbd>+ drag it to the existing application group. Dragging a component and adding it to an application group adds the required labels to the component. **Figure 1. Application grouping**
+- To add a service to the existing application group, press <kbd>Shift</kbd>+ drag it to the existing application group. Dragging a component and adding it to an application group adds the required labels to the component.
+
+  **Figure 4. Application grouping**
 
   ![odc_app_grouping_label](/openshift-docs-markdown/_assets/images/odc_app_grouping_label.png)
 
@@ -141,7 +147,9 @@ To add a service to your application use the **+Add** actions using the context 
 
 **Procedure**
 
-1. Right-click an application group in the topology **Graph view** to display the context menu. **Figure 1. Add resource context menu**
+1. Right-click an application group in the topology **Graph view** to display the context menu.
+
+   **Figure 5. Add resource context menu**
 
    ![odc_context_menu](/openshift-docs-markdown/_assets/images/odc_context_menu.png)
 2. Use **Add to Application** to select a method for adding a service to the application group, such as **From Git**, **Container Image**, **From Dockerfile**, **From Devfile**, **Upload JAR file**, **Event Source**, **Channel**, or **Broker**.
@@ -154,7 +162,9 @@ In the topology **Graph view** remove a service from your application using the 
 **Procedure**
 
 1. Right-click on a service in an application group in the topology **Graph view** to display the context menu.
-2. Select **Delete Deployment** to delete the service. **Figure 1. Deleting deployment option**
+2. Select **Delete Deployment** to delete the service.
+
+   **Figure 6. Deleting deployment option**
 
    ![odc_deleting_deployment](/openshift-docs-markdown/_assets/images/odc_deleting_deployment.png)
 
@@ -176,7 +186,8 @@ App grouping
 
 For detailed information on the labels and annotations OpenShift Container Platform applications must use, see [Guidelines for labels and annotations for OpenShift applications](https://github.com/redhat-developer/app-labels/blob/master/labels-annotation-for-openshift.adoc).
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - See [Importing a codebase from Git to create an application](/openshift-docs-markdown/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-importing-codebase-from-git-to-create-application_odc-creating-applications-using-developer-perspective) for more information on creating an application from Git.
 - See [Exporting applications](/openshift-docs-markdown/applications/odc-exporting-applications#odc-exporting-applications).

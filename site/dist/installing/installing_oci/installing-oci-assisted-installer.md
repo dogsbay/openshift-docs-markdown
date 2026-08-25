@@ -1,5 +1,5 @@
 ---
-title: Installing a cluster on {{ oci_distributed_no_rt }} by using the {{ ai_full }}
+title: Installing a cluster on Oracle Distributed Cloud by using the Assisted Installer
 ---
 
 # Installing a cluster on Oracle Distributed Cloud by using the Assisted Installer {#installing-oci-assisted-installer}
@@ -84,10 +84,11 @@ The procedure for using the Assisted Installer in a connected environment to ins
    2. Upload the manifests provided by Oracle.
    3. Install the cluster.
 
-> [!IMPORTANT]
-> The steps for provisioning OCI resources are provided as an example only. You can also choose to create the required resources through other methods; the scripts are just an example. Installing a cluster with infrastructure that you provide requires knowledge of the cloud provider and the installation process on OpenShift Container Platform. You can access OCI configurations to complete these steps, or use the configurations to model your own custom script.
+   > [!IMPORTANT]
+   > The steps for provisioning OCI resources are provided as an example only. You can also choose to create the required resources through other methods; the scripts are just an example. Installing a cluster with infrastructure that you provide requires knowledge of the cloud provider and the installation process on OpenShift Container Platform. You can access OCI configurations to complete these steps, or use the configurations to model your own custom script.
 
 **Additional resources**
+{._additional-resources}
 
 - [Cloud instance types (Red Hat Ecosystem Catalog portal)](https://catalog.redhat.com/cloud/detail/216977)
 - [Volume Performance Units (Oracle documentation)](https://docs.oracle.com/en-us/iaas/Content/Block/Concepts/blockvolumeperformance.htm#vpus)
@@ -153,10 +154,10 @@ To begin creating the cluster, set the cluster details.
    | Field | Action required |
    | --- | --- |
    | **Cluster name** | Specify the name of your cluster, such as `oci`. This is the same value as the cluster name in Oracle Distributed Cloud. |
-   | **Base domain** | Specify the base domain of the cluster, such as `openshift-demo.devcluster.openshift.com`. This must be the same value as the zone DNS server in Oracle Distributed Cloud. |
-   | **OpenShift version** | \* For installations on virtual machines only, specify `OpenShift 4.14` or a later version. \* For installations that include bare metal machines, specify `OpenShift 4.16` or a later version. |
+   | **Base domain** | Specify the base domain of the cluster, such as `openshift-demo.devcluster.openshift.com`.<br>This must be the same value as the zone DNS server in Oracle Distributed Cloud. |
+   | **OpenShift version** | \* For installations on virtual machines only, specify `OpenShift 4.14` or a later version.<br>\* For installations that include bare metal machines, specify `OpenShift 4.16` or a later version. |
    | **CPU architecture** | Specify `x86_64` or `Arm64`. |
-   | **Integrate with external partner platforms** | Specify `Oracle Cloud Infrastructure`. After you specify this value, the **Include custom manifests** checkbox is selected by default and the **Custom manifests** page is added to the wizard. |
+   | **Integrate with external partner platforms** | Specify `Oracle Cloud Infrastructure`.<br>After you specify this value, the **Include custom manifests** checkbox is selected by default and the **Custom manifests** page is added to the wizard. |
 7. Leave the default settings for the remaining fields, and click **Next**.
 8. On the **Operators** page, click **Next**.
 
@@ -180,6 +181,7 @@ After setting cluster details, generate and download the Discovery ISO image.
    4. Click **Download Discovery ISO** to save the file to your local system.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)
 - [Configuring your firewall](/openshift-docs-markdown/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)
@@ -210,7 +212,7 @@ A stack is an Oracle Cloud Infrastructure (OCI) feature that automates the provi
    > [!IMPORTANT]
    > Resource attribution tags are mandatory for OpenShift Container Platform on Oracle Distributed Cloud. If the tags do not already exist in your tenancy, you must apply the `create-resource-attribution-tags` stack before creating the cluster. You typically apply this stack once for the first cluster deployment in a tenancy. After the tags exist, later cluster deployments can reuse them.
 
-   1. In the Oracle Distributed Cloud console, navigate to **Resource Manager** -> **Stacks** and click **Create Stack**.
+   1. In the Oracle Distributed Cloud console, navigate to **Resource Manager** → **Stacks** and click **Create Stack**.
    2. Upload the `create-resource-attribution-tags-vX.X.X.zip` file and click **Next**.
    3. Click **Apply** to create the resource attribution tags.
 
@@ -283,6 +285,7 @@ For details, see [Custom Manifests (Oracle documentation).](https://github.com/d
    After the cluster installation and initialization operations, the Assisted Installer indicates the completion of the cluster installation operation. For more information, see "Completing the installation" section in the Assisted Installer for OpenShift Container Platform document.
 
 **Additional resources**
+{._additional-resources}
 
 - [Assisted Installer for OpenShift Container Platform](https://access.redhat.com/documentation/en-us/assisted_installer_for_openshift_container_platform/)
 
@@ -324,7 +327,7 @@ Read the following sections to troubleshoot common problems.
 
 This issue is classed as a `Warning` because by using Oracle Distributed Cloud to create a stack, you created a pool of compute nodes, 3 by default, that are automatically added as backend listeners for the Ingress Load Balancer. By default, the OpenShift Container Platform deploys 2 router pods, which are based on the default values from the OpenShift Container Platform manifest files. The `Warning` is expected because a mismatch exists with the number of router pods available, 2, to run on the 3 compute nodes.
 
-**Figure 1. Example of a `Warning` message that is under the Backend set information tab on Oracle Distributed Cloud**
+**Figure 2. Example of a `Warning` message that is under the Backend set information tab on Oracle Distributed Cloud**
 
 ![Example of an warning message that is under the Backend set information tab on Oracle Distributed Cloud](/openshift-docs-markdown/_assets/images/ingress_load_balancer_warning_message.png)
 
@@ -344,7 +347,8 @@ Go to the **Install OpenShift with the Assisted Installer** page on the Hybrid C
 
 For more information, see "Red Hat Hybrid Cloud Console".
 
-## Additional resources {#additional-resources_installing-oci-assisted-installer}
+**Additional resources**
+{._additional-resources}
 
 - [Installing a cluster on Oracle Distributed Cloud by using the Agent-based Installer](/openshift-docs-markdown/installing/installing_oci/installing-oci-agent-based-installer#installing-oci-agent-based-installer)
 - [Red Hat Hybrid Cloud Console](https://console.redhat.com/openshift/assisted-installer/clusters/~new)

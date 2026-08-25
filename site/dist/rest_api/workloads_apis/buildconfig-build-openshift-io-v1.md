@@ -1,5 +1,5 @@
 ---
-title: BuildConfig []
+title: BuildConfig [build.openshift.io/v1]
 ---
 
 # BuildConfig \[build.openshift.io/v1\] {#buildconfig-build-openshift-io-v1}
@@ -46,10 +46,10 @@ Required
 | --- | --- | --- |
 | `completionDeadlineSeconds` | `integer` | completionDeadlineSeconds is an optional duration in seconds, counted from the time when a build pod gets scheduled in the system, that the build may be active on a node before the system actively tries to terminate the build; value must be positive integer |
 | `failedBuildsHistoryLimit` | `integer` | failedBuildsHistoryLimit is the number of old failed builds to retain. When a BuildConfig is created, the 5 most recent failed builds are retained unless this value is set. If removed after the BuildConfig has been created, all failed builds are retained. |
-| `mountTrustedCA` | `boolean` | mountTrustedCA bind mounts the cluster’s trusted certificate authorities, as defined in the cluster’s proxy configuration, into the build. This lets processes within a build trust components signed by custom PKI certificate authorities, such as private artifact repositories and HTTPS proxies. When this field is set to true, the contents of `/etc/pki/ca-trust` within the build are managed by the build container, and any changes to this directory or its subdirectories (for example - within a Dockerfile `RUN` instruction) are not persisted in the build’s output image. |
+| `mountTrustedCA` | `boolean` | mountTrustedCA bind mounts the cluster’s trusted certificate authorities, as defined in the cluster’s proxy configuration, into the build. This lets processes within a build trust components signed by custom PKI certificate authorities, such as private artifact repositories and HTTPS proxies.<br>When this field is set to true, the contents of `/etc/pki/ca-trust` within the build are managed by the build container, and any changes to this directory or its subdirectories (for example - within a Dockerfile `RUN` instruction) are not persisted in the build’s output image. |
 | `nodeSelector` | `object (string)` | nodeSelector is a selector which must be true for the build pod to fit on a node If nil, it can be overridden by default build nodeselector values for the cluster. If set to an empty map or a map with any values, default build nodeselector values are ignored. |
 | `output` | `object` | BuildOutput is input to a build strategy and describes the container image that the strategy should produce. |
-| `postCommit` | `object` | A BuildPostCommitSpec holds a build post commit hook specification. The hook executes a command in a temporary container running the build output image, immediately after the last layer of the image is committed and before the image is pushed to a registry. The command is executed with the current working directory ($PWD) set to the image’s WORKDIR. The build will be marked as failed if the hook execution fails. It will fail if the script or command return a non-zero exit code, or if there is any other error related to starting the temporary container. There are five different ways to configure the hook. As an example, all forms below are equivalent and will execute `rake test --verbose`. 1. Shell script: 	   "postCommit": { 	     "script": "rake test --verbose", 	   } 	The above is a convenient form which is equivalent to: 	   "postCommit": { 	     "command": \["/bin/sh", "-ic"\], 	     "args":    \["rake test --verbose"\] 	   } 2. A command as the image entrypoint: 	   "postCommit": { 	     "commit": \["rake", "test", "--verbose"\] 	   } 	Command overrides the image entrypoint in the exec form, as documented in 	Docker: https://docs.docker.com/engine/reference/builder/#entrypoint. 3. Pass arguments to the default entrypoint: 	       "postCommit": { 			      "args": \["rake", "test", "--verbose"\] 		      } 	    This form is only useful if the image entrypoint can handle arguments. 4. Shell script with arguments: 	   "postCommit": { 	     "script": "rake test $1", 	     "args":   \["--verbose"\] 	   } 	This form is useful if you need to pass arguments that would otherwise be 	hard to quote properly in the shell script. In the script, $0 will be 	"/bin/sh" and $1, $2, etc, are the positional arguments from Args. 5. Command with arguments: 	   "postCommit": { 	     "command": \["rake", "test"\], 	     "args":    \["--verbose"\] 	   } 	This form is equivalent to appending the arguments to the Command slice. It is invalid to provide both Script and Command simultaneously. If none of the fields are specified, the hook is not executed. |
+| `postCommit` | `object` | A BuildPostCommitSpec holds a build post commit hook specification. The hook executes a command in a temporary container running the build output image, immediately after the last layer of the image is committed and before the image is pushed to a registry. The command is executed with the current working directory ($PWD) set to the image’s WORKDIR.<br>The build will be marked as failed if the hook execution fails. It will fail if the script or command return a non-zero exit code, or if there is any other error related to starting the temporary container.<br>There are five different ways to configure the hook. As an example, all forms below are equivalent and will execute `rake test --verbose`.<br>1. Shell script:<br> "postCommit": { "script": "rake test --verbose", }<br>	The above is a convenient form which is equivalent to:<br> "postCommit": { "command": \["/bin/sh", "-ic"\], "args": \["rake test --verbose"\] }<br>2. A command as the image entrypoint:<br> "postCommit": { "commit": \["rake", "test", "--verbose"\] }<br>	Command overrides the image entrypoint in the exec form, as documented in Docker: https://docs.docker.com/engine/reference/builder/#entrypoint.<br>3. Pass arguments to the default entrypoint:<br> "postCommit": { "args": \["rake", "test", "--verbose"\] }<br> This form is only useful if the image entrypoint can handle arguments.<br>4. Shell script with arguments:<br> "postCommit": { "script": "rake test $1", "args": \["--verbose"\] }<br>	This form is useful if you need to pass arguments that would otherwise be hard to quote properly in the shell script. In the script, $0 will be "/bin/sh" and $1, $2, etc, are the positional arguments from Args.<br>5. Command with arguments:<br> "postCommit": { "command": \["rake", "test"\], "args": \["--verbose"\] }<br>	This form is equivalent to appending the arguments to the Command slice.<br>It is invalid to provide both Script and Command simultaneously. If none of the fields are specified, the hook is not executed. |
 | `resources` | [`ResourceRequirements`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-ResourceRequirements) | resources computes resource requirements to execute the build. |
 | `revision` | `object` | SourceRevision is the revision or commit information from the source for the build |
 | `runPolicy` | `string` | runPolicy describes how the new build created from this build configuration will be scheduled for execution. This is optional, if not specified we default to "Serial". |
@@ -370,7 +370,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `destinationDir` | `string` | destinationDir is the relative directory within the build directory where files copied from the image are placed. |
-| `sourcePath` | `string` | sourcePath is the absolute path of the file or directory inside the image to copy to the build directory.  If the source path ends in /. then the content of the directory will be copied, but the directory itself will not be created at the destination. |
+| `sourcePath` | `string` | sourcePath is the absolute path of the file or directory inside the image to copy to the build directory. If the source path ends in /. then the content of the directory will be copied, but the directory itself will not be created at the destination. |
 
 ### .spec.source.secrets {#_specsourcesecrets}
 
@@ -483,7 +483,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `buildArgs` | [`array (EnvVar)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | buildArgs contains build arguments that will be resolved in the Dockerfile.  See https://docs.docker.com/engine/reference/builder/#/arg for more details. NOTE: Only the 'name' and 'value' fields are supported. Any settings on the 'valueFrom' field are ignored. |
+| `buildArgs` | [`array (EnvVar)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | buildArgs contains build arguments that will be resolved in the Dockerfile. See https://docs.docker.com/engine/reference/builder/#/arg for more details. NOTE: Only the 'name' and 'value' fields are supported. Any settings on the 'valueFrom' field are ignored. |
 | `dockerfilePath` | `string` | dockerfilePath is the path of the Dockerfile that will be used to build the container image, relative to the root of the context (contextDir). Defaults to `Dockerfile` if unset. |
 | `env` | [`array (EnvVar)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | env contains additional environment variables you want to pass into a builder container. |
 | `forcePull` | `boolean` | forcePull describes if the builder should pull the images from registry prior to building. |
@@ -722,7 +722,7 @@ Required
 | `github` | `object` | WebHookTrigger is a trigger that gets invoked using a webhook type of post |
 | `gitlab` | `object` | WebHookTrigger is a trigger that gets invoked using a webhook type of post |
 | `imageChange` | `object` | ImageChangeTrigger allows builds to be triggered when an ImageStream changes |
-| `type` | `string` | type is the type of build trigger. Valid values: - GitHub GitHubWebHookBuildTriggerType represents a trigger that launches builds on GitHub webhook invocations - Generic GenericWebHookBuildTriggerType represents a trigger that launches builds on generic webhook invocations - GitLab GitLabWebHookBuildTriggerType represents a trigger that launches builds on GitLab webhook invocations - Bitbucket BitbucketWebHookBuildTriggerType represents a trigger that launches builds on Bitbucket webhook invocations - ImageChange ImageChangeBuildTriggerType represents a trigger that launches builds on availability of a new version of an image - ConfigChange ConfigChangeBuildTriggerType will trigger a build on an initial build config creation WARNING: In the future the behavior will change to trigger a build on any config change |
+| `type` | `string` | type is the type of build trigger. Valid values:<br>- GitHub GitHubWebHookBuildTriggerType represents a trigger that launches builds on GitHub webhook invocations<br>- Generic GenericWebHookBuildTriggerType represents a trigger that launches builds on generic webhook invocations<br>- GitLab GitLabWebHookBuildTriggerType represents a trigger that launches builds on GitLab webhook invocations<br>- Bitbucket BitbucketWebHookBuildTriggerType represents a trigger that launches builds on Bitbucket webhook invocations<br>- ImageChange ImageChangeBuildTriggerType represents a trigger that launches builds on availability of a new version of an image<br>- ConfigChange ConfigChangeBuildTriggerType will trigger a build on an initial build config creation WARNING: In the future the behavior will change to trigger a build on any config change |
 
 ### .spec.triggers\[\].bitbucket {#_spectriggersbitbucket}
 
@@ -939,21 +939,21 @@ The following API endpoints are available:
 - `/apis/build.openshift.io/v1/watch/buildconfigs`
 
   - `GET`: watch individual changes to a list of BuildConfig. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/build.openshift.io/v1/namespaces/{{ namespace }}/buildconfigs`
+- `/apis/build.openshift.io/v1/namespaces/{namespace}/buildconfigs`
 
   - `DELETE`: delete collection of BuildConfig
   - `GET`: list or watch objects of kind BuildConfig
   - `POST`: create a BuildConfig
-- `/apis/build.openshift.io/v1/watch/namespaces/{{ namespace }}/buildconfigs`
+- `/apis/build.openshift.io/v1/watch/namespaces/{namespace}/buildconfigs`
 
   - `GET`: watch individual changes to a list of BuildConfig. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/build.openshift.io/v1/namespaces/{{ namespace }}/buildconfigs/{{ name }}`
+- `/apis/build.openshift.io/v1/namespaces/{namespace}/buildconfigs/{name}`
 
   - `DELETE`: delete a BuildConfig
   - `GET`: read the specified BuildConfig
   - `PATCH`: partially update the specified BuildConfig
   - `PUT`: replace the specified BuildConfig
-- `/apis/build.openshift.io/v1/watch/namespaces/{{ namespace }}/buildconfigs/{{ name }}`
+- `/apis/build.openshift.io/v1/watch/namespaces/{namespace}/buildconfigs/{name}`
 
   - `GET`: watch changes to an object of kind BuildConfig. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
 
@@ -995,7 +995,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/build.openshift.io/v1/namespaces/{{ namespace }}/buildconfigs {#_apisbuildopenshiftiov1namespaces_namespace_buildconfigs}
+### /apis/build.openshift.io/v1/namespaces/{namespace}/buildconfigs {#_apisbuildopenshiftiov1namespaces_namespace_buildconfigs}
 
 HTTP method
 :   ```
@@ -1069,7 +1069,7 @@ Description
 | 202 - Accepted | [`BuildConfig`](/openshift-docs-markdown/rest_api/workloads_apis/buildconfig-build-openshift-io-v1#buildconfig-build-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/build.openshift.io/v1/watch/namespaces/{{ namespace }}/buildconfigs {#_apisbuildopenshiftiov1watchnamespaces_namespace_buildconfigs}
+### /apis/build.openshift.io/v1/watch/namespaces/{namespace}/buildconfigs {#_apisbuildopenshiftiov1watchnamespaces_namespace_buildconfigs}
 
 HTTP method
 :   ```
@@ -1088,7 +1088,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/build.openshift.io/v1/namespaces/{{ namespace }}/buildconfigs/{{ name }} {#_apisbuildopenshiftiov1namespaces_namespace_buildconfigs_name}
+### /apis/build.openshift.io/v1/namespaces/{namespace}/buildconfigs/{name} {#_apisbuildopenshiftiov1namespaces_namespace_buildconfigs_name}
 
 **Global path parameters**
 
@@ -1193,7 +1193,7 @@ Description
 | 201 - Created | [`BuildConfig`](/openshift-docs-markdown/rest_api/workloads_apis/buildconfig-build-openshift-io-v1#buildconfig-build-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/build.openshift.io/v1/watch/namespaces/{{ namespace }}/buildconfigs/{{ name }} {#_apisbuildopenshiftiov1watchnamespaces_namespace_buildconfigs_name}
+### /apis/build.openshift.io/v1/watch/namespaces/{namespace}/buildconfigs/{name} {#_apisbuildopenshiftiov1watchnamespaces_namespace_buildconfigs_name}
 
 **Global path parameters**
 

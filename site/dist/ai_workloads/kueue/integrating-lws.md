@@ -1,5 +1,5 @@
 ---
-title: Integrating the {{ lws_operator }}
+title: Integrating the Leader Worker Set Operator
 ---
 
 # Integrating the Leader Worker Set Operator {#integrating-lws}
@@ -43,6 +43,7 @@ You can configure Red Hat build of Kueue to work with the Leader Worker Set Ope
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [About the Leader Worker Set Operator](/openshift-docs-markdown/ai_workloads/leader_worker_set/index#lws-about_lws-about)
 - [LeaderWorkerSet API (Kubernetes documentation)](https://lws.sigs.k8s.io/docs/reference/leaderworkerset.v1/)
@@ -121,6 +122,7 @@ You can add and run the Leader Worker Set Operator to your existing frameworks.
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring a cluster queue](/openshift-docs-markdown/ai_workloads/kueue/configuring-quotas#configuring-clusterqueues_configuring-quotas)
 - [Configuring a resource flavor](/openshift-docs-markdown/ai_workloads/kueue/configuring-quotas#configuring-resourceflavors_configuring-quotas)

@@ -28,13 +28,13 @@ You can deploy a basic `ServiceMeshControlPlane` by using the web console.  In t
 1. Log in to the OpenShift Container Platform web console as a user with the `cluster-admin` role. If you use Red Hat OpenShift Dedicated, you must have an account with the `dedicated-admin` role.
 2. Create a project named `istio-system`.
 
-   1. Navigate to **Home** -> **Projects**.
+   1. Navigate to **Home** → **Projects**.
    2. Click **Create Project**.
    3. In the **Name** field, enter `istio-system`. The `ServiceMeshControlPlane` resource must be installed in a project that is separate from your microservices and Operators.
 
       These steps use `istio-system` as an example, but you can deploy your Service Mesh control plane in any project as long as it is separate from the project that contains your services.
    4. Click **Create**.
-3. Navigate to **Ecosystem** -> **Installed Operators**.
+3. Navigate to **Ecosystem** → **Installed Operators**.
 4. Click the Red Hat OpenShift Service Mesh Operator, then click **Istio Service Mesh Control Plane**.
 5. On the **Istio Service Mesh Control Plane** tab, click **Create ServiceMeshControlPlane**.
 
@@ -76,7 +76,7 @@ You can deploy a basic `ServiceMeshControlPlane` from the command line.
      name: basic
      namespace: istio-system
    spec:
-     version: v{{ MaistraVersion }}
+     version: v2.6
      tracing:
        type: None
        sampling: 10000
@@ -132,7 +132,7 @@ You can validate the creation of the `ServiceMeshControlPlane` from the command 
 
    ```terminal
    NAME    READY   STATUS            PROFILES      VERSION   AGE
-   basic   10/10   ComponentsReady   ["default"]   {{ SMProductVersion }}     66m
+   basic   10/10   ComponentsReady   ["default"]   2.6.11     66m
    ```
 
 ## About control plane components and infrastructure nodes {#ossm-about-control-plane-components-and-infrastructure-nodes_ossm-create-smcp}
@@ -158,7 +158,7 @@ If the control plane will run on a worker node, skip this task.
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console.
-2. Navigate to **Ecosystem** -> **Installed Operators**.
+2. Navigate to **Ecosystem** → **Installed Operators**.
 3. Click the Red Hat OpenShift Service Mesh Operator, and then click **Istio Service Mesh Control Plane**.
 4. Click the name of the control plane resource. For example, `basic`.
 5. Click **YAML**.
@@ -199,7 +199,7 @@ If the control plane will run on a worker node, skip this task.
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console.
-2. Navigate to **Ecosystem** -> **Installed Operators**.
+2. Navigate to **Ecosystem** → **Installed Operators**.
 3. Click the Red Hat OpenShift Service Mesh Operator, and then click **Istio Service Mesh Control Plane**.
 4. Click the name of the control plane resource. For example, `basic`.
 5. Click **YAML**.
@@ -405,13 +405,13 @@ You can configure the `ServiceMeshControlPlane` resource for cluster-wide deploy
 
 1. Create a project named `istio-system`.
 
-   1. Navigate to **Home** -> **Projects**.
+   1. Navigate to **Home** → **Projects**.
    2. Click **Create Project**.
    3. In the **Name** field, enter `istio-system`. The `ServiceMeshControlPlane` resource must be installed in a project that is separate from your microservices and Operators.
 
       These steps use `istio-system` as an example. You can deploy the Service Mesh control plane to any project as long as it is separate from the project that contains your services.
    4. Click **Create**.
-2. Navigate to **Ecosystem** -> **Installed Operators**.
+2. Navigate to **Ecosystem** → **Installed Operators**.
 3. Click the Red Hat OpenShift Service Mesh Operator, then click **Istio Service Mesh Control Plane**.
 4. On the **Istio Service Mesh Control Plane** tab, click **Create ServiceMeshControlPlane**.
 5. Click **YAML view**. The version of the Service Mesh control plane determines the features available regardless of the version of the Operator.
@@ -424,7 +424,7 @@ You can configure the `ServiceMeshControlPlane` resource for cluster-wide deploy
      name: basic
      namespace: istio-system
    spec:
-     version: v{{ MaistraVersion }}
+     version: v2.6
      mode: ClusterWide
    ```
 7. Click **Create**. The Operator creates pods, services, and Service Mesh control plane components based on your configuration parameters. The operator also creates the `ServiceMeshMemberRoll` if it does not exist as part of the default configuration.
@@ -463,7 +463,7 @@ You can configure the `ServiceMeshControlPlane` resource for cluster-wide deploy
      name: basic
      namespace: istio-system
    spec:
-     version: v{{ MaistraVersion }}
+     version: v2.6
      mode: ClusterWide
    ```
 3. Run the following command to deploy the Service Mesh control plane:
@@ -524,24 +524,28 @@ You can use the Kiali console to validate your Service Mesh installation. The Ki
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, navigate to **Networking** -> **Routes**.
+1. In the OpenShift Container Platform web console, navigate to **Networking** → **Routes**.
 2. On the **Routes** page, select the Service Mesh control plane project, for example `istio-system`, from the **Namespace** menu.
 
    The **Location** column displays the linked address for each route.
 3. If necessary, use the filter to find the route for the Kiali console. Click the route **Location** to launch the console.
 4. Click **Log In With OpenShift**.
 
-   When you first log in to the Kiali Console, you see the **Overview** page which displays all the namespaces in your service mesh that you have permission to view. When there are multiple namespaces shown on the **Overview** page, Kiali shows namespaces with health or validation problems first. **Figure 1. Kiali Overview page**
+   When you first log in to the Kiali Console, you see the **Overview** page which displays all the namespaces in your service mesh that you have permission to view. When there are multiple namespaces shown on the **Overview** page, Kiali shows namespaces with health or validation problems first.
+
+   **Figure 1. Kiali Overview page**
 
    ![Kiali Overview page showing istio-system](/openshift-docs-markdown/_assets/images/ossm-kiali-overview.png)
 
    The tile for each namespace displays the number of labels, the **Istio Config** health, the number of and **Applications** health, and **Traffic** for the namespace. If you are validating the console installation and namespaces have not yet been added to the mesh, there might not be any data to display other than `istio-system`.
-5. Kiali has four dashboards specifically for the namespace where the Service Mesh control plane is installed.  To view these dashboards, click the Options menu ![](kebab.png "Options menu") on the tile for the control plane namespace, for example, `istio-system`, and select one of the following options:
+5. Kiali has four dashboards specifically for the namespace where the Service Mesh control plane is installed.  To view these dashboards, click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") on the tile for the control plane namespace, for example, `istio-system`, and select one of the following options:
 
    - **Istio Mesh Dashboard**
    - **Istio Control Plane Dashboard**
    - **Istio Performance Dashboard**
-   - **Istio Wasm Exetension Dashboard** **Figure 2. Grafana Istio Control Plane Dashboard**
+   - **Istio Wasm Exetension Dashboard**
+
+     **Figure 2. Grafana Istio Control Plane Dashboard**
 
      ![Istio Control Plane Dashboard showing data for bookinfo sample project](/openshift-docs-markdown/_assets/images/ossm-grafana-control-plane-dashboard.png)
 
@@ -566,7 +570,7 @@ You can use the Kiali console to validate your Service Mesh installation. The Ki
 
     1. If there are configuration errors, click the row and Kiali opens the configuration file with the error highlighted.
 
-## Additional resources {#_additional_resources}
+## Additional resources {#_additional_resources ._additional-resources}
 
 Red Hat OpenShift Service Mesh supports multiple independent control planes within the cluster. You can create reusable configurations with `ServiceMeshControlPlane` profiles. For more information, see [Creating control plane profiles](/openshift-docs-markdown/service_mesh/v2x/ossm-profiles-users#ossm-control-plane-profiles_ossm-profiles-users).
 

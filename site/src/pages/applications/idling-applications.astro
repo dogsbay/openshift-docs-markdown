@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"idling-applications","text":"Reducing resou
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/applications/idling-applications";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="idling-applications" class="group scroll-mt-20">Reducing resource consumption with application idling<a href="#idling-applications" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>As an administrator, you can reduce cluster resource consumption and lower public cloud costs by temporarily scaling inactive application resources to zero replicas.</p>
+      <p class="_abstract">As an administrator, you can reduce cluster resource consumption and lower public cloud costs by temporarily scaling inactive application resources to zero replicas.</p>
       <p>If any scalable resources are not in use, OpenShift Container Platform discovers and idles them by scaling their replicas to <code>0</code>. The next time network traffic is directed to the resources, the resources are unidled by scaling up the replicas, and normal operation continues.</p>
       <p>Applications are made of services, as well as other scalable resources, such as deployment configs. The action of idling an application involves idling all associated resources.</p>
       <h2 id="idle-idling-applications_idling-applications" class="group scroll-mt-20">Application idling<a href="#idle-idling-applications_idling-applications" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>

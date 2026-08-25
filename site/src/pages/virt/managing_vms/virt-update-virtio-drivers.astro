@@ -20,11 +20,12 @@ import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
 import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-update-virtio-drivers","text":"Update VirtIO drivers"},{"depth":2,"slug":"virt-updating-red-hat-virtio-drivers-windows_virt-update-virtio-drivers","text":"Enable automatic updates for Red Hat virtio-win drivers"},{"depth":2,"slug":"virt-updating-virtio-drivers-windows_virt-update-virtio-drivers","text":"Update VirtIO drivers on a Windows VM"},{"depth":2,"slug":"additional-resources_virt-update-virtio-drivers","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"virt-update-virtio-drivers","text":"Update VirtIO drivers"},{"depth":2,"slug":"virt-updating-red-hat-virtio-drivers-windows_virt-update-virtio-drivers","text":"Enable automatic updates for Red Hat virtio-win drivers"},{"depth":2,"slug":"virt-updating-virtio-drivers-windows_virt-update-virtio-drivers","text":"Update VirtIO drivers on a Windows VM"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/managing_vms/virt-update-virtio-drivers";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -43,7 +44,7 @@ const pageCategory = ["virt","virt/managing_vms"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Update VirtIO drivers {#virt-update-virtio-drivers}\n\nUpdate VirtIO drivers in guest operating systems. Using the latest VirtIO drivers increases performance and stability.\n\n## Enable automatic updates for Red Hat virtio-win drivers {#virt-updating-red-hat-virtio-drivers-windows_virt-update-virtio-drivers}\n\nIf the Windows Update service (WUS) is restricted to allow only drivers explicitly signed and published by Microsoft, you must manually configure automatic Red Hat `virtio-win` driver updates. Otherwise, automatic updates are disabled.\n\n**Prerequisites**\n\n- The cluster must have internet connectivity. Disconnected clusters cannot reach the WUS.\n\n**Procedure**\n\n1. Import the Red Hat Release Certificate into the Trusted Publishers store.\n\n   Example command:\n\n   ```powershell\n   Import-Certificate -FilePath \"redhat-driver-cert.cer\" -CertStoreLocation Cert:\\LocalMachine\\TrustedPublisher\n   ```\n2. In the Group Policy Management Console (GPMC):\n\n   1. Set the `Allow signed updates from an intranet Microsoft update service location` policy to `Enabled`.\n\n      If a driver is signed by a certificate in the Trusted Publishers store, it is now accepted, even if it didn’t come from Microsoft directly.\n   2. Set the `Do not include drivers with Windows Updates` policy to `Disabled`.\n\n## Update VirtIO drivers on a Windows VM {#virt-updating-virtio-drivers-windows_virt-update-virtio-drivers}\n\nYou can update the VirtIO drivers on a Windows virtual machine (VM) by using the Windows Update service (WUS).\n\n> [!IMPORTANT]\n> If you restrict the WUS to only allow drivers explicitly signed and published by Microsoft, automatic Red Hat `virtio-win` driver updates are disabled. For information about enabling automatic Red Hat VirtIO driver updates, see \"Enable automatic updates for Red Hat virtio-win drivers\".\n\n**Prerequisites**\n\n- The cluster must have internet connectivity. Disconnected clusters cannot reach the WUS.\n\n**Procedure**\n\n1. In the Windows Guest operating system, click the **Windows** key and select **Settings**.\n2. Navigate to **Windows Update** -> **Advanced Options** -> **Optional Updates**.\n3. Install all updates from **Red Hat, Inc.**.\n4. Reboot the VM.\n\n**Verification**\n\n1. On the Windows VM, navigate to the **Device Manager**.\n2. Select a device.\n3. Select the **Driver** tab.\n4. Click **Driver Details** and confirm that the `virtio` driver details displays the correct version.\n\n> [!TIP]\n> To view the individual driver versions included in the `virtio-win` container disk, open the `release-drivers-versions.txt` file at the root of the `virtio-win` CD drive.\n\n## Additional resources {#additional-resources_virt-update-virtio-drivers}\n\n- [Allow signed updates from an intranet Microsoft update service location](https://learn.microsoft.com/en-us/windows/deployment/update/waas-wu-settings#allow-signed-updates-from-an-intranet-microsoft-update-service-location)\n- [Do not include drivers with Windows Updates](https://learn.microsoft.com/en-us/windows/deployment/update/waas-wu-settings#do-not-include-drivers-with-windows-updates)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/virt-update-virtio-drivers.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Update VirtIO drivers {#virt-update-virtio-drivers}\n\nUpdate VirtIO drivers in guest operating systems. Using the latest VirtIO drivers increases performance and stability.\n\n## Enable automatic updates for Red Hat virtio-win drivers {#virt-updating-red-hat-virtio-drivers-windows_virt-update-virtio-drivers}\n\nIf the Windows Update service (WUS) is restricted to allow only drivers explicitly signed and published by Microsoft, you must manually configure automatic Red Hat `virtio-win` driver updates. Otherwise, automatic updates are disabled.\n\n**Prerequisites**\n\n- The cluster must have internet connectivity. Disconnected clusters cannot reach the WUS.\n\n**Procedure**\n\n1. Import the Red Hat Release Certificate into the Trusted Publishers store.\n\n   Example command:\n\n   ```powershell\n   Import-Certificate -FilePath \"redhat-driver-cert.cer\" -CertStoreLocation Cert:\\LocalMachine\\TrustedPublisher\n   ```\n2. In the Group Policy Management Console (GPMC):\n\n   1. Set the `Allow signed updates from an intranet Microsoft update service location` policy to `Enabled`.\n\n      If a driver is signed by a certificate in the Trusted Publishers store, it is now accepted, even if it didn’t come from Microsoft directly.\n   2. Set the `Do not include drivers with Windows Updates` policy to `Disabled`.\n\n## Update VirtIO drivers on a Windows VM {#virt-updating-virtio-drivers-windows_virt-update-virtio-drivers}\n\nYou can update the VirtIO drivers on a Windows virtual machine (VM) by using the Windows Update service (WUS).\n\n> [!IMPORTANT]\n> If you restrict the WUS to only allow drivers explicitly signed and published by Microsoft, automatic Red Hat `virtio-win` driver updates are disabled. For information about enabling automatic Red Hat VirtIO driver updates, see \"Enable automatic updates for Red Hat virtio-win drivers\".\n\n**Prerequisites**\n\n- The cluster must have internet connectivity. Disconnected clusters cannot reach the WUS.\n\n**Procedure**\n\n1. In the Windows Guest operating system, click the **Windows** key and select **Settings**.\n2. Navigate to **Windows Update** → **Advanced Options** → **Optional Updates**.\n3. Install all updates from **Red Hat, Inc.**.\n4. Reboot the VM.\n\n**Verification**\n\n1. On the Windows VM, navigate to the **Device Manager**.\n2. Select a device.\n3. Select the **Driver** tab.\n4. Click **Driver Details** and confirm that the `virtio` driver details displays the correct version.\n\n> [!TIP]\n> To view the individual driver versions included in the `virtio-win` container disk, open the `release-drivers-versions.txt` file at the root of the `virtio-win` CD drive.\n\n**Additional resources**\n{._additional-resources}\n\n- [Allow signed updates from an intranet Microsoft update service location](https://learn.microsoft.com/en-us/windows/deployment/update/waas-wu-settings#allow-signed-updates-from-an-intranet-microsoft-update-service-location)\n- [Do not include drivers with Windows Updates](https://learn.microsoft.com/en-us/windows/deployment/update/waas-wu-settings#do-not-include-drivers-with-windows-updates)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/virt-update-virtio-drivers.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-update-virtio-drivers" class="group scroll-mt-20">Update VirtIO drivers<a href="#virt-update-virtio-drivers" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Update VirtIO drivers in guest operating systems. Using the latest VirtIO drivers increases performance and stability.</p>
+      <p class="_abstract">Update VirtIO drivers in guest operating systems. Using the latest VirtIO drivers increases performance and stability.</p>
       <h2 id="virt-updating-red-hat-virtio-drivers-windows_virt-update-virtio-drivers" class="group scroll-mt-20">Enable automatic updates for Red Hat virtio-win drivers<a href="#virt-updating-red-hat-virtio-drivers-windows_virt-update-virtio-drivers" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">If the Windows Update service (WUS) is restricted to allow only drivers explicitly signed and published by Microsoft, you must manually configure automatic Red Hat <code>virtio-win</code> driver updates. Otherwise, automatic updates are disabled.</p>
       <p><strong>Prerequisites</strong></p>
@@ -131,7 +133,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p><strong>Procedure</strong></p>
       <ol>
       <li>In the Windows Guest operating system, click the <strong>Windows</strong> key and select <strong>Settings</strong>.</li>
-      <li>Navigate to <strong>Windows Update</strong> -&gt; <strong>Advanced Options</strong> -&gt; <strong>Optional Updates</strong>.</li>
+      <li>Navigate to <strong>Windows Update</strong> → <strong>Advanced Options</strong> → <strong>Optional Updates</strong>.</li>
       <li>Install all updates from <strong>Red Hat, Inc.</strong>.</li>
       <li>Reboot the VM.</li>
       </ol>
@@ -148,11 +150,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           <p>To view the individual driver versions included in the <code>virtio-win</code> container disk, open the <code>release-drivers-versions.txt</code> file at the root of the <code>virtio-win</code> CD drive.</p>
         </AlertDescription>
       </Alert>
-      <h2 id="additional-resources_virt-update-virtio-drivers" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-update-virtio-drivers" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul>
       <li><a href="https://learn.microsoft.com/en-us/windows/deployment/update/waas-wu-settings#allow-signed-updates-from-an-intranet-microsoft-update-service-location">Allow signed updates from an intranet Microsoft update service location</a></li>
       <li><a href="https://learn.microsoft.com/en-us/windows/deployment/update/waas-wu-settings#do-not-include-drivers-with-windows-updates">Do not include drivers with Windows Updates</a></li>
       </ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

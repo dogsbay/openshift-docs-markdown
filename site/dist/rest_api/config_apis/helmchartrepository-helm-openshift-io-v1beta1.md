@@ -1,5 +1,5 @@
 ---
-title: HelmChartRepository []
+title: HelmChartRepository [helm.openshift.io/v1beta1]
 ---
 
 # HelmChartRepository \[helm.openshift.io/v1beta1\] {#helmchartrepository-helm-openshift-io-v1beta1}
@@ -138,7 +138,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
 | `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
@@ -154,13 +154,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of HelmChartRepository
   - `GET`: list objects of kind HelmChartRepository
   - `POST`: create a HelmChartRepository
-- `/apis/helm.openshift.io/v1beta1/helmchartrepositories/{{ name }}`
+- `/apis/helm.openshift.io/v1beta1/helmchartrepositories/{name}`
 
   - `DELETE`: delete a HelmChartRepository
   - `GET`: read the specified HelmChartRepository
   - `PATCH`: partially update the specified HelmChartRepository
   - `PUT`: replace the specified HelmChartRepository
-- `/apis/helm.openshift.io/v1beta1/helmchartrepositories/{{ name }}/status`
+- `/apis/helm.openshift.io/v1beta1/helmchartrepositories/{name}/status`
 
   - `GET`: read status of the specified HelmChartRepository
   - `PATCH`: partially update status of the specified HelmChartRepository
@@ -234,7 +234,7 @@ Description
 | 202 - Accepted | [`HelmChartRepository`](/openshift-docs-markdown/rest_api/config_apis/helmchartrepository-helm-openshift-io-v1beta1#helmchartrepository-helm-openshift-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/helm.openshift.io/v1beta1/helmchartrepositories/{{ name }} {#_apishelmopenshiftiov1beta1helmchartrepositories_name}
+### /apis/helm.openshift.io/v1beta1/helmchartrepositories/{name} {#_apishelmopenshiftiov1beta1helmchartrepositories_name}
 
 **Global path parameters**
 
@@ -338,7 +338,7 @@ Description
 | 201 - Created | [`HelmChartRepository`](/openshift-docs-markdown/rest_api/config_apis/helmchartrepository-helm-openshift-io-v1beta1#helmchartrepository-helm-openshift-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/helm.openshift.io/v1beta1/helmchartrepositories/{{ name }}/status {#_apishelmopenshiftiov1beta1helmchartrepositories_name_status}
+### /apis/helm.openshift.io/v1beta1/helmchartrepositories/{name}/status {#_apishelmopenshiftiov1beta1helmchartrepositories_name_status}
 
 **Global path parameters**
 

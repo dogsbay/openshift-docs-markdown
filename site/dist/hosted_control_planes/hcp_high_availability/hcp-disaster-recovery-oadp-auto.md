@@ -1,5 +1,5 @@
 ---
-title: Automated disaster recovery for a hosted cluster by using {{ oadp_short }}
+title: Automated disaster recovery for a hosted cluster by using OADP
 ---
 
 # Automated disaster recovery for a hosted cluster by using OADP {#hcp-disaster-recovery-oadp-auto}
@@ -30,6 +30,7 @@ The following prerequisites apply to the management cluster:
 - You are using a supported version of OADP for your management cluster. For example, if your management cluster is on OpenShift Container Platform 4.20, you must use OADP version 1.5. For more information, see "Support for OpenShift API for Data Protection (OADP)".
 
 **Additional resources**
+{._additional-resources}
 
 - [About installing OADP](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp#about-installing-oadp)
 - [Red Hat OpenShift Data Foundation](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/)
@@ -46,6 +47,7 @@ Before you can automate disaster recovery by using OpenShift API for Data Protec
 - If your hosted cluster is on a bare metal, follow the steps in "Configuring the OpenShift API for Data Protection with Multicloud Object Gateway" to configure OADP.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring the OpenShift API for Data Protection with AWS S3 compatible storage](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-mcg#installing-oadp-mcg)
 - [Configuring the OpenShift API for Data Protection with Multicloud Object Gateway](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-aws#installing-oadp-aws)
@@ -212,6 +214,7 @@ However, if the data plane workload is not important, you can skip this procedur
 - To back up the data plane workload, follow the steps in "Backing up applications".
 
 **Additional resources**
+{._additional-resources}
 
 - [Backing up applications](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications)
 

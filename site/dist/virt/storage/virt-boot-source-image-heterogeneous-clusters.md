@@ -63,7 +63,7 @@ You can enable boot source image support for heterogeneous clusters by setting t
 - Enable the `enableMultiArchBootImageImport` feature gate by running the following command:
 
   ```terminal
-  $ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} \
+  $ oc patch hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv \
     --type json -p '[{"op":"replace","path":"/spec/featureGates/enableMultiArchBootImageImport", "value": true}]'
   ```
 
@@ -72,7 +72,7 @@ You can enable boot source image support for heterogeneous clusters by setting t
 - Verify that the feature gate is enabled by running the following command:
 
   ```terminal
-  $ oc get {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} \
+  $ oc get hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv \
     -o jsonpath='{.spec.featureGates[*].name}'
   ```
 
@@ -93,7 +93,7 @@ You can modify the source of a common boot source image in a heterogeneous clust
 1. Open the `HyperConverged` CR in your default editor by running the following command:
 
    ```terminal
-   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+   $ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv
    ```
 2. Edit the `HyperConverged` CR to add the appropriate values for the `ssp.kubevirt.io/dict.architectures` annotation in the `dataImportCronTemplates` section. For example:
 
@@ -147,7 +147,7 @@ Add a custom boot source image in a heterogeneous cluster by editing the `HyperC
 1. Open the `HyperConverged` CR in your default editor by running the following command:
 
    ```terminal
-   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+   $ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv
    ```
 2. Edit the `HyperConverged` CR to add the custom boot source image. You must add the appropriate values for the `ssp.kubevirt.io/dict.architectures` annotation in the `dataImportCronTemplates` section. For example:
 
@@ -305,7 +305,7 @@ If you have a heterogeneous cluster but do not want to enable multiple architect
 1. Open the `HyperConverged` CR in your default editor by running the following command:
 
    ```terminal
-   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+   $ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv
    ```
 2. Edit the `HyperConverged` CR, to modify the workloads node placement to include only nodes with a specific architecture. For example:
 
@@ -340,7 +340,7 @@ If you have a heterogeneous cluster but do not want to enable multiple architect
 - Verify that the node affinity is applied by running the following command:
 
   ```terminal
-  $ oc get {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} \
+  $ oc get hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv \
     -o jsonpath='{.spec.deployment.nodePlacements.workload}'
   ```
 

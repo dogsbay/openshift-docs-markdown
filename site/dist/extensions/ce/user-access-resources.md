@@ -12,8 +12,9 @@ OLM v1 does not automatically configure or manage role-based access control (RBA
 > The RBAC permissions described for user access to extension resources are different from the permissions that must be added to a service account to enable OLM v1-based initial installation of a cluster extension itself. For more on RBAC requirements while installing an extension, see "Cluster extension permissions" in "Managing extensions".
 
 **Additional resources**
+{._additional-resources}
 
-- ["Managing extensions" -> "Cluster extension permissions"](/openshift-docs-markdown/extensions/ce/managing-ce#olmv1-cluster-extension-permissions_managing-ce)
+- ["Managing extensions" → "Cluster extension permissions"](/openshift-docs-markdown/extensions/ce/managing-ce#olmv1-cluster-extension-permissions_managing-ce)
 
 ## Common default cluster roles for users {#olmv1-default-cluster-roles-users_user-access-resources}
 
@@ -31,6 +32,7 @@ Cluster extensions commonly include the following default cluster role policies:
 :   Grants full administrative permissions, including create, update, and delete actions, over all CR objects for specified API resources across the cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [User-facing roles (Kubernetes documentation)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles)
 
@@ -248,5 +250,6 @@ As a cluster administrator, you can configure role-based access control (RBAC) p
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Aggregated ClusterRoles (Kubernetes documentation)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#aggregated-clusterroles)

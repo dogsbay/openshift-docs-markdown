@@ -290,6 +290,7 @@ To add new registries or update authentication for your OpenShift Container Plat
    This triggers the automatic cleanup process across your nodes.
 
 **Additional resources**
+{._additional-resources}
 
 - [Quay.io container registry](https://quay.io/)
 - [Red Hat container registry](https://registry.redhat.io)

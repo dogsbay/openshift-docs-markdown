@@ -1,5 +1,5 @@
 ---
-title: Deploying {{ hcp }} on {{ VirtProductName }} in a disconnected environment
+title: Deploying hosted control planes on OpenShift Virtualization in a disconnected environment
 ---
 
 # Deploying hosted control planes on OpenShift Virtualization in a disconnected environment {#hcp-deploy-dc-virt}
@@ -15,6 +15,7 @@ To get started, you must meet the following requirements:
 > A known limitation exists for hosted clusters on an OpenShift Container Platform management cluster that is version 4.21 or later. To avoid issues, you must mirror the 4.20.10 release payload from the `quay.io/openshift-release-dev/ocp-release:4.20.10-multi` image to the target mirror registry. This temporary limitation is expected to be resolved in a later release.
 
 **Additional resources**
+{._additional-resources}
 
 - [About disconnected installation mirroring](/openshift-docs-markdown/disconnected/index#installing-mirroring-disconnected-about)
 
@@ -34,7 +35,7 @@ In the following procedure, the `oc-mirror` tool is used, which is a binary that
 
 **Procedure**
 
-1. Ensure that your `${{ HOME }}/.docker/config.json` file is updated with the registries that you are going to mirror from and with the private registry that you plan to push the images to.
+1. Ensure that your `${HOME}/.docker/config.json` file is updated with the registries that you are going to mirror from and with the private registry that you plan to push the images to.
 2. By using the following example, create an `ImageSetConfiguration` object to use for mirroring. Replace values as needed to match your environment:
 
    ```yaml
@@ -43,14 +44,14 @@ In the following procedure, the `oc-mirror` tool is used, which is a binary that
    mirror:
      platform:
        channels:
-       - name: candidate-{{ product_version }}
+       - name: candidate-4.22
          minVersion: <4.x.y-build>
          maxVersion: <4.x.y-build>
          type: ocp
        kubeVirtContainer: true
        graph: true
      operators:
-     - catalog: registry.redhat.io/redhat/redhat-operator-index:v{{ product_version }}
+     - catalog: registry.redhat.io/redhat/redhat-operator-index:v4.22
        packages:
        - name: lvms-operator
        - name: local-storage-operator
@@ -115,6 +116,7 @@ In the following procedure, the `oc-mirror` tool is used, which is a binary that
 7. Mirror the latest multicluster engine Operator images by following the steps in "Install on disconnected networks".
 
 **Additional resources**
+{._additional-resources}
 
 - [Mirroring an image set in a partially disconnected environment](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#oc-mirror-workflows-partially-disconnected-v2_about-installing-oc-mirror-v2)
 - [Mirroring an image set in a fully disconnected environment](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#oc-mirror-workflows-fully-disconnected-v2_about-installing-oc-mirror-v2)
@@ -173,6 +175,7 @@ The catalog sources initiate actions in the `openshift-marketplace` Operator, su
 Deploy the multicluster engine Operator by completing the steps in "Deploying multicluster engine Operator for a disconnected installation of hosted control planes".
 
 **Additional resources**
+{._additional-resources}
 
 - [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)
 
@@ -186,6 +189,7 @@ If you do not have multicluster engine Operator installed, review the following 
 - "Installing and upgrading multicluster engine operator"
 
 **Additional resources**
+{._additional-resources}
 
 - [About cluster lifecycle with multicluster engine operator](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#mce-intro)
 - [Installing and upgrading multicluster engine operator](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#mce-install-intro)
@@ -400,6 +404,7 @@ To create a hosted cluster on OpenShift Virtualization, you can use the hosted c
   Replace `<4.x.0>` with the supported OpenShift Container Platform version that you want to use.
 
 **Additional resources**
+{._additional-resources}
 
 - [Labeling management cluster nodes](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-labels-taints_hcp-distribute-workloads)
 

@@ -21,7 +21,8 @@ const headings = [{"depth":1,"slug":"configuring-registry-storage-azure-user-inf
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-azure-user-infrastructure";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="configuring-registry-storage-azure-user-infrastructure" class="group scroll-mt-20">Configuring the registry for Azure user-provisioned infrastructure<a href="#configuring-registry-storage-azure-user-infrastructure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Save your container images to a durable storage location by configuring the built-in image registry to use dedicated Azure storage. This setup provides persistent scalable storage for your registry, separate from ephemeral cluster storage.</p>
+      <p class="_abstract">Save your container images to a durable storage location by configuring the built-in image registry to use dedicated Azure storage. This setup provides persistent scalable storage for your registry, separate from ephemeral cluster storage.</p>
       <h2 id="registry-operator-config-resources-secret-azure_configuring-registry-storage-azure-user-infrastructure" class="group scroll-mt-20">Configuring a secret for the Image Registry Operator<a href="#registry-operator-config-resources-secret-azure_configuring-registry-storage-azure-user-infrastructure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">In addition to the <code>configs.imageregistry.operator.openshift.io</code> and ConfigMap resources, configuration is provided to the Operator by a separate secret resource located within the <code>openshift-image-registry</code> namespace.</p>
       <p>The <code>image-registry-private-configuration-user</code> secret provides credentials needed for storage access and management. It overrides the default credentials used by the Operator, if default credentials were found.</p>

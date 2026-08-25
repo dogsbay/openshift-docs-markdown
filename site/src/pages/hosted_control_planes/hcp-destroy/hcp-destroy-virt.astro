@@ -21,12 +21,13 @@ const headings = [{"depth":1,"slug":"hcp-destroy-virt","text":"Destroying a host
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp-destroy/hcp-destroy-virt";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
-const title = "Destroying a hosted cluster on {{ VirtProductName }}";
+const title = "Destroying a hosted cluster on OpenShift Virtualization";
 const description = "You might want to remove a hosted cluster if you are no longer using it, you are trying to reduce resources, or the hosted cluster is experiencing issues…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="hcp-destroy-virt" class="group scroll-mt-20">Destroying a hosted cluster on OpenShift Virtualization<a href="#hcp-destroy-virt" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You might want to remove a hosted cluster if you are no longer using it, you are trying to reduce resources, or the hosted cluster is experiencing issues that are difficult to resolve.</p>
+      <p class="_abstract">You might want to remove a hosted cluster if you are no longer using it, you are trying to reduce resources, or the hosted cluster is experiencing issues that are difficult to resolve.</p>
       <h2 id="destroy-hc-virt-cli_hcp-destroy-virt" class="group scroll-mt-20">Destroying a hosted cluster on OpenShift Virtualization by using the CLI<a href="#destroy-hc-virt-cli_hcp-destroy-virt" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">You can use the command-line interface (CLI) to destroy a hosted cluster and its managed cluster resource on OpenShift Virtualization.</p>
       <p><strong>Procedure</strong></p>

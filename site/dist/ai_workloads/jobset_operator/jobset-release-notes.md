@@ -1,5 +1,5 @@
 ---
-title: "{{ js_operator }} release notes"
+title: JobSet Operator release notes
 ---
 
 # JobSet Operator release notes {#js-release-notes}

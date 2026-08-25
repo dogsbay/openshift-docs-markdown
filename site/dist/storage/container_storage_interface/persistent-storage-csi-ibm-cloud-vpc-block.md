@@ -1,8 +1,8 @@
 ---
-title: "{{ ibm_cloud_name }} VPC Block CSI Driver Operator"
+title: IBM Cloud(R) VPC Block CSI Driver Operator
 ---
 
-# {{ ibm_cloud_name }} VPC Block CSI Driver Operator {#persistent-storage-csi-ibm-cloud-vpc-block_{{ context }}}
+# IBM Cloud(R) VPC Block CSI Driver Operator {#persistent-storage-csi-ibm-cloud-vpc-block_{context}}
 
 You can provision and manage IBM Cloud(R) Virtual Private Cloud (VPC) Block Storage in OpenShift Container Platform using the IBM Cloud(R) VPC Block Container Storage Interface (CSI) Driver Operator and driver, which provide dynamic volume provisioning.
 
@@ -21,6 +21,7 @@ IBM Cloud(R) VPC Block CSI driver
 :   The IBM Cloud(R) VPC Block CSI driver enables you to create and mount IBM Cloud(R) VPC Block PVs.
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage)
 - [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
@@ -60,6 +61,7 @@ This features supports the following storage types:
   For information about installing with IBM Cloud with user-managed encryption, see "User-managed encryption for IBM Cloud" and "Installing on IBM Cloud".
 
 **Additional resources**
+{._additional-resources}
 
 - [User-managed encryption for IBM Cloud](/openshift-docs-markdown/installing/installing_ibm_cloud/user-managed-encryption-ibm-cloud#user-managed-encryption-ibm-cloud)
 - [Preparing to install on IBM Cloud](/openshift-docs-markdown/installing/installing_ibm_cloud/preparing-to-install-on-ibm-cloud#prerequisites_preparing-to-install-on-ibm-cloud)

@@ -138,7 +138,8 @@ To enable external access to your application that runs on OpenShift Container P
   httpd   NodePort   172.xx.xx.xx    <none>        8443:30327/TCP   109s
   ```
 
-## Additional resources {#configuring-ingress-cluster-traffic-nodeport-additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring the node port service range](/openshift-docs-markdown/networking/configuring_network_settings/configuring-node-port-service-range#configuring-node-port-service-range)
 - [Adding a single NodePort service to an Ingress Controller](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/nw-configuring-ingress-controller-endpoint-publishing-strategy#nw-ingress-controller-nodeportservice-projects_nw-configuring-ingress-controller-endpoint-publishing-strategy)

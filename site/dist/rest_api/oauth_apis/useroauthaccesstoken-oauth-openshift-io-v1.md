@@ -1,5 +1,5 @@
 ---
-title: UserOAuthAccessToken []
+title: UserOAuthAccessToken [oauth.openshift.io/v1]
 ---
 
 # UserOAuthAccessToken \[oauth.openshift.io/v1\] {#useroauthaccesstoken-oauth-openshift-io-v1}
@@ -39,11 +39,11 @@ The following API endpoints are available:
 - `/apis/oauth.openshift.io/v1/watch/useroauthaccesstokens`
 
   - `GET`: watch individual changes to a list of UserOAuthAccessToken. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/oauth.openshift.io/v1/useroauthaccesstokens/{{ name }}`
+- `/apis/oauth.openshift.io/v1/useroauthaccesstokens/{name}`
 
   - `DELETE`: delete an UserOAuthAccessToken
   - `GET`: read the specified UserOAuthAccessToken
-- `/apis/oauth.openshift.io/v1/watch/useroauthaccesstokens/{{ name }}`
+- `/apis/oauth.openshift.io/v1/watch/useroauthaccesstokens/{name}`
 
   - `GET`: watch changes to an object of kind UserOAuthAccessToken. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
 
@@ -85,7 +85,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/oauth.openshift.io/v1/useroauthaccesstokens/{{ name }} {#_apisoauthopenshiftiov1useroauthaccesstokens_name}
+### /apis/oauth.openshift.io/v1/useroauthaccesstokens/{name} {#_apisoauthopenshiftiov1useroauthaccesstokens_name}
 
 **Global path parameters**
 
@@ -134,7 +134,7 @@ Description
 | 200 - OK | [`UserOAuthAccessToken`](/openshift-docs-markdown/rest_api/oauth_apis/useroauthaccesstoken-oauth-openshift-io-v1#useroauthaccesstoken-oauth-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/oauth.openshift.io/v1/watch/useroauthaccesstokens/{{ name }} {#_apisoauthopenshiftiov1watchuseroauthaccesstokens_name}
+### /apis/oauth.openshift.io/v1/watch/useroauthaccesstokens/{name} {#_apisoauthopenshiftiov1watchuseroauthaccesstokens_name}
 
 **Global path parameters**
 

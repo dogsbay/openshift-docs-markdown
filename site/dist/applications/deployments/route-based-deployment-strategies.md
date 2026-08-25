@@ -178,8 +178,8 @@ To split production traffic between application versions for A/B testing in Open
 
 **Procedure**
 
-1. Navigate to the **Networking** -> **Routes** page.
-2. Click the Options menu ![](kebab.png "Options menu") next to the route you want to edit and select **Edit Route**.
+1. Navigate to the **Networking** → **Routes** page.
+2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the route you want to edit and select **Edit Route**.
 3. Edit the YAML file. Update the `weight` to be an integer between `0` and `256` that specifies the relative weight of the target against other target reference objects. The value `0` suppresses requests to this back end. The default is `100`. Run `oc explain routes.spec.alternateBackends` for more information about the options.
 4. Click **Save**.
 
@@ -189,7 +189,7 @@ To set traffic weights when you create a new route for A/B testing in OpenShift 
 
 **Procedure**
 
-1. Navigate to the **Networking** -> **Routes** page.
+1. Navigate to the **Networking** → **Routes** page.
 2. Click **Create Route**.
 3. Enter the route **Name**.
 4. Select the **Service**.
@@ -341,6 +341,7 @@ Expose one service for those pods so you can scale or update each shard independ
    $ oc edit dc/ab-example-b
    ```
 
-## Additional resources {#additional-resources_route-based-deployment-strategies}
+**Additional resources**
+{._additional-resources}
 
 - [Route-specific annotations](/openshift-docs-markdown/networking/ingress_load_balancing/routes/nw-configuring-routes#nw-route-specific-annotations)

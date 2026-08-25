@@ -33,6 +33,9 @@ Velero, which OADP is built upon, does not natively support migrating persistent
 - Velero does not support restoring data to a cluster with an *earlier* Kubernetes version than the source cluster.
 - It is theoretically possible to migrate workloads to a destination with a *later* Kubernetes version than the source, but you must consider the compatibility of API groups between clusters for each custom resource. If a Kubernetes version upgrade breaks the compatibility of core or native API groups, you must first update the impacted custom resources.
 
+**Additional resources**
+{._additional-resources}
+
 - [File System Backup](https://velero.io/docs/main/file-system-backup/)
 
 ## About determining which pod volumes to back up {#oadp-pod-volume-backup_oadp-backing-up-data-one-cluster-restoring-another-cluster}
@@ -134,6 +137,9 @@ Mitigations
   - Fix UID ranges after migration by *Resolving overlapping UID ranges in OpenShift namespaces after migration*. Step 1 is optional.
 
 For an in-depth discussion of UID and GID ranges in OpenShift Container Platform with an emphasis on overcoming issues in backing up data on one cluster and restoring it on another, see *A Guide to OpenShift and UIDs*.
+
+**Additional resources**
+{._additional-resources}
 
 - [A Guide to OpenShift and UIDs](https://cloud.redhat.com/blog/a-guide-to-openshift-and-uids)
 - [Resolving overlapping UID ranges in OpenShift namespaces after migration](https://access.redhat.com/articles/6844071)

@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"nw-ovn-kubernetes-disabling-multicast","tex
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/disabling-multicast";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -43,7 +44,7 @@ const pageCategory = ["networking","networking/ovn_kubernetes_network_provider"]
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Disabling multicast for a project {#nw-ovn-kubernetes-disabling-multicast}\n\nIn OpenShift Container Platform with OVN-Kubernetes, you can disable IP multicast on a per-project basis so pods no longer receive multicast traffic.\n\n## Disabling multicast between pods {#nw-disabling-multicast_ovn-kubernetes-disabling-multicast}\n\nTo disable multicast between pods in a project, you can remove the `k8s.ovn.org/multicast-enabled` annotation from the namespace by using the `oc annotate` command or a namespace manifest.\n\n**Prerequisites**\n\n- Install the OpenShift CLI (`oc`).\n- You must log in to the cluster with a user that has the `cluster-admin` role.\n\n**Procedure**\n\n- Disable multicast by running the following command:\n\n  ```terminal\n  $ oc annotate {{ namespace }} <namespace> \\\n      {{ annotation }}\n  ```\n\n  For `<namespace>`, specify the namespace for the project you want to disable multicast for.\n\n  > [!TIP]\n  > You can alternatively apply the following YAML to delete the annotation:\n  >\n  > ```yaml\n  > apiVersion: v1\n  > kind: Namespace\n  > metadata:\n  >   name: <namespace>\n  >   annotations:\n  >     k8s.ovn.org/multicast-enabled: null\n  > ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/disabling-multicast.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Disabling multicast for a project {#nw-ovn-kubernetes-disabling-multicast}\n\nIn OpenShift Container Platform with OVN-Kubernetes, you can disable IP multicast on a per-project basis so pods no longer receive multicast traffic.\n\n## Disabling multicast between pods {#nw-disabling-multicast_ovn-kubernetes-disabling-multicast}\n\nTo disable multicast between pods in a project, you can remove the `k8s.ovn.org/multicast-enabled` annotation from the namespace by using the `oc annotate` command or a namespace manifest.\n\n**Prerequisites**\n\n- Install the OpenShift CLI (`oc`).\n- You must log in to the cluster with a user that has the `cluster-admin` role.\n\n**Procedure**\n\n- Disable multicast by running the following command:\n\n  ```terminal\n  $ oc annotate namespace <namespace> \\\n      k8s.ovn.org/multicast-enabled-\n  ```\n\n  For `<namespace>`, specify the namespace for the project you want to disable multicast for.\n\n  > [!TIP]\n  > You can alternatively apply the following YAML to delete the annotation:\n  >\n  > ```yaml\n  > apiVersion: v1\n  > kind: Namespace\n  > metadata:\n  >   name: <namespace>\n  >   annotations:\n  >     k8s.ovn.org/multicast-enabled: null\n  > ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/disabling-multicast.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="nw-ovn-kubernetes-disabling-multicast" class="group scroll-mt-20">Disabling multicast for a project<a href="#nw-ovn-kubernetes-disabling-multicast" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>In OpenShift Container Platform with OVN-Kubernetes, you can disable IP multicast on a per-project basis so pods no longer receive multicast traffic.</p>
+      <p class="_abstract">In OpenShift Container Platform with OVN-Kubernetes, you can disable IP multicast on a per-project basis so pods no longer receive multicast traffic.</p>
       <h2 id="nw-disabling-multicast_ovn-kubernetes-disabling-multicast" class="group scroll-mt-20">Disabling multicast between pods<a href="#nw-disabling-multicast_ovn-kubernetes-disabling-multicast" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">To disable multicast between pods in a project, you can remove the <code>k8s.ovn.org/multicast-enabled</code> annotation from the namespace by using the <code>oc annotate</code> command or a namespace manifest.</p>
       <p><strong>Prerequisites</strong></p>
@@ -107,7 +109,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <ul>
       <li>
       Disable multicast by running the following command:
-      <CodeBlock code={"$ oc annotate {{ namespace }} <namespace> \\\n    {{ annotation }}"} lang="terminal" />
+      <CodeBlock code={"$ oc annotate namespace <namespace> \\\n    k8s.ovn.org/multicast-enabled-"} lang="terminal" />
       <p>For <code>&lt;namespace&gt;</code>, specify the namespace for the project you want to disable multicast for.</p>
       <Alert variant="tip" class="my-4">
         <AlertTitle>Tip</AlertTitle>

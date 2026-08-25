@@ -1,8 +1,8 @@
 ---
-title: About the {{ mce }}
+title: About the multicluster engine for Kubernetes Operator
 ---
 
-# About the {{ mce }} {#mce-overview-ocp}
+# About the multicluster engine for Kubernetes Operator {#mce-overview-ocp}
 
 Manage the lifecycle of a growing Kubernetes fleet with the multicluster engine Operator. Scale operations efficiently with full lifecycle capabilities for managed OpenShift Container Platform clusters and support for other Kubernetes distributions.
 
@@ -25,7 +25,8 @@ If you need cluster management capabilities beyond what OpenShift Container Plat
 
 For the complete documentation for multicluster engine, see "Cluster lifecycle with multicluster engine Operator", which is part of the product documentation for Red Hat Advanced Cluster Management.
 
-## Additional resources {#additional-resources_mce-overview-ocp}
+**Additional resources**
+{._additional-resources}
 
 - [Red Hat Advanced Cluster Management for Kubernetes](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes)
 - [Hosted control planes overview](/openshift-docs-markdown/hosted_control_planes/index#hcp-overview)

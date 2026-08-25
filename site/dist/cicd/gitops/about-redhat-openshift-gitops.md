@@ -1,5 +1,5 @@
 ---
-title: About {{ gitops_title }}
+title: About Red&#160;Hat OpenShift GitOps
 ---
 
 # About Red Hat OpenShift GitOps {#about-redhat-openshift-gitops}

@@ -18,6 +18,7 @@ FlexVolume is an out-of-tree plugin that uses an executable model to interface w
 Pods interact with FlexVolume drivers through the `flexvolume` in-tree plugin.
 
 **Additional resources**
+{._additional-resources}
 
 - [Expanding persistent volumes](/openshift-docs-markdown/storage/expanding-persistent-volumes#expanding-persistent-volumes)
 

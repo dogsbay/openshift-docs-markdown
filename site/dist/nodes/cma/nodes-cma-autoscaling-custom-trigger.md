@@ -245,6 +245,7 @@ You can now deploy a scaled object or scaled job to enable autoscaling for your 
 - `triggers.authenticationRef` must point to the trigger authentication resource specified in the previous step
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding custom metrics autoscaler trigger authentications](/openshift-docs-markdown/nodes/cma/nodes-cma-autoscaling-custom-trigger-auth#nodes-cma-autoscaling-custom-trigger-auth)
 

@@ -1,8 +1,8 @@
 ---
-title: Integrating SPIRE federation with multi-cluster {{ SMProductName }}
+title: Integrating SPIRE federation with multi-cluster Red&#160;Hat OpenShift Service Mesh
 ---
 
-# Integrating SPIRE federation with multi-cluster {{ SMProductName }} {#zero-trust-manager-mesh-integration-multi-cluster}
+# Integrating SPIRE federation with multi-cluster Red Hat OpenShift Service Mesh {#zero-trust-manager-mesh-integration-multi-cluster}
 
 Configure SPIFFE Runtime Environment (SPIRE) federation across multiple OpenShift Container Platform clusters to enable cross-cluster mutual TLS (mTLS) authentication and zero trust workload identity in a multi-cluster service mesh deployment.
 
@@ -434,7 +434,7 @@ Deploy SPIFFE Runtime Environment (SPIRE) operand custom resources (CRs) with fe
    },
    ```
 
-## Additional resources {#_additional_resources}
+## Additional resources {#_additional_resources ._additional-resources-deploy-spire}
 
 - [Installing the Zero Trust Workload Identity Manager](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html-single/security_and_compliance/index#zero-trust-manager-install)
 - [Zero Trust Workload Identity Manager SPIRE federation](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/security_and_compliance/zero-trust-workload-identity-manager#zero-trust-manager-spire-federation_zero-trust-manager-oidc-federation)
@@ -511,7 +511,7 @@ Configure Red Hat OpenShift Service Mesh on each cluster with federation settin
      spire-server bundle list -socketPath /tmp/spire-server/private/api.sock -format spiffe 2>&1 | head -5
    ```
 
-   The output must show public keys for `${{ CLUSTER_B_TRUST_DOMAIN }}`.
+   The output must show public keys for `${CLUSTER_B_TRUST_DOMAIN}`.
 
    ```text {title="Example output"}
    {
@@ -526,7 +526,7 @@ Configure Red Hat OpenShift Service Mesh on each cluster with federation settin
      spire-server bundle list -socketPath /tmp/spire-server/private/api.sock -format spiffe 2>&1 | head -5
    ```
 
-   The output must show public keys for `${{ CLUSTER_A_TRUST_DOMAIN }}`.
+   The output must show public keys for `${CLUSTER_A_TRUST_DOMAIN}`.
 
    ```text {title="Example output"}
    {
@@ -1769,7 +1769,7 @@ Create remote secrets on both clusters so `Istiod` can discover services in the 
    $ istioctl remote-clusters --kubeconfig="${CLUSTER_A_KUBECONFIG}"
    ```
 
-   The output must show `${{ CLUSTER_B }}` with status `synced`.
+   The output must show `${CLUSTER_B}` with status `synced`.
 
    ```text {title="Example output"}
    NAME         STATUS   SECRET
@@ -1781,7 +1781,7 @@ Create remote secrets on both clusters so `Istiod` can discover services in the 
    $ istioctl remote-clusters --kubeconfig="${CLUSTER_B_KUBECONFIG}"
    ```
 
-   The output must show `${{ CLUSTER_A }}` with status `synced`.
+   The output must show `${CLUSTER_A}` with status `synced`.
 
    ```text {title="Example output"}
    NAME         STATUS   SECRET
@@ -2023,6 +2023,7 @@ Verify cross-cluster service communication between Red Hat OpenShift Service Me
     Hello version: v1, instance: helloworld-v1-5859666d7-pcb8v
     ```
 
-## Additional resources {#additional-resources-spire-multicluster_zero-trust-manager-mesh-integration-multi-cluster}
+**Additional resources**
+{._additional-resources}
 
 - [Multi-cluster configuration overview](https://docs.redhat.com/en/documentation/red_hat_openshift_service_mesh/latest/html-single/installing/index#ossm-multi-cluster-configuration-overview_ossm-multi-cluster-topologies)

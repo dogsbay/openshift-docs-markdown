@@ -8,7 +8,7 @@ The OpenShift Container Platform web console captures high-level information abo
 
 ## About the OpenShift Container Platform dashboards page {#virt-about-the-overview-dashboard_using-dashboard-to-get-cluster-info}
 
-Access the OpenShift Container Platform dashboard, which captures high-level information about the cluster, by navigating to **Home** -> **Overview** from the OpenShift Container Platform web console.
+Access the OpenShift Container Platform dashboard, which captures high-level information about the cluster, by navigating to **Home** → **Overview** from the OpenShift Container Platform web console.
 
 The OpenShift Container Platform dashboard provides various cluster information, captured in individual dashboard cards.
 

@@ -12,10 +12,7 @@ You can change the default timeout period for the web terminal for your current 
 
 **Prerequisites**
 
-- You have access to an OpenShift Container Platform
-
-cluster that has the Web Terminal Operator installed.
-
+- You have access to an OpenShift Container Platform cluster that has the Web Terminal Operator installed.
 - You are logged into the web console.
 
 **Procedure**
@@ -43,7 +40,7 @@ You can use the **Administrator** perspective of the web console to set the defa
 
 **Procedure**
 
-1. In the **Administrator** perspective, navigate to **Administration** -> **Cluster Settings**.
+1. In the **Administrator** perspective, navigate to **Administration** → **Cluster Settings**.
 2. On the **Cluster Settings** page, click the **Configuration** tab.
 3. On the **Configuration** page, click the **Console** configuration resource with the description **operator.openshift.io**. ![Image of the Configuration page showing the correct Console configuration resource to select](/openshift-docs-markdown/_assets/images/cluster-settings-console.png)
 4. From the **Action** drop-down list, select **Customize**, which opens the **Cluster configuration** page.
@@ -57,10 +54,7 @@ You can change the default image for the web terminal for your current session.
 
 **Prerequisites**
 
-- You have access to an OpenShift Container Platform
-
-cluster that has the Web Terminal Operator installed.
-
+- You have access to an OpenShift Container Platform cluster that has the Web Terminal Operator installed.
 - You are logged into the web console.
 
 **Procedure**
@@ -81,7 +75,7 @@ You can use the **Administrator** perspective of the web console to set the defa
 
 **Procedure**
 
-1. In the **Administrator** perspective, navigate to **Administration** -> **Cluster Settings**.
+1. In the **Administrator** perspective, navigate to **Administration** → **Cluster Settings**.
 2. On the **Cluster Settings** page, click the **Configuration** tab.
 3. On the **Configuration** page, click the **Console** configuration resource with the description **operator.openshift.io**. ![Image of the Configuration page showing the correct Console configuration resource to select](/openshift-docs-markdown/_assets/images/cluster-settings-console.png)
 4. From the **Action** drop-down list, select **Customize**, which opens the **Cluster configuration** page.

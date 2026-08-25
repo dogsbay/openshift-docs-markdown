@@ -1,5 +1,5 @@
 ---
-title: MachineConfigPool []
+title: MachineConfigPool [machineconfiguration.openshift.io/v1]
 ---
 
 # MachineConfigPool \[machineconfiguration.openshift.io/v1\] {#machineconfigpool-machineconfiguration-openshift-io-v1}
@@ -41,10 +41,10 @@ Type
 | --- | --- | --- |
 | `configuration` | `object` | The targeted MachineConfig object for the machine config pool. |
 | `machineConfigSelector` | `object` | machineConfigSelector specifies a label selector for MachineConfigs. Refer https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/ on how label and selectors work. |
-| `maxUnavailable` | `integer-or-string` | maxUnavailable defines either an integer number or percentage of nodes in the pool that can go Unavailable during an update. This includes nodes Unavailable for any reason, including user initiated cordons, failing nodes, etc. The default value is 1. A value larger than 1 will mean multiple nodes going unavailable during the update, which may affect your workload stress on the remaining nodes. You cannot set this value to 0 to stop updates (it will default back to 1); to stop updates, use the 'paused' property instead. Drain will respect Pod Disruption Budgets (PDBs) such as etcd quorum guards, even if maxUnavailable is greater than one. |
+| `maxUnavailable` | `integer-or-string` | maxUnavailable defines either an integer number or percentage of nodes in the pool that can go Unavailable during an update. This includes nodes Unavailable for any reason, including user initiated cordons, failing nodes, etc. The default value is 1.<br>A value larger than 1 will mean multiple nodes going unavailable during the update, which may affect your workload stress on the remaining nodes. You cannot set this value to 0 to stop updates (it will default back to 1); to stop updates, use the 'paused' property instead. Drain will respect Pod Disruption Budgets (PDBs) such as etcd quorum guards, even if maxUnavailable is greater than one. |
 | `nodeSelector` | `object` | nodeSelector specifies a label selector for Machines |
 | `paused` | `boolean` | paused specifies whether or not changes to this machine config pool should be stopped. This includes generating new desiredMachineConfig and update of machines. |
-| `pinnedImageSets` | `array` | pinnedImageSets specifies a sequence of PinnedImageSetRef objects for the pool. Nodes within this pool will preload and pin images defined in the PinnedImageSet. Before pulling images the MachineConfigDaemon will ensure the total uncompressed size of all the images does not exceed available resources. If the total size of the images exceeds the available resources the controller will report a Degraded status to the MachineConfigPool and not attempt to pull any images. Also to help ensure the kubelet can mitigate storage risk, the pinned_image configuration and subsequent service reload will happen only after all of the images have been pulled for each set. Images from multiple PinnedImageSets are loaded and pinned sequentially as listed. Duplicate and existing images will be skipped. Any failure to prefetch or pin images will result in a Degraded pool. Resolving these failures is the responsibility of the user. The admin should be proactive in ensuring adequate storage and proper image authentication exists in advance. |
+| `pinnedImageSets` | `array` | pinnedImageSets specifies a sequence of PinnedImageSetRef objects for the pool. Nodes within this pool will preload and pin images defined in the PinnedImageSet. Before pulling images the MachineConfigDaemon will ensure the total uncompressed size of all the images does not exceed available resources. If the total size of the images exceeds the available resources the controller will report a Degraded status to the MachineConfigPool and not attempt to pull any images. Also to help ensure the kubelet can mitigate storage risk, the pinned_image configuration and subsequent service reload will happen only after all of the images have been pulled for each set. Images from multiple PinnedImageSets are loaded and pinned sequentially as listed. Duplicate and existing images will be skipped.<br>Any failure to prefetch or pin images will result in a Degraded pool. Resolving these failures is the responsibility of the user. The admin should be proactive in ensuring adequate storage and proper image authentication exists in advance. |
 | `pinnedImageSets[]` | `object` |  |
 
 ### .spec.configuration {#_specconfiguration}
@@ -60,7 +60,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{{ name }}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -92,7 +92,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{{ name }}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -217,7 +217,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `name` | `string` | name is a reference to the name of a PinnedImageSet.  Must adhere to RFC-1123 (https://tools.ietf.org/html/rfc1123). Made up of one of more period-separated (.) segments, where each segment consists of alphanumeric characters and hyphens (-), must begin and end with an alphanumeric character, and is at most 63 characters in length. The total length of the name must not exceed 253 characters. |
+| `name` | `string` | name is a reference to the name of a PinnedImageSet. Must adhere to RFC-1123 (https://tools.ietf.org/html/rfc1123). Made up of one of more period-separated (.) segments, where each segment consists of alphanumeric characters and hyphens (-), must begin and end with an alphanumeric character, and is at most 63 characters in length. The total length of the name must not exceed 253 characters. |
 
 ### .status {#_status}
 
@@ -316,7 +316,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{{ name }}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -348,7 +348,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{{ name }}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -401,13 +401,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of MachineConfigPool
   - `GET`: list objects of kind MachineConfigPool
   - `POST`: create a MachineConfigPool
-- `/apis/machineconfiguration.openshift.io/v1/machineconfigpools/{{ name }}`
+- `/apis/machineconfiguration.openshift.io/v1/machineconfigpools/{name}`
 
   - `DELETE`: delete a MachineConfigPool
   - `GET`: read the specified MachineConfigPool
   - `PATCH`: partially update the specified MachineConfigPool
   - `PUT`: replace the specified MachineConfigPool
-- `/apis/machineconfiguration.openshift.io/v1/machineconfigpools/{{ name }}/status`
+- `/apis/machineconfiguration.openshift.io/v1/machineconfigpools/{name}/status`
 
   - `GET`: read status of the specified MachineConfigPool
   - `PATCH`: partially update status of the specified MachineConfigPool
@@ -481,7 +481,7 @@ Description
 | 202 - Accepted | [`MachineConfigPool`](/openshift-docs-markdown/rest_api/machine_apis/machineconfigpool-machineconfiguration-openshift-io-v1#machineconfigpool-machineconfiguration-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machineconfiguration.openshift.io/v1/machineconfigpools/{{ name }} {#_apismachineconfigurationopenshiftiov1machineconfigpools_name}
+### /apis/machineconfiguration.openshift.io/v1/machineconfigpools/{name} {#_apismachineconfigurationopenshiftiov1machineconfigpools_name}
 
 **Global path parameters**
 
@@ -585,7 +585,7 @@ Description
 | 201 - Created | [`MachineConfigPool`](/openshift-docs-markdown/rest_api/machine_apis/machineconfigpool-machineconfiguration-openshift-io-v1#machineconfigpool-machineconfiguration-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machineconfiguration.openshift.io/v1/machineconfigpools/{{ name }}/status {#_apismachineconfigurationopenshiftiov1machineconfigpools_name_status}
+### /apis/machineconfiguration.openshift.io/v1/machineconfigpools/{name}/status {#_apismachineconfigurationopenshiftiov1machineconfigpools_name_status}
 
 **Global path parameters**
 

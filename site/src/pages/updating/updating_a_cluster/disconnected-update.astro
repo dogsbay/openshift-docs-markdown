@@ -20,7 +20,8 @@ const headings = [{"depth":1,"slug":"updating-disconnected-cluster","text":"Upda
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/updating/updating_a_cluster/disconnected-update";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -78,12 +79,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -91,7 +93,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="updating-disconnected-cluster" class="group scroll-mt-20">Updating a cluster in a disconnected environment<a href="#updating-disconnected-cluster" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can update a cluster in an environment without access to the internet by taking additional steps to prepare your environment.</p>
+      <p class="_abstract">You can update a cluster in an environment without access to the internet by taking additional steps to prepare your environment.</p>
       <p>For information about updating a cluster in a disconnected environment, see <a href="/openshift-docs-markdown/disconnected/updating/index#about-disconnected-updates">About cluster updates in a disconnected environment</a>.</p>
     </article>
   </MarkdownContentStack>

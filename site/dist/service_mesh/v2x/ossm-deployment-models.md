@@ -55,7 +55,7 @@ Using the OpenShift Container Platform web console, you can add discovery select
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console.
-2. Navigate to **Ecosystem** -> **Installed Operators**.
+2. Navigate to **Ecosystem** → **Installed Operators**.
 3. Click the Red Hat OpenShift Service Mesh Operator.
 4. Click **Istio Service Mesh Control Plane**.
 5. Click the name of the control plane.
@@ -165,7 +165,7 @@ By default, the Red Hat OpenShift Service Mesh Operator uses member selectors t
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console.
-2. Navigate to **Ecosystem** -> **Installed Operators**.
+2. Navigate to **Ecosystem** → **Installed Operators**.
 3. Click the Red Hat OpenShift Service Mesh Operator.
 4. Click **Istio Service Mesh Member Roll**.
 5. Click the `ServiceMeshMemberRoll` resource.
@@ -238,7 +238,7 @@ If a pod does not have the `sidecar.istio.io/inject` annotation applied, it cann
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console.
-2. Navigate to **Workloads** -> **Deployments**.
+2. Navigate to **Workloads** → **Deployments**.
 3. Click the name of the deployment.
 4. Click **YAML**.
 5. Modify the YAML file to deploy one application that receives sidecar injection and one that does not, as shown in the following example:

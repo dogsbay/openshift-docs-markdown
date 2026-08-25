@@ -19,7 +19,7 @@ You can configure a static IP address when you create a virtual machine (VM) by 
 
 **Procedure**
 
-1. Navigate to **Virtualization** -> **Catalog** in the web console.
+1. Navigate to **Virtualization** → **Catalog** in the web console.
 2. Click a template tile.
 3. Click **Customize VirtualMachine**.
 4. Click **Next**.
@@ -100,7 +100,7 @@ You can view the IP address of a virtual machine (VM) by using the OpenShift Con
 
 **Procedure**
 
-1. In the OpenShift Container Platform console, click **Virtualization** -> **VirtualMachines** from the side menu.
+1. In the OpenShift Container Platform console, click **Virtualization** → **VirtualMachines** from the side menu.
 2. Select a VM to open the **VirtualMachine details** page.
 3. Click the **Details** tab to view the IP address.
 
@@ -153,6 +153,7 @@ You can view the IP address of a virtual machine (VM) by using the command line.
      Mac:             16:20:84:10:17:aa
   ```
 
-## Additional resources {#additional-resources_virt-configuring-viewing-ips-for-vms}
+**Additional resources**
+{._additional-resources}
 
 - [Installing the QEMU guest agent](/openshift-docs-markdown/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent)

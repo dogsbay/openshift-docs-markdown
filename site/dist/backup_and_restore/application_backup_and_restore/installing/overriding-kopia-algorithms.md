@@ -24,49 +24,49 @@ Configure the Data Protection Application (DPA) to override the default Kopia ha
 
 - Configure the DPA with the environment variables for hashing, encryption, and splitter as shown in the following example.
 
-```yaml
-apiVersion: oadp.openshift.io/v1alpha1
-kind: DataProtectionApplication
-#...
-configuration:
-  nodeAgent:
-    enable: true
-    uploaderType: kopia
-  velero:
-    defaultPlugins:
-    - openshift
-    - aws
-    - csi
-    defaultSnapshotMoveData: true
-    podConfig:
-      env:
-        - name: KOPIA_HASHING_ALGORITHM
-          value: <hashing_algorithm_name>
-        - name: KOPIA_ENCRYPTION_ALGORITHM
-          value: <encryption_algorithm_name>
-        - name: KOPIA_SPLITTER_ALGORITHM
-          value: <splitter_algorithm_name>
-```
+  ```yaml
+  apiVersion: oadp.openshift.io/v1alpha1
+  kind: DataProtectionApplication
+  #...
+  configuration:
+    nodeAgent:
+      enable: true
+      uploaderType: kopia
+    velero:
+      defaultPlugins:
+      - openshift
+      - aws
+      - csi
+      defaultSnapshotMoveData: true
+      podConfig:
+        env:
+          - name: KOPIA_HASHING_ALGORITHM
+            value: <hashing_algorithm_name>
+          - name: KOPIA_ENCRYPTION_ALGORITHM
+            value: <encryption_algorithm_name>
+          - name: KOPIA_SPLITTER_ALGORITHM
+            value: <splitter_algorithm_name>
+  ```
 
-where:
+  where:
 
-`enable`
-:   Set to `true` to enable the `nodeAgent`.
+  `enable`
+  :   Set to `true` to enable the `nodeAgent`.
 
-`uploaderType`
-:   Specifies the uploader type as `kopia`.
+  `uploaderType`
+  :   Specifies the uploader type as `kopia`.
 
-`csi`
-:   Include the `csi` plugin.
+  `csi`
+  :   Include the `csi` plugin.
 
-`<hashing_algorithm_name>`
-:   Specifies a hashing algorithm. For example, `BLAKE3-256`.
+  `<hashing_algorithm_name>`
+  :   Specifies a hashing algorithm. For example, `BLAKE3-256`.
 
-`<encryption_algorithm_name>`
-:   Specifies an encryption algorithm. For example, `CHACHA20-POLY1305-HMAC-SHA256`.
+  `<encryption_algorithm_name>`
+  :   Specifies an encryption algorithm. For example, `CHACHA20-POLY1305-HMAC-SHA256`.
 
-`<splitter_algorithm_name>`
-:   Specifies a splitter algorithm. For example, `DYNAMIC-8M-RABINKARP`.
+  `<splitter_algorithm_name>`
+  :   Specifies a splitter algorithm. For example, `DYNAMIC-8M-RABINKARP`.
 
 ## Use case for overriding Kopia hashing, encryption, and splitter algorithms {#oadp-usecase-kopia-override-algorithms_overriding-kopia-algorithms}
 
@@ -164,28 +164,27 @@ Back up an application by using Kopia environment variables for hashing, encrypt
    ```
 4. Create a backup CR as shown in the following example:
 
-```yaml
-apiVersion: velero.io/v1
-kind: Backup
-metadata:
-  name: test-backup
-  namespace: openshift-adp
-spec:
-  includedNamespaces:
-  - <application_namespace>
-  defaultVolumesToFsBackup: true
-```
+   ```yaml
+   apiVersion: velero.io/v1
+   kind: Backup
+   metadata:
+     name: test-backup
+     namespace: openshift-adp
+   spec:
+     includedNamespaces:
+     - <application_namespace>
+     defaultVolumesToFsBackup: true
+   ```
 
-Replace `<application_namespace>` with the namespace for the application installed in the cluster.
-
-1. Create a backup by running the following command:
+   Replace `<application_namespace>` with the namespace for the application installed in the cluster.
+5. Create a backup by running the following command:
 
    ```terminal
    $ oc apply -f <backup_file_name>
    ```
 
    Replace `<backup_file_name>` with the name of the backup CR file.
-2. Verify that the backup completed by running the following command:
+6. Verify that the backup completed by running the following command:
 
    ```terminal
    $ oc get backups.velero.io <backup_name> -o yaml
@@ -260,46 +259,44 @@ Run Kopia commands to benchmark the hashing, encryption, and splitter algorithms
 
 1. Configure the `must-gather` pod as shown in the following example. Make sure you are using the `oadp-mustgather` image for OADP version 1.3 and later.
 
-```yaml {title="Example pod configuration"}
-apiVersion: v1
-kind: Pod
-metadata:
-  name: oadp-mustgather-pod
-  labels:
-    purpose: user-interaction
-spec:
-  containers:
-  - name: oadp-mustgather-container
-    image: registry.redhat.io/oadp/oadp-mustgather-rhel9:v1.3
-    command: ["sleep"]
-    args: ["infinity"]
-```
+   ```yaml {title="Example pod configuration"}
+   apiVersion: v1
+   kind: Pod
+   metadata:
+     name: oadp-mustgather-pod
+     labels:
+       purpose: user-interaction
+   spec:
+     containers:
+     - name: oadp-mustgather-container
+       image: registry.redhat.io/oadp/oadp-mustgather-rhel9:v1.3
+       command: ["sleep"]
+       args: ["infinity"]
+   ```
 
-The Kopia client is available in the `oadp-mustgather` image.
-
-1. Create the pod by running the following command:
+   The Kopia client is available in the `oadp-mustgather` image.
+2. Create the pod by running the following command:
 
    ```terminal
    $ oc apply -f <pod_config_file_name>
    ```
 
    Replace `<pod_config_file_name>` with the name of the YAML file for the pod configuration.
-2. Verify that the Security Context Constraints (SCC) on the pod is `anyuid`, so that Kopia can connect to the repository.
+3. Verify that the Security Context Constraints (SCC) on the pod is `anyuid`, so that Kopia can connect to the repository.
 
    ```terminal
    $ oc describe pod/oadp-mustgather-pod | grep scc
    ```
 
-```terminal {title="Example output"}
-openshift.io/scc: anyuid
-```
-
-1. Connect to the pod via SSH by running the following command:
+   ```terminal {title="Example output"}
+   openshift.io/scc: anyuid
+   ```
+4. Connect to the pod via SSH by running the following command:
 
    ```terminal
    $ oc -n openshift-adp rsh pod/oadp-mustgather-pod
    ```
-2. Connect to the Kopia repository by running the following command:
+5. Connect to the Kopia repository by running the following command:
 
    ```terminal
    sh-5.1# kopia repository connect s3 \

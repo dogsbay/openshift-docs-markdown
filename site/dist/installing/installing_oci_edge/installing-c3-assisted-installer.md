@@ -1,5 +1,5 @@
 ---
-title: Installing a cluster on {{ oci_edge_no_rt }} by using the {{ ai_full }}
+title: Installing a cluster on Oracle Edge Cloud by using the Assisted Installer
 ---
 
 # Installing a cluster on Oracle Edge Cloud by using the Assisted Installer {#installing-c3-assisted-installer}
@@ -32,15 +32,18 @@ For an alternative installation method, see "Installing a cluster on Oracle(R) E
 
 Preinstallation considerations
 :   - Ensure that your installation meets the prerequisites specified for Oracle. For details, see the "Access and Considerations" section in the Oracle documentation.
-
-- Ensure that your infrastructure is certified and uses a compatible cloud instance type. For details, see "Oracle Cloud Infrastructure".
-- Ensure that you are performing the installation on a virtual machine.
+    - Ensure that your infrastructure is certified and uses a compatible cloud instance type. For details, see "Oracle Cloud Infrastructure".
+    - Ensure that you are performing the installation on a virtual machine.
 
 Installation process
 :   The installation process builds a bastion host within the designated compartment of the OpenShift Container Platform cluster. The bastion host is used to run two Terraform scripts:
 
     - The first script builds IAM Resources in the OCI Home region of the Oracle(R) Edge Cloud system (two Dynamic Groups and one Policy).
-    - The second script builds the infrastructure resources on the Oracle(R) Edge Cloud system to support the OpenShift Container Platform cluster, including the OpenShift Container Platform VCN, public and private subnets, load balancers, Internet GW, NAT GW, and DNS server. The script includes all the resources needed to activate the control plane nodes and compute nodes that form a cluster. The bastion host is installed in the designated OpenShift Container Platform Compartment and configured to communicate through a designated Oracle(R) Edge Cloud DRG Subnet or Internet GW Subnet within the Oracle(R) Edge Cloud parent tenancy. The installation process subsequently provisions three control plane (master) nodes and three compute (worker) nodes, together with the external and internal Load Balancers that form the cluster. This is the standard implementation for Oracle Edge Cloud.
+    - The second script builds the infrastructure resources on the Oracle(R) Edge Cloud system to support the OpenShift Container Platform cluster, including the OpenShift Container Platform VCN, public and private subnets, load balancers, Internet GW, NAT GW, and DNS server. The script includes all the resources needed to activate the control plane nodes and compute nodes that form a cluster.
+
+    The bastion host is installed in the designated OpenShift Container Platform Compartment and configured to communicate through a designated Oracle(R) Edge Cloud DRG Subnet or Internet GW Subnet within the Oracle(R) Edge Cloud parent tenancy.
+
+    The installation process subsequently provisions three control plane (master) nodes and three compute (worker) nodes, together with the external and internal Load Balancers that form the cluster. This is the standard implementation for Oracle Edge Cloud.
 
 Main steps
 :   The main steps of the procedure are as follows:
@@ -52,6 +55,7 @@ Main steps
 5. Installing the cluster by using the Assisted Installer web console.
 
 **Additional resources**
+{._additional-resources}
 
 - [Access and considerations (Oracle documentation)](https://www.oracle.com/a/otn/docs/compute_cloud_at_customer_assisted_installer.pdf?source=:em:nl:mt::::PCATP)
 - [Oracle Cloud Infrastructure](https://catalog.redhat.com/cloud/detail/216977)
@@ -118,7 +122,7 @@ Create a cluster and download the discovery ISO image.
    | **Cluster name** | Specify the name of your OpenShift Container Platform cluster. This name is the same name you used to create the resource via the Terraform scripts. The name must be between 1-54 characters. It can use lowercase alphanumeric characters or hyphen (-), but must start and end with a lowercase letter or a number. |
    | **Base domain** | Specify the base domain of the cluster. This is the value used for the `zone_dns` variables in the Terraform scripts that run on Oracle(R) Edge Cloud. Make a note of the value. |
    | **OpenShift version** | Select **OpenShift 4.16.20**. If it is not immediately visible, scroll to the end of the dropdown menu, select **Show all available versions**, and type the version in the search box. |
-   | **Integrate with external partner platforms** | Select **Oracle Cloud Infrastructure**. After you specify this value, the **Include custom manifests** checkbox is selected by default and the **Custom manifests** page is added to the wizard. |
+   | **Integrate with external partner platforms** | Select **Oracle Cloud Infrastructure**.<br>After you specify this value, the **Include custom manifests** checkbox is selected by default and the **Custom manifests** page is added to the wizard. |
 7. Leave the default settings for the remaining fields, and click **Next**.
 8. On the **Operators** page, click **Next**.
 9. On the **Host Discovery** page, click **Add hosts** and complete the following steps:

@@ -1,5 +1,5 @@
 ---
-title: About {{ pipelines_title }}
+title: About Red&#160;Hat OpenShift Pipelines
 ---
 
 # About Red Hat OpenShift Pipelines {#about-pipelines}

@@ -19,6 +19,7 @@ Network policy mode, by default, makes all pods in a project accessible from oth
 Using *network policies*, you can isolate pods from each other in the same project. Network policies can deny all network access to a pod, only allow connections for the Ingress Controller, reject connections from pods in other projects, or set similar rules for how networks behave.
 
 **Additional resources**
+{._additional-resources}
 
 - [About network policy](/openshift-docs-markdown/networking/network_security/network_policy/about-network-policy#about-network-policy)
 
@@ -27,6 +28,7 @@ Using *network policies*, you can isolate pods from each other in the same proje
 Each running container has only one network interface by default. You can use the Multus CNI plugin to create multiple CNI networks, and then attach any of those networks to a pod. In that way, you can do things such as separate private data onto a more restricted network and have multiple network interfaces on each node.
 
 **Additional resources**
+{._additional-resources}
 
 - [Using multiple networks](/openshift-docs-markdown/networking/multiple_networks/understanding-multiple-networks#understanding-multiple-networks)
 
@@ -41,6 +43,7 @@ There are many security implications related to how you configure access to your
 In addition to exposing HTTP and HTTPS routes, ingress routing allows you to set up `NodePort` or `LoadBalancer` ingress types. NodePort exposes an application’s service API object from each cluster worker. LoadBalancer lets you assign an external load balancer to an associated service API object in your OpenShift Container Platform cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring ingress cluster traffic](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-ingress-controller#configuring-ingress-cluster-traffic-ingress-controller)
 
@@ -53,6 +56,7 @@ Likewise, a cluster administrator can prevent egress traffic from going outside 
 By assigning a fixed egress IP address, you can have all outgoing traffic assigned to that IP address for a particular project. With the egress firewall, you can prevent a pod from connecting to an external network, prevent a pod from connecting to an internal network, or limit a pod’s access to specific internal subnets.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring an egress firewall for a project](/openshift-docs-markdown/networking/network_security/egress_firewall/configuring-egress-firewall-ovn#configuring-egress-firewall-ovn)
 - [Configuring IPsec encryption](/openshift-docs-markdown/networking/network_security/configuring-ipsec-ovn#configuring-ipsec-ovn)

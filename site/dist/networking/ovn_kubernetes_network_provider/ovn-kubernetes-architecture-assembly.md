@@ -16,11 +16,11 @@ The OVN-Kubernetes architecture comprises specialized databases and daemons that
 
 The key components are:
 
-- ***Cloud Management System (CMS)*** - A platform specific client for OVN that provides a CMS specific plugin for OVN integration. The plugin translates the cloud management system’s concept of the logical network configuration, stored in the CMS configuration database in a CMS-specific format, into an intermediate representation understood by OVN.
-- ***OVN Northbound database (`nbdb`) container*** - Stores the logical network configuration passed by the CMS plugin.
-- ***OVN Southbound database (`sbdb`) container*** - Stores the physical and logical network configuration state for Open vSwitch (OVS) system on each node, including tables that bind them.
-- ***OVN north daemon (`ovn-northd`)*** - This is the intermediary client between `nbdb` container and `sbdb` container. It translates the logical network configuration in terms of conventional network concepts, taken from the `nbdb` container, into logical data path flows in the `sbdb` container. The container name for `ovn-northd` daemon is `northd` and it runs in the `ovnkube-node` pods.
-- ***ovn-controller*** - This is the OVN agent that interacts with OVS and hypervisors, for any information or update that is required for `sbdb` container. The `ovn-controller` reads logical flows from the `sbdb` container, translates them into `OpenFlow` flows and sends them to the node’s OVS daemon. The container name is `ovn-controller` and it runs in the `ovnkube-node` pods.
+- **Cloud Management System (CMS)** - A platform specific client for OVN that provides a CMS specific plugin for OVN integration. The plugin translates the cloud management system’s concept of the logical network configuration, stored in the CMS configuration database in a CMS-specific format, into an intermediate representation understood by OVN.
+- **OVN Northbound database (`nbdb`) container** - Stores the logical network configuration passed by the CMS plugin.
+- **OVN Southbound database (`sbdb`) container** - Stores the physical and logical network configuration state for Open vSwitch (OVS) system on each node, including tables that bind them.
+- **OVN north daemon (`ovn-northd`)** - This is the intermediary client between `nbdb` container and `sbdb` container. It translates the logical network configuration in terms of conventional network concepts, taken from the `nbdb` container, into logical data path flows in the `sbdb` container. The container name for `ovn-northd` daemon is `northd` and it runs in the `ovnkube-node` pods.
+- **ovn-controller** - This is the OVN agent that interacts with OVS and hypervisors, for any information or update that is required for `sbdb` container. The `ovn-controller` reads logical flows from the `sbdb` container, translates them into `OpenFlow` flows and sends them to the node’s OVS daemon. The container name is `ovn-controller` and it runs in the `ovnkube-node` pods.
 
 The OVN northd, northbound database, and southbound database run on each node in the cluster and mostly contain and process information that is local to that node.
 
@@ -269,7 +269,7 @@ The following table describes the command-line arguments that can be used with `
 | `ovn-nbctl lrp-list <router>` | Using the router information from `ovn-nbctl lr-list` to show the router ports. |
 | `ovn-nbctl lr-nat-list <router>` | Show network address translation details for the specified router. |
 | `ovn-nbctl ls-list` | Show the logical switches |
-| `ovn-nbctl lsp-list  <switch>` | Using the switch information from `ovn-nbctl ls-list` to show the switch port. |
+| `ovn-nbctl lsp-list <switch>` | Using the switch information from `ovn-nbctl ls-list` to show the switch port. |
 | `ovn-nbctl lsp-get-type <port>` | Get the type for the logical port. |
 | `ovn-nbctl lb-list` | Show the load balancers. |
 
@@ -408,7 +408,7 @@ The following table describes the command-line arguments that can be used with `
 
 OVN-Kubernetes is a network virtualization solution that creates logical switches and routers across cluster nodes. These virtual infrastructure components interconnect to construct distinct network topologies.
 
-**Figure 1. OVN-Kubernetes router and switch components**
+**Figure 2. OVN-Kubernetes router and switch components**
 
 ![OVN-Kubernetes logical architecture](/openshift-docs-markdown/_assets/images/299_OpenShift_OVN-Kubernetes_arch_1023_2.png)
 
@@ -632,7 +632,8 @@ Run `network-tools` to retrieve configuration status from logical switches and r
    [...]
    ```
 
-## Additional resources {#additional-resources_ovn-kubernetes-architecture}
+**Additional resources**
+{._additional-resources}
 
 - [Tracing Openflow with ovnkube-trace](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/ovn-kubernetes-tracing-using-ovntrace#ovn-kubernetes-tracing-using-ovntrace)
 - [OVN architecture](https://www.ovn.org/support/dist-docs/ovn-architecture.7.html)

@@ -1,5 +1,5 @@
 ---
-title: Metal3RemediationTemplate []
+title: Metal3RemediationTemplate [infrastructure.cluster.x-k8s.io/v1beta1]
 ---
 
 # Metal3RemediationTemplate \[infrastructure.cluster.x-k8s.io/v1beta1\] {#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1}
@@ -126,18 +126,18 @@ The following API endpoints are available:
 - `/apis/infrastructure.cluster.x-k8s.io/v1beta1/metal3remediationtemplates`
 
   - `GET`: list objects of kind Metal3RemediationTemplate
-- `/apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/metal3remediationtemplates`
+- `/apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/{namespace}/metal3remediationtemplates`
 
   - `DELETE`: delete collection of Metal3RemediationTemplate
   - `GET`: list objects of kind Metal3RemediationTemplate
   - `POST`: create a Metal3RemediationTemplate
-- `/apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/metal3remediationtemplates/{{ name }}`
+- `/apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/{namespace}/metal3remediationtemplates/{name}`
 
   - `DELETE`: delete a Metal3RemediationTemplate
   - `GET`: read the specified Metal3RemediationTemplate
   - `PATCH`: partially update the specified Metal3RemediationTemplate
   - `PUT`: replace the specified Metal3RemediationTemplate
-- `/apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/metal3remediationtemplates/{{ name }}/status`
+- `/apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/{namespace}/metal3remediationtemplates/{name}/status`
 
   - `GET`: read status of the specified Metal3RemediationTemplate
   - `PATCH`: partially update status of the specified Metal3RemediationTemplate
@@ -162,7 +162,7 @@ Description
 | 200 - OK | [`Metal3RemediationTemplateList`](/openshift-docs-markdown/rest_api/objects/index#io-x-k8s-cluster-infrastructure-v1beta1-Metal3RemediationTemplateList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/metal3remediationtemplates {#_apisinfrastructureclusterx-k8siov1beta1namespaces_namespace_metal3remediationtemplates}
+### /apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/{namespace}/metal3remediationtemplates {#_apisinfrastructureclusterx-k8siov1beta1namespaces_namespace_metal3remediationtemplates}
 
 HTTP method
 :   ```
@@ -230,7 +230,7 @@ Description
 | 202 - Accepted | [`Metal3RemediationTemplate`](/openshift-docs-markdown/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/metal3remediationtemplates/{{ name }} {#_apisinfrastructureclusterx-k8siov1beta1namespaces_namespace_metal3remediationtemplates_name}
+### /apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/{namespace}/metal3remediationtemplates/{name} {#_apisinfrastructureclusterx-k8siov1beta1namespaces_namespace_metal3remediationtemplates_name}
 
 **Global path parameters**
 
@@ -334,7 +334,7 @@ Description
 | 201 - Created | [`Metal3RemediationTemplate`](/openshift-docs-markdown/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/metal3remediationtemplates/{{ name }}/status {#_apisinfrastructureclusterx-k8siov1beta1namespaces_namespace_metal3remediationtemplates_name_status}
+### /apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/{namespace}/metal3remediationtemplates/{name}/status {#_apisinfrastructureclusterx-k8siov1beta1namespaces_namespace_metal3remediationtemplates_name_status}
 
 **Global path parameters**
 

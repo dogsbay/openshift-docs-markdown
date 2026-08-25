@@ -71,6 +71,7 @@ properties:
 This structure can be used to construct a Common Expression Language (CEL) expression for generic constraints.
 
 **Additional resources**
+{._additional-resources}
 
 - [Common Expression Language (CEL) constraints](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-dependency-resolution#olm-cel_olm-understanding-dependency-resolution)
 
@@ -261,6 +262,7 @@ properties:
 > The maximum raw size of an `olm.constraint` type is 64KB to limit resource exhaustion attacks.
 
 **Additional resources**
+{._additional-resources}
 
 - [Common Expression Language (CEL)](https://github.com/google/cel-go)
 
@@ -326,6 +328,7 @@ Package constraint
 :   Within a namespace, no two Operators may come from the same package.
 
 **Additional resources**
+{._additional-resources}
 
 - [Catalog health requirements](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-cs-health_olm-understanding-olm)
 
@@ -367,6 +370,7 @@ Omit a maximum version or allow a very wide range
     However, maximum versions can and should be set if there are known incompatibilities that must be avoided. Specific versions can be omitted with the version range syntax, for example `> 1.0.0 !1.2.1`.
 
 **Additional resources**
+{._additional-resources}
 
 - [Changing the API (Kubernetes documentation)](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api_changes.md#readme)
 

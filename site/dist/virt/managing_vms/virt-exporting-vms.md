@@ -250,7 +250,8 @@ After you export a virtual machine (VM) or snapshot, you can get the `VirtualMac
 
 - You can now create the `ConfigMap` and `VirtualMachine` objects on the target cluster by using the exported manifests.
 
-## Additional resources {#additional-resources_virt-exporting-vms}
+**Additional resources**
+{._additional-resources}
 
 - [Migration Toolkit for Virtualization](https://access.redhat.com/products/migration-toolkits-virtualization)
 - [virtctl vmexport command](/openshift-docs-markdown/virt/getting_started/virt-using-the-cli-tools#vm-export-commands_virt-using-the-cli-tools)

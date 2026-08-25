@@ -36,6 +36,7 @@ Authentication with Workload ID requires the following information:
 The **Install Operator** page in the web console allows cluster administrators to provide this information at installation time. This information is then propagated to the `Subscription` object as environment variables on the Operator pod.
 
 **Additional resources**
+{._additional-resources}
 
 - [OLM-managed Operator support for authentication with Microsoft Entra Workload ID](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds-azure-olm_cco-short-term-creds)
 - [Installing from OperatorHub using the web console](/openshift-docs-markdown/operators/admin/olm-adding-operators-to-cluster#olm-installing-from-software-catalog-using-web-console_olm-adding-operators-to-a-cluster)

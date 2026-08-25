@@ -1,8 +1,8 @@
 ---
-title: Manage worker nodes during a cluster update with {{ cgu_operator }}
+title: Manage worker nodes during a cluster update with TALM
 ---
 
-# Manage worker nodes during a cluster update with {{ cgu_operator }} {#core-cluster-upgrades-worker-management}
+# Manage worker nodes during a cluster update with TALM {#core-cluster-upgrades-worker-management}
 
 You can pause and unpause worker nodes during cluster updates to stage control plane and worker node updates separately, minimizing workload disruption.
 
@@ -238,7 +238,8 @@ You can pause and unpause worker nodes directly by patching the `MachineConfigPo
 
   All nodes must show `Ready` status and the expected kubelet version. For the `MachineConfigPool` output, verify that `MACHINECOUNT` = `READYMACHINECOUNT` = `UPDATEDMACHINECOUNT`. The `oc get pods` command must return no unexpected pods.
 
-## Additional resources {#additional-resources_core-cluster-upgrades-worker-management}
+**Additional resources**
+{._additional-resources}
 
 - [Complete an EUS-to-EUS cluster update with TALM](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-eus#core-cluster-upgrades-eus)
 - [Prepare worker node pools before a cluster update with TALM](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-worker-batching#core-cluster-upgrades-worker-batching)

@@ -1,8 +1,8 @@
 ---
-title: Getting started with {{ VirtProductName }}
+title: Getting started with OpenShift Virtualization
 ---
 
-# Getting started with {{ VirtProductName }} {#virt-getting-started}
+# Getting started with OpenShift Virtualization {#virt-getting-started}
 
 Explore OpenShift Virtualization by taking guided tours, installing the Operator, and configuring a basic environment. Learn how to migrate from your current platform, then learn more about how to deploy and manage virtual machines (VMs) by following the additional resources links.
 
@@ -20,7 +20,7 @@ The **Getting started** tour introduces several key aspects of using OpenShift V
 **Procedure**
 
 - If you see the **Welcome to OpenShift Virtualization** dialog, click **Start Tour**.
-- Otherwise, go to **Virtualization** -> **Settings** -> **User** -> **Getting started resources** -> **Guided tour**.
+- Otherwise, go to **Virtualization** → **Settings** → **User** → **Getting started resources** → **Guided tour**.
 
 ## Quick start tours {#virt-quick-starts_virt-getting-started}
 
@@ -65,10 +65,14 @@ To run a self-service review, upload your cluster’s `must-gather` data to the 
 
 The self-service TSR provides a solid baseline for cluster health. If you need additional guidance or a more comprehensive review, contact your Red Hat account team to arrange an assisted review through a Technical Account Manager (TAM) or Red Hat consultant. An assisted review includes human analysis, deeper coverage, and access to checks that are updated more frequently than the self-service version.
 
+**Additional resources**
+{._additional-resources}
+
 - [Technical Supportability Review with AI tool](https://access.redhat.com/support/cases/#/analyze)
 - [Red Hat Technical Supportability Review with AI: Proactive AI-Driven Cluster Assessments for OpenShift Container Platform](https://access.redhat.com/solutions/7141255)
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Plan your bare-metal cluster for OpenShift Virtualization](/openshift-docs-markdown/installing/installing_bare_metal/preparing-to-install-on-bare-metal#virt-planning-bare-metal-cluster-for-ocp-virt_preparing-to-install-on-bare-metal)
 - [Prepare your cluster for OpenShift Virtualization](/openshift-docs-markdown/virt/install/preparing-cluster-for-virt#preparing-cluster-for-virt)

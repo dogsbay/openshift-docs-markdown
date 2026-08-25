@@ -4,7 +4,7 @@ title: Managing the default storage class
 
 # Managing the default storage class {#persistent-storage-csi-sc-manage}
 
-\[role="\_abstract"\] Many Container Storage Interface (CSI) operators can actively manage default storage classes, removing manual intervention needs and avoiding accidental deletion. Proper management ensures persistent volume claims provision correctly with the appropriate storage backend for your applications.
+Many Container Storage Interface (CSI) operators can actively manage default storage classes, removing manual intervention needs and avoiding accidental deletion. Proper management ensures persistent volume claims provision correctly with the appropriate storage backend for your applications.
 
 ## Overview {#persistent-storage-csi-sc-overview_persistent-storage-csi-sc-manage}
 
@@ -82,7 +82,7 @@ Manage storage class behavior using the CLI by configuring the `ClusterCSIDriver
   $ oc patch clustercsidriver $DRIVERNAME --type=merge -p "{\"spec\":{\"storageClassState\":\"${STATE}\"}}"
   ```
 
-  - Where `${{ STATE }}` is "Removed" or "Managed" or "Unmanaged".
+  - Where `${STATE}` is "Removed" or "Managed" or "Unmanaged".
   - Where `$DRIVERNAME` is the provisioner name. You can find the provisioner name by running the command `oc get sc`.
 
 ## Absent or multiple default storage classes {#persistent-storage-csi-sc-multiple-none_persistent-storage-csi-sc-manage}

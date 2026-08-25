@@ -1,5 +1,5 @@
 ---
-title: Import a virtual machine image using the  API
+title: Import a virtual machine image using the DataVolume API
 ---
 
 # Import a virtual machine image using the `DataVolume` API {#virt-import-dv-vms}
@@ -342,7 +342,7 @@ You can configure a `DataVolume` object to import a virtual machine (VM) image f
 
 The `source.registry` source type imports a VM image from a container registry.
 
-`source.registry`** fields**
+**`source.registry` fields**
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -356,7 +356,7 @@ The `source.registry` source type imports a VM image from a container registry.
 
 The `source.http` source type imports a VM image from an HTTP or HTTPS URL.
 
-`source.http`** fields**
+**`source.http` fields**
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -370,7 +370,7 @@ The `source.http` source type imports a VM image from an HTTP or HTTPS URL.
 
 The `source.s3` source type imports a VM image from an S3-compatible object storage bucket.
 
-`source.s3`** fields**
+**`source.s3` fields**
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -382,7 +382,7 @@ The `source.s3` source type imports a VM image from an S3-compatible object stor
 
 The `source.imageio` source type imports a disk image from a Red Hat Virtualization (oVirt) environment by using the ImageIO API.
 
-`source.imageio`** fields**
+**`source.imageio` fields**
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -395,7 +395,7 @@ The `source.imageio` source type imports a disk image from a Red Hat Virtualizat
 
 The `source.vddk` source type imports a disk image from a VMware vSphere environment by using the Virtual Disk Development Kit (VDDK).
 
-`source.vddk`** fields**
+**`source.vddk` fields**
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -414,7 +414,7 @@ The `source.blank` source type creates an empty disk with no data. This source t
 
 The `source.pvc` source type clones the contents of an existing persistent volume claim (PVC).
 
-`source.pvc`** fields**
+**`source.pvc` fields**
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -425,7 +425,7 @@ The `source.pvc` source type clones the contents of an existing persistent volum
 
 The `source.snapshot` source type creates a volume from an existing `VolumeSnapshot` object.
 
-`source.snapshot`** fields**
+**`source.snapshot` fields**
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -481,6 +481,7 @@ You can use the following commands to gather information about a data volume imp
 | TLS certificate errors | Custom CA not configured | Create a `ConfigMap` object with the CA certificate and reference it in the `certConfigMap` field. |
 | HTTP 401 or 403 errors | Missing or invalid authentication credentials | Verify the `Secret` referenced by `secretRef` has valid credentials. |
 
-## Additional resources {#additional-resources_virt-import-dv-vms}
+**Additional resources**
+{._additional-resources}
 
 - [Preparing CDI scratch space](/openshift-docs-markdown/virt/storage/virt-preparing-cdi-scratch-space#virt-preparing-cdi-scratch-space)

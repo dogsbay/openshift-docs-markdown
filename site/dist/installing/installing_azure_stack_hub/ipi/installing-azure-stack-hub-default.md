@@ -73,15 +73,10 @@ Installing the cluster requires that you manually create the installation config
    > You must create a directory. Some installation assets, such as bootstrap X.509 certificates have short expiration intervals, so you must not reuse an installation directory. If you want to reuse individual files from another cluster installation, you can copy them into your directory. However, the file names for the installation assets might change between releases. Use caution when copying installation files from an earlier OpenShift Container Platform version.
 2. Customize the provided sample `install-config.yaml` file template and save the file in the `<installation_directory>`.
 
-   ```
-   :::note
-
-   You must name this configuration file `install-config.yaml`.
-
-   :::
+   > [!NOTE]
+   > You must name this configuration file `install-config.yaml`.
 
    Make the following modifications:
-   ```
 
    1. Specify the required installation parameters.
    2. Update the `platform.azure` section to specify the parameters that are specific to Azure Stack Hub.
@@ -94,6 +89,7 @@ Installing the cluster requires that you manually create the installation config
    > Back up the `install-config.yaml` file now, because the installation process consumes the file in the next step.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installation configuration parameters for Azure Stack Hub](/openshift-docs-markdown/installing/installing_azure_stack_hub/installation-config-parameters-ash#installation-config-parameters-ash)
 
@@ -145,9 +141,7 @@ platform:
     cloudName: AzureStackCloud
     clusterOSimage: https://vhdsa.blob.example.example.com/vhd/rhcos-410.84.202112040202-0-azurestack.x86_64.vhd
 pullSecret: '{"auths": ...}'
-{%- if not openshift_origin %}
 fips: false
-{%- endif %}
 sshKey: ssh-ed25519 AAAA...
 additionalTrustBundle: |
     -----BEGIN CERTIFICATE-----
@@ -216,7 +210,7 @@ where:
 
 ## Manually manage cloud credentials {#_manually_manage_cloud_credentials}
 
-{.\_abstract} The Cloud Credential Operator (CCO) only supports your cloud provider in manual mode. As a result, you must specify the identity and access management (IAM) secrets for your cloud provider.
+The Cloud Credential Operator (CCO) only supports your cloud provider in manual mode. As a result, you must specify the identity and access management (IAM) secrets for your cloud provider.
 
 **Procedure**
 
@@ -264,11 +258,12 @@ where:
    spec:
      providerSpec:
        apiVersion: cloudcredential.openshift.io/v1
+       kind: AzureProviderSpec
+       roleBindings:
+       - role: Contributor
+     ...
    ```
-
-{%- if aws %} kind: AWSProviderSpec statementEntries: - effect: Allow action: - iam:GetUser - iam:GetUserPolicy - iam:ListAccessKeys resource: "\*" {% endif %} {% if azure or ash %} kind: AzureProviderSpec roleBindings: - role: Contributor {% endif %} {% if google_cloud_platform %} kind: GCPProviderSpec predefinedRoles: - roles/storage.admin - roles/iam.serviceAccountUser skipServiceCheck: true {%- endif %} ... \`\`\`
-
-1. Create YAML files for secrets in the `openshift-install` manifests directory that you generated previously. The secrets must be stored using the namespace and secret name defined in the `spec.secretRef` for each `CredentialsRequest` object.
+4. Create YAML files for secrets in the `openshift-install` manifests directory that you generated previously. The secrets must be stored using the namespace and secret name defined in the `spec.secretRef` for each `CredentialsRequest` object.
 
    ```yaml {title="Sample CredentialsRequest object with secrets"}
    apiVersion: cloudcredential.openshift.io/v1
@@ -280,19 +275,37 @@ where:
    spec:
      providerSpec:
        apiVersion: cloudcredential.openshift.io/v1
+       kind: AzureProviderSpec
+       roleBindings:
+       - role: Contributor
+         ...
+     secretRef:
+       name: <component_secret>
+       namespace: <component_namespace>
+     ...
    ```
 
-{%- if aws %} kind: AWSProviderSpec statementEntries: - effect: Allow action: - s3:CreateBucket - s3:DeleteBucket resource: "\*" {% endif %} {% if ash or azure %} kind: AzureProviderSpec roleBindings: - role: Contributor {% endif %} {% if gcp %} kind: GCPProviderSpec predefinedRoles: - roles/iam.securityReviewer - roles/iam.roleViewer skipServiceCheck: true {%- endif %} ... secretRef: name: <component_secret> namespace: <component_namespace> ... `   `yaml title="Sample Secret object" apiVersion: v1 kind: Secret metadata: name: <component_secret> namespace: <component_namespace> {%- if aws %} data: aws_access_key_id: <base64_encoded_aws_access_key_id> aws_secret_access_key: <base64_encoded_aws_secret_access_key> {% endif %} {% if azure or ash %} data: azure_subscription_id: <base64_encoded_azure_subscription_id> azure_client_id: <base64_encoded_azure_client_id> azure_client_secret: <base64_encoded_azure_client_secret> azure_tenant_id: <base64_encoded_azure_tenant_id> azure_resource_prefix: <base64_encoded_azure_resource_prefix> azure_resourcegroup: <base64_encoded_azure_resourcegroup> azure_region: <base64_encoded_azure_region> {% endif %} {% if google_cloud_platform %} data: service_account.json: <base64_encoded_gcp_service_account_file> {%- endif %} \`\`\`
+   ```yaml {title="Sample Secret object"}
+   apiVersion: v1
+   kind: Secret
+   metadata:
+     name: <component_secret>
+     namespace: <component_namespace>
+   data:
+     azure_subscription_id: <base64_encoded_azure_subscription_id>
+     azure_client_id: <base64_encoded_azure_client_id>
+     azure_client_secret: <base64_encoded_azure_client_secret>
+     azure_tenant_id: <base64_encoded_azure_tenant_id>
+     azure_resource_prefix: <base64_encoded_azure_resource_prefix>
+     azure_resourcegroup: <base64_encoded_azure_resourcegroup>
+     azure_region: <base64_encoded_azure_region>
+   ```
 
-```
-:::important
-
-Before upgrading a cluster that uses manually maintained credentials, you must ensure that the CCO is in an upgradeable state.
-
-:::
-```
+   > [!IMPORTANT]
+   > Before upgrading a cluster that uses manually maintained credentials, you must ensure that the CCO is in an upgradeable state.
 
 **Additional resources**
+{._additional-resources}
 
 - [Updating cloud provider resources with manually maintained credentials](/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#manually-maintained-credentials-upgrade_preparing-manual-creds-update)
 
@@ -338,19 +351,15 @@ To deploy your OpenShift Container Platform cluster, you can initialize installa
 
 **Procedure**
 
-````
-*   In the directory that contains the installation program, initialize the cluster deployment by running the following command:
+- In the directory that contains the installation program, initialize the cluster deployment by running the following command:
 
 ```terminal
 $ ./openshift-install create cluster --dir <installation_directory> \
     --log-level=info
 ```
-    *   For `<installation_directory>`, specify the
-    location of your customized `./install-config.yaml` file.
 
-    *   To view different installation details, specify `warn`, `debug`, or
-    `error` instead of `info`.
-````
+- For `<installation_directory>`, specify the location of your customized `./install-config.yaml` file.
+- To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
 
 **Verification**
 
@@ -447,10 +456,12 @@ To verify that your cluster deployed successfully and access its features, log i
 3. Navigate to the route detailed in the output of the preceding command in a web browser and log in as the `kubeadmin` user.
 
 **Additional resources**
+{._additional-resources}
 
 - [Accessing the web console](/openshift-docs-markdown/web_console/web-console#web-console)
 
-## Additional resources {#additional-resources_installing-azure-stack-hub-default}
+**Additional resources**
+{._additional-resources}
 
 - [Validating an installation](/openshift-docs-markdown/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation)
 - [Customize your cluster](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations)

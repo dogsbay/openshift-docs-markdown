@@ -55,7 +55,8 @@ See the following high-level steps to deploy a virtualized control plane cluster
 4. Run the installation. The VMs boot from the installation media and communicate with each other to form the cluster. Depending on the installation method, this process is either fully automated or requires manual intervention to boot each node.
 5. After installation completes, a new OpenShift Container Platform cluster is deployed with its control plane running on VMs hosted by the original OpenShift Virtualization cluster.
 
-## Additional resources {#additional-resources_vcp-overview}
+**Additional resources**
+{._additional-resources}
 
 - [Prerequisites for virtualized control planes](/openshift-docs-markdown/vcp/vcp-prerequisites#vcp-prerequisites)
 - [Installing KubeVirt Redfish](/openshift-docs-markdown/virt/post_installation_configuration/virt-kubevirt-redfish#proc_virt-installing-kubevirt-redfish_virt-kubevirt-redfish)

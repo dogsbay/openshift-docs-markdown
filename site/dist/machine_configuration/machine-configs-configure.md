@@ -17,11 +17,7 @@ There might be situations where the configuration on a node does not fully match
 
 ## Configuring chrony time service {#installation-special-config-chrony_machine-configs-configure}
 
-You
-
-can
-
-set the time server and related settings used by the chrony time service (`chronyd`) by modifying the contents of the `chrony.conf` file and passing those contents to your nodes as a machine config.
+You can set the time server and related settings used by the chrony time service (`chronyd`) by modifying the contents of the `chrony.conf` file and passing those contents to your nodes as a machine config.
 
 For more information on chrony best practices, see the following resources:
 
@@ -34,53 +30,44 @@ For more information on chrony best practices, see the following resources:
 1. Create a Butane config including the contents of the `chrony.conf` file. For example, to configure chrony on worker nodes, create a `99-worker-chrony.bu` file.
 
    > [!NOTE]
-   >
+   > The [Butane version](https://coreos.github.io/butane/specs/) you specify in the config file should match the OpenShift Container Platform version and always ends in `0`. For example, `4.22.0`. See "Creating machine configs with Butane" for information about Butane.
 
-The [Butane version](https://coreos.github.io/butane/specs/) you specify in the config file should match the OpenShift Container Platform version and always ends in `0`. For example, `{{ product_version }}.0`. See "Creating machine configs with Butane" for information about Butane.
+   ```yaml
+   variant: openshift
+   version: 4.22.0
+   metadata:
+     name: 99-worker-chrony
+     labels:
+       machineconfiguration.openshift.io/role: worker
+   storage:
+     files:
+     - path: /etc/chrony.conf
+       mode: 0644
+       overwrite: true
+       contents:
+         inline: |
+           pool 0.rhel.pool.ntp.org iburst
+           driftfile /var/lib/chrony/drift
+           makestep 1.0 3
+           rtcsync
+           logdir /var/log/chrony
+   ```
 
-````
-:::
+   - `name: 99-worker-chrony` - Specify a name for the machine config file. On control plane nodes, substitute `master` for `worker`.
+   - `machineconfiguration.openshift.io/role: worker` - On control plane nodes, substitute `master` for `worker`.
+   - `mode: 0644` - Specify an octal value mode for the `mode` field in the machine config file. After creating the file and applying the changes, the `mode` is converted to a decimal value. You can check the YAML file with the command `oc get mc <mc-name> -o yaml`.
+   - `pool 0.rhel.pool.ntp.org iburst` - Specify any valid, reachable time source, such as the one provided by your DHCP server.
 
-```yaml
-variant: openshift
-version: {{ product_version }}.0
-metadata:
-  name: 99-worker-chrony
-  labels:
-    machineconfiguration.openshift.io/role: worker
-storage:
-  files:
-  - path: /etc/chrony.conf
-    mode: 0644
-    overwrite: true
-    contents:
-      inline: |
-        pool 0.rhel.pool.ntp.org iburst
-        driftfile /var/lib/chrony/drift
-        makestep 1.0 3
-        rtcsync
-        logdir /var/log/chrony
-```
-*   `name: 99-worker-chrony` - Specify a name for the machine config file. On control plane nodes, substitute `master` for `worker`.
-*   `machineconfiguration.openshift.io/role: worker` - On control plane nodes, substitute `master` for `worker`.
-*   `mode: 0644` - Specify an octal value mode for the `mode` field in the machine config file. After creating the file and applying the changes, the `mode` is converted to a decimal value. You can check the YAML file with the command `oc get mc <mc-name> -o yaml`.
-*   `pool 0.rhel.pool.ntp.org iburst` - Specify any valid, reachable time source, such as the one provided by your DHCP server.
+   > [!NOTE]
+   > For all-machine to all-machine communication, the Network Time Protocol (NTP) on UDP is port `123`. If an external NTP time server is configured, you must open UDP port `123`.
 
-:::note
-
-For all-machine to all-machine communication, the Network Time Protocol (NTP) on UDP is port `123`. If an external NTP time server is configured, you must open UDP port `123`.
-
-:::
-
-Alternatively, you can specify any of the following NTP servers: `1.rhel.pool.ntp.org`, `2.rhel.pool.ntp.org`, or `3.rhel.pool.ntp.org`. When you use NTP with your DHCP server, you must set the `sourcedir /run/chrony-dhcp` parameter in the `chrony.conf` file.
-````
-
-1. Use Butane to generate a `MachineConfig` object file, `99-worker-chrony.yaml`, containing the configuration to be delivered to the nodes:
+   Alternatively, you can specify any of the following NTP servers: `1.rhel.pool.ntp.org`, `2.rhel.pool.ntp.org`, or `3.rhel.pool.ntp.org`. When you use NTP with your DHCP server, you must set the `sourcedir /run/chrony-dhcp` parameter in the `chrony.conf` file.
+2. Use Butane to generate a `MachineConfig` object file, `99-worker-chrony.yaml`, containing the configuration to be delivered to the nodes:
 
    ```terminal
    $ butane 99-worker-chrony.bu -o 99-worker-chrony.yaml
    ```
-2. Apply the configurations in one of two ways:
+3. Apply the configurations in one of two ways:
 
    - If the cluster is not running yet, after you generate manifest files, add the `MachineConfig` object file to the `<installation_directory>/openshift` directory, and then continue to create the cluster.
    - If the cluster is already running, apply the file:
@@ -168,8 +155,8 @@ You should add kernel arguments with caution and a clear understanding of the im
 
 Examples of kernel arguments you could set include:
 
-- ***nosmt***: Disables symmetric multithreading (SMT) in the kernel. Multithreading allows multiple logical threads for each CPU. You could consider `nosmt` in multi-tenant environments to reduce risks from potential cross-thread attacks. By disabling SMT, you essentially choose security over performance.
-- ***enforcing=0***: Configures Security Enhanced Linux (SELinux) to run in permissive mode. In permissive mode, the system acts as if SELinux is enforcing the loaded security policy, including labeling objects and emitting access denial entries in the logs, but it does not actually deny any operations. While not supported for production systems, permissive mode can be helpful for debugging.
+- **nosmt**: Disables symmetric multithreading (SMT) in the kernel. Multithreading allows multiple logical threads for each CPU. You could consider `nosmt` in multi-tenant environments to reduce risks from potential cross-thread attacks. By disabling SMT, you essentially choose security over performance.
+- **enforcing=0**: Configures Security Enhanced Linux (SELinux) to run in permissive mode. In permissive mode, the system acts as if SELinux is enforcing the loaded security policy, including labeling objects and emitting access denial entries in the logs, but it does not actually deny any operations. While not supported for production systems, permissive mode can be helpful for debugging.
 
   > [!WARNING]
   > Disabling SELinux on RHCOS in production is not supported. After SELinux has been disabled on a node, it must be re-provisioned before re-inclusion in a production cluster.
@@ -503,47 +490,40 @@ This procedure describes how to modify `journald` rate limiting settings in the 
 1. Create a Butane config file, `40-worker-custom-journald.bu`, that includes an `/etc/systemd/journald.conf` file with the required settings.
 
    > [!NOTE]
-   >
+   > The [Butane version](https://coreos.github.io/butane/specs/) you specify in the config file should match the OpenShift Container Platform version and always ends in `0`. For example, `4.22.0`. See "Creating machine configs with Butane" for information about Butane.
 
-The [Butane version](https://coreos.github.io/butane/specs/) you specify in the config file should match the OpenShift Container Platform version and always ends in `0`. For example, `{{ product_version }}.0`. See "Creating machine configs with Butane" for information about Butane.
-
-````
-:::
-
-```yaml
-variant: openshift
-version: {{ product_version }}.0
-metadata:
-  name: 40-worker-custom-journald
-  labels:
-    machineconfiguration.openshift.io/role: worker
-storage:
-  files:
-  - path: /etc/systemd/journald.conf
-    mode: 0644
-    overwrite: true
-    contents:
-      inline: |
-        # Disable rate limiting
-        RateLimitInterval=1s
-        RateLimitBurst=10000
-        Storage=volatile
-        Compress=no
-        MaxRetentionSec=30s
-```
-````
-
-1. Use Butane to generate a `MachineConfig` object file, `40-worker-custom-journald.yaml`, containing the configuration to be delivered to the worker nodes:
+   ```yaml
+   variant: openshift
+   version: 4.22.0
+   metadata:
+     name: 40-worker-custom-journald
+     labels:
+       machineconfiguration.openshift.io/role: worker
+   storage:
+     files:
+     - path: /etc/systemd/journald.conf
+       mode: 0644
+       overwrite: true
+       contents:
+         inline: |
+           # Disable rate limiting
+           RateLimitInterval=1s
+           RateLimitBurst=10000
+           Storage=volatile
+           Compress=no
+           MaxRetentionSec=30s
+   ```
+2. Use Butane to generate a `MachineConfig` object file, `40-worker-custom-journald.yaml`, containing the configuration to be delivered to the worker nodes:
 
    ```terminal
    $ butane 40-worker-custom-journald.bu -o 40-worker-custom-journald.yaml
    ```
-2. Apply the machine config to the pool:
+3. Apply the machine config to the pool:
 
    ```terminal
    $ oc apply -f 40-worker-custom-journald.yaml
    ```
-3. Check that the new machine config is applied and that the nodes are not in a degraded state. It might take a few minutes. The worker pool will show the updates in progress, as each node successfully has the new machine config applied:
+4. Check that the new machine config is applied and that the nodes are not in a degraded state. It might take a few minutes. The worker pool will show the updates in progress, as each node successfully has the new machine config applied:
 
    ```terminal
    $ oc get machineconfigpool
@@ -554,7 +534,7 @@ storage:
    master rendered-master-35 True    False    False    3            3                 3                   0                    34m
    worker rendered-worker-d8 False   True     False    3            1                 1                   0                    34m
    ```
-4. To check that the change was applied, you can log in to a worker node:
+5. To check that the change was applied, you can log in to a worker node:
 
    ```terminal
    $ oc get node | grep worker
@@ -588,13 +568,13 @@ You can add software packages to Red Hat Enterprise Linux CoreOS (RHCOS) system
 
 RHCOS is a minimal container-oriented op-system-base-full operating system, designed to provide a common set of capabilities to OpenShift Container Platform clusters across all platforms. Although adding software packages to RHCOS systems is generally discouraged, you can add any of the following extensions to extend RHCOS:
 
-- ***usbguard***: The `usbguard` extension protects RHCOS systems from attacks by intrusive USB devices. For `usbguard`, you must create additional `MachineConfig` objects to start and enable the services as described in the following procedure. For more information, see [USBGuard](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/security_hardening/index#usbguard_protecting-systems-against-intrusive-usb-devices).
-- ***kerberos***: The `kerberos` extension provides a mechanism that allows both users and machines to identify themselves to the network to receive defined, limited access to the areas and services that an administrator has configured. For more information, see [Using Kerberos](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system-level_authentication_guide/using_kerberos), including how to set up a Kerberos client and mount a Kerberized NFS share.
-- ***sandboxed-containers***: The `sandboxed-containers` extension contains RPMs for Kata, QEMU, and its dependencies. For more information, see [OpenShift Sandboxed Containers](https://docs.redhat.com/en/documentation/openshift_sandboxed_containers/latest).
-- ***ipsec***: The `ipsec` extension contains RPMs for libreswan and NetworkManager-libreswan.
-- ***wasm***: The `wasm` extension enables Developer Preview functionality in OpenShift Container Platform for users who want to use WASM-supported workloads.
-- ***sysstat***: Adding the `sysstat` extension provides additional performance monitoring for OpenShift Container Platform nodes, including the system activity reporter (`sar`) command for collecting and reporting information.
-- ***kernel-devel***: The `kernel-devel` extension provides kernel headers and makefiles sufficient to build modules against the kernel package.
+- **usbguard**: The `usbguard` extension protects RHCOS systems from attacks by intrusive USB devices. For `usbguard`, you must create additional `MachineConfig` objects to start and enable the services as described in the following procedure. For more information, see [USBGuard](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/security_hardening/index#usbguard_protecting-systems-against-intrusive-usb-devices).
+- **kerberos**: The `kerberos` extension provides a mechanism that allows both users and machines to identify themselves to the network to receive defined, limited access to the areas and services that an administrator has configured. For more information, see [Using Kerberos](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system-level_authentication_guide/using_kerberos), including how to set up a Kerberos client and mount a Kerberized NFS share.
+- **sandboxed-containers**: The `sandboxed-containers` extension contains RPMs for Kata, QEMU, and its dependencies. For more information, see [OpenShift Sandboxed Containers](https://docs.redhat.com/en/documentation/openshift_sandboxed_containers/latest).
+- **ipsec**: The `ipsec` extension contains RPMs for libreswan and NetworkManager-libreswan.
+- **wasm**: The `wasm` extension enables Developer Preview functionality in OpenShift Container Platform for users who want to use WASM-supported workloads.
+- **sysstat**: Adding the `sysstat` extension provides additional performance monitoring for OpenShift Container Platform nodes, including the system activity reporter (`sar`) command for collecting and reporting information.
+- **kernel-devel**: The `kernel-devel` extension provides kernel headers and makefiles sufficient to build modules against the kernel package.
 
 The following procedure describes how to use a machine config to add one or more extensions to your RHCOS nodes.
 
@@ -609,7 +589,7 @@ The following procedure describes how to use a machine config to add one or more
 
    ```yaml
    variant: openshift
-   version: {{ product_version }}.0
+   version: 4.22.0
    metadata:
      name: 80-worker-usbguard
      labels:
@@ -712,52 +692,45 @@ By default, the location for firmware blobs in `/usr/lib` is read-only.
 1. Create a Butane config file, `98-worker-firmware-blob.bu`, that updates the search path so that it is root-owned and writable to local storage. The following example places the custom blob file from your local workstation onto nodes under `/var/lib/firmware`.
 
    > [!NOTE]
-   >
+   > The [Butane version](https://coreos.github.io/butane/specs/) you specify in the config file should match the OpenShift Container Platform version and always ends in `0`. For example, `4.22.0`. See "Creating machine configs with Butane" for information about Butane.
 
-The [Butane version](https://coreos.github.io/butane/specs/) you specify in the config file should match the OpenShift Container Platform version and always ends in `0`. For example, `{{ product_version }}.0`. See "Creating machine configs with Butane" for information about Butane.
+   ```yaml {title="Butane config file for custom firmware blob"}
+   variant: openshift
+   version: 4.22.0
+   metadata:
+     labels:
+       machineconfiguration.openshift.io/role: worker
+     name: 98-worker-firmware-blob
+   storage:
+     files:
+     - path: /var/lib/firmware/<package_name>
+       contents:
+         local: <package_name>
+       mode: 0644
+   openshift:
+     kernel_arguments:
+       - 'firmware_class.path=/var/lib/firmware'
+   ```
 
-````
-:::
+   where:
 
-```yaml title="Butane config file for custom firmware blob"
-variant: openshift
-version: {{ product_version }}.0
-metadata:
-  labels:
-    machineconfiguration.openshift.io/role: worker
-  name: 98-worker-firmware-blob
-storage:
-  files:
-  - path: /var/lib/firmware/<package_name>
-    contents:
-      local: <package_name>
-    mode: 0644
-openshift:
-  kernel_arguments:
-    - 'firmware_class.path=/var/lib/firmware'
-```
+   `storage.files.path`
+   :   Specifies the path on the node where the firmware package is copied to.
 
-where:
+   `storage.files.contents.local`
+   :   Specifies a file with contents that are read from a local file directory on the system running Butane. The path of the local file is relative to a `files-dir` directory, which must be specified by using the `--files-dir` option with Butane in a subsequent step.
 
-`storage.files.path`
-:   Specifies the path on the node where the firmware package is copied to.
+   `storage.files.mode`
+   :   Specifies the permissions for the file on the RHCOS node. Red Hat recommends setting `0644` permissions.
 
-`storage.files.contents.local`
-:   Specifies a file with contents that are read from a local file directory on the system running Butane. The path of the local file is relative to a `files-dir` directory, which must be specified by using the `--files-dir` option with Butane in a subsequent step.
-
-`storage.files.mode`
-:   Specifies the permissions for the file on the RHCOS node. Red&#160;Hat recommends setting `0644` permissions.
-
-`openshift.kernel_arguments`
-:   Specifies the kernel search path of where to look for the custom firmware blob that was copied from your local workstation onto the root file system of the node. This example uses `/var/lib/firmware` as the customized path.
-````
-
-1. Run Butane to generate a `MachineConfig` object file that uses a copy of the firmware blob on your local workstation named `98-worker-firmware-blob.yaml`. The firmware blob contains the configuration to be delivered to the nodes. The following example uses the `--files-dir` option to specify the directory on your workstation where the local file or files are located:
+   `openshift.kernel_arguments`
+   :   Specifies the kernel search path of where to look for the custom firmware blob that was copied from your local workstation onto the root file system of the node. This example uses `/var/lib/firmware` as the customized path.
+2. Run Butane to generate a `MachineConfig` object file that uses a copy of the firmware blob on your local workstation named `98-worker-firmware-blob.yaml`. The firmware blob contains the configuration to be delivered to the nodes. The following example uses the `--files-dir` option to specify the directory on your workstation where the local file or files are located:
 
    ```terminal
    $ butane 98-worker-firmware-blob.bu -o 98-worker-firmware-blob.yaml --files-dir <directory_including_package_name>
    ```
-2. Apply the configurations to the nodes in one of two ways:
+3. Apply the configurations to the nodes in one of two ways:
 
    - If the cluster is not running yet, after you generate manifest files, add the `MachineConfig` object file to the `<installation_directory>/openshift` directory, and then continue to create the cluster.
    - If the cluster is already running, apply the file:
@@ -767,7 +740,7 @@ where:
      ```
 
      A `MachineConfig` object YAML file is created for you to finish configuring your machines.
-3. Save the Butane config in case you need to update the `MachineConfig` object in the future.
+4. Save the Butane config in case you need to update the `MachineConfig` object in the future.
 
 ## Changing the core user password for node access {#core-user-password_machine-configs-configure}
 
@@ -974,7 +947,8 @@ Or, if you used Ignition to modify the storage configuration as a post-installat
 
    When you create a new node from a machine set with the associated label, the new configurations are applied to the node.
 
-## Additional resources {#additional-resources_machine-configs-configure}
+**Additional resources**
+{._additional-resources}
 
 - [How to update ssh keys after installation in OpenShift 4? (Red Hat Knowledgebase article)](https://access.redhat.com/solutions/3868301)
 - [Container image signatures](/openshift-docs-markdown/security/container_security/security-container-signature#security-container-signature)

@@ -1,5 +1,5 @@
 ---
-title: Monitoring MetalLB configuration status {id="monitoring-metallb-status""}
+title: Monitoring MetalLB configuration status
 ---
 
 # Monitoring MetalLB configuration status {id="monitoring-metallb-status""} {#monitoring-metallb-configuration-status-idmonitoring-metallb-status}
@@ -16,10 +16,10 @@ MetalLB exposes status information for several key components, providing a compr
 
 | Resource | Description | Troubleshooting command |
 | --- | --- | --- |
-| `IPAddressPool`** (status field)** | Shows the cluster-wide allocation and availability of IP addresses within a defined pool, including the number of assigned and available addresses for both IPv4 and IPv6. | `oc get ipaddresspool _<IPAddressPool-name>_ -n metallb-system -o yaml` |
-| `ServiceBGPStatus` | Shows which service IP addresses the system announces to specific BGP peers across the network infrastructure. | `oc get servicebgpstatus -n metallb-system` |
-| `BGPSessionStatus` | Shows the real-time operational state of the border gateway protocol (BGP) and bidirectional forwarding detection (BFD) sessions between a specific cluster node and a BGP peer, indicating if the channel is `Established` or `Up` based on routing stack feedback. | `oc get bgpsessionstatus -o wide` |
-| `ConfigurationState` | Shows whether the MetalLB controller and speakers have successfully validated and applied the current configuration. MetalLB creates one resource for the controller and one for each speaker node. Reports errors when custom resources are incompatible. | `oc get configurationstates -n metallb-system` |
+| **`IPAddressPool` (status field)** | Shows the cluster-wide allocation and availability of IP addresses within a defined pool, including the number of assigned and available addresses for both IPv4 and IPv6. | `oc get ipaddresspool _<IPAddressPool-name>_ -n metallb-system -o yaml` |
+| **`ServiceBGPStatus`** | Shows which service IP addresses the system announces to specific BGP peers across the network infrastructure. | `oc get servicebgpstatus -n metallb-system` |
+| **`BGPSessionStatus`** | Shows the real-time operational state of the border gateway protocol (BGP) and bidirectional forwarding detection (BFD) sessions between a specific cluster node and a BGP peer, indicating if the channel is `Established` or `Up` based on routing stack feedback. | `oc get bgpsessionstatus -o wide` |
+| **`ConfigurationState`** | Shows whether the MetalLB controller and speakers have successfully validated and applied the current configuration. MetalLB creates one resource for the controller and one for each speaker node. Reports errors when custom resources are incompatible. | `oc get configurationstates -n metallb-system` |
 
 The MetalLB controller, typically deployed as `metallb-system/controller`, is responsible for managing IP address assignments and updating the `IPAddressPool` status. When a service requests a `LoadBalancer` IP, the controller allocates an IP from an appropriate `IPAddressPool` and updates the status fields to reflect the current number of assigned and available IP addresses.
 
@@ -571,6 +571,7 @@ You can verify that the MetalLB controller and speakers have successfully applie
 
    A return value of `Valid` for all entries confirms that the MetalLB controller and speakers are operating with a valid configuration.
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [About MetalLB and the MetalLB Operator](/openshift-docs-markdown/networking/networking_operators/metallb-operator/about-metallb#about-metallb)

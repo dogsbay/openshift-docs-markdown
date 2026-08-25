@@ -1,8 +1,8 @@
 ---
-title: Creating ConfigMap objects for the image-based upgrade with the {{ lcao }} using {{ ztp }}
+title: Creating ConfigMap objects for the image-based upgrade with the Lifecycle Agent using GitOps ZTP
 ---
 
-# Creating ConfigMap objects for the image-based upgrade with the {{ lcao }} using {{ ztp }} {#ztp-image-based-upgrade-prep-resources}
+# Creating ConfigMap objects for the image-based upgrade with the Lifecycle Agent using GitOps ZTP {#ztp-image-based-upgrade-prep-resources}
 
 Create your OADP resources, extra manifests, and custom catalog sources wrapped in a `ConfigMap` object to prepare for the image-based upgrade.
 
@@ -40,240 +40,229 @@ Prepare your OADP resources to restore your application after an upgrade.
 
    **PlatformBackupRestoreWithIBGU.yaml**
 
-```yaml
-apiVersion: velero.io/v1
-kind: Backup
-metadata:
-  name: acm-klusterlet
-  annotations:
-    lca.openshift.io/apply-label: "apps/v1/deployments/open-cluster-management-agent/klusterlet,v1/secrets/open-cluster-management-agent/bootstrap-hub-kubeconfig,rbac.authorization.k8s.io/v1/clusterroles/klusterlet,v1/serviceaccounts/open-cluster-management-agent/klusterlet,scheduling.k8s.io/v1/priorityclasses/klusterlet-critical,rbac.authorization.k8s.io/v1/clusterroles/open-cluster-management:klusterlet-work:ibu-role,rbac.authorization.k8s.io/v1/clusterroles/open-cluster-management:klusterlet-admin-aggregate-clusterrole,rbac.authorization.k8s.io/v1/clusterrolebindings/klusterlet,operator.open-cluster-management.io/v1/klusterlets/klusterlet,apiextensions.k8s.io/v1/customresourcedefinitions/klusterlets.operator.open-cluster-management.io,v1/secrets/open-cluster-management-agent/open-cluster-management-image-pull-credentials"
-  labels:
-    velero.io/storage-location: default
-  namespace: openshift-adp
-spec:
-  includedNamespaces:
-  - open-cluster-management-agent
-  includedClusterScopedResources:
-  - klusterlets.operator.open-cluster-management.io
-  - clusterroles.rbac.authorization.k8s.io
-  - clusterrolebindings.rbac.authorization.k8s.io
-  - priorityclasses.scheduling.k8s.io
-  includedNamespaceScopedResources:
-  - deployments
-  - serviceaccounts
-  - secrets
-  excludedNamespaceScopedResources: []
----
-apiVersion: velero.io/v1
-kind: Restore
-metadata:
-  name: acm-klusterlet
-  namespace: openshift-adp
-  labels:
-    velero.io/storage-location: default
-  annotations:
-    lca.openshift.io/apply-wave: "1"
-spec:
-  backupName:
-    acm-klusterlet
-```
+   ```yaml
+   apiVersion: velero.io/v1
+   kind: Backup
+   metadata:
+     name: acm-klusterlet
+     annotations:
+       lca.openshift.io/apply-label: "apps/v1/deployments/open-cluster-management-agent/klusterlet,v1/secrets/open-cluster-management-agent/bootstrap-hub-kubeconfig,rbac.authorization.k8s.io/v1/clusterroles/klusterlet,v1/serviceaccounts/open-cluster-management-agent/klusterlet,scheduling.k8s.io/v1/priorityclasses/klusterlet-critical,rbac.authorization.k8s.io/v1/clusterroles/open-cluster-management:klusterlet-work:ibu-role,rbac.authorization.k8s.io/v1/clusterroles/open-cluster-management:klusterlet-admin-aggregate-clusterrole,rbac.authorization.k8s.io/v1/clusterrolebindings/klusterlet,operator.open-cluster-management.io/v1/klusterlets/klusterlet,apiextensions.k8s.io/v1/customresourcedefinitions/klusterlets.operator.open-cluster-management.io,v1/secrets/open-cluster-management-agent/open-cluster-management-image-pull-credentials"
+     labels:
+       velero.io/storage-location: default
+     namespace: openshift-adp
+   spec:
+     includedNamespaces:
+     - open-cluster-management-agent
+     includedClusterScopedResources:
+     - klusterlets.operator.open-cluster-management.io
+     - clusterroles.rbac.authorization.k8s.io
+     - clusterrolebindings.rbac.authorization.k8s.io
+     - priorityclasses.scheduling.k8s.io
+     includedNamespaceScopedResources:
+     - deployments
+     - serviceaccounts
+     - secrets
+     excludedNamespaceScopedResources: []
+   ---
+   apiVersion: velero.io/v1
+   kind: Restore
+   metadata:
+     name: acm-klusterlet
+     namespace: openshift-adp
+     labels:
+       velero.io/storage-location: default
+     annotations:
+       lca.openshift.io/apply-wave: "1"
+   spec:
+     backupName:
+       acm-klusterlet
+   ```
 
-> [!NOTE]
-> If your `multiclusterHub` CR does not have `.spec.imagePullSecret` defined and the secret does not exist on the `open-cluster-management-agent` namespace in your hub cluster, remove `v1/secrets/open-cluster-management-agent/open-cluster-management-image-pull-credentials` from the `metadata.annotations.lca.openshift.io/apply-label` value in the `acm-klusterlet` `Backup` CR.
+   > [!NOTE]
+   > If your `multiclusterHub` CR does not have `.spec.imagePullSecret` defined and the secret does not exist on the `open-cluster-management-agent` namespace in your hub cluster, remove `v1/secrets/open-cluster-management-agent/open-cluster-management-image-pull-credentials` from the `metadata.annotations.lca.openshift.io/apply-label` value in the `acm-klusterlet` `Backup` CR.
 
-```
-:::note
+   > [!NOTE]
+   > If you perform the image-based upgrade directly on managed clusters, use the `PlatformBackupRestore.yaml` file.
 
-If you perform the image-based upgrade directly on managed clusters, use the `PlatformBackupRestore.yaml` file.
+   If you use LVM Storage to create persistent volumes, you can use the `source-crs/ibu/PlatformBackupRestoreLvms.yaml` provided in the ZTP container image to back up your LVM Storage resources.
 
-:::
+   **PlatformBackupRestoreLvms.yaml**
 
-If you use LVM Storage to create persistent volumes, you can use the `source-crs/ibu/PlatformBackupRestoreLvms.yaml` provided in the ZTP container image to back up your LVM Storage resources.
+   ```yaml
+   apiVersion: velero.io/v1
+   kind: Backup
+   metadata:
+     labels:
+       velero.io/storage-location: default
+     name: lvmcluster
+     namespace: openshift-adp
+   spec:
+     includedNamespaces:
+       - openshift-storage
+     includedNamespaceScopedResources:
+       - lvmclusters
+       - lvmvolumegroups
+       - lvmvolumegroupnodestatuses
+   ---
+   apiVersion: velero.io/v1
+   kind: Restore
+   metadata:
+     name: lvmcluster
+     namespace: openshift-adp
+     labels:
+       velero.io/storage-location: default
+     annotations:
+       lca.openshift.io/apply-wave: "2"
+   spec:
+     backupName:
+       lvmcluster
+   ```
 
-**PlatformBackupRestoreLvms.yaml**
-```
+   - The `lca.openshift.io/apply-wave` value must be lower than the values specified in the application `Restore` CRs.
+2. If you need to restore applications after the upgrade, create the OADP `Backup` and `Restore` CRs for your application in the `openshift-adp` namespace:
 
-```yaml
-apiVersion: velero.io/v1
-kind: Backup
-metadata:
-  labels:
-    velero.io/storage-location: default
-  name: lvmcluster
-  namespace: openshift-adp
-spec:
-  includedNamespaces:
-    - openshift-storage
-  includedNamespaceScopedResources:
-    - lvmclusters
-    - lvmvolumegroups
-    - lvmvolumegroupnodestatuses
----
-apiVersion: velero.io/v1
-kind: Restore
-metadata:
-  name: lvmcluster
-  namespace: openshift-adp
-  labels:
-    velero.io/storage-location: default
-  annotations:
-    lca.openshift.io/apply-wave: "2"
-spec:
-  backupName:
-    lvmcluster
-```
+   1. Create the OADP CRs for cluster-scoped application artifacts in the `openshift-adp` namespace:
 
-- The `lca.openshift.io/apply-wave` value must be lower than the values specified in the application `Restore` CRs.
+      **Example OADP CRs for cluster-scoped application artifacts for LSO and {LVMS}**
 
-1. If you need to restore applications after the upgrade, create the OADP `Backup` and `Restore` CRs for your application in the `openshift-adp` namespace:
+      ```yaml
+      apiVersion: velero.io/v1
+      kind: Backup
+      metadata:
+        annotations:
+          lca.openshift.io/apply-label: "apiextensions.k8s.io/v1/customresourcedefinitions/test.example.com,security.openshift.io/v1/securitycontextconstraints/test,rbac.authorization.k8s.io/v1/clusterroles/test-role,rbac.authorization.k8s.io/v1/clusterrolebindings/system:openshift:scc:test"
+        name: backup-app-cluster-resources
+        labels:
+          velero.io/storage-location: default
+        namespace: openshift-adp
+      spec:
+        includedClusterScopedResources:
+        - customresourcedefinitions
+        - securitycontextconstraints
+        - clusterrolebindings
+        - clusterroles
+        excludedClusterScopedResources:
+        - Namespace
+      ---
+      apiVersion: velero.io/v1
+      kind: Restore
+      metadata:
+        name: test-app-cluster-resources
+        namespace: openshift-adp
+        labels:
+          velero.io/storage-location: default
+        annotations:
+          lca.openshift.io/apply-wave: "3"
+      spec:
+        backupName:
+          backup-app-cluster-resources
+      ```
 
-   1. Create the OADP CRs for cluster-scoped application artifacts in the `openshift-adp` namespace: **Example OADP CRs for cluster-scoped application artifacts for LSO and {{ LVMS }}**
+      - Replace the example resource names in the `lca.openshift.io/apply-label` field with your actual resources.
+      - The value in the `lca.openshift.io/apply-wave` field must be higher than the value in the platform `Restore` CRs and lower than the value in the application namespace-scoped `Restore` CR.
+   2. Create the OADP CRs for your namespace-scoped application artifacts in the `source-crs/custom-crs` directory:
 
-```yaml
-apiVersion: velero.io/v1
-kind: Backup
-metadata:
-  annotations:
-    lca.openshift.io/apply-label: "apiextensions.k8s.io/v1/customresourcedefinitions/test.example.com,security.openshift.io/v1/securitycontextconstraints/test,rbac.authorization.k8s.io/v1/clusterroles/test-role,rbac.authorization.k8s.io/v1/clusterrolebindings/system:openshift:scc:test"
-  name: backup-app-cluster-resources
-  labels:
-    velero.io/storage-location: default
-  namespace: openshift-adp
-spec:
-  includedClusterScopedResources:
-  - customresourcedefinitions
-  - securitycontextconstraints
-  - clusterrolebindings
-  - clusterroles
-  excludedClusterScopedResources:
-  - Namespace
----
-apiVersion: velero.io/v1
-kind: Restore
-metadata:
-  name: test-app-cluster-resources
-  namespace: openshift-adp
-  labels:
-    velero.io/storage-location: default
-  annotations:
-    lca.openshift.io/apply-wave: "3"
-spec:
-  backupName:
-    backup-app-cluster-resources
-```
+      **Example OADP CRs namespace-scoped application artifacts when LSO is used**
 
-- Replace the example resource names in the `lca.openshift.io/apply-label` field with your actual resources.
-- The value in the `lca.openshift.io/apply-wave` field must be higher than the value in the platform `Restore` CRs and lower than the value in the application namespace-scoped `Restore` CR.
+      ```yaml
+      apiVersion: velero.io/v1
+      kind: Backup
+      metadata:
+        labels:
+          velero.io/storage-location: default
+        name: backup-app
+        namespace: openshift-adp
+      spec:
+        includedNamespaces:
+        - test
+        includedNamespaceScopedResources:
+        - secrets
+        - persistentvolumeclaims
+        - deployments
+        - statefulsets
+        - configmaps
+        - cronjobs
+        - services
+        - job
+        - poddisruptionbudgets
+        - <application_custom_resources>
+        excludedClusterScopedResources:
+        - persistentVolumes
+      ---
+      apiVersion: velero.io/v1
+      kind: Restore
+      metadata:
+        name: test-app
+        namespace: openshift-adp
+        labels:
+          velero.io/storage-location: default
+        annotations:
+          lca.openshift.io/apply-wave: "4"
+      spec:
+        backupName:
+          backup-app
+      ```
 
-  1. Create the OADP CRs for your namespace-scoped application artifacts in the `source-crs/custom-crs` directory: **Example OADP CRs namespace-scoped application artifacts when LSO is used**
+      - Define custom resources for your application in the `includedNamespaceScopedResources` field.
 
-```yaml
-apiVersion: velero.io/v1
-kind: Backup
-metadata:
-  labels:
-    velero.io/storage-location: default
-  name: backup-app
-  namespace: openshift-adp
-spec:
-  includedNamespaces:
-  - test
-  includedNamespaceScopedResources:
-  - secrets
-  - persistentvolumeclaims
-  - deployments
-  - statefulsets
-  - configmaps
-  - cronjobs
-  - services
-  - job
-  - poddisruptionbudgets
-  - <application_custom_resources>
-  excludedClusterScopedResources:
-  - persistentVolumes
----
-apiVersion: velero.io/v1
-kind: Restore
-metadata:
-  name: test-app
-  namespace: openshift-adp
-  labels:
-    velero.io/storage-location: default
-  annotations:
-    lca.openshift.io/apply-wave: "4"
-spec:
-  backupName:
-    backup-app
-```
+      **Example OADP CRs namespace-scoped application artifacts when LVM Storage is used**
 
-- Define custom resources for your application in the `includedNamespaceScopedResources` field.
+      ```yaml
+      apiVersion: velero.io/v1
+      kind: Backup
+      metadata:
+        labels:
+          velero.io/storage-location: default
+        name: backup-app
+        namespace: openshift-adp
+      spec:
+        includedNamespaces:
+        - test
+        includedNamespaceScopedResources:
+        - secrets
+        - persistentvolumeclaims
+        - deployments
+        - statefulsets
+        - configmaps
+        - cronjobs
+        - services
+        - job
+        - poddisruptionbudgets
+        - <application_custom_resources>
+        includedClusterScopedResources:
+        - persistentVolumes
+        - logicalvolumes.topolvm.io
+        - volumesnapshotcontents
+      ---
+      apiVersion: velero.io/v1
+      kind: Restore
+      metadata:
+        name: test-app
+        namespace: openshift-adp
+        labels:
+          velero.io/storage-location: default
+        annotations:
+          lca.openshift.io/apply-wave: "4"
+      spec:
+        backupName:
+          backup-app
+        restorePVs: true
+        restoreStatus:
+          includedResources:
+          - logicalvolumes
+      ```
 
-  ```
-  **Example OADP CRs namespace-scoped application artifacts when LVM Storage is used**
-  ```
+      where:
 
-```yaml
-apiVersion: velero.io/v1
-kind: Backup
-metadata:
-  labels:
-    velero.io/storage-location: default
-  name: backup-app
-  namespace: openshift-adp
-spec:
-  includedNamespaces:
-  - test
-  includedNamespaceScopedResources:
-  - secrets
-  - persistentvolumeclaims
-  - deployments
-  - statefulsets
-  - configmaps
-  - cronjobs
-  - services
-  - job
-  - poddisruptionbudgets
-  - <application_custom_resources>
-  includedClusterScopedResources:
-  - persistentVolumes
-  - logicalvolumes.topolvm.io
-  - volumesnapshotcontents
----
-apiVersion: velero.io/v1
-kind: Restore
-metadata:
-  name: test-app
-  namespace: openshift-adp
-  labels:
-    velero.io/storage-location: default
-  annotations:
-    lca.openshift.io/apply-wave: "4"
-spec:
-  backupName:
-    backup-app
-  restorePVs: true
-  restoreStatus:
-    includedResources:
-    - logicalvolumes
-```
+      - `<application_custom_resources>`: Define custom resources for your application.
+      - `persistentVolumes`: Required field.
+      - `logicalvolumes.topolvm.io`: Required field.
+      - `volumesnapshotcontents`: Optional if you use LVM Storage volume snapshots.
+      - `restoreStatus.includedResources`: Required field for restoring logical volumes.
 
-where:
-
-- `<application_custom_resources>`: Define custom resources for your application.
-- `persistentVolumes`: Required field.
-- `logicalvolumes.topolvm.io`: Required field.
-- `volumesnapshotcontents`: Optional if you use LVM Storage volume snapshots.
-- `restoreStatus.includedResources`: Required field for restoring logical volumes.
-
-  ```
-  :::important
-
-  The same version of the applications must function on both the current and the target release of OpenShift Container Platform.
-
-  :::
-  ```
-
-1. Create a `kustomization.yaml` with the following content:
+      > [!IMPORTANT]
+      > The same version of the applications must function on both the current and the target release of OpenShift Container Platform.
+3. Create a `kustomization.yaml` with the following content:
 
    ```yaml
    apiVersion: kustomize.config.k8s.io/v1beta1
@@ -301,6 +290,7 @@ where:
 1. Push the changes to your Git repository.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring a shared container partition between ostree stateroots when using GitOps ZTP](/openshift-docs-markdown/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-shared-container-partition#ztp-image-based-upgrade-shared-container-partition_shared-container-partition)
 - [Installing and configuring the OADP Operator with GitOps ZTP](/openshift-docs-markdown/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-install-operators#ztp-image-based-upgrade-installing-oadp_install-operators)
@@ -401,6 +391,7 @@ Label your extra manifests so that the Lifecycle Agent can extract resources tha
 1. Push the changes to your Git repository.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring a shared container partition between ostree stateroots when using GitOps ZTP](/openshift-docs-markdown/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-shared-container-partition#ztp-image-based-upgrade-shared-container-partition_shared-container-partition)
 - [Performing an image-based upgrade for single-node OpenShift clusters using GitOps ZTP](/openshift-docs-markdown/edge_computing/image_based_upgrade/ztp-image-based-upgrade#ztp-image-based-upgrade)

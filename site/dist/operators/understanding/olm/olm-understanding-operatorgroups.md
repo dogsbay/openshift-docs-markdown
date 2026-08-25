@@ -145,7 +145,7 @@ The following RBAC resources are generated when a CSV becomes an active member o
 
 <a name="olm-resources-per-api-resource-crd_olm-understanding-operatorgroups"></a>
 
-***Cluster roles generated for each API resource from a CRD***
+**Cluster roles generated for each API resource from a CRD**
 
 <table>
 <thead>
@@ -156,27 +156,27 @@ The following RBAC resources are generated when a CSV becomes an active member o
 </thead>
 <tbody>
 <tr>
-  <td><code><kind>.<group>-<version>-admin</code></td>
-  <td>Verbs on <code><kind></code>:<br><br><ul><li><code>*</code></li></ul>Aggregation labels:<br><br><ul><li><code>rbac.authorization.k8s.io/aggregate-to-admin: true</code></li><li><code>olm.opgroup.permissions/aggregate-to-admin: <operatorgroup_name></code></li></ul></td>
+  <td><code>&lt;kind&gt;.&lt;group&gt;-&lt;version&gt;-admin</code></td>
+  <td>Verbs on <code>&lt;kind&gt;</code>:<br><br><ul><li><code>*</code></li></ul>Aggregation labels:<br><br><ul><li><code>rbac.authorization.k8s.io/aggregate-to-admin: true</code></li><li><code>olm.opgroup.permissions/aggregate-to-admin: &lt;operatorgroup_name&gt;</code></li></ul></td>
 </tr>
 <tr>
-  <td><code><kind>.<group>-<version>-edit</code></td>
-  <td>Verbs on <code><kind></code>:<br><br><ul><li><code>create</code></li><li><code>update</code></li><li><code>patch</code></li><li><code>delete</code></li></ul>Aggregation labels:<br><br><ul><li><code>rbac.authorization.k8s.io/aggregate-to-edit: true</code></li><li><code>olm.opgroup.permissions/aggregate-to-edit: <operatorgroup_name></code></li></ul></td>
+  <td><code>&lt;kind&gt;.&lt;group&gt;-&lt;version&gt;-edit</code></td>
+  <td>Verbs on <code>&lt;kind&gt;</code>:<br><br><ul><li><code>create</code></li><li><code>update</code></li><li><code>patch</code></li><li><code>delete</code></li></ul>Aggregation labels:<br><br><ul><li><code>rbac.authorization.k8s.io/aggregate-to-edit: true</code></li><li><code>olm.opgroup.permissions/aggregate-to-edit: &lt;operatorgroup_name&gt;</code></li></ul></td>
 </tr>
 <tr>
-  <td><code><kind>.<group>-<version>-view</code></td>
-  <td>Verbs on <code><kind></code>:<br><br><ul><li><code>get</code></li><li><code>list</code></li><li><code>watch</code></li></ul>Aggregation labels:<br><br><ul><li><code>rbac.authorization.k8s.io/aggregate-to-view: true</code></li><li><code>olm.opgroup.permissions/aggregate-to-view: <operatorgroup_name></code></li></ul></td>
+  <td><code>&lt;kind&gt;.&lt;group&gt;-&lt;version&gt;-view</code></td>
+  <td>Verbs on <code>&lt;kind&gt;</code>:<br><br><ul><li><code>get</code></li><li><code>list</code></li><li><code>watch</code></li></ul>Aggregation labels:<br><br><ul><li><code>rbac.authorization.k8s.io/aggregate-to-view: true</code></li><li><code>olm.opgroup.permissions/aggregate-to-view: &lt;operatorgroup_name&gt;</code></li></ul></td>
 </tr>
 <tr>
-  <td><code><kind>.<group>-<version>-view-crdview</code></td>
-  <td>Verbs on <code>apiextensions.k8s.io</code> <code>customresourcedefinitions</code> <code><crd-name></code>:<br><br><ul><li><code>get</code></li></ul>Aggregation labels:<br><br><ul><li><code>rbac.authorization.k8s.io/aggregate-to-view: true</code></li><li><code>olm.opgroup.permissions/aggregate-to-view: <operatorgroup_name></code></li></ul></td>
+  <td><code>&lt;kind&gt;.&lt;group&gt;-&lt;version&gt;-view-crdview</code></td>
+  <td>Verbs on <code>apiextensions.k8s.io</code> <code>customresourcedefinitions</code> <code>&lt;crd-name&gt;</code>:<br><br><ul><li><code>get</code></li></ul>Aggregation labels:<br><br><ul><li><code>rbac.authorization.k8s.io/aggregate-to-view: true</code></li><li><code>olm.opgroup.permissions/aggregate-to-view: &lt;operatorgroup_name&gt;</code></li></ul></td>
 </tr>
 </tbody>
 </table>
 
 <a name="olm-resources-per-api-resource-api_olm-understanding-operatorgroups"></a>
 
-***Cluster roles generated for each API resource from an API service***
+**Cluster roles generated for each API resource from an API service**
 
 <table>
 <thead>
@@ -187,16 +187,16 @@ The following RBAC resources are generated when a CSV becomes an active member o
 </thead>
 <tbody>
 <tr>
-  <td><code><kind>.<group>-<version>-admin</code></td>
-  <td>Verbs on <code><kind></code>:<br><br><ul><li><code>*</code></li></ul>Aggregation labels:<br><br><ul><li><code>rbac.authorization.k8s.io/aggregate-to-admin: true</code></li><li><code>olm.opgroup.permissions/aggregate-to-admin: <operatorgroup_name></code></li></ul></td>
+  <td><code>&lt;kind&gt;.&lt;group&gt;-&lt;version&gt;-admin</code></td>
+  <td>Verbs on <code>&lt;kind&gt;</code>:<br><br><ul><li><code>*</code></li></ul>Aggregation labels:<br><br><ul><li><code>rbac.authorization.k8s.io/aggregate-to-admin: true</code></li><li><code>olm.opgroup.permissions/aggregate-to-admin: &lt;operatorgroup_name&gt;</code></li></ul></td>
 </tr>
 <tr>
-  <td><code><kind>.<group>-<version>-edit</code></td>
-  <td>Verbs on <code><kind></code>:<br><br><ul><li><code>create</code></li><li><code>update</code></li><li><code>patch</code></li><li><code>delete</code></li></ul>Aggregation labels:<br><br><ul><li><code>rbac.authorization.k8s.io/aggregate-to-edit: true</code></li><li><code>olm.opgroup.permissions/aggregate-to-edit: <operatorgroup_name></code></li></ul></td>
+  <td><code>&lt;kind&gt;.&lt;group&gt;-&lt;version&gt;-edit</code></td>
+  <td>Verbs on <code>&lt;kind&gt;</code>:<br><br><ul><li><code>create</code></li><li><code>update</code></li><li><code>patch</code></li><li><code>delete</code></li></ul>Aggregation labels:<br><br><ul><li><code>rbac.authorization.k8s.io/aggregate-to-edit: true</code></li><li><code>olm.opgroup.permissions/aggregate-to-edit: &lt;operatorgroup_name&gt;</code></li></ul></td>
 </tr>
 <tr>
-  <td><code><kind>.<group>-<version>-view</code></td>
-  <td>Verbs on <code><kind></code>:<br><br><ul><li><code>get</code></li><li><code>list</code></li><li><code>watch</code></li></ul>Aggregation labels:<br><br><ul><li><code>rbac.authorization.k8s.io/aggregate-to-view: true</code></li><li><code>olm.opgroup.permissions/aggregate-to-view: <operatorgroup_name></code></li></ul></td>
+  <td><code>&lt;kind&gt;.&lt;group&gt;-&lt;version&gt;-view</code></td>
+  <td>Verbs on <code>&lt;kind&gt;</code>:<br><br><ul><li><code>get</code></li><li><code>list</code></li><li><code>watch</code></li></ul>Aggregation labels:<br><br><ul><li><code>rbac.authorization.k8s.io/aggregate-to-view: true</code></li><li><code>olm.opgroup.permissions/aggregate-to-view: &lt;operatorgroup_name&gt;</code></li></ul></td>
 </tr>
 </tbody>
 </table>
@@ -304,8 +304,8 @@ Each time an active member CSV synchronizes, OLM queries the cluster for the set
 
     - Replace the Operator group’s `olm.providedAPIs` annotation with the difference between itself and the CSV’s provided APIs.
 
-> [!NOTE]
-> Failure states caused by Operator groups are non-terminal.
+    > [!NOTE]
+    > Failure states caused by Operator groups are non-terminal.
 
 The following actions are performed each time an Operator group synchronizes:
 
@@ -329,8 +329,9 @@ The supported scenarios include the following:
 All other scenarios are not supported, because the integrity of the cluster data cannot be guaranteed if there are multiple competing or overlapping CRDs from different Operator versions to be reconciled on the same cluster.
 
 **Additional resources**
+{._additional-resources}
 
-- [Operator Lifecycle Manager (OLM) -> Multitenancy and Operator colocation](/openshift-docs-markdown/operators/understanding/olm/olm-colocation#olm-colocation)
+- [Operator Lifecycle Manager (OLM) → Multitenancy and Operator colocation](/openshift-docs-markdown/operators/understanding/olm/olm-colocation#olm-colocation)
 - [Operators in multitenant clusters](/openshift-docs-markdown/operators/understanding/olm-multitenancy#olm-multitenancy)
 - [Allowing non-cluster administrators to install Operators](/openshift-docs-markdown/operators/admin/olm-creating-policy#olm-creating-policy)
 

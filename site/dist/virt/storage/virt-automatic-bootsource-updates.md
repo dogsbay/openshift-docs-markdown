@@ -26,7 +26,7 @@ To disable automatic updates for all system-defined boot sources, set the `enabl
   - To disable automatic boot source updates, set the `spec.enableCommonBootImageImport` field value in the `HyperConverged` CR to `false`. For example:
 
     ```terminal
-    $ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} \
+    $ oc patch hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv \
       --type json -p '[{"op": "replace", "path": \
       "/spec/enableCommonBootImageImport", \
       "value": false}]'
@@ -34,7 +34,7 @@ To disable automatic updates for all system-defined boot sources, set the `enabl
   - To re-enable automatic boot source updates, set the `spec.enableCommonBootImageImport` field value in the `HyperConverged` CR to `true`. For example:
 
     ```terminal
-    $ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} \
+    $ oc patch hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv \
       --type json -p '[{"op": "replace", "path": \
       "/spec/enableCommonBootImageImport", \
       "value": true}]'
@@ -108,7 +108,7 @@ You can configure a specific storage class in the `HyperConverged` resource.
 1. Open the `HyperConverged` CR in your default editor by running the following command:
 
    ```terminal
-   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+   $ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv
    ```
 2. Add the `dataImportCronTemplate` to the spec section of the `HyperConverged` resource and set the `storageClassName`:
 
@@ -163,7 +163,7 @@ OpenShift Virtualization automatically updates system-defined boot sources by de
 1. Open the `HyperConverged` CR in your default editor by running the following command:
 
    ```terminal
-   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+   $ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv
    ```
 2. Edit the `HyperConverged` CR, adding the appropriate template and boot source in the `dataImportCronTemplates` section. For example:
 
@@ -259,18 +259,20 @@ You can disable automatic updates for an individual boot source, whether it is c
 1. Open the `HyperConverged` CR in your default editor by running the following command:
 
    ```terminal
-   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+   $ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv
    ```
 2. Disable automatic updates for an individual boot source by editing the `spec.dataImportCronTemplates` field.
 
-   Custom boot source :   \*   Remove the boot source from the `spec.dataImportCronTemplates` field. Automatic updates are disabled for custom boot sources by default.
+   Custom boot source
+   :   - Remove the boot source from the `spec.dataImportCronTemplates` field. Automatic updates are disabled for custom boot sources by default.
 
-   System-defined boot source :   1.  Add the boot source to `spec.dataImportCronTemplates`.
+   System-defined boot source
+   :   1. Add the boot source to `spec.dataImportCronTemplates`.
 
    > [!NOTE]
    > Automatic updates are enabled by default for system-defined boot sources, but these boot sources are not listed in the CR unless you add them.
 
-   1. Set the value of the `dataimportcrontemplate.kubevirt.io/enable` annotation to ’false'\`.
+   1. Set the value of the `dataimportcrontemplate.kubevirt.io/enable` annotation to `'false'`.
 
    For example:
 
@@ -336,7 +338,7 @@ You can determine if a boot source is system-defined or custom by viewing the `H
 1. View the contents of the `HyperConverged` CR by running the following command:
 
    ```terminal
-   $ oc get {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} -o yaml
+   $ oc get hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv -o yaml
    ```
 
    Example output:
@@ -404,7 +406,8 @@ You can determine if a boot source is system-defined or custom by viewing the `H
    - If the field contains `commonTemplate: true`, it is a system-defined boot source.
    - If the `status.dataImportCronTemplates.status` field has the value `{}`, it is a custom boot source.
 
-## Additional resources {#additional-resources_virt-automatic-bootsource-updates}
+**Additional resources**
+{._additional-resources}
 
 - [All Red Hat boot sources](/openshift-docs-markdown/virt/storage/virt-automatic-bootsource-updates#virt-managing-auto-update-all-system-boot-sources_virt-automatic-bootsource-updates)
 - [All custom boot sources](/openshift-docs-markdown/virt/storage/virt-automatic-bootsource-updates#virt-autoupdate-custom-bootsource_virt-automatic-bootsource-updates)

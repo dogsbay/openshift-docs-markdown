@@ -99,6 +99,7 @@ As a cluster administrator, you can modify an existing Ingress Controller to man
 
    Inspect the output and confirm that `dnsManagementPolicy` is set to `Unmanaged`.
 
-## Additional resources {#configuring-ingress-controller-dns-management-additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Ingress Controller configuration parameters](/openshift-docs-markdown/networking/networking_operators/ingress-operator#nw-ingress-controller-configuration-parameters_configuring-ingress)

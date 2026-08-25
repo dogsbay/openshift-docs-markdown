@@ -145,6 +145,7 @@ Change a persistent volume’s reclaim policy to control whether storage is auto
    In the preceding output, the volume bound to claim `default/claim3` now has a `Retain` reclaim policy. The volume will not be automatically deleted when a user deletes claim `default/claim3`.
 
 **Additional resources**
+{._additional-resources}
 
 - [When using Persistent Volumes with high file counts in OpenShift, why do pods fail to start or take an excessive amount of time to achieve "Ready" state? (Red Hat Knowledgebase)](https://access.redhat.com/solutions/6221251)
 
@@ -232,7 +233,7 @@ All volumes with the same modes are grouped, and then sorted by size, smallest t
 
 The following table lists the access modes:
 
-***Access modes***
+**Access modes**
 
 <table>
 <thead>
@@ -266,13 +267,13 @@ The following table lists the access modes:
 </tbody>
 </table>
 
-***Supported access modes for persistent volumes***
+**Supported access modes for persistent volumes**
 
 <table>
 <thead>
 <tr>
   <th>Volume plugin</th>
-  <th>ReadWriteOnce ^[1]^</th>
+  <th>ReadWriteOnce <sup>[1]</sup></th>
   <th>ReadWriteOncePod</th>
   <th>ReadOnlyMany</th>
   <th>ReadWriteMany</th>
@@ -280,62 +281,74 @@ The following table lists the access modes:
 </thead>
 <tbody>
 <tr>
-  <td>AWS EBS ^[2]^</td>
+  <td>AWS EBS <sup>[2]</sup></td>
   <td>✅</td>
   <td>✅</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
   <td>AWS EFS</td>
   <td>✅</td>
+  <td>✅</td>
+  <td>✅</td>
+  <td>✅</td>
 </tr>
 <tr>
-  <td>✅</td>
-  <td>✅</td>
-  <td>✅</td>
   <td>Azure File</td>
   <td>✅</td>
+  <td>✅</td>
+  <td>✅</td>
+  <td>✅</td>
 </tr>
 <tr>
-  <td>✅</td>
-  <td>✅</td>
-  <td>✅</td>
   <td>Azure Disk</td>
   <td>✅</td>
+  <td>✅</td>
+  <td></td>
+  <td></td>
 </tr>
 <tr>
-  <td>✅</td>
   <td>CIFS/SMB</td>
   <td>✅</td>
   <td>✅</td>
   <td>✅</td>
+  <td>✅</td>
 </tr>
 <tr>
-  <td>✅</td>
   <td>Cinder</td>
   <td>✅</td>
   <td>✅</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
   <td>Fibre Channel</td>
+  <td>✅</td>
+  <td>✅</td>
+  <td>✅</td>
+  <td>✅ <sup>[3]</sup></td>
 </tr>
 <tr>
-  <td>✅</td>
-  <td>✅</td>
-  <td>✅</td>
-  <td>✅ ^[3]^</td>
   <td>GCP Persistent Disk</td>
-  <td>✅ ^[4]^</td>
+  <td>✅ <sup>[4]</sup></td>
+  <td>✅</td>
+  <td>✅</td>
+  <td>✅ <sup>[4]</sup></td>
 </tr>
 <tr>
-  <td>✅</td>
-  <td>✅</td>
-  <td>✅ ^[4]^</td>
   <td>GCP Filestore</td>
   <td>✅</td>
+  <td>✅</td>
+  <td>✅</td>
+  <td>✅</td>
 </tr>
 <tr>
-  <td>✅</td>
-  <td>✅</td>
-  <td>✅</td>
   <td>HostPath</td>
   <td>✅</td>
   <td>✅</td>
+  <td></td>
+  <td></td>
 </tr>
 <tr>
   <td>IBM Power Virtual Server  Disk</td>
@@ -348,43 +361,57 @@ The following table lists the access modes:
   <td>IBM Cloud(R) VPC Disk</td>
   <td>✅</td>
   <td>✅</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
   <td>iSCSI</td>
   <td>✅</td>
+  <td>✅</td>
+  <td>✅</td>
+  <td>✅ <sup>[3]</sup></td>
 </tr>
 <tr>
-  <td>✅</td>
-  <td>✅</td>
-  <td>✅ ^[3]^</td>
   <td>Local volume</td>
   <td>✅</td>
+  <td>✅</td>
+  <td></td>
+  <td></td>
 </tr>
 <tr>
-  <td>✅</td>
   <td>LVM Storage</td>
   <td>✅</td>
   <td>✅</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
   <td>NFS</td>
+  <td>✅</td>
+  <td>✅</td>
+  <td>✅</td>
+  <td>✅</td>
 </tr>
 <tr>
-  <td>✅</td>
-  <td>✅</td>
-  <td>✅</td>
-  <td>✅</td>
   <td>OpenStack Manila</td>
+  <td></td>
+  <td>✅</td>
+  <td></td>
+  <td>✅</td>
 </tr>
 <tr>
-  <td>✅</td>
-  <td>✅</td>
   <td>Red Hat OpenShift Data Foundation</td>
   <td>✅</td>
   <td>✅</td>
+  <td></td>
+  <td>✅</td>
 </tr>
 <tr>
-  <td>✅</td>
   <td>VMware vSphere</td>
   <td>✅</td>
   <td>✅</td>
-  <td>✅ ^[5]^</td>
+  <td></td>
+  <td>✅ <sup>[5]</sup></td>
 </tr>
 </tbody>
 </table>
@@ -429,59 +456,53 @@ Last phase transition time
 Mount options
 :   You can specify mount options while mounting a PV by using the attribute `mountOptions`.
 
-<a name="pv-mount-options_understanding-persistent-storage"></a>
+    <a name="pv-mount-options_understanding-persistent-storage"></a>
 
-````
-For example:
-```yaml title="Mount options example"
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: pv0001
-spec:
-  capacity:
-    storage: 1Gi
-  accessModes:
-    - ReadWriteOnce
-  mountOptions:
-    - nfsvers=4.1
-  nfs:
-    path: /tmp
-    server: 172.17.0.2
-  persistentVolumeReclaimPolicy: Retain
-  claimRef:
-    name: claim1
-    namespace: default
-```
+    For example:
 
-`spec.mountOptions`: Specified mount options are used while mounting the PV to the disk.
+    ```yaml {title="Mount options example"}
+    apiVersion: v1
+    kind: PersistentVolume
+    metadata:
+      name: pv0001
+    spec:
+      capacity:
+        storage: 1Gi
+      accessModes:
+        - ReadWriteOnce
+      mountOptions:
+        - nfsvers=4.1
+      nfs:
+        path: /tmp
+        server: 172.17.0.2
+      persistentVolumeReclaimPolicy: Retain
+      claimRef:
+        name: claim1
+        namespace: default
+    ```
 
-The following PV types support mount options:
-*   AWS Elastic Block Store (EBS)
-*   AWS Elastic File Storage (EFS)
-*   Azure Disk
-*   Azure File
-*   Cinder
+    `spec.mountOptions`: Specified mount options are used while mounting the PV to the disk.
 
+    The following PV types support mount options:
 
-*   GCE Persistent Disk
+    - AWS Elastic Block Store (EBS)
+    - AWS Elastic File Storage (EFS)
+    - Azure Disk
+    - Azure File
+    - Cinder
+    - GCE Persistent Disk
+    - iSCSI
+    - Local volume
+    - NFS
+    - Red Hat OpenShift Data Foundation (Ceph RBD only)
+    - CIFS/SMB
+    - VMware vSphere
 
-
-*   iSCSI
-*   Local volume
-*   NFS
-*   Red Hat OpenShift Data Foundation (Ceph RBD only)
-*   CIFS/SMB
-*   VMware vSphere
-
-:::note
-
-Fibre Channel and HostPath PVs do not support mount options.
-
-:::
-````
+    > [!NOTE]
+    > Fibre Channel and HostPath PVs do not support mount options.
 
 **Additional resources**
+{._additional-resources}
 
 - [Block volume support](/openshift-docs-markdown/storage/understanding-persistent-storage#block-volume-support_understanding-persistent-storage)
 - [GCP hyperdisk-balanced disk additional limitations](https://cloud.google.com/compute/docs/disks/attach-disks)
@@ -663,7 +684,7 @@ Raw block volumes are filesystem-free storage that applications access directly 
 
 The following table displays which volume plugins support block volumes.
 
-***Block volume support***
+**Block volume support**
 
 <table>
 <thead>
@@ -683,24 +704,35 @@ The following table displays which volume plugins support block volumes.
 </tr>
 <tr>
   <td>Amazon Elastic File Storage (Amazon EFS)</td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
   <td>Azure Disk</td>
   <td>✅</td>
   <td>✅</td>
+  <td>✅</td>
 </tr>
 <tr>
-  <td>✅</td>
   <td>Azure File</td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
   <td>Cinder</td>
   <td>✅</td>
+  <td>✅</td>
+  <td>✅</td>
 </tr>
 <tr>
-  <td>✅</td>
-  <td>✅</td>
   <td>Fibre Channel</td>
   <td>✅</td>
+  <td></td>
+  <td>✅</td>
 </tr>
 <tr>
-  <td>✅</td>
   <td>GCP</td>
   <td>✅</td>
   <td>✅</td>
@@ -708,27 +740,39 @@ The following table displays which volume plugins support block volumes.
 </tr>
 <tr>
   <td>HostPath</td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
   <td>IBM Cloud Block Storage volume</td>
+  <td>✅</td>
   <td>✅</td>
   <td>✅</td>
 </tr>
 <tr>
-  <td>✅</td>
   <td>iSCSI</td>
   <td>✅</td>
+  <td></td>
   <td>✅</td>
 </tr>
 <tr>
   <td>Local volume</td>
   <td>✅</td>
+  <td></td>
   <td>✅</td>
-  <td>LVM Storage</td>
 </tr>
 <tr>
+  <td>LVM Storage</td>
   <td>✅</td>
   <td>✅</td>
   <td>✅</td>
+</tr>
+<tr>
   <td>NFS</td>
+  <td></td>
+  <td></td>
+  <td></td>
 </tr>
 <tr>
   <td>Red Hat OpenShift Data Foundation</td>
@@ -738,11 +782,14 @@ The following table displays which volume plugins support block volumes.
 </tr>
 <tr>
   <td>CIFS/SMB</td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
   <td>VMware vSphere</td>
   <td>✅</td>
   <td>✅</td>
-</tr>
-<tr>
   <td>✅</td>
 </tr>
 </tbody>
@@ -972,9 +1019,7 @@ Mount option specifies avoiding recursive relabeling of all files by attempting 
 
 ReadWriteOncePod (RWOP) persistent volumes use the SELinux mount feature by default.
 
-The mount option feature is driver dependent, and enabled by default in AWS EBS , Azure Disk, GCP PD, IBM Cloud Block Storage volume, Cinder, vSphere,
-
-and Red Hat OpenShift Data Foundation. For third-party drivers, contact your storage vendor.
+The mount option feature is driver dependent, and enabled by default in AWS EBS , Azure Disk, GCP PD, IBM Cloud Block Storage volume, Cinder, vSphere, and Red Hat OpenShift Data Foundation. For third-party drivers, contact your storage vendor.
 
 ### RWO and RWX and SELinux mount option {#using_selinuxChangePolicy_overview-mount-option-rwo-rwx_understanding-persistent-storage}
 
@@ -988,6 +1033,7 @@ To assist you with the upcoming move to the mount option default, OpenShift Cont
 If you are unable to resolve the SELinux-related conflicts, you can proactively opt-out of the future move to mount option as default for selected pods or namespaces. To opt out, see "Opting out of the SELinux mount option default".
 
 **Additional resources**
+{._additional-resources}
 
 - [OpenShift reports SELinux-related conflicts when creating Pods (Red Hat Knowledgebase)](https://access.redhat.com/solutions/7131398)
 - [Opting out of the SELinux mount option default](/openshift-docs-markdown/storage/understanding-persistent-storage#using_selinuxChangePolicy_pod-opt-out_understanding-persistent-storage)
@@ -1012,6 +1058,7 @@ The SELinux mount option applies the correct security context during mount witho
 Carefully test your applications and observe how they are using storage. For more information, see the Red Hat Knowledgebase article "OpenShift reports SELinux-related conflicts when creating Pods", and consider opting out from using mount option if you are experiencing issues. For more information, see "Opting out of the SELinux mount option default".
 
 **Additional resources**
+{._additional-resources}
 
 - [OpenShift reports SELinux-related conflicts when creating Pods (Red Hat Knowledgebase)](https://access.redhat.com/solutions/7131398)
 - [Opting out of the SELinux mount option default](/openshift-docs-markdown/storage/understanding-persistent-storage#using_selinuxChangePolicy_pod-opt-out_understanding-persistent-storage)
@@ -1087,6 +1134,7 @@ This procedure describes how to set the `seLinuxChangePolicy` parameter in an ex
    - `securityContext.seLinuxChangePolicy`: When set to `Recursive`, specifies recursively relabeling all files on all pod volumes to the appropriate SELinux context.
 5. Click **Save**.
 
-## Additional resources {#additional-resources_understanding-persistent-storage}
+**Additional resources**
+{._additional-resources}
 
 - [Enabling features using feature gates](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)

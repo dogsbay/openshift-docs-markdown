@@ -51,7 +51,7 @@ To extend and automate your Kubernetes cluster capabilities, you can use custom 
 
 A custom resource is an extension of the Kubernetes API. Operators are software extensions which manage applications and their components with the help of custom resources. Kubernetes uses a declarative model when you want a fixed desired result while dealing with cluster resources. By using Operators, Kubernetes defines its states in a declarative way. You can modify the Kubernetes cluster resources by using imperative commands. An Operator acts as a control loop which continuously compares the desired state of resources with the actual state of resources and puts actions in place to bring reality in line with the desired state.
 
-**Figure 1. Kubernetes cluster overview**
+**Figure 2. Kubernetes cluster overview**
 
 ![247_OpenShift_Kubernetes_Overview-1](/openshift-docs-markdown/_assets/images/247_OpenShift_Kubernetes_Overview-1.png)
 
@@ -73,7 +73,7 @@ A cluster is a single computational unit consisting of multiple nodes in a cloud
 
 The control plane node controls and maintains the state of a cluster. You can run the Kubernetes application by using compute nodes. You can use the Kubernetes namespace to differentiate cluster resources in a cluster. Namespace scoping is applicable for resource objects, such as deployments, services, and pods. You cannot use namespace for cluster-wide resource objects such as storage classes, nodes, and persistent volumes.
 
-**Figure 1. Architecture of Kubernetes**
+**Figure 3. Architecture of Kubernetes**
 
 ![247_OpenShift_Kubernetes_Overview-2](/openshift-docs-markdown/_assets/images/247_OpenShift_Kubernetes_Overview-2.png)
 

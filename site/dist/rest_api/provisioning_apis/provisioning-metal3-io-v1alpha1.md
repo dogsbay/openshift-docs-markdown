@@ -1,5 +1,5 @@
 ---
-title: Provisioning []
+title: Provisioning [metal3.io/v1alpha1]
 ---
 
 # Provisioning \[metal3.io/v1alpha1\] {#provisioning-metal3-io-v1alpha1}
@@ -41,7 +41,7 @@ Type
 | `preProvisioningOSDownloadURLs` | `object` | PreprovisioningOSDownloadURLs is set of CoreOS Live URLs that would be necessary to provision a worker either using virtual media or PXE. |
 | `prometheusExporter` | `object` | PrometheusExporter configures sensor data collection and Prometheus metrics export. When enabled, this configures Ironic to collect sensor data, deploys the ironic-prometheus-exporter container, and creates supporting resources (ServiceMonitor, Service ports) to expose hardware sensor metrics for Prometheus. |
 | `provisioningDHCPExternal` | `boolean` | ProvisioningDHCPExternal indicates whether the DHCP server for IP addresses in the provisioning DHCP range is present within the metal3 cluster or external to it. This field is being deprecated in favor of provisioningNetwork. |
-| `provisioningDHCPRange` | `string` | ProvisioningDHCPRange needs to be interpreted along with ProvisioningDHCPExternal. If the value of provisioningDHCPExternal is set to False, then ProvisioningDHCPRange represents the range of IP addresses that the DHCP server running within the metal3 cluster can use while provisioning baremetal servers. If the value of ProvisioningDHCPExternal is set to True, then the value of ProvisioningDHCPRange will be ignored. When the value of ProvisioningDHCPExternal is set to False, indicating an internal DHCP server and the value of ProvisioningDHCPRange is not set, then the DHCP range is taken to be the default range which goes from .10 to .100 of the ProvisioningNetworkCIDR. This is the only value in all of the Provisioning configuration that can be changed after the installer has created the CR. This value needs to be two comma sererated IP addresses within the ProvisioningNetworkCIDR where the 1st address represents the start of the range and the 2nd address represents the last usable address in the  range. |
+| `provisioningDHCPRange` | `string` | ProvisioningDHCPRange needs to be interpreted along with ProvisioningDHCPExternal. If the value of provisioningDHCPExternal is set to False, then ProvisioningDHCPRange represents the range of IP addresses that the DHCP server running within the metal3 cluster can use while provisioning baremetal servers. If the value of ProvisioningDHCPExternal is set to True, then the value of ProvisioningDHCPRange will be ignored. When the value of ProvisioningDHCPExternal is set to False, indicating an internal DHCP server and the value of ProvisioningDHCPRange is not set, then the DHCP range is taken to be the default range which goes from .10 to .100 of the ProvisioningNetworkCIDR. This is the only value in all of the Provisioning configuration that can be changed after the installer has created the CR. This value needs to be two comma sererated IP addresses within the ProvisioningNetworkCIDR where the 1st address represents the start of the range and the 2nd address represents the last usable address in the range. |
 | `provisioningDNS` | `boolean` | ProvisioningDNS allows sending the DNS information via DHCP on the provisionig network. It is off by default since the Provisioning service itself (Ironic) does not require DNS, but it may be useful for layered products (e.g. ZTP). |
 | `provisioningIP` | `string` | ProvisioningIP is the IP address assigned to the provisioningInterface of the baremetal server. This IP address should be within the provisioning subnet, and outside of the DHCP range. |
 | `provisioningInterface` | `string` | ProvisioningInterface is the name of the network interface on a baremetal server to the provisioning network. It can have values like eth1 or ens3. |
@@ -152,7 +152,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` |  |
 | `reason` | `string` |  |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
@@ -202,13 +202,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of Provisioning
   - `GET`: list objects of kind Provisioning
   - `POST`: create a Provisioning
-- `/apis/metal3.io/v1alpha1/provisionings/{{ name }}`
+- `/apis/metal3.io/v1alpha1/provisionings/{name}`
 
   - `DELETE`: delete a Provisioning
   - `GET`: read the specified Provisioning
   - `PATCH`: partially update the specified Provisioning
   - `PUT`: replace the specified Provisioning
-- `/apis/metal3.io/v1alpha1/provisionings/{{ name }}/status`
+- `/apis/metal3.io/v1alpha1/provisionings/{name}/status`
 
   - `GET`: read status of the specified Provisioning
   - `PATCH`: partially update status of the specified Provisioning
@@ -282,7 +282,7 @@ Description
 | 202 - Accepted | [`Provisioning`](/openshift-docs-markdown/rest_api/provisioning_apis/provisioning-metal3-io-v1alpha1#provisioning-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/provisionings/{{ name }} {#_apismetal3iov1alpha1provisionings_name}
+### /apis/metal3.io/v1alpha1/provisionings/{name} {#_apismetal3iov1alpha1provisionings_name}
 
 **Global path parameters**
 
@@ -386,7 +386,7 @@ Description
 | 201 - Created | [`Provisioning`](/openshift-docs-markdown/rest_api/provisioning_apis/provisioning-metal3-io-v1alpha1#provisioning-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/provisionings/{{ name }}/status {#_apismetal3iov1alpha1provisionings_name_status}
+### /apis/metal3.io/v1alpha1/provisionings/{name}/status {#_apismetal3iov1alpha1provisionings_name_status}
 
 **Global path parameters**
 

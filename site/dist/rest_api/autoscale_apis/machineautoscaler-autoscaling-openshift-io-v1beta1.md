@@ -1,5 +1,5 @@
 ---
-title: MachineAutoscaler []
+title: MachineAutoscaler [autoscaling.openshift.io/v1beta1]
 ---
 
 # MachineAutoscaler \[autoscaling.openshift.io/v1beta1\] {#machineautoscaler-autoscaling-openshift-io-v1beta1}
@@ -104,18 +104,18 @@ The following API endpoints are available:
 - `/apis/autoscaling.openshift.io/v1beta1/machineautoscalers`
 
   - `GET`: list objects of kind MachineAutoscaler
-- `/apis/autoscaling.openshift.io/v1beta1/namespaces/{{ namespace }}/machineautoscalers`
+- `/apis/autoscaling.openshift.io/v1beta1/namespaces/{namespace}/machineautoscalers`
 
   - `DELETE`: delete collection of MachineAutoscaler
   - `GET`: list objects of kind MachineAutoscaler
   - `POST`: create a MachineAutoscaler
-- `/apis/autoscaling.openshift.io/v1beta1/namespaces/{{ namespace }}/machineautoscalers/{{ name }}`
+- `/apis/autoscaling.openshift.io/v1beta1/namespaces/{namespace}/machineautoscalers/{name}`
 
   - `DELETE`: delete a MachineAutoscaler
   - `GET`: read the specified MachineAutoscaler
   - `PATCH`: partially update the specified MachineAutoscaler
   - `PUT`: replace the specified MachineAutoscaler
-- `/apis/autoscaling.openshift.io/v1beta1/namespaces/{{ namespace }}/machineautoscalers/{{ name }}/status`
+- `/apis/autoscaling.openshift.io/v1beta1/namespaces/{namespace}/machineautoscalers/{name}/status`
 
   - `GET`: read status of the specified MachineAutoscaler
   - `PATCH`: partially update status of the specified MachineAutoscaler
@@ -140,7 +140,7 @@ Description
 | 200 - OK | [`MachineAutoscalerList`](/openshift-docs-markdown/rest_api/objects/index#io-openshift-autoscaling-v1beta1-MachineAutoscalerList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/autoscaling.openshift.io/v1beta1/namespaces/{{ namespace }}/machineautoscalers {#_apisautoscalingopenshiftiov1beta1namespaces_namespace_machineautoscalers}
+### /apis/autoscaling.openshift.io/v1beta1/namespaces/{namespace}/machineautoscalers {#_apisautoscalingopenshiftiov1beta1namespaces_namespace_machineautoscalers}
 
 HTTP method
 :   ```
@@ -208,7 +208,7 @@ Description
 | 202 - Accepted | [`MachineAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/autoscaling.openshift.io/v1beta1/namespaces/{{ namespace }}/machineautoscalers/{{ name }} {#_apisautoscalingopenshiftiov1beta1namespaces_namespace_machineautoscalers_name}
+### /apis/autoscaling.openshift.io/v1beta1/namespaces/{namespace}/machineautoscalers/{name} {#_apisautoscalingopenshiftiov1beta1namespaces_namespace_machineautoscalers_name}
 
 **Global path parameters**
 
@@ -312,7 +312,7 @@ Description
 | 201 - Created | [`MachineAutoscaler`](/openshift-docs-markdown/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/autoscaling.openshift.io/v1beta1/namespaces/{{ namespace }}/machineautoscalers/{{ name }}/status {#_apisautoscalingopenshiftiov1beta1namespaces_namespace_machineautoscalers_name_status}
+### /apis/autoscaling.openshift.io/v1beta1/namespaces/{namespace}/machineautoscalers/{name}/status {#_apisautoscalingopenshiftiov1beta1namespaces_namespace_machineautoscalers_name_status}
 
 **Global path parameters**
 

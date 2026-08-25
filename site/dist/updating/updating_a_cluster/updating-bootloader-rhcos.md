@@ -1,8 +1,8 @@
 ---
-title: Updating the boot loader on {{ op_system }} nodes using bootupd
+title: Updating the boot loader on RHCOS nodes using bootupd
 ---
 
-# Updating the boot loader on {{ op_system }} nodes using bootupd {#updating-bootloader-rhcos}
+# Updating the boot loader on RHCOS nodes using bootupd {#updating-bootloader-rhcos}
 
 To update the boot loader on RHCOS nodes using `bootupd`, you must either run the `bootupctl update` command on RHCOS machines manually or provide a machine config with a `systemd` unit.
 
@@ -67,45 +67,38 @@ You can automatically update the boot loader with `bootupd` by creating a system
 1. Create a Butane config file, `99-worker-bootupctl-update.bu`, including the contents of the `bootupctl-update.service` systemd unit.
 
    > [!NOTE]
-   >
+   > The [Butane version](https://coreos.github.io/butane/specs/) you specify in the config file should match the OpenShift Container Platform version and always ends in `0`. For example, `4.22.0`. See "Creating machine configs with Butane" for information about Butane.
 
-The [Butane version](https://coreos.github.io/butane/specs/) you specify in the config file should match the OpenShift Container Platform version and always ends in `0`. For example, `{{ product_version }}.0`. See "Creating machine configs with Butane" for information about Butane.
+   ```yaml {title="Example output"}
+   variant: openshift
+   version: 4.22.0
+   metadata:
+     name: 99-worker-chrony
+     labels:
+       machineconfiguration.openshift.io/role: worker
+   systemd:
+     units:
+     - name: bootupctl-update.service
+       enabled: true
+       contents: |
+         [Unit]
+         Description=Bootupd automatic update
 
-````
-:::
+         [Service]
+         ExecStart=/usr/bin/bootupctl update
+         RemainAfterExit=yes
 
-```yaml title="Example output"
-variant: openshift
-version: {{ product_version }}.0
-metadata:
-  name: 99-worker-chrony
-  labels:
-    machineconfiguration.openshift.io/role: worker
-systemd:
-  units:
-  - name: bootupctl-update.service
-    enabled: true
-    contents: |
-      [Unit]
-      Description=Bootupd automatic update
+         [Install]
+         WantedBy=multi-user.target
+   ```
 
-      [Service]
-      ExecStart=/usr/bin/bootupctl update
-      RemainAfterExit=yes
-
-      [Install]
-      WantedBy=multi-user.target
-```
-
-On control plane nodes, substitute `master` for `worker` in `metadata.name` and `metadata.labels.machineconfiguration.openshift.io/role`.
-````
-
-1. Generate a `MachineConfig` object file, `99-worker-bootupctl-update.yaml`, containing the configuration to be delivered to the nodes by running the following command:
+   On control plane nodes, substitute `master` for `worker` in `metadata.name` and `metadata.labels.machineconfiguration.openshift.io/role`.
+2. Generate a `MachineConfig` object file, `99-worker-bootupctl-update.yaml`, containing the configuration to be delivered to the nodes by running the following command:
 
    ```terminal
    $ butane 99-worker-bootupctl-update.bu -o 99-worker-bootupctl-update.yaml
    ```
-2. Apply the configurations in one of two ways:
+3. Apply the configurations in one of two ways:
 
    - If the cluster is not running yet, after you generate manifest files, add the `MachineConfig` object file to the `<installation_directory>/openshift` directory, and then continue to create the cluster.
    - If the cluster is already running, apply the file by running the following command:

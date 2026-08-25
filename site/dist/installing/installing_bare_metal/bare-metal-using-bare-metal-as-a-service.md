@@ -1,8 +1,8 @@
 ---
-title: Using {{ bmaas_first }}
+title: Using Red&#160;Hat Bare Metal as a Service for OpenShift
 ---
 
-# Using {{ bmaas_first }} {#bare-metal-using-bare-metal-as-a-service}
+# Using Red Hat Bare Metal as a Service for OpenShift {#bare-metal-using-bare-metal-as-a-service}
 
 You can provision and manage bare-metal hosts by using the Metal^3^ API and the Bare Metal Operator (BMO). These hosts, external to the OpenShift Container Platform cluster, can run workloads that might not be suitable for containerization or virtualization, such as legacy applications or applications that require direct hardware access.
 
@@ -109,7 +109,7 @@ To prevent accidental interference between Red Hat Bare Metal as a Service for 
       The editor opens and displays the Oauth resource.
    2. Add the identity provider configuration to the `spec.identityProviders` list:
 
-      ***Identity provider configuration examples***
+      **Identity provider configuration examples**
 
 <table>
 <thead>
@@ -163,7 +163,7 @@ To prevent accidental interference between Red Hat Bare Metal as a Service for 
 4. Clone the `baremetal-operator` repository to obtain the role-based access control (RBAC) role definitions by running the following command:
 
    ```terminal
-   $ git clone -b release-{{ product_version }} https://github.com/openshift/baremetal-operator.git
+   $ git clone -b release-4.22 https://github.com/openshift/baremetal-operator.git
    ```
 5. For each role you want to add, apply the appropriate RBAC role YAML file from the repository by running the following command:
 
@@ -223,6 +223,7 @@ To deploy a bare-metal host, you must create a secret to access the baseboard ma
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [About BMC addressing](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#bmc-addressing_ipi-install-installation-workflow)
 

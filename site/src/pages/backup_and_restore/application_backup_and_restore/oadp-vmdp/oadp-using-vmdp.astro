@@ -30,12 +30,13 @@ const headings = [{"depth":1,"slug":"oadp-using-vmdp","text":"Using OADP virtual
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-vmdp/oadp-using-vmdp";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
-const title = "Using {{ oadp_short }} virtual machine data protection";
+const title = "Using OADP virtual machine data protection";
 const description = "Install the OpenShift API for Data Protection virtual machine data protection (VMDP) command-line interface (CLI), configure a backup storage location…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
@@ -88,12 +89,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -101,7 +103,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="oadp-using-vmdp" class="group scroll-mt-20">Using OADP virtual machine data protection<a href="#oadp-using-vmdp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Install the OpenShift API for Data Protection virtual machine data protection (VMDP) command-line interface (CLI), configure a backup storage location, and back up and restore data from within your VM. This helps you to manage your own VM backups independently.</p>
+      <p class="_abstract">Install the OpenShift API for Data Protection virtual machine data protection (VMDP) command-line interface (CLI), configure a backup storage location, and back up and restore data from within your VM. This helps you to manage your own VM backups independently.</p>
       <h2 id="oadp-vmdp-installing-cli_oadp-using-vmdp" class="group scroll-mt-20">Installing the OADP virtual machine data protection CLI<a href="#oadp-vmdp-installing-cli_oadp-using-vmdp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">Install the OpenShift API for Data Protection virtual machine data protection (VMDP) command-line interface (CLI) inside your VM to back up and restore data. This helps you to download the correct binary for your VM guest operating system.</p>
       <p>The OADP Operator deploys a download server in the cluster as the <code>openshift-adp-vmdp-server</code> service in the <code>openshift-adp</code> namespace. A <code>ConsoleCLIDownload</code> resource links to the download server routes, and users can access the download links from the OpenShift Container Platform web console or by using HTTP directly.</p>

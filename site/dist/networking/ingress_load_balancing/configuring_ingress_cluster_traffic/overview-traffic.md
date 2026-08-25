@@ -24,7 +24,8 @@ OpenShift Container Platform provides the following methods for communicating fr
 | Manually assign an external IP to a service | Allows traffic to non-standard ports through a specific IP address. |
 | Configure a `NodePort` | Expose a service on all nodes in the cluster. |
 
-## Additional resources {#additional-resources_overview-traffic}
+**Additional resources**
+{._additional-resources}
 
 - [Use an Ingress Controller](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-ingress-controller#configuring-ingress-cluster-traffic-ingress-controller)
 - [Automatically assign an external IP using a load balancer service](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-load-balancer#configuring-ingress-cluster-traffic-load-balancer)

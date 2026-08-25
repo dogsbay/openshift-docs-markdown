@@ -1,5 +1,5 @@
 ---
-title: Creating a compute machine set on {{ gcp_short }}
+title: Creating a compute machine set on Google Cloud
 ---
 
 # Creating a compute machine set on Google Cloud {#creating-machineset-gcp}
@@ -21,15 +21,7 @@ You can create a different compute machine set to serve a specific purpose in yo
 
 The sample YAML defines a compute machine set for Google Cloud, enabling the automated provisioning of nodes within a specific VPC. When you apply this configuration by using the OpenShift Container Platform CLI, you can ensure consistent scaling, scheduling, and infrastructure ID labeling for compute resources in your cluster.
 
-The sample YAML defines a compute machine set that runs in Google Cloud and creates nodes that are labeled with
-
-`node-role.kubernetes.io/<role>: ""`,
-
-where
-
-`<role>`
-
-is the node label to add.
+The sample YAML defines a compute machine set that runs in Google Cloud and creates nodes that are labeled with `node-role.kubernetes.io/<role>: ""`, where `<role>` is the node label to add.
 
 ### Values obtained by using the  OpenShift CLI {#cpmso-yaml-provider-spec-gcp-oc_creating-machineset-gcp}
 
@@ -70,24 +62,13 @@ spec:
       creationTimestamp: null
       labels:
         machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not infra %}
         machine.openshift.io/cluster-api-machine-role: <role>
         machine.openshift.io/cluster-api-machine-type: <role>
-{% endif %}
-{% if infra %}
-        machine.openshift.io/cluster-api-machine-role: <infra>
-        machine.openshift.io/cluster-api-machine-type: <infra>
-{%- endif %}
         machine.openshift.io/cluster-api-machineset: <infrastructure_id>-w-a
     spec:
       metadata:
         labels:
-{%- if not infra %}
           node-role.kubernetes.io/<role>: ""
-{% endif %}
-{% if infra %}
-          node-role.kubernetes.io/infra: ""
-{%- endif %}
       providerSpec:
         value:
           apiVersion: machine.openshift.io/v1beta1
@@ -123,11 +104,6 @@ spec:
           userDataSecret:
             name: worker-user-data
           zone: us-central1-a
-{%- if infra %}
-      taints:
-      - key: node-role.kubernetes.io/infra
-        effect: NoSchedule
-{%- endif %}
 ```
 
 where:
@@ -155,6 +131,7 @@ where:
 :   Specifies a single service account. Multiple service accounts are not supported.
 
 **Additional resources**
+{._additional-resources}
 
 - [Manually updating the boot image](/openshift-docs-markdown/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)
 
@@ -258,13 +235,17 @@ To dynamically manage machine compute resources, you can create your own compute
 
   ```terminal
 
+  NAME                                DESIRED   CURRENT   READY   AVAILABLE   AGE
+  agl030519-vplxk-infra-us-east-1a    1         1         1       1           11m
+  agl030519-vplxk-worker-us-east-1a   1         1         1       1           55m
+  agl030519-vplxk-worker-us-east-1b   1         1         1       1           55m
+  agl030519-vplxk-worker-us-east-1c   1         1         1       1           55m
+  agl030519-vplxk-worker-us-east-1d   0         0                             55m
+  agl030519-vplxk-worker-us-east-1e   0         0                             55m
+  agl030519-vplxk-worker-us-east-1f   0         0                             55m
   ```
 
-{%- if win or post_aws_zones %} NAME                                       DESIRED   CURRENT   READY   AVAILABLE   AGE {%- if win %} agl030519-vplxk-windows-worker-us-east-1a  1         1         1       1           11m {% endif %} {% if post_aws_zones %} agl030519-vplxk-edge-us-east-1-nyc-1a      1         1         1       1           11m {%- endif %} agl030519-vplxk-worker-us-east-1a          1         1         1       1           55m agl030519-vplxk-worker-us-east-1b          1         1         1       1           55m agl030519-vplxk-worker-us-east-1c          1         1         1       1           55m agl030519-vplxk-worker-us-east-1d          0         0                             55m agl030519-vplxk-worker-us-east-1e          0         0                             55m agl030519-vplxk-worker-us-east-1f          0         0                             55m {% endif %} {% if not (win or post_aws_zones) %} NAME                                DESIRED   CURRENT   READY   AVAILABLE   AGE agl030519-vplxk-infra-us-east-1a    1         1         1       1           11m agl030519-vplxk-worker-us-east-1a   1         1         1       1           55m agl030519-vplxk-worker-us-east-1b   1         1         1       1           55m agl030519-vplxk-worker-us-east-1c   1         1         1       1           55m agl030519-vplxk-worker-us-east-1d   0         0                             55m agl030519-vplxk-worker-us-east-1e   0         0                             55m agl030519-vplxk-worker-us-east-1f   0         0                             55m {%- endif %} \`\`\`
-
-```
-When the new compute machine set is available, the `DESIRED` and `CURRENT` values match. If the compute machine set is not available, wait a few minutes and run the command again.
-```
+  When the new compute machine set is available, the `DESIRED` and `CURRENT` values match. If the compute machine set is not available, wait a few minutes and run the command again.
 
 ## Labeling GPU machine sets for the cluster autoscaler {#machineset-label-gpu-autoscaler_creating-machineset-gcp}
 
@@ -300,6 +281,7 @@ Label your machine sets to indicate which machines the cluster autoscaler can us
       > You must specify the value of this label for the `spec.resourceLimits.gpus.type` parameter in your `ClusterAutoscaler` CR. For more information, see "Cluster autoscaler resource definition".
 
 **Additional resources**
+{._additional-resources}
 
 - [Cluster autoscaler resource definition](/openshift-docs-markdown/machine_management/applying-autoscaling#cluster-autoscaler-cr_applying-autoscaling)
 
@@ -316,16 +298,23 @@ For more information about persistent disk types, compatibility, regional availa
 
    ```yaml
 
+   apiVersion: machine.openshift.io/v1beta1
+   kind: MachineSet
+
+   ...
+   spec:
+     template:
+       spec:
+         providerSpec:
+           value:
+             disks:
+               type: <pd-disk-type>
    ```
 
-{%- if not cpmso %} apiVersion: machine.openshift.io/v1beta1 kind: MachineSet {% endif %} {% if cpmso %} apiVersion: machine.openshift.io/v1 kind: ControlPlaneMachineSet {%- endif %} ... spec: template: spec: providerSpec: value: disks: {%- if not cpmso %} type: <pd-disk-type> {% endif %} {% if cpmso %} type: pd-ssd {%- endif %} \`\`\`
+   where:
 
-```
-where:
-
-`spec.template.spec.providerSpec.value.disks.type`
-:   Specifies the persistent disk type. Valid values are `pd-ssd`, `pd-standard`, and `pd-balanced`. The default value is `pd-standard`.
-```
+   `spec.template.spec.providerSpec.value.disks.type`
+   :   Specifies the persistent disk type. Valid values are `pd-ssd`, `pd-standard`, and `pd-balanced`. The default value is `pd-standard`.
 
 **Verification**
 
@@ -347,41 +336,43 @@ For more information about Confidential VM features, functions, and compatibilit
 
    ```yaml
 
+   apiVersion: machine.openshift.io/v1beta1
+   kind: MachineSet
+   # ...
+   spec:
+     template:
+       spec:
+         providerSpec:
+           value:
+             confidentialCompute: Enabled
+             onHostMaintenance: Terminate
+             machineType: n2d-standard-8
+
+   # ...
    ```
 
-{%- if not cpmso %} apiVersion: machine.openshift.io/v1beta1 kind: MachineSet # ... spec: template: spec: providerSpec: value: confidentialCompute: Enabled onHostMaintenance: Terminate machineType: n2d-standard-8 {% endif %} {% if cpmso %} apiVersion: machine.openshift.io/v1 kind: ControlPlaneMachineSet # ... machines_v1beta1_machine_openshift_io: spec: providerSpec: value: confidentialCompute: Enabled onHostMaintenance: Terminate machineType: n2d-standard-8 {%- endif %} # ... \`\`\`
+   where:
 
-```
-where:
+   `spec.template.spec.providerSpec.value.confidentialCompute`
+   :   Specifies whether Confidential VM is enabled. The following values are valid:
 
-`spec.template.spec.providerSpec.value.confidentialCompute`
-:   Specifies whether Confidential VM is enabled.
-    The following values are valid:
+   `Enabled`
+   :   Enables Confidential VM with a default selection of Confidential VM technology. The default selection is AMD Secure Encrypted Virtualization (AMD SEV).
 
-`Enabled`
-:   Enables Confidential VM with a default selection of Confidential VM technology. The default selection is AMD Secure Encrypted Virtualization (AMD SEV).
+   > [!IMPORTANT]
+   > The `Enabled` value selects Confidential Computing with AMD Secure Encrypted Virtualization (AMD SEV), which is deprecated.
 
-:::important
+   `Disabled`
+   :   Disables Confidential VM.
 
-The `Enabled` value selects Confidential Computing with AMD Secure Encrypted Virtualization (AMD SEV), which is deprecated.
+   `AMDEncryptedVirtualizationNestedPaging`
+   :   Enables Confidential VM using AMD Secure Encrypted Virtualization Secure Nested Paging (AMD SEV-SNP). AMD SEV-SNP supports n2d machines.
 
-:::
+   `AMDEncryptedVirtualization`
+   :   Enables Confidential VM using AMD SEV. AMD SEV supports c2d, n2d, and c3d machines.
 
-`Disabled`
-:   Disables Confidential VM.
-
-`AMDEncryptedVirtualizationNestedPaging`
-:   Enables Confidential VM using AMD Secure Encrypted Virtualization Secure Nested Paging (AMD SEV-SNP). AMD SEV-SNP supports n2d machines.
-
-`AMDEncryptedVirtualization`
-:   Enables Confidential VM using AMD SEV. AMD SEV supports c2d, n2d, and c3d machines.
-
-:::important
-
-The use of Confidential Computing with AMD Secure Encrypted Virtualization (AMD SEV) has been deprecated and will be removed in a future release.
-
-:::
-```
+   > [!IMPORTANT]
+   > The use of Confidential Computing with AMD Secure Encrypted Virtualization (AMD SEV) has been deprecated and will be removed in a future release.
 
 `IntelTrustedDomainExtensions`
 :   Enables Confidential VM using Intel Trusted Domain Extensions (Intel TDX). Intel TDX supports n2d machines.
@@ -414,9 +405,7 @@ When Google Cloud terminates an instance, a termination handler running on the S
 
 ### Creating Spot VMs by using compute machine sets {#_creating_spot_vms_by_using_compute_machine_sets}
 
-You can save on costs by creating a compute machine set that deploys machines as non-guaranteed instances.
-
-To launch a Spot VM on Google Cloud, you add `provisioningModel: "Spot"` to your compute machine set YAML file.
+You can save on costs by creating a compute machine set that deploys machines as non-guaranteed instances. To launch a Spot VM on Google Cloud, you add `provisioningModel: "Spot"` to your compute machine set YAML file.
 
 **Procedure**
 
@@ -452,9 +441,7 @@ When Google Cloud terminates an instance, a termination handler running on the p
 
 ### Creating preemptible VM instances by using compute machine sets {#_creating_preemptible_vm_instances_by_using_compute_machine_sets}
 
-You can save on costs by creating a compute machine set that deploys machines as non-guaranteed instances.
-
-To launch a preemptible VM instance on Google Cloud, you add `preemptible` to your compute machine set YAML file.
+You can save on costs by creating a compute machine set that deploys machines as non-guaranteed instances. To launch a preemptible VM instance on Google Cloud, you add `preemptible` to your compute machine set YAML file.
 
 > [!NOTE]
 > Google Cloud recommends using Spot VMs over preemptible VMs because Spot VMs include new features that preemptible VMs do not support.
@@ -487,37 +474,44 @@ For more information about Shielded VM features and functionality, see the Googl
 
    ```yaml
 
+   apiVersion: machine.openshift.io/v1beta1
+   kind: MachineSet
+
+   # ...
+   spec:
+     template:
+       spec:
+         providerSpec:
+           value:
+             shieldedInstanceConfig:
+               integrityMonitoring: Enabled
+               secureBoot: Disabled
+               virtualizedTrustedPlatformModule: Enabled
+   # ...
    ```
 
-{%- if not cpmso %} apiVersion: machine.openshift.io/v1beta1 kind: MachineSet {% endif %} {% if cpmso %} apiVersion: machine.openshift.io/v1 kind: ControlPlaneMachineSet {%- endif %} # ... spec: template: spec: providerSpec: value: shieldedInstanceConfig: integrityMonitoring: Enabled secureBoot: Disabled virtualizedTrustedPlatformModule: Enabled # ... \`\`\`
+   where:
 
-```
-where:
+   `spec.template.spec.providerSpec.value.shieldedInstanceConfig`
+   :   Specifies the Shielded VM configuration.
 
-`spec.template.spec.providerSpec.value.shieldedInstanceConfig`
-:   Specifies the Shielded VM configuration.
+   `spec.template.spec.providerSpec.value.shieldedInstanceConfig.integrityMonitoring`:: Specifies whether integrity monitoring is enabled. Valid values are `Disabled` or `Enabled`. +
 
-`spec.template.spec.providerSpec.value.shieldedInstanceConfig.integrityMonitoring`
-:   Specifies whether integrity monitoring is enabled. Valid values are `Disabled` or `Enabled`.
+   > [!NOTE]
+   > When integrity monitoring is enabled, you must not disable virtual trusted platform module (vTPM).
 
-    :::note
+   `spec.template.spec.providerSpec.value.shieldedInstanceConfig.secureBoot`
+   :   Specifies whether UEFI Secure Boot is enabled. Valid values are `Disabled` or `Enabled`.
 
-    When integrity monitoring is enabled, you must not disable virtual trusted platform module (vTPM).
-
-    :::
-
-`spec.template.spec.providerSpec.value.shieldedInstanceConfig.secureBoot`
-:   Specifies whether UEFI Secure Boot is enabled. Valid values are `Disabled` or `Enabled`.
-
-`spec.template.spec.providerSpec.value.shieldedInstanceConfig.virtualizedTrustedPlatformModule`
-:   Specifies whether vTPM is enabled. Valid values are `Disabled` or `Enabled`.
-```
+   `spec.template.spec.providerSpec.value.shieldedInstanceConfig.virtualizedTrustedPlatformModule`
+   :   Specifies whether vTPM is enabled. Valid values are `Disabled` or `Enabled`.
 
 **Verification**
 
 - Using the Google Cloud console, review the details for a machine deployed by the machine set and verify that the Shielded VM options match the values that you configured.
 
 **Additional resources**
+{._additional-resources}
 
 - [What is Shielded VM?](https://cloud.google.com/compute/shielded-vm/docs/shielded-vm)
 - [Secure Boot](https://cloud.google.com/compute/shielded-vm/docs/shielded-vm#secure-boot)
@@ -548,43 +542,57 @@ You can enable encryption with a customer-managed key in clusters that use the M
 
    ```yaml
 
+   apiVersion: machine.openshift.io/v1beta1
+   kind: MachineSet
+
+   ...
+   spec:
+     template:
+       spec:
+         providerSpec:
+           value:
+             disks:
+             - type:
+               encryptionKey:
+                 kmsKey:
+                   name: machine-encryption-key
+                   keyRing: openshift-encryption-ring
+                   location: global
+                   projectID: openshift-gcp-project
+                 kmsKeyServiceAccount: openshift-service-account@openshift-gcp-project.iam.gserviceaccount.com
    ```
 
-{%- if not cpmso %} apiVersion: machine.openshift.io/v1beta1 kind: MachineSet {% endif %} {% if cpmso %} apiVersion: machine.openshift.io/v1 kind: ControlPlaneMachineSet {%- endif %} ... spec: template: spec: providerSpec: value: disks: - type: encryptionKey: kmsKey: name: machine-encryption-key keyRing: openshift-encryption-ring location: global projectID: openshift-gcp-project kmsKeyServiceAccount: openshift-service-account@openshift-gcp-project.iam.gserviceaccount.com \`\`\`
+   where:
 
-```
-where:
+   `spec.template.spec.providerSpec.value.disks.type.encryptionKey.kmsKey.name`
+   :   Specifies the name of the customer-managed encryption key that is used for the disk encryption.
 
-`spec.template.spec.providerSpec.value.disks.type.encryptionKey.kmsKey.name`
-:   Specifies the name of the customer-managed encryption key that is used for the disk encryption.
+   `spec.template.spec.providerSpec.value.disks.type.encryptionKey.kmsKey.keyRing`
+   :   Specifies the name of the KMS key ring that the KMS key belongs to.
 
-`spec.template.spec.providerSpec.value.disks.type.encryptionKey.kmsKey.keyRing`
-:   Specifies the name of the KMS key ring that the KMS key belongs to.
+   `spec.template.spec.providerSpec.value.disks.type.encryptionKey.kmsKey.location`
+   :   Specifies the Google Cloud location in which the KMS key ring exists.
 
-`spec.template.spec.providerSpec.value.disks.type.encryptionKey.kmsKey.location`
-:   Specifies the Google Cloud location in which the KMS key ring exists.
+   `spec.template.spec.providerSpec.value.disks.type.encryptionKey.kmsKey.projectID`
+   :   Optional: Specifies the ID of the project in which the KMS key ring exists. If a project ID is not set, the machine set `projectID` in which the machine set was created is used.
 
-`spec.template.spec.providerSpec.value.disks.type.encryptionKey.kmsKey.projectID`
-:   Optional: Specifies the ID of the project in which the KMS key ring exists. If a project ID is not set, the machine set `projectID` in which the machine set was created is used.
+   `spec.template.spec.providerSpec.value.disks.type.encryptionKey.kmsKeyServiceAccount`
+   :   Optional: Specifies the service account that is used for the encryption request for the given KMS key. If a service account is not set, the Compute Engine default service account is used.
 
-`spec.template.spec.providerSpec.value.disks.type.encryptionKey.kmsKeyServiceAccount`
-:   Optional: Specifies the service account that is used for the encryption request for the given KMS key. If a service account is not set, the Compute Engine default service account is used.
-
-    When a new machine is created by using the updated `providerSpec` object configuration, the disk encryption key is encrypted with the KMS key.
-```
+       When a new machine is created by using the updated `providerSpec` object configuration, the disk encryption key is encrypted with the KMS key.
 
 ## Enabling GPU support for a compute machine set {#machineset-gcp-enabling-gpu-support_creating-machineset-gcp}
 
 Use the Google Cloud Compute Engine to add GPUs to Virtual Machine (VM) instances. Workloads that benefit from access to GPU resources can perform better on compute machines with this feature enabled. OpenShift Container Platform on Google Cloud supports NVIDIA GPU models in the A2 and N1 machine series.
 
-***Supported GPU configurations***
+**Supported GPU configurations**
 
 <table>
 <thead>
 <tr>
   <th>Model name</th>
   <th>GPU type</th>
-  <th>Machine types ^[1]^</th>
+  <th>Machine types <sup>[1]</sup></th>
 </tr>
 </thead>
 <tbody>
@@ -595,16 +603,18 @@ Use the Google Cloud Compute Engine to add GPUs to Virtual Machine (VM) instance
 </tr>
 <tr>
   <td>NVIDIA K80</td>
-  <td><code>nvidia-tesla-k80</code> .5+a</td>
-  <td>* <code>n1-standard-1</code></td>
+  <td><code>nvidia-tesla-k80</code></td>
+  <td rowspan="5"><ul><li><code>n1-standard-1</code></li><li><code>n1-standard-2</code></li><li><code>n1-standard-4</code></li><li><code>n1-standard-8</code></li><li><code>n1-standard-16</code></li><li><code>n1-standard-32</code></li><li><code>n1-standard-64</code></li><li><code>n1-standard-96</code></li><li><code>n1-highmem-2</code></li><li><code>n1-highmem-4</code></li><li><code>n1-highmem-8</code></li><li><code>n1-highmem-16</code></li><li><code>n1-highmem-32</code></li><li><code>n1-highmem-64</code></li><li><code>n1-highmem-96</code></li><li><code>n1-highcpu-2</code></li><li><code>n1-highcpu-4</code></li><li><code>n1-highcpu-8</code></li><li><code>n1-highcpu-16</code></li><li><code>n1-highcpu-32</code></li><li><code>n1-highcpu-64</code></li><li><code>n1-highcpu-96</code></li></ul></td>
 </tr>
 <tr>
   <td>NVIDIA P100</td>
   <td><code>nvidia-tesla-p100</code></td>
-  <td>NVIDIA P4</td>
 </tr>
 <tr>
+  <td>NVIDIA P4</td>
   <td><code>nvidia-tesla-p4</code></td>
+</tr>
+<tr>
   <td>NVIDIA T4</td>
   <td><code>nvidia-tesla-t4</code></td>
 </tr>
@@ -851,13 +861,13 @@ The following table lists the validated instance types:
    - Change the `machineType` of the new `MachineSet` definition to `a2-highgpu-1g`, which includes an NVIDIA A100 GPU.
 
      ```terminal
-     jq .spec.template.spec.providerSpec.value.machineType ocp_{{ product_version }}_machineset-a2-highgpu-1g.json
+     jq .spec.template.spec.providerSpec.value.machineType ocp_4.22_machineset-a2-highgpu-1g.json
 
      "a2-highgpu-1g"
      ```
 
-     The `<output_file.json>` file is saved as `ocp_{{ product_version }}_machineset-a2-highgpu-1g.json`.
-9. Update the following fields in `ocp_{{ product_version }}_machineset-a2-highgpu-1g.json`:
+     The `<output_file.json>` file is saved as `ocp_4.22_machineset-a2-highgpu-1g.json`.
+9. Update the following fields in `ocp_4.22_machineset-a2-highgpu-1g.json`:
 
    - Change `.metadata.name` to a name containing `gpu`.
    - Change `.spec.selector.matchLabels["machine.openshift.io/cluster-api-machineset"]` to match the new `.metadata.name`.
@@ -872,7 +882,7 @@ The following table lists the validated instance types:
 10. To verify your changes, perform a `diff` of the original compute definition and the new GPU-enabled node definition by running the following command:
 
     ```terminal
-    $ oc get machineset/myclustername-2pt9p-worker-a -n openshift-machine-api -o json | diff ocp_{{ product_version }}_machineset-a2-highgpu-1g.json -
+    $ oc get machineset/myclustername-2pt9p-worker-a -n openshift-machine-api -o json | diff ocp_4.22_machineset-a2-highgpu-1g.json -
     ```
 
     ```terminal {title="Example output"}
@@ -897,7 +907,7 @@ The following table lists the validated instance types:
 11. Create the GPU-enabled compute machine set from the definition file by running the following command:
 
     ```terminal
-    $ oc create -f ocp_{{ product_version }}_machineset-a2-highgpu-1g.json
+    $ oc create -f ocp_4.22_machineset-a2-highgpu-1g.json
     ```
 
     ```terminal {title="Example output"}
@@ -927,8 +937,8 @@ The following table lists the validated instance types:
    myclustername-2pt9p-worker-gpu-a-wxcr6   Running   a2-highgpu-1g   us-central1   us-central1-a   5h25m
    ```
 
-> [!NOTE]
-> Note that there is no need to specify a namespace for the node. The node definition is cluster scoped.
+   > [!NOTE]
+   > Note that there is no need to specify a namespace for the node. The node definition is cluster scoped.
 
 ## Deploying the Node Feature Discovery Operator {#nvidia-gpu-aws-deploying-the-node-feature-discovery-operator_creating-machineset-gcp}
 

@@ -26,6 +26,7 @@ API server client certificate expiration is less than five minutes.
 
 Update the secret containing the user-managed certificate as needed.
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Adding API server certificates](/openshift-docs-markdown/security/certificates/api-server#api-server-certificates)

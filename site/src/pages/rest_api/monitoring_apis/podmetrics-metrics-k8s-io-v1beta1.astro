@@ -23,16 +23,17 @@ import TableHead from "@ui/table/TableHead.astro";
 import TableHeader from "@ui/table/TableHeader.astro";
 import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"podmetrics-metrics-k8s-io-v1beta1","text":"PodMetrics [metrics.k8s.io/v1beta1]"},{"depth":2,"slug":"_specification","text":"Specification"},{"depth":3,"slug":"_containers","text":".containers"},{"depth":3,"slug":"_containers","text":".containers[]"},{"depth":2,"slug":"_api_endpoints","text":"API endpoints"},{"depth":3,"slug":"_apismetricsk8siov1beta1pods","text":"/apis/metrics.k8s.io/v1beta1/pods"},{"depth":3,"slug":"_apismetricsk8siov1beta1namespaces_namespace_pods","text":"/apis/metrics.k8s.io/v1beta1/namespaces/{{ namespace }}/pods"},{"depth":3,"slug":"_apismetricsk8siov1beta1namespaces_namespace_pods_name","text":"/apis/metrics.k8s.io/v1beta1/namespaces/{{ namespace }}/pods/{{ name }}"}];
+const headings = [{"depth":1,"slug":"podmetrics-metrics-k8s-io-v1beta1","text":"PodMetrics [metrics.k8s.io/v1beta1]"},{"depth":2,"slug":"_specification","text":"Specification"},{"depth":3,"slug":"_containers","text":".containers"},{"depth":3,"slug":"_containers","text":".containers[]"},{"depth":2,"slug":"_api_endpoints","text":"API endpoints"},{"depth":3,"slug":"_apismetricsk8siov1beta1pods","text":"/apis/metrics.k8s.io/v1beta1/pods"},{"depth":3,"slug":"_apismetricsk8siov1beta1namespaces_namespace_pods","text":"/apis/metrics.k8s.io/v1beta1/namespaces/{namespace}/pods"},{"depth":3,"slug":"_apismetricsk8siov1beta1namespaces_namespace_pods_name","text":"/apis/metrics.k8s.io/v1beta1/namespaces/{namespace}/pods/{name}"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/rest_api/monitoring_apis/podmetrics-metrics-k8s-io-v1beta1";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
-const title = "PodMetrics []";
+const title = "PodMetrics [metrics.k8s.io/v1beta1]";
 const description = "The following API endpoints are available:" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
@@ -46,7 +47,7 @@ const pageCategory = ["rest_api","rest_api/monitoring_apis"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# PodMetrics \\[metrics.k8s.io/v1beta1\\] {#podmetrics-metrics-k8s-io-v1beta1}\n\nDescription\n:   PodMetrics sets resource usage metrics of a pod.\n\nType\n:   ```\n    `object`\n    ```\n\nRequired\n:   - `timestamp`\n    - `window`\n    - `containers`\n\n## Specification {#_specification}\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |\n| `containers` | `array` | Metrics for all containers are collected within the same time window. |\n| `containers[]` | `object` | ContainerMetrics sets resource usage metrics of a container. |\n| `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |\n| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |\n| `timestamp` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | The following fields define time interval from which metrics were collected from the interval \\[Timestamp-Window, Timestamp\\]. |\n| `window` | [`Duration`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Duration) |  |\n\n### .containers {#_containers}\n\nDescription\n:   Metrics for all containers are collected within the same time window.\n\nType\n:   ```\n    `array`\n    ```\n\n### .containers\\[\\] {#_containers}\n\nDescription\n:   ContainerMetrics sets resource usage metrics of a container.\n\nType\n:   ```\n    `object`\n    ```\n\nRequired\n:   - `name`\n    - `usage`\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `name` | `string` | Container name corresponding to the one from pod.spec.containers. |\n| `usage` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | The memory usage is the memory working set. |\n\n## API endpoints {#_api_endpoints}\n\nThe following API endpoints are available:\n\n- `/apis/metrics.k8s.io/v1beta1/pods`\n\n  - `GET`: list objects of kind PodMetrics\n- `/apis/metrics.k8s.io/v1beta1/namespaces/{{ namespace }}/pods`\n\n  - `GET`: list objects of kind PodMetrics\n- `/apis/metrics.k8s.io/v1beta1/namespaces/{{ namespace }}/pods/{{ name }}`\n\n  - `GET`: read the specified PodMetrics\n\n### /apis/metrics.k8s.io/v1beta1/pods {#_apismetricsk8siov1beta1pods}\n\nHTTP method\n:   ```\n    `GET`\n    ```\n\nDescription\n:   ```\n    list objects of kind PodMetrics\n    ```\n\n**HTTP responses**\n\n| HTTP code | Reponse body |\n| --- | --- |\n| 200 - OK | [`PodMetricsList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-metrics-pkg-apis-metrics-v1beta1-PodMetricsList) schema |\n\n### /apis/metrics.k8s.io/v1beta1/namespaces/{{ namespace }}/pods {#_apismetricsk8siov1beta1namespaces_namespace_pods}\n\nHTTP method\n:   ```\n    `GET`\n    ```\n\nDescription\n:   ```\n    list objects of kind PodMetrics\n    ```\n\n**HTTP responses**\n\n| HTTP code | Reponse body |\n| --- | --- |\n| 200 - OK | [`PodMetricsList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-metrics-pkg-apis-metrics-v1beta1-PodMetricsList) schema |\n\n### /apis/metrics.k8s.io/v1beta1/namespaces/{{ namespace }}/pods/{{ name }} {#_apismetricsk8siov1beta1namespaces_namespace_pods_name}\n\n**Global path parameters**\n\n| Parameter | Type | Description |\n| --- | --- | --- |\n| `name` | `string` | name of the PodMetrics |\n\nHTTP method\n:   ```\n    `GET`\n    ```\n\nDescription\n:   ```\n    read the specified PodMetrics\n    ```\n\n**HTTP responses**\n\n| HTTP code | Reponse body |\n| --- | --- |\n| 200 - OK | [`PodMetrics`](/openshift-docs-markdown/rest_api/monitoring_apis/podmetrics-metrics-k8s-io-v1beta1#podmetrics-metrics-k8s-io-v1beta1) schema |\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/rest_api/monitoring_apis/podmetrics-metrics-k8s-io-v1beta1.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# PodMetrics \\[metrics.k8s.io/v1beta1\\] {#podmetrics-metrics-k8s-io-v1beta1}\n\nDescription\n:   PodMetrics sets resource usage metrics of a pod.\n\nType\n:   ```\n    `object`\n    ```\n\nRequired\n:   - `timestamp`\n    - `window`\n    - `containers`\n\n## Specification {#_specification}\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |\n| `containers` | `array` | Metrics for all containers are collected within the same time window. |\n| `containers[]` | `object` | ContainerMetrics sets resource usage metrics of a container. |\n| `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |\n| `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |\n| `timestamp` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | The following fields define time interval from which metrics were collected from the interval \\[Timestamp-Window, Timestamp\\]. |\n| `window` | [`Duration`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Duration) |  |\n\n### .containers {#_containers}\n\nDescription\n:   Metrics for all containers are collected within the same time window.\n\nType\n:   ```\n    `array`\n    ```\n\n### .containers\\[\\] {#_containers}\n\nDescription\n:   ContainerMetrics sets resource usage metrics of a container.\n\nType\n:   ```\n    `object`\n    ```\n\nRequired\n:   - `name`\n    - `usage`\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `name` | `string` | Container name corresponding to the one from pod.spec.containers. |\n| `usage` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | The memory usage is the memory working set. |\n\n## API endpoints {#_api_endpoints}\n\nThe following API endpoints are available:\n\n- `/apis/metrics.k8s.io/v1beta1/pods`\n\n  - `GET`: list objects of kind PodMetrics\n- `/apis/metrics.k8s.io/v1beta1/namespaces/{namespace}/pods`\n\n  - `GET`: list objects of kind PodMetrics\n- `/apis/metrics.k8s.io/v1beta1/namespaces/{namespace}/pods/{name}`\n\n  - `GET`: read the specified PodMetrics\n\n### /apis/metrics.k8s.io/v1beta1/pods {#_apismetricsk8siov1beta1pods}\n\nHTTP method\n:   ```\n    `GET`\n    ```\n\nDescription\n:   ```\n    list objects of kind PodMetrics\n    ```\n\n**HTTP responses**\n\n| HTTP code | Reponse body |\n| --- | --- |\n| 200 - OK | [`PodMetricsList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-metrics-pkg-apis-metrics-v1beta1-PodMetricsList) schema |\n\n### /apis/metrics.k8s.io/v1beta1/namespaces/{namespace}/pods {#_apismetricsk8siov1beta1namespaces_namespace_pods}\n\nHTTP method\n:   ```\n    `GET`\n    ```\n\nDescription\n:   ```\n    list objects of kind PodMetrics\n    ```\n\n**HTTP responses**\n\n| HTTP code | Reponse body |\n| --- | --- |\n| 200 - OK | [`PodMetricsList`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-metrics-pkg-apis-metrics-v1beta1-PodMetricsList) schema |\n\n### /apis/metrics.k8s.io/v1beta1/namespaces/{namespace}/pods/{name} {#_apismetricsk8siov1beta1namespaces_namespace_pods_name}\n\n**Global path parameters**\n\n| Parameter | Type | Description |\n| --- | --- | --- |\n| `name` | `string` | name of the PodMetrics |\n\nHTTP method\n:   ```\n    `GET`\n    ```\n\nDescription\n:   ```\n    read the specified PodMetrics\n    ```\n\n**HTTP responses**\n\n| HTTP code | Reponse body |\n| --- | --- |\n| 200 - OK | [`PodMetrics`](/openshift-docs-markdown/rest_api/monitoring_apis/podmetrics-metrics-k8s-io-v1beta1#podmetrics-metrics-k8s-io-v1beta1) schema |\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/rest_api/monitoring_apis/podmetrics-metrics-k8s-io-v1beta1.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -85,12 +86,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -209,11 +211,11 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <ul><li><code>GET</code>: list objects of kind PodMetrics</li></ul>
       </li>
       <li>
-      <code>/apis/metrics.k8s.io/v1beta1/namespaces/{"{"}{"{"} namespace {"}"}{"}"}/pods</code>
+      <code>/apis/metrics.k8s.io/v1beta1/namespaces/{"{"}namespace{"}"}/pods</code>
       <ul><li><code>GET</code>: list objects of kind PodMetrics</li></ul>
       </li>
       <li>
-      <code>/apis/metrics.k8s.io/v1beta1/namespaces/{"{"}{"{"} namespace {"}"}{"}"}/pods/{"{"}{"{"} name {"}"}{"}"}</code>
+      <code>/apis/metrics.k8s.io/v1beta1/namespaces/{"{"}namespace{"}"}/pods/{"{"}name{"}"}</code>
       <ul><li><code>GET</code>: read the specified PodMetrics</li></ul>
       </li>
       </ul>
@@ -239,7 +241,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </TableRow>
       </TableBody>
       </Table>
-      <h3 id="_apismetricsk8siov1beta1namespaces_namespace_pods" class="group scroll-mt-20">/apis/metrics.k8s.io/v1beta1/namespaces/{"{"}{"{"} namespace {"}"}{"}"}/pods<a href="#_apismetricsk8siov1beta1namespaces_namespace_pods" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <h3 id="_apismetricsk8siov1beta1namespaces_namespace_pods" class="group scroll-mt-20">/apis/metrics.k8s.io/v1beta1/namespaces/{"{"}namespace{"}"}/pods<a href="#_apismetricsk8siov1beta1namespaces_namespace_pods" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
       <dl class="my-4 space-y-2">
       <dt class="font-semibold">HTTP method</dt>
       <dd class="ml-6 text-muted-foreground"><CodeBlock code={"`GET`"} lang="plaintext" /></dd>
@@ -261,7 +263,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </TableRow>
       </TableBody>
       </Table>
-      <h3 id="_apismetricsk8siov1beta1namespaces_namespace_pods_name" class="group scroll-mt-20">/apis/metrics.k8s.io/v1beta1/namespaces/{"{"}{"{"} namespace {"}"}{"}"}/pods/{"{"}{"{"} name {"}"}{"}"}<a href="#_apismetricsk8siov1beta1namespaces_namespace_pods_name" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <h3 id="_apismetricsk8siov1beta1namespaces_namespace_pods_name" class="group scroll-mt-20">/apis/metrics.k8s.io/v1beta1/namespaces/{"{"}namespace{"}"}/pods/{"{"}name{"}"}<a href="#_apismetricsk8siov1beta1namespaces_namespace_pods_name" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
       <p><strong>Global path parameters</strong></p>
       <Table class="my-4">
       <TableHeader>

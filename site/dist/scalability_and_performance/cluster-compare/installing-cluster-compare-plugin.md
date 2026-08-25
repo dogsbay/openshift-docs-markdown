@@ -68,6 +68,7 @@ Install the `cluster-compare` plugin to compare a reference configuration with a
    ...
   ```
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Extending the OpenShift CLI with plugins](/openshift-docs-markdown/cli_reference/openshift_cli/extending-cli-plugins#cli-extend-plugins)

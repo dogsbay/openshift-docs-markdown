@@ -21,7 +21,8 @@ const headings = [{"depth":1,"slug":"editing-egress-firewall-ovn","text":"Editin
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/network_security/egress_firewall/editing-egress-firewall-ovn";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="editing-egress-firewall-ovn" class="group scroll-mt-20">Editing an egress firewall for a project<a href="#editing-egress-firewall-ovn" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>As a cluster administrator, you can modify network traffic rules for an existing egress firewall.</p>
+      <p class="_abstract">As a cluster administrator, you can modify network traffic rules for an existing egress firewall.</p>
       <h2 id="nw-egress-firewall-edit_editing-egress-firewall-ovn" class="group scroll-mt-20">Editing an EgressFirewall custom resource (CR)<a href="#nw-egress-firewall-edit_editing-egress-firewall-ovn" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">As a cluster administrator, you can update the egress firewall for a project.</p>
       <p><strong>Prerequisites</strong></p>

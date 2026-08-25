@@ -52,5 +52,6 @@ You can enable the `TechPreviewNoUpgrade` feature set in a hosted cluster by edi
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - \[FeatureGate [config.openshift.io/v1](/openshift-docs-markdown/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1)\]

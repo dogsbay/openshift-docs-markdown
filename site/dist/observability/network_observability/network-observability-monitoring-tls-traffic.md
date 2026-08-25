@@ -114,7 +114,7 @@ View and filter Transport Layer Security (TLS) metadata to identify deprecated c
 
 **Procedure**
 
-1. Navigate to **Observe** -> **Network Traffic** in the OpenShift Container Platform web console and click the **Traffic flows** tab.
+1. Navigate to **Observe** → **Network Traffic** in the OpenShift Container Platform web console and click the **Traffic flows** tab.
 
    > [!NOTE]
    > The **TLS Version** column is enabled by default. If the default TLS version column is not visible after enabling TLS tracking, click **Restore default columns** in **Manage columns** to refresh the table.
@@ -158,7 +158,7 @@ View and filter Transport Layer Security (TLS) metadata to identify deprecated c
         Select a connection node to view its specific TLS version and cipher suite details.
 7. View TLS metrics in the Network Observability dashboard:
 
-   1. Navigate to **Observe** -> **Dashboards**.
+   1. Navigate to **Observe** → **Dashboards**.
    2. Search for **NetObserv** and review the available metrics:
 
       - **TLS Traffic**: Displays overall TLS traffic metrics.
@@ -169,7 +169,7 @@ View and filter Transport Layer Security (TLS) metadata to identify deprecated c
 
 Transport Layer Security (TLS) metadata fields track and define encryption protocols, protocol versions, and cipher suite data to help you analyze secure network flows.
 
-***TLS tracking fields***
+**TLS tracking fields**
 
 <table>
 <thead>

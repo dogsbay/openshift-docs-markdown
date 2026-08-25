@@ -20,7 +20,8 @@ const headings = [{"depth":1,"slug":"fio-uninstalling","text":"Uninstalling the 
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/file_integrity_operator/fio-uninstalling";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -39,7 +40,7 @@ const pageCategory = ["security","security/file_integrity_operator"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Uninstalling the File Integrity Operator  {#fio-uninstalling}\n\nYou can remove the File Integrity Operator from your cluster by using the OpenShift Container Platform web console.\n\n## Uninstall the File Integrity Operator using the web console {#fio-uninstall-console_fio-uninstalling}\n\nTo remove the File Integrity Operator, you must first delete the `FileIntegrity` objects in all namespaces. After the objects are removed, you can then remove the Operator and its namespace.\n\n**Prerequisites**\n\n- You have access to an OpenShift Container Platform cluster that uses an account with `cluster-admin` permissions.\n- The File Integrity Operator is installed.\n\n**Procedure**\n\n1. Navigate to the **Ecosystem** -> **Installed Operators** -> **File Integrity Operator** page.\n2. From the **File Integrity** tab, ensure the **Show operands in: All namespaces** default option is selected to list all `FileIntegrity` objects in all namespaces.\n3. Click the Options menu ![](kebab.png \"Options menu\") for a `FileIntegrity` object.\n4. Select **Delete FileIntegrity**.\n5. Repeat the previous two steps until no `FileIntegrity` objects remain.\n6. Go to the **Administration** -> **Ecosystem** -> **Installed Operators** page.\n7. Click the Options menu ![](kebab.png \"Options menu\") on the **File Integrity Operator** entry.\n8. Select **Uninstall Operator**.\n9. Go to the **Home** -> **Projects** page.\n10. Search for `openshift-file-integrity`.\n11. Click the Options menu ![](kebab.png \"Options menu\") for the **openshift-file-integrity** project entry.\n12. Select **Delete Project**. A **Delete Project** dialog box opens on the web console.\n\n**Verification**\n\n- Type `openshift-file-integrity` in the **Delete Project** dialog box.\n- Click the **Delete** button.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/file_integrity_operator/fio-uninstalling.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Uninstalling the File Integrity Operator  {#fio-uninstalling}\n\nYou can remove the File Integrity Operator from your cluster by using the OpenShift Container Platform web console.\n\n## Uninstall the File Integrity Operator using the web console {#fio-uninstall-console_fio-uninstalling}\n\nTo remove the File Integrity Operator, you must first delete the `FileIntegrity` objects in all namespaces. After the objects are removed, you can then remove the Operator and its namespace.\n\n**Prerequisites**\n\n- You have access to an OpenShift Container Platform cluster that uses an account with `cluster-admin` permissions.\n- The File Integrity Operator is installed.\n\n**Procedure**\n\n1. Navigate to the **Ecosystem** → **Installed Operators** → **File Integrity Operator** page.\n2. From the **File Integrity** tab, ensure the **Show operands in: All namespaces** default option is selected to list all `FileIntegrity` objects in all namespaces.\n3. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png \"Options menu\") for a `FileIntegrity` object.\n4. Select **Delete FileIntegrity**.\n5. Repeat the previous two steps until no `FileIntegrity` objects remain.\n6. Go to the **Administration** → **Ecosystem** → **Installed Operators** page.\n7. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png \"Options menu\") on the **File Integrity Operator** entry.\n8. Select **Uninstall Operator**.\n9. Go to the **Home** → **Projects** page.\n10. Search for `openshift-file-integrity`.\n11. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png \"Options menu\") for the **openshift-file-integrity** project entry.\n12. Select **Delete Project**. A **Delete Project** dialog box opens on the web console.\n\n**Verification**\n\n- Type `openshift-file-integrity` in the **Delete Project** dialog box.\n- Click the **Delete** button.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/file_integrity_operator/fio-uninstalling.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,12 +79,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -91,7 +93,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="fio-uninstalling" class="group scroll-mt-20">Uninstalling the File Integrity Operator <a href="#fio-uninstalling" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can remove the File Integrity Operator from your cluster by using the OpenShift Container Platform web console.</p>
+      <p class="_abstract">You can remove the File Integrity Operator from your cluster by using the OpenShift Container Platform web console.</p>
       <h2 id="fio-uninstall-console_fio-uninstalling" class="group scroll-mt-20">Uninstall the File Integrity Operator using the web console<a href="#fio-uninstall-console_fio-uninstalling" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">To remove the File Integrity Operator, you must first delete the <code>FileIntegrity</code> objects in all namespaces. After the objects are removed, you can then remove the Operator and its namespace.</p>
       <p><strong>Prerequisites</strong></p>
@@ -101,17 +103,17 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </ul>
       <p><strong>Procedure</strong></p>
       <ol>
-      <li>Navigate to the <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong> -&gt; <strong>File Integrity Operator</strong> page.</li>
+      <li>Navigate to the <strong>Ecosystem</strong> → <strong>Installed Operators</strong> → <strong>File Integrity Operator</strong> page.</li>
       <li>From the <strong>File Integrity</strong> tab, ensure the <strong>Show operands in: All namespaces</strong> default option is selected to list all <code>FileIntegrity</code> objects in all namespaces.</li>
-      <li>Click the Options menu <img src="kebab.png" alt="" loading="lazy" /> for a <code>FileIntegrity</code> object.</li>
+      <li>Click the Options menu <img src="/openshift-docs-markdown/_assets/images/kebab.png" alt="" loading="lazy" /> for a <code>FileIntegrity</code> object.</li>
       <li>Select <strong>Delete FileIntegrity</strong>.</li>
       <li>Repeat the previous two steps until no <code>FileIntegrity</code> objects remain.</li>
-      <li>Go to the <strong>Administration</strong> -&gt; <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong> page.</li>
-      <li>Click the Options menu <img src="kebab.png" alt="" loading="lazy" /> on the <strong>File Integrity Operator</strong> entry.</li>
+      <li>Go to the <strong>Administration</strong> → <strong>Ecosystem</strong> → <strong>Installed Operators</strong> page.</li>
+      <li>Click the Options menu <img src="/openshift-docs-markdown/_assets/images/kebab.png" alt="" loading="lazy" /> on the <strong>File Integrity Operator</strong> entry.</li>
       <li>Select <strong>Uninstall Operator</strong>.</li>
-      <li>Go to the <strong>Home</strong> -&gt; <strong>Projects</strong> page.</li>
+      <li>Go to the <strong>Home</strong> → <strong>Projects</strong> page.</li>
       <li>Search for <code>openshift-file-integrity</code>.</li>
-      <li>Click the Options menu <img src="kebab.png" alt="" loading="lazy" /> for the <strong>openshift-file-integrity</strong> project entry.</li>
+      <li>Click the Options menu <img src="/openshift-docs-markdown/_assets/images/kebab.png" alt="" loading="lazy" /> for the <strong>openshift-file-integrity</strong> project entry.</li>
       <li>Select <strong>Delete Project</strong>. A <strong>Delete Project</strong> dialog box opens on the web console.</li>
       </ol>
       <p><strong>Verification</strong></p>

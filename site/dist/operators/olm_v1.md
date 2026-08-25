@@ -9,5 +9,6 @@ Operator Lifecycle Manager (OLM) was included with OpenShift Container Platform 
 This updated framework evolves many of the concepts that have been part of previous versions of OLM and adds new capabilities. Starting in OpenShift Container Platform 4.17, documentation for OLM v1 has been moved to the new guide, "Extensions (OLM v1)".
 
 **Additional resources**
+{._additional-resources}
 
 - [Extensions (OLM v1)](/openshift-docs-markdown/extensions/index#extensions-overview)

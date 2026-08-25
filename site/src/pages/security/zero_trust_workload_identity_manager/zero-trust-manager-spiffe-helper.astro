@@ -27,7 +27,8 @@ const headings = [{"depth":1,"slug":"zero-trust-manager-spiffe-helper","text":"U
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/zero_trust_workload_identity_manager/zero-trust-manager-spiffe-helper";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -85,12 +86,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -98,7 +100,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="zero-trust-manager-spiffe-helper" class="group scroll-mt-20">Using the SPIFFE Helper container image<a href="#zero-trust-manager-spiffe-helper" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>SPIFFE Helper writes Transport Layer Security (TLS) certificates to disk for applications that cannot use the SPIFFE Workload API. Use it to eliminate manual certificate management and reduce the risk of expired certificates.</p>
+      <p class="_abstract">SPIFFE Helper writes Transport Layer Security (TLS) certificates to disk for applications that cannot use the SPIFFE Workload API. Use it to eliminate manual certificate management and reduce the risk of expired certificates.</p>
       <h2 id="zero-trust-manager-spiffe-helper-about_zero-trust-manager-spiffe-helper" class="group scroll-mt-20">SPIFFE Helper container image<a href="#zero-trust-manager-spiffe-helper-about_zero-trust-manager-spiffe-helper" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">Use SPIFFE Helper with the Zero Trust Workload Identity Manager when your application cannot call the workload API directly but can read TLS certificates from a shared volume.</p>
       <p>SPIFFE Helper is a utility that connects to the SPIFFE Workload API, fetches identity credentials, writes them to files on disk, and optionally notifies a workload when X.509 material is renewed.</p>

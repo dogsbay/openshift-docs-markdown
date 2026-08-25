@@ -59,12 +59,13 @@ This procedure creates a new project called `user-getting-started`. You will use
 
 **Procedure**
 
-1. Navigate to **Home** -> **Projects**.
+1. Navigate to **Home** → **Projects**.
 2. Click **Create Project**.
 3. In the **Name** field, enter `user-getting-started`.
 4. Click **Create**.
 
 **Additional resources**
+{._additional-resources}
 
 - [Viewing a project by using the web console](/openshift-docs-markdown/applications/projects/working-with-projects#viewing-a-project-using-the-web-console_projects)
 
@@ -84,7 +85,7 @@ As a requirement of the application, you must assign the `view` role to the `def
 
 **Procedure**
 
-1. Navigate to **User Management** -> **RoleBindings**.
+1. Navigate to **User Management** → **RoleBindings**.
 2. Click **Create binding**.
 3. In the **Name** field, enter `sa-user-account`.
 4. In the **Namespace** field, search for and select `user-getting-started`.
@@ -101,6 +102,7 @@ As a requirement of the application, you must assign the `view` role to the `def
 9. Click **Create**.
 
 **Additional resources**
+{._additional-resources}
 
 - [RBAC overview](/openshift-docs-markdown/authentication/using-rbac#authorization-overview_using-rbac)
 
@@ -137,6 +139,7 @@ The following procedure deploys `parksmap`, which is the front-end component of 
     You are redirected to the **Topology** page where you can see the `parksmap` deployment in the `national-parks-app` application.
 
 **Additional resources**
+{._additional-resources}
 
 - [Viewing the topology of your application](/openshift-docs-markdown/applications/odc-viewing-application-composition-using-topology-view#odc-viewing-application-topology_viewing-application-composition-using-topology-view)
 
@@ -154,8 +157,10 @@ The **Overview** panel enables you to access many features of the `parksmap` dep
 
 **Procedure**
 
-1. Navigate to **Workloads** -> **Topology**.
-2. Click the `parksmap` deployment in the `national-parks-app` application. **Figure 1. Parksmap deployment**
+1. Navigate to **Workloads** → **Topology**.
+2. Click the `parksmap` deployment in the `national-parks-app` application.
+
+   **Figure 1. Parksmap deployment**
 
    ![Topology view of parksmap deployment](/openshift-docs-markdown/_assets/images/getting-started-examine-pod.png)
 
@@ -167,6 +172,7 @@ The **Overview** panel enables you to access many features of the `parksmap` dep
 3. To view the logs for a pod, select the **Resources** tab and click **View logs** next to the `parksmap` pod.
 
 **Additional resources**
+{._additional-resources}
 
 - [Interacting with applications and components](/openshift-docs-markdown/applications/odc-viewing-application-composition-using-topology-view#odc-interacting-with-applications-and-components_viewing-application-composition-using-topology-view)
 - [Scaling application pods and checking builds and routes](/openshift-docs-markdown/applications/odc-viewing-application-composition-using-topology-view#odc-scaling-application-pods-and-checking-builds-and-routes_viewing-application-composition-using-topology-view)
@@ -188,9 +194,11 @@ The following procedure scales the `parksmap` deployment to use two instances.
 
 **Procedure**
 
-1. Navigate to **Workloads** -> **Topology** and click the `parksmap` deployment.
+1. Navigate to **Workloads** → **Topology** and click the `parksmap` deployment.
 2. Select the **Details** tab.
-3. Use the up arrow to scale the pod to two instances. **Figure 1. Scaling application**
+3. Use the up arrow to scale the pod to two instances.
+
+   **Figure 2. Scaling application**
 
    ![Scaling pod to two instances](/openshift-docs-markdown/_assets/images/getting-started-scaling-pod.png)
 
@@ -198,6 +206,7 @@ The following procedure scales the `parksmap` deployment to use two instances.
    > You can use the down arrow to scale your deployment back down to one pod instance.
 
 **Additional resources**
+{._additional-resources}
 
 - [Recommended practices for scaling the cluster](/openshift-docs-markdown/scalability_and_performance/recommended-performance-scale-practices/recommended-control-plane-practices#recommended-scale-practices_recommended-control-plane-practices)
 
@@ -245,13 +254,14 @@ The following procedure deploys `nationalparks`, which is the back-end component
 
 **Verification**
 
-1. Navigate to **Workloads** -> **Topology**.
+1. Navigate to **Workloads** → **Topology**.
 2. Click the `nationalparks` deployment in the `national-parks-app` application.
 3. Click the **Resources** tab.
 
    Wait for the build to complete successfully.
 
 **Additional resources**
+{._additional-resources}
 
 - [Adding services to your application](/openshift-docs-markdown/applications/odc-viewing-application-composition-using-topology-view#odc-adding-services-to-your-application_viewing-application-composition-using-topology-view)
 - [Importing a codebase from Git to create an application](/openshift-docs-markdown/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-importing-codebase-from-git-to-create-application_odc-creating-applications-using-developer-perspective)
@@ -276,7 +286,9 @@ Deploy a MongoDB database application to contain the information that your appli
 7. Scroll to the **Deploy** section.
 8. In the **Resource type** field, ensure that **Deployment** is selected.
 9. Click **Show advanced Deployment option**.
-10. Under **Environment variables (runtime only)**, add the following names and values: **Environment variable names and values**
+10. Under **Environment variables (runtime only)**, add the following names and values:
+
+    **Environment variable names and values**
 
     | Name | Value |
     | --- | --- |
@@ -313,10 +325,12 @@ The following procedure creates the `nationalparks-mongodb-parameters` secret an
 
 **Procedure**
 
-1. Navigate to **Workloads** -> **Secrets**.
-2. Click **Create** -> **Key/value secret**.
+1. Navigate to **Workloads** → **Secrets**.
+2. Click **Create** → **Key/value secret**.
 3. In the **Secret name** field, enter `nationalparks-mongodb-parameters`.
-4. Enter the following values for **Key** and **Value**: **Secret keys and values**
+4. Enter the following values for **Key** and **Value**:
+
+   **Secret keys and values**
 
    | Key | Value |
    | --- | --- |
@@ -336,6 +350,7 @@ The following procedure creates the `nationalparks-mongodb-parameters` secret an
    This change in configuration triggers a new rollout of the `nationalparks` deployment with the environment variables properly injected.
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding secrets](/openshift-docs-markdown/nodes/pods/nodes-pods-secrets#nodes-pods-secrets-about_nodes-pods-secrets)
 
@@ -350,7 +365,7 @@ After you have deployed the `mongodb-nationalparks` database application, load t
 
 **Procedure**
 
-1. Navigate to **Workloads** -> **Topology**.
+1. Navigate to **Workloads** → **Topology**.
 2. Click the `nationalparks` deployment and select the **Resources** tab.
 3. Copy the **Location** URL from your route.
 4. Paste the URL into your web browser and add the following at the end of the URL:
@@ -382,11 +397,15 @@ After you have deployed the necessary applications and loaded data into the data
 
 **Procedure**
 
-1. Navigate to **Workloads** -> **Topology**.
-2. Click the **Open URL** link from the `parksmap` deployment. **Figure 1. National parks across the world**
+1. Navigate to **Workloads** → **Topology**.
+2. Click the **Open URL** link from the `parksmap` deployment.
+
+   **Figure 3. National parks across the world**
 
    ![Opening the URL for the parksmap deployment](/openshift-docs-markdown/_assets/images/getting-started-parksmap-url.png)
-3. Verify that your web browser displays a map of the national parks across the world. **Figure 2. National parks across the world**
+3. Verify that your web browser displays a map of the national parks across the world.
+
+   **Figure 4. National parks across the world**
 
    ![Map of the national parks across the world](/openshift-docs-markdown/_assets/images/getting-started-map-national-parks.png)
 

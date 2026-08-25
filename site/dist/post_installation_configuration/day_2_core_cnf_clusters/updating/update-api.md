@@ -15,6 +15,7 @@ For example, if the cluster version is 4.15.32, you must update to 4.16 z-stream
 Each cluster Operator supports specific API versions. Kubernetes APIs evolve over time, and newer versions can be deprecated or change existing APIs. This is referred to as "version skew". For every new release, you must review the API changes. The APIs might be compatible across several releases of an Operator, but compatibility is not guaranteed. To mitigate against problems that arise from version skew, follow a well-defined update strategy.
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding API tiers](/openshift-docs-markdown/rest_api/overview/understanding-api-support-tiers#understanding-api-support-tiers)
 - [Kubernetes version skew policy](https://kubernetes.io/releases/version-skew-policy/)
@@ -36,6 +37,7 @@ Use the [Red Hat OpenShift Container Platform Update Graph](https://access.redha
 > OpenShift Container Platform development has a strict backport policy that prevents regressions. For example, a bug must be fixed in 4.16.z before it is fixed in 4.15.z. This means that the update graph does not allow for updates to chronologically older releases even if the minor version is greater, for example, updating from 4.15.24 to 4.16.2.
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding update channels and releases](/openshift-docs-markdown/updating/understanding_updates/understanding-update-channels-release#understanding-update-channels-releases)
 

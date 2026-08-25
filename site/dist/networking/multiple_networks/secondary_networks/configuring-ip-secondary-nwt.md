@@ -32,7 +32,7 @@ Ensure the periodic renewal of a DHCP lease throughout the lifetime of a contain
 
 The following table describes the configuration for static IP address assignment:
 
-`ipam`** static configuration object**
+**`ipam` static configuration object**
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -43,21 +43,21 @@ The following table describes the configuration for static IP address assignment
 
 The `addresses` array requires objects with the following fields:
 
-`ipam.addresses[]`** array**
+**`ipam.addresses[]` array**
 
 | Field | Type | Description |
 | --- | --- | --- |
 | `address` | `string` | An IP address and network prefix that you specify. For example, if you specify `10.10.21.10/24`, the secondary network gets assigned an IP address of `10.10.21.10` and the subnet mask of `255.255.255.0`. |
 | `gateway` | `string` | The default gateway to route egress network traffic to. |
 
-`ipam.routes[]`** array**
+**`ipam.routes[]` array**
 
 | Field | Type | Description |
 | --- | --- | --- |
 | `dst` | `string` | The IP address range in CIDR format, such as `192.168.17.0/24` or `0.0.0.0/0` for the default route. |
 | `gw` | `string` | The gateway that routes network traffic. |
 
-`ipam.dns`** object**
+**`ipam.dns` object**
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -124,7 +124,7 @@ The Whereabouts CNI plugin also supports overlapping IP address ranges and confi
 
 The following table describes the configuration objects for dynamic IP address assignment with Whereabouts:
 
-`ipam`** whereabouts configuration parameters**
+**`ipam` whereabouts configuration parameters**
 
 | Field | Type | Description |
 | --- | --- | --- |

@@ -1,8 +1,8 @@
 ---
-title: Complete a z-stream cluster update with {{ cgu_operator }}
+title: Complete a z-stream cluster update with TALM
 ---
 
-# Complete a z-stream cluster update with {{ cgu_operator }} {#core-cluster-upgrades-z-stream}
+# Complete a z-stream cluster update with TALM {#core-cluster-upgrades-z-stream}
 
 You can update clusters to z-stream patch releases by using RHACM policies and Topology Aware Lifecycle Manager (TALM).
 
@@ -209,7 +209,8 @@ Apply z-stream updates as soon as they become available to address critical vuln
   $ oc --context=spoke1 get events -A --sort-by='.lastTimestamp' | tail -20
   ```
 
-## Additional resources {#additional-resources_core-cluster-upgrades-z-stream}
+**Additional resources**
+{._additional-resources}
 
 - [Prepare RHACM policies and TALM for cluster updates](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-preparing-policies#core-cluster-upgrades-preparing-policies)
 - [Perform health checks before a cluster update with TALM](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-health-checks#core-cluster-upgrades-health-checks)

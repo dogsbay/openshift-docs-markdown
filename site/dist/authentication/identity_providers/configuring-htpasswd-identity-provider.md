@@ -118,19 +118,19 @@ To use the htpasswd identity provider, you must define a secret that contains th
 
   1. The secret key containing the users file for the `--from-file` argument must be named `htpasswd`, as shown in the above command.
 
-     > [!TIP]
-     > You can alternatively apply the following YAML to create the secret:
-     >
-     > ```yaml
-     > apiVersion: v1
-     > kind: Secret
-     > metadata:
-     >   name: htpass-secret
-     >   namespace: openshift-config
-     > type: Opaque
-     > data:
-     >   htpasswd: <base64_encoded_htpasswd_file_contents>
-     > ```
+  > [!TIP]
+  > You can alternatively apply the following YAML to create the secret:
+  >
+  > ```yaml
+  > apiVersion: v1
+  > kind: Secret
+  > metadata:
+  >   name: htpass-secret
+  >   namespace: openshift-config
+  > type: Opaque
+  > data:
+  >   htpasswd: <base64_encoded_htpasswd_file_contents>
+  > ```
 
 ## Sample htpasswd CR {#identity-provider-htpasswd-CR_configuring-htpasswd-identity-provider}
 
@@ -156,6 +156,7 @@ spec:
 3. An existing secret containing a file generated using [`htpasswd`](http://httpd.apache.org/docs/2.4/programs/htpasswd.html).
 
 **Additional resources**
+{._additional-resources}
 
 - See [Identity provider parameters](/openshift-docs-markdown/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider) for information on parameters, such as `mappingMethod`, that are common to all identity providers.
 
@@ -280,7 +281,7 @@ Configure your identity provider (IDP) through the web console instead of the CL
 
 **Procedure**
 
-1. Navigate to **Administration** -> **Cluster Settings**.
+1. Navigate to **Administration** → **Cluster Settings**.
 2. Under the **Configuration** tab, click **OAuth**.
 3. Under the **Identity Providers** section, select your identity provider from the **Add** drop-down menu.
 

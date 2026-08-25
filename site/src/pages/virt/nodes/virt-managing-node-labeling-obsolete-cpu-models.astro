@@ -16,12 +16,14 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import CollapsibleAlert from "@ui/alert/CollapsibleAlert.astro";
 
 const headings = [{"depth":1,"slug":"virt-managing-node-labeling-obsolete-cpu-models","text":"Managing node labeling for obsolete CPU models"},{"depth":2,"slug":"virt-about-node-labeling-obsolete-cpu-models_virt-managing-node-labeling-obsolete-cpu-models","text":"About node labeling for obsolete CPU models"},{"depth":2,"slug":"virt-configuring-obsolete-cpu-models_virt-managing-node-labeling-obsolete-cpu-models","text":"Configuring obsolete CPU models"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/nodes/virt-managing-node-labeling-obsolete-cpu-models";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -40,7 +42,7 @@ const pageCategory = ["virt","virt/nodes"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing node labeling for obsolete CPU models {#virt-managing-node-labeling-obsolete-cpu-models}\n\nYou can schedule a virtual machine (VM) on a node if the VM CPU model and policy are supported by the node.\n\n## About node labeling for obsolete CPU models {#virt-about-node-labeling-obsolete-cpu-models_virt-managing-node-labeling-obsolete-cpu-models}\n\nThe OpenShift Virtualization Operator uses a predefined list of obsolete CPU models to ensure that a node supports only valid CPU models for scheduled VMs.\n\nBy default, the following CPU models are eliminated from the list of labels generated for the node:\n\n<details>\n<summary>Obsolete CPU models</summary>\n\n```\n\"486\"\nConroe\nathlon\ncore2duo\ncoreduo\nkvm32\nkvm64\nn270\npentium\npentium2\npentium3\npentiumpro\nphenom\nqemu32\nqemu64\n```\n\n</details>\n\nThis predefined list is not visible in the `HyperConverged` CR. You cannot *remove* CPU models from this list, but you can add to the list by editing the `spec.obsoleteCPUs.cpuModels` field of the `HyperConverged` CR.\n\n## Configuring obsolete CPU models {#virt-configuring-obsolete-cpu-models_virt-managing-node-labeling-obsolete-cpu-models}\n\nYou can configure a list of obsolete CPU models by editing the `HyperConverged` custom resource (CR).\n\n**Procedure**\n\n- Edit the `HyperConverged` custom resource, specifying the obsolete CPU models in the `obsoleteCPUs` array. For example:\n\n  ```yaml\n  apiVersion: hco.kubevirt.io/v1beta1\n  kind: HyperConverged\n  metadata:\n    name: kubevirt-hyperconverged\n    namespace: {{ CNVNamespace }}\n  spec:\n    obsoleteCPUs:\n      cpuModels:\n        - \"<obsolete_cpu_1>\"\n        - \"<obsolete_cpu_2>\"\n  ```\n\n  Replace the example values in the `cpuModels` array with obsolete CPU models. Any value that you specify is added to a predefined list of obsolete CPU models. The predefined list is not visible in the CR.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/nodes/virt-managing-node-labeling-obsolete-cpu-models.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing node labeling for obsolete CPU models {#virt-managing-node-labeling-obsolete-cpu-models}\n\nYou can schedule a virtual machine (VM) on a node if the VM CPU model and policy are supported by the node.\n\n## About node labeling for obsolete CPU models {#virt-about-node-labeling-obsolete-cpu-models_virt-managing-node-labeling-obsolete-cpu-models}\n\nThe OpenShift Virtualization Operator uses a predefined list of obsolete CPU models to ensure that a node supports only valid CPU models for scheduled VMs.\n\nBy default, the following CPU models are eliminated from the list of labels generated for the node:\n\n:::details{title=\"Obsolete CPU models\"}\n```\n\"486\"\nConroe\nathlon\ncore2duo\ncoreduo\nkvm32\nkvm64\nn270\npentium\npentium2\npentium3\npentiumpro\nphenom\nqemu32\nqemu64\n```\n:::\n\nThis predefined list is not visible in the `HyperConverged` CR. You cannot *remove* CPU models from this list, but you can add to the list by editing the `spec.obsoleteCPUs.cpuModels` field of the `HyperConverged` CR.\n\n## Configuring obsolete CPU models {#virt-configuring-obsolete-cpu-models_virt-managing-node-labeling-obsolete-cpu-models}\n\nYou can configure a list of obsolete CPU models by editing the `HyperConverged` custom resource (CR).\n\n**Procedure**\n\n- Edit the `HyperConverged` custom resource, specifying the obsolete CPU models in the `obsoleteCPUs` array. For example:\n\n  ```yaml\n  apiVersion: hco.kubevirt.io/v1beta1\n  kind: HyperConverged\n  metadata:\n    name: kubevirt-hyperconverged\n    namespace: openshift-cnv\n  spec:\n    obsoleteCPUs:\n      cpuModels:\n        - \"<obsolete_cpu_1>\"\n        - \"<obsolete_cpu_2>\"\n  ```\n\n  Replace the example values in the `cpuModels` array with obsolete CPU models. Any value that you specify is added to a predefined list of obsolete CPU models. The predefined list is not visible in the CR.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/nodes/virt-managing-node-labeling-obsolete-cpu-models.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -79,12 +81,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,13 +95,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-managing-node-labeling-obsolete-cpu-models" class="group scroll-mt-20">Managing node labeling for obsolete CPU models<a href="#virt-managing-node-labeling-obsolete-cpu-models" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can schedule a virtual machine (VM) on a node if the VM CPU model and policy are supported by the node.</p>
+      <p class="_abstract">You can schedule a virtual machine (VM) on a node if the VM CPU model and policy are supported by the node.</p>
       <h2 id="virt-about-node-labeling-obsolete-cpu-models_virt-managing-node-labeling-obsolete-cpu-models" class="group scroll-mt-20">About node labeling for obsolete CPU models<a href="#virt-about-node-labeling-obsolete-cpu-models_virt-managing-node-labeling-obsolete-cpu-models" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">The OpenShift Virtualization Operator uses a predefined list of obsolete CPU models to ensure that a node supports only valid CPU models for scheduled VMs.</p>
       <p>By default, the following CPU models are eliminated from the list of labels generated for the node:</p>
-      <Fragment set:html={"<details>\n<summary>Obsolete CPU models</summary>\n"} />
-      <CodeBlock code={"\"486\"\nConroe\nathlon\ncore2duo\ncoreduo\nkvm32\nkvm64\nn270\npentium\npentium2\npentium3\npentiumpro\nphenom\nqemu32\nqemu64"} lang="plaintext" />
-      <Fragment set:html={"</details>\n"} />
+      <CollapsibleAlert variant="note" title="Obsolete CPU models" class="my-4">
+        <CodeBlock code={"\"486\"\nConroe\nathlon\ncore2duo\ncoreduo\nkvm32\nkvm64\nn270\npentium\npentium2\npentium3\npentiumpro\nphenom\nqemu32\nqemu64"} lang="plaintext" />
+      </CollapsibleAlert>
       <p>This predefined list is not visible in the <code>HyperConverged</code> CR. You cannot <em>remove</em> CPU models from this list, but you can add to the list by editing the <code>spec.obsoleteCPUs.cpuModels</code> field of the <code>HyperConverged</code> CR.</p>
       <h2 id="virt-configuring-obsolete-cpu-models_virt-managing-node-labeling-obsolete-cpu-models" class="group scroll-mt-20">Configuring obsolete CPU models<a href="#virt-configuring-obsolete-cpu-models_virt-managing-node-labeling-obsolete-cpu-models" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">You can configure a list of obsolete CPU models by editing the <code>HyperConverged</code> custom resource (CR).</p>
@@ -106,7 +109,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <ul>
       <li>
       Edit the <code>HyperConverged</code> custom resource, specifying the obsolete CPU models in the <code>obsoleteCPUs</code> array. For example:
-      <CodeBlock code={"apiVersion: hco.kubevirt.io/v1beta1\nkind: HyperConverged\nmetadata:\n  name: kubevirt-hyperconverged\n  namespace: {{ CNVNamespace }}\nspec:\n  obsoleteCPUs:\n    cpuModels:\n      - \"<obsolete_cpu_1>\"\n      - \"<obsolete_cpu_2>\""} lang="yaml" />
+      <CodeBlock code={"apiVersion: hco.kubevirt.io/v1beta1\nkind: HyperConverged\nmetadata:\n  name: kubevirt-hyperconverged\n  namespace: openshift-cnv\nspec:\n  obsoleteCPUs:\n    cpuModels:\n      - \"<obsolete_cpu_1>\"\n      - \"<obsolete_cpu_2>\""} lang="yaml" />
       <p>Replace the example values in the <code>cpuModels</code> array with obsolete CPU models. Any value that you specify is added to a predefined list of obsolete CPU models. The predefined list is not visible in the CR.</p>
       </li>
       </ul>

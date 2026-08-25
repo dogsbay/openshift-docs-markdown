@@ -25,11 +25,7 @@ To enable the Machine API to automate the scaling and management of compute node
 
 The sample YAML defines a compute machine set that runs on Red Hat OpenStack Platform (RHOSP) and creates nodes that are labeled with `node-role.kubernetes.io/<role>: ""`.
 
-In the sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and
-
-`<role>`
-
-is the node label to add.
+In the sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and `<role>` is the node label to add.
 
 ```yaml
 apiVersion: machine.openshift.io/v1beta1
@@ -37,51 +33,24 @@ kind: MachineSet
 metadata:
   labels:
     machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not infra %}
     machine.openshift.io/cluster-api-machine-role: <role>
     machine.openshift.io/cluster-api-machine-type: <role>
   name: <infrastructure_id>-<role>
-{% endif %}
-{% if infra %}
-    machine.openshift.io/cluster-api-machine-role: infra
-    machine.openshift.io/cluster-api-machine-type: infra
-  name: <infrastructure_id>-infra
-{%- endif %}
   namespace: openshift-machine-api
 spec:
   replicas: <number_of_replicas>
   selector:
     matchLabels:
       machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not infra %}
       machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>
-{% endif %}
-{% if infra %}
-      machine.openshift.io/cluster-api-machineset: <infrastructure_id>-infra
-{%- endif %}
   template:
     metadata:
       labels:
         machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not infra %}
         machine.openshift.io/cluster-api-machine-role: <role>
         machine.openshift.io/cluster-api-machine-type: <role>
         machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>
     spec:
-{% endif %}
-{% if infra %}
-        machine.openshift.io/cluster-api-machine-role: infra
-        machine.openshift.io/cluster-api-machine-type: infra
-        machine.openshift.io/cluster-api-machineset: <infrastructure_id>-infra
-    spec:
-      metadata:
-        creationTimestamp: null
-        labels:
-          node-role.kubernetes.io/infra: ""
-      taints:
-      - key: node-role.kubernetes.io/infra
-        effect: NoSchedule
-{%- endif %}
       providerSpec:
         value:
           apiVersion: machine.openshift.io/v1alpha1
@@ -90,36 +59,16 @@ spec:
             name: openstack-cloud-credentials
             namespace: openshift-machine-api
           flavor: <nova_flavor>
-{%- if infra %}
           image: <glance_image_name_or_location>
-{% endif %}
-{% if not infra %}
-          image: <glance_image_name_or_location>
-{% endif %}
-{% if not infra %}
           serverGroupID: <optional_UUID_of_server_group>
-{% endif %}
-{% if infra %}
-          serverGroupID: <optional_UUID_of_server_group>
-{%- endif %}
           kind: OpenstackProviderSpec
-{%- if not infra %}
           networks:
-{% endif %}
-{% if infra %}
-          networks:
-{%- endif %}
           - filter: {}
             subnets:
             - filter:
                 name: <subnet_name>
                 tags: openshiftClusterID=<infrastructure_id>
-{%- if not infra %}
           primarySubnet: <rhosp_subnet_UUID>
-{% endif %}
-{% if infra %}
-          primarySubnet: <rhosp_subnet_UUID>
-{%- endif %}
           securityGroups:
           - filter: {}
             name: <infrastructure_id>-worker
@@ -165,6 +114,7 @@ where:
 :   Specifies the RHOSP subnet that you want the endpoints of nodes to be published on. Usually, this is the same subnet that is used as the value of `machinesSubnet` in the `install-config.yaml` file.
 
 **Additional resources**
+{._additional-resources}
 
 - [Manually updating the boot image](/openshift-docs-markdown/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)
 
@@ -297,6 +247,7 @@ where:
 > Optionally, you can add tags to ports as part of their `tags` lists.
 
 **Additional resources**
+{._additional-resources}
 
 - [Preparing to install a cluster that uses SR-IOV or OVS-DPDK on OpenStack](/openshift-docs-markdown/installing/installing_openstack/installing-openstack-nfv-preparing#installing-openstack-nfv-preparing)
 - [Manually updating the boot image](/openshift-docs-markdown/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)
@@ -507,13 +458,17 @@ To dynamically manage machine compute resources, you can create your own compute
 
   ```terminal
 
+  NAME                                DESIRED   CURRENT   READY   AVAILABLE   AGE
+  agl030519-vplxk-infra-us-east-1a    1         1         1       1           11m
+  agl030519-vplxk-worker-us-east-1a   1         1         1       1           55m
+  agl030519-vplxk-worker-us-east-1b   1         1         1       1           55m
+  agl030519-vplxk-worker-us-east-1c   1         1         1       1           55m
+  agl030519-vplxk-worker-us-east-1d   0         0                             55m
+  agl030519-vplxk-worker-us-east-1e   0         0                             55m
+  agl030519-vplxk-worker-us-east-1f   0         0                             55m
   ```
 
-{%- if win or post_aws_zones %} NAME                                       DESIRED   CURRENT   READY   AVAILABLE   AGE {%- if win %} agl030519-vplxk-windows-worker-us-east-1a  1         1         1       1           11m {% endif %} {% if post_aws_zones %} agl030519-vplxk-edge-us-east-1-nyc-1a      1         1         1       1           11m {%- endif %} agl030519-vplxk-worker-us-east-1a          1         1         1       1           55m agl030519-vplxk-worker-us-east-1b          1         1         1       1           55m agl030519-vplxk-worker-us-east-1c          1         1         1       1           55m agl030519-vplxk-worker-us-east-1d          0         0                             55m agl030519-vplxk-worker-us-east-1e          0         0                             55m agl030519-vplxk-worker-us-east-1f          0         0                             55m {% endif %} {% if not (win or post_aws_zones) %} NAME                                DESIRED   CURRENT   READY   AVAILABLE   AGE agl030519-vplxk-infra-us-east-1a    1         1         1       1           11m agl030519-vplxk-worker-us-east-1a   1         1         1       1           55m agl030519-vplxk-worker-us-east-1b   1         1         1       1           55m agl030519-vplxk-worker-us-east-1c   1         1         1       1           55m agl030519-vplxk-worker-us-east-1d   0         0                             55m agl030519-vplxk-worker-us-east-1e   0         0                             55m agl030519-vplxk-worker-us-east-1f   0         0                             55m {%- endif %} \`\`\`
-
-```
-When the new compute machine set is available, the `DESIRED` and `CURRENT` values match. If the compute machine set is not available, wait a few minutes and run the command again.
-```
+  When the new compute machine set is available, the `DESIRED` and `CURRENT` values match. If the compute machine set is not available, wait a few minutes and run the command again.
 
 ## Labeling GPU machine sets for the cluster autoscaler {#machineset-label-gpu-autoscaler_creating-machineset-osp}
 
@@ -549,5 +504,6 @@ Label your machine sets to indicate which machines the cluster autoscaler can us
       > You must specify the value of this label for the `spec.resourceLimits.gpus.type` parameter in your `ClusterAutoscaler` CR. For more information, see "Cluster autoscaler resource definition".
 
 **Additional resources**
+{._additional-resources}
 
 - [Cluster autoscaler resource definition](/openshift-docs-markdown/machine_management/applying-autoscaling#cluster-autoscaler-cr_applying-autoscaling)

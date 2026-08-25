@@ -1,5 +1,5 @@
 ---
-title: Template []
+title: Template [template.openshift.io/v1]
 ---
 
 # Template \[template.openshift.io/v1\] {#template-template-openshift-io-v1}
@@ -26,7 +26,7 @@ Required
 | `labels` | `object (string)` | labels is a optional set of labels that are applied to every object during the Template to Config transformation. |
 | `message` | `string` | message is an optional instructional message that will be displayed when this template is instantiated. This field should inform the user how to utilize the newly created resources. Parameter substitution will be performed on the message before being displayed so that generated credentials and other parameters can be included in the output. |
 | `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
-| `objects` | [`array (RawExtension)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-runtime-RawExtension) | objects is an array of resources to include in this template. If a namespace value is hardcoded in the object, it will be removed during template instantiation, however if the namespace value is, or contains, a ${{ PARAMETER_REFERENCE }}, the resolved value after parameter substitution will be respected and the object will be created in that namespace. |
+| `objects` | [`array (RawExtension)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-runtime-RawExtension) | objects is an array of resources to include in this template. If a namespace value is hardcoded in the object, it will be removed during template instantiation, however if the namespace value is, or contains, a ${PARAMETER_REFERENCE}, the resolved value after parameter substitution will be respected and the object will be created in that namespace. |
 | `parameters` | `array` | parameters is an optional array of Parameters used during the Template to Config transformation. |
 | `parameters[]` | `object` | Parameter defines a name/value variable that is to be processed during the Template to Config transformation. |
 
@@ -58,11 +58,10 @@ Required
 | `description` | `string` | description of a parameter. Optional. |
 | `displayName` | `string` | Optional: The name that will show in UI instead of parameter 'Name' |
 | `from` | `string` | from is an input value for the generator. Optional. |
-| `generate` | `string` | generate specifies the generator to be used to generate random string from an input value specified by From field. The result string is stored into Value field. If empty, no generator is being used, leaving the result Value untouched. Optional. The only supported generator is "expression", which accepts a "from" value in the form of a simple regular expression containing the range expression "\[a-zA-Z0-9\]", and the length expression "a{{ length }}". Examples: from             \\ |
-| value ----------------------------- "test\[0-9\]{{ 1 }}x"  \\ | "test7x" "\[0-1\]{{ 8 }}"       \\ | "01001100" "0x\[A-F0-9\]{{ 4 }}"  \\ |
-| "0xB3AF" "\[a-zA-Z0-9\]{{ 8 }}" \\ | "hW4yQU5i" | `name` |
-| `string` | name must be set and it can be referenced in Template Items using ${{ PARAMETER_NAME }}. Required. | `required` |
-| `boolean` | Optional: Indicates the parameter must have a value.  Defaults to false. | `value` |
+| `generate` | `string` | generate specifies the generator to be used to generate random string from an input value specified by From field. The result string is stored into Value field. If empty, no generator is being used, leaving the result Value untouched. Optional.<br>The only supported generator is "expression", which accepts a "from" value in the form of a simple regular expression containing the range expression "\[a-zA-Z0-9\]", and the length expression "a{length}".<br>Examples:<br>from \| value ----------------------------- "test\[0-9\]{1}x" \| "test7x" "\[0-1\]{8}" \| "01001100" "0x\[A-F0-9\]{4}" \| "0xB3AF" "\[a-zA-Z0-9\]{8}" \| "hW4yQU5i" |
+| `name` | `string` | name must be set and it can be referenced in Template Items using ${PARAMETER_NAME}. Required. |
+| `required` | `boolean` | Optional: Indicates the parameter must have a value. Defaults to false. |
+| `value` | `string` | value holds the Parameter data. If specified, the generator will be ignored. The value replaces all occurrences of the Parameter ${Name} expression during the Template to Config transformation. Optional. |
 
 ## API endpoints {#_api_endpoints}
 
@@ -74,24 +73,24 @@ The following API endpoints are available:
 - `/apis/template.openshift.io/v1/watch/templates`
 
   - `GET`: watch individual changes to a list of Template. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/template.openshift.io/v1/namespaces/{{ namespace }}/templates`
+- `/apis/template.openshift.io/v1/namespaces/{namespace}/templates`
 
   - `DELETE`: delete collection of Template
   - `GET`: list or watch objects of kind Template
   - `POST`: create a Template
-- `/apis/template.openshift.io/v1/watch/namespaces/{{ namespace }}/templates`
+- `/apis/template.openshift.io/v1/watch/namespaces/{namespace}/templates`
 
   - `GET`: watch individual changes to a list of Template. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/template.openshift.io/v1/namespaces/{{ namespace }}/templates/{{ name }}`
+- `/apis/template.openshift.io/v1/namespaces/{namespace}/templates/{name}`
 
   - `DELETE`: delete a Template
   - `GET`: read the specified Template
   - `PATCH`: partially update the specified Template
   - `PUT`: replace the specified Template
-- `/apis/template.openshift.io/v1/namespaces/{{ namespace }}/processedtemplates`
+- `/apis/template.openshift.io/v1/namespaces/{namespace}/processedtemplates`
 
   - `POST`: create a Template
-- `/apis/template.openshift.io/v1/watch/namespaces/{{ namespace }}/templates/{{ name }}`
+- `/apis/template.openshift.io/v1/watch/namespaces/{namespace}/templates/{name}`
 
   - `GET`: watch changes to an object of kind Template. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
 
@@ -133,7 +132,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/template.openshift.io/v1/namespaces/{{ namespace }}/templates {#_apistemplateopenshiftiov1namespaces_namespace_templates}
+### /apis/template.openshift.io/v1/namespaces/{namespace}/templates {#_apistemplateopenshiftiov1namespaces_namespace_templates}
 
 HTTP method
 :   ```
@@ -207,7 +206,7 @@ Description
 | 202 - Accepted | [`Template`](/openshift-docs-markdown/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/template.openshift.io/v1/watch/namespaces/{{ namespace }}/templates {#_apistemplateopenshiftiov1watchnamespaces_namespace_templates}
+### /apis/template.openshift.io/v1/watch/namespaces/{namespace}/templates {#_apistemplateopenshiftiov1watchnamespaces_namespace_templates}
 
 HTTP method
 :   ```
@@ -226,7 +225,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/template.openshift.io/v1/namespaces/{{ namespace }}/templates/{{ name }} {#_apistemplateopenshiftiov1namespaces_namespace_templates_name}
+### /apis/template.openshift.io/v1/namespaces/{namespace}/templates/{name} {#_apistemplateopenshiftiov1namespaces_namespace_templates_name}
 
 **Global path parameters**
 
@@ -331,7 +330,7 @@ Description
 | 201 - Created | [`Template`](/openshift-docs-markdown/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/template.openshift.io/v1/namespaces/{{ namespace }}/processedtemplates {#_apistemplateopenshiftiov1namespaces_namespace_processedtemplates}
+### /apis/template.openshift.io/v1/namespaces/{namespace}/processedtemplates {#_apistemplateopenshiftiov1namespaces_namespace_processedtemplates}
 
 **Global query parameters**
 
@@ -365,7 +364,7 @@ Description
 | 202 - Accepted | [`Template`](/openshift-docs-markdown/rest_api/template_apis/template-template-openshift-io-v1#template-template-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/template.openshift.io/v1/watch/namespaces/{{ namespace }}/templates/{{ name }} {#_apistemplateopenshiftiov1watchnamespaces_namespace_templates_name}
+### /apis/template.openshift.io/v1/watch/namespaces/{namespace}/templates/{name} {#_apistemplateopenshiftiov1watchnamespaces_namespace_templates_name}
 
 **Global path parameters**
 

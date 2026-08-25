@@ -1,5 +1,5 @@
 ---
-title: ImageContentPolicy []
+title: ImageContentPolicy [config.openshift.io/v1]
 ---
 
 # ImageContentPolicy \[config.openshift.io/v1\] {#imagecontentpolicy-config-openshift-io-v1}
@@ -38,7 +38,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `repositoryDigestMirrors` | `array` | repositoryDigestMirrors allows images referenced by image digests in pods to be pulled from alternative mirrored repository locations. The image pull specification provided to the pod will be compared to the source locations described in RepositoryDigestMirrors and the image may be pulled down from any of the mirrors in the list instead of the specified repository allowing administrators to choose a potentially faster mirror. To pull image from mirrors by tags, should set the "allowMirrorByTags". Each “source” repository is treated independently; configurations for different “source” repositories don’t interact. If the "mirrors" is not specified, the image will continue to be pulled from the specified repository in the pull spec. When multiple policies are defined for the same “source” repository, the sets of defined mirrors will be merged together, preserving the relative order of the mirrors, if possible. For example, if policy A has mirrors `a, b, c` and policy B has mirrors `c, d, e`, the mirrors will be used in the order `a, b, c, d, e`.  If the orders of mirror entries conflict (e.g. `a, b` vs. `b, a`) the configuration is not rejected but the resulting order is unspecified. |
+| `repositoryDigestMirrors` | `array` | repositoryDigestMirrors allows images referenced by image digests in pods to be pulled from alternative mirrored repository locations. The image pull specification provided to the pod will be compared to the source locations described in RepositoryDigestMirrors and the image may be pulled down from any of the mirrors in the list instead of the specified repository allowing administrators to choose a potentially faster mirror. To pull image from mirrors by tags, should set the "allowMirrorByTags".<br>Each “source” repository is treated independently; configurations for different “source” repositories don’t interact.<br>If the "mirrors" is not specified, the image will continue to be pulled from the specified repository in the pull spec.<br>When multiple policies are defined for the same “source” repository, the sets of defined mirrors will be merged together, preserving the relative order of the mirrors, if possible. For example, if policy A has mirrors `a, b, c` and policy B has mirrors `c, d, e`, the mirrors will be used in the order `a, b, c, d, e`. If the orders of mirror entries conflict (e.g. `a, b` vs. `b, a`) the configuration is not rejected but the resulting order is unspecified. |
 | `repositoryDigestMirrors[]` | `object` | RepositoryDigestMirrors holds cluster-wide information about how to handle mirrors in the registries config. |
 
 ### .spec.repositoryDigestMirrors {#_specrepositorydigestmirrors}
@@ -85,13 +85,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of ImageContentPolicy
   - `GET`: list objects of kind ImageContentPolicy
   - `POST`: create an ImageContentPolicy
-- `/apis/config.openshift.io/v1/imagecontentpolicies/{{ name }}`
+- `/apis/config.openshift.io/v1/imagecontentpolicies/{name}`
 
   - `DELETE`: delete an ImageContentPolicy
   - `GET`: read the specified ImageContentPolicy
   - `PATCH`: partially update the specified ImageContentPolicy
   - `PUT`: replace the specified ImageContentPolicy
-- `/apis/config.openshift.io/v1/imagecontentpolicies/{{ name }}/status`
+- `/apis/config.openshift.io/v1/imagecontentpolicies/{name}/status`
 
   - `GET`: read status of the specified ImageContentPolicy
   - `PATCH`: partially update status of the specified ImageContentPolicy
@@ -165,7 +165,7 @@ Description
 | 202 - Accepted | [`ImageContentPolicy`](/openshift-docs-markdown/rest_api/config_apis/imagecontentpolicy-config-openshift-io-v1#imagecontentpolicy-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/imagecontentpolicies/{{ name }} {#_apisconfigopenshiftiov1imagecontentpolicies_name}
+### /apis/config.openshift.io/v1/imagecontentpolicies/{name} {#_apisconfigopenshiftiov1imagecontentpolicies_name}
 
 **Global path parameters**
 
@@ -269,7 +269,7 @@ Description
 | 201 - Created | [`ImageContentPolicy`](/openshift-docs-markdown/rest_api/config_apis/imagecontentpolicy-config-openshift-io-v1#imagecontentpolicy-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/imagecontentpolicies/{{ name }}/status {#_apisconfigopenshiftiov1imagecontentpolicies_name_status}
+### /apis/config.openshift.io/v1/imagecontentpolicies/{name}/status {#_apisconfigopenshiftiov1imagecontentpolicies_name_status}
 
 **Global path parameters**
 

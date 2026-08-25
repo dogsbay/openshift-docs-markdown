@@ -1,5 +1,5 @@
 ---
-title: Upgrading {{ oadp_short }} 1.5 to 1.6
+title: Upgrading OADP 1.5 to 1.6
 ---
 
 # Upgrading OADP 1.5 to 1.6 {#oadp-upgrade-notes-1-6}

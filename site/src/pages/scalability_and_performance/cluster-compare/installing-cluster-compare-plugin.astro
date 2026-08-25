@@ -17,11 +17,12 @@ import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"installing-cluster-compare-plugin","text":"Installing the cluster-compare plugin"},{"depth":2,"slug":"installing-cluster-compare_installing-cluster-compare-plugin","text":"Installing the cluster-compare plugin"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"installing-cluster-compare-plugin","text":"Installing the cluster-compare plugin"},{"depth":2,"slug":"installing-cluster-compare_installing-cluster-compare-plugin","text":"Installing the cluster-compare plugin"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/scalability_and_performance/cluster-compare/installing-cluster-compare-plugin";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -40,7 +41,7 @@ const pageCategory = ["scalability_and_performance","scalability_and_performance
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing the cluster-compare plugin {#installing-cluster-compare-plugin}\n\nYou can extract the `cluster-compare` plugin from a container image in the Red Hat container catalog and use it as a plugin to the `oc` command.\n\n## Installing the cluster-compare plugin {#installing-cluster-compare_installing-cluster-compare-plugin}\n\nInstall the `cluster-compare` plugin to compare a reference configuration with a cluster configuration from a live cluster or `must-gather` data.\n\n**Prerequisites**\n\n1. You have installed the OpenShift CLI (`oc`).\n2. You installed `podman`.\n3. You have access to the Red Hat container catalog.\n\n**Procedure**\n\n1. Log in to the Red Hat container catalog by running the following command:\n\n   ```terminal\n   $ podman login registry.redhat.io\n   ```\n2. Create a container for the `cluster-compare` image by running the following command:\n\n   ```terminal\n   $ podman create --name cca registry.redhat.io/openshift4/kube-compare-artifacts-rhel9:latest\n   ```\n3. Copy the `cluster-compare` plugin to a directory that is included in your `PATH` environment variable by running the following command:\n\n   ```terminal\n   $ podman cp cca:/usr/share/openshift/<arch>/kube-compare.<rhel_version> <directory_on_path>/kubectl-cluster_compare\n   ```\n\n   - `arch` is the architecture for your machine. Valid values are:\n\n     - `linux_amd64`\n     - `linux_arm64`\n     - `linux_ppc64le`\n     - `linux_s390x`\n   - `<rhel_version>` is the version of RHEL on your machine. Valid values are `rhel8` or `rhel9`.\n   - `<directory_on_path>` is the path to a directory included in your `PATH` environment variable.\n\n**Verification**\n\n- View the help for the plugin by running the following command:\n\n  ```terminal\n  $ oc cluster-compare -h\n  ```\n\n  The following is example output:\n\n  ```terminal\n  Compare a known valid reference configuration and a set of specific cluster configuration CRs.\n\n  ...\n\n  Usage:\n    compare -r <Reference File>\n\n  Examples:\n    # Compare a known valid reference configuration with a live cluster:\n    kubectl cluster-compare -r ./reference/metadata.yaml\n\n   ...\n  ```\n\n## Additional resources {#_additional_resources}\n\n- [Extending the OpenShift CLI with plugins](/openshift-docs-markdown/cli_reference/openshift_cli/extending-cli-plugins#cli-extend-plugins)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/scalability_and_performance/cluster-compare/installing-cluster-compare-plugin.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing the cluster-compare plugin {#installing-cluster-compare-plugin}\n\nYou can extract the `cluster-compare` plugin from a container image in the Red Hat container catalog and use it as a plugin to the `oc` command.\n\n## Installing the cluster-compare plugin {#installing-cluster-compare_installing-cluster-compare-plugin}\n\nInstall the `cluster-compare` plugin to compare a reference configuration with a cluster configuration from a live cluster or `must-gather` data.\n\n**Prerequisites**\n\n1. You have installed the OpenShift CLI (`oc`).\n2. You installed `podman`.\n3. You have access to the Red Hat container catalog.\n\n**Procedure**\n\n1. Log in to the Red Hat container catalog by running the following command:\n\n   ```terminal\n   $ podman login registry.redhat.io\n   ```\n2. Create a container for the `cluster-compare` image by running the following command:\n\n   ```terminal\n   $ podman create --name cca registry.redhat.io/openshift4/kube-compare-artifacts-rhel9:latest\n   ```\n3. Copy the `cluster-compare` plugin to a directory that is included in your `PATH` environment variable by running the following command:\n\n   ```terminal\n   $ podman cp cca:/usr/share/openshift/<arch>/kube-compare.<rhel_version> <directory_on_path>/kubectl-cluster_compare\n   ```\n\n   - `arch` is the architecture for your machine. Valid values are:\n\n     - `linux_amd64`\n     - `linux_arm64`\n     - `linux_ppc64le`\n     - `linux_s390x`\n   - `<rhel_version>` is the version of RHEL on your machine. Valid values are `rhel8` or `rhel9`.\n   - `<directory_on_path>` is the path to a directory included in your `PATH` environment variable.\n\n**Verification**\n\n- View the help for the plugin by running the following command:\n\n  ```terminal\n  $ oc cluster-compare -h\n  ```\n\n  The following is example output:\n\n  ```terminal\n  Compare a known valid reference configuration and a set of specific cluster configuration CRs.\n\n  ...\n\n  Usage:\n    compare -r <Reference File>\n\n  Examples:\n    # Compare a known valid reference configuration with a live cluster:\n    kubectl cluster-compare -r ./reference/metadata.yaml\n\n   ...\n  ```\n\n**Additional resources**\n{._additional-resources}\n\n- [Extending the OpenShift CLI with plugins](/openshift-docs-markdown/cli_reference/openshift_cli/extending-cli-plugins#cli-extend-plugins)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/scalability_and_performance/cluster-compare/installing-cluster-compare-plugin.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -138,8 +140,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <CodeBlock code={"Compare a known valid reference configuration and a set of specific cluster configuration CRs.\n\n...\n\nUsage:\n  compare -r <Reference File>\n\nExamples:\n  # Compare a known valid reference configuration with a live cluster:\n  kubectl cluster-compare -r ./reference/metadata.yaml\n\n ..."} lang="terminal" />
       </li>
       </ul>
-      <h2 id="_additional_resources" class="group scroll-mt-20">Additional resources<a href="#_additional_resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul><li><a href="/openshift-docs-markdown/cli_reference/openshift_cli/extending-cli-plugins#cli-extend-plugins">Extending the OpenShift CLI with plugins</a></li></ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

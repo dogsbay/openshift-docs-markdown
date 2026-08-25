@@ -90,6 +90,9 @@ The following AWS S3 compatible object storage providers are known to work with 
 
 - Swift - It works for use as a backup storage location for backup storage, but is not compatible with Restic for filesystem-based volume backup and restore.
 
+**Additional resources**
+{._additional-resources}
+
 - [Scality ARTESCA S3 object storage (Scality documentation)](https://downloads.scality.com/artesca-ova/doc/general_introduction.html#)
 
 ## Configuring Multicloud Object Gateway (MCG) for disaster recovery on OpenShift Data Foundation {#oadp-configuring-noobaa-for-dr_about-installing-oadp}
@@ -108,7 +111,8 @@ If you use cluster storage for your MCG bucket `backupStorageLocation` on OpenSh
 
 - Configure MCG as an external object store as described in [Adding storage resources for hybrid or Multicloud](https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation/4.13/html/managing_hybrid_and_multicloud_resources/adding-storage-resources-for-hybrid-or-multicloud_rhodf#doc-wrapper).
 
-## Additional resources {#additional-resources_about-installing-oadp}
+**Additional resources**
+{._additional-resources}
 
 - [Installing OADP on Amazon Web Services](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-aws#installing-oadp-aws)
 - [Installing OADP on Microsoft Azure](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-azure#installing-oadp-azure)
@@ -124,15 +128,15 @@ When you install an OADP Operator, you choose an update channel. This channel de
 
 The following update channels are available:
 
-- The **stable-1.3** channel contains `{{ oadp_short }}.v1.3.z`, the most recent OADP 1.3 `ClusterServiceVersion`.
-- The **stable-1.4** channel contains `{{ oadp_short }}.v1.4.z`, the most recent OADP 1.4 `ClusterServiceVersion`.
+- The **stable-1.3** channel contains `OADP.v1.3.z`, the most recent OADP 1.3 `ClusterServiceVersion`.
+- The **stable-1.4** channel contains `OADP.v1.4.z`, the most recent OADP 1.4 `ClusterServiceVersion`.
 - Starting with OADP 1.5 on OpenShift Container Platform v4.19, OADP reintroduces the **stable** channel which contains a single supported OADP version for a particular OpenShift Container Platform version.
 
 For more information, see *OpenShift Operator Life Cycles*.
 
 **Which update channel is right for you?**
 
-- If you are already using the **stable** channel, you will continue to get updates from `{{ oadp_short }}.v1.5.z`.
+- If you are already using the **stable** channel, you will continue to get updates from `OADP.v1.5.z`.
 - Choose the **stable-1.y** update channel to install OADP 1.y and to continue receiving patches for it. If you choose this channel, you will receive all z-stream patches for version 1.y.z.
 
 **When must you switch update channels?**
@@ -143,6 +147,9 @@ For more information, see *OpenShift Operator Life Cycles*.
 
 > [!NOTE]
 > You cannot switch from OADP 1.y to OADP 1.0 by switching update channels. You must uninstall the Operator and then reinstall it.
+
+**Additional resources**
+{._additional-resources}
 
 - [OpenShift Operator Life Cycles](https://access.redhat.com/support/policy/updates/openshift_operators)
 
@@ -181,11 +188,11 @@ The following recommendations are based on observations of performance made in t
 
 ### CPU and memory requirement for configurations {#_cpu_and_memory_requirement_for_configurations}
 
-| Configuration types | [^1]^ Average usage | [^2]^ Large usage | resourceTimeouts |
+| Configuration types | <sup>\[1\]</sup> Average usage | <sup>\[2\]</sup> Large usage | resourceTimeouts |
 | --- | --- | --- | --- |
-| CSI | Velero: CPU- Request 200m, Limits 1000m Memory - Request 256Mi, Limits 1024Mi | Velero: CPU- Request 200m, Limits 2000m Memory- Request  256Mi, Limits 2048Mi | N/A |
-| Restic | [^3]^ Restic: CPU- Request 1000m, Limits 2000m Memory - Request 16Gi, Limits 32Gi | [^4]^ Restic: CPU - Request 2000m, Limits 8000m Memory - Request 16Gi, Limits 40Gi | 900m |
-| [^5]^ Data Mover | N/A | N/A | 10m - average usage 60m - large usage |
+| CSI | Velero:<br>CPU- Request 200m, Limits 1000m<br>Memory - Request 256Mi, Limits 1024Mi | Velero:<br>CPU- Request 200m, Limits 2000m<br>Memory- Request 256Mi, Limits 2048Mi | N/A |
+| Restic | <sup>\[3\]</sup> Restic:<br>CPU- Request 1000m, Limits 2000m<br>Memory - Request 16Gi, Limits 32Gi | <sup>\[4\]</sup> Restic:<br>CPU - Request 2000m, Limits 8000m<br>Memory - Request 16Gi, Limits 40Gi | 900m |
+| <sup>\[5\]</sup> Data Mover | N/A | N/A | 10m - average usage<br>60m - large usage |
 
 1. Average usage - use these settings for most usage situations.
 2. Large usage - use these settings for large usage situations, such as a large PV (500GB Usage), multiple namespaces (100+), or many pods within a single namespace (2000 pods+), and for optimal performance for backup and restore involving large datasets.
@@ -195,6 +202,9 @@ The following recommendations are based on observations of performance made in t
 
 > [!NOTE]
 > The resource requirements listed throughout the guide are for average usage only. For large usage, adjust the settings as described in the table above.
+
+**Additional resources**
+{._additional-resources}
 
 - [Customize Velero Install (Velero documentation)](https://velero.io/docs/v1.11/customize-installation/#customize-resource-requests-and-limits/)
 
@@ -213,14 +223,7 @@ Testing shows that increasing `NodeAgent` CPU can significantly improve backup a
 
 In some environments, you might need to adjust Ceph MDS pod resources to avoid pod restarts, which occur when default settings cause resource saturation.
 
+**Additional resources**
+{._additional-resources}
+
 - [Changing the CPU and memory resources on the rook-ceph pods](https://docs.redhat.com/documentation/en-us/red_hat_openshift_data_foundation/latest/html/troubleshooting_openshift_data_foundation/changing-resources-for-the-openshift-data-foundation-components_rhodf#changing_the_cpu_and_memory_resources_on_the_rook_ceph_pods)
-
-[^1]: 1
-
-[^2]: 2
-
-[^3]: 3
-
-[^4]: 4
-
-[^5]: 5

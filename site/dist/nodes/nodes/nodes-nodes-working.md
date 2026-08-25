@@ -127,10 +127,10 @@ Node labels are not persisted after a node is deleted even if the node is backed
   $ oc label pods --all status=unhealthy
   ```
 
-> [!IMPORTANT]
-> In OpenShift Container Platform 4.12 and later, newly installed clusters include both the `node-role.kubernetes.io/control-plane` and `node-role.kubernetes.io/master` labels on control plane nodes by default.
->
-> In OpenShift Container Platform versions earlier than 4.12, the `node-role.kubernetes.io/control-plane` label is not added by default. Therefore, you must manually add the `node-role.kubernetes.io/control-plane` label to control plane nodes in clusters upgraded from earlier versions.
+  > [!IMPORTANT]
+  > In OpenShift Container Platform 4.12 and later, newly installed clusters include both the `node-role.kubernetes.io/control-plane` and `node-role.kubernetes.io/master` labels on control plane nodes by default.
+  >
+  > In OpenShift Container Platform versions earlier than 4.12, the `node-role.kubernetes.io/control-plane` label is not added by default. Therefore, you must manually add the `node-role.kubernetes.io/control-plane` label to control plane nodes in clusters upgraded from earlier versions.
 
 ## Understanding how to mark nodes as unschedulable or schedulable {#nodes-nodes-working-marking_nodes-nodes-working}
 
@@ -266,7 +266,8 @@ The following procedure deletes a node from an OpenShift Container Platform clus
    Although the node object is now deleted from the cluster, it can still rejoin the cluster after reboot or if the kubelet service is restarted. To permanently delete the node and all its data, you must [decommission the node](https://access.redhat.com/solutions/84663).
 4. If you powered down the physical hardware, turn it back on so that the node can rejoin the cluster.
 
-## Additional resources {#additional-resources_nodes-nodes-working}
+**Additional resources**
+{._additional-resources}
 
 - [Evacuating pods on nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working-evacuating_nodes-nodes-working)
 - [Manually scaling a compute machine set](/openshift-docs-markdown/machine_management/manually-scaling-machineset#machineset-manually-scaling-manually-scaling-machineset)

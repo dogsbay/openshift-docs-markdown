@@ -82,7 +82,7 @@ As a cluster administrator, you can install the Ingress Node Firewall Operator t
 
    ```terminal {title="Example output"}
    NAME            CSV                                         APPROVAL    APPROVED
-   install-5cvnz   ingress-node-firewall.{{ product_version }}.0-202211122336   Automatic   true
+   install-5cvnz   ingress-node-firewall.4.22.0-202211122336   Automatic   true
    ```
 5. To verify the version of the Operator, enter the following command:
 
@@ -92,7 +92,7 @@ As a cluster administrator, you can install the Ingress Node Firewall Operator t
 
    ```terminal {title="Example output"}
    NAME                                        DISPLAY                          VERSION               REPLACES                                    PHASE
-   ingress-node-firewall.{{ product_version }}.0-202211122336   Ingress Node Firewall Operator   {{ product_version }}.0-202211122336   ingress-node-firewall.{{ product_version }}.0-202211102047   Succeeded
+   ingress-node-firewall.4.22.0-202211122336   Ingress Node Firewall Operator   4.22.0-202211122336   ingress-node-firewall.4.22.0-202211102047   Succeeded
    ```
 
 ## Installing the Ingress Node Firewall Operator using the web console {#install-operator-web-console_ingress-node-firewall-operator}
@@ -108,13 +108,13 @@ As a cluster administrator, you can install the Ingress Node Firewall Operator t
 
 1. Install the Ingress Node Firewall Operator:
 
-   1. In the OpenShift Container Platform web console, click **Ecosystem** -> **Software Catalog**.
+   1. In the OpenShift Container Platform web console, click **Ecosystem** → **Software Catalog**.
    2. Select **Ingress Node Firewall Operator** from the list of available Operators, and then click **Install**.
    3. On the **Install Operator** page, under **Installed Namespace**, select **Operator recommended Namespace**.
    4. Click **Install**.
 2. Verify that the Ingress Node Firewall Operator is installed successfully:
 
-   1. Navigate to the **Ecosystem** -> **Installed Operators** page.
+   1. Navigate to the **Ecosystem** → **Installed Operators** page.
    2. Ensure that **Ingress Node Firewall Operator** is listed in the **openshift-ingress-node-firewall** project with a **Status** of **InstallSucceeded**.
 
       > [!NOTE]
@@ -123,7 +123,7 @@ As a cluster administrator, you can install the Ingress Node Firewall Operator t
       If the Operator does not have a **Status** of **InstallSucceeded**, troubleshoot using the following steps:
 
       - Inspect the **Operator Subscriptions** and **Install Plans** tabs for any failures or errors under **Status**.
-      - Navigate to the **Workloads** -> **Pods** page and check the logs for pods in the `openshift-ingress-node-firewall` project.
+      - Navigate to the **Workloads** → **Pods** page and check the logs for pods in the `openshift-ingress-node-firewall` project.
       - Check the namespace of the YAML file. If the annotation is missing, you can add the annotation `workload.openshift.io/allowed=management` to the Operator namespace with the following command:
 
         ```terminal
@@ -156,7 +156,7 @@ Review configuration fields so you can define how the Operator deploys the firew
 
 The fields for the Ingress Node Firewall configuration object are described in the following table:
 
-***Ingress Node Firewall Configuration object***
+**Ingress Node Firewall Configuration object**
 
 <table>
 <thead>
@@ -180,7 +180,7 @@ The fields for the Ingress Node Firewall configuration object are described in t
 <tr>
   <td><code>spec.nodeSelector</code></td>
   <td><code>string</code></td>
-  <td>A node selection constraint used to target nodes through specified node labels. For example:<br><br><pre>apiVersion: ingressnodefirewall.openshift.io/v1alpha1&#10;kind: IngressNodeFirewallConfig&#10;metadata:&#10;  name: ingressnodefirewallconfig&#10;  namespace: openshift-ingress-node-firewall&#10;spec:&#10;  nodeSelector:&#10;    node-role.kubernetes.io/worker: ""</pre><br><br><dl><dt>Note</dt><dd>One label used in <code>nodeSelector</code> must match a label on the nodes in order for the daemon set to start. For example, if the node labels <code>node-role.kubernetes.io/worker</code> and <code>node-type.kubernetes.io/vm</code> are applied to a node, then at least one label must be set using <code>nodeSelector</code> for the daemon set to start.</dd></dl></td>
+  <td>A node selection constraint used to target nodes through specified node labels. For example:<br><br><pre>apiVersion: ingressnodefirewall.openshift.io/v1alpha1&#10;kind: IngressNodeFirewallConfig&#10;metadata:&#10;  name: ingressnodefirewallconfig&#10;  namespace: openshift-ingress-node-firewall&#10;spec:&#10;  nodeSelector:&#10;    node-role.kubernetes.io/worker: ""</pre><br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>One label used in <code>nodeSelector</code> must match a label on the nodes in order for the daemon set to start. For example, if the node labels <code>node-role.kubernetes.io/worker</code> and <code>node-type.kubernetes.io/vm</code> are applied to a node, then at least one label must be set using <code>nodeSelector</code> for the daemon set to start.</dd></dl></td>
 </tr>
 <tr>
   <td><code>spec.ebpfProgramManagerMode</code></td>
@@ -219,7 +219,7 @@ You can review rule fields and examples to define which ingress traffic is allow
 
 The fields for the Ingress Node Firewall rules object are described in the following table:
 
-***Ingress Node Firewall rules object***
+**Ingress Node Firewall rules object**
 
 <table>
 <thead>
@@ -238,7 +238,7 @@ The fields for the Ingress Node Firewall rules object are described in the follo
 <tr>
   <td><code>interfaces</code></td>
   <td><code>array</code></td>
-  <td>The fields for this object specify the interfaces to apply the firewall rules to. For example, <code>- en0</code> and<code>- en1</code>.</td>
+  <td>The fields for this object specify the interfaces to apply the firewall rules to. For example, <code>- en0</code> and <code>- en1</code>.</td>
 </tr>
 <tr>
   <td><code>nodeSelector</code></td>
@@ -257,7 +257,7 @@ The fields for the Ingress Node Firewall rules object are described in the follo
 
 The values for the `ingress` object are defined in the following table:
 
-*`ingress`** object***
+**`ingress` object**
 
 <table>
 <thead>
@@ -271,12 +271,12 @@ The values for the `ingress` object are defined in the following table:
 <tr>
   <td><code>sourceCIDRs</code></td>
   <td><code>array</code></td>
-  <td>Allows you to set the CIDR block. You can configure multiple CIDRs from different address families.<br><br><dl><dt>Note</dt><dd>Different CIDRs allow you to use the same order rule. In the case that there are multiple <code>IngressNodeFirewall</code> objects for the same nodes and interfaces with overlapping CIDRs, the <code>order</code> field will specify which rule is applied first. Rules are applied in ascending order.</dd></dl></td>
+  <td>Allows you to set the CIDR block. You can configure multiple CIDRs from different address families.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>Different CIDRs allow you to use the same order rule. In the case that there are multiple <code>IngressNodeFirewall</code> objects for the same nodes and interfaces with overlapping CIDRs, the <code>order</code> field will specify which rule is applied first. Rules are applied in ascending order.</dd></dl></td>
 </tr>
 <tr>
   <td><code>rules</code></td>
   <td><code>array</code></td>
-  <td>Ingress firewall <code>rules.order</code> objects are ordered starting at <code>1</code> for each <code>source.CIDR</code> with up to 100 rules per CIDR. Lower order rules are executed first.<br><br><code>rules.protocolConfig.protocol</code> supports the following protocols: TCP, UDP, SCTP, ICMP and ICMPv6. ICMP and ICMPv6 rules can match against ICMP and ICMPv6 types or codes. TCP, UDP, and SCTP rules can match against a single destination port or a range of ports using <code><start : end-1></code> format.<br><br>Set <code>rules.action</code> to <code>allow</code> to apply the rule or <code>deny</code> to disallow the rule.<br><br><dl><dt>Note</dt><dd>Ingress firewall rules are verified using a verification webhook that blocks any invalid configuration. The verification webhook prevents you from blocking any critical cluster services such as the API server.</dd></dl></td>
+  <td>Ingress firewall <code>rules.order</code> objects are ordered starting at <code>1</code> for each <code>source.CIDR</code> with up to 100 rules per CIDR. Lower order rules are executed first.<br><br><code>rules.protocolConfig.protocol</code> supports the following protocols: TCP, UDP, SCTP, ICMP and ICMPv6. ICMP and ICMPv6 rules can match against ICMP and ICMPv6 types or codes. TCP, UDP, and SCTP rules can match against a single destination port or a range of ports using <code>&lt;start : end-1&gt;</code> format.<br><br>Set <code>rules.action</code> to <code>allow</code> to apply the rule or <code>deny</code> to disallow the rule.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>Ingress firewall rules are verified using a verification webhook that blocks any invalid configuration. The verification webhook prevents you from blocking any critical cluster services such as the API server.</dd></dl></td>
 </tr>
 </tbody>
 </table>
@@ -474,6 +474,7 @@ You can verify the status and view the logs to diagnose ingress firewall deploym
 
   The logs are available in the sos node’s report containing eBPF `bpftool` outputs at `/sos_commands/ebpf`. These reports include lookup tables used or updated as the ingress firewall XDP handles packet processing, updates statistics, and emits events.
 
-## Additional resources {#additional-resources_ingress-node-firewall-operator}
+**Additional resources**
+{._additional-resources}
 
 - [About the eBPF Manager Operator](/openshift-docs-markdown/networking/networking_operators/ebpf_manager/ebpf-manager-operator-about#bpfman-operator-about)

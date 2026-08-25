@@ -1,5 +1,5 @@
 ---
-title: CCO-based workflow for OLM-managed Operators with {{ gcp_wid_short }}
+title: CCO-based workflow for OLM-managed Operators with GCP Workload Identity
 ---
 
 # CCO-based workflow for OLM-managed Operators with GCP Workload Identity {#osdk-cco-gcp}
@@ -44,6 +44,7 @@ To authenticate with Google Cloud using short-lived tokens via Google Cloud Plat
 The **Install Operator** page in the web console allows cluster administrators to provide this information at installation time. This information is then propagated to the `Subscription` object as environment variables on the Operator pod.
 
 **Additional resources**
+{._additional-resources}
 
 - [OLM-managed Operator support for authentication with GCP Workload Identity](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds-gcp-olm_cco-short-term-creds)
 - [Installing from OperatorHub using the web console](/openshift-docs-markdown/operators/admin/olm-adding-operators-to-cluster#olm-installing-from-software-catalog-using-web-console_olm-adding-operators-to-a-cluster)

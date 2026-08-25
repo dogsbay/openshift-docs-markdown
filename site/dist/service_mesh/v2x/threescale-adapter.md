@@ -26,11 +26,11 @@ You can use these examples to configure requests to your services using the 3sca
 
   - You will need to properly configure the Service Mesh Control Plane (SMCP) when upgrading.
 
-> [!NOTE]
-> To configure the 3scale Istio Adapter, refer to Red Hat OpenShift Service Mesh custom resources for instructions on adding adapter parameters to the custom resource file.
+  > [!NOTE]
+  > To configure the 3scale Istio Adapter, refer to Red Hat OpenShift Service Mesh custom resources for instructions on adding adapter parameters to the custom resource file.
 
-> [!NOTE]
-> Pay particular attention to the `kind: handler` resource. You must update this with your 3scale account credentials. You can optionally add a `service_id` to a handler, but this is kept for backwards compatibility only, since it would render the handler only useful for one service in your 3scale account. If you add `service_id` to a handler, enabling 3scale for other services requires you to create more handlers with different `service_ids`.
+  > [!NOTE]
+  > Pay particular attention to the `kind: handler` resource. You must update this with your 3scale account credentials. You can optionally add a `service_id` to a handler, but this is kept for backwards compatibility only, since it would render the handler only useful for one service in your 3scale account. If you add `service_id` to a handler, enabling 3scale for other services requires you to create more handlers with different `service_ids`.
 
 Use a single handler per 3scale account by following the steps below:
 
@@ -113,6 +113,9 @@ The adapter includes a tool that allows you to generate the `handler`, `instance
   $ 3scale-config-gen --url="https://<organization>-admin.3scale.net" --name="my-unique-id" --service="123456789" --token="[redacted]"
   ```
 
+**Additional resources**
+{._additional-resources}
+
 - [Tokens](https://access.redhat.com/documentation/en-us/red_hat_3scale_api_management/2.10/html-single/admin_portal_guide/index#tokens).
 
 ### Generating manifests from a deployed adapter {#ossm-threescale-manifests_threescale-adapter}
@@ -172,7 +175,7 @@ Follow this procedure to configure the 3scale integration settings.
 
 **Procedure**
 
-1. Navigate to **\[your_API_name\]** -> **Integration**
+1. Navigate to **\[your_API_name\]** → **Integration**
 2. Click **Settings**.
 3. Select the **Istio** option under *Deployment*.
 
@@ -417,6 +420,7 @@ You might want to check whether the 3scale Istio adapter is working as expected.
 3. When performing requests to the services protected by the 3scale adapter integration, always try requests that lack the right credentials and ensure they fail. Check the 3scale adapter logs to gather additional information.
 
 **Additional resources**
+{._additional-resources}
 
 - [Inspecting pod and container logs](https://docs.openshift.com/container-platform/4.7/support/troubleshooting/investigating-pod-issues.html#inspecting-pod-and-container-logs_investigating-pod-issues).
 

@@ -1,8 +1,8 @@
 ---
-title: Prerequisites for installing a cluster on {{ ibm_cloud_bm }}
+title: Prerequisites for installing a cluster on IBM Cloud(R) Bare Metal (Classic)
 ---
 
-# Prerequisites for installing a cluster on {{ ibm_cloud_bm }} {#install-ibm-cloud-prerequisites}
+# Prerequisites for installing a cluster on IBM Cloud(R) Bare Metal (Classic) {#install-ibm-cloud-prerequisites}
 
 You can use installer-provisioned installation to install OpenShift Container Platform on IBM Cloud(R) Bare Metal (Classic) nodes. Review the prerequisites and requirements before you begin an installer-provisioned installation on IBM Cloud(R) nodes.
 
@@ -146,7 +146,7 @@ Contact IBM Cloud(R) support to request that they increase the IPMI privileges t
 
 ### Create bare-metal servers {#_create_bare-metal_servers}
 
-Create bare-metal servers in the IBM Cloud(R) dashboard by navigating to **Create resource** -> **Bare Metal Servers for Classic**.
+Create bare-metal servers in the IBM Cloud(R) dashboard by navigating to **Create resource** → **Bare Metal Servers for Classic**.
 
 You can also create bare-metal servers with the `ibmcloud` CLI utility. For example:
 
@@ -163,7 +163,8 @@ $ ibmcloud sl hardware create --hostname <SERVERNAME> \
 > [!NOTE]
 > IBM Cloud(R) servers might take 3-5 hours to become available.
 
-## Additional resources {#additional-resources_install-ibm-cloud}
+**Additional resources**
+{._additional-resources}
 
 - [IBM Cloud(R) dashboard](https://cloud.ibm.com)
 - [Installing the standalone IBM Cloud(R) CLI](https://cloud.ibm.com/docs/cli?topic=cli-install-ibmcloud-cli)

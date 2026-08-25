@@ -35,21 +35,21 @@ The following API endpoints are available:
 - `/apis/apps/v1/watch/controllerrevisions`
 
   - `GET`: watch individual changes to a list of ControllerRevision. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/apps/v1/namespaces/{{ namespace }}/controllerrevisions`
+- `/apis/apps/v1/namespaces/{namespace}/controllerrevisions`
 
   - `DELETE`: delete collection of ControllerRevision
   - `GET`: list or watch objects of kind ControllerRevision
   - `POST`: create a ControllerRevision
-- `/apis/apps/v1/watch/namespaces/{{ namespace }}/controllerrevisions`
+- `/apis/apps/v1/watch/namespaces/{namespace}/controllerrevisions`
 
   - `GET`: watch individual changes to a list of ControllerRevision. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/apps/v1/namespaces/{{ namespace }}/controllerrevisions/{{ name }}`
+- `/apis/apps/v1/namespaces/{namespace}/controllerrevisions/{name}`
 
   - `DELETE`: delete a ControllerRevision
   - `GET`: read the specified ControllerRevision
   - `PATCH`: partially update the specified ControllerRevision
   - `PUT`: replace the specified ControllerRevision
-- `/apis/apps/v1/watch/namespaces/{{ namespace }}/controllerrevisions/{{ name }}`
+- `/apis/apps/v1/watch/namespaces/{namespace}/controllerrevisions/{name}`
 
   - `GET`: watch changes to an object of kind ControllerRevision. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
 
@@ -91,7 +91,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/namespaces/{{ namespace }}/controllerrevisions {#_apisappsv1namespaces_namespace_controllerrevisions}
+### /apis/apps/v1/namespaces/{namespace}/controllerrevisions {#_apisappsv1namespaces_namespace_controllerrevisions}
 
 HTTP method
 :   ```
@@ -165,7 +165,7 @@ Description
 | 202 - Accepted | [`ControllerRevision`](/openshift-docs-markdown/rest_api/metadata_apis/controllerrevision-apps-v1#controllerrevision-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/watch/namespaces/{{ namespace }}/controllerrevisions {#_apisappsv1watchnamespaces_namespace_controllerrevisions}
+### /apis/apps/v1/watch/namespaces/{namespace}/controllerrevisions {#_apisappsv1watchnamespaces_namespace_controllerrevisions}
 
 HTTP method
 :   ```
@@ -184,7 +184,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/namespaces/{{ namespace }}/controllerrevisions/{{ name }} {#_apisappsv1namespaces_namespace_controllerrevisions_name}
+### /apis/apps/v1/namespaces/{namespace}/controllerrevisions/{name} {#_apisappsv1namespaces_namespace_controllerrevisions_name}
 
 **Global path parameters**
 
@@ -289,7 +289,7 @@ Description
 | 201 - Created | [`ControllerRevision`](/openshift-docs-markdown/rest_api/metadata_apis/controllerrevision-apps-v1#controllerrevision-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/watch/namespaces/{{ namespace }}/controllerrevisions/{{ name }} {#_apisappsv1watchnamespaces_namespace_controllerrevisions_name}
+### /apis/apps/v1/watch/namespaces/{namespace}/controllerrevisions/{name} {#_apisappsv1watchnamespaces_namespace_controllerrevisions_name}
 
 **Global path parameters**
 

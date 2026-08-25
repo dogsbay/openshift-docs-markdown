@@ -1,5 +1,5 @@
 ---
-title: TokenReview []
+title: TokenReview [authentication.k8s.io/v1]
 ---
 
 # TokenReview \[authentication.k8s.io/v1\] {#tokenreview-authentication-k8s-io-v1}

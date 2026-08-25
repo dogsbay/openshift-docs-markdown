@@ -130,6 +130,7 @@ You can install the Multiarch Tuning Operator by using the OpenShift CLI (`oc`).
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing from the software catalog by using the CLI](/openshift-docs-markdown/operators/user/olm-installing-operators-in-namespace#olm-installing-operator-from-software-catalog-using-cli_olm-installing-operators-in-namespace)
 
@@ -145,7 +146,7 @@ You can install the Multiarch Tuning Operator by using the OpenShift Container P
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console.
-2. Navigate to **Ecosystem** -> **Software Catalog**.
+2. Navigate to **Ecosystem** → **Software Catalog**.
 3. Enter **Multiarch Tuning Operator** in the search field.
 4. Click **Multiarch Tuning Operator**.
 5. Select the **Multiarch Tuning Operator** version from the **Version** list.
@@ -169,7 +170,7 @@ You can install the Multiarch Tuning Operator by using the OpenShift Container P
 
 **Verification**
 
-1. Navigate to **Ecosystem** -> **Installed Operators**.
+1. Navigate to **Ecosystem** → **Installed Operators**.
 2. Verify that the **Multiarch Tuning Operator** is listed with the **Status** field as **Succeeded** in the `openshift-multiarch-tuning-operator` namespace.
 
 ## Multiarch Tuning Operator pod labels and architecture support overview {#multi-architecture-gather-info-about-workloads_multiarch-tuning-operator}
@@ -347,7 +348,7 @@ To deploy the pod placement operand that enables architecture-aware workload sch
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console.
-2. Go to **Ecosystem** -> **Installed Operators**.
+2. Go to **Ecosystem** → **Installed Operators**.
 3. On the **Installed Operators** page, click **Multiarch Tuning Operator**.
 4. Click the **Cluster Pod Placement Config** tab.
 5. Select either **Form view** or **YAML view**.
@@ -472,7 +473,7 @@ You can delete this object by using the OpenShift Container Platform web console
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console.
-2. Navigate to **Ecosystem** -> **Installed Operators**.
+2. Navigate to **Ecosystem** → **Installed Operators**.
 3. On the **Installed Operators** page, click **Multiarch Tuning Operator**.
 4. Click the **Cluster Pod Placement Config** tab.
 5. Select **Delete ClusterPodPlacementConfig** from the options menu.
@@ -575,7 +576,7 @@ You can uninstall the Multiarch Tuning Operator by using the OpenShift Container
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console.
-2. Navigate to **Ecosystem** -> **Software Catalog**.
+2. Navigate to **Ecosystem** → **Software Catalog**.
 3. Enter **Multiarch Tuning Operator** in the search field.
 4. Click **Multiarch Tuning Operator**.
 5. Click the **Details** tab.
@@ -584,5 +585,5 @@ You can uninstall the Multiarch Tuning Operator by using the OpenShift Container
 
 **Verification**
 
-1. Navigate to **Ecosystem** -> **Installed Operators**.
+1. Navigate to **Ecosystem** → **Installed Operators**.
 2. On the **Installed Operators** page, verify that the **Multiarch Tuning Operator** is not listed.

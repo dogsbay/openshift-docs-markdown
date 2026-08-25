@@ -1,5 +1,5 @@
 ---
-title: Knative CLI for use with {{ ServerlessProductName }}
+title: Knative CLI for use with OpenShift Serverless
 ---
 
 # Knative CLI for use with OpenShift Serverless {#kn-cli-tools}

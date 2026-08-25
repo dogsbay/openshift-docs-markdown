@@ -58,7 +58,7 @@ To create your own custom project template:
 
    - Using the web console, complete the following tasks:
 
-     1. Navigate to the **Administration** -> **Cluster Settings** page.
+     1. Navigate to the **Administration** → **Cluster Settings** page.
      2. Click **Configuration** to view all configuration resources.
      3. Find the entry for **Project** and click **Edit YAML**.
    - Using the CLI, complete the following tasks:
@@ -170,7 +170,8 @@ You can add `NetworkPolicy` objects to the default project template so that new 
       allow-from-same-namespace      <none>         7s
       ```
 
-## Additional resources {#additional-resources_post-install-network-configuration}
+**Additional resources**
+{._additional-resources}
 
 - [Cluster Network Operator in OpenShift Container Platform](/openshift-docs-markdown/networking/networking_operators/cluster-network-operator#nw-cluster-network-operator_cluster-network-operator)
 - [Configuring the cluster-wide proxy](/openshift-docs-markdown/networking/configuring_network_settings/enable-cluster-wide-proxy#enable-cluster-wide-proxy)

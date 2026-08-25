@@ -176,14 +176,14 @@ If your cluster fails to recover, follow the steps in "Restoring to an earlier c
 
       ```terminal {title="Example output"}
       NAME                                       VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE
-      authentication                             {{ product_version }}.0    True        False         False      59m
-      cloud-credential                           {{ product_version }}.0    True        False         False      85m
-      cluster-autoscaler                         {{ product_version }}.0    True        False         False      73m
-      config-operator                            {{ product_version }}.0    True        False         False      73m
-      console                                    {{ product_version }}.0    True        False         False      62m
-      csi-snapshot-controller                    {{ product_version }}.0    True        False         False      66m
-      dns                                        {{ product_version }}.0    True        False         False      76m
-      etcd                                       {{ product_version }}.0    True        False         False      76m
+      authentication                             4.22.0    True        False         False      59m
+      cloud-credential                           4.22.0    True        False         False      85m
+      cluster-autoscaler                         4.22.0    True        False         False      73m
+      config-operator                            4.22.0    True        False         False      73m
+      console                                    4.22.0    True        False         False      62m
+      csi-snapshot-controller                    4.22.0    True        False         False      66m
+      dns                                        4.22.0    True        False         False      76m
+      etcd                                       4.22.0    True        False         False      76m
       ...
       ```
    2. Check that all nodes are in the `Ready` state by running the following command:
@@ -205,6 +205,7 @@ If your cluster fails to recover, follow the steps in "Restoring to an earlier c
       If the cluster did not start properly, follow the steps in "Restoring to an earlier cluster state".
 
 **Additional resources**
+{._additional-resources}
 
 - [Shutting down the cluster gracefully](/openshift-docs-markdown/backup_and_restore/graceful-cluster-shutdown#graceful-shutdown-cluster)
 - [Restoring to an earlier cluster state](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state#dr-restoring-cluster-state)

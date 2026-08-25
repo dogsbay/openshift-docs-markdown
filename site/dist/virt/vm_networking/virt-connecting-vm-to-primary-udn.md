@@ -34,8 +34,7 @@ The UDN serves as the default primary network for pods and VMs that you create i
 
 After you define the custom primary overlay network, you can create namespaces that are associated with the cluster-scoped UDN.
 
-\[id="virt-creating-udn-namespace-web_virt-connecting-vm-to-primary-udn"\]
-= Creating a namespace for user-defined networks by using the web console
+### Creating a namespace for user-defined networks by using the web console {#virt-creating-udn-namespace-web_virt-connecting-vm-to-primary-udn}
 
 You can create a namespace to be used with primary user-defined networks (UDNs) by using the OpenShift Container Platform web console.
 
@@ -45,7 +44,7 @@ You can create a namespace to be used with primary user-defined networks (UDNs) 
 
 **Procedure**
 
-1. From the **Administrator** perspective, click **Administration** -> **Namespaces**.
+1. From the **Administrator** perspective, click **Administration** → **Namespaces**.
 2. Click **Create Namespace**.
 3. In the **Name** field, specify a name for the namespace. The name must consist of lower case alphanumeric characters or '-', and must start and end with an alphanumeric character.
 4. In the **Labels** field, add the `k8s.ovn.org/primary-user-defined-network` label.
@@ -53,8 +52,7 @@ You can create a namespace to be used with primary user-defined networks (UDNs) 
 6. Optional: Specify a default network policy.
 7. Click **Create** to create the namespace.
 
-\[id="virt-creating-primary-udn-web_virt-connecting-vm-to-primary-udn"\]
-= Creating a primary namespace-scoped user-defined network by using the web console
+### Creating a primary namespace-scoped user-defined network by using the web console {#virt-creating-primary-udn-web_virt-connecting-vm-to-primary-udn}
 
 You can create an isolated primary network in your project namespace by creating a `UserDefinedNetwork` custom resource in the OpenShift Container Platform web console.
 
@@ -65,7 +63,7 @@ You can create an isolated primary network in your project namespace by creating
 
 **Procedure**
 
-1. From the **Administrator** perspective, click **Networking** -> **UserDefinedNetworks**.
+1. From the **Administrator** perspective, click **Networking** → **UserDefinedNetworks**.
 2. Click **Create UserDefinedNetwork**.
 3. From the **Project name** list, select the namespace that you previously created.
 4. Specify a value in the **Subnet** field.
@@ -81,7 +79,7 @@ You can connect one or more projects to a physical network for direct layer 2 ac
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, go to **Virtualization** -> **Networking**.
+1. In the OpenShift Container Platform web console, go to **Virtualization** → **Networking**.
 2. Click **Virtual machine networks** in the navigation pane.
 3. Click **Create**. The **Create virtual machine network** wizard is displayed.
 4. Give details about the network on the **Network definition** page:
@@ -99,7 +97,7 @@ You can connect one or more projects to a physical network for direct layer 2 ac
 
 **Verification**
 
-1. Navigate to the **Virtualization** -> **Virtual machine networks** page.
+1. Navigate to the **Virtualization** → **Virtual machine networks** page.
 2. Click the **OVN localnet** tab.
 3. Verify that your new network is displayed in the list.
 
@@ -113,15 +111,14 @@ You can connect multiple namespaces to the same primary user-defined network (UD
 
 **Procedure**
 
-1. From the **Administrator** perspective, click **Networking** -> **UserDefinedNetworks**.
+1. From the **Administrator** perspective, click **Networking** → **UserDefinedNetworks**.
 2. From the **Create** list, select **ClusterUserDefinedNetwork**.
 3. In the **Name** field, specify a name for the cluster-scoped UDN.
 4. Specify a value in the **Subnet** field.
 5. In the **Project(s) Match Labels** field, add the appropriate labels to select namespaces that the cluster UDN applies to.
 6. Click **Create**. The cluster-scoped UDN serves as the default primary network for pods and virtual machines located in namespaces that contain the labels that you specified in step 5.
 
-\[id="virt-creating-primary-udn-cli-intro_virt-connecting-vm-to-primary-udn"\]
-= Create a primary user-defined network by using the CLI
+## Create a primary user-defined network by using the CLI {#virt-creating-primary-udn-cli-intro_virt-connecting-vm-to-primary-udn}
 
 You can create a primary `UserDefinedNetwork` or `ClusterUserDefinedNetwork` custom resource definition (CRD) by using the OpenShift CLI (`oc`). After you define the custom primary overlay network, you can create namespaces that are associated with the cluster-scoped UDN.
 
@@ -246,8 +243,7 @@ You can connect multiple namespaces to the same primary user-defined network (UD
    $ oc apply -f --validate=true <filename>.yaml
    ```
 
-\[id="virt-attaching-vm-to-primary-udn-intro_virt-connecting-vm-to-primary-udn"\]
-= Attach a virtual machine to the primary user-defined network
+## Attach a virtual machine to the primary user-defined network {#virt-attaching-vm-to-primary-udn-intro_virt-connecting-vm-to-primary-udn}
 
 You can connect a virtual machine (VM) to the primary user-defined network (UDN) by requesting the pod network attachment and configuring the interface binding.
 
@@ -285,9 +281,9 @@ By default, the VM automatically connects to the primary UDN using the Layer 2 b
 
 **Procedure**
 
-1. Click **Virtualization** -> **VirtualMachines**.
-2. Select the UDN-configured namespace from the ***Project*** drop-down list.
-3. Click **Create** -> **With Wizard**.
+1. Click **Virtualization** → **VirtualMachines**.
+2. Select the UDN-configured namespace from the **Project** drop-down list.
+3. Click **Create** → **With Wizard**.
 4. Configure the VM specifications in the wizard and click **Create VirtualMachine**.
 
 ### Attaching a virtual machine to the primary user-defined network by using the CLI {#virt-attaching-vm-to-primary-udn_virt-connecting-vm-to-primary-udn}
@@ -338,7 +334,7 @@ You can connect a virtual machine (VM) to the primary user-defined network (UDN)
 2. Optional: If you are using the Plug a Simple Socket Transport (passt) network binding plugin, set the `hco.kubevirt.io/deployPasstNetworkBinding` annotation to `true` in the `HyperConverged` custom resource (CR) by running the following command:
 
    ```terminal
-   $ oc annotate {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} hco.kubevirt.io/deployPasstNetworkBinding=true --overwrite
+   $ oc annotate hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv hco.kubevirt.io/deployPasstNetworkBinding=true --overwrite
    ```
 3. Apply the `VirtualMachine` manifest by running the following command:
 
@@ -346,7 +342,8 @@ You can connect a virtual machine (VM) to the primary user-defined network (UDN)
    $ oc apply -f <filename>.yaml
    ```
 
-## Additional resources {#additional-resources_virt-connecting-vm-to-primary-udn}
+**Additional resources**
+{._additional-resources}
 
 - [About user-defined networks](/openshift-docs-markdown/networking/multiple_networks/primary_networks/about-user-defined-networks#about-user-defined-networks)
 - [About BGP EVPN for primary cluster user-defined networks](/openshift-docs-markdown/networking/advanced_networking/bgp_evpn_udn/about-bgp-evpn-user-defined-networks#about-bgp-evpn-user-defined-networks)

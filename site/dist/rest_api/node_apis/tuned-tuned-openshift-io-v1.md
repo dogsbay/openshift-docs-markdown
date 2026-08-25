@@ -1,5 +1,5 @@
 ---
-title: Tuned []
+title: Tuned [tuned.openshift.io/v1]
 ---
 
 # Tuned \[tuned.openshift.io/v1\] {#tuned-tuned-openshift-io-v1}
@@ -34,7 +34,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `managementState` | `string` | managementState indicates whether the registry instance represented by this config instance is under operator management or not.  Valid values are Force, Managed, Unmanaged, and Removed. |
+| `managementState` | `string` | managementState indicates whether the registry instance represented by this config instance is under operator management or not. Valid values are Force, Managed, Unmanaged, and Removed. |
 | `profile` | `array` | Tuned profiles. |
 | `profile[]` | `object` | A Tuned profile. |
 | `recommend` | `array` | Selection logic for all Tuned profiles. |
@@ -217,18 +217,18 @@ The following API endpoints are available:
 - `/apis/tuned.openshift.io/v1/tuneds`
 
   - `GET`: list objects of kind Tuned
-- `/apis/tuned.openshift.io/v1/namespaces/{{ namespace }}/tuneds`
+- `/apis/tuned.openshift.io/v1/namespaces/{namespace}/tuneds`
 
   - `DELETE`: delete collection of Tuned
   - `GET`: list objects of kind Tuned
   - `POST`: create a Tuned
-- `/apis/tuned.openshift.io/v1/namespaces/{{ namespace }}/tuneds/{{ name }}`
+- `/apis/tuned.openshift.io/v1/namespaces/{namespace}/tuneds/{name}`
 
   - `DELETE`: delete a Tuned
   - `GET`: read the specified Tuned
   - `PATCH`: partially update the specified Tuned
   - `PUT`: replace the specified Tuned
-- `/apis/tuned.openshift.io/v1/namespaces/{{ namespace }}/tuneds/{{ name }}/status`
+- `/apis/tuned.openshift.io/v1/namespaces/{namespace}/tuneds/{name}/status`
 
   - `GET`: read status of the specified Tuned
   - `PATCH`: partially update status of the specified Tuned
@@ -253,7 +253,7 @@ Description
 | 200 - OK | [`TunedList`](/openshift-docs-markdown/rest_api/objects/index#io-openshift-tuned-v1-TunedList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/tuned.openshift.io/v1/namespaces/{{ namespace }}/tuneds {#_apistunedopenshiftiov1namespaces_namespace_tuneds}
+### /apis/tuned.openshift.io/v1/namespaces/{namespace}/tuneds {#_apistunedopenshiftiov1namespaces_namespace_tuneds}
 
 HTTP method
 :   ```
@@ -321,7 +321,7 @@ Description
 | 202 - Accepted | [`Tuned`](/openshift-docs-markdown/rest_api/node_apis/tuned-tuned-openshift-io-v1#tuned-tuned-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/tuned.openshift.io/v1/namespaces/{{ namespace }}/tuneds/{{ name }} {#_apistunedopenshiftiov1namespaces_namespace_tuneds_name}
+### /apis/tuned.openshift.io/v1/namespaces/{namespace}/tuneds/{name} {#_apistunedopenshiftiov1namespaces_namespace_tuneds_name}
 
 **Global path parameters**
 
@@ -425,7 +425,7 @@ Description
 | 201 - Created | [`Tuned`](/openshift-docs-markdown/rest_api/node_apis/tuned-tuned-openshift-io-v1#tuned-tuned-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/tuned.openshift.io/v1/namespaces/{{ namespace }}/tuneds/{{ name }}/status {#_apistunedopenshiftiov1namespaces_namespace_tuneds_name_status}
+### /apis/tuned.openshift.io/v1/namespaces/{namespace}/tuneds/{name}/status {#_apistunedopenshiftiov1namespaces_namespace_tuneds_name_status}
 
 **Global path parameters**
 

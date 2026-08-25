@@ -20,6 +20,7 @@ The Kubernetes persistent volume framework allows administrators to provision a 
 > Users must ensure that the iSCSI initiator is already configured on all OpenShift Container Platform nodes by installing the `iscsi-initiator-utils` package and configuring their initiator name in `/etc/iscsi/initiatorname.iscsi`. The `iscsi-initiator-utils` package is already installed on deployments that use Red Hat Enterprise Linux CoreOS (RHCOS). For more information, see "Managing Storage Devices".
 
 **Additional resources**
+{._additional-resources}
 
 - [Getting started with iSCSI](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/managing_storage_devices/index#getting-started-with-iscsi_managing-storage-devices)
 - [Configuring an iSCSI initiator](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/managing_storage_devices/index#configuring-an-iscsi-initiator_managing-storage-devices)

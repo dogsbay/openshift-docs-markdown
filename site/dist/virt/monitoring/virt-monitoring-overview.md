@@ -9,7 +9,7 @@ Monitor the health of your cluster and virtual machines (VMs) to have a unified 
 You can monitor the health of your cluster and VMs with the following tools:
 
 Monitoring OpenShift Virtualization VM health status
-:   View the overall health of your OpenShift Virtualization environment in the web console by navigating to the **Home** -> **Overview** page in the OpenShift Container Platform web console. The **Status** card displays the overall health of OpenShift Virtualization based on the alerts and conditions.
+:   View the overall health of your OpenShift Virtualization environment in the web console by navigating to the **Home** → **Overview** page in the OpenShift Container Platform web console. The **Status** card displays the overall health of OpenShift Virtualization based on the alerts and conditions.
 
 [OpenShift Container Platform cluster checkup framework](/openshift-docs-markdown/virt/monitoring/virt-running-cluster-checkups#virt-running-cluster-checkups)
 :   Run automated tests with the OpenShift Container Platform cluster checkup framework to ensure that your cluster, including cluster storage, is optimally configured for OpenShift Virtualization.
@@ -24,5 +24,4 @@ Monitoring OpenShift Virtualization VM health status
 :   Configure readiness, liveness, and guest agent ping probes and a watchdog for VMs.
 
 [Runbooks](/openshift-docs-markdown/virt/monitoring/virt-runbooks#virt-runbooks)
-
 :   Diagnose and resolve issues that trigger OpenShift Virtualization [alerts](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/monitoring_key_concepts/key-concepts#about-managing-alerts_key-concepts) in the OpenShift Container Platform web console.

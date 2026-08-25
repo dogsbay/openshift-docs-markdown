@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"hcp-using-feature-gates","text":"Feature ga
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp-using-feature-gates";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -43,7 +44,7 @@ const pageCategory = ["hosted_control_planes"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Feature gates in a hosted cluster {#hcp-using-feature-gates}\n\nYou can use feature gates in a hosted cluster to enable features that are not part of the default set of features. You can enable the `TechPreviewNoUpgrade` feature set by using feature gates in your hosted cluster.\n\n## Enabling feature sets by using feature gates {#hcp-enable-feature-sets_hcp-using-feature-gates}\n\nYou can enable the `TechPreviewNoUpgrade` feature set in a hosted cluster by editing the `HostedCluster` custom resource (CR) with the OpenShift CLI.\n\n**Prerequisites**\n\n- You installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Open the `HostedCluster` CR for editing on the hosting cluster by running the following command:\n\n   ```terminal\n   $ oc edit hostedcluster <hosted_cluster_name> -n <hosted_cluster_namespace>\n   ```\n2. Define the feature set by entering a value in the `featureSet` field. For example:\n\n   ```yaml\n   apiVersion: hypershift.openshift.io/v1beta1\n   kind: HostedCluster\n   metadata:\n     name: <hosted_cluster_name>\n     namespace: <hosted_cluster_namespace>\n   spec:\n     configuration:\n       featureGate:\n         featureSet: TechPreviewNoUpgrade\n   ```\n\n   - `metadata.name` specifies your hosted cluster name.\n   - `metadata.namespace` specifies your hosted cluster namespace.\n   - `spec.configuration.featureGate.featureSet` is a subset of the current Technology Preview features.\n\n     > [!WARNING]\n     > Enabling the `TechPreviewNoUpgrade` feature set on your cluster cannot be undone and prevents minor version updates. With this feature set, you can enable these Technology Preview features on test clusters, where you can fully test them. Do not enable this feature set on production clusters.\n3. Save the file to apply the changes.\n\n**Verification**\n\n- Verify that the `TechPreviewNoUpgrade` feature gate is enabled in your hosted cluster by running the following command:\n\n  ```terminal\n  $ oc get featuregate cluster -o yaml\n  ```\n\n**Additional resources**\n\n- \\[FeatureGate [config.openshift.io/v1](/openshift-docs-markdown/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1)\\]\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-using-feature-gates.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Feature gates in a hosted cluster {#hcp-using-feature-gates}\n\nYou can use feature gates in a hosted cluster to enable features that are not part of the default set of features. You can enable the `TechPreviewNoUpgrade` feature set by using feature gates in your hosted cluster.\n\n## Enabling feature sets by using feature gates {#hcp-enable-feature-sets_hcp-using-feature-gates}\n\nYou can enable the `TechPreviewNoUpgrade` feature set in a hosted cluster by editing the `HostedCluster` custom resource (CR) with the OpenShift CLI.\n\n**Prerequisites**\n\n- You installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Open the `HostedCluster` CR for editing on the hosting cluster by running the following command:\n\n   ```terminal\n   $ oc edit hostedcluster <hosted_cluster_name> -n <hosted_cluster_namespace>\n   ```\n2. Define the feature set by entering a value in the `featureSet` field. For example:\n\n   ```yaml\n   apiVersion: hypershift.openshift.io/v1beta1\n   kind: HostedCluster\n   metadata:\n     name: <hosted_cluster_name>\n     namespace: <hosted_cluster_namespace>\n   spec:\n     configuration:\n       featureGate:\n         featureSet: TechPreviewNoUpgrade\n   ```\n\n   - `metadata.name` specifies your hosted cluster name.\n   - `metadata.namespace` specifies your hosted cluster namespace.\n   - `spec.configuration.featureGate.featureSet` is a subset of the current Technology Preview features.\n\n     > [!WARNING]\n     > Enabling the `TechPreviewNoUpgrade` feature set on your cluster cannot be undone and prevents minor version updates. With this feature set, you can enable these Technology Preview features on test clusters, where you can fully test them. Do not enable this feature set on production clusters.\n3. Save the file to apply the changes.\n\n**Verification**\n\n- Verify that the `TechPreviewNoUpgrade` feature gate is enabled in your hosted cluster by running the following command:\n\n  ```terminal\n  $ oc get featuregate cluster -o yaml\n  ```\n\n**Additional resources**\n{._additional-resources}\n\n- \\[FeatureGate [config.openshift.io/v1](/openshift-docs-markdown/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1)\\]\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-using-feature-gates.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="hcp-using-feature-gates" class="group scroll-mt-20">Feature gates in a hosted cluster<a href="#hcp-using-feature-gates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can use feature gates in a hosted cluster to enable features that are not part of the default set of features. You can enable the <code>TechPreviewNoUpgrade</code> feature set by using feature gates in your hosted cluster.</p>
+      <p class="_abstract">You can use feature gates in a hosted cluster to enable features that are not part of the default set of features. You can enable the <code>TechPreviewNoUpgrade</code> feature set by using feature gates in your hosted cluster.</p>
       <h2 id="hcp-enable-feature-sets_hcp-using-feature-gates" class="group scroll-mt-20">Enabling feature sets by using feature gates<a href="#hcp-enable-feature-sets_hcp-using-feature-gates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">You can enable the <code>TechPreviewNoUpgrade</code> feature set in a hosted cluster by editing the <code>HostedCluster</code> custom resource (CR) with the OpenShift CLI.</p>
       <p><strong>Prerequisites</strong></p>
@@ -132,8 +134,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <CodeBlock code={"$ oc get featuregate cluster -o yaml"} lang="terminal" />
       </li>
       </ul>
-      <p><strong>Additional resources</strong></p>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul><li>[FeatureGate <a href="/openshift-docs-markdown/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1">config.openshift.io/v1</a>]</li></ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

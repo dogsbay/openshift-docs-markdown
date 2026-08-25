@@ -4,13 +4,12 @@ title: Operators in multitenant clusters
 
 # Operators in multitenant clusters {#olm-multitenancy}
 
-The default behavior for Operator Lifecycle Manager (OLM) aims to provide simplicity during Operator installation. However, this behavior can lack flexibility, especially in multitenant clusters. In order for multiple tenants on an OpenShift Container Platform
-
-cluster to use an Operator, the default behavior of OLM requires that administrators install the Operator in **All namespaces** mode, which can be considered to violate the principle of least privilege.
+The default behavior for Operator Lifecycle Manager (OLM) aims to provide simplicity during Operator installation. However, this behavior can lack flexibility, especially in multitenant clusters. In order for multiple tenants on an OpenShift Container Platform cluster to use an Operator, the default behavior of OLM requires that administrators install the Operator in **All namespaces** mode, which can be considered to violate the principle of least privilege.
 
 Consider the following scenarios to determine which Operator installation workflow works best for your environment and requirements.
 
 **Additional resources**
+{._additional-resources}
 
 - [Common terms: Multitenant](/openshift-docs-markdown/operators/understanding/olm-common-terms#olm-common-terms-multitenancy_olm-common-terms)
 - [Limitations for multitenant Operator management](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-operatorgroups#olm-operatorgroups-limitations)
@@ -31,6 +30,7 @@ This choice also means that users in the affected namespaces get access to the O
 - The `namespace-view` role can read CR objects of that Operator.
 
 **Additional resources**
+{._additional-resources}
 
 - [Adding Operators to a cluster](/openshift-docs-markdown/operators/admin/olm-adding-operators-to-cluster#olm-adding-operators-to-a-cluster)
 - [Install modes types](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-operatorgroups#olm-operatorgroups-membership_olm-understanding-operatorgroups)
@@ -67,6 +67,7 @@ This solution only works when the following constraints are met:
 > As an administrator, use caution when allowing non-cluster administrators to install Operators self-sufficiently, as explained in "Allowing non-cluster administrators to install Operators". These tenants should only have access to a curated catalog of Operators that are known to not have dependencies. These tenants must also be forced to use the same version line of an Operator, to ensure the CRDs do not change. This requires the use of namespace-scoped catalogs and likely disabling the global default catalogs.
 
 **Additional resources**
+{._additional-resources}
 
 - [Preparing for multiple instances of an Operator for multitenant clusters](/openshift-docs-markdown/operators/admin/olm-adding-operators-to-cluster#olm-preparing-operators-multitenant_olm-adding-operators-to-a-cluster)
 - [Allowing non-cluster administrators to install Operators](/openshift-docs-markdown/operators/admin/olm-creating-policy#olm-creating-policy)
@@ -77,5 +78,6 @@ This solution only works when the following constraints are met:
 Operator Lifecycle Manager (OLM) handles OLM-managed Operators that are installed in the same namespace, meaning their `Subscription` resources are colocated in the same namespace, as related Operators. Even if they are not actually related, OLM considers their states, such as their version and update policy, when any one of them is updated.
 
 **Additional resources**
+{._additional-resources}
 
 - [Multitenancy and Operator colocation](/openshift-docs-markdown/operators/understanding/olm/olm-colocation#olm-colocation)

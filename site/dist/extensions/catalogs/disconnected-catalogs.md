@@ -1,8 +1,8 @@
 ---
-title: Disconnected environment support in {{ olmv1 }}
+title: Disconnected environment support in OLM v1
 ---
 
-# Disconnected environment support in {{ olmv1 }} {#disconnected-catalogs}
+# Disconnected environment support in OLM v1 {#disconnected-catalogs}
 
 Operator Lifecycle Manager (OLM) v1 supports cluster extension lifecycle management in internet-disconnected environments. This feature helps cluster administrators run mission-critical production workloads in high-security, disconnected clusters.
 
@@ -22,6 +22,7 @@ oc-mirror plugin v2
 > The oc-mirror plugin v2 is the recommended version for mirroring.
 
 **Additional resources**
+{._additional-resources}
 
 - [Mirroring images for a disconnected installation using the oc-mirror plugin v1](/openshift-docs-markdown/disconnected/installing-mirroring-disconnected#installing-mirroring-disconnected)
 - [Mirroring images for a disconnected installation using the oc-mirror plugin v2](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)

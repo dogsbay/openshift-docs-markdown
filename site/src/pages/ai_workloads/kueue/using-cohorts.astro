@@ -21,7 +21,8 @@ const headings = [{"depth":1,"slug":"using-cohorts","text":"Using cohorts"},{"de
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/ai_workloads/kueue/using-cohorts";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="using-cohorts" class="group scroll-mt-20">Using cohorts<a href="#using-cohorts" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can use cohorts to group cluster queues and determine which cluster queues can share borrowable resources with each other.</p>
+      <p class="_abstract">You can use cohorts to group cluster queues and determine which cluster queues can share borrowable resources with each other.</p>
       <p>Borrowable resources are defined as the unused nominal quota of all the cluster queues in a cohort.</p>
       <p>By using cohorts, you can optimize resource utilization, prevent under-utilization, and enable fair sharing configurations. In addition, you can simplify resource management and allocation between teams, because you can group cluster queues for related workloads or for each team. You can also use cohorts to set resource quotas at a group level to define the limits for resources that a group of cluster queues can consume.</p>
       <h2 id="clusterqueue-configuring-cohorts-reference_using-cohorts" class="group scroll-mt-20">Cohort configuration within a cluster queue spec<a href="#clusterqueue-configuring-cohorts-reference_using-cohorts" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>

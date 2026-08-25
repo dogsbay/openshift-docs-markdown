@@ -86,7 +86,8 @@ Adding a virtual Trusted Platform Module (vTPM) device to a virtual machine (VM)
 3. To apply your changes, save and exit the editor.
 4. Optional: If you edited a running virtual machine, you must restart it for the changes to take effect.
 
-## Additional resources {#additional-resources_virt-using-vtpm-devices}
+**Additional resources**
+{._additional-resources}
 
 - [Exporting virtual machines](/openshift-docs-markdown/virt/managing_vms/virt-exporting-vms#virt-exporting-vms)
 - [Creating a snapshot by using the CLI](/openshift-docs-markdown/virt/backup_restore/virt-backup-restore-snapshots#virt-creating-vm-snapshot-cli_virt-backup-restore-snapshots)

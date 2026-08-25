@@ -90,21 +90,15 @@ Job
       - When at least one pod has terminated with success and all pods are terminated, the job is successfully completed.
       - When any pod has exited with success, no other pod should be doing any work for this task or writing any output. Pods should all be in the process of exiting.
 
-    Cron job
+Cron job
+:   A job can be scheduled to run multiple times, using a cron job.
 
-Job
-:   A job can be scheduled to run multiple times, using a cron job. You can use a cron job to specify how the job runs. Cron jobs are part of the Kubernetes API, which can be managed with `oc` commands like other object types. Cron jobs are useful for creating periodic and recurring tasks, such as running backups or sending emails. Cron jobs can also schedule individual tasks for a specific time, such as if you want to schedule a job for a low activity period. A cron job creates a `Job` object based on the time zone configured on the control plane node that runs the cronjob controller.
+    You can use a cron job to specify how the job runs. Cron jobs are part of the Kubernetes API, which can be managed with `oc` commands like other object types.
 
-    ```
-      :::warning
+    Cron jobs are useful for creating periodic and recurring tasks, such as running backups or sending emails. Cron jobs can also schedule individual tasks for a specific time, such as if you want to schedule a job for a low activity period. A cron job creates a `Job` object based on the time zone configured on the control plane node that runs the cronjob controller.
 
-      A cron job creates a `Job` object approximately once per execution time of its
-      schedule, but there are circumstances in which it fails to create a job or
-      two jobs might be created. Therefore, jobs must be idempotent and you must
-      configure history limits.
-
-      :::
-    ```
+    > [!WARNING]
+    > A cron job creates a `Job` object approximately once per execution time of its schedule, but there are circumstances in which it fails to create a job or two jobs might be created. Therefore, jobs must be idempotent and you must configure history limits.
 
 ### Understanding how to create jobs {#jobs-create_nodes-nodes-jobs}
 
@@ -114,8 +108,8 @@ Both resource types require a job configuration that consists of the following k
 - The `parallelism` parameter, which specifies how many pods running in parallel at any point in time should execute a job.
 
   - For non-parallel jobs, leave unset. When unset, defaults to `1`.
+- The `completions` parameter, specifying how many successful pod completions are needed to finish a job.
 
-    - The `completions` parameter, specifying how many successful pod completions are needed to finish a job.
   - For non-parallel jobs, leave unset. When unset, defaults to `1`.
   - For parallel jobs with a fixed completion count, specify a value.
   - For parallel jobs with a work queue, leave unset. When unset defaults to the `parallelism` value.
@@ -168,6 +162,9 @@ As such, `restartPolicy: Never` or `--restart=Never` results in the same behavio
 With the `Never` policy, the *job controller* performs the restart. With each attempt, the job controller increments the number of failures in the job status and creates new pods. This means that with each failed attempt, the number of pods increases.
 
 With the `OnFailure` policy, *kubelet* performs the restart. Each attempt does not increment the number of failures in the job status. In addition, kubelet retries failed jobs starting pods on the same nodes.
+
+**Additional resources**
+{._additional-resources}
 
 - [Job patterns (Kubernetes documentation)](https://kubernetes.io/docs/concepts/workloads/controllers/job/#job-patterns)
 - [Cron jobs (Kubernetes documentation)](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/)

@@ -161,7 +161,7 @@ metadata:
   name: red-mesh
   namespace: red-mesh-system
 spec:
-  version: v{{ MaistraVersion }}
+  version: v2.6
   runtime:
     defaults:
       container:
@@ -398,7 +398,7 @@ spec:
 <tr>
   <td>spec: security: trust: domain:</td>
   <td>Used to specify a unique name for the trust domain for the mesh. Domains must be unique for every mesh in the federation.</td>
-  <td><code><mesh-name>.local</code></td>
+  <td><code>&lt;mesh-name&gt;.local</code></td>
   <td>N/A</td>
 </tr>
 </tbody>
@@ -409,7 +409,7 @@ spec:
 Follow this procedure to edit the `ServiceMeshControlPlane` with the OpenShift Container Platform web console. This example uses the `red-mesh` as an example.
 
 1. Log in to the OpenShift Container Platform web console as a user with the cluster-admin role.
-2. Navigate to **Ecosystem** -> **Installed Operators**.
+2. Navigate to **Ecosystem** → **Installed Operators**.
 3. Click the **Project** menu and select the project where you installed the Service Mesh control plane. For example, `red-mesh-system`.
 4. Click the Red Hat OpenShift Service Mesh Operator.
 5. On the **Istio Service Mesh Control Plane** tab, click the name of your `ServiceMeshControlPlane`, for example `red-mesh`.
@@ -559,8 +559,8 @@ spec:
 </tr>
 <tr>
   <td>spec: security: certificateChain: kind: ConfigMap name:</td>
-  <td>The kind (for example, ConfigMap) and name of a resource containing the root certificate used to validate the client and server certificate(s) presented to this mesh by the peer mesh.The key of the config map entry containing the certificate should be <code>root-cert.pem</code>.</td>
-  <td>kind: ConfigMapname: <peerMesh>-ca-root-cert</td>
+  <td>The kind (for example, ConfigMap) and name of a resource containing the root certificate used to validate the client and server certificate(s) presented to this mesh by the peer mesh. The key of the config map entry containing the certificate should be <code>root-cert.pem</code>.</td>
+  <td>kind: ConfigMap name: <peerMesh>-ca-root-cert</td>
 </tr>
 </tbody>
 </table>
@@ -944,7 +944,7 @@ spec:
 </tr>
 <tr>
   <td>spec: importRules: - type: NameSelector importAsLocal:</td>
-  <td>Set to <code>true</code> to aggregate remote endpoint with local services. When <code>true</code> services are imported as <code><name>.<namespace>.svc.cluster.local</code>. When <code>true</code>, an alias is required. When <code>false</code>, no alias is required.</td>
+  <td>Set to <code>true</code> to aggregate remote endpoint with local services. When <code>true</code> services are imported as <code>&lt;name&gt;.&lt;namespace&gt;.svc.cluster.local</code>. When <code>true</code>, an alias is required. When <code>false</code>, no alias is required.</td>
   <td><code>true</code>/<code>false</code></td>
 </tr>
 <tr>
@@ -1089,7 +1089,7 @@ You configure Federation for failover by setting the `importAsLocal` and `locali
 
 ### Configuring an ImportedServiceSet for failover {#ossm-federation-config-importedserviceset-failover_federation}
 
-Locality-weighted load balancing allows administrators to control the distribution of traffic to endpoints based on the localities of where the traffic originates and where it will terminate. These localities are specified using arbitrary labels that designate a hierarchy of localities in {{ region }}/{{ zone }}/{{ sub_zone }} form.
+Locality-weighted load balancing allows administrators to control the distribution of traffic to endpoints based on the localities of where the traffic originates and where it will terminate. These localities are specified using arbitrary labels that designate a hierarchy of localities in {region}/{zone}/{sub_zone} form.
 
 In the examples in this section, the `green-mesh` is located in the `us-east` region, and the `red-mesh` is located in the `us-west` region.
 
@@ -1116,13 +1116,13 @@ spec:
     region: us-west
 ```
 
-`ImportedServiceLocality`** fields table**
+**`ImportedServiceLocality` fields table**
 
 | Name | Description | Type |
 | --- | --- | --- |
 | region: | Region within which imported services are located. | string |
-| subzone: | Subzone within which imported services are located.  I Subzone is specified, Zone must also be specified. | string |
-| zone: | Zone within which imported services are located.  If Zone is specified, Region must also be specified. | string |
+| subzone: | Subzone within which imported services are located. I Subzone is specified, Zone must also be specified. | string |
+| zone: | Zone within which imported services are located. If Zone is specified, Region must also be specified. | string |
 
 **Procedure**
 

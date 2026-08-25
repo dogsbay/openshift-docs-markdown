@@ -1,5 +1,5 @@
 ---
-title: "{{ cli_manager }} release notes"
+title: CLI Manager Operator release notes
 ---
 
 # CLI Manager Operator release notes {#cli-manager-release-notes}

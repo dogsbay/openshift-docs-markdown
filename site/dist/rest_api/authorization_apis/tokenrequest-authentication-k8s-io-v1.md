@@ -1,5 +1,5 @@
 ---
-title: TokenRequest []
+title: TokenRequest [authentication.k8s.io/v1]
 ---
 
 # TokenRequest \[authentication.k8s.io/v1\] {#tokenrequest-authentication-k8s-io-v1}
@@ -84,11 +84,11 @@ Required
 
 The following API endpoints are available:
 
-- `/api/v1/namespaces/{{ namespace }}/serviceaccounts/{{ name }}/token`
+- `/api/v1/namespaces/{namespace}/serviceaccounts/{name}/token`
 
   - `POST`: create token of a ServiceAccount
 
-### /api/v1/namespaces/{{ namespace }}/serviceaccounts/{{ name }}/token {#_apiv1namespaces_namespace_serviceaccounts_name_token}
+### /api/v1/namespaces/{namespace}/serviceaccounts/{name}/token {#_apiv1namespaces_namespace_serviceaccounts_name_token}
 
 **Global path parameters**
 

@@ -1,5 +1,5 @@
 ---
-title: PreprovisioningImage []
+title: PreprovisioningImage [metal3.io/v1alpha1]
 ---
 
 # PreprovisioningImage \[metal3.io/v1alpha1\] {#preprovisioningimage-metal3-io-v1alpha1}
@@ -88,7 +88,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
 | `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
@@ -117,18 +117,18 @@ The following API endpoints are available:
 - `/apis/metal3.io/v1alpha1/preprovisioningimages`
 
   - `GET`: list objects of kind PreprovisioningImage
-- `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/preprovisioningimages`
+- `/apis/metal3.io/v1alpha1/namespaces/{namespace}/preprovisioningimages`
 
   - `DELETE`: delete collection of PreprovisioningImage
   - `GET`: list objects of kind PreprovisioningImage
   - `POST`: create a PreprovisioningImage
-- `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/preprovisioningimages/{{ name }}`
+- `/apis/metal3.io/v1alpha1/namespaces/{namespace}/preprovisioningimages/{name}`
 
   - `DELETE`: delete a PreprovisioningImage
   - `GET`: read the specified PreprovisioningImage
   - `PATCH`: partially update the specified PreprovisioningImage
   - `PUT`: replace the specified PreprovisioningImage
-- `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/preprovisioningimages/{{ name }}/status`
+- `/apis/metal3.io/v1alpha1/namespaces/{namespace}/preprovisioningimages/{name}/status`
 
   - `GET`: read status of the specified PreprovisioningImage
   - `PATCH`: partially update status of the specified PreprovisioningImage
@@ -153,7 +153,7 @@ Description
 | 200 - OK | [`PreprovisioningImageList`](/openshift-docs-markdown/rest_api/objects/index#io-metal3-v1alpha1-PreprovisioningImageList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/preprovisioningimages {#_apismetal3iov1alpha1namespaces_namespace_preprovisioningimages}
+### /apis/metal3.io/v1alpha1/namespaces/{namespace}/preprovisioningimages {#_apismetal3iov1alpha1namespaces_namespace_preprovisioningimages}
 
 HTTP method
 :   ```
@@ -221,7 +221,7 @@ Description
 | 202 - Accepted | [`PreprovisioningImage`](/openshift-docs-markdown/rest_api/provisioning_apis/preprovisioningimage-metal3-io-v1alpha1#preprovisioningimage-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/preprovisioningimages/{{ name }} {#_apismetal3iov1alpha1namespaces_namespace_preprovisioningimages_name}
+### /apis/metal3.io/v1alpha1/namespaces/{namespace}/preprovisioningimages/{name} {#_apismetal3iov1alpha1namespaces_namespace_preprovisioningimages_name}
 
 **Global path parameters**
 
@@ -325,7 +325,7 @@ Description
 | 201 - Created | [`PreprovisioningImage`](/openshift-docs-markdown/rest_api/provisioning_apis/preprovisioningimage-metal3-io-v1alpha1#preprovisioningimage-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/preprovisioningimages/{{ name }}/status {#_apismetal3iov1alpha1namespaces_namespace_preprovisioningimages_name_status}
+### /apis/metal3.io/v1alpha1/namespaces/{namespace}/preprovisioningimages/{name}/status {#_apismetal3iov1alpha1namespaces_namespace_preprovisioningimages_name_status}
 
 **Global path parameters**
 

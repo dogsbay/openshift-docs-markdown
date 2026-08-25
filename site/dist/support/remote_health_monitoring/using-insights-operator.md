@@ -7,6 +7,7 @@ title: Using the Insights Operator
 The Insights Operator periodically gathers configuration and component failure status and, by default, reports that data every two hours to Red Hat. This information enables Red Hat to assess configuration and deeper failure data than is reported through Telemetry. Users of OpenShift Container Platform can display the report in the [Advisor](https://console.redhat.com/openshift/insights/advisor/) service on Red Hat Hybrid Cloud Console.
 
 **Additional resources**
+{._additional-resources}
 
 - [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
 - [Using Red Hat Lightspeed to identify issues with your cluster](/openshift-docs-markdown/support/remote_health_monitoring/using-insights-to-identify-issues-with-your-cluster#using-insights-to-identify-issues-with-your-cluster)
@@ -54,7 +55,7 @@ The following table describes the available configuration attributes:
 > [!NOTE]
 > The `insights-config` `ConfigMap` object follows standard YAML formatting, wherein child values are below the parent attribute and indented two spaces. For the `Obfuscation` attribute, enter values as bulleted children of the parent attribute.
 
-***Insights Operator configurable attributes***
+**Insights Operator configurable attributes**
 
 <table>
 <thead>
@@ -173,7 +174,7 @@ You can create the `insights-config` `ConfigMap` object for the Insights Operato
 
 **Procedure**
 
-1. Go to **Workloads** -> **ConfigMaps** and select **Project: openshift-insights**.
+1. Go to **Workloads** → **ConfigMaps** and select **Project: openshift-insights**.
 2. Click **Create ConfigMap**.
 3. Select **Configure via: YAML view** and enter your configuration preferences, for example:
 
@@ -221,8 +222,8 @@ Currently, Insights Operator sends the following alerts when the conditions are 
 
 - To view these alerts in the Alerting UI in the OpenShift Container Platform web console, choose one of the following methods:
 
-  - In the **Administrator** perspective, click **Observe** -> **Alerting**.
-  - In the **Developer** perspective, click **Observe** -> <project_name> -> **Alerts** tab.
+  - In the **Administrator** perspective, click **Observe** → **Alerting**.
+  - In the **Developer** perspective, click **Observe** → <project_name> → **Alerts** tab.
 
 ### Disabling Insights Operator alerts {#disabling-insights-operator-alerts_using-insights-operator}
 
@@ -241,7 +242,7 @@ If the `insights-config` `ConfigMap` object does not exist, you must create it w
 
 **Procedure**
 
-1. Go to **Workloads** -> **ConfigMaps** and select **Project: openshift-insights**.
+1. Go to **Workloads** → **ConfigMaps** and select **Project: openshift-insights**.
 2. Click the **insights-config** `ConfigMap` object to open it.
 3. Click **Actions** and select **Edit ConfigMap**.
 4. Click the **YAML view** radio button.
@@ -277,7 +278,7 @@ When alerts are disabled, the Insights Operator no longer sends alerts to the cl
 
 **Procedure**
 
-1. Go to **Workloads** -> **ConfigMaps** and select **Project: openshift-insights**.
+1. Go to **Workloads** → **ConfigMaps** and select **Project: openshift-insights**.
 2. Click on the `insights-config` `ConfigMap` object to open it.
 3. Click **Actions** and select **Edit ConfigMap**.
 4. Click the **YAML view** radio button.
@@ -334,7 +335,7 @@ An on-demand `DataGather` operation is:
 - Useful for one-off data collections that require different CRD configurations to the periodic data gathering (`InsightsDataGather`) specification.
 - Independent from the periodic data gathering. When you create an on-demand `DataGather` CRD, the configuration is independent from the `InsightsDataGather` CRD specification of your periodic data gathering job.
 
-***Custom specification options***
+**Custom specification options**
 
 You can optionally customize the following items for the on-demand data gather operation:
 
@@ -573,6 +574,7 @@ Use the following procedure to create a `DataGather` custom resource definition 
 - Check that your new gather operation is prefixed with your chosen name under the list of pods in the `openshift-insights` project. Upon completion, the Insights Operator automatically uploads the data to Red Hat for processing.
 
 **Additional resources**
+{._additional-resources}
 
 - [Insights Operator Gathered Data GitHub repository](https://github.com/openshift/insights-operator/blob/master/docs/gathered-data.md)
 
@@ -723,7 +725,7 @@ To obfuscate the name of resources, you must manually set the `obfuscation` attr
 
 **Procedure**
 
-1. Go to **Workloads** -> **ConfigMaps** and select **Project: openshift-insights**.
+1. Go to **Workloads** → **ConfigMaps** and select **Project: openshift-insights**.
 2. Click the `insights-config` `ConfigMap` object to open it.
 3. Click **Actions** and select **Edit ConfigMap**.
 4. Click the **YAML view** radio button.

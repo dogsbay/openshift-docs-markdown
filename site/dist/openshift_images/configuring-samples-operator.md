@@ -71,8 +71,8 @@ Certain circumstances result in the Cluster Samples Operator bootstrapping itsel
   - [Image controller configuration parameters](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/images/image-configuration-classic#images-configuration-parameters_image-configuration)
   - [Cluster Samples Operator configuration parameters](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/images/configuring-samples-operator#samples-operator-configuration_configuring-samples-operator)
 
-> [!NOTE]
-> For OpenShift Container Platform, the default image registry is `registry.redhat.io`.
+  > [!NOTE]
+  > For OpenShift Container Platform, the default image registry is `registry.redhat.io`.
 
 However, if the Cluster Samples Operator detects that it is on an IPv6 network and an OpenShift Container Platform global proxy is configured, then the IPv6 check supersedes all the checks. As a result, the Cluster Samples Operator bootstraps itself as `Removed`.
 
@@ -160,7 +160,7 @@ The samples resource offers the following configuration fields:
 </tr>
 <tr>
   <td><code>samplesRegistry</code></td>
-  <td>Allows you to specify which registry is accessed by image streams for their image content. <code>samplesRegistry</code> defaults to <code>registry.redhat.io</code> for OpenShift Container Platform.<br><br><dl><dt>Note</dt><dd>Creation or update of RHEL content does not commence if the secret for pull access is not in place when either <code>Samples Registry</code> is not explicitly set, leaving an empty string, or when it is set to registry.redhat.io. In both cases, image imports work off of registry.redhat.io, which requires credentials.<br><br>Creation or update of RHEL content is not gated by the existence of the pull secret if the <code>Samples Registry</code> is overridden to a value other than the empty string or registry.redhat.io.</dd></dl></td>
+  <td>Allows you to specify which registry is accessed by image streams for their image content. <code>samplesRegistry</code> defaults to <code>registry.redhat.io</code> for OpenShift Container Platform.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>Creation or update of RHEL content does not commence if the secret for pull access is not in place when either <code>Samples Registry</code> is not explicitly set, leaving an empty string, or when it is set to registry.redhat.io. In both cases, image imports work off of registry.redhat.io, which requires credentials.<br><br>Creation or update of RHEL content is not gated by the existence of the pull secret if the <code>Samples Registry</code> is overridden to a value other than the empty string or registry.redhat.io.</dd></dl></td>
 </tr>
 <tr>
   <td><code>architectures</code></td>

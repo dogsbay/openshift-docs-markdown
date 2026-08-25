@@ -1,5 +1,5 @@
 ---
-title: DeploymentLog []
+title: DeploymentLog [apps.openshift.io/v1]
 ---
 
 # DeploymentLog \[apps.openshift.io/v1\] {#deploymentlog-apps-openshift-io-v1}
@@ -25,11 +25,11 @@ Type
 
 The following API endpoints are available:
 
-- `/apis/apps.openshift.io/v1/namespaces/{{ namespace }}/deploymentconfigs/{{ name }}/log`
+- `/apis/apps.openshift.io/v1/namespaces/{namespace}/deploymentconfigs/{name}/log`
 
   - `GET`: read log of the specified DeploymentConfig
 
-### /apis/apps.openshift.io/v1/namespaces/{{ namespace }}/deploymentconfigs/{{ name }}/log {#_apisappsopenshiftiov1namespaces_namespace_deploymentconfigs_name_log}
+### /apis/apps.openshift.io/v1/namespaces/{namespace}/deploymentconfigs/{name}/log {#_apisappsopenshiftiov1namespaces_namespace_deploymentconfigs_name_log}
 
 **Global path parameters**
 

@@ -42,7 +42,9 @@ The following requirements must be met:
   - Amazon Web Services (AWS), where you use `platform=aws`
   - Google Cloud, where you use `platform=gcp`
   - Microsoft Azure, where you use `platform=azure`
-- **Production-grade server:** Installing OpenShift Container Platform on a single node requires a server with sufficient resources to run OpenShift Container Platform services and a production workload. **Minimum resource requirements**
+- **Production-grade server:** Installing OpenShift Container Platform on a single node requires a server with sufficient resources to run OpenShift Container Platform services and a production workload.
+
+  **Minimum resource requirements**
 
   | Profile | Compute | Memory | Storage |
   | --- | --- | --- | --- |
@@ -64,7 +66,9 @@ The following requirements must be met:
 
   > [!NOTE]
   > BMC is not supported on IBM Z(R) and IBM Power(R).
-- **Networking:** The server must have access to the internet or access to a local registry if it is not connected to a routable network. The server must have a DHCP reservation or a static IP address for the Kubernetes API, ingress route, and cluster node domain names. You must configure the DNS to resolve the IP address to each of the following fully qualified domain names (FQDN): **Required DNS records**
+- **Networking:** The server must have access to the internet or access to a local registry if it is not connected to a routable network. The server must have a DHCP reservation or a static IP address for the Kubernetes API, ingress route, and cluster node domain names. You must configure the DNS to resolve the IP address to each of the following fully qualified domain names (FQDN):
+
+  **Required DNS records**
 
   | Usage | FQDN | Description |
   | --- | --- | --- |
@@ -76,11 +80,13 @@ The following requirements must be met:
   > Without persistent IP addresses, communications between the `apiserver` and `etcd` might fail.
 
 **Additional resources**
+{._additional-resources}
 
 - [Certified Hypervisors and Guest Operating Systems (Red Hat Knowledgebase article)](https://access.redhat.com/articles/973163)
 - [Cluster capabilities](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-capabilities)
 
-## Additional resources {#additional-resources_install-sno-preparing}
+**Additional resources**
+{._additional-resources}
 
 - [OpenShift Container Platform installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)
 - [Selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing)

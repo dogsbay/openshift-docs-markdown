@@ -72,6 +72,7 @@ You can update the machine template resource for your cluster by modifying the Y
 - For any Cluster API compute machine sets that reference this template, update the `spec.template.spec.infrastructureRef.name` parameter to match the `metadata.name` value in the new machine template resource. For more information, see "Modifying a compute machine set by using the CLI."
 
 **Additional resources**
+{._additional-resources}
 
 - [Sample YAML for a Cluster API machine template resource on Amazon Web Services](/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster_api_provider_configurations/cluster-api-config-options-aws#capi-yaml-machine-template-aws_cluster-api-config-options-aws)
 - [Sample YAML for a Cluster API machine template resource on Google Cloud](/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster_api_provider_configurations/cluster-api-config-options-gcp#capi-yaml-machine-template-gcp_cluster-api-config-options-gcp)
@@ -415,6 +416,7 @@ tag:CAPI[]\[\]
   end:MAPI[]\[\]
 
 **Additional resources**
+{._additional-resources}
 
 - [Sample YAML for a Cluster API compute machine set resource on Amazon Web Services](/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster_api_provider_configurations/cluster-api-config-options-aws#capi-yaml-machine-set-aws_cluster-api-config-options-aws)
 - [Sample YAML for a Cluster API compute machine set resource on Google Cloud](/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster_api_provider_configurations/cluster-api-config-options-gcp#capi-yaml-machine-set-gcp_cluster-api-config-options-gcp)

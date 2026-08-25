@@ -71,7 +71,7 @@ The NNS topology diagram displays all node components (network interface control
 
 **Procedure**
 
-- In the **Administrator** view of the OpenShift Container Platform web console, navigate to **Networking** -> **Node Network Configuration**.
+- In the **Administrator** view of the OpenShift Container Platform web console, navigate to **Networking** → **Node Network Configuration**.
 
   The NNS topology diagram opens. Each group of components represents a single node.
 
@@ -179,7 +179,7 @@ You can create a policy by using either a form or YAML in the web console. When 
 2. On the **Node Network Configuration** page, click **Create** and select the **From Form** option.
 
    > [!NOTE]
-   > To create a policy using YAML, click **Create** -> **With YAML** option. However, the following steps apply only to the form method.
+   > To create a policy using YAML, click **Create** → **With YAML** option. However, the following steps apply only to the form method.
 3. Optional: Check the **Apply this NodeNetworkConfigurationPolicy only to specific subsets of nodes using the node selector** checkbox to specify the nodes where the policy must be applied.
 4. Enter the policy name in the **Policy name** field.
 5. Optional: Enter the description of the policy in the **Description** field.
@@ -222,7 +222,7 @@ You can update a `NodeNetworkConfigurationPolicy` object by using the form view 
 **Procedure**
 
 1. Navigate to **Networking** → **NodeNetworkConfigurationPolicy**.
-2. In the **NodeNetworkConfigurationPolicy** page, click the ![](kebab.png "Options menu") icon placed next to the policy you want to edit, and click **Edit**.
+2. In the **NodeNetworkConfigurationPolicy** page, click the ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") icon placed next to the policy you want to edit, and click **Edit**.
 3. Edit the fields that you want to update.
 4. Click **Save**.
 
@@ -244,7 +244,7 @@ You can delete a `NodeNetworkConfigurationPolicy` object when it is no longer ne
 **Procedure**
 
 1. Navigate to **Networking** → **NodeNetworkConfigurationPolicy**.
-2. In the **NodeNetworkConfigurationPolicy** page, click the ![](kebab.png "Options menu") icon placed next to the policy you want to delete, and click **Delete**.
+2. In the **NodeNetworkConfigurationPolicy** page, click the ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") icon placed next to the policy you want to delete, and click **Delete**.
 3. In the pop-up window, enter the policy name to confirm deletion, and click **Delete**.
 
 ## Managing the NodeNetworkConfigurationPolicy manifest file {#virt-manage-nncp-cli_k8s-nmstate-updating-node-network-config}
@@ -417,9 +417,9 @@ You can assign alternative names to network interfaces to create consistent, des
 
 Alternative interface names provide the following benefits:
 
-- ***Consistent naming***: Apply standardized names regardless of underlying hardware naming schemes, which is useful in heterogeneous clusters.
-- ***Descriptive labels***: Use descriptive names up to 127 characters, such as `production-external-interface`, in addition to kernel-assigned names like `ens3f0`.
-- ***Simplified automation***: Reference interfaces by names that remain constant across different node types, reducing configuration errors.
+- **Consistent naming**: Apply standardized names regardless of underlying hardware naming schemes, which is useful in heterogeneous clusters.
+- **Descriptive labels**: Use descriptive names up to 127 characters, such as `production-external-interface`, in addition to kernel-assigned names like `ens3f0`.
+- **Simplified automation**: Reference interfaces by names that remain constant across different node types, reducing configuration errors.
 
 You can use alternative names anywhere that accepts a standard interface name, including bond ports, VLAN base interfaces, bridge ports, and route next-hop interfaces.
 
@@ -1235,6 +1235,7 @@ where:
 :   Specifies a stable link in that if a policy changes the `route-table-id` parameter to a different value, the route automatically follows the `vrf0` name to the new ID. You do not need to manually update the route configuration.
 
 **Additional resources**
+{._additional-resources}
 
 - [About virtual routing and forwarding](/openshift-docs-markdown/networking/multiple_networks/about-virtual-routing-and-forwarding#cnf-about-virtual-routing-and-forwarding_about-virtual-routing-and-forwarding)
 - [Exposing a service through a network VRF](/openshift-docs-markdown/networking/ingress_load_balancing/metallb/metallb-configure-bgp-peers#nw-metallb-bgp-peer-vrf_configure-metallb-bgp-peers)
@@ -1368,6 +1369,7 @@ spec:
 - `spec.desiredState.interfaces.bridge.port.name` defines the node NIC to which the bridge attaches.
 
 **Additional resources**
+{._additional-resources}
 
 - [The NMPolicy project - Policy syntax](https://nmstate.io/nmpolicy/user-guide/102-policy-syntax.html)
 
@@ -1803,6 +1805,7 @@ routes:
 - `config.next-hop-address`: The next hop address for the node traffic. This must be in the same subnet as the IP address set for the Ethernet interface.
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating a manifest object that includes a customized br-ex bridge (Installer-provisioned infrastructure)](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#creating-manifest-file-customized-br-ex-bridge_ipi-install-installation-workflow)
 - [Creating a manifest object that includes a customized br-ex bridge (User-provisioned infrastructure)](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#creating-manifest-file-customized-br-ex-bridge_installing-bare-metal)

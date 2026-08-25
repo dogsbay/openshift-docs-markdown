@@ -31,6 +31,7 @@ To use the control plane machine set, you must ensure that a `ControlPlaneMachin
 - If your cluster does not have an existing CR, you must create one with the correct configuration for your cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Activating the control plane machine set custom resource](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-activating_cpmso-getting-started)
 - [Creating a control plane machine set custom resource](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-creating-cr_cpmso-getting-started)
@@ -70,6 +71,7 @@ For more information about where this parameter is located in the Azure provider
 - For clusters that are configured to use the `OnDelete` update strategy, you must replace your control plane machines manually.
 
 **Additional resources**
+{._additional-resources}
 
 - [Sample Microsoft Azure provider specification](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso_provider_configurations/cpmso-config-options-azure#cpmso-yaml-provider-spec-azure_cpmso-config-options-azure)
 
@@ -112,6 +114,7 @@ When the etcd Operator is degraded, manual intervention is required to force the
    The etcd Operator removes the failed machine from the cluster and can then safely add new etcd members.
 
 **Additional resources**
+{._additional-resources}
 
 - [Restoring to an earlier cluster state](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state#dr-restoring-cluster-state)
 
@@ -242,7 +245,7 @@ To understand why this procedure is necessary, see [Solution #7013893](https://a
          name: openstack-cloud-credentials
          namespace: openshift-machine-api
        flavor: m1.xlarge
-       image: rhcos-{{ product_version }}
+       image: rhcos-4.22
        kind: OpenstackProviderSpec
        metadata:
          creationTimestamp: null

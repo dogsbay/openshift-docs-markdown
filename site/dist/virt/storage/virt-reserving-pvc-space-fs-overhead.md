@@ -33,7 +33,7 @@ Change the amount of persistent volume claim (PVC) space that the OpenShift Virt
 1. Open the `HCO` object for editing by running the following command:
 
    ```terminal
-   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+   $ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv
    ```
 2. Edit the `spec.filesystemOverhead` fields, populating them with your chosen values:
 

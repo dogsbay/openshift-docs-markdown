@@ -54,7 +54,8 @@ You can perform the following boot source update configuration task:
 Manage automatic boot source updates
 :   Boot sources can make virtual machine (VM) creation more accessible and efficient for users. If automatic boot source updates are enabled, CDI imports, polls, and updates the images so that they are ready to be cloned for new VMs. By default, CDI automatically updates Red Hat boot sources. You can enable automatic updates for custom boot sources.
 
-## Additional resources {#additional-resources_virt-storage-config-overview}
+**Additional resources**
+{._additional-resources}
 
 - [Defining a storage class](/openshift-docs-markdown/storage/dynamic-provisioning#dynamic-provisioning-defining-storage-class_dynamic-provisioning)
 - [Configure storage profiles](/openshift-docs-markdown/virt/storage/virt-configuring-storage-profile#virt-configuring-storage-profile)

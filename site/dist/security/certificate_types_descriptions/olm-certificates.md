@@ -14,7 +14,8 @@ When installing Operators that include webhooks or API services in their `Cluste
 
 OLM does not update the certificates of Operators that it manages in proxy environments. These certificates must be managed by the user using the subscription config.
 
-## Additional resources {#additional-resources_cert-types-olm-certificates}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring proxy support in Operator Lifecycle Manager](/openshift-docs-markdown/operators/admin/olm-configuring-proxy-support#olm-configuring-proxy-support)
 - [Proxy certificates](/openshift-docs-markdown/security/certificate_types_descriptions/proxy-certificates#proxy-certificates)

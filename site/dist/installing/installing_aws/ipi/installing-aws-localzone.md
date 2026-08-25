@@ -87,6 +87,7 @@ The edge compute pool creates new labels that developers can use to deploy appli
 By default, the machine sets for the edge compute pool define the taint of `NoSchedule` to prevent other workloads from spreading on Local Zones instances. Users can only run user workloads if they define tolerations in the pod specification.
 
 **Additional resources**
+{._additional-resources}
 
 - [MTU value selection](/openshift-docs-markdown/networking/advanced_networking/changing-cluster-network-mtu#mtu-value-selection_changing-cluster-network-mtu)
 - [Changing the MTU for the cluster network](/openshift-docs-markdown/networking/advanced_networking/changing-cluster-network-mtu#nw-ovn-ipsec-enable_configuring-ipsec-ovn)
@@ -153,39 +154,39 @@ If you are deploying an OpenShift Container Platform cluster by using an Amazon 
 1. Complete the OpenShift Container Platform subscription from the [AWS Marketplace](https://aws.amazon.com/marketplace/fulfillment?productId=59ead7de-2540-4653-a8b0-fa7926d5c845).
 2. Record the AMI ID for your specific AWS region. As part of the installation process, you must update the `install-config.yaml` file with this value before deploying the cluster.
 
-```yaml {title="Sample install-config.yaml file with AWS Marketplace compute nodes"}
-apiVersion: v1
-baseDomain: example.com
-compute:
-- hyperthreading: Enabled
-  name: worker
-  platform:
-    aws:
-      amiID: ami-06c4d345f7c207239
-      type: m5.4xlarge
-  replicas: 3
-metadata:
-  name: test-cluster
-platform:
-  aws:
-    region: us-east-2
-sshKey: ssh-ed25519 AAAA...
-pullSecret: '{"auths": ...}'
-```
+   ```yaml {title="Sample install-config.yaml file with AWS Marketplace compute nodes"}
+   apiVersion: v1
+   baseDomain: example.com
+   compute:
+   - hyperthreading: Enabled
+     name: worker
+     platform:
+       aws:
+         amiID: ami-06c4d345f7c207239
+         type: m5.4xlarge
+     replicas: 3
+   metadata:
+     name: test-cluster
+   platform:
+     aws:
+       region: us-east-2
+   sshKey: ssh-ed25519 AAAA...
+   pullSecret: '{"auths": ...}'
+   ```
 
-where:
+   where:
 
-`compute.platform.aws.amiID`
-:   Specifies the AMI ID from your AWS Marketplace subscription.
+   `compute.platform.aws.amiID`
+   :   Specifies the AMI ID from your AWS Marketplace subscription.
 
-`platform.aws.region`
-:   Specifies the `platform.aws.region` parameter. Your AMI ID is associated with a specific AWS region. When creating the installation configuration file, ensure that you select the same AWS region that you specified when configuring your subscription.
+   `platform.aws.region`
+   :   Specifies the `platform.aws.region` parameter. Your AMI ID is associated with a specific AWS region. When creating the installation configuration file, ensure that you select the same AWS region that you specified when configuring your subscription.
 
 ## Minimum resource requirements for cluster installation {#installation-minimum-resource-requirements_installing-aws-localzone}
 
 To ensure that your OpenShift Container Platform cluster runs as expected, each cluster machine must meet minimum CPU, memory, and storage requirements.
 
-***Minimum resource requirements***
+**Minimum resource requirements**
 
 <table>
 <thead>
@@ -194,45 +195,34 @@ To ensure that your OpenShift Container Platform cluster runs as expected, each 
   <th>Operating system</th>
   <th>vCPU</th>
   <th>Virtual RAM</th>
-
   <th>Storage</th>
+  <th>Input/Output Per Second (IOPS)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td>Input/Output Per Second (IOPS)</td>
   <td>Bootstrap</td>
   <td>RHCOS</td>
-
   <td>4</td>
   <td>16 GB</td>
   <td>100 GB</td>
   <td>300</td>
 </tr>
 <tr>
-
   <td>Control plane</td>
   <td>RHCOS</td>
-
   <td>4</td>
   <td>16 GB</td>
   <td>100 GB</td>
+  <td>300</td>
 </tr>
 <tr>
-  <td>300</td>
-
   <td>Compute</td>
-
   <td>RHCOS</td>
-
   <td>2</td>
   <td>8 GB</td>
   <td>100 GB</td>
   <td>300</td>
-
-</tr>
-<tr>
-
 </tr>
 </tbody>
 </table>
@@ -257,9 +247,7 @@ If an instance type for your platform meets the minimum requirements for cluster
 
 To ensure cluster stability and performance, use one of the tested Amazon Web Services (AWS) instance types for your OpenShift Container Platform machines.
 
-The following AWS instance types have been tested with
-
-OpenShift Container Platform for use with AWS Local Zones.
+The following AWS instance types have been tested with OpenShift Container Platform for use with AWS Local Zones.
 
 > [!NOTE]
 > Use the machine types included in the following charts for your AWS instances. If you use an instance type that is not listed in the chart, ensure that the instance size you use matches the minimum resource requirements in "Minimum resource requirements for cluster installation".
@@ -274,6 +262,7 @@ OpenShift Container Platform for use with AWS Local Zones.
 - `t3.*`
 
 **Additional resources**
+{._additional-resources}
 
 - [AWS Local Zones features (AWS documentation)](https://aws.amazon.com/about-aws/global-infrastructure/localzones/features/)
 
@@ -283,10 +272,7 @@ Generate and customize the installation configuration file that the installation
 
 **Prerequisites**
 
-- You obtained the OpenShift Container Platform installation program for user-provisioned infrastructure
-
-and the pull secret for your cluster.
-
+- You obtained the OpenShift Container Platform installation program for user-provisioned infrastructure and the pull secret for your cluster.
 - You checked that you are deploying your cluster to an Amazon Web Services (AWS) Region with an accompanying Red Hat Enterprise Linux CoreOS (RHCOS) AMI published by Red Hat. If you are deploying to an AWS Region that requires a custom AMI, such as an AWS GovCloud Region, you must create the `install-config.yaml` file manually.
 
 **Procedure**
@@ -432,6 +418,7 @@ sshKey: ssh-ed25519 AAAA...
 ```
 
 **Additional resources**
+{._additional-resources}
 
 - [AWS resources supported in Local Zones (AWS documentation)](https://docs.aws.amazon.com/local-zones/latest/ug/how-local-zones-work.html#considerations)
 
@@ -511,6 +498,7 @@ Modify an `install-config.yaml` file to include AWS Local Zones.
 2. Deploy your cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating the installation configuration file](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-localzone#installation-generate-aws-user-infra-install-config_installing-aws-localzone)
 - [Cluster limitations in AWS Local Zones](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-localzone#cluster-limitations-aws-zone_installing-aws-localzone)
@@ -634,9 +622,7 @@ You can use a CloudFormation template to deploy the VPC that you need for your O
 
 See the following template:
 
-<details>
-<summary>CloudFormation template for the VPC</summary>
-
+:::details{title="CloudFormation template for the VPC"}
 ```yaml
 AWSTemplateFormatVersion: 2010-09-09
 Description: Template for Best Practice VPC with 1-3 AZs
@@ -950,8 +936,7 @@ Outputs:
         ]
       ]
 ```
-
-</details>
+:::
 
 ### Creating subnets in Local Zones {#installation-creating-aws-vpc-subnets-lz_installing-aws-localzone}
 
@@ -997,25 +982,25 @@ You can use the provided CloudFormation template and create a CloudFormation sta
    `<template>`
    :   Specifies the relative path and the name of the CloudFormation template YAML file that you saved.
 
-   `${{ VPC_ID }}`
+   `${VPC_ID}`
    :   Specifies the VPC ID, which is the value `VpcID` in the output of the CloudFormation template for the VPC.
 
-   `${{ CLUSTER_NAME }}`
+   `${CLUSTER_NAME}`
    :   Specifies the value of `ClusterName` to be used as a prefix of the new AWS resource names.
 
-   `${{ ZONE_NAME }}`
+   `${ZONE_NAME}`
    :   Specifies the value of the Local Zones name to create the subnets.
 
-   `${{ ROUTE_TABLE_PUB }}`
+   `${ROUTE_TABLE_PUB}`
    :   Specifies the `PublicRouteTableId` extracted from the output of the VPC’s CloudFormation stack.
 
-   `${{ SUBNET_CIDR_PUB }}`
+   `${SUBNET_CIDR_PUB}`
    :   Specifies a valid CIDR block that is used to create the public subnet. This block must be part of the VPC CIDR block `VpcCidr`.
 
-   `${{ ROUTE_TABLE_PVT }}`
+   `${ROUTE_TABLE_PVT}`
    :   Specifies the `PrivateRouteTableId` extracted from the output of the VPC’s CloudFormation stack.
 
-   `${{ SUBNET_CIDR_PVT }}`
+   `${SUBNET_CIDR_PVT}`
    :   Specifies a valid CIDR block that is used to create the private subnet. This block must be part of the VPC CIDR block `VpcCidr`.
 
 ```terminal {title="Example output"}
@@ -1050,7 +1035,7 @@ Parameters:
   VpcId:
     Description: VPC ID that comprises all the target subnets.
     Type: String
-    AllowedPattern: ^(?:(?:vpc)(?:-[a-zA-Z0-9]+)?\b|(?:[0-9]{1,3}\.){{ 3 }}[0-9]{1,3})$
+    AllowedPattern: ^(?:(?:vpc)(?:-[a-zA-Z0-9]+)?\b|(?:[0-9]{1,3}\.){3}[0-9]{1,3})$
     ConstraintDescription: VPC ID must be with valid name, starting with vpc-.*.
   ClusterName:
     Description: Cluster name or prefix name to prepend the Name tag for each subnet.
@@ -1068,7 +1053,7 @@ Parameters:
     AllowedPattern: ".+"
     ConstraintDescription: PublicRouteTableId parameter must be specified.
   PublicSubnetCidr:
-    AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{{ 2 }}|2[0-4][0-9]|25[0-5])\.){{ 3 }}([0-9]|[1-9][0-9]|1[0-9]{{ 2 }}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-4]))$
+    AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-4]))$
     ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-24.
     Default: 10.0.128.0/20
     Description: CIDR block for public subnet.
@@ -1079,28 +1064,11 @@ Parameters:
     AllowedPattern: ".+"
     ConstraintDescription: PrivateRouteTableId parameter must be specified.
   PrivateSubnetCidr:
-    AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{{ 2 }}|2[0-4][0-9]|25[0-5])\.){{ 3 }}([0-9]|[1-9][0-9]|1[0-9]{{ 2 }}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-4]))$
+    AllowedPattern: ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-4]))$
     ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-24.
     Default: 10.0.128.0/20
     Description: CIDR block for private subnet.
     Type: String
-{%- if outposts %}
-  PrivateSubnetLabel:
-    Default: "private"
-    Description: Subnet label to be added when building the subnet name.
-    Type: String
-  PublicSubnetLabel:
-    Default: "public"
-    Description: Subnet label to be added when building the subnet name.
-    Type: String
-  OutpostArn:
-    Default: ""
-    Description: OutpostArn when creating subnets on AWS Outpost.
-    Type: String
-
-Conditions:
-  OutpostEnabled: !Not [!Equals [!Ref "OutpostArn", ""]]
-{% endif %}
 
 Resources:
   PublicSubnet:
@@ -1109,19 +1077,9 @@ Resources:
       VpcId: !Ref VpcId
       CidrBlock: !Ref PublicSubnetCidr
       AvailabilityZone: !Ref ZoneName
-{%- if outposts %}
-      OutpostArn: !If [ OutpostEnabled, !Ref OutpostArn, !Ref "AWS::NoValue"]
-{%- endif %}
       Tags:
       - Key: Name
-        {%- if not outposts %}
         Value: !Join ['-', [!Ref ClusterName, "public", !Ref ZoneName]]
-{% endif %}
-{% if outposts %}
-        Value: !Join ['-', [ !Ref ClusterName, !Ref PublicSubnetLabel, !Ref ZoneName]]
-      - Key: kubernetes.io/cluster/unmanaged
-        Value: true
-{% endif %}
 
   PublicSubnetRouteTableAssociation:
     Type: "AWS::EC2::SubnetRouteTableAssociation"
@@ -1135,19 +1093,9 @@ Resources:
       VpcId: !Ref VpcId
       CidrBlock: !Ref PrivateSubnetCidr
       AvailabilityZone: !Ref ZoneName
-{%- if outposts %}
-      OutpostArn: !If [ OutpostEnabled, !Ref OutpostArn, !Ref "AWS::NoValue"]
-{%- endif %}
       Tags:
       - Key: Name
-        {%- if not outposts %}
         Value: !Join ['-', [!Ref ClusterName, "private", !Ref ZoneName]]
-{% endif %}
-{% if outposts %}
-        Value: !Join ['-', [!Ref ClusterName, !Ref PrivateSubnetLabel, !Ref ZoneName]]
-      - Key: kubernetes.io/cluster/unmanaged
-        Value: true
-{% endif %}
 
   PrivateSubnetRouteTableAssociation:
     Type: "AWS::EC2::SubnetRouteTableAssociation"
@@ -1168,6 +1116,7 @@ Outputs:
 ```
 
 **Additional resources**
+{._additional-resources}
 
 - [AWS CloudFormation console (AWS documentation)](https://console.aws.amazon.com/cloudformation/)
 
@@ -1203,6 +1152,7 @@ Modify your `install-config.yaml` file to include Local Zones subnets.
   `platform.aws.subnets` specifies the list of subnet IDs created in the zones: Availability and Local Zones.
 
 **Additional resources**
+{._additional-resources}
 
 - [AWS CloudFormation console](https://console.aws.amazon.com/cloudformation)
 - [Configuration and credential file settings in the AWS CLI (AWS documentation)](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)
@@ -1294,22 +1244,18 @@ To deploy your OpenShift Container Platform cluster, you can initialize installa
 
 1. In the directory that contains the installation program, initialize the cluster deployment by running the following command:
 
-   ```terminal
-   $ ./openshift-install create cluster --dir <installation_directory> \
-       --log-level=info
-   ```
+```terminal
+$ ./openshift-install create cluster --dir <installation_directory> \
+    --log-level=info
+```
 
-   ```
-   *   For `<installation_directory>`, specify the
-   location of your customized `./install-config.yaml` file.
+- For `<installation_directory>`, specify the location of your customized `./install-config.yaml` file.
+- To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
 
-   *   To view different installation details, specify `warn`, `debug`, or
-   `error` instead of `info`.
-   ```
-2. Optional: Remove or disable the `AdministratorAccess` policy from the IAM account that you used to install the cluster.
+  1. Optional: Remove or disable the `AdministratorAccess` policy from the IAM account that you used to install the cluster.
 
-   > [!NOTE]
-   > The elevated permissions provided by the `AdministratorAccess` policy are required only during installation.
+     > [!NOTE]
+     > The elevated permissions provided by the `AdministratorAccess` policy are required only during installation.
 
 **Verification**
 
@@ -1406,6 +1352,7 @@ To verify that your cluster deployed successfully and access its features, log i
 3. Navigate to the route detailed in the output of the preceding command in a web browser and log in as the `kubeadmin` user.
 
 **Additional resources**
+{._additional-resources}
 
 - [Accessing the web console](/openshift-docs-markdown/web_console/web-console#web-console)
 
@@ -1455,7 +1402,8 @@ After you install a cluster that uses AWS Local Zones infrastructure, check the 
    ip-10-0-207-188.ec2.internal   Ready    edge,worker   172m   v1.25.2+d2e245f
    ```
 
-## Additional resources {#additional-resources_installing-aws-localzone}
+**Additional resources**
+{._additional-resources}
 
 - [Validating an installation](/openshift-docs-markdown/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation)
 - [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)

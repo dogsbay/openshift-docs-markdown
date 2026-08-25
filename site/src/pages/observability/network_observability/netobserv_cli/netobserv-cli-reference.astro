@@ -27,7 +27,8 @@ const headings = [{"depth":1,"slug":"netobserv-cli-reference","text":"Network Ob
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/observability/network_observability/netobserv_cli/netobserv-cli-reference";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -85,12 +86,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -98,7 +100,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="netobserv-cli-reference" class="group scroll-mt-20">Network Observability CLI (oc netobserv) reference<a href="#netobserv-cli-reference" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>The Network Observability CLI (<code>oc netobserv</code>) provides feature and filtering parity with the Network Observability Operator. Use command-line arguments to dynamically toggle features and isolate specific cluster network traffic flows.</p>
+      <p class="_abstract">The Network Observability CLI (<code>oc netobserv</code>) provides feature and filtering parity with the Network Observability Operator. Use command-line arguments to dynamically toggle features and isolate specific cluster network traffic flows.</p>
       <h2 id="network-observability-netobserv-cli-reference_netobserv-cli-reference" class="group scroll-mt-20">Network Observability CLI usage<a href="#network-observability-netobserv-cli-reference_netobserv-cli-reference" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p>You can use the Network Observability CLI (<code>oc netobserv</code>) to pass command line arguments to capture flows data, packets data, and metrics for further analysis and enable features supported by the Network Observability Operator.</p>
       <h3 id="cli-syntax_netobserv-cli-reference" class="group scroll-mt-20">Syntax<a href="#cli-syntax_netobserv-cli-reference" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>

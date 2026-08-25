@@ -6,9 +6,7 @@ title: Control plane architecture
 
 You can use a *control plane*, which is composed of control plane machines, to manage the OpenShift Container Platform cluster. The control plane machines manage workloads on the compute machines, which are also known as worker machines.
 
-The cluster manages all upgrades to the machines by the actions of the Cluster Version Operator (CVO), the Machine Config Operator,
-
-and a set of individual Operators.
+The cluster manages all upgrades to the machines by the actions of the Cluster Version Operator (CVO), the Machine Config Operator, and a set of individual Operators.
 
 ## Node configuration management with machine config pools {#architecture-machine-config-pools_control-plane}
 
@@ -35,6 +33,7 @@ The MCO applies updates for pools independently; for example, if there is an upd
 There might be situations where the configuration on a node does not fully match what the currently-applied machine config specifies. This state is called *configuration drift*. The Machine Config Daemon (MCD) regularly checks the nodes for configuration drift. If the MCD detects configuration drift, the MCO marks the node `degraded` until an administrator corrects the node configuration. A degraded node is online and operational, but, it cannot be updated.
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding configuration drift detection](/openshift-docs-markdown/machine_configuration/index#machine-config-drift-detection_machine-config-overview)
 
@@ -54,11 +53,11 @@ Control plane and node host compatibility
 
     | OpenShift Container Platform version | Supported `kubelet` skew |
     | --- | --- |
-    | Odd OpenShift Container Platform minor versions [^1]^ | Up to one version older |
-    | Even OpenShift Container Platform minor versions [^2]^ | Up to two versions older |
+    | Odd OpenShift Container Platform minor versions <sup>\[1\]</sup> | Up to one version older |
+    | Even OpenShift Container Platform minor versions <sup>\[2\]</sup> | Up to two versions older |
 
-    1. For example, OpenShift Container Platform 4.11, 4.13.
-    2. For example, OpenShift Container Platform 4.10, 4.12.
+1. For example, OpenShift Container Platform 4.11, 4.13.
+2. For example, OpenShift Container Platform 4.10, 4.12.
 
 Cluster workers
 :   <a name="defining-workers_control-plane"></a>
@@ -79,41 +78,45 @@ Cluster workers
     > Compute machine sets are groupings of compute machine resources under the `machine-api` namespace. Compute machine sets are configurations that start new compute machines on a specific cloud provider. Conversely, machine config pools (MCPs) are part of the Machine Config Operator (MCO) namespace. An MCP is used to group machines together so the MCO can manage their configurations and facilitate their upgrades.
 
 Cluster control planes
-:   In a Kubernetes cluster, the *master* nodes run services that are required to control the Kubernetes cluster. In OpenShift Container Platform, the control plane consists of control plane machines that have a `master` machine role. They contain more than just the Kubernetes services for managing the OpenShift Container Platform cluster. For most OpenShift Container Platform clusters, control plane machines are defined by a series of standalone machine API resources. For supported cloud provider and OpenShift Container Platform version combinations, control planes can be managed with control plane machine sets.
+:   In a Kubernetes cluster, the *master* nodes run services that are required to control the Kubernetes cluster. In OpenShift Container Platform, the control plane consists of control plane machines that have a `master` machine role. They contain more than just the Kubernetes services for managing the OpenShift Container Platform cluster.
 
-```
-Extra controls apply to control plane machines to prevent you from deleting all of the control plane machines and making the cluster inoperable.
+    For most OpenShift Container Platform clusters, control plane machines are defined by a series of standalone machine API resources. For supported cloud provider and OpenShift Container Platform version combinations, control planes can be managed with control plane machine sets. Extra controls apply to control plane machines to prevent you from deleting all of the control plane machines and making the cluster inoperable.
 
-:::note
-Exactly three control plane nodes must be used for all production deployments. However, on bare metal platforms, clusters can be scaled up to five control plane nodes.
+    > [!NOTE]
+    > Exactly three control plane nodes must be used for all production deployments. However, on bare metal platforms, clusters can be scaled up to five control plane nodes.
 
-:::
+    Services that fall under the Kubernetes category on the control plane include the Kubernetes API server, etcd, the Kubernetes controller manager, and the Kubernetes scheduler.
 
-Services that fall under the Kubernetes category on the control plane include the Kubernetes API server, etcd, the Kubernetes controller manager, and the Kubernetes scheduler.
-**Kubernetes services that run on the control plane**
+    **Kubernetes services that run on the control plane**
 
-| Component | Description |
-| --- | --- |
-| Kubernetes API server | The Kubernetes API server validates and configures the data for pods, services, and replication controllers. It also provides a focal point for the shared state of the cluster. |
-| etcd | etcd stores the persistent control plane state while other components watch etcd for changes to bring themselves into the specified state. |
-| Kubernetes controller manager | The Kubernetes controller manager watches etcd for changes to objects such as replication, namespace, and service account controller objects, and then uses the API to enforce the specified state. Several such processes create a cluster with one active leader at a time. |
-| Kubernetes scheduler | The Kubernetes scheduler watches for newly created pods without an assigned node and selects the best node to host the pod. |
+    | Component | Description |
+    | --- | --- |
+    | Kubernetes API server | The Kubernetes API server validates and configures the data for pods, services, and replication controllers. It also provides a focal point for the shared state of the cluster. |
+    | etcd | etcd stores the persistent control plane state while other components watch etcd for changes to bring themselves into the specified state. |
+    | Kubernetes controller manager | The Kubernetes controller manager watches etcd for changes to objects such as replication, namespace, and service account controller objects, and then uses the API to enforce the specified state. Several such processes create a cluster with one active leader at a time. |
+    | Kubernetes scheduler | The Kubernetes scheduler watches for newly created pods without an assigned node and selects the best node to host the pod. |
+
 There are also OpenShift services that run on the control plane, which include the OpenShift API server, OpenShift controller manager, OpenShift OAuth API server, and OpenShift OAuth server.
-**OpenShift services that run on the control plane**
+
+.OpenShift services that run on the control plane
 
 | Component | Description |
 | --- | --- |
-| OpenShift API server | The OpenShift API server validates and configures the data for OpenShift resources, such as projects, routes, and templates. The OpenShift API server is managed by the OpenShift API Server Operator. |
-| OpenShift controller manager | The OpenShift controller manager watches etcd for changes to OpenShift objects, such as project, route, and template controller objects, and then uses the API to enforce the specified state. The OpenShift controller manager is managed by the OpenShift Controller Manager Operator. |
-| OpenShift OAuth API server | The OpenShift OAuth API server validates and configures the data to authenticate to OpenShift Container Platform, such as users, groups, and OAuth tokens. The OpenShift OAuth API server is managed by the Cluster Authentication Operator. |
-| OpenShift OAuth server | Users request tokens from the OpenShift OAuth server to authenticate themselves to the API. The OpenShift OAuth server is managed by the Cluster Authentication Operator. |
+| OpenShift API server | The OpenShift API server validates and configures the data for OpenShift resources, such as projects, routes, and templates.<br>The OpenShift API server is managed by the OpenShift API Server Operator. |
+| OpenShift controller manager | The OpenShift controller manager watches etcd for changes to OpenShift objects, such as project, route, and template controller objects, and then uses the API to enforce the specified state.<br>The OpenShift controller manager is managed by the OpenShift Controller Manager Operator. |
+| OpenShift OAuth API server | The OpenShift OAuth API server validates and configures the data to authenticate to OpenShift Container Platform, such as users, groups, and OAuth tokens.<br>The OpenShift OAuth API server is managed by the Cluster Authentication Operator. |
+| OpenShift OAuth server | Users request tokens from the OpenShift OAuth server to authenticate themselves to the API.<br>The OpenShift OAuth server is managed by the Cluster Authentication Operator. |
+
 Some of these services on the control plane machines run as systemd services, while others run as static pods.
+
 Systemd services are appropriate for services that must always start on that particular system shortly after it starts. For control plane machines, such as those include sshd, that allow remote login. It also includes services such as:
-* The CRI-O container engine (crio), which runs and manages the containers. OpenShift Container Platform 4.22 uses CRI-O instead of the Docker Container Engine.
-* Kubelet (kubelet), which accepts requests for managing containers on the machine from control plane services.
+
+- The CRI-O container engine (crio), which runs and manages the containers. OpenShift Container Platform 4.22 uses CRI-O instead of the Docker Container Engine.
+- Kubelet (kubelet), which accepts requests for managing containers on the machine from control plane services.
+
 CRI-O and Kubelet must run directly on the host as systemd services because they need to be running before you can run other containers.
-The `installer-**` and `revision-pruner-**` control plane pods must run with root permissions because they write to the `/etc/kubernetes` directory, which is owned by the root user. These pods are in the following namespaces:
-```
+
+The `installer-*` and `revision-pruner-*` control plane pods must run with root permissions because they write to the `/etc/kubernetes` directory, which is owned by the root user. These pods are in the following namespaces:
 
 - `openshift-etcd`
 - `openshift-kube-apiserver`
@@ -142,11 +145,10 @@ Optional add-on Operators
 
 In OpenShift Container Platform, all cluster functions are divided into a series of default *cluster Operators*. Cluster Operators manage a particular area of cluster functionality, such as cluster-wide application logging, management of the Kubernetes control plane, or the machine provisioning system.
 
-Cluster Operators are represented by a `ClusterOperator` object, which cluster administrators
-
-can view in the OpenShift Container Platform web console from the **Administration** -> **Cluster Settings** page. Each cluster Operator provides a simple API for determining cluster functionality. The Operator hides the details of managing the lifecycle of that component. Operators can manage a single component or tens of components, but the end goal is always to reduce operational burden by automating common actions.
+Cluster Operators are represented by a `ClusterOperator` object, which cluster administrators can view in the OpenShift Container Platform web console from the **Administration** → **Cluster Settings** page. Each cluster Operator provides a simple API for determining cluster functionality. The Operator hides the details of managing the lifecycle of that component. Operators can manage a single component or tens of components, but the end goal is always to reduce operational burden by automating common actions.
 
 **Additional resources**
+{._additional-resources}
 
 - [Cluster Operators reference](/openshift-docs-markdown/operators/operator-reference#operator-reference)
 
@@ -156,18 +158,15 @@ Operator Lifecycle Manager (OLM) and the software catalog are default components
 
 Together they provide the system for discovering, installing, and managing the optional add-on Operators available on the cluster.
 
-Using the software catalog in the OpenShift Container Platform web console, cluster administrators
+Using the software catalog in the OpenShift Container Platform web console, cluster administrators and authorized users can select Operators to install from catalogs of Operators. After installing an Operator from the software catalog, you can make the Operator available globally or in specific namespaces to run in user applications.
 
-and authorized users can select Operators to install from catalogs of Operators. After installing an Operator from the software catalog, you can make the Operator available globally or in specific namespaces to run in user applications.
-
-Default catalog sources are available that include Red Hat Operators, certified Operators, and community Operators. Cluster administrators
-
-can also add their own custom catalog sources, which can contain a custom set of Operators.
+Default catalog sources are available that include Red Hat Operators, certified Operators, and community Operators. Cluster administrators can also add their own custom catalog sources, which can contain a custom set of Operators.
 
 > [!NOTE]
 > OLM does not manage the cluster Operators that comprise the OpenShift Container Platform architecture.
 
 **Additional resources**
+{._additional-resources}
 
 - [Operator Lifecycle Manager (OLM) concepts and resources](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-understanding-olm)
 - [Understanding the software catalog](/openshift-docs-markdown/operators/understanding/olm-understanding-software-catalog#olm-understanding-software-catalog)
@@ -186,13 +185,18 @@ Benefits of using etcd
     - Distribute configuration data to provide redundancy and resiliency for the configuration of nodes
 
 How etcd works
-:   To ensure a reliable approach to cluster configuration and management, etcd uses the etcd Operator. The Operator simplifies the use of etcd on a Kubernetes container platform like OpenShift Container Platform. With the etcd Operator, you can create or delete etcd members, resize clusters, perform backups, and upgrade etcd. The etcd Operator observes, analyzes, and acts: . It observes the cluster state by using the Kubernetes API. . It analyzes differences between the current state and the state that you want. . It fixes the differences through the etcd cluster management APIs, the Kubernetes API, or both. etcd holds the cluster state, which is constantly updated. etcd continuously persists this state, which leads to a high number of small changes at high frequency. As a result, you must back the etcd cluster member with fast, low-latency I/O. For more information about best practices for etcd, see "Recommended etcd practices".
+:   To ensure a reliable approach to cluster configuration and management, etcd uses the etcd Operator. The Operator simplifies the use of etcd on a Kubernetes container platform like OpenShift Container Platform. With the etcd Operator, you can create or delete etcd members, resize clusters, perform backups, and upgrade etcd.
+
+    The etcd Operator observes, analyzes, and acts:
+
+    1. It observes the cluster state by using the Kubernetes API.
+    2. It analyzes differences between the current state and the state that you want.
+    3. It fixes the differences through the etcd cluster management APIs, the Kubernetes API, or both.
+
+    etcd holds the cluster state, which is constantly updated. etcd continuously persists this state, which leads to a high number of small changes at high frequency. As a result, you must back the etcd cluster member with fast, low-latency I/O. For more information about best practices for etcd, see "Recommended etcd practices".
 
 **Additional resources**
+{._additional-resources}
 
 - [Recommended etcd practices](/openshift-docs-markdown/etcd/etcd-practices#recommended-etcd-practices)
 - [Backing up etcd](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backing-up-etcd)
-
-[^1]: 1
-
-[^2]: 2

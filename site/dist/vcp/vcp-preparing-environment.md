@@ -224,7 +224,7 @@ Install KubeVirt Redfish on your OpenShift Virtualization cluster by applying a 
             runAsNonRoot: true
           containers:
             - name: kubevirt-redfish
-              image: registry.redhat.io/container-native-virtualization/kubevirt-redfish-rhel9:v{{ product_version }}
+              image: registry.redhat.io/container-native-virtualization/kubevirt-redfish-rhel9:v4.22
               imagePullPolicy: Always
               ports:
                 - name: http
@@ -493,7 +493,8 @@ If required, create further VMs for `master-1` and `master-2`, for example.
       https://<kubevirt_redfish_route>/redfish/v1/Systems
   ```
 
-## Additional resources {#additional-resources_vcp-preparing-environment}
+**Additional resources**
+{._additional-resources}
 
 - [Recommended resources for topologies](/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#agent-based-installer-recommended-resources_preparing-to-install-with-agent-based-installer)
 - [Connecting a virtual machine to a secondary localnet user-defined network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-secondary-udn#virt-connecting-vm-to-secondary-udn)

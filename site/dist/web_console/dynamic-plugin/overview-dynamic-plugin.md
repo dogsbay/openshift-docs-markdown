@@ -46,7 +46,7 @@ When creating your plugin, follow these guidelines for using PatternFly:
   - Use PatternFly 5.x if you are using OpenShift Container Platform versions 4.15 through 4.18.
   - Use PatternFly 6.x if you are using OpenShift Container Platform versions 4.19 and later.
 - Make your plugin accessible by following PatternFly’s accessibility fundamentals, linked in Additional resources.
-- Avoid using other CSS libraries such as Bootstrap or Tailwind. They might conflict with PatternFly and not match the rest of the console. Plugins should only include styles that are specific to their user interfaces to be evaluated on top of base PatternFly styles. Do not import styles directly from `@patternfly/react-styles/***/**.css` or `@patternfly/patternfly`. Instead, use components and CSS variables provided by the console SDK.
+- Avoid using other CSS libraries such as Bootstrap or Tailwind. They might conflict with PatternFly and not match the rest of the console. Plugins should only include styles that are specific to their user interfaces to be evaluated on top of base PatternFly styles. Do not import styles directly from `@patternfly/react-styles/**/*.css` or `@patternfly/patternfly`. Instead, use components and CSS variables provided by the console SDK.
 - The console application is responsible for loading base styles for all supported PatternFly versions.
 
 ### Translating messages with react-i18next {#dynamic-plugin-api_overview-dynamic-plugin}
@@ -73,7 +73,7 @@ The [plugin template](https://github.com/openshift/console-plugin-template) demo
    > You must match the `i18n` namespace with the name of the `ConsolePlugin` resource.
 2. Set the `spec.i18n.loadType` field based on needed behavior.
 
-   `plugin__console-demo-plugin` ***Example***
+   `plugin__console-demo-plugin` **Example**
 
    ```yaml
    spec:
@@ -115,6 +115,7 @@ The [plugin template](https://github.com/openshift/console-plugin-template) demo
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Node.js](https://nodejs.org/en/)
 - [yarn](https://yarnpkg.com/)

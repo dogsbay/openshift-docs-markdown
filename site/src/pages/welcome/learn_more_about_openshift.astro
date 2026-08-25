@@ -26,7 +26,8 @@ const headings = [{"depth":1,"slug":"learn_more_about_openshift","text":"Learn m
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/welcome/learn_more_about_openshift";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -84,12 +85,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -97,7 +99,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="learn_more_about_openshift" class="group scroll-mt-20">Learn more about OpenShift Container Platform<a href="#learn_more_about_openshift" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>To better use OpenShift Container Platform, you should first learn about and better understand how OpenShift Container Platform functions.</p>
+      <p class="_abstract">To better use OpenShift Container Platform, you should first learn about and better understand how OpenShift Container Platform functions.</p>
       <p>You can use the following sections to find content to help you learn about OpenShift Container Platform.</p>
       <dl class="my-4 space-y-2">
       <dt class="font-semibold">Learning and support</dt>

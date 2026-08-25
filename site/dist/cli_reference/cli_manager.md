@@ -1,8 +1,8 @@
 ---
-title: "{{ cli_manager }} overview"
+title: CLI Manager Operator overview
 ---
 
-# {{ cli_manager }} overview {#cli-manager-overview}
+# CLI Manager Operator overview {#cli-manager-overview}
 
 To install and update CLI plugins in both connected and disconnected environments, you can use the CLI Manager Operator.
 

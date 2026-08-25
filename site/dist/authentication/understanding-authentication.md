@@ -17,7 +17,7 @@ Several types of users can exist:
 | User type | Description |
 | --- | --- |
 | `Regular users` | This is the way most interactive OpenShift Container Platform users are represented. Regular users are created automatically in the system upon first login or can be created via the API. Regular users are represented with the `User` object. Examples: `joe` `alice` |
-| `System users` | Many of these are created automatically when the infrastructure  is defined, mainly for the purpose of enabling the infrastructure to  interact with the API securely. They include a cluster administrator  (with access to everything), a per-node user, users for use by routers  and registries, and various others. Finally, there is an `anonymous`  system user that is used by default for unauthenticated requests. Examples: `system:admin` `system:openshift-registry` `system:node:node1.example.com` |
+| `System users` | Many of these are created automatically when the infrastructure is defined, mainly for the purpose of enabling the infrastructure to interact with the API securely. They include a cluster administrator (with access to everything), a per-node user, users for use by routers and registries, and various others. Finally, there is an `anonymous` system user that is used by default for unauthenticated requests. Examples: `system:admin` `system:openshift-registry` `system:node:node1.example.com` |
 | `Service accounts` | These are special system users associated with projects; some are created automatically when the project is first created, while project administrators can create more for the purpose of defining access to the contents of each project. Service accounts are represented with the `ServiceAccount` object. Examples: `system:serviceaccount:default:deployer` `system:serviceaccount:foo:builder` |
 
 Each user must authenticate in some way to access OpenShift Container Platform. API requests with no authentication or invalid authentication are authenticated as requests by the `anonymous` system user. After authentication, policy determines what the user is authorized to do.
@@ -70,7 +70,7 @@ The following OAuth clients are automatically created when starting the OpenShif
 
 | OAuth client | Usage |
 | --- | --- |
-| `openshift-browser-client` | Requests tokens at `<namespace_route>/oauth/token/request` with a user-agent that can handle interactive logins. [^1]^ |
+| `openshift-browser-client` | Requests tokens at `<namespace_route>/oauth/token/request` with a user-agent that can handle interactive logins. <sup>\[1\]</sup> |
 | `openshift-challenging-client` | Requests tokens with a user-agent that can handle `WWW-Authenticate` challenges. |
 
 1. `<namespace_route>` refers to the namespace route. This is found by running the following command:
@@ -93,6 +93,7 @@ If an authenticating proxy is placed in front of the `<namespace_route>/oauth/au
 You can configure API requests in OpenShift Container Platform to act as another user. Impersonation allows you to perform actions on behalf of another account without switching credentials.
 
 **Additional resources**
+{._additional-resources}
 
 - [User impersonation (Kubernetes documentation)](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#user-impersonation)
 
@@ -107,5 +108,3 @@ OpenShift Container Platform captures the following Prometheus metrics that trac
 - `openshift_auth_form_password_count` counts the number of web console login attempts.
 - `openshift_auth_form_password_count_result` counts the number of web console login attempts by result, `success` or `error`.
 - `openshift_auth_password_total` counts the total number of `oc login` and web console login attempts.
-
-[^1]: 1

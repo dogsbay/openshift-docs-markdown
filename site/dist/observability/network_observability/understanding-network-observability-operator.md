@@ -108,6 +108,7 @@ Kafka deployment model (optional)
 :   If you use the Kafka option, the `eBPF agent` sends the network flow data to Kafka. You can scale the `flowlogs-pipeline` component by using the `spec.processor.consumerReplicas` field. The `flowlogs-pipeline` component reads from the Kafka topic before sending data to Loki, as shown in the following diagram. ![Network Observability using Kafka](/openshift-docs-markdown/_assets/images/network-observability-arch-kafka-FLP.png)
 
 **Additional resources**
+{._additional-resources}
 
 - [Network Observability without Loki](/openshift-docs-markdown/observability/network_observability/installing-operators#network-observability-without-loki_network_observability)
 

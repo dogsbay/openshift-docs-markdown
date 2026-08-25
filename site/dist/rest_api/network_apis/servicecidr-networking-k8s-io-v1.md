@@ -1,5 +1,5 @@
 ---
-title: ServiceCIDR []
+title: ServiceCIDR [networking.k8s.io/v1]
 ---
 
 # ServiceCIDR \[networking.k8s.io/v1\] {#servicecidr-networking-k8s-io-v1}
@@ -62,16 +62,16 @@ The following API endpoints are available:
 - `/apis/networking.k8s.io/v1/watch/servicecidrs`
 
   - `GET`: watch individual changes to a list of ServiceCIDR. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/networking.k8s.io/v1/servicecidrs/{{ name }}`
+- `/apis/networking.k8s.io/v1/servicecidrs/{name}`
 
   - `DELETE`: delete a ServiceCIDR
   - `GET`: read the specified ServiceCIDR
   - `PATCH`: partially update the specified ServiceCIDR
   - `PUT`: replace the specified ServiceCIDR
-- `/apis/networking.k8s.io/v1/watch/servicecidrs/{{ name }}`
+- `/apis/networking.k8s.io/v1/watch/servicecidrs/{name}`
 
   - `GET`: watch changes to an object of kind ServiceCIDR. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
-- `/apis/networking.k8s.io/v1/servicecidrs/{{ name }}/status`
+- `/apis/networking.k8s.io/v1/servicecidrs/{name}/status`
 
   - `GET`: read status of the specified ServiceCIDR
   - `PATCH`: partially update status of the specified ServiceCIDR
@@ -170,7 +170,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/networking.k8s.io/v1/servicecidrs/{{ name }} {#_apisnetworkingk8siov1servicecidrs_name}
+### /apis/networking.k8s.io/v1/servicecidrs/{name} {#_apisnetworkingk8siov1servicecidrs_name}
 
 **Global path parameters**
 
@@ -275,7 +275,7 @@ Description
 | 201 - Created | [`ServiceCIDR`](/openshift-docs-markdown/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/networking.k8s.io/v1/watch/servicecidrs/{{ name }} {#_apisnetworkingk8siov1watchservicecidrs_name}
+### /apis/networking.k8s.io/v1/watch/servicecidrs/{name} {#_apisnetworkingk8siov1watchservicecidrs_name}
 
 **Global path parameters**
 
@@ -300,7 +300,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/networking.k8s.io/v1/servicecidrs/{{ name }}/status {#_apisnetworkingk8siov1servicecidrs_name_status}
+### /apis/networking.k8s.io/v1/servicecidrs/{name}/status {#_apisnetworkingk8siov1servicecidrs_name_status}
 
 **Global path parameters**
 

@@ -30,6 +30,7 @@ To assign IAM roles that provide short-term, limited-privilege security credenti
 These credentials are associated with IAM roles that are specific to each component that makes AWS API calls.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring an AWS cluster to use short-term credentials](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-with-short-term-creds_installing-aws-customizations)
 
@@ -150,12 +151,12 @@ OpenShift Container Platform components require the following permissions:
 <tr>
   <td>Cluster CAPI Operator</td>
   <td><code>openshift-cluster-api-aws</code></td>
-  <td><strong>EC2</strong><br><br><ul><li><code>ec2:CreateTags</code></li><li><code>ec2:DescribeAvailabilityZones</code></li><li><code>ec2:DescribeDhcpOptions</code></li><li><code>ec2:DescribeImages</code></li><li><code>ec2:DescribeInstances</code></li><li><code>ec2:DescribeInternetGateways</code></li><li><code>ec2:DescribeSecurityGroups</code></li><li><code>ec2:DescribeSubnets</code></li><li><code>ec2:DescribeVpcs</code></li><li><code>ec2:DescribeNetworkInterfaces</code></li><li><code>ec2:DescribeNetworkInterfaceAttribute</code></li><li><code>ec2:ModifyNetworkInterfaceAttribute</code></li><li><code>ec2:RunInstances</code></li><li><code>ec2:TerminateInstances</code></li></ul><strong>Elastic load balancing</strong><br><br><ul><li><code>elasticloadbalancing:DescribeLoadBalancers</code></li><li><code>elasticloadbalancing:DescribeTargetGroups</code></li><li><code>elasticloadbalancing:DescribeTargetHealth</code></li><li><code>elasticloadbalancing:RegisterInstancesWithLoadBalancer</code></li><li><code>elasticloadbalancing:RegisterTargets</code></li><li><code>elasticloadbalancing:DeregisterTargets</code></li></ul><strong>Identity and Access Management (IAM)</strong><br><br><ul><li><code>iam:PassRole</code></li><li><code>iam:CreateServiceLinkedRole</code></li></ul><strong>Key Management Service (KMS)</strong><br><br><ul><li><code>kms:Decrypt</code></li><li><code>kms:Encrypt</code></li><li><code>kms:GenerateDataKey</code></li><li><code>kms:GenerateDataKeyWithoutPlainText</code></li><li><code>kms:DescribeKey</code></li><li><code>kms:RevokeGrant</code>^[1]^</li><li><code>kms:CreateGrant</code> ^[1]^</li><li><code>kms:ListGrants</code> ^[1]^</li></ul></td>
+  <td><strong>EC2</strong><br><br><ul><li><code>ec2:CreateTags</code></li><li><code>ec2:DescribeAvailabilityZones</code></li><li><code>ec2:DescribeDhcpOptions</code></li><li><code>ec2:DescribeImages</code></li><li><code>ec2:DescribeInstances</code></li><li><code>ec2:DescribeInternetGateways</code></li><li><code>ec2:DescribeSecurityGroups</code></li><li><code>ec2:DescribeSubnets</code></li><li><code>ec2:DescribeVpcs</code></li><li><code>ec2:DescribeNetworkInterfaces</code></li><li><code>ec2:DescribeNetworkInterfaceAttribute</code></li><li><code>ec2:ModifyNetworkInterfaceAttribute</code></li><li><code>ec2:RunInstances</code></li><li><code>ec2:TerminateInstances</code></li></ul><strong>Elastic load balancing</strong><br><br><ul><li><code>elasticloadbalancing:DescribeLoadBalancers</code></li><li><code>elasticloadbalancing:DescribeTargetGroups</code></li><li><code>elasticloadbalancing:DescribeTargetHealth</code></li><li><code>elasticloadbalancing:RegisterInstancesWithLoadBalancer</code></li><li><code>elasticloadbalancing:RegisterTargets</code></li><li><code>elasticloadbalancing:DeregisterTargets</code></li></ul><strong>Identity and Access Management (IAM)</strong><br><br><ul><li><code>iam:PassRole</code></li><li><code>iam:CreateServiceLinkedRole</code></li></ul><strong>Key Management Service (KMS)</strong><br><br><ul><li><code>kms:Decrypt</code></li><li><code>kms:Encrypt</code></li><li><code>kms:GenerateDataKey</code></li><li><code>kms:GenerateDataKeyWithoutPlainText</code></li><li><code>kms:DescribeKey</code></li><li><code>kms:RevokeGrant</code><sup>[1]</sup></li><li><code>kms:CreateGrant</code> <sup>[1]</sup></li><li><code>kms:ListGrants</code> <sup>[1]</sup></li></ul></td>
 </tr>
 <tr>
   <td>Machine API Operator</td>
   <td><code>openshift-machine-api-aws</code></td>
-  <td><strong>EC2</strong><br><br><ul><li><code>ec2:CreateTags</code></li><li><code>ec2:DescribeAvailabilityZones</code></li><li><code>ec2:DescribeDhcpOptions</code></li><li><code>ec2:DescribeImages</code></li><li><code>ec2:DescribeInstances</code></li><li><code>ec2:DescribeInstanceTypes</code></li><li><code>ec2:DescribeInternetGateways</code></li><li><code>ec2:DescribeSecurityGroups</code></li><li><code>ec2:DescribeRegions</code></li><li><code>ec2:DescribeSubnets</code></li><li><code>ec2:DescribeVpcs</code></li><li><code>ec2:RunInstances</code></li><li><code>ec2:TerminateInstances</code></li></ul><strong>Elastic load balancing</strong><br><br><ul><li><code>elasticloadbalancing:DescribeLoadBalancers</code></li><li><code>elasticloadbalancing:DescribeTargetGroups</code></li><li><code>elasticloadbalancing:DescribeTargetHealth</code></li><li><code>elasticloadbalancing:RegisterInstancesWithLoadBalancer</code></li><li><code>elasticloadbalancing:RegisterTargets</code></li><li><code>elasticloadbalancing:DeregisterTargets</code></li></ul><strong>Identity and Access Management (IAM)</strong><br><br><ul><li><code>iam:PassRole</code></li><li><code>iam:CreateServiceLinkedRole</code></li></ul><strong>Key Management Service (KMS)</strong><br><br><ul><li><code>kms:Decrypt</code></li><li><code>kms:Encrypt</code></li><li><code>kms:GenerateDataKey</code></li><li><code>kms:GenerateDataKeyWithoutPlainText</code></li><li><code>kms:DescribeKey</code></li><li><code>kms:RevokeGrant</code>^[1]^</li><li><code>kms:CreateGrant</code> ^[1]^</li><li><code>kms:ListGrants</code> ^[1]^</li></ul></td>
+  <td><strong>EC2</strong><br><br><ul><li><code>ec2:CreateTags</code></li><li><code>ec2:DescribeAvailabilityZones</code></li><li><code>ec2:DescribeDhcpOptions</code></li><li><code>ec2:DescribeImages</code></li><li><code>ec2:DescribeInstances</code></li><li><code>ec2:DescribeInstanceTypes</code></li><li><code>ec2:DescribeInternetGateways</code></li><li><code>ec2:DescribeSecurityGroups</code></li><li><code>ec2:DescribeRegions</code></li><li><code>ec2:DescribeSubnets</code></li><li><code>ec2:DescribeVpcs</code></li><li><code>ec2:RunInstances</code></li><li><code>ec2:TerminateInstances</code></li></ul><strong>Elastic load balancing</strong><br><br><ul><li><code>elasticloadbalancing:DescribeLoadBalancers</code></li><li><code>elasticloadbalancing:DescribeTargetGroups</code></li><li><code>elasticloadbalancing:DescribeTargetHealth</code></li><li><code>elasticloadbalancing:RegisterInstancesWithLoadBalancer</code></li><li><code>elasticloadbalancing:RegisterTargets</code></li><li><code>elasticloadbalancing:DeregisterTargets</code></li></ul><strong>Identity and Access Management (IAM)</strong><br><br><ul><li><code>iam:PassRole</code></li><li><code>iam:CreateServiceLinkedRole</code></li></ul><strong>Key Management Service (KMS)</strong><br><br><ul><li><code>kms:Decrypt</code></li><li><code>kms:Encrypt</code></li><li><code>kms:GenerateDataKey</code></li><li><code>kms:GenerateDataKeyWithoutPlainText</code></li><li><code>kms:DescribeKey</code></li><li><code>kms:RevokeGrant</code><sup>[1]</sup></li><li><code>kms:CreateGrant</code> <sup>[1]</sup></li><li><code>kms:ListGrants</code> <sup>[1]</sup></li></ul></td>
 </tr>
 <tr>
   <td>Cloud Credential Operator</td>
@@ -180,7 +181,7 @@ OpenShift Container Platform components require the following permissions:
 <tr>
   <td>AWS Elastic Block Store CSI Driver Operator</td>
   <td><code>aws-ebs-csi-driver-operator</code></td>
-  <td><strong>EC2</strong><br><br><ul><li><code>ec2:AttachVolume</code></li><li><code>ec2:CreateSnapshot</code></li><li><code>ec2:CreateTags</code></li><li><code>ec2:CreateVolume</code></li><li><code>ec2:DeleteSnapshot</code></li><li><code>ec2:DeleteTags</code></li><li><code>ec2:DeleteVolume</code></li><li><code>ec2:DescribeInstances</code></li><li><code>ec2:DescribeSnapshots</code></li><li><code>ec2:DescribeTags</code></li><li><code>ec2:DescribeVolumes</code></li><li><code>ec2:DescribeVolumesModifications</code></li><li><code>ec2:DetachVolume</code></li><li><code>ec2:ModifyVolume</code></li><li><code>ec2:DescribeAvailabilityZones</code></li><li><code>ec2:EnableFastSnapshotRestores</code></li></ul><strong>Key Management Service (KMS)</strong><br><br><ul><li><code>kms:ReEncrypt*</code></li><li><code>kms:Decrypt</code></li><li><code>kms:Encrypt</code></li><li><code>kms:GenerateDataKey</code></li><li><code>kms:GenerateDataKeyWithoutPlainText</code></li><li><code>kms:DescribeKey</code></li><li><code>kms:RevokeGrant</code>^[1]^</li><li><code>kms:CreateGrant</code> ^[1]^</li><li><code>kms:ListGrants</code> ^[1]^</li></ul></td>
+  <td><strong>EC2</strong><br><br><ul><li><code>ec2:AttachVolume</code></li><li><code>ec2:CreateSnapshot</code></li><li><code>ec2:CreateTags</code></li><li><code>ec2:CreateVolume</code></li><li><code>ec2:DeleteSnapshot</code></li><li><code>ec2:DeleteTags</code></li><li><code>ec2:DeleteVolume</code></li><li><code>ec2:DescribeInstances</code></li><li><code>ec2:DescribeSnapshots</code></li><li><code>ec2:DescribeTags</code></li><li><code>ec2:DescribeVolumes</code></li><li><code>ec2:DescribeVolumesModifications</code></li><li><code>ec2:DetachVolume</code></li><li><code>ec2:ModifyVolume</code></li><li><code>ec2:DescribeAvailabilityZones</code></li><li><code>ec2:EnableFastSnapshotRestores</code></li></ul><strong>Key Management Service (KMS)</strong><br><br><ul><li><code>kms:ReEncrypt*</code></li><li><code>kms:Decrypt</code></li><li><code>kms:Encrypt</code></li><li><code>kms:GenerateDataKey</code></li><li><code>kms:GenerateDataKeyWithoutPlainText</code></li><li><code>kms:DescribeKey</code></li><li><code>kms:RevokeGrant</code><sup>[1]</sup></li><li><code>kms:CreateGrant</code> <sup>[1]</sup></li><li><code>kms:ListGrants</code> <sup>[1]</sup></li></ul></td>
 </tr>
 </tbody>
 </table>
@@ -194,6 +195,7 @@ To allow certain Operators that are managed by the Operator Lifecycle Manager (O
 To determine if an Operator supports authentication with AWS STS, see the Operator description in the software catalog.
 
 **Additional resources**
+{._additional-resources}
 
 - [CCO-based workflow for OLM-managed Operators with AWS STS](/openshift-docs-markdown/operators/operator_sdk/token_auth/osdk-cco-aws-sts#osdk-cco-aws-sts)
 
@@ -202,6 +204,7 @@ To determine if an Operator supports authentication with AWS STS, see the Operat
 To allow components to use the Google Cloud Platform Workload Identity to impersonate Google Cloud service accounts using short-term, limited-privilege credentials, you can configure your cluster to use manual mode with GCP Workload Identity.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring a Google Cloud cluster to use short-term credentials](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#installing-gcp-with-short-term-creds_installing-gcp-customizations)
 
@@ -213,7 +216,7 @@ Requests for new and refreshed credentials are automated by using an appropriate
 
 The following diagram details the authentication flow between Google Cloud and the OpenShift Container Platform cluster when using Google Cloud Workload Identity.
 
-**Figure 1. Google Cloud Workload Identity authentication flow**
+**Figure 2. Google Cloud Workload Identity authentication flow**
 
 ![Detailed authentication flow between Google Cloud and the cluster when using Google Cloud Workload Identity](/openshift-docs-markdown/_assets/images/347_OpenShift_credentials_with_STS_updates_0623_GCP.png)
 
@@ -356,6 +359,7 @@ To allow certain Operators that are managed by the Operator Lifecycle Manager (O
 To determine if an Operator supports authentication with GCP Workload Identity, see the Operator description in the software catalog.
 
 **Additional resources**
+{._additional-resources}
 
 - [CCO-based workflow for OLM-managed Operators with Google Cloud Platform Workload Identity](/openshift-docs-markdown/operators/operator_sdk/token_auth/osdk-cco-gcp#osdk-cco-gcp)
 
@@ -366,6 +370,7 @@ You can use GCP Workload Identity authentication with applications in customer w
 To use this authentication method with your applications, you must complete configuration steps on the cloud provider console and your OpenShift Container Platform cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring GCP Workload Identity authentication for applications on Google Cloud](/openshift-docs-markdown/nodes/pods/nodes-pods-short-term-auth#nodes-pods-short-term-auth-configuring-gcp_nodes-pods-short-term-auth)
 
@@ -374,6 +379,7 @@ To use this authentication method with your applications, you must complete conf
 When you configure your cluster to use manual mode with Microsoft Entra Workload ID, the individual OpenShift Container Platform cluster components use the Workload ID provider to assign to components short-term security credentials.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring a global Microsoft Azure cluster to use short-term credentials](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-with-short-term-creds_installing-azure-customizations)
 
@@ -383,7 +389,7 @@ You should familiarize yourself with the Microsoft Entra Workload ID authenticat
 
 The following diagram details the authentication flow between Microsoft Azure and the OpenShift Container Platform cluster when using Workload ID.
 
-**Figure 1. Workload ID authentication flow**
+**Figure 3. Workload ID authentication flow**
 
 ![Detailed authentication flow between Azure and the cluster when using Workload ID](/openshift-docs-markdown/_assets/images/347_OpenShift_credentials_with_STS_updates_1023_Azure.png)
 
@@ -478,7 +484,7 @@ You should familiarize yourself with the permissions required by the OpenShift C
 <tr>
   <td>Cluster CAPI Operator</td>
   <td><code>openshift-cluster-api-azure</code></td>
-  <td>role: <code>Contributor</code> ^[1]^</td>
+  <td>role: <code>Contributor</code> <sup>[1]</sup></td>
 </tr>
 <tr>
   <td>Machine API Operator</td>
@@ -522,10 +528,12 @@ To allow certain Operators that are managed by the Operator Lifecycle Manager (O
 To determine if an Operator supports authentication with Workload ID, see the Operator description in the software catalog.
 
 **Additional resources**
+{._additional-resources}
 
 - [CCO-based workflow for OLM-managed Operators with Microsoft Entra Workload ID](/openshift-docs-markdown/operators/operator_sdk/token_auth/osdk-cco-azure#osdk-cco-azure)
 
-## Additional resources {#additional-resources_cco-short-term-creds}
+**Additional resources**
+{._additional-resources}
 
 - [Enabling token-based authentication](/openshift-docs-markdown/post_installation_configuration/changing-cloud-credentials-configuration#post-install-enable-token-auth_changing-cloud-credentials-configuration)
 - [Configuring an AWS cluster to use short-term credentials](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-with-short-term-creds_installing-aws-customizations)

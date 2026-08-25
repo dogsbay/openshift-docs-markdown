@@ -69,38 +69,34 @@ Custom operating system
     In OpenShift Container Platform 4.22, you must use RHCOS for all control plane machines, but you can use Red Hat Enterprise Linux (RHEL) as the operating system for compute machines, which are also known as worker machines. If you choose to use RHEL workers, you must perform more system maintenance than if you use RHCOS for all of the cluster machines.
 
 Simplified installation and update process
-
-```
-:   With OpenShift Container Platform 4.22, if you have an account with the right
-permissions, you can deploy a production cluster in supported clouds by running
-a single command and providing a few values. You can also customize your cloud
-installation or install your cluster in your data center if you use a supported
-platform.
-```
+:   With OpenShift Container Platform 4.22, if you have an account with the right permissions, you can deploy a production cluster in supported clouds by running a single command and providing a few values. You can also customize your cloud installation or install your cluster in your data center if you use a supported platform.
 
 For clusters that use RHCOS for all machines, updating, or upgrading, OpenShift Container Platform is a highly-automated process. Because OpenShift Container Platform completely controls the systems and services that run on each machine, including the operating system itself, from a central control plane, upgrades are designed to become automatic events. If your cluster contains RHEL worker machines, the control plane benefits from the streamlined update process, but you must perform more tasks to upgrade the RHEL machines.
 
 Other key features
-:   Operators are both the fundamental unit of the OpenShift Container Platform 4.22 code base and a convenient way to deploy applications and software components for your applications to use. In OpenShift Container Platform, Operators serve as the platform foundation and remove the need for manual upgrades of operating systems and control plane applications. OpenShift Container Platform Operators such as the Cluster Version Operator and Machine Config Operator allow simplified, cluster-wide management of those critical components. Operator Lifecycle Manager (OLM) and the software catalog provide facilities for storing and distributing Operators to people developing and deploying applications. The Red Hat Quay Container Registry is a Quay.io container registry that serves most of the container images and Operators to OpenShift Container Platform clusters. Quay.io is a public registry version of Red Hat Quay that stores millions of images and tags. Other enhancements to Kubernetes in OpenShift Container Platform include improvements in software defined networking (SDN), authentication, log aggregation, monitoring, and routing. OpenShift Container Platform also offers a comprehensive web console and the custom OpenShift CLI (`oc`) interface.
+:   Operators are both the fundamental unit of the OpenShift Container Platform 4.22 code base and a convenient way to deploy applications and software components for your applications to use. In OpenShift Container Platform, Operators serve as the platform foundation and remove the need for manual upgrades of operating systems and control plane applications. OpenShift Container Platform Operators such as the Cluster Version Operator and Machine Config Operator allow simplified, cluster-wide management of those critical components.
+
+    Operator Lifecycle Manager (OLM) and the software catalog provide facilities for storing and distributing Operators to people developing and deploying applications.
+
+    The Red Hat Quay Container Registry is a Quay.io container registry that serves most of the container images and Operators to OpenShift Container Platform clusters. Quay.io is a public registry version of Red Hat Quay that stores millions of images and tags.
+
+    Other enhancements to Kubernetes in OpenShift Container Platform include improvements in software defined networking (SDN), authentication, log aggregation, monitoring, and routing. OpenShift Container Platform also offers a comprehensive web console and the custom OpenShift CLI (`oc`) interface.
 
 OpenShift Container Platform lifecycle
 :   The following figure illustrates the basic OpenShift Container Platform lifecycle:
 
-```
-* Creating an OpenShift Container Platform cluster
-* Managing the cluster
-* Developing and deploying applications
-* Scaling up applications
-**Figure 1. High-level OpenShift Container Platform overview**
+    - Creating an OpenShift Container Platform cluster
+    - Managing the cluster
+    - Developing and deploying applications
+    - Scaling up applications
 
-![High-level OpenShift Container Platform flow](/_assets/images/ocp_arch_lifecycle.png)
-```
+    **Figure 1. High-level OpenShift Container Platform overview**
+
+    ![High-level OpenShift Container Platform flow](/openshift-docs-markdown/_assets/images/ocp_arch_lifecycle.png)
 
 ### Internet access for OpenShift Container Platform {#cluster-entitlements_architecture}
 
-In OpenShift Container Platform 4.22, you require access to the internet to install
-
-your cluster.
+In OpenShift Container Platform 4.22, you require access to the internet to install your cluster.
 
 You must have internet access to perform the following actions:
 

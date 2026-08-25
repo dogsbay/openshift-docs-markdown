@@ -21,15 +21,9 @@ You can define and create a OpenShift Container Platform compute machine set on 
 
 To enable the Machine API to automate node provisioning on VMware vSphere infrastructure, define a `MachineSet` resource with parameters that are specific to vSphere, for example data center, resource pool, and template.
 
-The sample YAML file defines a compute machine set that runs on vSphere and creates nodes that are labeled with
+The sample YAML file defines a compute machine set that runs on vSphere and creates nodes that are labeled with `node-role.kubernetes.io/<role>: ""`.
 
-`node-role.kubernetes.io/<role>: ""`.
-
-In this sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and
-
-`<role>`
-
-is the node label to add.
+In this sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and `<role>` is the node label to add.
 
 ```yaml
 apiVersion: machine.openshift.io/v1beta1
@@ -38,49 +32,27 @@ metadata:
   creationTimestamp: null
   labels:
     machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not infra %}
   name: <infrastructure_id>-<role>
-{% endif %}
-{% if infra %}
-  name: <infrastructure_id>-infra
-{%- endif %}
   namespace: openshift-machine-api
 spec:
   replicas: 1
   selector:
     matchLabels:
       machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not infra %}
       machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>
-{% endif %}
-{% if infra %}
-      machine.openshift.io/cluster-api-machineset: <infrastructure_id>-infra
-{%- endif %}
   template:
     metadata:
       creationTimestamp: null
       labels:
         machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not infra %}
         machine.openshift.io/cluster-api-machine-role: <role>
         machine.openshift.io/cluster-api-machine-type: <role>
         machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>
-{% endif %}
-{% if infra %}
-        machine.openshift.io/cluster-api-machine-role: infra
-        machine.openshift.io/cluster-api-machine-type: infra
-        machine.openshift.io/cluster-api-machineset: <infrastructure_id>-infra
-{%- endif %}
     spec:
       metadata:
         creationTimestamp: null
         labels:
-{%- if not infra %}
           node-role.kubernetes.io/<role>: ""
-{% endif %}
-{% if infra %}
-          node-role.kubernetes.io/infra: ""
-{%- endif %}
       providerSpec:
         value:
           apiVersion: machine.openshift.io/v1beta1
@@ -110,11 +82,6 @@ spec:
             folder: <vcenter_vm_folder_path>
             resourcepool: <vsphere_resource_pool>
             server: <vcenter_server_ip>
-{%- if infra %}
-      taints:
-      - key: node-role.kubernetes.io/infra
-        effect: NoSchedule
-{%- endif %}
 ```
 
 where
@@ -160,6 +127,7 @@ where
 :   Specifies the vCenter server IP or fully qualified domain name.
 
 **Additional resources**
+{._additional-resources}
 
 - [Manually updating the boot image](/openshift-docs-markdown/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)
 
@@ -169,7 +137,7 @@ To manage compute machine sets in an OpenShift Container Platform cluster on vCe
 
 If you cannot use an account with global administrative privileges, you must create roles to grant the minimum required privileges. The following table lists the minimum vCenter roles and privileges that are required to create, scale, and delete compute machine sets and to delete machines in your OpenShift Container Platform cluster.
 
-***Minimum vCenter roles and privileges required for compute machine set management***
+**Minimum vCenter roles and privileges required for compute machine set management**
 
 <table>
 <thead>
@@ -183,7 +151,7 @@ If you cannot use an account with global administrative privileges, you must cre
 <tr>
   <td>vSphere vCenter</td>
   <td>Always</td>
-  <td><code>InventoryService.Tagging.AttachTag</code><code>InventoryService.Tagging.CreateCategory</code><code>InventoryService.Tagging.CreateTag</code><code>InventoryService.Tagging.DeleteCategory</code><code>InventoryService.Tagging.DeleteTag</code><code>InventoryService.Tagging.EditCategory</code><code>InventoryService.Tagging.EditTag</code><code>Sessions.ValidateSession</code><code>StorageProfile.Update</code>^1^<code>StorageProfile.View</code>^1^</td>
+  <td><code>InventoryService.Tagging.AttachTag</code> <code>InventoryService.Tagging.CreateCategory</code> <code>InventoryService.Tagging.CreateTag</code> <code>InventoryService.Tagging.DeleteCategory</code> <code>InventoryService.Tagging.DeleteTag</code> <code>InventoryService.Tagging.EditCategory</code> <code>InventoryService.Tagging.EditTag</code> <code>Sessions.ValidateSession</code> <code>StorageProfile.Update</code>^1^ <code>StorageProfile.View</code>^1^</td>
 </tr>
 <tr>
   <td>vSphere vCenter Cluster</td>
@@ -193,7 +161,7 @@ If you cannot use an account with global administrative privileges, you must cre
 <tr>
   <td>vSphere datastore</td>
   <td>Always</td>
-  <td><code>Datastore.AllocateSpace</code><code>Datastore.Browse</code></td>
+  <td><code>Datastore.AllocateSpace</code> <code>Datastore.Browse</code></td>
 </tr>
 <tr>
   <td>vSphere Port Group</td>
@@ -203,22 +171,22 @@ If you cannot use an account with global administrative privileges, you must cre
 <tr>
   <td>Virtual Machine Folder</td>
   <td>Always</td>
-  <td><code>VirtualMachine.Config.AddRemoveDevice</code><code>VirtualMachine.Config.AdvancedConfig</code><code>VirtualMachine.Config.Annotation</code><code>VirtualMachine.Config.CPUCount</code><code>VirtualMachine.Config.DiskExtend</code><code>VirtualMachine.Config.Memory</code><code>VirtualMachine.Config.Settings</code><code>VirtualMachine.Interact.PowerOff</code><code>VirtualMachine.Interact.PowerOn</code><code>VirtualMachine.Inventory.CreateFromExisting</code><code>VirtualMachine.Inventory.Delete</code><code>VirtualMachine.Provisioning.Clone</code></td>
+  <td><code>VirtualMachine.Config.AddRemoveDevice</code> <code>VirtualMachine.Config.AdvancedConfig</code> <code>VirtualMachine.Config.Annotation</code> <code>VirtualMachine.Config.CPUCount</code> <code>VirtualMachine.Config.DiskExtend</code> <code>VirtualMachine.Config.Memory</code> <code>VirtualMachine.Config.Settings</code> <code>VirtualMachine.Interact.PowerOff</code> <code>VirtualMachine.Interact.PowerOn</code> <code>VirtualMachine.Inventory.CreateFromExisting</code> <code>VirtualMachine.Inventory.Delete</code> <code>VirtualMachine.Provisioning.Clone</code></td>
 </tr>
 <tr>
   <td>vSphere vCenter data center</td>
   <td>If the installation program creates the virtual machine folder.</td>
-  <td><code>Resource.AssignVMToPool</code><code>VirtualMachine.Provisioning.DeployTemplate</code><br><br>3+a</td>
+  <td><code>Resource.AssignVMToPool</code> <code>VirtualMachine.Provisioning.DeployTemplate</code></td>
 </tr>
 <tr>
-  <td> ^1^ The <code>StorageProfile.Update</code> and <code>StorageProfile.View</code> permissions are required only for storage backends that use the Container Storage Interface (CSI).</td>
+  <td colspan="3">^1^ The <code>StorageProfile.Update</code> and <code>StorageProfile.View</code> permissions are required only for storage backends that use the Container Storage Interface (CSI).</td>
 </tr>
 </tbody>
 </table>
 
 The following table details the permissions and propagation settings that are required for compute machine set management.
 
-***Required permissions and propagation settings***
+**Required permissions and propagation settings**
 
 <table>
 <thead>
@@ -234,10 +202,10 @@ The following table details the permissions and propagation settings that are re
   <td>vSphere vCenter</td>
   <td>Always</td>
   <td>Not required</td>
-  <td>Listed required privileges<br><br>.2+</td>
+  <td>Listed required privileges</td>
 </tr>
 <tr>
-  <td>vSphere vCenter data center</td>
+  <td rowspan="2">vSphere vCenter data center</td>
   <td>Existing folder</td>
   <td>Not required</td>
   <td><code>ReadOnly</code> permission</td>
@@ -246,33 +214,33 @@ The following table details the permissions and propagation settings that are re
   <td>Installation program creates the folder</td>
   <td>Required</td>
   <td>Listed required privileges</td>
-  <td>vSphere vCenter Cluster</td>
 </tr>
 <tr>
+  <td>vSphere vCenter Cluster</td>
   <td>Always</td>
   <td>Required</td>
   <td>Listed required privileges</td>
-  <td>vSphere vCenter datastore</td>
 </tr>
 <tr>
+  <td>vSphere vCenter datastore</td>
   <td>Always</td>
   <td>Not required</td>
   <td>Listed required privileges</td>
-  <td>vSphere Switch</td>
 </tr>
 <tr>
+  <td>vSphere Switch</td>
   <td>Always</td>
   <td>Not required</td>
   <td><code>ReadOnly</code> permission</td>
-  <td>vSphere Port Group</td>
 </tr>
 <tr>
+  <td>vSphere Port Group</td>
   <td>Always</td>
   <td>Not required</td>
   <td>Listed required privileges</td>
-  <td>vSphere vCenter Virtual Machine Folder</td>
 </tr>
 <tr>
+  <td>vSphere vCenter Virtual Machine Folder</td>
   <td>Existing folder</td>
   <td>Required</td>
   <td>Listed required privileges</td>
@@ -368,6 +336,7 @@ By default, this configuration is stored in the `worker-user-data` secret in the
    Specifies the directory that was used to store your installation assets during cluster installation.
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding the Machine Config Operator](/openshift-docs-markdown/machine_configuration/index#machine-config-operator_machine-config-overview)
 - [Installing RHCOS and starting the OpenShift Container Platform bootstrap process](/openshift-docs-markdown/installing/installing_vsphere/upi/installing-vsphere#installation-vsphere-machines_installing-vsphere)
@@ -458,7 +427,8 @@ To dynamically manage machine compute resources, you can create your own compute
       > For clusters that have user-provisioned infrastructure, a compute machine set can only create `worker` and `infra` type machines.
 
       `spec.template.metadata.spec.providerSpec`
-      :   Specifies the values of the compute machine set CR. The values are platform-specific. For more information about `<providerSpec>` parameters in the CR, see the sample compute machine set CR configuration for your provider. 1.  If you are creating a compute machine set for a cluster that has user-provisioned infrastructure, note the following important values:
+      :   Specifies the values of the compute machine set CR. The values are platform-specific. For more information about `<providerSpec>` parameters in the CR, see the sample compute machine set CR configuration for your provider.
+   3. If you are creating a compute machine set for a cluster that has user-provisioned infrastructure, note the following important values:
 
       ```yaml {title="Example vSphere providerSpec values"}
       apiVersion: machine.openshift.io/v1beta1
@@ -498,20 +468,20 @@ To dynamically manage machine compute resources, you can create your own compute
 
       where:
 
-   `vsphere-cloud-credentials`
-   :   Specifies the name of the secret in the `openshift-machine-api` namespace that contains the required vCenter credentials.
+      `vsphere-cloud-credentials`
+      :   Specifies the name of the secret in the `openshift-machine-api` namespace that contains the required vCenter credentials.
 
-   `<disk_name>`
-   :   Specifies the collection of data disk definitions. For more information, see "Configuring data disks by using machine sets".
+      `<disk_name>`
+      :   Specifies the collection of data disk definitions. For more information, see "Configuring data disks by using machine sets".
 
-   `<vm_template_name>`
-   :   Specifies the name of the RHCOS VM template for your cluster that was created during installation.
+      `<vm_template_name>`
+      :   Specifies the name of the RHCOS VM template for your cluster that was created during installation.
 
-   `worker-user-data`
-   :   Specifies the name of the secret in the `openshift-machine-api` namespace that contains the required Ignition configuration credentials.
+      `worker-user-data`
+      :   Specifies the name of the secret in the `openshift-machine-api` namespace that contains the required Ignition configuration credentials.
 
-   `<vcenter_server_address>`
-   :   Specifies the IP address or fully qualified domain name (FQDN) of the vCenter server.
+      `<vcenter_server_address>`
+      :   Specifies the IP address or fully qualified domain name (FQDN) of the vCenter server.
 3. Create a `MachineSet` CR by running the following command:
 
    ```terminal
@@ -530,13 +500,17 @@ To dynamically manage machine compute resources, you can create your own compute
 
   ```terminal
 
+  NAME                                DESIRED   CURRENT   READY   AVAILABLE   AGE
+  agl030519-vplxk-infra-us-east-1a    1         1         1       1           11m
+  agl030519-vplxk-worker-us-east-1a   1         1         1       1           55m
+  agl030519-vplxk-worker-us-east-1b   1         1         1       1           55m
+  agl030519-vplxk-worker-us-east-1c   1         1         1       1           55m
+  agl030519-vplxk-worker-us-east-1d   0         0                             55m
+  agl030519-vplxk-worker-us-east-1e   0         0                             55m
+  agl030519-vplxk-worker-us-east-1f   0         0                             55m
   ```
 
-{%- if win or post_aws_zones %} NAME                                       DESIRED   CURRENT   READY   AVAILABLE   AGE {%- if win %} agl030519-vplxk-windows-worker-us-east-1a  1         1         1       1           11m {% endif %} {% if post_aws_zones %} agl030519-vplxk-edge-us-east-1-nyc-1a      1         1         1       1           11m {%- endif %} agl030519-vplxk-worker-us-east-1a          1         1         1       1           55m agl030519-vplxk-worker-us-east-1b          1         1         1       1           55m agl030519-vplxk-worker-us-east-1c          1         1         1       1           55m agl030519-vplxk-worker-us-east-1d          0         0                             55m agl030519-vplxk-worker-us-east-1e          0         0                             55m agl030519-vplxk-worker-us-east-1f          0         0                             55m {% endif %} {% if not (win or post_aws_zones) %} NAME                                DESIRED   CURRENT   READY   AVAILABLE   AGE agl030519-vplxk-infra-us-east-1a    1         1         1       1           11m agl030519-vplxk-worker-us-east-1a   1         1         1       1           55m agl030519-vplxk-worker-us-east-1b   1         1         1       1           55m agl030519-vplxk-worker-us-east-1c   1         1         1       1           55m agl030519-vplxk-worker-us-east-1d   0         0                             55m agl030519-vplxk-worker-us-east-1e   0         0                             55m agl030519-vplxk-worker-us-east-1f   0         0                             55m {%- endif %} \`\`\`
-
-```
-When the new compute machine set is available, the `DESIRED` and `CURRENT` values match. If the compute machine set is not available, wait a few minutes and run the command again.
-```
+  When the new compute machine set is available, the `DESIRED` and `CURRENT` values match. If the compute machine set is not available, wait a few minutes and run the command again.
 
 ## Labeling GPU machine sets for the cluster autoscaler {#machineset-label-gpu-autoscaler_creating-machineset-vsphere}
 
@@ -572,6 +546,7 @@ Label your machine sets to indicate which machines the cluster autoscaler can us
       > You must specify the value of this label for the `spec.resourceLimits.gpus.type` parameter in your `ClusterAutoscaler` CR. For more information, see "Cluster autoscaler resource definition".
 
 **Additional resources**
+{._additional-resources}
 
 - [Cluster autoscaler resource definition](/openshift-docs-markdown/machine_management/applying-autoscaling#cluster-autoscaler-cr_applying-autoscaling)
 

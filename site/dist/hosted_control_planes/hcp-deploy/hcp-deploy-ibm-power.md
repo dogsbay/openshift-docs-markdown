@@ -1,5 +1,5 @@
 ---
-title: Deploying {{ hcp }} on {{ ibm_power_title }}
+title: Deploying hosted control planes on IBM Power
 ---
 
 # Deploying hosted control planes on IBM Power {#hcp-deploy-ibm-power}
@@ -34,6 +34,7 @@ Ensure you meet the prerequisites to configure hosted control planes on IBM Powe
 The hosted control planes feature is enabled by default. If you disabled the feature and want to manually enable the feature, see "Manually enabling the hosted control planes feature". If you need to disable the feature, see "Disabling the hosted control planes feature".
 
 **Additional resources**
+{._additional-resources}
 
 - [Advanced configuration](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#advanced-config-engine)
 - [Enabling the central infrastructure management service](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#enable-cim)
@@ -463,6 +464,7 @@ After you enable the Assisted Installer as an add-on to multicluster engine Oper
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Requirements for hosted control planes](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-requirements#hcp-requirements)
 - [DNS configurations on bare metal](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-bm#hcp-bm-dns_hcp-deploy-bm)
@@ -733,6 +735,7 @@ An agent-based approach manages and provisions an agent cluster. An agent cluste
    :   Specifies the current OpenShift Container Platform release version.
 
 **Additional resources**
+{._additional-resources}
 
 - [Multi-arch release images](https://multi.ocp.releases.ci.openshift.org/)
 

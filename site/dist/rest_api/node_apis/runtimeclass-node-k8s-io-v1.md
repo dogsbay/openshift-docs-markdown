@@ -1,5 +1,5 @@
 ---
-title: RuntimeClass []
+title: RuntimeClass [node.k8s.io/v1]
 ---
 
 # RuntimeClass \[node.k8s.io/v1\] {#runtimeclass-node-k8s-io-v1}
@@ -20,7 +20,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `handler` | `string` | handler specifies the underlying runtime and configuration that the CRI implementation will use to handle pods of this class. The possible values are specific to the node & CRI configuration.  It is assumed that all handlers are available on every node, and handlers of the same name are equivalent on every node. For example, a handler called "runc" might specify that the runc OCI runtime (using native Linux containers) will be used to run the containers in a pod. The Handler must be lowercase, conform to the DNS Label (RFC 1123) requirements, and is immutable. |
+| `handler` | `string` | handler specifies the underlying runtime and configuration that the CRI implementation will use to handle pods of this class. The possible values are specific to the node & CRI configuration. It is assumed that all handlers are available on every node, and handlers of the same name are equivalent on every node. For example, a handler called "runc" might specify that the runc OCI runtime (using native Linux containers) will be used to run the containers in a pod. The Handler must be lowercase, conform to the DNS Label (RFC 1123) requirements, and is immutable. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `overhead` | `object` | Overhead structure represents the resource overhead associated with running a pod. |
@@ -67,13 +67,13 @@ The following API endpoints are available:
 - `/apis/node.k8s.io/v1/watch/runtimeclasses`
 
   - `GET`: watch individual changes to a list of RuntimeClass. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/node.k8s.io/v1/runtimeclasses/{{ name }}`
+- `/apis/node.k8s.io/v1/runtimeclasses/{name}`
 
   - `DELETE`: delete a RuntimeClass
   - `GET`: read the specified RuntimeClass
   - `PATCH`: partially update the specified RuntimeClass
   - `PUT`: replace the specified RuntimeClass
-- `/apis/node.k8s.io/v1/watch/runtimeclasses/{{ name }}`
+- `/apis/node.k8s.io/v1/watch/runtimeclasses/{name}`
 
   - `GET`: watch changes to an object of kind RuntimeClass. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
 
@@ -170,7 +170,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/node.k8s.io/v1/runtimeclasses/{{ name }} {#_apisnodek8siov1runtimeclasses_name}
+### /apis/node.k8s.io/v1/runtimeclasses/{name} {#_apisnodek8siov1runtimeclasses_name}
 
 **Global path parameters**
 
@@ -275,7 +275,7 @@ Description
 | 201 - Created | [`RuntimeClass`](/openshift-docs-markdown/rest_api/node_apis/runtimeclass-node-k8s-io-v1#runtimeclass-node-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/node.k8s.io/v1/watch/runtimeclasses/{{ name }} {#_apisnodek8siov1watchruntimeclasses_name}
+### /apis/node.k8s.io/v1/watch/runtimeclasses/{name} {#_apisnodek8siov1watchruntimeclasses_name}
 
 **Global path parameters**
 

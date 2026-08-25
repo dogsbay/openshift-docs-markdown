@@ -17,11 +17,12 @@ import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"creating-project-other-user","text":"Creating a project as another user"},{"depth":2,"slug":"authentication-api-impersonation_creating-project-other-user","text":"API impersonation"},{"depth":2,"slug":"impersonation-project-creation_creating-project-other-user","text":"Impersonating a user when you create a project"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"creating-project-other-user","text":"Creating a project as another user"},{"depth":2,"slug":"authentication-api-impersonation_creating-project-other-user","text":"API impersonation"},{"depth":2,"slug":"impersonation-project-creation_creating-project-other-user","text":"Impersonating a user when you create a project"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/applications/projects/creating-project-other-user";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -40,7 +41,7 @@ const pageCategory = ["applications","applications/projects"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating a project as another user {#creating-project-other-user}\n\nYou can use impersonation to create a project on behalf of a different user account.\n\n## API impersonation {#authentication-api-impersonation_creating-project-other-user}\n\nYou can configure API requests in OpenShift Container Platform to act as another user. Impersonation allows you to perform actions on behalf of another account without switching credentials.\n\n## Impersonating a user when you create a project {#impersonation-project-creation_creating-project-other-user}\n\nYou can impersonate a different user when you create a project request. Because `system:authenticated:oauth` is the only bootstrap group that can create project requests, you must impersonate that group.\n\n**Procedure**\n\n- To create a project request on behalf of a different user:\n\n  ```terminal\n  $ oc new-project <project> --as=<user> \\\n      --as-group=system:authenticated --as-group=system:authenticated:oauth\n  ```\n\n## Additional resources {#_additional_resources}\n\n- [User impersonation (Kubernetes documentation)](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#user-impersonation)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/applications/projects/creating-project-other-user.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating a project as another user {#creating-project-other-user}\n\nYou can use impersonation to create a project on behalf of a different user account.\n\n## API impersonation {#authentication-api-impersonation_creating-project-other-user}\n\nYou can configure API requests in OpenShift Container Platform to act as another user. Impersonation allows you to perform actions on behalf of another account without switching credentials.\n\n## Impersonating a user when you create a project {#impersonation-project-creation_creating-project-other-user}\n\nYou can impersonate a different user when you create a project request. Because `system:authenticated:oauth` is the only bootstrap group that can create project requests, you must impersonate that group.\n\n**Procedure**\n\n- To create a project request on behalf of a different user:\n\n  ```terminal\n  $ oc new-project <project> --as=<user> \\\n      --as-group=system:authenticated --as-group=system:authenticated:oauth\n  ```\n\n**Additional resources**\n{._additional-resources}\n\n- [User impersonation (Kubernetes documentation)](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#user-impersonation)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/applications/projects/creating-project-other-user.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="creating-project-other-user" class="group scroll-mt-20">Creating a project as another user<a href="#creating-project-other-user" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can use impersonation to create a project on behalf of a different user account.</p>
+      <p class="_abstract">You can use impersonation to create a project on behalf of a different user account.</p>
       <h2 id="authentication-api-impersonation_creating-project-other-user" class="group scroll-mt-20">API impersonation<a href="#authentication-api-impersonation_creating-project-other-user" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p>You can configure API requests in OpenShift Container Platform to act as another user. Impersonation allows you to perform actions on behalf of another account without switching credentials.</p>
       <h2 id="impersonation-project-creation_creating-project-other-user" class="group scroll-mt-20">Impersonating a user when you create a project<a href="#impersonation-project-creation_creating-project-other-user" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
@@ -104,8 +106,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <CodeBlock code={"$ oc new-project <project> --as=<user> \\\n    --as-group=system:authenticated --as-group=system:authenticated:oauth"} lang="terminal" />
       </li>
       </ul>
-      <h2 id="_additional_resources" class="group scroll-mt-20">Additional resources<a href="#_additional_resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul><li><a href="https://kubernetes.io/docs/reference/access-authn-authz/authentication/#user-impersonation">User impersonation (Kubernetes documentation)</a></li></ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

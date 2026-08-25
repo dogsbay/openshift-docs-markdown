@@ -57,7 +57,8 @@ Review guidance for planning, optimizing, and measuring the performance and scal
 
 [Using the Node Observability Operator](/openshift-docs-markdown/scalability_and_performance/node-observability-operator#using-node-observability-operator)
 
-## Additional resources {#additional-resources_index}
+**Additional resources**
+{._additional-resources}
 
 - [Getting support](/openshift-docs-markdown/support/getting-support#getting-support)
 - [OpenShift Operators](https://access.redhat.com/support/policy/updates/openshift_operators)

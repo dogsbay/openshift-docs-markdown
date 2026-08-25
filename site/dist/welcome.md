@@ -6,9 +6,7 @@ title: OpenShift Container Platform 4.22 Documentation
 
 true
 
-Welcome to the official OpenShift Container Platform 4.22
-
-documentation, where you can learn about OpenShift Container Platform and start exploring its features.
+Welcome to the official OpenShift Container Platform 4.22 documentation, where you can learn about OpenShift Container Platform and start exploring its features.
 
 To navigate the OpenShift Container Platform 4.22 documentation, you can use one of the following methods:
 
@@ -16,7 +14,8 @@ To navigate the OpenShift Container Platform 4.22 documentation, you can use one
 - Select the task that interests you from "Learn more about OpenShift Container Platform".
 - OpenShift Container Platform has a variety of layered offerings to add additional functionality and extend the capabilities of a cluster. For more information, see "OpenShift Container Platform Operator Life Cycles".
 
-## Additional resources {#additional-resources_welcome-index}
+**Additional resources**
+{._additional-resources}
 
 - [Learn more about OpenShift Container Platform](/openshift-docs-markdown/welcome/learn_more_about_openshift#learn_more_about_openshift)
 - [OpenShift Container Platform Operator Life Cycles](https://access.redhat.com/support/policy/updates/openshift_operators)

@@ -173,6 +173,7 @@ The following are some example scenarios that produce an out-of-date status:
   3. Delete `LocalVolume` or `LocalVolumeSet` objects. For more information, see "Deleting the Local Storage Operator resources".
 
 **Additional resources**
+{._additional-resources}
 
 - [Recovering a degraded etcd Operator](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-troubleshooting#cpmso-ts-etcd-degraded_cpmso-troubleshooting)
 - [Deleting the Local Storage Operator resources](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-local#local-storage-deleting-resources-overview_persistent-storage-local)

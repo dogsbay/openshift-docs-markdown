@@ -28,13 +28,13 @@ The status of the control plane machine set after installation depends on your c
 **Control plane machine set implementation for OpenShift Container Platform 4.22**
 
 | Cloud provider | Active by default | Generated CR | Manual CR required |
-| --- | --- | --- | --- |
-| Amazon Web Services (AWS) | X [^1]^ | X |  |
-| Google Cloud | X [^2]^ | X |  |
-| Microsoft Azure | X [^3]^ | X |  |
-| Nutanix | X [^4]^ | X |  |
-| Red Hat OpenStack Platform (RHOSP) | X [^5]^ | X |  |
-| VMware vSphere | X [^6]^ | X |  |
+| :--- | :---: | :---: | :---: |
+| Amazon Web Services (AWS) | X <sup>\[1\]</sup> | X |  |
+| Google Cloud | X <sup>\[2\]</sup> | X |  |
+| Microsoft Azure | X <sup>\[2\]</sup> | X |  |
+| Nutanix | X <sup>\[3\]</sup> | X |  |
+| Red Hat OpenStack Platform (RHOSP) | X <sup>\[3\]</sup> | X |  |
+| VMware vSphere | X <sup>\[4\]</sup> | X |  |
 
 1. AWS clusters that are upgraded from version 4.11 or earlier require [CR activation](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-activating_cpmso-getting-started).
 2. Google Cloud and Azure clusters that are upgraded from version 4.12 or earlier require [CR activation](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-activating_cpmso-getting-started).
@@ -86,6 +86,7 @@ To use the control plane machine set, you must ensure that a `ControlPlaneMachin
    > To activate the CR, you must change the `.spec.state` field to `Active` in the same `oc edit` session that you use to update the CR configuration. If the CR is saved with the state left as `Inactive`, the control plane machine set generator resets the CR to its original settings.
 
 **Additional resources**
+{._additional-resources}
 
 - [Control plane machine set configuration](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-configuration#cpmso-configuration)
 
@@ -171,19 +172,8 @@ To use the control plane machine set, you must ensure that a `ControlPlaneMachin
    where `<control_plane_machine_set>` specifies the name of the YAML file that contains the CR configuration.
 
 **Additional resources**
+{._additional-resources}
 
 - [Updating the control plane configuration](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-feat-config-update_cpmso-managing-machines)
 - [Control plane machine set configuration](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-configuration#cpmso-configuration)
 - [Provider-specific configuration options](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-configuration#cpmso-config-provider-specific_cpmso-configuration)
-
-[^1]: 1
-
-[^2]: 2
-
-[^3]: 2
-
-[^4]: 3
-
-[^5]: 3
-
-[^6]: 4

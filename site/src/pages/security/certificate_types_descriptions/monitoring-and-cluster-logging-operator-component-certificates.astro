@@ -20,7 +20,8 @@ const headings = [{"depth":1,"slug":"cert-types-monitoring-and-cluster-logging-o
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/certificate_types_descriptions/monitoring-and-cluster-logging-operator-component-certificates";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -78,12 +79,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -91,7 +93,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="cert-types-monitoring-and-cluster-logging-operator-component-certificates" class="group scroll-mt-20">Monitoring and OpenShift Logging Operator component certificates<a href="#cert-types-monitoring-and-cluster-logging-operator-component-certificates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Review service certificate authority (CA) certificates for monitoring and Red Hat OpenShift Logging Operator components in OpenShift Container Platform, including validity, automatic rotation, and system-managed namespaces.</p>
+      <p class="_abstract">Review service certificate authority (CA) certificates for monitoring and Red Hat OpenShift Logging Operator components in OpenShift Container Platform, including validity, automatic rotation, and system-managed namespaces.</p>
       <h2 id="monitor-logging-component-certificates-expiration_cert-types-monitoring-and-cluster-logging-operator-component-certificates" class="group scroll-mt-20">Expiration<a href="#monitor-logging-component-certificates-expiration_cert-types-monitoring-and-cluster-logging-operator-component-certificates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p>Monitoring components secure their traffic with service CA certificates. These certificates are valid for 2 years and are replaced automatically on rotation of the service CA, which is every 13 months.</p>
       <p>If the certificate is present in the <code>openshift-monitoring</code> or <code>openshift-logging</code> namespace, it is system managed and rotated automatically.</p>

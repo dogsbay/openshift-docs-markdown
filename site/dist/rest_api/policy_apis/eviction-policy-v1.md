@@ -25,11 +25,11 @@ Type
 
 The following API endpoints are available:
 
-- `/api/v1/namespaces/{{ namespace }}/pods/{{ name }}/eviction`
+- `/api/v1/namespaces/{namespace}/pods/{name}/eviction`
 
   - `POST`: create eviction of a Pod
 
-### /api/v1/namespaces/{{ namespace }}/pods/{{ name }}/eviction {#_apiv1namespaces_namespace_pods_name_eviction}
+### /api/v1/namespaces/{namespace}/pods/{name}/eviction {#_apiv1namespaces_namespace_pods_name_eviction}
 
 **Global path parameters**
 

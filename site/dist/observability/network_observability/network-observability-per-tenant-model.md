@@ -2,7 +2,7 @@
 title: Network observability per-tenant model
 ---
 
-# Network observability per-tenant model {#network-observability-per-tenant-model_{{ context }}}
+# Network observability per-tenant model {#network-observability-per-tenant-model_{context}}
 
 Use the `FlowCollectorSlice` resource to delegate network traffic analysis management to project administrators while maintaining global cluster governance.
 
@@ -186,7 +186,7 @@ Project administrators can manage flow collection and data enrichment within the
 
 **Verification**
 
-1. In the OpenShift Container Platform console, navigate to **Observe** -> **Network Traffic**.
+1. In the OpenShift Container Platform console, navigate to **Observe** → **Network Traffic**.
 2. Ensure flows to `192.168.50.0/24` subnet are observed with the `EXT:Database` label.
 
 ## FlowCollectorSlice \[flows.netobserv.io/v1alpha1\] {#flowcollectorslice-flows-netobserv-io-v1alpha1_network-observability-per-tenant-configuration}
@@ -229,7 +229,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `sampling` | `integer` | `sampling` is an optional sampling interval to apply to this slice. For example, a value of `50` means that 1 matching flow in 50 is sampled. |
-| `subnetLabels` | `array` | `subnetLabels` allows you to customize subnets and IPs labeling, such as to identify cluster external workloads or web services. External subnets must be labeled with the prefix `EXT:`, or not labeled at all, in order to work with default quick filters and some metrics examples provided.<br> Beware that the subnet labels configured in FlowCollectorSlice are not limited to the flows of the related namespace: any flow in the whole cluster can be labeled using this configuration. However, subnet labels defined in the cluster-scoped FlowCollector take precedence in case of conflicting rules. |
+| `subnetLabels` | `array` | `subnetLabels` allows you to customize subnets and IPs labeling, such as to identify cluster external workloads or web services. External subnets must be labeled with the prefix `EXT:`, or not labeled at all, in order to work with default quick filters and some metrics examples provided.<br><br>Beware that the subnet labels configured in FlowCollectorSlice are not limited to the flows of the related namespace: any flow in the whole cluster can be labeled using this configuration. However, subnet labels defined in the cluster-scoped FlowCollector take precedence in case of conflicting rules. |
 
 ### .spec.subnetLabels {#_specsubnetlabels}
 
@@ -262,6 +262,7 @@ Required
 | `cidrs` | `array (string)` | List of CIDRs, such as `["1.2.3.4/32"]`. |
 | `name` | `string` | Label name, used to flag matching flows. External subnets must be labeled with the prefix `EXT:`, or not labeled at all, in order to work with default quick filters and some metrics examples provided. + |
 
-## Additional resources {#additional-resources-per-tenand-configuration_network-observability-per-tenant-configuration}
+**Additional resources**
+{._additional-resources}
 
 - [FlowCollector API reference](/openshift-docs-markdown/observability/network_observability/flowcollector-api#network-observability-flowcollector-api-specifications_network_observability)

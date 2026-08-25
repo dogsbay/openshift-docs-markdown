@@ -228,7 +228,8 @@ Description=Example service
 ExecStart=/usr/bin/kubensenter /path/to/original/command arg1 arg2
 ```
 
-## Additional resources {#optimizing-cpu-usage-additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [What are namespaces](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/setting-limits-for-applications_monitoring-and-managing-system-status-and-performance#what-namespaces-are_setting-limits-for-applications)
 - [Manage containers in namespaces by using nsenter](https://www.redhat.com/sysadmin/container-namespaces-nsenter)

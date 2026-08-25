@@ -19,17 +19,18 @@ import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"odo-important_update_{{ context }}","text":"Important update on"}];
+const headings = [{"depth":1,"slug":"odo-important_update_{context}","text":"Important update on"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/cli_reference/odo-important-update";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
-const title = "Important update on";
-const description = "Red Hat does not provide information about {{ odo_title }} on the OpenShift Container Platform documentation site. See the documentation maintained by Red…" || undefined;
+const title = "Important update on {odo_title}";
+const description = "Red Hat does not provide information about odo on the OpenShift Container Platform documentation site. See the documentation maintained by Red Hat and the…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -42,7 +43,7 @@ const pageCategory = ["cli_reference"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Important update on `{{ odo_title }}` {#odo-important_update_{{ context }}}\n\nRed Hat does not provide information about `{{ odo_title }}` on the OpenShift Container Platform documentation site. See the [documentation](https://odo.dev/docs/introduction) maintained by Red Hat and the upstream community for documentation information related to `{{ odo_title }}`.\n\n> [!IMPORTANT]\n> For the materials maintained by the upstream community, Red Hat provides support under [Cooperative Community Support](https://access.redhat.com/solutions/5893251).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cli_reference/odo-important-update.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Important update on `{{ odo_title }}` {#odo-important_update_{context}}\n\nRed Hat does not provide information about `odo` on the OpenShift Container Platform documentation site. See the [documentation](https://odo.dev/docs/introduction) maintained by Red Hat and the upstream community for documentation information related to `odo`.\n\n> [!IMPORTANT]\n> For the materials maintained by the upstream community, Red Hat provides support under [Cooperative Community Support](https://access.redhat.com/solutions/5893251).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cli_reference/odo-important-update.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -81,20 +82,21 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <h1 id="odo-important_update_{{ context }}" class="group scroll-mt-20">Important update on <code>{"{"}{"{"} odo_title {"}"}{"}"}</code><a href="#odo-important_update_{{ context }}" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Red Hat does not provide information about <code>{"{"}{"{"} odo_title {"}"}{"}"}</code> on the OpenShift Container Platform documentation site. See the <a href="https://odo.dev/docs/introduction">documentation</a> maintained by Red Hat and the upstream community for documentation information related to <code>{"{"}{"{"} odo_title {"}"}{"}"}</code>.</p>
+      <h1 id="odo-important_update_{context}" class="group scroll-mt-20">Important update on <code>{"{"}{"{"} odo_title {"}"}{"}"}</code><a href="#odo-important_update_{context}" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>Red Hat does not provide information about <code>odo</code> on the OpenShift Container Platform documentation site. See the <a href="https://odo.dev/docs/introduction">documentation</a> maintained by Red Hat and the upstream community for documentation information related to <code>odo</code>.</p>
       <Alert variant="info" class="my-4">
         <AlertTitle>Important</AlertTitle>
         <AlertDescription>

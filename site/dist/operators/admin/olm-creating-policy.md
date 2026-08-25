@@ -7,6 +7,7 @@ title: Allowing non-cluster administrators to install Operators
 Cluster administrators can use *Operator groups* to allow regular users to install Operators.
 
 **Additional resources**
+{._additional-resources}
 
 - [Operator groups](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-operatorgroups#olm-understanding-operatorgroups)
 
@@ -248,6 +249,7 @@ On clusters where non-cluster administrator users have been delegated Operator i
 2. Enable custom, curated catalogs in the same namespace where the relevant Operator groups have been preinstalled.
 
 **Additional resources**
+{._additional-resources}
 
 - [Disabling the default OperatorHub catalog sources](/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-restricted-networks-operatorhub_olm-managing-custom-catalogs)
 - [Adding a catalog source to a cluster](/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-creating-catalog-from-index_olm-managing-custom-catalogs)

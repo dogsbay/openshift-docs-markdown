@@ -25,11 +25,11 @@ Install the Run Once Duration Override Operator by using the web console to crea
 1. Log in to the OpenShift Container Platform web console.
 2. Create the required namespace for the Run Once Duration Override Operator.
 
-   1. Navigate to **Administration** -> **Namespaces** and click **Create Namespace**.
+   1. Navigate to **Administration** → **Namespaces** and click **Create Namespace**.
    2. Enter `openshift-run-once-duration-override-operator` in the **Name** field and click **Create**.
 3. Install the Run Once Duration Override Operator.
 
-   1. Navigate to **Ecosystem** -> **Software Catalog**.
+   1. Navigate to **Ecosystem** → **Software Catalog**.
    2. Enter **Run Once Duration Override Operator** into the filter box.
    3. Select the **Run Once Duration Override Operator** and click **Install**.
    4. On the **Install Operator** page:
@@ -44,7 +44,7 @@ Install the Run Once Duration Override Operator by using the web console to crea
       5. Click **Install**.
 4. Create a `RunOnceDurationOverride` instance.
 
-   1. From the **Ecosystem** -> **Installed Operators** page, click **Run Once Duration Override Operator**.
+   1. From the **Ecosystem** → **Installed Operators** page, click **Run Once Duration Override Operator**.
    2. Select the **Run Once Duration Override** tab and click **Create RunOnceDurationOverride**.
    3. Edit the settings as necessary.
 

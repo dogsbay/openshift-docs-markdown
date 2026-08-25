@@ -21,7 +21,8 @@ const headings = [{"depth":1,"slug":"disabling-bgp-routing","text":"Disabling BG
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/advanced_networking/bgp_routing/disabling-bgp-routing";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="disabling-bgp-routing" class="group scroll-mt-20">Disabling BGP routing<a href="#disabling-bgp-routing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>To stop external route advertisement and restore standard cluster networking behavior, disable OVN-Kubernetes Border Gateway Protocol (BGP) routing.</p>
+      <p class="_abstract">To stop external route advertisement and restore standard cluster networking behavior, disable OVN-Kubernetes Border Gateway Protocol (BGP) routing.</p>
       <p>As a cluster administrator, you can disable OVN-Kubernetes BGP routing support for your cluster.</p>
       <h2 id="nw-bgp-routing-config_disable-bgp-routing" class="group scroll-mt-20">Disabling Border Gateway Protocol (BGP) routing<a href="#nw-bgp-routing-config_disable-bgp-routing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">Disable Border Gateway Protocol (BGP) routing for your cluster by removing additional routing capabilities from the network configuration.</p>

@@ -28,6 +28,7 @@ Because modifying machine configs can be difficult, you can use Butane configs t
 Butane is a command-line utility that OpenShift Container Platform uses to provide convenient, short-hand syntax for writing machine configs, and for performing additional validation of machine configs. The format of the Butane config file that Butane accepts is defined in the Butane config specification.
 
 **Additional resources**
+{._additional-resources}
 
 - [Butane config specification](https://coreos.github.io/butane/specs/)
 
@@ -88,7 +89,7 @@ You can use Butane to produce a `MachineConfig` object so that you can configure
 
    ```yaml
    variant: openshift
-   version: {{ product_version }}.0
+   version: 4.22.0
    metadata:
      name: 99-worker-custom
      labels:
@@ -129,7 +130,8 @@ You can use Butane to produce a `MachineConfig` object so that you can configure
      $ oc create -f 99-worker-custom.yaml
      ```
 
-## Additional resources {#additional-resources_installing-customizing}
+**Additional resources**
+{._additional-resources}
 
 - [The addition of kernel modules to nodes](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-kmod_installing-customizing)
 - [Encrypting and mirroring disks during installation](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-storage_installing-customizing)
@@ -176,6 +178,7 @@ For a listing of arguments you can pass to a RHEL 8 kernel at boot time, see "Ke
    You can change `master` to `worker` to add kernel arguments to compute nodes instead. Create a separate YAML file to add to both control plane and compute nodes.
 
 **Additional resources**
+{._additional-resources}
 
 - [Kernel.org kernel parameters](https://www.kernel.org/doc/Documentation/admin-guide/kernel-parameters.txt)
 
@@ -446,7 +449,7 @@ Package kernel module software with a `MachineConfig` object to deliver that sof
 
    ```yaml
    variant: openshift
-   version: {{ product_version }}.0
+   version: 4.22.0
    metadata:
      name: 99-simple-kmod
      labels:
@@ -488,6 +491,7 @@ Package kernel module software with a `MachineConfig` object to deliver that sof
     > You can log in to a node running the `oc debug node/<openshift-node>`command and then the `chroot /host` command.
 
 **Additional resources**
+{._additional-resources}
 
 - [kmods-via-containers (GitHub)](https://github.com/kmods-via-containers/kmods-via-containers)
 
@@ -538,7 +542,7 @@ The threshold is met when the stated value is reached through any combination of
 
   ```yaml {title="Example Butane configuration for disk encryption"}
   variant: openshift
-  version: {{ product_version }}.0
+  version: 4.22.0
   metadata:
     name: worker-storage
     labels:
@@ -669,7 +673,7 @@ You can enable and configure encryption and mirroring before an OpenShift Contai
 
    ```yaml {title="Butane config example for a boot device"}
    variant: openshift
-   version: {{ product_version }}.0
+   version: 4.22.0
    metadata:
      name: worker-storage
      labels:
@@ -919,7 +923,8 @@ After installing OpenShift Container Platform, you can verify if boot disk encry
       In the example output, the `/boot` file system is mounted on the `/dev/md126` software RAID device and the root file system is mounted on `/dev/md127`.
 4. Repeat the verification steps for each OpenShift Container Platform node type.
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Network-bound disk encryption](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/security_hardening/configuring-automated-unlocking-of-encrypted-volumes-using-policy-based-decryption_security-hardening#network-bound-disk-encryption_configuring-automated-unlocking-of-encrypted-volumes-using-policy-based-decryption)
 - [Installing the system in FIPS mode](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/security_hardening/index#proc_installing-the-system-with-fips-mode-enabled_switching-rhel-to-fips-mode)
@@ -932,7 +937,7 @@ You can enable software Redundant Array of Independent Disks (RAID) partitioning
 OpenShift Container Platform supports RAID 0, RAID 1, RAID 4, RAID 5, RAID 6, and RAID 10 for data protection and fault tolerance. See "About disk mirroring" for more details.
 
 > [!NOTE]
-> OpenShift Container Platform 4.22 supports manually configuring a hybrid RAID on an installation drive. For a manually configured example, see "Configuring an Intel(R) Virtual RAID on CPU (VROC) data volume".
+> OpenShift Container Platform 4.22 supports manually configuring a hybrid RAID on an installation drive. For a manually configured example, see "Configuring an Intel® Virtual RAID on CPU (VROC) data volume".
 
 **Prerequisites**
 
@@ -950,7 +955,7 @@ OpenShift Container Platform supports RAID 0, RAID 1, RAID 4, RAID 5, RAID 6, an
 
      ```yaml {title="Example configuration for RAID 1 on a mirrored boot disk "}
      variant: openshift
-     version: {{ product_version }}.0
+     version: 4.22.0
      metadata:
        name: raid1-storage
        labels:
@@ -992,7 +997,7 @@ OpenShift Container Platform supports RAID 0, RAID 1, RAID 4, RAID 5, RAID 6, an
 
      ```yaml {title="Example configuration for RAID 1 on secondary disks"}
      variant: openshift
-     version: {{ product_version }}.0
+     version: 4.22.0
      metadata:
        name: raid1-alt-storage
        labels:
@@ -1031,19 +1036,19 @@ OpenShift Container Platform supports RAID 0, RAID 1, RAID 4, RAID 5, RAID 6, an
 3. Save the Butane config in case you need to update the manifest in the future.
 4. Continue with the remainder of the OpenShift Container Platform installation.
 
-## Configuring an Intel(R) Virtual RAID on CPU (VROC) data volume {#installation-special-config-raid-intel-vroc_installing-customizing}
+## Configuring an Intel® Virtual RAID on CPU (VROC) data volume {#installation-special-config-raid-intel-vroc_installing-customizing}
 
-Intel(R) VROC is a type of hybrid RAID, where some of the maintenance is offloaded to the hardware, but shows as software RAID to the operating system. You can configure an Intel(R) Virtual RAID on CPU (VROC) data volume to deliver direct-to-CPU NVMe throughput for data-intensive workloads.
+Intel® VROC is a type of hybrid RAID, where some of the maintenance is offloaded to the hardware, but shows as software RAID to the operating system. You can configure an Intel® Virtual RAID on CPU (VROC) data volume to deliver direct-to-CPU NVMe throughput for data-intensive workloads.
 
-The following procedure configures an Intel(R) VROC-enabled RAID1.
+The following procedure configures an Intel® VROC-enabled RAID1.
 
 **Prerequisites**
 
-- You have a system with Intel(R) Volume Management Device (VMD) enabled.
+- You have a system with Intel® Volume Management Device (VMD) enabled.
 
 **Procedure**
 
-1. Create the Intel(R) Matrix Storage Manager (IMSM) RAID container by running the following command:
+1. Create the Intel® Matrix Storage Manager (IMSM) RAID container by running the following command:
 
    ```terminal
    $ mdadm -CR /dev/md/imsm0 -e \
@@ -1096,11 +1101,7 @@ The following procedure configures an Intel(R) VROC-enabled RAID1.
 
 ## Configuring chrony time service {#installation-special-config-chrony_installing-customizing}
 
-You
-
-can
-
-set the time server and related settings used by the chrony time service (`chronyd`) by modifying the contents of the `chrony.conf` file and passing those contents to your nodes as a machine config.
+You can set the time server and related settings used by the chrony time service (`chronyd`) by modifying the contents of the `chrony.conf` file and passing those contents to your nodes as a machine config.
 
 For more information on chrony best practices, see the following resources:
 
@@ -1113,53 +1114,44 @@ For more information on chrony best practices, see the following resources:
 1. Create a Butane config including the contents of the `chrony.conf` file. For example, to configure chrony on worker nodes, create a `99-worker-chrony.bu` file.
 
    > [!NOTE]
-   >
+   > The [Butane version](https://coreos.github.io/butane/specs/) you specify in the config file should match the OpenShift Container Platform version and always ends in `0`. For example, `4.22.0`. See "Creating machine configs with Butane" for information about Butane.
 
-The [Butane version](https://coreos.github.io/butane/specs/) you specify in the config file should match the OpenShift Container Platform version and always ends in `0`. For example, `{{ product_version }}.0`. See "Creating machine configs with Butane" for information about Butane.
+   ```yaml
+   variant: openshift
+   version: 4.22.0
+   metadata:
+     name: 99-worker-chrony
+     labels:
+       machineconfiguration.openshift.io/role: worker
+   storage:
+     files:
+     - path: /etc/chrony.conf
+       mode: 0644
+       overwrite: true
+       contents:
+         inline: |
+           pool 0.rhel.pool.ntp.org iburst
+           driftfile /var/lib/chrony/drift
+           makestep 1.0 3
+           rtcsync
+           logdir /var/log/chrony
+   ```
 
-````
-:::
+   - `name: 99-worker-chrony` - Specify a name for the machine config file. On control plane nodes, substitute `master` for `worker`.
+   - `machineconfiguration.openshift.io/role: worker` - On control plane nodes, substitute `master` for `worker`.
+   - `mode: 0644` - Specify an octal value mode for the `mode` field in the machine config file. After creating the file and applying the changes, the `mode` is converted to a decimal value. You can check the YAML file with the command `oc get mc <mc-name> -o yaml`.
+   - `pool 0.rhel.pool.ntp.org iburst` - Specify any valid, reachable time source, such as the one provided by your DHCP server.
 
-```yaml
-variant: openshift
-version: {{ product_version }}.0
-metadata:
-  name: 99-worker-chrony
-  labels:
-    machineconfiguration.openshift.io/role: worker
-storage:
-  files:
-  - path: /etc/chrony.conf
-    mode: 0644
-    overwrite: true
-    contents:
-      inline: |
-        pool 0.rhel.pool.ntp.org iburst
-        driftfile /var/lib/chrony/drift
-        makestep 1.0 3
-        rtcsync
-        logdir /var/log/chrony
-```
-*   `name: 99-worker-chrony` - Specify a name for the machine config file. On control plane nodes, substitute `master` for `worker`.
-*   `machineconfiguration.openshift.io/role: worker` - On control plane nodes, substitute `master` for `worker`.
-*   `mode: 0644` - Specify an octal value mode for the `mode` field in the machine config file. After creating the file and applying the changes, the `mode` is converted to a decimal value. You can check the YAML file with the command `oc get mc <mc-name> -o yaml`.
-*   `pool 0.rhel.pool.ntp.org iburst` - Specify any valid, reachable time source, such as the one provided by your DHCP server.
+   > [!NOTE]
+   > For all-machine to all-machine communication, the Network Time Protocol (NTP) on UDP is port `123`. If an external NTP time server is configured, you must open UDP port `123`.
 
-:::note
-
-For all-machine to all-machine communication, the Network Time Protocol (NTP) on UDP is port `123`. If an external NTP time server is configured, you must open UDP port `123`.
-
-:::
-
-Alternatively, you can specify any of the following NTP servers: `1.rhel.pool.ntp.org`, `2.rhel.pool.ntp.org`, or `3.rhel.pool.ntp.org`. When you use NTP with your DHCP server, you must set the `sourcedir /run/chrony-dhcp` parameter in the `chrony.conf` file.
-````
-
-1. Use Butane to generate a `MachineConfig` object file, `99-worker-chrony.yaml`, containing the configuration to be delivered to the nodes:
+   Alternatively, you can specify any of the following NTP servers: `1.rhel.pool.ntp.org`, `2.rhel.pool.ntp.org`, or `3.rhel.pool.ntp.org`. When you use NTP with your DHCP server, you must set the `sourcedir /run/chrony-dhcp` parameter in the `chrony.conf` file.
+2. Use Butane to generate a `MachineConfig` object file, `99-worker-chrony.yaml`, containing the configuration to be delivered to the nodes:
 
    ```terminal
    $ butane 99-worker-chrony.bu -o 99-worker-chrony.yaml
    ```
-2. Apply the configurations in one of two ways:
+3. Apply the configurations in one of two ways:
 
    - If the cluster is not running yet, after you generate manifest files, add the `MachineConfig` object file to the `<installation_directory>/openshift` directory, and then continue to create the cluster.
    - If the cluster is already running, apply the file:
@@ -1169,6 +1161,7 @@ Alternatively, you can specify any of the following NTP servers: `1.rhel.pool.nt
      ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Creating machine configs with Butane](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-butane_installing-customizing)
 - [Support for FIPS cryptography](/openshift-docs-markdown/installing/overview/installing-fips#installing-fips)

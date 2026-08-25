@@ -174,7 +174,8 @@ For a user-provisioned infrastructure installation, you must manually destroy th
    ```
 3. Follow the procedure for installing a new OpenShift Container Platform cluster.
 
-## Additional resources {#additional-resources_installing-troubleshooting}
+**Additional resources**
+{._additional-resources}
 
 - [Determining where installation issues occur](/openshift-docs-markdown/support/troubleshooting/troubleshooting-installations#determining-where-installation-issues-occur_troubleshooting-installations)
 - [Configuring your firewall](/openshift-docs-markdown/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)

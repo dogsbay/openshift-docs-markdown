@@ -166,6 +166,7 @@ The following example outlines a simple pod which has two init containers. The f
 
       The pod status, `Running`, indicates that it is no longer waiting for the services and is running.
 
-## Additional resources {#additional-resources_nodes-containers-init}
+**Additional resources**
+{._additional-resources}
 
 - [Init Containers (Kubernetes documentation)](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)

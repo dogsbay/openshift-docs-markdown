@@ -19,6 +19,7 @@ When an etcd client such as `kube-apiserver` connects to an etcd member that is 
 When the etcd client requests an action that requires a quorum from the leader, the leader keeps the client connection open while it writes the local Raft log, broadcasts the log to the followers, and waits for the majority of the followers to acknowledge to have committed the log without failures. Only then does the leader send the acknowledgment to the etcd client and close the session. If failure notifications are received from the followers and the majority fails to reach a consensus, the leader returns the error message to the client and closes the session.
 
 **Additional resources**
+{._additional-resources}
 
 - [The etcd learner design](https://etcd.io/docs/v3.5/learning/design-learner/)
 - [Failure modes](https://etcd.io/docs/v3.5/op-guide/failures/)
@@ -50,6 +51,7 @@ The following table shows failure tolerance for clusters of different sizes:
 For more information about recovering from quorum loss, see "Restoring to an earlier cluster state".
 
 **Additional resources**
+{._additional-resources}
 
 - [Adding hosts](https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2026/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api#adding-hosts_installing-with-api)
 - [Replacing a control plane node in a healthy cluster](https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2026/html/installing_openshift_container_platform_with_the_assisted_installer/expanding-the-cluster#installing-control-plane-node-healthy-cluster_expanding-the-cluster)
@@ -618,7 +620,9 @@ By selecting one of the other values, you are overriding the default. If you see
    $ oc patch etcd/cluster --type=merge -p '{"spec": {"controlPlaneHardwareSpeed": "<value>"}}'
    ```
 
-   The following table indicates the heartbeat interval and leader election timeout for each profile. These values are subject to change. **Heartbeat interval and leader election timeout by hardware speed profile**
+   The following table indicates the heartbeat interval and leader election timeout for each profile. These values are subject to change.
+
+   **Heartbeat interval and leader election timeout by hardware speed profile**
 
    |  |  |  |
    | --- | --- | --- |
@@ -685,6 +689,7 @@ By selecting one of the other values, you are overriding the default. If you see
    > These values might not have changed from the default.
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding feature gates](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features-about_nodes-cluster-enabling-features)
 
@@ -1065,6 +1070,7 @@ It is important to measure the network jitter among all control plane nodes. To 
    Effective Network Latency = RTT + max(jitter)
 
 **Additional resources**
+{._additional-resources}
 
 - [Setting tuning parameters for etcd](/openshift-docs-markdown/etcd/etcd-performance#etcd-tuning-parameters_etcd-performance)
 
@@ -1074,7 +1080,7 @@ The etcd peer round-trip time (RTT) metric shows replication latency across memb
 
 The etcd peer RTT is an end-to-end test metric on how quickly something can be replicated among members. It shows the latency of etcd to finish replicating a client request among all the etcd members. The etcd peer RTT is not the same thing as the network RTT.
 
-You can monitor various etcd metrics on dashboards in the OpenShift Container Platform console. In the console, click **Observe** -> **Dashboards** and from the dropdown list, select **etcd**.
+You can monitor various etcd metrics on dashboards in the OpenShift Container Platform console. In the console, click **Observe** → **Dashboards** and from the dropdown list, select **etcd**.
 
 Near the end of the **etcd** dashboard, you can find a plot that summarizes the etcd peer RTT.
 
@@ -1120,6 +1126,7 @@ The following metrics are also relevant to understanding etcd performance:
 :   Reports the leader changes.
 
 **Additional resources**
+{._additional-resources}
 
 - [How to query from the command line Prometheus statistics (Red Hat Knowledgebase)](https://access.redhat.com/solutions/5151831)
 
@@ -1144,11 +1151,12 @@ To test the control plane, `kube-burner-ocp` has three workload profiles: `clust
    ```terminal
    # kube-burner ocp cluster-density-ms --churn-duration 20m --churn-delay 0s --iterations 10 --timeout 30m
    ```
-2. The OpenShift Container Platform console provides a dashboard with all the relevant API performance information. To access API performance information, click **Observe** -> **Dashboards**. From the **Dashboards** menu, click **API Performance**.
-3. During the run, observe the API performance dashboard in the OpenShift Container Platform console by clicking **Observe** -> **Dashboards**. From the **Dashboards** menu, click **API Performance**.
+2. The OpenShift Container Platform console provides a dashboard with all the relevant API performance information. To access API performance information, click **Observe** → **Dashboards**. From the **Dashboards** menu, click **API Performance**.
+3. During the run, observe the API performance dashboard in the OpenShift Container Platform console by clicking **Observe** → **Dashboards**. From the **Dashboards** menu, click **API Performance**.
 
    On the dashboard, notice how the control plane responds during load and the 99th percentile transaction rate it can achieve for the execution of various verbs and request rates by read and write. Use this information and the knowledge of your organization’s workload to determine the load that the organization can put in the clusters for the specific stretched control plane deployment.
 
 **Additional resources**
+{._additional-resources}
 
 - [kube-burner-ocp documentation](https://kube-burner.github.io/kube-burner-ocp/latest/)

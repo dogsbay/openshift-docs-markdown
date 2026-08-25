@@ -1,5 +1,5 @@
 ---
-title: MultiNetworkPolicy []
+title: MultiNetworkPolicy [k8s.cni.cncf.io/v1beta1]
 ---
 
 # MultiNetworkPolicy \[k8s.cni.cncf.io/v1beta1\] {#multinetworkpolicy-k8s-cni-cncf-io-v1beta1}
@@ -40,7 +40,7 @@ Required
 | `egress[]` | `object` | NetworkPolicyEgressRule describes a particular set of traffic that is allowed out of pods matched by a NetworkPolicySpec’s podSelector. The traffic must match both ports and to. This type is beta-level in 1.8 |
 | `ingress` | `array` | List of ingress rules to be applied to the selected pods. Traffic is allowed to a pod if there are no NetworkPolicies selecting the pod (and cluster policy otherwise allows the traffic), OR if the traffic source is the pod’s local node, OR if the traffic matches at least one ingress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy does not allow any traffic (and serves solely to ensure that the pods it selects are isolated by default) |
 | `ingress[]` | `object` | NetworkPolicyIngressRule describes a particular set of traffic that is allowed to the pods matched by a NetworkPolicySpec’s podSelector. The traffic must match both ports and from. |
-| `podSelector` | `object` | This is a label selector which selects Pods. This field follows standard label selector semantics; if present but empty, it selects all pods.  If NamespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the Pods matching PodSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the Pods matching PodSelector in the policy’s own Namespace. |
+| `podSelector` | `object` | This is a label selector which selects Pods. This field follows standard label selector semantics; if present but empty, it selects all pods. If NamespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the Pods matching PodSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the Pods matching PodSelector in the policy’s own Namespace. |
 | `policyTypes` | `array (string)` | List of rule types that the NetworkPolicy relates to. Valid options are 'Ingress', 'Egress', or 'Ingress,Egress'. If this field is not specified, it will default based on the existence of Ingress or Egress rules; policies that contain an Egress section are assumed to affect Egress, and all policies (whether or not they contain an Ingress section) are assumed to affect Ingress. If you want to write an egress-only policy, you must explicitly specify policyTypes \[ 'Egress' \]. Likewise, if you want to write a policy that specifies that no egress is allowed, you must specify a policyTypes value that include 'Egress' (since such a policy would not include an Egress section and would otherwise default to just \[ 'Ingress' \]). This field is beta-level in 1.8 |
 
 ### .spec.egress {#_specegress}
@@ -119,8 +119,8 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `ipBlock` | `object` | IPBlock defines policy on a particular IPBlock. If this field is set then neither of the other fields can be. |
-| `namespaceSelector` | `object` | Selects Namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces.  If PodSelector is also set, then the NetworkPolicyPeer as a whole selects the Pods matching PodSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects all Pods in the Namespaces selected by NamespaceSelector. |
-| `podSelector` | `object` | This is a label selector which selects Pods. This field follows standard label selector semantics; if present but empty, it selects all pods.  If NamespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the Pods matching PodSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the Pods matching PodSelector in the policy’s own Namespace. |
+| `namespaceSelector` | `object` | Selects Namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces. If PodSelector is also set, then the NetworkPolicyPeer as a whole selects the Pods matching PodSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects all Pods in the Namespaces selected by NamespaceSelector. |
+| `podSelector` | `object` | This is a label selector which selects Pods. This field follows standard label selector semantics; if present but empty, it selects all pods. If NamespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the Pods matching PodSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the Pods matching PodSelector in the policy’s own Namespace. |
 
 ### .spec.egress\[\].to\[\].ipBlock {#_specegresstoipblock}
 
@@ -282,8 +282,8 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `ipBlock` | `object` | IPBlock defines policy on a particular IPBlock. If this field is set then neither of the other fields can be. |
-| `namespaceSelector` | `object` | Selects Namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces.  If PodSelector is also set, then the NetworkPolicyPeer as a whole selects the Pods matching PodSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects all Pods in the Namespaces selected by NamespaceSelector. |
-| `podSelector` | `object` | This is a label selector which selects Pods. This field follows standard label selector semantics; if present but empty, it selects all pods.  If NamespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the Pods matching PodSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the Pods matching PodSelector in the policy’s own Namespace. |
+| `namespaceSelector` | `object` | Selects Namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces. If PodSelector is also set, then the NetworkPolicyPeer as a whole selects the Pods matching PodSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects all Pods in the Namespaces selected by NamespaceSelector. |
+| `podSelector` | `object` | This is a label selector which selects Pods. This field follows standard label selector semantics; if present but empty, it selects all pods. If NamespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the Pods matching PodSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the Pods matching PodSelector in the policy’s own Namespace. |
 
 ### .spec.ingress\[\].from\[\].ipBlock {#_specingressfromipblock}
 
@@ -474,12 +474,12 @@ The following API endpoints are available:
 - `/apis/k8s.cni.cncf.io/v1beta1/multi-networkpolicies`
 
   - `GET`: list objects of kind MultiNetworkPolicy
-- `/apis/k8s.cni.cncf.io/v1beta1/namespaces/{{ namespace }}/multi-networkpolicies`
+- `/apis/k8s.cni.cncf.io/v1beta1/namespaces/{namespace}/multi-networkpolicies`
 
   - `DELETE`: delete collection of MultiNetworkPolicy
   - `GET`: list objects of kind MultiNetworkPolicy
   - `POST`: create a MultiNetworkPolicy
-- `/apis/k8s.cni.cncf.io/v1beta1/namespaces/{{ namespace }}/multi-networkpolicies/{{ name }}`
+- `/apis/k8s.cni.cncf.io/v1beta1/namespaces/{namespace}/multi-networkpolicies/{name}`
 
   - `DELETE`: delete a MultiNetworkPolicy
   - `GET`: read the specified MultiNetworkPolicy
@@ -505,7 +505,7 @@ Description
 | 200 - OK | [`MultiNetworkPolicyList`](/openshift-docs-markdown/rest_api/objects/index#io-cncf-cni-k8s-v1beta1-MultiNetworkPolicyList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.cni.cncf.io/v1beta1/namespaces/{{ namespace }}/multi-networkpolicies {#_apisk8scnicncfiov1beta1namespaces_namespace_multi-networkpolicies}
+### /apis/k8s.cni.cncf.io/v1beta1/namespaces/{namespace}/multi-networkpolicies {#_apisk8scnicncfiov1beta1namespaces_namespace_multi-networkpolicies}
 
 HTTP method
 :   ```
@@ -573,7 +573,7 @@ Description
 | 202 - Accepted | [`MultiNetworkPolicy`](/openshift-docs-markdown/rest_api/network_apis/multinetworkpolicy-k8s-cni-cncf-io-v1beta1#multinetworkpolicy-k8s-cni-cncf-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.cni.cncf.io/v1beta1/namespaces/{{ namespace }}/multi-networkpolicies/{{ name }} {#_apisk8scnicncfiov1beta1namespaces_namespace_multi-networkpolicies_name}
+### /apis/k8s.cni.cncf.io/v1beta1/namespaces/{namespace}/multi-networkpolicies/{name} {#_apisk8scnicncfiov1beta1namespaces_namespace_multi-networkpolicies_name}
 
 **Global path parameters**
 

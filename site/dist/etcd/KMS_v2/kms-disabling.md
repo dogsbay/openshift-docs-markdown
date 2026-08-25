@@ -1,5 +1,5 @@
 ---
-title: Disabling {{ KMS }}
+title: Disabling Kubernetes KMS v2
 ---
 
 # Disabling Kubernetes KMS v2 {#kms-disabling}
@@ -110,10 +110,11 @@ You can disable external KMS encryption and migrate to local encryption to simpl
       $ oc delete secret encryption-test -n default
       ```
 
-> [!NOTE]
-> Do not delete the KMS key until migration completes successfully.
+   > [!NOTE]
+   > Do not delete the KMS key until migration completes successfully.
 
-## Additional resources {#additional-resources_kms-disabling}
+**Additional resources**
+{._additional-resources}
 
 - [Using a KMS provider for data encryption](https://kubernetes.io/docs/tasks/administer-cluster/kms-provider/)
 - [HashiCorp Vault Transit Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/transit)

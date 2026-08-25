@@ -23,13 +23,14 @@ You can encrypt your virtual machines with the following process. You can drain 
 
 1. Drain and cordon one of your nodes. For detailed instructions on node management, see "Working with Nodes".
 2. Shutdown the virtual machine associated with that node in the vCenter interface.
-3. Right-click the virtual machine in the vCenter interface and select **VM Policies** -> **Edit VM Storage Policies**.
+3. Right-click the virtual machine in the vCenter interface and select **VM Policies** → **Edit VM Storage Policies**.
 4. Select an encrypted storage policy and select **OK**.
 5. Start the encrypted virtual machine in the vCenter interface.
 6. Repeat steps 1-5 for all nodes that you want to encrypt.
 7. Configure a storage class that uses the encrypted storage policy. For more information about configuring an encrypted storage class, see "VMware vSphere CSI Driver Operator".
 
-## Additional resources {#additional-resources_enabling-encryption-installation}
+**Additional resources**
+{._additional-resources}
 
 - [Evacuating pods on nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working-evacuating_nodes-nodes-working)
 - [vSphere persistent disks encryption](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-vsphere#vsphere-pv-encryption)

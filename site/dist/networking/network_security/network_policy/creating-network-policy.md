@@ -54,7 +54,7 @@ To define granular rules describing ingress or egress network traffic allowed fo
 
 - Your cluster uses a network plugin that supports `NetworkPolicy` objects, such as the OVN-Kubernetes network plugin, with `mode: NetworkPolicy` set.
 - You installed the OpenShift CLI (`oc`).
-- You logged in to the cluster with a user with `{{ role }}` privileges.
+- You logged in to the cluster with a user with `admin` privileges.
 - You are working in the namespace that the network policy applies to.
 
 **Procedure**
@@ -119,28 +119,30 @@ To define granular rules describing ingress or egress network traffic allowed fo
       # ...
       ```
 
-      The following example configuration restricts traffic to a service. This policy when applied ensures every pod with both labels `app=bookstore` and `role=api` can only be accessed by pods with label `app=bookstore`. In this example the application could be a REST API server, marked with labels `app=bookstore` and `role=api`. This example configuration addresses the following use cases:
+      The following example configuration restricts traffic to a service. This policy when applied ensures every pod with both labels `app=bookstore` and `role=api` can only be accessed by pods with label `app=bookstore`. In this example the application could be a REST API server, marked with labels `app=bookstore` and `role=api`.
+
+      This example configuration addresses the following use cases:
 
       - Restricting the traffic to a service to only the other microservices that need to use it.
       - Restricting the connections to a database to only permit the application using it.
 
-      ```yaml
-      kind: NetworkPolicy
-      apiVersion: networking.k8s.io/v1
-      metadata:
-        name: api-allow
-      spec:
-        podSelector:
-          matchLabels:
-            app: bookstore
-            role: api
-        ingress:
-        - from:
-            - podSelector:
-                matchLabels:
-                  app: bookstore
-      # ...
-      ```
+        ```yaml
+        kind: NetworkPolicy
+        apiVersion: networking.k8s.io/v1
+        metadata:
+          name: api-allow
+        spec:
+          podSelector:
+            matchLabels:
+              app: bookstore
+              role: api
+          ingress:
+          - from:
+              - podSelector:
+                  matchLabels:
+                    app: bookstore
+        # ...
+        ```
 2. To create the network policy object, enter the following command. Successful output lists the name of the policy object and the `created` status.
 
    ```terminal
@@ -173,14 +175,13 @@ The steps in the procedure enforces a strong deny policy by applying a `deny-by-
 
 - Your cluster uses a network plugin that supports `NetworkPolicy` objects, such as the OVN-Kubernetes network plugin, with `mode: NetworkPolicy` set.
 - You installed the OpenShift CLI (`oc`).
-- You logged in to the cluster with a user with `{{ role }}` privileges.
+- You logged in to the cluster with a user with `admin` privileges.
 - You are working in the namespace that the network policy applies to.
 
 **Procedure**
 
 1. Create the following YAML that defines a `deny-by-default` policy to deny ingress from all pods in all namespaces. Save the YAML in the `deny-by-default.yaml` file:
 
-   ````
    ```yaml
    kind: NetworkPolicy
    apiVersion: networking.k8s.io/v1
@@ -191,9 +192,17 @@ The steps in the procedure enforces a strong deny policy by applying a `deny-by-
      podSelector: {}
      ingress: []
    ```
-   ````
 
-   where: `namespace`:: Specifies the namespace in which to deploy the policy. For example, the `my-project` namespace. `podSelector`:: If this field is empty, the configuration matches all the pods. Therefore, the policy applies to all pods in the `my-project` namespace. `ingress`:: Where `[]` indicates that no `ingress` rules are specified. This causes incoming traffic to be dropped to all pods.
+   where:
+
+   `namespace`
+   :   Specifies the namespace in which to deploy the policy. For example, the `my-project` namespace.
+
+   `podSelector`
+   :   If this field is empty, the configuration matches all the pods. Therefore, the policy applies to all pods in the `my-project` namespace.
+
+   `ingress`
+   :   Where `[]` indicates that no `ingress` rules are specified. This causes incoming traffic to be dropped to all pods.
 2. Apply the policy by entering the following command. Successful output lists the name of the policy object and the `created` status.
 
    ```terminal
@@ -213,7 +222,7 @@ Follow this procedure to configure a policy that allows external service from th
 
 - Your cluster uses a network plugin that supports `NetworkPolicy` objects, such as the OVN-Kubernetes network plugin, with `mode: NetworkPolicy` set.
 - You installed the OpenShift CLI (`oc`).
-- You logged in to the cluster with a user with `{{ role }}` privileges.
+- You logged in to the cluster with a user with `admin` privileges.
 - You are working in the namespace that the network policy applies to.
 
 **Procedure**
@@ -251,7 +260,7 @@ You can configure a policy that allows traffic from all pods in all namespaces t
 
 - Your cluster uses a network plugin that supports `NetworkPolicy` objects, such as the OVN-Kubernetes network plugin, with `mode: NetworkPolicy` set.
 - You installed the OpenShift CLI (`oc`).
-- You logged in to the cluster with a user with `{{ role }}` privileges.
+- You logged in to the cluster with a user with `admin` privileges.
 - You are working in the namespace that the network policy applies to.
 
 **Procedure**
@@ -351,7 +360,7 @@ This configuration is useful in the following use cases:
 
 - Your cluster uses a network plugin that supports `NetworkPolicy` objects, such as the OVN-Kubernetes network plugin, with `mode: NetworkPolicy` set.
 - You installed the OpenShift CLI (`oc`).
-- You logged in to the cluster with a user with `{{ role }}` privileges.
+- You logged in to the cluster with a user with `admin` privileges.
 - You are working in the namespace that the network policy applies to.
 
 > [!WARNING]
@@ -469,7 +478,8 @@ This configuration is useful in the following use cases:
    </html>
    ```
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Accessing the web console](/openshift-docs-markdown/web_console/web-console#web-console)
 - [Logging for egress firewall and network policy rules](/openshift-docs-markdown/networking/network_security/logging-network-security#logging-network-security)

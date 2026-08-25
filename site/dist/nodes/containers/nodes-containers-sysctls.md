@@ -19,6 +19,7 @@ Network sysctls are a special category of sysctl. Network sysctls include:
 Only those sysctls considered *safe* are enabled by default. A cluster administrator can manually enable *unsafe* sysctls on the node to be available to the user.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring the node port service range](/openshift-docs-markdown/networking/configuring_network_settings/configuring-node-port-service-range#configuring-node-port-service-range)
 
@@ -81,7 +82,7 @@ Unsafe sysctls are not allowed by default. For system-wide sysctls, a cluster ad
 
 OpenShift Container Platform adds the following system-wide and interface-specific safe sysctls to an allowed safe list:
 
-***System-wide safe sysctls***
+**System-wide safe sysctls**
 
 <table>
 <thead>
@@ -97,11 +98,11 @@ OpenShift Container Platform adds the following system-wide and interface-specif
 </tr>
 <tr>
   <td><code>net.ipv4.ip_local_port_range</code></td>
-  <td>Defines the local port range that is used by TCP and UDP to choose the local port. The first number is the first port number, and the second number is the last local port number. If possible, ensure these numbers have different parity, such as one even and one odd value. The numbers must be greater than or equal to <code>ip_unprivileged_port_start</code>. The default values are <code>32768</code> and <code>60999</code> respectively. For more information, see <a href="https://docs.kernel.org/networking/ip-sysctl.html?highlight=ip_local_port_range#ip-variables">ip_local_port_range (Kernel.org documentation)</a>.<br><br><dl><dt>Important</dt><dd>When specifying a range for the <code>net.ipv4.ip_local_port_range</code> sysctl parameter, ensure the range does not overlap with the range you set for the <code>serviceNodePortRange</code> parameter. For more information, see "Configuring the node port service range".</dd></dl></td>
+  <td>Defines the local port range that is used by TCP and UDP to choose the local port. The first number is the first port number, and the second number is the last local port number. If possible, ensure these numbers have different parity, such as one even and one odd value. The numbers must be greater than or equal to <code>ip_unprivileged_port_start</code>. The default values are <code>32768</code> and <code>60999</code> respectively. For more information, see <a href="https://docs.kernel.org/networking/ip-sysctl.html?highlight=ip_local_port_range#ip-variables">ip_local_port_range (Kernel.org documentation)</a>.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>When specifying a range for the <code>net.ipv4.ip_local_port_range</code> sysctl parameter, ensure the range does not overlap with the range you set for the <code>serviceNodePortRange</code> parameter. For more information, see "Configuring the node port service range".</dd></dl></td>
 </tr>
 <tr>
   <td><code>net.ipv4.tcp_syncookies</code></td>
-  <td>When <code>net.ipv4.tcp_syncookies</code> is set, the kernel handles TCP SYN packets normally until the</td>
+  <td>When <code>net.ipv4.tcp_syncookies</code> is set, the kernel handles TCP SYN packets normally until the half-open connection queue is full, at which time, the SYN cookie functionality kicks in. This functionality allows the system to keep accepting valid connections, even if under a denial-of-service attack. For more information, see <a href="https://docs.kernel.org/networking/ip-sysctl.html?highlight=tcp_syncookies#tcp-variables">tcp_syncookies (Kernel.org documentation)</a>.</td>
 </tr>
 <tr>
   <td><code>net.ipv4.ping_group_range</code></td>
@@ -134,7 +135,7 @@ OpenShift Container Platform adds the following system-wide and interface-specif
 </tbody>
 </table>
 
-***Interface-specific safe sysctls***
+**Interface-specific safe sysctls**
 
 <table>
 <thead>
@@ -206,7 +207,8 @@ OpenShift Container Platform adds the following system-wide and interface-specif
 > [!NOTE]
 > When setting these values using the `tuning` CNI plugin, use the value `IFNAME` literally. The interface name is represented by the `IFNAME` token, and is replaced with the actual name of the interface at runtime.
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring ingress cluster traffic using a NodePort](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-nodeport#configuring-ingress-cluster-traffic-nodeport)
 
@@ -252,7 +254,7 @@ For example, the following procedure modifies the predefined list of safe `sysct
      annotations:
        kubernetes.io/description: |
          Sysctl allowlist for nodes.
-       release.openshift.io/version: {{ product_version }}.0-0.nightly-2022-11-16-003434
+       release.openshift.io/version: 4.22.0-0.nightly-2022-11-16-003434
      creationTimestamp: "2022-11-17T14:09:27Z"
      name: cni-sysctl-allowlist
      namespace: openshift-multus
@@ -705,7 +707,8 @@ The `allowedUnsafeSysctls` option controls specific needs such as high performan
 
     The unsafe sysctl is now allowed and the value is set as defined in the `securityContext` spec of the updated pod specification.
 
-## Additional resources {#additional-resources_nodes-containers-sysctls}
+**Additional resources**
+{._additional-resources}
 
 - [Linux networking documentation](https://docs.kernel.org/networking/ip-sysctl.html)
 - [Configuring system controls by using the tuning CNI](/openshift-docs-markdown/networking/configuring_network_settings/configure-syscontrols-interface-tuning-cni#nw-configuring-tuning-cni_configure-syscontrols-interface-tuning-cni)

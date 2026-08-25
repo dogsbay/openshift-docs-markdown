@@ -510,7 +510,8 @@ To maintain control over your image history and simplify management within OpenS
   Deleted tag default/python:3.6
   ```
 
-## Additional resources {#additional-resources-remove-tag_image-streams-managing}
+**Additional resources**
+{._additional-resources}
 
 - [Removing deprecated image stream tags from the Cluster Samples Operator](/openshift-docs-markdown/openshift_images/configuring-samples-operator#images-samples-operator-deprecated-image-stream_configuring-samples-operator)
 
@@ -645,10 +646,10 @@ To control the architecture of your imported images and ensure proper deployment
   ```
 - Run the following command to update your image stream from single-architecture to multi-architecture:
 
-```terminal
-$ oc import-image <multiarch_image_stream_tag>  --from=<registry>/<project_name>/<image_name> \
---import-mode='PreserveOriginal'
-```
+  ```terminal
+  $ oc import-image <multiarch_image_stream_tag>  --from=<registry>/<project_name>/<image_name> \
+  --import-mode='PreserveOriginal'
+  ```
 
 ### Configuration fields for --import-mode {#importmode-configuration-fields_image-streams-managing}
 
@@ -666,7 +667,7 @@ The following table describes the options available for the `--import-mode=` fla
 <tbody>
 <tr>
   <td><strong>Legacy</strong></td>
-  <td>The default option for <code>--import-mode</code>. When specified, the manifest list is discarded, and a single sub-manifest is imported. The platform is chosen in the following order of priority:</td>
+  <td>The default option for <code>--import-mode</code>. When specified, the manifest list is discarded, and a single sub-manifest is imported. The platform is chosen in the following order of priority:<br><br>. Tag annotations . Control plane architecture . Linux/AMD64 . The first manifest in the list</td>
 </tr>
 <tr>
   <td><strong>PreserveOriginal</strong></td>

@@ -279,7 +279,8 @@ You can configure OSA and HiperSockets interfaces on IBM Z(R) for virtual machin
    `vnicc/learning=1`
    :   Enables MAC address learning.
 
-## Additional resources {#additional-resources_virt-connecting-vm-to-secondary-udn}
+**Additional resources**
+{._additional-resources}
 
 - [About the `ClusterUserDefinedNetwork` CR](/openshift-docs-markdown/networking/multiple_networks/primary_networks/about-user-defined-networks#about-cudn_about-user-defined-networks)
 - [Multi-network policy API](/openshift-docs-markdown/networking/multiple_networks/secondary_networks/configuring-multi-network-policy#configuring-multi-network-policy)

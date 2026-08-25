@@ -1,5 +1,5 @@
 ---
-title: NetworkAttachmentDefinition []
+title: NetworkAttachmentDefinition [k8s.cni.cncf.io/v1]
 ---
 
 # NetworkAttachmentDefinition \[k8s.cni.cncf.io/v1\] {#networkattachmentdefinition-k8s-cni-cncf-io-v1}
@@ -42,12 +42,12 @@ The following API endpoints are available:
 - `/apis/k8s.cni.cncf.io/v1/network-attachment-definitions`
 
   - `GET`: list objects of kind NetworkAttachmentDefinition
-- `/apis/k8s.cni.cncf.io/v1/namespaces/{{ namespace }}/network-attachment-definitions`
+- `/apis/k8s.cni.cncf.io/v1/namespaces/{namespace}/network-attachment-definitions`
 
   - `DELETE`: delete collection of NetworkAttachmentDefinition
   - `GET`: list objects of kind NetworkAttachmentDefinition
   - `POST`: create a NetworkAttachmentDefinition
-- `/apis/k8s.cni.cncf.io/v1/namespaces/{{ namespace }}/network-attachment-definitions/{{ name }}`
+- `/apis/k8s.cni.cncf.io/v1/namespaces/{namespace}/network-attachment-definitions/{name}`
 
   - `DELETE`: delete a NetworkAttachmentDefinition
   - `GET`: read the specified NetworkAttachmentDefinition
@@ -73,7 +73,7 @@ Description
 | 200 - OK | [`NetworkAttachmentDefinitionList`](/openshift-docs-markdown/rest_api/objects/index#io-cncf-cni-k8s-v1-NetworkAttachmentDefinitionList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.cni.cncf.io/v1/namespaces/{{ namespace }}/network-attachment-definitions {#_apisk8scnicncfiov1namespaces_namespace_network-attachment-definitions}
+### /apis/k8s.cni.cncf.io/v1/namespaces/{namespace}/network-attachment-definitions {#_apisk8scnicncfiov1namespaces_namespace_network-attachment-definitions}
 
 HTTP method
 :   ```
@@ -141,7 +141,7 @@ Description
 | 202 - Accepted | [`NetworkAttachmentDefinition`](/openshift-docs-markdown/rest_api/network_apis/networkattachmentdefinition-k8s-cni-cncf-io-v1#networkattachmentdefinition-k8s-cni-cncf-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.cni.cncf.io/v1/namespaces/{{ namespace }}/network-attachment-definitions/{{ name }} {#_apisk8scnicncfiov1namespaces_namespace_network-attachment-definitions_name}
+### /apis/k8s.cni.cncf.io/v1/namespaces/{namespace}/network-attachment-definitions/{name} {#_apisk8scnicncfiov1namespaces_namespace_network-attachment-definitions_name}
 
 **Global path parameters**
 

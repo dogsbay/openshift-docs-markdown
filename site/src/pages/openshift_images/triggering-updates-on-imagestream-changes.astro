@@ -21,7 +21,8 @@ const headings = [{"depth":1,"slug":"triggering-updates-on-imagestream-changes",
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/openshift_images/triggering-updates-on-imagestream-changes";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="triggering-updates-on-imagestream-changes" class="group scroll-mt-20">Triggering updates on image stream changes<a href="#triggering-updates-on-imagestream-changes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>When image stream tags update in OpenShift Container Platform, the platform automatically rolls out new images to deployments and builds that reference those tags. You configure this automatic triggering behavior differently depending on the type of resource that uses the image stream.</p>
+      <p class="_abstract">When image stream tags update in OpenShift Container Platform, the platform automatically rolls out new images to deployments and builds that reference those tags. You configure this automatic triggering behavior differently depending on the type of resource that uses the image stream.</p>
       <h2 id="openshift-resources" class="group scroll-mt-20">Resources<a href="#openshift-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p>OpenShift Container Platform <code>DeploymentConfig</code> and <code>BuildConfig</code> resources can be automatically triggered by changes to image stream tags. When triggered, these resources use the new image value referenced by the updated image stream tag.</p>
       <h2 id="images-triggering-updates-imagestream-changes-kubernetes-about_triggering-updates-on-imagestream-changes" class="group scroll-mt-20">Triggering Kubernetes resources<a href="#images-triggering-updates-imagestream-changes-kubernetes-about_triggering-updates-on-imagestream-changes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>

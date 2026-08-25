@@ -21,7 +21,8 @@ const headings = [{"depth":1,"slug":"virt-vm-control-plane-tuning","text":"Tune 
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-vm-control-plane-tuning";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -40,7 +41,7 @@ const pageCategory = ["virt","virt/managing_vms","virt/managing_vms/advanced_vm_
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Tune the control plane {#virt-vm-control-plane-tuning}\n\nYou can configure how the control plane handles concurrency when you create or migrate virtual machines (VMs). For example, set the `QPS` or `burst` rates to batch create virtual machines (VMs) in a batch, or tune migration settings in the `HyperConverged` custom resource (CR).\n\n## Configuring a highBurst profile {#virt-configuring-highburst-profile_virt-control-plane-tuning}\n\nYou can use the `highBurst` profile to create and maintain a large number of virtual machines (VMs) in one cluster.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n- Apply the following patch to enable the `highBurst` tuning policy profile:\n\n  ```terminal\n  $ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} \\\n    --type=json -p='[{\"op\": \"add\", \"path\": \"/spec/tuningPolicy\", \\\n    \"value\": \"highBurst\"}]'\n  ```\n\n**Verification**\n\n- Run the following command to verify the `highBurst` tuning policy profile is enabled:\n\n  ```terminal\n  $ oc get kubevirt.kubevirt.io/kubevirt-kubevirt-hyperconverged \\\n    -n {{ CNVNamespace }} -o go-template --template='{{range $config, \\\n    $value := .spec.configuration}} {{if eq $config \"apiConfiguration\" \\\n    \"webhookConfiguration\" \"controllerConfiguration\" \"handlerConfiguration\"}} \\\n  ```\n\n{{\"\\n\"}} {{$config}} = {{$value}} {{end}} {{end}} {{\"\\n\"}} \\`\\`\\`\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-vm-control-plane-tuning.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Tune the control plane {#virt-vm-control-plane-tuning}\n\nYou can configure how the control plane handles concurrency when you create or migrate virtual machines (VMs). For example, set the `QPS` or `burst` rates to batch create virtual machines (VMs) in a batch, or tune migration settings in the `HyperConverged` custom resource (CR).\n\n## Configuring a highBurst profile {#virt-configuring-highburst-profile_virt-control-plane-tuning}\n\nYou can use the `highBurst` profile to create and maintain a large number of virtual machines (VMs) in one cluster.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n- Apply the following patch to enable the `highBurst` tuning policy profile:\n\n  ```terminal\n  $ oc patch hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv \\\n    --type=json -p='[{\"op\": \"add\", \"path\": \"/spec/tuningPolicy\", \\\n    \"value\": \"highBurst\"}]'\n  ```\n\n**Verification**\n\n- Run the following command to verify the `highBurst` tuning policy profile is enabled:\n\n  ```terminal\n  $ oc get kubevirt.kubevirt.io/kubevirt-kubevirt-hyperconverged \\\n    -n {CNVNamespace} -o go-template --template='{{range $config, \\\n    $value := .spec.configuration}} {{if eq $config \"apiConfiguration\" \\\n    \"webhookConfiguration\" \"controllerConfiguration\" \"handlerConfiguration\"}} \\\n    {{\"\\n\"}} {{$config}} = {{$value}} {{end}} {{end}} {{\"\\n\"}}\n  ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-vm-control-plane-tuning.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-vm-control-plane-tuning" class="group scroll-mt-20">Tune the control plane<a href="#virt-vm-control-plane-tuning" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can configure how the control plane handles concurrency when you create or migrate virtual machines (VMs). For example, set the <code>QPS</code> or <code>burst</code> rates to batch create virtual machines (VMs) in a batch, or tune migration settings in the <code>HyperConverged</code> custom resource (CR).</p>
+      <p class="_abstract">You can configure how the control plane handles concurrency when you create or migrate virtual machines (VMs). For example, set the <code>QPS</code> or <code>burst</code> rates to batch create virtual machines (VMs) in a batch, or tune migration settings in the <code>HyperConverged</code> custom resource (CR).</p>
       <h2 id="virt-configuring-highburst-profile_virt-control-plane-tuning" class="group scroll-mt-20">Configuring a highBurst profile<a href="#virt-configuring-highburst-profile_virt-control-plane-tuning" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">You can use the <code>highBurst</code> profile to create and maintain a large number of virtual machines (VMs) in one cluster.</p>
       <p><strong>Prerequisites</strong></p>
@@ -101,17 +103,16 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <ul>
       <li>
       Apply the following patch to enable the <code>highBurst</code> tuning policy profile:
-      <CodeBlock code={"$ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} \\\n  --type=json -p='[{\"op\": \"add\", \"path\": \"/spec/tuningPolicy\", \\\n  \"value\": \"highBurst\"}]'"} lang="terminal" />
+      <CodeBlock code={"$ oc patch hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv \\\n  --type=json -p='[{\"op\": \"add\", \"path\": \"/spec/tuningPolicy\", \\\n  \"value\": \"highBurst\"}]'"} lang="terminal" />
       </li>
       </ul>
       <p><strong>Verification</strong></p>
       <ul>
       <li>
       Run the following command to verify the <code>highBurst</code> tuning policy profile is enabled:
-      <CodeBlock code={"$ oc get kubevirt.kubevirt.io/kubevirt-kubevirt-hyperconverged \\\n  -n {{ CNVNamespace }} -o go-template --template='{{range $config, \\\n  $value := .spec.configuration}} {{if eq $config \"apiConfiguration\" \\\n  \"webhookConfiguration\" \"controllerConfiguration\" \"handlerConfiguration\"}} \\"} lang="terminal" />
+      <CodeBlock code={"$ oc get kubevirt.kubevirt.io/kubevirt-kubevirt-hyperconverged \\\n  -n {CNVNamespace} -o go-template --template='{{range $config, \\\n  $value := .spec.configuration}} {{if eq $config \"apiConfiguration\" \\\n  \"webhookConfiguration\" \"controllerConfiguration\" \"handlerConfiguration\"}} \\\n  {{\"\\n\"}} {{$config}} = {{$value}} {{end}} {{end}} {{\"\\n\"}}"} lang="terminal" />
       </li>
       </ul>
-      <p>{"{"}{"{"}"\n"{"}"}{"}"} {"{"}{"{"}$config{"}"}{"}"} = {"{"}{"{"}$value{"}"}{"}"} {"{"}{"{"}end{"}"}{"}"} {"{"}{"{"}end{"}"}{"}"} {"{"}{"{"}"\n"{"}"}{"}"} ```</p>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

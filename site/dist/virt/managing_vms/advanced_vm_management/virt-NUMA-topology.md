@@ -64,7 +64,7 @@ You can verify whether an already deployed VM is configured for vNUMA by checkin
   ```
 
   If any output other than an empty string is returned, vNUMA is enabled for the VM.
-- To verify vNUMA status in a GUI, check if the VM has a **vNUMA** badge in the OpenShift Container Platform web console. Go to **VirtualMachines** -> **Virtual machines** -> **VirtualMachine details**, and check either the **Overview** or the **Configuration** tabs.
+- To verify vNUMA status in a GUI, check if the VM has a **vNUMA** badge in the OpenShift Container Platform web console. Go to **VirtualMachines** → **Virtual machines** → **VirtualMachine details**, and check either the **Overview** or the **Configuration** tabs.
 
 ## Disabling the hot plug capability for VMs {#virt-NUMA-topology-disabling-hotplugs_virt-NUMA-topology}
 
@@ -255,7 +255,7 @@ If you are a cluster administrator and want to disable hot plugging for an entir
    kind: HyperConverged
    metadata:
      name: kubevirt-hyperconverged
-     namespace: {{ CNVNamespace }}
+     namespace: openshift-cnv
    spec:
      # ...
      kubevirtConfiguration:
@@ -274,7 +274,7 @@ If you are a cluster administrator and want to disable hot plugging for an entir
 1. Check that you have configured the `maxHotplugRatio` value correctly, by running the following command:
 
    ```terminal
-   $ oc get {{ HCOCliKind }} -n {{ CNVNamespace }} -o jsonpath='{.spec.liveUpdateConfiguration.maxHotplugRatio}'
+   $ oc get hyperconvergeds.v1beta1.hco.kubevirt.io -n openshift-cnv -o jsonpath='{.spec.liveUpdateConfiguration.maxHotplugRatio}'
    ```
 
    If the configuration was successful, the output is the `maxHotplugRatio` value that you set in the previous procedure:
@@ -323,7 +323,8 @@ The following table outlines which policies are supported for different VM confi
 | Extra large | best-effort | Live migration works, as expected. |
 | Extra large | restricted | VMs do not work, as expected. |
 
-## Additional resources {#additional-resources_virt-NUMA-topology}
+**Additional resources**
+{._additional-resources}
 
 - [Topology Manager policies](/openshift-docs-markdown/scalability_and_performance/using-cpu-manager#using-cpu-manager_topology-manager-policies)
 - [Creating virtual machines from instance types](/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-from-instance-types#virt-creating-vms-from-instance-types)

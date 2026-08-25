@@ -224,7 +224,8 @@ Review the status phases of `VirtualMachineBackupsDiscovery` (VMBD) and `Virtual
 | `unsupported-plugin` | The backup was created with an unsupported plugin format. |
 | `extraction-failed` | The file system extraction from the disk image failed. |
 
-## Additional resources {#additional-resources_virt-recovering-individual-files-from-vm-backups}
+**Additional resources**
+{._additional-resources}
 
 - [Use virtual machine file restore](/openshift-docs-markdown/virt/backup_restore/virt-using-vm-file-restore#virt-using-vm-file-restore)
 - [Backing up and restoring virtual machines](/openshift-docs-markdown/virt/backup_restore/virt-backup-restore-overview#virt-backup-restore-overview)

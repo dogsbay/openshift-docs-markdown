@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"verifying-node-health","text":"Verifying no
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/support/troubleshooting/verifying-node-health";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="verifying-node-health" class="group scroll-mt-20">Verifying node health<a href="#verifying-node-health" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can verify and troubleshoot node-related issues by reviewing the status, resource usage, and configuration of a node.</p>
+      <p class="_abstract">You can verify and troubleshoot node-related issues by reviewing the status, resource usage, and configuration of a node.</p>
       <h2 id="reviewing-node-status-use-and-configuration_verifying-node-health" class="group scroll-mt-20">Reviewing node status, resource usage, and configuration<a href="#reviewing-node-status-use-and-configuration_verifying-node-health" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">Review cluster node health status, resource consumption statistics, and node logs. Additionally, query <code>kubelet</code> status on individual nodes.</p>
       <p><strong>Prerequisites</strong></p>

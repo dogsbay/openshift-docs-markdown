@@ -1,5 +1,5 @@
 ---
-title: PodSecurityPolicyReview []
+title: PodSecurityPolicyReview [security.openshift.io/v1]
 ---
 
 # PodSecurityPolicyReview \[security.openshift.io/v1\] {#podsecuritypolicyreview-security-openshift-io-v1}
@@ -94,11 +94,11 @@ Required
 
 The following API endpoints are available:
 
-- `/apis/security.openshift.io/v1/namespaces/{{ namespace }}/podsecuritypolicyreviews`
+- `/apis/security.openshift.io/v1/namespaces/{namespace}/podsecuritypolicyreviews`
 
   - `POST`: create a PodSecurityPolicyReview
 
-### /apis/security.openshift.io/v1/namespaces/{{ namespace }}/podsecuritypolicyreviews {#_apissecurityopenshiftiov1namespaces_namespace_podsecuritypolicyreviews}
+### /apis/security.openshift.io/v1/namespaces/{namespace}/podsecuritypolicyreviews {#_apissecurityopenshiftiov1namespaces_namespace_podsecuritypolicyreviews}
 
 **Global query parameters**
 

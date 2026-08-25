@@ -100,7 +100,7 @@ You configure a primary network by using the `NetworkAttachmentDefinition` API i
 
 The configuration for the API is described in the following table:
 
-`NetworkAttachmentDefinition`** API fields**
+**`NetworkAttachmentDefinition` API fields**
 
 | Field | Type | Description |
 | --- | --- | --- |

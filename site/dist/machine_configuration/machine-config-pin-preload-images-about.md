@@ -152,5 +152,6 @@ The images are stored in the `/etc/crio/crio.conf.d/50-pinned-images` file on th
      :   Specifies the images that have been pulled and pinned for the affected machine config pool.
 
 **Additional resources**
+{._additional-resources}
 
 - [About checking machine config node status](/openshift-docs-markdown/machine_configuration/index#checking-mco-node-status_machine-config-overview)

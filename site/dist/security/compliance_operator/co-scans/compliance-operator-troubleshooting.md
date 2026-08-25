@@ -333,7 +333,7 @@ $ oc logs -l workload=<workload_name> -c <container_name>
 
 In some cases, the Compliance Operator might require more memory than the default limits allow. You can mitigate this issue by setting custom resource limits.
 
-To increase the default memory and CPU limits of scanner pods, see `ScanSetting`* Custom resource*.
+To increase the default memory and CPU limits of scanner pods, see *`ScanSetting` Custom resource*.
 
 **Procedure**
 

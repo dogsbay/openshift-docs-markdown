@@ -718,7 +718,8 @@ The following example shows general guidelines on how to configure an `ImagePoli
 
      The `Using transport \"docker\" specific policy section \"example.io/crio/signed\"" file="signature/policy_eval.go:150` line confirms that the image policy has been applied.
 
-## Additional resources {#additional-resources_nodes-sigstore-using}
+**Additional resources**
+{._additional-resources}
 
 - [Sigstore](https://www.sigstore.dev/)
 - [Fulcio certificate (Sigstore documentation)](https://docs.sigstore.dev/certificate_authority/overview/)

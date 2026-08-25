@@ -18,10 +18,10 @@ CPU requirements for OpenShift Virtualization
     >
     > For more information, see "Configuring a required node affinity rule" in the Additional resources section.
 
-- Supports AMD64, Intel 64-bit (x86-64-v2), IBM Z(R) (`s390x`), or ARM64-based (`arm64` or `aarch64`) architectures and their respective CPU extensions.
-- Intel VT-x, AMD-V, or ARM virtualization extensions are enabled, or `s390x` virtualization support is enabled.
-- NX (no execute) flag is enabled.
-- If you use `s390x` architecture, the default CPU model is set to `gen15b`. For more information, see "Configuring the default CPU model" in the Additional resources section.
+    - Supports AMD64, Intel 64-bit (x86-64-v2), IBM Z(R) (`s390x`), or ARM64-based (`arm64` or `aarch64`) architectures and their respective CPU extensions.
+    - Intel VT-x, AMD-V, or ARM virtualization extensions are enabled, or `s390x` virtualization support is enabled.
+    - NX (no execute) flag is enabled.
+    - If you use `s390x` architecture, the default CPU model is set to `gen15b`. For more information, see "Configuring the default CPU model" in the Additional resources section.
 
 ## Operating system requirements {#virt-os-requirements_virt-requirements}
 
@@ -34,20 +34,13 @@ For more information, see "About RHCOS" in the Additional resources section.
 OpenShift Virtualization requires OpenShift Container Platform-supported storage with specific configuration for VM workloads and snapshots.
 
 Storage requirements for OpenShift Virtualization
+:   - Storage must be supported by OpenShift Container Platform. For more information, see "Optimizing storage" in the Additional resources section.
+    - You must create a default OpenShift Virtualization or OpenShift Container Platform storage class. The purpose of this is to address the unique storage needs of VM workloads and offer optimized performance, reliability, and user experience. If both OpenShift Virtualization and OpenShift Container Platform default storage classes exist, the OpenShift Virtualization class takes precedence when creating VM disks.
 
-:   \*   Storage must be supported by OpenShift Container Platform. For more information, see "Optimizing storage" in the Additional resources section.
+    > [!NOTE]
+    > To mark a storage class as the default for virtualization workloads, set the annotation `storageclass.kubevirt.io/is-default-virt-class` to `"true"`.
 
-```
-*   You must create a default OpenShift Virtualization or OpenShift Container Platform storage class. The purpose of this is to address the unique storage needs of VM workloads and offer optimized performance, reliability, and user experience. If both OpenShift Virtualization and OpenShift Container Platform default storage classes exist, the OpenShift Virtualization class takes precedence when creating VM disks.
-
-:::note
-
-To mark a storage class as the default for virtualization workloads, set the annotation `storageclass.kubevirt.io/is-default-virt-class` to `"true"`.
-
-:::
-```
-
-- If the storage provisioner supports snapshots, you must associate a `VolumeSnapshotClass` object with the default storage class.
+    - If the storage provisioner supports snapshots, you must associate a `VolumeSnapshotClass` object with the default storage class.
 
 ### About volume and access modes for virtual machine disks {#virt-about-storage-volumes-for-vm-disks_virt-requirements}
 
@@ -62,13 +55,13 @@ For best results, use the `ReadWriteMany` (RWX) access mode and the `Block` volu
 
   For example, if you use Red Hat OpenShift Data Foundation, Ceph RBD volumes are preferable to CephFS volumes.
 
-> [!IMPORTANT]
-> You cannot live migrate virtual machines with the following configurations:
->
-> - Storage volume with `ReadWriteOnce` (RWO) access mode
-> - Passthrough features such as GPUs
->
-> Set the `evictionStrategy` field to `None` for these virtual machines. The `None` strategy powers down VMs during node reboots.
+  > [!IMPORTANT]
+  > You cannot live migrate virtual machines with the following configurations:
+  >
+  > - Storage volume with `ReadWriteOnce` (RWO) access mode
+  > - Passthrough features such as GPUs
+  >
+  > Set the `evictionStrategy` field to `None` for these virtual machines. The `None` strategy powers down VMs during node reboots.
 
 ## Physical resource overhead requirements {#virt-cluster-resource-requirements_virt-requirements}
 
@@ -92,7 +85,7 @@ Cluster memory overhead
     Memory overhead per worker node ≈ 360 MiB
     ```
 
-    Additionally, {{ VirtProductName }} environment resources require a total of 2179 MiB of RAM that is spread across all infrastructure nodes.
+    Additionally, OpenShift Virtualization environment resources require a total of 2179 MiB of RAM that is spread across all infrastructure nodes.
 
 Virtual machine memory overhead
 :   ```
@@ -121,20 +114,20 @@ Cluster CPU overhead
     CPU overhead for infrastructure nodes ≈ 4 cores
     ```
 
-    {{ VirtProductName }} increases the overall utilization of cluster level services such as logging, routing, and monitoring. To account for this workload, ensure that nodes that host infrastructure components have capacity allocated for 4 additional cores (4000 millicores) distributed across those nodes.
+    OpenShift Virtualization increases the overall utilization of cluster level services such as logging, routing, and monitoring. To account for this workload, ensure that nodes that host infrastructure components have capacity allocated for 4 additional cores (4000 millicores) distributed across those nodes.
 
     ```
     CPU overhead for worker nodes ≈ 2 cores + CPU overhead per virtual machine
     ```
 
-    Each worker node that hosts virtual machines must have capacity for 2 additional cores (2000 millicores) for {{ VirtProductName }} management workloads in addition to the CPUs required for virtual machine workloads.
+    Each worker node that hosts virtual machines must have capacity for 2 additional cores (2000 millicores) for OpenShift Virtualization management workloads in addition to the CPUs required for virtual machine workloads.
 
 Virtual machine CPU overhead
 :   If dedicated CPUs are requested, there is a 1:1 impact on the cluster CPU overhead requirement. Otherwise, there are no specific rules about how many CPUs a virtual machine requires.
 
-## Storage overhead {#storage-overhead_{{ context }}}
+## Storage overhead {#storage-overhead_virt-requirements}
 
-Use the guidelines below to estimate storage overhead requirements for your {{ VirtProductName }} environment.
+Use the guidelines below to estimate storage overhead requirements for your OpenShift Virtualization environment.
 
 Cluster storage overhead
 :   ```
@@ -175,26 +168,19 @@ OpenShift Virtualization
 Live migration requires shared storage, sufficient resources, and compatible CPUs across nodes.
 
 Live migration requirements
+:   - Shared storage with `ReadWriteMany` (RWX) access mode.
+    - Sufficient RAM and network bandwidth.
 
-````
-*   Shared storage with `ReadWriteMany` (RWX) access mode.
+    > [!NOTE]
+    > You must ensure that there is enough memory request capacity in the cluster to support node drains that result in live migrations. You can determine the approximate required spare memory by using the following calculation:
+    >
+    > ```
+    > Product of (Maximum number of nodes that can drain in parallel) and (Highest total VM memory request allocations across nodes)
+    > ```
+    >
+    > The default number of migrations that can run in parallel in the cluster is 5. For more information, see "Configuring live migration" in the Additional resources section.
 
-*   Sufficient RAM and network bandwidth.
-
-:::note
-
-You must ensure that there is enough memory request capacity in the cluster to support node drains that result in live migrations. You can determine the approximate required spare memory by using the following calculation:
-
-```
-Product of (Maximum number of nodes that can drain in parallel) and (Highest total VM memory request allocations across nodes)
-```
-
-The default number of migrations that can run in parallel in the cluster is 5. For more information, see "Configuring live migration" in the Additional resources section.
-
-:::
-````
-
-- If the virtual machine uses a host model CPU, the nodes must support the virtual machine’s host model CPU.
+    - If the virtual machine uses a host model CPU, the nodes must support the virtual machine’s host model CPU.
 
 > [!NOTE]
 > A dedicated Multus network for live migration is highly recommended. For more information, see "Using a dedicated network for live migration" in the Additional resources section. A dedicated network minimizes the effects of network saturation on tenant workloads during migration.
@@ -211,16 +197,18 @@ Methods of configuring HA
     >
     > Currently, installer-provisioned infrastructure is not supported on IBM Z(R).
 
-- Automatic high availability for both IPI and non-IPI is available by using the **Node Health Check Operator** on the OpenShift Container Platform cluster to deploy the `NodeHealthCheck` controller. The controller identifies unhealthy nodes and uses a remediation provider, such as the Self Node Remediation Operator or Fence Agents Remediation Operator, to remediate the unhealthy nodes. For more information on remediation, fencing, and maintaining nodes, see the [Workload Availability for Red Hat OpenShift](https://access.redhat.com/documentation/en-us/workload_availability_for_red_hat_openshift) documentation.
+    - Automatic high availability for both IPI and non-IPI is available by using the **Node Health Check Operator** on the OpenShift Container Platform cluster to deploy the `NodeHealthCheck` controller. The controller identifies unhealthy nodes and uses a remediation provider, such as the Self Node Remediation Operator or Fence Agents Remediation Operator, to remediate the unhealthy nodes. For more information on remediation, fencing, and maintaining nodes, see the [Workload Availability for Red Hat OpenShift](https://access.redhat.com/documentation/en-us/workload_availability_for_red_hat_openshift) documentation.
 
-  > [!NOTE]
-  > Fence Agents Remediation uses supported fencing agents to reset failed nodes faster than the Self Node Remediation Operator. This improves overall virtual machine high availability. For more information, see the [OpenShift Virtualization - Fencing and VM High Availability Guide](https://access.redhat.com/articles/7057929) knowledgebase article.
-- High availability for any platform is available by using either a monitoring system or a qualified human to monitor node availability. When a node is lost, shut it down and run `oc delete node <lost_node>`.
+    > [!NOTE]
+    > Fence Agents Remediation uses supported fencing agents to reset failed nodes faster than the Self Node Remediation Operator. This improves overall virtual machine high availability. For more information, see the [OpenShift Virtualization - Fencing and VM High Availability Guide](https://access.redhat.com/articles/7057929) knowledgebase article.
 
-  > [!NOTE]
-  > Without an external monitoring system or a qualified human monitoring node health, virtual machines lose high availability.
+    - High availability for any platform is available by using either a monitoring system or a qualified human to monitor node availability. When a node is lost, shut it down and run `oc delete node <lost_node>`.
 
-## Additional resources {#additional-resources_virt-requirements}
+    > [!NOTE]
+    > Without an external monitoring system or a qualified human monitoring node health, virtual machines lose high availability.
+
+**Additional resources**
+{._additional-resources}
 
 - [Configuring a required node affinity rule](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-node-affinity#nodes-scheduler-node-affinity-configuring-required_nodes-scheduler-node-affinity)
 - [About RHCOS](/openshift-docs-markdown/architecture/architecture-rhcos#rhcos-about_architecture-rhcos)

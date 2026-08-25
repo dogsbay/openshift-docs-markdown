@@ -1,8 +1,8 @@
 ---
-title: Uninstalling the {{ run_once_operator }}
+title: Uninstalling the Run Once Duration Override Operator
 ---
 
-# Uninstalling the {{ run_once_operator }} {#run-once-duration-override-uninstall}
+# Uninstalling the Run Once Duration Override Operator {#run-once-duration-override-uninstall}
 
 You can remove the Run Once Duration Override Operator from OpenShift Container Platform by uninstalling the Operator and deleting its related resources, such as custom resource definitions, the namespace, and configuration labels.
 
@@ -21,17 +21,17 @@ You can use the web console to uninstall the Run Once Duration Override Operator
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console.
-2. Navigate to **Ecosystem** -> **Installed Operators**.
+2. Navigate to **Ecosystem** → **Installed Operators**.
 3. Select `openshift-run-once-duration-override-operator` from the **Project** dropdown list.
 4. Delete the `RunOnceDurationOverride` instance.
 
    1. Click **Run Once Duration Override Operator** and select the **Run Once Duration Override** tab.
-   2. Click the Options menu ![](kebab.png "Options menu") next to the **cluster** entry and select **Delete RunOnceDurationOverride**.
+   2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the **cluster** entry and select **Delete RunOnceDurationOverride**.
    3. In the confirmation dialog, click **Delete**.
 5. Uninstall the Run Once Duration Override Operator.
 
-   1. Navigate to **Ecosystem** -> **Installed Operators**.
-   2. Click the Options menu ![](kebab.png "Options menu") next to the **Run Once Duration Override Operator** entry and click **Uninstall Operator**.
+   1. Navigate to **Ecosystem** → **Installed Operators**.
+   2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the **Run Once Duration Override Operator** entry and click **Uninstall Operator**.
    3. In the confirmation dialog, click **Uninstall**.
 
 ## Uninstalling Run Once Duration Override Operator resources {#rodoo-uninstall-resources_run-once-duration-override-uninstall}
@@ -49,19 +49,19 @@ Optionally, after uninstalling the Run Once Duration Override Operator, you can 
 1. Log in to the OpenShift Container Platform web console.
 2. Remove CRDs that were created when the Run Once Duration Override Operator was installed:
 
-   1. Navigate to **Administration** -> **CustomResourceDefinitions**.
+   1. Navigate to **Administration** → **CustomResourceDefinitions**.
    2. Enter `RunOnceDurationOverride` in the **Name** field to filter the CRDs.
-   3. Click the Options menu ![](kebab.png "Options menu") next to the **RunOnceDurationOverride** CRD and select **Delete CustomResourceDefinition**.
+   3. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the **RunOnceDurationOverride** CRD and select **Delete CustomResourceDefinition**.
    4. In the confirmation dialog, click **Delete**.
 3. Delete the `openshift-run-once-duration-override-operator` namespace.
 
-   1. Navigate to **Administration** -> **Namespaces**.
+   1. Navigate to **Administration** → **Namespaces**.
    2. Enter `openshift-run-once-duration-override-operator` into the filter box.
-   3. Click the Options menu ![](kebab.png "Options menu") next to the **openshift-run-once-duration-override-operator** entry and select **Delete Namespace**.
+   3. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the **openshift-run-once-duration-override-operator** entry and select **Delete Namespace**.
    4. In the confirmation dialog, enter `openshift-run-once-duration-override-operator` and click **Delete**.
 4. Remove the run-once duration override label from the namespaces that it was enabled on.
 
-   1. Navigate to **Administration** -> **Namespaces**.
+   1. Navigate to **Administration** → **Namespaces**.
    2. Select your namespace.
    3. Click **Edit** next to the **Labels** field.
    4. Remove the **runoncedurationoverrides.admission.runoncedurationoverride.openshift.io/enabled=true** label and click **Save**.

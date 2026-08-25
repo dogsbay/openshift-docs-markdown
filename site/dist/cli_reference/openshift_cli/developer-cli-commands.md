@@ -2688,6 +2688,7 @@ Return information about the current session
   oc whoami
 ```
 
-## Additional resources {#additional-resources_cli-developer-commands}
+**Additional resources**
+{._additional-resources}
 
 - [OpenShift CLI administrator command reference](/openshift-docs-markdown/cli_reference/openshift_cli/administrator-cli-commands#cli-administrator-commands)

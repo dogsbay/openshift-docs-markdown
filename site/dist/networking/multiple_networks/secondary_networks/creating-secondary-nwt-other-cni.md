@@ -32,9 +32,6 @@ The following table details the configuration parameters:
   <td>The mandatory, unique identifier assigned to this CNI network attachment definition. It is used by the container runtime to select the correct network configuration and serves as the key for persistent resource state management, such as IP address allocations.</td>
 </tr>
 <tr>
-
-</tr>
-<tr>
   <td><code>type</code></td>
   <td><code>string</code></td>
   <td>The name of the CNI plugin to configure: <code>bridge</code>.</td>
@@ -236,6 +233,7 @@ The following example configures a secondary network named `bond-tlb-net` with t
 - `xmitHashPolicy`: This parameter dictates how outgoing network traffic is distributed across the `net1` and `net2` active member interfaces within the bond. The hashing algorithm combines layer 2 information, specifically source and destination MAC addresses, with layer 3 information, which includes source and destination IP addresses.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring a bond interface from two SR-IOV interfaces](/openshift-docs-markdown/networking/hardware_networks/using-pod-level-bonding#nw-sriov-cfg-bond-interface-with-virtual-functions_using-pod-level-bonding)
 
@@ -466,7 +464,7 @@ The following table describes these  configuration parameters:
 <tr>
   <td><code>selinuxcontext</code></td>
   <td><code>string</code></td>
-  <td>Optional: The SELinux context to associate with the tap device.<br><br><dl><dt>Note</dt><dd>The value <code>system_u:system_r:container_t:s0</code> is required for OpenShift Container Platform.</dd></dl></td>
+  <td>Optional: The SELinux context to associate with the tap device.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>The value <code>system_u:system_r:container_t:s0</code> is required for OpenShift Container Platform.</dd></dl></td>
 </tr>
 <tr>
   <td><code>multiQueue</code></td>
@@ -637,5 +635,6 @@ where:
 :   The chained `route-override` CNI modifies the routing rules.
 
 **Additional resources**
+{._additional-resources}
 
 - [Setting SELinux booleans](/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing#nodes-nodes-working-setting-booleans_nodes-nodes-managing)

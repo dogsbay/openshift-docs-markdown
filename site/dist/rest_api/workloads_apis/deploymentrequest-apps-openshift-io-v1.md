@@ -1,5 +1,5 @@
 ---
-title: DeploymentRequest []
+title: DeploymentRequest [apps.openshift.io/v1]
 ---
 
 # DeploymentRequest \[apps.openshift.io/v1\] {#deploymentrequest-apps-openshift-io-v1}
@@ -34,11 +34,11 @@ Required
 
 The following API endpoints are available:
 
-- `/apis/apps.openshift.io/v1/namespaces/{{ namespace }}/deploymentconfigs/{{ name }}/instantiate`
+- `/apis/apps.openshift.io/v1/namespaces/{namespace}/deploymentconfigs/{name}/instantiate`
 
   - `POST`: create instantiate of a DeploymentConfig
 
-### /apis/apps.openshift.io/v1/namespaces/{{ namespace }}/deploymentconfigs/{{ name }}/instantiate {#_apisappsopenshiftiov1namespaces_namespace_deploymentconfigs_name_instantiate}
+### /apis/apps.openshift.io/v1/namespaces/{namespace}/deploymentconfigs/{name}/instantiate {#_apisappsopenshiftiov1namespaces_namespace_deploymentconfigs_name_instantiate}
 
 **Global path parameters**
 

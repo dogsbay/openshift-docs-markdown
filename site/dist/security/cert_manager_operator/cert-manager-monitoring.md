@@ -1,8 +1,8 @@
 ---
-title: Monitoring {{ cert_manager_operator }}
+title: Monitoring cert-manager Operator for Red Hat OpenShift
 ---
 
-# Monitoring {{ cert_manager_operator }} {#cert-manager-monitoring}
+# Monitoring cert-manager Operator for Red Hat OpenShift {#cert-manager-monitoring}
 
 By default, the cert-manager Operator for Red Hat OpenShift exposes metrics for the three core components: controller, cainjector, and webhook. You can configure OpenShift Monitoring to collect these metrics by using the Prometheus Operator format.
 
@@ -54,6 +54,7 @@ To collect metrics from your specific applications, enable monitoring for user-d
    The status of the pods such as `prometheus-operator`, `prometheus-user-workload`, and `thanos-ruler-user-workload` must be `Running`.
 
 **Additional resources**
+{._additional-resources}
 
 - [Setting up metrics collection for user-defined projects](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/configuring-metrics-uwm#setting-up-metrics-collection-for-user-defined-projects_configuring-metrics-uwm)
 
@@ -138,6 +139,7 @@ The cert-manager Operator for Red Hat OpenShift operands expose metrics by defau
 3. Confirm that the **Status** column shows `Up` for the `cert-manager`, `cert-manager-webhook`, and `cert-manager-cainjector` entries.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring user workload monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/preparing-to-configure-the-monitoring-stack-uwm)
 
@@ -169,6 +171,7 @@ As a cluster administrator, or as a user with view access to all namespaces, you
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Accessing metrics as an administrator](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/accessing_metrics/accessing-metrics-as-an-administrator)
 
@@ -225,11 +228,12 @@ The `istio-csr` operand exposes metrics by default on port `9402` at the `/metri
 **Verification**
 
 1. Log in to the OpenShift Container Platform web console.
-2. Click **Observe** -> **Targets**.
-3. In the ***Label filter*** field, enter the `service=cert-manager-istio-csr` label to filter the metrics targets.
+2. Click **Observe** → **Targets**.
+3. In the **Label filter** field, enter the `service=cert-manager-istio-csr` label to filter the metrics targets.
 4. Confirm that the **Status** column shows **Up** for the `cert-manager-istio-csr` target.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring user workload monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/preparing-to-configure-the-monitoring-stack-uwm)
 
@@ -246,9 +250,10 @@ Cluster administrators, or users with view access to all namespaces, can query m
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console.
-2. Click **Observe** -> **Metrics**.
+2. Click **Observe** → **Metrics**.
 3. In the query field, enter the `{job="cert-manager-istio-csr"}` PromQL expression to query the `istio-csr` operand metrics. The results display metrics collected for the istio-csr operand, which can help you monitor its performance and behavior.
 
 **Additional resources**
+{._additional-resources}
 
 - [Accessing metrics as an administrator](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/accessing_metrics/accessing-metrics-as-an-administrator)

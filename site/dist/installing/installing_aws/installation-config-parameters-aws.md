@@ -19,7 +19,7 @@ The following tables specify the required, optional, and AWS-specific installati
 
 Required installation configuration parameters are described in the following table:
 
-***Required parameters***
+**Required parameters**
 
 <table>
 <thead>
@@ -35,7 +35,7 @@ Required installation configuration parameters are described in the following ta
 </tr>
 <tr>
   <td>baseDomain:</td>
-  <td>The base domain of your cloud provider. The base domain is used to create routes to your OpenShift Container Platform cluster components. The full DNS name for your cluster is a combination of the <code>baseDomain</code> and <code>metadata.name</code> parameter values that uses the <code><metadata.name>.<baseDomain></code> format.<br><br><strong>Value:</strong> A fully-qualified domain or subdomain name, such as <code>example.com</code>.</td>
+  <td>The base domain of your cloud provider. The base domain is used to create routes to your OpenShift Container Platform cluster components. The full DNS name for your cluster is a combination of the <code>baseDomain</code> and <code>metadata.name</code> parameter values that uses the <code>&lt;metadata.name&gt;.&lt;baseDomain&gt;</code> format.<br><br><strong>Value:</strong> A fully-qualified domain or subdomain name, such as <code>example.com</code>.</td>
 </tr>
 <tr>
   <td>metadata:</td>
@@ -43,28 +43,15 @@ Required installation configuration parameters are described in the following ta
 </tr>
 <tr>
   <td>metadata: name:</td>
-  <td>The name of the cluster. DNS records for the cluster are all subdomains of <code>{{ .metadata.name }}.{{ .baseDomain }}</code>.The cluster name is set to <code>agent-cluster</code> when you do not provide the <code>metadata.name</code> parameter through either the <code>install-config.yaml</code> or <code>agent-config.yaml</code> files. For example, installations that only use ZTP manifests do not provide the <code>metadata.name</code> parameter.<br><br><strong>Value:</strong> String of lowercase letters, hyphens (<code>-</code>), and periods (<code>.</code>), such as <code>dev</code>.<strong>Value:</strong> String of lowercase letters and hyphens (<code>-</code>), such as <code>dev</code>.The string must be 14 characters or fewer long.</td>
+  <td>The name of the cluster. DNS records for the cluster are all subdomains of <code>{.metadata.name}.{.baseDomain}</code>.  <br><br>  <strong>Value:</strong> String of lowercase letters, hyphens (<code>-</code>), and periods (<code>.</code>), such as <code>dev</code>.   </td>
 </tr>
 <tr>
   <td>platform:</td>
-  <td>The configuration for the specific platform upon which to perform the installation: <code>aws</code>, <code>baremetal</code>, <code>azure</code>, <code>gcp</code>, <code>ibmcloud</code>, <code>nutanix</code>, <code>openstack</code>, <code>powervs</code>, <code>vsphere</code>, or <code>{}</code>. For additional information about <code>platform.<platform></code> parameters, consult the table for your specific platform that follows.</td>
+  <td>The configuration for the specific platform upon which to perform the installation: <code>aws</code>, <code>baremetal</code>, <code>azure</code>, <code>gcp</code>, <code>ibmcloud</code>, <code>nutanix</code>, <code>openstack</code>, <code>powervs</code>, <code>vsphere</code>, or <code>{}</code>. For additional information about <code>platform.&lt;platform&gt;</code> parameters, consult the table for your specific platform that follows.<br><br><strong>Value:</strong> Object</td>
 </tr>
 <tr>
-
   <td>pullSecret:</td>
-  <td>Get a [pull secret from Red Hat OpenShift Cluster Manager](https://console.redhat.com/openshift/install/pull-secret) to authenticate downloading container images for OpenShift Container Platform components from services such as Quay.io.<br><br><strong>Value:</strong><pre>{&#10;   "auths":{&#10;      "cloud.openshift.com":{&#10;         "auth":"b3Blb=",&#10;         "email":"you@example.com"&#10;      },&#10;      "quay.io":{&#10;         "auth":"b3Blb=",&#10;         "email":"you@example.com"&#10;      }&#10;   }&#10;}</pre></td>
-</tr>
-<tr>
-
-</tr>
-<tr>
-
-</tr>
-<tr>
-
-</tr>
-<tr>
-
+  <td>Get a <a href="https://console.redhat.com/openshift/install/pull-secret">pull secret from Red Hat OpenShift Cluster Manager</a> to authenticate downloading container images for OpenShift Container Platform components from services such as Quay.io.<br><br><strong>Value:</strong><pre>{&#10;   "auths":{&#10;      "cloud.openshift.com":{&#10;         "auth":"b3Blb=",&#10;         "email":"you@example.com"&#10;      },&#10;      "quay.io":{&#10;         "auth":"b3Blb=",&#10;         "email":"you@example.com"&#10;      }&#10;   }&#10;}</pre></td>
 </tr>
 </tbody>
 </table>
@@ -101,7 +88,7 @@ If you configure your cluster to use both IP address families, review the follow
 
   If you are installing your cluster on AWS, the order of address families must match the `platform.aws.ipFamily` parameter. For example, if you specified the `DualStackIPv6Primary` parameter, you must list the IPv6 address first.
 
-***Network parameters***
+**Network parameters**
 
 <table>
 <thead>
@@ -113,11 +100,11 @@ If you configure your cluster to use both IP address families, review the follow
 <tbody>
 <tr>
   <td>networking:</td>
-  <td>The configuration for the cluster network.<br><br><strong>Value:</strong> Object<br><br><dl><dt>Note</dt><dd>You cannot change parameters specified by the <code>networking</code> object after installation.</dd></dl></td>
+  <td>The configuration for the cluster network.<br><br><strong>Value:</strong> Object<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>You cannot change parameters specified by the <code>networking</code> object after installation.</dd></dl></td>
 </tr>
 <tr>
   <td>networking: networkType:</td>
-  <td>The Red Hat OpenShift Networking network plugin to install.<br><br><strong>Value:</strong><code>OVNKubernetes</code>.<code>OVNKubernetes</code>. <code>OVNKubernetes</code> is a Container Network Interface (CNI) plugin for Linux networks and hybrid networks that contain both Linux and Windows servers. The default value is <code>OVNKubernetes</code>.The default value is <code>OVNKubernetes</code>.</td>
+  <td>The Red Hat OpenShift Networking network plugin to install.<br><br><strong>Value:</strong>    <code>OVNKubernetes</code>. <code>OVNKubernetes</code> is a Container Network Interface (CNI) plugin for Linux networks and hybrid networks that contain both Linux and Windows servers. The default value is <code>OVNKubernetes</code>.   </td>
 </tr>
 <tr>
   <td>networking: clusterNetwork:</td>
@@ -125,23 +112,23 @@ If you configure your cluster to use both IP address families, review the follow
 </tr>
 <tr>
   <td>networking: clusterNetwork: cidr:</td>
-  <td>Required if you use <code>networking.clusterNetwork</code>. An IP address block.<br><br>An IPv4 network.<br><br>If you use the OVN-Kubernetes network plugin, you can specify IPv4 and IPv6 networks.<br><br><strong>Value:</strong> An IP address block in Classless Inter-Domain Routing (CIDR) notation. The prefix length for an IPv4 block is between <code>0</code> and <code>32</code>.The prefix length for an IPv6 block is between <code>0</code> and <code>128</code>. For example, <code>10.128.0.0/14</code> or <code>fd01::/48</code>.</td>
+  <td>Required if you use <code>networking.clusterNetwork</code>. An IP address block.<br><br>  An IPv4 network.  <br><br>  If you use the OVN-Kubernetes network plugin, you can specify IPv4 and IPv6 networks.<br><br><strong>Value:</strong> An IP address block in Classless Inter-Domain Routing (CIDR) notation. The prefix length for an IPv4 block is between <code>0</code> and <code>32</code>. The prefix length for an IPv6 block is between <code>0</code> and <code>128</code>. For example, <code>10.128.0.0/14</code> or <code>fd01::/48</code>. </td>
 </tr>
 <tr>
   <td>networking: clusterNetwork: hostPrefix:</td>
-  <td>The subnet prefix length to assign to each individual node. For example, if <code>hostPrefix</code> is set to <code>23</code> then each node is assigned a <code>/23</code> subnet out of the given <code>cidr</code>. A <code>hostPrefix</code> value of <code>23</code> provides 510 (2^(32 - 23) - 2) pod IP addresses.<br><br><strong>Value:</strong> A subnet prefix.<br><br>The default value is <code>23</code>.<br><br>For an IPv4 network the default value is <code>23</code>. For an IPv6 network <code>hostPrefix</code> must be set to <code>64</code>, which is the default value.</td>
+  <td>The subnet prefix length to assign to each individual node. For example, if <code>hostPrefix</code> is set to <code>23</code> then each node is assigned a <code>/23</code> subnet out of the given <code>cidr</code>. A <code>hostPrefix</code> value of <code>23</code> provides 510 (2^(32 - 23) - 2) pod IP addresses.<br><br><strong>Value:</strong> A subnet prefix.<br><br>  The default value is <code>23</code>.  <br><br>  For an IPv4 network the default value is <code>23</code>. For an IPv6 network <code>hostPrefix</code> must be set to <code>64</code>, which is the default value. </td>
 </tr>
 <tr>
   <td>networking: serviceNetwork:</td>
-  <td>The IP address block for services. The default value is <code>172.30.0.0/16</code>.<br><br>If you use the OVN-Kubernetes network plugin, you can specify an IP address block for both of the IPv4 and IPv6 address families.<br><br><strong>Value:</strong> An array with an IP address block in CIDR format. For example:<br><br><pre>networking:&#10;  serviceNetwork:&#10;   - 172.30.0.0/16&#10;networking:&#10;  serviceNetwork:&#10;   - 172.30.0.0/16&#10;   - fd02::/112</pre></td>
+  <td>The IP address block for services. The default value is <code>172.30.0.0/16</code>.<br><br>  If you use the OVN-Kubernetes network plugin, you can specify an IP address block for both of the IPv4 and IPv6 address families.  <br><br><strong>Value:</strong> An array with an IP address block in CIDR format. For example:<br><br><pre>networking:&#10;  serviceNetwork:&#10;   - 172.30.0.0/16&#10;networking:&#10;  serviceNetwork:&#10;   - 172.30.0.0/16&#10;   - fd02::/112</pre></td>
 </tr>
 <tr>
   <td>networking: machineNetwork:</td>
-  <td>The IP address blocks for machines.<br><br>If you specify multiple IP address blocks, the blocks must not overlap.<br><br>If you specify multiple IP kernel arguments, the <code>machineNetwork.cidr</code> value must be the CIDR of the primary network.<br><br><strong>Value:</strong> An array of objects. For example:<br><br><pre>networking:&#10;  machineNetwork:&#10;  - cidr: 10.0.0.0/16</pre></td>
+  <td>The IP address blocks for machines.<br><br>  If you specify multiple IP address blocks, the blocks must not overlap.  <br><br>  <br><br><strong>Value:</strong> An array of objects. For example:<br><br><pre>networking:&#10;  machineNetwork:&#10;  - cidr: 10.0.0.0/16</pre></td>
 </tr>
 <tr>
   <td>networking: machineNetwork: cidr:</td>
-  <td>Required if you use <code>networking.machineNetwork</code>. An IP address block. The default value is <code>10.0.0.0/16</code> for all platforms other than libvirt and IBM Power(R) Virtual Server. For libvirt, the default value is <code>192.168.126.0/24</code>. For IBM Power(R) Virtual Server, the default value is <code>192.168.0.0/24</code>.<br><br>If you are deploying the cluster to an existing Virtual Private Cloud (VPC), the CIDR must contain the subnets defined in <code>platform.ibmcloud.controlPlaneSubnets</code> and <code>platform.ibmcloud.computeSubnets</code>.<br><br><strong>Value:</strong> An IP network block in CIDR notation.<br><br>For example, <code>10.0.0.0/16</code>.For example, <code>10.0.0.0/16</code> or <code>fd00::/48</code>.For example, <code>192.168.0.0/24</code>.<br><br><dl><dt>Note</dt><dd>Set the <code>networking.machineNetwork</code> to match the CIDR that the preferred NIC resides in.<br><br>If you are installing a cluster on AWS with dual-stack networking, consider the following distinction:<br><br><ul><li>If the installation program creates the VPC, do not specify an IPv6 entry in <code>networking.machineNetwork</code>. The installation program will assign an IPv6 address to the VPC.</li><li>If you provide existing dual-stack subnets using the <code>platform.aws.vpc.subnets</code> parameter, you must specify IPv6 entries corresponding to either the VPC CIDR or the CIDR of the subnets.</li><li>In both cases, you must provide an IPv4 CIDR entry.</li></ul></dd></dl></td>
+  <td>Required if you use <code>networking.machineNetwork</code>. An IP address block. The default value is <code>10.0.0.0/16</code> for all platforms other than libvirt and IBM Power(R) Virtual Server. For libvirt, the default value is <code>192.168.126.0/24</code>. For IBM Power(R) Virtual Server, the default value is <code>192.168.0.0/24</code>.<br><br>  <br><br><strong>Value:</strong> An IP network block in CIDR notation.<br><br>  For example, <code>10.0.0.0/16</code>.    <br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>Set the <code>networking.machineNetwork</code> to match the CIDR that the preferred NIC resides in.<br><br>If you are installing a cluster on AWS with dual-stack networking, consider the following distinction:<br><br><ul><li>If the installation program creates the VPC, do not specify an IPv6 entry in <code>networking.machineNetwork</code>. The installation program will assign an IPv6 address to the VPC.</li><li>If you provide existing dual-stack subnets using the <code>platform.aws.vpc.subnets</code> parameter, you must specify IPv6 entries corresponding to either the VPC CIDR or the CIDR of the subnets.</li><li>In both cases, you must provide an IPv4 CIDR entry.</li></ul></dd></dl></td>
 </tr>
 <tr>
   <td>networking: ovnKubernetesConfig: ipv4: internalJoinSubnet:</td>
@@ -154,7 +141,7 @@ If you configure your cluster to use both IP address families, review the follow
 
 Optional installation configuration parameters are described in the following table:
 
-***Optional parameters***
+**Optional parameters**
 
 <table>
 <thead>
@@ -186,33 +173,15 @@ Optional installation configuration parameters are described in the following ta
 </tr>
 <tr>
   <td>compute:</td>
-  <td>The configuration for the machines that comprise the compute nodes.<br><br><strong>Value:</strong> Array of <code>MachinePool</code> objects.</td>
-</tr>
-<tr>
-
+  <td>The configuration for the machines that comprise the compute nodes.<br><br><strong>Value:</strong> Array of <code>MachinePool</code> objects.<br><br>  <br><br>   </td>
 </tr>
 <tr>
   <td>compute: architecture:</td>
-  <td>Determines the instruction set architecture of the machines in the pool. Currently, clusters with varied architectures are not supported. All pools must specify the same architecture. Valid values are <code>amd64</code> and <code>arm64</code>.<br><br>Not all installation options support the 64-bit ARM architecture. To verify if your installation option is supported on your platform, see <em>Supported installation methods for different platforms</em> in <em>Selecting a cluster installation method and preparing it for users</em>.<br><br><strong>Value:</strong> String</td>
-</tr>
-<tr>
-
-</tr>
-<tr>
-
-</tr>
-<tr>
-
-</tr>
-<tr>
-
+  <td>Determines the instruction set architecture of the machines in the pool. Currently, clusters with varied architectures are not supported. All pools must specify the same architecture. Valid values are <code>amd64</code> and <code>arm64</code>.<br><br>  Not all installation options support the 64-bit ARM architecture. To verify if your installation option is supported on your platform, see <em>Supported installation methods for different platforms</em> in <em>Selecting a cluster installation method and preparing it for users</em>.  <br><br><strong>Value:</strong> String</td>
 </tr>
 <tr>
   <td>compute: hyperthreading:</td>
-  <td>Whether to enable or disable simultaneous multithreading, or <code>hyperthreading</code>, on compute machines. By default, simultaneous multithreading is enabled to increase the performance of your machines' cores.<br><br><dl><dt>Important</dt><dd>If you disable simultaneous multithreading, ensure that your capacity planning accounts for the dramatically decreased machine performance.</dd></dl><br><br><strong>Value:</strong> <code>Enabled</code> or <code>Disabled</code></td>
-</tr>
-<tr>
-
+  <td>Whether to enable or disable simultaneous multithreading, or <code>hyperthreading</code>, on compute machines. By default, simultaneous multithreading is enabled to increase the performance of your machines' cores.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>If you disable simultaneous multithreading, ensure that your capacity planning accounts for the dramatically decreased machine performance.</dd></dl><br><br><strong>Value:</strong> <code>Enabled</code> or <code>Disabled</code></td>
 </tr>
 <tr>
   <td>compute: name:</td>
@@ -220,10 +189,7 @@ Optional installation configuration parameters are described in the following ta
 </tr>
 <tr>
   <td>compute: platform:</td>
-  <td>Required if you use <code>compute</code>. Use this parameter to specify the cloud provider to host the worker machines. This parameter value must match the <code>controlPlane.platform</code> parameter value.<br><br>Example usage, <code>compute.platform.powervs.sysType</code>.</td>
-</tr>
-<tr>
-
+  <td>Required if you use <code>compute</code>. Use this parameter to specify the cloud provider to host the worker machines. This parameter value must match the <code>controlPlane.platform</code> parameter value.<br><br> </td>
 </tr>
 <tr>
   <td>compute: replicas:</td>
@@ -238,27 +204,12 @@ Optional installation configuration parameters are described in the following ta
   <td>The configuration for the machines that form the control plane.<br><br><strong>Value:</strong> Array of <code>MachinePool</code> objects.</td>
 </tr>
 <tr>
-
-</tr>
-<tr>
   <td>controlPlane: architecture:</td>
-  <td>Determines the instruction set architecture of the machines in the pool. Currently, clusters with varied architectures are not supported. All pools must specify the same architecture. Valid values are <code>amd64</code> and <code>arm64</code>.<br><br>Not all installation options support the 64-bit ARM architecture. To verify if your installation option is supported on your platform, see <em>Supported installation methods for different platforms</em> in <em>Selecting a cluster installation method and preparing it for users</em>.<br><br><strong>Value:</strong> String</td>
-</tr>
-<tr>
-
-</tr>
-<tr>
-
-</tr>
-<tr>
-
-</tr>
-<tr>
-
+  <td>Determines the instruction set architecture of the machines in the pool. Currently, clusters with varied architectures are not supported. All pools must specify the same architecture. Valid values are <code>amd64</code> and <code>arm64</code>.<br><br>  Not all installation options support the 64-bit ARM architecture. To verify if your installation option is supported on your platform, see <em>Supported installation methods for different platforms</em> in <em>Selecting a cluster installation method and preparing it for users</em>.  <br><br><strong>Value:</strong> String</td>
 </tr>
 <tr>
   <td>controlPlane: hyperthreading:</td>
-  <td>Whether to enable or disable simultaneous multithreading, or <code>hyperthreading</code>, on control plane machines. By default, simultaneous multithreading is enabled to increase the performance of your machines' cores.<br><br><dl><dt>Important</dt><dd>If you disable simultaneous multithreading, ensure that your capacity planning accounts for the dramatically decreased machine performance.</dd></dl><br><br><strong>Value:</strong> <code>Enabled</code> or <code>Disabled</code></td>
+  <td>Whether to enable or disable simultaneous multithreading, or <code>hyperthreading</code>, on control plane machines. By default, simultaneous multithreading is enabled to increase the performance of your machines' cores.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>If you disable simultaneous multithreading, ensure that your capacity planning accounts for the dramatically decreased machine performance.</dd></dl><br><br><strong>Value:</strong> <code>Enabled</code> or <code>Disabled</code></td>
 </tr>
 <tr>
   <td>controlPlane: name:</td>
@@ -266,14 +217,11 @@ Optional installation configuration parameters are described in the following ta
 </tr>
 <tr>
   <td>controlPlane: platform:</td>
-  <td>Required if you use <code>controlPlane</code>. Use this parameter to specify the cloud provider that hosts the control plane machines. This parameter value must match the <code>compute.platform</code> parameter value.<br><br>Example usage, <code>controlPlane.platform.powervs.processors</code>.</td>
-</tr>
-<tr>
-
+  <td>Required if you use <code>controlPlane</code>. Use this parameter to specify the cloud provider that hosts the control plane machines. This parameter value must match the <code>compute.platform</code> parameter value.<br><br> </td>
 </tr>
 <tr>
   <td>controlPlane: replicas:</td>
-  <td>The number of control plane machines to provision.<br><br><strong>Value:</strong>Supported values are <code>3</code>, or <code>1</code> when deploying single-node OpenShift.Supported values are <code>3</code>, <code>4</code>, <code>5</code>, or <code>1</code> when deploying single-node OpenShift.</td>
+  <td>The number of control plane machines to provision.<br><br><strong>Value:</strong>  Supported values are <code>3</code>, or <code>1</code> when deploying single-node OpenShift.  </td>
 </tr>
 <tr>
   <td>arbiter: name:</td>
@@ -285,98 +233,50 @@ Optional installation configuration parameters are described in the following ta
 </tr>
 <tr>
   <td>credentialsMode:</td>
-  <td>The Cloud Credential Operator (CCO) mode. If no mode is specified, the CCO dynamically tries to determine the capabilities of the provided credentials, with a preference for mint mode on the platforms where multiple modes are supported.<br><br><dl><dt>Note</dt><dd>Not all CCO modes are supported for all cloud providers. For more information about CCO modes, see the "Managing cloud provider credentials" entry in the <em>Authentication and authorization</em> content.</dd></dl><br><br><strong>Value:</strong> <code>Mint</code>, <code>Passthrough</code>, <code>Manual</code> or an empty string (<code>""</code>).</td>
+  <td>The Cloud Credential Operator (CCO) mode. If no mode is specified, the CCO dynamically tries to determine the capabilities of the provided credentials, with a preference for mint mode on the platforms where multiple modes are supported.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>Not all CCO modes are supported for all cloud providers. For more information about CCO modes, see the "Managing cloud provider credentials" entry in the <em>Authentication and authorization</em> content.</dd></dl><br><br><strong>Value:</strong> <code>Mint</code>, <code>Passthrough</code>, <code>Manual</code> or an empty string (<code>""</code>).</td>
 </tr>
 <tr>
   <td>fips:</td>
   <td>Enable or disable FIPS mode. The default is <code>false</code> (disabled). If you enable FIPS mode, the Red&#160;Hat Enterprise Linux CoreOS (RHCOS) machines that OpenShift Container Platform runs on bypass the default Kubernetes cryptography suite and use the cryptography modules that RHCOS provides instead.<br><br>
+<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>To enable FIPS mode for your cluster, you must run the installation program from a Red&#160;Hat Enterprise Linux (RHEL) computer configured to operate in FIPS mode. For more information about configuring FIPS mode on RHEL, see <a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/security_hardening/switching-rhel-to-fips-mode_security-hardening">Switching RHEL to FIPS mode</a>. When running Red&#160;Hat Enterprise Linux (RHEL) or Red&#160;Hat Enterprise Linux CoreOS (RHCOS) booted in FIPS mode, OpenShift Container Platform core components use the RHEL cryptographic libraries that have been submitted to NIST for FIPS 140-2/140-3 Validation on only the x86_64, ppc64le, and s390x architectures.</dd></dl><br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>If you are using Azure File storage, you cannot enable FIPS mode.</dd></dl><br><br><strong>Value:</strong> <code>false</code> or <code>true</code></td>
+</tr>
+<tr>
+  <td>endpoint: name: <endpoint_name> clusterUseOnly: <code>true</code> or <code>false</code></td>
+  <td>The <code>name</code> parameter contains the name of the Private Service Connect (PSC) endpoints.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>When <code>clusterUseOnly</code> is <code>false</code>, its default setting, you must run the installation program from a bastion host that is within the same VPC where you want to deploy the cluster.</dd></dl><br><br>When you want the installation program to use the public API endpoints and cluster Operators to use the API endpoint overrides, set <code>clusterUseOnly</code> to <code>true</code>. When you want both the installation program and the cluster Operators to use the API endpoint overrides, for example if you are running the installation program from a bastion host that is within the same VPC where you want to deploy the cluster, set <code>clusterUseOnly</code> to <code>false</code> . The parameter is optional and defaults to <code>false</code>.<br><br><strong>Value:</strong> String or boolean</td>
+</tr>
+<tr>
+  <td>imageContentSources:</td>
+  <td>Sources and repositories for the release-image content.<br><br><strong>Value:</strong> Array of objects. Includes a <code>source</code> and, optionally, <code>mirrors</code>, as described in the following rows of this table.</td>
+</tr>
+<tr>
+  <td>imageContentSources: source:</td>
+  <td>Required if you use <code>imageContentSources</code>. Specify the repository that users refer to, for example, in image pull specifications.<br><br><strong>Value:</strong> String</td>
+</tr>
+<tr>
+  <td>imageContentSources: mirrors:</td>
+  <td>Specify one or more repositories that might also contain the same images.<br><br><strong>Value:</strong> Array of strings</td>
+</tr>
+<tr>
+  <td>osImageStream:</td>
+  <td>Specifies the image stream that will be used for all machines in the cluster. <code>osImageStream</code> is a Technology Preview feature. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.<br><br><strong>Value:</strong> String. Valid values are <code>rhel-9</code> or <code>rhel-10</code>.</td>
+</tr>
+<tr>
+  <td>platform: aws: lbType:</td>
+  <td>Required to set the NLB load balancer type in AWS. Valid values are <code>Classic</code> or <code>NLB</code>. If no value is specified, the installation program defaults to <code>Classic</code>. The installation program sets the value provided here in the ingress cluster configuration object. If you do not specify a load balancer type for other Ingress Controllers, they use the type set in this parameter.<br><br>If you installed your cluster using the <code>DualStackIPv4Primary</code> or <code>DualStackIPv6Primary</code> values for the <code>platform.aws.ipFamily</code> parameter, any services that have IPv6 addresses must use the NLB load balancer type. The classic load balancer (CLB) does not support IPv6.<br><br><strong>Value:</strong> <code>Classic</code> or <code>NLB</code>. If you do not set the <code>platform.aws.ipFamily</code> parameter or set it to <code>IPv4</code>, the default value is <code>Classic</code>. If you set the <code>platform.aws.ipFamily</code> parameter to <code>DualStackIPv4Primary</code> or <code>DualStackIPv6Primary</code>, the default value is <code>NLB</code>.</td>
+</tr>
+<tr>
+  <td>publish:</td>
+  <td>How to publish or expose the user-facing endpoints of your cluster, such as the Kubernetes API, OpenShift routes.<br><br><strong>Value:</strong>  <code>Internal</code> or <code>External</code>. To deploy a private cluster that cannot be accessed from the internet, set the <code>publish</code> parameter to <code>Internal</code>. The default value is <code>External</code>.   </td>
+</tr>
+<tr>
+  <td>sshKey:</td>
+  <td>The SSH key to authenticate access to your cluster machines.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>For production OpenShift Container Platform clusters on which you want to perform installation debugging or disaster recovery, specify an SSH key that your <code>ssh-agent</code> process uses.</dd></dl><br><br><strong>Value:</strong> For example, <code>sshKey: ssh-ed25519 AAAA..</code>.</td>
+</tr>
+</tbody>
+</table>
 
-> [!IMPORTANT]
-> To enable FIPS mode for your cluster, you must run the installation program from a Red Hat Enterprise Linux (RHEL) computer configured to operate in FIPS mode. For more information about configuring FIPS mode on RHEL, see [Switching RHEL to FIPS mode](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/security_hardening/switching-rhel-to-fips-mode_security-hardening).
->
-> When running Red Hat Enterprise Linux (RHEL) or Red Hat Enterprise Linux CoreOS (RHCOS) booted in FIPS mode, OpenShift Container Platform core components use the RHEL cryptographic libraries that have been submitted to NIST for FIPS 140-2/140-3 Validation on only the x86_64, ppc64le, and s390x architectures.
->
-> :::<br><br><dl><dt>Important</dt><dd>If you are using Azure File storage, you cannot enable FIPS mode.</dd></dl><br><br><strong>Value:</strong> <code>false</code> or <code>true</code></td>
->
-> </tr>
-> <tr>
->   <td>endpoint: name: <endpoint_name> clusterUseOnly: <code>true</code> or <code>false</code></td>
->   <td>The <code>name</code> parameter contains the name of the Private Service Connect (PSC) endpoints.<br><br><dl><dt>Important</dt><dd>When <code>clusterUseOnly</code> is <code>false</code>, its default setting, you must run the installation program from a bastion host that is within the same VPC where you want to deploy the cluster.</dd></dl><br><br>When you want the installation program to use the public API endpoints and cluster Operators to use the API endpoint overrides, set <code>clusterUseOnly</code> to <code>true</code>. When you want both the installation program and the cluster Operators to use the API endpoint overrides, for example if you are running the installation program from a bastion host that is within the same VPC where you want to deploy the cluster, set <code>clusterUseOnly</code> to <code>false</code> . The parameter is optional and defaults to <code>false</code>.<br><br><strong>Value:</strong> String or boolean</td>
-> </tr>
-> <tr>
->   <td>imageContentSources:</td>
->   <td>Sources and repositories for the release-image content.<br><br><strong>Value:</strong> Array of objects. Includes a <code>source</code> and, optionally, <code>mirrors</code>, as described in the following rows of this table.</td>
-> </tr>
-> <tr>
->   <td>imageContentSources: source:</td>
->   <td>Required if you use <code>imageContentSources</code>. Specify the repository that users refer to, for example, in image pull specifications.<br><br><strong>Value:</strong> String</td>
-> </tr>
-> <tr>
->   <td>imageContentSources: mirrors:</td>
->   <td>Specify one or more repositories that might also contain the same images.<br><br><strong>Value:</strong> Array of strings</td>
-> </tr>
-> <tr>
->   <td>osImageStream:</td>
->   <td>Specifies the image stream that will be used for all machines in the cluster. <code>osImageStream</code> is a Technology Preview feature. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.<br><br><strong>Value:</strong> String. Valid values are <code>rhel-9</code> or <code>rhel-10</code>.</td>
-> </tr>
-> <tr>
->   <td>platform: aws: lbType:</td>
->   <td>Required to set the NLB load balancer type in AWS. Valid values are <code>Classic</code> or <code>NLB</code>. If no value is specified, the installation program defaults to <code>Classic</code>. The installation program sets the value provided here in the ingress cluster configuration object. If you do not specify a load balancer type for other Ingress Controllers, they use the type set in this parameter.<br><br>If you installed your cluster using the <code>DualStackIPv4Primary</code> or <code>DualStackIPv6Primary</code> values for the <code>platform.aws.ipFamily</code> parameter, any services that have IPv6 addresses must use the NLB load balancer type. The classic load balancer (CLB) does not support IPv6.<br><br><strong>Value:</strong> <code>Classic</code> or <code>NLB</code>. If you do not set the <code>platform.aws.ipFamily</code> parameter or set it to <code>IPv4</code>, the default value is <code>Classic</code>. If you set the <code>platform.aws.ipFamily</code> parameter to <code>DualStackIPv4Primary</code> or <code>DualStackIPv6Primary</code>, the default value is <code>NLB</code>.</td>
-> </tr>
-> <tr>
->   <td>publish:</td>
->   <td>How to publish or expose the user-facing endpoints of your cluster, such as the Kubernetes API, OpenShift routes.<br><br><strong>Value:</strong><code>Internal</code> or <code>External</code>. To deploy a private cluster that cannot be accessed from the internet, set the <code>publish</code> parameter to <code>Internal</code>. The default value is <code>External</code>.<code>Internal</code>, <code>External</code>, or <code>Mixed</code>. To deploy a private cluster that cannot be accessed from the internet, set the <code>publish</code> parameter to <code>Internal</code>. The default value is <code>External</code>. To deploy a cluster where the API and the ingress server have different publishing strategies, set <code>publish</code> to <code>Mixed</code> and use the <code>operatorPublishingStrategy</code> parameter.<code>Internal</code> or <code>External</code>. The default value is <code>External</code>.<br><br>Setting this field to <code>Internal</code> is not supported on non-cloud platforms.</td>
-> </tr>
-> <tr>
->   <td>sshKey:</td>
->   <td>The SSH key to authenticate access to your cluster machines.<br><br><dl><dt>Note</dt><dd>For production OpenShift Container Platform clusters on which you want to perform installation debugging or disaster recovery, specify an SSH key that your <code>ssh-agent</code> process uses.</dd></dl><br><br><strong>Value:</strong> For example, <code>sshKey: ssh-ed25519 AAAA..</code>.</td>
-> </tr>
-> <tr>
->
->
-> </tr>
-> <tr>
->
->
-> </tr>
-> <tr>
->
->
-> </tr>
-> <tr>
->
->
-> </tr>
-> <tr>
->
->
-> </tr>
-> <tr>
->
->
-> </tr>
-> <tr>
->
->
-> </tr>
-> <tr>
->
->
-> </tr>
-> <tr>
->
->
-> </tr>
-> <tr>
->
->
-> </tr>
-> </tbody>
-> </table>
->
->
-> > [!NOTE]
-> > If your AWS account has service control policies (SCP) enabled, you must configure the `credentialsMode` parameter to `Mint`, `Passthrough`, or `Manual`.
+> [!NOTE]
+> If your AWS account has service control policies (SCP) enabled, you must configure the `credentialsMode` parameter to `Mint`, `Passthrough`, or `Manual`.
 
 > [!IMPORTANT]
 > Setting this parameter to `Manual` enables alternatives to storing administrator-level secrets in the `kube-system` project, which require additional configuration steps. For more information, see "Alternatives to storing administrator-level secrets in the kube-system project".
@@ -385,7 +285,7 @@ Optional installation configuration parameters are described in the following ta
 
 Optional AWS configuration parameters are described in the following table:
 
-***Optional AWS parameters***
+**Optional AWS parameters**
 
 <table>
 <thead>
@@ -437,15 +337,15 @@ Optional AWS configuration parameters are described in the following table:
 </tr>
 <tr>
   <td>compute: platform: aws: hostPlacement: affinity:</td>
-  <td>Specifies the affinity setting for placing compute machines on AWS Dedicated Hosts. When set to <code>DedicatedHost</code>, machines are pinned to the specific Dedicated Hosts listed in the <code>dedicatedHost</code> field. If a machine is stopped and restarted, the machine returns to the same physical host. When set to <code>AnyAvailable</code>, machines are not pinned to specific Dedicated Hosts. If a machine is stopped and restarted, AWS can place the machine on any available Dedicated Host that matches the instance type and availability zone.<br><br><dl><dt>Important</dt><dd>AWS Dedicated Host support is a Technology Preview feature only. Technology Preview features are not supported with Red&#160;Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.<br><br>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl><br><br><strong>Value:</strong> <code>DedicatedHost</code> or <code>AnyAvailable</code>.</td>
+  <td>Specifies the affinity setting for placing compute machines on AWS Dedicated Hosts. When set to <code>DedicatedHost</code>, machines are pinned to the specific Dedicated Hosts listed in the <code>dedicatedHost</code> field. If a machine is stopped and restarted, the machine returns to the same physical host. When set to <code>AnyAvailable</code>, machines are not pinned to specific Dedicated Hosts. If a machine is stopped and restarted, AWS can place the machine on any available Dedicated Host that matches the instance type and availability zone.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>AWS Dedicated Host support is a Technology Preview feature only. Technology Preview features are not supported with Red&#160;Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.<br><br>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl><br><br><strong>Value:</strong> <code>DedicatedHost</code> or <code>AnyAvailable</code>.</td>
 </tr>
 <tr>
   <td>compute: platform: aws: hostPlacement: dedicatedHost:</td>
-  <td>A list of AWS Dedicated Host entries for compute machines. Required when <code>hostPlacement.affinity</code> is set to <code>DedicatedHost</code>. Must be omitted when <code>hostPlacement.affinity</code> is set to <code>AnyAvailable</code>.<br><br><dl><dt>Important</dt><dd>AWS Dedicated Host support is a Technology Preview feature only. Technology Preview features are not supported with Red&#160;Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.<br><br>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl><br><br><strong>Value:</strong> A list of objects.</td>
+  <td>A list of AWS Dedicated Host entries for compute machines. Required when <code>hostPlacement.affinity</code> is set to <code>DedicatedHost</code>. Must be omitted when <code>hostPlacement.affinity</code> is set to <code>AnyAvailable</code>.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>AWS Dedicated Host support is a Technology Preview feature only. Technology Preview features are not supported with Red&#160;Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.<br><br>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl><br><br><strong>Value:</strong> A list of objects.</td>
 </tr>
 <tr>
   <td>compute: platform: aws: hostPlacement: dedicatedHost: - id:</td>
-  <td>The ID of the AWS Dedicated Host. The value must start with <code>h-</code> followed by 17 lowercase hexadecimal characters.<br><br><dl><dt>Important</dt><dd>AWS Dedicated Host support is a Technology Preview feature only. Technology Preview features are not supported with Red&#160;Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.<br><br>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl><br><br><strong>Value:</strong> String, for example <code>h-015c6d3ffa1d43d38</code>.</td>
+  <td>The ID of the AWS Dedicated Host. The value must start with <code>h-</code> followed by 17 lowercase hexadecimal characters.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>AWS Dedicated Host support is a Technology Preview feature only. Technology Preview features are not supported with Red&#160;Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.<br><br>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl><br><br><strong>Value:</strong> String, for example <code>h-015c6d3ffa1d43d38</code>.</td>
 </tr>
 <tr>
   <td>controlPlane: platform: aws: amiID:</td>
@@ -501,11 +401,11 @@ Optional AWS configuration parameters are described in the following table:
 </tr>
 <tr>
   <td>platform: aws: userProvisionedDNS:</td>
-  <td>Enables user-provisioned DNS instead of the default cluster-provisioned DNS solution. If you use this feature, you must provide your own DNS solution that includes records for <code>api.<cluster_name>.<base_domain>.</code> and <code>*.apps.<cluster_name>.<base_domain>.</code>. <code>userProvisionedDNS</code> is a Technology Preview feature.<br><br><strong>Value:</strong> <code>Enabled</code> or <code>Disabled</code>. The default value is <code>Disabled</code>.</td>
+  <td>Enables user-provisioned DNS instead of the default cluster-provisioned DNS solution. If you use this feature, you must provide your own DNS solution that includes records for <code>api.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code> and <code>*.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code>. <code>userProvisionedDNS</code> is a Technology Preview feature.<br><br><strong>Value:</strong> <code>Enabled</code> or <code>Disabled</code>. The default value is <code>Disabled</code>.</td>
 </tr>
 <tr>
   <td>platform: aws: region:</td>
-  <td>The AWS region that the installation program creates all cluster resources in.<br><br><strong>Value:</strong> Any valid <a href="https://docs.aws.amazon.com/general/latest/gr/rande.html">AWS region</a>, such as <code>us-east-1</code>. You can use the AWS CLI to access the regions available based on your selected instance type by running the following command:<br><br><pre>$ aws ec2 describe-instance-type-offerings --filters Name=instance-type,Values=c7g.xlarge</pre><br><br><dl><dt>Important</dt><dd>When running on ARM based AWS instances, ensure that you enter a region where AWS Graviton processors are available. See <a href="https://aws.amazon.com/ec2/graviton/#Global_availability">Global availability</a> map in the AWS documentation. Currently, AWS Graviton3 processors are only available in some regions.</dd></dl></td>
+  <td>The AWS region that the installation program creates all cluster resources in.<br><br><strong>Value:</strong> Any valid <a href="https://docs.aws.amazon.com/general/latest/gr/rande.html">AWS region</a>, such as <code>us-east-1</code>. You can use the AWS CLI to access the regions available based on your selected instance type by running the following command:<br><br><pre>$ aws ec2 describe-instance-type-offerings --filters Name=instance-type,Values=c7g.xlarge</pre><br><br>  <dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>When running on ARM based AWS instances, ensure that you enter a region where AWS Graviton processors are available. See <a href="https://aws.amazon.com/ec2/graviton/#Global_availability">Global availability</a> map in the AWS documentation. Currently, AWS Graviton3 processors are only available in some regions.</dd></dl> </td>
 </tr>
 <tr>
   <td>platform: aws: serviceEndpoints: - name: url:</td>
@@ -513,7 +413,7 @@ Optional AWS configuration parameters are described in the following table:
 </tr>
 <tr>
   <td>platform: aws: userTags:</td>
-  <td>A map of keys and values that the installation program adds as tags to all resources that it creates.<br><br><strong>Value:</strong> Any valid YAML map, such as key value pairs in the <code><key>: <value></code> format. For more information about AWS tags, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html">Tagging Your Amazon EC2 Resources</a> in the AWS documentation.<br><br><dl><dt>Note</dt><dd>You can add up to 25 user-defined tags during installation. The remaining 25 tags are reserved for OpenShift Container Platform.</dd></dl></td>
+  <td>A map of keys and values that the installation program adds as tags to all resources that it creates.<br><br><strong>Value:</strong> Any valid YAML map, such as key value pairs in the <code>&lt;key&gt;: &lt;value&gt;</code> format. For more information about AWS tags, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html">Tagging Your Amazon EC2 Resources</a> in the AWS documentation.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>You can add up to 25 user-defined tags during installation. The remaining 25 tags are reserved for OpenShift Container Platform.</dd></dl></td>
 </tr>
 <tr>
   <td>platform: aws: propagateUserTags:</td>
@@ -521,7 +421,7 @@ Optional AWS configuration parameters are described in the following table:
 </tr>
 <tr>
   <td>platform: aws: publicIpv4Pool:</td>
-  <td>The public IPv4 pool ID that is used to allocate Elastic IPs (EIPs) when <code>publish</code> is set to <code>External</code>. You must provision and advertise the pool in the same AWS account and region of the cluster. You must ensure that you have 2n + 1 IPv4 addresses available in the pool where <em>n</em> is the total number of AWS zones used to deploy the Network Load Balancer (NLB) for API, NAT gateways, and bootstrap node. For more information about bring your own IP addresses (BYOIP) in AWS, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html#byoip-onboard">Onboard your BYOIP</a>.<br><br><strong>Value:</strong> A valid <a href="https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-public-ipv4-pools.html">public IPv4 pool id</a><br><br><dl><dt>Note</dt><dd>You can enable BYOIP only for customized installations that do not have any network restrictions.</dd></dl></td>
+  <td>The public IPv4 pool ID that is used to allocate Elastic IPs (EIPs) when <code>publish</code> is set to <code>External</code>. You must provision and advertise the pool in the same AWS account and region of the cluster. You must ensure that you have 2n + 1 IPv4 addresses available in the pool where <em>n</em> is the total number of AWS zones used to deploy the Network Load Balancer (NLB) for API, NAT gateways, and bootstrap node. For more information about bring your own IP addresses (BYOIP) in AWS, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html#byoip-onboard">Onboard your BYOIP</a>.<br><br><strong>Value:</strong> A valid <a href="https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-public-ipv4-pools.html">public IPv4 pool id</a><br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>You can enable BYOIP only for customized installations that do not have any network restrictions.</dd></dl></td>
 </tr>
 <tr>
   <td>platform: aws: bestEffortDeleteIgnition:</td>
@@ -529,7 +429,7 @@ Optional AWS configuration parameters are described in the following table:
 </tr>
 <tr>
   <td>platform: aws: ipFamily:</td>
-  <td>The IP address family for networks used by the cluster. Specify <code>IPv4</code> for IPv4-only networking, <code>DualStackIPv4Primary</code> for dual-stack networking with IPv4 as the primary address family, or <code>DualStackIPv6Primary</code> for dual-stack networking with IPv6 as the primary address family. When using dual-stack, the VPC and subnets must be configured with both IPv4 and IPv6 CIDR blocks.<br><br>Consider the following requirements if you use dual-stack networking:<br><br><ul><li>All API and Ingress load balancers must be Network Load Balancers (NLB). Classic Load Balancers (CLB) do not support IPv6 addressing.</li><li>All machines in a dual-stack cluster must be Nitro-based and support IPv6 addressing.</li><li>If you are installing a cluster using existing subnets, all provided subnets must be configured with dual-stack address pools.</li><li>If you are installing a cluster using Local Zones, you must provide dual-stack subnets. The installation program cannot automatically provision dual-stack subnets in Local Zones.</li><li>Installing a cluster using dual-stack networking is not supported in Wavelength Zones.</li></ul><dl><dt>Important</dt><dd>Dual-stack networking on AWS is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl><br><br><strong>Value:</strong> "IPv4", "DualStackIPv4Primary", or "DualStackIPv6Primary". The default value is "IPv4".</td>
+  <td>The IP address family for networks used by the cluster. Specify <code>IPv4</code> for IPv4-only networking, <code>DualStackIPv4Primary</code> for dual-stack networking with IPv4 as the primary address family, or <code>DualStackIPv6Primary</code> for dual-stack networking with IPv6 as the primary address family. When using dual-stack, the VPC and subnets must be configured with both IPv4 and IPv6 CIDR blocks.<br><br>Consider the following requirements if you use dual-stack networking:<br><br><ul><li>All API and Ingress load balancers must be Network Load Balancers (NLB). Classic Load Balancers (CLB) do not support IPv6 addressing.</li><li>All machines in a dual-stack cluster must be Nitro-based and support IPv6 addressing.</li><li>If you are installing a cluster using existing subnets, all provided subnets must be configured with dual-stack address pools.</li><li>If you are installing a cluster using Local Zones, you must provide dual-stack subnets. The installation program cannot automatically provision dual-stack subnets in Local Zones.</li><li>Installing a cluster using dual-stack networking is not supported in Wavelength Zones.</li></ul><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>Dual-stack networking on AWS is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process. For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl><br><br><strong>Value:</strong> "IPv4", "DualStackIPv4Primary", or "DualStackIPv6Primary". The default value is "IPv4".</td>
 </tr>
 <tr>
   <td>platform: aws: vpc: subnets:</td>

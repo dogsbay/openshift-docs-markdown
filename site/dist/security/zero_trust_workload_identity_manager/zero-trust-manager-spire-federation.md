@@ -2,7 +2,7 @@
 title: Zero Trust Workload Identity Manager SPIRE federation
 ---
 
-# Zero Trust Workload Identity Manager SPIRE federation {#zero-trust-manager-spire-federation_{{ context }}}
+# Zero Trust Workload Identity Manager SPIRE federation {#zero-trust-manager-spire-federation_{context}}
 
 Configure SPIRE federation to enable workloads in different trust domains to securely authenticate each other across clusters, cloud providers, and organizational boundaries. By establishing trust relationships between separate SPIRE deployments, you can build a zero-trust architecture that spans multiple environments without compromising security or sharing secrets.
 
@@ -77,8 +77,7 @@ Example 1: Using ACME for automatic certificate management
     ```
 
     - The `profile` field uses `https_web` profile for Web PKI certificate-based authentication.
-
-- The `directoryURL` field is used for the production directory. For testing, use staging URL `https://acme-staging-v02.api.letsencrypt.org/directory`
+    - The `directoryURL` field is used for the production directory. For testing, use staging URL `https://acme-staging-v02.api.letsencrypt.org/directory`
 
 Example 2: Using manual certificate management with cert-manager
 :   The following example shows how to configure federation using externally managed certificates:
@@ -108,8 +107,8 @@ Example 2: Using manual certificate management with cert-manager
         managedRoute: "true"
     ```
 
-- The `fileSyncInterval` field checks for certificate updates every 24 hours.
-- The `externalSecretRef` field is the name of the Kubernetes Secret containing `tls.crt` and `tls.key`
+    - The `fileSyncInterval` field checks for certificate updates every 24 hours.
+    - The `externalSecretRef` field is the name of the Kubernetes Secret containing `tls.crt` and `tls.key`
 
 Example 3: Using https_spiffe profile for SPIRE-to-SPIRE federation
 :   The following example shows how to configure federation using SPIFFE-based TLS authentication:
@@ -137,8 +136,8 @@ Example 3: Using https_spiffe profile for SPIRE-to-SPIRE federation
         managedRoute: "true"
     ```
 
-- The `profile` field uses `https_spiffe` profile for SPIFFE-based TLS authentication.
-- The `endpointSiffeId` field contains the SPIFFE ID of the remote SPIRE server, required for identity validation.
+    - The `profile` field uses `https_spiffe` profile for SPIFFE-based TLS authentication.
+    - The `endpointSiffeId` field contains the SPIFFE ID of the remote SPIRE server, required for identity validation.
 
 Example 4: Mixed federation with multiple authentication profiles
 :   The following example shows a cluster federating with multiple remote clusters using different authentication profiles:
@@ -171,8 +170,8 @@ Example 4: Mixed federation with multiple authentication profiles
         managedRoute: "true"
     ```
 
-- The `profile` field cluster exposes its bundle using `https_spiffe` profile.
-- The `bundleEndpointProfile` field cluster exposes its bundle using `https_spiffe` profile.
+    - The `profile` field cluster exposes its bundle using `https_spiffe` profile.
+    - The `bundleEndpointProfile` field cluster exposes its bundle using `https_spiffe` profile.
 
 ## Configuring SPIRE federation with the https_spiffe profile {#zero-trust-manager-federation-configuration_zero-trust-manager-spire-federation}
 
@@ -1099,12 +1098,10 @@ Field validation rules
 :   The following validation rules are enforced by the operator:
 
     - Profile immutability: The `bundleEndpoint.profile` field cannot be changed after initial configuration. Changing it requires deleting and recreating the `SpireServer` resource (re-installation of the system).
-
-- Mutual exclusivity: Within `httpsWeb`, only one of `acme` or `servingCert` can be specified.
-- Conditional requirements: When `profile` is `https_web`, the `httpsWeb` object must be present with either `acme` or `servingCert` configured.
-- SPIFFE ID requirement: When `bundleEndpointProfile` is `https_spiffe` in the `federatesWith` list, the `endpointSpiffeId` field is required.
-- Array limits: The `federatesWith` array supports a maximum of 50 entries.
-- Numeric ranges:
-
-  - `refreshHint`: 60-3600 seconds
-  - `fileSyncInterval`: 3600-7776000 seconds
+    - Mutual exclusivity: Within `httpsWeb`, only one of `acme` or `servingCert` can be specified.
+    - Conditional requirements: When `profile` is `https_web`, the `httpsWeb` object must be present with either `acme` or `servingCert` configured.
+    - SPIFFE ID requirement: When `bundleEndpointProfile` is `https_spiffe` in the `federatesWith` list, the `endpointSpiffeId` field is required.
+    - Array limits: The `federatesWith` array supports a maximum of 50 entries.
+    - Numeric ranges:
+    - `refreshHint`: 60-3600 seconds
+    - `fileSyncInterval`: 3600-7776000 seconds

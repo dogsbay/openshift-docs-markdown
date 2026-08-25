@@ -21,7 +21,8 @@ const headings = [{"depth":1,"slug":"oadp-creating-backup-cr-doc","text":"Creati
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-creating-backup-cr";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="oadp-creating-backup-cr-doc" class="group scroll-mt-20">Creating a Backup CR<a href="#oadp-creating-backup-cr-doc" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Back up Kubernetes resources, internal images, and persistent volumes (PVs) by creating a <code>Backup</code> custom resource (CR). This helps you to protect your application data and configuration for disaster recovery.</p>
+      <p class="_abstract">Back up Kubernetes resources, internal images, and persistent volumes (PVs) by creating a <code>Backup</code> custom resource (CR). This helps you to protect your application data and configuration for disaster recovery.</p>
       <p><strong>Prerequisites</strong></p>
       <ul>
       <li>You must install the OpenShift API for Data Protection (OADP) Operator.</li>

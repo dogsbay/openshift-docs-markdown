@@ -197,7 +197,8 @@ Use the following procedure to configure the image registry to use CephFS storag
    $ oc patch config.image/cluster -p '{"spec":{"managementState":"Managed","replicas":2,"storage":{"managementState":"Unmanaged","pvc":{"claim":"registry-storage-pvc"}}}}' --type=merge
    ```
 
-## Additional resources {#configuring-registry-storage-ocs}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring Image Registry to use OpenShift Data Foundation](https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation/latest/html-single/managing_and_allocating_storage_resources/index#configuring-image-registry-to-use-openshift-data-foundation_rhodf)
 - [Performance tuning guide for Multicloud Object Gateway (NooBaa)](https://access.redhat.com/solutions/6719951)

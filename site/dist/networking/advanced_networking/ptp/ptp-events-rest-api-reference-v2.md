@@ -11,7 +11,7 @@ Use the following REST API v2 endpoints to subscribe the `cloud-event-consumer` 
   - `POST`: Creates a new subscription
   - `GET`: Retrieves a list of subscriptions
   - `DELETE`: Deletes all subscriptions
-- [`api/ocloudNotifications/v2/subscriptions/{{ subscription_id }}`](/openshift-docs-markdown/networking/networking/advanced_networking/ptp/ptp-events-rest-api-reference-v2#api-ocloud-notifications-v2-subscriptions-subscription_id_using-ptp-hardware-fast-events-framework-v2)
+- [`api/ocloudNotifications/v2/subscriptions/{subscription_id}`](/openshift-docs-markdown/networking/networking/advanced_networking/ptp/ptp-events-rest-api-reference-v2#api-ocloud-notifications-v2-subscriptions-subscription_id_using-ptp-hardware-fast-events-framework-v2)
 
   - `GET`: Returns details for the specified subscription ID
   - `DELETE`: Deletes the subscription associated with the specified subscription ID
@@ -21,9 +21,9 @@ Use the following REST API v2 endpoints to subscribe the `cloud-event-consumer` 
 - [`api/ocloudNotifications/v2/publishers`](/openshift-docs-markdown/networking/networking/advanced_networking/ptp/ptp-events-rest-api-reference-v2#api-ocloudnotifications-v2-publishers_using-ptp-hardware-fast-events-framework-v2)
 
   - `GET`: Returns a list of PTP event publishers for the cluster node
-- [`api/ocloudnotifications/v2/{{ resource_address }}/CurrentState`](/openshift-docs-markdown/networking/networking/advanced_networking/ptp/ptp-events-rest-api-reference-v2#resource-address-current-state-v2_using-ptp-hardware-fast-events-framework-v2)
+- [`api/ocloudnotifications/v2/{resource_address}/CurrentState`](/openshift-docs-markdown/networking/networking/advanced_networking/ptp/ptp-events-rest-api-reference-v2#resource-address-current-state-v2_using-ptp-hardware-fast-events-framework-v2)
 
-  - `GET`: Returns the current state of the event type specified by the `{{ resouce_address }}`.
+  - `GET`: Returns the current state of the event type specified by the `{resouce_address}`.
 
 ## PTP events REST API v2 endpoints {#cnf-fast-event-notifications-v2-api-refererence_using-ptp-hardware-fast-events-framework-v2}
 
@@ -163,11 +163,11 @@ Deletes all subscriptions.
 }
 ```
 
-### api/ocloudNotifications/v2/subscriptions/{{ subscription_id }} {#api-ocloud-notifications-v2-subscriptions-subscription_id_using-ptp-hardware-fast-events-framework-v2}
+### api/ocloudNotifications/v2/subscriptions/{subscription_id} {#api-ocloud-notifications-v2-subscriptions-subscription_id_using-ptp-hardware-fast-events-framework-v2}
 
 #### HTTP method {#_http_method}
 
-`GET api/ocloudNotifications/v2/subscriptions/{{ subscription_id }}`
+`GET api/ocloudNotifications/v2/subscriptions/{subscription_id}`
 
 #### Description {#_description}
 
@@ -190,7 +190,7 @@ Returns details for the subscription with ID `subscription_id`.
 
 #### HTTP method {#_http_method}
 
-`DELETE api/ocloudNotifications/v2/subscriptions/{{ subscription_id }}`
+`DELETE api/ocloudNotifications/v2/subscriptions/{subscription_id}`
 
 #### Description {#_description}
 
@@ -277,19 +277,19 @@ You can use equipment synchronization status subscriptions together to deliver a
 | --- | --- |
 | 200 OK | Success |
 
-### api/ocloudNotifications/v2/{{ resource_address }}/CurrentState {#resource-address-current-state-v2_using-ptp-hardware-fast-events-framework-v2}
+### api/ocloudNotifications/v2/{resource_address}/CurrentState {#resource-address-current-state-v2_using-ptp-hardware-fast-events-framework-v2}
 
 #### HTTP method {#_http_method}
 
-`GET api/ocloudNotifications/v2/cluster/node/{{ node_name }}/sync/ptp-status/lock-state/CurrentState`
+`GET api/ocloudNotifications/v2/cluster/node/{node_name}/sync/ptp-status/lock-state/CurrentState`
 
-`GET api/ocloudNotifications/v2/cluster/node/{{ node_name }}/sync/sync-status/os-clock-sync-state/CurrentState`
+`GET api/ocloudNotifications/v2/cluster/node/{node_name}/sync/sync-status/os-clock-sync-state/CurrentState`
 
-`GET api/ocloudNotifications/v2/cluster/node/{{ node_name }}/sync/ptp-status/clock-class/CurrentState`
+`GET api/ocloudNotifications/v2/cluster/node/{node_name}/sync/ptp-status/clock-class/CurrentState`
 
-`GET api/ocloudNotifications/v2/cluster/node/{{ node_name }}/sync/sync-status/sync-state/CurrentState`
+`GET api/ocloudNotifications/v2/cluster/node/{node_name}/sync/sync-status/sync-state/CurrentState`
 
-`GET api/ocloudNotifications/v2/cluster/node/{{ node_name }}/sync/gnss-status/gnss-sync-state/CurrentState`
+`GET api/ocloudNotifications/v2/cluster/node/{node_name}/sync/gnss-status/gnss-sync-state/CurrentState`
 
 #### Description {#_description}
 

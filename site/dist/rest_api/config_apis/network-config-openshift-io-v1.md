@@ -1,5 +1,5 @@
 ---
-title: Network []
+title: Network [config.openshift.io/v1]
 ---
 
 # Network \[config.openshift.io/v1\] {#network-config-openshift-io-v1}
@@ -42,7 +42,7 @@ Type
 | `clusterNetwork` | `array` | IP address pool to use for pod IPs. This field is immutable after installation. |
 | `clusterNetwork[]` | `object` | ClusterNetworkEntry is a contiguous block of IP addresses from which pod IPs are allocated. |
 | `externalIP` | `object` | externalIP defines configuration for controllers that affect Service.ExternalIP. If nil, then ExternalIP is not allowed to be set. |
-| `networkDiagnostics` | `object` | networkDiagnostics defines network diagnostics configuration. Takes precedence over spec.disableNetworkDiagnostics in network.operator.openshift.io. If networkDiagnostics is not specified or is empty, and the spec.disableNetworkDiagnostics flag in network.operator.openshift.io is set to true, the network diagnostics feature will be disabled. |
+| `networkDiagnostics` | `object` | networkDiagnostics defines network diagnostics configuration.<br>Takes precedence over spec.disableNetworkDiagnostics in network.operator.openshift.io. If networkDiagnostics is not specified or is empty, and the spec.disableNetworkDiagnostics flag in network.operator.openshift.io is set to true, the network diagnostics feature will be disabled. |
 | `networkType` | `string` | networkType is the plugin that is to be deployed (e.g. OVNKubernetes). This should match a value that the cluster-network-operator understands, or else no networking will be installed. Currently supported values are: - OVNKubernetes This field is immutable after installation. |
 | `serviceNetwork` | `array (string)` | IP address pool for services. Currently, we only support a single entry here. This field is immutable after installation. |
 | `serviceNodePortRange` | `string` | The port range allowed for Services of type NodePort. If not specified, the default of 30000-32767 will be used. Such Services without a NodePort specified will have one automatically allocated from this range. This parameter can be updated after the cluster is installed. |
@@ -116,9 +116,9 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `mode` | `string` | mode controls the network diagnostics mode When omitted, this means the user has no opinion and the platform is left to choose reasonable defaults. These defaults are subject to change over time. The current default is All. |
-| `sourcePlacement` | `object` | sourcePlacement controls the scheduling of network diagnostics source deployment See NetworkDiagnosticsSourcePlacement for more details about default values. |
-| `targetPlacement` | `object` | targetPlacement controls the scheduling of network diagnostics target daemonset See NetworkDiagnosticsTargetPlacement for more details about default values. |
+| `mode` | `string` | mode controls the network diagnostics mode<br>When omitted, this means the user has no opinion and the platform is left to choose reasonable defaults. These defaults are subject to change over time. The current default is All. |
+| `sourcePlacement` | `object` | sourcePlacement controls the scheduling of network diagnostics source deployment<br>See NetworkDiagnosticsSourcePlacement for more details about default values. |
+| `targetPlacement` | `object` | targetPlacement controls the scheduling of network diagnostics target daemonset<br>See NetworkDiagnosticsTargetPlacement for more details about default values. |
 
 ### .spec.networkDiagnostics.sourcePlacement {#_specnetworkdiagnosticssourceplacement}
 
@@ -134,8 +134,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `nodeSelector` | `object (string)` | nodeSelector is the node selector applied to network diagnostics components When omitted, this means the user has no opinion and the platform is left to choose reasonable defaults. These defaults are subject to change over time. The current default is `kubernetes.io/os: linux`. |
-| `tolerations` | `array` | tolerations is a list of tolerations applied to network diagnostics components When omitted, this means the user has no opinion and the platform is left to choose reasonable defaults. These defaults are subject to change over time. The current default is an empty list. |
+| `nodeSelector` | `object (string)` | nodeSelector is the node selector applied to network diagnostics components<br>When omitted, this means the user has no opinion and the platform is left to choose reasonable defaults. These defaults are subject to change over time. The current default is `kubernetes.io/os: linux`. |
+| `tolerations` | `array` | tolerations is a list of tolerations applied to network diagnostics components<br>When omitted, this means the user has no opinion and the platform is left to choose reasonable defaults. These defaults are subject to change over time. The current default is an empty list. |
 | `tolerations[]` | `object` | The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>. |
 
 ### .spec.networkDiagnostics.sourcePlacement.tolerations {#_specnetworkdiagnosticssourceplacementtolerations}
@@ -182,8 +182,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `nodeSelector` | `object (string)` | nodeSelector is the node selector applied to network diagnostics components When omitted, this means the user has no opinion and the platform is left to choose reasonable defaults. These defaults are subject to change over time. The current default is `kubernetes.io/os: linux`. |
-| `tolerations` | `array` | tolerations is a list of tolerations applied to network diagnostics components When omitted, this means the user has no opinion and the platform is left to choose reasonable defaults. These defaults are subject to change over time. The current default is `- operator: "Exists"` which means that all taints are tolerated. |
+| `nodeSelector` | `object (string)` | nodeSelector is the node selector applied to network diagnostics components<br>When omitted, this means the user has no opinion and the platform is left to choose reasonable defaults. These defaults are subject to change over time. The current default is `kubernetes.io/os: linux`. |
+| `tolerations` | `array` | tolerations is a list of tolerations applied to network diagnostics components<br>When omitted, this means the user has no opinion and the platform is left to choose reasonable defaults. These defaults are subject to change over time. The current default is `- operator: "Exists"` which means that all taints are tolerated. |
 | `tolerations[]` | `object` | The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>. |
 
 ### .spec.networkDiagnostics.targetPlacement.tolerations {#_specnetworkdiagnosticstargetplacementtolerations}
@@ -291,7 +291,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
 | `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
@@ -367,7 +367,7 @@ The following API endpoints are available:
   - `DELETE`: delete collection of Network
   - `GET`: list objects of kind Network
   - `POST`: create a Network
-- `/apis/config.openshift.io/v1/networks/{{ name }}`
+- `/apis/config.openshift.io/v1/networks/{name}`
 
   - `DELETE`: delete a Network
   - `GET`: read the specified Network
@@ -442,7 +442,7 @@ Description
 | 202 - Accepted | [`Network`](/openshift-docs-markdown/rest_api/config_apis/network-config-openshift-io-v1#network-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/networks/{{ name }} {#_apisconfigopenshiftiov1networks_name}
+### /apis/config.openshift.io/v1/networks/{name} {#_apisconfigopenshiftiov1networks_name}
 
 **Global path parameters**
 

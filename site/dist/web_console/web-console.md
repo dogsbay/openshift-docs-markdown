@@ -33,6 +33,7 @@ For existing clusters that you did not install, you can use `oc whoami --show-co
 > The `dir` parameter specifies the `assets` directory, which stores the manifest files, the ISO image, and the `auth` directory. The `auth` directory stores the `kubeadmin-password` and `kubeconfig` files. As a `kubeadmin` user, you can use the `kubeconfig` file to access the cluster with the following setting: `export KUBECONFIG=<install_directory>/auth/kubeconfig`. The `kubeconfig` is specific to the generated ISO image, so if the `kubeconfig` is set and the `oc` command fails, it is possible that the system did not boot with the generated ISO image. To perform debugging, during the bootstrap process, you can log in to the console as the `core` user by using the contents of the `kubeadmin-password` file.
 
 **Additional resources**
+{._additional-resources}
 
 - [OpenShift Container Platform 4.x Tested Integrations](https://access.redhat.com/articles/4128421)
 - [Enabling feature sets using the web console](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)

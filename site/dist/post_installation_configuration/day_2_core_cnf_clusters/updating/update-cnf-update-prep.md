@@ -10,6 +10,7 @@ Configure application pods to ensure workload availability during OpenShift Cont
 > Always deploy pods in groups by using `Deployment` resources. `Deployment` resources spread the workload across all of the available pods ensuring there is no single point of failure. When a pod that is managed by a `Deployment` resource is deleted, a new pod takes its place automatically.
 
 **Additional resources**
+{._additional-resources}
 
 - [Red Hat best practices for Kubernetes](https://redhat-best-practices-for-k8s.github.io/guide/)
 
@@ -18,6 +19,7 @@ Configure application pods to ensure workload availability during OpenShift Cont
 To prevent interruption of upgrading worker nodes, configure the pod disruption budget properly. For more information, see *Additional resources*.
 
 **Additional resources**
+{._additional-resources}
 
 - [Specifying the number of pods that must be up with pod disruption budgets](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#nodes-pods-pod-disruption-configuring_post-install-cluster-tasks)
 - [Configuring an OpenShift Container Platform cluster for pods](/openshift-docs-markdown/nodes/pods/nodes-pods-configuring#nodes-pods-pod-disruption-configuring_nodes-pods-configuring)
@@ -30,6 +32,7 @@ High availability in Kubernetes requires duplicate processes to be running on se
 During an update, setting pod anti-affinity ensures that pods are distributed evenly across nodes in the cluster. This means that node reboots are easier during an update. For example, if there are 4 pods from a single deployment on a node, and the pod disruption budget is set to only allow 1 pod to be deleted at a time, then it will take 4 times as long for that node to reboot. Setting pod anti-affinity spreads pods across the cluster to prevent such occurrences.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuring a pod affinity rule](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-pod-affinity#nodes-scheduler-pod-affinity-configuring_nodes-scheduler-pod-affinity)
 
@@ -47,5 +50,6 @@ Startup probe
 :   A startup probe indicates whether the application within a container is started. All other probes are disabled until the startup succeeds. If the startup probe does not succeed, the kubelet stops the container, and the container is subject to the pod `restartPolicy` setting.
 
 **Additional resources**
+{._additional-resources}
 
 - [Understanding health checks](/openshift-docs-markdown/applications/application-health#application-health-about_application-health)

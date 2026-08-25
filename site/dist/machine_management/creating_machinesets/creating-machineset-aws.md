@@ -1,8 +1,8 @@
 ---
-title: Creating a compute machine set on {{ aws_short }}
+title: Creating a compute machine set on AWS
 ---
 
-# Creating a compute machine set on {{ aws_short }} {#creating-machineset-aws}
+# Creating a compute machine set on AWS {#creating-machineset-aws}
 
 You can create a different compute machine set to serve a specific purpose in your OpenShift Container Platform cluster on Amazon Web Services (AWS). For example, you might create infrastructure machine sets and related machines so that you can move supporting workloads to the new machines.
 
@@ -23,11 +23,7 @@ The sample YAML defines a compute machine set that runs in the `us-east-1a` Amaz
 
 `node-role.kubernetes.io/<role>: ""`.
 
-In this sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and
-
-`<role>`
-
-is the node label to add.
+In this sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and `<role>` is the node label to add.
 
 ```yaml
 apiVersion: machine.openshift.io/v1beta1
@@ -35,64 +31,25 @@ kind: MachineSet
 metadata:
   labels:
     machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not (infra or edge) %}
   name: <infrastructure_id>-<role>-<zone>
-{% endif %}
-{% if infra %}
-  name: <infrastructure_id>-infra-<zone>
-{% endif %}
-{% if edge %}
-  name: <infrastructure_id>-edge-<zone>
-{%- endif %}
   namespace: openshift-machine-api
 spec:
   replicas: 1
   selector:
     matchLabels:
       machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if edge %}
-      machine.openshift.io/cluster-api-machineset: <infrastructure_id>-edge-<zone>
-{% endif %}
-{% if not (infra or edge) %}
       machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<zone>
-{% endif %}
-{% if infra %}
-      machine.openshift.io/cluster-api-machineset: <infrastructure_id>-infra-<zone>
-{%- endif %}
   template:
     metadata:
       labels:
         machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not (infra or edge) %}
         machine.openshift.io/cluster-api-machine-role: <role>
         machine.openshift.io/cluster-api-machine-type: <role>
         machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<zone>
-{% endif %}
-{% if infra %}
-        machine.openshift.io/cluster-api-machine-role: infra
-        machine.openshift.io/cluster-api-machine-type: infra
-        machine.openshift.io/cluster-api-machineset: <infrastructure_id>-infra-<zone>
-{% endif %}
-{% if edge %}
-        machine.openshift.io/cluster-api-machine-role: edge
-        machine.openshift.io/cluster-api-machine-type: edge
-        machine.openshift.io/cluster-api-machineset: <infrastructure_id>-edge-<zone>
-{%- endif %}
     spec:
       metadata:
         labels:
-{%- if not (infra or edge) %}
           node-role.kubernetes.io/<role>: ""
-{% endif %}
-{% if infra %}
-          node-role.kubernetes.io/infra: ""
-{% endif %}
-{% if edge %}
-          machine.openshift.io/parent-zone-name: <value_of_ParentZoneName>
-          machine.openshift.io/zone-group: <value_of_GroupName>
-          machine.openshift.io/zone-type: <value_of_ZoneType>
-          node-role.kubernetes.io/edge: ""
-{%- endif %}
       providerSpec:
         value:
           ami:
@@ -123,16 +80,10 @@ spec:
                   values:
                     - <infrastructure_id>-lb
           subnet:
-{%- if not edge %}
             filters:
               - name: tag:Name
                 values:
                   - <infrastructure_id>-subnet-private-<zone>
-                    {% endif %}
-                    {% if edge %}
-              id: <value_of_PublicSubnetIds>
-          publicIp: true
-{%- endif %}
           tags:
             - name: kubernetes.io/cluster/<infrastructure_id>
               value: owned
@@ -140,16 +91,6 @@ spec:
               value: <custom_tag_value>
           userDataSecret:
             name: worker-user-data
-{%- if infra or edge %}
-      taints:
-{%- if infra %}
-        - key: node-role.kubernetes.io/infra
-          {% endif %}
-          {% if edge %}
-        - key: node-role.kubernetes.io/edge
-          {%- endif %}
-          effect: NoSchedule
-{%- endif %}
 ```
 
 where:
@@ -192,6 +133,7 @@ where:
 > ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Manually updating the boot image](/openshift-docs-markdown/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)
 
@@ -296,13 +238,17 @@ To dynamically manage machine compute resources, you can create your own compute
 
   ```terminal
 
+  NAME                                DESIRED   CURRENT   READY   AVAILABLE   AGE
+  agl030519-vplxk-infra-us-east-1a    1         1         1       1           11m
+  agl030519-vplxk-worker-us-east-1a   1         1         1       1           55m
+  agl030519-vplxk-worker-us-east-1b   1         1         1       1           55m
+  agl030519-vplxk-worker-us-east-1c   1         1         1       1           55m
+  agl030519-vplxk-worker-us-east-1d   0         0                             55m
+  agl030519-vplxk-worker-us-east-1e   0         0                             55m
+  agl030519-vplxk-worker-us-east-1f   0         0                             55m
   ```
 
-{%- if win or post_aws_zones %} NAME                                       DESIRED   CURRENT   READY   AVAILABLE   AGE {%- if win %} agl030519-vplxk-windows-worker-us-east-1a  1         1         1       1           11m {% endif %} {% if post_aws_zones %} agl030519-vplxk-edge-us-east-1-nyc-1a      1         1         1       1           11m {%- endif %} agl030519-vplxk-worker-us-east-1a          1         1         1       1           55m agl030519-vplxk-worker-us-east-1b          1         1         1       1           55m agl030519-vplxk-worker-us-east-1c          1         1         1       1           55m agl030519-vplxk-worker-us-east-1d          0         0                             55m agl030519-vplxk-worker-us-east-1e          0         0                             55m agl030519-vplxk-worker-us-east-1f          0         0                             55m {% endif %} {% if not (win or post_aws_zones) %} NAME                                DESIRED   CURRENT   READY   AVAILABLE   AGE agl030519-vplxk-infra-us-east-1a    1         1         1       1           11m agl030519-vplxk-worker-us-east-1a   1         1         1       1           55m agl030519-vplxk-worker-us-east-1b   1         1         1       1           55m agl030519-vplxk-worker-us-east-1c   1         1         1       1           55m agl030519-vplxk-worker-us-east-1d   0         0                             55m agl030519-vplxk-worker-us-east-1e   0         0                             55m agl030519-vplxk-worker-us-east-1f   0         0                             55m {%- endif %} \`\`\`
-
-```
-When the new compute machine set is available, the `DESIRED` and `CURRENT` values match. If the compute machine set is not available, wait a few minutes and run the command again.
-```
+  When the new compute machine set is available, the `DESIRED` and `CURRENT` values match. If the compute machine set is not available, wait a few minutes and run the command again.
 
 ## Labeling GPU machine sets for the cluster autoscaler {#machineset-label-gpu-autoscaler_creating-machineset-aws}
 
@@ -338,6 +284,7 @@ Label your machine sets to indicate which machines the cluster autoscaler can us
       > You must specify the value of this label for the `spec.resourceLimits.gpus.type` parameter in your `ClusterAutoscaler` CR. For more information, see "Cluster autoscaler resource definition".
 
 **Additional resources**
+{._additional-resources}
 
 - [Cluster autoscaler resource definition](/openshift-docs-markdown/machine_management/applying-autoscaling#cluster-autoscaler-cr_applying-autoscaling)
 
@@ -362,16 +309,27 @@ You can configure a machine set to deploy machines on Elastic Fabric Adapter (EF
 
    ```yaml
 
+   apiVersion: machine.openshift.io/v1beta1
+   kind: MachineSet
+   # ...
+   spec:
+     template:
+       spec:
+         providerSpec:
+           value:
+             instanceType: <supported_instance_type>
+             networkInterfaceType: <interface_type>
+             placement:
+               availabilityZone: <zone>
+               region: <region>
+             placementGroupName: <placement_group>
+             placementGroupPartition: <placement_group_partition_number>
    ```
 
-{%- if cpmso %} apiVersion: machine.openshift.io/v1 kind: ControlPlaneMachineSet # ... spec: template: machines_v1beta1_machine_openshift_io: spec: providerSpec: value: instanceType: <supported_instance_type> networkInterfaceType: <interface_type> placement: availabilityZone: <zone> region: <region> placementGroupName: <placement_group> placementGroupPartition: <placement_group_partition_number> {% endif %} {% if not cpmso %} apiVersion: machine.openshift.io/v1beta1 kind: MachineSet # ... spec: template: spec: providerSpec: value: instanceType: <supported_instance_type> networkInterfaceType: <interface_type> placement: availabilityZone: <zone> region: <region> placementGroupName: <placement_group> placementGroupPartition: <placement_group_partition_number> {%- endif %} \`\`\`
+   where:
 
-```
-where:
-
-`<supported_instance_type>`
-:   Specifies an instance type that [supports EFAs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html#efa-instance-types).
-```
+   `<supported_instance_type>`
+   :   Specifies an instance type that [supports EFAs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html#efa-instance-types).
 
 `<interface_type>`
 :   Specifies the network interface type. To use an EFA, set this value to `EFA`.
@@ -423,19 +381,23 @@ You can specify whether to require the use of IMDSv2 by adding or editing the va
 
    ```yaml
 
+   apiVersion: machine.openshift.io/v1beta1
+   kind: MachineSet
+   # ...
+   spec:
+     template:
+       spec:
+         providerSpec:
+           value:
+             metadataServiceOptions:
+               authentication: Required
    ```
 
-{%- if cpmso %} apiVersion: machine.openshift.io/v1 kind: ControlPlaneMachineSet # ... spec: template: machines_v1beta1_machine_openshift_io: spec: providerSpec: value: imetadataServiceOptions: authentication: Required {% endif %} {% if not cpmso %} apiVersion: machine.openshift.io/v1beta1 kind: MachineSet # ... spec: template: spec: providerSpec: value: metadataServiceOptions: authentication: Required {%- endif %} \`\`\`
-
-```
-To require IMDSv2, set the `metadataServiceOptions.authentication` parameter value to `Required`.
-To allow the use of both IMDSv1 and IMDSv2, set the parameter value to `Optional`.
-If you do not specify a value, machines that the machine set creates allow the use of both IMDSv1 and IMDSv2.
-```
-
-1. Save your changes and exit the object specification.
+   To require IMDSv2, set the `metadataServiceOptions.authentication` parameter value to `Required`. To allow the use of both IMDSv1 and IMDSv2, set the parameter value to `Optional`. If you do not specify a value, machines that the machine set creates allow the use of both IMDSv1 and IMDSv2.
+3. Save your changes and exit the object specification.
 
 **Additional resources**
+{._additional-resources}
 
 - [Use the Instance Metadata Service to access instance metadata (AWS documentation)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html)
 - [Boot image management](/openshift-docs-markdown/machine_configuration/mco-update-boot-images#mco-update-boot-images)
@@ -484,15 +446,20 @@ Public tenancy is the default tenancy. Instances with public tenancy run on shar
 
    ```yaml
 
+   apiVersion: machine.openshift.io/v1beta1
+   kind: MachineSet
+   # ...
+   spec:
+     template:
+       spec:
+         providerSpec:
+           value:
+             placement:
+               tenancy: dedicated
    ```
 
-{%- if cpmso %} apiVersion: machine.openshift.io/v1 kind: ControlPlaneMachineSet # ... spec: template: machines_v1beta1_machine_openshift_io: spec: providerSpec: value: placement: tenancy: dedicated {% endif %} {% if not cpmso %} apiVersion: machine.openshift.io/v1beta1 kind: MachineSet # ... spec: template: spec: providerSpec: value: placement: tenancy: dedicated {%- endif %} \`\`\`
-
-```
-To use Dedicated Instances, set the `placement.tenancy` parameter value to `dedicated`.
-```
-
-1. Save your changes and exit the object specification.
+   To use Dedicated Instances, set the `placement.tenancy` parameter value to `dedicated`.
+3. Save your changes and exit the object specification.
 
 ## Machine sets that place machines on Dedicated Hosts {#machineset-dedicated-hosts_creating-machineset-aws}
 
@@ -607,9 +574,7 @@ When AWS terminates an instance, a termination handler running on the Spot Insta
 
 ### Creating Spot Instances by using compute machine sets {#machineset-creating-non-guaranteed-instance_creating-machineset-aws}
 
-You can save on costs by creating a compute machine set that deploys machines as non-guaranteed instances.
-
-To launch a Spot Instance on AWS, you add `spotMarketOptions` to your compute machine set YAML file.
+You can save on costs by creating a compute machine set that deploys machines as non-guaranteed instances. To launch a Spot Instance on AWS, you add `spotMarketOptions` to your compute machine set YAML file.
 
 **Procedure**
 
@@ -630,25 +595,13 @@ To launch a Spot Instance on AWS, you add `spotMarketOptions` to your compute ma
 
 ## Configuring Capacity Reservations by using machine sets {#machineset-capacity-reservation_creating-machineset-aws}
 
-You can configure a machine set to deploy machines on any available resources that match the parameters of a capacity request that you define by using
-
-Capacity Reservations on Amazon Web Services clusters, including On-Demand Capacity Reservations and Capacity Blocks for ML.
+You can configure a machine set to deploy machines on any available resources that match the parameters of a capacity request that you define by using Capacity Reservations on Amazon Web Services clusters, including On-Demand Capacity Reservations and Capacity Blocks for ML.
 
 You can configure a machine set to deploy machines on any available resources that match the parameters of a capacity request that you define.
 
-These parameters specify the
+These parameters specify the instance type, region, and number of instances that you want to reserve. If your Capacity Reservation can accommodate the capacity request, the deployment succeeds.
 
-instance type,
-
-region, and number of instances that you want to reserve. If your
-
-Capacity Reservation
-
-can accommodate the capacity request, the deployment succeeds.
-
-For more information, including limitations and suggested use cases for this
-
-Amazon Web Services offering, see [On-Demand Capacity Reservations and Capacity Blocks for ML](https://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/capacity-reservation-overview.html) in the AWS documentation.
+For more information, including limitations and suggested use cases for this Amazon Web Services offering, see [On-Demand Capacity Reservations and Capacity Blocks for ML](https://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/capacity-reservation-overview.html) in the AWS documentation.
 
 **Prerequisites**
 
@@ -680,16 +633,29 @@ tag:compute[]\[\] . In a text editor, open an existing machine set custom resour
        spec:
          providerSpec:
            value:
+             capacityReservationId: <capacity_reservation>
+             marketType: <market_type>
+   end::compute[]
+   tag::controlplane[]
+   apiVersion: machine.openshift.io/v1
+   kind: ControlPlaneMachineSet
+   # ...
+   spec:
+     template:
+       machines_v1beta1_machine_openshift_io:
+         spec:
+           providerSpec:
+             value:
+               capacityReservationId: <capacity_reservation>
+               marketType: <market_type>
+   end::controlplane[]
+   # ...
    ```
 
-{%- if azure %} capacityReservationGroupID: <capacity_reservation_group> {% endif %} {% if aws %} capacityReservationId: <capacity_reservation> marketType: <market_type> {%- endif %} end:compute[]\[\] tag:controlplane[]\[\] apiVersion: machine.openshift.io/v1 kind: ControlPlaneMachineSet # ... spec: template: machines_v1beta1_machine_openshift_io: spec: providerSpec: value: {%- if azure %} capacityReservationGroupID: <capacity_reservation_group> {% endif %} {% if aws %} capacityReservationId: <capacity_reservation> marketType: <market_type> {%- endif %} end:controlplane[]\[\] # ... \`\`\`
+   where:
 
-```
-where:
-
-`<capacity_reservation>`
-:   Specifies the ID of the Capacity Block for ML or On-Demand Capacity Reservation that you want the machine set to deploy machines on.
-```
+   `<capacity_reservation>`
+   :   Specifies the ID of the Capacity Block for ML or On-Demand Capacity Reservation that you want the machine set to deploy machines on.
 
 `<market_type>`
 :   Specifies the market type to use. The following values are valid:

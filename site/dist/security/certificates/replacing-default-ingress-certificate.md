@@ -87,7 +87,8 @@ To secure the web console, CLI, and all applications under the `.apps` subdomain
 
    - `<secret>`:: Specifies the name used for the secret. Replace `<secret>` with the name used for the secret.
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Replacing the CA Bundle certificate](/openshift-docs-markdown/security/certificates/updating-ca-bundle#ca-bundle-understanding_updating-ca-bundle)
 - [Proxy certificate customization](/openshift-docs-markdown/security/certificate_types_descriptions/proxy-certificates#proxy-cert-customization_proxy-certificates)

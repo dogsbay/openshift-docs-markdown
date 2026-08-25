@@ -96,7 +96,8 @@ By default, the OpenShift Container Platform installer log level is set to `info
   $ ./openshift-install --dir <installation_directory> wait-for bootstrap-complete --log-level debug
   ```
 
-  where :   \*   Possible log levels include `info`, `warn`, `error,` and `debug`.
+  where
+  :   - Possible log levels include `info`, `warn`, `error,` and `debug`.
 
 ## Troubleshooting openshift-install command issues {#troubleshooting-openshift-install-command-issues_troubleshooting-installations}
 
@@ -837,6 +838,7 @@ If you provided an SSH key to your installation program, you can gather data abo
 
      If you open a Red Hat support case about your installation failure, include the compressed logs when opening a Red Hat support case.
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Installation process](/openshift-docs-markdown/architecture/architecture-installation#installation-process_architecture-installation)

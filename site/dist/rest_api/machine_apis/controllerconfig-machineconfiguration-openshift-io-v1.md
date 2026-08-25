@@ -1,5 +1,5 @@
 ---
-title: ControllerConfig []
+title: ControllerConfig [machineconfiguration.openshift.io/v1]
 ---
 
 # ControllerConfig \[machineconfiguration.openshift.io/v1\] {#controllerconfig-machineconfiguration-openshift-io-v1}
@@ -188,7 +188,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{{ name }}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -241,7 +241,7 @@ Required
 | --- | --- | --- |
 | `lastTransitionTime` | \`\` | lastTransitionTime is the time of the last update to the current status object. |
 | `message` | `string` | message provides additional information about the current condition. This is only to be consumed by humans. |
-| `reason` | `string` | reason is the reason for the condition’s last transition.  Reasons are PascalCase |
+| `reason` | `string` | reason is the reason for the condition’s last transition. Reasons are PascalCase |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type specifies the state of the operator’s reconciliation functionality. |
 
@@ -275,7 +275,7 @@ Required
 | `bundleFile` | `string` | bundleFile is the larger bundle a cert comes from |
 | `notAfter` | `string` | notAfter is the upper boundary for validity |
 | `notBefore` | `string` | notBefore is the lower boundary for validity |
-| `signer` | `string` | signer is the  cert Issuer |
+| `signer` | `string` | signer is the cert Issuer |
 | `subject` | `string` | subject is the cert subject |
 
 ## API endpoints {#_api_endpoints}
@@ -287,13 +287,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of ControllerConfig
   - `GET`: list objects of kind ControllerConfig
   - `POST`: create a ControllerConfig
-- `/apis/machineconfiguration.openshift.io/v1/controllerconfigs/{{ name }}`
+- `/apis/machineconfiguration.openshift.io/v1/controllerconfigs/{name}`
 
   - `DELETE`: delete a ControllerConfig
   - `GET`: read the specified ControllerConfig
   - `PATCH`: partially update the specified ControllerConfig
   - `PUT`: replace the specified ControllerConfig
-- `/apis/machineconfiguration.openshift.io/v1/controllerconfigs/{{ name }}/status`
+- `/apis/machineconfiguration.openshift.io/v1/controllerconfigs/{name}/status`
 
   - `GET`: read status of the specified ControllerConfig
   - `PATCH`: partially update status of the specified ControllerConfig
@@ -367,7 +367,7 @@ Description
 | 202 - Accepted | [`ControllerConfig`](/openshift-docs-markdown/rest_api/machine_apis/controllerconfig-machineconfiguration-openshift-io-v1#controllerconfig-machineconfiguration-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machineconfiguration.openshift.io/v1/controllerconfigs/{{ name }} {#_apismachineconfigurationopenshiftiov1controllerconfigs_name}
+### /apis/machineconfiguration.openshift.io/v1/controllerconfigs/{name} {#_apismachineconfigurationopenshiftiov1controllerconfigs_name}
 
 **Global path parameters**
 
@@ -471,7 +471,7 @@ Description
 | 201 - Created | [`ControllerConfig`](/openshift-docs-markdown/rest_api/machine_apis/controllerconfig-machineconfiguration-openshift-io-v1#controllerconfig-machineconfiguration-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machineconfiguration.openshift.io/v1/controllerconfigs/{{ name }}/status {#_apismachineconfigurationopenshiftiov1controllerconfigs_name_status}
+### /apis/machineconfiguration.openshift.io/v1/controllerconfigs/{name}/status {#_apismachineconfigurationopenshiftiov1controllerconfigs_name_status}
 
 **Global path parameters**
 

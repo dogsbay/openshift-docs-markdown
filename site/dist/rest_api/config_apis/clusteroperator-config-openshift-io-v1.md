@@ -1,5 +1,5 @@
 ---
-title: ClusterOperator []
+title: ClusterOperator [config.openshift.io/v1]
 ---
 
 # ClusterOperator \[config.openshift.io/v1\] {#clusteroperator-config-openshift-io-v1}
@@ -23,7 +23,7 @@ Required
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec holds configuration that could apply to any operator. |
-| `status` | `object` | status holds the information about the state of an operator.  It is consistent with status information across the Kubernetes ecosystem. |
+| `status` | `object` | status holds the information about the state of an operator. It is consistent with status information across the Kubernetes ecosystem. |
 
 ### .spec {#_spec}
 
@@ -50,9 +50,9 @@ Type
 | `conditions` | `array` | conditions describes the state of the operator’s managed and monitored components. |
 | `conditions[]` | `object` | ClusterOperatorStatusCondition represents the state of the operator’s managed and monitored components. |
 | `extension` | \`\` | extension contains any additional status information specific to the operator which owns this status object. |
-| `relatedObjects` | `array` | relatedObjects is a list of objects that are "interesting" or related to this operator.  Common uses are: 1. the detailed resource driving the operator 2. operator namespaces 3. operand namespaces |
+| `relatedObjects` | `array` | relatedObjects is a list of objects that are "interesting" or related to this operator. Common uses are: 1. the detailed resource driving the operator 2. operator namespaces 3. operand namespaces |
 | `relatedObjects[]` | `object` | ObjectReference contains enough information to let you inspect or modify the referred object. |
-| `versions` | `array` | versions is a slice of operator and operand version tuples.  Operators which manage multiple operands will have multiple operand entries in the array.  Available operators must report the version of the operator itself with the name "operator". An operator reports a new "operator" version when it has rolled out the new version to all of its operands. |
+| `versions` | `array` | versions is a slice of operator and operand version tuples. Operators which manage multiple operands will have multiple operand entries in the array. Available operators must report the version of the operator itself with the name "operator". An operator reports a new "operator" version when it has rolled out the new version to all of its operands. |
 | `versions[]` | `object` |  |
 
 ### .status.conditions {#_statusconditions}
@@ -83,7 +83,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `lastTransitionTime` | `string` | lastTransitionTime is the time of the last update to the current status property. |
-| `message` | `string` | message provides additional information about the current condition. This is only to be consumed by humans.  It may contain Line Feed characters (U+000A), which should be rendered as new lines. |
+| `message` | `string` | message provides additional information about the current condition. This is only to be consumed by humans. It may contain Line Feed characters (U+000A), which should be rendered as new lines. |
 | `reason` | `string` | reason is the CamelCase reason for the condition’s current status. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type specifies the aspect reported by this condition. |
@@ -149,8 +149,8 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `name` | `string` | name is the name of the particular operand this version is for.  It usually matches container images, not operators. |
-| `version` | `string` | version indicates which version of a particular operand is currently being managed.  It must always match the Available operand.  If 1.0.0 is Available, then this must indicate 1.0.0 even if the operator is trying to rollout 1.1.0 |
+| `name` | `string` | name is the name of the particular operand this version is for. It usually matches container images, not operators. |
+| `version` | `string` | version indicates which version of a particular operand is currently being managed. It must always match the Available operand. If 1.0.0 is Available, then this must indicate 1.0.0 even if the operator is trying to rollout 1.1.0 |
 
 ## API endpoints {#_api_endpoints}
 
@@ -161,13 +161,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of ClusterOperator
   - `GET`: list objects of kind ClusterOperator
   - `POST`: create a ClusterOperator
-- `/apis/config.openshift.io/v1/clusteroperators/{{ name }}`
+- `/apis/config.openshift.io/v1/clusteroperators/{name}`
 
   - `DELETE`: delete a ClusterOperator
   - `GET`: read the specified ClusterOperator
   - `PATCH`: partially update the specified ClusterOperator
   - `PUT`: replace the specified ClusterOperator
-- `/apis/config.openshift.io/v1/clusteroperators/{{ name }}/status`
+- `/apis/config.openshift.io/v1/clusteroperators/{name}/status`
 
   - `GET`: read status of the specified ClusterOperator
   - `PATCH`: partially update status of the specified ClusterOperator
@@ -241,7 +241,7 @@ Description
 | 202 - Accepted | [`ClusterOperator`](/openshift-docs-markdown/rest_api/config_apis/clusteroperator-config-openshift-io-v1#clusteroperator-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/clusteroperators/{{ name }} {#_apisconfigopenshiftiov1clusteroperators_name}
+### /apis/config.openshift.io/v1/clusteroperators/{name} {#_apisconfigopenshiftiov1clusteroperators_name}
 
 **Global path parameters**
 
@@ -345,7 +345,7 @@ Description
 | 201 - Created | [`ClusterOperator`](/openshift-docs-markdown/rest_api/config_apis/clusteroperator-config-openshift-io-v1#clusteroperator-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/clusteroperators/{{ name }}/status {#_apisconfigopenshiftiov1clusteroperators_name_status}
+### /apis/config.openshift.io/v1/clusteroperators/{name}/status {#_apisconfigopenshiftiov1clusteroperators_name_status}
 
 **Global path parameters**
 

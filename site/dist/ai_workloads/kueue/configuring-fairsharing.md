@@ -41,6 +41,7 @@ spec:
 
 A `weight` value of `0` represents an infinite share value. This means that the cluster queue is always at a disadvantage compared to others, and its workloads are always the first to be preempted when fair sharing is enabled.
 
-## Additional resources {#additional-resources_configuring-fairsharing}
+**Additional resources**
+{._additional-resources}
 
 - [Creating a `Kueue` custom resource](/openshift-docs-markdown/ai_workloads/kueue/install-kueue#create-kueue-cr_install-kueue)

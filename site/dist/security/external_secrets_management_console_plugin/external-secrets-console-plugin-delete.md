@@ -1,8 +1,8 @@
 ---
-title: Deleting certificates and secrets with {{ external_secrets_console_plugin }}
+title: Deleting certificates and secrets with External Secrets Management Console Plug-in
 ---
 
-# Deleting certificates and secrets with {{ external_secrets_console_plugin }} {#external-secrets-console-plugin-delete}
+# Deleting certificates and secrets with External Secrets Management Console Plug-in {#external-secrets-console-plugin-delete}
 
 Delete certificates and secrets from installed secrets management Operators using the External Secrets Management Console Plug-in in the OpenShift Container Platform web console.
 
@@ -24,13 +24,13 @@ You can delete certificates and secrets from installed secrets management Operat
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console.
-2. Navigate to **Plugins** -> **Secrets Management**.
-3. Click ![](kebab.png "Options menu") for the custom resource that you want to delete, and then click **Delete**.
+2. Navigate to **Plugins** → **Secrets Management**.
+3. Click ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") for the custom resource that you want to delete, and then click **Delete**.
 4. Enter the name of the custom resource.
 5. Click **Delete**.
 
 **Verification**
 
-1. Navigate to **Ecosystem** -> **Installed Operators**.
+1. Navigate to **Ecosystem** → **Installed Operators**.
 2. Select the secrets management Operator whose custom resource you deleted.
 3. Verify that the deleted custom resource no longer appears in the Operator details view.

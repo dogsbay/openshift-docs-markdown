@@ -17,6 +17,7 @@ You can import hosted clusters into a location other than the local multicluster
 In this topology, you must update your hosted clusters by using the command-line interface or the console of the local multicluster engine for Kubernetes Operator where the cluster is hosted. You cannot update the hosted clusters through the RHACM hub cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Updating node pools in a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-updating#hcp-update-node-pools_hcp-updating)
 - [Updating a control plane in a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-updating#hcp-update-ocp-hc_hcp-updating)
@@ -28,7 +29,7 @@ Typically, hosted clusters are automatically imported to multicluster engine Ope
 
 **Procedure**
 
-1. In the console, click **Infrastructure** -> **Clusters** and select the hosted cluster that you want to import.
+1. In the console, click **Infrastructure** → **Clusters** and select the hosted cluster that you want to import.
 2. Click **Import hosted cluster**.
 
    > [!NOTE]

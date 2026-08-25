@@ -490,7 +490,8 @@ where:
 `spec.containers.resources.limits`
 :   Specifies the container’s limits are 128 Mi of memory and 500 m CPU.
 
-## Additional resources {#additional-resources_compliance-operator-scans}
+**Additional resources**
+{._additional-resources}
 
 - [Increasing Compliance Operator resource limits](/openshift-docs-markdown/security/compliance_operator/co-scans/compliance-operator-troubleshooting#compliance-increasing-operator-limits_compliance-troubleshooting)
 - [Compliance Operator shows INCONSISTENT scan result with worker node](https://access.redhat.com/solutions/6970861)

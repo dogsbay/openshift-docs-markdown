@@ -29,7 +29,7 @@ You can install the External Secrets Operator for Red Hat OpenShift by using the
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console.
-2. Navigate to **Ecosystem** -> **Software Catalog**.
+2. Navigate to **Ecosystem** → **Software Catalog**.
 3. Enter **External Secrets Operator** in the search box.
 4. Select the **External Secrets Operator for Red Hat OpenShift** from the generated list and click **Install**.
 5. On the **Install Operator** page:
@@ -49,7 +49,7 @@ You can install the External Secrets Operator for Red Hat OpenShift by using the
 
 **Verification**
 
-1. Navigate to **Ecosystem** -> **Installed Operators**.
+1. Navigate to **Ecosystem** → **Installed Operators**.
 2. Verify that **External Secrets Operator** is listed with a **Status** of **Succeeded** in the `external-secrets-operator` namespace.
 
 ## Installing the External Secrets Operator for Red Hat OpenShift by using the CLI {#external-secrets-operator-install-cli_external-secrets-operator-install}
@@ -146,7 +146,8 @@ You can install the External Secrets Operator for Red Hat OpenShift by manually 
    external-secrets-operator-controller-manager-5699f4bc54-kbsmn   1/1     Running   0          25h
    ```
 
-## Additional resources {#external-secrets-operator-install_additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Adding Operators to a cluster](/openshift-docs-markdown/operators/admin/olm-adding-operators-to-cluster#olm-adding-operators-to-a-cluster)
 
@@ -269,7 +270,8 @@ Automatic
 Manual
 :   If you select manual updates, when a newer version of the External Secrets Operator for Red Hat OpenShift is available, OLM creates an update request. As a cluster administrator, you must then manually approve that update request to have the External Secrets Operator for Red Hat OpenShift updated to the new version of the z-stream releases.
 
-## Additional resources {#external-secrets-operator-update-channels_additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Adding Operators to a cluster](/openshift-docs-markdown/operators/admin/olm-adding-operators-to-cluster#olm-adding-operators-to-a-cluster)
 - [Updating installed Operators](/openshift-docs-markdown/operators/admin/olm-upgrading-operators#olm-upgrading-operators)

@@ -9,7 +9,7 @@ OpenShift Virtualization can activate kernel samepage merging (KSM) when nodes a
 > [!IMPORTANT]
 > You must only use KSM with trusted workloads.
 
-## Prerequisites {#prerequisites_virt-activating-ksm}
+## Prerequisites {#prerequisites_virt-activating-ksm ._prerequisites}
 
 - Ensure that an administrator has configured KSM support on any nodes where you want OpenShift Virtualization to activate KSM.
 
@@ -51,7 +51,7 @@ You can allow OpenShift Virtualization to activate kernel samepage merging (KSM)
 
 **Procedure**
 
-1. From the side menu, click **Virtualization** -> **Settings**.
+1. From the side menu, click **Virtualization** → **Settings**.
 2. Select the **Cluster** tab.
 3. Expand **Resource management**.
 4. Enable or disable the feature for all nodes using the **Kernel Samepage Merging (KSM)** toggle button.
@@ -69,7 +69,7 @@ You can enable or disable OpenShift Virtualization's kernel samepage merging (KS
 1. Open the `HyperConverged` CR in your default editor by running the following command:
 
    ```terminal
-   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+   $ oc edit hyperconvergeds.v1beta1.hco.kubevirt.io kubevirt-hyperconverged -n openshift-cnv
    ```
 2. Edit the `ksmConfiguration` stanza:
 
@@ -80,7 +80,7 @@ You can enable or disable OpenShift Virtualization's kernel samepage merging (KS
      kind: HyperConverged
      metadata:
        name: kubevirt-hyperconverged
-       namespace: {{ CNVNamespace }}
+       namespace: openshift-cnv
      spec:
        ksmConfiguration:
          nodeLabelSelector: {}
@@ -93,7 +93,7 @@ You can enable or disable OpenShift Virtualization's kernel samepage merging (KS
      kind: HyperConverged
      metadata:
        name: kubevirt-hyperconverged
-       namespace: {{ CNVNamespace }}
+       namespace: openshift-cnv
      spec:
        ksmConfiguration:
          nodeLabelSelector:
@@ -109,13 +109,14 @@ You can enable or disable OpenShift Virtualization's kernel samepage merging (KS
      kind: HyperConverged
      metadata:
        name: kubevirt-hyperconverged
-       namespace: {{ CNVNamespace }}
+       namespace: openshift-cnv
      spec:
      # ...
      ```
 3. Save the file.
 
-## Additional resources {#additional-resources_virt-activating-ksm}
+**Additional resources**
+{._additional-resources}
 
 - [Specifying nodes for virtual machines](/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-specifying-nodes-for-vms#virt-specifying-nodes-for-vms)
 - [Placing pods on specific nodes using node selectors](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-node-selectors#nodes-scheduler-node-selectors)

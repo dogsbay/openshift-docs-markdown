@@ -16,16 +16,17 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 
-const headings = [{"depth":1,"slug":"olm-components","text":"OLM v1 components overview"},{"depth":2,"slug":"additional-resources_olm-components","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"olm-components","text":"OLM v1 components overview"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/extensions/arch/components";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
-const title = "{{ olmv1 }} components overview";
+const title = "OLM v1 components overview";
 const description = "Operator Lifecycle Manager (OLM) v1 uses two key microservice components, Operator Controller and Catalogd, to unpack content and manage extensions on…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
@@ -39,7 +40,7 @@ const pageCategory = ["extensions","extensions/arch"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# OLM v1 components overview {#olm-components}\n\nOperator Lifecycle Manager (OLM) v1 uses two key microservice components, Operator Controller and Catalogd, to unpack content and manage extensions on your cluster.\n\nOperator Controller\n:   Extends Kubernetes with an API to install and manage Operators and extensions using metadata from Catalogd.\n\nCatalogd\n:   Unpacks file-based catalog (FBC) content and hosts metadata so users can discover installable extensions.\n\n## Additional resources {#additional-resources_olm-components}\n\n- [Operator Controller](/openshift-docs-markdown/extensions/arch/operator-controller#operator-controller)\n- [Catalogd](/openshift-docs-markdown/extensions/arch/catalogd#catalogd)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/extensions/arch/components.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# OLM v1 components overview {#olm-components}\n\nOperator Lifecycle Manager (OLM) v1 uses two key microservice components, Operator Controller and Catalogd, to unpack content and manage extensions on your cluster.\n\nOperator Controller\n:   Extends Kubernetes with an API to install and manage Operators and extensions using metadata from Catalogd.\n\nCatalogd\n:   Unpacks file-based catalog (FBC) content and hosts metadata so users can discover installable extensions.\n\n**Additional resources**\n{._additional-resources}\n\n- [Operator Controller](/openshift-docs-markdown/extensions/arch/operator-controller#operator-controller)\n- [Catalogd](/openshift-docs-markdown/extensions/arch/catalogd#catalogd)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/extensions/arch/components.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,12 +79,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -91,18 +93,20 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="olm-components" class="group scroll-mt-20">OLM v1 components overview<a href="#olm-components" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Operator Lifecycle Manager (OLM) v1 uses two key microservice components, Operator Controller and Catalogd, to unpack content and manage extensions on your cluster.</p>
+      <p class="_abstract">Operator Lifecycle Manager (OLM) v1 uses two key microservice components, Operator Controller and Catalogd, to unpack content and manage extensions on your cluster.</p>
       <dl class="my-4 space-y-2">
       <dt class="font-semibold">Operator Controller</dt>
       <dd class="ml-6 text-muted-foreground"><p>Extends Kubernetes with an API to install and manage Operators and extensions using metadata from Catalogd.</p></dd>
       <dt class="font-semibold">Catalogd</dt>
       <dd class="ml-6 text-muted-foreground"><p>Unpacks file-based catalog (FBC) content and hosts metadata so users can discover installable extensions.</p></dd>
       </dl>
-      <h2 id="additional-resources_olm-components" class="group scroll-mt-20">Additional resources<a href="#additional-resources_olm-components" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul>
       <li><a href="/openshift-docs-markdown/extensions/arch/operator-controller#operator-controller">Operator Controller</a></li>
       <li><a href="/openshift-docs-markdown/extensions/arch/catalogd#catalogd">Catalogd</a></li>
       </ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

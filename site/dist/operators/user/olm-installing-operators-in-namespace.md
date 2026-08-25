@@ -18,8 +18,7 @@ As a user with the proper permissions, you can install an Operator from the soft
 
 During installation, you must determine the following initial settings for the Operator:
 
-Installation Mode
-:   Choose a specific namespace in which to install the Operator.
+Installation Mode:: Choose a specific namespace in which to install the Operator.
 
 Update Channel
 :   If an Operator is available through multiple channels, you can choose which channel you want to subscribe to. For example, to deploy from the **stable** channel, if available, select it from the list.
@@ -29,11 +28,10 @@ Approval Strategy
 
     If you choose automatic updates for an installed Operator, when a new version of that Operator is available in the selected channel, Operator Lifecycle Manager (OLM) automatically upgrades the running instance of your Operator without human intervention.
 
-    If you select manual updates, when a newer version of an Operator is available, OLM creates an update request. As a cluster administrator,
-
-    you must then manually approve that update request to have the Operator updated to the new version.
+    If you select manual updates, when a newer version of an Operator is available, OLM creates an update request. As a cluster administrator, you must then manually approve that update request to have the Operator updated to the new version.
 
 **Additional resources**
+{._additional-resources}
 
 - [Allowing non-cluster administrators to install Operators](/openshift-docs-markdown/operators/admin/olm-creating-policy#olm-creating-policy)
 - [Understanding the software catalog](/openshift-docs-markdown/operators/understanding/olm-understanding-software-catalog#olm-understanding-software-catalog)
@@ -49,8 +47,8 @@ To install and subscribe to an Operator from the software catalog, you can use t
 
 **Procedure**
 
-1. Navigate in the web console to the **Ecosystem** -> **Software Catalog** page.
-2. Scroll or type a keyword into the **Filter by keyword** box to find the Operator you want. For example, type `{{ filter_type }}` to find the Advanced Cluster Management for Kubernetes Operator.
+1. Navigate in the web console to the **Ecosystem** → **Software Catalog** page.
+2. Scroll or type a keyword into the **Filter by keyword** box to find the Operator you want. For example, type `advanced` to find the Advanced Cluster Management for Kubernetes Operator.
 
    You can also filter options by **Infrastructure Features**. For example, select **Disconnected** if you want to see Operators that work in disconnected environments, also known as restricted network environments.
 3. Select the Operator to display additional information.
@@ -91,14 +89,14 @@ To install and subscribe to an Operator from the software catalog, you can use t
 
 **Verification**
 
-- After the upgrade status of the subscription is **Up to date**, select **Ecosystem** -> **Installed Operators** to verify that the cluster service version (CSV) of the installed Operator eventually shows up. The **Status** should eventually resolve to **Succeeded** in the relevant namespace.
+- After the upgrade status of the subscription is **Up to date**, select **Ecosystem** → **Installed Operators** to verify that the cluster service version (CSV) of the installed Operator eventually shows up. The **Status** should eventually resolve to **Succeeded** in the relevant namespace.
 
   > [!NOTE]
   > For the **All namespaces...** installation mode, the status resolves to **Succeeded** in the `openshift-operators` namespace, but the status is **Copied** if you check in other namespaces.
 
   If it does not:
 
-  - Check the logs in any pods in the `openshift-operators` project (or other relevant namespace if **A specific namespace...** installation mode was selected) on the **Workloads** -> **Pods** page that are reporting issues to troubleshoot further.
+  - Check the logs in any pods in the `openshift-operators` project (or other relevant namespace if **A specific namespace...** installation mode was selected) on the **Workloads** → **Pods** page that are reporting issues to troubleshoot further.
 - When the Operator is installed, the metadata indicates which channel and version are installed.
 
   > [!NOTE]
@@ -428,10 +426,12 @@ At this point, OLM is now aware of the selected Operator. A cluster service vers
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Operator groups](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-operatorgroups-about_olm-understanding-olm)
 - [Channel names](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-subscription_olm-understanding-olm)
 
 **Additional resources**
+{._additional-resources}
 
 - [Manually approving a pending Operator update](/openshift-docs-markdown/operators/admin/olm-upgrading-operators#olm-approving-pending-upgrade_olm-upgrading-operators)

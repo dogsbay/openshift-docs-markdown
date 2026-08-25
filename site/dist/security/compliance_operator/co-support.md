@@ -41,7 +41,8 @@ Starting in Compliance Operator v1.6.0, you can collect data about the Complianc
   $ oc adm must-gather --image=$(oc get csv compliance-operator.v1.6.0 -o=jsonpath='{.spec.relatedImages[?(@.name=="must-gather")].image}')
   ```
 
-## Additional resources {#additional-resources_co-support}
+**Additional resources**
+{._additional-resources}
 
 - [About the must-gather tool](/openshift-docs-markdown/support/gathering-cluster-data#about-must-gather_gathering-cluster-data)
 - [OpenShift Operator Life Cycles](https://access.redhat.com/support/policy/updates/openshift_operators)

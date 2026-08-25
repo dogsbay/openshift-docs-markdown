@@ -22,7 +22,8 @@ You can install a cluster on Azure Stack Hub infrastructure that you provision, 
 
 - Installing a cluster on Azure Stack Hub using ARM templates: You can install OpenShift Container Platform on Azure Stack Hub by using infrastructure that you provide. You can use the provided Azure Resource Manager (ARM) templates to assist with an installation. See "Installing a cluster on Azure Stack Hub using ARM templates".
 
-## Additional resources {#additional-resources_preparing-to-install-on-azure-stack-hub}
+**Additional resources**
+{._additional-resources}
 
 - [Installation process](/openshift-docs-markdown/architecture/architecture-installation#installation-process_architecture-installation)
 - [Installing a cluster](/openshift-docs-markdown/installing/installing_azure_stack_hub/ipi/installing-azure-stack-hub-default#installing-azure-stack-hub-default)

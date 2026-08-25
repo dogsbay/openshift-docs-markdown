@@ -14,7 +14,7 @@ You can add more Red Hat Enterprise Linux CoreOS (RHCOS) compute machines to yo
 
 Before you add more compute machines to a cluster that you installed on bare metal infrastructure, you must create RHCOS machines for it to use. You can either use an ISO image or network PXE booting to create the machines.
 
-***Prerequisites***
+**Prerequisites**
 
 - You installed a cluster on bare metal.
 - You have installation media and Red Hat Enterprise Linux CoreOS (RHCOS) images that you used to create your cluster. If you do not have these files, you must obtain them by following the instructions in the installation procedure.
@@ -80,6 +80,7 @@ To scale your OpenShift Container Platform bare metal cluster, you can create mo
 9. Continue to create more compute machines for your cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [Installing a cluster on bare metal](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#installing-bare-metal)
 
@@ -187,6 +188,7 @@ To scale your OpenShift Container Platform bare metal cluster, you can create mo
 2. Use the PXE or iPXE infrastructure to create the required compute machines for your cluster.
 
 **Additional resources**
+{._additional-resources}
 
 - [How does one set up a serial terminal and/or console in Red Hat Enterprise Linux? (Red Hat Knowledgebase article)](https://access.redhat.com/articles/7212)
 - [`IMAGE_GZIP` option in iPXE (iPXE documentation)](https://ipxe.org/buildcfg/image_gzip)
@@ -249,7 +251,8 @@ To allow newly added machines to join your OpenShift Container Platform cluster,
      where:
 
      `<csr_name>`
-     :   Specifies the name of a CSR from the list of current CSRs. \*   To approve all pending CSRs, run the following command:
+     :   Specifies the name of a CSR from the list of current CSRs.
+   - To approve all pending CSRs, run the following command:
 
      ```terminal
      $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs --no-run-if-empty oc adm certificate approve
@@ -280,7 +283,8 @@ To allow newly added machines to join your OpenShift Container Platform cluster,
      where:
 
      `<csr_name>`
-     :   Specifies the name of a CSR from the list of current CSRs. \*   To approve all pending CSRs, run the following command:
+     :   Specifies the name of a CSR from the list of current CSRs.
+   - To approve all pending CSRs, run the following command:
 
      ```terminal
      $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs oc adm certificate approve
@@ -570,6 +574,7 @@ The procedure in this section shows how to add a new Red Hat Enterprise Linux C
       The `nvme1n1` device is mounted to the `/var` partition.
 
 **Additional resources**
+{._additional-resources}
 
 - [Disk partitioning for OpenShift Container Platform](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal#installation-user-infra-machines-advanced_disk_installing-bare-metal)
 
@@ -619,6 +624,7 @@ There are limitations to consider before deploying a machine health check:
 - A machine is remediated immediately if the `Machine` resource phase is `Failed`.
 
 **Additional resources**
+{._additional-resources}
 
 - [About control plane machine sets](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-about#cpmso-about)
 
@@ -1645,6 +1651,7 @@ service DevicePlugin {
 - More specific details regarding deployment steps can be found with each device plugin implementation.
 
 **Additional resources**
+{._additional-resources}
 
 - [Nvidia GPU device plugin for COS-based operating system](https://github.com/GoogleCloudPlatform/Container-engine-accelerators/tree/master/cmd/nvidia_gpu)
 - [Nvidia official GPU device plugin](https://github.com/NVIDIA/k8s-device-plugin)
@@ -1785,7 +1792,7 @@ Taints and tolerations consist of a key, value, and effect.
 
 <a name="taint-components-table_post-install-node-tasks"></a>
 
-***Taint and toleration components***
+**Taint and toleration components**
 
 <table>
 <thead>
@@ -1805,11 +1812,11 @@ Taints and tolerations consist of a key, value, and effect.
 </tr>
 <tr>
   <td><code>effect</code></td>
-  <td>The effect is one of the following:!====!<code>NoSchedule</code> ^[1]^!* New pods that do not match the taint are not scheduled onto that node.<ul><li>Existing pods on the node remain.</li></ul>!<code>PreferNoSchedule</code>!* New pods that do not match the taint might be scheduled onto that node, but the scheduler tries not to.<ul><li>Existing pods on the node remain.</li></ul>!<code>NoExecute</code>!* New pods that do not match the taint cannot be scheduled onto that node.<ul><li>Existing pods on the node that do not have a matching toleration  are removed.</li></ul>!====</td>
+  <td>The effect is one of the following: !==== !<code>NoSchedule</code> <sup>[1]</sup> !* New pods that do not match the taint are not scheduled onto that node.<ul><li>Existing pods on the node remain.</li></ul>!<code>PreferNoSchedule</code> !* New pods that do not match the taint might be scheduled onto that node, but the scheduler tries not to.<ul><li>Existing pods on the node remain.</li></ul>!<code>NoExecute</code> !* New pods that do not match the taint cannot be scheduled onto that node.<ul><li>Existing pods on the node that do not have a matching toleration  are removed.</li></ul>!====</td>
 </tr>
 <tr>
   <td><code>operator</code></td>
-  <td>!====!<code>Equal</code>!The <code>key</code>/<code>value</code>/<code>effect</code> parameters must match. This is the default.!<code>Exists</code>!The <code>key</code>/<code>effect</code> parameters must match. You must leave a blank <code>value</code> parameter, which matches any.!====</td>
+  <td>!==== !<code>Equal</code> !The <code>key</code>/<code>value</code>/<code>effect</code> parameters must match. This is the default. !<code>Exists</code> !The <code>key</code>/<code>effect</code> parameters must match. You must leave a blank <code>value</code> parameter, which matches any. !====</td>
 </tr>
 </tbody>
 </table>
@@ -2439,12 +2446,12 @@ By default, the installation process creates a Cluster Resource Override Operato
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, navigate to **Home** -> **Projects**
+1. In the OpenShift Container Platform web console, navigate to **Home** → **Projects**
 
    1. Click **Create Project**.
    2. Specify `clusterresourceoverride-operator` as the name of the project.
    3. Click **Create**.
-2. Navigate to **Ecosystem** -> **Software Catalog**.
+2. Navigate to **Ecosystem** → **Software Catalog**.
 
    1. Choose  **ClusterResourceOverride Operator** from the list of available Operators and click **Install**.
    2. On the **Install Operator** page, make sure **A specific Namespace on the cluster** is selected for **Installation Mode**.
@@ -2866,6 +2873,7 @@ You can also perform the following configurations for each node:
 - Reserve memory across quality of service tiers
 
 **Additional resources**
+{._additional-resources}
 
 - [Disabling or enforcing CPU limits using CPU CFS quotas](/openshift-docs-markdown/post_installation_configuration/node-tasks#nodes-cluster-overcommit-node-enforcing_post-install-node-tasks)
 - [Reserving resources for system processes](/openshift-docs-markdown/post_installation_configuration/node-tasks#nodes-cluster-overcommit-node-resources_post-install-node-tasks)
@@ -2932,6 +2940,7 @@ To provide more reliable scheduling and minimize node resource overcommitment, e
 For more details, see "Allocating Resources for Nodes".
 
 **Additional resources**
+{._additional-resources}
 
 - [Allocating resources for nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-resources-configuring#nodes-nodes-resources-configuring-setting_nodes-nodes-resources-configuring)
 
@@ -2964,21 +2973,19 @@ If overcommitment is enabled on a project, you can disable overcommitment for th
 1. Create or edit the namespace object file.
 2. Add the following annotation:
 
-   ````
-       ```yaml
-       apiVersion: v1
-       kind: Namespace
-       metadata:
-         annotations:
-           quota.openshift.io/cluster-resource-override-enabled: "false"
-       # ...
-       ```
+   ```yaml
+   apiVersion: v1
+   kind: Namespace
+   metadata:
+     annotations:
+       quota.openshift.io/cluster-resource-override-enabled: "false"
+   # ...
+   ```
 
-       where:
+   where:
 
-       `metadata.annotations.quota.openshift.io/cluster-resource-override-enabled.false`
-       :   Specifies that overcommit is disabled for this namespace.
-   ````
+   `metadata.annotations.quota.openshift.io/cluster-resource-override-enabled.false`
+   :   Specifies that overcommit is disabled for this namespace.
 
 ## Freeing node resources using garbage collection {#post-install-garbage-collection_post-install-node-tasks}
 
@@ -2995,7 +3002,7 @@ When eviction thresholds are set for garbage collection, the node tries to keep 
 
 The following table lists the eviction thresholds:
 
-***Variables for configuring container garbage collection***
+**Variables for configuring container garbage collection**
 
 <table>
 <thead>
@@ -3872,5 +3879,6 @@ The example in the procedure demonstrates the use of controllers for scaling mac
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Static IP addresses for vSphere nodes](/openshift-docs-markdown/installing/installing_vsphere/ipi/ipi-vsphere-installation-reqs#installation-vsphere-installer-infra-requirements_ipi-vsphere-installation-reqs)

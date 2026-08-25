@@ -1,5 +1,5 @@
 ---
-title: UserDefinedNetwork []
+title: UserDefinedNetwork [k8s.ovn.org/v1]
 ---
 
 # UserDefinedNetwork \[k8s.ovn.org/v1\] {#userdefinednetwork-k8s-ovn-org-v1}
@@ -42,7 +42,7 @@ Required
 | --- | --- | --- |
 | `layer2` | `object` | Layer2 is the Layer2 topology configuration. |
 | `layer3` | `object` | Layer3 is the Layer3 topology configuration. |
-| `topology` | `string` | Topology describes network configuration. Allowed values are "Layer3", "Layer2". Layer3 topology creates a layer 2 segment per node, each with a different subnet. Layer 3 routing is used to interconnect node subnets. Layer2 topology creates one logical switch shared by all nodes. |
+| `topology` | `string` | Topology describes network configuration.<br>Allowed values are "Layer3", "Layer2". Layer3 topology creates a layer 2 segment per node, each with a different subnet. Layer 3 routing is used to interconnect node subnets. Layer2 topology creates one logical switch shared by all nodes. |
 
 ### .spec.layer2 {#_speclayer2}
 
@@ -59,14 +59,14 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `defaultGatewayIPs` | `array (string)` | defaultGatewayIPs specifies the default gateway IP used in the internal OVN topology. Dual-stack clusters may set 2 IPs (one for each IP family), otherwise only 1 IP is allowed. This field is only allowed for "Primary" network. It is not recommended to set this field without explicit need and understanding of the OVN network topology. When omitted, an IP from the subnets field is used. |
+| `defaultGatewayIPs` | `array (string)` | defaultGatewayIPs specifies the default gateway IP used in the internal OVN topology.<br>Dual-stack clusters may set 2 IPs (one for each IP family), otherwise only 1 IP is allowed. This field is only allowed for "Primary" network. It is not recommended to set this field without explicit need and understanding of the OVN network topology. When omitted, an IP from the subnets field is used. |
 | `infrastructureSubnets` | `array (string)` | infrastructureSubnets specifies a list of internal CIDR ranges that OVN-Kubernetes will reserve for internal network infrastructure. Any IP addresses within these ranges cannot be assigned to workloads. When omitted, OVN-Kubernetes will automatically allocate IP addresses from `subnets` for its infrastructure needs. When there are not enough available IPs in the provided infrastructureSubnets, OVN-Kubernetes will automatically allocate IP addresses from subnets for its infrastructure needs. When `reservedSubnets` is also specified the CIDRs cannot overlap. When `defaultGatewayIPs` is also specified, the default gateway IPs must belong to one of the infrastructure subnet CIDRs. Each item should be in range of the specified CIDR(s) in `subnets`. The maximum number of entries allowed is 4. The format should match standard CIDR notation (for example, "10.128.0.0/16"). This field must be omitted if `subnets` is unset or `ipam.mode` is `Disabled`. |
 | `ipam` | `object` | IPAM section contains IPAM-related configuration for the network. |
-| `joinSubnets` | `array (string)` | JoinSubnets are used inside the OVN network topology. Dual-stack clusters may set 2 subnets (one for each IP family), otherwise only 1 subnet is allowed. This field is only allowed for "Primary" network. It is not recommended to set this field without explicit need and understanding of the OVN network topology. When omitted, the platform will choose a reasonable default which is subject to change over time. |
+| `joinSubnets` | `array (string)` | JoinSubnets are used inside the OVN network topology.<br>Dual-stack clusters may set 2 subnets (one for each IP family), otherwise only 1 subnet is allowed. This field is only allowed for "Primary" network. It is not recommended to set this field without explicit need and understanding of the OVN network topology. When omitted, the platform will choose a reasonable default which is subject to change over time. |
 | `mtu` | `integer` | MTU is the maximum transmission unit for a network. MTU is optional, if not provided, the globally configured value in OVN-Kubernetes (defaults to 1400) is used for the network. |
 | `reservedSubnets` | `array (string)` | reservedSubnets specifies a list of CIDRs reserved for static IP assignment, excluded from automatic allocation. reservedSubnets is optional. When omitted, all IP addresses in `subnets` are available for automatic assignment. IPs from these ranges can still be requested through static IP assignment. Each item should be in range of the specified CIDR(s) in `subnets`. The maximum number of entries allowed is 25. The format should match standard CIDR notation (for example, "10.128.0.0/16"). This field must be omitted if `subnets` is unset or `ipam.mode` is `Disabled`. |
-| `role` | `string` | Role describes the network role in the pod. Allowed value is "Secondary". Secondary network is only assigned to pods that use `k8s.v1.cni.cncf.io/networks` annotation to select given network. |
-| `subnets` | `array (string)` | Subnets are used for the pod network across the cluster. Dual-stack clusters may set 2 subnets (one for each IP family), otherwise only 1 subnet is allowed. The format should match standard CIDR notation (for example, "10.128.0.0/16"). This field must be omitted if `ipam.mode` is `Disabled`. |
+| `role` | `string` | Role describes the network role in the pod.<br>Allowed value is "Secondary". Secondary network is only assigned to pods that use `k8s.v1.cni.cncf.io/networks` annotation to select given network. |
+| `subnets` | `array (string)` | Subnets are used for the pod network across the cluster. Dual-stack clusters may set 2 subnets (one for each IP family), otherwise only 1 subnet is allowed.<br>The format should match standard CIDR notation (for example, "10.128.0.0/16"). This field must be omitted if `ipam.mode` is `Disabled`. |
 
 ### .spec.layer2.ipam {#_speclayer2ipam}
 
@@ -80,7 +80,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lifecycle` | `string` | Lifecycle controls IP addresses management lifecycle. The only allowed value is Persistent. When set, OVN Kubernetes assigned IP addresses will be persisted in an `ipamclaims.k8s.cni.cncf.io` object. These IP addresses will be reused by other pods if requested. Only supported when mode is `Enabled`. |
+| `lifecycle` | `string` | Lifecycle controls IP addresses management lifecycle.<br>The only allowed value is Persistent. When set, OVN Kubernetes assigned IP addresses will be persisted in an `ipamclaims.k8s.cni.cncf.io` object. These IP addresses will be reused by other pods if requested. Only supported when mode is `Enabled`. |
 | `mode` | `string` | Mode controls how much of the IP configuration will be managed by OVN. `Enabled` means OVN-Kubernetes will apply IP configuration to the SDN infrastructure and it will also assign IPs from the selected subnet to the individual pods. `Disabled` means OVN-Kubernetes will only assign MAC addresses and provide layer 2 communication, letting users configure IP addresses for the pods. `Disabled` is only available for Secondary networks. By disabling IPAM, any Kubernetes features that rely on selecting pods by IP will no longer function (such as network policy, services, etc). Additionally, IP port security will also be disabled for interfaces attached to this network. Defaults to `Enabled`. |
 
 ### .spec.layer3 {#_speclayer3}
@@ -99,10 +99,10 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `joinSubnets` | `array (string)` | JoinSubnets are used inside the OVN network topology. Dual-stack clusters may set 2 subnets (one for each IP family), otherwise only 1 subnet is allowed. This field is only allowed for "Primary" network. It is not recommended to set this field without explicit need and understanding of the OVN network topology. When omitted, the platform will choose a reasonable default which is subject to change over time. |
-| `mtu` | `integer` | MTU is the maximum transmission unit for a network. MTU is optional, if not provided, the globally configured value in OVN-Kubernetes (defaults to 1400) is used for the network. |
-| `role` | `string` | Role describes the network role in the pod. Allowed values are "Primary" and "Secondary". Primary network is automatically assigned to every pod created in the same namespace. Secondary network is only assigned to pods that use `k8s.v1.cni.cncf.io/networks` annotation to select given network. |
-| `subnets` | `array` | Subnets are used for the pod network across the cluster. Dual-stack clusters may set 2 subnets (one for each IP family), otherwise only 1 subnet is allowed. Given subnet is split into smaller subnets for every node. |
+| `joinSubnets` | `array (string)` | JoinSubnets are used inside the OVN network topology.<br>Dual-stack clusters may set 2 subnets (one for each IP family), otherwise only 1 subnet is allowed. This field is only allowed for "Primary" network. It is not recommended to set this field without explicit need and understanding of the OVN network topology. When omitted, the platform will choose a reasonable default which is subject to change over time. |
+| `mtu` | `integer` | MTU is the maximum transmission unit for a network.<br>MTU is optional, if not provided, the globally configured value in OVN-Kubernetes (defaults to 1400) is used for the network. |
+| `role` | `string` | Role describes the network role in the pod.<br>Allowed values are "Primary" and "Secondary". Primary network is automatically assigned to every pod created in the same namespace. Secondary network is only assigned to pods that use `k8s.v1.cni.cncf.io/networks` annotation to select given network. |
+| `subnets` | `array` | Subnets are used for the pod network across the cluster.<br>Dual-stack clusters may set 2 subnets (one for each IP family), otherwise only 1 subnet is allowed. Given subnet is split into smaller subnets for every node. |
 | `subnets[]` | `object` |  |
 
 ### .spec.layer3.subnets {#_speclayer3subnets}
@@ -132,7 +132,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `cidr` | `string` | CIDR specifies L3Subnet, which is split into smaller subnets for every node. |
-| `hostSubnet` | `integer` | HostSubnet specifies the subnet size for every node. When not set, it will be assigned automatically. |
+| `hostSubnet` | `integer` | HostSubnet specifies the subnet size for every node.<br>When not set, it will be assigned automatically. |
 
 ### .status {#_status}
 
@@ -177,7 +177,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
 | `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
@@ -191,18 +191,18 @@ The following API endpoints are available:
 - `/apis/k8s.ovn.org/v1/userdefinednetworks`
 
   - `GET`: list objects of kind UserDefinedNetwork
-- `/apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/userdefinednetworks`
+- `/apis/k8s.ovn.org/v1/namespaces/{namespace}/userdefinednetworks`
 
   - `DELETE`: delete collection of UserDefinedNetwork
   - `GET`: list objects of kind UserDefinedNetwork
   - `POST`: create an UserDefinedNetwork
-- `/apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/userdefinednetworks/{{ name }}`
+- `/apis/k8s.ovn.org/v1/namespaces/{namespace}/userdefinednetworks/{name}`
 
   - `DELETE`: delete an UserDefinedNetwork
   - `GET`: read the specified UserDefinedNetwork
   - `PATCH`: partially update the specified UserDefinedNetwork
   - `PUT`: replace the specified UserDefinedNetwork
-- `/apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/userdefinednetworks/{{ name }}/status`
+- `/apis/k8s.ovn.org/v1/namespaces/{namespace}/userdefinednetworks/{name}/status`
 
   - `GET`: read status of the specified UserDefinedNetwork
   - `PATCH`: partially update status of the specified UserDefinedNetwork
@@ -227,7 +227,7 @@ Description
 | 200 - OK | [`UserDefinedNetworkList`](/openshift-docs-markdown/rest_api/objects/index#org-ovn-k8s-v1-UserDefinedNetworkList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/userdefinednetworks {#_apisk8sovnorgv1namespaces_namespace_userdefinednetworks}
+### /apis/k8s.ovn.org/v1/namespaces/{namespace}/userdefinednetworks {#_apisk8sovnorgv1namespaces_namespace_userdefinednetworks}
 
 HTTP method
 :   ```
@@ -295,7 +295,7 @@ Description
 | 202 - Accepted | [`UserDefinedNetwork`](/openshift-docs-markdown/rest_api/network_apis/userdefinednetwork-k8s-ovn-org-v1#userdefinednetwork-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/userdefinednetworks/{{ name }} {#_apisk8sovnorgv1namespaces_namespace_userdefinednetworks_name}
+### /apis/k8s.ovn.org/v1/namespaces/{namespace}/userdefinednetworks/{name} {#_apisk8sovnorgv1namespaces_namespace_userdefinednetworks_name}
 
 **Global path parameters**
 
@@ -399,7 +399,7 @@ Description
 | 201 - Created | [`UserDefinedNetwork`](/openshift-docs-markdown/rest_api/network_apis/userdefinednetwork-k8s-ovn-org-v1#userdefinednetwork-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/userdefinednetworks/{{ name }}/status {#_apisk8sovnorgv1namespaces_namespace_userdefinednetworks_name_status}
+### /apis/k8s.ovn.org/v1/namespaces/{namespace}/userdefinednetworks/{name}/status {#_apisk8sovnorgv1namespaces_namespace_userdefinednetworks_name_status}
 
 **Global path parameters**
 

@@ -63,5 +63,6 @@ Create a `Backup` custom resource (CR) to back up applications by using File Sys
   :   Specifies the FSB setting within the `spec` block for OADP version 1.2 and later. In OADP version 1.1, add `defaultVolumesToRestic: true` instead.
 
 **Additional resources**
+{._additional-resources}
 
 - [FSB limitations](https://velero.io/docs/v1.12/file-system-backup/#limitations)

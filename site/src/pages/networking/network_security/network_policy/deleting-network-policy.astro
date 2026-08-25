@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"deleting-network-policy","text":"Deleting a
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/network_security/network_policy/deleting-network-policy";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -43,7 +44,7 @@ const pageCategory = ["networking","networking/network_security","networking/net
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Deleting a network policy {#deleting-network-policy}\n\nAs a cluster administrator, you can delete a network policy from a namespace.\n\n## Delete a network policy using the CLI {#nw-networkpolicy-delete-cli_deleting-network-policy}\n\nYou can delete a network policy in a namespace.\n\n> [!NOTE]\n> If you log in with `cluster-admin` privileges, you can delete network policies in any namespace in the cluster.\n\n> [!NOTE]\n> If you log in with `cluster-admin` privileges, you can delete network policies in any namespace in the cluster. In the web console, you can delete policies directly in YAML or by using the **Actions** menu.\n\n**Prerequisites**\n\n- Your cluster uses a network plugin that supports `NetworkPolicy` objects, such as the OVN-Kubernetes network plugin, with `mode: NetworkPolicy` set.\n- You installed the OpenShift CLI (`oc`).\n- You logged in to the cluster with a user with `{{ role }}` privileges.\n- You are working in the namespace where the network policy exists.\n\n**Procedure**\n\n- To delete a network policy object, enter the following command. Successful output lists the name of the policy object and the `deleted` status.\n\n  ```terminal\n  $ oc delete {{ name }}policy <policy_name> -n <namespace>\n  ```\n\n  where:\n\n  `<policy_name>`\n  :   Specifies the name of the network policy.\n\n  `<namespace>`\n  :   Optional parameter. If you defined the object in a different namespace than the current namespace, the parameter specifices the namespace.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/network_security/network_policy/deleting-network-policy.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Deleting a network policy {#deleting-network-policy}\n\nAs a cluster administrator, you can delete a network policy from a namespace.\n\n## Delete a network policy using the CLI {#nw-networkpolicy-delete-cli_deleting-network-policy}\n\nYou can delete a network policy in a namespace.\n\n> [!NOTE]\n> If you log in with `cluster-admin` privileges, you can delete network policies in any namespace in the cluster.\n\n> [!NOTE]\n> If you log in with `cluster-admin` privileges, you can delete network policies in any namespace in the cluster. In the web console, you can delete policies directly in YAML or by using the **Actions** menu.\n\n**Prerequisites**\n\n- Your cluster uses a network plugin that supports `NetworkPolicy` objects, such as the OVN-Kubernetes network plugin, with `mode: NetworkPolicy` set.\n- You installed the OpenShift CLI (`oc`).\n- You logged in to the cluster with a user with `admin` privileges.\n- You are working in the namespace where the network policy exists.\n\n**Procedure**\n\n- To delete a network policy object, enter the following command. Successful output lists the name of the policy object and the `deleted` status.\n\n  ```terminal\n  $ oc delete networkpolicy <policy_name> -n <namespace>\n  ```\n\n  where:\n\n  `<policy_name>`\n  :   Specifies the name of the network policy.\n\n  `<namespace>`\n  :   Optional parameter. If you defined the object in a different namespace than the current namespace, the parameter specifices the namespace.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/network_security/network_policy/deleting-network-policy.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="deleting-network-policy" class="group scroll-mt-20">Deleting a network policy<a href="#deleting-network-policy" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>As a cluster administrator, you can delete a network policy from a namespace.</p>
+      <p class="_abstract">As a cluster administrator, you can delete a network policy from a namespace.</p>
       <h2 id="nw-networkpolicy-delete-cli_deleting-network-policy" class="group scroll-mt-20">Delete a network policy using the CLI<a href="#nw-networkpolicy-delete-cli_deleting-network-policy" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">You can delete a network policy in a namespace.</p>
       <Alert variant="note" class="my-4">
@@ -114,14 +116,14 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <ul>
       <li>Your cluster uses a network plugin that supports <code>NetworkPolicy</code> objects, such as the OVN-Kubernetes network plugin, with <code>mode: NetworkPolicy</code> set.</li>
       <li>You installed the OpenShift CLI (<code>oc</code>).</li>
-      <li>You logged in to the cluster with a user with <code>{"{"}{"{"} role {"}"}{"}"}</code> privileges.</li>
+      <li>You logged in to the cluster with a user with <code>admin</code> privileges.</li>
       <li>You are working in the namespace where the network policy exists.</li>
       </ul>
       <p><strong>Procedure</strong></p>
       <ul>
       <li>
       To delete a network policy object, enter the following command. Successful output lists the name of the policy object and the <code>deleted</code> status.
-      <CodeBlock code={"$ oc delete {{ name }}policy <policy_name> -n <namespace>"} lang="terminal" />
+      <CodeBlock code={"$ oc delete networkpolicy <policy_name> -n <namespace>"} lang="terminal" />
       <p>where:</p>
       <dl class="my-4 space-y-2">
       <dt class="font-semibold"><code>&lt;policy_name&gt;</code></dt>

@@ -1,8 +1,8 @@
 ---
-title: Introduction to {{ hcp }} in a disconnected environment
+title: Introduction to hosted control planes in a disconnected environment
 ---
 
-# Introduction to {{ hcp }} in a disconnected environment {#hcp-deploy-dc}
+# Introduction to hosted control planes in a disconnected environment {#hcp-deploy-dc}
 
 In the context of hosted control planes, a disconnected environment is an OpenShift Container Platform deployment that is not connected to the internet and that uses hosted control planes as a base. You can deploy hosted control planes in a disconnected environment on bare metal or OpenShift Virtualization.
 

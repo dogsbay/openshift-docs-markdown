@@ -78,7 +78,7 @@ Use the OpenShift Container Platform web console to create a network attachment 
 
 **Procedure**
 
-1. In the web console, click **Networking** -> **NetworkAttachmentDefinitions**.
+1. In the web console, click **Networking** → **NetworkAttachmentDefinitions**.
 2. Click **Create Network Attachment Definition**.
 
    > [!NOTE]
@@ -262,7 +262,7 @@ You can configure a network interface for a virtual machine (VM) by using the Op
 
 **Procedure**
 
-1. Navigate to **Virtualization** -> **VirtualMachines**.
+1. Navigate to **Virtualization** → **VirtualMachines**.
 2. Click a VM to view the **VirtualMachine details** page.
 3. On the **Configuration** tab, click the **Network interfaces** tab.
 4. Click **Add network interface**.
@@ -288,7 +288,7 @@ Information about networking fields in the virtual machine wizard.
 </tr>
 <tr>
   <td>Model</td>
-  <td>Indicates the model of the network interface controller. Supported values are <strong>e1000e</strong> and <strong>virtio</strong>.</td>
+  <td>Indicates the model of the network interface controller. Supported values are <strong>e1000e</strong> and <strong>virtio</strong>.<br><br>For IBM Z(R) (<code>s390x</code>) and ARM64 (<code>arm64</code>) systems, use the <strong>virtio</strong> NIC model option. The <strong>e1000e</strong> model is not supported on these architectures.</td>
 </tr>
 <tr>
   <td>Network</td>
@@ -296,7 +296,7 @@ Information about networking fields in the virtual machine wizard.
 </tr>
 <tr>
   <td>Type</td>
-  <td>List of available binding methods. Select the binding method suitable for the network interface:<br><br><ul><li>Default pod network: <code>masquerade</code></li><li>Linux bridge network: <code>bridge</code></li><li>SR-IOV network: <code>SR-IOV</code></li></ul>+On IBM Z(R), <code>SR-IOV</code> is not supported.</td>
+  <td>List of available binding methods. Select the binding method suitable for the network interface:<br><br><ul><li>Default pod network: <code>masquerade</code></li><li>Linux bridge network: <code>bridge</code></li><li>SR-IOV network: <code>SR-IOV</code></li></ul>On IBM Z(R), <code>SR-IOV</code> is not supported.</td>
 </tr>
 <tr>
   <td>MAC Address</td>
@@ -358,7 +358,8 @@ You can configure a virtual machine (VM) network interface for a bridge network 
    > [!NOTE]
    > When running OpenShift Virtualization on IBM Z(R) using OSA, RoCE, or HiperSockets interfaces, you must register the MAC address of the device. For more information, see [OSA interface traffic forwarding](https://www.ibm.com/docs/en/linux-on-systems?topic=choices-osa-interface-traffic-forwarding) (IBM documentation).
 
-## Additional resources {#additional-resources_virt-connecting-vm-to-linux-bridge}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring IP addresses for virtual machines](/openshift-docs-markdown/virt/vm_networking/virt-configuring-viewing-ips-for-vms#virt-configuring-viewing-ips-for-vms)
 - [Which bonding modes work when used with a bridge that virtual machine guests or containers connect to?](https://access.redhat.com/solutions/67546)

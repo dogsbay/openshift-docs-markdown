@@ -1,8 +1,8 @@
 ---
-title: "{{ external_secrets_operator }} overview"
+title: External Secrets Operator for Red Hat OpenShift overview
 ---
 
-# {{ external_secrets_operator }} overview {#external-secrets-operator-about}
+# External Secrets Operator for Red Hat OpenShift overview {#external-secrets-operator-about}
 
 The External Secrets Operator for Red Hat OpenShift operates as a cluster-wide service to deploy and manage the `external-secrets` application. The `external-secrets` application integrates with external secrets management systems and performs secret fetching, refreshing, and provisioning within the cluster.
 
@@ -52,7 +52,8 @@ When using the External Secrets Operator for Red Hat OpenShift, there are some s
 - When configuring `SecretStore` and `ClusterSecretStore` resources, consider using short-term credential-based authorization. This approach enhances security by limiting the window of opportunity for unauthorized access, even if credentials are compromised.
 - To enhance the security of the External Secrets Operator for Red Hat OpenShift, it is crucial to implement role-based access controls (RBACs). These RBACs should define and limit access to the custom resources provided by the External Secrets Operator.
 
-## Additional resources {#external-secrets-operator-about_additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [external-secrets application](https://external-secrets.io/latest/)
 - [Understanding compliance](/openshift-docs-markdown/security/container_security/security-compliance#security-compliance)

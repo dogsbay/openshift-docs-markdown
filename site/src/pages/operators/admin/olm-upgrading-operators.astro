@@ -19,11 +19,12 @@ import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"olm-upgrading-operators","text":"Updating installed Operators"},{"depth":2,"slug":"olm-preparing-upgrade_olm-upgrading-operators","text":"About preparing for an Operator update"},{"depth":2,"slug":"olm-changing-update-channel_olm-upgrading-operators","text":"Changing the update channel for an Operator"},{"depth":2,"slug":"olm-approving-pending-upgrade_olm-upgrading-operators","text":"Approving a pending Operator update manually"},{"depth":2,"slug":"additional-resources_olm-upgrading-operators","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"olm-upgrading-operators","text":"Updating installed Operators"},{"depth":2,"slug":"olm-preparing-upgrade_olm-upgrading-operators","text":"About preparing for an Operator update"},{"depth":2,"slug":"olm-changing-update-channel_olm-upgrading-operators","text":"Changing the update channel for an Operator"},{"depth":2,"slug":"olm-approving-pending-upgrade_olm-upgrading-operators","text":"Approving a pending Operator update manually"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/operators/admin/olm-upgrading-operators";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -42,7 +43,7 @@ const pageCategory = ["operators","operators/admin"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Updating installed Operators {#olm-upgrading-operators}\n\nYou can update Operators previously installed with Operator Lifecycle Manager (OLM) on your OpenShift Container Platform cluster.\n\n> [!NOTE]\n> For information on how OLM handles updates for installed Operators colocated in the same namespace, as well as an alternative method for installing Operators with custom global Operator groups, see \"Multitenancy and Operator colocation\".\n\n## About preparing for an Operator update {#olm-preparing-upgrade_olm-upgrading-operators}\n\nYou can change the update channel to start tracking and receiving updates from a newer channel to access new features and bug fixes. The subscription of an installed Operator specifies an update channel that tracks and receives updates for the Operator.\n\nThe names of update channels in a subscription can differ between Operators, but the naming scheme typically follows a common convention within a given Operator. For example, channel names might follow a minor release update stream for the application provided by the Operator (`1.2`, `1.3`) or a release frequency (`stable`, `fast`).\n\n> [!NOTE]\n> You cannot change installed Operators to a channel that is older than the current channel.\n\nRed Hat Customer Portal Labs include an application that helps administrators prepare to update their Operators.\n\nYou can use these tools to search for Operators and verify the available Operator versions per update channel across different releases of OpenShift Container Platform. Operators managed by Cluster Version Operator (CVO) are not included.\n\n**Additional resources**\n\n- [OpenShift Container Platform Operator Update Information Checker](https://access.redhat.com/labs/ocpouic/)\n\n## Changing the update channel for an Operator {#olm-changing-update-channel_olm-upgrading-operators}\n\nTo change the update channel for an installed Operator, you can use the OpenShift Container Platform web console. The update channel determines which Operator versions your subscription tracks and receives.\n\n> [!TIP]\n> If the approval strategy in the subscription is set to **Automatic**, the update process initiates as soon as a new Operator version is available in the selected channel. If the approval strategy is set to **Manual**, you must manually approve pending updates.\n\n**Prerequisites**\n\n- An Operator previously installed using Operator Lifecycle Manager (OLM).\n\n**Procedure**\n\n1. In the web console, navigate to **Ecosystem** -> **Installed Operators**.\n2. Click the name of the Operator you want to change the update channel for.\n3. Click the **Subscription** tab.\n4. Click the name of the update channel under **Update channel**.\n5. Click the newer update channel that you want to change to, then click **Save**.\n6. For subscriptions with an **Automatic** approval strategy, the update begins automatically. Navigate back to the **Ecosystem** -> **Installed Operators** page to monitor the progress of the update. When complete, the status changes to **Succeeded** and **Up to date**.\n\n   For subscriptions with a **Manual** approval strategy, you can manually approve the update from the **Subscription** tab.\n\n## Approving a pending Operator update manually {#olm-approving-pending-upgrade_olm-upgrading-operators}\n\nIf an installed Operator has the approval strategy in its subscription set to **Manual**, you must manually approve the update before installation can begin. Manual approval reviews the changes and control when updates are applied to prevent unexpected downtime.\n\n**Prerequisites**\n\n- An Operator previously installed using Operator Lifecycle Manager (OLM).\n\n**Procedure**\n\n1. In the OpenShift Container Platform web console, navigate to **Ecosystem** -> **Installed Operators**.\n2. Operators that have a pending update display a status with **Upgrade available**. Click the name of the Operator you want to update.\n3. Click the **Subscription** tab. Any updates requiring approval are displayed next to **Upgrade status**. For example, it might display **1 requires approval**.\n4. Click **1 requires approval**, then click **Preview Install Plan**.\n5. Review the resources that are listed as available for update. When satisfied, click **Approve**.\n6. Navigate back to the **Ecosystem** -> **Installed Operators** page to monitor the progress of the update. When complete, the status changes to **Succeeded** and **Up to date**.\n\n## Additional resources {#additional-resources_olm-upgrading-operators}\n\n- [Red Hat OpenShift Container Platform Operator Update Information Checker](https://access.redhat.com/labs/ocpouic/)\n- [Multitenancy and Operator colocation](/openshift-docs-markdown/operators/understanding/olm/olm-colocation#olm-colocation)\n- [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/operators/admin/olm-upgrading-operators.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Updating installed Operators {#olm-upgrading-operators}\n\nYou can update Operators previously installed with Operator Lifecycle Manager (OLM) on your OpenShift Container Platform cluster.\n\n> [!NOTE]\n> For information on how OLM handles updates for installed Operators colocated in the same namespace, as well as an alternative method for installing Operators with custom global Operator groups, see \"Multitenancy and Operator colocation\".\n\n## About preparing for an Operator update {#olm-preparing-upgrade_olm-upgrading-operators}\n\nYou can change the update channel to start tracking and receiving updates from a newer channel to access new features and bug fixes. The subscription of an installed Operator specifies an update channel that tracks and receives updates for the Operator.\n\nThe names of update channels in a subscription can differ between Operators, but the naming scheme typically follows a common convention within a given Operator. For example, channel names might follow a minor release update stream for the application provided by the Operator (`1.2`, `1.3`) or a release frequency (`stable`, `fast`).\n\n> [!NOTE]\n> You cannot change installed Operators to a channel that is older than the current channel.\n\nRed Hat Customer Portal Labs include an application that helps administrators prepare to update their Operators.\n\nYou can use these tools to search for Operators and verify the available Operator versions per update channel across different releases of OpenShift Container Platform. Operators managed by Cluster Version Operator (CVO) are not included.\n\n**Additional resources**\n{._additional-resources}\n\n- [OpenShift Container Platform Operator Update Information Checker](https://access.redhat.com/labs/ocpouic/)\n\n## Changing the update channel for an Operator {#olm-changing-update-channel_olm-upgrading-operators}\n\nTo change the update channel for an installed Operator, you can use the OpenShift Container Platform web console. The update channel determines which Operator versions your subscription tracks and receives.\n\n> [!TIP]\n> If the approval strategy in the subscription is set to **Automatic**, the update process initiates as soon as a new Operator version is available in the selected channel. If the approval strategy is set to **Manual**, you must manually approve pending updates.\n\n**Prerequisites**\n\n- An Operator previously installed using Operator Lifecycle Manager (OLM).\n\n**Procedure**\n\n1. In the web console, navigate to **Ecosystem** → **Installed Operators**.\n2. Click the name of the Operator you want to change the update channel for.\n3. Click the **Subscription** tab.\n4. Click the name of the update channel under **Update channel**.\n5. Click the newer update channel that you want to change to, then click **Save**.\n6. For subscriptions with an **Automatic** approval strategy, the update begins automatically. Navigate back to the **Ecosystem** → **Installed Operators** page to monitor the progress of the update. When complete, the status changes to **Succeeded** and **Up to date**.\n\n   For subscriptions with a **Manual** approval strategy, you can manually approve the update from the **Subscription** tab.\n\n## Approving a pending Operator update manually {#olm-approving-pending-upgrade_olm-upgrading-operators}\n\nIf an installed Operator has the approval strategy in its subscription set to **Manual**, you must manually approve the update before installation can begin. Manual approval reviews the changes and control when updates are applied to prevent unexpected downtime.\n\n**Prerequisites**\n\n- An Operator previously installed using Operator Lifecycle Manager (OLM).\n\n**Procedure**\n\n1. In the OpenShift Container Platform web console, navigate to **Ecosystem** → **Installed Operators**.\n2. Operators that have a pending update display a status with **Upgrade available**. Click the name of the Operator you want to update.\n3. Click the **Subscription** tab. Any updates requiring approval are displayed next to **Upgrade status**. For example, it might display **1 requires approval**.\n4. Click **1 requires approval**, then click **Preview Install Plan**.\n5. Review the resources that are listed as available for update. When satisfied, click **Approve**.\n6. Navigate back to the **Ecosystem** → **Installed Operators** page to monitor the progress of the update. When complete, the status changes to **Succeeded** and **Up to date**.\n\n**Additional resources**\n{._additional-resources}\n\n- [Red Hat OpenShift Container Platform Operator Update Information Checker](https://access.redhat.com/labs/ocpouic/)\n- [Multitenancy and Operator colocation](/openshift-docs-markdown/operators/understanding/olm/olm-colocation#olm-colocation)\n- [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/operators/admin/olm-upgrading-operators.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -81,12 +82,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -94,7 +96,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="olm-upgrading-operators" class="group scroll-mt-20">Updating installed Operators<a href="#olm-upgrading-operators" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can update Operators previously installed with Operator Lifecycle Manager (OLM) on your OpenShift Container Platform cluster.</p>
+      <p class="_abstract">You can update Operators previously installed with Operator Lifecycle Manager (OLM) on your OpenShift Container Platform cluster.</p>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
         <AlertDescription>
@@ -112,8 +114,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </Alert>
       <p>Red Hat Customer Portal Labs include an application that helps administrators prepare to update their Operators.</p>
       <p>You can use these tools to search for Operators and verify the available Operator versions per update channel across different releases of OpenShift Container Platform. Operators managed by Cluster Version Operator (CVO) are not included.</p>
-      <p><strong>Additional resources</strong></p>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul><li><a href="https://access.redhat.com/labs/ocpouic/">OpenShift Container Platform Operator Update Information Checker</a></li></ul>
+      </section>
       <h2 id="olm-changing-update-channel_olm-upgrading-operators" class="group scroll-mt-20">Changing the update channel for an Operator<a href="#olm-changing-update-channel_olm-upgrading-operators" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">To change the update channel for an installed Operator, you can use the OpenShift Container Platform web console. The update channel determines which Operator versions your subscription tracks and receives.</p>
       <Alert variant="tip" class="my-4">
@@ -126,13 +130,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <ul><li>An Operator previously installed using Operator Lifecycle Manager (OLM).</li></ul>
       <p><strong>Procedure</strong></p>
       <ol>
-      <li>In the web console, navigate to <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong>.</li>
+      <li>In the web console, navigate to <strong>Ecosystem</strong> → <strong>Installed Operators</strong>.</li>
       <li>Click the name of the Operator you want to change the update channel for.</li>
       <li>Click the <strong>Subscription</strong> tab.</li>
       <li>Click the name of the update channel under <strong>Update channel</strong>.</li>
       <li>Click the newer update channel that you want to change to, then click <strong>Save</strong>.</li>
       <li>
-      For subscriptions with an <strong>Automatic</strong> approval strategy, the update begins automatically. Navigate back to the <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong> page to monitor the progress of the update. When complete, the status changes to <strong>Succeeded</strong> and <strong>Up to date</strong>.
+      For subscriptions with an <strong>Automatic</strong> approval strategy, the update begins automatically. Navigate back to the <strong>Ecosystem</strong> → <strong>Installed Operators</strong> page to monitor the progress of the update. When complete, the status changes to <strong>Succeeded</strong> and <strong>Up to date</strong>.
       <p>For subscriptions with a <strong>Manual</strong> approval strategy, you can manually approve the update from the <strong>Subscription</strong> tab.</p>
       </li>
       </ol>
@@ -142,19 +146,21 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <ul><li>An Operator previously installed using Operator Lifecycle Manager (OLM).</li></ul>
       <p><strong>Procedure</strong></p>
       <ol>
-      <li>In the OpenShift Container Platform web console, navigate to <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong>.</li>
+      <li>In the OpenShift Container Platform web console, navigate to <strong>Ecosystem</strong> → <strong>Installed Operators</strong>.</li>
       <li>Operators that have a pending update display a status with <strong>Upgrade available</strong>. Click the name of the Operator you want to update.</li>
       <li>Click the <strong>Subscription</strong> tab. Any updates requiring approval are displayed next to <strong>Upgrade status</strong>. For example, it might display <strong>1 requires approval</strong>.</li>
       <li>Click <strong>1 requires approval</strong>, then click <strong>Preview Install Plan</strong>.</li>
       <li>Review the resources that are listed as available for update. When satisfied, click <strong>Approve</strong>.</li>
-      <li>Navigate back to the <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong> page to monitor the progress of the update. When complete, the status changes to <strong>Succeeded</strong> and <strong>Up to date</strong>.</li>
+      <li>Navigate back to the <strong>Ecosystem</strong> → <strong>Installed Operators</strong> page to monitor the progress of the update. When complete, the status changes to <strong>Succeeded</strong> and <strong>Up to date</strong>.</li>
       </ol>
-      <h2 id="additional-resources_olm-upgrading-operators" class="group scroll-mt-20">Additional resources<a href="#additional-resources_olm-upgrading-operators" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul>
       <li><a href="https://access.redhat.com/labs/ocpouic/">Red Hat OpenShift Container Platform Operator Update Information Checker</a></li>
       <li><a href="/openshift-docs-markdown/operators/understanding/olm/olm-colocation#olm-colocation">Multitenancy and Operator colocation</a></li>
       <li><a href="/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks">Using Operator Lifecycle Manager in disconnected environments</a></li>
       </ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -27,7 +27,8 @@ const headings = [{"depth":1,"slug":"external-dns-operator","text":"Understandin
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/networking_operators/external_dns_operator/understanding-external-dns-operator";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -85,12 +86,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -98,7 +100,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="external-dns-operator" class="group scroll-mt-20">Understanding the External DNS Operator<a href="#external-dns-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>The External DNS Operator deploys and manages <code>ExternalDNS</code> to provide the name resolution for services and routes from the external DNS provider to OpenShift Container Platform.</p>
+      <p class="_abstract">The External DNS Operator deploys and manages <code>ExternalDNS</code> to provide the name resolution for services and routes from the external DNS provider to OpenShift Container Platform.</p>
       <h2 id="nw-external-dns-operator-domain-limitations_external-dns-operator" class="group scroll-mt-20">External DNS Operator domain name limitations<a href="#nw-external-dns-operator-domain-limitations_external-dns-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">To prevent configuration errors when deploying the <code>ExternalDNS</code> resource, review the domain name limitations enforced by the External DNS Operator. Understanding these constraints ensures that your requested hostnames and domains are compatible with your underlying DNS provider.</p>
       <p>The External DNS Operator uses the TXT registry that adds the prefix for TXT records. This reduces the maximum length of the domain name for TXT records. A DNS record cannot be present without a corresponding TXT record, so the domain name of the DNS record must follow the same limit as the TXT records. For example, a DNS record of <code>&lt;domain_name_from_source&gt;</code> results in a TXT record of <code>external-dns-&lt;record_type&gt;-&lt;domain_name_from_source&gt;</code>.</p>

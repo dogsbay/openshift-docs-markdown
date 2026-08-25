@@ -67,7 +67,7 @@ You can view the ClusterVersion history and status information in the OpenShift 
 
 **Procedure**
 
-- From the web console, click **Administration** -> **Cluster Settings** and review the contents of the **Details** tab.
+- From the web console, click **Administration** → **Cluster Settings** and review the contents of the **Details** tab.
 
 ### Gathering ClusterVersion history using the OpenShift CLI (`oc`) {#gathering-clusterversion-history-cli_troubleshooting_updates}
 
@@ -121,6 +121,7 @@ Use the OpenShift CLI (`oc`) to view ClusterVersion history. You can use the his
    Events:                 <none>
    ```
 
-<a name="additional-resources_gathering-cluster-data"></a>**Additional resources**
+**Additional resources**
+{._additional-resources}
 
 - [Gathering data about your cluster for Red Hat Support](/openshift-docs-markdown/support/gathering-cluster-data#support_gathering_data_gathering-cluster-data)

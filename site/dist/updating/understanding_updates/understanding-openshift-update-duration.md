@@ -81,9 +81,10 @@ In addition to MCO, you should consider the impact of the following parameters:
 
   If the status of the node is `NotReady` or `SchedulingDisabled`, then the node is not available and this impacts the update duration.
 
-  You can also check the status of nodes from the **Administrator** perspective in the web console by expanding ***Compute*** -> ***Nodes***.
+  You can also check the status of nodes from the **Administrator** perspective in the web console by expanding **Compute** → **Nodes**.
 
 **Additional resources**
+{._additional-resources}
 
 - [Machine Config Overview](/openshift-docs-markdown/machine_configuration/index#machine-config-overview)
 - [Understanding how to use pod disruption budgets to specify the number of pods that must be up](/openshift-docs-markdown/nodes/pods/nodes-pods-configuring#nodes-pods-pod-disruption-about_nodes-pods-configuring)
@@ -110,6 +111,7 @@ Additionally, the update duration for some Operators is heavily dependent on cha
 > Each cluster Operator is assigned a stage during which it can be updated. Operators within the same stage can update simultaneously, and Operators in a given stage cannot begin updating until all previous stages have been completed. For more information, see "Understanding how manifests are applied during an update".
 
 **Additional resources**
+{._additional-resources}
 
 - [Introduction to OpenShift updates](/openshift-docs-markdown/updating/understanding_updates/intro-to-updates#understanding-openshift-updates)
 - [Understanding how manifests are applied during an update](/openshift-docs-markdown/updating/understanding_updates/how-updates-work#update-manifest-application_how-updates-work)
@@ -149,7 +151,8 @@ Cluster update time = 60 + (3 x 5) = 75 minutes
 > [!IMPORTANT]
 > The default setting for `maxUnavailable` is `1` for all the MCPs in OpenShift Container Platform. It is recommended that you do not change the `maxUnavailable` in the control plane MCP.
 
-## Additional resources {#additional-resources_update-duration}
+**Additional resources**
+{._additional-resources}
 
 - [OpenShift Container Platform architecture](/openshift-docs-markdown/architecture/architecture#architecture)
 - [OpenShift Container Platform updates](/openshift-docs-markdown/updating/understanding_updates/intro-to-updates#understanding-openshift-updates)

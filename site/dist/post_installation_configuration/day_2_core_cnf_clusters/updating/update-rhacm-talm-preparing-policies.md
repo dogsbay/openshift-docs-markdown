@@ -1,8 +1,8 @@
 ---
-title: Prepare {{ rh_rhacm }} policies and {{ cgu_operator }} for cluster updates
+title: Prepare RHACM policies and TALM for cluster updates
 ---
 
-# Prepare {{ rh_rhacm }} policies and {{ cgu_operator }} for cluster updates {#core-cluster-upgrades-preparing-policies}
+# Prepare RHACM policies and TALM for cluster updates {#core-cluster-upgrades-preparing-policies}
 
 Before you can perform policy-based cluster updates, you must configure your hub cluster with the required Red Hat Advanced Cluster Management (RHACM) policies, placement rules, and Topology Aware Lifecycle Manager (TALM) `ClusterGroupUpgrade` custom resources (CRs).
 
@@ -419,7 +419,8 @@ $ oc delete cgu -n <namespace> <cgu_name>
 - If the `ClusterGroupUpgrade` CR is stuck in `Preparing` state, verify that all managed policies exist and are bound to target clusters.
 - If the `ClusterGroupUpgrade` CR fails with a timeout error, increase the `timeout` value in the `remediationStrategy` section.
 
-## Additional resources {#additional-resources_core-cluster-upgrades-preparing-policies}
+**Additional resources**
+{._additional-resources}
 
 - [Overview of cluster updates with RHACM and TALM](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-overview#core-cluster-upgrades-overview)
 - [Installing Topology Aware Lifecycle Manager by using the CLI](/openshift-docs-markdown/edge_computing/cnf-talm-for-cluster-upgrades#installing-topology-aware-lifecycle-manager-using-cli_cnf-topology-aware-lifecycle-manager)

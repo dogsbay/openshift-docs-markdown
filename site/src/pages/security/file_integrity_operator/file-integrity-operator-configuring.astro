@@ -30,7 +30,8 @@ const headings = [{"depth":1,"slug":"configuring-file-integrity-operator","text"
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-configuring";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -88,12 +89,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -101,7 +103,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="configuring-file-integrity-operator" class="group scroll-mt-20">Configuring the Custom File Integrity Operator<a href="#configuring-file-integrity-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can configure the Custom File Integrity Operator to meet your cluster requirements.</p>
+      <p class="_abstract">You can configure the Custom File Integrity Operator to meet your cluster requirements.</p>
       <h2 id="viewing-file-integrity-object-attributes_file-integrity-operator" class="group scroll-mt-20">Viewing FileIntegrity object attributes<a href="#viewing-file-integrity-object-attributes_file-integrity-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">As with any Kubernetes custom resources (CRs), you can run <code>oc explain fileintegrity</code>, and then examine the individual attributes.</p>
       <p><strong>Procedure</strong></p>

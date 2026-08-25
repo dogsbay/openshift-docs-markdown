@@ -1,5 +1,5 @@
 ---
-title: EgressIP []
+title: EgressIP [k8s.ovn.org/v1]
 ---
 
 # EgressIP \[k8s.ovn.org/v1\] {#egressip-k8s-ovn-org-v1}
@@ -193,7 +193,7 @@ The following API endpoints are available:
   - `DELETE`: delete collection of EgressIP
   - `GET`: list objects of kind EgressIP
   - `POST`: create an EgressIP
-- `/apis/k8s.ovn.org/v1/egressips/{{ name }}`
+- `/apis/k8s.ovn.org/v1/egressips/{name}`
 
   - `DELETE`: delete an EgressIP
   - `GET`: read the specified EgressIP
@@ -268,7 +268,7 @@ Description
 | 202 - Accepted | [`EgressIP`](/openshift-docs-markdown/rest_api/network_apis/egressip-k8s-ovn-org-v1#egressip-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.ovn.org/v1/egressips/{{ name }} {#_apisk8sovnorgv1egressips_name}
+### /apis/k8s.ovn.org/v1/egressips/{name} {#_apisk8sovnorgv1egressips_name}
 
 **Global path parameters**
 

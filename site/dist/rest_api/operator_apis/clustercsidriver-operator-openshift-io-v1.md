@@ -1,5 +1,5 @@
 ---
-title: ClusterCSIDriver []
+title: ClusterCSIDriver [operator.openshift.io/v1]
 ---
 
 # ClusterCSIDriver \[operator.openshift.io/v1\] {#clustercsidriver-operator-openshift-io-v1}
@@ -40,10 +40,10 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `driverConfig` | `object` | driverConfig can be used to specify platform specific driver configuration. When omitted, this means no opinion and the platform is left to choose reasonable defaults. These defaults are subject to change over time. |
-| `logLevel` | `string` | logLevel is an intent based logging for an overall component.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands. Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
+| `logLevel` | `string` | logLevel is an intent based logging for an overall component. It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `managementState` | `string` | managementState indicates whether and how the operator should manage the component |
-| `observedConfig` | \`\` | observedConfig holds a sparse config that controller has observed from the cluster state.  It exists in spec because it is an input to the level for the operator |
-| `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves. Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
+| `observedConfig` | \`\` | observedConfig holds a sparse config that controller has observed from the cluster state. It exists in spec because it is an input to the level for the operator |
+| `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself. It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `storageClassState` | `string` | storageClassState determines if CSI operator should create and manage storage classes. If this field value is empty or Managed - CSI operator will continuously reconcile storage class and create if necessary. If this field value is Unmanaged - CSI operator will not reconcile any previously created storage class. If this field value is Removed - CSI operator will delete the storage class it created previously. When omitted, this means the user has no opinion and the platform chooses a reasonable default, which is subject to change over time. The current default behaviour is Managed. |
 | `unsupportedConfigOverrides` | \`\` | unsupportedConfigOverrides overrides the final configuration that was computed by the operator. Red Hat does not support the use of this field. Misuse of this field could lead to unexpected behavior or conflict with other configuration options. Seek guidance from the Red Hat support before using this field. Use of this property blocks cluster upgrades, it must be removed before upgrading your cluster. |
 
@@ -82,7 +82,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `efsVolumeMetrics` | `object` | efsVolumeMetrics sets the configuration for collecting metrics from EFS volumes used by the EFS CSI Driver. |
-| `kmsKeyARN` | `string` | kmsKeyARN sets the cluster default storage class to encrypt volumes with a user-defined KMS key, rather than the default KMS key used by AWS. The value may be either the ARN or Alias ARN of a KMS key. The ARN must follow the format: arn:<partition>:kms:<region>:<account-id>:(key\\ |
+| `kmsKeyARN` | `string` | kmsKeyARN sets the cluster default storage class to encrypt volumes with a user-defined KMS key, rather than the default KMS key used by AWS. The value may be either the ARN or Alias ARN of a KMS key.<br>The ARN must follow the format: arn:<partition>:kms:<region>:<account-id>:(key\|alias)/<key-id-or-alias>, where: <partition> is the AWS partition (aws, aws-cn, aws-us-gov, aws-iso, aws-iso-b, aws-iso-e, aws-iso-f, or aws-eusc), <region> is the AWS region, <account-id> is a 12-digit numeric identifier for the AWS account, <key-id-or-alias> is the KMS key ID or alias name. |
 
 ### .spec.driverConfig.aws.efsVolumeMetrics {#_specdriverconfigawsefsvolumemetrics}
 
@@ -270,7 +270,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` |  |
 | `reason` | `string` |  |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
@@ -320,13 +320,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of ClusterCSIDriver
   - `GET`: list objects of kind ClusterCSIDriver
   - `POST`: create a ClusterCSIDriver
-- `/apis/operator.openshift.io/v1/clustercsidrivers/{{ name }}`
+- `/apis/operator.openshift.io/v1/clustercsidrivers/{name}`
 
   - `DELETE`: delete a ClusterCSIDriver
   - `GET`: read the specified ClusterCSIDriver
   - `PATCH`: partially update the specified ClusterCSIDriver
   - `PUT`: replace the specified ClusterCSIDriver
-- `/apis/operator.openshift.io/v1/clustercsidrivers/{{ name }}/status`
+- `/apis/operator.openshift.io/v1/clustercsidrivers/{name}/status`
 
   - `GET`: read status of the specified ClusterCSIDriver
   - `PATCH`: partially update status of the specified ClusterCSIDriver
@@ -400,7 +400,7 @@ Description
 | 202 - Accepted | [`ClusterCSIDriver`](/openshift-docs-markdown/rest_api/operator_apis/clustercsidriver-operator-openshift-io-v1#clustercsidriver-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operator.openshift.io/v1/clustercsidrivers/{{ name }} {#_apisoperatoropenshiftiov1clustercsidrivers_name}
+### /apis/operator.openshift.io/v1/clustercsidrivers/{name} {#_apisoperatoropenshiftiov1clustercsidrivers_name}
 
 **Global path parameters**
 
@@ -504,7 +504,7 @@ Description
 | 201 - Created | [`ClusterCSIDriver`](/openshift-docs-markdown/rest_api/operator_apis/clustercsidriver-operator-openshift-io-v1#clustercsidriver-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operator.openshift.io/v1/clustercsidrivers/{{ name }}/status {#_apisoperatoropenshiftiov1clustercsidrivers_name_status}
+### /apis/operator.openshift.io/v1/clustercsidrivers/{name}/status {#_apisoperatoropenshiftiov1clustercsidrivers_name_status}
 
 **Global path parameters**
 

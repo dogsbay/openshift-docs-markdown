@@ -20,11 +20,12 @@ import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
 import BlockImage from "@ui/image/Image.astro";
 
-const headings = [{"depth":1,"slug":"odc-working-with-helm-releases","text":"Working with Helm releases"},{"depth":2,"slug":"odc-creating-helm-release-from-url_working-with-helm-releases","text":"Installing a Helm release from a URL"},{"depth":2,"slug":"odc-upgrading-helm-release_working-with-helm-releases","text":"Upgrading a Helm release"},{"depth":2,"slug":"odc-rolling-back-helm-release_working-with-helm-releases","text":"Rolling back a Helm release"},{"depth":2,"slug":"odc-deleting-helm-release_working-with-helm-releases","text":"Deleting a Helm release"},{"depth":2,"slug":"additional-resources_working-with-helm-releases","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"odc-working-with-helm-releases","text":"Working with Helm releases"},{"depth":2,"slug":"odc-creating-helm-release-from-url_working-with-helm-releases","text":"Installing a Helm release from a URL"},{"depth":2,"slug":"odc-upgrading-helm-release_working-with-helm-releases","text":"Upgrading a Helm release"},{"depth":2,"slug":"odc-rolling-back-helm-release_working-with-helm-releases","text":"Rolling back a Helm release"},{"depth":2,"slug":"odc-deleting-helm-release_working-with-helm-releases","text":"Deleting a Helm release"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/applications/working_with_helm_charts/odc-working-with-helm-releases";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -43,7 +44,7 @@ const pageCategory = ["applications","applications/working_with_helm_charts"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Working with Helm releases {#odc-working-with-helm-releases}\n\nYou can use the web console to create, update, roll back, or delete a Helm release.\n\n## Installing a Helm release from a URL {#odc-creating-helm-release-from-url_working-with-helm-releases}\n\nA Helm release is a deployed instance of a Helm chart within your OpenShift Container Platform cluster. You can install charts from the developer catalog or by using a direct chart URL. Using a direct URL avoids the need for a configured Helm repository. However, this method circumvents the validation provided by the developer catalog. Use the direct URL method only when a chart is not available from the developer catalog or configured repositories.\n\n> [!WARNING]\n> Installing a Helm chart from a direct URL bypasses the validation checks provided by the developer catalog. Install charts only from URLs you trust, because unverified charts can introduce security risks to your cluster. When possible, use charts from the developer catalog or a configured Helm repository instead.\n\n**Prerequisites**\n\n- You’ve logged in to the OpenShift Container Platform web console.\n- You have the necessary project permissions to install a Helm chart.\n- You have a URL for a Helm chart.\n\n**Procedure**\n\n1. In the OpenShift Container Platform web console, select ***Ecosystem > Helm*** from the navigation menu. The ***Helm*** view opens.\n2. In the ***Project*** drop-down menu, select the project where you want to install the Helm release; for example, ***default***.\n3. From the ***Helm Releases*** tab, click ***Create***.\n4. Select ***Helm chart URL***\\*. The **Install Helm chart from URL**\\* view opens.\n5. In the ***Chart URL*** field, enter the URL for the Helm chart you want to install. **📌 NOTE**\n   For Helm charts stored in an OCI-compliant registry, the URL must use the `oci://` protocol; for example, `oci://quay.io/organization/repository/chart-name`.\n6. In the ***Release name*** field, enter a name for the Helm release you want to install.\n7. In the ***Chart version*** field, enter the chart version number if it is not detected automatically.\n8. Click ***Next***\\*. The **Configure Helm release**\\* view opens.\n\n   - Review the configuration. Make sure that **Chart URL**, **Release name**, and **Chart version** are correct.\n9. For the ***Configure via*** option, select either ***Form view*** or ***YAML view***.\n\n   - Choose ***Form view*** (the default) for a guided configuration of standard parameters.\n   - Choose ***YAML view*** if you need to modify advanced settings that are not available in the form view. **📌 NOTE**\n     The ***Form view*** might not display every field from your Helm chart. For full control over all configuration parameters, select ***YAML view***.\n10. Click ***Install***\\*. The **Helm Releases**\\* tab opens and, if the release installation is successful, its status is ***Deployed***.\n\n**Verification**\n\n- The new Helm release is listed in the table on the ***Helm Releases*** tab.\n- The ***Status*** column for the Helm release displays ***Deployed***.\n\n- [Official Helm documentation](https://helm.sh)\n- [Quay OCI artifact support for Helm charts](https://www.redhat.com/en/blog/quay-oci-artifact-support-for-helm-charts)\n\n## Upgrading a Helm release {#odc-upgrading-helm-release_working-with-helm-releases}\n\nYou can upgrade a Helm release to use a new chart version or update your release configuration.\n\n**Procedure**\n\n1. In the **Topology** view, select the Helm release to see the side panel.\n2. Click **Actions > Upgrade Helm Release**.\n3. On the **Upgrade Helm Release** page, if you can edit the **Chart Version** field, select the chart version you want to upgrade to, edit the values as needed, then click **Upgrade** to create a revision of the Helm release. The **Helm Releases** page shows both revisions. **📌 NOTE**\n   If you installed the Helm chart using a direct URL, you can’t change **Chart Version**. Instead, edit the values in **Form view** or **YAML view**.\n\n## Rolling back a Helm release {#odc-rolling-back-helm-release_working-with-helm-releases}\n\nIf a release fails, you can rollback the Helm release to a previous version.\n\n**Procedure**\n\nTo rollback a release using the **Helm** view:\n\n1. In the **Developer** perspective, navigate to the **Helm** view to see the **Helm Releases** in the namespace.\n2. Click the Options menu ![](kebab.png \"Options menu\") adjoining the listed release, and select **Rollback**.\n3. In the **Rollback Helm Release** page, select the **Revision** you want to rollback to and click **Rollback**.\n4. In the **Helm Releases** page, click on the chart to see the details and resources for that release.\n5. Go to the **Revision History** tab to see all the revisions for the chart. **Figure 1. Helm revision history**\n\n   ![odc_helm_revision_history](/openshift-docs-markdown/_assets/images/odc_helm_revision_history.png)\n6. If required, you can further use the Options menu ![](kebab.png \"Options menu\") adjoining a particular revision and select the revision to rollback to.\n\n## Deleting a Helm release {#odc-deleting-helm-release_working-with-helm-releases}\n\n**Procedure**\n\n1. In the **Topology** view, right-click the Helm release and select **Delete Helm Release**.\n2. In the confirmation prompt, enter the name of the chart and click **Delete**.\n\n## Additional resources {#additional-resources_working-with-helm-releases}\n\n- [OpenShift web console](https://console.redhat.com/openshift/overview)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/applications/working_with_helm_charts/odc-working-with-helm-releases.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Working with Helm releases {#odc-working-with-helm-releases}\n\nYou can use the web console to create, update, roll back, or delete a Helm release.\n\n## Installing a Helm release from a URL {#odc-creating-helm-release-from-url_working-with-helm-releases}\n\nA Helm release is a deployed instance of a Helm chart within your OpenShift Container Platform cluster. You can install charts from the developer catalog or by using a direct chart URL. Using a direct URL avoids the need for a configured Helm repository. However, this method circumvents the validation provided by the developer catalog. Use the direct URL method only when a chart is not available from the developer catalog or configured repositories.\n\n> [!WARNING]\n> Installing a Helm chart from a direct URL bypasses the validation checks provided by the developer catalog. Install charts only from URLs you trust, because unverified charts can introduce security risks to your cluster. When possible, use charts from the developer catalog or a configured Helm repository instead.\n\n**Prerequisites**\n\n- You’ve logged in to the OpenShift Container Platform web console.\n- You have the necessary project permissions to install a Helm chart.\n- You have a URL for a Helm chart.\n\n**Procedure**\n\n1. In the OpenShift Container Platform web console, select **Ecosystem > Helm** from the navigation menu. The **Helm** view opens.\n2. In the **Project** drop-down menu, select the project where you want to install the Helm release; for example, **default**.\n3. From the **Helm Releases** tab, click **Create**.\n4. Select **Helm chart URL**. The **Install Helm chart from URL** view opens.\n5. In the **Chart URL** field, enter the URL for the Helm chart you want to install.\n\n   > [!NOTE]\n   > For Helm charts stored in an OCI-compliant registry, the URL must use the `oci://` protocol; for example, `oci://quay.io/organization/repository/chart-name`.\n6. In the **Release name** field, enter a name for the Helm release you want to install.\n7. In the **Chart version** field, enter the chart version number if it is not detected automatically.\n8. Click **Next**. The **Configure Helm release** view opens.\n\n   - Review the configuration. Make sure that **Chart URL**, **Release name**, and **Chart version** are correct.\n9. For the **Configure via** option, select either **Form view** or **YAML view**.\n\n   - Choose **Form view** (the default) for a guided configuration of standard parameters.\n   - Choose **YAML view** if you need to modify advanced settings that are not available in the form view.\n\n     > [!NOTE]\n     > The **Form view** might not display every field from your Helm chart. For full control over all configuration parameters, select **YAML view**.\n10. Click **Install**. The **Helm Releases** tab opens and, if the release installation is successful, its status is **Deployed**.\n\n**Verification**\n\n- The new Helm release is listed in the table on the **Helm Releases** tab.\n- The **Status** column for the Helm release displays **Deployed**.\n\n**Additional resources**\n{._additional-resources}\n\n- [Official Helm documentation](https://helm.sh)\n- [Quay OCI artifact support for Helm charts](https://www.redhat.com/en/blog/quay-oci-artifact-support-for-helm-charts)\n\n## Upgrading a Helm release {#odc-upgrading-helm-release_working-with-helm-releases}\n\nYou can upgrade a Helm release to use a new chart version or update your release configuration.\n\n**Procedure**\n\n1. In the **Topology** view, select the Helm release to see the side panel.\n2. Click **Actions > Upgrade Helm Release**.\n3. On the **Upgrade Helm Release** page, if you can edit the **Chart Version** field, select the chart version you want to upgrade to, edit the values as needed, then click **Upgrade** to create a revision of the Helm release. The **Helm Releases** page shows both revisions.\n\n   > [!NOTE]\n   > If you installed the Helm chart using a direct URL, you can’t change **Chart Version**. Instead, edit the values in **Form view** or **YAML view**.\n\n## Rolling back a Helm release {#odc-rolling-back-helm-release_working-with-helm-releases}\n\nIf a release fails, you can rollback the Helm release to a previous version.\n\n**Procedure**\n\nTo rollback a release using the **Helm** view:\n\n1. In the **Developer** perspective, navigate to the **Helm** view to see the **Helm Releases** in the namespace.\n2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png \"Options menu\") adjoining the listed release, and select **Rollback**.\n3. In the **Rollback Helm Release** page, select the **Revision** you want to rollback to and click **Rollback**.\n4. In the **Helm Releases** page, click on the chart to see the details and resources for that release.\n5. Go to the **Revision History** tab to see all the revisions for the chart.\n\n   **Figure 1. Helm revision history**\n\n   ![odc_helm_revision_history](/openshift-docs-markdown/_assets/images/odc_helm_revision_history.png)\n6. If required, you can further use the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png \"Options menu\") adjoining a particular revision and select the revision to rollback to.\n\n## Deleting a Helm release {#odc-deleting-helm-release_working-with-helm-releases}\n\n**Procedure**\n\n1. In the **Topology** view, right-click the Helm release and select **Delete Helm Release**.\n2. In the confirmation prompt, enter the name of the chart and click **Delete**.\n\n**Additional resources**\n{._additional-resources}\n\n- [OpenShift web console](https://console.redhat.com/openshift/overview)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/applications/working_with_helm_charts/odc-working-with-helm-releases.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -112,30 +114,46 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </ul>
       <p><strong>Procedure</strong></p>
       <ol>
-      <li>In the OpenShift Container Platform web console, select <em></em><em><strong>Ecosystem &gt; Helm</strong></em><em></em> from the navigation menu. The <em></em><em><strong>Helm</strong></em><em></em> view opens.</li>
-      <li>In the <em></em><em><strong>Project</strong></em><em></em> drop-down menu, select the project where you want to install the Helm release; for example, <em></em><em><strong>default</strong></em><em></em>.</li>
-      <li>From the <em></em><em><strong>Helm Releases</strong></em><em></em> tab, click <em></em><em><strong>Create</strong></em><em></em>.</li>
-      <li>Select <em></em><em><strong>Helm chart URL</strong></em><em></em>*. The <strong>Install Helm chart from URL</strong>* view opens.</li>
-      <li>In the <em></em><em><strong>Chart URL</strong></em><em></em> field, enter the URL for the Helm chart you want to install. <strong>📌 NOTE</strong><br />For Helm charts stored in an OCI-compliant registry, the URL must use the <code>oci://</code> protocol; for example, <code>oci://quay.io/organization/repository/chart-name</code>.</li>
-      <li>In the <em></em><em><strong>Release name</strong></em><em></em> field, enter a name for the Helm release you want to install.</li>
-      <li>In the <em></em><em><strong>Chart version</strong></em><em></em> field, enter the chart version number if it is not detected automatically.</li>
+      <li>In the OpenShift Container Platform web console, select <strong>Ecosystem &gt; Helm</strong> from the navigation menu. The <strong>Helm</strong> view opens.</li>
+      <li>In the <strong>Project</strong> drop-down menu, select the project where you want to install the Helm release; for example, <strong>default</strong>.</li>
+      <li>From the <strong>Helm Releases</strong> tab, click <strong>Create</strong>.</li>
+      <li>Select <strong>Helm chart URL</strong>. The <strong>Install Helm chart from URL</strong> view opens.</li>
       <li>
-      Click <em></em><em><strong>Next</strong></em><em></em>*. The <strong>Configure Helm release</strong>* view opens.
+      In the <strong>Chart URL</strong> field, enter the URL for the Helm chart you want to install.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>For Helm charts stored in an OCI-compliant registry, the URL must use the <code>oci://</code> protocol; for example, <code>oci://quay.io/organization/repository/chart-name</code>.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>In the <strong>Release name</strong> field, enter a name for the Helm release you want to install.</li>
+      <li>In the <strong>Chart version</strong> field, enter the chart version number if it is not detected automatically.</li>
+      <li>
+      Click <strong>Next</strong>. The <strong>Configure Helm release</strong> view opens.
       <ul><li>Review the configuration. Make sure that <strong>Chart URL</strong>, <strong>Release name</strong>, and <strong>Chart version</strong> are correct.</li></ul>
       </li>
       <li>
-      For the <em></em><em><strong>Configure via</strong></em><em></em> option, select either <em></em><em><strong>Form view</strong></em><em></em> or <em></em><em><strong>YAML view</strong></em><em></em>.
+      For the <strong>Configure via</strong> option, select either <strong>Form view</strong> or <strong>YAML view</strong>.
       <ul>
-      <li>Choose <em></em><em><strong>Form view</strong></em><em></em> (the default) for a guided configuration of standard parameters.</li>
-      <li>Choose <em></em><em><strong>YAML view</strong></em><em></em> if you need to modify advanced settings that are not available in the form view. <strong>📌 NOTE</strong><br />The <em></em><em><strong>Form view</strong></em><em></em> might not display every field from your Helm chart. For full control over all configuration parameters, select <em></em><em><strong>YAML view</strong></em><em></em>.</li>
+      <li>Choose <strong>Form view</strong> (the default) for a guided configuration of standard parameters.</li>
+      <li>
+      Choose <strong>YAML view</strong> if you need to modify advanced settings that are not available in the form view.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The <strong>Form view</strong> might not display every field from your Helm chart. For full control over all configuration parameters, select <strong>YAML view</strong>.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
       </ul>
       </li>
-      <li>Click <em></em><em><strong>Install</strong></em><em></em>*. The <strong>Helm Releases</strong>* tab opens and, if the release installation is successful, its status is <em></em><em><strong>Deployed</strong></em><em></em>.</li>
+      <li>Click <strong>Install</strong>. The <strong>Helm Releases</strong> tab opens and, if the release installation is successful, its status is <strong>Deployed</strong>.</li>
       </ol>
       <p><strong>Verification</strong></p>
       <ul>
-      <li>The new Helm release is listed in the table on the <em></em><em><strong>Helm Releases</strong></em><em></em> tab.</li>
-      <li>The <em></em><em><strong>Status</strong></em><em></em> column for the Helm release displays <em></em><em><strong>Deployed</strong></em><em></em>.</li>
+      <li>The new Helm release is listed in the table on the <strong>Helm Releases</strong> tab.</li>
+      <li>The <strong>Status</strong> column for the Helm release displays <strong>Deployed</strong>.</li>
       </ul>
       <section class="related-resources _additional-resources">
       <p class="related-resources-title">Additional resources</p>
@@ -150,7 +168,15 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <ol>
       <li>In the <strong>Topology</strong> view, select the Helm release to see the side panel.</li>
       <li>Click <strong>Actions &gt; Upgrade Helm Release</strong>.</li>
-      <li>On the <strong>Upgrade Helm Release</strong> page, if you can edit the <strong>Chart Version</strong> field, select the chart version you want to upgrade to, edit the values as needed, then click <strong>Upgrade</strong> to create a revision of the Helm release. The <strong>Helm Releases</strong> page shows both revisions. <strong>📌 NOTE</strong><br />If you installed the Helm chart using a direct URL, you can’t change <strong>Chart Version</strong>. Instead, edit the values in <strong>Form view</strong> or <strong>YAML view</strong>.</li>
+      <li>
+      On the <strong>Upgrade Helm Release</strong> page, if you can edit the <strong>Chart Version</strong> field, select the chart version you want to upgrade to, edit the values as needed, then click <strong>Upgrade</strong> to create a revision of the Helm release. The <strong>Helm Releases</strong> page shows both revisions.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you installed the Helm chart using a direct URL, you can’t change <strong>Chart Version</strong>. Instead, edit the values in <strong>Form view</strong> or <strong>YAML view</strong>.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
       </ol>
       <h2 id="odc-rolling-back-helm-release_working-with-helm-releases" class="group scroll-mt-20">Rolling back a Helm release<a href="#odc-rolling-back-helm-release_working-with-helm-releases" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p>If a release fails, you can rollback the Helm release to a previous version.</p>
@@ -158,14 +184,15 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p>To rollback a release using the <strong>Helm</strong> view:</p>
       <ol>
       <li>In the <strong>Developer</strong> perspective, navigate to the <strong>Helm</strong> view to see the <strong>Helm Releases</strong> in the namespace.</li>
-      <li>Click the Options menu <img src="kebab.png" alt="" loading="lazy" /> adjoining the listed release, and select <strong>Rollback</strong>.</li>
+      <li>Click the Options menu <img src="/openshift-docs-markdown/_assets/images/kebab.png" alt="" loading="lazy" /> adjoining the listed release, and select <strong>Rollback</strong>.</li>
       <li>In the <strong>Rollback Helm Release</strong> page, select the <strong>Revision</strong> you want to rollback to and click <strong>Rollback</strong>.</li>
       <li>In the <strong>Helm Releases</strong> page, click on the chart to see the details and resources for that release.</li>
       <li>
-      Go to the <strong>Revision History</strong> tab to see all the revisions for the chart. <strong>Figure 1. Helm revision history</strong>
+      Go to the <strong>Revision History</strong> tab to see all the revisions for the chart.
+      <p><strong>Figure 1. Helm revision history</strong></p>
       <BlockImage src="/openshift-docs-markdown/_assets/images/odc_helm_revision_history.png" alt="odc_helm_revision_history" />
       </li>
-      <li>If required, you can further use the Options menu <img src="kebab.png" alt="" loading="lazy" /> adjoining a particular revision and select the revision to rollback to.</li>
+      <li>If required, you can further use the Options menu <img src="/openshift-docs-markdown/_assets/images/kebab.png" alt="" loading="lazy" /> adjoining a particular revision and select the revision to rollback to.</li>
       </ol>
       <h2 id="odc-deleting-helm-release_working-with-helm-releases" class="group scroll-mt-20">Deleting a Helm release<a href="#odc-deleting-helm-release_working-with-helm-releases" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p><strong>Procedure</strong></p>
@@ -173,8 +200,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>In the <strong>Topology</strong> view, right-click the Helm release and select <strong>Delete Helm Release</strong>.</li>
       <li>In the confirmation prompt, enter the name of the chart and click <strong>Delete</strong>.</li>
       </ol>
-      <h2 id="additional-resources_working-with-helm-releases" class="group scroll-mt-20">Additional resources<a href="#additional-resources_working-with-helm-releases" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
       <ul><li><a href="https://console.redhat.com/openshift/overview">OpenShift web console</a></li></ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

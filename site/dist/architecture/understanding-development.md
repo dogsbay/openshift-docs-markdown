@@ -56,6 +56,7 @@ If you use a computer that runs Red Hat Enterprise Linux (RHEL) as the operatin
 For more details on the process of building container images, pushing them to registries, and running them, see "Custom image builds with Buildah".
 
 **Additional resources**
+{._additional-resources}
 
 - [Dockerfile (dockerdocs documentation)](https://docs.docker.com/engine/reference/builder/)
 - [Custom image builds with Buildah](/openshift-docs-markdown/cicd/builds/custom-builds-buildah#custom-builds-buildah)
@@ -70,6 +71,7 @@ Building and managing containers with `buildah`, `podman`, and `skopeo` results 
 When you ultimately run your containers in OpenShift Container Platform, you use the CRI-O container engine. CRI-O runs on every compute and control plane machine in an OpenShift Container Platform cluster, but CRI-O is not yet supported as a standalone runtime outside of OpenShift Container Platform.
 
 **Additional resources**
+{._additional-resources}
 
 - [Kubernetes blog announcement (Kubernetes documentation)](https://kubernetes.io/blog/2020/12/02/dont-panic-kubernetes-and-docker/)
 - [CRI-O (cri-o documentation)](https://cri-o.io/)
@@ -86,11 +88,12 @@ These UBI images have standard, init, and minimal versions. You can also use the
 
 S2I images are available for you to use directly from the OpenShift Container Platform web UI. In the Developer perspective, you can navigate to the **+Add** view and in the **Developer Catalog** tile, view all of the available services in the Developer Catalog.
 
-**Figure 1. Choose S2I base images for apps that need specific runtimes**
+**Figure 2. Choose S2I base images for apps that need specific runtimes**
 
 ![OpenShift Container Platform Developer Catalog](/openshift-docs-markdown/_assets/images/developer-catalog.png)
 
 **Additional resources**
+{._additional-resources}
 
 - [Red Hat Universal Base Images](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_atomic_host/7/html-single/getting_started_with_containers/index#using_red_hat_base_container_images_standard_and_minimal)
 - [Red Hat Software Collections](https://access.redhat.com/documentation/en-us/red_hat_software_collections/3/html-single/using_red_hat_software_collections_container_images/index)
@@ -110,6 +113,7 @@ If you want your own, private container registry, OpenShift Container Platform i
 All of the registries mentioned here can require credentials to download images from those registries. Some of those credentials are presented on a cluster-wide basis from OpenShift Container Platform, while other credentials can be assigned to individuals.
 
 **Additional resources**
+{._additional-resources}
 
 - [Container images section of the Red Hat Ecosystem Catalog](https://catalog.redhat.com/software/containers/explore)
 - [Docker Hub](https://hub.docker.com/)
@@ -150,6 +154,7 @@ If your container requires on-disk storage instead of database storage, which mi
 After you define a group of pods that compose your application, you can define those pods in `Deployment` and `DeploymentConfig` objects.
 
 **Additional resources**
+{._additional-resources}
 
 - [Pods (Kubernetes documentation)](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/)
 - [Service (Kubernetes documentation)](https://kubernetes.io/docs/concepts/services-networking/service/)
@@ -173,6 +178,7 @@ To determine the appropriate workload for your application, consider if the appl
 - Have identity or numbering requirements. An application might have identity requirements or numbering requirements. For example, you might be required to run exactly three instances of the application and to name the instances `0`, `1`, and `2`. A stateful set is suitable for this application. Stateful sets are most useful for applications that require independent storage, such as databases and zookeeper clusters.
 
 **Additional resources**
+{._additional-resources}
 
 - [`Job` (Kubernetes documentation)](https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/)
 - [`CronJob` (Kubernetes documentation)](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/)

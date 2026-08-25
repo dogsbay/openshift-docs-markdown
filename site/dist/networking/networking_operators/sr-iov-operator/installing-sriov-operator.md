@@ -101,14 +101,14 @@ You can use the web console to install the SR-IOV Network Operator. By using the
 
 1. Install the SR-IOV Network Operator:
 
-   1. In the OpenShift Container Platform web console, click **Ecosystem** -> **Software Catalog**.
+   1. In the OpenShift Container Platform web console, click **Ecosystem** → **Software Catalog**.
    2. Select **SR-IOV Network Operator** from the list of available Operators, and then click **Install**.
    3. On the **Install Operator** page, under **Installed Namespace**, select **Operator recommended Namespace**.
    4. Click **Install**.
 
 **Verification**
 
-1. Navigate to the **Ecosystem** -> **Installed Operators** page.
+1. Navigate to the **Ecosystem** → **Installed Operators** page.
 2. Ensure that **SR-IOV Network Operator** is listed in the **openshift-sriov-network-operator** project with a **Status** of **InstallSucceeded**.
 
    > [!NOTE]
@@ -116,7 +116,7 @@ You can use the web console to install the SR-IOV Network Operator. By using the
 3. If the Operator does not show as installed, complete any of the following steps to troubleshoot the issue:
 
    - Inspect the **Operator Subscriptions** and **Install Plans** tabs for any failure or errors under **Status**.
-   - Navigate to the **Workloads** -> **Pods** page and check the logs for pods in the `openshift-sriov-network-operator` project.
+   - Navigate to the **Workloads** → **Pods** page and check the logs for pods in the `openshift-sriov-network-operator` project.
    - Check the namespace of the YAML file. If the annotation is missing, you can add the annotation `workload.openshift.io/allowed=management` to the Operator namespace with the following command:
 
      ```terminal
@@ -126,6 +126,6 @@ You can use the web console to install the SR-IOV Network Operator. By using the
      > [!NOTE]
      > For single-node OpenShift clusters, the annotation `workload.openshift.io/allowed=management` is required for the namespace.
 
-## Additional resources {#additional-resources_installing-sriov-operator}
+## Additional resources {#additional-resources_installing-sriov-operator ._additional-resources_installing-sriov-operatoradoc}
 
 - [Configuring the SR-IOV Network Operator](/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/configuring-sriov-operator#configuring-sriov-operator)

@@ -16,7 +16,7 @@ To define the IP address ranges available for load balancer services, configure 
 
 The following table details the parameters for the `IPAddressPool` CR:
 
-***MetalLB IPAddressPool pool custom resource***
+**MetalLB IPAddressPool pool custom resource**
 
 <table>
 <thead>
@@ -50,7 +50,7 @@ The following table details the parameters for the `IPAddressPool` CR:
 <tr>
   <td><code>spec.autoAssign</code></td>
   <td><code>boolean</code></td>
-  <td>Optional: Specifies whether the MetalLB Operator automatically assigns IP addresses from this pool.Specify <code>false</code> if you want to explicitly request an IP address from this pool with the <code>metallb.io/address-pool</code> annotation. The default value is <code>true</code>.<br><br><dl><dt>Note</dt><dd>For IP address pool configurations, ensure the addresses parameter specifies only IP addresses that are available and not in use by other network devices, especially gateway addresses, to prevent conflicts when <code>autoAssign</code> is enabled.</dd></dl></td>
+  <td>Optional: Specifies whether the MetalLB Operator automatically assigns IP addresses from this pool. Specify <code>false</code> if you want to explicitly request an IP address from this pool with the <code>metallb.io/address-pool</code> annotation. The default value is <code>true</code>.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>For IP address pool configurations, ensure the addresses parameter specifies only IP addresses that are available and not in use by other network devices, especially gateway addresses, to prevent conflicts when <code>autoAssign</code> is enabled.</dd></dl></td>
 </tr>
 <tr>
   <td><code>spec.avoidBuggyIPs</code></td>
@@ -62,7 +62,7 @@ The following table details the parameters for the `IPAddressPool` CR:
 
 You can assign IP addresses from an `IPAddressPool` to services and namespaces by configuring the `spec.serviceAllocation` specification.
 
-***MetalLB IPAddressPool custom resource spec.serviceAllocation subfields***
+**MetalLB IPAddressPool custom resource spec.serviceAllocation subfields**
 
 <table>
 <thead>
@@ -335,7 +335,8 @@ Example of assigning IP address pools to services or namespaces
 `serviceAllocation.serviceSelectors`
 :   Assign one or more service labels to the IP address pool by using label selectors in a list format.
 
-## Additional resources {#additional-resources_metallb-configure-address-pools}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring MetalLB with an L2 advertisement and label](/openshift-docs-markdown/networking/ingress_load_balancing/metallb/about-advertising-ipaddresspool#nw-metallb-configure-with-L2-advertisement-label_about-advertising-ip-address-pool)
 - [Configuring MetalLB BGP peers](/openshift-docs-markdown/networking/ingress_load_balancing/metallb/metallb-configure-bgp-peers#metallb-configure-bgp-peers)

@@ -21,7 +21,8 @@ const headings = [{"depth":1,"slug":"file-integrity-operator-advanced-usage","te
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-advanced-usage";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="file-integrity-operator-advanced-usage" class="group scroll-mt-20">Performing advanced Custom File Integrity Operator tasks<a href="#file-integrity-operator-advanced-usage" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>This document describes advanced tasks for the Custom File Integrity Operator.</p>
+      <p class="_abstract">This document describes advanced tasks for the Custom File Integrity Operator.</p>
       <h2 id="file-integrity-operator-reinitializing-database_file-integrity-operator" class="group scroll-mt-20">Reinitializing the database<a href="#file-integrity-operator-reinitializing-database_file-integrity-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">If the File Integrity Operator detects a change that was planned, it might be required to reinitialize the database.</p>
       <p><strong>Procedure</strong></p>

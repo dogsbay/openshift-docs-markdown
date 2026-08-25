@@ -29,7 +29,8 @@ const headings = [{"depth":1,"slug":"nodes-cma-autoscaling-custom-rn","text":"Cu
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/cma/nodes-cma-rn/nodes-cma-autoscaling-custom-rn";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -87,12 +88,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -100,7 +102,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="nodes-cma-autoscaling-custom-rn" class="group scroll-mt-20">Custom Metrics Autoscaler Operator release notes<a href="#nodes-cma-autoscaling-custom-rn" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can review the following release notes to learn about changes in the Custom Metrics Autoscaler Operator version 2.19.0-2. The release notes for the Custom Metrics Autoscaler Operator for Red Hat OpenShift describe new features and enhancements, deprecated features, and known issues.</p>
+      <p class="_abstract">You can review the following release notes to learn about changes in the Custom Metrics Autoscaler Operator version 2.19.0-2. The release notes for the Custom Metrics Autoscaler Operator for Red Hat OpenShift describe new features and enhancements, deprecated features, and known issues.</p>
       <p>The Custom Metrics Autoscaler Operator uses the Kubernetes-based Event Driven Autoscaler (KEDA) and is built on top of the OpenShift Container Platform horizontal pod autoscaler (HPA).</p>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>

@@ -79,6 +79,7 @@ When you update to all versions from 4.11 and later, you must manually acknowled
   > In this example, the cluster is updated from version 4.14 to 4.15, and then from 4.15 to 4.16 in a Control Plane Only update.
 
 **Additional resources**
+{._additional-resources}
 
 - [Kubernetes API removals](/openshift-docs-markdown/updating/preparing_for_updates/updating-cluster-prepare#kube-api-removals_updating-cluster-prepare)
 
@@ -98,18 +99,20 @@ When updating from one y-stream release to the next, you must ensure that the in
    ```
 
    > [!IMPORTANT]
-   > - ***Control plane only update***: Ensure you point to the interim <y+1> release path
-   > - ***Y-stream update*** - Ensure you use the correct <y.z> release that follows the Kubernetes [version skew policy](https://kubernetes.io/releases/version-skew-policy/).
-   > - ***Z-stream update*** - Verify that there are no problems moving to that specific release
+   > - **Control plane only update**: Ensure you point to the interim <y+1> release path
+   > - **Y-stream update** - Ensure you use the correct <y.z> release that follows the Kubernetes [version skew policy](https://kubernetes.io/releases/version-skew-policy/).
+   > - **Z-stream update** - Verify that there are no problems moving to that specific release
 
    ```terminal
    Requested update to <version>
    ```
 
+   -
 
-where: `<version>`:: Specifies the version number for your particular update, such as `4.15.33`.
+   where: `<version>`:: Specifies the version number for your particular update, such as `4.15.33`.
 
 **Additional resources**
+{._additional-resources}
 
 - [Selecting the target release](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-api#update-selecting-the-target-release_update-api)
 
@@ -274,6 +277,7 @@ Software needs to vetted before it is loaded onto a production cluster. Producti
   > Sometimes you have to approve an update twice because some Operators have interim z-stream release versions that need to be installed before the final version.
 
 **Additional resources**
+{._additional-resources}
 
 - [Updating the worker nodes](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-completing-the-control-plane-only-update#update-updating-the-worker-nodes_completing-the-update)
 

@@ -28,7 +28,7 @@ If your workloads do not communicate with outside services, you can quickly enab
 apiVersion: maistra.io/v2
 kind: ServiceMeshControlPlane
 spec:
-  version: v{{ MaistraVersion }}
+  version: v2.6
   security:
     dataPlane:
       mtls: true
@@ -40,7 +40,7 @@ You can also enable mTLS by using the OpenShift Container Platform web console.
 
 1. Log in to the web console.
 2. Click the **Project** menu and select the project where you installed the Service Mesh control plane, for example **istio-system**.
-3. Click **Ecosystem** -> **Installed Operators**.
+3. Click **Ecosystem** → **Installed Operators**.
 4. Click **Service Mesh Control Plane** under **Provided APIs**.
 5. Click the name of your `ServiceMeshControlPlane` resource, for example, `basic`.
 6. On the **Details** page, click the toggle in the **Security** section for **Data Plane Security**.
@@ -71,8 +71,8 @@ You can also configure mTLS for individual services by creating a policy.
    $ oc create -n <namespace> -f <policy.yaml>
    ```
 
-> [!NOTE]
-> If you are not using automatic mTLS and you are setting `PeerAuthentication` to STRICT, you must create a `DestinationRule` resource for your service.
+   > [!NOTE]
+   > If you are not using automatic mTLS and you are setting `PeerAuthentication` to STRICT, you must create a `DestinationRule` resource for your service.
 
 #### Configuring sidecars for outgoing connections {#ossm-security-mtls-sidecars-outgoing_ossm-security}
 
@@ -122,7 +122,7 @@ The default is `TLS_AUTO` and does not specify a version of TLS.
 
 1. Log in to the web console.
 2. Click the **Project** menu and select the project where you installed the Service Mesh control plane, for example **istio-system**.
-3. Click **Ecosystem** -> **Installed Operators**.
+3. Click **Ecosystem** → **Installed Operators**.
 4. Click **Service Mesh Control Plane** under **Provided APIs**.
 5. Click the name of your `ServiceMeshControlPlane` resource, for example, `basic`.
 6. Click the **YAML** tab.
@@ -466,20 +466,19 @@ To use an existing signing (CA) certificate and key, you must create a chain of 
 
    You should see output similar to the following:
 
-```terminal
-pod "details-v1-6cd699df8c-j54nh" deleted
-pod "productpage-v1-5ddcb4b84f-mtmf2" deleted
-pod "ratings-v1-bdbcc68bc-kmng4" deleted
-pod "reviews-v1-754ddd7b6f-lqhsv" deleted
-pod "reviews-v2-675679877f-q67r2" deleted
-pod "reviews-v3-79d7549c7-c2gjs" deleted
-```
+   ```terminal
+   pod "details-v1-6cd699df8c-j54nh" deleted
+   pod "productpage-v1-5ddcb4b84f-mtmf2" deleted
+   pod "ratings-v1-bdbcc68bc-kmng4" deleted
+   pod "reviews-v1-754ddd7b6f-lqhsv" deleted
+   pod "reviews-v2-675679877f-q67r2" deleted
+   pod "reviews-v3-79d7549c7-c2gjs" deleted
+   ```
+6. Verify that the pods were created and are ready with the following command:
 
-1. Verify that the pods were created and are ready with the following command:
-
-```terminal
-$ oc get pods -n bookinfo
-```
+   ```terminal
+   $ oc get pods -n bookinfo
+   ```
 
 ### Verifying your certificates {#ossm-cert-manage-verify-cert_ossm-security}
 
@@ -765,7 +764,7 @@ You can install the `cert-manager` tool to manage the lifecycle of TLS certifica
         - sleep
       ```
 
-`security.identity.type: ThirdParty` must be set when `security.certificateAuthority.type: cert-manager` is configured.
+      `security.identity.type: ThirdParty` must be set when `security.certificateAuthority.type: cert-manager` is configured.
 
 **Verification**
 
@@ -812,6 +811,6 @@ Use the sample `httpbin` service and `sleep` app to check mTLS traffic from ingr
    $ curl -s -I http://$INGRESS_HOST/headers -o /dev/null -w "%{http_code}" -s
    ```
 
-## Additional resources {#additional-resources_cert-manager-operator-red-hat-openshift}
+## Additional resources {#additional-resources_cert-manager-operator-red-hat-openshift ._additional-resources}
 
 For information about how to install the cert-manager Operator for OpenShift Container Platform, see: [Installing the cert-manager Operator for Red Hat OpenShift](/openshift-docs-markdown/security/cert_manager_operator/cert-manager-operator-install).

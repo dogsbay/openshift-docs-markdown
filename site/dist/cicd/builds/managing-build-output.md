@@ -8,9 +8,7 @@ Use the following sections for an overview of and instructions for managing buil
 
 ## Build output {#builds-docker-source-build-output_managing-build-output}
 
-Builds that use the docker or
-
-source-to-image (S2I) strategy result in the creation of a new container image. The image is then pushed to the container image registry specified in the `output` section of the `Build` specification.
+Builds that use the docker or source-to-image (S2I) strategy result in the creation of a new container image. The image is then pushed to the container image registry specified in the `output` section of the `Build` specification.
 
 If the output kind is `ImageStreamTag`, then the image will be pushed to the integrated OpenShift image registry and tagged in the specified imagestream. If the output is of type `DockerImage`, then the name of the output reference will be used as a docker push specification. The specification may contain a registry or will default to DockerHub if no registry is specified. If the output section of the build specification is empty, then the image will not be pushed at the end of the build.
 
@@ -32,9 +30,7 @@ spec:
 
 ## Output image environment variables {#builds-output-image-environment-variables_managing-build-output}
 
-docker and
-
-source-to-image (S2I) strategy builds set the following environment variables on output images:
+docker and source-to-image (S2I) strategy builds set the following environment variables on output images:
 
 | Variable | Description |
 | --- | --- |
@@ -44,15 +40,11 @@ source-to-image (S2I) strategy builds set the following environment variables on
 | `OPENSHIFT_BUILD_REFERENCE` | The Git reference used in the build |
 | `OPENSHIFT_BUILD_COMMIT` | Source commit used in the build |
 
-Additionally, any user-defined environment variable, for example those configured with S2I or docker
-
-strategy options, will also be part of the output image environment variable list.
+Additionally, any user-defined environment variable, for example those configured with S2I or docker strategy options, will also be part of the output image environment variable list.
 
 ## Output image labels {#builds-output-image-labels_managing-build-output}
 
-docker and
-
-source-to-image (S2I) builds set the following labels on output images:
+docker and source-to-image (S2I) builds set the following labels on output images:
 
 | Label | Description |
 | --- | --- |

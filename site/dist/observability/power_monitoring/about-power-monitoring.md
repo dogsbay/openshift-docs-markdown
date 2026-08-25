@@ -1,5 +1,5 @@
 ---
-title: About {{ PM_title }}
+title: About power monitoring for Red Hat OpenShift
 ---
 
 # About power monitoring for Red Hat OpenShift {#about-power-monitoring}

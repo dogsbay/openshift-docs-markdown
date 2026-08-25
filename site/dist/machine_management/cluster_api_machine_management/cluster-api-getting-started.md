@@ -100,6 +100,7 @@ You can create a provider-specific machine template resource by creating a YAML 
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Machine API to Cluster API resource migration](/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster-api-getting-started#mapi-to-capi-migration-overview_cluster-api-getting-started)
 - [Sample YAML for a Cluster API machine template resource on Amazon Web Services](/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster_api_provider_configurations/cluster-api-config-options-aws#capi-yaml-machine-template-aws_cluster-api-config-options-aws)
@@ -206,6 +207,7 @@ You can create compute machine sets that use the Cluster API to dynamically mana
     ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Sample YAML for a Cluster API compute machine set resource on Amazon Web Services](/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster_api_provider_configurations/cluster-api-config-options-aws#capi-yaml-machine-set-aws_cluster-api-config-options-aws)
 - [Sample YAML for a Cluster API compute machine set resource on Google Cloud](/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster_api_provider_configurations/cluster-api-config-options-gcp#capi-yaml-machine-set-gcp_cluster-api-config-options-gcp)
@@ -284,15 +286,15 @@ You can migrate individual Machine API objects to equivalent Cluster API objects
 1. Identify the Machine API resource that you want to migrate to a Cluster API resource by running the following command:
 
    ```terminal
-   $ oc get <resource_kind> -n {{ from_namespace }}
+   $ oc get <resource_kind> -n openshift-machine-api
    ```
 
    where `<resource_kind>` is one of the following values:
 
-   `machine.{{ from_api_group }}`
+   `machine.machine.openshift.io`
    :   The fully qualified name of the resource kind for a compute or control plane machine.
 
-   `machineset.{{ from_api_group }}`
+   `machineset.machine.openshift.io`
    :   The fully qualified name of the resource kind for a compute machine set.
 2. Edit the resource specification by running the following command:
 
@@ -316,10 +318,10 @@ You can migrate individual Machine API objects to equivalent Cluster API objects
      name: <resource_name>
      [...]
    spec:
-     authoritativeAPI: {{ to_api_value }}
+     authoritativeAPI: ClusterAPI
      [...]
    status:
-     authoritativeAPI: {{ from_api_value }}
+     authoritativeAPI: MachineAPI
      [...]
    ```
 
@@ -332,7 +334,7 @@ You can migrate individual Machine API objects to equivalent Cluster API objects
    :   Specifies the name of the resource that you want to migrate.
 
    `spec.authoritativeAPI`
-   :   Specifies the authoritative API that you want this resource to use. For example, to start migrating a Machine API resource to the Cluster API, specify `{{ to_api_value }}`.
+   :   Specifies the authoritative API that you want this resource to use. For example, to start migrating a Machine API resource to the Cluster API, specify `ClusterAPI`.
 
    `status.authoritativeAPI`
    :   Specifies the value for the current authoritative API. This value indicates which API currently manages this resource. Do not change the value in this part of the specification.
@@ -356,12 +358,10 @@ You can migrate individual Machine API objects to equivalent Cluster API objects
   :   Specifies a compute machine with `machine.machine.openshift.io` or compute machine set with `machineset.machine.openshift.io`.
 
   `<resource_name>`
-  :   Specifies the name of the Machine API resource that you want to migrate to a Cluster API resource.
-
-  - While the conversion progresses, this command returns a value of `Migrating`. If this value persists for a long time, check the logs for the `cluster-capi-operator` deployment in the `openshift-cluster-api` namespace for more information and to identify potential issues.
-  - When the conversion is complete, this command returns a value of `{{ to_api_value }}`.
+  :   Specifies the name of the Machine API resource that you want to migrate to a Cluster API resource. \*   While the conversion progresses, this command returns a value of `Migrating`. If this value persists for a long time, check the logs for the `cluster-capi-operator` deployment in the `openshift-cluster-api` namespace for more information and to identify potential issues. \*   When the conversion is complete, this command returns a value of `ClusterAPI`.
 
 **Additional resources**
+{._additional-resources}
 
 - [Unexpected behavior when changing resource configurations](/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster-api-troubleshooting#ts-capi-migrate-unexpected-behavior_cluster-api-troubleshooting)
 
@@ -450,6 +450,7 @@ A Machine API compute machine set with this configuration creates nonauthoritati
    For a Cluster API compute machine, the value of the field is `ClusterAPI`.
 
 **Additional resources**
+{._additional-resources}
 
 - [Troubleshooting resource migration](/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster-api-troubleshooting#ts-capi-resource-migration_cluster-api-troubleshooting)
 - [Migrating Cluster API resources to Machine API resources](/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster-api-disabling#capi-to-mapi-migration-overview_cluster-api-disabling)

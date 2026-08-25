@@ -114,6 +114,7 @@ In an emergency, you can use any of the following possible actions to revoke acc
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Revoke access to Custom Resources](/openshift-docs-markdown/ai_applications/mcp_server/mcp-server-overview#ai-app-mcp-server-revoke-cr-access_mcp-server-overview)
 - [Install the MCP server](/openshift-docs-markdown/ai_applications/mcp_server/mcp-server-overview#ai-app-mcp-server-install-helm_mcp-server-overview)
@@ -243,7 +244,9 @@ Install the Model Context Protocol (MCP) server Helm chart to deploy the MCP ser
          --set-json 'rbac.extraClusterRoleBindings=[{"name":"admin-access","roleRef":{"name":"cluster-admin","external":true}}]'
      ```
    - `<hostname>` is a fully qualified domain name (FQDN) that serves as the entry point for the MCP server for Red Hat OpenShift. This host address is used by the Ingress controller to route external traffic to the MCP server service. This should be a URL such as `mcp-server.apps.cluster-name.domain.com`.
-   - `<toolset-names>` can include toolsets from the following table. **Available toolsets**
+   - `<toolset-names>` can include toolsets from the following table.
+
+     **Available toolsets**
 
      | Toolset | Description | Default | Status |
      | --- | --- | --- | --- |
@@ -319,6 +322,7 @@ Install the Model Context Protocol (MCP) gateway to provide a secure, centralize
    After installation, the controller automatically creates the HTTPRoute for gateway access. The MCP gateway acts as a reverse proxy that aggregates multiple MCP servers into a single endpoint and provides a layer for authentication and rate limiting.
 
 **Additional resources**
+{._additional-resources}
 
 - [Install the MCP gateway (Red Hat Connectivity Link)](https://docs.redhat.com/en/documentation/red_hat_connectivity_link/1.4/html/install_the_mcp_gateway/index)
 
@@ -411,7 +415,7 @@ Configure the Model Context Protocol (MCP) gateway so that it can route client t
    EOF
    ```
 
-   `${{ MCP_SERVER_HOST }}` is the hostname you configured during Helm installation.
+   `${MCP_SERVER_HOST}` is the hostname you configured during Helm installation.
 
    This HTTPRoute enables the MCP gateway to route traffic to your MCP server instance and is referenced in the MCPServerRegistration resource.
 2. Create an MCP server Registration Resource by running the following command:
@@ -689,7 +693,7 @@ To ensure that only verified users can access MCP server for Red Hat OpenShift t
    EOF
    ```
 
-   `${{ MCP_GATEWAY_HOST }}` is the fully qualified domain name for your MCP gateway (for example, `mcp.127-0-0-1.sslip.io`).
+   `${MCP_GATEWAY_HOST}` is the fully qualified domain name for your MCP gateway (for example, `mcp.127-0-0-1.sslip.io`).
 
    This route enables clients to discover OAuth metadata, which is required for the authentication flow. Without this route, clients receive a 404 error when attempting OAuth discovery.
 3. Configure the Identity Provider (Entra ID) App Registration:
@@ -804,6 +808,7 @@ To ensure that only verified users can access MCP server for Red Hat OpenShift t
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Microsoft Entra ID](https://www.microsoft.com/en-us/security/business/identity-access/microsoft-entra-id)
 
@@ -988,7 +993,7 @@ role = "assistant"
 content = "I'll retrieve and analyze the logs for you."
 ```
 
-***Configuration reference***
+**Configuration reference**
 
 <table>
 <thead>
@@ -1036,7 +1041,7 @@ content = "I'll retrieve and analyze the logs for you."
   <td colspan="2">Argument Substitution</td>
 </tr>
 <tr>
-  <td colspan="2">Use {{ { argument_name }}} placeholders in message content. The template engine replaces these with actual values when the prompt is called. If an optional argument is not provided, its placeholder is removed from the output.</td>
+  <td colspan="2">Use {{ argument_name}} placeholders in message content. The template engine replaces these with actual values when the prompt is called. If an optional argument is not provided, its placeholder is removed from the output.</td>
 </tr>
 </tbody>
 </table>

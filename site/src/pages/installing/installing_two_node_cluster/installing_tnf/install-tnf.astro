@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"installing-tnf","text":"Installing a two-no
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/installing/installing_two_node_cluster/installing_tnf/install-tnf";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="installing-tnf" class="group scroll-mt-20">Installing a two-node OpenShift cluster with fencing<a href="#installing-tnf" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>For a highly available, small-footprint container platform at your edge sites or resource-constrained environments, you can deploy a two-node OpenShift cluster with fencing (TNF). This fencing mechanism protects your applications and data from <code>split-brain</code> scenarios by safely isolating a node if communication fails. To match your existing environment, you can deploy this cluster using automated, manual, or agent-based infrastructure methods.</p>
+      <p class="_abstract">For a highly available, small-footprint container platform at your edge sites or resource-constrained environments, you can deploy a two-node OpenShift cluster with fencing (TNF). This fencing mechanism protects your applications and data from <code>split-brain</code> scenarios by safely isolating a node if communication fails. To match your existing environment, you can deploy this cluster using automated, manual, or agent-based infrastructure methods.</p>
       <dl class="my-4 space-y-2">
       <dt class="font-semibold">Automated Infrastructure (installer-provisioned)</dt>
       <dd class="ml-6 text-muted-foreground"><p>The cluster installation program controls all aspects of the deployment, including provisioning the underlying cloud or virtualization platforms, configuring network resources, and spinning up the nodes.</p></dd>

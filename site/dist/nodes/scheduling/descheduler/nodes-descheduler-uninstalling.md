@@ -1,8 +1,8 @@
 ---
-title: Uninstalling the {{ descheduler_operator }}
+title: Uninstalling the Kube Descheduler Operator
 ---
 
-# Uninstalling the {{ descheduler_operator }} {#nodes-descheduler-uninstalling}
+# Uninstalling the Kube Descheduler Operator {#nodes-descheduler-uninstalling}
 
 If you no longer need the Kube Descheduler Operator in your cluster, you can uninstall the Operator and remove its related resources.
 
@@ -20,24 +20,24 @@ If you no longer need the descheduler in your cluster, you can remove it by dele
 1. Log in to the OpenShift Container Platform web console.
 2. Delete the descheduler instance.
 
-   1. From the **Ecosystem** -> **Installed Operators** page, click **Kube Descheduler Operator**.
+   1. From the **Ecosystem** → **Installed Operators** page, click **Kube Descheduler Operator**.
    2. Select the **Kube Descheduler** tab.
-   3. Click the Options menu ![](kebab.png "Options menu") next to the **cluster** entry and select **Delete KubeDescheduler**.
+   3. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the **cluster** entry and select **Delete KubeDescheduler**.
    4. In the confirmation dialog, click **Delete**.
 3. Uninstall the Kube Descheduler Operator.
 
-   1. Navigate to **Ecosystem** -> **Installed Operators**.
-   2. Click the Options menu ![](kebab.png "Options menu") next to the **Kube Descheduler Operator** entry and select **Uninstall Operator**.
+   1. Navigate to **Ecosystem** → **Installed Operators**.
+   2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the **Kube Descheduler Operator** entry and select **Uninstall Operator**.
    3. In the confirmation dialog, click **Uninstall**.
 4. Delete the `openshift-kube-descheduler-operator` namespace.
 
-   1. Navigate to **Administration** -> **Namespaces**.
+   1. Navigate to **Administration** → **Namespaces**.
    2. Enter `openshift-kube-descheduler-operator` into the filter box.
-   3. Click the Options menu ![](kebab.png "Options menu") next to the **openshift-kube-descheduler-operator** entry and select **Delete Namespace**.
+   3. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the **openshift-kube-descheduler-operator** entry and select **Delete Namespace**.
    4. In the confirmation dialog, enter `openshift-kube-descheduler-operator` and click **Delete**.
 5. Delete the `KubeDescheduler` CRD.
 
-   1. Navigate to **Administration** -> **Custom Resource Definitions**.
+   1. Navigate to **Administration** → **Custom Resource Definitions**.
    2. Enter `KubeDescheduler` into the filter box.
-   3. Click the Options menu ![](kebab.png "Options menu") next to the **KubeDescheduler** entry and select **Delete CustomResourceDefinition**.
+   3. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the **KubeDescheduler** entry and select **Delete CustomResourceDefinition**.
    4. In the confirmation dialog, click **Delete**.

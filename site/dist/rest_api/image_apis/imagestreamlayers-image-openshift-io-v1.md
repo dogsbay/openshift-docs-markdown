@@ -1,5 +1,5 @@
 ---
-title: ImageStreamLayers []
+title: ImageStreamLayers [image.openshift.io/v1]
 ---
 
 # ImageStreamLayers \[image.openshift.io/v1\] {#imagestreamlayers-image-openshift-io-v1}
@@ -90,11 +90,11 @@ Type
 
 The following API endpoints are available:
 
-- `/apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreams/{{ name }}/layers`
+- `/apis/image.openshift.io/v1/namespaces/{namespace}/imagestreams/{name}/layers`
 
   - `GET`: read layers of the specified ImageStream
 
-### /apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreams/{{ name }}/layers {#_apisimageopenshiftiov1namespaces_namespace_imagestreams_name_layers}
+### /apis/image.openshift.io/v1/namespaces/{namespace}/imagestreams/{name}/layers {#_apisimageopenshiftiov1namespaces_namespace_imagestreams_name_layers}
 
 **Global path parameters**
 

@@ -25,6 +25,7 @@ Depending on your setup, consider the following best practices regarding CPU ove
 - Not all workloads are suitable for high overcommitment ratios. If the workload is CPU intensive, you might experience performance problems with high overcommitment ratios. Workloads that are more I/O intensive can keep consistent performance even with high overcommitment ratios.
 
 **Additional resources**
+{._additional-resources}
 
 - [z/VM Common Performance Problems and Solutions](https://www.vm.ibm.com/perf/tips/prgcom.html)
 - [z/VM overcommitment considerations](https://www.ibm.com/docs/en/linux-on-systems?topic=overcommitment-considerations)
@@ -87,6 +88,7 @@ RFS extends Receive Packet Steering (RPS) by further reducing network latency. R
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [OpenShift Container Platform on IBM Z(R): Tune your network performance with RFS](https://developer.ibm.com/tutorials/red-hat-openshift-on-ibm-z-tune-your-network-performance-with-rfs/)
 - [Configuring Receive Flow Steering (RFS)](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/performance_tuning_guide/sect-red_hat_enterprise_linux-performance_tuning_guide-networking-configuration_tools#sect-Red_Hat_Enterprise_Linux-Performance_Tuning_Guide-Configuration_tools-Configuring_Receive_Flow_Steering_RFS)
@@ -108,6 +110,7 @@ Depending on your setup, consider these best practices:
 - Balance the trade-off between performance and functionality.
 
 **Additional resources**
+{._additional-resources}
 
 - [OpenShift Container Platform on IBM Z(R) - Performance Experiences, Hints and Tips](https://www.ibm.com/docs/en/linux-on-systems?topic=openshift-performance#openshift_perf__ocp_eval)
 - [OpenShift Container Platform on IBM Z(R) Networking Performance](https://www.ibm.com/docs/en/linux-on-systems?topic=openshift-performance#openshift_perf__ocp_net)
@@ -182,6 +185,7 @@ Using HyperPAV for the local storage devices leads to a significant performance 
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Using HyperPAV for ECKD DASD](https://www.ibm.com/docs/en/linux-on-systems?topic=io-using-hyperpav-eckd-dasd)
 - [Scaling HyperPAV alias devices on Linux guests on z/VM](https://public.dhe.ibm.com/software/dw/linux390/perf/zvm_hpav00.pdf)
@@ -337,6 +341,7 @@ During the specified time, polling reduces the wakeup latency for the virtual CP
   ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Linux on IBM Z(R) Performance Tuning for KVM](https://www.ibm.com/docs/en/linux-on-systems?topic=v-kvm)
 - [Getting started with virtualization on IBM Z(R)](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_and_managing_virtualization/getting-started-with-virtualization-in-rhel-8-on-ibm-z_configuring-and-managing-virtualization)

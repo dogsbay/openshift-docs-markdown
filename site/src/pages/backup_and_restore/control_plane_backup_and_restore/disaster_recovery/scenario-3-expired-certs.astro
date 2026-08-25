@@ -21,7 +21,8 @@ const headings = [{"depth":1,"slug":"dr-recovering-expired-certs","text":"Recove
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-3-expired-certs";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -79,12 +80,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -92,7 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="dr-recovering-expired-certs" class="group scroll-mt-20">Recovering from expired control plane certificates<a href="#dr-recovering-expired-certs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can restore kubelet certificates on your OpenShift Container Platform cluster by approving pending certificate signing requests (CSRs) after control plane certificates expire. Approved CSRs return nodes to a healthy state.</p>
+      <p class="_abstract">You can restore kubelet certificates on your OpenShift Container Platform cluster by approving pending certificate signing requests (CSRs) after control plane certificates expire. Approved CSRs return nodes to a healthy state.</p>
       <h2 id="dr-scenario-3-recovering-expired-certs_dr-recovering-expired-certs" class="group scroll-mt-20">Recovering from expired control plane certificates<a href="#dr-scenario-3-recovering-expired-certs_dr-recovering-expired-certs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">You can restore kubelet certificates by manually approving pending <code>node-bootstrapper</code> certificate signing requests (CSRs) and, on user-provisioned installations, kubelet serving CSRs. Approved CSRs return nodes to a healthy state after control plane certificates expire.</p>
       <p><strong>Prerequisites</strong></p>

@@ -45,16 +45,16 @@ You can use the following procedure to install the Custom Metrics Autoscaler Ope
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, click **Ecosystem** -> **Software Catalog**.
+1. In the OpenShift Container Platform web console, click **Ecosystem** → **Software Catalog**.
 2. Choose **Custom Metrics Autoscaler** from the list of available Operators, and click **Install**.
 3. On the **Install Operator** page, ensure that the **All namespaces on the cluster (default)** option is selected for **Installation Mode**. This installs the Operator in all namespaces.
 4. Ensure that the **openshift-keda** namespace is selected for **Installed Namespace**. OpenShift Container Platform creates the namespace, if not present in your cluster.
 5. Click **Install**.
 6. Verify the installation by listing the Custom Metrics Autoscaler Operator components:
 
-   1. Navigate to **Workloads** -> **Pods**.
+   1. Navigate to **Workloads** → **Pods**.
    2. Select the `openshift-keda` project from the drop-down menu and verify that the `custom-metrics-autoscaler-operator-*` pod is running.
-   3. Navigate to **Workloads** -> **Deployments** to verify that the `custom-metrics-autoscaler-operator` deployment is running.
+   3. Navigate to **Workloads** → **Deployments** to verify that the `custom-metrics-autoscaler-operator` deployment is running.
 7. Optional: Verify the installation in the OpenShift CLI using the following commands:
 
    ```terminal
@@ -80,7 +80,7 @@ You can use the following procedure to modify the `KedaController` custom resour
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, click **Ecosystem** -> **Installed Operators**.
+1. In the OpenShift Container Platform web console, click **Ecosystem** → **Installed Operators**.
 2. Click **Custom Metrics Autoscaler**.
 3. On the **Operator Details** page, click the **KedaController** tab.
 4. On the **KedaController** tab, click **Create KedaController** and edit the file.

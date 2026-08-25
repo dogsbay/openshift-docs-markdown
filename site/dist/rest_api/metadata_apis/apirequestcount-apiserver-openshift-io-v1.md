@@ -1,5 +1,5 @@
 ---
-title: APIRequestCount []
+title: APIRequestCount [apiserver.openshift.io/v1]
 ---
 
 # APIRequestCount \[apiserver.openshift.io/v1\] {#apirequestcount-apiserver-openshift-io-v1}
@@ -37,7 +37,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `numberOfUsersToReport` | `integer` | numberOfUsersToReport is the number of users to include in the report. If unspecified or zero, the default is ten.  This is default is subject to change. |
+| `numberOfUsersToReport` | `integer` | numberOfUsersToReport is the number of users to include in the report. If unspecified or zero, the default is ten. This is default is subject to change. |
 
 ### .status {#_status}
 
@@ -52,7 +52,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `conditions` | `array` | conditions contains details of the current status of this API Resource. |
-| `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. --- This struct is intended for direct use as an array at the field path .status.conditions.  For example,  type FooStatus struct{ // Represents the observations of a foo’s current state. // Known .status.conditions.type are: "Available", "Progressing", and "Degraded" // +patchMergeKey=type // +patchStrategy=merge // +listType=map // +listMapKey=type Conditions \[\]metav1.Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" protobuf:"bytes,1,rep,name=conditions"`  // other fields } |
+| `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. --- This struct is intended for direct use as an array at the field path .status.conditions. For example, type FooStatus struct{ // Represents the observations of a foo’s current state. // Known .status.conditions.type are: "Available", "Progressing", and "Degraded" // +patchMergeKey=type // +patchStrategy=merge // +listType=map // +listMapKey=type Conditions \[\]metav1.Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" protobuf:"bytes,1,rep,name=conditions"` // other fields } |
 | `currentHour` | `object` | currentHour contains request history for the current hour. This is porcelain to make the API easier to read by humans seeing if they addressed a problem. This field is reset on the hour. |
 | `last24h` | `array` | last24h contains request history for the last 24 hours, indexed by the hour, so 12:00AM-12:59 is in index 0, 6am-6:59am is index 6, etc. The index of the current hour is updated live and then duplicated into the requestsLastHour field. |
 | `last24h[]` | `object` | PerResourceAPIRequestLog logs request for various nodes. |
@@ -88,7 +88,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
 | `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
@@ -163,7 +163,7 @@ Type
 | `byVerb` | `array` | byVerb details by verb. |
 | `byVerb[]` | `object` | PerVerbAPIRequestCount requestCounts requests by API request verb. |
 | `requestCount` | `integer` | requestCount of requests by the user across all verbs. |
-| `userAgent` | `string` | userAgent that made the request. The same user often has multiple binaries which connect (pods with many containers).  The different binaries will have different userAgents, but the same user.  In addition, we have userAgents with version information embedded and the userName isn’t likely to change. |
+| `userAgent` | `string` | userAgent that made the request. The same user often has multiple binaries which connect (pods with many containers). The different binaries will have different userAgents, but the same user. In addition, we have userAgents with version information embedded and the userName isn’t likely to change. |
 | `username` | `string` | userName that made the request. |
 
 ### .status.currentHour.byNode\[\].byUser\[\].byVerb {#_statuscurrenthourbynodebyuserbyverb}
@@ -269,7 +269,7 @@ Type
 | `byVerb` | `array` | byVerb details by verb. |
 | `byVerb[]` | `object` | PerVerbAPIRequestCount requestCounts requests by API request verb. |
 | `requestCount` | `integer` | requestCount of requests by the user across all verbs. |
-| `userAgent` | `string` | userAgent that made the request. The same user often has multiple binaries which connect (pods with many containers).  The different binaries will have different userAgents, but the same user.  In addition, we have userAgents with version information embedded and the userName isn’t likely to change. |
+| `userAgent` | `string` | userAgent that made the request. The same user often has multiple binaries which connect (pods with many containers). The different binaries will have different userAgents, but the same user. In addition, we have userAgents with version information embedded and the userName isn’t likely to change. |
 | `username` | `string` | userName that made the request. |
 
 ### .status.last24h\[\].byNode\[\].byUser\[\].byVerb {#_statuslast24hbynodebyuserbyverb}
@@ -306,13 +306,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of APIRequestCount
   - `GET`: list objects of kind APIRequestCount
   - `POST`: create an APIRequestCount
-- `/apis/apiserver.openshift.io/v1/apirequestcounts/{{ name }}`
+- `/apis/apiserver.openshift.io/v1/apirequestcounts/{name}`
 
   - `DELETE`: delete an APIRequestCount
   - `GET`: read the specified APIRequestCount
   - `PATCH`: partially update the specified APIRequestCount
   - `PUT`: replace the specified APIRequestCount
-- `/apis/apiserver.openshift.io/v1/apirequestcounts/{{ name }}/status`
+- `/apis/apiserver.openshift.io/v1/apirequestcounts/{name}/status`
 
   - `GET`: read status of the specified APIRequestCount
   - `PATCH`: partially update status of the specified APIRequestCount
@@ -386,7 +386,7 @@ Description
 | 202 - Accepted | [`APIRequestCount`](/openshift-docs-markdown/rest_api/metadata_apis/apirequestcount-apiserver-openshift-io-v1#apirequestcount-apiserver-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apiserver.openshift.io/v1/apirequestcounts/{{ name }} {#_apisapiserveropenshiftiov1apirequestcounts_name}
+### /apis/apiserver.openshift.io/v1/apirequestcounts/{name} {#_apisapiserveropenshiftiov1apirequestcounts_name}
 
 **Global path parameters**
 
@@ -490,7 +490,7 @@ Description
 | 201 - Created | [`APIRequestCount`](/openshift-docs-markdown/rest_api/metadata_apis/apirequestcount-apiserver-openshift-io-v1#apirequestcount-apiserver-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apiserver.openshift.io/v1/apirequestcounts/{{ name }}/status {#_apisapiserveropenshiftiov1apirequestcounts_name_status}
+### /apis/apiserver.openshift.io/v1/apirequestcounts/{name}/status {#_apisapiserveropenshiftiov1apirequestcounts_name_status}
 
 **Global path parameters**
 

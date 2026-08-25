@@ -46,7 +46,7 @@ When you use `ExternalIP`, you can set up IP failover to have the same VIP range
 
 The IP failover environment variables reference lists all variables you can use to configure IP failover in OpenShift Container Platform, including VIP addresses, monitoring ports, and network interfaces.
 
-***IP failover environment variables***
+**IP failover environment variables**
 
 <table>
 <thead>
@@ -212,7 +212,7 @@ For production use, set a `selector` that selects at least two nodes, and set `r
            node-role.kubernetes.io/worker: ""
          containers:
          - name: openshift-ipfailover
-           image: registry.redhat.io/openshift4/ose-keepalived-ipfailover-rhel9:v{{ product_version }}
+           image: registry.redhat.io/openshift4/ose-keepalived-ipfailover-rhel9:v4.22
            ports:
            - containerPort: 63000
              hostPort: 63000
@@ -523,6 +523,7 @@ To configure high availability for `ExternalIP`, you can specify a `spec.Externa
 Because IP failover can support up to a maximum of 255 VIPs for the entire cluster, the `spec.ExternalIP.autoAssignCIDRs` must be `/24` or smaller.
 
 **Additional resources**
+{._additional-resources}
 
 - [Configuration for ExternalIP](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-externalip#configuration-externalip_configuring-externalip)
 - [Kubernetes documentation on ExternalIP](https://kubernetes.io/docs/concepts/services-networking/service/#external-ips)
@@ -601,7 +602,7 @@ When IP failover is initially configured, the worker nodes in the cluster are mo
           spec:
             containers:
             - name: remove-ipfailover
-              image: registry.redhat.io/openshift4/ose-keepalived-ipfailover-rhel9:v{{ product_version }}
+              image: registry.redhat.io/openshift4/ose-keepalived-ipfailover-rhel9:v4.22
               command: ["/var/lib/ipfailover/keepalived/remove-failover.sh"]
             nodeSelector:
               kubernetes.io/hostname: <host_name>

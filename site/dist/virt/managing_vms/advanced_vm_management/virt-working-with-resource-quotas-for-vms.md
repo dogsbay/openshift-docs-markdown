@@ -95,7 +95,7 @@ Enable the Application Aware Quota (AAQ) operator to manage resource quotas to e
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, click **Virtualization** -> **Settings**.
+1. In the OpenShift Container Platform web console, click **Virtualization** → **Settings**.
 2. Under **Resource Management**, toggle the **Application Aware Quotas (AAQ)** to On.
 
    The operator deployment begins automatically. The status changes from **Disabled** to **Enabled** after the operator pods are running.
@@ -124,7 +124,7 @@ You can create Application Aware Quota (AAQ) quotas that limit virtual machine r
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, click **Virtualization** -> **Quotas**.
+1. In the OpenShift Container Platform web console, click **Virtualization** → **Quotas**.
 2. Click **Create quota**.
 3. In the dropdown menu, select **With form**.
 
@@ -161,7 +161,7 @@ You can create Application Aware Quota (AAQ) quotas that limit virtual machine r
 
 **Verification**
 
-1. In the OpenShift Container Platform web console, click **Virtualization** -> **Quotas**.
+1. In the OpenShift Container Platform web console, click **Virtualization** → **Quotas**.
 2. In the quotas list, locate your newly created quota.
 3. Verify that the quota name is displayed in the list with the correct project and resource limits configured.
 4. Click the quota name to open its details page and confirm all settings are correct.
@@ -178,7 +178,7 @@ The Application Aware Quota (AAQ) quotas page in the OpenShift Container Platfor
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, click **Virtualization** -> **Quotas**.
+1. In the OpenShift Container Platform web console, click **Virtualization** → **Quotas**.
 
    The quotas list view is displayed, showing all project-scoped AAQ quotas by default.
 2. Click the **Cluster-scoped quotas** tab to view cluster scoped quotas.
@@ -188,7 +188,7 @@ The Application Aware Quota (AAQ) quotas page in the OpenShift Container Platfor
    > [!NOTE]
    > Cluster-scoped quotas can only be created or edited using YAML. The form-based creation option is not available for cluster-scoped quotas due to their complexity.
 3. To view detailed information about a specific quota, click the quota name to open the quota details page.
-4. To edit a quota, click the Options menu ![](kebab.png "Options menu") at the end of the quota row
+4. To edit a quota, click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") at the end of the quota row
 
    1. Select **Edit quota**.
 
@@ -197,7 +197,7 @@ The Application Aware Quota (AAQ) quotas page in the OpenShift Container Platfor
 
       > [!NOTE]
       > If the quota was initially created with advanced settings via YAML, clicking **Edit quota** opens the YAML editor instead of the form.
-5. To delete a quota, click the Options menu ![](kebab.png "Options menu") at the end of the quota row and select **Delete quota**. A confirmation dialog is displayed.
+5. To delete a quota, click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") at the end of the quota row and select **Delete quota**. A confirmation dialog is displayed.
 
    1. Click **Delete** to remove the quota.
 
@@ -225,7 +225,7 @@ The quota details page in the OpenShift Container Platform web console provides 
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, click **Virtualization** -> **Quotas**.
+1. In the OpenShift Container Platform web console, click **Virtualization** → **Quotas**.
 2. Click the quota name to open the **Quota details** view.
 
    The **Quota details** view displays visual indicators, quota metadata, and tabulated data:
@@ -239,7 +239,8 @@ The quota details page in the OpenShift Container Platform web console provides 
 3. Optional: Click the **YAML** tab to review the resource configuration of the quota.
 4. Optional: Use the **Actions** panel to edit or delete the quota.
 
-## Additional resources {#additional-resources_virt-working-with-resource-quotas-for-vms}
+**Additional resources**
+{._additional-resources}
 
 - [Resource quotas per project](/openshift-docs-markdown/applications/quotas/quotas-setting-per-project#quotas-setting-per-project)
 - [Resource quotas across many projects](/openshift-docs-markdown/applications/quotas/quotas-setting-across-multiple-projects#quotas-setting-across-multiple-projects)

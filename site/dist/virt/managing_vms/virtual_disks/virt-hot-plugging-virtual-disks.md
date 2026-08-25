@@ -27,9 +27,9 @@ The hot plugged disk remains attached to the VM until you unplug it.
 
 **Procedure**
 
-1. Navigate to **Virtualization** -> **VirtualMachines** in the web console.
+1. Navigate to **Virtualization** → **VirtualMachines** in the web console.
 2. Select a running VM to view its details.
-3. On the **VirtualMachine details** page, click **Configuration** -> **Storage**.
+3. On the **VirtualMachine details** page, click **Configuration** → **Storage**.
 4. Add a hot plugged disk:
 
    1. Click **Add**.
@@ -37,11 +37,11 @@ The hot plugged disk remains attached to the VM until you unplug it.
 5. Optional: Select the type of the interface bus. The options are **VirtIO** and **SCSI**. The default bus type is **VirtIO**.
 6. Optional: Change the type of the interface bus of an existing hot plugged disk:
 
-   1. Click the Options menu ![](kebab.png "Options menu") beside the disk and select the **Edit** option.
+   1. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") beside the disk and select the **Edit** option.
    2. In the **Interface** field, select the desired option.
 7. Optional: Unplug a hot plugged disk:
 
-   1. Click the Options menu ![](kebab.png "Options menu") beside the disk and select **Detach**.
+   1. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") beside the disk and select **Detach**.
    2. Click **Detach**.
 
 ## Hot plugging and hot unplugging a disk by using the CLI {#virt-hot-plugging-disk-cli_virt-hot-plugging-virtual-disks}
@@ -73,6 +73,7 @@ The hot plugged disk remains attached to the VM until you unplug it.
     --volume-name=<datavolume|PVC>
   ```
 
-## Additional resources {#additional-resources_virt-hot-plugging-virtual-disks}
+**Additional resources**
+{._additional-resources}
 
 - [Available VirtIO Ports](https://kubevirt.io/user-guide/storage/hotplug_volumes/#available-virtio-ports)

@@ -23,12 +23,13 @@ const headings = [{"depth":1,"slug":"about-serverless","text":"OpenShift Serverl
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/serverless/about/about-serverless";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
-const title = "{{ ServerlessProductName }} overview";
+const title = "OpenShift Serverless overview";
 const description = "OpenShift Serverless provides Kubernetes native building blocks that enable developers to create and deploy serverless, event-driven applications on…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
@@ -81,12 +82,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >

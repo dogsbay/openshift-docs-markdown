@@ -28,18 +28,15 @@ OpenShift Container Platform provides the following predefined audit policy prof
 </tr>
 <tr>
   <td><code>WriteRequestBodies</code></td>
-  <td>In addition to logging metadata for all requests, logs request bodies for every write request to the API servers (<code>create</code>, <code>update</code>, <code>patch</code>, <code>delete</code>, <code>deletecollection</code>). This profile has more resource overhead than the <code>Default</code> profile. ^[1]^</td>
+  <td>In addition to logging metadata for all requests, logs request bodies for every write request to the API servers (<code>create</code>, <code>update</code>, <code>patch</code>, <code>delete</code>, <code>deletecollection</code>). This profile has more resource overhead than the <code>Default</code> profile. <sup>[1]</sup></td>
 </tr>
 <tr>
   <td><code>AllRequestBodies</code></td>
-  <td>In addition to logging metadata for all requests, logs request bodies for  every read and write request to the API servers (<code>get</code>, <code>list</code>, <code>create</code>, <code>update</code>, <code>patch</code>). This profile has the most resource overhead. ^[1]^</td>
+  <td>In addition to logging metadata for all requests, logs request bodies for  every read and write request to the API servers (<code>get</code>, <code>list</code>, <code>create</code>, <code>update</code>, <code>patch</code>). This profile has the most resource overhead. <sup>[1]</sup></td>
 </tr>
 <tr>
   <td><code>None</code></td>
   <td>No requests are logged, including OAuth access token requests and OAuth authorize token requests. Custom rules are ignored when this profile is set.</td>
-</tr>
-<tr>
-
 </tr>
 </tbody>
 </table>

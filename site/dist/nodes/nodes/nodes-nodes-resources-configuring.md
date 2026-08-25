@@ -288,7 +288,8 @@ For `memory` and `ephemeral-storage`, you specify the resource quantity in units
 
    The kubelet uses the `system-reserved` values in the `/etc/node-sizing.env` file.
 
-## Additional resources {#nodes-nodes-resources-configuring_additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Creating a KubeletConfig CR to edit kubelet parameters](/openshift-docs-markdown/machine_configuration/machine-configs-custom#create-a-kubeletconfig-crd-to-edit-kubelet-parameters_machine-configs-custom)
 - [Node metrics data (Kubernetes documentation)](https://kubernetes.io/docs/reference/instrumentation/node-metrics/)

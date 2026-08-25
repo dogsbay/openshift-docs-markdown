@@ -246,7 +246,8 @@ To create a custom compute machine set on Azure, see "Creating a compute machine
    $ oc get nodes
    ```
 
-## Additional resources {#additional-resources_creating-multi-arch-compute-nodes-azure}
+**Additional resources**
+{._additional-resources}
 
 - [Installing a cluster on Azure with customizations](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-customizations)
 - [Migrating to a cluster with multi-architecture compute machines](/openshift-docs-markdown/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-payload)

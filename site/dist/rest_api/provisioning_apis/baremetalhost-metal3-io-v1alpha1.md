@@ -1,5 +1,5 @@
 ---
-title: BareMetalHost []
+title: BareMetalHost [metal3.io/v1alpha1]
 ---
 
 # BareMetalHost \[metal3.io/v1alpha1\] {#baremetalhost-metal3-io-v1alpha1}
@@ -46,8 +46,8 @@ Required
 | `customDeploy` | `object` | A custom deploy procedure. This is an advanced feature that allows using a custom deploy step provided by a site-specific deployment ramdisk. Most users will want to use "image" instead. Setting this field triggers provisioning. |
 | `description` | `string` | Description is a human-entered text used to help identify the host. |
 | `disablePowerOff` | `boolean` | When set to true, power off of the node will be disabled, instead, a reboot will be used in place of power on/off |
-| `externallyProvisioned` | `boolean` | ExternallyProvisioned means something else has provisioned the image running on the host, and the operator should only manage the power status. This field is used for integration with already provisioned hosts and when pivoting hosts between clusters. This field can be set to true either: 1. During initial host creation (e.g., for pre-provisioned hosts) 2. After inspection completes when the host reaches Available state When used in environments with Cluster API Provider Metal3 (CAPM3), ensure hosts are labeled appropriately so CAPM3’s host selector can distinguish them from CAPM3-managed hosts. If unsure, leave this field as false. |
-| `firmware` | `object` | Firmware (BIOS) configuration for bare metal server. If set, the requested settings will be applied before the host is provisioned. Deprecated: no longer supported by any driver. An alternative is to use HostFirmwareSettings resources that allow changing arbitrary values and support the generic Redfish-based drivers. |
+| `externallyProvisioned` | `boolean` | ExternallyProvisioned means something else has provisioned the image running on the host, and the operator should only manage the power status. This field is used for integration with already provisioned hosts and when pivoting hosts between clusters.<br>This field can be set to true either: 1. During initial host creation (e.g., for pre-provisioned hosts) 2. After inspection completes when the host reaches Available state<br>When used in environments with Cluster API Provider Metal3 (CAPM3), ensure hosts are labeled appropriately so CAPM3’s host selector can distinguish them from CAPM3-managed hosts. If unsure, leave this field as false. |
+| `firmware` | `object` | Firmware (BIOS) configuration for bare metal server. If set, the requested settings will be applied before the host is provisioned.<br>Deprecated: no longer supported by any driver. An alternative is to use HostFirmwareSettings resources that allow changing arbitrary values and support the generic Redfish-based drivers. |
 | `hardwareProfile` | `string` | What is the name of the hardware profile for this host? Hardware profiles are deprecated and should not be used. Use the separate fields Architecture and RootDeviceHints instead. Set to "empty" to prepare for the future version of the API without hardware profiles. |
 | `image` | `object` | Image holds the details of the image to be provisioned. Populating the image will cause the host to start provisioning. |
 | `inspectionMode` | `string` | Specifies the mode for host inspection. "disabled" - no inspection will be performed "agent" - normal agent-based inspection will run |
@@ -94,7 +94,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{{ name }}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -333,7 +333,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
+| `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
 | `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
@@ -462,7 +462,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `ip` | `string` | The IP address of the interface. This will be an IPv4 or IPv6 address if one is present.  If both IPv4 and IPv6 addresses are present in a dual-stack environment, two nics will be output, one with each IP. |
+| `ip` | `string` | The IP address of the interface. This will be an IPv4 or IPv6 address if one is present. If both IPv4 and IPv6 addresses are present in a dual-stack environment, two nics will be output, one with each IP. |
 | `lldp` | `object` | LLDP data for this interface |
 | `mac` | `string` | The device MAC address |
 | `model` | `string` | The vendor and product IDs of the NIC, e.g. "0x8086 0x1572" |
@@ -796,18 +796,18 @@ The following API endpoints are available:
 - `/apis/metal3.io/v1alpha1/baremetalhosts`
 
   - `GET`: list objects of kind BareMetalHost
-- `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/baremetalhosts`
+- `/apis/metal3.io/v1alpha1/namespaces/{namespace}/baremetalhosts`
 
   - `DELETE`: delete collection of BareMetalHost
   - `GET`: list objects of kind BareMetalHost
   - `POST`: create a BareMetalHost
-- `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/baremetalhosts/{{ name }}`
+- `/apis/metal3.io/v1alpha1/namespaces/{namespace}/baremetalhosts/{name}`
 
   - `DELETE`: delete a BareMetalHost
   - `GET`: read the specified BareMetalHost
   - `PATCH`: partially update the specified BareMetalHost
   - `PUT`: replace the specified BareMetalHost
-- `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/baremetalhosts/{{ name }}/status`
+- `/apis/metal3.io/v1alpha1/namespaces/{namespace}/baremetalhosts/{name}/status`
 
   - `GET`: read status of the specified BareMetalHost
   - `PATCH`: partially update status of the specified BareMetalHost
@@ -832,7 +832,7 @@ Description
 | 200 - OK | [`BareMetalHostList`](/openshift-docs-markdown/rest_api/objects/index#io-metal3-v1alpha1-BareMetalHostList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/baremetalhosts {#_apismetal3iov1alpha1namespaces_namespace_baremetalhosts}
+### /apis/metal3.io/v1alpha1/namespaces/{namespace}/baremetalhosts {#_apismetal3iov1alpha1namespaces_namespace_baremetalhosts}
 
 HTTP method
 :   ```
@@ -900,7 +900,7 @@ Description
 | 202 - Accepted | [`BareMetalHost`](/openshift-docs-markdown/rest_api/provisioning_apis/baremetalhost-metal3-io-v1alpha1#baremetalhost-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/baremetalhosts/{{ name }} {#_apismetal3iov1alpha1namespaces_namespace_baremetalhosts_name}
+### /apis/metal3.io/v1alpha1/namespaces/{namespace}/baremetalhosts/{name} {#_apismetal3iov1alpha1namespaces_namespace_baremetalhosts_name}
 
 **Global path parameters**
 
@@ -1004,7 +1004,7 @@ Description
 | 201 - Created | [`BareMetalHost`](/openshift-docs-markdown/rest_api/provisioning_apis/baremetalhost-metal3-io-v1alpha1#baremetalhost-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/baremetalhosts/{{ name }}/status {#_apismetal3iov1alpha1namespaces_namespace_baremetalhosts_name_status}
+### /apis/metal3.io/v1alpha1/namespaces/{namespace}/baremetalhosts/{name}/status {#_apismetal3iov1alpha1namespaces_namespace_baremetalhosts_name_status}
 
 **Global path parameters**
 

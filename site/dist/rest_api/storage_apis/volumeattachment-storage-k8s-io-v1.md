@@ -1,5 +1,5 @@
 ---
-title: VolumeAttachment []
+title: VolumeAttachment [storage.k8s.io/v1]
 ---
 
 # VolumeAttachment \[storage.k8s.io/v1\] {#volumeattachment-storage-k8s-io-v1}
@@ -95,7 +95,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `errorCode` | `integer` | errorCode is a numeric gRPC code representing the error encountered during Attach or Detach operations. This is an optional, beta field that requires the MutableCSINodeAllocatableCount feature gate being enabled to be set. |
+| `errorCode` | `integer` | errorCode is a numeric gRPC code representing the error encountered during Attach or Detach operations.<br>This is an optional, beta field that requires the MutableCSINodeAllocatableCount feature gate being enabled to be set. |
 | `message` | `string` | message represents the error encountered during Attach or Detach operation. This string may be logged, so it should not contain sensitive information. |
 | `time` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | time represents the time the error was encountered. |
 
@@ -111,7 +111,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `errorCode` | `integer` | errorCode is a numeric gRPC code representing the error encountered during Attach or Detach operations. This is an optional, beta field that requires the MutableCSINodeAllocatableCount feature gate being enabled to be set. |
+| `errorCode` | `integer` | errorCode is a numeric gRPC code representing the error encountered during Attach or Detach operations.<br>This is an optional, beta field that requires the MutableCSINodeAllocatableCount feature gate being enabled to be set. |
 | `message` | `string` | message represents the error encountered during Attach or Detach operation. This string may be logged, so it should not contain sensitive information. |
 | `time` | [`Time`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | time represents the time the error was encountered. |
 
@@ -127,16 +127,16 @@ The following API endpoints are available:
 - `/apis/storage.k8s.io/v1/watch/volumeattachments`
 
   - `GET`: watch individual changes to a list of VolumeAttachment. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/storage.k8s.io/v1/volumeattachments/{{ name }}`
+- `/apis/storage.k8s.io/v1/volumeattachments/{name}`
 
   - `DELETE`: delete a VolumeAttachment
   - `GET`: read the specified VolumeAttachment
   - `PATCH`: partially update the specified VolumeAttachment
   - `PUT`: replace the specified VolumeAttachment
-- `/apis/storage.k8s.io/v1/watch/volumeattachments/{{ name }}`
+- `/apis/storage.k8s.io/v1/watch/volumeattachments/{name}`
 
   - `GET`: watch changes to an object of kind VolumeAttachment. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
-- `/apis/storage.k8s.io/v1/volumeattachments/{{ name }}/status`
+- `/apis/storage.k8s.io/v1/volumeattachments/{name}/status`
 
   - `GET`: read status of the specified VolumeAttachment
   - `PATCH`: partially update status of the specified VolumeAttachment
@@ -235,7 +235,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/storage.k8s.io/v1/volumeattachments/{{ name }} {#_apisstoragek8siov1volumeattachments_name}
+### /apis/storage.k8s.io/v1/volumeattachments/{name} {#_apisstoragek8siov1volumeattachments_name}
 
 **Global path parameters**
 
@@ -340,7 +340,7 @@ Description
 | 201 - Created | [`VolumeAttachment`](/openshift-docs-markdown/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/storage.k8s.io/v1/watch/volumeattachments/{{ name }} {#_apisstoragek8siov1watchvolumeattachments_name}
+### /apis/storage.k8s.io/v1/watch/volumeattachments/{name} {#_apisstoragek8siov1watchvolumeattachments_name}
 
 **Global path parameters**
 
@@ -365,7 +365,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/storage.k8s.io/v1/volumeattachments/{{ name }}/status {#_apisstoragek8siov1volumeattachments_name_status}
+### /apis/storage.k8s.io/v1/volumeattachments/{name}/status {#_apisstoragek8siov1volumeattachments_name_status}
 
 **Global path parameters**
 

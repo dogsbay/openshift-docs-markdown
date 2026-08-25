@@ -1,5 +1,5 @@
 ---
-title: Event []
+title: Event [events.k8s.io/v1]
 ---
 
 # Event \[events.k8s.io/v1\] {#event-events-k8s-io-v1}
@@ -66,21 +66,21 @@ The following API endpoints are available:
 - `/apis/events.k8s.io/v1/watch/events`
 
   - `GET`: watch individual changes to a list of Event. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/events.k8s.io/v1/namespaces/{{ namespace }}/events`
+- `/apis/events.k8s.io/v1/namespaces/{namespace}/events`
 
   - `DELETE`: delete collection of Event
   - `GET`: list or watch objects of kind Event
   - `POST`: create an Event
-- `/apis/events.k8s.io/v1/watch/namespaces/{{ namespace }}/events`
+- `/apis/events.k8s.io/v1/watch/namespaces/{namespace}/events`
 
   - `GET`: watch individual changes to a list of Event. deprecated: use the 'watch' parameter with a list operation instead.
-- `/apis/events.k8s.io/v1/namespaces/{{ namespace }}/events/{{ name }}`
+- `/apis/events.k8s.io/v1/namespaces/{namespace}/events/{name}`
 
   - `DELETE`: delete an Event
   - `GET`: read the specified Event
   - `PATCH`: partially update the specified Event
   - `PUT`: replace the specified Event
-- `/apis/events.k8s.io/v1/watch/namespaces/{{ namespace }}/events/{{ name }}`
+- `/apis/events.k8s.io/v1/watch/namespaces/{namespace}/events/{name}`
 
   - `GET`: watch changes to an object of kind Event. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
 
@@ -122,7 +122,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/events.k8s.io/v1/namespaces/{{ namespace }}/events {#_apiseventsk8siov1namespaces_namespace_events}
+### /apis/events.k8s.io/v1/namespaces/{namespace}/events {#_apiseventsk8siov1namespaces_namespace_events}
 
 HTTP method
 :   ```
@@ -196,7 +196,7 @@ Description
 | 202 - Accepted | [`Event`](/openshift-docs-markdown/rest_api/metadata_apis/event-events-k8s-io-v1#event-events-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/events.k8s.io/v1/watch/namespaces/{{ namespace }}/events {#_apiseventsk8siov1watchnamespaces_namespace_events}
+### /apis/events.k8s.io/v1/watch/namespaces/{namespace}/events {#_apiseventsk8siov1watchnamespaces_namespace_events}
 
 HTTP method
 :   ```
@@ -215,7 +215,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/events.k8s.io/v1/namespaces/{{ namespace }}/events/{{ name }} {#_apiseventsk8siov1namespaces_namespace_events_name}
+### /apis/events.k8s.io/v1/namespaces/{namespace}/events/{name} {#_apiseventsk8siov1namespaces_namespace_events_name}
 
 **Global path parameters**
 
@@ -320,7 +320,7 @@ Description
 | 201 - Created | [`Event`](/openshift-docs-markdown/rest_api/metadata_apis/event-events-k8s-io-v1#event-events-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/events.k8s.io/v1/watch/namespaces/{{ namespace }}/events/{{ name }} {#_apiseventsk8siov1watchnamespaces_namespace_events_name}
+### /apis/events.k8s.io/v1/watch/namespaces/{namespace}/events/{name} {#_apiseventsk8siov1watchnamespaces_namespace_events_name}
 
 **Global path parameters**
 

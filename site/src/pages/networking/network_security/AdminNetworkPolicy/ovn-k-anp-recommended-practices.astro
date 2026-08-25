@@ -23,7 +23,8 @@ const headings = [{"depth":1,"slug":"ovn-k-anp-recommended-practices","text":"Be
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/network_security/AdminNetworkPolicy/ovn-k-anp-recommended-practices";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -81,12 +82,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -94,7 +96,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="ovn-k-anp-recommended-practices" class="group scroll-mt-20">Best practices for AdminNetworkPolicy<a href="#ovn-k-anp-recommended-practices" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>To apply cluster-wide network policy in OpenShift Container Platform, you can follow recommended practices for <code>AdminNetworkPolicy</code> and <code>BaselineAdminNetworkPolicy</code> design, including priorities, actions, and selectors that avoid system namespaces.</p>
+      <p class="_abstract">To apply cluster-wide network policy in OpenShift Container Platform, you can follow recommended practices for <code>AdminNetworkPolicy</code> and <code>BaselineAdminNetworkPolicy</code> design, including priorities, actions, and selectors that avoid system namespaces.</p>
       <h2 id="anp-best-practices_ovn-k-anp-recommended-practices" class="group scroll-mt-20">Designing AdminNetworkPolicy<a href="#anp-best-practices_ovn-k-anp-recommended-practices" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">You can use this reference when you design <code>AdminNetworkPolicy</code> and <code>BaselineAdminNetworkPolicy</code> resources in OpenShift Container Platform. It describes priority ranges, actions, selector rules, BANP patterns, and how these policies differ from <code>NetworkPolicy</code>.</p>
       <p>When building <code>AdminNetworkPolicy</code> (ANP) resources, you might consider the following when creating your policies:</p>

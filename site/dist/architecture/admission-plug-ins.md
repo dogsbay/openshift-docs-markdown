@@ -686,7 +686,8 @@ The webhook server is also configured as an aggregated API server. This allows o
     ```
 18. Verify that the webhook is functioning as expected. For example, if you have configured dynamic admission to reserve specific namespaces, confirm that requests to create those namespaces are rejected and that requests to create non-reserved namespaces succeed.
 
-## Additional resources {#admission-plug-ins-additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring the SR-IOV Network Operator](/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/configuring-sriov-operator#configuring-sriov-operator_configuring-sriov-operator)
 - [Controlling pod placement using node taints](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations_dedicating_nodes-scheduler-taints-tolerations)

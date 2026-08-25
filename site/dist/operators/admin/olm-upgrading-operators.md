@@ -23,6 +23,7 @@ Red Hat Customer Portal Labs include an application that helps administrators pr
 You can use these tools to search for Operators and verify the available Operator versions per update channel across different releases of OpenShift Container Platform. Operators managed by Cluster Version Operator (CVO) are not included.
 
 **Additional resources**
+{._additional-resources}
 
 - [OpenShift Container Platform Operator Update Information Checker](https://access.redhat.com/labs/ocpouic/)
 
@@ -39,12 +40,12 @@ To change the update channel for an installed Operator, you can use the OpenShif
 
 **Procedure**
 
-1. In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1. In the web console, navigate to **Ecosystem** → **Installed Operators**.
 2. Click the name of the Operator you want to change the update channel for.
 3. Click the **Subscription** tab.
 4. Click the name of the update channel under **Update channel**.
 5. Click the newer update channel that you want to change to, then click **Save**.
-6. For subscriptions with an **Automatic** approval strategy, the update begins automatically. Navigate back to the **Ecosystem** -> **Installed Operators** page to monitor the progress of the update. When complete, the status changes to **Succeeded** and **Up to date**.
+6. For subscriptions with an **Automatic** approval strategy, the update begins automatically. Navigate back to the **Ecosystem** → **Installed Operators** page to monitor the progress of the update. When complete, the status changes to **Succeeded** and **Up to date**.
 
    For subscriptions with a **Manual** approval strategy, you can manually approve the update from the **Subscription** tab.
 
@@ -58,14 +59,15 @@ If an installed Operator has the approval strategy in its subscription set to **
 
 **Procedure**
 
-1. In the OpenShift Container Platform web console, navigate to **Ecosystem** -> **Installed Operators**.
+1. In the OpenShift Container Platform web console, navigate to **Ecosystem** → **Installed Operators**.
 2. Operators that have a pending update display a status with **Upgrade available**. Click the name of the Operator you want to update.
 3. Click the **Subscription** tab. Any updates requiring approval are displayed next to **Upgrade status**. For example, it might display **1 requires approval**.
 4. Click **1 requires approval**, then click **Preview Install Plan**.
 5. Review the resources that are listed as available for update. When satisfied, click **Approve**.
-6. Navigate back to the **Ecosystem** -> **Installed Operators** page to monitor the progress of the update. When complete, the status changes to **Succeeded** and **Up to date**.
+6. Navigate back to the **Ecosystem** → **Installed Operators** page to monitor the progress of the update. When complete, the status changes to **Succeeded** and **Up to date**.
 
-## Additional resources {#additional-resources_olm-upgrading-operators}
+**Additional resources**
+{._additional-resources}
 
 - [Red Hat OpenShift Container Platform Operator Update Information Checker](https://access.redhat.com/labs/ocpouic/)
 - [Multitenancy and Operator colocation](/openshift-docs-markdown/operators/understanding/olm/olm-colocation#olm-colocation)

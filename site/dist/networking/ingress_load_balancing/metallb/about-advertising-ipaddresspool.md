@@ -18,7 +18,7 @@ To configure how the cluster announces IP addresses to external peers, define th
 
 The following table describes the parameters for the `BGPAdvertisements` CR:
 
-***BGPAdvertisements configuration***
+**BGPAdvertisements configuration**
 
 <table>
 <thead>
@@ -404,7 +404,7 @@ To configure how application services are announced over a Layer 2 network, defi
 
 The following table details parameters for the `l2Advertisements` CR:
 
-***L2 advertisements configuration***
+**L2 advertisements configuration**
 
 <table>
 <thead>
@@ -444,339 +444,331 @@ The following table details parameters for the `l2Advertisements` CR:
   <td><code>spec.nodeSelectors</code></td>
   <td><code>string</code></td>
   <td>Optional: <code>NodeSelectors</code> limits the nodes to announce as next hops for the load balancer IP. If empty, MetalLB announces all nodes as next hops.<br><br>
+<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>Limiting the nodes to announce as next hops is a Technology Preview feature only. Technology Preview features are not supported with Red&#160;Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process. For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl></td>
+</tr>
+<tr>
+  <td><code>spec.interfaces</code></td>
+  <td><code>string</code></td>
+  <td>Optional: The list of <code>interfaces</code> to announce the load balancer IP address.</td>
+</tr>
+</tbody>
+</table>
 
-> [!IMPORTANT]
-> Limiting the nodes to announce as next hops is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
->
-> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
->
-> :::</td>
->
-> </tr>
-> <tr>
->   <td><code>spec.interfaces</code></td>
->   <td><code>string</code></td>
->   <td>Optional: The list of <code>interfaces</code> to announce the load balancer IP address.</td>
-> </tr>
-> </tbody>
-> </table>
->
->
-> ## Configuring MetalLB with an L2 advertisement {#nw-metallb-configure-with-L2-advertisement_about-advertising-ip-address-pool}
->
-> You can configure MetalLB so that the `IPAddressPool` is advertised with the L2 protocol.
->
-> **Prerequisites**
->
-> - Install the OpenShift CLI (`oc`).
-> - Log in as a user with `cluster-admin` privileges.
-> - Install the MetalLB Operator and start MetalLB.
->
-> **Procedure**
->
-> 1. Create an IP address pool.
->
->    1. Create a file, such as `ipaddresspool.yaml`, with content like the following example:
->
->       ```yaml
->       apiVersion: metallb.io/v1beta1
->       kind: IPAddressPool
->       metadata:
->         namespace: metallb-system
->         name: doc-example-l2
->       spec:
->         addresses:
->           - <ip_address_range>
->         autoAssign: false
->       ```
->
->       - `<ip_address_range>` specifies a range of IP addresses that are routable on your network, for example `4.4.4.0/24`.
->    2. Apply the configuration for the IP address pool:
->
->       ```terminal
->       $ oc apply -f ipaddresspool.yaml
->       ```
-> 2. Create an L2 advertisement.
->
->    1. Create a file, such as `l2advertisement.yaml`, with content like the following example:
->
->       ```yaml
->       apiVersion: metallb.io/v1beta1
->       kind: L2Advertisement
->       metadata:
->         name: l2advertisement
->         namespace: metallb-system
->       spec:
->         ipAddressPools:
->          - doc-example-l2
->       ```
->    2. Apply the configuration:
->
->       ```terminal
->       $ oc apply -f l2advertisement.yaml
->       ```
->
-> **Verification**
->
-> 1. Verify that the IP address pool is created:
->
->    ```terminal
->    $ oc get ipaddresspool -n metallb-system
->    ```
->
->    The following is example output:
->
->    ```terminal
->    NAME             AUTO ASSIGN   AVOID BUGGY IPS   ADDRESSES
->    doc-example-l2   false         false             ["4.4.4.0/24"]
->    ```
-> 2. Verify that the L2 advertisement is created:
->
->    ```terminal
->    $ oc get l2advertisement -n metallb-system
->    ```
->
->    The following is example output:
->
->    ```terminal
->    NAME              IPADDRESSPOOLS     IPADDRESSPOOL SELECTORS   INTERFACES
->    l2advertisement   ["doc-example-l2"]
->    ```
->
-> ## Configuring MetalLB with an L2 advertisement and labels {#nw-metallb-configure-with-L2-advertisement-label_about-advertising-ip-address-pool}
->
-> You can use the `ipAddressPoolSelectors` field in the `L2Advertisement` custom resource definition to associate the `IPAddressPool` with the advertisement based on the label assigned to the pool instead of the pool name. The example configures MetalLB to advertise the pool over Layer 2 by using `ipAddressPoolSelectors`.
->
-> **Prerequisites**
->
-> - Install the OpenShift CLI (`oc`).
-> - Log in as a user with `cluster-admin` privileges.
->
-> **Procedure**
->
-> 1. Create an IP address pool.
->
->    1. Create a file, such as `ipaddresspool.yaml`, with content like the following example:
->
->       ```yaml
->       apiVersion: metallb.io/v1beta1
->       kind: IPAddressPool
->       metadata:
->         namespace: metallb-system
->         name: doc-example-l2-label
->         labels:
->           zone: east
->       spec:
->         addresses:
->           - 172.31.249.87/32
->       # ...
->       ```
->    2. Apply the configuration for the IP address pool:
->
->       ```terminal
->       $ oc apply -f ipaddresspool.yaml
->       ```
-> 2. Create an L2 advertisement that advertises the IP address by using `ipAddressPoolSelectors`.
->
->    1. Create a file, such as `l2advertisement.yaml`, with content like the following example:
->
->       ```yaml
->       apiVersion: metallb.io/v1beta1
->       kind: L2Advertisement
->       metadata:
->         name: l2advertisement-label
->         namespace: metallb-system
->       spec:
->         ipAddressPoolSelectors:
->           - matchExpressions:
->               - key: zone
->                 operator: In
->                 values:
->                   - east
->       # ...
->       ```
->    2. Apply the configuration:
->
->       ```terminal
->       $ oc apply -f l2advertisement.yaml
->       ```
->
-> ## Apply different Layer 2 advertisement policies on a shared IP address pool {#nw-metallb-service-selectors-shared-pool-l2_about-advertising-ip-address-pool}
->
-> Use this procedure when many `L2Advertisement` resources reference the same `IPAddressPool` and each advertisement must apply different Layer 2 settings to a different group of `LoadBalancer` services. You match services with `spec.serviceSelectors` so each advertisement applies only where its selectors match.
->
-> **Prerequisites**
->
-> - You created the `IPAddressPool` that your advertisements reference (for example, `doc-example-l2-label`).
->
-> **Procedure**
->
-> 1. Create two `L2Advertisement` resources that reference the same `IPAddressPool` but use different `serviceSelectors` so that each advertisement applies Layer 2 settings to a different group of services.
->
->    The following example uses two `LoadBalancer` services that share one pool and use the labels `app: web` and `app: api`. It does not include a catch-all `L2Advertisement` with no `serviceSelectors`; for that behavior, see the description of `spec.serviceSelectors` in "About the L2Advertisement custom resource". Each manifest lists `ipAddressPools` and `serviceSelectors`; add other fields such as `interfaces` or `nodeSelectors` when your deployment requires them.
->
->    > [!NOTE]
->    > The label keys and values you set under `spec.serviceSelectors` must match the labels on each `LoadBalancer` service that should use this advertisement, and you must use the same keys and values consistently across both advertisement manifests in this procedure (for example, `app: web` and `app: api`). This procedure shows those selectors in the manifests first; add matching labels on your services in the next step. For how `spec.serviceSelectors` interacts with the `metallb.io/allow-shared-ip` annotation, see "About the L2Advertisement custom resource".
->
->    1. Create a file, such as `l2advertisement-web.yaml`, with content similar to the following example:
->
->       ```yaml
->       apiVersion: metallb.io/v1beta1
->       kind: L2Advertisement
->       metadata:
->         name: l2advertisement-web
->         namespace: metallb-system
->       spec:
->         ipAddressPools:
->         - doc-example-l2-label
->         serviceSelectors:
->         - matchLabels:
->             app: web
->       ```
->
->       where:
->
->       `doc-example-l2-label`
->       :   Specifies the name of the `IPAddressPool` that both Layer 2 advertisements share.
->
->       `serviceSelectors`
->       :   Specifies label selectors so MetalLB applies this advertisement only to `LoadBalancer` services whose labels include `app: web`.
->    2. Apply the configuration by running the following command:
->
->       ```terminal
->       $ oc apply -f l2advertisement-web.yaml
->       ```
->    3. Create a file, such as `l2advertisement-api.yaml`, with content similar to the following example:
->
->       ```yaml
->       apiVersion: metallb.io/v1beta1
->       kind: L2Advertisement
->       metadata:
->         name: l2advertisement-api
->         namespace: metallb-system
->       spec:
->         ipAddressPools:
->         - doc-example-l2-label
->         serviceSelectors:
->         - matchLabels:
->             app: api
->       ```
->
->       where:
->
->       `doc-example-l2-label`
->       :   Specifies the same shared `IPAddressPool` name as the first Layer 2 advertisement.
->
->       `serviceSelectors`
->       :   Specifies label selectors so MetalLB applies this advertisement only to `LoadBalancer` services whose labels include `app: api`.
->    4. Apply the configuration by running the following command:
->
->       ```terminal
->       $ oc apply -f l2advertisement-api.yaml
->       ```
->
->       A `LoadBalancer` service whose labels include `app: web` receives the Layer 2 settings from `l2advertisement-web`. A service whose labels include `app: api` receives the Layer 2 settings from `l2advertisement-api`. Each advertisement applies only to services that satisfy its `serviceSelectors`.
->
->       For the same pattern for BGP on a shared pool, see **Apply different BGP advertisement policies on a shared IP address pool**.
-> 2. Add labels to each `LoadBalancer` service that must match the advertisements.
->
->    1. Label the service that should match `app: web` by running the following command:
->
->       ```terminal
->       $ oc label service <service_web_name> app=web -n <project>
->       ```
->
->       where:
->
->       `<service_web_name>`
->       :   Specifies the name of the `LoadBalancer` service.
->
->       `<project>`
->       :   Specifies the namespace that contains the service.
->    2. Label the service that should match `app: api` by running the following command:
->
->       ```terminal
->       $ oc label service <service_api_name> app=api -n <project>
->       ```
->
->       where:
->
->       `<service_api_name>`
->       :   Specifies the name of the `LoadBalancer` service.
->
->       `<project>`
->       :   Specifies the namespace that contains the service.
->
-> ## Configuring MetalLB with an L2 advertisement for selected interfaces {#nw-metallb-configure-with-L2-advertisement-interface_about-advertising-ip-address-pool}
->
-> By default, the IP addresses from IP address pool that has been assigned to the service, is advertised from all the network interfaces. You can use the `interfaces` field in the `L2Advertisement` custom resource definition to restrict those network interfaces that advertise the IP address pool.
->
-> The example in the procedure shows how to configure MetalLB so that the IP address pool is advertised only from the network interfaces listed in the `interfaces` parameter of all nodes.
->
-> **Prerequisites**
->
-> - You have installed the OpenShift CLI (`oc`).
-> - You are logged in as a user with `cluster-admin` privileges.
->
-> **Procedure**
->
-> 1. Create an IP address pool.
->
->    1. Create a file, such as `ipaddresspool.yaml`, and enter the configuration details as shown in the following example:
->
->       ```yaml
->       apiVersion: metallb.io/v1beta1
->       kind: IPAddressPool
->       metadata:
->         namespace: metallb-system
->         name: doc-example-l2
->       spec:
->         addresses:
->           - 4.4.4.0/24
->         autoAssign: false
->       # ...
->       ```
->    2. Apply the configuration for the IP address pool as shown in the following example:
->
->       ```terminal
->       $ oc apply -f ipaddresspool.yaml
->       ```
-> 2. Create an L2 advertisement with the `interfaces` selector to advertise the IP address.
->
->    1. Create a YAML file, such as `l2advertisement.yaml`, and enter the configuration details as shown the following example:
->
->       ```yaml
->       apiVersion: metallb.io/v1beta1
->       kind: L2Advertisement
->       metadata:
->         name: l2advertisement
->         namespace: metallb-system
->       spec:
->         ipAddressPools:
->          - doc-example-l2
->          interfaces:
->          - interfaceA
->          - interfaceB
->       # ...
->       ```
->    2. Apply the configuration for the advertisement as shown in the following example:
->
->       ```terminal
->       $ oc apply -f l2advertisement.yaml
->       ```
->
->       > [!IMPORTANT]
->       > The interface selector does not affect how MetalLB chooses the node to announce a given IP by using L2. The chosen node does not announce the service if the node does not have the selected interface.
->
-> ## Configure MetalLB with secondary networks {#nw-metallb-configure-secondary-interface_about-advertising-ip-address-pool}
->
-> In environments with multiple network interfaces, you might need MetalLB to advertise load-balancer IP addresses on a secondary interface for network traffic segmentation. To route traffic using a secondary interface, you must do the following:
->
-> - Enable IP forwarding on the secondary interface so that the interface can forward packets to the pods.
-> - Enable local gateway mode at the cluster level so that traffic uses the host networking stack.
->
-> > [!NOTE]
-> > From OpenShift Container Platform 4.14, IP forwarding is disabled by default on cluster nodes for improved security. Clusters upgraded from 4.13 might already have IP forwarding enabled because existing node settings are preserved during upgrade.
+## Configuring MetalLB with an L2 advertisement {#nw-metallb-configure-with-L2-advertisement_about-advertising-ip-address-pool}
+
+You can configure MetalLB so that the `IPAddressPool` is advertised with the L2 protocol.
+
+**Prerequisites**
+
+- Install the OpenShift CLI (`oc`).
+- Log in as a user with `cluster-admin` privileges.
+- Install the MetalLB Operator and start MetalLB.
+
+**Procedure**
+
+1. Create an IP address pool.
+
+   1. Create a file, such as `ipaddresspool.yaml`, with content like the following example:
+
+      ```yaml
+      apiVersion: metallb.io/v1beta1
+      kind: IPAddressPool
+      metadata:
+        namespace: metallb-system
+        name: doc-example-l2
+      spec:
+        addresses:
+          - <ip_address_range>
+        autoAssign: false
+      ```
+
+      - `<ip_address_range>` specifies a range of IP addresses that are routable on your network, for example `4.4.4.0/24`.
+   2. Apply the configuration for the IP address pool:
+
+      ```terminal
+      $ oc apply -f ipaddresspool.yaml
+      ```
+2. Create an L2 advertisement.
+
+   1. Create a file, such as `l2advertisement.yaml`, with content like the following example:
+
+      ```yaml
+      apiVersion: metallb.io/v1beta1
+      kind: L2Advertisement
+      metadata:
+        name: l2advertisement
+        namespace: metallb-system
+      spec:
+        ipAddressPools:
+         - doc-example-l2
+      ```
+   2. Apply the configuration:
+
+      ```terminal
+      $ oc apply -f l2advertisement.yaml
+      ```
+
+**Verification**
+
+1. Verify that the IP address pool is created:
+
+   ```terminal
+   $ oc get ipaddresspool -n metallb-system
+   ```
+
+   The following is example output:
+
+   ```terminal
+   NAME             AUTO ASSIGN   AVOID BUGGY IPS   ADDRESSES
+   doc-example-l2   false         false             ["4.4.4.0/24"]
+   ```
+2. Verify that the L2 advertisement is created:
+
+   ```terminal
+   $ oc get l2advertisement -n metallb-system
+   ```
+
+   The following is example output:
+
+   ```terminal
+   NAME              IPADDRESSPOOLS     IPADDRESSPOOL SELECTORS   INTERFACES
+   l2advertisement   ["doc-example-l2"]
+   ```
+
+## Configuring MetalLB with an L2 advertisement and labels {#nw-metallb-configure-with-L2-advertisement-label_about-advertising-ip-address-pool}
+
+You can use the `ipAddressPoolSelectors` field in the `L2Advertisement` custom resource definition to associate the `IPAddressPool` with the advertisement based on the label assigned to the pool instead of the pool name. The example configures MetalLB to advertise the pool over Layer 2 by using `ipAddressPoolSelectors`.
+
+**Prerequisites**
+
+- Install the OpenShift CLI (`oc`).
+- Log in as a user with `cluster-admin` privileges.
+
+**Procedure**
+
+1. Create an IP address pool.
+
+   1. Create a file, such as `ipaddresspool.yaml`, with content like the following example:
+
+      ```yaml
+      apiVersion: metallb.io/v1beta1
+      kind: IPAddressPool
+      metadata:
+        namespace: metallb-system
+        name: doc-example-l2-label
+        labels:
+          zone: east
+      spec:
+        addresses:
+          - 172.31.249.87/32
+      # ...
+      ```
+   2. Apply the configuration for the IP address pool:
+
+      ```terminal
+      $ oc apply -f ipaddresspool.yaml
+      ```
+2. Create an L2 advertisement that advertises the IP address by using `ipAddressPoolSelectors`.
+
+   1. Create a file, such as `l2advertisement.yaml`, with content like the following example:
+
+      ```yaml
+      apiVersion: metallb.io/v1beta1
+      kind: L2Advertisement
+      metadata:
+        name: l2advertisement-label
+        namespace: metallb-system
+      spec:
+        ipAddressPoolSelectors:
+          - matchExpressions:
+              - key: zone
+                operator: In
+                values:
+                  - east
+      # ...
+      ```
+   2. Apply the configuration:
+
+      ```terminal
+      $ oc apply -f l2advertisement.yaml
+      ```
+
+## Apply different Layer 2 advertisement policies on a shared IP address pool {#nw-metallb-service-selectors-shared-pool-l2_about-advertising-ip-address-pool}
+
+Use this procedure when many `L2Advertisement` resources reference the same `IPAddressPool` and each advertisement must apply different Layer 2 settings to a different group of `LoadBalancer` services. You match services with `spec.serviceSelectors` so each advertisement applies only where its selectors match.
+
+**Prerequisites**
+
+- You created the `IPAddressPool` that your advertisements reference (for example, `doc-example-l2-label`).
+
+**Procedure**
+
+1. Create two `L2Advertisement` resources that reference the same `IPAddressPool` but use different `serviceSelectors` so that each advertisement applies Layer 2 settings to a different group of services.
+
+   The following example uses two `LoadBalancer` services that share one pool and use the labels `app: web` and `app: api`. It does not include a catch-all `L2Advertisement` with no `serviceSelectors`; for that behavior, see the description of `spec.serviceSelectors` in "About the L2Advertisement custom resource". Each manifest lists `ipAddressPools` and `serviceSelectors`; add other fields such as `interfaces` or `nodeSelectors` when your deployment requires them.
+
+   > [!NOTE]
+   > The label keys and values you set under `spec.serviceSelectors` must match the labels on each `LoadBalancer` service that should use this advertisement, and you must use the same keys and values consistently across both advertisement manifests in this procedure (for example, `app: web` and `app: api`). This procedure shows those selectors in the manifests first; add matching labels on your services in the next step. For how `spec.serviceSelectors` interacts with the `metallb.io/allow-shared-ip` annotation, see "About the L2Advertisement custom resource".
+
+   1. Create a file, such as `l2advertisement-web.yaml`, with content similar to the following example:
+
+      ```yaml
+      apiVersion: metallb.io/v1beta1
+      kind: L2Advertisement
+      metadata:
+        name: l2advertisement-web
+        namespace: metallb-system
+      spec:
+        ipAddressPools:
+        - doc-example-l2-label
+        serviceSelectors:
+        - matchLabels:
+            app: web
+      ```
+
+      where:
+
+      `doc-example-l2-label`
+      :   Specifies the name of the `IPAddressPool` that both Layer 2 advertisements share.
+
+      `serviceSelectors`
+      :   Specifies label selectors so MetalLB applies this advertisement only to `LoadBalancer` services whose labels include `app: web`.
+   2. Apply the configuration by running the following command:
+
+      ```terminal
+      $ oc apply -f l2advertisement-web.yaml
+      ```
+   3. Create a file, such as `l2advertisement-api.yaml`, with content similar to the following example:
+
+      ```yaml
+      apiVersion: metallb.io/v1beta1
+      kind: L2Advertisement
+      metadata:
+        name: l2advertisement-api
+        namespace: metallb-system
+      spec:
+        ipAddressPools:
+        - doc-example-l2-label
+        serviceSelectors:
+        - matchLabels:
+            app: api
+      ```
+
+      where:
+
+      `doc-example-l2-label`
+      :   Specifies the same shared `IPAddressPool` name as the first Layer 2 advertisement.
+
+      `serviceSelectors`
+      :   Specifies label selectors so MetalLB applies this advertisement only to `LoadBalancer` services whose labels include `app: api`.
+   4. Apply the configuration by running the following command:
+
+      ```terminal
+      $ oc apply -f l2advertisement-api.yaml
+      ```
+
+      A `LoadBalancer` service whose labels include `app: web` receives the Layer 2 settings from `l2advertisement-web`. A service whose labels include `app: api` receives the Layer 2 settings from `l2advertisement-api`. Each advertisement applies only to services that satisfy its `serviceSelectors`.
+
+      For the same pattern for BGP on a shared pool, see **Apply different BGP advertisement policies on a shared IP address pool**.
+2. Add labels to each `LoadBalancer` service that must match the advertisements.
+
+   1. Label the service that should match `app: web` by running the following command:
+
+      ```terminal
+      $ oc label service <service_web_name> app=web -n <project>
+      ```
+
+      where:
+
+      `<service_web_name>`
+      :   Specifies the name of the `LoadBalancer` service.
+
+      `<project>`
+      :   Specifies the namespace that contains the service.
+   2. Label the service that should match `app: api` by running the following command:
+
+      ```terminal
+      $ oc label service <service_api_name> app=api -n <project>
+      ```
+
+      where:
+
+      `<service_api_name>`
+      :   Specifies the name of the `LoadBalancer` service.
+
+      `<project>`
+      :   Specifies the namespace that contains the service.
+
+## Configuring MetalLB with an L2 advertisement for selected interfaces {#nw-metallb-configure-with-L2-advertisement-interface_about-advertising-ip-address-pool}
+
+By default, the IP addresses from IP address pool that has been assigned to the service, is advertised from all the network interfaces. You can use the `interfaces` field in the `L2Advertisement` custom resource definition to restrict those network interfaces that advertise the IP address pool.
+
+The example in the procedure shows how to configure MetalLB so that the IP address pool is advertised only from the network interfaces listed in the `interfaces` parameter of all nodes.
+
+**Prerequisites**
+
+- You have installed the OpenShift CLI (`oc`).
+- You are logged in as a user with `cluster-admin` privileges.
+
+**Procedure**
+
+1. Create an IP address pool.
+
+   1. Create a file, such as `ipaddresspool.yaml`, and enter the configuration details as shown in the following example:
+
+      ```yaml
+      apiVersion: metallb.io/v1beta1
+      kind: IPAddressPool
+      metadata:
+        namespace: metallb-system
+        name: doc-example-l2
+      spec:
+        addresses:
+          - 4.4.4.0/24
+        autoAssign: false
+      # ...
+      ```
+   2. Apply the configuration for the IP address pool as shown in the following example:
+
+      ```terminal
+      $ oc apply -f ipaddresspool.yaml
+      ```
+2. Create an L2 advertisement with the `interfaces` selector to advertise the IP address.
+
+   1. Create a YAML file, such as `l2advertisement.yaml`, and enter the configuration details as shown the following example:
+
+      ```yaml
+      apiVersion: metallb.io/v1beta1
+      kind: L2Advertisement
+      metadata:
+        name: l2advertisement
+        namespace: metallb-system
+      spec:
+        ipAddressPools:
+         - doc-example-l2
+         interfaces:
+         - interfaceA
+         - interfaceB
+      # ...
+      ```
+   2. Apply the configuration for the advertisement as shown in the following example:
+
+      ```terminal
+      $ oc apply -f l2advertisement.yaml
+      ```
+
+      > [!IMPORTANT]
+      > The interface selector does not affect how MetalLB chooses the node to announce a given IP by using L2. The chosen node does not announce the service if the node does not have the selected interface.
+
+## Configure MetalLB with secondary networks {#nw-metallb-configure-secondary-interface_about-advertising-ip-address-pool}
+
+In environments with multiple network interfaces, you might need MetalLB to advertise load-balancer IP addresses on a secondary interface for network traffic segmentation. To route traffic using a secondary interface, you must do the following:
+
+- Enable IP forwarding on the secondary interface so that the interface can forward packets to the pods.
+- Enable local gateway mode at the cluster level so that traffic uses the host networking stack.
+
+> [!NOTE]
+> From OpenShift Container Platform 4.14, IP forwarding is disabled by default on cluster nodes for improved security. Clusters upgraded from 4.13 might already have IP forwarding enabled because existing node settings are preserved during upgrade.
 
 **Prerequisites**
 
@@ -845,7 +837,8 @@ The following table details parameters for the `l2Advertisements` CR:
    net.ipv4.conf.eth1.forwarding = 1
    ```
 
-## Additional resources {#additional-resources_about-advertiseipaddress}
+**Additional resources**
+{._additional-resources}
 
 - [Configuring a community alias](/openshift-docs-markdown/networking/ingress_load_balancing/metallb/metallb-configure-community-alias#metallb-configure-community-alias)
 - [Enable IP forwarding on specific interfaces](/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#nw-nmstate-enable-per-interface-ip-forwarding_k8s-nmstate-updating-node-network-config)

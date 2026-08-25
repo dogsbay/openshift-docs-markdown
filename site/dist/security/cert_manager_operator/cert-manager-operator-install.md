@@ -1,8 +1,8 @@
 ---
-title: Installing the {{ cert_manager_operator }}
+title: Installing the cert-manager Operator for Red Hat OpenShift
 ---
 
-# Installing the {{ cert_manager_operator }} {#cert-manager-operator-install}
+# Installing the cert-manager Operator for Red Hat OpenShift {#cert-manager-operator-install}
 
 The cert-manager Operator for Red Hat OpenShift is not installed in OpenShift Container Platform by default. You can install the cert-manager Operator for Red Hat OpenShift by using the web console and command-line interface (CLI).
 
@@ -23,7 +23,7 @@ You can use the web console to install the cert-manager Operator for Red Hat Ope
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console.
-2. Navigate to **Ecosystem** -> **Software Catalog**.
+2. Navigate to **Ecosystem** → **Software Catalog**.
 3. Enter **cert-manager Operator for Red Hat OpenShift** into the filter box.
 4. Select the **cert-manager Operator for Red Hat OpenShift**
 5. Select the cert-manager Operator for Red Hat OpenShift version from **Version** drop-down list, and click **Install**.
@@ -47,7 +47,7 @@ You can use the web console to install the cert-manager Operator for Red Hat Ope
 
 **Verification**
 
-1. Navigate to **Ecosystem** -> **Installed Operators**.
+1. Navigate to **Ecosystem** → **Installed Operators**.
 2. Verify that **cert-manager Operator for Red Hat OpenShift** is listed with a **Status** of **Succeeded** in the `cert-manager-operator` namespace.
 3. Verify that cert-manager pods are up and running by entering the following command:
 
@@ -182,6 +182,7 @@ You can install the cert-manager Operator for Red Hat OpenShift by using the com
    ```
 
 **Additional resources**
+{._additional-resources}
 
 - [Supported cert-manager Operator for Red Hat OpenShift versions](/openshift-docs-markdown/security/cert_manager_operator/index#cert-manager-operator-supported-versions_cert-manager-operator-about)
 
@@ -219,7 +220,8 @@ Automatic
 Manual
 :   If you select manual updates, when a newer version of the cert-manager Operator for Red Hat OpenShift is available, OLM creates an update request. As a cluster administrator, you must then manually approve that update request to have the cert-manager Operator for Red Hat OpenShift updated to the new version of the z-stream releases.
 
-## Additional resources {#cert-manager-operator-install_additional-resources}
+**Additional resources**
+{._additional-resources}
 
 - [Adding Operators to a cluster](/openshift-docs-markdown/operators/admin/olm-adding-operators-to-cluster#olm-adding-operators-to-a-cluster)
 - [Updating installed Operators](/openshift-docs-markdown/operators/admin/olm-upgrading-operators#olm-upgrading-operators)

@@ -31,7 +31,8 @@ Subscriptions can report the following condition types:
 > [!NOTE]
 > Default OpenShift Container Platform cluster Operators are managed by the Cluster Version Operator (CVO) and they do not have a `Subscription` object. Application Operators are managed by Operator Lifecycle Manager (OLM) and they have a `Subscription` object.
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Catalog health requirements](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-cs-health_olm-understanding-olm)
 
@@ -89,10 +90,10 @@ You can view the status of an Operator catalog source by using the CLI.
 
 **Procedure**
 
-1. List the catalog sources in a namespace. For example, you can check the `{{ global_ns }}` namespace, which is used for cluster-wide catalog sources:
+1. List the catalog sources in a namespace. For example, you can check the `openshift-marketplace` namespace, which is used for cluster-wide catalog sources:
 
    ```terminal
-   $ oc get catalogsources -n {{ global_ns }}
+   $ oc get catalogsources -n openshift-marketplace
    ```
 
    ```terminal {title="Example output"}
@@ -105,12 +106,12 @@ You can view the status of an Operator catalog source by using the CLI.
 2. Use the `oc describe` command to get more details and status about a catalog source:
 
    ```terminal
-   $ oc describe catalogsource example-catalog -n {{ global_ns }}
+   $ oc describe catalogsource example-catalog -n openshift-marketplace
    ```
 
    ```terminal {title="Example output"}
    Name:         example-catalog
-   Namespace:    {{ global_ns }}
+   Namespace:    openshift-marketplace
    Labels:       <none>
    Annotations:  operatorframework.io/managed-by: marketplace-operator
                  target.workload.openshift.io/management: {"effect": "PreferredDuringScheduling"}
@@ -119,7 +120,7 @@ You can view the status of an Operator catalog source by using the CLI.
    # ...
    Status:
      Connection State:
-       Address:              example-catalog.{{ global_ns }}.svc:50051
+       Address:              example-catalog.openshift-marketplace.svc:50051
        Last Connect:         2021-09-09T17:07:35Z
        Last Observed State:  TRANSIENT_FAILURE
      Registry Service:
@@ -127,7 +128,7 @@ You can view the status of an Operator catalog source by using the CLI.
        Port:               50051
        Protocol:           grpc
        Service Name:       example-catalog
-       Service Namespace:  {{ global_ns }}
+       Service Namespace:  openshift-marketplace
    # ...
    ```
 
@@ -135,7 +136,7 @@ You can view the status of an Operator catalog source by using the CLI.
 3. List the pods in the namespace where your catalog source was created:
 
    ```terminal
-   $ oc get pods -n {{ global_ns }}
+   $ oc get pods -n openshift-marketplace
    ```
 
    ```terminal {title="Example output"}
@@ -151,19 +152,19 @@ You can view the status of an Operator catalog source by using the CLI.
 4. Use the `oc describe` command to inspect a pod for more detailed information:
 
    ```terminal
-   $ oc describe pod example-catalog-bwt8z -n {{ global_ns }}
+   $ oc describe pod example-catalog-bwt8z -n openshift-marketplace
    ```
 
    ```terminal {title="Example output"}
    Name:         example-catalog-bwt8z
-   Namespace:    {{ global_ns }}
+   Namespace:    openshift-marketplace
    Priority:     0
    Node:         ci-ln-jyryyg2-f76d1-ggdbq-worker-b-vsxjd/10.0.128.2
    ...
    Events:
      Type     Reason          Age                From               Message
      ----     ------          ----               ----               -------
-     Normal   Scheduled       48s                default-scheduler  Successfully assigned {{ global_ns }}/example-catalog-bwt8z to ci-ln-jyryyf2-f76d1-fgdbq-worker-b-vsxjd
+     Normal   Scheduled       48s                default-scheduler  Successfully assigned openshift-marketplace/example-catalog-bwt8z to ci-ln-jyryyf2-f76d1-fgdbq-worker-b-vsxjd
      Normal   AddedInterface  47s                multus             Add eth0 [10.131.0.40/23] from openshift-sdn
      Normal   BackOff         20s (x2 over 46s)  kubelet            Back-off pulling image "quay.io/example-org/example-catalog:v1"
      Warning  Failed          20s (x2 over 46s)  kubelet            Error: ImagePullBackOff
@@ -174,9 +175,10 @@ You can view the status of an Operator catalog source by using the CLI.
 
    In the preceding example output, the error messages indicate that the catalog source’s index image is failing to pull successfully because of an authorization issue. For example, the index image might be stored in a registry that requires login credentials.
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
-- [Operator Lifecycle Manager concepts and resources -> Catalog source](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-catalogsource_olm-understanding-olm)
+- [Operator Lifecycle Manager concepts and resources → Catalog source](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-catalogsource_olm-understanding-olm)
 - [States of Connectivity (gRPC documentation)](https://grpc.github.io/grpc/core/md_doc_connectivity-semantics-and-api.html)
 - [Accessing images for Operators from private registries](/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-accessing-images-private-registries_olm-managing-custom-catalogs)
 
@@ -298,18 +300,17 @@ If you experience Operator issues, you can gather detailed diagnostic informatio
 
 When configuration changes are made by the Machine Config Operator (MCO), Red Hat Enterprise Linux CoreOS (RHCOS) must reboot for the changes to take effect. Whether the configuration change is automatic or manual, an RHCOS node reboots automatically unless it is paused.
 
-\[NOTE\]
-
-- When the MCO detects any of the following changes, it applies the update without draining or rebooting the node:
-
-  - Changes to the SSH key in the `spec.config.passwd.users.sshAuthorizedKeys` parameter of a machine config.
-  - Changes to the global pull secret or pull secret in the `openshift-config` namespace.
-  - Automatic rotation of the `/etc/kubernetes/kubelet-ca.crt` certificate authority (CA) by the Kubernetes API Server Operator.
-- When the MCO detects changes to the `/etc/containers/registries.conf` file, such as editing an `ImageDigestMirrorSet`, `ImageTagMirrorSet`, or `ImageContentSourcePolicy` object, it drains the corresponding nodes, applies the changes, and uncordons the nodes. The node drain does not happen for the following changes:
-
-  - The addition of a registry with the `pull-from-mirror = "digest-only"` parameter set for each mirror.
-  - The addition of a mirror with the `pull-from-mirror = "digest-only"` parameter set in a registry.
-  - The addition of items to the `unqualified-search-registries` list.
+> [!NOTE]
+> - When the MCO detects any of the following changes, it applies the update without draining or rebooting the node:
+>
+>   - Changes to the SSH key in the `spec.config.passwd.users.sshAuthorizedKeys` parameter of a machine config.
+>   - Changes to the global pull secret or pull secret in the `openshift-config` namespace.
+>   - Automatic rotation of the `/etc/kubernetes/kubelet-ca.crt` certificate authority (CA) by the Kubernetes API Server Operator.
+> - When the MCO detects changes to the `/etc/containers/registries.conf` file, such as editing an `ImageDigestMirrorSet`, `ImageTagMirrorSet`, or `ImageContentSourcePolicy` object, it drains the corresponding nodes, applies the changes, and uncordons the nodes. The node drain does not happen for the following changes:
+>
+>   - The addition of a registry with the `pull-from-mirror = "digest-only"` parameter set for each mirror.
+>   - The addition of a mirror with the `pull-from-mirror = "digest-only"` parameter set in a registry.
+>   - The addition of items to the `unqualified-search-registries` list.
 
 To avoid unwanted disruptions, you can modify the machine config pool (MCP) to prevent automatic rebooting after the Operator makes changes to the machine config.
 
@@ -324,7 +325,7 @@ To avoid unwanted disruptions from changes made by the Machine Config Operator (
 **Procedure**
 
 1. Log in to the OpenShift Container Platform web console as a user with the `cluster-admin` role.
-2. Click **Compute** -> **MachineConfigPools**.
+2. Click **Compute** → **MachineConfigPools**.
 3. On the **MachineConfigPools** page, click either **master** or **worker**, depending upon which nodes you want to pause rebooting for.
 4. On the **master** or **worker** page, click **YAML**.
 5. In the YAML, update the `spec.paused` field to `true`.
@@ -351,7 +352,7 @@ To avoid unwanted disruptions from changes made by the Machine Config Operator (
 
    - Unpause the autoreboot process:
 7. Log in to the OpenShift Container Platform web console as a user with the `cluster-admin` role.
-8. Click **Compute** -> **MachineConfigPools**.
+8. Click **Compute** → **MachineConfigPools**.
 9. On the **MachineConfigPools** page, click either **master** or **worker**, depending upon which nodes you want to pause rebooting for.
 10. On the **master** or **worker** page, click **YAML**.
 11. In the YAML, update the `spec.paused` field to `false`.
@@ -561,7 +562,7 @@ You can refresh a failing subscription by deleting the subscription, cluster ser
 
 You must successfully and completely uninstall an Operator prior to attempting to reinstall the same Operator. Failure to fully uninstall the Operator properly can leave resources, such as a project or namespace, stuck in a "Terminating" state and cause "error resolving resource" messages. For example:
 
-***Example `Project` resource description***
+**Example `Project` resource description**
 
 ```
 ...
@@ -637,7 +638,8 @@ The following procedure shows how to troubleshoot when an Operator cannot be rei
   $ oc get sub,csv,installplan -n <namespace>
   ```
 
-## Additional resources {#_additional_resources}
+**Additional resources**
+{._additional-resources}
 
 - [Deleting Operators from a cluster](/openshift-docs-markdown/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-a-cluster)
 - [Adding Operators to a cluster](/openshift-docs-markdown/operators/admin/olm-adding-operators-to-cluster#olm-adding-operators-to-a-cluster)

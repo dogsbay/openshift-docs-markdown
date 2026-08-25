@@ -41,7 +41,7 @@ Type
 | `selector` | [`LabelSelector`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | selector is a label query over volumes to consider for binding. |
 | `storageClassName` | `string` | storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1 |
 | `volumeAttributesClassName` | `string` | volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string or nil value indicates that no VolumeAttributesClass will be applied to the claim. If the claim enters an Infeasible error state, this field can be reset to its previous value (including nil) to cancel the modification. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ |
-| `volumeMode` | `string` | volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec. Possible enum values:  - `"Block"` means the volume will not be formatted with a filesystem and will remain a raw block device.  - `"Filesystem"` means the volume will be or is formatted with a filesystem. |
+| `volumeMode` | `string` | volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.<br>Possible enum values: - `"Block"` means the volume will not be formatted with a filesystem and will remain a raw block device. - `"Filesystem"` means the volume will be or is formatted with a filesystem. |
 | `volumeName` | `string` | volumeName is the binding reference to the PersistentVolume backing this claim. |
 
 ### .spec.dataSource {#_specdatasource}
@@ -113,14 +113,14 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `accessModes` | `array (string)` | accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1 |
-| `allocatedResourceStatuses` | `object (string)` | allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: 	\* Un-prefixed keys: 		- storage - the capacity of the volume. 	\* Custom resources must use implementation-defined prefixed names such as "example.com/my-custom-resource" Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used. ClaimResourceStatus can be in any of following states: 	- ControllerResizeInProgress: 		State set when resize controller starts resizing the volume in control-plane. 	- ControllerResizeFailed: 		State set when resize has failed in resize controller with a terminal error. 	- NodeResizePending: 		State set when resize controller has finished resizing the volume but further resizing of 		volume is needed on the node. 	- NodeResizeInProgress: 		State set when kubelet starts resizing the volume. 	- NodeResizeFailed: 		State set when resizing has failed in kubelet with a terminal error. Transient errors don’t set 		NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: 	- pvc.status.allocatedResourceStatus\['storage'\] = "ControllerResizeInProgress"      - pvc.status.allocatedResourceStatus\['storage'\] = "ControllerResizeFailed"      - pvc.status.allocatedResourceStatus\['storage'\] = "NodeResizePending"      - pvc.status.allocatedResourceStatus\['storage'\] = "NodeResizeInProgress"      - pvc.status.allocatedResourceStatus\['storage'\] = "NodeResizeFailed" When this field is not set, it means that no resize operation is in progress for the given PVC. A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. |
-| `allocatedResources` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: 	\* Un-prefixed keys: 		- storage - the capacity of the volume. 	\* Custom resources must use implementation-defined prefixed names such as "example.com/my-custom-resource" Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used. Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. |
+| `allocatedResourceStatuses` | `object (string)` | allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: \* Un-prefixed keys: - storage - the capacity of the volume. \* Custom resources must use implementation-defined prefixed names such as "example.com/my-custom-resource" Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.<br>ClaimResourceStatus can be in any of following states: - ControllerResizeInProgress: State set when resize controller starts resizing the volume in control-plane. - ControllerResizeFailed: State set when resize has failed in resize controller with a terminal error. - NodeResizePending: State set when resize controller has finished resizing the volume but further resizing of volume is needed on the node. - NodeResizeInProgress: State set when kubelet starts resizing the volume. - NodeResizeFailed: State set when resizing has failed in kubelet with a terminal error. Transient errors don’t set NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: - pvc.status.allocatedResourceStatus\['storage'\] = "ControllerResizeInProgress" - pvc.status.allocatedResourceStatus\['storage'\] = "ControllerResizeFailed" - pvc.status.allocatedResourceStatus\['storage'\] = "NodeResizePending" - pvc.status.allocatedResourceStatus\['storage'\] = "NodeResizeInProgress" - pvc.status.allocatedResourceStatus\['storage'\] = "NodeResizeFailed" When this field is not set, it means that no resize operation is in progress for the given PVC.<br>A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. |
+| `allocatedResources` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: \* Un-prefixed keys: - storage - the capacity of the volume. \* Custom resources must use implementation-defined prefixed names such as "example.com/my-custom-resource" Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.<br>Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity.<br>A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. |
 | `capacity` | [`object (Quantity)`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | capacity represents the actual resources of the underlying volume. |
 | `conditions` | `array` | conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'Resizing'. |
 | `conditions[]` | `object` | PersistentVolumeClaimCondition contains details about state of pvc |
 | `currentVolumeAttributesClassName` | `string` | currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim |
 | `modifyVolumeStatus` | `object` | ModifyVolumeStatus represents the status object of ControllerModifyVolume operation |
-| `phase` | `string` | phase represents the current phase of PersistentVolumeClaim. Possible enum values:  - `"Bound"` used for PersistentVolumeClaims that are bound  - `"Lost"` used for PersistentVolumeClaims that lost their underlying PersistentVolume. The claim was bound to a PersistentVolume and this volume does not exist any longer and all data on it was lost.  - `"Pending"` used for PersistentVolumeClaims that are not yet bound |
+| `phase` | `string` | phase represents the current phase of PersistentVolumeClaim.<br>Possible enum values: - `"Bound"` used for PersistentVolumeClaims that are bound - `"Lost"` used for PersistentVolumeClaims that lost their underlying PersistentVolume. The claim was bound to a PersistentVolume and this volume does not exist any longer and all data on it was lost. - `"Pending"` used for PersistentVolumeClaims that are not yet bound |
 
 ### .status.conditions {#_statusconditions}
 
@@ -170,7 +170,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `status` | `string` | status is the status of the ControllerModifyVolume operation. It can be in any of following states:  - Pending    Pending indicates that the PersistentVolumeClaim cannot be modified due to unmet requirements, such as    the specified VolumeAttributesClass not existing.  - InProgress    InProgress indicates that the volume is being modified.  - Infeasible   Infeasible indicates that the request has been rejected as invalid by the CSI driver. To 	  resolve the error, a valid VolumeAttributesClass needs to be specified. Note: New statuses can be added in the future. Consumers should check for unknown statuses and fail appropriately. Possible enum values:  - `"InProgress"` InProgress indicates that the volume is being modified  - `"Infeasible"` Infeasible indicates that the request has been rejected as invalid by the CSI driver. To resolve the error, a valid VolumeAttributesClass needs to be specified  - `"Pending"` Pending indicates that the PersistentVolumeClaim cannot be modified due to unmet requirements, such as the specified VolumeAttributesClass not existing |
+| `status` | `string` | status is the status of the ControllerModifyVolume operation. It can be in any of following states: - Pending Pending indicates that the PersistentVolumeClaim cannot be modified due to unmet requirements, such as the specified VolumeAttributesClass not existing. - InProgress InProgress indicates that the volume is being modified. - Infeasible Infeasible indicates that the request has been rejected as invalid by the CSI driver. To resolve the error, a valid VolumeAttributesClass needs to be specified. Note: New statuses can be added in the future. Consumers should check for unknown statuses and fail appropriately.<br>Possible enum values: - `"InProgress"` InProgress indicates that the volume is being modified - `"Infeasible"` Infeasible indicates that the request has been rejected as invalid by the CSI driver. To resolve the error, a valid VolumeAttributesClass needs to be specified - `"Pending"` Pending indicates that the PersistentVolumeClaim cannot be modified due to unmet requirements, such as the specified VolumeAttributesClass not existing |
 | `targetVolumeAttributesClassName` | `string` | targetVolumeAttributesClassName is the name of the VolumeAttributesClass the PVC currently being reconciled |
 
 ## API endpoints {#_api_endpoints}
@@ -183,24 +183,24 @@ The following API endpoints are available:
 - `/api/v1/watch/persistentvolumeclaims`
 
   - `GET`: watch individual changes to a list of PersistentVolumeClaim. deprecated: use the 'watch' parameter with a list operation instead.
-- `/api/v1/namespaces/{{ namespace }}/persistentvolumeclaims`
+- `/api/v1/namespaces/{namespace}/persistentvolumeclaims`
 
   - `DELETE`: delete collection of PersistentVolumeClaim
   - `GET`: list or watch objects of kind PersistentVolumeClaim
   - `POST`: create a PersistentVolumeClaim
-- `/api/v1/watch/namespaces/{{ namespace }}/persistentvolumeclaims`
+- `/api/v1/watch/namespaces/{namespace}/persistentvolumeclaims`
 
   - `GET`: watch individual changes to a list of PersistentVolumeClaim. deprecated: use the 'watch' parameter with a list operation instead.
-- `/api/v1/namespaces/{{ namespace }}/persistentvolumeclaims/{{ name }}`
+- `/api/v1/namespaces/{namespace}/persistentvolumeclaims/{name}`
 
   - `DELETE`: delete a PersistentVolumeClaim
   - `GET`: read the specified PersistentVolumeClaim
   - `PATCH`: partially update the specified PersistentVolumeClaim
   - `PUT`: replace the specified PersistentVolumeClaim
-- `/api/v1/watch/namespaces/{{ namespace }}/persistentvolumeclaims/{{ name }}`
+- `/api/v1/watch/namespaces/{namespace}/persistentvolumeclaims/{name}`
 
   - `GET`: watch changes to an object of kind PersistentVolumeClaim. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
-- `/api/v1/namespaces/{{ namespace }}/persistentvolumeclaims/{{ name }}/status`
+- `/api/v1/namespaces/{namespace}/persistentvolumeclaims/{name}/status`
 
   - `GET`: read status of the specified PersistentVolumeClaim
   - `PATCH`: partially update status of the specified PersistentVolumeClaim
@@ -244,7 +244,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{{ namespace }}/persistentvolumeclaims {#_apiv1namespaces_namespace_persistentvolumeclaims}
+### /api/v1/namespaces/{namespace}/persistentvolumeclaims {#_apiv1namespaces_namespace_persistentvolumeclaims}
 
 HTTP method
 :   ```
@@ -318,7 +318,7 @@ Description
 | 202 - Accepted | [`PersistentVolumeClaim`](/openshift-docs-markdown/rest_api/storage_apis/persistentvolumeclaim-v1#persistentvolumeclaim-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/namespaces/{{ namespace }}/persistentvolumeclaims {#_apiv1watchnamespaces_namespace_persistentvolumeclaims}
+### /api/v1/watch/namespaces/{namespace}/persistentvolumeclaims {#_apiv1watchnamespaces_namespace_persistentvolumeclaims}
 
 HTTP method
 :   ```
@@ -337,7 +337,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{{ namespace }}/persistentvolumeclaims/{{ name }} {#_apiv1namespaces_namespace_persistentvolumeclaims_name}
+### /api/v1/namespaces/{namespace}/persistentvolumeclaims/{name} {#_apiv1namespaces_namespace_persistentvolumeclaims_name}
 
 **Global path parameters**
 
@@ -442,7 +442,7 @@ Description
 | 201 - Created | [`PersistentVolumeClaim`](/openshift-docs-markdown/rest_api/storage_apis/persistentvolumeclaim-v1#persistentvolumeclaim-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/namespaces/{{ namespace }}/persistentvolumeclaims/{{ name }} {#_apiv1watchnamespaces_namespace_persistentvolumeclaims_name}
+### /api/v1/watch/namespaces/{namespace}/persistentvolumeclaims/{name} {#_apiv1watchnamespaces_namespace_persistentvolumeclaims_name}
 
 **Global path parameters**
 
@@ -467,7 +467,7 @@ Description
 | 200 - OK | [`WatchEvent`](/openshift-docs-markdown/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{{ namespace }}/persistentvolumeclaims/{{ name }}/status {#_apiv1namespaces_namespace_persistentvolumeclaims_name_status}
+### /api/v1/namespaces/{namespace}/persistentvolumeclaims/{name}/status {#_apiv1namespaces_namespace_persistentvolumeclaims_name_status}
 
 **Global path parameters**
 

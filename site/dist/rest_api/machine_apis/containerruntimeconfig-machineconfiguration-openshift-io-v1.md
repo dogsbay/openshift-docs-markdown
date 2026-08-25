@@ -1,5 +1,5 @@
 ---
-title: ContainerRuntimeConfig []
+title: ContainerRuntimeConfig [machineconfiguration.openshift.io/v1]
 ---
 
 # ContainerRuntimeConfig \[machineconfiguration.openshift.io/v1\] {#containerruntimeconfig-machineconfiguration-openshift-io-v1}
@@ -149,7 +149,7 @@ Type
 | --- | --- | --- |
 | `lastTransitionTime` | \`\` | lastTransitionTime is the time of the last update to the current status object. |
 | `message` | `string` | message provides additional information about the current condition. This is only to be consumed by humans. |
-| `reason` | `string` | reason is the reason for the condition’s last transition.  Reasons are PascalCase |
+| `reason` | `string` | reason is the reason for the condition’s last transition. Reasons are PascalCase |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type specifies the state of the operator’s reconciliation functionality. |
 
@@ -162,13 +162,13 @@ The following API endpoints are available:
   - `DELETE`: delete collection of ContainerRuntimeConfig
   - `GET`: list objects of kind ContainerRuntimeConfig
   - `POST`: create a ContainerRuntimeConfig
-- `/apis/machineconfiguration.openshift.io/v1/containerruntimeconfigs/{{ name }}`
+- `/apis/machineconfiguration.openshift.io/v1/containerruntimeconfigs/{name}`
 
   - `DELETE`: delete a ContainerRuntimeConfig
   - `GET`: read the specified ContainerRuntimeConfig
   - `PATCH`: partially update the specified ContainerRuntimeConfig
   - `PUT`: replace the specified ContainerRuntimeConfig
-- `/apis/machineconfiguration.openshift.io/v1/containerruntimeconfigs/{{ name }}/status`
+- `/apis/machineconfiguration.openshift.io/v1/containerruntimeconfigs/{name}/status`
 
   - `GET`: read status of the specified ContainerRuntimeConfig
   - `PATCH`: partially update status of the specified ContainerRuntimeConfig
@@ -242,7 +242,7 @@ Description
 | 202 - Accepted | [`ContainerRuntimeConfig`](/openshift-docs-markdown/rest_api/machine_apis/containerruntimeconfig-machineconfiguration-openshift-io-v1#containerruntimeconfig-machineconfiguration-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machineconfiguration.openshift.io/v1/containerruntimeconfigs/{{ name }} {#_apismachineconfigurationopenshiftiov1containerruntimeconfigs_name}
+### /apis/machineconfiguration.openshift.io/v1/containerruntimeconfigs/{name} {#_apismachineconfigurationopenshiftiov1containerruntimeconfigs_name}
 
 **Global path parameters**
 
@@ -346,7 +346,7 @@ Description
 | 201 - Created | [`ContainerRuntimeConfig`](/openshift-docs-markdown/rest_api/machine_apis/containerruntimeconfig-machineconfiguration-openshift-io-v1#containerruntimeconfig-machineconfiguration-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machineconfiguration.openshift.io/v1/containerruntimeconfigs/{{ name }}/status {#_apismachineconfigurationopenshiftiov1containerruntimeconfigs_name_status}
+### /apis/machineconfiguration.openshift.io/v1/containerruntimeconfigs/{name}/status {#_apismachineconfigurationopenshiftiov1containerruntimeconfigs_name_status}
 
 **Global path parameters**
 

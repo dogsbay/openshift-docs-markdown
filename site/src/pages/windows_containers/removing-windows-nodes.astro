@@ -24,7 +24,8 @@ const headings = [{"depth":1,"slug":"removing-windows-nodes","text":"Removing Wi
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/windows_containers/removing-windows-nodes";
 const _navForPagination = filterNavByAxis(nav as any[], {
-  basePath: "/docs",
+  basePath: "",
+  namespace: null ?? undefined,
   version: null ?? undefined,
   locale: null ?? undefined,
 });
@@ -82,12 +83,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
+  linkIcons={siteConfig.linkIcons}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
   navMode={"client"}
   pagefindUrl={"/openshift-docs-markdown/pagefind/"}
-  favicon={"/openshift-docs-markdown/favicon.ico"}
+  favicon={false}
   wideLayout={false}
   toc={"top"}
 >
@@ -95,7 +97,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="removing-windows-nodes" class="group scroll-mt-20">Removing Windows nodes<a href="#removing-windows-nodes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can remove a Windows node by deleting its host Windows machine.</p>
+      <p class="_abstract">You can remove a Windows node by deleting its host Windows machine.</p>
       <h2 id="machine-delete_removing-windows-nodes" class="group scroll-mt-20">Deleting a specific machine<a href="#machine-delete_removing-windows-nodes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p class="_abstract">To remove a machine from your cluster, or restart a machine that is part of a machine set, you can use the OpenShift CLI (<code>oc</code>) to delete a specific machine.</p>
       <Alert variant="info" class="my-4">

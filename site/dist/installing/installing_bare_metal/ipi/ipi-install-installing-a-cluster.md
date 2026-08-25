@@ -82,6 +82,7 @@ If the script determines that the network configuration contains an infinite DHC
 1. Check the network interface configuration on the node.
 2. Turn off the DHCP server and reboot the OpenShift Container Platform node and ensure that the network configuration works properly.
 
-## Additional resources {#additional-resources_creating_manifest_ignition}
+**Additional resources**
+{._additional-resources}
 
 - [Understanding update channels and releases](/openshift-docs-markdown/updating/understanding_updates/understanding-update-channels-release#understanding-update-channels-releases)
