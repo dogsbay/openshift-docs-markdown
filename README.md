@@ -35,8 +35,20 @@ converts, and commits `markdown/` to the branch of the same name here,
 preserving that branch's history. Also weekly, Mondays 05:00 UTC, for
 `enterprise-4.22`.
 
-**2. Build Astro site** — reads that branch's `markdown/` and commits the
-generated Astro project as `site/`.
+**2. Build Astro site** — reads that branch's `markdown/`, generates the
+Astro project into `site/`, **compiles it with `astro build`** as a check,
+and commits the project. `dist/` is not committed.
+
+The build is cheap, which is why it is a check rather than a later step.
+Measured on the equivalent `openshift-docs-dogsbay` run (2026-08-24):
+
+| Step | Time |
+|---|---|
+| `migrate-asciidoc` | 18s |
+| `dogsbay site build` | 32s |
+| `astro build` | 90s |
+| Pagefind index | 13s |
+| **Whole pipeline incl. deploy** | **5m32s** |
 
 They are separate so the two halves fail independently: a converter problem
 and a site-generation problem have different causes and different fixes, and
@@ -73,14 +85,18 @@ MIGRATION.md         what survived conversion and what did not
 README.md            the upstream commit this was built from
 ```
 
-`site/` is the Astro **project**, not a built site. Nothing here runs `astro
-build`, so nothing here proves the pages compile — that check arrives with
-the GitHub Pages deploy, which is deliberately not wired up yet. Until then
-the only claim being made is "the project generated".
+`site/` is the Astro **project**. It is committed on purpose, so the output
+is readable on GitHub and a converter or generator change shows up as a diff.
+`dist/` is not: fully derived, and it would not diff usefully.
 
-The generated project is committed on purpose, so the output is readable on
-GitHub and a converter or generator change shows up as a diff. `dist/` is
-not: it is fully derived and would not diff usefully.
+`astro build` runs on every site build, so the project is known to compile —
+but nothing is published yet. Wiring up GitHub Pages is the remaining step.
+
+**Routable pages are far fewer than markdown files.** The config excludes
+`_attributes`, `modules`, `snippets` and `includes` from routes and takes
+routables from nav, so ~11,800 `.md` become ~1,800 `.astro`. The rest are
+include fragments, referenced rather than routed. Any page-count threshold
+has to be set against the right one of those two numbers.
 
 ## Measured on `enterprise-4.22`
 

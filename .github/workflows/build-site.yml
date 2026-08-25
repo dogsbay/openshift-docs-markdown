@@ -13,10 +13,9 @@ name: Build Astro site
 # workflows from the branch that was pushed — so it takes the branch as an
 # input instead.
 #
-# This does NOT run `astro build`. It emits the Astro PROJECT (`.astro`
-# sources); nothing here proves the site compiles. That check arrives with
-# the GitHub Pages deploy, and until then "the project generated" is the only
-# claim being made.
+# It DOES run `astro build` as a verification step — generating .astro
+# files does not prove they compile, and on this corpus the build is ~90s.
+# `dist/` is gitignored; it becomes a deliverable when Pages is wired up.
 
 on:
   workflow_dispatch:
@@ -38,9 +37,15 @@ concurrency:
 env:
   DOGSBAY_VERSION: beta
   BRANCH: ${{ github.event.inputs.branch }}
-  # A generated project with almost no pages means the build silently found
-  # no content — commit that and the branch loses a working site.
-  MIN_PAGES: "2000"
+  # ROUTABLE pages, which is far fewer than the markdown file count: the
+  # config excludes _attributes/modules/snippets/includes from routes and
+  # takes routables from nav, so ~11,800 .md yield ~1,800 .astro. The
+  # existing openshift-docs-dogsbay builder emits 1,770 on main and this
+  # corpus has 1,796 pages carrying frontmatter.
+  #
+  # This was 2000, copied from the sync's markdown threshold, which would
+  # have failed every single run.
+  MIN_PAGES: "1000"
 
 jobs:
   build:
@@ -101,6 +106,33 @@ jobs:
             exit 1
           fi
 
+      # Generating .astro files does not prove they compile. This is the
+      # step that does, and it is cheap: measured on the equivalent
+      # openshift-docs-dogsbay build, `astro build` over ~1,800 routable
+      # pages takes ~90s, with the whole pipeline at 5m32s.
+      #
+      # The scaffold emits astro ^7.0.4, so no build-at-scale patch is
+      # needed here — openshift-docs-dogsbay still runs an apply-astro7.mjs
+      # written when the scaffold emitted Astro 6.
+      #
+      # dist/ is gitignored: this is verification, not a deliverable. It
+      # becomes one when Pages is wired up.
+      - name: Install Astro project deps
+        working-directory: site
+        run: npm install --no-audit --no-fund --legacy-peer-deps
+
+      - name: Verify the site compiles (astro build)
+        working-directory: site
+        env:
+          NODE_OPTIONS: --max-old-space-size=8192
+        run: npx astro build
+
+      - name: Report built output
+        working-directory: site
+        run: |
+          set -euo pipefail
+          echo "built $(find dist -name '*.html' | wc -l) HTML page(s)"
+
       - name: Commit the generated site
         env:
           PAGES: ${{ steps.count.outputs.pages }}
@@ -132,5 +164,5 @@ jobs:
             echo "### Site build \`$BRANCH\`"
             echo ""
             echo "- generated pages: ${PAGES:-?}"
-            echo "- \`astro build\` was NOT run; this only proves the project generated"
+            echo "- \`astro build\` ran; the site compiles"
           } >> "$GITHUB_STEP_SUMMARY"
