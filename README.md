@@ -28,12 +28,25 @@ that which a one-shot conversion cannot give you:
 
 ## How it runs
 
-`main` → Actions → **Sync upstream AsciiDoc → Dogsbay MD** → Run workflow.
-Inputs: the upstream branch and the distro filter. Also weekly, Mondays 05:00
-UTC, for `enterprise-4.22`.
+Two workflows, both on `main`, both taking the branch as an input.
 
-The workflow shallow-clones upstream, converts, and commits the result to the
-branch of the same name here, preserving that branch's history.
+**1. Sync upstream AsciiDoc → Dogsbay MD** — shallow-clones upstream,
+converts, and commits `markdown/` to the branch of the same name here,
+preserving that branch's history. Also weekly, Mondays 05:00 UTC, for
+`enterprise-4.22`.
+
+**2. Build Astro site** — reads that branch's `markdown/` and commits the
+generated Astro project as `site/`.
+
+They are separate so the two halves fail independently: a converter problem
+and a site-generation problem have different causes and different fixes, and
+folding them into one job makes the markdown hostage to the site building.
+
+Both share a concurrency group keyed on the branch, because both push to it.
+
+They are dispatch-only rather than chained. A `push` trigger would need this
+file on every content branch — GitHub reads workflows from the branch that
+was pushed — and one workflow per version is worse than one input.
 
 ```
 dogsbay migrate-asciidoc <upstream> -o out --force \
@@ -52,12 +65,22 @@ rather than `dogsbay convert` — `convert` has no `--attribute`.
 ## What lands on a content branch
 
 ```
-content/          the Dogsbay MD, plus nav.yml and _assets/images/
-MIGRATION.md      what survived conversion and what did not
-README.md         the upstream commit this was built from
+markdown/            the Dogsbay MD, plus nav.yml and _assets/images/
+site/                generated Astro project (.astro sources)
+  dist/              gitignored — derived, and not built here yet
+dogsbay.config.yml   sources: ./markdown, output: ./site
+MIGRATION.md         what survived conversion and what did not
+README.md            the upstream commit this was built from
 ```
 
-No Astro project, no site build. This repo is the markdown, nothing else.
+`site/` is the Astro **project**, not a built site. Nothing here runs `astro
+build`, so nothing here proves the pages compile — that check arrives with
+the GitHub Pages deploy, which is deliberately not wired up yet. Until then
+the only claim being made is "the project generated".
+
+The generated project is committed on purpose, so the output is readable on
+GitHub and a converter or generator change shows up as a diff. `dist/` is
+not: it is fully derived and would not diff usefully.
 
 ## Measured on `enterprise-4.22`
 

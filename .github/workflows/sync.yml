@@ -10,7 +10,7 @@ name: Sync upstream AsciiDoc → Dogsbay MD
 # rather than one per version.
 #
 # History is PRESERVED on each content branch — every run is a commit, so
-# `git log content/` is a real changelog of what upstream changed and what
+# `git log markdown/` is a real changelog of what upstream changed and what
 # the converter did with it. That is the point of the repo, not a byproduct.
 
 on:
@@ -30,10 +30,11 @@ on:
 permissions:
   contents: write
 
-# Serialise per target branch. Two runs writing the same branch would
-# race on the push; different versions are independent and may overlap.
+# Serialise per target branch, SHARED with build-site.yml — both push to
+# the same branch and two pushes racing would fail on a stale ref. Different
+# versions are independent and may overlap.
 concurrency:
-  group: sync-${{ github.event.inputs.upstream_ref || 'enterprise-4.22' }}
+  group: branch-${{ github.event.inputs.upstream_ref || 'enterprise-4.22' }}
   cancel-in-progress: false
 
 env:
@@ -169,13 +170,35 @@ jobs:
           # Replace wholesale. `rm` first so upstream DELETIONS propagate —
           # copying over the top would leave removed pages behind forever,
           # and a mirror that only ever grows is not a mirror.
-          rm -rf content MIGRATION.md
-          cp -r "$RUNNER_TEMP/out/content" content
+          #
+          # `site/` is NOT touched: it belongs to build-site.yml. This step
+          # leaves it stale rather than deleting it, so the branch always has
+          # a site to look at; the next site build refreshes it.
+          rm -rf markdown MIGRATION.md
+          cp -r "$RUNNER_TEMP/out/content" markdown
           # `if`, not `[ … ] && …`: under `set -e` a bare test that fails is
           # the last command of the list and kills the whole step.
           if [ -f "$RUNNER_TEMP/out/MIGRATION.md" ]; then
             cp "$RUNNER_TEMP/out/MIGRATION.md" MIGRATION.md
           fi
+
+          # The generated config points at ./content and defaults output to
+          # ./astro. Repoint both at this repo's layout so `dogsbay site
+          # build .` works from the branch root with no further arguments.
+          # `excludeFromRoutes` entries are relative to the content root, so
+          # the rename does not affect them.
+          cp "$RUNNER_TEMP/out/dogsbay.config.yml" dogsbay.config.yml
+          yq -i '.content.sources[0].path = "./markdown" | .output = "./site"' dogsbay.config.yml
+
+          cat > .gitignore <<'GITIGNORE'
+          # Derived: `dogsbay site build` regenerates site/ and `astro build`
+          # regenerates site/dist. The Astro PROJECT is committed (it is the
+          # generator's output and worth diffing); the built HTML is not.
+          site/dist/
+          site/node_modules/
+          site/.astro/
+          node_modules/
+          GITIGNORE
 
           cat > README.md <<EOF
           # OpenShift docs — \`$BRANCH\` as Dogsbay MD
@@ -194,13 +217,22 @@ jobs:
 
           \`MIGRATION.md\` reports what survived conversion and what did not.
 
+          ## Layout
+
+          | | |
+          |---|---|
+          | \`markdown/\` | the Dogsbay MD, plus \`nav.yml\` and \`_assets/images/\` |
+          | \`site/\` | generated Astro project — built by **Build Astro site** |
+          | \`dogsbay.config.yml\` | points at \`./markdown\`, outputs to \`./site\` |
+
           Regenerate from the [\`main\`](../../tree/main) branch:
-          Actions → **Sync upstream AsciiDoc → Dogsbay MD** → Run workflow.
+          Actions → **Sync upstream AsciiDoc → Dogsbay MD** (markdown), then
+          **Build Astro site** (site). Both take this branch as an input.
           EOF
 
           # Explicit paths, never `git add -A`: the runner temp is outside the
           # tree, but an accidental stray file should not ride along silently.
-          git add content README.md
+          git add markdown README.md dogsbay.config.yml .gitignore
           if [ -f MIGRATION.md ]; then git add MIGRATION.md; fi
 
           if git diff --cached --quiet; then

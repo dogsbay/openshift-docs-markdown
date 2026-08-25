@@ -1,0 +1,136 @@
+name: Build Astro site
+
+# Generates the Astro project from a content branch's `markdown/` and commits
+# it back to that branch as `site/`.
+#
+# Separate from the sync so the two halves fail independently: a converter
+# problem and a site-generation problem have different causes and different
+# fixes, and folding them into one job makes the markdown hostage to the
+# site building.
+#
+# Lives on `main` with the sync workflow. A `push`-triggered version is not
+# possible without copying this file onto every content branch — GitHub reads
+# workflows from the branch that was pushed — so it takes the branch as an
+# input instead.
+#
+# This does NOT run `astro build`. It emits the Astro PROJECT (`.astro`
+# sources); nothing here proves the site compiles. That check arrives with
+# the GitHub Pages deploy, and until then "the project generated" is the only
+# claim being made.
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "Content branch to build (e.g. enterprise-4.22)"
+        required: true
+        default: "enterprise-4.22"
+
+permissions:
+  contents: write
+
+# Shared with sync.yml, keyed on the same branch: both workflows push to it,
+# and two pushes racing would fail on a stale ref.
+concurrency:
+  group: branch-${{ github.event.inputs.branch }}
+  cancel-in-progress: false
+
+env:
+  DOGSBAY_VERSION: beta
+  BRANCH: ${{ github.event.inputs.branch }}
+  # A generated project with almost no pages means the build silently found
+  # no content — commit that and the branch loses a working site.
+  MIN_PAGES: "2000"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout the content branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.branch }}
+
+      - name: Verify the branch carries converted markdown
+        run: |
+          set -euo pipefail
+          if [ ! -d markdown ]; then
+            echo "::error::no markdown/ on '$BRANCH' — run the sync workflow first"
+            exit 1
+          fi
+          if [ ! -f dogsbay.config.yml ]; then
+            echo "::error::no dogsbay.config.yml on '$BRANCH' — run the sync workflow first"
+            exit 1
+          fi
+          echo "markdown/: $(find markdown -name '*.md' | wc -l) file(s)"
+
+      - name: Set up Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Dogsbay CLI
+        run: npm install -g "dogsbay@${DOGSBAY_VERSION}"
+
+      - name: Record the exact toolchain
+        id: tools
+        run: echo "cli=$(dogsbay --version)" >> "$GITHUB_OUTPUT"
+
+      # Wipe the previously-committed page tree first. A stale baseline
+      # survives the checkout, and pages whose source was deleted upstream
+      # would otherwise persist in site/ forever — the same reasoning as the
+      # sync's `rm -rf markdown`, applied one stage later.
+      - name: Clear the previous page tree
+        run: rm -rf site/src/pages
+
+      # `dogsbay.config.yml` already points sources at ./markdown and output
+      # at ./site, so the build needs no arguments beyond the root.
+      - name: Generate the Astro project
+        run: dogsbay site build .
+
+      - name: Refuse an implausibly small site
+        id: count
+        run: |
+          set -euo pipefail
+          n=$(find site/src/pages -name '*.astro' | wc -l)
+          echo "pages=$n" >> "$GITHUB_OUTPUT"
+          echo "generated $n .astro page(s)"
+          if [ "$n" -lt "$MIN_PAGES" ]; then
+            echo "::error::only $n pages (< $MIN_PAGES) — refusing to commit what looks like an empty site"
+            exit 1
+          fi
+
+      - name: Commit the generated site
+        env:
+          PAGES: ${{ steps.count.outputs.pages }}
+          CLI: ${{ steps.tools.outputs.cli }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Explicit path. site/dist and site/node_modules are gitignored on
+          # the content branch; only the generated project is tracked.
+          git add site
+
+          if git diff --cached --quiet; then
+            echo "site/ unchanged since the last build — nothing to commit"
+            exit 0
+          fi
+
+          git commit -m "site($BRANCH): generate Astro project — $PAGES pages" \
+                     -m "From markdown/ at $(git rev-parse --short HEAD), dogsbay $CLI"
+          git push origin "HEAD:$BRANCH"
+
+      - name: Summary
+        if: always()
+        env:
+          PAGES: ${{ steps.count.outputs.pages }}
+        run: |
+          {
+            echo "### Site build \`$BRANCH\`"
+            echo ""
+            echo "- generated pages: ${PAGES:-?}"
+            echo "- \`astro build\` was NOT run; this only proves the project generated"
+          } >> "$GITHUB_STEP_SUMMARY"
